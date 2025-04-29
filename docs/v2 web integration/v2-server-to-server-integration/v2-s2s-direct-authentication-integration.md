@@ -18,7 +18,7 @@ This is server-to-server integration over the Redirect experience for cards invo
 2. [Check Response from PayU](#step-2-check-response-from-payu)
 
 > 👍 Before you begin:
-> 
+>
 > PayU recommends you to integrate with Test environment initially. For more information, contact you PayU Key Account Manager (KAM) or PayU Support.
 
 ## Step 1: Post the transaction to PayU
@@ -99,165 +99,472 @@ return true;
 
 ### Body
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "accountId  \n `mandatory`",
-    "0-1": "`String` The merchant key provided by PayU during onboarding.",
-    "0-2": "MERCHANT123",
-    "1-0": "referenceId  \n `mandatory`",
-    "1-1": "`String` Reference ID for transaction tracking and this must be unique for every transaction.",
-    "1-2": "REF123456",
-    "2-0": "amount  \n `optional`",
-    "2-1": "`Long` Amount of the transaction.",
-    "2-2": "1000",
-    "3-0": "currency  \n `mandatory`",
-    "3-1": "`String` Currency of the transaction (e.g., INR). By default, `INR` is posted.",
-    "3-2": "INR",
-    "4-0": "paymentMethod  \n `mandatory`",
-    "4-1": "`Object` Details about the payment method used. For more information, refer to [paymentMethod object fields description](#paymentmethod-object-fields-description).",
-    "4-2": " {  \n        \"name\": \"NetBanking\",\t  \n        \"bankCode\": \"TESTNB\"  \n    }",
-    "5-0": "order  \n `mandatory`",
-    "5-1": "`Object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to [order object fields description](#order-object-fields-description)",
-    "5-2": "",
-    "6-0": "additionalInfo  \n `mandatory`",
-    "6-1": "`Object` Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to [additionalInfo object fields description](#additionalinfo-object-fields-description)",
-    "6-2": "",
-    "7-0": "callBackActions  \n `mandatory`",
-    "7-1": "`Object` Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to [callbackActions object fields description](#callbackactions-object-fields-description)",
-    "7-2": " {",
-    "8-0": "billingDetails `mandatory`",
-    "8-1": "`Object` Billing details of the customer including name, address, phone number, email, etc. For more information, refer to [billingDetails object field descriptions](#billingdetails-object-field-descriptions).",
-    "8-2": "",
-    "9-0": "deviceInfo  \n`mandatory for S2S`",
-    "9-1": "`Object`Device info of the customer.  For more information, refer to[ deviceInfo object field descriptions](#deviceinfo-object-field-descriptions)  .",
-    "9-2": "",
-    "10-0": "authorization  \n`mandatory for S2S Direct Auth`",
-    "10-1": "`Object`3DS authorization information.  For more information, refer to refer to[ deviceInfo object field descriptions](#authorization-object-field-descriptions)   .",
-    "10-2": "",
-    "11-0": "threeDS2RequestData  \n`mandatory for S2S`",
-    "11-1": "`Object` 3DS authorization information.  For more information, refer to refer to [threeDS2RequestData object field description](threeds2requestdata-object-field-description)",
-    "11-2": ""
-  },
-  "cols": 3,
-  "rows": 12,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        accountId
+         `mandatory`
+      </td>
+
+      <td>
+        `String` The merchant key provided by PayU during onboarding.
+      </td>
+
+      <td>
+        MERCHANT123
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        referenceId\
+         `mandatory`
+      </td>
+
+      <td>
+        `String` Reference ID for transaction tracking and this must be unique for every transaction.
+      </td>
+
+      <td>
+        REF123456
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount\
+         `optional`
+      </td>
+
+      <td>
+        `Long` Amount of the transaction.
+      </td>
+
+      <td>
+        1000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        currency\
+         `mandatory`
+      </td>
+
+      <td>
+        `String` Currency of the transaction (e.g., INR). By default, `INR` is posted.
+      </td>
+
+      <td>
+        INR
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentMethod\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Details about the payment method used. For more information, refer to [paymentMethod object fields description](#paymentmethod-object-fields-description).
+      </td>
+
+      <td>
+         \{\
+                "name": "NetBanking",	\
+                "bankCode": "TESTNB"\
+            }
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        order\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to [order object fields description](#order-object-fields-description)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        additionalInfo\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to [additionalInfo object fields description](#additionalinfo-object-fields-description)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        callBackActions\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to [callbackActions object fields description](#callbackactions-object-fields-description)
+      </td>
+
+      <td>
+         \{
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        billingDetails `mandatory`
+      </td>
+
+      <td>
+        `Object` Billing details of the customer including name, address, phone number, email, etc. For more information, refer to [billingDetails object field descriptions](#billingdetails-object-field-descriptions).
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        deviceInfo\
+        `mandatory for S2S`
+      </td>
+
+      <td>
+        `Object`Device info of the customer.  For more information, refer to[ deviceInfo object field descriptions](#deviceinfo-object-field-descriptions)  .
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        authorization\
+        `mandatory for S2S Direct Auth`
+      </td>
+
+      <td>
+        `Object`3DS authorization information.  For more information, refer to refer to[ deviceInfo object field descriptions](#authorization-object-field-descriptions)   .
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        threeDS2RequestData\
+        `mandatory for S2S`
+      </td>
+
+      <td>
+        `Object` 3DS authorization information.  For more information, refer to refer to [threeDS2RequestData object field description](threeds2requestdata-object-field-description)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### paymentMethod object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "name  \n `mandatory`",
-    "0-1": "`String` This field must contain the payment mode code. For cards, this must contain any of the following:  \n  \n- **creditcard** for credit card\n- **debitcard** for debit card",
-    "1-0": "bankCode  \n `mandatory`",
-    "1-1": "`String`This field must contain the bank code. For more information, refer to [Card Type Codes and Supported Banks for Cards](https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards)",
-    "2-0": "paymentCard `mandatory for cards`",
-    "2-1": "`Object`This object will contain the physical card or saved card token details. For more information, refer to[ paymentCard object fields description](#paymentcard-object-fields-description)."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        name
+         `mandatory`
+      </td>
+
+      <td>
+        `String` This field must contain the payment mode code. For cards, this must contain any of the following:  
+
+        * **creditcard** for credit card
+        * **debitcard** for debit card
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankCode\
+         `mandatory`
+      </td>
+
+      <td>
+        `String`This field must contain the bank code. For more information, refer to [Card Type Codes and Supported Banks for Cards](https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentCard `mandatory for cards`
+      </td>
+
+      <td>
+        `Object`This object will contain the physical card or saved card token details. For more information, refer to[ paymentCard object fields description](#paymentcard-object-fields-description).
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ##### paymentCard object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "cardNumber  \n `mandatory for physical card`",
-    "0-1": "`String`This field must contain the card number. For validating the card number, refer to [Card Number Formats](https://docs.payu.in/v1/docs/card-number-formats).",
-    "1-0": "validThrough  \n `mandatory for physical card`",
-    "1-1": "`String`This field must contain the card expiry in MM/YYYY format.",
-    "2-0": "ownerName  \n `mandatory for physical card`",
-    "2-1": "`String`This field must contain the name of the card holder as printed on card.",
-    "3-0": "cvv  \n `mandatory for physical card`",
-    "3-1": "`String`This field must contain the CVV printed on the back of the card.  ",
-    "4-0": "tavv  \n `mandatory for saved card`",
-    "4-1": "`String`This field must contain the cryptogram of card.",
-    "5-0": "last4Digits  \n `mandatory for saved card`",
-    "5-1": "`String`This field must contain the last four digits of card.",
-    "6-0": "cardTokenType  \n `mandatory for saved card`",
-    "6-1": "`String`This field must contain the any of the following based on the:  \n  \n- PAYU\n- NETWORK\n- ISSUER\"",
-    "7-0": "cardToken  \n `mandatory for saved card`",
-    "7-1": "`String`This field must contain the card token of stored card."
-  },
-  "cols": 2,
-  "rows": 8,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        cardNumber
+         `mandatory for physical card`
+      </td>
+
+      <td>
+        `String`This field must contain the card number. For validating the card number, refer to [Card Number Formats](https://docs.payu.in/v1/docs/card-number-formats).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        validThrough\
+         `mandatory for physical card`
+      </td>
+
+      <td>
+        `String`This field must contain the card expiry in MM/YYYY format.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ownerName\
+         `mandatory for physical card`
+      </td>
+
+      <td>
+        `String`This field must contain the name of the card holder as printed on card.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cvv\
+         `mandatory for physical card`
+      </td>
+
+      <td>
+        `String`This field must contain the CVV printed on the back of the card.  
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        tavv\
+         `mandatory for saved card`
+      </td>
+
+      <td>
+        `String`This field must contain the cryptogram of card.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        last4Digits\
+         `mandatory for saved card`
+      </td>
+
+      <td>
+        `String`This field must contain the last four digits of card.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardTokenType\
+         `mandatory for saved card`
+      </td>
+
+      <td>
+        `String`This field must contain the any of the following based on the:  
+
+        * PAYU
+        * NETWORK
+        * ISSUER"
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardToken\
+         `mandatory for saved card`
+      </td>
+
+      <td>
+        `String`This field must contain the card token of stored card.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### additionalInfo object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "txnS2sFlow  \n `mandatory for S2S`",
-    "0-1": "`String` Indicates the transaction S2S flow type and must be set to **4** for Classic Integration.",
-    "1-0": "authenticationFlow  \n `mandatory for S2S`",
-    "1-1": "`String` Indicates the authentication flow type and must be set to **REDIRECT** for Classic Integration.",
-    "2-0": "decodedS2sResponse  \n `mandatory for S2S`",
-    "2-1": "`String` Indicates whether you want to use acsTemplate format and want to post data by the merchant (on your own).  Post it as **1** only if you do not want to use acsTemplate format and want to post data on your own."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        txnS2sFlow
+         `mandatory for S2S`
+      </td>
+
+      <td>
+        `String` Indicates the transaction S2S flow type and must be set to **4** for Classic Integration.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        authenticationFlow\
+         `mandatory for S2S`
+      </td>
+
+      <td>
+        `String` Indicates the authentication flow type and must be set to **REDIRECT** for Classic Integration.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        decodedS2sResponse\
+         `mandatory for S2S`
+      </td>
+
+      <td>
+        `String` Indicates whether you want to use acsTemplate format and want to post data by the merchant (on your own).  Post it as **1** only if you do not want to use acsTemplate format and want to post data on your own.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### order object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "productInfo  \n `mandatory`",
-    "0-1": "`String`Details about the product being purchased. For more information, refer to[ userDefinedFields object fields description](#userdefinedfields-object-fields-description).",
-    "1-0": "userDefinedFields  \n `optional`",
-    "1-1": "`Object`Custom fields defined by the user for additional information.",
-    "2-0": "paymentChargeSpecification  \n `mandatory`",
-    "2-1": "`Object` Payment details including amount, additional charges and PayU offers to be applied. For more information, refer to [paymentChargeSpecification object fields description](#paymentchargespecification-object-fields-description)."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        productInfo
+         `mandatory`
+      </td>
+
+      <td>
+        `String`Details about the product being purchased. For more information, refer to[ userDefinedFields object fields description](#userdefinedfields-object-fields-description).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        userDefinedFields\
+         `optional`
+      </td>
+
+      <td>
+        `Object`Custom fields defined by the user for additional information.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentChargeSpecification\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Payment details including amount, additional charges and PayU offers to be applied. For more information, refer to [paymentChargeSpecification object fields description](#paymentchargespecification-object-fields-description).
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ##### userDefinedFields object fields description
 
@@ -276,100 +583,266 @@ return true;
 
 ##### paymentChargeSpecification object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "price  \n`mandatory`",
-    "0-1": "This field must contain the price or transaction amount to be posted.",
-    "0-2": "10.00"
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        price
+        `mandatory`
+      </td>
+
+      <td>
+        This field must contain the price or transaction amount to be posted.
+      </td>
+
+      <td>
+        10.00
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### callbackActions object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "successAction  \n `mandatory`",
-    "0-1": "`String`URL to redirect to upon successful payment.",
-    "1-0": "failureAction  \n `mandatory`",
-    "1-1": "`String`URL to redirect to if the payment is failed.",
-    "2-0": "cancelAction  \n `mandatory`",
-    "2-1": "`String`URL to redirect to if the transaction is cancelled.",
-    "3-0": "codAction  \n `optional`",
-    "3-1": "`String`URL to handle Cash on Delivery actions.",
-    "4-0": "termAction  \n `optional`",
-    "4-1": "`String`URL for completing terms and conditions actions.",
-    "5-0": "returnAction  \n `optional`",
-    "5-1": "`String`URL to return to after successful payment action is completed."
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        successAction
+         `mandatory`
+      </td>
+
+      <td>
+        `String`URL to redirect to upon successful payment.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        failureAction\
+         `mandatory`
+      </td>
+
+      <td>
+        `String`URL to redirect to if the payment is failed.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cancelAction\
+         `mandatory`
+      </td>
+
+      <td>
+        `String`URL to redirect to if the transaction is cancelled.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        codAction\
+         `optional`
+      </td>
+
+      <td>
+        `String`URL to handle Cash on Delivery actions.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        termAction\
+         `optional`
+      </td>
+
+      <td>
+        `String`URL for completing terms and conditions actions.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        returnAction\
+         `optional`
+      </td>
+
+      <td>
+        `String`URL to return to after successful payment action is completed.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### billingDetails object field descriptions
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "firstName  \n`mandatory`",
-    "0-1": "First name of the billing contact",
-    "0-2": "Ashish",
-    "1-0": "lastName  \n`optional`",
-    "1-1": "Last name of the billing contact",
-    "1-2": "Kumar",
-    "2-0": "phone  \n`mandatory`",
-    "2-1": "Phone number of the billing contact",
-    "2-2": "9123456789",
-    "3-0": "email  \n`mandatory`",
-    "3-1": "Email address of the billing contact",
-    "3-2": "[ashish@abc.com](mailto:ashish@abc.com)",
-    "4-0": "city  \n`optional`",
-    "4-1": "City of the billing address",
-    "4-2": "Bengaluru",
-    "5-0": "state  \n`optional`",
-    "5-1": "State of the billing address",
-    "5-2": "Karnatka",
-    "6-0": "country  \n`optional`",
-    "6-1": "Country of the billing address",
-    "6-2": "Indiia",
-    "7-0": "zipCode  \n`optional`",
-    "7-1": "Postal/Zip code of the billing address",
-    "7-2": "560071"
-  },
-  "cols": 3,
-  "rows": 8,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        firstName
+        `mandatory`
+      </td>
+
+      <td>
+        First name of the billing contact
+      </td>
+
+      <td>
+        Ashish
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        lastName\
+        `optional`
+      </td>
+
+      <td>
+        Last name of the billing contact
+      </td>
+
+      <td>
+        Kumar
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        `mandatory`
+      </td>
+
+      <td>
+        Phone number of the billing contact
+      </td>
+
+      <td>
+        9123456789
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email\
+        `mandatory`
+      </td>
+
+      <td>
+        Email address of the billing contact
+      </td>
+
+      <td>
+        [ashish@abc.com](mailto:ashish@abc.com)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        city\
+        `optional`
+      </td>
+
+      <td>
+        City of the billing address
+      </td>
+
+      <td>
+        Bengaluru
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        state\
+        `optional`
+      </td>
+
+      <td>
+        State of the billing address
+      </td>
+
+      <td>
+        Karnatka
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        country\
+        `optional`
+      </td>
+
+      <td>
+        Country of the billing address
+      </td>
+
+      <td>
+        Indiia
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        zipCode\
+        `optional`
+      </td>
+
+      <td>
+        Postal/Zip code of the billing address
+      </td>
+
+      <td>
+        560071
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### deviceInfo object field descriptions
 
@@ -389,76 +862,220 @@ return true;
 
 #### authorization object field descriptions
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "eci  \n`mandatory`",
-    "0-1": "`String`The electronic commerce indicator is used in payer authentication to indicate the level of security used when the cardholder provided payment information to the merchant. Its value corresponds to the authentication result and the characteristics of the merchant checkout process.",
-    "0-2": "05",
-    "1-0": "cavv  \n`mandatory`",
-    "1-1": "`String`The Cardholder Authentication Verification Value (CAVV) is specified here.",
-    "1-2": "AAABAWFlmQAAAABjRWWZEEFgFz",
-    "2-0": "flowType  \n`mandatory`",
-    "2-1": "`String`This field must contain any of the following flow types:  \n  \n- Frictionless\n- Challenge.",
-    "2-2": "Frictionless",
-    "3-0": "threeDSTransID  \n`mandatory`",
-    "3-1": "`String`This field must contain the 3DS transaction ID.",
-    "3-2": "67b4c71f-19bf-4d97-bd09-4e3687dc9e42",
-    "4-0": "threeDSServerTransID  \n`mandatory`",
-    "4-1": "`String`This field must contain the 3DS server transaction ID.",
-    "4-2": "eea30d14-71cf-41af-b961-f95b7d67dc93",
-    "5-0": "threeDSTransStatus  \n`mandatory`",
-    "5-1": "`String`This field must contain the 3DS transaction status. It can be any of the following: Y, N, U or R.",
-    "5-2": "Y",
-    "6-0": "threeDSTransStatusReason  \n`mandatory`",
-    "6-1": "This field must contain the 3DS transaction reason. It can be an integer in the range 0-99.",
-    "6-2": "01",
-    "7-0": "acquirer_bin  \n`mandatory`",
-    "7-1": "`String` This field must contain the Bank Identification Number (BIN) that is used to clear and settle the transaction within Visa and the country in which it is licensed for use.",
-    "7-2": "401200",
-    "8-0": "additionalInfo  \n`mandatory`",
-    "8-1": "`Object` This contains the following fields to include the additional authentication information:  \n  \n- authudf1\n- authudf2",
-    "8-2": "1_1665637507_954_104  \n\\_l73c004m_IAMRB"
-  },
-  "cols": 3,
-  "rows": 9,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        eci
+        `mandatory`
+      </td>
+
+      <td>
+        `String`The electronic commerce indicator is used in payer authentication to indicate the level of security used when the cardholder provided payment information to the merchant. Its value corresponds to the authentication result and the characteristics of the merchant checkout process.
+      </td>
+
+      <td>
+        05
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cavv\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`The Cardholder Authentication Verification Value (CAVV) is specified here.
+      </td>
+
+      <td>
+        AAABAWFlmQAAAABjRWWZEEFgFz
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        flowType\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`This field must contain any of the following flow types:  
+
+        * Frictionless
+        * Challenge.
+      </td>
+
+      <td>
+        Frictionless
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        threeDSTransID\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`This field must contain the 3DS transaction ID.
+      </td>
+
+      <td>
+        67b4c71f-19bf-4d97-bd09-4e3687dc9e42
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        threeDSServerTransID\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`This field must contain the 3DS server transaction ID.
+      </td>
+
+      <td>
+        eea30d14-71cf-41af-b961-f95b7d67dc93
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        threeDSTransStatus\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`This field must contain the 3DS transaction status. It can be any of the following: Y, N, U or R.
+      </td>
+
+      <td>
+        Y
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        threeDSTransStatusReason\
+        `mandatory`
+      </td>
+
+      <td>
+        This field must contain the 3DS transaction reason. It can be an integer in the range 0-99.
+      </td>
+
+      <td>
+        01
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        acquirer\_bin\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This field must contain the Bank Identification Number (BIN) that is used to clear and settle the transaction within Visa and the country in which it is licensed for use.
+      </td>
+
+      <td>
+        401200
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        additionalInfo\
+        `mandatory`
+      </td>
+
+      <td>
+        `Object` This contains the following fields to include the additional authentication information:  
+
+        * authudf1
+        * authudf2
+      </td>
+
+      <td>
+        1\_1665637507\_954\_104  
+
+        * l73c004m\_IAMRB
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### threeDS2RequestData object field description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "threeDSVersion  \n`mandatory`",
-    "0-1": "`String`The message protocol version is to be specified in this field.",
-    "0-2": "2.2.0",
-    "1-0": "deviceChannel  \n`mandatory`",
-    "1-1": "`String`The channel of transaction is to be specified in this field.",
-    "1-2": "APP"
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        threeDSVersion
+        `mandatory`
+      </td>
+
+      <td>
+        `String`The message protocol version is to be specified in this field.
+      </td>
+
+      <td>
+        2.2.0
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        deviceChannel\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`The channel of transaction is to be specified in this field.
+      </td>
+
+      <td>
+        APP
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <ErrorHandling />
 
@@ -593,7 +1210,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 ## Step 2: Verify the payment
 
 > 📘 Note:
-> 
+>
 > This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
 
 ### Sample response
@@ -601,7 +1218,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 The sample response after the customer makes payment will be similar to v2 merchant hosted checkout payments. 
 
 > 📘 Note:
-> 
+>
 > Reverse hashing of the response is not required with that of v2/payment API.
 
 ```plaintext
@@ -616,5 +1233,5 @@ Array
 Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api) under API Reference.
 
 > 📘 Tip
-> 
+>
 > The transaction ID that you posted in Step 1 with PayU must be used here.
