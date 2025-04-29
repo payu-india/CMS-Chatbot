@@ -12,14 +12,14 @@ next:
 ---
 You can integrate with the following types of payments using React Native Core API:
 
-- Credit/Debit Card
-- Sodexo
-- Saved Card
-- Net Banking
-- Cashcard/Wallet
-- EMI
-- No-cost EMI/Subvention EMI
-- InApps UPIs
+* Credit/Debit Card
+* Sodexo
+* Saved Card
+* Net Banking
+* Cashcard/Wallet
+* EMI
+* No-cost EMI/Subvention EMI
+* InApps UPIs
 
 ## Generate URL request for payment
 
@@ -148,13 +148,13 @@ const requestData = { 
 
 The following are the mandatory parameters for EMI:
 
-- **Credit Card EMI**
-  - **All Banks**: cardNumber, expiryYear, expiryMonth, Cvv\\
-- **Debit Card EMI**
-  - **Axis Bank and ICICI Bank**: cardNumber, expiryYear, expiryMonth, Cvv, phone
-  - **Bank of Baroda, HDFC Bank, Kotak Mahindra Banks, SBI**: cardNumber, phone
-- **Cardless EMI**
-  - **ZestMoney**: Phone
+* **Credit Card EMI**
+  * **All Banks**: cardNumber, expiryYear, expiryMonth, Cvv\\
+* **Debit Card EMI**
+  * **Axis Bank and ICICI Bank**: cardNumber, expiryYear, expiryMonth, Cvv, phone
+  * **Bank of Baroda, HDFC Bank, Kotak Mahindra Banks, SBI**: cardNumber, phone
+* **Cardless EMI**
+  * **ZestMoney**: Phone
 
 ### UPI
 
