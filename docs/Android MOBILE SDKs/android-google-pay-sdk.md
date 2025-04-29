@@ -35,16 +35,16 @@ next:
 ---
 ## Feature
 
-- Supports  UPI, card and wallet payment modes
-- Opens as an in app experience without any redirection
-- UPI PIN authentication
-- For Google pay, no CVV rather an OTP with auto read/ submit is there.
-- Fallbacks to collect in case app is not installed
+* Supports  UPI, card and wallet payment modes
+* Opens as an in app experience without any redirection
+* UPI PIN authentication
+* For Google pay, no CVV rather an OTP with auto read/ submit is there.
+* Fallbacks to collect in case app is not installed
 
 ### Onboarding Requirements
 
-To start transacting through Google Pay™, register your business on Google using the Google Onboarding form, In this registration process, you need to add the merchant VPAs created by PayU for you. In the case of multiple VPAs, all of them need to be registered with Google.  
-To enable Google Pay, contact your Point of Contact at Google.  
+To start transacting through Google Pay™, register your business on Google using the Google Onboarding form, In this registration process, you need to add the merchant VPAs created by PayU for you. In the case of multiple VPAs, all of them need to be registered with Google.\
+To enable Google Pay, contact your Point of Contact at Google.\
 For any further queries or help with onboarding, send a mail to PayU Mobile Integration Team.
 
 ### Offerings
@@ -53,30 +53,16 @@ PayU supports three types of Google Pay transactions:
 
 ### Tokenized Cards Flow
 
-In the latest Google Pay app version, users can opt to save their cards to make payments. These tokenized cards can be used to pay on merchant apps whitelisted by Google only.  
+In the latest Google Pay app version, users can opt to save their cards to make payments. These tokenized cards can be used to pay on merchant apps whitelisted by Google only.\
 Within the merchant app, selecting Google Pay invokes the in-app bottom sheet shown below with the list of saved cards and UPI options. Users can select a saved card from the list and complete OTP authentication within the fragment itself.
 
 > 📘 Note
-> 
+>
 > The OTP auto-read and submit handled by Google Pay Fragment
 
 To enable the tokenized card flow, contact your Key Account Manager at PayU.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/c6b8fd8-imgonline-com-ua-twotoone-UvibC88neamhvn.jpg",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/c6b8fd8-imgonline-com-ua-twotoone-UvibC88neamhvn.jpg" />
 
 ## In-App UPI Flow
 
@@ -84,21 +70,7 @@ If the user wishes to proceed with UPI Payment, the VPA can be selected from the
 
 If the Google Pay app version that is installed doesn’t support this experience on the device, payment will be made through Intent flow. In the Intent flow, the Google Pay app is opened in full screen.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/bfa7f5e-ezgif.com-resize.gif",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/bfa7f5e-ezgif.com-resize.gif" />
 
 ## Web Flow
 
@@ -106,6 +78,6 @@ If the user’s device does not have the Google Pay application installed, PayU 
 
 ## Compatibility
 
-- Min SDK Version: 21
-- Compile SDK Version: 31 and above
-- Kotlin version: 1.6.10
+* Min SDK Version: 21
+* Compile SDK Version: 31 and above
+* Kotlin version: 1.6.10
