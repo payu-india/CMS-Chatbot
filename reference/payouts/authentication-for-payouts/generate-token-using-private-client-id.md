@@ -19,7 +19,8 @@ HTTP Method: **POST**
 
 <PAYOUTSEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
 curl -X POST \
@@ -31,7 +32,8 @@ curl -X POST \
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
@@ -45,7 +47,8 @@ curl -X POST \
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
 | **Parameters** | **Description**                                                                                                                    |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
@@ -59,5 +62,5 @@ curl -X POST \
 ## Request parameters
 
 > 📘 Note:
-> 
-> Use your test client ID and secret that was provided by PayU. For getting your client_id and client_secret, refer to [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard).
+>
+> Use your test client ID and secret that was provided by PayU. For getting your client\_id and client\_secret, refer to [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard).
