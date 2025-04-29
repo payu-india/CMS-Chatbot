@@ -14,6 +14,6 @@ When you are integrating PayU with PrestaShop v1.7.x, you may sometimes encounte
 
 ### **Why PayU is Not Appearing as a Payment Method or Not Working?**
 
-- Check whether you have downloaded the correct PayU plugin version from PayU GitHub and installed. For more information, refer to [Configure PrestaShop v1.7.x](#configure-prestashop-v17x).
-- Check whether the merchant ID and Salt are configured accurately and navigate to [Merchant Dashboard](http://onboarding.payu.in/) and verify these values. For more information, refer to  [Configure PrestaShop v1.7.x](#configure-prestashop-v17x).
-- Check whether the PHP curl extension is installed and activated.
+* Check whether you have downloaded the correct PayU plugin version from PayU GitHub and installed. For more information, refer to [Configure PrestaShop v1.7.x](#configure-prestashop-v17x).
+* Check whether the merchant ID and Salt are configured accurately and navigate to [Merchant Dashboard](http://onboarding.payu.in/) and verify these values. For more information, refer to  [Configure PrestaShop v1.7.x](#configure-prestashop-v17x).
+* Check whether the PHP curl extension is installed and activated.
