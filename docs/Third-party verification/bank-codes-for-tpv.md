@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The following codes must be used as the value for the <<glossary:bankcode>> parameter with <<glossary:TPV>> integration:
+The following codes must be used as the value for the <Glossary>bankcode</Glossary> parameter with <Glossary>TPV</Glossary> integration:
 
 | Bank                    | bankcode |
 | ----------------------- | -------- |
@@ -36,7 +36,7 @@ The following codes must be used as the value for the <<glossary:bankcode>> para
 | Karnataka Bank          | KRKBTPV  |
 | Karur Vysya Bank        | KTKNBTPV |
 | Kotak Mahindra Bank     | KVBNBTPV |
-| Punjab & Sindh Bank     |  PSBTPV  |
+| Punjab & Sindh Bank     | PSBTPV   |
 | Punjab National Bank    | PNBNBTPV |
 | RBL                     | RBLTPV   |
 | South Indian Bank       | SIBNBTPV |
