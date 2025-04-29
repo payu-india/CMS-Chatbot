@@ -14,9 +14,9 @@ This section describes how to install and configure PayU plugin for Magento on C
 
 ## Prerequisites
 
-- Merchant must be active on PayU.
-- Merchant’s website must be on hosted on Magento v2.4.x
-- The merchant should be on One PayU platform.
+* Merchant must be active on PayU.
+* Merchant’s website must be on hosted on Magento v2.4.x
+* The merchant should be on One PayU platform.
 
 ## Installation
 
@@ -48,60 +48,127 @@ To configure the Magento v2.4 environment for PayU:
 2. Navigate to **Store** > **Configuration** > **Sales** > **Payment Methods**.
 3. Expand the **PayU** menu.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ebb0180-commercepro_magento_payu_config.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/ebb0180-commercepro_magento_payu_config.png" />
 
 4. Enter the configuration details as described in the table:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "Enable",
-    "0-1": "Select **Yes** from the drop-down list to enable the plugin.",
-    "1-0": "Payment Type",
-    "1-1": "Select **Express Checkout** from the drop-down list.",
-    "2-0": "Enable Webhook",
-    "2-1": " Select **Yes** from the drop-down to notify when specific events occurred such as Payment Success, Payment Failed to merchant by PayU.",
-    "3-0": "Payment Action",
-    "3-1": "Select any of the following:  \n  \n- **Authorize Only** : PayU will authorize payment only.\n- **Authorize and capture**: PayU will authorize and capture the status of transaction.",
-    "4-0": "Account Type",
-    "4-1": "Select **PayUBiz** from the drop-down list for the account type.",
-    "5-0": "Environment",
-    "5-1": "Select any of the following gateway environments from the drop-down list:  \n  \n- **Sandbox:**: This is the Test environment, and no actual fund transfer will take place.\n\n- **Production:**: This is the Live environment.  \n    **Note**: If you select **Sandbox**, use the following credentials:  \n  **Merchant ID**: oZ7oo9  \n  **Salt**: UkojH5TS.",
-    "6-0": "Merchant Key",
-    "6-1": "Enter your PayU account key for the Production environment.",
-    "7-0": "Salt Key Password",
-    "7-1": "Enter your Salt for the Production environment. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).",
-    "8-0": "Enable Payment Verification ",
-    "8-1": "Select **Yes** from the drop-down list. This will allow plugin to confirm status of transaction and reconcile with PayU APIs"
-  },
-  "cols": 2,
-  "rows": 9,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
 
-5. Click** Save Config** at the top-right corner to save the changes.
+  <tbody>
+    <tr>
+      <td>
+        Enable
+      </td>
+
+      <td>
+        Select **Yes** from the drop-down list to enable the plugin.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Payment Type
+      </td>
+
+      <td>
+        Select **Express Checkout** from the drop-down list.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Enable Webhook
+      </td>
+
+      <td>
+         Select **Yes** from the drop-down to notify when specific events occurred such as Payment Success, Payment Failed to merchant by PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Payment Action
+      </td>
+
+      <td>
+        Select any of the following:  
+
+        * **Authorize Only** : PayU will authorize payment only.
+        * **Authorize and capture**: PayU will authorize and capture the status of transaction.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Account Type
+      </td>
+
+      <td>
+        Select **PayUBiz** from the drop-down list for the account type.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Environment
+      </td>
+
+      <td>
+        Select any of the following gateway environments from the drop-down list:  
+
+        * **Sandbox:**: This is the Test environment, and no actual fund transfer will take place.
+
+        * **Production:**: This is the Live environment.  
+          * \*Not&#x65;**: If you select**Sandbox\*\*, use the following credentials:  
+          * \*Merchant ID\*\*: oZ7oo9  
+          * \*Salt\*\*: UkojH5TS.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Merchant Key
+      </td>
+
+      <td>
+        Enter your PayU account key for the Production environment.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Salt Key Password
+      </td>
+
+      <td>
+        Enter your Salt for the Production environment. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Enable Payment Verification 
+      </td>
+
+      <td>
+        Select **Yes** from the drop-down list. This will allow plugin to confirm status of transaction and reconcile with PayU APIs
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+5. Click **Save Config** at the top-right corner to save the changes.
 6. Run this command: 
 
 ```
