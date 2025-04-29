@@ -18,18 +18,4 @@ To customize the transaction records view using the variables:
 2. To search for a particular transaction, enter the particular transaction ID or any other variable listed above in the **Search** field.
 3. Press the **Enter** key to get the results.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/0f81c9e-Screenshot_2023-09-22_at_7.12.00_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" border={true} src="https://files.readme.io/0f81c9e-Screenshot_2023-09-22_at_7.12.00_PM.png" />
