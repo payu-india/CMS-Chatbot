@@ -18,11 +18,11 @@ The following flow diagram illustrates the flow with Pay with Rewards:
 
 PayU supports the following issuers, our program partner:
 
-- Flipkart SuperCoin
-- Timespoints
-- Gaana
-- Ola
-- TWID Loyalty
+* Flipkart SuperCoin
+* Timespoints
+* Gaana
+* Ola
+* TWID Loyalty
 
 PayU supports the following reward players:
 
@@ -31,11 +31,11 @@ PayU supports the following reward players:
 
 ## Benefits
 
-- Improves customer retention
-- Increases customer lifetime value and repeat business
-- Boosts revenue
-- Builds stronger customer relationships
-- Differentiates a brand from its competitors
-- Encourages word-of-mouth marketing
-- Shows customers appreciation
-- Drives customer satisfaction
+* Improves customer retention
+* Increases customer lifetime value and repeat business
+* Boosts revenue
+* Builds stronger customer relationships
+* Differentiates a brand from its competitors
+* Encourages word-of-mouth marketing
+* Shows customers appreciation
+* Drives customer satisfaction
