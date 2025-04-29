@@ -12,9 +12,9 @@ next:
 ---
 For test credentials for Payouts, you need to sign up for a test merchant in the following URL:
 
-<https://uat-onepayuonboarding.payu.in/app/account/signup>
+&lt;https://uat-onepayuonboarding.payu.in/app/account/signup&gt;
 
-After your test merchant account is created, share your email ID, merchant ID(under the Profile section), and phone number used while registering for test credentials with your PayU Key Account Manager (KAM) in order to activate Payouts.
+After your test merchant account is created, share your email ID, merchant ID (under the Profile section), and phone number used while registering for test credentials with your PayU Key Account Manager (KAM) in order to activate Payouts.
 
 You may also use the following credentials too.
 
@@ -31,7 +31,7 @@ The following testing credentials can be used to get particular responses from t
 - Use beneficiaryAccountNumber as “**61234567890**” to get the Pending response
 
 > 📘 Note:
-> 
+>
 > You can use any valid VPA in the test environment.
 
 ## Testing VPA
