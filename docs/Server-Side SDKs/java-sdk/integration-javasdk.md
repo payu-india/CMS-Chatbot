@@ -19,14 +19,14 @@ First, create a PayU account. See [Register for a Merchant Account](https://docs
 ***
 
 > 🚧 Download Java SDK
-> 
-> You can download the Java web SDK from the following GitHub link: <https://github.com/payu-intrepos/web-sdk-java>
+>
+> You can download the Java web SDK from the following GitHub link: [https://github.com/payu-intrepos/web-sdk-java](https://github.com/payu-intrepos/web-sdk-java)
 
 ## Install the SDK
 
 To install the PayU Java SDK using the terminal:
 
-1. Install the latest version of Java from <https://java.com> and Maven from <https://maven.apache.org/download.html>.
+1. Install the latest version of Java from [https://java.com](https://java.com) and Maven from [https://maven.apache.org/download.html](https://maven.apache.org/download.html).
 2. Set the environment variable: `export GOOGLE_APPLICATION_CREDENTIALS=your-key-filename.json
    Configure JAVA_HOME.`
 
@@ -58,10 +58,10 @@ PayuClient payuClient = PayuClient.init("KEY", "SALT");
 
 ## Verify payment
 
-The Verify Payment (verify_payment) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU’s database after you receive the response.
+The Verify Payment (verify\_payment) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU’s database after you receive the response.
 
-- **Method**: `Post`
-- **Request header**: `Content-Type  multipart/form-data`
+* **Method**: `Post`
+* **Request header**: `Content-Type  multipart/form-data`
 
 ```Text JAVA
 
@@ -84,15 +84,15 @@ The Verify Payment (verify_payment) API gives you the status of the transaction.
 
 ## Get bin type
 
-The BIN API or check_isDomestic API is used to detect whether a particular BIN number is international or domestic. It is also useful to determine:
+The BIN API or check\_isDomestic API is used to detect whether a particular BIN number is international or domestic. It is also useful to determine:
 
 1. card’s issuing bank
 2. card type such as, Visa, Master, etc.,
 3. card category such as Credit/Debit, etc.
 4. var1 is bin number which is the first 6 digits of a Credit/Debit card.
 
-- **Method**: `POST`
-- **Request header**: `Content-Type  multipart/form-data`
+* **Method**: `POST`
+* **Request header**: `Content-Type  multipart/form-data`
 
 ```Text JAVA
 
@@ -114,12 +114,12 @@ The BIN API or check_isDomestic API is used to detect whether a particular BIN n
 
 ## Get checkout details
 
-The get_checkout_details API is a generic API using which they can get information when you create the custom checkout-pages, that will contain the payment options, offers, recommendations, and downtime details. The API provides the following details:
+The get\_checkout\_details API is a generic API using which they can get information when you create the custom checkout-pages, that will contain the payment options, offers, recommendations, and downtime details. The API provides the following details:
 
 Payment option details: The extended details for each payment option available for the merchant. Additional charges: The additional charges configured for all payment options. eligibility details Downtime details: The downtime status of the payment options.
 
-- **Method**: `POST`
-- **Request header**: `multipart/form-data`
+* **Method**: `POST`
+* **Request header**: `multipart/form-data`
 
 ```Text JAVA
 
@@ -188,8 +188,8 @@ This web service will let you validate VPA if it is a valid VPA or not.
 
 After the customer enters VPA on the merchant page, you need to call this API to check for VPA validation. If VPA is valid only then, the second call should be made.
 
-- **Method**: `POST`
-- **Request type**: `multipart/form-data`
+* **Method**: `POST`
+* **Request type**: `multipart/form-data`
 
 ```Text JAVA
 
@@ -212,10 +212,10 @@ After the customer enters VPA on the merchant page, you need to call this API to
 
 ## Get transaction details
 
-The Get Transaction Details (get_Transaction_Details) API takes works on basis input as two dates (initial and final), between which the transaction details are needed. The output consists of the status of the API (success or failed) and all the transaction details in an array format.
+The Get Transaction Details (get\_Transaction\_Details) API takes works on basis input as two dates (initial and final), between which the transaction details are needed. The output consists of the status of the API (success or failed) and all the transaction details in an array format.
 
-- **Method**: `POST`
-- **Request header**: `multipart/form-data`
+* **Method**: `POST`
+* **Request header**: `multipart/form-data`
 
 ```Text JAVA
 
@@ -243,11 +243,11 @@ Create an email professional invoices so that your customers, wherever they are,
 
 PayU helps you send Invoices to your customers through email using the following APIs:
 
-1. create_invoice
-2. expire_invoice
+1. create\_invoice
+2. expire\_invoice
 
-- **Method**: `POST`
-- **Request header**: `multipart/form-data`
+* **Method**: `POST`
+* **Request header**: `multipart/form-data`
 
 ```Text JAVA
 
@@ -285,8 +285,8 @@ The EMI APIs allows you to check the customer’s eligibility for EMI and get th
 1. eligibleBinsForEMI
 2. getEmiAmountAccordingToInterest
 
-- **Method**: `POST`
-- **Request header**: `multipart/form-data`
+* **Method**: `POST`
+* **Request header**: `multipart/form-data`
 
 ```Text JAVA
 
@@ -322,12 +322,12 @@ The EMI APIs allows you to check the customer’s eligibility for EMI and get th
 
 ## Refund transaction
 
-The Cancel Refund Transaction API (cancel_refund_transaction) can be used for the following purposes:
+The Cancel Refund Transaction API (cancel\_refund\_transaction) can be used for the following purposes:
 
 Cancel a transaction that is in ‘auth’ state at the moment Refund a transaction that is in a ‘captured’ state at the moment. In this API: var1 is the Payu ID (mihpayid) of the transaction, var2 should contain the Token ID (unique token from the merchant), and va
 
-- **Method**: `POST`
-- **Request header**: `multipart/form-data`
+* **Method**: `POST`
+* **Request header**: `multipart/form-data`
 
 ```Text JAVA
 
