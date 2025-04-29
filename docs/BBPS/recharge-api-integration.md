@@ -16,7 +16,7 @@ The PayU Recharge API Integration documentation describes the integration workfl
 
 ## Benefits
 
-- Access to a host of direct and aggregate partners to provide your customer access to pre-paid recharges.
-- Live dashboard for transaction status tracking, refunds, complaints and chargebacks 
-- PayU direct transactions to PayU partners with the best success rates and minimal downtime.
-- PayU direct transactions dynamically to the best commercial rates available at that time with our partners​
+* Access to a host of direct and aggregate partners to provide your customer access to pre-paid recharges.
+* Live dashboard for transaction status tracking, refunds, complaints and chargebacks 
+* PayU direct transactions to PayU partners with the best success rates and minimal downtime.
+* PayU direct transactions dynamically to the best commercial rates available at that time with our partners​
