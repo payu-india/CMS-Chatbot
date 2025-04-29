@@ -24,16 +24,17 @@ metadata:
 next:
   description: ''
 ---
-The  ** Check is Domestic** or **Card BIN **API is used to detect whether a particular BIN number is international or domestic. It is also useful to determine: 
+The **Check is Domestic** or **Card BIN** API is used to detect whether a particular BIN number is international or domestic. It is also useful to determine: 
 
-- card’s issuing bank
-- card type such as, Visa, Master, etc.,
-- card category such as Credit/Debit, etc. 
-- var1 is bin number which is the first 6 digits of a Credit/Debit card.
+* card’s issuing bank
+* card type such as, Visa, Master, etc.,
+* card category such as Credit/Debit, etc. 
+* var1 is bin number which is the first 6 digits of a Credit/Debit card.
 
 <GENERALAPIsEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl -X POST "https://test.payu.in/merchant/postservice?form=2
@@ -44,7 +45,8 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
 
 </details>
 
-<details>  <summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 If the card is domestic
 
@@ -70,31 +72,77 @@ If the card is international
 
 </details>
 
-<details><summary>Response parameters description</summary>
+<details>
+  <summary>Response parameters description</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "isDomestic",
-    "0-1": "Response value can contain any of the following:  \n  \n- **Y** signifies that the particular BIN is domestic.\n- **N** signifies that the particular BIN is International.",
-    "1-0": "cardType",
-    "1-1": "Response value can contain any of the following:  \n  \n- MAST\n- VISA\n- MAES\n- AMEX\n- DINER\n- Unknown",
-    "2-0": "issuingBank",
-    "2-1": "The issuing bank of the card used for the transaction.",
-    "3-0": "cardCategory",
-    "3-1": "Response value can contain any of the following:  \n  \n- **CC** signifies that the particular bin is a credit card BIN \n- **DC** signifies that the particular bin is a debit card BIN"
-  },
-  "cols": 2,
-  "rows": 4,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        isDomestic
+      </td>
+
+      <td>
+        Response value can contain any of the following:  
+
+        * **Y** signifies that the particular BIN is domestic.
+        * **N** signifies that the particular BIN is International.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardType
+      </td>
+
+      <td>
+        Response value can contain any of the following:  
+
+        * MAST
+        * VISA
+        * MAES
+        * AMEX
+        * DINER
+        * Unknown
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        issuingBank
+      </td>
+
+      <td>
+        The issuing bank of the card used for the transaction.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardCategory
+      </td>
+
+      <td>
+        Response value can contain any of the following:  
+
+        * **CC** signifies that the particular bin is a credit card BIN
+        * **DC** signifies that the particular bin is a debit card BIN
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 
@@ -102,29 +150,62 @@ To learn more about the possible error codes and their description, refer to [Er
 
 ## Request parameters
 
-<details><summary>Reference information</summary>
+<details>
+  <summary>Reference information</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Reference",
-    "0-0": "<<glossary:key>>",
-    "0-1": "For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n\\- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  \n  \n- **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "1-0": "<<glossary:hash>>",
-    "1-1": "Hash logic for this API is:  \n`sha512(key\\|command\\|var1\\|salt) sha512\n`",
-    "2-0": "var1",
-    "2-1": "For JSON fields description, refer to [Additional Info for General APIs](ref:addl-info-general-apis)"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Reference
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <Glossary>key</Glossary>
+      </td>
+
+      <td>
+        For more information on how to generate the Key and Salt, refer to any of the following:  
+
+        \- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  
+
+        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <Glossary>hash</Glossary>
+      </td>
+
+      <td>
+        Hash logic for this API is:\
+        ```
+        sha512(key|command|var1|salt) sha512
+
+        ```
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var1
+      </td>
+
+      <td>
+        For JSON fields description, refer to [Additional Info for General APIs](ref:addl-info-general-apis)
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
@@ -132,4 +213,4 @@ Use the following sample values while trying out the API:
 
 **Example values**
 
-- `var1` (first six digit of the card): 512345.
+* `var1` (first six digit of the card): 512345.
