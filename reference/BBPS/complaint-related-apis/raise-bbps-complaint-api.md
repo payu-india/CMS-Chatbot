@@ -17,16 +17,17 @@ Use this API to raise complaints against a specific BBPS transaction.
 
 The complaints can be either of the following:
 
-- When a customer wants to raise a complaint against the biller. 
-- When a customer wants to raise a complaint against a particular transaction.  
+* When a customer wants to raise a complaint against the biller.
+* When a customer wants to raise a complaint against a particular transaction.
 
 <BBPSEnvironment />
 
 > 📘 Note:
-> 
-> Send the scope of the Get Token API as **register_complaint** to obtain the access_token for this request. For more information, refer to  [Get Token API - BBPS](ref:get-token-api-bbps).
+>
+> Send the scope of the Get Token API as **register\_complaint** to obtain the access\_token for this request. For more information, refer to [Get Token API - BBPS](ref:get-token-api-bbps).
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location 'https://bbps-sb.payu.in/payu-nbc-int/v1/nbc/raiseComplaint' \
@@ -41,34 +42,60 @@ curl --location 'https://bbps-sb.payu.in/payu-nbc-int/v1/nbc/raiseComplaint' \
     },
     "xchangeId": "501"
 }'
- 
 ```
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field Name**",
-    "h-1": "**Description**",
-    "0-0": "code",
-    "0-1": "The global response code and can be any of the following:  \n  \n- **0**: If web service call failed\n- **1**: if web service call succeeded",
-    "1-0": "status",
-    "1-1": "The status of the API command and can be any of the following:  \n  \n- SUCCESS\n- FAILURE",
-    "2-0": "payload",
-    "2-1": "It will contain a list of biller categories. For more information, refer to the [payload](#payload) table.  \nIf the transaction had failed, it will contain:  \n  \n- additional data related to transactions\n- List of errors which caused failure transactions"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Field Name**
+      </th>
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        code
+      </td>
+      <td>
+        The global response code and can be any of the following:  
 
+        * **0**: If web service call failed
+        * **1**: if web service call succeeded
+      </td>
+    </tr>
+    <tr>
+      <td>
+        status
+      </td>
+      <td>
+        The status of the API command and can be any of the following:  
+
+        * SUCCESS
+        * FAILURE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        payload
+      </td>
+      <td>
+        It will contain a list of biller categories. For more information, refer to the [payload](#payload) table. If the transaction had failed, it will contain:  
+
+        * additional data related to transactions
+        * List of errors which caused failure transactions
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### payload
 
@@ -76,14 +103,15 @@ The payload parameter contains the following fields in an array format:
 
 | **Field**        | **Description**                                                                                                         |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| refId            | In case number 2 ,this is the reference ID against which the complaint is registered.  For case-1, it will be null.     |
+| refId            | In case number 2 ,this is the reference ID against which the complaint is registered. For case-1, it will be null.     |
 | complaintStatus  | It will show whether the complaint is registered with PayU or not.                                                      |
 | complaintId      | It is a unique complaint id assigned to customers for reference.                                                        |
 | additionalParams | For failed transactions, it will contain additional info.If there is no any additional info available, it will be null. |
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ### Success scenario
 
