@@ -12,21 +12,21 @@ next:
 ---
 This section describes how to integrate the following advanced features with Flutter SDK:
 
-- Change Theme
-- Customise font
-- Set Merchant Logo
-- Set Merchant Name
-- Hide Checkout Screen Back Button dialog box
-- Hide Back Button dialog box after Payment Initialisation
-- Auto Select OTP
-- Set Merchant Response Timeout
-- Additional Payment Options on the Checkout screen
-- Configure Checkout Payment Modes Order
-- Offers Integration
-- Native OTP Assist
-- Custom Note Integration
-- Enforced Payment Modes
-- Android Specific Configuration
+* Change Theme
+* Customise font
+* Set Merchant Logo
+* Set Merchant Name
+* Hide Checkout Screen Back Button dialog box
+* Hide Back Button dialog box after Payment Initialisation
+* Auto Select OTP
+* Set Merchant Response Timeout
+* Additional Payment Options on the Checkout screen
+* Configure Checkout Payment Modes Order
+* Offers Integration
+* Native OTP Assist
+* Custom Note Integration
+* Enforced Payment Modes
+* Android Specific Configuration
 
 ***
 
@@ -84,7 +84,7 @@ You can customize the font used in the PayU checkout page as per your preference
 Here, we are setting the fontFamily attribute to the font file that you want to access. See Add a font as an XML resource in the Android developer documentation to learn more.
 
 > 📘 Note
-> 
+>
 > See[ Add a font as an XML resource](https://developer.android.com/develop/ui/views/text-and-emoji/fonts-in-xml)  in the Android developer documentation to learn more.
 
 ## Set merchant logo
@@ -207,10 +207,10 @@ This will display Google Pay, PhonePe, and Paytm respectively on top of availabl
 
 Default payment modes order on the checkout screen, as illustrated in the following code block, is:
 
-- Card
-- NetBanking
-- UPI
-- Wallets
+* Card
+* NetBanking
+* UPI
+* Wallets
 
 You can configure the checkout payment options order. You need to provide a list of payment modes to configure the payment options order. Checkout order will be the order of items in the list. If not all payment modes' order is mentioned in the list, all other payment modes will be displayed in their default order as shown above.
 
@@ -224,11 +224,11 @@ PayUCheckoutProConfigKeys.paymentModesOrder: [{ 'cards': '' }, { 'net banking': 
 
 The resulting payment order on the initial Checkout screen will be:
 
-- Cards (Credit or Debit)
-- Net Banking
-- UPI
-- Wallets
-- EMI
+* Cards (Credit or Debit)
+* Net Banking
+* UPI
+* Wallets
+* EMI
 
 ***
 
@@ -260,12 +260,12 @@ PayUPaymentParamKey.enableNativeOTP: true, // OPTIONAL
 
 This subsection describes how to integrate custom notes in PayUCheckoutPro SDK. To integrate custom notes in PayUCheckoutPro SDK:
 
-- Create a custom note list
-- Pass custom note list to SDK
+* Create a custom note list
+* Pass custom note list to SDK
 
 ### Step 1: Create a Custom Note list
 
-Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom_note and custom_note_category need to be passed.
+Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and custom\_note\_category need to be passed.
 
 ```Text Dart
 var customNotes = [       {         "custom_note": "Its Common custom note for testing purpose",         "custom_note_category": [           PayUPaymentTypeKeys.emi,           PayUPaymentTypeKeys.card         ]       },       {         "custom_note": "Payment options custom note",         "custom_note_category": null       }     ];
@@ -291,7 +291,7 @@ You can directly open a specific payment mode like NB, WALLET, UPI, CARD, etc in
 
 ### Step 1: Create an enforced payment list
 
-Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each enforce payment, payment_type and enforce_ibiboCode needs to be passed.
+Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each enforce payment, payment\_type and enforce\_ibiboCode needs to be passed.
 
 ```Text Dart
 var enforcePaymentList = [       {"payment_type": "CARD", "enforce_ibiboCode": "UTIBENCC"},  ];
