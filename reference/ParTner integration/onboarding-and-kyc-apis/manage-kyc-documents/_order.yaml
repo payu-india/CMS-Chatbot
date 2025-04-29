@@ -2,3 +2,4 @@
 - docs_required_api
 - create_kyc_document_api
 - delete_kyc_document_api
+- post_ckyc_api
