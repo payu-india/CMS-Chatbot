@@ -13,7 +13,7 @@ next:
 This API is used to get the list of down Net Banking and card BIN that is down.
 
 > 📘 Note :
-> 
+>
 > You can check if a particular NetBanking service is down or not by just passing the bankCode or card-bin (first 6 digits of card number) and in payuResponse, the response will be fetched, for instance.
 
 ## Step 1: Call ValueAddedServiceTask
