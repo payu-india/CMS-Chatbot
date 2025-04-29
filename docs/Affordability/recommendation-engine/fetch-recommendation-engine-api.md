@@ -14,41 +14,88 @@ Use this API to fetch the Recommendation Engine.
 
 ## Endpoints
 
-| Environment            | URI                                               |
-| :--------------------- | :------------------------------------------------ |
-| Test Environment       | <https://sandbox.payu.in/recommendation/v1/fetch> |
-| Production Environment | <https://api.payu.in/recommendation/v1/fetch>     |
+| Environment            | URI                                                                                                |
+| :--------------------- | :------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://sandbox.payu.in/recommendation/v1/fetch](https://sandbox.payu.in/recommendation/v1/fetch) |
+| Production Environment | [https://api.payu.in/recommendation/v1/fetch](https://api.payu.in/recommendation/v1/fetch)         |
 
 ***
 
 ## Request headers
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "Date  \n`mandatory`",
-    "0-1": "The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.",
-    "0-2": "`Thu, 17 Feb 2022 08:17:59 GMT`",
-    "1-0": "Digest  \n`mandatory`",
-    "1-1": "Base 64 encode of (sha256 hash of the JSON data (post to server).",
-    "1-2": "`vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=`",
-    "2-0": "Authorization  \n`mandatory`",
-    "2-1": "This field is in the following format:  \n`hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4=\"  `  \nWhere the above format includes the following:  \n  \n**username**: The merchant key of the merchant.  \n  \n**algorithm**: This must have the value as hmac-sha256 that is used for this API  \n  \n**headers**: This must have the value as date digest  \n  \n**signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:  \n  \n**signing_string**: This is in the \"Date\"+\"\\\\n\"+\"Digest\" format. Here, the Date and Digest is the same values in the fields listed in this table For example, \"Thu, 17 Feb 2022 08:17:59 GMT\"\"\\\\n\"+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“  \n  \n**merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.",
-    "2-2": "`hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=\"`"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Date
+        `mandatory`
+      </td>
+
+      <td>
+        The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.
+      </td>
+
+      <td>
+        `Thu, 17 Feb 2022 08:17:59 GMT`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Digest\
+        `mandatory`
+      </td>
+
+      <td>
+        Base 64 encode of (sha256 hash of the JSON data (post to server).
+      </td>
+
+      <td>
+        `vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Authorization\
+        `mandatory`
+      </td>
+
+      <td>
+        This field is in the following format:\
+        `hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="  `\
+        Where the above format includes the following:  
+
+        * \*username\*\*: The merchant key of the merchant.  
+        * \*algorithm\*\*: This must have the value as hmac-sha256 that is used for this API  
+        * \*headers\*\*: This must have the value as date digest  
+        * \*signature\*\*: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:  
+        * \*signing\_string\*\*: This is in the "Date"+"\\n"+"Digest" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\\n"+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“  
+        * \*merchant\_secret\*\*: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.
+      </td>
+
+      <td>
+        `hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI="`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ***
 
@@ -73,73 +120,199 @@ curl --location 'https://api.payu.in/recommendation/v1/fetch'\
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "amount  \n`mandatory`",
-    "0-1": "`Double`  The transaction amount.",
-    "0-2": "5000",
-    "1-0": "userToken  \n`mandatory`",
-    "1-1": "`String Long`  This parameter is used to uniquely identify a user for a client/merchant.",
-    "1-2": "",
-    "2-0": "phone  \n`optional`",
-    "2-1": "`String`  The phone number of the customer.",
-    "2-2": "8167580000",
-    "3-0": "transactionId  \n`optional`",
-    "3-1": "`String`  The Unique payment ID for a transaction which is generated by merchant and sent in the request.",
-    "3-2": "",
-    "4-0": "mode  \n`optional`",
-    "4-1": "`String`  Pass the payment mode as the value of this parameter if you need recommendations at payment mode level. See Supported payment modes.",
-    "4-2": "emi",
-    "5-0": "ibiboCode  \n`optional`",
-    "5-1": "`String`  Pass the ibibo code as the value of this parameter if you need recommendations at ibibo code level.",
-    "5-2": "MOBIZIP"
-  },
-  "cols": 3,
-  "rows": 6,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        amount
+        `mandatory`
+      </td>
+
+      <td>
+        `Double`  The transaction amount.
+      </td>
+
+      <td>
+        5000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        userToken\
+        `mandatory`
+      </td>
+
+      <td>
+        `String Long`  This parameter is used to uniquely identify a user for a client/merchant.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        `optional`
+      </td>
+
+      <td>
+        `String`  The phone number of the customer.
+      </td>
+
+      <td>
+        8167580000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        transactionId\
+        `optional`
+      </td>
+
+      <td>
+        `String`  The Unique payment ID for a transaction which is generated by merchant and sent in the request.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        mode\
+        `optional`
+      </td>
+
+      <td>
+        `String`  Pass the payment mode as the value of this parameter if you need recommendations at payment mode level. See Supported payment modes.
+      </td>
+
+      <td>
+        emi
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ibiboCode\
+        `optional`
+      </td>
+
+      <td>
+        `String`  Pass the ibibo code as the value of this parameter if you need recommendations at ibibo code level.
+      </td>
+
+      <td>
+        MOBIZIP
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ***
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "code",
-    "0-1": "This parameter returns the HTTP status code of the request.",
-    "1-0": "message",
-    "1-1": "This parameter is the result message which contains information about the result.",
-    "2-0": "status",
-    "2-1": "This parameter returns the status of web service call. The status can be any of the following:  \n  \n0 - If web service call failed.  \n  \n1 - If web service call succeeded.",
-    "3-0": "result",
-    "3-1": "JSON Object This parameter gives the information about the result of the API response in a JSON format.",
-    "4-0": "result.savedPaymentOptions",
-    "4-1": "This field contains saved options corresponding to phone number",
-    "5-0": "result.paymentOptions",
-    "5-1": "This field contains the payment options and corresponding Ibibo codes mapping sorted on merchant goals"
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        code
+      </td>
+
+      <td>
+        This parameter returns the HTTP status code of the request.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        message
+      </td>
+
+      <td>
+        This parameter is the result message which contains information about the result.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        This parameter returns the status of web service call. The status can be any of the following:  
+
+        0 - If web service call failed.  
+
+        1 - If web service call succeeded.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        result
+      </td>
+
+      <td>
+        JSON Object This parameter gives the information about the result of the API response in a JSON format.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        result.savedPaymentOptions
+      </td>
+
+      <td>
+        This field contains saved options corresponding to phone number
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        result.paymentOptions
+      </td>
+
+      <td>
+        This field contains the payment options and corresponding Ibibo codes mapping sorted on merchant goals
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ***
 
@@ -1103,10 +1276,10 @@ Merchant goal — Success rate
 
 ## Supported payment modes
 
-- netbanking
-- debitcard
-- creditcard
-- emi
-- upi
-- bnpl
-- cashcard {For wallet}
+* netbanking
+* debitcard
+* creditcard
+* emi
+* upi
+* bnpl
+* cashcard \{For wallet}
