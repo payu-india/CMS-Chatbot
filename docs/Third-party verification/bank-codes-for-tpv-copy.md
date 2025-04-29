@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The following codes must be used as the value for the <<glossary:bankcode>> parameter with <<glossary:TPV>> integration:
+The following codes must be used as the value for the <Glossary>bankcode</Glossary> parameter with <Glossary>TPV</Glossary> integration:
 
 | Bank Name                   | PG Code  | IFSC CODE |
 | --------------------------- | -------- | --------- |
