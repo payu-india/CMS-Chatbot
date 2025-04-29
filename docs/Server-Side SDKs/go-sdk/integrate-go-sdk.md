@@ -15,8 +15,8 @@ Before you start with the integration, enable the payment methods that you want 
 ***
 
 > 🚧 Download Go SDK
-> 
-> You can download the Go web SDK from the following GitHub link: <https://github.com/payu-india/web-sdk-go>
+>
+> You can download the Go web SDK from the following GitHub link: [https://github.com/payu-india/web-sdk-go](https://github.com/payu-india/web-sdk-go)
 
 ## Create a PayU account
 
