@@ -20,20 +20,20 @@ The PayU India plugin on Fynd allows merchants to accept payments on their Fynd 
 
 ## Features
 
-- 150+ payment modes supported by PayU
-- International cards support
-- BIN-based offers and cashbacks
+* 150+ payment modes supported by PayU
+* International cards support
+* BIN-based offers and cashbacks
 
 > 📘 Note:
-> 
+>
 > Offers which do not modify final invoice amount such as cashbacks are supported.
 
 > 👍 Before you begin:
-> 
+>
 > Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
 ## Prerequisites
 
-- Credentials to log in to your Fynd account.
-- Ensure that a store is set up on  Fynd account where you want to configure the PayU as the payment provider
-- If any PayU India plugin is already installed, it must be removed.
+* Credentials to log in to your Fynd account.
+* Ensure that a store is set up on  Fynd account where you want to configure the PayU as the payment provider
+* If any PayU India plugin is already installed, it must be removed.
