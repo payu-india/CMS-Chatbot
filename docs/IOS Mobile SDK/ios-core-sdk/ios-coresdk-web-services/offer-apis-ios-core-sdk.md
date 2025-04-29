@@ -12,16 +12,16 @@ next:
 ---
 This section includes the offer APIs for iOS Core SDK:
 
-- [Fetch Offer Details API](#fetch-offer-details-api)
-- [Validate Offer Details API](#validate-offer-details-api)
-- ## Fetch Offer Details API
+* [Fetch Offer Details API](#fetch-offer-details-api)
+* [Validate Offer Details API](#validate-offer-details-api)
+* ## Fetch Offer Details API
 
 Use the **Fetch Offer Details** API to fetch all the offer list available for the merchant.
 
 > 📘 Hash Generation Logic
-> 
+>
 > In `completionBlockForHashGeneration`, you will get hash string without salt so you need to append the salt at the end of this hash string and convert using sha512 and pass that value in hash completion as passing below in the code. 
-> 
+>
 > For more information, refer to [Generate Static Hash](doc:generate-static-hash-ios).
 
 ### Integration
@@ -56,7 +56,7 @@ Use the **Fetch Offer Details** API to fetch all the offer list available for th
 Use the **Validate Offer Details** API to validate the offer available for the merchant.
 
 > 📘 Hash Generation Logic
-> 
+>
 > In `completionBlockForHashGeneration`. you will get hash string without salt so you need to append the salt at the end of this hash string and convert using sha512 and pass that value in hash completion as passing below in the code.
 
 ### Integration
