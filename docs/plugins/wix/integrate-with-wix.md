@@ -14,25 +14,13 @@ After you set up your account in Wix, you can integrate PayU India as the paymen
 
 The following video explains how to integrate Wix with PayU as the payment gateway:  
 
-[block:embed]
-{
-  "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FfHhOQOj-5OA%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DfHhOQOj-5OA&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FfHhOQOj-5OA%2Fhqdefault.jpg&key=7788cb384c9f4d5dbbdbeffd9fe4b92f&type=text%2Fhtml&schema=youtube\" width=\"854\" height=\"480\" scrolling=\"no\" title=\"YouTube embed\" frameborder=\"0\" allow=\"autoplay; fullscreen; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe>",
-  "url": "https://www.youtube.com/watch?v=fHhOQOj-5OA",
-  "title": "How To Integrate PayU To Your Wix Store? Key Steps To Follow",
-  "favicon": "https://www.google.com/favicon.ico",
-  "image": "https://i.ytimg.com/vi/fHhOQOj-5OA/hqdefault.jpg",
-  "provider": "https://www.youtube.com/",
-  "href": "https://www.youtube.com/watch?v=fHhOQOj-5OA",
-  "typeOfEmbed": "youtube"
-}
-[/block]
-
+<Embed url="https://www.youtube.com/watch?v=fHhOQOj-5OA" title="How To Integrate PayU To Your Wix Store? Key Steps To Follow" favicon="https://www.google.com/favicon.ico" image="https://i.ytimg.com/vi/fHhOQOj-5OA/hqdefault.jpg" provider="youtube.com" href="https://www.youtube.com/watch?v=fHhOQOj-5OA" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FfHhOQOj-5OA%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DfHhOQOj-5OA%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FfHhOQOj-5OA%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
 
 ## Prerequisites
 
-- Credentials to log in to your Wix account.
-- Ensure that a store or site is set up on your Wix account where you want to configure the PayU as the payment provider
-- If any PayU India plugin is installed, it must be removed.
+* Credentials to log in to your Wix account.
+* Ensure that a store or site is set up on your Wix account where you want to configure the PayU as the payment provider
+* If any PayU India plugin is installed, it must be removed.
 
 ## Procedure
 
@@ -46,25 +34,25 @@ To integrate Wix with PayU as a payment gateway:
 
 2. Select **Settings** from the menu (at the bottom of the left navigation pane).
 
-   The _Settings_ page is displayed.
+   The *Settings* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Wix_Accept_Payments_menu_selection-1024x473.png)
 
 3. Select **Accept Payments** on the **Settings** page.
 
-   The _Accept Payments_ page is displayed.
+   The *Accept Payments* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Wix_See_More_Pymt_Options-1024x539.png)
 
 4. Click **See More Payment Options** at the bottom.
 
-   The _More Payment Options_ page is displayed.
+   The *More Payment Options* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Wix_More_Pymt_Options_Page-1024x512.png)
 
 5. Click **Connect** on the **PayU India** tile.
 
-   The _Connect PayU_ India page is displayed.
+   The *Connect PayU* India page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Wix_Connect_PayU_India_Page1-1024x571.png)
 
@@ -79,31 +67,16 @@ Scroll down to navigate to the **Account Information** section.
 
 **Reference**: For more information on how to generate the Key and Salt, refer to any of the following:
 
-- **Production**:  [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-- **Test / Sandbox**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+* **Production**:  [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+* **Test / Sandbox**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
 
 8. Enter your Salt in the **Merchant Salt** field.
 9. Click **Connect**.
 
 The “PayU India connected” message is displayed similar to the following screenshot.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Wix_Connect_Success-1024x648.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "512px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="512px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Wix_Connect_Success-1024x648.png" />
 
 > 📘 Note:
-> 
-> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the** Verification Payment **API. For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>..
+>
+> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>..
