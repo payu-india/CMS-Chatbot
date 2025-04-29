@@ -19,8 +19,8 @@ next:
 ---
 The Android Customer Browser integration involves the following steps:
 
-- [1\. Integration Steps](https://docs.payu.in/docs/android-custombrowser-integration-steps)
-- [2\. Test the Integration](https://docs.payu.in/docs/android-custombrowser-test-the-integration)
-- [3\. Go-live Checklist](https://docs.payu.in/docs/android-custombrowser-go-live-checklist)
+* [1\. Integration Steps](https://docs.payu.in/docs/android-custombrowser-integration-steps)
+* [2\. Test the Integration](https://docs.payu.in/docs/android-custombrowser-test-the-integration)
+* [3\. Go-live Checklist](https://docs.payu.in/docs/android-custombrowser-go-live-checklist)
 
 During the integration, refer the [Generate Static Hash](doc:generate-static-hash-android-sdk-pro) for hash generation details.
