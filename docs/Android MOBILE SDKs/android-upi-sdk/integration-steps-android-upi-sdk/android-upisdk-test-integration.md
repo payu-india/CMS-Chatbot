@@ -30,8 +30,8 @@ Following are the payment methods supported in PayU Test mode.
 
 You can use either of the following VPAs to test your UPI-related integration:
 
-- [anything@payu](anything@payu)
-- [9999999999@payu.in](mailto:9999999999@payu.in)
+* [anything@payu](anything@payu)
+* [9999999999@payu.in](mailto:9999999999@payu.in)
 
 For Testing the UPI Collect flow, Please follow the below steps:- 
 
@@ -39,7 +39,7 @@ For Testing the UPI Collect flow, Please follow the below steps:- 
 2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
 3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
 
-<https://pgsim01.payu.in/UPI-test-transaction/confirm/>\<Txn_id>
+[https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn\_id>
 
 #### For Android
 
@@ -58,5 +58,5 @@ You can add the below metadata under the application tag in the manifest file to
 ### Test UPI Intent/InApp flow
 
 > ❗️ Callout
-> 
+>
 > The UPI in-app and UPI intent flow is not available in the Test mode.
