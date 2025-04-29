@@ -1,0 +1,20 @@
+---
+title: UPI Integrations - S2S
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+The UPI integration for S2S in general is described in the following sections:
+
+- [UPI Collection S2S Integration](https://docs.payu.in/docs/upi-collection-s2s)
+- [UPI Intent S2S Integration](https://docs.payu.in/docs/upi-intent-server-to-server)
+
+The UPI S2S integration for PhonePe Offers is described in [PhonePe Deep Offers S2S Integration](https://docs.payu.in/docs/phonepe-deep-offers-integration).
+
+The [UPI Number Mapper API](https://docs.payu.in/reference/upi-number-mapper-api) describes how to get VPA for the given UPI number.
