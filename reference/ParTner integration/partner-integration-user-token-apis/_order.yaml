@@ -1,3 +1,4 @@
 - get_token_api
 - refresh_token_api
 - send_otp_api
+- verify_otp_api
