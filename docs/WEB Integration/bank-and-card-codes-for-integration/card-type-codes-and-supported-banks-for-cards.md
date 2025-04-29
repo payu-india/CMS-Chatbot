@@ -10,9 +10,9 @@ metadata:
 next:
   description: ''
 ---
-> 📘 Note: 
-> 
-> If you cannot find the card category and scheme that you are looking for in the following table, you need to use **CC** for both **<<glossary:pg>>** and **<<glossary:bankcode>>** parameters.
+> 📘 Note:
+>
+> If you cannot find the card category and scheme that you are looking for in the following table, you need to use **CC** for both **<Glossary>pg</Glossary>** and **<Glossary>bankcode</Glossary>** parameters.
 
 ## Debit Card
 
