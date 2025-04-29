@@ -13,22 +13,22 @@ next:
 Settlement Details APIs are build on top of settlement data that provides transaction level data for a given date or date range or UTR. These APIs returns paginated response for the given input page and page size.
 
 > 📘 Notes:
-> 
-> - Use this API for settlement date range where number of settled transactions are not more that 10K. In case if we are having more records, try to use other channel like settlement/billing report or Settlement Dashboard reports to fetch the data.
-> - API will perform better if request is coming for single or non parent MID.
-> - As timeout is 60 Seconds, try to keep page size not more that 500 and date range a single date (Try to avoid giving end date)
+>
+> * Use this API for settlement date range where number of settled transactions are not more that 10K. In case if we are having more records, try to use other channel like settlement/billing report or Settlement Dashboard reports to fetch the data.
+> * API will perform better if request is coming for single or non parent MID.
+> * As timeout is 60 Seconds, try to keep page size not more that 500 and date range a single date (Try to avoid giving end date)
 
 ## Request parameters
 
 ### Authorization header
 
-- Date: date time when request was triggerd (`Wed, 28 Jun 2023 11:25:19 GMT`)
+* Date: date time when request was triggerd (`Wed, 28 Jun 2023 11:25:19 GMT`)
 
 ```
 var date = new Date().toUTCString()
 ```
 
-- Authorisation: a `SHA512` token generated from the current date time, key and salt for the MID. Below is JS function to get the same.
+* Authorisation: a `SHA512` token generated from the current date time, key and salt for the MID. Below is JS function to get the same.
 
 ```
 var merchant_key = '<key>';
@@ -52,35 +52,87 @@ function getAuthHeader(date) {
 
 ### Query parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "dateFrom  \n**mandatory**",
-    "0-1": "This parameter must contain from date for the settlement range is required is in YYYY-MM-DD format. ",
-    "0-2": "2024-03-26",
-    "1-0": "dateTo  \n**optional**",
-    "1-1": "This parameter must contain date for the settlement range is required is in YYYY-MM-DD format.   \n**Note**: Date range is cannot be more tha. 3 days, so **dateTo** value must be posted accordingly.",
-    "1-2": "2024-03-28",
-    "2-0": "pageSize  \n**optional**",
-    "2-1": "This parameter must contain the number of records to be paginated on each page is specified in this parameter. By default, the value is 100. ",
-    "2-2": "1000",
-    "3-0": "page  \n**optional**",
-    "3-1": "This parameter must contain the page to be displayed.",
-    "3-2": "1"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        dateFrom
+        **mandatory**
+      </td>
+
+      <td>
+        This parameter must contain from date for the settlement range is required is in YYYY-MM-DD format. 
+      </td>
+
+      <td>
+        2024-03-26
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        dateTo\
+        **optional**
+      </td>
+
+      <td>
+        This parameter must contain date for the settlement range is required is in YYYY-MM-DD format.   
+
+        * \*Not&#x65;**: Date range is cannot be more tha. 3 days, so**dateTo\*\* value must be posted accordingly.
+      </td>
+
+      <td>
+        2024-03-28
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pageSize\
+        **optional**
+      </td>
+
+      <td>
+        This parameter must contain the number of records to be paginated on each page is specified in this parameter. By default, the value is 100. 
+      </td>
+
+      <td>
+        1000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        page\
+        **optional**
+      </td>
+
+      <td>
+        This parameter must contain the page to be displayed.
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request/response
 
@@ -289,91 +341,365 @@ The description of fields in the **data** JSON of the response:
 
 The description of fields in the **transaction** JSON of the response:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "action",
-    "0-1": "This parameter contains the action taken on the transaction. The action can be any of the following:  \n_ capture   \n_ refund   \n_ cancel  \n_ chargeback  \n_ chargeback reversal  \n_ refundreversal",
-    "0-2": "refund",
-    "1-0": "payuid",
-    "1-1": "This parameter contains a unique reference number created for each transaction at PayU’s end. You must note this transaction ID as this will be used as a reference for all the future actions on this transaction like Inquiry or Refund.",
-    "1-2": "403993715521937565",
-    "2-0": "parentPayuId",
-    "2-1": "This parameter contains a parent PayU ID in case of Split Payment transactions.",
-    "2-2": "",
-    "3-0": "requestid",
-    "3-1": "This parameter contains the request ID value posted by the merchant during the transaction request.",
-    "3-2": "131278418",
-    "4-0": "transactionAmount",
-    "4-1": "This parameter contains the original amount which was sent in the transaction request by the merchant.",
-    "4-2": "100",
-    "5-0": "merchantServiceFee",
-    "5-1": "This parameter contains the service fee paid by the merchant to the bank. for the transaction",
-    "5-2": "239.6000",
-    "6-0": "merchantServiceTax",
-    "6-1": "This parameter contains the tax on service fee paid by the merchant to the bank. for the transaction",
-    "6-2": "43.1300",
-    "7-0": "merchantNetAmount",
-    "7-1": "This parameter contains the net amount to be settled by bank to merchant.",
-    "7-2": "100",
-    "8-0": "merchantTransactionId",
-    "8-1": "This parameter contains the transaction ID of the transaction.",
-    "8-2": "13818",
-    "9-0": "cgst",
-    "9-1": "This parameter contains the CGST (Central GST) for the transaction.",
-    "9-2": "43.13000",
-    "10-0": "igst",
-    "10-1": "This parameter contains the IGST (Integrated GST) for the transaction.",
-    "10-2": "43.13000",
-    "11-0": "sgst",
-    "11-1": "This parameter contains the SGST (State GST) for the transaction where the supplier or merchant is from a different state of the customer.",
-    "11-2": "43.13000",
-    "12-0": "mode",
-    "12-1": "This parameter contains the mode of the transaction such as credit card, debit card, etc. For more information, refer to [Payment Mode Codes](doc:payment-mode-codes).",
-    "12-2": "CC",
-    "13-0": "payemntStatus",
-    "13-1": "",
-    "13-2": "",
-    "14-0": "transactionDate",
-    "14-1": "This parameter contains the date of the transaction.",
-    "14-2": "2021-08-10 23:46:25",
-    "15-0": "requestDate",
-    "15-1": "This parameter contains the request date and time stamp.",
-    "15-2": "2021-08-10 23:49:16",
-    "16-0": "requestedAmount",
-    "16-1": "The parameter contains the amount requested by the merchant to the bank.",
-    "16-2": "100",
-    "17-0": "bankName",
-    "17-1": "This parameter contains the bank name or the card type based on the transaction.",
-    "17-2": "MAST",
-    "18-0": "offerServiceFee",
-    "18-1": "This parameter contains the service fee incurred for offer if the transaction involved offer.",
-    "18-2": "2",
-    "19-0": "offerServiceTax",
-    "19-1": "This parameter contains service tax incurred for offer if the transaction involved offer.",
-    "19-2": "0.36",
-    "20-0": "transferCurrency",
-    "20-1": "This parameter contain the currency to which conversion was done.",
-    "20-2": "INR",
-    "21-0": "transactionCurrency",
-    "21-1": "This parameter contain the currency with which transaction was performed.",
-    "21-2": "USD",
-    "22-0": "forexRate",
-    "22-1": "This parameter contain the foreign exchange rate for currency in the **transactionCurrency** to **transactionCurrency** parameter.",
-    "22-2": "80.45",
-    "23-0": "finalSettlement",
-    "23-1": "This parameter contain the final settlement done to merchant.",
-    "23-2": "20000.45"
-  },
-  "cols": 3,
-  "rows": 24,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Field**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        action
+      </td>
+
+      <td>
+        This parameter contains the action taken on the transaction. The action can be any of the following:  
+
+        * capture   
+        * refund   
+        * cancel  
+        * chargeback  
+        * chargeback reversal  
+        * refundreversal
+      </td>
+
+      <td>
+        refund
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        payuid
+      </td>
+
+      <td>
+        This parameter contains a unique reference number created for each transaction at PayU’s end. You must note this transaction ID as this will be used as a reference for all the future actions on this transaction like Inquiry or Refund.
+      </td>
+
+      <td>
+        403993715521937565
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        parentPayuId
+      </td>
+
+      <td>
+        This parameter contains a parent PayU ID in case of Split Payment transactions.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        requestid
+      </td>
+
+      <td>
+        This parameter contains the request ID value posted by the merchant during the transaction request.
+      </td>
+
+      <td>
+        131278418
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        transactionAmount
+      </td>
+
+      <td>
+        This parameter contains the original amount which was sent in the transaction request by the merchant.
+      </td>
+
+      <td>
+        100
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchantServiceFee
+      </td>
+
+      <td>
+        This parameter contains the service fee paid by the merchant to the bank. for the transaction
+      </td>
+
+      <td>
+        239.6000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchantServiceTax
+      </td>
+
+      <td>
+        This parameter contains the tax on service fee paid by the merchant to the bank. for the transaction
+      </td>
+
+      <td>
+        43.1300
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchantNetAmount
+      </td>
+
+      <td>
+        This parameter contains the net amount to be settled by bank to merchant.
+      </td>
+
+      <td>
+        100
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchantTransactionId
+      </td>
+
+      <td>
+        This parameter contains the transaction ID of the transaction.
+      </td>
+
+      <td>
+        13818
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cgst
+      </td>
+
+      <td>
+        This parameter contains the CGST (Central GST) for the transaction.
+      </td>
+
+      <td>
+        43.13000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        igst
+      </td>
+
+      <td>
+        This parameter contains the IGST (Integrated GST) for the transaction.
+      </td>
+
+      <td>
+        43.13000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        sgst
+      </td>
+
+      <td>
+        This parameter contains the SGST (State GST) for the transaction where the supplier or merchant is from a different state of the customer.
+      </td>
+
+      <td>
+        43.13000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        mode
+      </td>
+
+      <td>
+        This parameter contains the mode of the transaction such as credit card, debit card, etc. For more information, refer to [Payment Mode Codes](doc:payment-mode-codes).
+      </td>
+
+      <td>
+        CC
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        payemntStatus
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        transactionDate
+      </td>
+
+      <td>
+        This parameter contains the date of the transaction.
+      </td>
+
+      <td>
+        2021-08-10 23:46:25
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        requestDate
+      </td>
+
+      <td>
+        This parameter contains the request date and time stamp.
+      </td>
+
+      <td>
+        2021-08-10 23:49:16
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        requestedAmount
+      </td>
+
+      <td>
+        The parameter contains the amount requested by the merchant to the bank.
+      </td>
+
+      <td>
+        100
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankName
+      </td>
+
+      <td>
+        This parameter contains the bank name or the card type based on the transaction.
+      </td>
+
+      <td>
+        MAST
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        offerServiceFee
+      </td>
+
+      <td>
+        This parameter contains the service fee incurred for offer if the transaction involved offer.
+      </td>
+
+      <td>
+        2
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        offerServiceTax
+      </td>
+
+      <td>
+        This parameter contains service tax incurred for offer if the transaction involved offer.
+      </td>
+
+      <td>
+        0.36
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        transferCurrency
+      </td>
+
+      <td>
+        This parameter contain the currency to which conversion was done.
+      </td>
+
+      <td>
+        INR
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        transactionCurrency
+      </td>
+
+      <td>
+        This parameter contain the currency with which transaction was performed.
+      </td>
+
+      <td>
+        USD
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        forexRate
+      </td>
+
+      <td>
+        This parameter contain the foreign exchange rate for currency in the **transactionCurrency** to **transactionCurrency** parameter.
+      </td>
+
+      <td>
+        80.45
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        finalSettlement
+      </td>
+
+      <td>
+        This parameter contain the final settlement done to merchant.
+      </td>
+
+      <td>
+        20000.45
+      </td>
+    </tr>
+  </tbody>
+</Table>
