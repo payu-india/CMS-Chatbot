@@ -18,8 +18,8 @@ HTTP Method: **GET**
 
 |                            |                                                                      |
 | -------------------------- | -------------------------------------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/beneficiary?beneficiaryId={id}>    |
-| **Production Environment** | <https://payout.payumoney.com/payout/beneficiary?beneficiaryId={id}> |
+| **Test Environment**       | <https://uatoneapi.payu.in/payout/beneficiary?beneficiaryId=`{id}`>    |
+| **Production Environment** | <https://payout.payumoney.com/payout/beneficiary?beneficiaryId=`{id}`> |
 
 ## Request header
 
@@ -31,7 +31,7 @@ HTTP Method: **GET**
     "h-2": "**Example**",
     "0-0": "Authorization`\nmandatory`",
     "0-1": "`String` Specify the access token generated earlier in this parameter.",
-    "0-2": "Bearer {access\\_token}",
+    "0-2": "Bearer `{access_token}`",
     "1-0": "payoutMerchantId  \nmandatory\\`",
     "1-1": "`String` Specify the payout merchant id provided while onboarding or creating Payout account.",
     "1-2": "1111126",
@@ -48,7 +48,6 @@ HTTP Method: **GET**
   ]
 }
 [/block]
-
 
 > 📘 Note:
 > 
@@ -75,7 +74,6 @@ HTTP Method: **GET**
   ]
 }
 [/block]
-
 
 ## Sample request
 
