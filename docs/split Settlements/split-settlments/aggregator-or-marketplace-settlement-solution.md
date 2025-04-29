@@ -21,21 +21,21 @@ PayU supports cross-platform resource sharing so that you can interact securely 
 
 The terms involved in the Split Settlements API are:
 
-- The marketplace owners are referred to as the **aggregator merchant**.
-- The individual providers or sub-sellers of that marketplace are referred to as the **child Merchants**.
-- The fee that the parent Merchant can optionally apply per sub-merchant transaction is referred to as **aggregatorCharges**.
-- The amount that will be settled to a given child Merchants is referred to as **amountToBeSettled**.
+* The marketplace owners are referred to as the **aggregator merchant**.
+* The individual providers or sub-sellers of that marketplace are referred to as the **child Merchants**.
+* The fee that the parent Merchant can optionally apply per sub-merchant transaction is referred to as **aggregatorCharges**.
+* The amount that will be settled to a given child Merchants is referred to as **amountToBeSettled**.
 
 ## Split Settlements characteristics
 
 The characteristics of Split Settlements are:
 
-- Customers make a single payment to the aggregator
-- Separate accounts for aggregator’s sellers will be created to which money will be settled.
-- Settlement of a single transaction can be done across multiple sellers
-- Aggregator’s commission is settled to the Aggregator’s account.
-- PayUMoney takes care of Nodal Registrations, Settlements and Regulatory
-- Requirements of sub-sellers.
+* Customers make a single payment to the aggregator
+* Separate accounts for aggregator’s sellers will be created to which money will be settled.
+* Settlement of a single transaction can be done across multiple sellers
+* Aggregator’s commission is settled to the Aggregator’s account.
+* PayUMoney takes care of Nodal Registrations, Settlements and Regulatory
+* Requirements of sub-sellers.
 
 ## Payment workflow
 
