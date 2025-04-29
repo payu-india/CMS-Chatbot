@@ -3,3 +3,4 @@
 - bill-validation-api
 - get-payment-status-api
 - payment-modes-and-required-parameters
+- initiating-channel-vs-payment-modes
