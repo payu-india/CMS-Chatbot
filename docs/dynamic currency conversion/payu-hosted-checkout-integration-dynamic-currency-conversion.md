@@ -29,11 +29,11 @@ next:
 The following diagram depicts the steps involved in the end-to-end integration process of International payments.
 
 > 📘 Note:
-> 
+>
 > You need to contact your PayU Key Account Manager to enable Dynamic Currency Conversion.
 
 > 👍 Before you begin:
-> 
+>
 > Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/International-Payments-E2E-Payment-Exp-1024x518.png)
@@ -54,14 +54,14 @@ With the **POST REQUEST**, the customer will be redirected to the PayU’s payme
 PayU marks the transaction status based on the response received from the bank. PayU provides the final transaction response string to the merchant through a POST RESPONSE. The parameters in this response are covered in the subsequent sections.
 
 > 📘 Reference:
-> 
+>
 > For a list of card details for testing dynamic currency conversion, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).
 
 > 📘 Notes:
-> 
-> - For DCC eligible transactions, no changes are required in the existing integration of Query transactions or Refund transactions. In case of refunds, the merchant can initiate refunds in INR (original amount and currency) only. PayU will internally convert the same into the final amount and currency charged to the consumer using the FX rate, which was applied on the date of sale.
-> - There is no change required in handling the response from PayU as the response parameters are similar to the regular transaction
-> - It is recommended to collect the customer’s e-mail address, phone, address, city, state, and country and then post those details along with the payment request with PayU. This will help in checking the risk of the transaction based on these data.
+>
+> * For DCC eligible transactions, no changes are required in the existing integration of Query transactions or Refund transactions. In case of refunds, the merchant can initiate refunds in INR (original amount and currency) only. PayU will internally convert the same into the final amount and currency charged to the consumer using the FX rate, which was applied on the date of sale.
+> * There is no change required in handling the response from PayU as the response parameters are similar to the regular transaction
+> * It is recommended to collect the customer’s e-mail address, phone, address, city, state, and country and then post those details along with the payment request with PayU. This will help in checking the risk of the transaction based on these data.
 
 ### Sample request
 
@@ -142,5 +142,5 @@ Array
 Verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>.
 
 > 📘 Note:
-> 
+>
 > The transaction ID that you posted in Step 1 with PayU must be used here.
