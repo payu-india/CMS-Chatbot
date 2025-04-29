@@ -21,9 +21,9 @@ This API will helps in posting only subvention amount refunds. Also, transaction
 
 **Environment**
 
-| Test Environment       | <https://test.payu.in/merchant/> |
-| :--------------------- | :------------------------------- |
-| Production Environment | <https://info.payu.in/merchant/> |
+| Test Environment       | &lt;https://test.payu.in/merchant/&gt; |
+| :--------------------- | :------------------------------------- |
+| Production Environment | &lt;https://info.payu.in/merchant/&gt; |
 
 ## Request parameters
 
@@ -36,23 +36,23 @@ This API will helps in posting only subvention amount refunds. Also, transaction
     "0-0": "key",
     "0-1": "`string` This parameter must contain the merchant key provided by PayU.",
     "0-2": "Your Test Key",
-    "1-0": "command ",
+    "1-0": "command",
     "1-1": "`string` command to be used to invoke subvention API for aggregator merchants",
     "1-2": "subvention\\_refund\\_aggregator",
-    "2-0": "hash  ",
+    "2-0": "hash",
     "2-1": "`string`  sha512(key|command|var1|salt)  \nsha512 is the encryption method used here.",
     "2-2": "command",
-    "3-0": "var1  ",
+    "3-0": "var1",
     "3-1": "`string` Parent Payuid",
     "3-2": "8768769869678678",
-    "4-0": "var2 ",
+    "4-0": "var2",
     "4-1": "`string` unique alphanumeric token to distinguish refund",
     "4-2": "PLYH68898398TGHKL",
-    "5-0": "var3  ",
-    "5-1": "`string(json)` This parameter contains the refund mode and beneficiary details in the following format:  \n  \n{\"subvention_mode\":3, \"beneficiary_full_name\":\" Nucleus\",\" beneficiary_account_no\":\" 50100002965304\",\" beneficiary_ifsc”:\"HDFC0001626\"}  \n  \nWhere:  \n- **Payout to Account Number** : \"subvention_m ode\":3  \n-** Payout to Internal Cards** : \"subvention_mode\":1",
+    "5-0": "var3",
+    "5-1": "`string(json)` This parameter contains the refund mode and beneficiary details in the following format:  \n  \n{\"subvention_mode\":3, \"beneficiary_full_name\":\" Nucleus\",\" beneficiary_account_no\":\" 50100002965304\",\" beneficiary_ifsc\":\"HDFC0001626\"}  \n  \nWhere:  \n- **Payout to Account Number** : \"subvention_m ode\":3  \n-** Payout to Internal Cards** : \"subvention_mode\":1",
     "5-2": " ",
     "6-0": "var4",
-    "6-1": "`string(json)` This parameters contains the refunds split for each child payuid in the following format:   \n  \n{\"5\\*\\*\\*\\*8\":{\"subventionAmount\":5,\" originalRefundAmount\":1},\"73gAMf\":{\"subventionAmount\":5,\" originalRefundAmount”:3}}  \n  \nWhere,    \n**originalRefundAmount** is the value of the refund that has been fired prior to calling this API.  \n**subventionAmount **is the amount to be deducted from the subvented amount.",
+    "6-1": "`string(json)` This parameters contains the refunds split for each child payuid in the following format:   \n  \n{\"5\\*\\*\\*\\*8\":{\"subventionAmount\":5,\" originalRefundAmount\":1},\"73gAMf\":{\"subventionAmount\":5,\" originalRefundAmount\":3}}  \n  \nWhere,    \n**originalRefundAmount** is the value of the refund that has been fired prior to calling this API.  \n**subventionAmount **is the amount to be deducted from the subvented amount.",
     "6-2": " "
   },
   "cols": 3,
@@ -64,7 +64,6 @@ This API will helps in posting only subvention amount refunds. Also, transaction
   ]
 }
 [/block]
-
 
 The valid values for **subvention\_mode** are listed in the following table:
 
@@ -104,7 +103,6 @@ The valid values for **subvention\_mode** are listed in the following table:
   ]
 }
 [/block]
-
 
 ## Sample responses
 
