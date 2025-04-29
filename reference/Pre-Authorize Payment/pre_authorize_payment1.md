@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The **pre_authorize** parameter is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API.
+The **pre_authorize** parameter is used to pre-authorize payments using the PayU Hosted Checkout integration with the **_payment** API.
 
 HTTP Method: **POST**
 
@@ -18,12 +18,12 @@ HTTP Method: **POST**
 
 |                        |                                 |
 | :--------------------- | :------------------------------ |
-| Test Environment       | <https://test.payu.in/_payment> |
-| Production Environment | <https://info.payu.in/_payment> |
+| Test Environment       | &lt;https://test.payu.in/_payment&gt; |
+| Production Environment | &lt;https://info.payu.in/_payment&gt; |
 
 ## Extra parameters to be posted
 
-The **pre_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API. For the complete list of parameters for **\_payment **API, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
+The **pre_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **_payment** API. For the complete list of parameters for **_payment** API, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 
 | **Parameter** | **Reference**                                                                   |
 | ------------- | ------------------------------------------------------------------------------- |
@@ -96,5 +96,4 @@ error_Message: No Error
 name_on_card: test
 cardnum: 411111XXXXXX1111
 cardhash: This field is no longer supported in postback params.
-
 ```
