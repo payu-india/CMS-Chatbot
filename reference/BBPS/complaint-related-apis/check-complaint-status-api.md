@@ -13,49 +13,65 @@ metadata:
 next:
   description: ''
 ---
-The** Check Complaint Status** API is to check the status of a non-BBPS complaint by passing the ID of the complaint in the request.   
+The **Check Complaint Status** API is to check the status of a non-BBPS complaint by passing the ID of the complaint in the request.
 
 <BBPSEnvironment />
 
 <br />
 
 > 📘 Note:
-> 
-> Send the scope of the Get Token API as **check_complain_status** to obtain the access_token for this request. For more information, refer to [Get Token API - BBPS](ref:get-token-api-bbps).
+>
+> Send the scope of the Get Token API as **check\_complain\_status** to obtain the access\_token for this request. For more information, refer to [Get Token API - BBPS](ref:get-token-api-bbps).
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
-curl --location -g --request GET 'https://<hostName>/payu-nbc/v1/nbc/checkComplaintStatus/?&complaintId={{Complaint ID}' \
+curl --location -g --request GET 'https://<hostName>/payu-nbc/v1/nbc/checkComplaintStatus/?&complaintId={{Complaint ID}}' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer {{access_token}}' 
+--header 'Authorization: Bearer {{access_token}}'
 ```
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field Name**",
-    "h-1": "**Description**",
-    "0-0": "code",
-    "0-1": "The global response code and can be any of the following:  \n  \n- **0**: If web service call failed\n- **1**: if web service call succeeded",
-    "1-0": "status",
-    "1-1": "The status of the API command and can be any of the following:  \n  \n- SUCCESS\n- FAILURE",
-    "2-0": "payload",
-    "2-1": "It will contain a list of biller categories. For more information, refer to the [payload](#payload) table.  \nIf the transaction had failed, it will contain:  \n  \n- additional data related to transactions\n- List of errors which caused failure transactions"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>**Field Name**</th>
+      <th>**Description**</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>code</td>
+      <td>
+        The global response code and can be any of the following:  
+        * **0**: If web service call failed
+        * **1**: if web service call succeeded
+      </td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>
+        The status of the API command and can be any of the following:  
+        * SUCCESS
+        * FAILURE
+      </td>
+    </tr>
+    <tr>
+      <td>payload</td>
+      <td>
+        It will contain a list of biller categories. For more information, refer to the [payload](#payload) table.  
+        If the transaction had failed, it will contain:  
+        * additional data related to transactions
+        * List of errors which caused failure transactions
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### payload
 
@@ -70,7 +86,8 @@ curl --location -g --request GET 'https://<hostName>/payu-nbc/v1/nbc/checkCompla
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ### Success scenario
 
@@ -85,7 +102,7 @@ curl --location -g --request GET 'https://<hostName>/payu-nbc/v1/nbc/checkCompla
     "billerID": "PMCBPAYU014831",  
     "complaintStatus": "CAPTURED"  
   }  
-}  
+}
 ```
 
 ### Failure scenario
