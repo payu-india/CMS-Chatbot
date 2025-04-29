@@ -16,14 +16,15 @@ next:
 This API is used to fetch list of documents required for completing KYC of merchant.
 
 > 📘 Note:
-> 
-> The access token with the scope as refer_merchant is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+>
+> The access token with the scope as refer\_merchant is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
 The merchant ID in the request header must be included as a query parameter in the **mid** field.
 
 <PARTNEROnboardingEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
 curl --location --request GET 'https://test-partner.payu.in/api/v3/merchants/8011767/kyc_document/required_docs' \
@@ -32,7 +33,8 @@ curl --location --request GET 'https://test-partner.payu.in/api/v3/merchants/801
 
 </details>
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
 {
