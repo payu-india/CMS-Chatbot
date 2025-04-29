@@ -12,7 +12,7 @@ next:
 ---
 We discussed a use case of ADHOC plan during Subscription understanding where not fixed billing interval and amount is available. A classic use case for this is Postpaid Billing where bill is generated as per consumption. The sample plan is similar to the following:
 
-```
+```json
 {
   "planId": "ZION155345026687548",
   "startDate": null,
@@ -43,7 +43,7 @@ Zion handles this use cases where merchant must trigger Invoice API to charge th
 
 **Post Method**: POST
 
-**Path**: {base_url}/api/sub/v1/merchant/invoices/createInvoice
+**Path**: `{base_url}`/api/sub/v1/merchant/invoices/createInvoice
 
 **Environment**
 
@@ -98,7 +98,6 @@ The request body parameters to create a subscription request are:
 }
 [/block]
 
-
 ## X-PayU-Subscription-Signature generation guidelines
 
 X-PayU-Subscription-Signature is SHA 512 signature used to provide security layer over existing APIs. Every API will have its own logic to generate X-PayU-Subscription- Signature logic. Let’s look at how it is calculated for Define Subscription API
@@ -121,7 +120,7 @@ The response is similar to the following:
 
 ## Sample request
 
-```
+```json
 {
   "merchantId": "YQeVda",
   "planId": "ZION15393385191",
@@ -136,7 +135,7 @@ The response is similar to the following:
 
 ## Sample response
 
-```
+```json
 {
   "merchantId": "YQeVda",
   "subscriptionId": "5bc071183114ad6d943ef053",
@@ -173,7 +172,7 @@ The response is similar to the following:
 | 412              | refId is not unique                 |
 
 > 📘 Note:
-> 
+>
 > Zion Invoices comes with default retry of three days, merchant can contact customer once all the retry attempts are exhausted and invoice failed notification is triggered by Zion.
 
 After **invoiceId** is returned by Zion, that invoice is now scheduled for charging customer account and it follows similar process of notification which is explained earlier. So, merchant will get response of the invoice as either of the following notification type:
