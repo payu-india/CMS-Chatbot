@@ -14,54 +14,24 @@ Integrate PayU with PayPal wallets to facilitate international payments. PayPal 
 
 You can accept payments within the transaction limits of your PayU account. Discover more about alternative payment methods and their respective transaction limits. This section describes the following:
 
-- [Customer journey](#customer-journey)
-- [Benefits](#benefits)
-- [Steps to Integrate](#steps-to-integrate)
-  - [Step 1: Initiate the payment with PayU](https://docs.payu.in/docs/paypal-integration#step-1-initiate-the-payment-with-payu)
-  - [Step 2: Verify the payment](#step-2-verify-the-payment)
+* [Customer journey](#customer-journey)
+* [Benefits](#benefits)
+* [Steps to Integrate](#steps-to-integrate)
+  * [Step 1: Initiate the payment with PayU](https://docs.payu.in/docs/paypal-integration#step-1-initiate-the-payment-with-payu)
+  * [Step 2: Verify the payment](#step-2-verify-the-payment)
 
 ## Customer journey
 
 1. Customer is redirected to PayU Payment page.
-2. Customer selects the ** Wallets** option.
+2. Customer selects the **Wallets** option.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/429e564-payu_payment_pagE_wallets_list.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/429e564-payu_payment_pagE_wallets_list.png" />
 
 3. Customer selects the **Paypal** option.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/44bffcc-payu_payment_paypal_page.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" border={true} src="https://files.readme.io/44bffcc-payu_payment_paypal_page.png" />
 
-
-4. Customer selects the preferred currency and clicks** PayPal**.
+4. Customer selects the preferred currency and clicks **PayPal**.
 
    The success or failure response is sent back to you by PayU after vaerfication.
 
@@ -69,20 +39,20 @@ You can accept payments within the transaction limits of your PayU account. Disc
 
 Incorporating PayU into your Checkout system offers several benefits:
 
-- Improved Success Rates: Experience success rates up to 20% higher.
-- Accelerated Settlement: Receive payments on a T+1 settlement schedule.
-- Extensive User Base: Access over 30 Crore PayPal users worldwide.
-- No Extra Charges: Transaction rates are determined by PayPal.
-- Currency Conversion: Facilitate currency conversions from INR to your customers' preferred currencies.
+* Improved Success Rates: Experience success rates up to 20% higher.
+* Accelerated Settlement: Receive payments on a T+1 settlement schedule.
+* Extensive User Base: Access over 30 Crore PayPal users worldwide.
+* No Extra Charges: Transaction rates are determined by PayPal.
+* Currency Conversion: Facilitate currency conversions from INR to your customers' preferred currencies.
 
 ## Steps to Integrate
 
 This section describes the request parameters with sampe request and response to integrate the Paypal.
 
 > 📘 Note:
-> 
-> If you're using the PayU Hosted Checkout or Merchant Hosted integration, you need to activate PayPal from PayU Dashboard. For more information, refer to[ Activate PayPal Wallet](#activate-paypal-wallet).
-> 
+>
+> If you're using the PayU Hosted Checkout or Merchant Hosted integration, you need to activate PayPal from PayU Dashboard. For more information, refer to [Activate PayPal Wallet](#activate-paypal-wallet).
+>
 > After it is approved by PayU, PayPal integration is activated and it will be displayed on your PayU Payment page for all supported currencies. If you are facing difficulties with activation, contact your PayU Key Account Manager (KAM) for more information.
 
 ### Step 1: Initiate the payment with PayU
@@ -92,13 +62,13 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
 <PaymentAPIEnvironment />
 
 > 📘 Reference:
-> 
-> For the complete list of parameters (with** Try It** experience ) and response, refer to <a href="_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
+>
+> For the complete list of parameters (with **Try It** experience ) and response, refer to <a href="_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
 
 | **Parameter**          | **Description**                                                                                                                                                        | **Example** |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| pg **mandatory**       | _String_ It defines the payment category using the Merchant Hosted Checkout integration. For a Wallet payment, "**PAYPAL**" must be specified in the **pg** parameter. | PAYPAL      |
-| bankcode **mandatory** | _String_ The merchant must post  **PAYPAL** as the value for this parameter.                                                                                           | PAYPAL      |
+| pg **mandatory**       | *String* It defines the payment category using the Merchant Hosted Checkout integration. For a Wallet payment, "**PAYPAL**" must be specified in the **pg** parameter. | PAYPAL      |
+| bankcode **mandatory** | *String* The merchant must post  **PAYPAL** as the value for this parameter.                                                                                           | PAYPAL      |
 
 #### Sample request
 
@@ -115,11 +85,11 @@ https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-respons
 
 You must look for the following:
 
-- PG_TYPE:  PAYPAL-PG
-- bankcode: PAYPAL
-- field4: Amount collected in the foreign currency
-- field5: Foreign currency used
-- net_amount_debit: Amount debited in INR
+* PG_TYPE:  PAYPAL-PG
+* bankcode: PAYPAL
+* field4: Amount collected in the foreign currency
+* field5: Foreign currency used
+* net_amount_debit: Amount debited in INR
 
 ```
 Array
@@ -173,20 +143,19 @@ Array
     [error_Message] => No Error
     [splitInfo] => {"splitStatus":"splitNotReceived","splitSegments":[]}
 )
- 
 ```
 
 > 📘 Note:
-> 
-> Ensure your PayPal account maintains sufficient funds before initiating a refund. Refunds can be initiated either through the PayU Dashboard or the** Refund Transasction** API. Refunded amounts are deducted from your PayPal account and credited to your customer's PayPal account. For more information, refer to:
-> 
-> - [Refunds Dashboard](doc:refunds-dashboard)
-> - [Refund Transaction API](ref:refund_transaction_api)
+>
+> Ensure your PayPal account maintains sufficient funds before initiating a refund. Refunds can be initiated either through the PayU Dashboard or the **Refund Transasction** API. Refunded amounts are deducted from your PayPal account and credited to your customer's PayPal account. For more information, refer to:
+>
+> * [Refunds Dashboard](doc:refunds-dashboard)
+> * [Refund Transaction API](ref:refund_transaction_api)
 
 ### Step 2: Verify the payment
 
 Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](ref:verify_payment_api) under API Reference.
 
 > 📘 Tip
-> 
+>
 > The transaction ID that you posted in Step 1 with PayU must be used here.
