@@ -13,14 +13,14 @@ next:
 **Get EMI According to Interest** API is used to get information to get details related to EMI such as EMI amount, tenure in month, interest rate, etc.
 
 > 📘 Hash logic
-> 
+>
 > The hash logic for this API is:
-> 
+>
 > `<key>|vas_for_mobile_sdk|<amount>|<salt>`
-> 
+>
 > For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
-## 
+##
 
 ## Step 1: Set parameters
 
