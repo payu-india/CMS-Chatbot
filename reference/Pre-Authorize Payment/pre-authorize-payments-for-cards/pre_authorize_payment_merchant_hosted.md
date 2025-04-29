@@ -13,7 +13,7 @@ metadata:
 next:
   description: ''
 ---
-The **pre_authorize** parameter is used to pre-authorize payments using the Merchant Hosted Checkout integration along with the parameters to collect card details.
+The **pre\_authorize** parameter is used to pre-authorize payments using the Merchant Hosted Checkout integration along with the parameters to collect card details.
 
 <PaymentAPIEnvironment />
 
@@ -50,9 +50,9 @@ curl --request POST \
 
 The formatted sample response body is similar to the following, and you need to look for the following parameters:
 
-- PG_TYPE: CC PG
-- bankcode: CC
-- **unamappedstatus: auth**
+* PG\_TYPE: CC PG
+* bankcode: CC
+* **unamappedstatus: auth**
 
 ```
   {
@@ -118,31 +118,52 @@ The formatted sample response body is similar to the following, and you need to 
 
 ## Reference info for request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Reference",
-    "0-0": "<<glossary:key>>",
-    "0-1": "For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)\n\n- **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "1-0": "<<glossary:hash>>",
-    "1-1": "Hash logic for this API is:  \nsha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)"
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Reference
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <Glossary>key</Glossary>
+      </td>
+
+      <td>
+        For more information on how to generate the Key and Salt, refer to any of the following:  
+
+        * **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+
+        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <Glossary>hash</Glossary>
+      </td>
+
+      <td>
+        Hash logic for this API is:\
+        sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 > 📘 Reference:
-> 
-> - Use the card details as follows: cccnum=5123456789012346, ccexpmon=11, ccexpyr=2025, ccvv=123 and OTP =123456 (displayed in Simulator page).
-> - For the list of error codes, refer to [Error Codes - Pre-Authorize Payment](ref:error-codes-pre-authorize-payment).
-> - If you want to cancel or refund a pre-authorized transaction, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
+>
+> * Use the card details as follows: cccnum=5123456789012346, ccexpmon=11, ccexpyr=2025, ccvv=123 and OTP =123456 (displayed in Simulator page).
+> * For the list of error codes, refer to [Error Codes - Pre-Authorize Payment](ref:error-codes-pre-authorize-payment).
+> * If you want to cancel or refund a pre-authorized transaction, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
 >   ### Sample request
 >   ```curl
 >   curl --request POST \
@@ -170,9 +191,9 @@ The formatted sample response body is similar to the following, and you need to 
 >   ```
 >   ### Check the PayU response
 >   The formatted sample response body is similar to the following, and you need to look for the following parameters:
->   - PG_TYPE: CC PG
->   - bankcode: CC
->   - **unamappedstatus: auth**
+>   * PG\_TYPE: CC PG
+>   * bankcode: CC
+>   * **unamappedstatus: auth**
 >   ```
 >     {
 >     "mihpayid": "403993715531065775",
