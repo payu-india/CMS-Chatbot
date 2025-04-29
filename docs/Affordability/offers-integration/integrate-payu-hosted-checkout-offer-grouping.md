@@ -38,7 +38,7 @@ The PayU Hosted Checkout page for specify payment option on Mobile is similar to
 
 ![Picture 1522098393](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/picture-1522098393.png)
 
-1. For Instant Discount, the amount is reduced after the offer is applied, where as, in case of cashback, the amount will not be reduced after the offer is applied.
+1. For Instant Discount, the amount is reduced after the offer is applied, whereas, in case of cashback, the amount will not be reduced after the offer is applied.
 2. Customer completes the 2FA payment on the adjusted amount.
 3. Customer is redirected back to the merchant mobile application or website.
 
@@ -50,20 +50,20 @@ To integrate offers using PayU Hosted Checkout integration:
 
 1. Make the payment request to PayU:
 
-You need to send an additional parameter (**user token)**, **api\_version** as 14, and hash as described in the following table. This user token would be used to identify the customer for applying velocity rules.
+You need to send an additional parameter (**user token**), **api_version** as 14, and hash as described in the following table. This user token would be used to identify the customer for applying velocity rules.
 
 | **Parameter** | **Description** | **Example** |
 | ------------- | --------------- | ----------- |
 
-| api\_version  
-**mandatory** | The API version of the \_payment API must be specified as **14**. | 14 |  
-| user\_token  
-**mandatory for UPI, NB, Wallet** \|  
+| api_version  
+**mandatory** | The API version of the _payment API must be specified as **14**. | 14 |  
+| user_token  
+**mandatory for UPI, NB, Wallet** |  
 The use for this param is to allow the offer engine to apply velocity rules at a user level.  
 
  
 
-- **Card Based Offers (CC, DC, EMI)**: In case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied on the card number.
+- **Card Based Offers (CC, DC, EMI)**: In case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied on the card number.
 - **UPI, NB, Wallet**: It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
 
  | User123456 |  
@@ -90,11 +90,11 @@ You need to understand the following params to handle the payment response as th
 | **Parameter**      | **Description**                                                                                                                                                                            | **Example**    |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------- |
 | discount           | This will specify the offer value provided to the user.                                                                                                                                    | 10.00          |
-| net\_amount\_debit | This will specify the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 100.00         |
+| net_amount_debit | This will specify the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 100.00         |
 | offer              | This parameter is used to post the offer key.                                                                                                                                              | newoffer1@5686 |
-| offer\_type        |                                                                                                                                                                                            |                |
+| offer_type        |                                                                                                                                                                                            |                |
 
-This parameter is used to post any of the following offer\_type:  
+This parameter is used to post any of the following offer_type:  
 
  
 
@@ -107,12 +107,12 @@ For a sample response from PayU, refer to [Web Checkout Integration > PayU Hoste
 
 1. Verify the payment.
 
-Similar to the payment response, the same parameters can be handled as part of the **verify\_payment** API. For more information, refer to [Verify Payment Status by Transaction ID](https://devguide.payu.in/api/payments/transaction-verification-apis/verify_payment-api/).
+Similar to the payment response, the same parameters can be handled as part of the **verify_payment** API. For more information, refer to [Verify Payment Status by Transaction ID](https://devguide.payu.in/api/payments/transaction-verification-apis/verify_payment-api/).
 
 | **Parameter**       | **Description**                                                                                                                                                                                  | **Example** |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| transaction\_amount | This parameter contains the total transaction amount before discount.                                                                                                                            | 50000.00    |
-| net\_amount\_debit  | This parameter contains the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 47500.00    |
+| transaction_amount | This parameter contains the total transaction amount before discount.                                                                                                                            | 50000.00    |
+| net_amount_debit  | This parameter contains the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 47500.00    |
 | discount            | This parameter contains the offer value provided to the user. This value will specify the offer amount for both Instant discount and Cashback offers.                                            | 2500.00     |
 
 For the sample request and response from PayU, refer to [Web Checkout Integration > PayU Hosted Checkout Integration.](https://devguide.payu.in/merchant-integration/payu-hosted-checkout/payu-hosted-checkout-integration/)
@@ -121,6 +121,6 @@ For the sample request and response from PayU, refer to [Web Checkout Integratio
 
 **Notes**: PayU would refund the exact amount passed by you in the Refund request:
 
-<table style="border:0.1rem solid rgb(242, 242, 242);"><tbody><tr><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;"><strong>Offer Type</strong></td><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;"><strong>Refund Detail</strong></td></tr><tr><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;">Instant discount</td><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;">You would need to adjust the discount amount before calling the <strong>Cancel Refund Transaction </strong>API. Any refund request where the refund amount exceeds the actual amount deducted from the customer will fail.&nbsp;For more information, refer to <a href="https://devguide.payu.in/api/refund-apis-2/cancel_refund_transaction/">Cancel Refund Transaction API</a>.<br>For example, if the amount was INR 100 and the discount was INR 10 and if you wish to process a full refund, you will need to pass INR 90 as the refund amount.&nbsp;<br>For partial refunds, you can decide whether to deduct the discount amount or not. You need to pass the exact value to be refunded back to the user.</td></tr><tr><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;">Cashback</td><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;">There is no need for adjustment of refunds where cashback was applied earlier with the transaction. If the cashback has been processed by the bank, the cashback amount will not be refunded.&nbsp;<br>For example, if the amount was INR 100 and the cashback was INR 10 and if you wish to process a full refund, you will need to pass INR 100 as the refund amount.<br>In case you wish to adjust the cashback amount, reduce the cashback amount from the refund amount and submit it in the request.<br>In the above example, pass INR 90 as the refund amount.</td></tr></tbody></table>
+<table style={{ border: "0.1rem solid rgb(242, 242, 242)" }}><tbody><tr><td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}><strong>Offer Type</strong></td><td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}><strong>Refund Detail</strong></td></tr><tr><td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>Instant discount</td><td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>You would need to adjust the discount amount before calling the <strong>Cancel Refund Transaction </strong>API. Any refund request where the refund amount exceeds the actual amount deducted from the customer will fail. For more information, refer to <a href="https://devguide.payu.in/api/refund-apis-2/cancel_refund_transaction/">Cancel Refund Transaction API</a>.<br>For example, if the amount was INR 100 and the discount was INR 10 and if you wish to process a full refund, you will need to pass INR 90 as the refund amount.<br>For partial refunds, you can decide whether to deduct the discount amount or not. You need to pass the exact value to be refunded back to the user.</td></tr><tr><td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>Cashback</td><td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>There is no need for adjustment of refunds where cashback was applied earlier with the transaction. If the cashback has been processed by the bank, the cashback amount will not be refunded.<br>For example, if the amount was INR 100 and the cashback was INR 10 and if you wish to process a full refund, you will need to pass INR 100 as the refund amount.<br>In case you wish to adjust the cashback amount, reduce the cashback amount from the refund amount and submit it in the request.<br>In the above example, pass INR 90 as the refund amount.</td></tr></tbody></table>
 
-**Note**: You can enable the **Enforce Offer** flag by requesting your PayU Key Account Manager. If you enable the **Enforce Offer** flag, all the offers passed are visible to customer and the customer choose the an offer that they wish to apply.
+**Note**: You can enable the **Enforce Offer** flag by requesting your PayU Key Account Manager. If you enable the **Enforce Offer** flag, all the offers passed are visible to customer and the customer choose an offer that they wish to apply.
