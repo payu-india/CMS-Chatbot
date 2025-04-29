@@ -28,6 +28,6 @@ After the customer scans the QR (using google lens, phone camera or third-party 
 After completing the payment, the customer will see a ‘payment confirmation’ screen on his device. The merchant gets a response in a server-to-server callback or can also use Verify Payment API to fetch the transaction status. For more information, refer to Verify Transactions API.
 
 > 👍 Callout
-> 
-> - The Dynamic storefront QR is not a UPI-QR or a Bharat-QR and as such cannot be scanned through UPI applications. The customer can scan this QR using applications like camera or google lens or third party scanners on his smart phone.
-> - The customer can pay using any of the available payment modes which are activated on the merchant.
+>
+> * The Dynamic storefront QR is not a UPI-QR or a Bharat-QR and as such cannot be scanned through UPI applications. The customer can scan this QR using applications like camera or google lens or third party scanners on his smart phone.
+> * The customer can pay using any of the available payment modes which are activated on the merchant.
