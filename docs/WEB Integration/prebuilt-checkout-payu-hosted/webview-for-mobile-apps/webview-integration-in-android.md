@@ -43,25 +43,47 @@ Build a string with the payment parameters and pass it as `postData`. For more i
  webView.postUrl("URL", postData);
 ```
 
-Pass the postData to load the PayU checkout form with the transaction data using _postUrl_() method.
+Pass the postData to load the PayU checkout form with the transaction data using *postUrl*() method.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "URL",
-    "h-1": "String. The endpoint of the API.  \nTest URL: <https://test.payu.in/_payment>  \nProduction URL: <https://secure.payu.in/_payment>",
-    "0-0": "postData",
-    "0-1": "byte. Create the postData and send it in this field. The value of this parameter cannot be null."
-  },
-  "cols": 2,
-  "rows": 1,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        URL
+      </th>
 
+      <th>
+        String. The endpoint of the API.
+
+
+
+
+        Test URL: 
+
+        [https://test.payu.in/_payment](https://test.payu.in/_payment)
+
+
+
+
+        Production URL: 
+
+        [https://secure.payu.in/_payment](https://secure.payu.in/_payment)
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        postData
+      </td>
+
+      <td>
+        byte. Create the postData and send it in this field. The value of this parameter cannot be null.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Set WebViewClient
 
@@ -273,13 +295,13 @@ Code to check if chrome is installed -
 
 #### 2. Some issues arise when merchants configure their system to close the webview whenever an error occurs on the checkout page
 
-\-> Merchant need not to handel such error like ERR_BLOCKED_BY_ORB , let webview default behaviour handle it
+\-> Merchant need not to handel such error like ERR\_BLOCKED\_BY\_ORB , let webview default behaviour handle it
 
 #### 3. Integration Code of Webview - Given above
 
 #### 4. WebView loading again and again
 
-\-> Call webview.loadUrl(url) only once in a session like in OnCreate of Activity or fragment(once in a session) , Please do not loadURL in onResume. 
+\-> Call webview\.loadUrl(url) only once in a session like in OnCreate of Activity or fragment(once in a session) , Please do not loadURL in onResume. 
 
 #### 5. Do we need to add  configuration  to use checkout to  use local storage
 
@@ -297,7 +319,7 @@ view!!.evaluateJavascript(
         }
 ```
 
-and need to open new url in new webView or merchant need to call activity.startActivityForResult(intent,101) instead of  mWebView.context.startActivity(intent) launch intent  and listen psp app response in activity in onActivityResult 
+and need to open new url in new webView or merchant need to call activity.startActivityForResult(intent,101) instead of  mWebView\.context.startActivity(intent) launch intent  and listen psp app response in activity in onActivityResult 
 
 #### 7. In the ICP checkout being opened within a webview inside the application. This configuration is leading to unexpected and unusual behavior, likely due to the way the webview is interacting with the ICP checkout
 
@@ -309,7 +331,7 @@ Example value of userAgent - Mozilla/5.0 (Linux; Android 13; SM-G981B) AppleWebK
 
  \-> This may be due to wrong User Agent. always pass right User Agent to webView
 
-#### 9. How to handle window.open in Webview
+#### 9. How to handle window\.open in Webview
 
 \-> First set for multiple window in webview setting `webSettings.setSupportMultipleWindows(true)` and then set webview client for same and override onCreateWindow function. In onCreateWindow create new webView.
 
