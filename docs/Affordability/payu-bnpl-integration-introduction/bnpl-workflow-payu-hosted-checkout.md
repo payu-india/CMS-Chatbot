@@ -18,12 +18,12 @@ metadata:
 next:
   description: ''
 ---
-For the <<glossary:BNPL>> payment mode using PayU Hosted Checkout integration, PayU takes care of the integration and you just need to enable BNPL.
+For the <Glossary>BNPL</Glossary> payment mode using PayU Hosted Checkout integration, PayU takes care of the integration and you just need to enable BNPL.
 
 The customer journey involved when collecting payment using BNPL:
 
 > 📘 Note:
-> 
+>
 > If you don’t have BNPL enabled, try requesting using Dashboard. For more information, refer to [Configure User Settings](doc:configure-user-settings#checkout-payment-modes). If you could not request through Dashboard, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in/).
 
 ## General workflow
@@ -32,58 +32,15 @@ The customer journey involved when collecting payment using BNPL:
 
 The customer chooses to pay via a supported payment mode on PayU checkout. For example, Pay Later > Simpl
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ccfe5d2cd8e88bc40b719baf49ad0b50e83c0454eae501b0e041283ca54c0165-Screenshot_2025-02-24_at_11.52.57_AM.png",
-        null,
-        null
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/ccfe5d2cd8e88bc40b719baf49ad0b50e83c0454eae501b0e041283ca54c0165-Screenshot_2025-02-24_at_11.52.57_AM.png" />
 
 ### Step 2
 
 Here the customer chooses the lender they want to proceed with and enters their mobile number.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/8f484040c734c7588965322643ae5e3db4d7267ff9b936d8d2f4903d18502aef-PayU_Payment_Page_BNPL_Simpl.png",
-        null,
-        null
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" border={true} src="https://files.readme.io/8f484040c734c7588965322643ae5e3db4d7267ff9b936d8d2f4903d18502aef-PayU_Payment_Page_BNPL_Simpl.png" />
 
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/bfd8960477d8617b90dda21a6e914561d7ddfd5553eb7cdd6418b1da85fa5886-PayU_Payment_Page_BNPL_Simpl_ph_no.png",
-        null,
-        null
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/bfd8960477d8617b90dda21a6e914561d7ddfd5553eb7cdd6418b1da85fa5886-PayU_Payment_Page_BNPL_Simpl_ph_no.png" />
 
 ### Step 3
 
@@ -100,9 +57,9 @@ Customer enters the OTP and clicks Submit. Payment gets completed successfully.
 For the BNPL payment mode using PayU Hosted Checkout integration, you just require the Native OTP Integration flow enabled by contacting your PayU Key Account Manager, and PayU takes care of this flow. The customer journey involved when collecting payments with BNPL using Native OTP flow:
 
 > 📘 Notes:
-> 
-> - If you don’t have BNPL enabled, try requesting using Dashboard. For more information, refer to [Checkout payment modes](/docs/configure-user-settings#disable-checkout-payment-modes). If you could not request through Dashboard, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in/).
-> - To enable Native OTP Integration flow, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in/).
+>
+> * If you don’t have BNPL enabled, try requesting using Dashboard. For more information, refer to [Checkout payment modes](/docs/configure-user-settings#disable-checkout-payment-modes). If you could not request through Dashboard, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in/).
+> * To enable Native OTP Integration flow, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in/).
 
 ### Step 1
 
