@@ -14,12 +14,12 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
 ## Benefits
 
-- One-click payment journey and no hassle of redirection to a third-party UPI application.
-- Quick completion of transactions because of direct integration with the bank.
-- Seamless user experience to the customers with in-app payment.
-- Easy to integrate and get the advantage of existing customer profiles created with banks.
-- 5-6% higher success rate and better transaction conversion..
-- Merchants can take advantage of a complete user funnel to understand user behavior. User Journeys in PayU UPI Bolt
+* One-click payment journey and no hassle of redirection to a third-party UPI application.
+* Quick completion of transactions because of direct integration with the bank.
+* Seamless user experience to the customers with in-app payment.
+* Easy to integrate and get the advantage of existing customer profiles created with banks.
+* 5-6% higher success rate and better transaction conversion..
+* Merchants can take advantage of a complete user funnel to understand user behavior. User Journeys in PayU UPI Bolt
 
 ## Workflow
 
@@ -31,21 +31,7 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 4. Finally, customers can do a transaction using the added bank account. In case the customer is using the bank account for the first time they will need to set the MPIN as well.
 5. Finally, customers can make a transaction using the added bank account. If the customer is using the bank account for the first time, he will also need to set the MPIN
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/2272c002c3f3d8270ef276a74f03cffae2ba4c2a98c696e8d4a9d727b87d69ef-upi-bolt-ionic-wf-registration-pay.jpeg",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/2272c002c3f3d8270ef276a74f03cffae2ba4c2a98c696e8d4a9d727b87d69ef-upi-bolt-ionic-wf-registration-pay.jpeg" />
 
 ### Pay
 
@@ -53,21 +39,7 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 2. The customer needs to select the already added bank account and enter the MPIN and the transaction will be completed.
 3. The customer can also check the balance before making a transaction to avoid low-balance transaction failure.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/5b5d73b9166fcb358dccade47a547ff6a133e63a9d422a5872ed07a4ff9a2136-upi-bolt-ionic-wf-pay.jpeg",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/5b5d73b9166fcb358dccade47a547ff6a133e63a9d422a5872ed07a4ff9a2136-upi-bolt-ionic-wf-pay.jpeg" />
 
 ### Profile Management Journey
 
@@ -76,17 +48,4 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 3. Customers can see all the raised disputes from the Dispute history screen.
 4. Customers can also deregister their all accounts with PayU UI Bolt SDK.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6f0785d533c691c505b4f5a7d32306946fb9d11d1af17f4b44f2e3d5cbc752f2-upi-bolt-ionic-wf-profile-mgmt.jpeg",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+<Image align="center" src="https://files.readme.io/6f0785d533c691c505b4f5a7d32306946fb9d11d1af17f4b44f2e3d5cbc752f2-upi-bolt-ionic-wf-profile-mgmt.jpeg" />
