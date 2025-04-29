@@ -58,35 +58,85 @@ Check the balance of the wallet using the **Fetch Balance** API before you can i
 
 Along with the mandatory parameters mentioned in <a href="_payment-merchant-hosted" target="_blank">Collect Payments API</a>, you must post the following parameters for the wallet. 
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "walletUrn  \n**mandatory for Closed Loop Wallets**",
-    "0-1": "`String` It is the Unique Registration Number of the customer to identify them.",
-    "0-2": "100000",
-    "1-0": "phone  \n**mandatory**",
-    "1-1": "`String` The phone number of the customer that was registered with the merchant.",
-    "1-2": "9876543210",
-    "2-0": "pg  \n**mandatory**",
-    "2-1": "`String` It defines the payment category using the Merchant Hosted Checkout integration. For a Closed Loop Wallet payment, \"CLW\" must be specified in the **pg** parameter.",
-    "2-2": "CLW",
-    "3-0": "bankcode  \n**mandatory**",
-    "3-1": "`String` The merchant must post this parameter with the merchant's corresponding bank code value in it.**Note**: If you are integrating Closed Loop Wallet, you need get the bankcode from your Key Account Manager (KAM).",
-    "3-2": "PAY"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        walletUrn
+        **mandatory for Closed Loop Wallets**
+      </td>
+
+      <td>
+        `String` It is the Unique Registration Number of the customer to identify them.
+      </td>
+
+      <td>
+        100000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` The phone number of the customer that was registered with the merchant.
+      </td>
+
+      <td>
+        9876543210
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pg\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` It defines the payment category using the Merchant Hosted Checkout integration. For a Closed Loop Wallet payment, "CLW" must be specified in the **pg** parameter.
+      </td>
+
+      <td>
+        CLW
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankcode\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` The merchant must post this parameter with the merchant's corresponding bank code value in it.**Note**: If you are integrating Closed Loop Wallet, you need get the bankcode from your Key Account Manager (KAM).
+      </td>
+
+      <td>
+        PAY
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Sample Request
 
