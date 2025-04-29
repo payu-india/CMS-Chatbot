@@ -38,33 +38,47 @@ implementation 'in.payu:phonepe-intent:1.8.3'
 
 PayUPhonePeCallback provides the following callback methods.
 
-- onPaymentOptionFailure (String payuResponse, String merchantResponse): Calls when payment fails.
-- onPaymentOptionSuccess (String payuResponse, String merchantResponse): Calls when payment succeeds.
-- onPaymentOptionInitialisationFailure (int errorCode, String description): Called for PhonePe initialisation failure.
-- onPaymentOptionInitialisationSuccess (boolean result): Callback when PhonePe is successfully initialised.
+* onPaymentOptionFailure (String payuResponse, String merchantResponse): Calls when payment fails.
+* onPaymentOptionSuccess (String payuResponse, String merchantResponse): Calls when payment succeeds.
+* onPaymentOptionInitialisationFailure (int errorCode, String description): Called for PhonePe initialisation failure.
+* onPaymentOptionInitialisationSuccess (boolean result): Callback when PhonePe is successfully initialised.
 
 Following are error messages concerning PhonePe initialization failure.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Error Code",
-    "h-1": "Error Code",
-    "h-2": "Description",
-    "0-0": "1",
-    "0-1": "MERCHANT_KEY_NOT_  \nREGISTER_FOR_PHONEPE",
-    "0-2": "Merchant is not registered for PhonePe with PayU"
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Error Code
+      </th>
 
+      <th>
+        Error Code
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        1
+      </td>
+
+      <td>
+        MERCHANT*KEY\_NOT*\
+        REGISTER\_FOR\_PHONEPE
+      </td>
+
+      <td>
+        Merchant is not registered for PhonePe with PayU
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 Create an instance of PayUPhonePeCallback similar to the following code block:
 
@@ -115,24 +129,24 @@ PhonePe.getInstance().checkForPaymentAvailability(Activity activity, PayUPhonePe
 
 Where:
 
-- PayUPhonePeCallback: the class to provide callbacks
-- Activity : Activity
-- paymentOptionHash: Payment Related Details hash
-- merchantKey: PayU Merchant Key
-- user_credentials: Provide user credentials or use “default”
+* PayUPhonePeCallback: the class to provide callbacks
+* Activity : Activity
+* paymentOptionHash: Payment Related Details hash
+* merchantKey: PayU Merchant Key
+* user\_credentials: Provide user credentials or use “default”
 
 > 📘 Generate PaymentOption Hash
-> 
+>
 > To generate `PaymentOption` Hash refer to  [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
-> 
+>
 > **Formula** :-sha512(key|command|var1|salt) 
-> 
+>
 > where
-> 
-> - key=YOUR KEY
-> - command="payment_related_details_for_mobile_sdk" // Api Commands
-> - salt= YOUR SALT
-> - var1= default // Pass `default` value in var1
+>
+> * key=YOUR KEY
+> * command="payment\_related\_details\_for\_mobile\_sdk" // Api Commands
+> * salt= YOUR SALT
+> * var1= default // Pass `default` value in var1
 
 ## Step 6: Make Payment by PhonePe
 
@@ -144,16 +158,16 @@ PhonePe.getInstance().makePayment(PayUPhonePeCallback callback, Activity activit
 
 Where:
 
-- **PayUPhonePeCallback**: the class to provide callbacks
-- **Activity**: activity instance
-- **postData**: PayU postdata
-- **isUserCacheEnabled**: To Enable/Disable User Cache
-- **customDialogView**: Provide your Custom Progress dialog view (Optional)
+* **PayUPhonePeCallback**: the class to provide callbacks
+* **Activity**: activity instance
+* **postData**: PayU postdata
+* **isUserCacheEnabled**: To Enable/Disable User Cache
+* **customDialogView**: Provide your Custom Progress dialog view (Optional)
 
 > 📘 Generate Payment Hash
-> 
+>
 > To generate a `Payment` Hash refer to [Hash Generation](https://docs.payu.in/docs/hash-generation#payment-hash).
-> 
+>
 > **Formula** :-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
 
 ### Sample PostData
@@ -167,7 +181,7 @@ txnid=1524122818080&productinfo=product_info&user_credentials=default&key=*****&
 After you get the response from SDK, make sure to confirm it with the PayU server.
 
 > 🚧 Remember
-> 
+>
 > It is recommended to implement the PayU Webhook or backend verify call from your backend.
 
 Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended that the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks,
