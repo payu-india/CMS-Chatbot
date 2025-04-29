@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The **Refund **API is used to refund loyalty points for the Loyalty Rewards integration.
+The **Refund** API is used to refund loyalty points for the Loyalty Rewards integration.
 
 HTTP Method: **POST**
 
@@ -54,7 +54,6 @@ HTTP Method: **POST**
   ]
 }
 [/block]
-
 
 ### skus JSON field description
 
@@ -100,7 +99,6 @@ HTTP Method: **POST**
         }
     }
 }
-
 ```
 
 ### Failure scenario
