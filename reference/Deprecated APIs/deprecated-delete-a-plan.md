@@ -10,11 +10,11 @@ metadata:
 next:
   description: ''
 ---
-The _Delete Plan_ API helps you to delete the already created plan. However, it is recommended to use this API with care because if a plan is deleted, all the subscriptions associated with the plan will stop working automatically.
+The *Delete Plan* API helps you to delete the already created plan. However, it is recommended to use this API with care because if a plan is deleted, all the subscriptions associated with the plan will stop working automatically.
 
 **Post Method**: DELETE
 
-**Path**: {base\_url}/api/sub/v1/merchant/subscriptions/{subscriptionId}
+**Path**: \{base\_url}/api/sub/v1/merchant/subscriptions/\{subscriptionId}
 
 ### Header
 
