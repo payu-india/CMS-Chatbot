@@ -29,17 +29,4 @@ To schedule certain reports:
 
 11. Click **Schedule** to complete the action.The history of downloaded and scheduled reports is available in this section. You can download them again using the download option using the options under the **Actions** menu.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6d0e672-Screenshot_2023-09-29_at_10.59.02_AM.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+<Image align="center" src="https://files.readme.io/6d0e672-Screenshot_2023-09-29_at_10.59.02_AM.png" />
