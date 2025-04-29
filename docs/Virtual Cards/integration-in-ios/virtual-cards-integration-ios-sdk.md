@@ -102,5 +102,5 @@ func generateHash(
 ```
 
 > 📘 Reference:
-> 
+>
 > For more information on Static Hashing, refer to [Generate Static Hash](doc:generate-static-hash-ios).
