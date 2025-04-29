@@ -18,12 +18,13 @@ This API is used to fetch a list of documents required for completing the KYC of
 The merchant ID in the request header must be included as a query parameter in the mid field.
 
 > 📘 Note:
-> 
-> The access token with the scope as **refer_merchant** from is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+>
+> The access token with the scope as **refer\_merchant** from is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
 <PARTNEROnboardingEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
 curl --location -g --request GET '{{partner_base_url}}/api/v3/merchants/kyc_document/info?business_entity=Individual' \
@@ -33,7 +34,8 @@ curl --location -g --request GET '{{partner_base_url}}/api/v3/merchants/kyc_docu
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
