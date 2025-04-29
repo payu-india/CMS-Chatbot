@@ -18,21 +18,7 @@ To set up the time frame:
 2. Click to select the **Today, Yesterday, Past 7 days,** or **Past 30 days** to view the transactions for the mentioned period.
 3. Click **Apply** to view the results.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/e2f8415-Screenshot_2023-09-22_at_8.04.37_PM.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/e2f8415-Screenshot_2023-09-22_at_8.04.37_PM.png" />
 
 To customize the calendar view:
 
