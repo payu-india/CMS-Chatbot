@@ -10,4 +10,4 @@ metadata:
 next:
   description: ''
 ---
-<https://github.com/payu-intrepos/payu-core-pg-react.git>
+[https://github.com/payu-intrepos/payu-core-pg-react.git](https://github.com/payu-intrepos/payu-core-pg-react.git)
