@@ -6,3 +6,4 @@
 - get-transaction-details-api
 - share_payment_link_api
 - get-single-payment-link
+- get-all-payment-links-api
