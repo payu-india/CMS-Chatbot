@@ -10,17 +10,17 @@ metadata:
 next:
   description: ''
 ---
-The **VAS Integration **API is used to get the list of down Net Banking and down card BIN. Integrate this API by calling the `callVASForMobileSDKWithPaymentParam`. The command name and var1 for this API integration are:
+The **VAS Integration** API is used to get the list of down Net Banking and down card BIN. Integrate this API by calling the `callVASForMobileSDKWithPaymentParam`. The command name and var1 for this API integration are:
 
-- Command Name - vas_for_mobile_sdk
-- Var1 - default
+* Command Name - vas\_for\_mobile\_sdk
+* Var1 - default
 
 > 📘 Hash format
-> 
+>
 > The hash will be in the format of: 
-> 
+>
 > `Sha512(Key|Command|Var1|Salt)`
-> 
+>
 > For more information, refer to [Generate Static Hash](doc:generate-static-hash-ios).
 
 For this API, you need to set `hash` in the payment params similar to the following code block
@@ -55,9 +55,9 @@ if (errorMessage) {
 ```
 
 > 📘 **Note**:
-> 
+>
 > You can check if a particular NetBanking service is down or not by just passing the bankCode or card-bin (first 6 digits of card number) and in completionBlock, the response will be fetched, for instance.
-> 
+>
 > ```Text Objective-C
 > [webServiceResponse getVASStatusForCardBinOrBankCode:@"AXIB" withCompletionBlock:^(id ResponseMessage, NSString *errorMessage, id extraParam) {
 >     	if (errorMessage == nil) {
