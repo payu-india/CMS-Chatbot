@@ -22,9 +22,9 @@ next:
 ---
 This section describes the Core SDK components and implementation:
 
-- [Objective - Seamless Integration](doc:ios-coresdk-seamless-integration)
-- [Web Services for iOS Core SDK](https://docs.payu.in/docs/ios-coresdk-web-services)
-- [Setup Recurring Payments](https://docs.payu.in/docs/ios-coresdk-setup-recurring-payments)
-- [Integrate TPV](https://docs.payu.in/docs/ios-coresdk-integrate-tpv)
-- [Release on App Store](https://docs.payu.in/docs/ios-coresdk-distribute-your-ios-app)
-- [Sample App](https://docs.payu.in/docs/ios-coresdk-sample-app)
+* [Objective - Seamless Integration](doc:ios-coresdk-seamless-integration)
+* [Web Services for iOS Core SDK](https://docs.payu.in/docs/ios-coresdk-web-services)
+* [Setup Recurring Payments](https://docs.payu.in/docs/ios-coresdk-setup-recurring-payments)
+* [Integrate TPV](https://docs.payu.in/docs/ios-coresdk-integrate-tpv)
+* [Release on App Store](https://docs.payu.in/docs/ios-coresdk-distribute-your-ios-app)
+* [Sample App](https://docs.payu.in/docs/ios-coresdk-sample-app)
