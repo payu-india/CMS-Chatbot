@@ -12,11 +12,11 @@ next:
 ---
 The following are the different methods to implement additional charges for PayU Hosted Checkout or Merchant Hosted Checkout:
 
-- [Enable additional charges from PayU backend](#enable-additional-charges-from-payu-backend)
-- [Post additional charges along with amount](#post-additional-charges-along-with-amount)
+* [Enable additional charges from PayU backend](#enable-additional-charges-from-payu-backend)
+* [Post additional charges along with amount](#post-additional-charges-along-with-amount)
 
 > 📘 Reference:
-> 
+>
 > The hash algorithm indicated in the below procedures are for **\_payment** API for PayU Hosted Checkout and Merchant Hosted Checkout. For more information, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) or  [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted)  based on your integration.
 
 ## Enable additional charges from PayU backend
@@ -24,7 +24,7 @@ The following are the different methods to implement additional charges for PayU
 In this method, you will be posting only the transaction amount of the product in the transaction request. PayU adds the additional amount based on your request with PayU.
 
 > 📘 Note:
-> 
+>
 > To enable the additional charges facility, you need to contact [PayU Support](https://help.payu.in/).
 
 1. Customer clicks the **Pay Now** button and the additional amount will be added to the amount of the product by PayU (based upon the TDR values).
@@ -34,10 +34,10 @@ The **total amount** would be passed on to the bank’s page while re-directing.
 2. PayU receives the status of the transaction from the bank.
 3. PayU sends the response back to the merchant. In this response, the **amount** and **additional amount** can be differentiated with the following parameters:
 
-| Parameter          | Description                                                                       |
-| ------------------ | --------------------------------------------------------------------------------- |
-| amount             | The original transaction amount is returned in this parameter as a response.      |
-| additional_charges | The additional amount that is charged is returned in this parameter as a response |
+| Parameter           | Description                                                                       |
+| ------------------- | --------------------------------------------------------------------------------- |
+| amount              | The original transaction amount is returned in this parameter as a response.      |
+| additional\_charges | The additional amount that is charged is returned in this parameter as a response |
 
 4. Check the authenticity of the response by reverse hashing.
 
@@ -59,10 +59,10 @@ To post additional charges along with the transaction amount:
 
 1. Posting both the transaction amount and additional charges in the transaction request. The parameters used in this regard are:
 
-| Parameter          | Description                                                                       |
-| ------------------ | --------------------------------------------------------------------------------- |
-| amount             | The original transaction amount is returned in this parameter as a response.      |
-| additional_charges | The additional amount that is charged is returned in this parameter as a response |
+| Parameter           | Description                                                                       |
+| ------------------- | --------------------------------------------------------------------------------- |
+| amount              | The original transaction amount is returned in this parameter as a response.      |
+| additional\_charges | The additional amount that is charged is returned in this parameter as a response |
 
    The order of the parameters is as follows:
 
@@ -92,12 +92,12 @@ CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55
 
    After the transaction request hits the PayU server and re-direction, the customer lands on the PayU payment page. Based on the payment mode selected by the customer, the additional charge value will be added to the transaction amount. In the above example, the additional amount is charged according to the payment mode:
 
-- Rs 12 for credit card
-- Rs.19 for AMEX option
-- Rs 98 for SBI Net Banking
-- Rs 2 for Diners card
-- Rs. 25 for debit card
-- Rs. 55 for Net Banking with other banks
+* Rs 12 for credit card
+* Rs.19 for AMEX option
+* Rs 98 for SBI Net Banking
+* Rs 2 for Diners card
+* Rs. 25 for debit card
+* Rs. 55 for Net Banking with other banks
 
 > **Note**: The additional charges would be added only once the customer clicks the **Pay Now** option.
 
