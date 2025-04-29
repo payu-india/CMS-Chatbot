@@ -12,5 +12,5 @@ next:
 ---
 You can integrate Virtual card using PayUPPIiOS SDK in iOS. The following the sections describe the procedure to integrate and sample app.
 
-- [Virtual Cards Integration](https://docs.payu.in/docs/virtual-cards-integration-ios-sdk)
-- [Sample App iOS](doc:sample-app-ios-virtual-card)
+* [Virtual Cards Integration](https://docs.payu.in/docs/virtual-cards-integration-ios-sdk)
+* [Sample App iOS](doc:sample-app-ios-virtual-card)
