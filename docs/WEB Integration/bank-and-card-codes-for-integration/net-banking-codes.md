@@ -14,7 +14,7 @@ metadata:
 next:
   description: ''
 ---
-In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you must use **NB** with **pg** parameter for collecting payment using Net Banking. The following table provides the codes for the leading banks in India. This code must be used as a value with the **<<glossary:bankcode>>** parameter.
+In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you must use **NB** with **pg** parameter for collecting payment using Net Banking. The following table provides the codes for the leading banks in India. This code must be used as a value with the **<Glossary>bankcode</Glossary>** parameter.
 
 | Bank Name                                        | bankcode |
 | ------------------------------------------------ | -------- |
