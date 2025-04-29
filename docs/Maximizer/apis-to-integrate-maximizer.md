@@ -10,16 +10,16 @@ metadata:
 next:
   description: ''
 ---
-The **\_payment** APIs are used to integrate <<glossary:Maximizer>>. For more information, refer to the following APIs under API Reference:
+The **\_payment** APIs are used to integrate <Glossary>Maximizer</Glossary>. For more information, refer to the following APIs under API Reference:
 
-- [Collect Payment API - PayU Hosted](ref:_payment_payu_hosted_checkout)
-- [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted)
-- [Collect Payment API - Server-to-Server](ref:_payment_server_to_server)
+* [Collect Payment API - PayU Hosted](ref:_payment_payu_hosted_checkout)
+* [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted)
+* [Collect Payment API - Server-to-Server](ref:_payment_server_to_server)
 
 > 📘 Notes:
-> 
-> The transaction routed to which aggregator will be identified by the parameter **pa_name **in the transaction response. Also on dashboard merchant can view the aggregator name in transaction list and view details. For example, transaction routed through PayU, UDF will have PayU. Similarly, UDF contains corresponding aggregator name for Razorpay, BillDesk, Pinelabs and Paytm. For more information, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#from-other-payment-aggregator-using-maximiser). The sample response is similar to the following:
-> 
+>
+> The transaction routed to which aggregator will be identified by the parameter **pa\_name** in the transaction response. Also on dashboard merchant can view the aggregator name in transaction list and view details. For example, transaction routed through PayU, UDF will have PayU. Similarly, UDF contains corresponding aggregator name for Razorpay, BillDesk, Pinelabs and Paytm. For more information, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#from-other-payment-aggregator-using-maximiser). The sample response is similar to the following:
+>
 > ```
 > (
 >     [mihpayid] => 19855444473
