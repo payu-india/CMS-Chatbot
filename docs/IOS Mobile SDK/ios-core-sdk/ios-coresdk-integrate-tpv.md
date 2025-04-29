@@ -11,21 +11,21 @@ next:
   description: ''
 ---
 > ❗️ Callout
-> 
+>
 > For TPV transactions, you need to have a different merchantID. Contact your key account manager for the same.
 
 To integrate TPV with the BizSDK framework:
 
-- Calculate Hash
-- Make Payment
-- Handle Response
+* Calculate Hash
+* Make Payment
+* Handle Response
 
 ## Step 1: Calculate hash
 
 For TPV transactions, the hash calculation formula is different from the result type of payment:
 
 > 📘 Note:
-> 
+>
 > For multiple account numbers, account numbers should be pipe separated, and max four account numbers are allowed.
 
 ```
@@ -39,7 +39,7 @@ Hash = sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|u
 ```
 
 > 📘 Reference:
-> 
+>
 > For more information on Static Hashing, refer to [Generate Static Hash](doc:generate-static-hash-ios).
 
 ## Step 2: Make payment
