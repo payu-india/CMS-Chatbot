@@ -163,7 +163,6 @@ The following table provides details of some of the test cards that you can use 
 }
 [/block]
 
-
 ### Other EMIs
 
 #### Axio
@@ -200,11 +199,11 @@ The following table provides details of some of the test cards that you can use 
 
 ## Test UPI ID
 
-You can use **anything@payu** or **[9999999999@payu](mailto:9999999999@payu)** as VPA to test your UPI-related integration in the [sandbox](https://en.wikipedia.org/wiki/Sandbox_(software_development)#:) (Test environment) only for the payment flows involving ** \_payment** AP.
+You can use **anything@payu** or **[9999999999@payu](mailto:9999999999@payu)** as VPA to test your UPI-related integration in the [sandbox](https://en.wikipedia.org/wiki/Sandbox_(software_development)#:) (Test environment) only for the payment flows involving **_payment** AP.
 
 > 📘 Notes:
 > 
-> - The **anything@payu** VPA can be used in the sandbox or [API Playground](https://api-playground.payu.in/) and any other VPA will not work for the** \_payment** only.
+> - The **anything@payu** VPA can be used in the sandbox or [API Playground](https://api-playground.payu.in/) and any other VPA will not work for the**_payment** only.
 > - For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
 
 ## Test Net Banking credentials
