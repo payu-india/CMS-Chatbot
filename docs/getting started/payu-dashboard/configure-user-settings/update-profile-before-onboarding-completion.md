@@ -12,21 +12,7 @@ next:
 ---
 Before completing onboarding, you can view and update your general details, basic business, and bank details using the **View & Edit** button. This will navigate to **PayU Home** > **Profile tab**.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/5ede360-Screenshot_2023-09-29_at_11.04.11_AM.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/5ede360-Screenshot_2023-09-29_at_11.04.11_AM.png" />
 
 You can update the general details like **Brand name**, **Mobile Number,** and **Password** in the respective section.
 
@@ -48,7 +34,7 @@ To update your website details:
 
 1. Navigate to **Settings > Edit Profile > Website** tab.
 
-   The **Website** tab is displayed on the _Profile_ page.
+   The **Website** tab is displayed on the *Profile* page.
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-116.png)
 
@@ -75,38 +61,8 @@ The **Documents** tab enables you to view and upload the proofs, **Service agree
 
 You can upload your proof using the **Upload** button and view the accepted proofs in the respective section.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-120.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-120.png" />
 
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-121.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-121.png" />
 
 After the documents are verified, the service agreement is displayed. You can **Accept** the service agreement and E-Sign it.
