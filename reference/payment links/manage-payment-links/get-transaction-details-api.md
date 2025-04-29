@@ -21,10 +21,11 @@ The** Get Transaction Details** API is used to get the details of transactions f
 
 |                            |                                           |
 | -------------------------- | ----------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payment-links> |
-| **Production Environment** | <https://oneapi.payu.in/payment-links>    |
+| **Test Environment**       | &lt;https://uatoneapi.payu.in/payment-links&gt; |
+| **Production Environment** | &lt;https://oneapi.payu.in/payment-links&gt;    |
 
-<details> <summary> Sample request </summary>
+<details>
+  <summary> Sample request </summary>
 
 ```
 curl --location '
@@ -36,7 +37,8 @@ https://uatoneapi.payu.in/payment-links/INV2669646610062/txns?pageSize=10&dateFr
 
 </details>
 
-<details> <summary> Sample response </summary>
+<details>
+  <summary> Sample response </summary>
 
 ```
 {
