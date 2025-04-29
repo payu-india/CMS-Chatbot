@@ -16,8 +16,8 @@ next:
 ---
 PayU EMI API Integration includes the following:
 
-- Regular flow
-  - [Integrate with Debit Card](doc:collect-payments-with-emi-using-debit-card)
-  - [Integrate with Credit Card](doc:collect-payments-with-emi-using-credit-card)
-  - [Integrate with Cardless EMI](doc:collect-payments-with-cardless-emi-using-merchant-hosted-checkout)
-- [Using Native OTP flow](doc:native-otp-flow-integration)
+* Regular flow
+  * [Integrate with Debit Card](doc:collect-payments-with-emi-using-debit-card)
+  * [Integrate with Credit Card](doc:collect-payments-with-emi-using-credit-card)
+  * [Integrate with Cardless EMI](doc:collect-payments-with-cardless-emi-using-merchant-hosted-checkout)
+* [Using Native OTP flow](doc:native-otp-flow-integration)
