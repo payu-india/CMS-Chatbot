@@ -25,12 +25,12 @@ next:
 ---
 You can integrate CustomBrowser using any of the following methods:
 
-- [Simplified Integration](https://docs.payu.in/docs/ios-custombrowser-simplified-integration)
-- [Manual Integration](https://docs.payu.in/docs/ios-custombrowser-manual-integration)
-- [Swift Package Manager Integration](https://docs.payu.in/docs/ios-custombrowser-integrate-swift-package-manager)
+* [Simplified Integration](https://docs.payu.in/docs/ios-custombrowser-simplified-integration)
+* [Manual Integration](https://docs.payu.in/docs/ios-custombrowser-manual-integration)
+* [Swift Package Manager Integration](https://docs.payu.in/docs/ios-custombrowser-integrate-swift-package-manager)
 
 After you perform the integration, you can perform the following steps:
 
-- [Make Payment](https://docs.payu.in/docs/ios-custombrowser-make-payment-using-custom-browser)
-- [Customize Custom Browser](https://docs.payu.in/docs/ios-custombrowser-customize-your-integration)
-- [Release you App](https://docs.payu.in/docs/ios-releasing-the-app-to-the-app-store)
+* [Make Payment](https://docs.payu.in/docs/ios-custombrowser-make-payment-using-custom-browser)
+* [Customize Custom Browser](https://docs.payu.in/docs/ios-custombrowser-customize-your-integration)
+* [Release you App](https://docs.payu.in/docs/ios-releasing-the-app-to-the-app-store)
