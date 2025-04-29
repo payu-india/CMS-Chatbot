@@ -3,3 +3,4 @@
 - merchant-hosted-integration-pre-authorize-payment
 - s2s-pre-authorize-payment
 - apis-used-in-auth-and-capture
+- cancel-a-pre-authorized-payment
