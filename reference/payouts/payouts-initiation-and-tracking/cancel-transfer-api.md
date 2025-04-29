@@ -23,10 +23,11 @@ The **Cancel Transfer** API command is used to cancel the queued transfer.
 
 |            |                                                      |
 | ---------- | ---------------------------------------------------- |
-| Production | <https://payout.payumoney.com/payout/payment/cancel> |
-| Test       | <https://uatoneapi.payu.in/payout/payment/cancel>    |
+| Production | &lt;https://payout.payumoney.com/payout/payment/cancel&gt; |
+| Test       | &lt;https://uatoneapi.payu.in/payout/payment/cancel&gt;    |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl -X POST \
@@ -39,7 +40,8 @@ curl -X POST \
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 <br>
 
