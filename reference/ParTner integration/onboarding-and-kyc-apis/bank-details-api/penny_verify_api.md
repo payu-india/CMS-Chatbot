@@ -15,17 +15,18 @@ next:
 ---
 This API is used to verify the bank accounts, and the purposes of this API are:
 
-- Used to verify the bank account when it is not verified automatically.
-- Used to submit the penny value deposited by PayU in the merchant account.
-- Authorization through the user token received using User Token APIs
+* Used to verify the bank account when it is not verified automatically.
+* Used to submit the penny value deposited by PayU in the merchant account.
+* Authorization through the user token received using User Token APIs
 
 > 📘 Note:
-> 
+>
 > The access token with the scope as **user\_token** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
 <PARTNEROnboardingEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location -g --request POST '{{onboarding_url}}/api/v1/merchants/{{merchant_uuid}}/verify_penny' \
@@ -36,7 +37,8 @@ curl --location -g --request POST '{{onboarding_url}}/api/v1/merchants/{{merchan
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {  
