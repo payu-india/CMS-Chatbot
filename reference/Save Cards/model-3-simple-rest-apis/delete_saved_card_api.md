@@ -29,9 +29,10 @@ HTTP Method: **POST**
 
 <GENERALAPIsEnvironment />
 
-<details><summary>Sample Response</summary>
+<details>
+  <summary>Sample Response</summary>
 
-- On successful deletion
+* On successful deletion
 
 ```plaintext
 {
@@ -40,7 +41,7 @@ HTTP Method: **POST**
 }
 ```
 
-- On failure of deletion
+* On failure of deletion
 
 ```plaintext
 {
@@ -51,37 +52,58 @@ HTTP Method: **POST**
 
 </details>
 
-<details> <summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "The status of the response can be any of the following:  \n   -** 1**: Success  \n  \n- **0**: Failure",
-    "0-2": "1",
-    "1-0": "msg",
-    "1-1": "The description of the response whether the card details were deleted successfully or not deleted.",
-    "1-2": "My\\_card deleted successfully"
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+      <th>
+        **Description**
+      </th>
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+      <td>
+        The status of the response can be any of the following:\
+           -**1**: Success  
 
+        * **0**: Failure
+      </td>
+      <td>
+        1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        msg
+      </td>
+      <td>
+        The description of the response whether the card details were deleted successfully or not deleted.
+      </td>
+      <td>
+        My\_card deleted successfully
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
 ## Request Parameters
 
-<details> <summary>Reference info for request parameters</summary>
+<details>
+  <summary>Reference info for request parameters</summary>
 
 <KeyHashForGeneralParametersDescription />
 
