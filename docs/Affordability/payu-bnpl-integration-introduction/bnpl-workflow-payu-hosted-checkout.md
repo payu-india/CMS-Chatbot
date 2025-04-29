@@ -18,12 +18,12 @@ metadata:
 next:
   description: ''
 ---
-For the <<glossary:BNPL>> payment mode using PayU Hosted Checkout integration, PayU takes care of the integration and you just need to enable BNPL.
+For the <Glossary>BNPL</Glossary> payment mode using PayU Hosted Checkout integration, PayU takes care of the integration and you just need to enable BNPL.
 
 The customer journey involved when collecting payment using BNPL:
 
 > 📘 Note:
-> 
+>
 > If you don’t have BNPL enabled, try requesting using Dashboard. For more information, refer to [Configure User Settings](doc:configure-user-settings#checkout-payment-modes). If you could not request through Dashboard, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in/).
 
 ## General workflow
@@ -57,9 +57,9 @@ Customer enters the OTP and clicks Submit. Payment gets completed successfully.
 For the BNPL payment mode using PayU Hosted Checkout integration, you just require the Native OTP Integration flow enabled by contacting your PayU Key Account Manager, and PayU takes care of this flow. The customer journey involved when collecting payments with BNPL using Native OTP flow:
 
 > 📘 Notes:
-> 
-> - If you don’t have BNPL enabled, try requesting using Dashboard. For more information, refer to [Checkout payment modes](/docs/configure-user-settings#disable-checkout-payment-modes). If you could not request through Dashboard, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in/).
-> - To enable Native OTP Integration flow, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in/).
+>
+> * If you don’t have BNPL enabled, try requesting using Dashboard. For more information, refer to [Checkout payment modes](/docs/configure-user-settings#disable-checkout-payment-modes). If you could not request through Dashboard, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in/).
+> * To enable Native OTP Integration flow, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in/).
 
 ### Step 1
 
