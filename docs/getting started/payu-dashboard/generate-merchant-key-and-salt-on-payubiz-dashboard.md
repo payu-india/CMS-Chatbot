@@ -1,0 +1,60 @@
+---
+title: Generate Merchant Key and Salt on PayUBiz Dashboard
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+This section describes how to get the current Salt or generate a new Salt on PayUBiz Merchant Dashboard.
+
+> 🚧 For only PayUBiz merchants:
+> 
+> This procedure is only applicable for **PayUBiz** merchants.
+
+## Get the Current Salt
+
+You can get the new salt value from PayU Merchant Dashboard that will be used in hash calculation.  
+To get the current Salt:
+
+1. Navigate to the PayUBiz Merchant Dashboard using the following URL:
+
+<https://txncdn.payubiz.in/login>
+
+The PayUBiz Dashboard login page is displayed.
+
+[block:image]{"images":[{"image":["https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/getobject-1.jpeg",null,null],"align":"center","sizing":"550px"}]}[/block]
+
+1. Enter the user name and password.
+2. Click **Sign in**.
+3. Navigate to **My Account** > **System Settings**.
+
+The 8-digit Salt is displayed under the **Salts** field.
+
+[block:image]{"images":[{"image":["https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/06/test_salt_paybiz.png",null,null],"align":"center","border":true}]}[/block]
+
+1. Click **Copy** to copy the Salt to the clipboard.
+
+## Regenerate Salt for Integration
+
+If you require to change the current Salt or regenerate a new Salt, you can generate it from the PayU Dashboard.  
+To regenerate salt from Dashboard:
+
+1. Log in to PayU Merchant Dashboard as described above.
+2. Navigate to **My Account** > **System Settings**.
+
+The _System Settings_ page is displayed and **Generate New Salt** button can be found below the current Salts.
+
+[block:image]{"images":[{"image":["https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/06/salt_payubiz.png",null,null],"align":"center","border":true}]}[/block]
+
+3. Click **Generate New Salt** to generate a new Salt for your existing account.
+
+The new Salt is generated.
+
+4. Click **Copy** to copy the new Salt to clipboard.
+
+**Note**: Your new salt will be generated, and the old salt will be de-activated. Ensure that you update the new Salt for all your integration with PayU.
