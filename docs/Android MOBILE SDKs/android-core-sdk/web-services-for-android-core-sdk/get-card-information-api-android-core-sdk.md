@@ -12,10 +12,10 @@ next:
 ---
 The **Get Card Information** (Check is Domestic) API is used to get if the card (passed in cardBin info API) is domestic or international. This API returns the following parameters:
 
-- card_type
-- category
-- issuing_bank
-- is_atmpin_card
+* card\_type
+* category
+* issuing\_bank
+* is\_atmpin\_card
 
 For this API, you need to set the following parameter in the payment params similar to the following code block:
 
