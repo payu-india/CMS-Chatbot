@@ -47,12 +47,12 @@ PayU OlaMoney provides the following callback functions:
 - The following error messages are displayed when using onPaymentInitialisationFailure.
 
 > ❗️ Error
-> 
-> Following errors can occur if the `onPaymentInitialisationFailure`callback is failed:
-> 
+>
+> Following errors can occur if the `onPaymentInitialisationFailure` callback is failed:
+>
 > `100: Mandatory params are missing. Please check again!`
-> 
-> `101	Something Went Wrong!`
+>
+> `101 Something Went Wrong!`
 
 ## Checking OlaMoney Eligibility
 
@@ -62,22 +62,22 @@ Before proceeding with payment via OlaMoney payment mode merchant must check whe
 new OlaMoney().checkForPaymentAvailability(Activity activity, OlaMoneyCallback callback, PayUOlaMoneyParams olaMoneyParams);
 ```
 
-Where `PayUOlaMoneyParams `object can be created as mentioned in the next section.
+Where `PayUOlaMoneyParams` object can be created as mentioned in the next section.
 
 > 📘 Remember
-> 
+>
 > Values set in the `PayUOlaMoneyParams` must be the same that needs to be sent to PayU’s backend in payment post-data.
 
 ### Create PayUOlaMoneyParams
 
 ```Text JAVA
 PayUOlaMoneyParams payUOlaMoneyParams = new PayUOlaMoneyParams(); 
-payUOlaMoneyParams.setMobile(<Customer Mobile number>)); 
-payUOlaMoneyParams.setFirstName(<Customer Firstname>); 
-payUOlaMoneyParams.setTxnId(<TransactionId>); 
-payUOlaMoneyParams.setMerchantKey(<PayU Merchant key>); 
-payUOlaMoneyParams.setHash(<Hash generated for OlaMoney Eligibility check>); 
-payUOlaMoneyParams.setAmount(<Amount that customer needs to pay>); 
+payUOlaMoneyParams.setMobile(&lt;Customer Mobile number&gt;); 
+payUOlaMoneyParams.setFirstName(&lt;Customer Firstname&gt;); 
+payUOlaMoneyParams.setTxnId(&lt;TransactionId&gt;); 
+payUOlaMoneyParams.setMerchantKey(&lt;PayU Merchant key&gt;); 
+payUOlaMoneyParams.setHash(&lt;Hash generated for OlaMoney Eligibility check&gt;); 
+payUOlaMoneyParams.setAmount(&lt;Amount that customer needs to pay&gt;); 
 ```
 
 Where OlaMoney eligibility hash can be created as described in the following section.
@@ -92,11 +92,11 @@ To generate the OlaMoney eligibility hash, use the method similar to the followi
 
 - Key – Merchant Key
 - Command – get_eligible_payment_options  
-  var1 – {\\”amount\\”:\\””,\\”txnid\\”:\\”\\”,\\”mobile_number\\”:\\””,\\”first_name\\”:\\”\\”,\\”bankCode\\”:\\”OLAM\\”,\\”email\\”:\\”\\”,\\”last_name\\”:\\”\\”}
+  var1 – `{\\”amount\\”:\\””,\\”txnid\\”:\\”\\”,\\”mobile_number\\”:\\””,\\”first_name\\”:\\”\\”,\\”bankCode\\”:\\”OLAM\\”,\\”email\\”:\\”\\”,\\”last_name\\”:\\”\\”}`
 - Salt – Merchant’s Salt
 
 > 🚧 Remember
-> 
+>
 > The fields in the hashing string and the parameters in the var1 field should be in the exact same order as shown above.
 
 | ErrorCode | Error Message                                         | Description                                                |
@@ -110,21 +110,21 @@ Payment post data can be created as follows:
 
 ```Text JAVA
 PaymentParams paymentParams = new PaymentParams(); 
-paymentParams.setKey(<Merchant Key>); 
-paymentParams.setAmount(<Transaction Amount); 
-paymentParams.setProductInfo(<Product_info>); 
-paymentParams.setFirstName(<First Name of Customer>); 
-paymentParams.setEmail(<Customer's email); 
-paymentParams.setTxnId(<Transaction Id>); 
-paymentParams.setSurl(<Success Url>); 
-paymentParams.setFurl(<Failure Url>); 
+paymentParams.setKey(&lt;Merchant Key&gt;); 
+paymentParams.setAmount(&lt;Transaction Amount&gt;); 
+paymentParams.setProductInfo(&lt;Product_info&gt;); 
+paymentParams.setFirstName(&lt;First Name of Customer&gt;); 
+paymentParams.setEmail(&lt;Customer's email&gt;); 
+paymentParams.setTxnId(&lt;Transaction Id&gt;); 
+paymentParams.setSurl(&lt;Success Url&gt;); 
+paymentParams.setFurl(&lt;Failure Url&gt;); 
 paymentParams.setUdf1(“udf1”); 
 paymentParams.setUdf2(“udf2”); 
 paymentParams.setUdf3(“udf3”); 
 paymentParams.setUdf4(“udf4”); 
 paymentParams.setUdf5(“udf5”); 
-paymentParams.setPhone(<Customer's Phone Number>); 
-paymentParams.setHash(<Payment Hash>); 
+paymentParams.setPhone(&lt;Customer's Phone Number&gt;); 
+paymentParams.setHash(&lt;Payment Hash&gt;); 
 PostData postData = new PayUOlaMoneyPaymentParams().getPaymentPostData(paymentParams);
 if(postData.getCode() == PayuErrors.NO_ERROR){
 String postDataValue = postData.getResult();
@@ -138,10 +138,9 @@ String errorValue = postData.getResult();
 If you use the SDK with a test merchant, please provide this metadata value to the manifest file.
 
 ```Text XML
-<application
+<application>
     <meta-data
         android:name="payu_web_service_url"
         android:value="https://test.payu.in" />
-
 </application>
 ```
