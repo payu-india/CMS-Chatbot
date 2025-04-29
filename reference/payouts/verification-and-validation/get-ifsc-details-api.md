@@ -19,10 +19,11 @@ The** Get IFSC Details** API is to get the IFSC Details based on the IFSC code o
 
 |                            |                                                            |
 | -------------------------- | ---------------------------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/merchant/getIfscDetails> |
-| **Production Environment** | <https://www.payumoney.com/payout/merchant/getIfscDetails> |
+| **Test Environment**       | &lt;https://uatoneapi.payu.in/payout/merchant/getIfscDetails&gt; |
+| **Production Environment** | &lt;https://www.payumoney.com/payout/merchant/getIfscDetails&gt; |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location --request GET 'https://test.payumoney.com/payout/merchant/getIfscDetails?ifsc=HDFC0004392' \
@@ -32,7 +33,8 @@ curl --location --request GET 'https://test.payumoney.com/payout/merchant/getIfs
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success scenario**
 
