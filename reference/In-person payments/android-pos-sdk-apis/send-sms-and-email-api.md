@@ -14,43 +14,105 @@ The **Send SMS and Email** API is used to send the details of a transaction over
 
 **Method**: POST
 
-Create a `PaymentInitialization` class object and call `sendSMSEmail()` method by passing the  
+Create a `PaymentInitialization` class object and call `sendSMSEmail()` method by passing the\
 parameters mentioned in the request table.
 
 ## Request parameter
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Sample",
-    "0-0": "Handler object   \n`mandatory`",
-    "0-1": "`handler` Create a handler inner class. This class will return response message.",
-    "0-2": "handler",
-    "1-0": "referenceNmber   \n`mandatory`",
-    "1-1": "`string` Pass the reference number after the transaction response.",
-    "1-2": "12345678",
-    "2-0": "Mobile No   \n`mandatory`",
-    "2-1": "`string` The mobile Number of the customer",
-    "2-2": "9000000000",
-    "3-0": "Email id   \n`mandatory`",
-    "3-1": "`string` The email Id of the customer.",
-    "3-2": "[x@gmail.com](mailto:x@gmail.com)",
-    "4-0": "Transaction type   \n`mandatory`",
-    "4-1": "`string` Type of the transaction (Available inside PaymentTransactionConstants)",
-    "4-2": "MICRO_ATM"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Sample
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Handler object 
+        `mandatory`
+      </td>
+
+      <td>
+        `handler` Create a handler inner class. This class will return response message.
+      </td>
+
+      <td>
+        handler
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        referenceNmber \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` Pass the reference number after the transaction response.
+      </td>
+
+      <td>
+        12345678
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Mobile No \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The mobile Number of the customer
+      </td>
+
+      <td>
+        9000000000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Email id \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The email Id of the customer.
+      </td>
+
+      <td>
+        [x@gmail.com](mailto:x@gmail.com)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Transaction type \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` Type of the transaction (Available inside PaymentTransactionConstants)
+      </td>
+
+      <td>
+        MICRO\_ATM
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
