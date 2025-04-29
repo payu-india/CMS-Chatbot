@@ -14,27 +14,54 @@ This API is to validate if user's account/customer profile exists or not with th
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "phone  \n`mandatory`",
-    "0-1": "The customer phone number.",
-    "1-0": "email  \n`mandatory`",
-    "1-1": "The customer email ID.",
-    "2-0": "key  \n`mandatory`",
-    "2-1": "The merchant key used for encryption that was provided by PayU."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        phone
+        `mandatory`
+      </td>
+
+      <td>
+        The customer phone number.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email\
+        `mandatory`
+      </td>
+
+      <td>
+        The customer email ID.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        key\
+        `mandatory`
+      </td>
+
+      <td>
+        The merchant key used for encryption that was provided by PayU.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
