@@ -12,8 +12,8 @@ next:
 ---
 The following APIs used for offers with Android Core SDK:
 
-- [Fetch Offer Details](fetch-offer-details)
-- [Validate Offer Details](#validate-offer-details)
+* [Fetch Offer Details](fetch-offer-details)
+* [Validate Offer Details](#validate-offer-details)
 
 ## Fetch Offer Details
 
