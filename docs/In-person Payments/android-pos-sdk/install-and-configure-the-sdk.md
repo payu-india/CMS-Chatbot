@@ -14,8 +14,8 @@ next:
 ---
 ## Prerequisites
 
-- Java JDK (Java Development Kit).
-- Eclipse ADT (Android Development Tool with Android SDK).
+* Java JDK (Java Development Kit).
+* Eclipse ADT (Android Development Tool with Android SDK).
 
 ***
 
@@ -24,8 +24,8 @@ next:
 Add dependency libraries \*.aar into your existing Android project libs folder.
 
 > 👍 Callout!
-> 
-> If your project does not already have a libs folder, create one in the root of the project by  
+>
+> If your project does not already have a libs folder, create one in the root of the project by\
 > right clicking the project and choosing New and then Folder and add latest PayUsdk `aar’s` into libs folder in the demo source code
 
 ***
@@ -115,5 +115,5 @@ exclude 'VERSION.txt'
 
 To go live with the SDK:
 
-Configure Merchant Salt and Merchant Key at Development Phase.  
+Configure Merchant Salt and Merchant Key at Development Phase.\
 Get in touch with the integration team to get the production SDK.
