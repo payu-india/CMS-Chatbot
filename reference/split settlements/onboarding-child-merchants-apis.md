@@ -27,15 +27,15 @@ The steps involved in creating a child merchant are:
 
 |                        |                                         |
 | ---------------------- | --------------------------------------- |
-| UAT Environment        | <https://uat-onepayuonboarding.payu.in> |
-| Production Environment | <https://onboarding.payu.in>            |
+| UAT Environment        | &lt;https://uat-onepayuonboarding.payu.in&gt; |
+| Production Environment | &lt;https://onboarding.payu.in&gt;            |
 
 ### Hub Service Domains
 
 |                        |                                |
 | ---------------------- | ------------------------------ |
-| UAT Environment        | <https://uat-accounts.payu.in> |
-| Production Environment | <https://accounts.payu.in>     |
+| UAT Environment        | &lt;https://uat-accounts.payu.in&gt; |
+| Production Environment | &lt;https://accounts.payu.in&gt;     |
 
 ## Prerequisites
 
