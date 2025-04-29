@@ -11,10 +11,10 @@ next:
   description: ''
 ---
 > ❗️ Before you begin
-> 
-> - To download iOS SDK through CocoaPod, refer to CocoaPods Integration.
-> - Run the sample app:  
->   i. Download latest SDK version and unzip it.  
+>
+> * To download iOS SDK through CocoaPod, refer to CocoaPods Integration.
+> * Run the sample app:\
+>   i. Download latest SDK version and unzip it.\
 >   ii. Unzip Release-Universal, now drag and drop the content of unzipped file into Sample App
 
 ***
@@ -23,7 +23,7 @@ next:
 
 To perform the initial setup:
 
-1. Download the latest SDK version from the following location and unzip it: <https://github.com/payu-intrepos/iOS-SDK/releases>
+1. Download the latest SDK version from the following location and unzip it: [https://github.com/payu-intrepos/iOS-SDK/releases](https://github.com/payu-intrepos/iOS-SDK/releases)
 2. Unzip Release-Universal, drag and drop the content of the unzipped file into Sample App.
 
 ```Text Swift
@@ -144,12 +144,12 @@ The callbacks give your URLRequest as well as post parameters (NSString format).
 
 The following payment types are supported by SDK, and additional parameters are supported. The additional parameters that can be configured in the createRequest object created earlier are described in the following sections:
 
-- [Credit Card/Debit Card Integration](https://docs.payu.in/docs/credit-carddebit-card-integration-ios-core-sdk)
-- [Stored Card Integration](https://docs.payu.in/docs/stored-card-integration-ios-core-sdk)
-- [Tokenized Card Payments](https://docs.payu.in/docs/tokenized-card-payment-ios-core-sdk)
-- [Net Banking Integration](https://docs.payu.in/docs/net-banking-integration-ios-core-sdk)
-- [Cash Card Integration](https://docs.payu.in/docs/cash-card-ios-core-sdk)
-- [EMI Payment Integration](https://docs.payu.in/docs/emi-payment-integration-ios-core-sdk)
-- [LazyPay BNPL Integration](https://docs.payu.in/docs/lazypay-bnpl-integration-ios-core-sdk)
-- [TwidPay BNPL Integration](https://docs.payu.in/docs/twidpay-integration-ios-core-sdk)
-- [Pluxee Card Integration](https://docs.payu.in/docs/pluxee-card-integration-ios-core-sdk)
+* [Credit Card/Debit Card Integration](https://docs.payu.in/docs/credit-carddebit-card-integration-ios-core-sdk)
+* [Stored Card Integration](https://docs.payu.in/docs/stored-card-integration-ios-core-sdk)
+* [Tokenized Card Payments](https://docs.payu.in/docs/tokenized-card-payment-ios-core-sdk)
+* [Net Banking Integration](https://docs.payu.in/docs/net-banking-integration-ios-core-sdk)
+* [Cash Card Integration](https://docs.payu.in/docs/cash-card-ios-core-sdk)
+* [EMI Payment Integration](https://docs.payu.in/docs/emi-payment-integration-ios-core-sdk)
+* [LazyPay BNPL Integration](https://docs.payu.in/docs/lazypay-bnpl-integration-ios-core-sdk)
+* [TwidPay BNPL Integration](https://docs.payu.in/docs/twidpay-integration-ios-core-sdk)
+* [Pluxee Card Integration](https://docs.payu.in/docs/pluxee-card-integration-ios-core-sdk)
