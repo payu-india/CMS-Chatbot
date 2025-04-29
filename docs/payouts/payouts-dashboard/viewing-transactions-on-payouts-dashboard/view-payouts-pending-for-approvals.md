@@ -30,5 +30,5 @@ To view the details of payout in the pending state:
 
 On selecting, **Send Reminder** and **Cancel Selected** options are enabled.
 
-- Click **Send Reminder** option to send approval reminder to the respective Checker.
-- Click **Cancel Selected** to mark the selected payout record(s) as cancelled.
+* Click **Send Reminder** option to send approval reminder to the respective Checker.
+* Click **Cancel Selected** to mark the selected payout record(s) as cancelled.
