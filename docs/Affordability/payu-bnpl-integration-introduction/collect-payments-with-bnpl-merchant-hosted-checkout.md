@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-Buy Now Pay Later (<<glossary:BNPL>>) allows your customers to spread their payments over a relatively short period instead of paying upfront. You can collect payments from customers with BNPL using the Merchant Hosted Checkout integration. This part of the documentation includes the steps to integrate using the following flows:
+Buy Now Pay Later (<Glossary>BNPL</Glossary>) allows your customers to spread their payments over a relatively short period instead of paying upfront. You can collect payments from customers with BNPL using the Merchant Hosted Checkout integration. This part of the documentation includes the steps to integrate using the following flows:
 
-- [General Flow](https://docs.payu.in/docs/general-flow-bnpl-integration-with-merchant-hosted)
-- [Native OTP Flow](doc:native-otp-flow-integration)
+* [General Flow](https://docs.payu.in/docs/general-flow-bnpl-integration-with-merchant-hosted)
+* [Native OTP Flow](doc:native-otp-flow-integration)
