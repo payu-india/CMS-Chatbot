@@ -19,7 +19,8 @@ HTTP Method: **POST**
 
 <GENERALAPIsEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ### Cards
 
@@ -49,7 +50,8 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ### Cards
 
@@ -82,36 +84,47 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
         "field9": "0|Transaction Successful"
     }
 }
-
 ```
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of web service call. The status can be any of the following:  \n  \n- 0 - If web service call failed\n- 1 - If web service call succeeded",
-    "1-0": "msg",
-    "1-1": "This parameter returns the following message if the pre-auth transaction was successful: `Capture Request Queued`",
-    "2-0": "request\\_id",
-    "2-1": "This parameter returns the request ID for the transaction.",
-    "3-0": "bank\\_ref\\_num",
-    "3-1": "This parameter returns the bank reference number for the transaction."
-  },
-  "cols": 2,
-  "rows": 4,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>**Parameter**</th>
+      <th>**Description**</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>status</td>
+      <td>This parameter returns the status of web service call. The status can be any of the following:</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>* 0 - If web service call failed</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>* 1 - If web service call succeeded</td>
+    </tr>
+    <tr>
+      <td>msg</td>
+      <td>This parameter returns the following message if the pre-auth transaction was successful: Capture Request Queued</td>
+    </tr>
+    <tr>
+      <td>request_id</td>
+      <td>This parameter returns the request ID for the transaction.</td>
+    </tr>
+    <tr>
+      <td>bank_ref_num</td>
+      <td>This parameter returns the bank reference number for the transaction.</td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
