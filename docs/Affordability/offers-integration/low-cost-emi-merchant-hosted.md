@@ -24,19 +24,16 @@ To integrate offers using Merchant Hosted Checkout integration with Low-Cost EMI
 
 | **Parameter** | **Description** | **Example** |
 | ------------- | --------------- | ----------- |
-
 | api\_version  
 **mandatory** | The API version of the \_payment API must be specified as **14**. | 14 |  
 | user\_token  
 **mandatory for UPI, NB, Wallet** \|  
 The use for this param is to allow the offer engine to apply velocity rules at a user level.  
 
- 
-
 - **Card Based Offers (CC, DC, EMI)**: In case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied on the card number.
 - **UPI, NB, Wallet**: It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
 
- | User123456 |  
+| User123456 |  
 | offer\_key  
 **mandatory** | This parameter is to apply the specific offer to the transaction. Offer key can be accessed from the dashboard on offer creation. In case the offer is created via assisted mode, please reach out to your Key Account manager to provide the offer key | newoffer1@5686 |  
 | hash  
@@ -45,15 +42,13 @@ The use for this param is to allow the offer engine to apply velocity rules at a
 It is used to avoid the possibility of transaction tampering.  
 **Notes**:  
 
- 
-
 - The following order must be used for hashing:  
   `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`  
   For more information on hash generation process, refer to [Hashing Request and Response](https://devguide.payu.in/web-checkout/encryption-of-request/).
 - If any of the keys is null/not configured, "|" character must be concatenated.
 - The above hash logic is for \_payment API version 10 or later
 
- |   |
+|   |
 
 1. Check the following response parameters (for Offers) from PayU to handle the payment response, as the net amount debit may be different from the amount sent by you in the request.
 
@@ -62,16 +57,12 @@ It is used to avoid the possibility of transaction tampering.
 | discount           | This will specify the offer value provided to the user.                                                                                                                                    | 10.00          |
 | net\_amount\_debit | This will specify the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 100.00         |
 | offer              | This parameter is used to post the offer key.                                                                                                                                              | newoffer1@5686 |
-| offer\_type        |                                                                                                                                                                                            |                |
+| offer\_type        |                                                                                                                                                                                            | instant |
 
 This parameter is used to post any of the following offer\_type:  
 
- 
-
 - instant
 - cashback
-
- | instant |
 
 For a sample response, refer to the [Sample Response](https://devguide.payu.in/merchant-integration/payu-hosted-checkout/payu-hosted-checkout-integration#Step3) section of [Merchant Hosted Checkout Integration.](https://devguide.payu.in/merchant-integration/payu-hosted-checkout/payu-hosted-checkout-integration#Step3)
 
