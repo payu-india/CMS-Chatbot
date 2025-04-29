@@ -32,7 +32,7 @@ next:
 This section describes how to use the **\_payment** API to update an existing recurring payment for a card.
 
 > 📘 Note:
-> 
+>
 > As per RBI guidelines while modifying the recurring payment, taking consent from the customer and doing an additional factor of authentication is mandatory. You must ensure this is done before using this API. You need to pass **authPayuId** and **action** fields to modify the billing details as part of JSON using this API as described in this section.
 
 HTTP Method: **POST**
@@ -43,188 +43,641 @@ HTTP Method: **POST**
 
 The following table describes the parameters for modifying the recurring payment details for a card.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "key  \n**mandatory**",
-    "0-1": "`varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account.",
-    "0-2": "Your Test Key",
-    "1-0": "txnid  \n**mandatory**",
-    "1-1": "`varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.  \n`Character limit`: 25  \n**Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’",
-    "1-2": "fd3e847h2",
-    "2-0": "amount  \n**mandatory**",
-    "2-1": "`float` This parameter should contain the payment amount of the particular transaction.  \n  \n**Note**: Type-cast the amount to float type  \nDepending upon the merchant use case, this value will vary.  \n  \n\\- It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.  \n  \n- In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI",
-    "2-2": "1000",
-    "3-0": "productinfo  \n**mandatory**",
-    "3-1": "`varchar` This parameter should contain a brief product description. It should be a string describing the product.  \n`Character limit`: 100",
-    "3-2": "Time Magazine Subscription",
-    "4-0": "firstname  \n**mandatory**",
-    "4-1": "`varchar` Must contain the first name of the customer.  \n`Character limit`: 60",
-    "4-2": "Ashish",
-    "5-0": "email  \n**mandatory**",
-    "5-1": "`varchar` Must contain the email of the customer.  \nThis information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.  \nAlso, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.  \nCharacter limit: 50",
-    "5-2": "[Ashish@test.com](mailto:Ashish@test.com)",
-    "6-0": "phone  \n**mandatory**",
-    "6-1": "`varchar` Must contain the phone number of the customer.  \n  \nThis information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.  \nCharacter limit: 50",
-    "6-2": "9843176540",
-    "7-0": "api_version  \n**mandatory**",
-    "7-1": "This parameter must always needs to be passed as 7.",
-    "7-2": "7",
-    "8-0": "si  \n**mandatory**",
-    "8-1": "This parameter must be passed with the value as 2 to modify an already existing subscription/consent.",
-    "8-2": "3",
-    "9-0": "pg  \n**mandatory**",
-    "9-1": "`String` This parameter defines the payment category that the merchant wants the customer to see by default on the PayU’s payment page. In this example, \"CC\" must be specified. For more information, refer to Payment Mode Codes.",
-    "9-2": "",
-    "10-0": "bankcode  \n**mandatory**",
-    "10-1": "Each payment option is identified with a String unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards)",
-    "10-2": "",
-    "11-0": "user_credentials  \n**mandatory**",
-    "11-1": "`String` This parameter must contain the user credentials.",
-    "11-2": "a:b",
-    "12-0": "store_card_token  \n**mandatory**",
-    "12-1": "`String` This must include the Network token generated at your end.",
-    "12-2": "1234 4567 2456 3566",
-    "13-0": "free_trial  \n**optional**",
-    "13-1": "This is mandatory only if the merchant wants to support free trial use case with card and net banking together that too on PayU Hosted Checkout integration.  \n  \nIn this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request.  \nThis parameter has no significance in the case of seamless flow.",
-    "13-2": "",
-    "14-0": "si_details  \n**mandatory**",
-    "14-1": "This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.  \n  \n**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – <https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0> )  \n  \nThis is a JSON object and it includes a set of parameters are described in the the si_details Parameter Description table.",
-    "14-2": "Refer the example below the si_details Parameter Description table.",
-    "15-0": "hash  \n**mandatory**",
-    "15-1": "Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU’s payment interface while registration transactions.  \n  \nIt is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.  \n  \nIn the case of registration transaction, the formula is used to calculate this hash is similar to the following:  \nHASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)",
-    "15-2": ""
-  },
-  "cols": 3,
-  "rows": 16,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account.
+      </td>
+
+      <td>
+        Your Test Key
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txnid\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.\
+        `Character limit`: 25  
+
+        * \*Note\*\*: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’
+      </td>
+
+      <td>
+        fd3e847h2
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount\
+        **mandatory**
+      </td>
+
+      <td>
+        `float` This parameter should contain the payment amount of the particular transaction.  
+
+        * \*Note\*\*: Type-cast the amount to float type\
+          Depending upon the merchant use case, this value will vary.\
+            
+
+        \- It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.  
+
+        * In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
+      </td>
+
+      <td>
+        1000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productinfo\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` This parameter should contain a brief product description. It should be a string describing the product.\
+        `Character limit`: 100
+      </td>
+
+      <td>
+        Time Magazine Subscription
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstname\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` Must contain the first name of the customer.\
+        `Character limit`: 60
+      </td>
+
+      <td>
+        Ashish
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` Must contain the email of the customer.\
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.\
+        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.\
+        Character limit: 50
+      </td>
+
+      <td>
+        [Ashish@test.com](mailto:Ashish@test.com)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` Must contain the phone number of the customer.  
+
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.\
+        Character limit: 50
+      </td>
+
+      <td>
+        9843176540
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        api\_version\
+        **mandatory**
+      </td>
+
+      <td>
+        This parameter must always needs to be passed as 7.
+      </td>
+
+      <td>
+        7
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        si\
+        **mandatory**
+      </td>
+
+      <td>
+        This parameter must be passed with the value as 2 to modify an already existing subscription/consent.
+      </td>
+
+      <td>
+        3
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pg\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This parameter defines the payment category that the merchant wants the customer to see by default on the PayU’s payment page. In this example, "CC" must be specified. For more information, refer to Payment Mode Codes.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankcode\
+        **mandatory**
+      </td>
+
+      <td>
+        Each payment option is identified with a String unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        user\_credentials\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This parameter must contain the user credentials.
+      </td>
+
+      <td>
+        a:b
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        store\_card\_token\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This must include the Network token generated at your end.
+      </td>
+
+      <td>
+        1234 4567 2456 3566
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        free\_trial\
+        **optional**
+      </td>
+
+      <td>
+        This is mandatory only if the merchant wants to support free trial use case with card and net banking together that too on PayU Hosted Checkout integration.  
+
+        In this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request.\
+        This parameter has no significance in the case of seamless flow.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        si\_details\
+        **mandatory**
+      </td>
+
+      <td>
+        This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.  
+
+        * \*Note\*\*: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) )  
+
+        This is a JSON object and it includes a set of parameters are described in the the si\_details Parameter Description table.
+      </td>
+
+      <td>
+        Refer the example below the si\_details Parameter Description table.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash\
+        **mandatory**
+      </td>
+
+      <td>
+        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU’s payment interface while registration transactions.  
+
+        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.  
+
+        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:\
+        HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si\_details|SALT)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### For network tokens
 
 This is applicable for the following scenarios:
 
-- Merchant has the card token, TAVV(Cryptogram), and the last four digits of the card
-- The token could be created by the merchant or through another partner
+* Merchant has the card token, TAVV(Cryptogram), and the last four digits of the card
+* The token could be created by the merchant or through another partner
 
 > 📘 Note:
-> 
+>
 > This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sent the card transaction request in the form of authentication.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Value**",
-    "0-0": "store\\_card\\_token  \n**mandatory**",
-    "0-1": "`String` This must include the Network token generated at your end.",
-    "0-2": "1234 4567 2456 3566",
-    "1-0": "storecard\\_token\\_type  \n**mandatory**",
-    "1-1": "`integer` This parameter is used to specify the store card token type. For this scenario, you must include **1**.",
-    "1-2": "1",
-    "2-0": "additional\\_info  \n**mandatory**",
-    "2-1": "`String` This parameter will contain the additional information in the following JSON format:  \n`{“last4Digits”: “1234”, “tavv”: “ABCDEFGH”,”trid”:”1234567890”, “tokenRefNo”:”abcde123456”}`",
-    "2-2": "`{“last4Digits”: “1234”, “tavv”: “ABCDEFGH”,”trid”:”1234567890”, “tokenRefNo”:”abcde123456”}`"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
 
-> 📘 Notes for **additional_info** parameter:
-> 
+      <th>
+        **Value**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        store\_card\_token
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This must include the Network token generated at your end.
+      </td>
+
+      <td>
+        1234 4567 2456 3566
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        storecard\_token\_type\
+        **mandatory**
+      </td>
+
+      <td>
+        `integer` This parameter is used to specify the store card token type. For this scenario, you must include **1**.
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        additional\_info\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This parameter will contain the additional information in the following JSON format:\
+        `{“last4Digits”: “1234”, “tavv”: “ABCDEFGH”,”trid”:”1234567890”, “tokenRefNo”:”abcde123456”}`
+      </td>
+
+      <td>
+        `{“last4Digits”: “1234”, “tavv”: “ABCDEFGH”,”trid”:”1234567890”, “tokenRefNo”:”abcde123456”}`
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+> 📘 Notes for **additional\_info** parameter:
+>
 > The JSON format contains the following fields:  
-> 
-> - **trid** (Token Requestor ID) is the identity given by the networks for creating the tokens. You should be able to get the same from your token provider.
-> - **tokenRefNo** (Token Reference Number) is generated along with the network token. . You should be able to get the same from your token provider.
-> - **TAVV** is a token authentication verification value given by schemes or interchange. Also, known as cryptogram.
-> 
+>
+> * **trid** (Token Requestor ID) is the identity given by the networks for creating the tokens. You should be able to get the same from your token provider.
+> * **tokenRefNo** (Token Reference Number) is generated along with the network token. . You should be able to get the same from your token provider.
+> * **TAVV** is a token authentication verification value given by schemes or interchange. Also, known as cryptogram.
+>
 > Additional notes:
-> 
-> - The last 4 digits of cards is mandatory for all transactions. 
-> - Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
-> - Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
+>
+> * The last 4 digits of cards is mandatory for all transactions. 
+> * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
+> * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
 
 #### si\_details Parameter – JSON Details
 
 The description for the **si\_details** parameter (JSON format):
 
 > 📘 **Note**:
-> 
-> If the request was to modify a subscription,  **si_consent_action** parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
+>
+> If the request was to modify a subscription,  **si\_consent\_action** parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**JSON Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "billingCycle  \n**mandatory**",
-    "0-1": "Billing Cycle defines whether the customer needs to be charged over Daily, Weekly basis, Monthly or Yearly basis or one time.  ",
-    "0-2": "ONCE",
-    "1-0": "billingInterval  \n**mandatory**",
-    "1-1": "Billing Interval is closely coupled with the **billingCycle** field and denotes at what frequency, the subscription plan needs to be executed. For monthly subscriptions, parameter values need to be sent in the request are:  \n_ billingCycle = MONTHLY  \n_ billingInterval = 1  \nSimilarly, by keeping the following values, customer will be charged once in every 3 days:  \n_ billingCycle = DAILY  \n_ billingInterval = 3",
-    "1-2": "_ billingCycle = MONTHLY  \n_ billingInterval = 1 ",
-    "2-0": "billingAmount  \n**mandatory**",
-    "2-1": "The billing amount is passed in XX. XX format.  \nIn use cases where **billingCycle = ADHOC**, amount passed is treated as maximum amount since billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.  For UPI, **billingAmount** should not be more than INR 15000 as it is the maximum limit allowed for UPI currently.",
-    "2-2": "INR 2000",
-    "3-0": "billingCurrency  \n**mandatory**",
-    "3-1": "This field must be passed as “INR” .",
-    "3-2": "INR",
-    "4-0": "paymentStartDate  \n**mandatory**",
-    "4-1": "The start date of the billing plan is specified in this field with the YYYY-MM-DD format.  \n**Note**: All the subsequent recurring transactions will be processed from this date onwards as per **billingCycle** and **billingInterval** fields combination. This date acts as reference point for recurring payments. **Note**: In case of UPI, send the current date here and any other value will be ignored.",
-    "4-2": "2022-02-14",
-    "5-0": "paymentEndDate  \n**mandatory**",
-    "5-1": "The end date of the billing plan is specified in this field with the YYYY-MM-DD format.  \n**Note**: Pass the correct end date to PayU. Depending upon start date and end date, number of payment iterations are internally calculated and same information is passed to acquirers or banks.",
-    "5-2": "2023-01-14",
-    "6-0": "siTokenRequestor  \n**mandatory for saved cards**",
-    "6-1": "This is optional and is only needed before 30th September, 2022 to activate new mandate setups in a controlled manner than activating it completely on all users. This involves creating token at the time of susbcription set. You can include any of the following values::  \n_ **1** : PayU will tokenise the card and share it in same subscription setup call with issuers for subscription setup.  \n_ **2**: PayU will do the authorization on plain card. Later, the same response will be shared to merchant. ",
-    "6-2": "1",
-    "7-0": "remarks  \n**optional**",
-    "7-1": "This field is used to provide remarks on PSP applications during the registration transaction of UPI.  For cards and Net Banking, this parameter has no significance.  Character limit = 50.   \n**Note**: This field is applicable only for UPI.",
-    "7-2": "Subscription for a year",
-    "8-0": "billingLimit  \n**optional**",
-    "8-1": "For UPI, this field is used to decide the period corresponding which the debit from the mandate recurring date can happen and this mandate registration date is confirmed during registration transaction of UPI.  \n **Note**: This field is applicable only for UPI.  \nThe possible values are:  \n_  **ON** = Use this parameter to deduct on a specific date  \n_  **BEFORE** = Use this parameter to deduct before and on a specific date  \n\\*  **AFTER** = Use this parameter to After and on the specific date  \n  \n**Note**: If no value is passed, ‘AFTER’ is considered by default.",
-    "8-2": "ON = 2022-02-20",
-    "9-0": "billingRule  \n**optional**",
-    "9-1": "For UPI, this field is used to decide the limitation on the amount of recurring debit against the mandate amount which is set during registration transaction of UPI.  \n**Note**: This field is applicable only for UPI.  \nThe possible values are:  \n_  **MAX** = This is the maximum amount that a merchant can debit, that is, merchant can debit lesser or equal to this amount for a recurring transaction.  \n_  **EXACT**= This the exact amount that a merchant can debit in recurring debits.  \n  \nNote: If no value is passed, ‘MAX’ is considered by default.",
-    "9-2": "MAX = 5000",
-    "10-0": "billingDate  \n**optional**",
-    "10-1": "**Applicable for UPI only**: This field is used to decide the date/day, basis which the recurring debit should happen. This can be ignored and the debit will happen as per the start date in every cycle.",
-    "10-2": "FORTNIGHTLY = 7",
-    "11-0": "authpayuid  \n**mandatory for modifying subscription with cards**",
-    "11-1": "This field is used only to modify an existing subscription/consent. Modification means modifying billing details like startDate, endDate, billing cycle, billing interval, billing amount.",
-    "11-2": " ",
-    "12-0": "action  \n**mandatory for cards**",
-    "12-1": "This field is used to modify or cancel an existing subscription. Include **modify** to modify a subscription.",
-    "12-2": "modify"
-  },
-  "cols": 3,
-  "rows": 13,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **JSON Field**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        billingCycle
+        **mandatory**
+      </td>
+
+      <td>
+        Billing Cycle defines whether the customer needs to be charged over Daily, Weekly basis, Monthly or Yearly basis or one time.  
+      </td>
+
+      <td>
+        ONCE
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        billingInterval\
+        **mandatory**
+      </td>
+
+      <td>
+        Billing Interval is closely coupled with the **billingCycle** field and denotes at what frequency, the subscription plan needs to be executed. For monthly subscriptions, parameter values need to be sent in the request are:  
+
+        * billingCycle = MONTHLY  
+        * billingInterval = 1\
+          Similarly, by keeping the following values, customer will be charged once in every 3 days:  
+        * billingCycle = DAILY  
+        * billingInterval = 3
+      </td>
+
+      <td>
+        * billingCycle = MONTHLY  
+        * billingInterval = 1 
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        billingAmount\
+        **mandatory**
+      </td>
+
+      <td>
+        The billing amount is passed in XX. XX format.\
+        In use cases where **billingCycle = ADHOC**, amount passed is treated as maximum amount since billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.  For UPI, **billingAmount** should not be more than INR 15000 as it is the maximum limit allowed for UPI currently.
+      </td>
+
+      <td>
+        INR 2000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        billingCurrency\
+        **mandatory**
+      </td>
+
+      <td>
+        This field must be passed as “INR” .
+      </td>
+
+      <td>
+        INR
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentStartDate\
+        **mandatory**
+      </td>
+
+      <td>
+        The start date of the billing plan is specified in this field with the YYYY-MM-DD format.  
+
+        * \*Not&#x65;**: All the subsequent recurring transactions will be processed from this date onwards as per**billingCycle**and**billingInterval**fields combination. This date acts as reference point for recurring payments.**&#x4E;ote\*\*: In case of UPI, send the current date here and any other value will be ignored.
+      </td>
+
+      <td>
+        2022-02-14
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentEndDate\
+        **mandatory**
+      </td>
+
+      <td>
+        The end date of the billing plan is specified in this field with the YYYY-MM-DD format.  
+
+        * \*Note\*\*: Pass the correct end date to PayU. Depending upon start date and end date, number of payment iterations are internally calculated and same information is passed to acquirers or banks.
+      </td>
+
+      <td>
+        2023-01-14
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        siTokenRequestor\
+        **mandatory for saved cards**
+      </td>
+
+      <td>
+        This is optional and is only needed before 30th September, 2022 to activate new mandate setups in a controlled manner than activating it completely on all users. This involves creating token at the time of susbcription set. You can include any of the following values::  
+
+        * **1** : PayU will tokenise the card and share it in same subscription setup call with issuers for subscription setup.  
+        * **2**: PayU will do the authorization on plain card. Later, the same response will be shared to merchant. 
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        remarks\
+        **optional**
+      </td>
+
+      <td>
+        This field is used to provide remarks on PSP applications during the registration transaction of UPI.  For cards and Net Banking, this parameter has no significance.  Character limit = 50.   
+
+        * \*Note\*\*: This field is applicable only for UPI.
+      </td>
+
+      <td>
+        Subscription for a year
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        billingLimit\
+        **optional**
+      </td>
+
+      <td>
+        For UPI, this field is used to decide the period corresponding which the debit from the mandate recurring date can happen and this mandate registration date is confirmed during registration transaction of UPI.  
+
+        * \*Note\*\*: This field is applicable only for UPI.\
+          The possible values are:  
+        * **ON** = Use this parameter to deduct on a specific date  
+        * **BEFORE** = Use this parameter to deduct before and on a specific date  
+        * **AFTER** = Use this parameter to After and on the specific date  
+        * \*Note\*\*: If no value is passed, ‘AFTER’ is considered by default.
+      </td>
+
+      <td>
+        ON = 2022-02-20
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        billingRule\
+        **optional**
+      </td>
+
+      <td>
+        For UPI, this field is used to decide the limitation on the amount of recurring debit against the mandate amount which is set during registration transaction of UPI.  
+
+        * \*Note\*\*: This field is applicable only for UPI.\
+          The possible values are:  
+        * **MAX** = This is the maximum amount that a merchant can debit, that is, merchant can debit lesser or equal to this amount for a recurring transaction.  
+        * **EXACT**= This the exact amount that a merchant can debit in recurring debits.  
+
+        Note: If no value is passed, ‘MAX’ is considered by default.
+      </td>
+
+      <td>
+        MAX = 5000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        billingDate\
+        **optional**
+      </td>
+
+      <td>
+        * \*Applicable for UPI only\*\*: This field is used to decide the date/day, basis which the recurring debit should happen. This can be ignored and the debit will happen as per the start date in every cycle.
+      </td>
+
+      <td>
+        FORTNIGHTLY = 7
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        authpayuid\
+        **mandatory for modifying subscription with cards**
+      </td>
+
+      <td>
+        This field is used only to modify an existing subscription/consent. Modification means modifying billing details like startDate, endDate, billing cycle, billing interval, billing amount.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        action\
+        **mandatory for cards**
+      </td>
+
+      <td>
+        This field is used to modify or cancel an existing subscription. Include **modify** to modify a subscription.
+      </td>
+
+      <td>
+        modify
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### **si\_details JSON example**
 
