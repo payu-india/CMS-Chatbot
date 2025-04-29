@@ -70,7 +70,7 @@ curl --location --request PATCH 'https://bankportal.payu.in//api/v1/chargebacks/
 | Parameter  | Description                                                                                                                                                                |
 | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id         | This parameter contains the  merchant ID.                                                                                                                                  |
-| type       | The parameter contains the **chargeback-details ** as type.                                                                                                                |
+| type       | The parameter contains the **chargeback-details** as type.                                                                                                                 |
 | attributes | This parameter contains the chargeback details in a JSON format. For more information, refer to  [attributes JSON field descriptions](attributes-json-field-descriptions). |
 
 ### attributes JSON field descriptions
