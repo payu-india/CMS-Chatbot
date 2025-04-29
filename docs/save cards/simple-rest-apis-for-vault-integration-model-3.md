@@ -24,11 +24,11 @@ next:
 To integrate vault with the Simple REST APIs, this section describes the following:
 
 > 📘 Note:
-> 
+>
 > To use tokenisation, you need to get the Token Requestor onboarding to be done. Contact your PayU Key Account Manager (KAM) to get the onboarding done.
 
-- [First-time transaction](#first-time-transaction)
-- [Repeat transaction with token](#repeat-transaction-with-token)
+* [First-time transaction](#first-time-transaction)
+* [Repeat transaction with token](#repeat-transaction-with-token)
 
 ## First-time transaction
 
@@ -43,10 +43,10 @@ To integrate vault with the Simple REST APIs, this section describes the followi
 ## Repeat transaction with token
 
 1. If the transaction is to be processed through PayU:
-   - Send the card token, network token, or issuer token and other details in the **\_payment** API. For more information, refer to [Collect Payments - Save Card](ref:collect-payments-save-card)
+   * Send the card token, network token, or issuer token and other details in the **\_payment** API. For more information, refer to [Collect Payments - Save Card](ref:collect-payments-save-card)
 2. If the transaction is to be processed outside PayU:
-   - Call the **get\_payment\_details** API with the PayU/Network token and get the TAVV/cryptogram. For more information, refer to [Get User Cards API](ref:get_user_cards_api)
-   - After the token and cryptogram is available, you will be able to do transaction with the preferred PA/PG.
+   * Call the **get\_payment\_details** API with the PayU/Network token and get the TAVV/cryptogram. For more information, refer to [Get User Cards API](ref:get_user_cards_api)
+   * After the token and cryptogram is available, you will be able to do transaction with the preferred PA/PG.
 
 ## Manage the tokens
 
