@@ -13,7 +13,7 @@ next:
 This API is used to generate a refresh token to obtain a renewed access token using client ID.
 
 > 📘 Note:
-> 
+>
 > You can use this API when the token generated using the** Get Token **API has expired. The expiry period of the token generated using this API is configurable by you (partner). The expiry period (in seconds) of the token is displayed in the **expires_in** parameter of the response.
 
 **Environment**
@@ -42,7 +42,7 @@ This API is used to generate a refresh token to obtain a renewed access token us
     "2-2": "refresh\\_token",
     "3-0": "refresh\\_token  \n**mandatory**",
     "3-1": "`String` Indicates the refresh token. This is the token that was generated using the  [Get Access Token - WhatsApp](ref:getting-access-token).",
-    "3-2": " "
+    "3-2": " "
   },
   "cols": 3,
   "rows": 4,
@@ -53,7 +53,6 @@ This API is used to generate a refresh token to obtain a renewed access token us
   ]
 }
 [/block]
-
 
 ## Sample request
 
