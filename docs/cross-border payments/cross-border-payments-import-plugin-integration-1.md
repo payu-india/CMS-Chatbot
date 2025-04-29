@@ -20,105 +20,69 @@ You can install the Cross-Border Payments Java SDK plugin and integrate it as de
 
 Download the Cross-Border Payments Import plugin and install it from the following GitHub location.
 
-<https://github.com/payu-india/sdk-java/releases/tag/V1.0.0.0>
+[https://github.com/payu-india/sdk-java/releases/tag/V1.0.0.0](https://github.com/payu-india/sdk-java/releases/tag/V1.0.0.0)
 
 ## Procedure
 
 To integrate the Cross-Border Payments Import plugin, refer the following recipe or step-by-step procedure:
 
-[block:tutorial-tile]
-{
-  "backgroundColor": "#018FF4",
-  "emoji": "🦉",
-  "id": "64d4d316dd0711050277e0d2",
-  "link": "https://payu-hosted-checkout.readme.io/v1.3.0/recipes/cross-border-payments-import-plugin",
-  "slug": "cross-border-payments-import-plugin",
-  "title": "Cross-Border Payments Import Plugin"
-}
-[/block]
-
+<TutorialTile backgroundColor="#018FF4" emoji="🦉" id="64d4d316dd0711050277e0d2" link="https://payu-hosted-checkout.readme.io/v1.3.0/recipes/cross-border-payments-import-plugin" slug="cross-border-payments-import-plugin" title="Cross-Border Payments Import Plugin" />
 
 1. Import the PayU package:
 
 ```java
-
 import com.payu.*;
-
 ```
 
-2. Create an object for PayUClient :
+2. Create an object for PayUClient:
 
 ```java
-
-PayuClient payuClient = PayuClient.init('\<payu\_key>', '\<payu\_salt>'); 
-
+PayuClient payuClient = PayuClient.init('<payu_key>', '<payu_salt>');
 ```
 
 3. Pass the parameters for generating a hash to authenticate a transaction:
 
 ```java
+HasherParams hasherParams = new HashParams.Builder()
+    .setTxnId("<txnId>")
+    .setAmount("<amount>")
+    .setProductInfo("<productInfo>")
+    .setFirstName("<firstName>")
+    .setEmail("<email>")
+    .build();
 
-HasherParams hasherParams = new HashParams.Builder() 
-
-.setTxnId("\<txnId>")  
-
-.setAmount("\<amount>") 
-
-.setProductInfo("\<productInfo>") 
-
-.setFirstName("\<firstName>") 
-
-.setEmail("\<email>") 
-
-.build(); 
-
-String hashStr = payuClient.hasher.generateHash(hashParams); 
+String hashStr = payuClient.hasher.generateHash(hasherParams);
 ```
 
 4. Import the package for an HTTP request:
 
 ```java
-
-import okhttp3.\*; 
-
+import okhttp3.*;
 ```
 
 5. Create hash for the **UDF Update** API:
 
 ```java
+PayuAPIHash udfUpdateHash = new PayuAPIHash();
+udfUpdateHash.key = payuClient.hasher.yourKey;
+udfUpdateHash.var1 = "e5b8663df04581c085f9";
+udfUpdateHash.salt = payuClient.hasher.yourSalt();
 
-PayuAPIHash udfUpdateHash = new  PayuAPIHash(); 
-
-udfUpdateHash.key = payuClient.hasher.yourKey);  
-
-udfUpdateHash.var1 = "e5b8663df04581c085f9"; 
-
-udfUpdateHash.salt = payuClient.hasher.yourSalt(); 
-
-//e.g. 
-
-String hashForUdfUpdateApi =  udfUpdateHash.generateHashForUdfUpdteApi(); 
+//e.g.
+String hashForUdfUpdateApi = udfUpdateHash.generateHashForUdfUpdteApi();
 ```
 
 6. Create **UDF Update** API with parameters similar to the following. For more information on **UDF Update** API, refer to [UDF Update API](ref:udf_update_api).
 
 ```java
-
-PayuUdfs udfUpdate = new PayuUdfs(); 
-
-udfUpdate.key = "yourKey"; 
-
-udfUpdate.var1 = "e5b8663df04581c085f9"; 
-
-udfUpdate.var2 = "8000123"; 
-
-udfUpdate.var3 = "4334343"; 
-
-udfUpdate.var4 = "434343"; 
-
-udfUpdate.var5 = "Abcd123"; 
-
-udfUpdate.var6 = "INV0000000dd0599100"; 
+PayuUdfs udfUpdate = new PayuUdfs();
+udfUpdate.key = "yourKey";
+udfUpdate.var1 = "e5b8663df04581c085f9";
+udfUpdate.var2 = "8000123";
+udfUpdate.var3 = "4334343";
+udfUpdate.var4 = "434343";
+udfUpdate.var5 = "Abcd123";
+udfUpdate.var6 = "INV0000000dd0599100";
 ```
 
 7. Configure the environment as “Test”:
@@ -126,94 +90,68 @@ udfUpdate.var6 = "INV0000000dd0599100"; 
 > **Note**: It is recommended to configure the environment as “Test” for testing the flow before moving to live.
 
 ```java
-
-udfUpdate.environment = "Test"; 
-
-udfUpdate.hash = hashForUdfUpdateApi; 
+udfUpdate.environment = "Test";
+udfUpdate.hash = hashForUdfUpdateApi;
 ```
 
 8. Perform reverse hash calculation with the response from PayU:
 
 ```java
+String reverseHash = "<payuHash>"; // hash received after payment from payu
+String txnStatus = "<payuTxnStatus>"; // txn status received after payment from payu
 
-String reverseHash = "\<payuHash>" // hash received after payment from payu 
+boolean isVerified = payu.hash.validateHash(reverseHash, txnStatus, hashParams);
 
-String txnStatus = "\<payuTxnStatus>"// txn status received after payment from payu 
+Map<String, String> optionalParams = new HashMap<String, String>();
 
-boolean isVerified = payu.hash.validateHash(reverse\_hash, txnStatus, hashParams); 
+HashParams hashParams = new HashParams.Builder()
+    .setTxnId("<txnId>")
+    .setAmount("<amount>")
+    .setProductInfo("<productInfo>")
+    .setProductInfo("<productInfo>")
+    .setFirstName("<firstName>")
+    .setEmail("<email>")
+    .setUdf1("<userDefinedParam1>")
+    .setUdf2("<userDefinedParam2>")
+    .setAdditionalCharges("<additionalCharges>")
+    .build();
 
-Map\<String, String> optionalParams = new HashMap\<String, String>(); 
-
-HashParams hashParams = new HashParams.Builder() 
-
-.setTxnId("\<txnId>") 
-
-.setAmount("\<amount>") 
-
-.setProductInfo("\<productInfo>") 
-
-.setProductInfo("\<productInfo>") 
-
-.setFirstName("\<firstName>") 
-
-.setEmail("\<email>") 
-
-.setUdf1("\<userDefinedParam1>") 
-
-.setUdf2("\<userDefinedParam2>") 
-
-.setAdditionalCharges("\<additionalCharges>") 
-
-.build(); 
-
-boolean isVerified = payuClient.hasher.validateHash(reverse\_hash, txnStatus, hashParams);\`\`\` 
+boolean isVerified = payuClient.hasher.validateHash(reverseHash, txnStatus, hashParams);
 ```
 
 9. Calculate hash for uploading the invoice:
 
 ```plaintext
-
-PayuAPIHash hashInvoice = new  PayuAPIHash(); 
-
+PayuAPIHash hashInvoice = new PayuAPIHash();
 hashInvoice.key = payuClient.hasher.yourKey();
-
-hashInvoice.var1 = "403993715525825059"; 
-
+hashInvoice.var1 = "403993715525825059";
 hashInvoice.salt = payuClient.hasher.yourSalt();
 
-hashForUdfUpdateApi =  hashInvoice.generateHashForInvoiceUploadApi();
+hashForUdfUpdateApi = hashInvoice.generateHashForInvoiceUploadApi();
 ```
 
 10. Post the **Invoice Upload**API through SDK. For more information on **Invoice Upload** API, refer to [Invoice Upload API](ref:invoice_upload_api).
 
 ```java
-
-PayuUpdateInvoice invoiceUpload = new PayuUpdateInvoice(); 
-
-invoiceUpload.key = "DGy1hY"; 
-
-invoiceUpload.environment = "Test"; 
-
-invoiceUpload.var1 = "403993715525825059"; 
-
-invoiceUpload.var2 = "INV0000000001"; 
-
-invoiceUpload.var3 = "Invoice"; 
+PayuUpdateInvoice invoiceUpload = new PayuUpdateInvoice();
+invoiceUpload.key = "DGy1hY";
+invoiceUpload.environment = "Test";
+invoiceUpload.var1 = "403993715525825059";
+invoiceUpload.var2 = "INV0000000001";
+invoiceUpload.var3 = "Invoice";
 ```
 
 11. Attach your invoice with the file path and file name:
 
 ```java
-
-invoiceUpload.file = new File("/Users/ashish.kumar/Desktop/productNeeote.pdf"); 
-
-invoiceUpload.fileName = new File ("productNote.pdf"); 
+invoiceUpload.file = new File("/Users/ashish.kumar/Desktop/productNeeote.pdf");
+invoiceUpload.fileName = new File("productNote.pdf");
 
 invoiceObj.hash = hashForUdfUpdateApi;
 
 String invoiceUpdateStatus = invoiceObj.updateInvoice();
 ```
 
-> 📘 Note:  
-> 
+> 📘 Note:
+>
 > The file size of the invoice to be uploaded must be less than 2MB.
