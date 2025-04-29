@@ -17,7 +17,7 @@ PayU supports Pay with Rewards with PayU Hosted Checkout and Merchant Hosted Che
 After your customer adds the goods to the cart or services and checkouts, the workflow involves the following:
 
 > 📘 Note:
-> 
+>
 > The request parameters for PayU Hosted Checkout remains the same and the response will contain **mode=CASH** and **bankcode=TWID**. For more information, refer to [Collect Payments with PayU Hosted Checkout](https://devguide.payu.in/merchant-integration/payu-hosted-checkout/payu-hosted-checkout-integration/).
 
 1. Customer is redirected to the PayU payment page after checkout.
@@ -73,12 +73,12 @@ You will be collecting the checkout information from the customer using the fiel
 8. Success page is displayed after successful payment.
 
 > 📘 Note:
-> 
+>
 > For a repeat customer, the customer balance will be fetched automatically and the OTP registration step will be bypassed as the merchant would pass the already registered based on customer mobile number, which PayU will use as the registered customer hash for subsequent transactions. Alternatively, merchant can also pass the customer hash themselves.
 
 ## Refunds
 
 If the payment has failed for the following payment combinations, the refund is initiated by PayU:
 
-- If the payment has failed for the whole amount paid with Pay with Rewards, the refund will be initiated by PayU.
-- If the payment has failed for the part of amount paid with Pay with Rewards and rest with any other payment instruments such as Net Banking or Credit Cards, the refund will be initiated by PayU. The time taken to refund depends on the payment instrument used.
+* If the payment has failed for the whole amount paid with Pay with Rewards, the refund will be initiated by PayU.
+* If the payment has failed for the part of amount paid with Pay with Rewards and rest with any other payment instruments such as Net Banking or Credit Cards, the refund will be initiated by PayU. The time taken to refund depends on the payment instrument used.
