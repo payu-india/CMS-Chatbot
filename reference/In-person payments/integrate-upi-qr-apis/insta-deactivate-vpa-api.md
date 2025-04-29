@@ -14,70 +14,160 @@ The **Insta Deactivate VPA** API is used to deactivate the VPA embedded in the i
 
 ## Environment
 
-| Environment | URL                                             |
-| :---------- | :---------------------------------------------- |
-| Production  | <https://info.payu.in/merchant/postservice.php> |
+| Environment | URL                                                                                            |
+| :---------- | :--------------------------------------------------------------------------------------------- |
+| Production  | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
 
 ## Request parameter
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Value",
-    "0-0": "key",
-    "0-1": "This parameter must contain the merchant key provided by PayU.  \nReference: For more information on how to generate the Key and Salt, refer to any of the following:  \n**Production**: Generate Production Merchant Key and Sat.  \n**Test**: Generate Test Merchant Key and Salt.",
-    "0-2": "Your Test Key",
-    "1-0": "command",
-    "1-1": "This parameter must have the API command name.",
-    "1-2": "expire_insta_account",
-    "2-0": "hash",
-    "2-1": "This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:  \n  \nsha512(key|command|var1|salt)",
-    "2-2": "c24ee06c7cf40314ede424 b1fcc2b97a12f97a7d3dd2 06876eef16660eb09fd374 fd82861f66d8152e",
-    "3-0": "var1",
-    "3-1": "This parameter must contain the fields in a JSON format. For more information, refer to <<Description of var1 Parameter Fields>>.",
-    "3-2": "Refer to <<Sample var1 >>section."
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Value
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+      </td>
+
+      <td>
+        This parameter must contain the merchant key provided by PayU.\
+        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
+
+        * \*Production\*\*: Generate Production Merchant Key and Sat.  
+        * \*Test\*\*: Generate Test Merchant Key and Salt.
+      </td>
+
+      <td>
+        Your Test Key
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        command
+      </td>
+
+      <td>
+        This parameter must have the API command name.
+      </td>
+
+      <td>
+        expire\_insta\_account
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash
+      </td>
+
+      <td>
+        This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:  
+
+        sha512(key|command|var1|salt)
+      </td>
+
+      <td>
+        c24ee06c7cf40314ede424 b1fcc2b97a12f97a7d3dd2 06876eef16660eb09fd374 fd82861f66d8152e
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var1
+      </td>
+
+      <td>
+        This parameter must contain the fields in a JSON format. For more information, refer to {user["Description of var1 Parameter Fields"]}.
+      </td>
+
+      <td>
+        Refer to {user["Sample var1 "]}section.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Fields in var1 parameter description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Key",
-    "h-1": "Description",
-    "h-2": "Sample",
-    "0-0": "merchantVpa  \n`mandatory`",
-    "0-1": "Merchant's VPA is the VPA which needs to be deactivated/blocked permanently",
-    "0-2": "smsplustestqr789@indus",
-    "1-0": "instaProduct  \n`mandatory`",
-    "1-1": "QR generation flag. Fixed value - qr",
-    "1-2": "qr",
-    "2-0": "remarks  \n`optional`",
-    "2-1": "This can be used for audit trail later",
-    "2-2": "Account closed"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Key
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Sample
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        merchantVpa
+        `mandatory`
+      </td>
+
+      <td>
+        Merchant's VPA is the VPA which needs to be deactivated/blocked permanently
+      </td>
+
+      <td>
+        smsplustestqr789\@indus
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        instaProduct\
+        `mandatory`
+      </td>
+
+      <td>
+        QR generation flag. Fixed value - qr
+      </td>
+
+      <td>
+        qr
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        remarks\
+        `optional`
+      </td>
+
+      <td>
+        This can be used for audit trail later
+      </td>
+
+      <td>
+        Account closed
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Sample var1
 
@@ -151,25 +241,45 @@ Response response = client.newCall(request).execute();
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of web service call. The status can be any of the following:  \n  \n0 - If web service call failed.  \n1 - If web service call succeeded",
-    "1-0": "msg",
-    "1-1": "The following message is displayed to indicate that the VPA is permanently blocked now, and the QR cannot be scanned to make any UPI transactions.  \n`merchantVpa deactivated`"
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        This parameter returns the status of web service call. The status can be any of the following:  
+
+        0 - If web service call failed.\
+        1 - If web service call succeeded
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        msg
+      </td>
+
+      <td>
+        The following message is displayed to indicate that the VPA is permanently blocked now, and the QR cannot be scanned to make any UPI transactions.\
+        `merchantVpa deactivated`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample response
 
