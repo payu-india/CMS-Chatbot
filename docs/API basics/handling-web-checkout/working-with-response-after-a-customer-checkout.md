@@ -485,7 +485,7 @@ public class PayUResponseHandler extends HttpServlet {
 
 In the above code snippet:
 
-- **Javascript**:
+* **Javascript**:
 
 Here, the code snippet is for listening for all clicks. The **Fetch** API (provided by the browser) makes requests and fetches resources. Here, the `fetch()` and two instances of `.then()`.
 
@@ -495,6 +495,6 @@ fetch("<https://https://test.payu.in/_payment>")
 .then((data) => console.log(data));
 ```
 
-- **Java**: The Java HTTP client is used to make an asynchronous HTTP request to the specified URL. Then, log the response data to the console.
-- **Python**: A function `button_click` checks if the button was clicked and fetches the specified URL using the `requests` library. Then, decoding the JSON response using the `.json()` method and printing it using `print()`. The document.addEventListener line is specific to the browser environment and won’t work in Python. You’ll need to adjust that part of the code to fit your specific use case.
-- **PHP**: The code checks if the button was clicked by checking if the HTTP request method is POST and if the ‘button’ parameter was sent in the request. Later, posting a cURL request to the specified URL and decoding the JSON response using `json_decode()`. Finally, the output of the decoded data using `var_dump()`.
+* **Java**: The Java HTTP client is used to make an asynchronous HTTP request to the specified URL. Then, log the response data to the console.
+* **Python**: A function `button_click` checks if the button was clicked and fetches the specified URL using the `requests` library. Then, decoding the JSON response using the `.json()` method and printing it using `print()`. The document.addEventListener line is specific to the browser environment and won’t work in Python. You’ll need to adjust that part of the code to fit your specific use case.
+* **PHP**: The code checks if the button was clicked by checking if the HTTP request method is POST and if the ‘button’ parameter was sent in the request. Later, posting a cURL request to the specified URL and decoding the JSON response using `json_decode()`. Finally, the output of the decoded data using `var_dump()`.
