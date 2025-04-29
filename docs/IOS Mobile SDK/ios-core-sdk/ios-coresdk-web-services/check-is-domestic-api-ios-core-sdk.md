@@ -10,24 +10,24 @@ metadata:
 next:
   description: ''
 ---
-The **Check is Domestic **API is used to get the following using the BIN number, that is, the first six digits of a credit card or debit card:
+The **Check is Domestic** API is used to get the following using the BIN number, that is, the first six digits of a credit card or debit card:
 
-- BIN information
-- Detect whether a particular BIN number is international or domestic.
-- Determine the card’s issuing bank, the card type brand, that is, Visa, Master, etc.,
-- Determine the card category, that is, credit, debit, etc.
+* BIN information
+* Detect whether a particular BIN number is international or domestic.
+* Determine the card’s issuing bank, the card type brand, that is, Visa, Master, etc.,
+* Determine the card category, that is, credit, debit, etc.
 
 The command name and var1 will be:
 
-- Command Name - check_isDomestic
-- Var1 - Card Number(Like. "5123456789012346")
+* Command Name - check\_isDomestic
+* Var1 - Card Number(Like. "5123456789012346")
 
 > 📘 Hash logic
-> 
+>
 > The hash will be in the format of: 
-> 
+>
 > `Sha512(Key|Command|Var1|Salt)`
-> 
+>
 > For more information, refer to [Generate Static Hash](doc:generate-static-hash-ios).
 
 ## Integration
