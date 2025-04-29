@@ -20,10 +20,10 @@ The PayU SDK for java enables you to easily work with the APIs of PayU by integr
 
 The following features are supported in the Java SDK:
 
-- Create a Payment form.
-- Verify the transaction or check the transaction status.
-- Initiate/cancel refunds and check the status of a refund.
-- Retrieve settlement details that the bank has to settle you.
-- Get information on eligible payment options and PG/BANK downtime details.
-- Check the customer’s eligibility for EMI and get the amount according to the EMI interest.
-- Create/Expire invoice link through the function.
+* Create a Payment form.
+* Verify the transaction or check the transaction status.
+* Initiate/cancel refunds and check the status of a refund.
+* Retrieve settlement details that the bank has to settle you.
+* Get information on eligible payment options and PG/BANK downtime details.
+* Check the customer’s eligibility for EMI and get the amount according to the EMI interest.
+* Create/Expire invoice link through the function.
