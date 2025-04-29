@@ -18,8 +18,8 @@ HTTP Method: **PUT**
 
 |                            |                                           |
 | -------------------------- | ----------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payment-links> |
-| **Production Environment** | <https://oneapi.payu.in/payment-links>    |
+| **Test Environment**       | &lt;https://uatoneapi.payu.in/payment-links&gt; |
+| **Production Environment** | &lt;https://oneapi.payu.in/payment-links&gt;    |
 
 > 📘 Note:
 > 
@@ -46,7 +46,6 @@ HTTP Method: **PUT**
   ]
 }
 [/block]
-
 
 ## Request headers
 
@@ -109,7 +108,6 @@ HTTP Method: **PUT**
   ]
 }
 [/block]
-
 
 ## Sample request
 
