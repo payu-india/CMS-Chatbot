@@ -32,10 +32,11 @@ This is authorised through a client token generated using the client ID and secr
 
 |                |                                |
 | :------------- | :----------------------------- |
-| **Test**       | <https://uat-accounts.payu.in> |
-| **Production** | <https://accounts.payu.in>     |
+| **Test**       | &lt;https://uat-accounts.payu.in&gt; |
+| **Production** | &lt;https://accounts.payu.in&gt;     |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location -g --request POST '{{partner_base_url}}/api/v1/otps/send_otp' \
@@ -49,7 +50,8 @@ curl --location -g --request POST '{{partner_base_url}}/api/v1/otps/send_otp' \
 
 </details>
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
 {
@@ -74,7 +76,8 @@ curl --location -g --request POST '{{partner_base_url}}/api/v1/otps/send_otp' \
 
 ## Request Parameters
 
-<details><summary>Additional info for request parameters</summary>
+<details>
+  <summary>Additional info for request parameters</summary>
 
 [block:parameters]
 {
@@ -92,6 +95,5 @@ curl --location -g --request POST '{{partner_base_url}}/api/v1/otps/send_otp' \
   ]
 }
 [/block]
-
 
 </details>
