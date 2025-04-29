@@ -17,5 +17,5 @@ next:
 ---
 You can collect payments from your mobile apps by opening the the PayU checkout form in a WebView. This allows you to reuse your PayU Hosted Checkout integration and get started quickly.
 
-- [Configure WebView and Chrome Custom Tab for Android](https://docs.payu.in/docs/webview-integration-in-android)
-- [Configure WebView and SafariViewController for iOS](https://docs.payu.in/docs/webview-integration-in-ios)
+* [Configure WebView and Chrome Custom Tab for Android](https://docs.payu.in/docs/webview-integration-in-android)
+* [Configure WebView and SafariViewController for iOS](https://docs.payu.in/docs/webview-integration-in-ios)
