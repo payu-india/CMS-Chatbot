@@ -18,7 +18,7 @@ HTTP Method: **POST**
 
 |            |                                                         |
 | :--------- | :------------------------------------------------------ |
-| Production | <https://apitest.payu.in/loyalty-points/points/v1/user> |
+| Production | &lt;https://apitest.payu.in/loyalty-points/points/v1/user&gt; |
 |            |                                                         |
 
 ## Request Parameters
@@ -52,7 +52,6 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ## Sample request body
 
 ```plaintext
@@ -84,7 +83,6 @@ HTTP Method: **POST**
         }
     }
 }
-
 ```
 
 ### Failure scenario
