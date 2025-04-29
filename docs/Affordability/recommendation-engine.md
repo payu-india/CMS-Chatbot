@@ -36,7 +36,7 @@ The RE is designed to help you to improve the overall conversion by:
 3. minimizing the average time taken by users to complete the payment.
 
 > ❗️ Callout!
-> 
+>
 > If you are using PayU Hosted Checkout Integration to collect payment on your website, you can get in touch with your KAM (Key Account Manager) to activate the RE.
 
 ***
@@ -59,21 +59,7 @@ The RE brings the following key benefits to the checkout experience of your cust
 2. Reduce the number of click required by the customer to complete a payment by displaying the payment option that is most likely to be used.
 3. Improves discovery of newly added payment options.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6e47da6-Screenshot_2023-08-28_at_12.56.07_AM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/6e47da6-Screenshot_2023-08-28_at_12.56.07_AM.png" />
 
 ***
 
@@ -81,9 +67,9 @@ The RE brings the following key benefits to the checkout experience of your cust
 
 At PayU, we understand that every customer is unique. That’s why our RE is designed to work in three scenarios:
 
-- Repeat user (customer) with stored and consented data
-- Repeat user without any stored/consented data
-- First-time user
+* Repeat user (customer) with stored and consented data
+* Repeat user without any stored/consented data
+* First-time user
 
 The RE enhances recommendations in all three scenarios to ensure that your customers get the best payment experience possible.
 
@@ -101,9 +87,9 @@ We understand that your business goals and objectives are unique. That’s why w
 
 Our RE offers three goals that you can choose from:
 
-- **Payment Success Rates** — Recommendations optimized for payment success rates. Success rate will be considered as default goal is none of the goals are set by the merchants.
-- **Payment Processing Cost** — Recommendations optimized for payment processing Cost. This goal help you to collect payment the most cost-effective payment mode.
-- **Affordability** — Recommendations optimized for Affordability.
+* **Payment Success Rates** — Recommendations optimized for payment success rates. Success rate will be considered as default goal is none of the goals are set by the merchants.
+* **Payment Processing Cost** — Recommendations optimized for payment processing Cost. This goal help you to collect payment the most cost-effective payment mode.
+* **Affordability** — Recommendations optimized for Affordability.
 
 At PayU, we believe in empowering our merchants to achieve their business goals. Choose the goal that best aligns with your business context, and our RE will optimize recommendations to help you achieve your objectives.
 
