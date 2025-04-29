@@ -42,8 +42,8 @@ HTTP Method: **POST**
     "1-1": "`String` If the transaction request returns parameter such as **tncUrl** and **tncText** that indicates that the merchant need to collect the consent from the customer. In such cases, collect the customer's consent and pass the value as **1**.",
     "1-2": "1",
     "2-0": "data  \n**optional**",
-    "2-1": "`String` You must pass {\"payuPureS2S\":\"1\"} as the value of this parameter.",
-    "2-2": "{\"payuPureS2S\":\"1\"}",
+    "2-1": "`String` You must pass `{ \"payuPureS2S\": \"1\" }` as the value of this parameter.",
+    "2-2": "{ \"payuPureS2S\": \"1\" }",
     "3-0": "otp  \n**mandatory**",
     "3-1": "`String` The OTP collected from the customer that they receive from the bank.",
     "3-2": "345635"
@@ -57,7 +57,6 @@ HTTP Method: **POST**
   ]
 }
 [/block]
-
 
 ## Sample request
 
@@ -96,7 +95,6 @@ Based on the type of request sent (with consent/without consent) you may receive
 
 ```plaintext
 { 
-
     "metaData": { 
         "message": "No Error", 
         "referenceId": "6a037a290af9253a1d300c8ad0b24c94", 
@@ -166,13 +164,11 @@ Based on the type of request sent (with consent/without consent) you may receive
         "furl": "https://pp94admin.payu.in/test_response" 
     } 
 } 
- 
 ```
 
 ### Consent required but not sent
 
 ```plaintext
-
 { 
     "metaData": { 
         "message": "Consent not given by the customer for Terms & Conditions", 
