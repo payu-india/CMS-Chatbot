@@ -18,8 +18,8 @@ HTTP Method: **GET**
 
 |                        |                                           |
 | :--------------------- | :---------------------------------------- |
-| Test Environment       | <https://uatoneapi.payu.in/payment-links> |
-| Production Environment | <https://oneapi.payu.in/payment-links>    |
+| Test Environment       | &lt;https://uatoneapi.payu.in/payment-links&gt; |
+| Production Environment | &lt;https://oneapi.payu.in/payment-links&gt;    |
 
 > 📘 Note:
 > 
@@ -46,7 +46,6 @@ HTTP Method: **GET**
 }
 [/block]
 
-
 ## Path parameters
 
 [block:parameters]
@@ -69,13 +68,12 @@ HTTP Method: **GET**
 }
 [/block]
 
-
 ## Sample request
 
 ```curl
 curl --location --request GET 'https://uatoneapi.payu.in/payment-links/INV0063002462' \
 --header 'merchantId: 8237550' \
---header 'Authorization: Bearer e53f7d25071e6c2e631a920f38b9dbceeb571d6aadaed7e100f55fc7dab110ff
+--header 'Authorization: Bearer e53f7d25071e6c2e631a920f38b9dbceeb571d6aadaed7e100f55fc7dab110ff'
 ```
 
 ## Sample response
