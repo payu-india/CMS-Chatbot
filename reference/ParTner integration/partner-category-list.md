@@ -38,37 +38,106 @@ next:
 
 ## **Business entity type**
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Type**",
-    "h-1": "**Description**",
-    "0-0": "Individual",
-    "0-1": "Anyone who wants to collect payments directly to his/her bank account",
-    "1-0": "LLP",
-    "1-1": "A partnership in which some or all partners have limited liabilities. It therefore can exhibit elements of partnerships and corporations. In an LLP, each partner is not responsible or liable for another partner's misconduct or negligence",
-    "2-0": "Partnership",
-    "2-1": "A partnership is an arrangement where parties, known as business partners, agree to cooperate to advance their mutual interests. The partners in a partnership may be individuals, businesses, interest-based organizations, schools, governments or combinations.  \nEach partner is entitled to share the net profits of the business. A contract need not provide for equal shares. It may depend upon how much the partner has invested.  \nPartners are jointly and severally responsible for all the debts and obligations of the business without any limit, including loss and damages arising from wrongful acts or omissions of their fellow partners and potential liability to third parties.",
-    "3-0": "Private Limited",
-    "3-1": "A private limited company is any type of business entity in \"private\" ownership. A private company is owned entirely by a relatively small group of individuals or other entities providing capital.",
-    "4-0": "Public Limited",
-    "4-1": "A Public Limited Company is a company that has limited liability and offers shares to the general public.  \nIt's stock can be acquired by anyone, either privately through (IPO) initial public offering or via trades on the stock market.",
-    "5-0": "Society",
-    "5-1": "Several individuals combine using a mutual accord to deliberate, govern and act cooperatively for some communal purpose.  \nSocieties are usually registered for the advancement of charitable activities like sports, music, culture, religion, art, education, etc.",
-    "6-0": "Sole Proprietorship",
-    "6-1": "A sole proprietorship, also known as the sole trader, individual entrepreneurship or proprietorship, is a type of enterprise that is owned and run by one person and in which there is no legal distinction between the owner and the business entity.",
-    "7-0": "Trust",
-    "7-1": "A trust is an organization where the owner (trustor) decides to transfer the right of his property to a second person called trustee so that the third person (beneficiary) can take the benefit out of it.  \nThere are two types of trust. A public trust (charitable trust) is created for the benefit of the general public whereas a private trust is created for the benefit of a particular group of individuals known as the beneficiary."
-  },
-  "cols": 2,
-  "rows": 8,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Type**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Individual
+      </td>
+
+      <td>
+        Anyone who wants to collect payments directly to his/her bank account
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        LLP
+      </td>
+
+      <td>
+        A partnership in which some or all partners have limited liabilities. It therefore can exhibit elements of partnerships and corporations. In an LLP, each partner is not responsible or liable for another partner's misconduct or negligence
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Partnership
+      </td>
+
+      <td>
+        A partnership is an arrangement where parties, known as business partners, agree to cooperate to advance their mutual interests. The partners in a partnership may be individuals, businesses, interest-based organizations, schools, governments or combinations.\
+        Each partner is entitled to share the net profits of the business. A contract need not provide for equal shares. It may depend upon how much the partner has invested.\
+        Partners are jointly and severally responsible for all the debts and obligations of the business without any limit, including loss and damages arising from wrongful acts or omissions of their fellow partners and potential liability to third parties.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Private Limited
+      </td>
+
+      <td>
+        A private limited company is any type of business entity in "private" ownership. A private company is owned entirely by a relatively small group of individuals or other entities providing capital.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Public Limited
+      </td>
+
+      <td>
+        A Public Limited Company is a company that has limited liability and offers shares to the general public.\
+        It's stock can be acquired by anyone, either privately through (IPO) initial public offering or via trades on the stock market.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Society
+      </td>
+
+      <td>
+        Several individuals combine using a mutual accord to deliberate, govern and act cooperatively for some communal purpose.\
+        Societies are usually registered for the advancement of charitable activities like sports, music, culture, religion, art, education, etc.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Sole Proprietorship
+      </td>
+
+      <td>
+        A sole proprietorship, also known as the sole trader, individual entrepreneurship or proprietorship, is a type of enterprise that is owned and run by one person and in which there is no legal distinction between the owner and the business entity.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Trust
+      </td>
+
+      <td>
+        A trust is an organization where the owner (trustor) decides to transfer the right of his property to a second person called trustee so that the third person (beneficiary) can take the benefit out of it.\
+        There are two types of trust. A public trust (charitable trust) is created for the benefit of the general public whereas a private trust is created for the benefit of a particular group of individuals known as the beneficiary.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## **Business sub-category list**
 
