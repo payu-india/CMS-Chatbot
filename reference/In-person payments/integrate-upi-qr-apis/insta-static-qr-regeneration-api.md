@@ -13,81 +13,187 @@ next:
 The **Insta Static QR Re-Generation** API is used to regenerate a previously generated Static UPI or Bharat QR. 
 
 > 📘 Note:
-> 
+>
 > This API only allows you to regenerate, not edit the previously generated QR.
 
-| Environments | URL                                             |
-| :----------- | :---------------------------------------------- |
-| Production   | <https://info.payu.in/merchant/postservice.php> |
+| Environments | URL                                                                                            |
+| :----------- | :--------------------------------------------------------------------------------------------- |
+| Production   | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Value",
-    "0-0": "key  \n`mandatory`",
-    "0-1": "This parameter must contain the merchant key provided by PayU.  \nReference: For more information on how to generate the Key and Salt, refer to any of the following:  \n**Production**: Generate Production Merchant Key and Sat.  \n**Test**: Generate Test Merchant Key and Salt.",
-    "0-2": "Your Test Key",
-    "1-0": "command  \n`mandatory`",
-    "1-1": "This parameter must have the API command name.",
-    "1-2": "generate_insta_account",
-    "2-0": "hash  \nmandatory",
-    "2-1": "This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:  \n  \n`sha512(key\\|command\\|var1\\|salt)`",
-    "2-2": "c24ee06c7cf40314ede424 b1fcc2b97a12f97a7d3dd2 06876eef16660eb09fd374 fd82861f66d8152e",
-    "3-0": "var1  \n`mandatory`",
-    "3-1": "This parameter must contain the fields in a JSON format. For more information, refer to <<Description of var1 Parameter Fields.>>",
-    "3-2": "Refer to <<Sample var1>> section."
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Value
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        This parameter must contain the merchant key provided by PayU.\
+        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
+
+        * \*Production\*\*: Generate Production Merchant Key and Sat.  
+        * \*Test\*\*: Generate Test Merchant Key and Salt.
+      </td>
+
+      <td>
+        Your Test Key
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        command\
+        `mandatory`
+      </td>
+
+      <td>
+        This parameter must have the API command name.
+      </td>
+
+      <td>
+        generate\_insta\_account
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash\
+        mandatory
+      </td>
+
+      <td>
+        This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:  
+
+        `sha512(key\|command\|var1\|salt)`
+      </td>
+
+      <td>
+        c24ee06c7cf40314ede424 b1fcc2b97a12f97a7d3dd2 06876eef16660eb09fd374 fd82861f66d8152e
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var1\
+        `mandatory`
+      </td>
+
+      <td>
+        This parameter must contain the fields in a JSON format. For more information, refer to {user["Description of var1 Parameter Fields."]}
+      </td>
+
+      <td>
+        Refer to {user["Sample var1"]} section.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Description of var1 parameter fields
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Key",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "customerId  \nconditional",
-    "0-1": "`string` Merchant Transaction Identifier. Should be unique snd alphanumeric (less than or equal to 20 characters & Only \"@\", \".\", \",\" are allowed)",
-    "0-2": "1234abcd",
-    "1-0": "merchantVpa customerId  \n`conditional`",
-    "1-1": "`string` Merchant's VPA in which payment will be collected.VPA to be embedded in QR. Should be unique & alphanumeric (less than or equal to 50 characters & Only \"@\", \".\", \",\" are allowed)",
-    "1-2": "instadummy.001@hdfcban",
-    "2-0": "instaProduct customerId  \n`mandatory`",
-    "2-1": "`string` The QR generation flag. Fixed value = qr",
-    "2-2": "qr",
-    "3-0": "getAccount    \n`mandatory`",
-    "3-1": "`string` Pass the value of this parameter as 1 to regenerate previously generated QR.",
-    "3-2": "1"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Key
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        customerId
+        conditional
+      </td>
+
+      <td>
+        `string` Merchant Transaction Identifier. Should be unique snd alphanumeric (less than or equal to 20 characters & Only "@", ".", "," are allowed)
+      </td>
+
+      <td>
+        1234abcd
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchantVpa customerId\
+        `conditional`
+      </td>
+
+      <td>
+        `string` Merchant's VPA in which payment will be collected.VPA to be embedded in QR. Should be unique & alphanumeric (less than or equal to 50 characters & Only "@", ".", "," are allowed)
+      </td>
+
+      <td>
+        instadummy.001\@hdfcban
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        instaProduct customerId\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The QR generation flag. Fixed value = qr
+      </td>
+
+      <td>
+        qr
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        getAccount  \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` Pass the value of this parameter as 1 to regenerate previously generated QR.
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 > 🚧 Callout
-> 
-> - **var1** is a json. All the parameters in var1 are to be sent as a json. Remember that the whole json string should be used for hash generation.
-> - To Re-Generate a static QR you may pass either the example **var1** parameters mentioned in this document or pass all the **var1** parameters that you have passed while generating the static QR for the first time. Remember that passing the parameter 'getAccount=1' indicates that the request is for re-generating a previously generated QR.
+>
+> * **var1** is a json. All the parameters in var1 are to be sent as a json. Remember that the whole json string should be used for hash generation.
+> * To Re-Generate a static QR you may pass either the example **var1** parameters mentioned in this document or pass all the **var1** parameters that you have passed while generating the static QR for the first time. Remember that passing the parameter 'getAccount=1' indicates that the request is for re-generating a previously generated QR.
 
 ### Sample var1
 
@@ -112,29 +218,55 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php' \
 
 ## Response parameters
 
-The transaction_details parameter of the response is in JSON format and the parameters in this JSON are described in the following table:
+The transaction\_details parameter of the response is in JSON format and the parameters in this JSON are described in the following table:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "qrString",
-    "0-1": "The value received in this parameter is based on the value passed in the outputType (var1) in the request. It will be in any of the following format containing information associated to the QR, the QR string can be converted into image and used for accepting transactions.  \nPlain text format if the value in the outputType request parameter is string  \nbase64 format if the value in the outputType request parameter is base64",
-    "1-0": "qrId",
-    "1-1": "This parameter contains the QR ID.",
-    "2-0": "vpa",
-    "2-1": "This parameter contains the VPA."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        qrString
+      </td>
+
+      <td>
+        The value received in this parameter is based on the value passed in the outputType (var1) in the request. It will be in any of the following format containing information associated to the QR, the QR string can be converted into image and used for accepting transactions.\
+        Plain text format if the value in the outputType request parameter is string\
+        base64 format if the value in the outputType request parameter is base64
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        qrId
+      </td>
+
+      <td>
+        This parameter contains the QR ID.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        vpa
+      </td>
+
+      <td>
+        This parameter contains the VPA.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample response
 
