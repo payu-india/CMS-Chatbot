@@ -18,39 +18,9 @@ User limit helps in restricting the number of offers/budgets availed by a custom
 
 Here the velocity has been set to 2, which means during the whole offer period, your customer can avail the offer only twice.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/userlimits1-1024x401.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/userlimits1-1024x401.png" />
 
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/userlimits2-1024x458.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/userlimits2-1024x458.png" />
 
 Along with restricting the number of offers, we have added a budget limit of Rs 800 per user. Now, the user can avail two offers, but to a maximum budget of Rs 800. Lets the user avail an offer of ₹600 in the first transaction, during the second transaction, the customer will only be able to avail a discount of ₹200. If the second transaction has an eligible discount of more than ₹200, the customer will not be able to get any discount here
 
@@ -71,7 +41,7 @@ PayU uses the card hash against which velocity will be run.
 During a plain card transaction, a card hash will be generated against the card number and the velocity will be run against this card hash
 
 > 📘 Note:
-> 
+>
 > Card hash is a unique identifier that is generated from the card number but cannot be used to trace back the card number
 
 #### During Card Tokenization\*
@@ -87,7 +57,7 @@ For a transaction initiated with a tokenized card, the card hash mapped (at the 
 In this case, the velocity check will be run on the user token, that is using the **user\_token** parameter that’s passed in the payment request. This user token sent needs to be unique across the plain card and tokenized card for the velocity check to work properly. 
 
 > 📘 Note:
-> 
+>
 > PAR solution is not fully implemented by all the networks, hence velocity check via PAR is not available currently.
 
 ## Automatic apply  best offer
