@@ -16,11 +16,11 @@ next:
 ---
 This part of the document includes the API Reference for the following with "Try It" using S2S Integration:
 
-- [Cards Classic Integration](ref:_payment_s2s_classic_integration)
-- [Cards Decoupled Flow](ref:_payment_s2s_decoupled_flow)
-- [Cards Direct Authorization Flow](ref:_payment_s2s_direct_authorization_flow)
-- [UPI Collection](ref:_payment_s2s_upi_collection)
+* [Cards Classic Integration](ref:_payment_s2s_classic_integration)
+* [Cards Decoupled Flow](ref:_payment_s2s_decoupled_flow)
+* [Cards Direct Authorization Flow](ref:_payment_s2s_direct_authorization_flow)
+* [UPI Collection](ref:_payment_s2s_upi_collection)
 
 > 📘 Note:
-> 
+>
 > The above API Reference pages only provides the Initiate Payment step only. You need to follow the respective integrations for the complete flow. For more information, refer to [Server-to-Server Integration](doc:server-to-server-integration)
