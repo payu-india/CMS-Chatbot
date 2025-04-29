@@ -35,21 +35,7 @@ The PayU UPI Bolt UI SDK, built on PayU UPI Bolt, provides a ready-made interfac
 4. Finally, transactions can be made using the linked account. For first-time users, setting up an MPIN will be required before completing a transaction.
 5. For the first 24 hours, new users have a maximum transaction limit of ₹5000 on their registered bank account.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/aaac0320d6f7078eb8528ca0afdfd64061bb2f8331cdf181b70c0661f36c0acf-R.jpg",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/aaac0320d6f7078eb8528ca0afdfd64061bb2f8331cdf181b70c0661f36c0acf-R.jpg" />
 
 **b. Repeat Payment**
 
@@ -57,21 +43,7 @@ The PayU UPI Bolt UI SDK, built on PayU UPI Bolt, provides a ready-made interfac
 2. They simply select their added bank account, enter the MPIN, and complete the transaction.
 3. Additionally, customers can set the MPIN for their bank account beforehand to prevent transaction cancellation.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ecb18268b712dfa6d06c9ca03bcb2b614d4b5b71b8aa99f29a9e80e00625b6de-P.jpg",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/ecb18268b712dfa6d06c9ca03bcb2b614d4b5b71b8aa99f29a9e80e00625b6de-P.jpg" />
 
 **c. Profile Management and Transaction History**
 
@@ -80,22 +52,8 @@ The PayU UPI Bolt UI SDK, built on PayU UPI Bolt, provides a ready-made interfac
 3. Customers also have the option to deregister all their accounts from the PayU UPI Bolt SDK.
 4. Merchants can enforce direct access to Transaction History, UPI Account Management, and Queries/Dispute resolution from their app, bypassing the Profile Management bottom sheet if preferred.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/5ca8ceb2d259d6e116529edca1e459c5255283ccc5e61148f621b290989879b0-M.jpg",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/5ca8ceb2d259d6e116529edca1e459c5255283ccc5e61148f621b290989879b0-M.jpg" />
 
 To integrate PayU Bolt SDK, refer to [PayU Bolt SDK Integration](doc:payubolt-sdk-integration-native).
 
-To integrate PayU Bolt UI SDK, refer to [PayU Bolt UI SDK Integration](<>)
+To integrate PayU Bolt UI SDK, refer to [PayU Bolt UI SDK Integration]()
