@@ -27,28 +27,29 @@ next:
       slug: check_action_status_api_with_payu_id
       title: Check Refund Status API with PayU ID
 ---
-Whenever the **cancel_refund_transaction** API is executed successfully to cancel a transaction, a Request ID is returned in the output parameters for that particular request. For more information on the cancel_refund_transaction API, refer to Refund Transaction.
+Whenever the **cancel\_refund\_transaction** API is executed successfully to cancel a transaction, a Request ID is returned in the output parameters for that particular request. For more information on the cancel\_refund\_transaction API, refer to Refund Transaction.
 
-In **check_action_status** API, you need to input this Request ID to get the current status of the request. The return parameters are MIHPayID, Amount, Discount, Mode, and Status of transaction. It returns any of the following the states:
+In **check\_action\_status** API, you need to input this Request ID to get the current status of the request. The return parameters are MIHPayID, Amount, Discount, Mode, and Status of transaction. It returns any of the following states:
 
 <RefundStates />
 
 <GENERALAPIsEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location --request POST 'https://test.info.payu.in/merchant/postservice.php?form=2' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data
-'key=JF****g&hash=9f5faabedb7f5d41f519db3a223cf5318ecc0b7e669f49e0a699d4c4879e1ccaed5b99f5cd
+--data 'key=JF****g&hash=9f5faabedb7f5d41f519db3a223cf5318ecc0b7e669f49e0a699d4c4879e1ccaed5b99f5cd
 8be4f2cbddefe5272ec983abd8f38480d9c2609a29447f750a3158&command=check_action_status_txnid&var
 1=7043873219"
 ```
 
 </details>
 
-<details>  <summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success scenario**
 
@@ -83,7 +84,7 @@ if successfully fetched
 
 **Failure scenarios**
 
-- If mihpayid is not found, the response is similar to the following:
+* If mihpayid is not found, the response is similar to the following:
 
 ```plaintext
 {
@@ -95,7 +96,7 @@ if successfully fetched
 }
 ```
 
-- If mihpayid is missing, the response is similar to the following:
+* If mihpayid is missing, the response is similar to the following:
 
 ```plaintext
 {
@@ -106,19 +107,21 @@ if successfully fetched
 
 </details>
 
-<details><summary>Response parameters and sample response</summary>
+<details>
+  <summary>Response parameters and sample response</summary>
 
-- The **transaction_details** parameter of the response is in JSON format. For more information, refer to [Additional Info for General APIs](/reference/addl-info-general-apis#response-parameters-check-refund-status-with-request-idpayu-id-or-get-transaction-details).
+* The **transaction\_details** parameter of the response is in JSON format. For more information, refer to [Additional Info for General APIs](/reference/addl-info-general-apis#response-parameters-check-refund-status-with-request-idpayu-id-or-get-transaction-details).
 
 > 📘 Note:
-> 
-> The error_code ​value 102​ should be treated as a success; the rest are failures. For the list of error codes, refer to [Error Codes for Refund Initiation](ref:error-codes-for-refund-initiation).
+>
+> The error\_code ​value 102​ should be treated as a success; the rest are failures. For the list of error codes, refer to [Error Codes for Refund Initiation](ref:error-codes-for-refund-initiation).
 
 </details>
 
 ## Request parameters
 
-<details> <summary>Reference information for request parameters</summary>
+<details>
+  <summary>Reference information for request parameters</summary>
 
 <KeyHashForGeneralParametersDescription />
 
@@ -128,4 +131,4 @@ if successfully fetched
 
 Use the following sample values while trying out the API:
 
-- `var1` (request_id): 131278422
+* `var1` (request\_id): 131278422
