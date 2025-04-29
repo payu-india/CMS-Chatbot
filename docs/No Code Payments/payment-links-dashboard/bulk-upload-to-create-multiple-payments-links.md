@@ -26,23 +26,9 @@ To create the payment links in bulk:
 
 1. Click **Bulk Create** given on the top right corner of the page.
 
-   The _Generate Bulk Payment links_ page is displayed.
+   The *Generate Bulk Payment links* page is displayed.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/4612b03-Screenshot_2023-09-29_at_12.06.47_PM.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/4612b03-Screenshot_2023-09-29_at_12.06.47_PM.png" />
 
 2. Select the file from the library and click **Upload** to complete the action.
 
@@ -50,71 +36,161 @@ To create the payment links in bulk:
 
 The following table describes the purpose of each columns and whether it is mandatory:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameters",
-    "h-1": "Description",
-    "0-0": "Amount  \n`mandatory`",
-    "0-1": "The columns must contain the payment amount must be greater than equal to 1.",
-    "1-0": "Transaction ID  \n`optional`",
-    "1-1": "The columns must contain the merchant generated transaction number which is used to track a particular order. This value must be unique.",
-    "2-0": "Product Description  \n`mandatory`",
-    "2-1": "This column must contain the payment description.",
-    "3-0": "Customer Name  \n`optional`",
-    "3-1": "This column must contain the customer's name.",
-    "4-0": "Customer Email  \n`optional`",
-    "4-1": "This column must contain the customer's email.",
-    "5-0": "Customer Mobile  \n`optional`",
-    "5-1": "This column must contain the customer’s mobile number. This must be 10-digit number.",
-    "6-0": "Validation Period  \n`optional`",
-    "6-1": "This column must contain the validation period of the email invoice. If this field is left empty, then default value will be taken as 365 days. This column value must be filled based on the Numerical value ( eg 7)column where the unit is defined.  \n**Note**: Maximum value for validation period can be 1000 days from the time of invoice creation.",
-    "7-0": "Time Unit  \n`optional`",
-    "7-1": "The column must time contain the unit for invoice validation period can be any of the following:  \n  \n- D- to expire the invoice after x days.\n- H-to expire the invoice after x hours.\n- M-to expire the invoice after x minutes.",
-    "8-0": "Send SMS  \n`optional`",
-    "8-1": "The column must time contain any of the following whether to send SMS to customer or not:  \n.  **1 **:  SMS is sent to customer  \n  \n- **0** : SMS isnot sent to customer  \n  The default value (or if the column is left blank) is 0.",
-    "9-0": "Is Partial Payment Allowed  \n`optional`",
-    "9-1": "The column must time contain:  \n.  **1 **:  Allow partial payment by customer  \n  \n- **0** : Do not allow partial payment by customer  \n  The default value (or if the column is left blank) is 0."
-  },
-  "cols": 2,
-  "rows": 10,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameters
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Amount
+        `mandatory`
+      </td>
+
+      <td>
+        The columns must contain the payment amount must be greater than equal to 1.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Transaction ID\
+        `optional`
+      </td>
+
+      <td>
+        The columns must contain the merchant generated transaction number which is used to track a particular order. This value must be unique.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Product Description\
+        `mandatory`
+      </td>
+
+      <td>
+        This column must contain the payment description.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Customer Name\
+        `optional`
+      </td>
+
+      <td>
+        This column must contain the customer's name.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Customer Email\
+        `optional`
+      </td>
+
+      <td>
+        This column must contain the customer's email.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Customer Mobile\
+        `optional`
+      </td>
+
+      <td>
+        This column must contain the customer’s mobile number. This must be 10-digit number.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Validation Period\
+        `optional`
+      </td>
+
+      <td>
+        This column must contain the validation period of the email invoice. If this field is left empty, then default value will be taken as 365 days. This column value must be filled based on the Numerical value ( eg 7)column where the unit is defined.  
+
+        * \*Note\*\*: Maximum value for validation period can be 1000 days from the time of invoice creation.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Time Unit\
+        `optional`
+      </td>
+
+      <td>
+        The column must time contain the unit for invoice validation period can be any of the following:  
+
+        * D- to expire the invoice after x days.
+        * H-to expire the invoice after x hours.
+        * M-to expire the invoice after x minutes.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Send SMS\
+        `optional`
+      </td>
+
+      <td>
+        The column must time contain any of the following whether to send SMS to customer or not:\
+        .  **1**:  SMS is sent to customer  
+
+        * **0** : SMS isnot sent to customer\
+          The default value (or if the column is left blank) is 0.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Is Partial Payment Allowed\
+        `optional`
+      </td>
+
+      <td>
+        The column must time contain:\
+        .  **1**:  Allow partial payment by customer  
+
+        * **0** : Do not allow partial payment by customer\
+          The default value (or if the column is left blank) is 0.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 3. Enter the batch ID in the **Batch ID** field. 
 4. Enter the batch description in the **Batch Description** field.
 
-> **Note**: The input for** Upload File ** (at Step 2) and **Batch description ** (at Step 4) fields are mandatory.
+> **Note**: The input for **Upload File** (at Step 2) and **Batch description** (at Step 4) fields are mandatory.
 
 5. Select any of the following check boxes to notify:
-   - SMS
-   - Email
+   * SMS
+   * Email
 6. Click **Custom Details** to expand the pane.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/07bd0db-Screenshot_2023-09-29_at_12.10.08_PM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/07bd0db-Screenshot_2023-09-29_at_12.10.08_PM.png" />
 
 7. Select any of the following customer details required during checkout:
-   - Customer Name
-   - Customer Address
-   - Customer Email
-   - Customer Name
+   * Customer Name
+   * Customer Address
+   * Customer Email
+   * Customer Name
 8. Click **Create and Send Payment Links**.
