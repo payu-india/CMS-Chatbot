@@ -18,8 +18,8 @@ HTTP Method: **GET**
 
 |                            |                                           |
 | -------------------------- | ----------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payment-links> |
-| **Production Environment** | <https://oneapi.payu.in/payment-links>    |
+| **Test Environment**       | &lt;https://uatoneapi.payu.in/payment-links&gt; |
+| **Production Environment** | &lt;https://oneapi.payu.in/payment-links&gt;    |
 
 > 📘 Note:
 > 
@@ -45,7 +45,6 @@ HTTP Method: **GET**
   ]
 }
 [/block]
-
 
 ## Query parameters
 
@@ -89,7 +88,6 @@ HTTP Method: **GET**
   ]
 }
 [/block]
-
 
 ## Sample request
 
