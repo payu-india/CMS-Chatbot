@@ -10,15 +10,15 @@ metadata:
 next:
   description: ''
 ---
-Redirect URLs are where PayU redirects the user after the transaction is completed. PayU sends the data related to transactions while redirecting so that you can check the status of the transaction. The `surl` and `furl` refer to the success and failure URLs (page) respectively. These URLs are used to return the customer to your website after a successful or failed transaction.  
+Redirect URLs are where PayU redirects the user after the transaction is completed. PayU sends the data related to transactions while redirecting so that you can check the status of the transaction. The `surl` and `furl` refer to the success and failure URLs (page) respectively. These URLs are used to return the customer to your website after a successful or failed transaction.\
 The `surl` or `furl` page is hosted on your server to communicate back to the client application when the transaction is completed. You may check the status of the transaction and take action accordingly. In mobile applications, your customer must return to the app whenever a transaction is completed. After the transaction is complete, PayU posts the response to the surl / furl.
 
 > 🚧 Keep in mind
-> 
+>
 > Surl(success url), Furl(failure url) are two urls (https POST) should be given by merchant as post param while making payment. As soon as the transaction completes payu post the data back to surl/furl depends on the transaction status.
-> 
+>
 > SURL/FURL must implement a javascript interface function named
-> 
+>
 > `PayU.onSuccess(“data”) or PayU.onFailure(“data”);`
 
 ## Success URL
@@ -177,9 +177,9 @@ function generateReverseHash()
 
 In the above code, you need to replace the placeholders with your actual values. The default values for `surl` and `furl` are:
 
-- **surl**: <https://cbjs.payu.in/sdk/success>
-- **furl**: <https://cbjs.payu.in/sdk/failure>
+* **surl**: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+* **furl**: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
 
 > 📘 Note:
-> 
+>
 > These URLs are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed.
