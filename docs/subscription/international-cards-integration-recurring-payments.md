@@ -43,11 +43,11 @@ PayU supports recurring payments for international cards. PayU has made tokeniza
 
 ### Supported Flow and Scope
 
-- **Flow Supported**: PayU Tokenised Flow, Merchant Tokenised Flow (Plain Card Registration + Update Token) &  Network Token Registration. For more information, refer to the following:
-  - [Payment Consent Transaction](ref:payment-consent-transaction-merchant-hosted)
-  - [Modify the Recurring Payments for a Card](ref:modify-the-recurring-payments-for-a-card)
-- **Current Scope**: Card Issuer is Non-Indian, Merchant is registered in India, and Transaction currency is INR. 
-- **Frequency Supported:** ADHOC
+* **Flow Supported**: PayU Tokenised Flow, Merchant Tokenised Flow (Plain Card Registration + Update Token) &  Network Token Registration. For more information, refer to the following:
+  * [Payment Consent Transaction](ref:payment-consent-transaction-merchant-hosted)
+  * [Modify the Recurring Payments for a Card](ref:modify-the-recurring-payments-for-a-card)
+* **Current Scope**: Card Issuer is Non-Indian, Merchant is registered in India, and Transaction currency is INR. 
+* **Frequency Supported:** ADHOC
 
 ## Supported payment instruments
 
@@ -55,10 +55,10 @@ PayU supports the following networks and card types:
 
 ### Supported networks
 
-- Visa 
-- MasterCard
+* Visa 
+* MasterCard
 
 ### Supported card types
 
-- Credit Card
-- Debit Card
+* Credit Card
+* Debit Card
