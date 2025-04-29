@@ -22,21 +22,7 @@ You can integrate the PayU Affordability Widget into your WooCommerce website fo
 
 1. Install the **WPCode Lite** plugin from the WooCommerce admin panel and activate it.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/14a19184355ee54c18b290cf307479285ad97732e42d7dd0267553bbef5a160f-snapedit_1728537692521.jpeg",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/14a19184355ee54c18b290cf307479285ad97732e42d7dd0267553bbef5a160f-snapedit_1728537692521.jpeg" />
 
 2. Navigate to **Code Snippets > Header & Footer**.
 3. In the **Header** block, insert the following lines of code:
@@ -52,13 +38,13 @@ You can integrate the PayU Affordability Widget into your WooCommerce website fo
 
 1. Navigate to the following folder of your WordPress installation:
 
-**<Wordpress root>/wp-content/plugins/woocommerce/templates/single-product**
+**&lt;Wordpress root&gt;/wp-content/plugins/woocommerce/templates/single-product**
 
 > 📘 Note:
-> 
+>
 > You require the **CPanel** access is required for these configuration file change and it cannot be done from the WordPress admin panel.
 
-2. In the**price.php**, insert the following code at the end of the file . Replace `\<key\>` with your Merchant Key.
+2. In the **price.php**, insert the following code at the end of the file. Replace `<key>` with your Merchant Key.
 
 ```javascript
 <script type="text/javascript">
@@ -85,10 +71,10 @@ window.onload = function() {
 
 1. Navigate to the following folder of your WordPress installation:
 
-**<wordpress root>/wp-content/plugins/woocommerce/templates/cart**
+**&lt;wordpress root&gt;/wp-content/plugins/woocommerce/templates/cart**
 
 > 📘 Note:
-> 
+>
 > You require the **CPanel** access is required for these configuration file change and it cannot be done from the WordPress admin panel.
 
 2. In the **cart-totals.php** file, insert the following code block before the `div` block containing `do_action('woocommerce_proceed_to_checkout');`. Replace `{key}` with your Merchant Key.
