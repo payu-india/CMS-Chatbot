@@ -30,7 +30,8 @@ After the customer enters VPA on the merchant page, you need to call this API to
 
 <GENERALAPIsEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 **Validate VPA**
 
@@ -41,12 +42,13 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: appli
 **Validate VPA for Recurring Payment**
 
 ```
-curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d"key=JP***g&command=validateVPA&var1=9999999999@upi&var2={"validateAutoPayVPA":"1"}&hash=75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e""
+curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d"key=JP***g&command=validateVPA&var1=9999999999@upi&var2={\"validateAutoPayVPA\":\"1\"}&hash=75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e""
 ```
 
 </details>
 
-<details>  <summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success scenario**
 
@@ -64,79 +66,137 @@ if successfully validated:
 ```
 
 > 📘 Notes:
-> 
-> - The **payerAccountName** parameter can be empty or NA or will have a payer name based on the value given by the bank.
-> - If both **isVPAValid** and **isAutoPayVPAValid** is 1, you must initiate payment for Recurring Payments.
-> - Ignore the **isAutoPayBankValid** parameter in the response.
+>
+> * The **payerAccountName** parameter can be empty or NA or will have a payer name based on the value given by the bank.
+> * If both **isVPAValid** and **isAutoPayVPAValid** is 1, you must initiate payment for Recurring Payments.
+> * Ignore the **isAutoPayBankValid** parameter in the response.
 
 **Failure scenarios**
 
-- If invalid VPA, the response is similar to the following:
+* If invalid VPA, the response is similar to the following:
 
 ```plaintext
 {
- "status":"SUCCESS","vpa":""abc@upi","isVPAValid":0,"payerAccountName":"NA"
+ "status":"SUCCESS","vpa":"abc@upi","isVPAValid":0,"payerAccountName":"NA"
 }  
 ```
 
-- Invalid VPA but handle supporting SI (Autopay):
+* Invalid VPA but handle supporting SI (Autopay):
 
 ```plaintext
 {
- "status":"SUCCESS","vpa":""abc@upi","isVPAValid":0,"isAutoPayVPAValid":1,"isAutoPayBa
-nkValid":NA,"payerAccountName":"NA"
+ "status":"SUCCESS","vpa":"abc@upi","isVPAValid":0,"isAutoPayVPAValid":1,"isAutoPayBankValid":"NA","payerAccountName":"NA"
 }
 ```
 
-- Customer valid but handle not supporting SI (Autopay):
+* Customer valid but handle not supporting SI (Autopay):
 
 ```
 {
-  "status":"SUCCESS","vpa":""xyz@freecharge","isVPAValid":1,"isAutoPayVPAValid":0,"isAuto
-PayBankValid":NA,"payerAccountName":"XYZ"
+  "status":"SUCCESS","vpa":"xyz@freecharge","isVPAValid":1,"isAutoPayVPAValid":0,"isAutoPayBankValid":"NA","payerAccountName":"XYZ"
 }
 ```
 
-- Neither customer valid nor handle supporting Autopay:
+* Neither customer valid nor handle supporting Autopay:
 
 ```
 {
-  "status":"SUCCESS","vpa":""xyz@freecharge","isVPAValid":0,"isAutoPayVPAValid":0,"isAuto
-PayBankValid":NA,"payerAccountName":"NA"
+  "status":"SUCCESS","vpa":"xyz@freecharge","isVPAValid":0,"isAutoPayVPAValid":0,"isAutoPayBankValid":"NA","payerAccountName":"NA"
 }
 ```
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "status",
-    "0-1": "This parameter returns any of the following based on whether the API was successful or failure:  \n  \n- Successful\n- Failure",
-    "1-0": "vpa",
-    "1-1": "This parameter returns the VPA ID.",
-    "2-0": "isVPAValid",
-    "2-1": "This parameter returns any of the following to indicate whether the VPA is valid or not:  \n   -** 1**: Indicates that VPA is valid  \n  \n- **0**: Indicates the VPA is invalid",
-    "3-0": "isAutoPayVPAValid",
-    "3-1": "This parameter returns any of the following to indicate whether the VPA has registered for Recurring Payments or Autopay:  \n  \n- **1**: Indicates that VPA has registered for Recurring Payments\n- **0**: Indicates that VPA has not registered for Recurring Payments",
-    "4-0": "isAutoPayBankValid",
-    "4-1": "This parameter returns any of the following to indicate whether the corresponding bank account has registered for Recurring Payments or Autopay:  \n  \n- **1**: Indicates that bank account has registered for Recurring Payments\n- **0**: Indicates that bank account has not registered for Recurring Payments",
-    "5-0": "payerAccountName",
-    "5-1": "This parameter returns the name of the account holder (corresponding VPA)."
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        This parameter returns any of the following based on whether the API was successful or failure:  
+
+        * Successful
+        * Failure
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        vpa
+      </td>
+
+      <td>
+        This parameter returns the VPA ID.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        isVPAValid
+      </td>
+
+      <td>
+        This parameter returns any of the following to indicate whether the VPA is valid or not:\
+           -**1**: Indicates that VPA is valid  
+
+        * **0**: Indicates the VPA is invalid
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        isAutoPayVPAValid
+      </td>
+
+      <td>
+        This parameter returns any of the following to indicate whether the VPA has registered for Recurring Payments or Autopay:  
+
+        * **1**: Indicates that VPA has registered for Recurring Payments
+        * **0**: Indicates that VPA has not registered for Recurring Payments
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        isAutoPayBankValid
+      </td>
+
+      <td>
+        This parameter returns any of the following to indicate whether the corresponding bank account has registered for Recurring Payments or Autopay:  
+
+        * **1**: Indicates that bank account has registered for Recurring Payments
+        * **0**: Indicates that bank account has not registered for Recurring Payments
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        payerAccountName
+      </td>
+
+      <td>
+        This parameter returns the name of the account holder (corresponding VPA).
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
@@ -144,28 +204,61 @@ PayBankValid":NA,"payerAccountName":"NA"
 
 You can use any valid VPA while trying out the API:
 
-<details><summary>Additional information for request parameters</summary>
+<details>
+  <summary>Additional information for request parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Reference",
-    "0-0": "<<glossary:key>>",
-    "0-1": "For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n\\- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  \n  \n- **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "1-0": "<<glossary:hash>>",
-    "1-1": "Hash logic for this API is:  \n`sha512(key\\|command\\|var1\\|salt) sha512\n`",
-    "2-0": "var1",
-    "2-1": "For JSON fields description, refer to [Additional Info for General APIs](ref:addl-info-general-apis)"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Reference
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <Glossary>key</Glossary>
+      </td>
+
+      <td>
+        For more information on how to generate the Key and Salt, refer to any of the following:  
+
+        \- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  
+
+        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <Glossary>hash</Glossary>
+      </td>
+
+      <td>
+        Hash logic for this API is:\
+        ```
+        sha512(key\|command\|var1\|salt) sha512
+
+        ```
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var1
+      </td>
+
+      <td>
+        For JSON fields description, refer to [Additional Info for General APIs](ref:addl-info-general-apis)
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
