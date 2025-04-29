@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-After you complete the cross-border payment integration as described in [Steps to Integrate - Import](doc:steps-to-integrate-cross-border-payments-import),  you can integrate <<glossary:UPI Autopay>> for the following cross-border payment integrations:
+After you complete the cross-border payment integration as described in [Steps to Integrate - Import](doc:steps-to-integrate-cross-border-payments-import),  you can integrate <Glossary>UPI Autopay</Glossary> for the following cross-border payment integrations:
 
-- [Payment OS](https://docs.payu.in/docs/integrate-mandate-registration-flow-with-upi-autopay)
-- [PayUBiz](doc:https://docs.payu.in/docs/integrate-import-with-upi-autopay-for-payubiz)
+* [Payment OS](https://docs.payu.in/docs/integrate-mandate-registration-flow-with-upi-autopay)
+* [PayUBiz](doc:https://docs.payu.in/docs/integrate-import-with-upi-autopay-for-payubiz)
