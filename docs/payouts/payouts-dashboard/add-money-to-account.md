@@ -23,8 +23,8 @@ To know how to add money into your virtual account:
 
 1. Click **Add Money** available on the **Payouts** Dashboard at the top-right corner.
 
-   The _Add Money in your PayU’s Virtual Account_ pop-up page is displayed.
+   The *Add Money in your PayU’s Virtual Account* pop-up page is displayed.
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-216-1024x827.png)
 
-2. View the virtual account details and follow the steps as on the _Add Money in your PayU’s Virtual Account_ page to add money to your virtual account.
+2. View the virtual account details and follow the steps as on the *Add Money in your PayU’s Virtual Account* page to add money to your virtual account.
