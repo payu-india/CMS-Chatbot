@@ -15,10 +15,10 @@ next:
 ---
 Maximizer product is supported on the following platforms basis your use-case:
 
-- Standard checkout 
-- Server to Server Integration 
-- Payment links 
-- SDKs (iOS and Android) 
-- Storefront QR
+* Standard checkout 
+* Server to Server Integration 
+* Payment links 
+* SDKs (iOS and Android) 
+* Storefront QR
 
-<br>
+<br />
