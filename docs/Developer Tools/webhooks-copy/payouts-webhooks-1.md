@@ -17,7 +17,7 @@ You can create Payment Webhooks to recieve notification for Payment events.
 ## Create a Payouts Webhook
 
 > 👍 Webhook in Test Mode
-> 
+>
 > Switch to the Test Mode and configure the Webhook to receive payments notification for your test transaction.
 
 ## Edit a Payouts Webhook
