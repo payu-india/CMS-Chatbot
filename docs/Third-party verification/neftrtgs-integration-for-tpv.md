@@ -21,7 +21,7 @@ metadata:
 next:
   description: ''
 ---
-Integrate <<glossary:TPV>> through NEFT/RTGS using the procedure described in this section.
+Integrate <Glossary>TPV</Glossary> through NEFT/RTGS using the procedure described in this section.
 
 ## Step 1: List the Account Numbers
 
@@ -35,75 +35,93 @@ With the following additional parameters, make the transaction request with the 
 
 ### Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "<<glossary:pg>>",
-    "0-1": "It defines the payment category for which you wish to perform TPV. For Net Banking, pg= ’NEFTRTGS.",
-    "0-2": "NEFTRTGS",
-    "1-0": "<<glossary:bankcode>>",
-    "1-1": "The bankcode for the NEFT/RTGS transaction. For more information, refer to [Bank Codes for TPV](doc:bank-codes-for-tpv).  \nThis parameter defines the bankcode for NEFT/RTGS. **EFTAXTPV** must be used as bankcode for NEFT/RTGS.",
-    "1-2": "EFTAXTPV",
-    "2-0": "beneficiarydetail",
-    "2-1": "This is a JSON format text and there should be key named beneficiaryAccountNumber with account number as value and ifscCode with customer IFSC code as value.",
-    "2-2": "{\"beneficiaryAccountNumber\":\"6612262\\*\\*\\*5|323132312\\*\\*\\*3123\",  \n\"ifscCode\":\"KKBK0006749|HDFC000231|SBIN213213213\"}",
-    "3-0": "api_version",
-    "3-1": "The api_version “6” must be passed fro this parameter.",
-    "3-2": "6"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
-
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <Glossary>pg</Glossary>
+      </td>
+      <td>
+        It defines the payment category for which you wish to perform TPV. For Net Banking, pg= ’NEFTRTGS.
+      </td>
+      <td>
+        NEFTRTGS
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <Glossary>bankcode</Glossary>
+      </td>
+      <td>
+        The bankcode for the NEFT/RTGS transaction. For more information, refer to [Bank Codes for TPV](doc:bank-codes-for-tpv).\
+        This parameter defines the bankcode for NEFT/RTGS. **EFTAXTPV** must be used as bankcode for NEFT/RTGS.
+      </td>
+      <td>
+        EFTAXTPV
+      </td>
+    </tr>
+    <tr>
+      <td>
+        beneficiarydetail
+      </td>
+      <td>
+        This is a JSON format text and there should be key named beneficiaryAccountNumber with account number as value and ifscCode with customer IFSC code as value.
+      </td>
+      <td>
+        {"{"}`beneficiaryAccountNumber`:`"6612262***5|323132312***3123"`,`ifscCode`:`"KKBK0006749|HDFC000231|SBIN213213213"`}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        api\_version
+      </td>
+      <td>
+        The api\_version “6” must be passed fro this parameter.
+      </td>
+      <td>
+        6
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### Checksum Logic for Hash
 
 The following hash logic must be used for the parameters posted:
 
 > 📘 beneficiarydetail parameter in Hashing:
-> 
+>
 > The **beneficiarydetail** parameter value will be at last or the last value to be appended.
-> 
+>
 > ```plaintext
 > key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT
 > ```
 
 > 📘 Notes:
-> 
-> - For NEFT/RTGS TPV, merchant should always send both customer account no and customer IFSC Code in Request.
-> - For NEFT/RTGS TPV, the flow will work for **txn\_s2s\_flow = 1** or **txn\_s2s\_flow =** 4 as is. For **txn\_s2s\_flow = 1**, the condition is **payus2s** flag needs to be enabled for that merchant
+>
+> * For NEFT/RTGS TPV, merchant should always send both customer account no and customer IFSC Code in Request.
+> * For NEFT/RTGS TPV, the flow will work for **txn\_s2s\_flow = 1** or **txn\_s2s\_flow =** 4 as is. For **txn\_s2s\_flow = 1**, the condition is **payus2s** flag needs to be enabled for that merchant
 
 ### Optional configuration
 
 PayU provides an optional **Back to Merchant** button on the payment challan of a NEFT/RTGS payment. This button enables your customer to go back to the merchant portal once the transaction is done.
 
-_Sample challan of a NEFT/RTGS transaction_
+*Sample challan of a NEFT/RTGS transaction*
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/4f959a8-neftrtgs_challan.jpeg",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "400px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="400px" src="https://files.readme.io/4f959a8-neftrtgs_challan.jpeg" />
 
 ### Sample request
 
@@ -147,13 +165,13 @@ The following table describes the parameters in the response from PayU:
 | addedon          | The transaction timestamp is returned in this parameter.                                                                                                                                                                                                                                                                 |
 
 > 📘 Store **mihpayid** and **txnid** parameter in response:
-> 
+>
 > PayU recommends you to make provisions to store the **mihpayid** and **txnid** parameter values (in the response) in your server as proof that TPV has been completed for a customer.
 
 > 📘 Note on Response:
-> 
+>
 > For security reasons, the sample response or URL is not included here.
 
 > 📘 Payment verification:
-> 
+>
 > PayU recommends you. to verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>.
