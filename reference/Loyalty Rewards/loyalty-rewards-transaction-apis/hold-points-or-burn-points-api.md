@@ -61,7 +61,6 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 <br />
 
 ## Sample request body
@@ -131,7 +130,6 @@ HTTP Method: **POST**
         "isBurnValid": true
     }
 }
-
 ```
 
 ### Failure Scenario
@@ -144,12 +142,11 @@ HTTP Method: **POST**
     "errorMessage": "Customer is not onboarded on Loyalty-service",
     "errorType": "APPLICATION_EXCEPTION"
 }
-
 ```
 
 - Session expiry
 
-```
+```plaintext
 {
     "issueCode": "LS404-401",
     "errorMessage": "Session Expired unable to redeem points",
