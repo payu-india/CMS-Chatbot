@@ -1,0 +1,113 @@
+---
+title: Offers Integration APIs
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Offers integration APIs
+  description: >-
+    This page provides PayU's various API Integration for Offers that can be
+    created such as Instant Discounts, Cashback, No Cost EMI, and
+    Product/SKU-based Offers. It also includes details on the different payment
+    modes supported, such as Cards (credit and debit), Net banking, EMI (Credit
+    and Debit), Wallets, UPI, and No Cost EMI, along with explanations on how
+    each type of offer works.
+  robots: index
+next:
+  description: ''
+---
+PayU Offers allows merchants to create a wide range of offers across different payments mode. The self-serve Dashboard portal allows merchants to add advanced configuration for offers and monitor offer associated performances and transactions.
+
+> 👍 Before you begin:
+> 
+> Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+
+The following offers can be created using APIs:
+
+- [Integrate with PayU Hosted Checkout](doc:payu-hosted-checkout-integration-with-offers)
+  - [Instant Discount or Cashback Offer](doc:payu-hosted-checkout-integration-with-offers#instant-discount-or-cashback)
+  - [SKU-Based Offer](doc:payu-hosted-checkout-integration-with-offers#sku-based-offer)
+- [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout)
+- [SKU-Based Offer using Merchant Hosted Checkout](doc:collect-payments-with-sku-based-offer-using-merchant-hosted-checkout-offers-integration)
+
+The following videos explains how to create an offer:
+
+[block:embed]
+{
+  "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2F8kqhGkLHOj0%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D8kqhGkLHOj0&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2F8kqhGkLHOj0%2Fhqdefault.jpg&key=7788cb384c9f4d5dbbdbeffd9fe4b92f&type=text%2Fhtml&schema=youtube\" width=\"854\" height=\"480\" scrolling=\"no\" title=\"YouTube embed\" frameborder=\"0\" allow=\"autoplay; fullscreen\" allowfullscreen=\"true\"></iframe>",
+  "url": "https://www.youtube.com/watch?v=8kqhGkLHOj0",
+  "title": "PayU Offers Engine: How to get started with it and the steps involved?",
+  "favicon": "https://www.google.com/favicon.ico",
+  "image": "https://i.ytimg.com/vi/8kqhGkLHOj0/hqdefault.jpg",
+  "provider": "youtube.com",
+  "href": "https://www.youtube.com/watch?v=8kqhGkLHOj0",
+  "typeOfEmbed": "youtube"
+}
+[/block]
+
+
+[block:embed]
+{
+  "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FWvHrgeVMpf4%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DWvHrgeVMpf4&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FWvHrgeVMpf4%2Fhqdefault.jpg&key=7788cb384c9f4d5dbbdbeffd9fe4b92f&type=text%2Fhtml&schema=youtube\" width=\"854\" height=\"480\" scrolling=\"no\" title=\"YouTube embed\" frameborder=\"0\" allow=\"autoplay; fullscreen\" allowfullscreen=\"true\"></iframe>",
+  "url": "https://www.youtube.com/watch?v=WvHrgeVMpf4",
+  "title": "PayU Offers Engine: How to create offers using PayU Offers Engine?",
+  "favicon": "https://www.google.com/favicon.ico",
+  "image": "https://i.ytimg.com/vi/WvHrgeVMpf4/hqdefault.jpg",
+  "provider": "youtube.com",
+  "href": "https://www.youtube.com/watch?v=WvHrgeVMpf4",
+  "typeOfEmbed": "youtube"
+}
+[/block]
+
+
+## Features
+
+- Discovery, product experience, ease of offer creation, customer purchase behavior inference
+- Higher checkout conversion for merchants
+- Incremental GMV from offers by increasing share of wallet and new acquisition
+- Monetization through offer sourcing from banks or merchants
+- Log in to PayU Dashboard and create offers
+- Collect Payments on offers with the simplest integration.
+- Manage your offers by viewing offer performance, editing offers, etc. on PayU Dashboard
+
+## Types of Offers
+
+### Instant Discount
+
+Instant discount as a percentage of the transaction amount or a flat amount. For example, if the transaction is of the amount ₹10,000, the offer discount will be ₹1000. The amount that is posted to the bank for debiting is ₹10000 – ₹1000 = ₹9000. The offer discount is applied before the transaction is initiated.
+
+### Cashback
+
+Cashback as a percentage of the transaction or a flat amount. For example, if the transaction amount is of Rs. 10,000, offer discount is of Rs. 1000, amount initiated in the transaction for debit would be Rs. 10,000 as cashback are settled later.
+
+> 📘 Note: 
+> 
+> Cashbacks need to be processed by the merchants with the banks. Create Cashback Offers only if you have an agreement with them or reach out to the Key Account Manager for additional support.
+
+The cashback time period would be aligned basis merchant requirements. 
+
+Merchants can create both instant discount and cashback offers across the following payment modes 
+
+- Cards (credit and debit)
+- Net banking
+- EMI (Credit and Debit) 
+- Wallets
+- UPI
+
+### No cost EMI
+
+Interest charged from the customer can be completely discounted or given as a cashback. Please note that in case of Instant discount the principal amount would be discounted by a certain amount so that the amount customer pays as a sum of all the EMIs would be exactly as the amount of products/services purchased. In case of cashback the entire interest to be paid by the customer is provided as cashback to the customer.  
+
+For example:
+
+- Product Amount:10000 
+- Interest Rate: 12% 
+- Tenure: 3 months 
+- Interest Paid by customer in case of Interest-Bearing EMI is Rs. 201
+- **Instant Discount:** Principal to be discounted by Rs 197 (Customer would pay Rs 3,333 every month) 
+- **Cashback**: In case of Rs 201 cashback will be refunded back to the customer (Customer would pay Rs 3400 every month)
+
+> 📘 Notes
+> 
+> - The offer value will change depending on the bank and tenure selected by the customer. Additionally,  there is a small difference between the offer cost borne by the merchant in case of Instant Discount or Cashback as in the above example.
+> - Cashbacks need to be processed by the merchants with the banks. Create Cashback Offers only if you have an agreement with them or reach out to Key Account Manager for additional support. The cashback time- period would be aligned basis the merchant requirement.
