@@ -73,7 +73,6 @@ The **NB_mandate_status** API enables you to understand the current state of the
 }
 [/block]
 
-
 ## Sample request
 
 ```curl
