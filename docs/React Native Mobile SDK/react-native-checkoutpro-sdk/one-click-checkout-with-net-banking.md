@@ -21,41 +21,13 @@ PayU offers Net banking transactions using biometrics without the need of a user
 3. Customers will see the OTP screen on SDK for the first time and after OTP verification they will be prompted to set a pin to authenticate for their subsequent transactions. If their device allows biometric authentication, they can set up their fingerprint.
 4. In the repeat transaction, the user may authenticate using a pin or fingerprint (depending on the device’s capabilities).
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/7767f8f-Screenshot_2023-11-16_at_5.41.26_PM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/7767f8f-Screenshot_2023-11-16_at_5.41.26_PM.png" />
 
 #### Repeat flow
 
 When the customer returns to make a repeat transaction and chooses the same bank under the net banking option, they don’t need to input their User ID and Password again. Instead, they can use their fingerprint or PIN to authenticate the transaction.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/8a41557-Screenshot_2023-11-16_at_5.42.38_PM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/8a41557-Screenshot_2023-11-16_at_5.42.38_PM.png" />
 
 ## Integration Steps
 
