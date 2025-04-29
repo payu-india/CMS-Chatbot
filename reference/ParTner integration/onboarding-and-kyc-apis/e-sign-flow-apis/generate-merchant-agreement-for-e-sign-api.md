@@ -1,0 +1,122 @@
+---
+title: Generate Merchant Agreement for E-Sign API
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+This API is used to generate merchant agreements used while E-Sign PayU Service Agreement is generated and signed.
+
+**Environment**
+
+|                            |                             |
+| :------------------------- | :-------------------------- |
+| **Test Environment**       | <https://uatoneapi.payu.in> |
+| **Production Environment** | <https://oneapi.payu.in>    |
+
+## Request Headers
+
+> 📘 Note:
+> 
+> The access token with the scope as **client\_manage\_agreement** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+
+
+
+|               |                         |
+| ------------- | ----------------------- |
+| Authorization | Bearer {{access_token}} |
+| Content-Type  | multipart/form-data     |
+
+## Sample Request
+
+```curl
+curl --location --request GET '{{onboarding_url}}/api/v1/merchants/{{merchant_uuid}}/generate_merged_document_for_esign' \
+--header 'Authorization: Bearer {{access_token}}'
+```
+
+Where **{{onboarding\_url}}** is substituted with the URL specified in the Test or Production environment as mentioned in the _Environment_ section.
+
+## Sample Response
+
+### Success Scenario
+
+Successful response
+
+```plaintext
+{
+  "kyc_document": {
+    "id": 273,
+    "document_category_id": 13,
+    "document_type_id": null,
+    "account_id": null,
+    "remarks": null,
+    "status": "accepted",
+    "uuid": "11eb-de10-3a450888-a354-a483e7015be5",
+    "active": true,
+    "created_at": "2021-07-06T04:11:24.000Z",
+    "updated_at": "2021-07-06T04:14:41.000Z",
+    "kyc_document_type": "Agreement",
+    "document_format": "Soft Copy",
+    "e_stamp_number": null,
+    "temp_account_id": null,
+    "error": null,
+    "record_type": "Merchant",
+    "record_id": 1,
+    "processed_document": {
+      "id": 505,
+      "metadata": {
+        "identified": true
+      },
+      "filename": "merged_doc_6.pdf",
+      "byte_size": 433824,
+      "path": "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdG9CIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--206157392f9c6564fe16971b9783ef352030ac40/merged_doc_6.pdf",
+      "kyc_document_uuid": "11eb-de10-3a450888-a354-a483e7015be5"
+    },
+    "document_category_name": "Service Agreement",
+    "document_type_name": null,
+    "uploaded_documents": [],
+    "document_category": {
+      "id": 13,
+      "name": "Service Agreement",
+      "name_on_frontend": "SERVICE_AGREEMENT"
+    }
+  }
+}
+```
+
+### Failure Scenarios
+
+- The agreement could not be generated for the merchant
+
+Agreement could not be generated for the merchant
+
+```plaintext
+{
+  "error": "Agreement could not be generated"
+}
+```
+
+- Unauthorized request
+
+Unauthorized request
+
+```plaintext
+{
+  "status": "Unauthorized"
+}
+```
+
+- The agreement is not found
+
+Agreement not found
+
+```plaintext
+{
+  "kyc_document": "Agreement Not Found"
+}
+```
