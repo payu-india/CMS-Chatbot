@@ -25,17 +25,17 @@ next:
 ---
 PayU offers various iOS SDKs that each serve a unique use case. Here is a brief overview of the most popular SDKs:
 
-- **Checkout Pro SDK**: The Checkout Pro SDK is a complete, ready-to-use native checkout UI that allows you to integrate a payment interface with minimal effort and get started quickly. The SDK includes a variety of features, such as support for multiple payment methods, Remove.
+* **Checkout Pro SDK**: The Checkout Pro SDK is a complete, ready-to-use native checkout UI that allows you to integrate a payment interface with minimal effort and get started quickly. The SDK includes a variety of features, such as support for multiple payment methods, Remove.
 
-- **Core SDK**: The Core SDK allows you to integrate the PayU payment gateway into your payment interface. This gives you more control over the look and feel of the payment interface, as well as the ability to add custom features and functionality.
+* **Core SDK**: The Core SDK allows you to integrate the PayU payment gateway into your payment interface. This gives you more control over the look and feel of the payment interface, as well as the ability to add custom features and functionality.
 
-- **UPI SDK**: The UPI SDK allows you to integrate Unified Payments Interface (UPI) payments into your iOS app. UPI is a popular payment method in India that allows users to make payments directly from their bank accounts.
+* **UPI SDK**: The UPI SDK allows you to integrate Unified Payments Interface (UPI) payments into your iOS app. UPI is a popular payment method in India that allows users to make payments directly from their bank accounts.
 
-- **OlaMoney SDK**: The OlaMoney SDK allows you to integrate OlaMoney payments into your iOS app. OlaMoney is a digital wallet that allows users to make payments for goods and services online and offline.
+* **OlaMoney SDK**: The OlaMoney SDK allows you to integrate OlaMoney payments into your iOS app. OlaMoney is a digital wallet that allows users to make payments for goods and services online and offline.
 
-- **Native OTP Assist SDK**: The Native OTP Assist SDK allows you to capture OTP (One-Time Password) directly from your iOS app without redirecting the user to the bank's 3D secure page. This can help to improve the checkout experience and reduce the chances of abandonment.
+* **Native OTP Assist SDK**: The Native OTP Assist SDK allows you to capture OTP (One-Time Password) directly from your iOS app without redirecting the user to the bank's 3D secure page. This can help to improve the checkout experience and reduce the chances of abandonment.
 
-- **3DS 2.0 SDK**:  3DS SDK allows you to provide a native experience rather than redirecting customer to a bank page. The UI is standardised according to EMVCO guidelines and offers customisation. With 3DS 2.0, a native experience can only be provided in an app through a 3DS SDK.
+* **3DS 2.0 SDK**:  3DS SDK allows you to provide a native experience rather than redirecting customer to a bank page. The UI is standardised according to EMVCO guidelines and offers customisation. With 3DS 2.0, a native experience can only be provided in an app through a 3DS SDK.
 
 ## Choose your integration
 
