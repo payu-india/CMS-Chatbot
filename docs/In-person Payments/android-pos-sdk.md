@@ -48,9 +48,9 @@ A Handler allows you to send and process Message and Runnable objects associated
 
 An activity is a single, focused thing that the user can do. Almost all activities interact with the user, so the Activity class takes care of creating a window for you in which you can place your UI with setContentView(View). While activities are often presented to the user as full-screen windows, they can also be used in other ways: as floating windows (using a theme with windowIsFloating set) or embedded inside another activity (using ActivityGroup).  For more information on these view and theme, refer to the following from Android Developer Documentation:
 
-- setContentView(View)
-- windowIsFloating set
-- ActivityGroup
+* setContentView(View)
+* windowIsFloating set
+* ActivityGroup
 
 ***
 
