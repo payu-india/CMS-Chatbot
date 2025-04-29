@@ -22,25 +22,10 @@ To view the transaction summary for a preferred interval:
 5. Click the **Custom Range** filter to choose the desired time frame.
 6. Select a particular date range, month and year from the drop-down list or you can use the next and previous buttons given on the top of the calendar view to navigate through the months.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/1c4f1d4-Screenshot_2023-09-22_at_7.04.55_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/1c4f1d4-Screenshot_2023-09-22_at_7.04.55_PM.png" />
 
 > 📘 Note:
-> 
+>
 > The transaction overview page will display a maximum of 50 entries of transactions for a selected period. You can navigate through the pages using the next and previous buttons given on the left bottom corner of the page.
 
 The transaction records provide the complete details of the transactions done or the refunds for the selected date range. You can perceive the information of Transactions or Refunds by choosing the specific tabs given below the **Records** section.
