@@ -46,11 +46,9 @@ Third-Party Verification (TPV) is a mandatory requirement as per Stock Exchange 
 
 ![](https://files.readme.io/2bea29d-image.png)
 
-
-
 ## Comparison of TPV with regular flow
 
-In a regular Net Banking or a UPI transaction, you don’t pass the customer account number from which you want the customer to transact, but in the case of TPV integration, you know the customer account number, and you want the customer only to transact with the same account number.  
+In a regular Net Banking or a UPI transaction, you don’t pass the customer account number from which you want the customer to transact, but in the case of TPV integration, you know the customer account number, and you want the customer only to transact with the same account number.\
 You also pass the customer account number in the payment request compared to regular retail banking or UPI.
 
 ## Why TPV?
@@ -71,9 +69,9 @@ Meet your compliance requirements and start transacting online with your custome
 
 ## TPV integration support
 
-- [Net Banking](/docs/net-banking-integration-for-tpv) and [UPI](/docs/upi-integration-for-tpv) is supported
-- Merchant Hosted Checkout (Seamless) and PayU Server-to-Server Integration are supported on this flow.
+* [Net Banking](/docs/net-banking-integration-for-tpv) and [UPI](/docs/upi-integration-for-tpv) is supported
+* Merchant Hosted Checkout (Seamless) and PayU Server-to-Server Integration are supported on this flow.
 
 > 🚧 TPV Not Support for PayU Hosted Checkout
-> 
+>
 > Currently, PayU does not support Non-Seamless or PayU Hosted Checkout integration for TPV.
