@@ -15,21 +15,7 @@ next:
 ---
 Different parties are involved in the settlement for Cross-Border Payments - Import merchants. Transactional flow has no changes.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/c051d23-cross-border-import-workflow.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/c051d23-cross-border-import-workflow.png" />
 
 PayU has tied up with **AD-1 CATEGORY bank** to do the settlement. This account is owned/controlled by PayU and acts as an “**Import Collection (IC) Account**.”
 
@@ -39,5 +25,5 @@ PayU has tied up with **AD-1 CATEGORY bank** to do the settlement. This account 
 
 Transactional flows & integrations remain the same for PACB merchants, and merchants need to perform the following:
 
-- Merchant has to share invoice numbers in the UDF5 field while doing transactions in real-time.
-- Post successful transaction, invoice/AWB copy has to be submitted.
+* Merchant has to share invoice numbers in the UDF5 field while doing transactions in real-time.
+* Post successful transaction, invoice/AWB copy has to be submitted.
