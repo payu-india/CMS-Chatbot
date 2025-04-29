@@ -22,33 +22,18 @@ For hash generation logic and Listener/Callback integration, the [Hash generatio
 
 ## Prerequisites
 
-- Minimum Android SDK Version - 23 and above.
-- Compile SDK Version - 31 and above.
-- The following .aar (Android archive) files provided by PayU during onboarding:
+* Minimum Android SDK Version - 23 and above.
+* Compile SDK Version - 31 and above.
+* The following .aar (Android archive) files provided by PayU during onboarding:
   1. NPCI Secure Component
   2. AXIS Olive
-- For iOS Minimum SDK version is 13 but you can use upi-bolt features on iOS 17 and above only.
-- The following xcframework files will be provided by PayU during onboarding.
-  - NPCI - CommonLibrary.xcframework
-  - AXIS - OlivePayLibrary.xcframework  
+* For iOS Minimum SDK version is 13 but you can use upi-bolt features on iOS 17 and above only.
+* The following xcframework files will be provided by PayU during onboarding.
+  * NPCI - CommonLibrary.xcframework
+  * AXIS - OlivePayLibrary.xcframework\
     Add these frameworks to your project. The added framework is similar to the following screenshot:
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/227250da5bb54c8967c59370aac96e27be792b9224dc4a61b536efe539aa2429-bolt_added_framework.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "600px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="600px" src="https://files.readme.io/227250da5bb54c8967c59370aac96e27be792b9224dc4a61b536efe539aa2429-bolt_added_framework.png" />
 
 ## Step 1: Add permissions to Manifest file
 
@@ -81,22 +66,7 @@ api(files("$projectDir/libs/oliveupi-plugin-release_1.0.2_prod_10-09-2024.aar"))
 
 The screenshot of libs directory is similar to the following:
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/a02ecf05cde24c29a8a5b4ba992dde13cc092a031a3f0d69c63636db84d14eab-upi-bolt-iconic-libraries_folder.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "350px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="350px" src="https://files.readme.io/a02ecf05cde24c29a8a5b4ba992dde13cc092a031a3f0d69c63636db84d14eab-upi-bolt-iconic-libraries_folder.png" />
 
 ## Step 3: Initialize the SDK
 
@@ -129,39 +99,120 @@ PayUUpiPlugin.initSDK({ config: JSON.stringify(config) })
 
 The following fields are needed as a request for this API:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Fields",
-    "h-1": "Definition",
-    "0-0": "config  \n` mandatory`",
-    "0-1": "`String` Config includes the below fields.",
-    "1-0": "merchantName  \n` mandatory`",
-    "1-1": "`String`Merchant Name",
-    "2-0": "merchantKey  \n` mandatory`",
-    "2-1": "`String`PayU Merchant Key",
-    "3-0": "phone  \n` mandatory`",
-    "3-1": "`String`Phone number for registration",
-    "4-0": "email  \n` mandatory`",
-    "4-1": "`String`Customer Email Id",
-    "5-0": "pluginTypes  \n` mandatory`",
-    "5-1": "`String Array`List of Supported Banks (“AXIS, HDFC”)",
-    "6-0": "isProduction  \n` optional`",
-    "6-1": "`Boolean`Prod - ture, staging - false",
-    "7-0": "excludedBanksIINs  \n` optional`",
-    "7-1": "`String Array`List of Bank’s IIN to exclude",
-    "8-0": "requestId  \n` mandatory`",
-    "8-1": "`String`Unique reference ID"
-  },
-  "cols": 2,
-  "rows": 9,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Fields
+      </th>
 
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        config
+        ` mandatory`
+      </td>
+
+      <td>
+        `String` Config includes the below fields.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchantName\
+        ` mandatory`
+      </td>
+
+      <td>
+        `String`Merchant Name
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchantKey\
+        ` mandatory`
+      </td>
+
+      <td>
+        `String`PayU Merchant Key
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        ` mandatory`
+      </td>
+
+      <td>
+        `String`Phone number for registration
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email\
+        ` mandatory`
+      </td>
+
+      <td>
+        `String`Customer Email Id
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pluginTypes\
+        ` mandatory`
+      </td>
+
+      <td>
+        `String Array`List of Supported Banks (“AXIS, HDFC”)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        isProduction\
+        ` optional`
+      </td>
+
+      <td>
+        `Boolean`Prod - ture, staging - false
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        excludedBanksIINs\
+        ` optional`
+      </td>
+
+      <td>
+        `String Array`List of Bank’s IIN to exclude
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        requestId\
+        ` mandatory`
+      </td>
+
+      <td>
+        `String`Unique reference ID
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Step 4: Check for UPI Bolt SDK availability
 
@@ -213,50 +264,158 @@ PayUUpiPlugin.registerAndPay({
 ```
 
 > 📘 Callback reference:
-> 
+>
 > For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic) sub-section.
 
 The following fields are needed as a request for this API:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Definition",
-    "0-0": "amount  \n`mandatory`",
-    "0-1": "`String` Amount to be paid",
-    "1-0": "txnId  \n`mandatory`",
-    "1-1": "`String`Unique transaction ID",
-    "2-0": "productInfo  \n`mandatory`",
-    "2-1": "`String`Product description",
-    "3-0": "firstName  \n`mandatory`",
-    "3-1": "`String`First name of the user",
-    "4-0": "furl  \n`optional`",
-    "4-1": "`String`Failure URL ",
-    "5-0": "surl  \n`optional`",
-    "5-1": " `String`Success URL",
-    "6-0": "udf1  \n`optional`",
-    "6-1": " `String`User defined field",
-    "7-0": "udf2  \n`optional`",
-    "7-1": "  `String`User defined field",
-    "8-0": "udf3  \n`optional`",
-    "8-1": "  `String`User defined field",
-    "9-0": "udf4  \n`optional`",
-    "9-1": "  `String`User defined field",
-    "10-0": "udf5  \n`optional`",
-    "10-1": "  `String`User defined field",
-    "11-0": "isCCTxnEnabled  \n`optional`",
-    "11-1": "  `Boolean`Specify whether CC transaction is enabled"
-  },
-  "cols": 2,
-  "rows": 12,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        amount
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Amount to be paid
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txnId\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Unique transaction ID
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productInfo\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Product description
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstName\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`First name of the user
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        furl\
+        `optional`
+      </td>
+
+      <td>
+        `String`Failure URL 
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        surl\
+        `optional`
+      </td>
+
+      <td>
+         `String`Success URL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf1\
+        `optional`
+      </td>
+
+      <td>
+         `String`User defined field
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf2\
+        `optional`
+      </td>
+
+      <td>
+          `String`User defined field
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf3\
+        `optional`
+      </td>
+
+      <td>
+          `String`User defined field
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf4\
+        `optional`
+      </td>
+
+      <td>
+          `String`User defined field
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf5\
+        `optional`
+      </td>
+
+      <td>
+          `String`User defined field
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        isCCTxnEnabled\
+        `optional`
+      </td>
+
+      <td>
+          `Boolean`Specify whether CC transaction is enabled
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Manage UPI accounts
 
@@ -267,7 +426,7 @@ PayUUpiPlugin.openUPIManagement({ screenType: <screenType> })
 ```
 
 > 📘 Callback reference:
-> 
+>
 > For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic) sub-section.
 
 The following fields are needed as a request for this API:
@@ -280,13 +439,13 @@ The following fields are needed as a request for this API:
 
 The listener/callback contains 4 methods where the merchant app will get the API response and hash-related callbacks
 
-| S.No. | Listener                                                                                    | Description                                                                               |
-| ----- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| 1     | Plugins\['PayUUpiPlugin'\]\['addListener'\]('onPayUSuccess', (data: string) => {});         | It will contain success response. Ref. 5.1                                                |
-| 2     | Plugins\['PayUUpiPlugin'\]\['addListener'\]('onPayUFailure', (data: string) => {});         | It will contain failure response. Ref. 5.1                                                |
-| 3     | Plugins\['PayUUpiPlugin'\]\['addListener'\]('onPayUCancel', (data: string) => {});          | It will tell if payment was cancelled.                                                    |
-| 4     | Plugins\['PayUUpiPlugin'\]\['addListener'\]('generateHash', (data: string) => {});          | For hash generation, refer to [Hash generation logic ](#hash-generation-logic)sub-section |
-| 5     | Plugins\['PayUUpiPlugin'\]\['addListener'\]('isUPIBoltSDKAvailable', (data: string) => {}); | It will give response for “PayUUpiPlugin.isUPIBoltSDKAvailable();” method trigger.        |
+| S.No. | Listener                                                                                      | Description                                                                               |
+| ----- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| 1     | Plugins\['PayUUpiPlugin'\]\['addListener'\]\('onPayUSuccess', (data: string) => \{});         | It will contain success response. Ref. 5.1                                                |
+| 2     | Plugins\['PayUUpiPlugin'\]\['addListener'\]\('onPayUFailure', (data: string) => \{});         | It will contain failure response. Ref. 5.1                                                |
+| 3     | Plugins\['PayUUpiPlugin'\]\['addListener'\]\('onPayUCancel', (data: string) => \{});          | It will tell if payment was cancelled.                                                    |
+| 4     | Plugins\['PayUUpiPlugin'\]\['addListener'\]\('generateHash', (data: string) => \{});          | For hash generation, refer to [Hash generation logic ](#hash-generation-logic)sub-section |
+| 5     | Plugins\['PayUUpiPlugin'\]\['addListener'\]\('isUPIBoltSDKAvailable', (data: string) => \{}); | It will give response for “PayUUpiPlugin.isUPIBoltSDKAvailable();” method trigger.        |
 
 ### PayUUPIResponse
 
