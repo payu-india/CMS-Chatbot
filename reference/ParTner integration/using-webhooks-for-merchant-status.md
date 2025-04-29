@@ -12,5 +12,5 @@ next:
 ---
 The following sections describe how to get the real-time merchant status using webhooks:
 
-- [Register Webhooks API to Get Real-Time Merchant Status](ref:register-webhooks-api-to-get-real-time-merchant-status)
-- [Get Real-Time Merchant Status using Webhooks](ref:get-real-time-merchant-status-using-webhooks)
+* [Register Webhooks API to Get Real-Time Merchant Status](ref:register-webhooks-api-to-get-real-time-merchant-status)
+* [Get Real-Time Merchant Status using Webhooks](ref:get-real-time-merchant-status-using-webhooks)
