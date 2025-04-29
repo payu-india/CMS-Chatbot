@@ -24,7 +24,7 @@ This API is used to create a payment link for your customer with Partner Integra
 
 > 📘 Note:
 > 
-> The access token with the scope as **create_payment_links**  is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+> The access token with the scope as **create_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
 ### Environment
 
@@ -33,7 +33,8 @@ This API is used to create a payment link for your customer with Partner Integra
 | **Test Environment**       | <https://uatoneapi.payu.in> |
 | **Production Environment** | <https://oneapi.payu.in>    |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location -g '{{payu_base_url}}/payment-links' \
@@ -62,14 +63,15 @@ curl --location -g '{{payu_base_url}}/payment-links' \
     "udf": {
         "udf1": "sampleUdf1",
         "udf2": "sampleUdf2",
-        "udf3": "sampleUdf3",
+        "udf3": "sampleUdf3"
     }
 }'
 ```
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 - Success scenario
 
