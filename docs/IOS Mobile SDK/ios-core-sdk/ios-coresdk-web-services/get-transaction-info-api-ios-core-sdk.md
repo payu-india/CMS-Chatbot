@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The** Get Transaction Info** API is used to extract the transaction details between two given time periods. The API takes the input as two dates and the time (initial and final) between which the transaction details are needed. The output would consist of the status of the API (success or failed) and all the transaction details in an array format. 
+The **Get Transaction Info** API is used to extract the transaction details between two given time periods. The API takes the input as two dates and the time (initial and final) between which the transaction details are needed. The output would consist of the status of the API (success or failed) and all the transaction details in an array format. 
 
 ## Integration
 
