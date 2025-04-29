@@ -22,11 +22,12 @@ metadata:
 next:
   description: ''
 ---
-The Get TDR API (**get_TDR** API) is used to get the Transaction Discount Rate (TDR) value of a transaction with PayU. It is a simple API for which you need to provide the PayU ID of the transaction as input and the TDR value is returned in the output, var1 is Payu id (mihpayid) of the transaction.
+The Get TDR API (**get\_TDR** API) is used to get the Transaction Discount Rate (TDR) value of a transaction with PayU. It is a simple API for which you need to provide the PayU ID of the transaction as input and the TDR value is returned in the output, var1 is Payu id (mihpayid) of the transaction.
 
 <GENERALAPIsEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d"key=JP***g&command=get_TDR&var1=403993715521891555&hash=a0cf2d4ed3fb551388bd9e078f7ace8fb565d3240e06735cfc83330bb604b0f97a26a31160f1987af4ba5f78e126f400826a62d71337395e6e127b28a62b860d"
@@ -34,7 +35,8 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: appli
 
 </details>
 
-<details>  <summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success scenario**
 
@@ -50,7 +52,7 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: appli
 
 **Failure scenario**
 
-- If mihpayid is not found
+* If mihpayid is not found
 
 ```
 {
@@ -63,7 +65,8 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: appli
 
 ## Request parameters
 
-<details>  <summary>Reference information for request parameters</summary>
+<details>
+  <summary>Reference information for request parameters</summary>
 
 <KeyHashForGeneralParametersDescription />
 
@@ -73,4 +76,4 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: appli
 
 Use the following sample values while trying out the API:
 
-- `var1` (Payu ID/mihpayid): 403993715521891555
+* `var1` (Payu ID/mihpayid): 403993715521891555
