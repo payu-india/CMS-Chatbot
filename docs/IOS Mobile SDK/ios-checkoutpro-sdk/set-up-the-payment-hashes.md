@@ -80,7 +80,7 @@ func generateHash(for param: DictOfString, onCompletion: @escaping PayUHashGener
 
 Here,
 
-           ** param ->** Dictionary that contains key as **HashConstant.hashName** & **HashConstant.hashString**
+            **param ->** Dictionary that contains key as **HashConstant.hashName** & **HashConstant.hashString**
 
 **onCompletion ->** Once you fetch the **hash** from server, pass that hash with key as **param[HashConstant.hashName]**
 
