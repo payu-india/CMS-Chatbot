@@ -24,10 +24,10 @@ PayU offers the following models to integrate vault using PayU Hosted Checkout o
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Tokenization_Models-1024x521.png)
 
-- [PayU Hosted Checkout Integration - Model 1](doc:payu-hosted-checkout-integration-with-vault-model-1)
-- Merchant Hosted Checkout Integration
-  - [Zero Code Change - Model 2](doc:zero-code-change-for-vault-integration-model-2)
-  - [Simple REST APIs - Model 3](doc:simple-rest-apis-for-vault-integration-model-3)
+* [PayU Hosted Checkout Integration - Model 1](doc:payu-hosted-checkout-integration-with-vault-model-1)
+* Merchant Hosted Checkout Integration
+  * [Zero Code Change - Model 2](doc:zero-code-change-for-vault-integration-model-2)
+  * [Simple REST APIs - Model 3](doc:simple-rest-apis-for-vault-integration-model-3)
 
 ## Using PayU Hosted Checkout Integration
 
@@ -35,8 +35,8 @@ PayU offers the following models to integrate vault using PayU Hosted Checkout o
 
 If you are using the PayU Hosted Checkout integration and vault, there are no changes required from your side. PayU will manage everything from procuring, managing tokens, consent management, and displaying saved cards on the checkout page end-to-end. To enable vault with PayU Hosted Checkout integration:
 
-- Reach your PayU Key Account Manager to enable vault.
-- If you are not using the PayU vault, the only change required will be passing a user identifier_._
+* Reach your PayU Key Account Manager to enable vault.
+* If you are not using the PayU vault, the only change required will be passing a user identifie&#x72;*.*
 
 ## Using Merchant Hosted Checkout Integration
 
@@ -48,11 +48,11 @@ If you are using the Server-to-Server integration, you can choose to have PayU c
 
 #### **Pros**
 
-- Zero cost of compliance at your end. PayU will take care of creating, managing, and storing the tokens.
-- Minimal technical changes at you end as you will only need to pass the customer consent to create a token which is one extra parameter in the **\_payment** API.
+* Zero cost of compliance at your end. PayU will take care of creating, managing, and storing the tokens.
+* Minimal technical changes at you end as you will only need to pass the customer consent to create a token which is one extra parameter in the **\_payment** API.
 
 > 📘 Note:
-> 
+>
 > In this model, you need to ensure that first-time payment is done with PayU Payment Gateway to create the token.
 
 ### Model 3-Simple REST APIs
@@ -64,16 +64,16 @@ It provides you with complete control and flexibility in creating and managing t
 3. The merchant can choose to store the card tokens (including network and issuer token).
 
 > 📘 Note:
-> 
+>
 > You need to be PCI-DSS compliant if you want to store the network tokens at your end.
 
 #### Pros
 
-- You have complete control on the token creation and management. The token can continue to be stored at PayU and/or merchant end.
-- Completely decouple tokenization from payment processing as they are independent events.
+* You have complete control on the token creation and management. The token can continue to be stored at PayU and/or merchant end.
+* Completely decouple tokenization from payment processing as they are independent events.
 
 #### Cons
 
-- High cost of compliance
-- You need to ensure that the orchestration is in compliance with the guidelines as the create token call and create payment calls are disjointed.
-- You need to be PCI-DSS compliant if you want to store the network tokens at your end.
+* High cost of compliance
+* You need to ensure that the orchestration is in compliance with the guidelines as the create token call and create payment calls are disjointed.
+* You need to be PCI-DSS compliant if you want to store the network tokens at your end.
