@@ -20,9 +20,9 @@ When you are creating an offer, you can save as draft using the**Save as Draft &
 
 To complete an offer details that was saved in draft earlier:
 
-1. Navigate to the _Offers Overview_ page.
+1. Navigate to the *Offers Overview* page.
 
-   The _Offers Overview_ page is displayed. In the **Offers List** pane, if any offers details are saved in draft, the **Drafted Offers** tab is displayed next to the **Published Offers** tab.
+   The *Offers Overview* page is displayed. In the **Offers List** pane, if any offers details are saved in draft, the **Drafted Offers** tab is displayed next to the **Published Offers** tab.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/Drafted_Offers_option_encircled-1024x870.png)
 
