@@ -30,9 +30,9 @@ The Model 2 involves only zero code change and this section describes the genera
 To create the token, only minor code changes is required in your implementation. However, to process the transactions using the tokens, you need to integrate an extra API.
 
 1. PayU onboards the merchant on the PayU token hub.
-2. Merchant will pass the consent value and user id in the **\_payment** API.
+2. Merchant will pass the consent value and user id in the **_payment** API.
 
-   Here, consent is taken from customer on the merchant’s website (similar to the step 2 of [Model 1 - PayU Hosted Checkout Integration](doc:payu-hosted-checkout-integration-with-vault-model-1) before passing the consent value.
+   Here, consent is taken from customer on the merchant’s website (similar to the step 2 of [Model 1 - PayU Hosted Checkout Integration](doc:payu-hosted-checkout-integration-with-vault-model-1) before passing the consent value).
 
 [block:image]
 {
@@ -50,7 +50,6 @@ To create the token, only minor code changes is required in your implementation.
 }
 [/block]
 
-
 - If the merchant is already using the PayU vault, only consent parameter needs to be passed.
 - If the merchant is newly onboarded on the PayU vault, consent and user ID parameters need to be passed.
 
@@ -65,14 +64,14 @@ The following flow diagram illustrates the workflow for first-time payment workf
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/Merchant_Hosted_Model2_First_Time_Flow-4-1024x960.png)
 
-1. Merchant takes the customer card details and consent, and then initiates transaction and sends the payment details to PayU.​
+1. Merchant takes the customer card details and consent, and then initiates transaction and sends the payment details to PayU.​
 2. PayU initiates the transaction with the Payment Gateway.
 3. Payment Gateway passes the transaction status to PayU.
-4. PayU initiates the token provision with PayU vault .
-5. PayU then creates token with networks and issuers.
-6. PayU passes the token to the merchant.
+4. PayU initiates the token provision with PayU vault.
+5. PayU then creates token with networks and issuers.
+6. PayU passes the token to the merchant.
 
-### Extra request parameters to be posted using \_payment API
+### Extra request parameters to be posted using _payment API
 
 **Environment**
 
@@ -88,7 +87,7 @@ The following flow diagram illustrates the workflow for first-time payment workf
     "h-1": "**Description**",
     "h-2": "**Example**",
     "0-0": "user\\_credentials  \n**mandatory**",
-    "0-1": "`varchar` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the **save\\_user\\_cards** API. The format of the value is `<merchant key>:<user ID>`",
+    "0-1": "`varchar` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the **save\\_user\\_cards** API. The format of the value is `<merchant key>:<user ID>`",
     "0-2": "a:b",
     "1-0": "store\\_card  \n**mandatory**",
     "1-1": "`integer` This is an existing field, where the card token flag is passed by merchant. The values for this field can be:  \n  \n- **0** – Consent was not provided by customer  \n- **1** – Consent was provided by customer  \n  \nIf the consent is provided by the customer, the value is passed as **1**.",
@@ -104,10 +103,9 @@ The following flow diagram illustrates the workflow for first-time payment workf
 }
 [/block]
 
-
 > 📘 Notes:
 > 
-> - Only the fields needed for this operation are mentioned here. For the complete API details for the **\_payment** API, refer to [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted).
+> - Only the fields needed for this operation are mentioned here. For the complete API details for the **_payment** API, refer to [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted).
 > - After taking the consent, merchant will have to call PayU for doing the transaction and creating token. This is needed as PayU will ensure the additional factor authentication (AFA) requirements are taken care of.
 > - The subsequent transactions (using the token) can be done through PayU or any other payment processor.
 
@@ -132,14 +130,14 @@ The steps involved in creating token after processing payment workflow:
 
 1. Merchant calls PayU with get cards API by passing the user credential
 2. Customer selects the card on which they want to do transaction with
-3. Merchant Initiates transaction and sends the request to PayU ​
-4. PayU processes the transaction and sends the transaction status to the merchant 
+3. Merchant Initiates transaction and sends the request to PayU ​
+4. PayU processes the transaction and sends the transaction status to the merchant 
 
 ### Process transaction with a saved card
 
 If you have not received a response from PayU with First-Time Payment Workflow, use the **get\_user\_card** API as described in [Get User Cards API](ref:get_user_cards_api)
 
-### Extra parameters to be posted with saved card using \_payment API
+### Extra parameters to be posted with saved card using _payment API
 
 [block:parameters]
 {
@@ -148,10 +146,10 @@ If you have not received a response from PayU with First-Time Payment Workflow, 
     "h-1": "**Description**",
     "h-2": "**Example**",
     "0-0": "user\\_credentials  \n**mandatory**",
-    "0-1": "_varchar_  It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save\\_user\\_cards API.",
+    "0-1": "_varchar_ It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save\\_user\\_cards API.",
     "0-2": " a:b",
     "1-0": "store\\_card\\_token",
-    "1-1": "_varchar_  It is the card token for a card that is returned by PayU when you store a card. When you store a card using the save\\_user\\_cards API, the response from PayU contains the card token value in the cardToken parameter.",
+    "1-1": "_varchar_ It is the card token for a card that is returned by PayU when you store a card. When you store a card using the save\\_user\\_cards API, the response from PayU contains the card token value in the cardToken parameter.",
     "1-2": "57cb996f2eaeee525765a",
     "2-0": "storecard\\_token\\_type  \n**optional for PayU token flow**",
     "2-1": "_integer_ This parameter can be posted with the value as **0** as you are using PayU token hub.",
@@ -167,16 +165,15 @@ If you have not received a response from PayU with First-Time Payment Workflow, 
 }
 [/block]
 
-
 > 📘 Note:
 > 
-> Only the fields needed for this operation are mentioned here. For the complete API details of the **\_payment** API, refer to [Collect Payments using Merchant Hosted Checkout](/docs/custom-checkout-merchant-hosted).
+> Only the fields needed for this operation are mentioned here. For the complete API details of the **_payment** API, refer to [Collect Payments using Merchant Hosted Checkout](/docs/custom-checkout-merchant-hosted).
 
 ### Sample response
 
 #### Success scenario
 
-PayU will return the response (unformatted) similar to the following on the **surl** specified using **\_payment** API:
+PayU will return the response (unformatted) similar to the following on the **surl** specified using **_payment** API:
 
 ```plaintext
 mihpayid=999000000001268&mode=CC&status=success&unmappedstatus=captured&key=J****g&txnid=2b019fa0976d7480cf5&amount=10.00&cardCategory=domestic&discount=0.00&net_amount_debit=10&addedon=2021-11-29+11%3A51%3A35&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=82df12630b4e4083a90b314534872dfb22e97aaa191b1b93db2a76351561bd612a0b321609b0e31a3b7b62d1928c8e67e9fed5b2b5209deba4366c58706c1ffe&field1=3245029356632939671830&field2=302404&field3=10.00&field4=999000000001268&field5=100&field6=02&field7=AUTHPOSITIVE&field8=&field9=Transaction+is+Successful&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=3245029356632939671830&bankcode=CC&error=E000&error_Message=No+Error&cardToken=28b99d39e83e8031caa7ad&name_on_card=Test+User&cardnum=XXXXXXXXXXXX2346&cardhash=This+field+is+no+longer+supported+in+postback+params.
