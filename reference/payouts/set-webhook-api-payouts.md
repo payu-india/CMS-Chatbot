@@ -12,12 +12,10 @@ next:
 ---
 You can configure webhooks using PayU Dashboard too. For more information, check PayU Dashboard. This section describes how to configure the webhook URL using API.
 
-
-
 |                            |                                                  |
 | -------------------------- | ------------------------------------------------ |
-| **Production Environment** | <https://payout.payumoney.com/payout/v2/webhook> |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/v2/webhook/>   |
+| **Production Environment** | &lt;https://payout.payumoney.com/payout/v2/webhook&gt; |
+| **Test Environment**       | &lt;https://uatoneapi.payu.in/payout/v2/webhook/&gt;   |
 
 ## Request header parameters
 
@@ -29,7 +27,7 @@ You can configure webhooks using PayU Dashboard too. For more information, check
     "h-2": "**Example**",
     "0-0": "Authorization`\nmandatory`",
     "0-1": "`String` Specify the access token generated earlier in this parameter.",
-    "0-2": "Bearer {access\\_token}",
+    "0-2": "Bearer `{access_token}`",
     "1-0": "payoutMerchantId`\nmandatory`",
     "1-1": "`String` Specify the payout merchant id provided while onboarding or creating Payout account.",
     "1-2": "1111126",
@@ -47,7 +45,6 @@ You can configure webhooks using PayU Dashboard too. For more information, check
 }
 [/block]
 
-
 > 📘 Note:
 > 
 > The **pid** is **payoutMerchantId**, however it is different from the PayU merchant id. Check the Payouts Dashboard or call the PayU Customer Support if you don’t know your **payoutsMerchantID**.
@@ -58,7 +55,7 @@ You can configure webhooks using PayU Dashboard too. For more information, check
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | webhook` mandatory`             | Configure the webhooks for different type of events. The event can be any of the following:                                                                                             | transfer\_reversed |
 | values.url` mandatory`          | This is the post URL of the API where the merchant will listen to PayU events. In other words, this is the webhook URL.                                                                 |                    |
-| values.authorization` optional` | Merchant can provide this value which will be sent in the header while pushing the payouts event to the merchant.Using this merchant can authenticate that request is coming from PayU. |  ##                |
+| values.authorization` optional` | Merchant can provide this value which will be sent in the header while pushing the payouts event to the merchant.Using this merchant can authenticate that request is coming from PayU. |  ##
 
 ## Sample request
 
