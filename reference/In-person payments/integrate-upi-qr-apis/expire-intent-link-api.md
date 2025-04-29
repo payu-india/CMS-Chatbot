@@ -10,43 +10,97 @@ metadata:
 next:
   description: ''
 ---
-The** Expire Intent Link** API is used to expire UPI Intent link.
+The **Expire Intent Link** API is used to expire UPI Intent link.
 
-| Environment | URI                                             |
-| :---------- | :---------------------------------------------- |
-| Production  | <https://info.payu.in/merchant/postservice.php> |
+| Environment | URI                                                                                            |
+| :---------- | :--------------------------------------------------------------------------------------------- |
+| Production  | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Sample Value",
-    "0-0": "key  \n`mandatory`",
-    "0-1": "`string` This parameter must include the merchant key that was provided by PayU",
-    "0-2": "vDy3i7",
-    "1-0": "command  \n`mandatory`",
-    "1-1": "`string` The parameter must contain the name of the web service. For this API, `expire_intent_link` must be posted.",
-    "1-2": "expire_intent_link",
-    "2-0": "hash  \n`mandatory`",
-    "2-1": "`string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:  \nsha512(key|command|var1|salt)  \nsha512 is the encryption method used here.",
-    "2-2": "ajh84babvav",
-    "3-0": "var1  \n`mandatory`",
-    "3-1": "`JSON` This parameter will include the transactionIds in an array format (comma separated).  \n**Note**: Only 100 transactions can be processed for a request,",
-    "3-2": "{\"transactionIds\":\"intent210,intent211\"}"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Sample Value
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        `string` This parameter must include the merchant key that was provided by PayU
+      </td>
+
+      <td>
+        vDy3i7
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        command\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The parameter must contain the name of the web service. For this API, `expire_intent_link` must be posted.
+      </td>
+
+      <td>
+        expire\_intent\_link
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:\
+        sha512(key|command|var1|salt)\
+        sha512 is the encryption method used here.
+      </td>
+
+      <td>
+        ajh84babvav
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var1\
+        `mandatory`
+      </td>
+
+      <td>
+        `JSON` This parameter will include the transactionIds in an array format (comma separated).  
+
+        * \*Note\*\*: Only 100 transactions can be processed for a request,
+      </td>
+
+      <td>
+        \{"transactionIds":"intent210,intent211"}
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
@@ -119,27 +173,63 @@ Response response = client.newCall(request).execute();
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of web service call. The status can be any of the following:  \n  \n0 - If web service call failed  \n1 - If web service call succeeded",
-    "1-0": "msg",
-    "1-1": "This parameter returns the following message if the offline intent link was generated successfully:  \n`Intent link generated`",
-    "2-0": "details",
-    "2-1": "This parameter returns the message in following JSON format if the request was successful:  \n  \ntxnId: The transaction ID of the offline intent link.  \nstatus: The status can be any of the following based on whether intent link was expired:  \n1: Successfully link got expired  \n0: Link had got already expired or not active intent link.  \nmsg: Any of the following message is displayed based on the link was expired by this API or no active link.  \nIntent link has expired  \nNo active intent link against this transaction ID"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        This parameter returns the status of web service call. The status can be any of the following:  
+
+        0 - If web service call failed\
+        1 - If web service call succeeded
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        msg
+      </td>
+
+      <td>
+        This parameter returns the following message if the offline intent link was generated successfully:\
+        `Intent link generated`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        details
+      </td>
+
+      <td>
+        This parameter returns the message in following JSON format if the request was successful:  
+
+        txnId: The transaction ID of the offline intent link.\
+        status: The status can be any of the following based on whether intent link was expired:\
+        1: Successfully link got expired\
+        0: Link had got already expired or not active intent link.\
+        msg: Any of the following message is displayed based on the link was expired by this API or no active link.\
+        Intent link has expired\
+        No active intent link against this transaction ID
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample response
 
