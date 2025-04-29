@@ -17,10 +17,11 @@ This API lets you validate VPA ID of your customers. It will return whether a pa
 
 |                            |                                                            |
 | -------------------------- | ---------------------------------------------------------- |
-| **Production Environment** | <https://payout.payumoney.com/payout/merchant/validateVpa> |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/merchant/validateVpa>    |
+| **Production Environment** | &lt;https://payout.payumoney.com/payout/merchant/validateVpa&gt; |
+| **Test Environment**       | &lt;https://uatoneapi.payu.in/payout/merchant/validateVpa&gt;    |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location --request POST 'https://uatoneapi.payu.in/payout/merchant/validateVpa?vpa=omi1@yesb' \
@@ -31,7 +32,8 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/merchant/valida
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success scenario**
 
