@@ -105,39 +105,20 @@ PayUUPIBoltUiSdk.initSDK(initConfig);
 
 The following fields are needed as a request for this API:
 
-[block:parameters]
+```json
 {
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "config  \n`mandatory`",
-    "0-1": "`PayUUPIBoltUIConfig` PayUUPIBoltUIConfig includes the below fields.",
-    "1-0": "merchantName  \n`mandatory`",
-    "1-1": "`String` Merchant Name",
-    "2-0": "merchantKey  \n`mandatory`",
-    "2-1": "`String` Merchant key that was provided by PayU while onboarding. Refer to [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).",
-    "3-0": "phone  \n`mandatory`",
-    "3-1": "`String` Phone number for registration",
-    "4-0": "email  \n`mandatory`",
-    "4-1": "`String` Customer Email Id",
-    "5-0": "pluginTypes  \n`mandatory`",
-    "5-1": "`String Array` List of Supported Banks (Values - PluginType.AXIS)",
-    "6-0": "isProduction  \n`optional`",
-    "6-1": "`Boolean` Indicates the environment:  \n  \n- **true** indicates production environment\n- **false** indicates staging or test environment",
-    "7-0": "excludedBanksIINs  \n`optional`",
-    "7-1": "`String` List of Bank's IIN to exclude",
-    "8-0": "requestId  \n`mandatory`",
-    "8-1": "`String` Unique reference ID"
-  },
-  "cols": 2,
-  "rows": 9,
-  "align": [
-    null,
-    null
-  ]
+  "Field": "Description",
+  "config": "`PayUUPIBoltUIConfig` PayUUPIBoltUIConfig includes the below fields.",
+  "merchantName": "`String` Merchant Name",
+  "merchantKey": "`String` Merchant key that was provided by PayU while onboarding. Refer to [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).",
+  "phone": "`String` Phone number for registration",
+  "email": "`String` Customer Email Id",
+  "pluginTypes": "`String Array` List of Supported Banks (Values - PluginType.AXIS)",
+  "isProduction": "`Boolean` Indicates the environment:  \n  \n- **true** indicates production environment\n- **false** indicates staging or test environment",
+  "excludedBanksIINs": "`String` List of Bank's IIN to exclude",
+  "requestId": "`String` Unique reference ID"
 }
-[/block]
-
+```
 
 ### Reset the SDK
 
@@ -195,43 +176,22 @@ PayUUPIBoltUiSdk.payURegisterAndPay(createPaymentParams());
 
 The following fields are needed as a request:
 
-[block:parameters]
+```json
 {
-  "data": {
-    "h-0": "Fields",
-    "h-1": "Description",
-    "0-0": "amount  \n`mandatory`",
-    "0-1": "`String` Amount to payment",
-    "1-0": "txnId  \n`mandatory`",
-    "1-1": "`String` Unique transaction Id",
-    "2-0": "productInfo  \n`mandatory`",
-    "2-1": "`String` Product description",
-    "3-0": "firstName  \n`mandatory`",
-    "3-1": "`String` First name of the user",
-    "4-0": "surl  \n`optional`",
-    "4-1": "`String` Success URL",
-    "5-0": "furl  \n`optional`",
-    "5-1": "`String` Failure URL",
-    "6-0": "udf1  \n`optional`",
-    "6-1": "`String` User-defined field 1",
-    "7-0": "udf2  \n`optional`",
-    "7-1": "`String` User-defined field 2",
-    "8-0": "udf3  \n`optional`",
-    "8-1": "`String` User-defined field 3",
-    "9-0": "udf4  \n`optional`",
-    "9-1": "`String` User-defined field 4",
-    "10-0": "udf5  \n`optional`",
-    "10-1": "`String` User-defined field 5"
-  },
-  "cols": 2,
-  "rows": 11,
-  "align": [
-    null,
-    null
-  ]
+  "Fields": "Description",
+  "amount": "`String` Amount to payment",
+  "txnId": "`String` Unique transaction Id",
+  "productInfo": "`String` Product description",
+  "firstName": "`String` First name of the user",
+  "surl": "`String` Success URL",
+  "furl": "`String` Failure URL",
+  "udf1": "`String` User-defined field 1",
+  "udf2": "`String` User-defined field 2",
+  "udf3": "`String` User-defined field 3",
+  "udf4": "`String` User-defined field 4",
+  "udf5": "`String` User-defined field 5"
 }
-[/block]
-
+```
 
 ### UPI Management
 
@@ -243,23 +203,12 @@ PayUUPIBoltUiSdk.payUUPIBoltUserSettings(<screenType>);
 
 The following fields are needed as a request:
 
-[block:parameters]
+```json
 {
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "screenType  \n`mandatory`",
-    "0-1": "`String`This field must contain any of the following screen type  \n  \n- ALL\n- TRANSACTIONHISTORY\n- MANAGEUPIACCOUNTS\n- DISPUTE\n- DEREGISTERUPI"
-  },
-  "cols": 2,
-  "rows": 1,
-  "align": [
-    null,
-    null
-  ]
+  "Field": "Description",
+  "screenType": "`String`This field must contain any of the following screen type  \n  \n- ALL\n- TRANSACTIONHISTORY\n- MANAGEUPIACCOUNTS\n- DISPUTE\n- DEREGISTERUPI"
 }
-[/block]
-
+```
 
 ## Event Listeners
 
