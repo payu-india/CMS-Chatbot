@@ -15,17 +15,7 @@ next:
 ---
 This section provides some sample code blocks to submit the details you collected from your customer and they click **Pay Now**.
 
-[block:tutorial-tile]
-{
-  "backgroundColor": "#018FF4",
-  "emoji": "🦉",
-  "id": "64ddc9dedc4121001ff5871c",
-  "link": "https://payu-hosted-checkout.readme.io/v1.3.0/recipes/submitting-payment-request-on-your-website",
-  "slug": "submitting-payment-request-on-your-website",
-  "title": "Submitting Payment Request on your Website"
-}
-[/block]
-
+<TutorialTile backgroundColor="#018FF4" emoji="🦉" id="64ddc9dedc4121001ff5871c" link="https://payu-hosted-checkout.readme.io/v1.3.0/recipes/submitting-payment-request-on-your-website" slug="submitting-payment-request-on-your-website" title="Submitting Payment Request on your Website" />
 
 ```python
 import hashlib
@@ -77,7 +67,7 @@ url = apiEndpoint + "?" + encodedParams
 print(url)
 
 def generateHash(params, salt):
-    hashString = params["key"] + "|" + params["txnid"] + "|" + params["amount"] + "|" + params["productinfo"] + "|" +
+    hashString = params["key"] + "|" + params["txnid"] + "|" + params["amount"] + "|" + params["productinfo"] + "|"
 ```
 ```php
 <?php
@@ -292,9 +282,9 @@ public class PayUHostedCheckout {
 
     private static String encodeParams(Map<String, String> params) throws Exception {
         StringBuilder encodedParams = new StringBuilder();
-        for (Map.Entry<String, String> entry : params.entrySet()) }
+        for (Map.Entry<String, String> entry : params.entrySet()) {
 ```
 
-> 📘 Note: 
-> 
+> 📘 Note:
+>
 > Javascript requires a crypto library to generate the hash. In this example, the crypto library that is built into Node.js is used, but if you’re running this code in a browser environment, you’ll need to use a different library.
