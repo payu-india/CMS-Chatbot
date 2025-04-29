@@ -104,6 +104,6 @@ Here, all parameters have optional as true, so the groups should be made as per 
 
 In the scenario, the customer can pass inputs in any of the following groups:
 
-- “Mobile Number”
-- “Consumer Number” and “Distributor Code”
-- “Consumer ID”
+* “Mobile Number”
+* “Consumer Number” and “Distributor Code”
+* “Consumer ID”
