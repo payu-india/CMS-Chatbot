@@ -56,7 +56,6 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ## JSON request structure
 
 The **var1** parameter is in JSON format. The fields in the JSON format are described in the following table:
@@ -86,7 +85,6 @@ The **var1** parameter is in JSON format. The fields in the JSON format are desc
   ]
 }
 [/block]
-
 
 ## Request structure for var1 to be included in payment\_split API
 
