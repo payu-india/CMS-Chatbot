@@ -29,15 +29,15 @@ This section describes how to install and configure the PayU plugin for Magento 
 The plugin will enable payment for your customers to use PayU platforms.
 
 > 👍 Before you begin:
-> 
+>
 > Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
 ## What PayU Offers?
 
 PayU offers the following capabilities on Magento platform:
 
-- **PayU Magento Plugin**: Refer to [Install and Configure PayU Magento Plugin](doc:install-and-configure-magento-plugin)
-- **PayU CommercePro Checkout for WooCommerce**: Refer to [CommercePro Checkout for Magento](doc:commercepro-platform-for-magento)
+* **PayU Magento Plugin**: Refer to [Install and Configure PayU Magento Plugin](doc:install-and-configure-magento-plugin)
+* **PayU CommercePro Checkout for WooCommerce**: Refer to [CommercePro Checkout for Magento](doc:commercepro-platform-for-magento)
 
 If you encounter issues while integration, refer to [Troubleshooting Magento Integration](doc:troubleshooting-magento-integration)
 
@@ -45,15 +45,4 @@ If you encounter issues while integration, refer to [Troubleshooting Magento Int
 
 The following video describes how to install the PayU plugin and then configure the Magento v2.x settings.
 
-[block:embed]
-{
-  "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FIFpBNad4JOo%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DIFpBNad4JOo&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FIFpBNad4JOo%2Fhqdefault.jpg&key=7788cb384c9f4d5dbbdbeffd9fe4b92f&type=text%2Fhtml&schema=youtube\" width=\"854\" height=\"480\" scrolling=\"no\" title=\"YouTube embed\" frameborder=\"0\" allow=\"autoplay; fullscreen; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe>",
-  "url": "https://www.youtube.com/watch?v=IFpBNad4JOo",
-  "title": "How To Integrate Magento Version 2 And Higher With PayUmoney Payment Gateway",
-  "favicon": "https://www.google.com/favicon.ico",
-  "image": "https://i.ytimg.com/vi/IFpBNad4JOo/hqdefault.jpg",
-  "provider": "youtube.com",
-  "href": "https://www.youtube.com/watch?v=IFpBNad4JOo",
-  "typeOfEmbed": "youtube"
-}
-[/block]
+<Embed url="https://www.youtube.com/watch?v=IFpBNad4JOo" title="How To Integrate Magento Version 2 And Higher With PayUmoney Payment Gateway" favicon="https://www.google.com/favicon.ico" image="https://i.ytimg.com/vi/IFpBNad4JOo/hqdefault.jpg" provider="youtube.com" href="https://www.youtube.com/watch?v=IFpBNad4JOo" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FIFpBNad4JOo%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DIFpBNad4JOo%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FIFpBNad4JOo%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
