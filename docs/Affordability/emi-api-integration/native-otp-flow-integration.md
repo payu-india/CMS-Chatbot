@@ -21,19 +21,19 @@ next:
 ---
 You can enable Native OTP flow in EMI payments and collect payments. Currently, Native OTP can be enabled for the following types of EMI payments:
 
-- [Debit Card](doc:collect-payments-with-debit-card-native-otp-flow)
-- [Cardless EMI](doc:collect-payments-with-cardless-emi-native-otp-flow)
+* [Debit Card](doc:collect-payments-with-debit-card-native-otp-flow)
+* [Cardless EMI](doc:collect-payments-with-cardless-emi-native-otp-flow)
 
 > 📘 Note:
-> 
+>
 > If you don’t have EMI enabled, try requesting using Dashboard. For more information, refer to [Configure Checkout Settings](doc:checkout-payment-modes). If you could not request through Dashboard, contact your PayU Key Account Manager or PayU Support.
 
 ## Benefits
 
 What are the advantages and why should merchants integrate this flow with PayU?
 
-- **Increase Success Rates** — Native OTP flow improves Success Rates of card transactions by 3-5% depending upon the source of transactions.
-- **Less Redirection** — It improves the overall user experience since multiple redirections are removed. Also, the customer never leaves the merchant website, which helps in providing a seamless experience. It also reduces drop rates due to users’ fluctuating internet speed issues.
-- **PayU supports all major banks** — 15+ banks including HDFC, AXIS, ICICI, SBI, KOTAK, RBL, etc. – on this flow for Cards, cardless, CC EMI, DC EMI’s, and BNPLs.
+* **Increase Success Rates** — Native OTP flow improves Success Rates of card transactions by 3-5% depending upon the source of transactions.
+* **Less Redirection** — It improves the overall user experience since multiple redirections are removed. Also, the customer never leaves the merchant website, which helps in providing a seamless experience. It also reduces drop rates due to users’ fluctuating internet speed issues.
+* **PayU supports all major banks** — 15+ banks including HDFC, AXIS, ICICI, SBI, KOTAK, RBL, etc. – on this flow for Cards, cardless, CC EMI, DC EMI’s, and BNPLs.
 
 This flow supports the latest native OTP generation flow (server-to-server) via Initiate Payment API, followed by the Submit OTP API, to initiate an S2S=4 transaction.
