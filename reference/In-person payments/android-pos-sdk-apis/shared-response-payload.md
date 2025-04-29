@@ -16,8 +16,8 @@ Some of the APIs of the POS SDK shares common response parameters. This topic co
 
 | Parameter            | Description                                               | Example                              |
 | :------------------- | :-------------------------------------------------------- | :----------------------------------- |
-| Transaction Response | `object` Returns the list of transaction response object. | Refer <<TransactionResponse>> table. |
-| Response             | `object` Returns the list of response object.             | Refer <<Response>> table.            |
+| Transaction Response | `object` Returns the list of transaction response object. | Refer &lt;&lt;TransactionResponse&gt;&gt; table. |
+| Response             | `object` Returns the list of response object.             | Refer &lt;&lt;Response&gt;&gt; table.            |
 |                      |                                                           |                                      |
 
 ## TransactionResponse fields description
@@ -43,14 +43,14 @@ Some of the APIs of the POS SDK shares common response parameters. This topic co
 
 | Parameter           | Description                      | Sample                                  |
 | :------------------ | :------------------------------- | :-------------------------------------- |
-| TransactionResponse | `object` The transaction details | Refer <<ICCTransactionResponse>> table. |
-| Response            | `object` The payment details     | Refer <<Response>> Table.               |
+| TransactionResponse | `object` The transaction details | Refer &lt;&lt;ICCTransactionResponse&gt;&gt; table. |
+| Response            | `object` The payment details     | Refer &lt;&lt;Response&gt;&gt; Table.               |
 
 ## Aquirer banks
 
 | Parameter | Description                             | Sample              |
 | :-------- | :-------------------------------------- | :------------------ |
-| EMI       | list Returns a list of <<EMI>> objects. | Refer <<EMI>> table |
+| EMI       | list Returns a list of &lt;&lt;EMI&gt;&gt; objects. | Refer &lt;&lt;EMI&gt;&gt; table |
 
 ## EMI
 
