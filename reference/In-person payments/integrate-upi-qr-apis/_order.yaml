@@ -7,3 +7,4 @@
 - offline-intent-link-generation-api
 - expire-intent-link-api
 - print-invoice-qr-api
+- send-invoice-qr-to-sms-api
