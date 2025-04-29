@@ -81,7 +81,7 @@ The **Bank Verification** API is used to verify bank account using penny drop/pe
 
 ```
 curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_verification' \
---header 'clientId: <client Id>' \
+--header 'clientId: &lt;client Id&gt;' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: ••••••' \
 --header 'Cookie: Path=/' \
@@ -173,5 +173,3 @@ curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_ver
   }
 }
 ```
-
-</details>
