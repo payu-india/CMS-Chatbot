@@ -14,13 +14,13 @@ To pay using UPI, you need to pass a beneficiary account number parameter simila
 
 ## Hash Generation
 
-- For TPV transactions, hash calculation formula is different from the normal type of payment:
-- For multiple account numbers, account numbers should be pipe-separated and max 4 account numbers are allowed.‌
+* For TPV transactions, hash calculation formula is different from the normal type of payment:
+* For multiple account numbers, account numbers should be pipe-separated and max 4 account numbers are allowed.‌
 
 ### Hash Formula:
 
-> 📘 Note 
-> 
+> 📘 Note
+>
 > It is recommended to pass ifscCode for UPI , UPI Intent and TEZ TPV transactions. The hash calculation will include ifscCode as shown below
 
 ```
