@@ -21,7 +21,7 @@ The **Validate Auth Code and Client** API is used for validating auth code and c
 
 > 📘 Notes:
 > 
-> The grant type for the **grant_type** parameter for this API is** authorization_code**.
+> The grant type for the **grant_type** parameter for this API is **authorization_code**.
 
 ## Request parameters
 
@@ -57,20 +57,16 @@ The **Validate Auth Code and Client** API is used for validating auth code and c
 }
 [/block]
 
-
 ## Sample request
 
 ```curl
 curl --location 'https://uat-accounts.payu.in/oauth/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --header 'Cookie: USERTXNINFO=6513cd7fa47ae5.28444661' \
---data-urlencode
-'client_id=6f7afb8ad5bc80bb51c7076449b67ee882430c8c06fda6f953d2a51f803c81a2' \
---data-urlencode
-'client_secret=4fc4623fdb3e8218ee032d6ec40a7a186d546e57f65b3c7adb4704bcc530e041' \
+--data-urlencode 'client_id=6f7afb8ad5bc80bb51c7076449b67ee882430c8c06fda6f953d2a51f803c81a2' \
+--data-urlencode 'client_secret=4fc4623fdb3e8218ee032d6ec40a7a186d546e57f65b3c7adb4704bcc530e041' \
 --data-urlencode 'grant_type=authorization_code' \
---data-urlencode
-'code=a5a6b9694555ead09c8e024c0ddbe008590344d7e55d6d25af0f6881d7f3c67a' \
+--data-urlencode 'code=a5a6b9694555ead09c8e024c0ddbe008590344d7e55d6d25af0f6881d7f3c67a' \
 --data-urlencode 'redirect_uri=https://abc.in'
 ```
 
