@@ -35,26 +35,11 @@ The OTP Assist SDK provides a complete authentication flow for card transactions
 
 The Native OTP Assist SDK gives you the following key capabilities:
 
-- Read OTP on your app without redirecting to the bank page, for eligible bins.
-- If the bin is not eligible, then it will redirect to the bank’s 3d-secure/ACS page.
-- Support for Android native SMS permission, as well as Google Consent API.
+* Read OTP on your app without redirecting to the bank page, for eligible bins.
+* If the bin is not eligible, then it will redirect to the bank’s 3d-secure/ACS page.
+* Support for Android native SMS permission, as well as Google Consent API.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/a108e0f-otp-Assist.gif",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "350px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="350px" src="https://files.readme.io/a108e0f-otp-Assist.gif" />
 
 ## Supported Banks
 
@@ -71,14 +56,12 @@ Native OTP flow is supported for most debit and credit cards issued by top banks
 | Standard Chartered Bank | Visa, Master                |
 
 > 🚧 Watch Out
-> 
-> - The SDK runs a BIN check before proceeding with the Native OTP experience. You may run BIN check independently if you wish. Reach out to our support team to get started using “[mobile.integration@payu.in](mailto:mobile.integration@payu.in)“.  
+>
+> * The SDK runs a BIN check before proceeding with the Native OTP experience. You may run BIN check independently if you wish. Reach out to our support team to get started using “[mobile.integration@payu.in](mailto:mobile.integration@payu.in)“.\
 >   There are few bins that are not eligible for native OTP flow even the Bank and card scheme are eligible.
-> - Bank downtime will affect the performance of this flow.
-
-
+> * Bank downtime will affect the performance of this flow.
 
 ## Compatibility
 
-- Min SDK Version: 21
-- Compile SDK Version: 31 or later
+* Min SDK Version: 21
+* Compile SDK Version: 31 or later
