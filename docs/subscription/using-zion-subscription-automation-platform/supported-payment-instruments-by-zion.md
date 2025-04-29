@@ -14,58 +14,58 @@ next:
 
 The following credit cards issued in India are supported:
 
-- Visa
-- Master
+* Visa
+* Master
 
 The following cards will be supported soon by Zion:
 
-- Amex Cards
+* Amex Cards
 
 ## Debit Cards
 
 The VISA and MasterCard debit cards issued by the following banks are supported:
 
-- American Express Banking Corporation
-- Andhra Bank
-- AU Small Finance Bank Limited
-- Australia and New Zealand Banking Group Limited
-- Axis Bank Ltd.
-- Bank of Baroda
-- Bank of India
-- Bank of Maharashtra
-- Canara Bank
-- Central Bank of India
-- Citibank
-- Corporation Bank
-- City Union Bank Ltd.
-- Dhanlaxmi Bank Ltd.
-- DBS Bank Ltd.
-- DCB Bank Ltd.
-- DCB Bank Business Banking
-- Equitas Small Finance Bank Limited or Equitas Bank (same bank)
-- ESAF Small Finance Bank Limited
-- Federal Bank Ltd.
-- HDFC Bank Ltd.
-- HSBC Bank
-- ICICI Bank Ltd.
-- IDBI Bank Ltd.
-- IDFC First Bank Ltd.
-- IDFC Bank Ltd. (merged with IDFB)
-- IndusInd Bank (same bank)
-- Indian Overseas Bank
-- Jammu & Kashmir Bank Ltd.
-- Karur Vysya Bank Ltd.
-- Kotak Mahindra Bank Ltd.
-- Punjab National Bank
-- Paytm Bank 
-- RBL Bank Ltd.
-- State Bank of India
-- State bank of Mysore 
-- Standard Chartered Bank
-- South Indian Bank Ltd. 
-- State Trading Corporation of Bhutan Limited
-- Union Bank of India
-- YES Bank
+* American Express Banking Corporation
+* Andhra Bank
+* AU Small Finance Bank Limited
+* Australia and New Zealand Banking Group Limited
+* Axis Bank Ltd.
+* Bank of Baroda
+* Bank of India
+* Bank of Maharashtra
+* Canara Bank
+* Central Bank of India
+* Citibank
+* Corporation Bank
+* City Union Bank Ltd.
+* Dhanlaxmi Bank Ltd.
+* DBS Bank Ltd.
+* DCB Bank Ltd.
+* DCB Bank Business Banking
+* Equitas Small Finance Bank Limited or Equitas Bank (same bank)
+* ESAF Small Finance Bank Limited
+* Federal Bank Ltd.
+* HDFC Bank Ltd.
+* HSBC Bank
+* ICICI Bank Ltd.
+* IDBI Bank Ltd.
+* IDFC First Bank Ltd.
+* IDFC Bank Ltd. (merged with IDFB)
+* IndusInd Bank (same bank)
+* Indian Overseas Bank
+* Jammu & Kashmir Bank Ltd.
+* Karur Vysya Bank Ltd.
+* Kotak Mahindra Bank Ltd.
+* Punjab National Bank
+* Paytm Bank 
+* RBL Bank Ltd.
+* State Bank of India
+* State bank of Mysore 
+* Standard Chartered Bank
+* South Indian Bank Ltd. 
+* State Trading Corporation of Bhutan Limited
+* Union Bank of India
+* YES Bank
 
 ## Net Banking
 
@@ -76,9 +76,9 @@ Net Banking standing instructions using Zion integration is supported through EN
 UPI standing instructions using Zion integration is supported.
 
 > 📘 Notes:
-> 
-> - When you make the consent transaction for UPI, **DAILY** frequency is not supported.
-> - The start date needs to be today's date (when the Consent Transaction is called) only.
+>
+> * When you make the consent transaction for UPI, **DAILY** frequency is not supported.
+> * The start date needs to be today's date (when the Consent Transaction is called) only.
 
 ## Points to Remember
 
