@@ -16,40 +16,72 @@ next:
 All successful registration transactions are charged over the recurring interface with server-to-server API without any additional 2FA or the customers’ involvement. This section describes how to achieve the Recurring Transaction for Net Banking, Cards, and UPI through the common platform.
 
 > 📘 Note:
-> 
+>
 > Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, “Refund not accepted for txn” or Error 232. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
 
 > 🚧 Assumptions:
-> 
+>
 > If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant’s end.
 
 ### Environment
 
-| Test Environment       | <https://test.payu.in/_payment>  |
-| :--------------------- | :------------------------------- |
-| Production Environment | <https://info.payu.in/merchant/> |
+| Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)  |
+| :--------------------- | :--------------------------------------------------------------- |
+| Production Environment | [https://info.payu.in/merchant/](https://info.payu.in/merchant/) |
 
 ## Reference Information for Request Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Reference",
-    "0-0": "key",
-    "0-1": "For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  \n- **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "1-0": "hash",
-    "1-1": "Hash logic for **\\_payment** API is:  \n`sha512(key\\|command\\|var1\\|salt) sha512\n`",
-    "2-0": "var1",
-    "2-1": "For JSON fields description, refer to [Additional Info. for Recurring Payment APIs](ref:additional-info-for-recurring-payment-apis)"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Reference
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+      </td>
+
+      <td>
+        For more information on how to generate the Key and Salt, refer to any of the following:  
+
+        * **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  
+        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash
+      </td>
+
+      <td>
+        Hash logic for **\_payment** API is:\
+        ```
+        sha512(key\|command\|var1\|salt) sha512
+
+        ```
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var1
+      </td>
+
+      <td>
+        For JSON fields description, refer to [Additional Info. for Recurring Payment APIs](ref:additional-info-for-recurring-payment-apis)
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Request Parameters
