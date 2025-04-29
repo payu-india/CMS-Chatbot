@@ -12,8 +12,8 @@ next:
 ---
 To post PayU Beneficiary parameters:
 
-- Create PayUBeneficiaryParams
-- Post Parameters
+* Create PayUBeneficiaryParams
+* Post Parameters
 
 ## Create PayUBeneficiaryParams object
 
