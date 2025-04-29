@@ -16,23 +16,23 @@ Co-funded offers are created when the discount/cashback is co-funded by the merc
 
 After you create an Co-funded Offer, you can collect payments from your customers using PayU Hosted (Non-seamless) or Merchant Hosted (Seamless) Checkout integration as described in the following sections:
 
-- [PayU Hosted Checkout Integration with Offers](https://devguide.payu.in/offers-integration/collect-payments-with-offers/instant-discount-or-cashback-offer/payu-hosted-checkout-integration-with-offers/)
-- [Merchant Hosted Checkout Integration with Offers](https://devguide.payu.in/offers-integration/collect-payments-with-offers/instant-discount-or-cashback-offer/merchant-hosted-checkout-integration-with-offers/)
+* [PayU Hosted Checkout Integration with Offers](https://devguide.payu.in/offers-integration/collect-payments-with-offers/instant-discount-or-cashback-offer/payu-hosted-checkout-integration-with-offers/)
+* [Merchant Hosted Checkout Integration with Offers](https://devguide.payu.in/offers-integration/collect-payments-with-offers/instant-discount-or-cashback-offer/merchant-hosted-checkout-integration-with-offers/)
 
 ***
 
 ## **Step 1: Select the Discount Type**
 
-1. Navigate to [_Offers_ section of PayU Dashboard](https://devguide.payu.in/affordability/getting-started-with-affordability/navigate-to-offer-engine/).
+1. Navigate to [*Offers* section of PayU Dashboard](https://devguide.payu.in/affordability/getting-started-with-affordability/navigate-to-offer-engine/).
 2. Click **Create an Offer** at the top-right corner.
 
-The _Create New Offer_ page is displayed.
+The *Create New Offer* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.10.38-PM-1024x573.png)
 
 1. Select the discount type as **Co-funded offer**.
 
- The _Basic Offer Details_ page is displayed.
+ The *Basic Offer Details* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.11.36-PM-1024x573.png)
 
@@ -40,11 +40,11 @@ The _Create New Offer_ page is displayed.
 
 ## **Step 2: Add Basic Details**
 
-Include the basic details on the _Basic Offer Details_ page. or more information, refer to [Create an Instant Discount Offer or Cashback Offer](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer#step2) > [Add Basic Details](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer#step2).
+Include the basic details on the *Basic Offer Details* page. or more information, refer to [Create an Instant Discount Offer or Cashback Offer](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer#step2) > [Add Basic Details](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer#step2).
 
 ## **Step 3: Include the Offer Rules or Limitations**
 
-Enter the details on the _Set Offer Rules_ page. For more information, refer to [Create an Instant Discount Offer or Cashback Offer](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer#step2) > [Include Offer Rules or Limitations](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer#step3).
+Enter the details on the *Set Offer Rules* page. For more information, refer to [Create an Instant Discount Offer or Cashback Offer](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer#step2) > [Include Offer Rules or Limitations](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer#step3).
 
 ## **Step 4: Configure Payment Modes**
 
@@ -65,24 +65,24 @@ Enter the details for each field as described in the following table:
 | **Field** | **Description** |
 | --------- | --------------- |
 
-| Your share  
-**mandatory** | Enter a value between 0-100 for this. This will be the ratio of merchant’s share of the offer funding |  
-| Brand share  
-**optional** | Enter a value between 0-100 for this. This will be the ratio of brand share of the offer funding |  
-| Bank Share  
-**optional** | Enter a value between 0-100 for this. This will be the ratio of bank share of the offer funding |  
-| Choose bank  
-**optional** | Select the bank name/bank id from the dropdown |  
-| Choose brand  
-**optional** | Select the brand name/bank id from the dropdown |  
-| Emails  
-**optional** | Enter the email id where you would like the reconciliation reports to be sent |  
-| Refund window  
+\| Your share\
+**mandatory** | Enter a value between 0-100 for this. This will be the ratio of merchant’s share of the offer funding |\
+\| Brand share\
+**optional** | Enter a value between 0-100 for this. This will be the ratio of brand share of the offer funding |\
+\| Bank Share\
+**optional** | Enter a value between 0-100 for this. This will be the ratio of bank share of the offer funding |\
+\| Choose bank\
+**optional** | Select the bank name/bank id from the dropdown |\
+\| Choose brand\
+**optional** | Select the brand name/bank id from the dropdown |\
+\| Emails\
+**optional** | Enter the email id where you would like the reconciliation reports to be sent |\
+\| Refund window\
 **optional** | Recon files and settlement will be processed post the refund window |
 
 ## **Step 6: Review the Offer**
 
-The _Preview of Cashback Offer_ page summarizes the details you provided in [Step 2](https://devguide.payu.in/temp-offers-integration/create-an-offer-temp/create-a-co-funded-offer/#step2) to [Step 4](https://devguide.payu.in/temp-offers-integration/create-an-offer-temp/create-a-co-funded-offer/#step4).
+The *Preview of Cashback Offer* page summarizes the details you provided in [Step 2](https://devguide.payu.in/temp-offers-integration/create-an-offer-temp/create-a-co-funded-offer/#step2) to [Step 4](https://devguide.payu.in/temp-offers-integration/create-an-offer-temp/create-a-co-funded-offer/#step4).
 
 1. Review all the configurations added before you make the offer available to your customers.
 2. Click the **Edit** button to return back to the corresponding page and update the configuration.
