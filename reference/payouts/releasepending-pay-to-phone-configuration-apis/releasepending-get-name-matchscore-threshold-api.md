@@ -17,10 +17,11 @@ This API is used to fetch name score threshold using the payout merchant ID.
 
 |                        |                                                                     |
 | :--------------------- | :------------------------------------------------------------------ |
-| Test Environment       | <https://uatoneapi.in/payout/merchant/nameMatchScoreConfig>         |
-| Production Environment | <https://payout.payumoney.com/payout/merchant/nameMatchScoreConfig> |
+| Test Environment       | &lt;https://uatoneapi.in/payout/merchant/nameMatchScoreConfig&gt;   |
+| Production Environment | &lt;https://payout.payumoney.com/payout/merchant/nameMatchScoreConfig&gt; |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location 'https://uatoneapi.in/payout/merchant/nameMatchScoreConfig' \
@@ -30,7 +31,8 @@ curl --location 'https://uatoneapi.in/payout/merchant/nameMatchScoreConfig' \
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
