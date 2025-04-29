@@ -25,30 +25,29 @@ metadata:
 next:
   description: ''
 ---
-The **Update Merchant Details **API is used to:
+The **Update Merchant Details** API is used to:
 
-- Add or update any information about the merchant
-- Update PAN details
-- Authorized through User token (merchant token), obtained using Send OTP and Verify OTP APIs.
+* Add or update any information about the merchant
+* Update PAN details
+* Authorized through User token (merchant token), obtained using Send OTP and Verify OTP APIs.
 
 > 📘 Notes:
-> 
-> - The PAN verification will happen asynchronously, and the status will be made available in the Get Merchant API.
-> - PAN name has to be the same as the business name for successful verification
-> - Partner needs to create a form within the application to collect this information
-> - All the fields in this API are mandatory except the GST details
-> - The entire payload needs to be submitted for update requests as well
-> - No updates are allowed after successful PAN verification. PAN verification status is available in the get merchant API. If the merchant wants to update any information after PAN verification, you need to contact the PayU Care team through help.payu.in
-
-.
+>
+> * The PAN verification will happen asynchronously, and the status will be made available in the Get Merchant API.
+> * PAN name has to be the same as the business name for successful verification
+> * Partner needs to create a form within the application to collect this information
+> * All the fields in this API are mandatory except the GST details
+> * The entire payload needs to be submitted for update requests as well
+> * No updates are allowed after successful PAN verification. PAN verification status is available in the get merchant API. If the merchant wants to update any information after PAN verification, you need to contact the PayU Care team through help.payu.in
 
 > 📘 Bearer Token:
-> 
-> The access token with the scope as **referer_merchant **is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
+>
+> The access token with the scope as **referer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
 
 <PARTNEROnboardingEnvironment />
 
-<details><summary>Sample request<summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/11ec-ed65-770862dc-8758-026e3e71538e/update' \
@@ -62,7 +61,7 @@ curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/11ec
 --form 'merchant[signing_authority_details][name]="Harsh Agarwal"' \
 --form 'merchant[signing_authority_details][pancard_number]="AUKPA1386M"' \
 --form 'merchant[signing_authority_details][email]="ashsih@payu.in"' \
---form 'merchant[signing_authority_details][name]="Ashish Kumar' \
+--form 'merchant[signing_authority_details][name]="Ashish Kumar"' \
 --form 'merchant[signing_authority_details][pancard_number]="OPSPS0921B"' \
 --form 'merchant[signing_authority_details][cin_number]="U72400MH2006PTC293037"' \
 --form 'merchant[director1_details][name]="John Doe"' \
@@ -82,7 +81,8 @@ curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/11ec
 
 </details>
 
-<details><summary>Sample response<summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
