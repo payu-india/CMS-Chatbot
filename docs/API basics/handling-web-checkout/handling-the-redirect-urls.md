@@ -28,10 +28,10 @@ To handle **surl** and **furl** parameters with the **Collect Payment** API (\_p
 }
 ```
 
-In the above example, the surl parameter is set to “<http://example.com/success”> and the furl parameter is set to “<http://example.com/failure“>. These URLs will be used by the PayU India API to redirect the customer to your website after a successful or failed transaction.
+In the above example, the surl parameter is set to “[http://example.com/success”](http://example.com/success”) and the furl parameter is set to “[http://example.com/failure“](http://example.com/failure“). These URLs will be used by the PayU India API to redirect the customer to your website after a successful or failed transaction.
 
 > 📘 Note:
-> 
+>
 > The URLs you provide for the surl & furl parameters must be accessible and valid.
 
 The following sample code that demonstrates how to handle surl and furl parameters with the Collect Payment API:
@@ -790,10 +790,10 @@ public class PayURedirectUrlsHandler {
 
 The following sections provide how it is implemented in the various language bindings:
 
-- [Java](#java-implementation)
-- [JavaScript](#javascript-implementation)
-- [Python](#python-implementation)
-- [PHP](#php-implementation)
+* [Java](#java-implementation)
+* [JavaScript](#javascript-implementation)
+* [Python](#python-implementation)
+* [PHP](#php-implementation)
 
 ## Java implementation
 
@@ -802,32 +802,32 @@ This Java implementation provides a comprehensive example of initiating PayU pay
 #### Key Components:
 
 1. **Hash Generation Methods**:
-   - `generatePayuHash()` creates the properly formatted hash string
-   - `hashCal()` computes the SHA-512 hash using Java's MessageDigest
-   - Handles optional parameters with sensible defaults
+   * `generatePayuHash()` creates the properly formatted hash string
+   * `hashCal()` computes the SHA-512 hash using Java's MessageDigest
+   * Handles optional parameters with sensible defaults
 
 2. **Environment Configuration**:
-   - Uses system environment variables for secure credential storage
-   - Supports runtime environment detection (test/production)
-   - Includes fallback for testing purposes only
+   * Uses system environment variables for secure credential storage
+   * Supports runtime environment detection (test/production)
+   * Includes fallback for testing purposes only
 
 3. **HTTP Connection Handling**:
-   - Properly configures HttpURLConnection with timeouts and headers
-   - Handles both successful and error responses
-   - Implements proper resource cleanup with try-finally blocks
+   * Properly configures HttpURLConnection with timeouts and headers
+   * Handles both successful and error responses
+   * Implements proper resource cleanup with try-finally blocks
 
 4. **Comprehensive Logging**:
-   - Uses Java's built-in Logger for consistent logging
-   - Records transaction initiation, success, and failures
-   - Provides detailed error information for troubleshooting
+   * Uses Java's built-in Logger for consistent logging
+   * Records transaction initiation, success, and failures
+   * Provides detailed error information for troubleshooting
 
 #### Implementation Notes:
 
-- In a web application context, this code would typically be part of a service class
-- For production use, integrate with your application's configuration management
-- Set the redirect URLs (`surl` and `furl`) to valid endpoints in your application
-- The example includes main() for testing, but in practice would be called by your application logic
-- Consider using a modern HTTP client library like Apache HttpClient or OkHttp in production systems
+* In a web application context, this code would typically be part of a service class
+* For production use, integrate with your application's configuration management
+* Set the redirect URLs (`surl` and `furl`) to valid endpoints in your application
+* The example includes main() for testing, but in practice would be called by your application logic
+* Consider using a modern HTTP client library like Apache HttpClient or OkHttp in production systems
 
 ## JavaScript implementation
 
@@ -836,61 +836,61 @@ This Node.js example demonstrates a complete server implementation for handling 
 #### Key Components:
 
 1. **Express Server Setup**:
-   - Configures routes for payment initiation and form rendering
-   - Implements body parsing for form submissions
-   - Uses environment variables for configuration
+   * Configures routes for payment initiation and form rendering
+   * Implements body parsing for form submissions
+   * Uses environment variables for configuration
 
 2. **Hash Generation Function**:
-   - Uses Node.js `crypto` module for secure hash generation
-   - Properly formats the hash string with all required parameters
-   - Converts the resulting hash to lowercase as required by PayU
+   * Uses Node.js `crypto` module for secure hash generation
+   * Properly formats the hash string with all required parameters
+   * Converts the resulting hash to lowercase as required by PayU
 
 3. **Client-Side Form Handling**:
-   - Demonstrates secure client-side to server-side communication
-   - Creates and submits a dynamic form to PayU
-   - Handles user feedback during the payment process
+   * Demonstrates secure client-side to server-side communication
+   * Creates and submits a dynamic form to PayU
+   * Handles user feedback during the payment process
 
 4. **Two-Step Payment Flow**:
-   - Separates hash generation (server-side) from form submission (client-side)
-   - Prevents exposure of sensitive credentials to end users
-   - Maintains a seamless user experience
+   * Separates hash generation (server-side) from form submission (client-side)
+   * Prevents exposure of sensitive credentials to end users
+   * Maintains a seamless user experience
 
 #### Implementation Notes:
 
-- Store your `PAYU_KEY` and `PAYU_SALT` in environment variables, never in client-side code
-- The server endpoint returns form data that is then submitted by the browser to PayU
-- This approach maintains security while providing a smooth redirect experience
-- Remember to implement the success and failure URL handlers to process PayU's response
-- For production, enhance form validation and add CSRF protection
+* Store your `PAYU_KEY` and `PAYU_SALT` in environment variables, never in client-side code
+* The server endpoint returns form data that is then submitted by the browser to PayU
+* This approach maintains security while providing a smooth redirect experience
+* Remember to implement the success and failure URL handlers to process PayU's response
+* For production, enhance form validation and add CSRF protection
 
 ### Python implementation
 
 This example demonstrates how to securely initiate a payment with PayU while properly configuring redirect URLs. The code follows security best practices and includes robust error handling.
 
 1. **Hash Generation Function**: 
-   - Properly formats the payment parameters with the correct number of pipes (11 after email)
-   - Generates a SHA-512 hash to ensure data integrity
+   * Properly formats the payment parameters with the correct number of pipes (11 after email)
+   * Generates a SHA-512 hash to ensure data integrity
 
 2. **Environment Variable Usage**: 
-   - Retrieves API credentials from environment variables instead of hardcoding them
-   - Supports both test and production environments
+   * Retrieves API credentials from environment variables instead of hardcoding them
+   * Supports both test and production environments
 
 3. **Payment Parameter Preparation**:
-   - Creates a unique transaction ID for each payment request
-   - Organizes all required and optional parameters in a dictionary
-   - Adds the generated hash to secure the transaction
+   * Creates a unique transaction ID for each payment request
+   * Organizes all required and optional parameters in a dictionary
+   * Adds the generated hash to secure the transaction
 
 4. **Robust Error Handling**:
-   - Implements proper exception handling for network issues
-   - Validates required parameters
-   - Uses logging for debugging and auditing
+   * Implements proper exception handling for network issues
+   * Validates required parameters
+   * Uses logging for debugging and auditing
 
 #### Implementation Notes:
 
-- Ensure you set `PAYU_KEY` and `PAYU_SALT` environment variables
-- Configure valid, accessible redirect URLs at `surl` and `furl`
-- In production, integrate this into your web application's payment flow
-- The transaction response typically contains HTML that should be rendered to the user's browser to facilitate the redirect
+* Ensure you set `PAYU_KEY` and `PAYU_SALT` environment variables
+* Configure valid, accessible redirect URLs at `surl` and `furl`
+* In production, integrate this into your web application's payment flow
+* The transaction response typically contains HTML that should be rendered to the user's browser to facilitate the redirect
 
 ## PHP implementation
 
@@ -899,27 +899,27 @@ This example demonstrates a secure PHP implementation for initiating payments wi
 #### Key Components:
 
 1. **Hash Generation Function**:
-   - Creates the hash string with proper parameter ordering and pipe delimiters
-   - Uses PHP's built-in `hash()` function with SHA-512 algorithm
-   - Handles optional parameters correctly
+   * Creates the hash string with proper parameter ordering and pipe delimiters
+   * Uses PHP's built-in `hash()` function with SHA-512 algorithm
+   * Handles optional parameters correctly
 
 2. **Secure Credential Management**:
-   - Retrieves API credentials from environment variables using `getenv()`
-   - Supports runtime environment detection (test/production)
+   * Retrieves API credentials from environment variables using `getenv()`
+   * Supports runtime environment detection (test/production)
 
 3. **cURL Implementation**:
-   - Uses PHP's cURL extension for reliable API communication
-   - Sets appropriate headers and timeout values
-   - Provides detailed error reporting
+   * Uses PHP's cURL extension for reliable API communication
+   * Sets appropriate headers and timeout values
+   * Provides detailed error reporting
 
 4. **URL Validation**:
-   - Validates redirect URLs using `filter_var()` with `FILTER_VALIDATE_URL`
-   - Ensures redirect endpoints are properly formatted
+   * Validates redirect URLs using `filter_var()` with `FILTER_VALIDATE_URL`
+   * Ensures redirect endpoints are properly formatted
 
 #### Implementation Notes:
 
-- Configure your web server with `PAYU_KEY` and `PAYU_SALT` environment variables
-- Customize the success and failure URLs to point to valid endpoints on your domain
-- Adjust logging to use your application's existing logging system
-- The initiation function returns an array with success status and relevant messages
-- In a production environment, this code would typically be part of a controller class
+* Configure your web server with `PAYU_KEY` and `PAYU_SALT` environment variables
+* Customize the success and failure URLs to point to valid endpoints on your domain
+* Adjust logging to use your application's existing logging system
+* The initiation function returns an array with success status and relevant messages
+* In a production environment, this code would typically be part of a controller class
