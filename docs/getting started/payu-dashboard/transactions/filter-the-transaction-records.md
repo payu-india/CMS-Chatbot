@@ -20,23 +20,8 @@ To filter the transactions on Dashboard:
 
 > **Note:** You can use the **Reset** to clear all checkbox selections.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/c9a82ab-Screenshot_2023-09-22_at_7.19.38_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/c9a82ab-Screenshot_2023-09-22_at_7.19.38_PM.png" />
 
 > 📘 Note:
-> 
+>
 > You can search the specific outlet by entering the outlet name in the search column
