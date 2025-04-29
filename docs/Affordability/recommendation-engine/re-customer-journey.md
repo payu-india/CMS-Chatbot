@@ -20,41 +20,11 @@ Here, the SRT of Airtel Money wallet is higher for the given transaction amount.
 
 ### L1 Screen
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/49b5a7a-Screenshot_2023-08-28_at_1.00.07_AM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "50% "
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="50% " src="https://files.readme.io/49b5a7a-Screenshot_2023-08-28_at_1.00.07_AM.png" />
 
 ### L2 Screen
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/8c81007-Screenshot_2023-08-28_at_1.00.44_AM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "50% "
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="50% " src="https://files.readme.io/8c81007-Screenshot_2023-08-28_at_1.00.44_AM.png" />
 
 ***
 
@@ -66,41 +36,11 @@ Here, the average cost of UPI payment is lower that the other payment modes. Hen
 
 ### L1 Screen
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/9324886-Screenshot_2023-08-28_at_1.02.48_AM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "50% "
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="50% " src="https://files.readme.io/9324886-Screenshot_2023-08-28_at_1.02.48_AM.png" />
 
 ### L2 Screen
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ddfa909-Screenshot_2023-08-28_at_1.03.43_AM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "50% "
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="50% " src="https://files.readme.io/ddfa909-Screenshot_2023-08-28_at_1.03.43_AM.png" />
 
 ***
 
@@ -108,18 +48,4 @@ Here, the average cost of UPI payment is lower that the other payment modes. Hen
 
 In the following example the user is logged in and the RE is optimised for Affordability. Hence, affordability is prioritised on both the L1 and L2 screen.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/3aca2d0-Screenshot_2023-08-28_at_1.05.22_AM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "50% "
-    }
-  ]
-}
-[/block]
+<Image align="center" width="50% " src="https://files.readme.io/3aca2d0-Screenshot_2023-08-28_at_1.05.22_AM.png" />
