@@ -12,8 +12,8 @@ next:
 ---
 The Check Offer Status API (**check\_offer\_status**) can be used for the following scenarios:
 
-- [Check Merchant Specific Offers](https://devguide.payu.in/api/integration-apis/offers/check_offer_status#merchant)
-- [Check Card Specific Offers](https://devguide.payu.in/api/integration-apis/offers/check_offer_status#card)
+* [Check Merchant Specific Offers](https://devguide.payu.in/api/integration-apis/offers/check_offer_status#merchant)
+* [Check Card Specific Offers](https://devguide.payu.in/api/integration-apis/offers/check_offer_status#card)
 
 **Environment**
 
@@ -25,55 +25,153 @@ The Check Offer Status API is used to check the status of an offer for a particu
 
 ### Request Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Sample Value**",
-    "0-0": "var1  \n**mandatory**",
-    "0-1": "The offer Key must be specified in this parameter.",
-    "0-2": "offer@123",
-    "1-0": "var2  \n**mandatory**",
-    "1-1": "The payment amount of the particular transaction must be specified in this parameter.",
-    "1-2": "10000",
-    "2-0": "var3  \n**optional**",
-    "2-1": "This parameter must contain the payment category that the merchant wants the user to see by default on the PayU’s payment page.",
-    "2-2": "CC",
-    "3-0": "var4  \n**optional**",
-    "3-1": "This parameter must contain the bank code.",
-    "3-2": "AMEX",
-    "4-0": "var5  \n**mandatory**",
-    "4-1": "This parameter must contain the card number.",
-    "4-2": "5432112345678901",
-    "5-0": "var6  \n**optional**",
-    "5-1": "This parameter must contain name of the customer as on the card.",
-    "5-2": "Nitesh",
-    "6-0": "var7  \n**optional**",
-    "6-1": "This parameter must contain the phone number of the customer.",
-    "6-2": "9988776655",
-    "7-0": "var8  \n**optional**",
-    "7-1": "This parameter must contain email address of the customer.",
-    "7-2": "[abc@xyz.com](mailto:abc@xyz.com)"
-  },
-  "cols": 3,
-  "rows": 8,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Sample Value**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        var1
+        **mandatory**
+      </td>
+
+      <td>
+        The offer Key must be specified in this parameter.
+      </td>
+
+      <td>
+        offer\@123
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var2\
+        **mandatory**
+      </td>
+
+      <td>
+        The payment amount of the particular transaction must be specified in this parameter.
+      </td>
+
+      <td>
+        10000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var3\
+        **optional**
+      </td>
+
+      <td>
+        This parameter must contain the payment category that the merchant wants the user to see by default on the PayU’s payment page.
+      </td>
+
+      <td>
+        CC
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var4\
+        **optional**
+      </td>
+
+      <td>
+        This parameter must contain the bank code.
+      </td>
+
+      <td>
+        AMEX
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var5\
+        **mandatory**
+      </td>
+
+      <td>
+        This parameter must contain the card number.
+      </td>
+
+      <td>
+        5432112345678901
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var6\
+        **optional**
+      </td>
+
+      <td>
+        This parameter must contain name of the customer as on the card.
+      </td>
+
+      <td>
+        Nitesh
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var7\
+        **optional**
+      </td>
+
+      <td>
+        This parameter must contain the phone number of the customer.
+      </td>
+
+      <td>
+        9988776655
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var8\
+        **optional**
+      </td>
+
+      <td>
+        This parameter must contain email address of the customer.
+      </td>
+
+      <td>
+        [abc@xyz.com](mailto:abc@xyz.com)
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 Error Codes:
 
-- ‘INVALID\_OFFER’=>’E001′
-- ‘INVALID\_PAYMENT\_METHOD’=>’E002’
+* ‘INVALID\_OFFER’=>’E001′
+* ‘INVALID\_PAYMENT\_METHOD’=>’E002’
 
-**In the Output:**  
-Parameter ‘status’ = 1, means offer is valid  
+**In the Output:**\
+Parameter ‘status’ = 1, means offer is valid\
 Parameter ‘status’ = 0, means offer is invalid
 
 ### Sample Request
@@ -88,7 +186,7 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"
 ### Sample Response
 
 > 📘 Note:
-> 
+>
 > In the response, the category will be the passed Category.
 
 #### Success Scenario
@@ -110,7 +208,7 @@ If the offer is valid:
 
 #### Failure Scenario
 
-- If the offer has expired:
+* If the offer has expired:
 
 If the offer has expired
 
@@ -128,7 +226,7 @@ Array
 )
 ```
 
-- If the card limit is exhausted:
+* If the card limit is exhausted:
 
 If the card limit is exhausted
 
@@ -146,7 +244,7 @@ Array
 )
 ```
 
-- If the offer\_key is invalid:
+* If the offer\_key is invalid:
 
 If the offer\_key is invalid
 
@@ -171,48 +269,110 @@ The return parameters are status, msg, error\_code (In case of error), category,
 
 ### Request Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "var1  \n**mandatory**",
-    "0-1": "This parameter contains the Offer Key of the merchant.",
-    "0-2": "offer@123",
-    "1-0": "var2  \n**mandatory**",
-    "1-1": "This parameter must be contain the amount.",
-    "1-2": "10000",
-    "2-0": "var3  \n**optional**",
-    "2-1": "This parameter must be left blank.",
-    "2-2": "–",
-    "3-0": "var4  \n**optional**",
-    "3-1": "This parameter must be left blank.",
-    "3-2": "–",
-    "4-0": "var5  \n**mandatory**",
-    "4-1": "This parameter must contain the card number.",
-    "4-2": "5432112345678901"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        var1
+        **mandatory**
+      </td>
+
+      <td>
+        This parameter contains the Offer Key of the merchant.
+      </td>
+
+      <td>
+        offer\@123
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var2\
+        **mandatory**
+      </td>
+
+      <td>
+        This parameter must be contain the amount.
+      </td>
+
+      <td>
+        10000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var3\
+        **optional**
+      </td>
+
+      <td>
+        This parameter must be left blank.
+      </td>
+
+      <td>
+        –
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var4\
+        **optional**
+      </td>
+
+      <td>
+        This parameter must be left blank.
+      </td>
+
+      <td>
+        –
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var5\
+        **mandatory**
+      </td>
+
+      <td>
+        This parameter must contain the card number.
+      </td>
+
+      <td>
+        5432112345678901
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 Error Codes
 
-- ‘INVALID\_OFFER’=>’E001′
-- ‘INVALID\_PAYMENT\_METHOD’=>’E002’
+* ‘INVALID\_OFFER’=>’E001′
+* ‘INVALID\_PAYMENT\_METHOD’=>’E002’
 
 **In the Output:**
 
-- Parameter ‘status’ = 1, means offer is valid
-- Parameter ‘status’ = 0, means offer is invalid
+* Parameter ‘status’ = 1, means offer is valid
+* Parameter ‘status’ = 0, means offer is invalid
 
 ### Sample Request
 
@@ -226,7 +386,7 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"
 ### Sample Response
 
 > 📘 Note:
-> 
+>
 > In the response, the category will be the passed Category.
 
 #### Success Scenario
@@ -248,7 +408,7 @@ If the offer is valid:
 
 #### Failure Scenario
 
-- If the offer has expired:
+* If the offer has expired:
 
 If the offer has expired
 
@@ -266,7 +426,7 @@ Array
 )
 ```
 
-- If the card limit is exhausted:
+* If the card limit is exhausted:
 
 If the card limit is exhausted
 
@@ -284,7 +444,7 @@ Array
 )
 ```
 
-- If the offer\_key is invalid:
+* If the offer\_key is invalid:
 
 If the offer\_key is invalid
 
