@@ -10,10 +10,10 @@ metadata:
 next:
   description: ''
 ---
-This section describes <<glossary:TPV>> integration with Android SDK platform.
+This section describes <Glossary>TPV</Glossary> integration with Android SDK platform.
 
 > 📘 Note:
-> 
+>
 > For TPV transactions, you need to have a different Merchant ID. Contact your Key Account Manager at PayU for the same.
 
 ## Step 1: Hash calculation
