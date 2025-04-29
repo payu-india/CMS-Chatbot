@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-PayU provides payment gateway solutions to online businesses through its cutting-edge and award-winning technology. 
+PayU provides payment gateway solutions to online businesses through its cutting-edge and award-winning technology.
 
 To choose the right products (API Integration) for your business, you need to consider factors like:
 
@@ -23,110 +23,107 @@ To choose the right products (API Integration) for your business, you need to co
 
 PayU India offers following products to choose from:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Product",
-    "h-1": "Offering",
-    "0-0": "Web Checkout",
-    "0-1": "Choose between Prebuilt Web Checkout (PayU Hosted Checkout), Custom Checkout (Merchant Hosted Checkout) or Low Code Web SDK integration based on your resources and time to integrate as described in [Collect Payment from your website](#collect-payment-from-your-website). With your Web Checkout integration, you can opt-in for the following PayU products:  \n  \n- Recurring Payments\n- International Payments\n- Cross-Border Payments\n- Split Settlements  \n  You can value add to your existing PayU Web Checkout integration with the following products:\n- Save Cards\n- Offers\n- Recommendation Engine ",
-    "1-0": "Mobile SDK",
-    "1-1": "- PayU offers following mobile SDK platforms to choose from:\n  - Android\n  - iOS\n  - React Native\n  - Cordova\n  - Flutter  \n    You can choose to integrate using the PayU Checkout Pro, the pre-built GUI for Android, iOS or React Native or use various SDK components as described in [Collect payment from Mobile](#collect-payment-from-mobile).",
-    "2-0": "Payment Links",
-    "2-1": "Send payment links instantly to your customers. ",
-    "3-0": "Plugins for eCommerce platforms",
-    "3-1": "PayU offers plugins for major eCommerce platforms including WhatsApp for Business, Shopify, WooCommerce, BigCommerce, etc. as described in [Collect payment on eCommerce platforms](#collect-payment-on-ecommerce-platforms).",
-    "4-0": "Partner Integration",
-    "4-1": "PayU offers you a platform to refer merchants and earn incentives. For more information, refer to [Become a partner](#become-a-partner).",
-    "5-0": "Omnichannel",
-    "5-1": "Share QR codes to your customers instantly. For more information, refer to [Collect payment thru Omnichannel](#collect-payment-thru-omnichannel).",
-    "6-0": "Payouts",
-    "6-1": "Make instant payments to your vendors or employees. For more information, refer to [Make payments](#make-payments)."
-  },
-  "cols": 2,
-  "rows": 7,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
-
+<details>
+  <summary>Product Offerings</summary>
+  <ul>
+    <li>Web Checkout
+      <ul>
+        <li>Choose between Prebuilt Web Checkout (PayU Hosted Checkout), Custom Checkout (Merchant Hosted Checkout) or Low Code Web SDK integration based on your resources and time to integrate as described in <a href="#collect-payment-from-your-website">Collect Payment from your website</a>. With your Web Checkout integration, you can opt-in for the following PayU products:
+          <ul>
+            <li>Recurring Payments</li>
+            <li>International Payments</li>
+            <li>Cross-Border Payments</li>
+            <li>Split Settlements</li>
+          </ul>
+          You can value add to your existing PayU Web Checkout integration with the following products:
+          <ul>
+            <li>Save Cards</li>
+            <li>Offers</li>
+            <li>Recommendation Engine</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Mobile SDK
+      <ul>
+        <li>PayU offers following mobile SDK platforms to choose from:
+          <ul>
+            <li>Android</li>
+            <li>iOS</li>
+            <li>React Native</li>
+            <li>Cordova</li>
+            <li>Flutter</li>
+          </ul>
+          You can choose to integrate using the PayU Checkout Pro, the pre-built GUI for Android, iOS or React Native or use various SDK components as described in <a href="#collect-payment-from-mobile">Collect payment from Mobile</a>.
+        </li>
+      </ul>
+    </li>
+    <li>Payment Links
+      <ul>
+        <li>Send payment links instantly to your customers.</li>
+      </ul>
+    </li>
+    <li>Plugins for eCommerce platforms
+      <ul>
+        <li>PayU offers plugins for major eCommerce platforms including WhatsApp for Business, Shopify, WooCommerce, BigCommerce, etc. as described in <a href="#collect-payment-on-ecommerce-platforms">Collect payment on eCommerce platforms</a>.</li>
+      </ul>
+    </li>
+    <li>Partner Integration
+      <ul>
+        <li>PayU offers you a platform to refer merchants and earn incentives. For more information, refer to <a href="#become-a-partner">Become a partner</a>.</li>
+      </ul>
+    </li>
+    <li>Omnichannel
+      <ul>
+        <li>Share QR codes to your customers instantly. For more information, refer to <a href="#collect-payment-thru-omnichannel">Collect payment thru Omnichannel</a>.</li>
+      </ul>
+    </li>
+    <li>Payouts
+      <ul>
+        <li>Make instant payments to your vendors or employees. For more information, refer to <a href="#make-payments">Make payments</a>.</li>
+      </ul>
+    </li>
+  </ul>
+</details>
 
 # Collect payment from your website
 
 <br />
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/33fee0f2e261439d0356330a7bf8d2b8fbf93f4eeaf75b2ff7719f853ebbc4be-81ac69e-Web_Checkout_Decision_Tree_2_2.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "550px"
-    }
-  ]
-}
-[/block]
-
+<details>
+  <summary>Image</summary>
+  <img src="https://files.readme.io/33fee0f2e261439d0356330a7bf8d2b8fbf93f4eeaf75b2ff7719f853ebbc4be-81ac69e-Web_Checkout_Decision_Tree_2_2.png" alt="" style={{ display: "block", margin: "0 auto" }} width="550px" />
+</details>
 
 # Collect Payment from Mobile
 
 ## Android
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/2f1180f-Android_Decision_Tree.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "550px"
-    }
-  ]
-}
-[/block]
-
+<details>
+  <summary>Image</summary>
+  <img src="https://files.readme.io/2f1180f-Android_Decision_Tree.png" alt="" style={{ display: "block", margin: "0 auto" }} width="550px" />
+</details>
 
 ## iOS
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/f24a567-iOS_Decision_Tree.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "550px"
-    }
-  ]
-}
-[/block]
-
+<details>
+  <summary>Image</summary>
+  <img src="https://files.readme.io/f24a567-iOS_Decision_Tree.png" alt="" style={{ display: "block", margin: "0 auto" }} width="550px" />
+</details>
 
 # Collect payment using Links
 
-You can send  payment links using after any one of the following integration:
+You can send payment links using after any one of the following integration:
 
-- **PayU Hosted Checkout**:  Send payment links to your customers using PayU Dashboard or using Payment Link APIs. For more information, refer to [Dashboard for Payment Links](doc:payment-links-dashboard) or [Integration APIs for Payment Links](doc:integration-api-for-payment-links).
+- **PayU Hosted Checkout**: Send payment links to your customers using PayU Dashboard or using Payment Link APIs. For more information, refer to [Dashboard for Payment Links](doc:payment-links-dashboard) or [Integration APIs for Payment Links](doc:integration-api-for-payment-links).
 - **Merchant Hosted Checkout**: Send payment links to your customers using Payment Link APIs. For more information, refer to [Integration APIs for Payment Links](doc:integration-api-for-payment-links).
 
 # Collect payment through Omnichannel
 
-You can collect  payments using Omnichannel after any one of the following integration:
+You can collect payments using Omnichannel after any one of the following integration:
 
-- **PayU Hosted Checkout**:  Share QR  to your customers using Omnichannel Integration APIs. For more information, refer to [Integrated Dynamic Storefront](doc:integrated-dynamic-storefront)
-- **Merchant Hosted Checkout**: Share QR  to your customers using Omnichannel Integration APIs. For more information, refer to [QR Generation API](doc:qr-generation-api).
+- **PayU Hosted Checkout**: Share QR to your customers using Omnichannel Integration APIs. For more information, refer to [Integrated Dynamic Storefront](doc:integrated-dynamic-storefront)
+- **Merchant Hosted Checkout**: Share QR to your customers using Omnichannel Integration APIs. For more information, refer to [QR Generation API](doc:qr-generation-api).
 
 # Collect payment on eCommerce Platforms
 
@@ -145,11 +142,11 @@ Become a partner to onboard merchants and earn incentives for payments collected
 
 - [Using Partner Portal or Dashboard](doc:referral-onboarding)
 - [Using Co-Branded (OAuth) Onboarding](doc:refer-merchants-using-co-branded-oauth-onboarding)
-- [Using Integration APIs](doc:refer-merchants-using-api) 
+- [Using Integration APIs](doc:refer-merchants-using-api)
 - [Using Referral Links](doc:refer-merchants-using-referral-links)
 
 For more information, refer to [Partner Integration](doc:payu-partner-program-overview).
 
 # Make payments
 
-PayU offers Payouts as a product for businesses to make instant payments to diverse customers. It is a reliable and secure payment option for all types of businesses that eases substantial monetary transactions. For more information, refer to [Payouts Integration](doc:introduction-to-payouts)
+PayU offers Payouts as a product for businesses to make instant payments to diverse customers. It is a reliable and secure payment option for all types of businesses that eases substantial monetary transactions. For more information, refer to [Payouts Integration](doc:introduction-to-payouts).
