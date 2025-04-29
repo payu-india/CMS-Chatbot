@@ -10,4 +10,4 @@ metadata:
 next:
   description: ''
 ---
-<https://github.com/payu-intrepos/payu-checkoutpro-cordova-ionic-sample.git>
+[https://github.com/payu-intrepos/payu-checkoutpro-cordova-ionic-sample.git](https://github.com/payu-intrepos/payu-checkoutpro-cordova-ionic-sample.git)
