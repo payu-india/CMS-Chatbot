@@ -12,12 +12,12 @@ next:
 ---
 The API notifications described in this section enable you to know the status of the user’s tokenized card. There are four variations or types of notifications that you can receive from PayU.
 
-> 📘 Note: 
-> 
+> 📘 Note:
+>
 > You must contact your PayU Key Account Manager to enable these API notifications for Tokenization.
 
-- The API response to the merchant for all the scenarios is as follows:
-- **Response when Tokenization is failed while we are retrying tokenization.**
+* The API response to the merchant for all the scenarios is as follows:
+* **Response when Tokenization is failed while we are retrying tokenization.**
 
 ```plaintext
 { 
@@ -29,7 +29,7 @@ The API notifications described in this section enable you to know the status of
 }
 ```
 
-- **Response to the merchant when Tokenization is successful while we are retrying tokenization.**
+* **Response to the merchant when Tokenization is successful while we are retrying tokenization.**
 
 ```plaintext
 { 
@@ -55,7 +55,7 @@ The API notifications described in this section enable you to know the status of
 }
 ```
 
-- **Response when Tokenization is failed while we are doing sync/async Tokenization.**
+* **Response when Tokenization is failed while we are doing sync/async Tokenization.**
 
 ```plaintext
 { 
@@ -91,7 +91,7 @@ The API notifications described in this section enable you to know the status of
 } 
 ```
 
-- **Response when the token is deleted**
+* **Response when the token is deleted**
 
 ```plaintext
 { 
