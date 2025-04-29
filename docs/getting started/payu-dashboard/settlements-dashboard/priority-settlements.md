@@ -44,7 +44,7 @@ To enroll for Priority settlements:
 
 1. Navigate to **Track** > **Settlements**.
 
-   The _Settlements Overview_ page is displayed.
+   The *Settlements Overview* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Settlements_Manage_Cycle-1024x552.png)
 
@@ -52,28 +52,13 @@ To enroll for Priority settlements:
 
 > **Note**: The **Manage Settlement Cycle** on the **Manage your Settlement Cycle Settings** pane is enabled only if you are eligible. For eligibility criteria, refer to Priority Settlements.   
 
-    The _Choose your Priority Settlements cycle_ pop-up page is displayed. The charges (in percentage of the transaction amount) for each Settlement cycle are mentioned for every settlement cycle along with the transaction limit.
+    The *Choose your Priority Settlements cycle* pop-up page is displayed. The charges (in percentage of the transaction amount) for each Settlement cycle are mentioned for every settlement cycle along with the transaction limit.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Enrol_Priority_Settlements-1024x676.png)
 
 3. Select the Settlement cycle that will suit your business needs.
 4. Click **Select & Proceed**.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Settlements_Cycle_Confirm.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "350px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="350px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Settlements_Cycle_Confirm.png" />
 
 5. Click Confirm to configure the selected Settlement cycle.
