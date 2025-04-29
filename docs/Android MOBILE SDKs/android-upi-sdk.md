@@ -28,10 +28,10 @@ UPI SDK supports collect, intent and in app flows for accepting UPI payments thr
 
 ## Features
 
-- Collect, Intent and In App experience
-- VPA verification
-- Generic Intent(All UPI apps populated) or Smart Intent( Check if user is enrolled in UPI app)
-- Addons ( GPay SDK and Phonepe In-App SDK)
+* Collect, Intent and In App experience
+* VPA verification
+* Generic Intent(All UPI apps populated) or Smart Intent( Check if user is enrolled in UPI app)
+* Addons ( GPay SDK and Phonepe In-App SDK)
 
 This cluster aims to document all the knowledge base for UPI transactions. Implementation of most of the UPI flows is different when compared to normal transactions.
 
@@ -43,15 +43,15 @@ For intent transactions, we delegate the transaction process to an external app 
 
 Implementation details of the following are documented separately, and available at the same location as this document.​
 
-- VPA validation
-- Collect
-- Payment Verification
-- Generic Intent
-- Google Pay
-- PhonePe
+* VPA validation
+* Collect
+* Payment Verification
+* Generic Intent
+* Google Pay
+* PhonePe
 
 ## Compatibility
 
-- Min SDK Version: 21
-- Compile SDK Version: 31 and above
-- Kotlin version: 1.6.10
+* Min SDK Version: 21
+* Compile SDK Version: 31 and above
+* Kotlin version: 1.6.10
