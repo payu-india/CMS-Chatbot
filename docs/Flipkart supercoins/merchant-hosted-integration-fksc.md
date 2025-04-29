@@ -27,14 +27,14 @@ When your customer makes a payment by redeeming their SuperCoins, you can check 
 
 Use the following APIs under API Reference to check the SuperCoins balance:
 
-- [Send OTP API](ref:send-otp-api-fksc)
-- [Verify Token API](ref:verify-token-api-fksc)
-- [Get SuperCoins Balance API](ref:get-supercoins-balance-api)
+* [Send OTP API](ref:send-otp-api-fksc)
+* [Verify Token API](ref:verify-token-api-fksc)
+* [Get SuperCoins Balance API](ref:get-supercoins-balance-api)
 
 > 📘 **Notes:**
-> 
-> - The **Send OTP** and **Verify OTP** APIs for Flipkart Supercoins will be used only for the first time when the customer logs in using the mobile number associated with  Flipkart. After the OTP validation is successful, PayU responds to the merchant with a token. The merchant must save this token and must be used in repeat flows when the same customer uses Flipkart Supercoins for payments.
-> - Merchant has to create screens to accept their customer’s mobile number to send the OTP using the **Send OTP** API and authenticate the OTP using the **Verify OTP** API.
+>
+> * The **Send OTP** and **Verify OTP** APIs for Flipkart Supercoins will be used only for the first time when the customer logs in using the mobile number associated with  Flipkart. After the OTP validation is successful, PayU responds to the merchant with a token. The merchant must save this token and must be used in repeat flows when the same customer uses Flipkart Supercoins for payments.
+> * Merchant has to create screens to accept their customer’s mobile number to send the OTP using the **Send OTP** API and authenticate the OTP using the **Verify OTP** API.
 
 ***
 
@@ -46,35 +46,35 @@ Markup
 
 \<body>
 
-\<form _action_\='<https://test.payu.in/_payment'> _method_\='post'>
+\<form *action*\='[https://test.payu.in/\_payment'](https://test.payu.in/_payment') *method*\='post'>
 
-\<input _type_\="hidden" _name_\="key" _value_\="JP\*\*\*g" />
+\<input *type*\="hidden" *name*\="key" *value*\="JP\*\*\*g" />
 
-\<input _type_\="hidden" _name_\="txnid" _value_\="t6svtqtjRdl34W" />
+\<input *type*\="hidden" *name*\="txnid" *value*\="t6svtqtjRdl34W" />
 
-\<input _type_\="hidden" _name_\="productinfo" _value_\="iPhone" />
+\<input *type*\="hidden" *name*\="productinfo" *value*\="iPhone" />
 
-\<input _type_\="hidden" _name_\="amount" _value_\="1000" />
+\<input *type*\="hidden" *name*\="amount" *value*\="1000" />
 
-\<input _type_\="hidden" _name_\="email" _value_\="[test@gmail.com](mailto:test@gmail.com)" />
+\<input *type*\="hidden" *name*\="email" *value*\="[test@gmail.com](mailto:test@gmail.com)" />
 
-\<input _type_\="hidden" _name_\="firstname" _value_\="Ashish" />
+\<input *type*\="hidden" *name*\="firstname" *value*\="Ashish" />
 
-\<input _type_\="hidden" _name_\="lastname" _value_\="Kumar" />
+\<input *type*\="hidden" *name*\="lastname" *value*\="Kumar" />
 
-\<input _type_\="hidden" _name_\="pg" _value_\="LR" />
+\<input *type*\="hidden" *name*\="pg" *value*\="LR" />
 
-\<input _type_\="hidden" _name_\="bankcode" _value_\="FKSC" />
+\<input *type*\="hidden" *name*\="bankcode" *value*\="FKSC" />
 
-\<input _type_\="hidden" _name_\="surl" _value_\="your own success url" />
+\<input *type*\="hidden" *name*\="surl" *value*\="your own success url" />
 
-\<input _type_\="hidden" _name_\="furl" _value_\="your own failure url" />
+\<input *type*\="hidden" *name*\="furl" *value*\="your own failure url" />
 
-\<input _type_\="hidden" _name_\="phone" _value_\="9988776655” />
+\<input *type*\="hidden" *name*\="phone" *value*\="9988776655” />
 
-\<input type="_hidden"_ _name_\="hash" _value_\="eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972" />
+\<input type="*hidden"* *name*\="hash" *value*\="eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972" />
 
-\<input _type_\="submit" _value_\="submit"> \</form>
+\<input *type*\="submit" *value*\="submit"> \</form>
 
 \</body>
 
@@ -86,29 +86,55 @@ Markup
 
 Along with the mandatory parameters mentioned in [Collect Payment API - Merchant Hosted](ref:_payment_merchant_hosted), you must post the following parameters for the Flipkart Supercoins:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "pg  \n**mandatory**",
-    "0-1": "`String` It defines the payment category using the Merchant Hosted Checkout integration. For a FKSC redemption, \"LR\" must be specified in the **pg** parameter.",
-    "0-2": "LR",
-    "1-0": "bankcode  \n**mandatory**",
-    "1-1": "`String` Pass the values as **FKSC** for Flipkart Supercoins redemption.",
-    "1-2": "FKSC"
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        pg
+        **mandatory**
+      </td>
+
+      <td>
+        `String` It defines the payment category using the Merchant Hosted Checkout integration. For a FKSC redemption, "LR" must be specified in the **pg** parameter.
+      </td>
+
+      <td>
+        LR
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankcode\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` Pass the values as **FKSC** for Flipkart Supercoins redemption.
+      </td>
+
+      <td>
+        FKSC
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Sample Request
 
