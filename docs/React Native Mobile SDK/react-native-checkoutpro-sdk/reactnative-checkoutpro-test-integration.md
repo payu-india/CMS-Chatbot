@@ -45,13 +45,13 @@ You can use either of the following VPAs to test your UPI-related integration:
 - [anything@upi](anything@upi)
 - [9999999999@upi](mailto:9999999999@upi)
 
-For Testing the UPI Collect flow, Please follow the below steps:- 
+For Testing the UPI Collect flow, Please follow the below steps:-
 
 1. Once you enter the VPA click on the verify button and proceed to pay.
 2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
 3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
 
-<https://pgsim01.payu.in/UPI-test-transaction/confirm/>\<Txn_id>
+<https://pgsim01.payu.in/UPI-test-transaction/confirm/>`<Txn_id>`
 
 #### For Android
 
@@ -59,12 +59,12 @@ You can add the below metadata under the application tag in the manifest file to
 
 > 🚧 Ensure to remove the code from the manifest file before going live.
 
-```Text xml
+```xml
 <application>
-<meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
-<meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
-<meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
-</appliction>
+<meta-data android:name="payu_debug_mode_enabled" android:value="true" /> <!-- set the value to false for production environment -->
+<meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> <!-- Comment in case of Production -->
+<meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> <!-- Comment in case of Production -->
+</application>
 ```
 
 ### Test cards for EMI
