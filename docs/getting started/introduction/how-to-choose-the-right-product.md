@@ -20,9 +20,7 @@ next:
 
 5. Security and Compliance: Does the merchant have specific security and compliance requirements, such as PCI-DSS compliance or additional fraud prevention measures?
 
-## By 
-
-
+## By
 
 1. Easy to Integrate: Payu India provides several products for easy integration, such as the PayuMoney Payment Gateway, the PayuBiz Payment Gateway, and the PayuMoney Mobile SDK. Out of these, the PayuMoney Payment Gateway is the easiest to integrate as it requires minimal coding and allows for quick setup.
 
