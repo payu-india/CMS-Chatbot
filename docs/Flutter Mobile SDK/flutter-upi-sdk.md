@@ -27,9 +27,9 @@ There are broadly two types of UPI transactions, Collect and Intent(Pure Intent/
 For intent transactions, we delegate the transaction process to an external app like BHIM, Google Pay, etc, which lets users transfer money to a VPA specified by us. After that, we use the PG (related to the specified VPA) for verification. PayU has a pre-configured VPA (distinct on the PG-Merchant level) on which the app makes the user pay the amount. To integrate UPI SDK with React Native, see Integrate UPI SDK with Flutter.
 
 > ❗️ Callout
-> 
-> - To start transacting through Google Pay™, register your business on Google using the Google Onboarding form, In this registration process, you need to add the merchant VPAs created by PayU for you. In the case of multiple VPAs, all of them need to be registered with Google.
-> - To enable Google Pay, contact your Point of Contact at Google. For any further queries or help with onboarding, send a mail to PayU Mobile Integration Team.
+>
+> * To start transacting through Google Pay™, register your business on Google using the Google Onboarding form, In this registration process, you need to add the merchant VPAs created by PayU for you. In the case of multiple VPAs, all of them need to be registered with Google.
+> * To enable Google Pay, contact your Point of Contact at Google. For any further queries or help with onboarding, send a mail to PayU Mobile Integration Team.
 
 ***
 
@@ -37,13 +37,13 @@ For intent transactions, we delegate the transaction process to an external app 
 
 ### Android
 
-- Min SDK Version: 21
-- Compile SDK Version: 31+
-- Kotlin 1.6.10
+* Min SDK Version: 21
+* Compile SDK Version: 31+
+* Kotlin 1.6.10
 
 ## iOS
 
-- iOS version: 11
+* iOS version: 11
 
 ## Integration Steps
 
