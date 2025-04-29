@@ -16,43 +16,13 @@ To generate a report:
 
 1. Navigate to **Dashboard** > **Reports**.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/2e38946-Screenshot_2023-09-29_at_10.48.05_AM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/2e38946-Screenshot_2023-09-29_at_10.48.05_AM.png" />
 
 2. Click **Generate Report**.
 
-   The _Generate Report_ pop-up page is displayed.
+   The *Generate Report* pop-up page is displayed.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/graphical-user-interface-application-description.png",
-        null,
-        "Graphical user interface, applicationDescription automatically generated"
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/graphical-user-interface-application-description.png" />
 
 3. Select the report type from the **Select Report Type** drop-down list.
 4. Select the date range from the calendar view.
@@ -62,48 +32,19 @@ To generate a report:
 5. Click the drop-down arrow in the **Filters** drop-down list.
 6. Select the check boxes against the source in the **Filters** drop-down list which you wish to print on the report.
 
-_**Note:** Use the **Clear All** option to reset the field selection._
+***Note:** Use the **Clear All** option to reset the field selection.*
 
 7. Select the file format CSV or XLSX from the drop-down list.
 8. Click **Download & Share**.
 
    A dialog box is displayed to confirm the report has been generated.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/graphical-user-interface-application-description-1.png",
-        null,
-        "Graphical user interface, applicationDescription automatically generated"
-      ],
-      "align": "center",
-      "sizing": "412px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="412px" src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/graphical-user-interface-application-description-1.png" />
 
 9. Perform any of the following steps:
-   - Click **Download Report** to download the report.
-   - Click **Share**, enter the recipient email ID and then click **Share** to complete the action.
+   * Click **Download Report** to download the report.
+   * Click **Share**, enter the recipient email ID and then click **Share** to complete the action.
 
-_**Note:** You can share the report to multiple email IDs by entering the comma-separated entries._
+***Note:** You can share the report to multiple email IDs by entering the comma-separated entries.*
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/graphical-user-interface-application-description-2.png",
-        null,
-        "Graphical user interface, applicationDescription automatically generated"
-      ],
-      "align": "center",
-      "sizing": "412px"
-    }
-  ]
-}
-[/block]
+<Image align="center" width="412px" src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/graphical-user-interface-application-description-2.png" />
