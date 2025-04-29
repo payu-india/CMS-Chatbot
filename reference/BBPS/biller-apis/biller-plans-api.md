@@ -19,21 +19,23 @@ The** Biller Plans** API to fetch the plans for a biller.
 
 > 📘 Note:
 > 
-> Send the scope of the Get Token API as **read_plans** to obtain the access_token for this request. For more information, refer to  [Get Token API - BBPS](ref:get-token-api-bbps).
+> Send the scope of the Get Token API as **read_plans** to obtain the access_token for this request. For more information, refer to [Get Token API - BBPS](ref:get-token-api-bbps).
 
 <br />
 
-<details> <summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
-curl --location -g --request POST 'https://<hostName>/payu-nbc/v1/nbc/billerPlans?agentId={AGENT_ID}&billerId={BILLER_ID}&refId={{UNIQUE_REF_ID}}&searchByTime={searchByTime}&offset={offset}&flowType={NON-BBPS/BBPS}&limi={100}' \
+curl --location -g --request POST 'https://<hostName>/payu-nbc/v1/nbc/billerPlans?agentId=`{AGENT_ID}`&billerId=`{BILLER_ID}`&refId=`{UNIQUE_REF_ID}`&searchByTime=`{searchByTime}`&offset=`{offset}`&flowType=`{NON-BBPS/BBPS}`&limi={100}' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer {{access_token}}
+--header 'Authorization: Bearer {{access_token}}'
 ```
 
 </details>
 
-<details> <summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
 [block:parameters]
 {
@@ -55,7 +57,6 @@ curl --location -g --request POST 'https://<hostName>/payu-nbc/v1/nbc/billerPlan
   ]
 }
 [/block]
-
 
 ### payload
 
@@ -81,7 +82,8 @@ curl --location -g --request POST 'https://<hostName>/payu-nbc/v1/nbc/billerPlan
 
 </details>
 
-<details> <summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ### Success scenario
 
@@ -112,7 +114,6 @@ curl --location -g --request POST 'https://<hostName>/payu-nbc/v1/nbc/billerPlan
     }
   ]
 }
-
 ```
 
 - For non-BBPS flow:
