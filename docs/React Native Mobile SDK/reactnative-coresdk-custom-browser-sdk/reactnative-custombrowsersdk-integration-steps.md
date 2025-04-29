@@ -87,7 +87,7 @@ For details on Standing Instructions parameters, refer to [PayU Standing Instruc
 For hash generation testing salt needs to be put in the HASH generation method. For more information, refer to [Generate Hash](doc:generate-dynamic-hash-react).
 
 > 📘 Remember
-> 
+>
 > Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
 
 ***
