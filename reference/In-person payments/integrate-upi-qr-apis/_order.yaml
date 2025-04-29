@@ -9,3 +9,4 @@
 - print-invoice-qr-api
 - send-invoice-qr-to-sms-api
 - transaction-callback-api
+- transaction-status-check-api-2
