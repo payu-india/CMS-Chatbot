@@ -25,18 +25,18 @@ Software development kits (SDK) or dev kits are a collection of tools and progra
 
 In addition to Cordova, PayU provides the following SDKs based on the mobile platform you want to integrate with:
 
-- Android SDKs
-- Apple iOS SDKs
-- React Native
-- Flutter SDK
-- PayU’s SDK Offerings
+* Android SDKs
+* Apple iOS SDKs
+* React Native
+* Flutter SDK
+* PayU’s SDK Offerings
 
 PayU’s Mobile SDK offers important mobility features that help customers to make smooth and easy transactions using mobile phones:
 
-- Plug and Play modules for payments
-- Native Mobile Interface for PayU’s API
-- Easy Integration and Cost Saving
-- Zero Management effort in rolling updates
+* Plug and Play modules for payments
+* Native Mobile Interface for PayU’s API
+* Easy Integration and Cost Saving
+* Zero Management effort in rolling updates
 
 ***
 
@@ -44,42 +44,42 @@ PayU’s Mobile SDK offers important mobility features that help customers to ma
 
 The PayUCheckoutPro SDK gives you the following key capabilities: 
 
-- A complete, ready-to-use native Checkout UI
-- Support for multiple payment options:
-- All major Credit/Debit card providers (Amex, Mastercard, Rupay, Visa, and more)
-- Netbanking with 150+ Indian banks UPI Payments (Intent & Collect)
-- Change the Theme
-- Set Merchant Logo
-- Set Merchant Name
-- Hide Back Buttons
-- On the Checkout Screen Dialog box
-- On the Dialog box after Payment Initialisation
-- Auto Select OTP
-- Set Merchant Response Timeout
-- Review Order
-- Additional Payment Options on the Checkout Screen
-- Configure Checkout Payment Modes Order
-- Offers
-- Native OTP Assist
-- Custom Note Integration
-- Enforced Payment Modes
-- Android Specific Configurations
-- Runtime SMS Permission
-- Auto Approve OTP
-- Hide the Toolbar in the Custom Browser (CB)
+* A complete, ready-to-use native Checkout UI
+* Support for multiple payment options:
+* All major Credit/Debit card providers (Amex, Mastercard, Rupay, Visa, and more)
+* Netbanking with 150+ Indian banks UPI Payments (Intent & Collect)
+* Change the Theme
+* Set Merchant Logo
+* Set Merchant Name
+* Hide Back Buttons
+* On the Checkout Screen Dialog box
+* On the Dialog box after Payment Initialisation
+* Auto Select OTP
+* Set Merchant Response Timeout
+* Review Order
+* Additional Payment Options on the Checkout Screen
+* Configure Checkout Payment Modes Order
+* Offers
+* Native OTP Assist
+* Custom Note Integration
+* Enforced Payment Modes
+* Android Specific Configurations
+* Runtime SMS Permission
+* Auto Approve OTP
+* Hide the Toolbar in the Custom Browser (CB)
 
 ***
 
 ### iOS compatibility
 
-- Minimum iOS version: iOS 11
-- Xcode version: Xcode 11.4 and above
+* Minimum iOS version: iOS 11
+* Xcode version: Xcode 11.4 and above
 
 ### Android compatibility
 
-- Min SDK Version: 21
-- Compile SDK Version: 31+
-- Kotlin 1.6.10
+* Min SDK Version: 21
+* Compile SDK Version: 31+
+* Kotlin 1.6.10
 
 ***
 
