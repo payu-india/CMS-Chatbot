@@ -16,44 +16,104 @@ The following table describes the parameters in the response:
 
 **Note**: For every successful payment transactions, PayU returns the **mihpayuid** and **cardToken** parameters to the merchants, but networkToken and issuer\_token are returned only if you are PCI-DSS compliant.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "The status of the response can be any of the following:  \n_ 1: Success   \n_  0: Failure",
-    "0-2": "1",
-    "1-0": "msg",
-    "1-1": "The description of the response whether the card details were stored successfully or not stored.",
-    "1-2": "Card Stored Successfully.",
-    "2-0": "cardToken",
-    "2-1": "The cardToken is sent by PayU for the successful response.",
-    "2-2": "`74\\*\\*\\*2e2fd9b7e\\*\\*\\*24fef4e7ed7dac1fe624b7`",
-    "3-0": "network\\_token",
-    "3-1": "The network token is returned in this parameter.",
-    "3-2": "`1234 5*** 9*** 3456`",
-    "4-0": "issuer\\_token",
-    "4-1": "The parameter contains the issuer token that is returned by issuer.",
-    "4-2": "`3456 7*** A*** EFGH`"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        The status of the response can be any of the following:  
+
+        * 1: Success   
+        * 0: Failure
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        msg
+      </td>
+
+      <td>
+        The description of the response whether the card details were stored successfully or not stored.
+      </td>
+
+      <td>
+        Card Stored Successfully.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardToken
+      </td>
+
+      <td>
+        The cardToken is sent by PayU for the successful response.
+      </td>
+
+      <td>
+        `74\*\*\*2e2fd9b7e\*\*\*24fef4e7ed7dac1fe624b7`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        network\_token
+      </td>
+
+      <td>
+        The network token is returned in this parameter.
+      </td>
+
+      <td>
+        `1234 5*** 9*** 3456`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        issuer\_token
+      </td>
+
+      <td>
+        The parameter contains the issuer token that is returned by issuer.
+      </td>
+
+      <td>
+        `3456 7*** A*** EFGH`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample Response for Save Card API
 
 ### Success scenarios
 
-- VISA
+* VISA
 
 ```plaintext
 {
@@ -67,7 +127,7 @@ issuer_token: QQ3LkzgZOnEjY428,
 }
 ```
 
-- Mastercard
+* Mastercard
 
 ```plaintext
 {
@@ -81,7 +141,7 @@ issuer_token: AQ3LkzgBNyEjY213,
 }
 ```
 
-- American Express
+* American Express
 
 ```plaintext
 {
@@ -95,7 +155,7 @@ issuer_token: Va3RaqBNyPnY673,
 }
 ```
 
-- Rupay
+* Rupay
 
 ```plaintext
 {
@@ -109,7 +169,7 @@ issuer_token: Ya4HawKgbLmr312,
 }
 ```
 
-- Diners
+* Diners
 
 ```plaintext
 {
@@ -125,7 +185,7 @@ card_label: "Diner_Card",
 
 ### Failure scenario
 
-- If card Number is invalid
+* If card Number is invalid
 
 ```plaintext
 {
@@ -136,42 +196,102 @@ card_label: "Diner_Card",
 
 ## Response parameters for Edit Card API
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "The status of the response can be any of the following:  \n_ 1: Success  \n_ 0: Failure",
-    "0-2": "1",
-    "1-0": "msg",
-    "1-1": "The description of the response whether the card details were stored successfully or not stored.",
-    "1-2": "My\\_card Edited Successfully",
-    "2-0": "cardToken",
-    "2-1": "The card token is sent by PayU for the successful response.",
-    "2-2": "`745d7XXXd9b7e88824fXXXe7ed7XXX1fe624b74`",
-    "3-0": "networkToken",
-    "3-1": "The network token is sent by PayU for the successful response.",
-    "3-2": "`1234 5XXX XXXX 3456`",
-    "4-0": "issuerToken",
-    "4-1": "The issuer token is sent by PayU for the successful response.",
-    "4-2": "`3456 7XXX XXXX EFGH`"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        The status of the response can be any of the following:  
+
+        * 1: Success  
+        * 0: Failure
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        msg
+      </td>
+
+      <td>
+        The description of the response whether the card details were stored successfully or not stored.
+      </td>
+
+      <td>
+        My\_card Edited Successfully
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardToken
+      </td>
+
+      <td>
+        The card token is sent by PayU for the successful response.
+      </td>
+
+      <td>
+        `745d7XXXd9b7e88824fXXXe7ed7XXX1fe624b74`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        networkToken
+      </td>
+
+      <td>
+        The network token is sent by PayU for the successful response.
+      </td>
+
+      <td>
+        `1234 5XXX XXXX 3456`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        issuerToken
+      </td>
+
+      <td>
+        The issuer token is sent by PayU for the successful response.
+      </td>
+
+      <td>
+        `3456 7XXX XXXX EFGH`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Sample response
 
-- On successful update of card details
+* On successful update of card details
 
 ```plaintext
 {
@@ -185,7 +305,7 @@ card_label: "Diner_Card",
 }
 ```
 
-- If the wrong card token is provided to edit
+* If the wrong card token is provided to edit
 
 ```plaintext
 {
@@ -196,104 +316,345 @@ card_label: "Diner_Card",
 
 ## Response parameters for Get User Cards API
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "The status of the response can be any of the following:  \n1: Success  \n  \n2: Failure",
-    "0-2": "1",
-    "1-0": "msg",
-    "1-1": "The description of the response whether the card details were stored successfully or not stored.",
-    "1-2": "Cards fetched Succesfully",
-    "2-0": "user\\_cards",
-    "2-1": "(JSON format) | The details are sent by PayU in JSON format for the successful response. For more information, refer to the next table.",
-    "2-2": "Refer the [sample response](ref:get_user_cards_api_model3)."
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        The status of the response can be any of the following:\
+        1: Success  
+
+        2: Failure
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        msg
+      </td>
+
+      <td>
+        The description of the response whether the card details were stored successfully or not stored.
+      </td>
+
+      <td>
+        Cards fetched Succesfully
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        user\_cards
+      </td>
+
+      <td>
+        (JSON format) | The details are sent by PayU in JSON format for the successful response. For more information, refer to the next table.
+      </td>
+
+      <td>
+        Refer the [sample response](ref:get_user_cards_api_model3).
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 The details on the JSON format for a successful response is described in the following table:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**JSON Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "card\\_name",
-    "0-1": "**Note**: This parameter has been deprecated.",
-    "0-2": "NA",
-    "1-0": "card\\_type",
-    "1-1": "This field returns the card type code. For the list of card type codes, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).",
-    "1-2": "CC",
-    "2-0": "card\\_token",
-    "2-1": "This field returns the PayU Token for the card.",
-    "2-2": "745d72e2fXXX7e88824fef4e7ed7dXXXfe624b7",
-    "3-0": "network\\_token",
-    "3-1": "This field returns the details of the network token in a JSON format.",
-    "3-2": "\"token_value\": \"51XXX56789012346\",  \n  \n\"is_expired\": 0,  \n  \n\"token_exp_mon\": \"11\",  \n  \n\"token_exp_yr\": \"2021\",  \n  \n\"token_bin\": \"512345\"  \n  \n}",
-    "4-0": "issuer\\_token",
-    "4-1": "This field returns the details of the issuer token in a JSON format.",
-    "4-2": "{  \n  \n\"token_value\": \"51XXX567890XXX46\",  \n  \n\"is_expired\": 0,  \n  \n\"token_exp_mon\": \"11\",  \n  \n\"token_exp_yr\": \"2021\",  \n  \n\"token_bin\": \"512345\"  \n  \n}",
-    "5-0": "is\\_expired",
-    "5-1": "This field returns any of the following values to signify whether the card is active or not:  \n1: Card has expired  \n  \n0: Card is active",
-    "5-2": "1",
-    "6-0": "card\\_mode",
-    "6-1": "This field returns the card mode.",
-    "6-2": "CC",
-    "7-0": "card\\_no",
-    "7-1": "This field returns a masked card number with only the last four digits.",
-    "7-2": "xxxxxxxxxxxx2356",
-    "8-0": "card\\_brand",
-    "8-1": "This field returns the card brand.",
-    "8-2": "VISA",
-    "9-0": "card\\_bin",
-    "9-1": "**Note**: This parameter has been deprecated.",
-    "9-2": "NA",
-    "10-0": "token\\_bin",
-    "10-1": "This field returns the token bin information of respective token type (network or issuer).",
-    "10-2": "123456",
-    "11-0": "card\\_PAR",
-    "11-1": "This field returns the PAR (Payment Account Reference). This is a unique identity for the card across all the tokens. Typically, this will be used for offers and risk checks.",
-    "11-2": "abcdefgh123456789123456789fgh",
-    "12-0": "card\\_metadata",
-    "12-1": "This field returns the JSON object with all the metadata and card art.",
-    "12-2": " ",
-    "13-0": "token\\_exp\\_yr",
-    "13-1": "This field returns the expiry year of the network token.",
-    "13-2": "2022",
-    "14-0": "token\\_exp\\_mon",
-    "14-1": "This field returns the expiry month of the network token.",
-    "14-2": "10",
-    "15-0": "token\\_value",
-    "15-1": "The field returns the value of the network or issuer token.",
-    "15-2": "51XXX5678XXX2346"
-  },
-  "cols": 3,
-  "rows": 16,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **JSON Field**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        card\_name
+      </td>
+
+      <td>
+        * \*Note\*\*: This parameter has been deprecated.
+      </td>
+
+      <td>
+        NA
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_type
+      </td>
+
+      <td>
+        This field returns the card type code. For the list of card type codes, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).
+      </td>
+
+      <td>
+        CC
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_token
+      </td>
+
+      <td>
+        This field returns the PayU Token for the card.
+      </td>
+
+      <td>
+        745d72e2fXXX7e88824fef4e7ed7dXXXfe624b7
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        network\_token
+      </td>
+
+      <td>
+        This field returns the details of the network token in a JSON format.
+      </td>
+
+      <td>
+        "token\_value": "51XXX56789012346",  
+
+        "is\_expired": 0,  
+
+        "token\_exp\_mon": "11",  
+
+        "token\_exp\_yr": "2021",  
+
+        "token\_bin": "512345"  
+
+        }
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        issuer\_token
+      </td>
+
+      <td>
+        This field returns the details of the issuer token in a JSON format.
+      </td>
+
+      <td>
+        \{  
+
+        "token\_value": "51XXX567890XXX46",  
+
+        "is\_expired": 0,  
+
+        "token\_exp\_mon": "11",  
+
+        "token\_exp\_yr": "2021",  
+
+        "token\_bin": "512345"  
+
+        }
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        is\_expired
+      </td>
+
+      <td>
+        This field returns any of the following values to signify whether the card is active or not:\
+        1: Card has expired  
+
+        0: Card is active
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_mode
+      </td>
+
+      <td>
+        This field returns the card mode.
+      </td>
+
+      <td>
+        CC
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_no
+      </td>
+
+      <td>
+        This field returns a masked card number with only the last four digits.
+      </td>
+
+      <td>
+        xxxxxxxxxxxx2356
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_brand
+      </td>
+
+      <td>
+        This field returns the card brand.
+      </td>
+
+      <td>
+        VISA
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_bin
+      </td>
+
+      <td>
+        * \*Note\*\*: This parameter has been deprecated.
+      </td>
+
+      <td>
+        NA
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        token\_bin
+      </td>
+
+      <td>
+        This field returns the token bin information of respective token type (network or issuer).
+      </td>
+
+      <td>
+        123456
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_PAR
+      </td>
+
+      <td>
+        This field returns the PAR (Payment Account Reference). This is a unique identity for the card across all the tokens. Typically, this will be used for offers and risk checks.
+      </td>
+
+      <td>
+        abcdefgh123456789123456789fgh
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_metadata
+      </td>
+
+      <td>
+        This field returns the JSON object with all the metadata and card art.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        token\_exp\_yr
+      </td>
+
+      <td>
+        This field returns the expiry year of the network token.
+      </td>
+
+      <td>
+        2022
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        token\_exp\_mon
+      </td>
+
+      <td>
+        This field returns the expiry month of the network token.
+      </td>
+
+      <td>
+        10
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        token\_value
+      </td>
+
+      <td>
+        The field returns the value of the network or issuer token.
+      </td>
+
+      <td>
+        51XXX5678XXX2346
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Sample response
 
-- Cards are found in the vault for PCI Compliant Merchants
+* Cards are found in the vault for PCI Compliant Merchants
 
 ```plaintext
 {
@@ -326,7 +687,7 @@ The details on the JSON format for a successful response is described in the fol
 }
 ```
 
-- Response for Non-PCI Compliant Merchants
+* Response for Non-PCI Compliant Merchants
 
 ```plaintext
 {
@@ -356,7 +717,7 @@ The details on the JSON format for a successful response is described in the fol
 }
 ```
 
-- No cards are found for the user
+* No cards are found for the user
 
 ```plaintext
 {
@@ -367,7 +728,7 @@ The details on the JSON format for a successful response is described in the fol
 
 ## Sample Response for Delete Card API
 
-- On successful deletion
+* On successful deletion
 
 ```plaintext
 {
@@ -376,7 +737,7 @@ The details on the JSON format for a successful response is described in the fol
 }
 ```
 
-- On failure of deletion
+* On failure of deletion
 
 ```plaintext
 {
