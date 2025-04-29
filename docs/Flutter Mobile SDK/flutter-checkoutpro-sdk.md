@@ -25,34 +25,34 @@ The Checkout Pro SDK provides a complete Mobile Checkout solution for the Flutte
 
 ## Capabilities
 
-- A complete, ready-to-use native Checkout GUI
-- Support for multiple payment options:
-- All major Credit/Debit card providers (Amex, Mastercard, Rupay, Visa, and more)
-- Netbanking with 150+ Indian banks
-- UPI Payments (Intent & Collect)
-- Google Pay™ InApp & Cards
-- Native OTP Assist
-- Recurring Payments
-- Convenience Fee support
-- Offers support
-- Multi-Currency Payments Support
-- Prepaid Wallets
-- CC & DC EMI Payments
-- OTP read for faster and improved OTP authentication
-- Enforce Payment Mode
-- Customization capabilities to make the SDK your own
+* A complete, ready-to-use native Checkout GUI
+* Support for multiple payment options:
+* All major Credit/Debit card providers (Amex, Mastercard, Rupay, Visa, and more)
+* Netbanking with 150+ Indian banks
+* UPI Payments (Intent & Collect)
+* Google Pay™ InApp & Cards
+* Native OTP Assist
+* Recurring Payments
+* Convenience Fee support
+* Offers support
+* Multi-Currency Payments Support
+* Prepaid Wallets
+* CC & DC EMI Payments
+* OTP read for faster and improved OTP authentication
+* Enforce Payment Mode
+* Customization capabilities to make the SDK your own
 
 ## Compatibility
 
 ### iOS
 
-- Minimum iOS version: iOS 11
-- Xcode version: Xcode 11.4 and above
+* Minimum iOS version: iOS 11
+* Xcode version: Xcode 11.4 and above
 
 ### Android
 
-- Min SDK Version: 21
-- Compile SDK Version: 29+
+* Min SDK Version: 21
+* Compile SDK Version: 29+
 
 ## Integration Steps
 
