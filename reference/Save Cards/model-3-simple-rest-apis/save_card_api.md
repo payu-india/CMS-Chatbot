@@ -79,7 +79,7 @@ HTTP Method: **POST**
     "10-1": "`String`The card expiry year is specified in this parameter.",
     "10-2": "2021",
     "11-0": "var9  \n`mandatory for Rupay and AMEX cards`",
-    "11-1": "`String`This parameter can be any of the following based on the Rupay or AMEX card used:  \n  \n- The authorization reference number received during authorization call of Rupay card transactions.\n- The <<glossary:AEVV>> received during authorization call of Amex card transactions.  \n  **Notes**:\n- This parameter is mandatory for Rupay cards. Authentication reference number will be sent by the PG in the authorization response. Currently, this check is skipped by Rupay.\n- This parameter is mandatory for AMEX cards. American Express Verification Value will be sent by the PG in the authorization response.",
+    "11-1": "`String`This parameter can be any of the following based on the Rupay or AMEX card used:  \n  \n- The authorization reference number received during authorization call of Rupay card transactions.\n- The &lt;&lt;glossary:AEVV&gt;&gt; received during authorization call of Amex card transactions.  \n  **Notes**:\n- This parameter is mandatory for Rupay cards. Authentication reference number will be sent by the PG in the authorization response. Currently, this check is skipped by Rupay.\n- This parameter is mandatory for AMEX cards. American Express Verification Value will be sent by the PG in the authorization response.",
     "11-2": "6381242223626382106105",
     "12-0": "var10  \n`optional`",
     "12-1": "`String`This parameter must be set to **true** if the transaction authentication has been done for the tokenisation.",
@@ -98,14 +98,11 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ## Sample request
 
 ```curl
 curl --request POST \
-     --url '
-https://test.payu.in/merchant/postservice?form=2'
-\
+     --url 'https://test.payu.in/merchant/postservice?form=2' \
      --header 'Content-Type: application/x-www-form-urlencoded' \
      --header 'accept: text/html; charset=UTF-8' \
      --data key=JPM7Fg \
@@ -150,7 +147,7 @@ msg: "Card Stored Successfully.",
 cardToken: "917e296b5b6da5d20fbfb",
 card_number: "XXXXXXXXXXXX2346",
 card_label: "Test_Card",
-network_token: “3117328711111210”,
+network_token: "3117328711111210",
 issuer_token: AQ3LkzgBNyEjY213,
 }
 ```
@@ -164,7 +161,7 @@ msg: "Card Stored Successfully.",
 cardToken: "917e29XXX6da5XXCbfb",
 card_number: "XXXXXXXXXXX1002",
 card_label: "AMEX_Card",
-network_token: “51273287XXX61215”,
+network_token: "51273287XXX61215",
 issuer_token: Va3RaqBNyPnY673,
 }
 ```
@@ -177,8 +174,8 @@ status: 1,
 msg: "Card Stored Successfully.",
 cardToken: "91XXX96b5b6da5dXXXbfb",
 card_number: "XXXXXXXXXXXX0001",
-card_label: “Rupay_Card",
-network_token: “712XXX870976XX2”,
+card_label: "Rupay_Card",
+network_token: "712XXX870976XX2",
 issuer_token: Ya4HawKgbLmr312,
 }
 ```
