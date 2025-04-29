@@ -38,9 +38,9 @@ pod 'PayUIndia-UPI'
 
 You can integrate PayUIndia-PG-SDK with your app or SDK using the following methods:
 
-- **Using Xcode**: Navigate to File > Add Package menu and install the following package:  
-  <https://github.com/payu-intrepos/payu-upi-ios-sdk>
-- **Using Package.Swift**: Add the following code to Package.swift dependencies:
+* **Using Xcode**: Navigate to File > Add Package menu and install the following package:\
+  [https://github.com/payu-intrepos/payu-upi-ios-sdk](https://github.com/payu-intrepos/payu-upi-ios-sdk)
+* **Using Package.Swift**: Add the following code to Package.swift dependencies:
 
 ```
   .package(name: "PayUIndia-UPIKit", url: "https://github.com/payu-intrepos/payu-upi-ios-sdk", from: "6.0.0")
@@ -68,7 +68,7 @@ pod 'PayUIndia-UPICore'
 
 You can integrate PayUIndia-UPIKit, `PayUIndia-UPICoreKit` with your app or SDK in two ways:
 
-Using the Xcode – Go to File-> Add Package-> <https://github.com/payu-intrepos/payu-upi-ios-sdk>  
+Using the Xcode – Go to File-> Add Package-> [https://github.com/payu-intrepos/payu-upi-ios-sdk](https://github.com/payu-intrepos/payu-upi-ios-sdk)\
 Using `Package.Swift`, add the following line in `Package.swift `dependencies:
 
 ```
@@ -122,14 +122,14 @@ print("Could not create post params due to: \(error.localizedDescription)")
 ```
 
 > 📘 Note:
-> 
+>
 > The URLs used in **surl** and **furl** are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed.
 
 ### Configure Callbacks
 
 Configure Callbacks to receive actionable events from SDK:
 
-- **paymentCompletion**: You receive the payment response here.
+* **paymentCompletion**: You receive the payment response here.
 
 ```Text Swift
  PayUUPICore.shared.paymentCompletion = { [weak self] result in
@@ -147,7 +147,7 @@ Helper.showAlert(String(describing: error.rawValue), onController: self)
 ﻿
 ```
 
-- **backPressed**: If the user has not yet initiated the transaction, and when the user presses the back button from the UPI payment options page, this callback is triggered. You can dismiss SDK’s UI screen here.
+* **backPressed**: If the user has not yet initiated the transaction, and when the user presses the back button from the UPI payment options page, this callback is triggered. You can dismiss SDK’s UI screen here.
 
 ```Text Swift
 PayUUPICore.shared.backPressed = {[weak self] in
@@ -155,7 +155,7 @@ self?.navigationController?.popToRootViewController(animated: true)
 }
 ```
 
-- **onEnteringVPA**: For validating the VPA entered by the user, we need to hit PayU’s validate VPA API. This API needs a hash. In this callback, you will get the VPA entered by the user. Use this value to generate the required hash. When the hash is received from your server, send us the updated post params with the new hash.
+* **onEnteringVPA**: For validating the VPA entered by the user, we need to hit PayU’s validate VPA API. This API needs a hash. In this callback, you will get the VPA entered by the user. Use this value to generate the required hash. When the hash is received from your server, send us the updated post params with the new hash.
 
 ```Text Swift
 PayUUPICore.shared.onEnteringVPA = {[weak self] vpa, completion in
@@ -186,10 +186,10 @@ To fetch hashes and save them in the `paymentParams` object:
 3. Provide the first two hashes before asking SDK to initiate the payment. Hashes must be generated only on your server as it needs a secret key (also known as salt). Your app must never contain salt.
 4. Command and var1 values for generating `paymentRelatedDetailsForMobileSDKHash` & `validateVPAHash` are described in the following table. For generating hashes on your server, refer to [Hash Generation](https://docs.payu.in/docs/ios-checkoutpro-generate-hash).
 
-| Hash for Parameter                    | Command                                | Var1                                                              |
-| :------------------------------------ | :------------------------------------- | :---------------------------------------------------------------- |
-| paymentRelatedDetailsForMobileSDKHash | payment_related_details_for_mobile_sdk | value of the `userCredentials `(You have set it in paymentParams) |
-| validateVPAHash                       | validateVPA                            | VPA string of your user                                           |
+| Hash for Parameter                    | Command                                     | Var1                                                              |
+| :------------------------------------ | :------------------------------------------ | :---------------------------------------------------------------- |
+| paymentRelatedDetailsForMobileSDKHash | payment\_related\_details\_for\_mobile\_sdk | value of the `userCredentials `(You have set it in paymentParams) |
+| validateVPAHash                       | validateVPA                                 | VPA string of your user                                           |
 
 5. Call the following method of the PayUAPI class to get all available payment options to “Merchant”:
 
@@ -219,9 +219,9 @@ PayUAPI.getUPIPaymentOptions(withPaymentParams: self.paymentParams!, completion:
 
 With the PayUUPIPaymentOptions object received in Step 5 of Fetch Hashes, you can populate relevant UPI options on your checkout screen. As stated at the beginning of this section, you have the following options to make a payment:
 
-- Intent
-- UPI Collect
-- Fallback for Google Pay
+* Intent
+* UPI Collect
+* Fallback for Google Pay
 
 Inside intent key of the PayUUPIPaymentOptions object, you get an array of objects of the type `PayUSupportedIntentApp`. These are essentially the apps that are supported by the SDK for intent payments.
 
@@ -238,7 +238,7 @@ Inside intent key of the PayUUPIPaymentOptions object, you get an array of objec
 Based on your priority and availability of payment options for the current user, you can order the payment options on your checkout page.
 
 > ❗️ Callout
-> 
+>
 > The `canUseGpayOmni` and `canUseGpayCollect` methods provide you fallback options of the Google Pay intent app, which have approximately 10% more success rate when compared to general UPI collect payments. This implies that if your user does not have the Google Pay app installed, you can still show the Google Pay option on your checkout, and PayU will display these two fallback options upon Google Pay selection by the user. Google Pay omnichannel payment option takes the user’s phone number for UPI collect payment.
 
 2. Create an instance of PayUIntentPaymentVC and follow data to it if the user selects the intent app option.
@@ -290,7 +290,7 @@ PayUAPI.validateVPA(withPaymentParams: <PayUPaymentParam>, completion: <(Result<
 ```
 
 > ❗️ Callout
-> 
+>
 > Begin payment after validating your VPA. Set up PayUPaymentResponseHandler when the payment is successfully initiated and handle the response after the payment is completed.
 
 ```
