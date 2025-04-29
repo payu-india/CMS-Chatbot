@@ -22,13 +22,14 @@ metadata:
 next:
   description: ''
 ---
-The **Get User Cards **API is used to fetch all the cards corresponding to the user. In this API, the card number and other sensitive information are not returned.
+The **Get User Cards** API is used to fetch all the cards corresponding to the user. In this API, the card number and other sensitive information are not returned.
 
 HTTP Method: **POST**
 
 <GENERALAPIsEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --request POST \
@@ -43,7 +44,8 @@ curl --request POST \
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
@@ -84,7 +86,8 @@ curl --request POST \
 
 ## Request parameters
 
-<details><summary>Reference info for request parameters</summary>
+<details>
+  <summary>Reference info for request parameters</summary>
 
 <KeyHashForGeneralParametersDescription />
 
