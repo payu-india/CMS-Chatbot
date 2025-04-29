@@ -36,7 +36,7 @@ The workflow involved when the customer has canceled the entire order and is loo
 The workflow involved when the customer has returned the earbuds (₹500) and is now looking for a refund:
 
 > 📘 Note:
-> 
+>
 > Not all banks support partial refund. For more information, refer to[Supported banks](#supported-banks).
 
 1. For a partial refund of, say, ₹500, the merchant initiates a refund of ₹500 on the transaction.
@@ -103,10 +103,10 @@ The customer has returned the earbuds (₹500) and is now looking for a refund:
 5. Merchant can do multiple partial refunds until total refunded amount less than or equal to transaction amount.
 
 > 📘 Notes:
-> 
-> - On refund of the transaction, the processing fee charged by the lender may or may not be reversed depending on the lender’s policy. If the customer has paid any EMI to the lender, the lender will not reverse the interest charged to the customer.
-> - Whether a partial or full refund, the GST and other charges already levied by the bank may not get refunded.
-> - Any charges levied by PayU to get the transaction converted into EMI will not be reversed.
+>
+> * On refund of the transaction, the processing fee charged by the lender may or may not be reversed depending on the lender’s policy. If the customer has paid any EMI to the lender, the lender will not reverse the interest charged to the customer.
+> * Whether a partial or full refund, the GST and other charges already levied by the bank may not get refunded.
+> * Any charges levied by PayU to get the transaction converted into EMI will not be reversed.
 
 ### Supported Banks or Firms List
 
