@@ -12,80 +12,349 @@ next:
 ---
 ## Request parameters for Initiate Transfer API
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameters**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "batchId`\nmandatory`",
-    "0-1": "`String`It can be any string value. Merchants can use this value if they want to process the request in batch and also what status of transfer in batch. This can be unique for a batch or across multiple requests.  \n**Max char length**: 40.",
-    "0-2": " ",
-    "1-0": "amount`\nmandatory`",
-    "1-1": "`Double`Indicates Amount to transfer to the beneficiary account",
-    "1-2": " ",
-    "2-0": "merchantRefId`\noptional`",
-    "2-1": "`String`Indicates a unique reference ID at the merchant side to distinguish between multiple transfers.  \n**Max char length**: 40.  \n**Notes** :  \n   - Same value will be used by the merchant in the status check of transfer.  \n   - In case if the merchant reference ID is not passed, an auto generated ID will be used.",
-    "2-2": " ",
-    "3-0": "beneficiaryAccountNumber`\nmandatory in case of IMPS, NEFT and RTGS transactions otherwise Conditional`",
-    "3-1": "`String` Indicates beneficiary account number to transfer money.  \n**Min Character**: 9\\*\\*  \n**Max Character**: 35",
-    "3-2": " ",
-    "4-0": "beneficiaryIfscCode `\nmandatory in case of IMPS, NEFT and RTGS transactions otherwise Conditional`",
-    "4-1": "`String` Indicates IFSC Code of the Beneficiary Bank Account.",
-    "4-2": "",
-    "5-0": "beneficiaryName  \n`mandatory`",
-    "5-1": "`String` Indicates name of the Beneficiary of the Beneficiary associated with Bank Account",
-    "5-2": " ",
-    "6-0": "beneficiaryMobile  \n`optional`",
-    "6-1": "`String` Indicates Beneficiary mobile number",
-    "6-2": " ",
-    "7-0": "beneficiaryEmail  \n`optional`",
-    "7-1": "`String` Indicates Beneficiary Email Address",
-    "7-2": " ",
-    "8-0": "purpose  \n`mandatory`",
-    "8-1": "`String` This parameter must include the purpose of doing this transfer.  \n**Note**: Only alphanumeric characters are allowed.",
-    "8-2": " ",
-    "9-0": "paymentType  \n`mandatory`",
-    "9-1": "`String` Specify the any of the following mode of payment in this field:  \n   - IMPS  \n   - UPI  \n   - NEFT  \n   - RTGS  \n   - MASTERCARD  \n   - VISA  \n   - CC_PAYMENT",
-    "9-2": "MASTERCARD",
-    "10-0": "vpa `\nmandatory in case of UPI transactions otherwise Conditional`",
-    "10-1": "`String` Indicates VPA (UPI) address of Beneficiary.",
-    "10-2": " ",
-    "11-0": "retry  \n`mandatory`",
-    "11-1": "`String`Specify the flag as either True or False to indicate whether to retry transfer or not in this field:  \n    - **true**: Specifies that retry the payment.  \n   - **false**: Specifies that do not retry the payment.  \n  \n**Note**: Default value for this will be false.",
-    "11-2": "",
-    "12-0": "scheduledTime  \n `optional`",
-    "12-1": "`Date` Specify the date and time on which Payout scheduled in this field.  \n**Example**: 2020-10-20 15:02:11",
-    "12-2": "2020-10-20 15:02:11",
-    "13-0": "recipientCardNo  \n `optional`",
-    "13-1": "`String`The Credit Card Number with which the payment is made by your customer is specified in this field.",
-    "13-2": "",
-    "14-0": "beneficiaryId  \n`conditional`",
-    "14-1": "`Long` Id of beneficiary to which the payout needs to be done. This value can be passed instead of other beneficiary details.",
-    "14-2": " ",
-    "15-0": "vpaToken  \n `mandatory for UPI`",
-    "15-1": "`String` VPA token corresponding to VPA(UPI) address of beneficiary.",
-    "15-2": " ",
-    "16-0": "custom1  \n`optional`",
-    "16-1": "`String` This is custom parameter. No processing is done from payU side and can be used by you to pass any information they want in the reports for the transactions. Only 50 characters are allowed in this field.",
-    "16-2": " ",
-    "17-0": "custom2  \n`optional`",
-    "17-1": "`String` This is custom parameter. No processing is done from payU side and can be used by you to pass any information they want in the reports for the transactions. Only 50 characters are allowed in this field.",
-    "17-2": "",
-    "18-0": "custom3  \n`optional`",
-    "18-1": "`String` This is custom parameter. No processing is done from payU side and can be used by you to pass any information they want in the reports for the transactions. Only 50 characters are allowed in this field.",
-    "18-2": ""
-  },
-  "cols": 3,
-  "rows": 19,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameters**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        batchId```
+
+        mandatory
+        ```
+      </td>
+
+      <td>
+        `String`It can be any string value. Merchants can use this value if they want to process the request in batch and also what status of transfer in batch. This can be unique for a batch or across multiple requests.  
+
+        * \*Max char length\*\*: 40.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount```
+
+        mandatory
+        ```
+      </td>
+
+      <td>
+        `Double`Indicates Amount to transfer to the beneficiary account
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchantRefId```
+
+        optional
+        ```
+      </td>
+
+      <td>
+        `String`Indicates a unique reference ID at the merchant side to distinguish between multiple transfers.  
+
+        * \*Max char length\*\*: 40.  
+        * \*Notes\*\* :  
+          * Same value will be used by the merchant in the status check of transfer.  
+          * In case if the merchant reference ID is not passed, an auto generated ID will be used.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        beneficiaryAccountNumber```
+
+        mandatory in case of IMPS, NEFT and RTGS transactions otherwise Conditional
+        ```
+      </td>
+
+      <td>
+        `String` Indicates beneficiary account number to transfer money.\
+        **Min Character**: 9\*\*  
+
+        * \*Max Character\*\*: 35
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        beneficiaryIfscCode ```
+
+        mandatory in case of IMPS, NEFT and RTGS transactions otherwise Conditional
+        ```
+      </td>
+
+      <td>
+        `String` Indicates IFSC Code of the Beneficiary Bank Account.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        beneficiaryName\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Indicates name of the Beneficiary of the Beneficiary associated with Bank Account
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        beneficiaryMobile\
+        `optional`
+      </td>
+
+      <td>
+        `String` Indicates Beneficiary mobile number
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        beneficiaryEmail\
+        `optional`
+      </td>
+
+      <td>
+        `String` Indicates Beneficiary Email Address
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        purpose\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must include the purpose of doing this transfer.  
+
+        * \*Note\*\*: Only alphanumeric characters are allowed.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentType\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Specify the any of the following mode of payment in this field:  
+
+        * IMPS  
+        * UPI  
+        * NEFT  
+        * RTGS  
+        * MASTERCARD  
+        * VISA  
+        * CC\_PAYMENT
+      </td>
+
+      <td>
+        MASTERCARD
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        vpa ```
+
+        mandatory in case of UPI transactions otherwise Conditional
+        ```
+      </td>
+
+      <td>
+        `String` Indicates VPA (UPI) address of Beneficiary.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        retry\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Specify the flag as either True or False to indicate whether to retry transfer or not in this field:\
+            \- **true**: Specifies that retry the payment.  
+
+        * **false**: Specifies that do not retry the payment.  
+
+        * \*Note\*\*: Default value for this will be false.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        scheduledTime\
+         `optional`
+      </td>
+
+      <td>
+        `Date` Specify the date and time on which Payout scheduled in this field.  
+
+        * \*Example\*\*: 2020-10-20 15:02:11
+      </td>
+
+      <td>
+        2020-10-20 15:02:11
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        recipientCardNo\
+         `optional`
+      </td>
+
+      <td>
+        `String`The Credit Card Number with which the payment is made by your customer is specified in this field.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        beneficiaryId\
+        `conditional`
+      </td>
+
+      <td>
+        `Long` Id of beneficiary to which the payout needs to be done. This value can be passed instead of other beneficiary details.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        vpaToken\
+         `mandatory for UPI`
+      </td>
+
+      <td>
+        `String` VPA token corresponding to VPA(UPI) address of beneficiary.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        custom1\
+        `optional`
+      </td>
+
+      <td>
+        `String` This is custom parameter. No processing is done from payU side and can be used by you to pass any information they want in the reports for the transactions. Only 50 characters are allowed in this field.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        custom2\
+        `optional`
+      </td>
+
+      <td>
+        `String` This is custom parameter. No processing is done from payU side and can be used by you to pass any information they want in the reports for the transactions. Only 50 characters are allowed in this field.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        custom3\
+        `optional`
+      </td>
+
+      <td>
+        `String` This is custom parameter. No processing is done from payU side and can be used by you to pass any information they want in the reports for the transactions. Only 50 characters are allowed in this field.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Sample Request
 
@@ -115,13 +384,13 @@ next:
 
 ### Sample Response
 
-- Success response
+* Success response
 
 ```plaintext
 {"callType":"Response","responseTitle":"Sample Success Response","response":"{\n \"status\": 0,\n \"msg\": \"Requests are in process. Will send response of individual request on webhooks set by you\",\n \"code\": null,\n \"data\": []\n }","isInline":true}
 ```
 
-- Failure response
+* Failure response
 
 ````plaintext
 {"callType":"Response","responseTitle":"Sample Failure Response","response":"{\n \"status\": 1,\n \"msg\": null,\n \"code\": null,\n \"data\": [\n {\n \"batchId\": \"1\",\n \"merchantRefId\": \"111\",\n \"error\": \"beneficiary account number can not be empty. \",\n \"code\": [1004]\n }\n ]\n }","isInline":true}
