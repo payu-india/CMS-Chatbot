@@ -10,25 +10,11 @@ metadata:
 next:
   description: ''
 ---
-PayU OTP Parser SDK was built to read the OTP from the SMS and pass it to the user. It is also implemented in PayU OTP Assist SDK that makes the OTP reading process very simple. It fetches the OTP through RECEIVE_SMS if RECEIVE_SMS permission is granted. Otherwise, fetch the OTP using Google Consent API.
+PayU OTP Parser SDK was built to read the OTP from the SMS and pass it to the user. It is also implemented in PayU OTP Assist SDK that makes the OTP reading process very simple. It fetches the OTP through RECEIVE\_SMS if RECEIVE\_SMS permission is granted. Otherwise, fetch the OTP using Google Consent API.
 
 **Selecting OTP Fetch Method**
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/a689e0e-Screenshot_2023-11-21_at_3.34.20_PM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/a689e0e-Screenshot_2023-11-21_at_3.34.20_PM.png" />
 
 ## Steps to integrate
 
