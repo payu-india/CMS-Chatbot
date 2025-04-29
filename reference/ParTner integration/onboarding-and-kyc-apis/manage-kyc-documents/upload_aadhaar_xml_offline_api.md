@@ -17,7 +17,8 @@ This API is used to submit the Aadhaar details in an XML file. The access token 
 
 <PARTNEROnboardingEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location -g --request POST '{{onboarding_url}}/api/v3/merchants/kyc_document/ckyc_data' \
@@ -31,7 +32,8 @@ curl --location -g --request POST '{{onboarding_url}}/api/v3/merchants/kyc_docum
 
 </details>
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
 {
