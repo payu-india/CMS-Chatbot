@@ -16,53 +16,158 @@ HTTP Method: **POST**
 
 **Environment**
 
-| Test Environment       | <https://test.payu.in/merchant>  |
-| :--------------------- | :------------------------------- |
-| Production Environment | <https://info.payu.in/merchant/> |
+| Test Environment       | [https://test.payu.in/merchant](https://test.payu.in/merchant)   |
+| :--------------------- | :--------------------------------------------------------------- |
+| Production Environment | [https://info.payu.in/merchant/](https://info.payu.in/merchant/) |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "key  \n**mandatory**",
-    "0-1": "For more information on how to generate the Key and Salt, refer to any of the following:  \n\\- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  \n\\- **Test**:: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "0-2": "JF\\*\\*\\*g",
-    "1-0": "command  \n**mandatory**",
-    "1-1": "`varchar` The command name for this REST API call must be included in this parameter. For getting user cards details, use **get\\_payment\\_details** here.",
-    "1-2": "get\\_payment\\_details",
-    "2-0": "hash  \n**mandatory**",
-    "2-1": "`varchar` The hash must be included in this parameter. The hash logic for is:  \nsha512(key|command|var1|salt) sha512",
-    "2-2": " ",
-    "3-0": "var1  \n**mandatory**",
-    "3-1": "`varchar` The user credentials is posted in this parameter in the following format: MerchantKey:UserId",
-    "3-2": "J\\*\\*\\*G:abc",
-    "4-0": "var2  \n**mandatory**",
-    "4-1": "`varchar` The card token of the card (cardToken) is specified in this parameter.",
-    "4-2": "745d72e2fd9b7e88824fef4e7ed7dac1f",
-    "5-0": "var3  \n**mandatory**",
-    "5-1": "`float` The amount of the transaction",
-    "5-2": "10.00",
-    "6-0": "var4  \n**optional**",
-    "6-1": "`varchar` The currency used for the transaction.  \n**Note**: If this parameter is left blank, the currency is considered as INR by default.",
-    "6-2": "INR",
-    "7-0": "var5  \n**optional**",
-    "7-1": "`varchar` The cardToken type is specified in this parameter and can be any of the following:  \n**Note**: If this parameter is left blank, the default value will be PAYU.",
-    "7-2": "PAYU"
-  },
-  "cols": 3,
-  "rows": 8,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        **mandatory**
+      </td>
+
+      <td>
+        For more information on how to generate the Key and Salt, refer to any of the following:\
+        \- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)\
+        \- **Test**:: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+      </td>
+
+      <td>
+        JF\*\*\*g
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        command\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` The command name for this REST API call must be included in this parameter. For getting user cards details, use **get\_payment\_details** here.
+      </td>
+
+      <td>
+        get\_payment\_details
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` The hash must be included in this parameter. The hash logic for is:\
+        sha512(key|command|var1|salt) sha512
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var1\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` The user credentials is posted in this parameter in the following format: MerchantKey:UserId
+      </td>
+
+      <td>
+        J\*\*\*G:abc
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var2\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` The card token of the card (cardToken) is specified in this parameter.
+      </td>
+
+      <td>
+        745d72e2fd9b7e88824fef4e7ed7dac1f
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var3\
+        **mandatory**
+      </td>
+
+      <td>
+        `float` The amount of the transaction
+      </td>
+
+      <td>
+        10.00
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var4\
+        **optional**
+      </td>
+
+      <td>
+        `varchar` The currency used for the transaction.  
+
+        * \*Note\*\*: If this parameter is left blank, the currency is considered as INR by default.
+      </td>
+
+      <td>
+        INR
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var5\
+        **optional**
+      </td>
+
+      <td>
+        `varchar` The cardToken type is specified in this parameter and can be any of the following:  
+
+        * \*Note\*\*: If this parameter is left blank, the default value will be PAYU.
+      </td>
+
+      <td>
+        PAYU
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
@@ -75,70 +180,200 @@ hash=e2f11b3818772b1851937ad6181c70b25f1dd296cb55ab507f0199c32239b76440889254e7f
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "The status of the response can be any of the following:  \n_ 1: Success  \n_. 2: Failure",
-    "0-2": "1",
-    "1-0": "msg",
-    "1-1": "The description of the response whether the card details were stored successfully or not stored.",
-    "1-2": "Instrument details",
-    "2-0": "card details",
-    "2-1": "(Array format) | The details are sent by PayU in Array format for the successful response. The next table describes the details in the Array format.",
-    "2-2": "Refer the [sample response](#sample_response)."
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        The status of the response can be any of the following:  
+
+        * 1: Success  
+        * . 2: Failure
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        msg
+      </td>
+
+      <td>
+        The description of the response whether the card details were stored successfully or not stored.
+      </td>
+
+      <td>
+        Instrument details
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card details
+      </td>
+
+      <td>
+        (Array format) | The details are sent by PayU in Array format for the successful response. The next table describes the details in the Array format.
+      </td>
+
+      <td>
+        Refer the [sample response](#sample_response).
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 The details on the Array format for a successful response is described in the following table:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Array Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "cryptogram",
-    "0-1": "The cryptogram used for encryption is returned in this parameter. This can be also a TAVV. TAVV is a 20-byte Base64-encoded binary value that is used with tokens.",
-    "0-2": "`0c186bdb8c0ebda30ab9d92816772cbfb946d027`",
-    "1-0": "card PAR",
-    "1-1": "This parameter returns the PAR (Payment Account Reference). This is a unique identity for the card across all the tokens. Typically, this will be used for offers and risk checks.",
-    "1-2": "RCKGgxEEFX1un19I",
-    "2-0": "card\\_no",
-    "2-1": "This parameter returns a masked card number with only the last four digits.",
-    "2-2": "xxxxxxxxxxxx858",
-    "3-0": "card\\_token",
-    "3-1": "This parameter returns the card token of the card.",
-    "3-2": "745d72e2fd9b7e88824fef4e7ed7dac1fe624b7",
-    "4-0": "issuer\\_token",
-    "4-1": "This parameter returns the details of the issuer token in a JSON format.",
-    "4-2": "{  \n  \n\"token_value\": \"512\\*\\*\\*6789012346\",  \n  \n\"is_expired\": 0,  \n  \n\"token_exp_mon\": \"11\",  \n  \n\"token_exp_yr\": \"2021\",  \n  \n\"token_bin\": \"512345\"  \n  \n}",
-    "5-0": "network\\_token",
-    "5-1": "This parameter returns the details of the network token in a JSON format.",
-    "5-2": "{  \n  \n\"token_value\": \"512\\*\\*\\*6789012346\",  \n  \n\"is_expired\": 0,  \n  \n\"token_exp_mon\": \"11\",  \n  \n\"token_exp_yr\": \"2021\",  \n  \n\"token_bin\": \"512345\"  \n  \n}"
-  },
-  "cols": 3,
-  "rows": 6,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Array Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        cryptogram
+      </td>
+
+      <td>
+        The cryptogram used for encryption is returned in this parameter. This can be also a TAVV. TAVV is a 20-byte Base64-encoded binary value that is used with tokens.
+      </td>
+
+      <td>
+        `0c186bdb8c0ebda30ab9d92816772cbfb946d027`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card PAR
+      </td>
+
+      <td>
+        This parameter returns the PAR (Payment Account Reference). This is a unique identity for the card across all the tokens. Typically, this will be used for offers and risk checks.
+      </td>
+
+      <td>
+        RCKGgxEEFX1un19I
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_no
+      </td>
+
+      <td>
+        This parameter returns a masked card number with only the last four digits.
+      </td>
+
+      <td>
+        xxxxxxxxxxxx858
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_token
+      </td>
+
+      <td>
+        This parameter returns the card token of the card.
+      </td>
+
+      <td>
+        745d72e2fd9b7e88824fef4e7ed7dac1fe624b7
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        issuer\_token
+      </td>
+
+      <td>
+        This parameter returns the details of the issuer token in a JSON format.
+      </td>
+
+      <td>
+        \{  
+
+        "token\_value": "512\*\*\*6789012346",  
+
+        "is\_expired": 0,  
+
+        "token\_exp\_mon": "11",  
+
+        "token\_exp\_yr": "2021",  
+
+        "token\_bin": "512345"  
+
+        }
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        network\_token
+      </td>
+
+      <td>
+        This parameter returns the details of the network token in a JSON format.
+      </td>
+
+      <td>
+        \{  
+
+        "token\_value": "512\*\*\*6789012346",  
+
+        "is\_expired": 0,  
+
+        "token\_exp\_mon": "11",  
+
+        "token\_exp\_yr": "2021",  
+
+        "token\_bin": "512345"  
+
+        }
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample response
 
