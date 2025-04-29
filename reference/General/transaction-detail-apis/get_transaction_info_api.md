@@ -22,7 +22,7 @@ metadata:
 next:
   description: ''
 ---
-The **Get Transaction Info** API (get_transaction_info) can take input as the exact time in terms of minutes and seconds the output would be in the same format as \*_[get_Transaction_Details\*](ref:get_transaction_details_api)\_ API output. 
+The **Get Transaction Info** API (get_transaction_info) can take input as the exact time in terms of minutes and seconds the output would be in the same format as \*_[get_Transaction_Details\*](ref:get_transaction_details_api)\_ API output.
 
 **Environment**
 
@@ -31,7 +31,8 @@ The **Get Transaction Info** API (get_transaction_info) can take input as the ex
 | Test Environment       | <https://apitest.payu.in/merchant/postservice.php?form=2> |
 | Production Environment | <https://info.payu.in/merchant/postservice?form=2>        |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location 'https://test.payu.in/merchant/postservice?form=2' \
@@ -45,7 +46,8 @@ curl --location 'https://test.payu.in/merchant/postservice?form=2' \
 
 </details>
 
-<details>  <summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 - Success scenario
 
@@ -153,17 +155,19 @@ If invalid date is posted, the response is similar to the following:
 
 </details>
 
-<details>  <summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
 For the details of fields in the JSON, refer to [Additional Info for General APIs](ref:addl-info-general-apis).
 
-To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes). 
+To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 
 </details>
 
 ## Request parameters
 
-<details>  <summary>Reference information for request parameters</summary>
+<details>
+  <summary>Reference information for request parameters</summary>
 
 <KeyHashForGeneralParametersDescription />
 
