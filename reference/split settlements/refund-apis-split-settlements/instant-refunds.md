@@ -48,8 +48,8 @@ Mandatory parameters
 | 3        | IMPS        | \<= 2,00,000     | PayU will push funds through IMPS into the account number shared                                                                              |
 | 4        | NEFT        | \>= 2,00,000     | PayU will push funds through NEFT into the account number shared.                                                                             |
 
-> 📘 Note: 
-> 
+> 📘 Note:
+>
 > ​Priority order followed by PayU if the mode **1** is passed: Instant Refund Through PG > Instant Refund Through UPI > Instant Refund Through IMPS > Instant Refund Through NEFT > Normal PG Refunds.
 
 ## Sample request
