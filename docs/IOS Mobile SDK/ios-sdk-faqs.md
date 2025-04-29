@@ -16,10 +16,10 @@ next:
 
 **Answer**: PayU offers the following customization options:
 
-- Customizing the PayU payment page’s look and feel to match the merchant’s branding
-- Integrating with the merchant’s own payment gateway or payment service provider
-- Implementing custom payment methods or gateways not supported by PayU Checkout Pro SDK
-- Implementing custom payment flows, such as split payments or installment payments
+* Customizing the PayU payment page’s look and feel to match the merchant’s branding
+* Integrating with the merchant’s own payment gateway or payment service provider
+* Implementing custom payment methods or gateways not supported by PayU Checkout Pro SDK
+* Implementing custom payment flows, such as split payments or installment payments
 
 ***
 
@@ -27,8 +27,8 @@ next:
 
 **Answer**: The PayU payment page’s look and feel can be customized using PayU Dashboard or customiseUIWithPrimaryColor config. Merchants can customize the page’s layout, fonts, colors, and other visual elements to match their branding. For more information, refer to any of the following:
 
-- Configuring using Dashboard
-- Advanced Integration for iOS > Change Theme
+* Configuring using Dashboard
+* Advanced Integration for iOS > Change Theme
 
 ***
 
@@ -60,19 +60,19 @@ next:
 
 **Answer**: Some benefits of an Advanced Integration include greater flexibility and control over the payment flow and user interface, the ability to customize the payment experience to match the branding and design of the app, and the potential for improved conversion rates and user engagement. It offers the following customizations:
 
-- Enable Offer
-- Change Theme
-- Configure Merchant Name & Logo
-- Hide Checkout Screen Back Button dialog box
-- Hide the Back button dialog box after Payment Initialisation
-- Auto Select OTP
-- Auto Submit OTP
-- Configure Merchant Response Timeout
-- Review Order
-- Additional Payment options on the Checkout screen
-- Configure Checkout Payment Modes Order
-- Set Native OTP Assist
-- Enforced Payment Modes
+* Enable Offer
+* Change Theme
+* Configure Merchant Name & Logo
+* Hide Checkout Screen Back Button dialog box
+* Hide the Back button dialog box after Payment Initialisation
+* Auto Select OTP
+* Auto Submit OTP
+* Configure Merchant Response Timeout
+* Review Order
+* Additional Payment options on the Checkout screen
+* Configure Checkout Payment Modes Order
+* Set Native OTP Assist
+* Enforced Payment Modes
 
 ***
 
@@ -110,8 +110,6 @@ next:
 
 **Answer**: Some best practices for securing payment hashes and secret keys include storing them in a secure location, such as a keychain or secure file, using strong encryption algorithms, and limiting access to only authorized personnel. It is also recommended to periodically rotate the secret key to prevent it from being compromised over time.
 
-
-
 ## MCP Integration
 
 **Question**: What is MCP integration, and why is it useful?
@@ -135,8 +133,6 @@ next:
 **Question**: How do I handle errors or exceptions during MCP integration?
 
 **Answer**: The PayUCheckoutPro SDK provides error-handling mechanisms to help you handle exceptions or errors that may occur during the payment process. For more information, refer to MCP Integration for iOS.
-
-
 
 ## CocoaPods Integration
 
@@ -184,7 +180,7 @@ dyld: Library not loaded: @rpath/SocketIO.framework/SocketIO
   Reason: image not found
 ```
 
-Currently, PayU’s frameworks are dynamic framework. If you are not using ‘use_frameworks!’, add the following code block at the end of your `podfile`.
+Currently, PayU’s frameworks are dynamic framework. If you are not using ‘use\_frameworks!’, add the following code block at the end of your `podfile`.
 
 ```
   $dynamic_framework = ['PayUAssetLibraryKit', 'PayUBizCoreKit', 'PayUCheckoutProBaseKit', 'PayUCheckoutProKit', 'PayUCustomBrowser', 'PayULoggerKit', 'PayUNetworkingKit', 'PayUUPICoreKit', 'PayUUPIKit', 'Socket.IO-Client-Swift', 'Starscream', 'PayUOlaMoneySDK']
@@ -200,31 +196,15 @@ Currently, PayU’s frameworks are dynamic framework. If you are not using ‘us
 end
 ```
 
-
-
 ## UPI
 
 **Question**: When UPI Transaction getting failed with the following error message, what is the resolution to it?
 
 **Answer**: 
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/907d2ed-Screenshot_2023-08-12_at_11.17.41_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "150px"
-    }
-  ]
-}
-[/block]
+<Image align="center" width="150px" src="https://files.readme.io/907d2ed-Screenshot_2023-08-12_at_11.17.41_PM.png" />
 
-Contact your Key Account manager and request to enable the txn_s2s_flow flag from the merchant panel.
+Contact your Key Account manager and request to enable the txn\_s2s\_flow flag from the merchant panel.
 
 **Question**: If the app crash for the following reason, what could be a possible solution to it?
 
