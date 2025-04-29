@@ -16,34 +16,34 @@ next:
 ---
 This section describes how to create an object of PayUCustomBrowserCallback. PayUCustomBrowserCallback provides the following callback methods:
 
-- `onPaymentFailure`(String payuResult,String merchantResponse) – Calls when payment fails.
-- `onPaymentSuccess`(String payuResult,String merchantResponse) – Calls when payment succeeds.
-- `onCBErrorReceived`(int errorCode, String errormsg) – Called for any error in the custom browser.
+* `onPaymentFailure`(String payuResult,String merchantResponse) – Calls when payment fails.
+* `onPaymentSuccess`(String payuResult,String merchantResponse) – Calls when payment succeeds.
+* `onCBErrorReceived`(int errorCode, String errormsg) – Called for any error in the custom browser.
 
 The following error messages are thrown in the callback method:
 
-| Error code | Error Message                             | Description                                                                                                                          |
-| :--------- | :---------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
-| 1          | VENDOR_NOT_SUPPORTED                      | The device Vendor is not supported                                                                                                   |
-| 2          | DEVICE_NOT_SUPPORTED                      | The device is not supported                                                                                                          |
-| 3          | APP_VERSION_MISMATCH                      | Samsung Pay version doesn't meet the requirements                                                                                    |
-| 4          | COUNTRY_NOT_SUPPORTED                     | The country of device origin is not supported by Samsung Pay                                                                         |
-| 5          | MERCHANT_KEY_NOT_REGISTER_FOR_SAMSUNG_PAY | Merchant is not registered for Samsung Pay with PayU                                                                                 |
-| 6          | CONTEXT_NULL                              | Context is null                                                                                                                      |
-| 7          | PAYMENT_ID_NOT_PRESENT                    | Check your postdata                                                                                                                  |
-| 1001       | DEVICE_NOT_SUPPORTED                      | In case `enablewebflow` is set to false for Tez payment and the Tez app is not present on the device following error would be thrown |
-| 1002       | MERCHANT_INFO_NOT_PRESENT                 | In case below error is received while processing payment please check your postData and hash                                         |
+| Error code | Error Message                                   | Description                                                                                                                          |
+| :--------- | :---------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
+| 1          | VENDOR\_NOT\_SUPPORTED                          | The device Vendor is not supported                                                                                                   |
+| 2          | DEVICE\_NOT\_SUPPORTED                          | The device is not supported                                                                                                          |
+| 3          | APP\_VERSION\_MISMATCH                          | Samsung Pay version doesn't meet the requirements                                                                                    |
+| 4          | COUNTRY\_NOT\_SUPPORTED                         | The country of device origin is not supported by Samsung Pay                                                                         |
+| 5          | MERCHANT\_KEY\_NOT\_REGISTER\_FOR\_SAMSUNG\_PAY | Merchant is not registered for Samsung Pay with PayU                                                                                 |
+| 6          | CONTEXT\_NULL                                   | Context is null                                                                                                                      |
+| 7          | PAYMENT\_ID\_NOT\_PRESENT                       | Check your postdata                                                                                                                  |
+| 1001       | DEVICE\_NOT\_SUPPORTED                          | In case `enablewebflow` is set to false for Tez payment and the Tez app is not present on the device following error would be thrown |
+| 1002       | MERCHANT\_INFO\_NOT\_PRESENT                    | In case below error is received while processing payment please check your postData and hash                                         |
 
-- `setCBProperties`(WebView webview, Bank payUCustomBrowser)—Callback where webview setting is done.
-- `onBackButton`(AlertDialog.Builder alertDialogBuilder)—This callback provides alert dialog access, so customisation can be done to alert dialog.
-  - `onBackApprove()`—Calls when OK is selected from the alert dialog.
-  - `onBackDismiss()`—Calls when Cancel is selected from the alert dialog.
-- `onPaymentTerminate()`—Called when payment is terminated.
-- `isPaymentOptionAvailable`(CustomBrowserResultData resultData)—Merchant must check for Samsung Pay/PhonePe payment option availability on customer device before showing Samsung Pay/PhonePe/Google Pay/UPI as a payment option. This callback is called in response of the`checkForPaymentAvailability` method present in CustomBrowser. Merchants can use the value of `resultData` object similar to the following:
-  - `resultData.getPaymentOption()`—Gives PaymentOption, that is, SamsungPay/PhonePe/Google Pay/UPI.
-  - `resultData.isPaymentOptionAvailable()`—Boolean whether Payment through selected `PaymentOption` is possible.
-  - `resultData.getSamsungPayVpa()`—Gives SamsungPay VPA associated with the device.
-  - `resultData.getErrorMessage()`— Gives error message in case PaymentOption is not available.  
+* `setCBProperties`(WebView webview, Bank payUCustomBrowser)—Callback where webview setting is done.
+* `onBackButton`(AlertDialog.Builder alertDialogBuilder)—This callback provides alert dialog access, so customisation can be done to alert dialog.
+  * `onBackApprove()`—Calls when OK is selected from the alert dialog.
+  * `onBackDismiss()`—Calls when Cancel is selected from the alert dialog.
+* `onPaymentTerminate()`—Called when payment is terminated.
+* `isPaymentOptionAvailable`(CustomBrowserResultData resultData)—Merchant must check for Samsung Pay/PhonePe payment option availability on customer device before showing Samsung Pay/PhonePe/Google Pay/UPI as a payment option. This callback is called in response of the`checkForPaymentAvailability` method present in CustomBrowser. Merchants can use the value of `resultData` object similar to the following:
+  * `resultData.getPaymentOption()`—Gives PaymentOption, that is, SamsungPay/PhonePe/Google Pay/UPI.
+  * `resultData.isPaymentOptionAvailable()`—Boolean whether Payment through selected `PaymentOption` is possible.
+  * `resultData.getSamsungPayVpa()`—Gives SamsungPay VPA associated with the device.
+  * `resultData.getErrorMessage()`— Gives error message in case PaymentOption is not available.\
     onVpaEntered(String vpa, PackageListDialogFragment `packageListDialogFragment)`(Available from version 7.3.0): Merchants must override this function and provide verifyVpaHash in case they want payment through UPI Collect flow.
 
 ```Text JAVA
@@ -51,7 +51,7 @@ packageListDialogFragment.verifyVpa(verifyVpaHash);
 ```
 
 > 👉 Tip
-> 
+>
 > To generate `verifyVpaHash`, use the validateVPA command and var1 as VPA address. To calculate the hash, refer to [Hash Generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk).
 
 The sample code block for PayUCustomBrowserCallback:
