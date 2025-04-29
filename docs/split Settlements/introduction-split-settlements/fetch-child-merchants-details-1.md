@@ -20,18 +20,18 @@ To fetch the child merchant details for a parent merchant:
 Use the **get\_client\_token** API with the scope as **fetch\_child\_merchants** to create a client token from Hub. For more information, refer to [Get Client Token API](ref:get-client-token-api)
 
 > 📘 Notes:
-> 
-> - Caller client service should be registered on Hub (PayU’s oAuth2 Service )
-> - **fetch\_child\_merchants** scope should be whitelisted on caller client on Hub
+>
+> * Caller client service should be registered on Hub (PayU’s oAuth2 Service )
+> * **fetch\_child\_merchants** scope should be whitelisted on caller client on Hub
 
 ## Step 2: Get sub account listing
 
 Call the **Sub Account Listing** API to fetch all child merchant details linked to a parent merchant. You must pass the UUID in this request. For more information, refer to [Sub Account Listing API](ref:sub-account-listing-api).
 
 > 📘 Notes:
-> 
-> - Use correct Environment URL as base URL in place of {{onboarding\_base\_url}} variable
-> - Use parent merchant UUID in place of {{merchant\_uuid}} variable in request
+>
+> * Use correct Environment URL as base URL in place of \{\{onboarding\_base\_url}} variable
+> * Use parent merchant UUID in place of \{\{merchant\_uuid}} variable in request
 
 ### Sample request
 
@@ -495,7 +495,7 @@ curl --location -g --request GET '{{onboarding_base_url}}/api/v1/merchants/{{par
 
 #### Failure Scenario
 
-- The token is invalid or expired
+* The token is invalid or expired
 
 ```plaintext
 {
