@@ -16,8 +16,8 @@ next:
 ---
 You can share the payment link with customers to collect payments from them. You can create and manage payment links using:
 
-- [Payment Links on PayU Dashboard](#payment-links-dashboard)
-- [Integration APIs for Payment Links](doc:integration-api-for-payment-links)
+* [Payment Links on PayU Dashboard](#payment-links-dashboard)
+* [Integration APIs for Payment Links](doc:integration-api-for-payment-links)
 
 ## Workflow
 
@@ -31,42 +31,28 @@ The following workflow is involved from your customer perspective when using Pay
 
 ## Payment Links Dashboard
 
-Select **Payment Tools **> **Payment Links** from the left pane of the Dashboard.
+Select **Payment Tools** > **Payment Links** from the left pane of the Dashboard.
 
-   The Payment Links Dashboard is displayed with the **Payment Link **and **Bulk Uploads** tabs.
+   The Payment Links Dashboard is displayed with the **Payment Link** and **Bulk Uploads** tabs.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/8310ceb-Screenshot_2023-09-29_at_11.58.48_AM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/8310ceb-Screenshot_2023-09-29_at_11.58.48_AM.png" />
 
 The **Payment Link** tab includes the following details:
 
-- **Created On:** Date of creation of the payment link.
-- **Payment Link**: The payment link that was created.
-- **Purpose of Payment:** The Payment description.
-- **Amount**: Amount payed using the payment link.
-- **Status:** Provide information on the status of the link Active, Deactivated or Expired.
-- **Actions:** Act on the payment link, such as duplicate, share or disable the payment link.
-- **Details:** View complete details of an individual payment link.
+* **Created On:** Date of creation of the payment link.
+* **Payment Link**: The payment link that was created.
+* **Purpose of Payment:** The Payment description.
+* **Amount**: Amount payed using the payment link.
+* **Status:** Provide information on the status of the link Active, Deactivated or Expired.
+* **Actions:** Act on the payment link, such as duplicate, share or disable the payment link.
+* **Details:** View complete details of an individual payment link.
 
 This part of the documentation includes the following sections:
 
-- [Create a Payment Link](doc:create-a-new-payment-link)
-- [Create Payments links in Bulks](doc:bulk-upload-to-create-multiple-payments-links)
-- [Customize the Calendar View for Payment Links](doc:customize-the-calendar-view-for-payment-links)
-- [Categorize the Payment Links View](doc:categorize-the-payment-links-view)
-- [Export the Payment Link History](doc:export-the-payment-link-history)
-- [Integration APIs for Payment Links](doc:integration-api-for-payment-links)
-- [FAQs - Payment Links](doc:faqs-payment-links)
+* [Create a Payment Link](doc:create-a-new-payment-link)
+* [Create Payments links in Bulks](doc:bulk-upload-to-create-multiple-payments-links)
+* [Customize the Calendar View for Payment Links](doc:customize-the-calendar-view-for-payment-links)
+* [Categorize the Payment Links View](doc:categorize-the-payment-links-view)
+* [Export the Payment Link History](doc:export-the-payment-link-history)
+* [Integration APIs for Payment Links](doc:integration-api-for-payment-links)
+* [FAQs - Payment Links](doc:faqs-payment-links)
