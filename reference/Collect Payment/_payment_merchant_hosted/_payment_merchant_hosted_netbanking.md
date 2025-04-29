@@ -38,111 +38,408 @@ You can check whether the Net Banking server is up and running using the **getNe
 
 <details><summary>Recommended integrations for Net Banking</summary>
 
-- **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
-- **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer) and [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
+* **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
+* **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer) and [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
 
 </details>
 
 ## Request parameters
 
 > 📘 Reference:
-> 
+>
 > For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "<<glossary:key>>  \n**mandatory**",
-    "0-1": "`String` This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).",
-    "0-2": "8488225",
-    "1-0": "txnid  \n**mandatory**",
-    "1-1": "`varchar` This parameter is known as Transaction ID (or OrderID). It is the order reference number generated at your (Merchant’s) end. It is an identifier which you(merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of same Transaction ID again would fail. Hence, it is essential that you post us a unique transaction ID for every new transaction (Please make sure that the transaction ID being sent to us hasn’t been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID’).",
-    "1-2": "fd3e847h2",
-    "2-0": "amount  \n**mandatory**",
-    "2-1": "`float` This parameter should contain the payment amount of the particular transaction. Note: Type-cast the amount to float type",
-    "2-2": "10",
-    "3-0": "productinfo  \n**mandatory**",
-    "3-1": "`varchar` This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice). ",
-    "3-2": "T-shirt",
-    "4-0": "firstname  \n**mandatory**",
-    "4-1": "`varchar` This parameter must contain the first name of the customer.",
-    "4-2": "Ankit",
-    "5-0": "email  \n**mandatory**",
-    "5-1": "`varchar` This parameter must contain the email of the customer)",
-    "5-2": "[test@gmail.com](mailto:test@gmail.com)",
-    "6-0": "phone  \n**mandatory**",
-    "6-1": "`integer` Merchant needs to take the customer’s GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.",
-    "6-2": " ",
-    "7-0": "<<glossary:pg>>  \n**mandatory**",
-    "7-1": "`string` This parameter contains the payment method to be enabled to collect payment from your customer. For the list of payment methods and their codes, refer to [Payment Mode Codes](doc:payment-mode-codes). For Net Banking, use NB.",
-    "7-2": "NB",
-    "8-0": "<<glossary:bankcode>>  \n**mandatory**",
-    "8-1": "Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bankcodes for Net Banking, refer to [Net Banking Codes](doc:net-banking-codes).",
-    "8-2": "AXIB",
-    "9-0": "surl  \n**mandatory**",
-    "9-1": " The \"surl\" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.",
-    "9-2": "<https://apiplayground-response.herokuapp.com/>",
-    "10-0": "furl  \n**mandatory**",
-    "10-1": "The \"furl\" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.",
-    "10-2": "<https://apiplayground-response.herokuapp.com/>",
-    "11-0": "<<glossary:hash>>  \n**mandatory**",
-    "11-1": "`string` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)  \nFor more information, refer to [Generate Hash](doc:hashing-request-and-response).",
-    "11-2": " ",
-    "12-0": "lastname  \n**optional**",
-    "12-1": "`string`The last name of the customer.",
-    "12-2": "",
-    "13-0": "address1  \n**optional**",
-    "13-1": "`string`The first line of the billing address.",
-    "13-2": "",
-    "14-0": "address2  \n**optional**",
-    "14-1": "`string`The second line of the billing address.",
-    "14-2": "",
-    "15-0": "city  \n**optional**",
-    "15-1": "`string`The city where your customer resides as part of the billing address.",
-    "15-2": "",
-    "16-0": "state  \n**optional**",
-    "16-1": "`string`The state where your customer resides as part of the billing address,",
-    "16-2": "",
-    "17-0": "country  \n**optional**",
-    "17-1": "`string`The country where your customer resides.",
-    "17-2": "",
-    "18-0": "zipcode  \n**optional**",
-    "18-1": "`string`Billing address zip code is mandatory for the cardless EMI option.",
-    "18-2": "",
-    "19-0": "udf1  \n**mandatory for Cross-Border Payments**",
-    "19-1": "`string`This parameter has been made for you to keep any information corresponding to the transaction.  \n**Note**: This parameter must contain buyer’s PAN number for Cross-Border Payments.",
-    "19-2": "",
-    "20-0": "udf2  \n**optional**",
-    "20-1": "`string` This parameter has been made for you to keep any information corresponding to the transaction.",
-    "20-2": "",
-    "21-0": "udf3  \n**mandatory for Cross-Border Payments**",
-    "21-1": "`string` This parameter has been made for you to keep any information corresponding to the transaction.  \n**Note**: This parameter must contain buyer’s date of birth for Cross-Border Payments.",
-    "21-2": "",
-    "22-0": "udf4  \n**optional**",
-    "22-1": "`string` This parameter has been made for you to keep any information corresponding to the transaction.",
-    "22-2": "",
-    "23-0": "udf5  \n**mandatory for Cross-Border Payments**",
-    "23-1": "`string` This parameter has been made for you to keep any information corresponding to the transaction.  \n**Note**:  This parameter must contain invoice id/awb id of the transaction for Cross-Border Payments.",
-    "23-2": ""
-  },
-  "cols": 3,
-  "rows": 24,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <Glossary>key</Glossary>
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+      </td>
+
+      <td>
+        8488225
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txnid\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` This parameter is known as Transaction ID (or OrderID). It is the order reference number generated at your (Merchant’s) end. It is an identifier which you(merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of same Transaction ID again would fail. Hence, it is essential that you post us a unique transaction ID for every new transaction (Please make sure that the transaction ID being sent to us hasn’t been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID’).
+      </td>
+
+      <td>
+        fd3e847h2
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount\
+        **mandatory**
+      </td>
+
+      <td>
+        `float` This parameter should contain the payment amount of the particular transaction. Note: Type-cast the amount to float type
+      </td>
+
+      <td>
+        10
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productinfo\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice). 
+      </td>
+
+      <td>
+        T-shirt
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstname\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` This parameter must contain the first name of the customer.
+      </td>
+
+      <td>
+        Ankit
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` This parameter must contain the email of the customer)
+      </td>
+
+      <td>
+        [test@gmail.com](mailto:test@gmail.com)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        **mandatory**
+      </td>
+
+      <td>
+        `integer` Merchant needs to take the customer’s GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <Glossary>pg</Glossary>\
+        **mandatory**
+      </td>
+
+      <td>
+        `string` This parameter contains the payment method to be enabled to collect payment from your customer. For the list of payment methods and their codes, refer to [Payment Mode Codes](doc:payment-mode-codes). For Net Banking, use NB.
+      </td>
+
+      <td>
+        NB
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <Glossary>bankcode</Glossary>\
+        **mandatory**
+      </td>
+
+      <td>
+        Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bankcodes for Net Banking, refer to [Net Banking Codes](doc:net-banking-codes).
+      </td>
+
+      <td>
+        AXIB
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        surl\
+        **mandatory**
+      </td>
+
+      <td>
+         The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.
+      </td>
+
+      <td>
+        [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        furl\
+        **mandatory**
+      </td>
+
+      <td>
+        The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.
+      </td>
+
+      <td>
+        [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <Glossary>hash</Glossary>\
+        **mandatory**
+      </td>
+
+      <td>
+        `string` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)\
+        For more information, refer to [Generate Hash](doc:hashing-request-and-response).
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        lastname\
+        **optional**
+      </td>
+
+      <td>
+        `string`The last name of the customer.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        address1\
+        **optional**
+      </td>
+
+      <td>
+        `string`The first line of the billing address.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        address2\
+        **optional**
+      </td>
+
+      <td>
+        `string`The second line of the billing address.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        city\
+        **optional**
+      </td>
+
+      <td>
+        `string`The city where your customer resides as part of the billing address.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        state\
+        **optional**
+      </td>
+
+      <td>
+        `string`The state where your customer resides as part of the billing address,
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        country\
+        **optional**
+      </td>
+
+      <td>
+        `string`The country where your customer resides.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        zipcode\
+        **optional**
+      </td>
+
+      <td>
+        `string`Billing address zip code is mandatory for the cardless EMI option.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf1\
+        **mandatory for Cross-Border Payments**
+      </td>
+
+      <td>
+        `string`This parameter has been made for you to keep any information corresponding to the transaction.  
+
+        * \*Note\*\*: This parameter must contain buyer’s PAN number for Cross-Border Payments.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf2\
+        **optional**
+      </td>
+
+      <td>
+        `string` This parameter has been made for you to keep any information corresponding to the transaction.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf3\
+        **mandatory for Cross-Border Payments**
+      </td>
+
+      <td>
+        `string` This parameter has been made for you to keep any information corresponding to the transaction.  
+
+        * \*Note\*\*: This parameter must contain buyer’s date of birth for Cross-Border Payments.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf4\
+        **optional**
+      </td>
+
+      <td>
+        `string` This parameter has been made for you to keep any information corresponding to the transaction.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf5\
+        **mandatory for Cross-Border Payments**
+      </td>
+
+      <td>
+        `string` This parameter has been made for you to keep any information corresponding to the transaction.  
+
+        * \*Note\*\*:  This parameter must contain invoice id/awb id of the transaction for Cross-Border Payments.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <TransactionStages />
 
 > 🚧 Values to be used in Test environment
-> 
+>
 > You can test NetBanking only with pg=TESTPG and bankcode=TESTPGNB only.
 
 ## Sample request
@@ -156,7 +453,7 @@ curl -X \
 ## Response parameters
 
 > 📘 Reference
-> 
+>
 > For the response parameters description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-parameters).
 
 ## Sample response
