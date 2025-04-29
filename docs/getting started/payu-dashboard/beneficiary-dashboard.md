@@ -16,20 +16,7 @@ next:
 ---
 You can search for an individual beneficiary using the beneficiaries named in the search field.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/08/image-66.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+<Image align="center" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/08/image-66.png" />
 
 ## **Categorize and View Beneficiaries**
 
@@ -43,13 +30,13 @@ To categorize and view the beneficiaries on the page:
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-68.png)
 
-**Note:** To view only the active beneficiaries, select the **Active** tab. Similarly, only inactive beneficiaries are displayed on the **Inactive** tab_._
+**Note:** To view only the active beneficiaries, select the **Active** tab. Similarly, only inactive beneficiaries are displayed on the **Inactive** ta&#x62;*.*
 
 The action field enables you to perform the following functions:
 
-- Edit the **Beneficiary** details
-- **Activate or deactivate** the beneficiary
-- Make a payment to the beneficiary
+* Edit the **Beneficiary** details
+* **Activate or deactivate** the beneficiary
+* Make a payment to the beneficiary
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-69.png)## Add a New Beneficiary### **Add Beneficiary**To create a new beneficiary:1. Click the **Add Beneficiary** drop-down list at the top right corner.
 
@@ -57,11 +44,11 @@ The action field enables you to perform the following functions:
 3. Select beneficiary type from the **Beneficiary Type** field.
 4. Add the personal contact details such as **Beneficiary Name, Nickname, Mobile Number,** and **email ID**.
 5. Click **Next** to continue.![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-71.png)The **Payment Details** section is displayed to add the bank account or UPI details![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-72.png)1. Perform any of the following steps:
-   - Select **Add bank account details**, enter the following details under the Add bank account details and then click **ValidateandAdd Details**:
-     - **Account Holder Name**: Enter the account holder name as in your bank account.
-     - **Account Number** and **Re-enter Account Number:** Enter the bank account number in these fields and they should match.
-     - **IFSC code**: Click **Search IFSC code** field to search for your bank IFSC code details and select it.
-   - Select **Add UPI details**, enter the UPI identifier in the **UPI ID** and then click **Verify**.![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-73.png)### Create Beneficiaries in BulkTo create the beneficiaries in bulk:1. Choose the **Bulk** option from the **Add Beneficiary** drop-down list.
+   * Select **Add bank account details**, enter the following details under the Add bank account details and then click **ValidateandAdd Details**:
+     * **Account Holder Name**: Enter the account holder name as in your bank account.
+     * **Account Number** and **Re-enter Account Number:** Enter the bank account number in these fields and they should match.
+     * **IFSC code**: Click **Search IFSC code** field to search for your bank IFSC code details and select it.
+   * Select **Add UPI details**, enter the UPI identifier in the **UPI ID** and then click **Verify**.![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-73.png)### Create Beneficiaries in BulkTo create the beneficiaries in bulk:1. Choose the **Bulk** option from the **Add Beneficiary** drop-down list.
 6. Choose a .CSV or .XLS file from your library.
 7. Select the file from the desired location and click **Open** to upload it.
 8. Click **Import Beneficiaries** to complete the action.![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-74.png)
