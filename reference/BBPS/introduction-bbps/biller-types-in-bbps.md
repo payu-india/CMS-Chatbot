@@ -13,7 +13,7 @@ next:
 The following table outlines the various Biller integration scenarios in BBPS. These fields are passed on as Biller MDM Response parameters. Here, **T**=true and **F**=false.
 
 > 📘 Note:
-> 
+>
 > The following combination is only valid if the agent is using the **Validation** API for validating the payment.
 
 | **S.No** | **Type**  | **Accepts Ad-hoc** | **Fetch Requirement** | **Support**Validation\*\* | **Support Plan MOM** | **QuickPay**value in Pay Request\*\* | **Transaction**                                                                                                       |
