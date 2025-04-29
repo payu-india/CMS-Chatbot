@@ -1,0 +1,32 @@
+---
+title: Integrate UPI QR APIs
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+This part of the document includes the following APIs used for UPI QR integration:
+
+> 📘 Reference
+> 
+> For UPI QR overview and workflow, refer to [Integrate UPI QR](doc:integrate-upi-qr).
+
+- [Dynamic QR Generation API](ref:dynamic-qr-generation-api)
+- [Insta Static QR Generation API](https://docs.payu.in/reference/insta-static-qr-generation-api)
+- [Insta Deactivate VPA API](https://docs.payu.in/reference/insta-deactivate-vpa-api)
+- [Insta Static QR Regeneration API](https://docs.payu.in/reference/insta-static-qr-regeneration-api)
+- [Integrated Static Bharat QR Generation API](https://docs.payu.in/reference/integrated-static-bharat-qr-generation-api)
+- [Payment Initiation API – Integrated Bharat QR](https://docs.payu.in/reference/payment-initiation-api-integrated-bharat-qr)
+- [Offline Intent Link Generation API](https://docs.payu.in/reference/offline-intent-link-generation-api)
+- [Expire Intent Link API](https://docs.payu.in/reference/expire-intent-link-api)
+- [Print Invoice QR API](https://docs.payu.in/reference/print-invoice-qr-api)
+- [Send Invoice QR to SMS API](https://docs.payu.in/reference/send-invoice-qr-to-sms-api)
+- [Transaction Callback API](https://docs.payu.in/reference/transaction-callback-api)
+- [Transaction Status Check API](https://docs.payu.in/reference/transaction-status-check-api-2)
+- [Cancel QR Transaction API](https://docs.payu.in/reference/cancel-qr-transaction-api-1)
+- [Error codes for QR APIs](https://docs.payu.in/reference/error-codes-for-qr-apis-1)
