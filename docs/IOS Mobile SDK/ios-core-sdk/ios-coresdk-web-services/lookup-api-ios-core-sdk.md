@@ -12,18 +12,18 @@ next:
 ---
 The **Lookup** API is used when integrating multi-currency payments. To use Lookup API for iOs, follow these subsections:
 
-- [Prerequisites](#Prerequisites)
-- [Request parameters](#Request-parameters)
-- [Calculate the signature for Hash](#calculate-the-signature-for-hash)
+* [Prerequisites](#Prerequisites)
+* [Request parameters](#Request-parameters)
+* [Calculate the signature for Hash](#calculate-the-signature-for-hash)
 
 ## Prerequisites
 
 > 📘 Before you begin
-> 
+>
 > Connect with your Key Account Manager at PayU to get the following credentials:
-> 
-> - Merchant Access Key
-> - Merchant Secret Key
+>
+> * Merchant Access Key
+> * Merchant Secret Key
 
 Lookup API needs a JSON request. Product types need to be passed either as DCC or MCP. Direct Currency Conversion (DCC) returns the conversion prices for card currency only. To get all enabled currencies on Merchant Access Key along with their conversion prices, use product type as MCP. For DCC, cardBin is mandatory, while for MCP cardBin is not required
 
@@ -69,10 +69,10 @@ The details of the parameters used in the **Lookup** API are:
 
 Use the following data to calculate the signature for creating the HmacSHA1 hash.
 
-- `Signature` =HMAC-SHA1(data, key);
-- `Data` = baseCurrency+merchantOrderId+baseAmount
-- `Key` = Secret Key shared with the merchant at the time of onboarding
-- `Example`: INROBE-JU89-13151-11010000.00
+* `Signature` =HMAC-SHA1(data, key);
+* `Data` = baseCurrency+merchantOrderId+baseAmount
+* `Key` = Secret Key shared with the merchant at the time of onboarding
+* `Example`: INROBE-JU89-13151-11010000.00
 
 To integrate this API, call the `mcpLookup `method for instance:
 
@@ -88,6 +88,6 @@ mcpLookup:self.paymentParamForPassing withCompletionBlock:^(PayUModelMultiCurren
 }];
 ```
 
-> 📘 Reference: 
-> 
+> 📘 Reference:
+>
 > For more information on Static Hashing, refer to [Generate Static Hash](doc:generate-static-hash-ios).
