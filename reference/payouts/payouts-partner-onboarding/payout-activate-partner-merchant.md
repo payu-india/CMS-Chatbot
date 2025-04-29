@@ -19,7 +19,8 @@ This API is used to create virtual account belonging to partner ID.
 
 <PayoutsPartnerEnvionment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location 'https://uatone.payu.in/payout/partner/merchant/create' \
@@ -34,7 +35,8 @@ curl --location 'https://uatone.payu.in/payout/partner/merchant/create' \
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
