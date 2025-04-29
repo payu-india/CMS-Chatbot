@@ -18,20 +18,21 @@ The **Get Merchant Credentials** API is used to perform the following:
 - Used to get the merchant credentials to generate the API Key and Salt
 - Authorized using the Client ID and Client Secret to generate the access token
 
-The merchant ID in the request header must be included as a query parameter in the** mid **field.
+The merchant ID in the request header must be included as a query parameter in the **mid** field.
 
 **Environment**
 
 |                        |                               |
 | :--------------------- | :---------------------------- |
-| Test Environment       | <https://uat-partner.payu.in> |
-| Production Environment | <https://partner.payu.in>     |
+| Test Environment       | &lt;https://uat-partner.payu.in&gt; |
+| Production Environment | &lt;https://partner.payu.in&gt;     |
 
 > 📘 Note:
-> 
-> The access token with the scope as **read_merchant_reseller** from is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+>
+> The access token with the scope as **read_merchant_reseller** from is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location --request GET '{{partner_base_url}}api/v1/merchants/{{merchant_id}}/credential' \
@@ -41,7 +42,8 @@ curl --location --request GET '{{partner_base_url}}api/v1/merchants/{{merchant_i
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success Scenario**
 
