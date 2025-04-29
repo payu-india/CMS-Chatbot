@@ -14,10 +14,10 @@ Ensure these steps before you deploy the integration in a live environment.
 
 ## Collect live payments
 
-After [testing the integration ]\(doc: android-olamoneysdk-test-the-integration)end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers. 
+After \[testing the integration ]\(doc: android-olamoneysdk-test-the-integration)end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers. 
 
 > 🚧 Watch Out!
-> 
+>
 > Ensure that you are using the production merchant key and salt generated in the live mode.
 
 ### Checklist 1: Add Production Key and Salt
