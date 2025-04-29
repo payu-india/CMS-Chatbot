@@ -10,16 +10,16 @@ metadata:
 next:
   description: ''
 ---
-To integrate with iOS SDK, download the latest sample app from GitHub using the following link: <https://github.com/payu-intrepos/iOS-SDK-Sample-App/releases/​>
+To integrate with iOS SDK, download the latest sample app from GitHub using the following link: [https://github.com/payu-intrepos/iOS-SDK-Sample-App/releases/​](https://github.com/payu-intrepos/iOS-SDK-Sample-App/releases/​)
 
-> 📘 Note: 
-> 
+> 📘 Note:
+>
 > Before proceeding further, make sure you have read SDK Integration document.​
 
 Perform the following steps as prerequisites:
 
 1. Add `libz.tbd` libraries into your project (Project > Build Phases > Link Binary with Libraries).
-2. Add -ObjC and $(OTHER_LDFLAGS) in Other Linker Flags in the project build settings (Project->Build Settings->Other Linker Flags).
+2. Add -ObjC and $(OTHER\_LDFLAGS) in Other Linker Flags in the project build settings (Project->Build Settings->Other Linker Flags).
 3. To run the app on Apple iOS 9, add the following code snippet in info.plist:
 
 ```Text XML
@@ -115,7 +115,7 @@ NSLog(@"Response Received %@",strConvertedRespone);
 6. Calculate the hashes. For example, refer to the following code snippet:
 
 > ❗️ Callout
-> 
+>
 > Calculate all the hashes and assign `tostrEmail` using the `paymentOptionsVC.allHashDict method`. For more information on how to calculate the hash.Hashes and provided to `paymentOptionsVC.allHashDict` in Key-Value Pair, refer to Hash Generation.
 
 ```Text Swift
