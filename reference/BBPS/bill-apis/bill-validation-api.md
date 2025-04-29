@@ -13,29 +13,30 @@ metadata:
 next:
   description: ''
 ---
-This API can be used by all the BBPS and Connect billers who support the following validation options:  
+This API can be used by all the BBPS and Connect billers who support the following validation options: 
 
-- Optional
-- Mandatory
+* Optional
+* Mandatory
 
 <BBPSEnvironment />
 
 > 📘 Note:
-> 
-> Send the scope of the Get Token API as **create_transactions** to obtain the access_token for this request. For more information, refer to  [Get Token API - BBPS](ref:get-token-api-bbps).
+>
+> Send the scope of the Get Token API as **create\_transactions** to obtain the access\_token for this request. For more information, refer to [Get Token API - BBPS](ref:get-token-api-bbps).
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
-curl --location -g --request POST 'https://<hostName>/payu-nbc/v2/nbc/paymentValidation?agentId={agentId}&billerId={billerId}&customerName={customerName}'&customerParams={ "<param1>": <value1>", "<param2>": "<value2>" }&customer&PhoneNumber={contact number}&deviceDetails={ "INITIATING_CHANNEL": "INT", "IP": "<ip>","MAC": "<mac>" }&"customerPhoneNumber": "<contact number>&deviceDetails={ "INITIATING_CHANNEL": "INT","IP": "<ip>", "MAC": "<mac>" } 
- \
+curl --location -g --request POST 'https://<hostName>/payu-nbc/v2/nbc/paymentValidation?agentId=`{agentId}`&billerId=`{billerId}`&customerName=`{customerName}`'&customerParams={ "<param1>": "<value1>", "<param2>": "<value2>" }&customerPhoneNumber=`{contact number}`&deviceDetails={ "INITIATING_CHANNEL": "INT", "IP": "<ip>", "MAC": "<mac>" }' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer {{access_token}}' 
+--header 'Authorization: Bearer {{access_token}}'
 ```
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ### Success scenario
 
@@ -64,13 +65,12 @@ curl --location -g --request POST 'https://<hostName>/payu-nbc/v2/nbc/paymentVal
         "errorCode": "<Error Code>" 
       } 
     ], 
-    "refId": <Reference Id>, 
-    "type": "payment_validation ", 
-    "message": "payment_validation_request_failed ", 
+    "refId": "<Reference Id>", 
+    "type": "payment_validation", 
+    "message": "payment_validation_request_failed", 
     "additionalParams": null 
   } 
 } 
-
 ```
 
 </details>
