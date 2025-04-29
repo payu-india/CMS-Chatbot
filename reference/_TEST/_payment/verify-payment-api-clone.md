@@ -10,29 +10,43 @@ metadata:
 next:
   description: ''
 ---
-The Verify Payment (**verify_payment**) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU’s database after you receive the response, where var1 is your transaction ID.
+The Verify Payment (**verify\_payment**) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU’s database after you receive the response, where var1 is your transaction ID.
 
 ## Reference information for request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Reference",
-    "0-0": "key",
-    "0-1": "For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  \n- **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "1-0": "hash",
-    "1-1": "Hash logic for this API is:  \n`sha512(key\\|command\\|var1\\|salt) sha512`"
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        Reference
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        key
+      </td>
+      <td>
+        For more information on how to generate the Key and Salt, refer to any of the following:
 
+        * **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        hash
+      </td>
+      <td>
+        Hash logic for this API is: sha512(key|command|var1|salt) sha512
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <GENERALAPIsEnvironment />
 
@@ -40,19 +54,9 @@ The Verify Payment (**verify_payment**) API gives you the status of the transact
 
 For the response parameters and sample response, refer to [Additional Info for General APIs](/reference/addl-info-general-apis#response-parameters-for-verify-payment-api).
 
-To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes). 
+To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 
-[block:tutorial-tile]
-{
-  "backgroundColor": "#018FF4",
-  "emoji": "🦉",
-  "id": "65afb6e90a4e0500389d3886",
-  "link": "https://docs.payu.in/v1/recipes/parse-the-verify-payment-api-response",
-  "slug": "parse-the-verify-payment-api-response",
-  "title": "Parse the Verify Payment API response"
-}
-[/block]
-
+<TutorialTile backgroundColor="#018FF4" emoji="🦉" id="65afb6e90a4e0500389d3886" link="https://docs.payu.in/v1/recipes/parse-the-verify-payment-api-response" slug="parse-the-verify-payment-api-response" title="Parse the Verify Payment API response" />
 
 ## Request parameters
 
@@ -60,4 +64,4 @@ To learn more about the possible error codes and their description, refer to [Er
 
 Use the following sample values while trying out the API:
 
-- `var1` (your transaction ID/order ID): 7fa6c4783a363b3da573
+* `var1` (your transaction ID/order ID): 7fa6c4783a363b3da573
