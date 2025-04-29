@@ -15,11 +15,11 @@ next:
 ---
 This module provides the following functions:
 
-- **Collated View Of Sales**: Sales, orders, and returns analytics for predicting mismatches and net profit.
-- **Collated View Of Payments**: Receivables, due settlements, and commission deduction analytics for better predicting mismatches and accounting.
-- **Convenient Accounting**: Two-way reconciliation, that is, settlements done in bank and seller account with an understanding of expected vs. actual.
-- **Notifications and Alerts**: Relevant notifications and alerts for smooth business operations.
-- **Analytics For better Operations**: Overview for individual elements and a bird-eye view of complete seller account operations.
+* **Collated View Of Sales**: Sales, orders, and returns analytics for predicting mismatches and net profit.
+* **Collated View Of Payments**: Receivables, due settlements, and commission deduction analytics for better predicting mismatches and accounting.
+* **Convenient Accounting**: Two-way reconciliation, that is, settlements done in bank and seller account with an understanding of expected vs. actual.
+* **Notifications and Alerts**: Relevant notifications and alerts for smooth business operations.
+* **Analytics For better Operations**: Overview for individual elements and a bird-eye view of complete seller account operations.
 
 ## Link Amazon Seller Account on Dashboard
 
