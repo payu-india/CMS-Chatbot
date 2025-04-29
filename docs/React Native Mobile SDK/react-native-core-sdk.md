@@ -24,15 +24,15 @@ Integrate with the PayU React Native Core SDK to start collecting payments from 
 
 ### Android
 
-- Minimum SDK Version: 21
-- Compile SDK Version: 31+
-- Kotlin 1.6.10
+* Minimum SDK Version: 21
+* Compile SDK Version: 31+
+* Kotlin 1.6.10
 
 ### iOS
 
-- Minimum iOS Version: 11
+* Minimum iOS Version: 11
 
 The procedure to integrate with Core SDK slightly varies for Android and iOS integration. The following sections describe the procedure to integrate Core SDK with Android and iOS:
 
-- Integrate React Native Core with Android
-- Integrate React Native Core with iOS
+* Integrate React Native Core with Android
+* Integrate React Native Core with iOS
