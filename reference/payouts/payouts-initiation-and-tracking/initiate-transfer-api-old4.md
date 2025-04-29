@@ -27,7 +27,8 @@ The **Initiate Payment** API is used to initiate/schedule a single transfer to t
 | **Test Environment**       | <https://uatoneapi.payu.in/payout/v2/payment> |
 | **Production Environment** | <https://payout.payumoney.com/payout/payment> |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 **IMPS, NEFT or RTGS Payment Request**
 
@@ -62,15 +63,16 @@ The **Initiate Payment** API is used to initiate/schedule a single transfer to t
  "batchId": "1",
  "merchantRefId": "123",
  "paymentType": "UPI",
- "vpa" : "ankush.pokarana@ybl"
-  "retry" : false
+ "vpa" : "ankush.pokarana@ybl",
+ "retry" : false
  }
 ]
 ```
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success response**
 
@@ -109,7 +111,8 @@ The **Initiate Payment** API is used to initiate/schedule a single transfer to t
 > 
 > The payoutMerchantId is different from PayU Merchant Id. Check the Payouts Dashboard or call the PayU Customer Support if you don’t know your payoutMerchantId.
 
-<details><summary>Additional information for Request parameters</summary>
+<details>
+  <summary>Additional information for Request parameters</summary>
 
 [block:parameters]
 {
@@ -133,6 +136,5 @@ The **Initiate Payment** API is used to initiate/schedule a single transfer to t
   ]
 }
 [/block]
-
 
 </details>
