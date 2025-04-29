@@ -46,8 +46,8 @@ The following are possible errors and error codes for transaction initiation.
 | 234       | FAILURE      | BLOCKED – Refund/Cancel Blocked From Merchant Panel And API. Contact KM.                              |
 | 235       | FAILURE      | BLOCKED – Refund/Cancel Blocked. Contact KM.                                                          |
 | 236       | FAILURE      | STATUS\_REFUND\_NOT\_POSSIBLE                                                                         |
-| 237       | FAILURE      | Validation Failure for {key\_name}. Special Characters Not Allowed                                    |
-| 238       | FAILURE      | Validation Failure for {key\_name}. Mandatory Field.                                                  |
+| 237       | FAILURE      | Validation Failure for \{key\_name}. Special Characters Not Allowed                                   |
+| 238       | FAILURE      | Validation Failure for \{key\_name}. Mandatory Field.                                                 |
 | 239       | FAILURE      | API-based alternate instant refunds not activated.                                                    |
 | 250       | FAILURE      | FAILURE – Refund Failed On Uploading Successful Chargeback                                            |
 | 251       | FAILURE      | Refund Blocked for this PGMID by Bank                                                                 |
