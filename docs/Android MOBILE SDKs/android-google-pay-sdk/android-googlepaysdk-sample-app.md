@@ -12,4 +12,4 @@ next:
 ---
 The following library is used to integrate Google Pay:
 
-<https://github.com/payu-intrepos/payu-gpay-mob>
+[https://github.com/payu-intrepos/payu-gpay-mob](https://github.com/payu-intrepos/payu-gpay-mob)
