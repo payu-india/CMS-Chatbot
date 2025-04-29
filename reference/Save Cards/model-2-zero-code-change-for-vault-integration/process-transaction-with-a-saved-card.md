@@ -10,47 +10,85 @@ metadata:
 next:
   description: ''
 ---
-If you have not received a response from PayU with First-Time Payment Workflow, use the get_user_card API as described in [Get User Cards API](ref:get_user_cards_api) (previous section).
+If you have not received a response from PayU with First-Time Payment Workflow, use the get\_user\_card API as described in [Get User Cards API](ref:get_user_cards_api) (previous section).
 
 HTTP Method: **POST**
 
 **Environment**
 
-| Test Environment       | <https://test.payu.in/_payment> |
-| :--------------------- | :------------------------------ |
-| Production Environment | <https://info.payu.in/_payment> |
+| Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment) |
+| :--------------------- | :-------------------------------------------------------------- |
+| Production Environment | [https://info.payu.in/\_payment](https://info.payu.in/_payment) |
 
 ## Extra parameters to be posted with saved card using \_payment API
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "user\\_credentials  \n**mandatory**",
-    "0-1": "`varchar`  It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save\\_user\\_cards API.",
-    "0-2": "a:b",
-    "1-0": "store\\_card\\_token  \n**mandatory**",
-    "1-1": "`varchar`  It is the card token for a card that is returned by PayU when you store a card. When you store a card using the save\\_user\\_cards API, the response from PayU contains the card token value in the cardToken parameter.",
-    "1-2": "57cb996f2eaeee525765a",
-    "2-0": "storecard\\_token\\_type   \n**optional for PayU token flow**",
-    "2-1": "`integer` This parameter can be posted with the value as **0** as you are using PayU token hub.",
-    "2-2": "0"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Field**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        user\_credentials
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar`  It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save\_user\_cards API.
+      </td>
+
+      <td>
+        a:b
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        store\_card\_token\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar`  It is the card token for a card that is returned by PayU when you store a card. When you store a card using the save\_user\_cards API, the response from PayU contains the card token value in the cardToken parameter.
+      </td>
+
+      <td>
+        57cb996f2eaeee525765a
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        storecard\_token\_type \
+        **optional for PayU token flow**
+      </td>
+
+      <td>
+        `integer` This parameter can be posted with the value as **0** as you are using PayU token hub.
+      </td>
+
+      <td>
+        0
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 > 📘 Note
-> 
+>
 > Only the fields needed for this operation are mentioned here. For the complete API details of the \_payment API, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted).
 
 ## Sample request
