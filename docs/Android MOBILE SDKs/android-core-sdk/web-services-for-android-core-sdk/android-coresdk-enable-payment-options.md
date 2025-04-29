@@ -13,11 +13,11 @@ next:
 This API is used enable multiple payment options on your checkout page. 
 
 > 📘 Hash logic
-> 
+>
 > The hash logic for this API is:
-> 
+>
 > `<key>|payment_related_details_for_mobile_sdk|<userCredential>|<salt>`
-> 
+>
 > For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
 ## Step 1: Execute GetPaymentRelatedDetailsTask
@@ -65,9 +65,9 @@ This method is called when the payment-related details are received. This method
 
 The `onPaymentRelatedDetailsResponse()` method can be used to check if the following payment options are available:
 
-- UPI
-- Google Pay
-- PhonePe Intent
-- LazyPay
-- Generic Intent
-- The `onPaymentRelatedDetailsResponse()` method can also be used to fetch the list of SI banks if SI payments are enabled.
+* UPI
+* Google Pay
+* PhonePe Intent
+* LazyPay
+* Generic Intent
+* The `onPaymentRelatedDetailsResponse()` method can also be used to fetch the list of SI banks if SI payments are enabled.
