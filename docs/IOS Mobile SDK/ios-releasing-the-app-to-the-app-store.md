@@ -54,7 +54,7 @@ The script will look through your built application’s Frameworks folder and ma
    1. Navigate to Product > Archive and submit it for validation.
    2. Select Window > Organizer on the menu
    3. Select the project in the Organizer.
-   4. Click the Validate button and follow the on-screen instructions.  
+   4. Click the Validate button and follow the on-screen instructions.\
       The app should pass validation as the simulator architectures were removed from the framework during the build process.
 5. After the validation is successful, upload it to Apple App Store.
 
