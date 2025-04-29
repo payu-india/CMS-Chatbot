@@ -17,8 +17,8 @@ Before you start with the integration, enable the payment methods that you want 
 First, create a PayU account. See [Register for a Merchant Account.](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard)
 
 > 🚧 Download Python SDK
-> 
-> You can download the Python web SDK from the following GitHub link: <https://github.com/payu-india/web-sdk-python>
+>
+> You can download the Python web SDK from the following GitHub link: [https://github.com/payu-india/web-sdk-python](https://github.com/payu-india/web-sdk-python)
 
 ## Install Using PIP
 
@@ -32,13 +32,13 @@ pip install payu-websdk
 
 ## Enviroments, method, and request header
 
-| Enviroment | URI                                                    |
-| :--------- | :----------------------------------------------------- |
-| Test       | <https://test.payu.in/merchant/postservice.php?form=2> |
-| Production | <https://info.payu.in/merchant/postservice.php?form=2> |
+| Enviroment | URI                                                                                                          |
+| :--------- | :----------------------------------------------------------------------------------------------------------- |
+| Test       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
+| Production | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
-- **Method** — `POST`
-- **Request header** — `Content-Type`:`multipart/form-data`
+* **Method** — `POST`
+* **Request header** — `Content-Type`:`multipart/form-data`
 
 ## Build PayU Object
 
@@ -79,7 +79,7 @@ Payment option details: The extended details for each payment option available f
 
 ## Get transaction details
 
-The Get Transaction Details (get_Transaction_Details) API takes works on basis input as two dates (initial and final), between which the transaction details are needed. The output consists of the status of the API (success or failed) and all the transaction details in an array format.
+The Get Transaction Details (get\_Transaction\_Details) API takes works on basis input as two dates (initial and final), between which the transaction details are needed. The output consists of the status of the API (success or failed) and all the transaction details in an array format.
 
 ```Text Python
 
@@ -103,7 +103,7 @@ The Get Transaction Details (get_Transaction_Details) API takes works on basis i
 
 ## Refund transaction
 
-The Cancel Refund Transaction API (cancel_refund_transaction) can be used for the following purposes:
+The Cancel Refund Transaction API (cancel\_refund\_transaction) can be used for the following purposes:
 
 Cancel a transaction that is in ‘auth’ state at the moment Refund a transaction that is in a ‘captured’ state at the moment. In this API: var1 is the Payu ID (mihpayid) of the transaction, var2 should contain the Token ID (unique token from the merchant)
 
@@ -259,12 +259,12 @@ String HashForEmiAmountAccordingToInterest= EmiAmountAccordingToInterest.generat
 
 ## Check bin type
 
-The BIN API or check_isDomestic API is used to detect whether a particular BIN number is international or domestic. It is also useful to determine:
+The BIN API or check\_isDomestic API is used to detect whether a particular BIN number is international or domestic. It is also useful to determine:
 
-- card’s issuing bank
-- card type such as, Visa, Master, etc.
-- card category such as Credit/Debit, etc.
-- var1 is bin number which is the first 6 digits of a Credit/Debit card.
+* card’s issuing bank
+* card type such as, Visa, Master, etc.
+* card category such as Credit/Debit, etc.
+* var1 is bin number which is the first 6 digits of a Credit/Debit card.
 
 ```Text Python
 
@@ -286,7 +286,7 @@ The BIN API or check_isDomestic API is used to detect whether a particular BIN n
 
 ## Verify payment
 
-The Verify Payment (verify_payment) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU’s database after you receive the response.
+The Verify Payment (verify\_payment) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU’s database after you receive the response.
 
 ```Text Python
 
