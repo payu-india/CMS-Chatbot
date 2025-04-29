@@ -2,3 +2,4 @@
 - update-payout-merchant
 - payout-update-active-merchant-status
 - payouts-whitelist-ip
+- get-white-listed-merchant-ips
