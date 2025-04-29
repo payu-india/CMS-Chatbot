@@ -127,75 +127,193 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
 Basis a successful response of the authentication API, you need to redirect the user to the bank page using **acsTemplate**.  This API specifies the response that is posted to `termurl` after the authentication for the transaction has been processed.
 
 > 📘 Notes:
-> 
-> - All callbacks POST form data on the merchant’s `termurl` that is passed in Initiate Transaction API. 
-> - Validation of the response happens on the basis of the hash value being returned in the hash value of the response.
+>
+> * All callbacks POST form data on the merchant’s `termurl` that is passed in Initiate Transaction API. 
+> * Validation of the response happens on the basis of the hash value being returned in the hash value of the response.
 
 #### Request Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "rawBankData  \n**mandatory**",
-    "0-1": "`String` This parameter contains the raw response that is received from bank after authentication. The response is urlencoded and in query string format.",
-    "1-0": "referenceId  \n**mandatory**",
-    "1-1": "`String` This parameter contains the reference id being returned for the transaction",
-    "2-0": "bankData  \n**mandatory**",
-    "2-1": "`JSON` This parameter contains the JSON string that is to be used for authorization call.This parameter is received in case of successful OTP submission of decoupled transactions. The postToBank contains messageDigest and pares that is to be posted back for authorization. For more information on the fields in this JSON, refer to bankData [JSON Fields Description](#bankdata-json-fields-description).",
-    "3-0": "authenticationStatus  \n**mandatory**",
-    "3-1": "`String` This parameter contains the authentication status of the transaction",
-    "4-0": "hash  \n**mandatory**",
-    "4-1": "`String` This parameter contains the calculated hash of the data that is posted to the merchant. For security purpose it is recommended to validate the hash value before consuming the response"
-  },
-  "cols": 2,
-  "rows": 5,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        rawBankData
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This parameter contains the raw response that is received from bank after authentication. The response is urlencoded and in query string format.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        referenceId\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This parameter contains the reference id being returned for the transaction
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankData\
+        **mandatory**
+      </td>
+
+      <td>
+        `JSON` This parameter contains the JSON string that is to be used for authorization call.This parameter is received in case of successful OTP submission of decoupled transactions. The postToBank contains messageDigest and pares that is to be posted back for authorization. For more information on the fields in this JSON, refer to bankData [JSON Fields Description](#bankdata-json-fields-description).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        authenticationStatus\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This parameter contains the authentication status of the transaction
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This parameter contains the calculated hash of the data that is posted to the merchant. For security purpose it is recommended to validate the hash value before consuming the response
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 **bankData JSON Fields Description**
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Applicable for EMV 3DS**",
-    "0-0": "cres",
-    "0-1": "`String` This field contains the Base64 encoded value received from ACS as part of the authentication response.",
-    "0-2": "Yes",
-    "1-0": "referenceId  \n**mandatory**",
-    "1-1": "`String` This field is returned in case of decoupled flow. This field contains the reference id for the transaction",
-    "1-2": " ",
-    "2-0": "messageDigest  \n**mandatory**",
-    "2-1": "`String` This field is returned in case of decoupled flow. This field contains the MD value being returned by the bank.",
-    "2-2": " ",
-    "3-0": "pares  \n**mandatory**",
-    "3-1": "`String` This field is returned in case of decoupled flow. This field contains the pares being returned by the bank",
-    "3-2": " ",
-    "4-0": "additionalInfo  \n**mandatory**",
-    "4-1": "`String` This field is returned in case of decoupled flow. This field contains the data that is being used for the gateways that do not return pares.",
-    "4-2": " ",
-    "5-0": "authorizationUrl  \n**mandatory**",
-    "5-1": " `String` This integration document assumes that you have opt-ed out for the particular configuration. The authorization URL in legacy integrations are present basis the config at PayU. Please reach out to [integration@payu.in](mailto:integration@payu.in) to know more about.",
-    "5-2": " "
-  },
-  "cols": 3,
-  "rows": 6,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Field**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Applicable for EMV 3DS**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        cres
+      </td>
+
+      <td>
+        `String` This field contains the Base64 encoded value received from ACS as part of the authentication response.
+      </td>
+
+      <td>
+        Yes
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        referenceId\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This field is returned in case of decoupled flow. This field contains the reference id for the transaction
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        messageDigest\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This field is returned in case of decoupled flow. This field contains the MD value being returned by the bank.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pares\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This field is returned in case of decoupled flow. This field contains the pares being returned by the bank
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        additionalInfo\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` This field is returned in case of decoupled flow. This field contains the data that is being used for the gateways that do not return pares.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        authorizationUrl\
+        **mandatory**
+      </td>
+
+      <td>
+         `String` This integration document assumes that you have opt-ed out for the particular configuration. The authorization URL in legacy integrations are present basis the config at PayU. Please reach out to [integration@payu.in](mailto:integration@payu.in) to know more about.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### Sample Response
 
@@ -238,9 +356,9 @@ The authorization request is the final step of transaction processing. This agai
 
 ### **Request Parameters**
 
-**Post URL**: Use the **authorizationUrl** received in [Step 2](http://10.251.7.113:8080/wordpress/wp-admin/post.php?post=28933&action=edit#Step2) to post the following request parameters.
+**Post URL**: Use the **authorizationUrl** received in [Step 2](http://10.251.7.113:8080/wordpress/wp-admin/post.php?post=28933\&action=edit#Step2) to post the following request parameters.
 
-In the request parameters, you will be appending the JSON values received in [Step 2](http://10.251.7.113:8080/wordpress/wp-admin/post.php?post=28933&action=edit#Step2) on `termUrl` to the request, so the list of the request parameters will be as in the following request parameters table:  
+In the request parameters, you will be appending the JSON values received in [Step 2](http://10.251.7.113:8080/wordpress/wp-admin/post.php?post=28933\&action=edit#Step2) on `termUrl` to the request, so the list of the request parameters will be as in the following request parameters table:  
 
 | **Field**      | **Description**                                                                                        | **Applicable to EMV 3DS** |
 | -------------- | ------------------------------------------------------------------------------------------------------ | ------------------------- |
