@@ -29,15 +29,16 @@ The** Create a Payment Link** API is used to create a regular payment link or SI
 
 |                        |                                           |
 | :--------------------- | :---------------------------------------- |
-| Test Environment       | <https://uatoneapi.payu.in/payment-links> |
-| Production Environment | <https://oneapi.payu.in/payment-links>    |
+| Test Environment       | &lt;https://uatoneapi.payu.in/payment-links&gt; |
+| Production Environment | &lt;https://oneapi.payu.in/payment-links&gt;    |
 
 > 📘 Notes:
 > 
 > - The access token with the scope as **create_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
 > - To create a seamless eNACH payment link, the **enforcePayMethod** parameter must be passed with "enach" as the only method.
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
@@ -89,7 +90,8 @@ Response response = client.newCall(request).execute();
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success scenario**
 
