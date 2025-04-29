@@ -20,9 +20,9 @@ To download the payment link records:
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-38.png)
 
 3. Perform any of the following steps:
-   - Click **Download Report** to complete the action.
-   - Click **Share**, enter the recipient email ID, and then click **Share**.
+   * Click **Download Report** to complete the action.
+   * Click **Share**, enter the recipient email ID, and then click **Share**.
 
-**Note:** You can share the report to multiple email IDs by entering the comma-separated entries_._
+**Note:** You can share the report to multiple email IDs by entering the comma-separated entrie&#x73;*.*
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-39.png)
