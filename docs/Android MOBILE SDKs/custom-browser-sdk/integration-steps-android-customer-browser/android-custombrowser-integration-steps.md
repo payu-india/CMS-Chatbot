@@ -46,11 +46,11 @@ implementation 'in.payu:payu-custom-browser:7.15.1'
 ```
 
 > 🚧 Watch Out!
-> 
+>
 > If you are getting the following error: `Default interface methods are only supported starting with Android N (--min-api 24): Landroidx/lifecycle/DefaultLifecycleObserver;onCreate(Landroidx/lifecycle/LifecycleOwner;)V`
-> 
+>
 > Add the following compileOptions on your app's build.gradle:
-> 
+>
 > ```
 > android {
 >  compileOptions {
@@ -62,17 +62,17 @@ implementation 'in.payu:payu-custom-browser:7.15.1'
 
 From version 7.4.0 onwards, it is mandatory to import UPI SDK dependency if you want to make payments through any of the following UPI options along with the changes mentioned in the Third-Party Payments Support section.
 
-- UPI Intent
-- Collect
-- Google Pay
-- PhonePe
+* UPI Intent
+* Collect
+* Google Pay
+* PhonePe
 
 ```
 <uses-permission android:name="android.permission.RECEIVE_SMS" />
 ```
 
 > 👉 Tip
-> 
+>
 > Merchants are advised to add this permission in the application’s `AndroidManifest.xml` to support OTP assist. In case your application supports a minimum SDK of less than 20, do these changes in your surl/furl.
 
 ## Step 3: Check for Payment Availability
@@ -90,18 +90,18 @@ The `CheckForPaymentAvailability` function in CustomBrowser class. Checks for pa
 ```
 
 > 📘 Generate PaymentOption Hash
-> 
+>
 > To generate PaymentOption Hash refer to Hash Generation.
-> 
+>
 > Formula :-sha512(key|command|var1|salt)
-> 
+>
 > where
-> 
-> key= Provide your merchant key here  
-> command= "payment_related_details_for_mobile_sdk" // Api Commands  
-> salt=  Provide your merchant salt here  
+>
+> key= Provide your merchant key here\
+> command= "payment\_related\_details\_for\_mobile\_sdk" // Api Commands\
+> salt=  Provide your merchant salt here\
 > var1= Provide user credentials or use "default"
-> 
+>
 > For more information, refer to  [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
 **Sample**
@@ -117,9 +117,9 @@ To invoke CustomBrowser:
 Create a basic object of CustomBrowserConfig similar to the following code snippet. For more information on configurations supported, refer to  [Android CustomBrowser Configurations](doc:android-custombrowser-configurations).
 
 > 📘 Post URL can be any of the following:
-> 
-> Production - <https://secure.payu.in/_payment>  
-> Staging - <https://test.payu.in/_payment>
+>
+> Production - [https://secure.payu.in/\_payment](https://secure.payu.in/_payment)\
+> Staging - [https://test.payu.in/\_payment](https://test.payu.in/_payment)
 
 ```Text JAVA
 CustomBrowserConfig customBrowserConfig = new CustomBrowserConfig(merchantKey,txnId);
@@ -132,9 +132,9 @@ customBrowserConfig.setPostUrl(<Post Url>);
 
 **Input:**
 
-- `Activity`: activity instance.
-- `CustomBrowserConfig`: configuration object of the custom browser.
-- `PayUCustomBrowserCallback`: this class provides callbacks.
+* `Activity`: activity instance.
+* `CustomBrowserConfig`: configuration object of the custom browser.
+* `PayUCustomBrowserCallback`: this class provides callbacks.
 
 ```Text JAVA
 Input:
@@ -173,28 +173,55 @@ udf4=udf4&udf1=udf1&udf2=udf2&sdk_platform=[{"name":"PayUCheckoutPro","platform"
 &bankcode=SBIB&txnid=1705055218155
 ```
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "`pg` `**mandatory**`\t \t  \n\t ",
-    "0-1": "`String` It defines the payment category that the merchant wants the customer to see by default on the PayU’s payment page.  \nFor NetBanking, pg=NB.",
-    "0-2": "TESTPG",
-    "1-0": "`bankcode `**mandatory**\\`",
-    "1-1": "`String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bank codes that can be used with the `bankcode` parameter, refer to [Net Banking Codes](https://docs.payu.in/docs/net-banking-codes).  \nReference: For the test Net Banking credentials, refer to [Test Cards, UPI ID, and Wallets](https://docs.payu.in/docs/test-cards-upi-id-and-wallets).",
-    "1-2": "TESTPGNB"
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `pg` `**mandatory**`	 &#x9;
+        &#x9; 
+      </td>
+
+      <td>
+        `String` It defines the payment category that the merchant wants the customer to see by default on the PayU’s payment page.\
+        For NetBanking, pg=NB.
+      </td>
+
+      <td>
+        TESTPG
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `bankcode `**mandatory**\`
+      </td>
+
+      <td>
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bank codes that can be used with the `bankcode` parameter, refer to [Net Banking Codes](https://docs.payu.in/docs/net-banking-codes).\
+        Reference: For the test Net Banking credentials, refer to [Test Cards, UPI ID, and Wallets](https://docs.payu.in/docs/test-cards-upi-id-and-wallets).
+      </td>
+
+      <td>
+        TESTPGNB
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 For the supported payment method, refer to [Supported Payment Methods](doc:android-coresdk-supported-payment-method).
