@@ -12,7 +12,7 @@ next:
 ---
 This part of the document includes the following billing related APIs:
 
-- [Bill Fetch API](ref:bill-fetch-api)
-- [Bill Payment Request](ref:bill-payment-api)
-- [Bill Payment Validation](ref:bill-validation-api)
-- [Get Payment Status API](ref:get-payment-status-api)
+* [Bill Fetch API](ref:bill-fetch-api)
+* [Bill Payment Request](ref:bill-payment-api)
+* [Bill Payment Validation](ref:bill-validation-api)
+* [Get Payment Status API](ref:get-payment-status-api)
