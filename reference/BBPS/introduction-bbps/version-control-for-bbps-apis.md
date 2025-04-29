@@ -26,7 +26,7 @@ In CMS (Complaint Management system) for BBPS billers, Service based complaints 
 
 ### Version 3.5
 
-In the case of payment if agents receive failure(with 600 status code) with **payment_request_pending** in the message field of failure response then the agent needs to mark that transaction is pending and if receives **payment_request_failed** in the message field of failure response then that transaction is considered a failure transaction.
+In the case of payment if agents receive failure(with 600 status code) with **payment\_request\_pending** in the message field of failure response then the agent needs to mark that transaction is pending and if receives **payment\_request\_failed** in the message field of failure response then that transaction is considered a failure transaction.
 
 ### Version 3.6
 
@@ -36,17 +36,17 @@ In the case of biller MDM response there are four new fileds has been introduced
 
 PayU have added the following payment modes which is supported by NPCI:
 
-- ACCOUNT\_TRANSFER
-- BHARAT\_QR
-- USSD
-- CASH
+* ACCOUNT\_TRANSFER
+* BHARAT\_QR
+* USSD
+* CASH
 
 #### Payment Details Vs Required Params
 
 [Payment Modes  and Required Parameters](ref:payment-modes-and-required-parameters) table has been updated with required information. Also,  more detailed combination information related to initiating channel and payment mode combination in this section.
 
 > 📘 Change for cash payment mode:
-> 
+>
 > According to NPCI guidelines, agent need to pass remarks as a required params in request and BNK code has been changed to **BNKBRNCH** in initiating channel vs device block code table.
 
 ### Version 3.9
@@ -59,13 +59,13 @@ Bill fetch response’s amount detail field format corrected in the document as 
 
 Also added the following details in biller MDM APIs:
 
-- Region code
-- State
+* Region code
+* State
 
 ### Version 4.1
 
 **Bill Payment Validation** API for BBPS billers has been introduced. For the`isQuickPay` parameter in payment request some new cases added respective to [Bill Validation API](ref:bill-validation-api). For more information, refer to [Biller Types in BBPS](ref:biller-types-in-bbps)
 
 > 📘 Implement Bill Validation API
-> 
+>
 > Agents need to implement [Bill Validation API](ref:bill-validation-api) for BBPS services and also follow[Biller Types in BBPS](ref:biller-types-in-bbps)to pass the quick pay parameter in payment request. Also Biller Types in BBPS is only applicable for those agents who are implementing the [Bill Validation API](ref:bill-validation-api).
