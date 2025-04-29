@@ -10,4 +10,4 @@ metadata:
 next:
   description: ''
 ---
-<https://github.com/payu-intrepos/PayUCustomBrowser-Flutter.git>
+[https://github.com/payu-intrepos/PayUCustomBrowser-Flutter.git](https://github.com/payu-intrepos/PayUCustomBrowser-Flutter.git)
