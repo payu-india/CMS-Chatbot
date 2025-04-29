@@ -71,7 +71,6 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ## Sample response
 
 - Success scenario
