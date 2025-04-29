@@ -26,6 +26,6 @@ next:
 | failed | PG Params are missing. Please contact sales support                                       | E2015      | Mastercard, Rupay & Visa IDs are missing for the merchant                      |
 | failed | QR Generation Failed                                                                      | E2013      | Couldn't generate QR due to internal issues                                    |
 | failed | qr already exists but amount does not match with existing qr amount                       | E2010      | Couldn't match the incoming amount with existing QR's amount                   |
-| failed | qr already exists but vpa does not match with existing qr vpa                             | E2011      |                                                                                |
+| failed | qr already exists but vpa does not match with existing qr vpa                             | E2011      | -                                                                              |
 | failed | QR with the given transactionId has been already used. Please provide a new TransactionId | E2012      | when status of transaction with the sent transactionId is success              |
 | failed | Duplicate Request                                                                         | E2025      | when multiple qr generation requests are sent with same txnid at the same time |
