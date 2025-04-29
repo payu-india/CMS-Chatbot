@@ -17,41 +17,41 @@ next:
 ---
 After you create an offer and publish it to customers, you can update the following offer details:
 
-- Basic details such as offer name & description, T&C, T&C URL, and valid to date.
-- BIN list in case of cards, banks list for Net Banking, or wallets list for Wallets.
+* Basic details such as offer name & description, T\&C, T\&C URL, and valid to date.
+* BIN list in case of cards, banks list for Net Banking, or wallets list for Wallets.
 
 To update an existing offer:
 
 1. Select **Offers Engine** > **Manage** from the menu on the left pane.
 
-   The _Offers List_ page is displayed.
+   The *Offers List* page is displayed.
 
 2. Click the **Actions** (**…**) menu and select **Edit**.
 
-   The _Preview of Instant Offer_ page is displayed.
+   The *Preview of Instant Offer* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/Screenshot-2023-04-08-at-1.41.34-PM-1024x775.png)
 
 3. Click the **Edit** button (pencil) on the **Basic Details** pane.
 
-   The _Basic Details_ pop-up page is displayed.
+   The *Basic Details* pop-up page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/Screenshot-2023-04-08-at-1.41.55-PM-1024x946.png)
 
 4. Update the following basic offer details. For more information, refer to  [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
-   - Offer Title and Description
-   - Offer Period: The date range in the Offer Period field can only be postponed but not preponed.
-   - Terms & Conditions
+   * Offer Title and Description
+   * Offer Period: The date range in the Offer Period field can only be postponed but not preponed.
+   * Terms & Conditions
 
 5. Click **Save & Proceed**.
 
    After you update the basic details of the offer, you can check the changes done using Audit Trail.
 
 6. Click the **Edit** button (pencil) and update the details. The following fields can be updated on the Of. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
-   - Discount Per Transaction
-   - Minimum and Maximum Transaction Amount
-   - All the fields in the **User Limits** section.
-   - All the fields under the **Additional Options** section except for the **Always use card identifier to set user limits as required** field.
+   * Discount Per Transaction
+   * Minimum and Maximum Transaction Amount
+   * All the fields in the **User Limits** section.
+   * All the fields under the **Additional Options** section except for the **Always use card identifier to set user limits as required** field.
 
 7. Click **Save & Proceed**.
 
@@ -59,4 +59,4 @@ To update an existing offer:
 
 After you update the basic details of the offer, you can check the audit trials for the changes made to an existing offer.
 
-9. Select the **Go Back to Dashboard** option at the top-right corner to go back to the _Offers Overview_ page.
+9. Select the **Go Back to Dashboard** option at the top-right corner to go back to the *Offers Overview* page.
