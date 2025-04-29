@@ -10,4 +10,4 @@ metadata:
 next:
   description: ''
 ---
-To know more about sample Apps visit: <https://github.com/payu-intrepos/iOS-SDK-Sample-App/releases>
+To know more about sample Apps visit: [https://github.com/payu-intrepos/iOS-SDK-Sample-App/releases](https://github.com/payu-intrepos/iOS-SDK-Sample-App/releases)
