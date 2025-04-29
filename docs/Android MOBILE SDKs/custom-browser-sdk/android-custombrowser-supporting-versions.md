@@ -14,9 +14,9 @@ next:
 ---
 ## Features
 
-- TLS v1.1+ Support for API levels 16-19 is done via chrome custom tabs.
-- Chrome must be present in the device (version 45+ available JB onwards).
-- Since payment is done through Chrome Custom tabs hence no surepay/OTP assist feature will be available.
+* TLS v1.1+ Support for API levels 16-19 is done via chrome custom tabs.
+* Chrome must be present in the device (version 45+ available JB onwards).
+* Since payment is done through Chrome Custom tabs hence no surepay/OTP assist feature will be available.
 
 ## Changes required in surl/furl
 
@@ -30,11 +30,11 @@ Uri encoded Post Data = <URI_ENCODED_YOUR_RESPONSE>$|<URI_ENCODED_PAYU_RESPONSE>
 
 **Where**:
 
-For Surl -scheme=\<YOUR_PACKAGE_NAME>.success  
-For Furl – scheme=\<YOUR_PACKAGE_NAME>.failure
+For Surl -scheme=\<YOUR\_PACKAGE\_NAME>.success\
+For Furl – scheme=\<YOUR\_PACKAGE\_NAME>.failure
 
 > 📘 Tip
-> 
+>
 > You are advised to show a hyperlink, asking users to click to launch the deep link intent in.
 
 ```Text Markup
@@ -54,13 +54,13 @@ href="Intent://payload?<URI_ENCODED_POST_DATA>Mntentscheme=<YOUR_SCHEME>;package
 ```
 
 > 📘 Tip
-> 
+>
 > For API level 19, if the TLSv1.1+ connection cannot be made due to the old Cipher, you are advised to make changes as suggested in the reference.
 
 ## Custom Browser changes
 
 > 📘 Tip
-> 
+>
 > If the GMS provider is already updated or the host application handles it, PayU suggests you configure the following configuration so that CB OTP assists and SurePay can work on API 19.
 
 ```Text JAVA
