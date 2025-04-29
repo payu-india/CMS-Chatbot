@@ -19,22 +19,7 @@ To toggle between Live and Test mode:
 
   The **Live Mode** and **Test Mode** options are displayed in the drop-down list similar to the following screenshot:
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/2d5c31a-switch_live.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/2d5c31a-switch_live.png" />
 
 3. Select **Test Mode** from the mode drop-down list.
 
