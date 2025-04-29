@@ -29,24 +29,24 @@ next:
 
 The prerequisites for integrating with S2S are:
 
-- You must have Payment Card Industry Data Security Standard (PCI-DSS) certification, which is mandatory for all entities seeking to store, process, and transmit cardholder data.
-- Sufficient technical bandwidth dedicated to managing the end-to-end web checkout processes in-house consistently.
+* You must have Payment Card Industry Data Security Standard (PCI-DSS) certification, which is mandatory for all entities seeking to store, process, and transmit cardholder data.
+* Sufficient technical bandwidth dedicated to managing the end-to-end web checkout processes in-house consistently.
 
 > 👍 Before you Begin:
-> 
-> - PayU strongly recommends you test your integration using the test merchant Key or Salt. To create a test merchant account, refer to [Register for a Merchant Account on Dashboard](doc:register-for-a-merchant-account-on-dashboard). After you create a test merchant account, you can access the test Key or Salt as described in [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard).
-> - PayU recommends you integrate with Test environment initially. For merchants registered before August 3rd, 2023, use the following URL to sign up for the Test environment: 
-> 
-> <https://uat-onepayuonboarding.payu.in/app/account/signup>
-> 
-> - Later, register for a Production account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+>
+> * PayU strongly recommends you test your integration using the test merchant Key or Salt. To create a test merchant account, refer to [Register for a Merchant Account on Dashboard](doc:register-for-a-merchant-account-on-dashboard). After you create a test merchant account, you can access the test Key or Salt as described in [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+> * PayU recommends you integrate with Test environment initially. For merchants registered before August 3rd, 2023, use the following URL to sign up for the Test environment: 
+>
+> [https://uat-onepayuonboarding.payu.in/app/account/signup](https://uat-onepayuonboarding.payu.in/app/account/signup)
+>
+> * Later, register for a Production account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
 ## Benefits of S2S workflow
 
 The benefits of the S2S flow are:
 
-- Delivers a better functional experience by eliminating intermediate browser hops that consume the customer’s internet bandwidth and procedural lags.
-- Reduces the number of jumps in the forward leg, so the S2S flow significantly reduces the probability of errors.
+* Delivers a better functional experience by eliminating intermediate browser hops that consume the customer’s internet bandwidth and procedural lags.
+* Reduces the number of jumps in the forward leg, so the S2S flow significantly reduces the probability of errors.
 
 With the above benefits, there are reduced chances of customers abandoning shopping cart during their shopping experience.
 
@@ -58,43 +58,11 @@ To get started with Server-to-Server integration, refer to [General Integration]
 
 **Step 1:** The customer completes shopping at your website and initiates a transaction with card credentials.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-6-576x1024.jpg",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "350px",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" width="350px" border={true} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-6-576x1024.jpg" />
 
 **Step 2:** The customer enters the CVV and proceeds to complete the payment.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-7-576x1024.jpg",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "350px",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" width="350px" border={true} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-7-576x1024.jpg" />
 
 **Step 3:** The merchant collects the Bank OTP for authentication where the customer needs to complete the transaction by using the OTP sent by the bank to the registered mobile number.
 
@@ -102,24 +70,24 @@ To get started with Server-to-Server integration, refer to [General Integration]
 
 PayU offers the following S2S integrations to collect card payments:
 
-- [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration)
-- [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s)
-- [Direct Authorization Integration](doc:integrate-with-direct-authorization-s2s)
+* [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration)
+* [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s)
+* [Direct Authorization Integration](doc:integrate-with-direct-authorization-s2s)
 
 > 📘 Note:
-> 
+>
 > If you are using legacy integration of decoupled flow for S2S, refer to [Legacy Flow for Server-to-Server](doc:legacy-flow-for-server-to-server).
 
 ## UPI Server-to-Server Integration
 
 The UPI integration for S2S in general is described in the following sections:
 
-- [UPI Collection S2S Integration](doc:upi-collection-s2s)
-- [UPI Intent S2S Integration](doc:upi-intent-server-to-server)
+* [UPI Collection S2S Integration](doc:upi-collection-s2s)
+* [UPI Intent S2S Integration](doc:upi-intent-server-to-server)
 
 The UPI S2S integration for PhonePe Offers and Omnichannel is described in the following sections:
 
-- [PhonePe Deep Offers S2S Integration](doc:phonepe-deep-offers-integration)
-- [UPI Omnichannel S2S Integration](doc:upi-omnichannel-integration)
+* [PhonePe Deep Offers S2S Integration](doc:phonepe-deep-offers-integration)
+* [UPI Omnichannel S2S Integration](doc:upi-omnichannel-integration)
 
 The [UPI Number Mapper API](ref:upi-number-mapper-api) describes how to get VPA for the given UPI number.
