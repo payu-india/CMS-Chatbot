@@ -14,7 +14,7 @@ With this version of PhonePe SDK, transactions are supported on those devices al
 
 **Gradle Dependencies**
 
-- **PhonePe SDK** – ‘com.payu.phonepe:phonepe-intent:1.4’
-- **PayU PG SDK** – ‘com.payu.india:payu-sdk:4.4.8’
+* **PhonePe SDK** – ‘com.payu.phonepe:phonepe-intent:1.4’
+* **PayU PG SDK** – ‘com.payu.india:payu-sdk:4.4.8’
 
-<https://github.com/payu-intrepos/Android-SDK-Sample-App>
+[https://github.com/payu-intrepos/Android-SDK-Sample-App](https://github.com/payu-intrepos/Android-SDK-Sample-App)
