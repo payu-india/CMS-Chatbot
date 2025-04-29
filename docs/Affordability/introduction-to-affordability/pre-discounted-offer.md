@@ -13,8 +13,8 @@ next:
 Pre-discounted offers are applied at your (merchant) end and the transaction amount passed is the discounted transaction amount. PayU is primarily used for doing certain checks and validations rather than applying the discount itself. Pre-discounted offers help you with the following:
 
 - Better user experience on the PayU Payment page (PayU Hosted Checkout) as the offer is already applied at your side, PayU will not be showing the list of offers on the PayU Payment page.
-- Reconciliation and Settlements (offer engine back calculates original transaction amount, discount amount, and the net debit amount which can be used on reconciliation & settlements.
-- The **Don’t allow transaction, if offer is not applicable** flag is s enabled by default.
+- Reconciliation and Settlements (offer engine back calculates original transaction amount, discount amount, and the net debit amount which can be used on reconciliation & settlements).
+- The **Don’t allow transaction, if offer is not applicable** flag is enabled by default.
 
 This procedure describes how to create a Prebuilt offer on PayU Dashboard and it is similar to creating a Discount offer.
 
@@ -22,7 +22,7 @@ This procedure describes how to create a Prebuilt offer on PayU Dashboard and it
 
 - In Merchant Hosted Checkout integration, hide all other offers if Pre-Discounted offer is used.
 
-After you create a Pre-Dsicounted Offer, you can collect payments from your customers using PayU Hosted (Non-seamless) as described in the PayU Hosted Checkout Integration with Offers.
+After you create a Pre-Discounted Offer, you can collect payments from your customers using PayU Hosted (Non-seamless) as described in the PayU Hosted Checkout Integration with Offers.
 
 ## **Step 1: Select the Discount Type**
 
@@ -38,7 +38,7 @@ The _Create New Offer_ page is displayed.
    - **Instant Discount**: The instant discount is applied and discounted amount is displayed on the PayU Payment page and other offers are not shown.
    - **Low-Cost EMI**: The low-cost EMI is applied and the EMI amount is displayed on the PayU Payment page and other offers are not shown.
 
- The _Basic Offer Details_ page is displayed.
+The _Basic Offer Details_ page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.11.36-PM-1024x573.png)
 
@@ -50,10 +50,10 @@ The _Create New Offer_ page is displayed.
 
 | **Field**                                                                                                                                | **Description**                                                                                                                                                                       |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Title                                                                                                                                    | Enter a unique title for the offer. This would be displayed as the offer title on your Checkout page.                                                                                 |
+| Title                                                                                                                                    | Enter a unique title for the offer. This would be displayed as the offer title on your Checkout page.                                                                                |
 | Description                                                                                                                              | Enter the offer text that would be shown to your customer at checkout (for PayU Hosted Checkout Integration transactions).                                                            |
 | From Date, From Time, To Date, To Time                                                                                                   | Enter the offer validity date and time range. Your offer will be valid and visible to the customer between this time period. You can specify the time range up to the seconds detail. |
-| Terms & Conditions                                                                                                                       | Enter the text content that should appear under the “Terms and Conditions” on the Checkout page for customers.                                                                        |
+| Terms & Conditions                                                                                                                       | Enter the text content that should appear under the “Terms and Conditions” on the Checkout page for customers.                                                                        |
 | Terms & Conditions Links                                                                                                                 | Enter the hyperlinks for independent hosted pages.                                                                                                                                    |
 | **Note**: It is recommended to be used only If it is absolutely necessary to avoid redirections outside your customer purchase journey). |                                                                                                                                                                                       |
 
@@ -81,7 +81,7 @@ The procedure to include the rules and limitations is similar to creating an Ins
 
 The procedure to configure the payment mode is similar to creating an Instant Discount or Cashback Offer. For more information, refer to [Create an Instant Discount or Cashback Offer](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer#step3).
 
-The offer for the payment options you configured gets added to the Setup _Payment options of your offer_ page.
+The offer for the payment options you configured gets added to the Setup _Payment options of your offer_ page.
 
 ***
 
