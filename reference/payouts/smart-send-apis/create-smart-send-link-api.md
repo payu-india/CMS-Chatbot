@@ -22,7 +22,8 @@ The** Create Smart Send Link** API is used to create and send the Smart Send lin
 | **Test Environment**       | <https://uatoneapi.payu.in/payout/v2/smartSend/link>    |
 | **Production Environment** | <https://payout.payumoney.com/payout/v2/smartSend/link> |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location --request POST 'https://oneapi.payu.in/payout/v2/smartSend/link' \
@@ -41,7 +42,8 @@ curl --location --request POST 'https://oneapi.payu.in/payout/v2/smartSend/link'
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success scenario**
 
