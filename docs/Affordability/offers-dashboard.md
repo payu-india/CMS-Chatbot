@@ -22,102 +22,46 @@ next:
 ---
 The following offers can be created using PayU Dashboard:
 
-- [Instant Discount ](doc:create-an-offer)
-- [Cashback](doc:create-an-offer)
-- [No Cost EMI](doc:create-a-no-cost-emi-offer)
-- [Pre-Discounted Offer](doc:create-a-pre-discounted-offer)
-- [Product/SKU based Offer](doc:create-a-sku-based-offer)
+* [Instant Discount ](doc:create-an-offer)
+* [Cashback](doc:create-an-offer)
+* [No Cost EMI](doc:create-a-no-cost-emi-offer)
+* [Pre-Discounted Offer](doc:create-a-pre-discounted-offer)
+* [Product/SKU based Offer](doc:create-a-sku-based-offer)
 
 > 👍 Before you begin:
-> 
+>
 > Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
 The following video explains how to create an offer:
 
-[block:embed]
-{
-  "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FWvHrgeVMpf4%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DWvHrgeVMpf4&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FWvHrgeVMpf4%2Fhqdefault.jpg&key=7788cb384c9f4d5dbbdbeffd9fe4b92f&type=text%2Fhtml&schema=youtube\" width=\"854\" height=\"480\" scrolling=\"no\" title=\"YouTube embed\" frameborder=\"0\" allow=\"autoplay; fullscreen; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe>",
-  "url": "https://www.youtube.com/watch?v=WvHrgeVMpf4",
-  "title": "PayU Offers Engine: How to create offers using PayU Offers Engine?",
-  "favicon": "https://www.google.com/favicon.ico",
-  "image": "https://i.ytimg.com/vi/WvHrgeVMpf4/hqdefault.jpg",
-  "provider": "youtube.com",
-  "href": "https://www.youtube.com/watch?v=WvHrgeVMpf4",
-  "typeOfEmbed": "youtube"
-}
-[/block]
-
+<Embed url="https://www.youtube.com/watch?v=WvHrgeVMpf4" title="PayU Offers Engine: How to create offers using PayU Offers Engine?" favicon="https://www.google.com/favicon.ico" image="https://i.ytimg.com/vi/WvHrgeVMpf4/hqdefault.jpg" provider="youtube.com" href="https://www.youtube.com/watch?v=WvHrgeVMpf4" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FWvHrgeVMpf4%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DWvHrgeVMpf4%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FWvHrgeVMpf4%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
 
 ## Enable Offers on Dashboard
 
 By default, the Offers feature is not enabled on PayU Dashboard. 
 
 > 📘 Enable Offers & Promotion:
-> 
+>
 > If the **Offers & Promotion** menu is not appearing on the main menu of the PayU Dashboard similar to the following screenshot, contact your PayU Key Account Manager (KAM) or click Help at the top-right corner to raise a ticket with PayU Support.
 
 To enable Offers:
 
-1. Select** Offers & Promotions**.
+1. Select **Offers & Promotions**.
 2. Click **Activate Now**.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/7fac27f-Screenshot_2023-09-28_at_1.35.36_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/7fac27f-Screenshot_2023-09-28_at_1.35.36_PM.png" />
 
    The following pop-up page is displayed.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/9f4dddb-Screenshot_2023-09-28_at_2.12.29_PM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+<Image align="center" src="https://files.readme.io/9f4dddb-Screenshot_2023-09-28_at_2.12.29_PM.png" />
 
-
-3. Select **Pro Plan ** or contact your PayU Key Account Manager (KAM) for the **Enterprise** plan.
+3. Select **Pro Plan** or contact your PayU Key Account Manager (KAM) for the **Enterprise** plan.
 
 # Navigate to Offers Dashboard
 
 After logging in to PayU Dashboard, select Offers & Promotions from the main menu (on the left side), the Offers Overview page similar to the following is displayed to begin setting up an offer.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/0caf651-Screenshot_2023-09-28_at_2.19.42_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/0caf651-Screenshot_2023-09-28_at_2.19.42_PM.png" />
 
 ## Understanding User Limits and Velocity
 
@@ -125,39 +69,9 @@ User limit helps in restricting the number of offers/budgets availed by a custom
 
 Here the velocity has been set to 2, which means during the whole offer period, your customer can avail the offer only twice.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/userlimits1-1024x401.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/userlimits1-1024x401.png" />
 
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/userlimits2-1024x458.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/userlimits2-1024x458.png" />
 
 Along with restricting the number of offers, we have added a budget limit of Rs 800 per user. Now, the user can avail two offers, but to a maximum budget of Rs 800. Lets the user avail an offer of ₹600 in the first transaction, during the second transaction, the customer will only be able to avail a discount of ₹200. If the second transaction has an eligible discount of more than ₹200, the customer will not be able to get any discount here
 
@@ -178,7 +92,7 @@ PayU uses the card hash against which velocity will be run.
 During a plain card transaction, a card hash will be generated against the card number and the velocity will be run against this card hash
 
 > 📘 Note:
-> 
+>
 > Card hash is a unique identifier that is generated from the card number but cannot be used to trace back the card number
 
 #### During Card Tokenization
@@ -194,5 +108,5 @@ For a transaction initiated with a tokenized card, the card hash mapped (at the 
 In this case, the velocity check will be run on the user token, that is using the **user\_token** parameter that’s passed in the payment request. This user token sent needs to be unique across the plain card and tokenized card for the velocity check to work properly. 
 
 > 📘 Note:
-> 
+>
 > PAR solution is not fully implemented by all the networks, hence velocity check via PAR is not available currently.
