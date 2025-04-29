@@ -12,8 +12,8 @@ next:
 ---
 ## Kotlin Sample Code
 
-<https://github.com/payu-intrepos/PayUCheckoutPro-Android.git>
+[https://github.com/payu-intrepos/PayUCheckoutPro-Android.git](https://github.com/payu-intrepos/PayUCheckoutPro-Android.git)
 
 ## Java Sample Code
 
-<https://github.com/payu-intrepos/PayUCheckoutPro-Android/tree/JavaSampleApp>
+[https://github.com/payu-intrepos/PayUCheckoutPro-Android/tree/JavaSampleApp](https://github.com/payu-intrepos/PayUCheckoutPro-Android/tree/JavaSampleApp)
