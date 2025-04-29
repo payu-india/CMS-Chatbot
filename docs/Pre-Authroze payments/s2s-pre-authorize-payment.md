@@ -10,28 +10,28 @@ metadata:
 next:
   description: ''
 ---
-The **pre_authorize** parameter is used to pre-authorize payments using the S2S integration with the **\_payment** API.
+The **pre\_authorize** parameter is used to pre-authorize payments using the S2S integration with the **\_payment** API.
 
 > 📘 Note:
-> 
+>
 > You need to activate the Pre-Authorize Payments before you start using this integration. Contact your PayU Key Account Manager (KAM) to activate Pre-Authorize Payments.
 
 ## Step 1: Post the Pre-Auth transaction request
 
-Post the additional parameters for with the Pre-Authorization using the Merchant Hosted Checkout. For complete list of parameters, refer to [Pre-Authorize Payment](ref:pre_authorize_payment1) for the complete list parameters with **Try It **experience.
+Post the additional parameters for with the Pre-Authorization using the Merchant Hosted Checkout. For complete list of parameters, refer to [Pre-Authorize Payment](ref:pre_authorize_payment1) for the complete list parameters with **Try It** experience.
 
 **Environment**
 
 <PaymentAPIEnvironment />
 
-The **pre_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API. For the complete list of parameters for **\_payment **API, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
+The **pre\_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API. For the complete list of parameters for **\_payment** API, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 
-| **Parameter** | **Reference**                                                                   |
-| ------------- | ------------------------------------------------------------------------------- |
-| pre_authorize | This parameter is set to 1 to pre-authorize payment using PayU Hosted Checkout. |
+| **Parameter**  | **Reference**                                                                   |
+| -------------- | ------------------------------------------------------------------------------- |
+| pre\_authorize | This parameter is set to 1 to pre-authorize payment using PayU Hosted Checkout. |
 
 > 📘 Note:
-> 
+>
 > I
 
 ### Sample request
@@ -51,9 +51,9 @@ https://apiplayground-response.herokuapp.com/
 
 The formatted sample response body is similar to the following, and you need to look for the following parameters:
 
-- PG_TYPE: CC PG
-- bankcode: PG
-- **unamappedstatus: auth**
+* PG\_TYPE: CC PG
+* bankcode: PG
+* **unamappedstatus: auth**
 
 ```
 mihpayid: 403993715523615328
