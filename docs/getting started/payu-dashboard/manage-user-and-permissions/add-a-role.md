@@ -16,13 +16,13 @@ To add a role:
 
 1. Navigate to **Dashboard > Settings > User & Permissions**.
 
-   The _User & Permissions_ page is displayed.
+   The *User & Permissions* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-122.png)
 
 2. Click **Add Role** given at the top-right corner of the page.
 
-   The _Add Role_ pop-up page is displayed.
+   The *Add Role* pop-up page is displayed.
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-123.png)
 
