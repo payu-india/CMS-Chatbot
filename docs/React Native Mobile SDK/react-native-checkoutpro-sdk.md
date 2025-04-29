@@ -28,29 +28,29 @@ The Checkout Pro SDK provides a complete Mobile Checkout solution for the React 
 
 The Checkout Pro SDK gives you the following key capabilities: 
 
-- A complete, ready-to-use native Checkout UI
-- Support for multiple payment options
-- All major card providers (Amex, Mastercard, Rupay, Visa, and more)
-- Netbanking with 150+ Indian banks
-- UPI Payments
-- Prepaid Wallets
-- Credit Card EMI Payments
-- OTP Assist for faster and improved OTP authentication
-- Customization capabilities to make the SDK your own
+* A complete, ready-to-use native Checkout UI
+* Support for multiple payment options
+* All major card providers (Amex, Mastercard, Rupay, Visa, and more)
+* Netbanking with 150+ Indian banks
+* UPI Payments
+* Prepaid Wallets
+* Credit Card EMI Payments
+* OTP Assist for faster and improved OTP authentication
+* Customization capabilities to make the SDK your own
 
 ## Compatibility
 
 ### For iOS:
 
-- Minimum iOS version: iOS 10
-- Xcode version: Xcode 11.4 and above
+* Minimum iOS version: iOS 10
+* Xcode version: Xcode 11.4 and above
 
 ### For Android:
 
-- Min SDK Version: 21
-- Compile SDK Version: 28+
+* Min SDK Version: 21
+* Compile SDK Version: 28+
 
 The procedure to integrate with Checkout Pro slightly varies for Android and iOS integration. The following sections describe the procedure to integrate with Checkout Pro for Android and iOS:
 
-- Integration with CheckoutPro for Android
-- Integration with CheckoutPro for iOS
+* Integration with CheckoutPro for Android
+* Integration with CheckoutPro for iOS
