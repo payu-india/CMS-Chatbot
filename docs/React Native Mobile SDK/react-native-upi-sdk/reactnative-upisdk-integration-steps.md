@@ -136,7 +136,7 @@ Generate the payment hash and pass the hash in the JSON `payUPaymentParams.hashe
 For hash generation logic refer to G[enerate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk).
 
 > 📘 Remember
-> 
+>
 > You must always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
 
 ***
