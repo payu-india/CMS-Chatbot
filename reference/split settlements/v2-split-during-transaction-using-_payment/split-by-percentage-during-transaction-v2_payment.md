@@ -13,7 +13,7 @@ next:
 You can split during a transaction made using **\_payment** API by percentage, where you must ensure that the sum of percentage of all splits is equal to 100.
 
 > 📘 Note:
-> 
+>
 > You must specify two decimal places for each split, but ensure the sum of percentage of all splits is equal to 100.
 
 ## Request parameters
@@ -88,97 +88,267 @@ return true;
 
 ### Request body
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "accountId  \n `mandatory`",
-    "0-1": "`String` The merchant key provided by PayU during onboarding.",
-    "0-2": "MERCHANT123",
-    "1-0": "referenceId  \n `mandatory`",
-    "1-1": "`String` Reference ID for transaction tracking.",
-    "1-2": "REF123456",
-    "2-0": "amount  \n `optional`",
-    "2-1": "`String` Amount of the transaction.",
-    "2-2": "1000",
-    "3-0": "currency  \n `mandatory`",
-    "3-1": "`String` Currency of the transaction. By default, **INR** is posted.",
-    "3-2": "INR",
-    "4-0": "paymentMethod  \n `mandatory`",
-    "4-1": "`Object` Details about the payment method used. For more information, refer to [paymentMethod object fields description](#paymentMethod-object-fields-description).",
-    "4-2": " {  \n        \"name\": \"NetBanking\",\t  \n        \"bankCode\": \"TESTNB\"  \n    }",
-    "5-0": "order  \n `mandatory`",
-    "5-1": "`Object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to [order object fields description](#order-object-fields-description)",
-    "5-2": "",
-    "6-0": "additionalInfo  \n `mandatory`",
-    "6-1": "`Object` Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to [additionalInfo object fields description](#additionalinfo-object-fields-description)",
-    "6-2": "",
-    "7-0": "callBackActions  \n `mandatory`",
-    "7-1": "`Object` Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to [callbackActions object fields description](#callbackactions-object-fields-description)",
-    "7-2": " {",
-    "8-0": "billingDetails `mandatory`",
-    "8-1": "`Object` Billing details of the customer including name, address, phone number, email, etc. For more information, refer to [billingDetails object field descriptions](#billingdetails-object-field-descriptions).",
-    "8-2": "",
-    "9-0": "splitRequest `mandatory for Split Settlement`",
-    "9-1": "`Object` Details about the split payment. For more information, refer to [splitRequest object fields description.](#splitrequest-object-fields-description)",
-    "9-2": " {  \n                  \"type\": \"absolute\",  \n                  \"splitInfo\": {  \n                    \"123412\": {  \n                      \"aggregatorSubTxnId\": \"12312941\",  \n                      \"aggregatorSubAmt\": \"2000.55\"  \n                    },  \n                    \"2300019\": {  \n                      \"aggregatorSubTxnId\": \"12312941\",  \n                      \"aggregatorSubAmt\": \"134.23\"  \n                    }  \n                  }"
-  },
-  "cols": 3,
-  "rows": 10,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        accountId
+         `mandatory`
+      </td>
+
+      <td>
+        `String` The merchant key provided by PayU during onboarding.
+      </td>
+
+      <td>
+        MERCHANT123
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        referenceId\
+         `mandatory`
+      </td>
+
+      <td>
+        `String` Reference ID for transaction tracking.
+      </td>
+
+      <td>
+        REF123456
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount\
+         `optional`
+      </td>
+
+      <td>
+        `String` Amount of the transaction.
+      </td>
+
+      <td>
+        1000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        currency\
+         `mandatory`
+      </td>
+
+      <td>
+        `String` Currency of the transaction. By default, **INR** is posted.
+      </td>
+
+      <td>
+        INR
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentMethod\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Details about the payment method used. For more information, refer to [paymentMethod object fields description](#paymentMethod-object-fields-description).
+      </td>
+
+      <td>
+         \{\
+                "name": "NetBanking",	\
+                "bankCode": "TESTNB"\
+            }
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        order\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to [order object fields description](#order-object-fields-description)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        additionalInfo\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to [additionalInfo object fields description](#additionalinfo-object-fields-description)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        callBackActions\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to [callbackActions object fields description](#callbackactions-object-fields-description)
+      </td>
+
+      <td>
+         \{
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        billingDetails `mandatory`
+      </td>
+
+      <td>
+        `Object` Billing details of the customer including name, address, phone number, email, etc. For more information, refer to [billingDetails object field descriptions](#billingdetails-object-field-descriptions).
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        splitRequest `mandatory for Split Settlement`
+      </td>
+
+      <td>
+        `Object` Details about the split payment. For more information, refer to [splitRequest object fields description.](#splitrequest-object-fields-description)
+      </td>
+
+      <td>
+         \{\
+                          "type": "absolute",\
+                          "splitInfo": \{\
+                            "123412": \{\
+                              "aggregatorSubTxnId": "12312941",\
+                              "aggregatorSubAmt": "2000.55"\
+                            },\
+                            "2300019": \{\
+                              "aggregatorSubTxnId": "12312941",\
+                              "aggregatorSubAmt": "134.23"\
+                            }\
+                          }
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### paymentMethod object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "name  \n `mandatory`",
-    "0-1": "`String` This field must contain the payment mode code. For more information, refer to [Payment Mode Codes](https://docs.payu.in/v1/docs/payment-mode-codes). For example, for credit card, this must contain **CreditCard**.",
-    "1-0": "bankCode  \n `mandatory`",
-    "1-1": "`String`This field must contain the bank code. For more information, refer to [Bank and Card Codes for Integration](https://docs.payu.in/v1/docs/bank-and-card-codes-for-integration) based on payment mode code in the **name** filed."
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        name
+         `mandatory`
+      </td>
+
+      <td>
+        `String` This field must contain the payment mode code. For more information, refer to [Payment Mode Codes](https://docs.payu.in/v1/docs/payment-mode-codes). For example, for credit card, this must contain **CreditCard**.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankCode\
+         `mandatory`
+      </td>
+
+      <td>
+        `String`This field must contain the bank code. For more information, refer to [Bank and Card Codes for Integration](https://docs.payu.in/v1/docs/bank-and-card-codes-for-integration) based on payment mode code in the **name** filed.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### order object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "productInfo  \n `mandatory`",
-    "0-1": "`String`Details about the product being purchased.",
-    "1-0": "userDefinedFields  \n `optional`",
-    "1-1": "`Object`Custom fields defined by the user for additional information."
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        productInfo
+         `mandatory`
+      </td>
+
+      <td>
+        `String`Details about the product being purchased.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        userDefinedFields\
+         `optional`
+      </td>
+
+      <td>
+        `Object`Custom fields defined by the user for additional information.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### userDefinedFields object fields description
 
@@ -197,82 +367,215 @@ return true;
 
 ### billingDetails object field descriptions
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "firstName  \n`mandatory`",
-    "0-1": "First name of the billing contact",
-    "0-2": "Ashish",
-    "1-0": "lastName  \n`optional`",
-    "1-1": "Last name of the billing contact",
-    "1-2": "Kumar",
-    "2-0": "phone  \n`mandatory`",
-    "2-1": "Phone number of the billing contact",
-    "2-2": "9123456789",
-    "3-0": "email  \n`mandatory`",
-    "3-1": "Email address of the billing contact",
-    "3-2": "[ashish@abc.com](mailto:ashish@abc.com)",
-    "4-0": "city  \n`optional`",
-    "4-1": "City of the billing address",
-    "4-2": "Bengaluru",
-    "5-0": "state  \n`optional`",
-    "5-1": "State of the billing address",
-    "5-2": "Karnatka",
-    "6-0": "country  \n`optional`",
-    "6-1": "Country of the billing address",
-    "6-2": "Indiia",
-    "7-0": "zipCode  \n`optional`",
-    "7-1": "Postal/Zip code of the billing address",
-    "7-2": "560071"
-  },
-  "cols": 3,
-  "rows": 8,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        firstName
+        `mandatory`
+      </td>
+
+      <td>
+        First name of the billing contact
+      </td>
+
+      <td>
+        Ashish
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        lastName\
+        `optional`
+      </td>
+
+      <td>
+        Last name of the billing contact
+      </td>
+
+      <td>
+        Kumar
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        `mandatory`
+      </td>
+
+      <td>
+        Phone number of the billing contact
+      </td>
+
+      <td>
+        9123456789
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email\
+        `mandatory`
+      </td>
+
+      <td>
+        Email address of the billing contact
+      </td>
+
+      <td>
+        [ashish@abc.com](mailto:ashish@abc.com)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        city\
+        `optional`
+      </td>
+
+      <td>
+        City of the billing address
+      </td>
+
+      <td>
+        Bengaluru
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        state\
+        `optional`
+      </td>
+
+      <td>
+        State of the billing address
+      </td>
+
+      <td>
+        Karnatka
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        country\
+        `optional`
+      </td>
+
+      <td>
+        Country of the billing address
+      </td>
+
+      <td>
+        Indiia
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        zipCode\
+        `optional`
+      </td>
+
+      <td>
+        Postal/Zip code of the billing address
+      </td>
+
+      <td>
+        560071
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### splitRequest object fields description
 
 The following fields are included in the **splitRequest** parameter in a JSON format to specify the absolute split details. The fields in the JSON format are described in the following table:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "type  \n**mandatory**",
-    "0-1": "`string` Specify the **percentage** type of split in this field. The absolute amount is specified in the **aggregatorSubAmt** field of the JSON for each child or aggregator.",
-    "0-2": "percentage",
-    "1-0": "splitInfo  \n**mandatory**",
-    "1-1": "`JSON` This parameter must include the list of aggregator sub transaction IDs and sub amounts as follows:  \n  \n- **aggregatorSubTxnId**: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only for child merchants.\n- **aggregatorSubAmt**: The transaction amount or percentage split for the aggregator is posted in this parameter. This field is mandatory.\n- **aggregatorCharges** (optional): The transaction amount or percentage split for aggregator charges is posted in this parameter. This field is optional.  \n  **Note**: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.",
-    "1-2": "{  \n\"merchantKey1\": {  \n\"aggregatorSubTxnId\": \"30nknyhkhib\",  \n\"aggregatorSubAmt\": \"8\"  \n} "
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Field**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        type
+        **mandatory**
+      </td>
+
+      <td>
+        `string` Specify the **percentage** type of split in this field. The absolute amount is specified in the **aggregatorSubAmt** field of the JSON for each child or aggregator.
+      </td>
+
+      <td>
+        percentage
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        splitInfo\
+        **mandatory**
+      </td>
+
+      <td>
+        `JSON` This parameter must include the list of aggregator sub transaction IDs and sub amounts as follows:  
+
+        * **aggregatorSubTxnId**: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only for child merchants.
+        * **aggregatorSubAmt**: The transaction amount or percentage split for the aggregator is posted in this parameter. This field is mandatory.
+        * **aggregatorCharges** (optional): The transaction amount or percentage split for aggregator charges is posted in this parameter. This field is optional.  
+          * \*Note\*\*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.
+      </td>
+
+      <td>
+        \{\
+        "merchantKey1": \{\
+        "aggregatorSubTxnId": "30nknyhkhib",\
+        "aggregatorSubAmt": "8"\
+        } 
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### JSON request structure of splitInfo
 
 The sample JSON structure for the **splitInfo** field:
 
 > 📘 Notes:
-> 
+>
 > Before peruse the following sample code, remove the white spaces as some editors may introduce junk characters.
 
 ```plaintext
@@ -384,7 +687,7 @@ Array
 ```
 
 > 📘 Reference:
-> 
+>
 > To check the transaction status, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
 
 <br />
