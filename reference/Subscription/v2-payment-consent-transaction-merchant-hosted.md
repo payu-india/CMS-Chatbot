@@ -19,6 +19,6 @@ next:
 ---
 Set up the recurring payment or subscription service with Merchant Hosted Checkout using **v2/payments** API for the following Payment modes:
 
-- [Net Banking Recurring Payment Consent Transaction](ref:v2-netbanking-recurring-payment-consent-transaction)
-- [Cards Recurring Payment Consent Transaction](ref:v2-credit-card-recurring-payment-consent-transaction)
-- [UPI Recurring Payment Consent Transaction](ref:v2-upi-recurring-payment-consent-transaction)
+* [Net Banking Recurring Payment Consent Transaction](ref:v2-netbanking-recurring-payment-consent-transaction)
+* [Cards Recurring Payment Consent Transaction](ref:v2-credit-card-recurring-payment-consent-transaction)
+* [UPI Recurring Payment Consent Transaction](ref:v2-upi-recurring-payment-consent-transaction)
