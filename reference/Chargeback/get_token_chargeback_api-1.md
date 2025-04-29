@@ -18,36 +18,77 @@ HTTP Method: **GET**
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "email  \n**mandatory**",
-    "0-1": "The parameter must contain the email registered with PayU.",
-    "0-2": "[user@example.com](mailto:user@example.com) ",
-    "1-0": "password  \n**mandatory**",
-    "1-1": "The parameter must contain the password provided by PayU.",
-    "1-2": "Test@1234",
-    "2-0": "refresh_token  \n**optional**",
-    "2-1": "This parameter must contain the flag for refreshing the token. It can contain any of the following;  \n  \n- **1** is passed so that old token will expire and new token with 1 week validity will be shared.\n- **0** is the default value and old token will not expire.",
-    "2-2": "1"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        email
+        **mandatory**
+      </td>
+
+      <td>
+        The parameter must contain the email registered with PayU.
+      </td>
+
+      <td>
+        [user@example.com](mailto:user@example.com) 
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        password\
+        **mandatory**
+      </td>
+
+      <td>
+        The parameter must contain the password provided by PayU.
+      </td>
+
+      <td>
+        Test\@1234
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        refresh\_token\
+        **optional**
+      </td>
+
+      <td>
+        This parameter must contain the flag for refreshing the token. It can contain any of the following;  
+
+        * **1** is passed so that old token will expire and new token with 1 week validity will be shared.
+        * **0** is the default value and old token will not expire.
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
-### Without refresh_token
+### Without refresh\_token
 
 ```
 curl --location --request POST 'localhost:3000/api_auth' \
@@ -56,7 +97,7 @@ curl --location --request POST 'localhost:3000/api_auth' \
 --header 'Cookie: BetterErrors-2.9.1-CSRF-Token=dcf11311-df3c-40f9-924b-44ef7aab0aa4; __profilin=p%3Dt; _bank_portal_session=65cd749b113f80ae6bbc3b2dc405068c'
 ```
 
-### With refresh_token=1
+### With refresh\_token=1
 
 ```
 curl --location --request POST 'localhost:3000/api_auth?refresh_token=1' \
@@ -69,7 +110,7 @@ curl --location --request POST 'localhost:3000/api_auth?refresh_token=1' \
 
 ### Success scenario
 
-- Without refresh_token
+* Without refresh\_token
 
 ```
 {
@@ -96,7 +137,7 @@ curl --location --request POST 'localhost:3000/api_auth?refresh_token=1' \
 }
 ```
 
-- With refresh_token=1
+* With refresh\_token=1
 
 ```
 {
@@ -127,7 +168,7 @@ curl --location --request POST 'localhost:3000/api_auth?refresh_token=1' \
 
 ### Failure scenario
 
-- Unauthorized (401)
+* Unauthorized (401)
 
 ```
 {
