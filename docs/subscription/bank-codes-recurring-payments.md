@@ -20,7 +20,7 @@ metadata:
 next:
   description: ''
 ---
-The following bank codes (used in  <<glossary:bankcode>> parameter) must be used for the recurring payment [registration](#consent-transaction-bank-codes) and [recurring](#recurring-transaction-bankcodes) transactions. For Net Banking, you have to use the regular Net Banking bankcodes as listed in [Net Banking Codes](doc:net-banking-codes).
+The following bank codes (used in  <Glossary>bankcode</Glossary> parameter) must be used for the recurring payment [registration](#consent-transaction-bank-codes) and [recurring](#recurring-transaction-bankcodes) transactions. For Net Banking, you have to use the regular Net Banking bankcodes as listed in [Net Banking Codes](doc:net-banking-codes).
 
 ## Supported Banks
 
