@@ -15,9 +15,9 @@ next:
 ---
 The section describes the following methods to collect payments with EMI:
 
-- [EMI](#emi)
-- [Cardless EMI](#cardless-emi)
-- [Subvention EMI](#subvention-emi)
+* [EMI](#emi)
+* [Cardless EMI](#cardless-emi)
+* [Subvention EMI](#subvention-emi)
 
 ## EMI
 
@@ -124,7 +124,7 @@ createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPayment
 ```
 
 > 📘 Hashing format of a subvention transaction
-> 
+>
 > If subventionAmount is passed, the hash formula for payment hash will be similar to the following format: `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|SubventionAmount)`
 
 ## Fetch a List of No-Cost EMI-supporting banks
