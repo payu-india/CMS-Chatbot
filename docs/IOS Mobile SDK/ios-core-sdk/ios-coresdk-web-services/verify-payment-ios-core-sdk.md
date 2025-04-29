@@ -14,19 +14,19 @@ The Verify Payment API is used to reconcile the transaction with PayU. When PayU
 
 The command name and var1 for this API integration are:
 
-- Command Name - verify_payment
-- Var1 - txnId
+* Command Name - verify\_payment
+* Var1 - txnId
 
 > 📘 Note:
-> 
+>
 > PayU strongly recommends that this API is used to reconcile with PayU’s database once you receive the response. This will protect you from any tampering by the user and help in ensuring safe and secure transaction experience.
 
 > 📘 Hash logic
-> 
+>
 > The hash will be in the format of: 
-> 
+>
 > `Sha512(Key|Command|Var1|Salt)`
-> 
+>
 > For more information, refer to [Generate Static Hash](doc:generate-static-hash-ios).
 
 ## Integration
