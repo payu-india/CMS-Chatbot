@@ -21,10 +21,11 @@ HTTP Method: **POST**
 
 |                            |                                                                                  |
 | -------------------------- | -------------------------------------------------------------------------------- |
-| **Test Environment**       | <https://staging.payu.in/payout/v2/smartSend/bulkUpload/transfers/{fileId}>      |
-| **Production Environment** | <https://payout.payumoney.com/payout/v2/smartSend/bulkUpload/transfers/{fileId}> |
+| **Test Environment**       | &lt;https://staging.payu.in/payout/v2/smartSend/bulkUpload/transfers/`{fileId}`&gt;      |
+| **Production Environment** | &lt;https://payout.payumoney.com/payout/v2/smartSend/bulkUpload/transfers/`{fileId}`&gt; |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location --request PUT 'https://uatoneapi.payu.in/payout/v2/smartSend/bulkUpload/transfers/1' \
@@ -35,7 +36,8 @@ curl --location --request PUT 'https://uatoneapi.payu.in/payout/v2/smartSend/bul
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
@@ -73,7 +75,7 @@ curl --location --request PUT 'https://uatoneapi.payu.in/payout/v2/smartSend/bul
     "h-2": "**Example**",
     "0-0": "Authorization`\nmandatory`",
     "0-1": "`String` Specify the access token generated earlier in this parameter.",
-    "0-2": "Bearer {access\\_token}",
+    "0-2": "Bearer `access_token`",
     "1-0": "pid`\nmandatory`",
     "1-1": "`String` Specify the payout merchant id provided while onboarding or creating Payout account.",
     "1-2": "1111126",
@@ -90,7 +92,6 @@ curl --location --request PUT 'https://uatoneapi.payu.in/payout/v2/smartSend/bul
   ]
 }
 [/block]
-
 
 > 📘 Note:
 > 
