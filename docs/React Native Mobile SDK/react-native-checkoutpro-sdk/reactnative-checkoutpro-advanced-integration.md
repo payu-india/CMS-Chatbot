@@ -167,11 +167,11 @@ paymentModesOrder: [{ 'cards': '' }, { 'net banking': '' }, { 'upi': '' }, { 'wa
 
 The resulting payment order on the initial Checkout screen will be:
 
-- Cards (Credit or Debit)
-- Net Banking
-- UPI
-- Wallets
-- EMI
+* Cards (Credit or Debit)
+* Net Banking
+* UPI
+* Wallets
+* EMI
 
 ***
 
@@ -183,7 +183,7 @@ Create an enforce list similar to the following code block to enforce payment mo
 
 ### Step 1: Create an enforced payment list
 
-For each enforced payment, the payment_type parameters need to be passed.
+For each enforced payment, the payment\_type parameters need to be passed.
 
 ```
 var enforcePaymentList = [  
