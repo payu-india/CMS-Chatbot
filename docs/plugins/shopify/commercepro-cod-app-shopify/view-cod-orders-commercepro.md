@@ -17,39 +17,10 @@ To view the COD orders done using CommercePro Checkout app:
 
 The **Orders** tab is displayed similar to the following screenshot:
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/7b1d1b7c56740db5e8dfb5c01650ae06e3afeef18f3c81dd6d245578d169e7a5-Dashboard_CP_Orders_tab.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/7b1d1b7c56740db5e8dfb5c01650ae06e3afeef18f3c81dd6d245578d169e7a5-Dashboard_CP_Orders_tab.png" />
 
 3. Click any of the row on the grid to view the order details.
 
 The order details are displayed for the selected order.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ac6efc00b0d6cade3d8a92131e7e09b853bfa4ad796741f3d9529a970635d4a3-Dashboard_CP_COD_Order_details.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" border={true} src="https://files.readme.io/ac6efc00b0d6cade3d8a92131e7e09b853bfa4ad796741f3d9529a970635d4a3-Dashboard_CP_COD_Order_details.png" />
