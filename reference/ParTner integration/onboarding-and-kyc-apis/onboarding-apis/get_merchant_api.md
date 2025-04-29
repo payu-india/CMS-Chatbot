@@ -20,12 +20,13 @@ next:
 The **Get Merchant** API is used to get the merchant details. You require the access token to get the merchant details using this API. The access token can be fetched using the Get Token API. For more information, refer to Get Token API.
 
 > 📘 Note:
-> 
-> The access token with the scope as **refer_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
+>
+> The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
 
 <PARTNEROnboardingEnvironment />
 
-<details><summary>Sample request<details><summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location -g --request GET '{{partner_base_url}}/api/v1/merchants/7060013' \
@@ -34,7 +35,8 @@ curl --location -g --request GET '{{partner_base_url}}/api/v1/merchants/7060013'
 
 </details>
 
-<details><summary>Sample response<details><summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success scenario**
 
@@ -100,7 +102,7 @@ curl --location -g --request GET '{{partner_base_url}}/api/v1/merchants/7060013'
 
 **Failure Scenarios**
 
-- 401: Unauthorised request
+* 401: Unauthorised request
 
 ```plaintext
 {
@@ -108,7 +110,7 @@ curl --location -g --request GET '{{partner_base_url}}/api/v1/merchants/7060013'
 }
 ```
 
-- 404: When merchant was not referred by partner
+* 404: When merchant was not referred by partner
 
 ```plaintext
 {
@@ -118,15 +120,15 @@ curl --location -g --request GET '{{partner_base_url}}/api/v1/merchants/7060013'
 }
 ```
 
-- 422: When token is not of partner or not valid
+* 422: When token is not of partner or not valid
 
 ```plaintext
-
+{
   "error": "Partner Not Found"
 }
 ```
 
-- 404: When merchant is not found:
+* 404: When merchant is not found:
 
 ```plaintext
 {
@@ -136,57 +138,265 @@ curl --location -g --request GET '{{partner_base_url}}/api/v1/merchants/7060013'
 
 </details>
 
-<details><summary>Response parameters<details><summary>
+<details>
+  <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "merchant",
-    "0-1": "This parameter contains the following details of the merchant in an array format.",
-    "1-0": "business\\_entity",
-    "1-1": "This parameter contains the business entity of the merchant that was provided while onboarding.",
-    "2-0": "status",
-    "2-1": "This parameter contains any of the following statuses:  \n`•\tdocuments_pending\n•\tbank_verified\n•\tdocument_upload_in_progress\n•\taccount_created\n•\tdocument_verification_in_progress\n•\twebsite_verification_in_progress\n•\tdocuments_rejected\n•\tlive\n•\tsettlement_on_hold\n•\tagreement_pending\n•\tagreement_rejected\n•\tnot_available\n•\twebsite_error\n•\tprofile_rejected\n•\tdocuments_pending\n•\tbank_verified\n•\tdocument_upload_in_progress\n•\taccount_created\n•\tdocument_verification_in_progress\n•\twebsite_verification_in_progress\n•\tdocuments_rejected\n•\tlive\n•\tsettlement_on_hold\n•\tagreement_pending\n•\tagreement_rejected\n•\tnot_available\n•\twebsite_error\n•\tprofile_rejected`",
-    "3-0": "partner\\_source",
-    "3-1": "This parameter returns the source through which the merchant joined or onboarded.",
-    "4-0": "pan\\_verification\\_status",
-    "4-1": "This parameter contains any of the following PAN verification statuses:  \n  \n   \n\t•\tSuccess  \n\t•\tPending  \n\t•\tFailed",
-    "5-0": "website\\_approval\\_status",
-    "5-1": "This parameter contains any of the following website approval statuses:  \n  \n   \n\t•\tWebsite Not live  \n\t•\tWebsite Incomplete  \n\t•\tWebsite Under Construction  \n\t•\tWebsite Error  \n\t•\tWebsite OK  \n\t•\tVerification in Process",
-    "6-0": "notification\\_email",
-    "6-1": "This parameter contains the email to which the notification was sent to the merchant on onboarding.",
-    "7-0": "settlement\\_status",
-    "7-1": "This parameter contains any of the following settlement statuses:  \n`•\tRisk Hold\n•\tThirdparty Hold\n•\tActive\n•\tSuspended\n•\tRisk & Thirdparty hold\n•\tNEFT Return\n•\tTerminate`",
-    "8-0": "is\\_service\\_agreement\\_accepted",
-    "8-1": "This parameter contains the flag whether the service agreement was accepted or not.",
-    "9-0": "is\\_authorisation\\_letter\\_required",
-    "9-1": "This parameter contains the flag whether the authorization letter is required or not required.",
-    "10-0": "monthly\\_expected\\_volume",
-    "10-1": "This parameter contains the monthly expected volume from the merchant.",
-    "11-0": "business\\_category",
-    "11-1": "This parameter contains the business category of the merchant that was provided while onboarding.",
-    "12-0": "business\\_sub\\_category",
-    "12-1": "This parameter contains the business sub-category of the merchant that was provided while onboarding.",
-    "13-0": "bank\\_verification\\_status",
-    "13-1": "This parameter contains any of the following bank verification statuses:  \n`•\tPending\n•\tSuccess\n•\tVerification Attempts Exhausted\n•\tFailed`",
-    "14-0": "penny\\_deposit\\_status",
-    "14-1": "This parameter contains any of the following penny deposit statuses when bank account verification was performed:  \n`•\tNot Initiated\n•\tPending\n•\tSENT_TO_BANK\n•\tSuccess\n•\tFailed`",
-    "15-0": "uuid",
-    "15-1": "This parameter contains the Universal Unique Identifier (UUID).",
-    "16-0": "document\\_status",
-    "16-1": "This parameter contains the document status and can be any of the following:  \n  \n   \n\t•\tPending: It indicates that document not yet submitted  \n\t•\tDocs Received: It indicates that documents are submitted  \n\t•\tDocs Approved: It indicates that documents are approved  \n\t•\tDocs Error: It indicates that mismatch in data or wrong document"
-  },
-  "cols": 2,
-  "rows": 17,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        merchant
+      </td>
+
+      <td>
+        This parameter contains the following details of the merchant in an array format.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        business\_entity
+      </td>
+
+      <td>
+        This parameter contains the business entity of the merchant that was provided while onboarding.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        This parameter contains any of the following statuses:\
+        ```
+        •	documents_pending
+        •	bank_verified
+        •	document_upload_in_progress
+        •	account_created
+        •	document_verification_in_progress
+        •	website_verification_in_progress
+        •	documents_rejected
+        •	live
+        •	settlement_on_hold
+        •	agreement_pending
+        •	agreement_rejected
+        •	not_available
+        •	website_error
+        •	profile_rejected
+        •	documents_pending
+        •	bank_verified
+        •	document_upload_in_progress
+        •	account_created
+        •	document_verification_in_progress
+        •	website_verification_in_progress
+        •	documents_rejected
+        •	live
+        •	settlement_on_hold
+        •	agreement_pending
+        •	agreement_rejected
+        •	not_available
+        •	website_error
+        •	profile_rejected
+        ```
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        partner\_source
+      </td>
+
+      <td>
+        This parameter returns the source through which the merchant joined or onboarded.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pan\_verification\_status
+      </td>
+
+      <td>
+        This parameter contains any of the following PAN verification statuses:  
+
+         \
+        &#x9;•	Success\
+        &#x9;•	Pending\
+        &#x9;•	Failed
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        website\_approval\_status
+      </td>
+
+      <td>
+        This parameter contains any of the following website approval statuses:  
+
+         \
+        &#x9;•	Website Not live\
+        &#x9;•	Website Incomplete\
+        &#x9;•	Website Under Construction\
+        &#x9;•	Website Error\
+        &#x9;•	Website OK\
+        &#x9;•	Verification in Process
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        notification\_email
+      </td>
+
+      <td>
+        This parameter contains the email to which the notification was sent to the merchant on onboarding.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        settlement\_status
+      </td>
+
+      <td>
+        This parameter contains any of the following settlement statuses:\
+        ```
+        •	Risk Hold
+        •	Thirdparty Hold
+        •	Active
+        •	Suspended
+        •	Risk & Thirdparty hold
+        •	NEFT Return
+        •	Terminate
+        ```
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        is\_service\_agreement\_accepted
+      </td>
+
+      <td>
+        This parameter contains the flag whether the service agreement was accepted or not.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        is\_authorisation\_letter\_required
+      </td>
+
+      <td>
+        This parameter contains the flag whether the authorization letter is required or not required.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        monthly\_expected\_volume
+      </td>
+
+      <td>
+        This parameter contains the monthly expected volume from the merchant.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        business\_category
+      </td>
+
+      <td>
+        This parameter contains the business category of the merchant that was provided while onboarding.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        business\_sub\_category
+      </td>
+
+      <td>
+        This parameter contains the business sub-category of the merchant that was provided while onboarding.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bank\_verification\_status
+      </td>
+
+      <td>
+        This parameter contains any of the following bank verification statuses:\
+        ```
+        •	Pending
+        •	Success
+        •	Verification Attempts Exhausted
+        •	Failed
+        ```
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        penny\_deposit\_status
+      </td>
+
+      <td>
+        This parameter contains any of the following penny deposit statuses when bank account verification was performed:\
+        ```
+        •	Not Initiated
+        •	Pending
+        •	SENT_TO_BANK
+        •	Success
+        •	Failed
+        ```
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        uuid
+      </td>
+
+      <td>
+        This parameter contains the Universal Unique Identifier (UUID).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        document\_status
+      </td>
+
+      <td>
+        This parameter contains the document status and can be any of the following:  
+
+         \
+        &#x9;•	Pending: It indicates that document not yet submitted\
+        &#x9;•	Docs Received: It indicates that documents are submitted\
+        &#x9;•	Docs Approved: It indicates that documents are approved\
+        &#x9;•	Docs Error: It indicates that mismatch in data or wrong document
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
