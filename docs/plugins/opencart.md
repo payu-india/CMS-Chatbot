@@ -25,14 +25,14 @@ Opencart is a free plugin developed in PHP used to create online shops. OpenCart
 
 PayU allows merchants to accept following payment methods on the OpenCart platform:
 
-- Cards
-  - VISA
-  - MasterCard
-  - Diners
-  - American Express
-- Net Banking
-- UPI
-- EMI
-- Wallets
+* Cards
+  * VISA
+  * MasterCard
+  * Diners
+  * American Express
+* Net Banking
+* UPI
+* EMI
+* Wallets
 
 For procedure to install and configure, refer to [Install and Configure PayU OpenCart Plugin](doc:install-and-configure-payu-opencart-plugin) . If you encounter issues while integration, refer to [Troubleshooting OpenCart Integration](doc:troubleshooting-opencart-integration).
