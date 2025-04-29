@@ -22,10 +22,10 @@ Partners need to register their webhooks using the Register Webhooks API with hu
 ## Request header
 
 > 📘 Note:
-> 
+>
 > The access token with the **scope** as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
-| Authorization | Bearer {{access_token}}           |
+| Authorization | Bearer `{{access_token}}`           |
 | :------------ | :-------------------------------- |
 | Content-Type  | application/x-www-form-urlencoded |
 
@@ -49,7 +49,6 @@ Partners need to register their webhooks using the Register Webhooks API with hu
   ]
 }
 [/block]
-
 
 ## Sample request
 
