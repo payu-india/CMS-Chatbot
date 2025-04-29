@@ -14,5 +14,5 @@ Transaction details API is used to extract the transaction details between two g
 
 Transactions Details can be fetched using the following APIs:
 
-- [Get Transaction Details API](ref:get_transaction_details_api)
-- [Get Transaction Info API](ref:get_transaction_info_api)
+* [Get Transaction Details API](ref:get_transaction_details_api)
+* [Get Transaction Info API](ref:get_transaction_info_api)
