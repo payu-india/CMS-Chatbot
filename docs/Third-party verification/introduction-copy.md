@@ -20,7 +20,7 @@ Third-Party Verification (TPV) is a mandatory requirement as per Stock Exchange 
 
 ## Comparison of TPV with regular flow
 
-In a regular Net Banking or a UPI transaction, you don’t pass the customer account number from which you want the customer to transact, but in the case of TPV integration, you know the customer account number, and you want the customer only to transact with the same account number.  
+In a regular Net Banking or a UPI transaction, you don’t pass the customer account number from which you want the customer to transact, but in the case of TPV integration, you know the customer account number, and you want the customer only to transact with the same account number.\
 You also pass the customer account number in the payment request compared to regular retail banking or UPI.
 
 ## Why TPV?
@@ -43,10 +43,9 @@ Meet your compliance requirements and start transacting online with your custome
 
 PayU supports the PayU Hosted Checkout (non-seamless), Merchant Hosted Checkout (Seamless) and PayU Server-to-Server Integration are supported
 
-- [PayU Hosted or non-seamless integration](payu-hosted-checkout-tpv-workflow)
-- [Seamless Integration](https://docs.payu.in/docs/collect-payments-with-tpv-merchant-hosted-checkout)
-  - [Net Banking](/docs/net-banking-integration-for-tpv) 
-  - [UPI](/docs/upi-integration-for-tpv) 
-    - [UPI Intent Autopay](https://docs.payu.in/docs/upi-intent-autopay-tpv-integration)
-    - [UPI Collect Autopay](https://docs.payu.in/docs/upi-collect-autopay-tpv-integration)
-  <br />
+* [PayU Hosted or non-seamless integration](payu-hosted-checkout-tpv-workflow)
+* [Seamless Integration](https://docs.payu.in/docs/collect-payments-with-tpv-merchant-hosted-checkout)
+  * [Net Banking](/docs/net-banking-integration-for-tpv) 
+  * [UPI](/docs/upi-integration-for-tpv) 
+    * [UPI Intent Autopay](https://docs.payu.in/docs/upi-intent-autopay-tpv-integration)
+    * [UPI Collect Autopay](https://docs.payu.in/docs/upi-collect-autopay-tpv-integration)\ <br />
