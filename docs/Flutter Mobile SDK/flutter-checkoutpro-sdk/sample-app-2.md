@@ -10,4 +10,4 @@ metadata:
 next:
   description: ''
 ---
-<https://github.com/payu-intrepos/PayUCheckoutPro-Flutter.git>
+[https://github.com/payu-intrepos/PayUCheckoutPro-Flutter.git](https://github.com/payu-intrepos/PayUCheckoutPro-Flutter.git)
