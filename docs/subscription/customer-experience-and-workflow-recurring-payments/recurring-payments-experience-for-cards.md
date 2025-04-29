@@ -17,25 +17,10 @@ For cards, the recurring payments do not require the customer’s involvement fo
 
 Since Recurring Payments do not have 2FA, the following are the strict guidelines from RBI apply:
 
-- The first transaction must go through the standard 2FA flow (OTP/Mastercard secure password/verified by Visa password) where the customer’s consent for further recurring payments needs to be taken either by merchant (seamless flow) or PayU (non-seamless flow). For more information on PayU workflow to do the first transaction, refer to [Registration Transaction Workflow](#registration-transaction-workflow).
-- After the consent is taken, the merchant can use either S2S APIs or the File upload utility of PayU to charge the customer regularly without the 2FA. For more information on PayU Recurring Payment workflow, refer to [Recurring Transaction Workflow](#recurring-transaction-workflow).
+* The first transaction must go through the standard 2FA flow (OTP/Mastercard secure password/verified by Visa password) where the customer’s consent for further recurring payments needs to be taken either by merchant (seamless flow) or PayU (non-seamless flow). For more information on PayU workflow to do the first transaction, refer to [Registration Transaction Workflow](#registration-transaction-workflow).
+* After the consent is taken, the merchant can use either S2S APIs or the File upload utility of PayU to charge the customer regularly without the 2FA. For more information on PayU Recurring Payment workflow, refer to [Recurring Transaction Workflow](#recurring-transaction-workflow).
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/b8710f1-rp_cc_workflow_1.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "600px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="600px" src="https://files.readme.io/b8710f1-rp_cc_workflow_1.png" />
 
 ## How do Recurring Payments work?
 
@@ -43,47 +28,105 @@ Since Recurring Payments do not have 2FA, the following are the strict guideline
 2. Merchant presents an option to sign up for on the recurring platform where the customer must provide his/her consent.
 3. Billing details like amount, frequency, start date and end date of the subscription are presented to the customer and passed to the PayU during payment request.
 4. After the customer validates the subscription plan and enters the preferred card details, the customer is redirected to the 3D Security (3DS) flow where the authentication and authorization process place.
-5. There are multiple ways to process the First transaction/Consent transaction to obtain the customer’s consent:  
-   a. A consent transaction can be an actual subscription for the First billing cycle so that the customer will be charged for the whole amount through 3DS (2FA) flow and subsequent transactions will be processed through the recurring payment.  
+5. There are multiple ways to process the First transaction/Consent transaction to obtain the customer’s consent:\
+   a. A consent transaction can be an actual subscription for the First billing cycle so that the customer will be charged for the whole amount through 3DS (2FA) flow and subsequent transactions will be processed through the recurring payment.\
    b. A consent transaction can be a small transaction (like 5 INR) where the customer’s card is taken on file along with consent and the amount is refunded back by the merchant on calling the Refund API. This method is popular where the merchant offers their free services for the first billing cycle and then charges subsequent bills through the recurring payments.
 6. After the customer’s consent is taken, the card details are saved in the PayU’s secure vault and a card token is generated.
 7. The card token is returned to the merchant in the payment response along with PayU’s ID. Merchant is supposed to map this PayU ID it against customer’s profile so that henceforth it can be used charging customer through the recurring platform.
 
 > 📘 Note:
-> 
+>
 > The card token is not an actual card number, and hence merchant is not having any PCI DSS hassles in storing the same at his end.
 
 At present, Standing Instruction is supported for the following payment instruments:
 
-- Credit Card (scheme-wise, all issuers are supported)
-  - Visa
-  - Master Card
-  - American Express
-- Debit Card (only Visa and Master Card schemes and selected issuers)
+* Credit Card (scheme-wise, all issuers are supported)
+  * Visa
+  * Master Card
+  * American Express
+* Debit Card (only Visa and Master Card schemes and selected issuers)
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "",
-    "h-1": "",
-    "h-2": "",
-    "h-3": "",
-    "0-0": "\\- American Express Banking Corporation  \n  \n- Andhra Bank\n- AU Small Finance Bank Limited\\  \n- Australia and New Zealand Banking Group Limited\n- Axis Bank Ltd.\n- Bank of Baroda\n- Bank of India\n- Bank of Maharashtra\n- Canara Bank\n- Central Bank of India\n- Citibank\n- Corporation Bank",
-    "0-1": "\\- City Union Bank Ltd.Dhanlaxmi Bank Ltd.  \n  \n- DBS Bank Ltd.\n- DCB Bank Ltd.\n- DCB Bank Business Banking\n- Equitas Small Finance Bank Limited or Equitas Bank (same bank)\n- ESAF Small Finance Bank Limited\n- Federal Bank Ltd.\n- HDFC Bank Ltd.\n- HSBC Bank\n- ICICI Bank Ltd.\n- IDBI Bank Ltd.",
-    "0-2": "\\- IDFC First Bank Ltd.  \n  \n- IDFC Bank Ltd. (merged with IDFB)\n- IndusInd Bank (same bank)\n- Indian Overseas Bank\n- Jammu & Kashmir Bank Ltd.\n- Karur Vysya Bank Ltd.\n- Kotak Mahindra Bank Ltd.",
-    "0-3": "\\- Punjab National Bank  \n  \n- Paytm Bank \n- RBL Bank Ltd.\n- State Bank of India\n- State bank of Mysore \n- Standard Chartered Bank\n- South Indian Bank Ltd. \n- State Trading Corporation of Bhutan Limited\n- Union Bank of India\n- YES Bank"
-  },
-  "cols": 4,
-  "rows": 1,
-  "align": [
-    "left",
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
 
+      </th>
+
+      <th>
+
+      </th>
+
+      <th>
+
+      </th>
+
+      <th>
+
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        \- American Express Banking Corporation  
+
+        * Andhra Bank
+        * AU Small Finance Bank Limited\  
+        * Australia and New Zealand Banking Group Limited
+        * Axis Bank Ltd.
+        * Bank of Baroda
+        * Bank of India
+        * Bank of Maharashtra
+        * Canara Bank
+        * Central Bank of India
+        * Citibank
+        * Corporation Bank
+      </td>
+
+      <td>
+        \- City Union Bank Ltd.Dhanlaxmi Bank Ltd.  
+
+        * DBS Bank Ltd.
+        * DCB Bank Ltd.
+        * DCB Bank Business Banking
+        * Equitas Small Finance Bank Limited or Equitas Bank (same bank)
+        * ESAF Small Finance Bank Limited
+        * Federal Bank Ltd.
+        * HDFC Bank Ltd.
+        * HSBC Bank
+        * ICICI Bank Ltd.
+        * IDBI Bank Ltd.
+      </td>
+
+      <td>
+        \- IDFC First Bank Ltd.  
+
+        * IDFC Bank Ltd. (merged with IDFB)
+        * IndusInd Bank (same bank)
+        * Indian Overseas Bank
+        * Jammu & Kashmir Bank Ltd.
+        * Karur Vysya Bank Ltd.
+        * Kotak Mahindra Bank Ltd.
+      </td>
+
+      <td>
+        \- Punjab National Bank  
+
+        * Paytm Bank 
+        * RBL Bank Ltd.
+        * State Bank of India
+        * State bank of Mysore 
+        * Standard Chartered Bank
+        * South Indian Bank Ltd. 
+        * State Trading Corporation of Bhutan Limited
+        * Union Bank of India
+        * YES Bank
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Cards registration transaction workflow
 
@@ -96,11 +139,11 @@ The workflow for first-time payment involves:
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-14-at-7.40.54-AM-1-1-1024x978.png)
 
 2. During this first transaction, the merchant must post this parameter depending on the decision of the customer at their website.
-3. If the value of the SI parameter is 1 from the merchant, the following message is displayed to the customer.  
+3. If the value of the SI parameter is 1 from the merchant, the following message is displayed to the customer.\
    **‘I agree to save card details for Standing Instructions’.**
 
 > 📘 Note:
-> 
+>
 > By default, the **I agree to save card details for Standing Instructions** check box is selected. The customer cannot uncheck the check box and has to transact with the SI option only.
 
 ## Cards recurring transaction workflow
@@ -124,8 +167,8 @@ Merchants can use Zion Platform where Payu will trigger recurring basis the bill
 
 You can use Recurring Payment API or bulk upload on PayUBiz Dashboard. For more information, refer to the following sections:
 
-- [Recurring Payment Transaction API](ref:recurring_payment_api) for Recurring Payment Transaction API.
-- [Bulk Upload of Payment Links for Recurring Payments](doc:bulk-upload-of-payment-links-for-recurring-payments-pre-debit-notication)+ [Pre-Debit Notification API](ref:pre_debit_notification_api) for bulk upload of payment links using PayUBiz Dashboard.
+* [Recurring Payment Transaction API](ref:recurring_payment_api) for Recurring Payment Transaction API.
+* [Bulk Upload of Payment Links for Recurring Payments](doc:bulk-upload-of-payment-links-for-recurring-payments-pre-debit-notication)+ [Pre-Debit Notification API](ref:pre_debit_notification_api) for bulk upload of payment links using PayUBiz Dashboard.
 
 ## Transaction limits
 
