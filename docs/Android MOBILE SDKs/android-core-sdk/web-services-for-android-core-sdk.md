@@ -12,19 +12,19 @@ next:
 ---
 This section provides a reference for the following Web Service APIs for Android Core SDK. Before you integrate these APIs, you must follow [Step 1](#step-1-initialise-merchant-web-service) and [Step 2](#step-2-create-merchant-web-service-postdata) of this section.
 
-- [Enable Payment Options](https://docs.payu.in/docs/android-coresdk-enable-payment-options)
-- [Get Checkout Details API](https://docs.payu.in/docs/android-coresdk-get-checkout-details)
-- [Lookup API](https://docs.payu.in/docs/lookup-api-web-service-android-core-sdk)
-- [VAS API](https://docs.payu.in/docs/vas-api-android-core-sdk)
-- [Eligible Bins for EMI API](https://docs.payu.in/docs/eligible-bins-for-emi-api-android-core-sdk)
-- [Get EMI According to Interest API](https://docs.payu.in/docs/get-emi-according-to-interest-api-android-core-sdk)
-- [Get Transaction Info API](https://docs.payu.in/docs/get-transaction-info-api-android-core-sdk)
-- [Verify Payment API](https://docs.payu.in/docs/verify-payment-api-android-core-sdk)
-- [Get BIN Info API](https://docs.payu.in/docs/get-bin-info-api-android-core-sdk)
-- [Get Card Information API](https://docs.payu.in/docs/get-card-information-api-android-core-sdk)
-- [Offer APIs](https://docs.payu.in/docs/offer-apis-android-core-sdk)
-- [Check Balance API](https://docs.payu.in/docs/check-balance-api-android-core-sdk)
-- [Tokenized Payment APIs](https://docs.payu.in/docs/tokenized-payment-android-core-sdk)
+* [Enable Payment Options](https://docs.payu.in/docs/android-coresdk-enable-payment-options)
+* [Get Checkout Details API](https://docs.payu.in/docs/android-coresdk-get-checkout-details)
+* [Lookup API](https://docs.payu.in/docs/lookup-api-web-service-android-core-sdk)
+* [VAS API](https://docs.payu.in/docs/vas-api-android-core-sdk)
+* [Eligible Bins for EMI API](https://docs.payu.in/docs/eligible-bins-for-emi-api-android-core-sdk)
+* [Get EMI According to Interest API](https://docs.payu.in/docs/get-emi-according-to-interest-api-android-core-sdk)
+* [Get Transaction Info API](https://docs.payu.in/docs/get-transaction-info-api-android-core-sdk)
+* [Verify Payment API](https://docs.payu.in/docs/verify-payment-api-android-core-sdk)
+* [Get BIN Info API](https://docs.payu.in/docs/get-bin-info-api-android-core-sdk)
+* [Get Card Information API](https://docs.payu.in/docs/get-card-information-api-android-core-sdk)
+* [Offer APIs](https://docs.payu.in/docs/offer-apis-android-core-sdk)
+* [Check Balance API](https://docs.payu.in/docs/check-balance-api-android-core-sdk)
+* [Tokenized Payment APIs](https://docs.payu.in/docs/tokenized-payment-android-core-sdk)
 
 ***
 
@@ -43,19 +43,19 @@ merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use t
 For more information on Web Service hash generation, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
 > 📘 Generate Hash for MerchantWebService
-> 
+>
 > To generate Hash refer to Hash Generation.
-> 
+>
 > **Formula** :-sha512(key|command|var1|salt)
-> 
+>
 > where
-> 
+>
 > key= "Your Key"
-> 
+>
 > command= \<"Api Commands"> // Pass Command Name
-> 
+>
 > var1= \<"default"> // Pass the var1 value
-> 
+>
 > salt= "Your SALT"
 
 ## Step 2: Create Merchant web service PostData
@@ -68,7 +68,7 @@ payuConfig.setData(postData.getResult());
 ```
 
 > 📘 Troubleshoot Postdata code errors
-> 
+>
 > If the PostData code snippet (above) is returning errors, check the data point set in merchantWebService.
 
 ## Commands
