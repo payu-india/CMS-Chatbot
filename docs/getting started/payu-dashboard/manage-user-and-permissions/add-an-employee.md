@@ -15,7 +15,7 @@ To add an employee:
 1. Navigate to **Dashboard > Settings > User & Permissions**.
 2. Click **Add Employee** at the top-right corner of the page.
 
-   The _Add Employee_ pop-up page is displayed.
+   The *Add Employee* pop-up page is displayed.
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-124.png)
 
