@@ -28,5 +28,5 @@ The following table Maximizer product illustrates the support for various paymen
 <SwitchPaySupportedAggregators />
 
 > 📘 Note:
-> 
+>
 > For any new payment methods, PayU will able to provide you at earliest. Contact your PayU Key Account Manager (KAM) for more information.
