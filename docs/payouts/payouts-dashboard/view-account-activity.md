@@ -25,9 +25,9 @@ With Payouts Dashboard, you can view your account activity while checking balanc
 
 Before adding money to your account, you can:
 
-- Track account analytics
-- Check your account balance
-- Check Payout volume
+* Track account analytics
+* Check your account balance
+* Check Payout volume
 
 To check the account balance:
 
