@@ -30,11 +30,11 @@ metadata:
 next:
   description: ''
 ---
-Before you start with the integration, enable the payment methods that you want to offer to your customers from Dashboard > Settings > Payment methods. We enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you.
+Before you start with the integration, enable the payment methods that you want to offer to your customers from Dashboard &gt; Settings &gt; Payment methods. We enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you.
 
 ## Step 1: Create a PayU account
 
-First, create a PayU account. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard). 
+First, create a PayU account. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
 ## Step 2: Gradle dependency
 
@@ -100,13 +100,13 @@ PayUGPayCallback payUGPayCallback = new PayUGPayCallback() {
 If you are using the SDK with a test merchant, provide this metadata value to the manifest file:
 
 ```text XML
-<application
+<application>
   <meta-data
-  android:name="payu_web_service_url"
-  android:value="https://test.payu.in" />
+    android:name="payu_web_service_url"
+    android:value="https://test.payu.in" />
   <meta-data
-  android:name="payu_post_url"
-  android:value="https://test.payu.in" />
+    android:name="payu_post_url"
+    android:value="https://test.payu.in" />
 </application>
 ```
 
@@ -135,9 +135,9 @@ Where
 > where
 > 
 > - key= "Your Key"
-> - command= \<"payment_related_details_for_mobile_sdk"> // Pass Command Name
+> - command= &lt;"payment_related_details_for_mobile_sdk"&gt; // Pass Command Name
 > - salt= "Your SALT"
-> - var1= \<"default"> // Pass the "default" value in var1
+> - var1= &lt;"default"&gt; // Pass the "default" value in var1
 
 ## Step 6: Make Payment by Google Pay
 
@@ -174,6 +174,6 @@ After you get the response from SDK, make sure to confirm it with the PayU serve
 > 
 > It is recommended to implement the PayU Webhook or backend verify call from your backend.
 
-Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended that the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks,
+Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended that the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation &gt; Webhooks,
 
 Also, you can verify payment through polling, the transaction status after the SDK callback from your backend.
