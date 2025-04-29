@@ -12,84 +12,117 @@ next:
 ---
 ## General
 
-- What is the Zion Subscription Product?
+* What is the Zion Subscription Product?
 
   Zion is a subscription billing platform that allows merchants to automate recurring payments from customers based on predefined billing plans. It handles subscriptions, invoices, and recurring charges.
 
-- What are the benefits of using the Zion Subscription Automation Platform? A: The Zion Subscription Automation Platform offers several benefits, including:
-  - **Automated billing**: The platform automates the billing process, reducing the need for manual intervention.
-  - **Flexible billing options**: Merchants can choose from a range of billing options such as daily, weekly, monthly, and yearly billing cycles.
-  - **Customizable plans**: Merchants can create customized subscription plans based on their business needs.
-  - **Payment gateway integration**: The platform integrates with multiple payment gateways, making it easy for merchants to accept payments from customers.
-- Is there a cost associated with using the Zion Subscription Automation Platform?
+* What are the benefits of using the Zion Subscription Automation Platform? A: The Zion Subscription Automation Platform offers several benefits, including:
+  * **Automated billing**: The platform automates the billing process, reducing the need for manual intervention.
+  * **Flexible billing options**: Merchants can choose from a range of billing options such as daily, weekly, monthly, and yearly billing cycles.
+  * **Customizable plans**: Merchants can create customized subscription plans based on their business needs.
+  * **Payment gateway integration**: The platform integrates with multiple payment gateways, making it easy for merchants to accept payments from customers.
+* Is there a cost associated with using the Zion Subscription Automation Platform?
 
 Yes, there is a cost associated with using the Zion Subscription Automation Platform. However, the cost varies depending on your business needs and the features you require. You can contact PayU’s your PayU Key Account Manager to get a quote based on your requirements.
 
-- How do I get started with the Zion Subscription Automation Platform? 
+* How do I get started with the Zion Subscription Automation Platform? 
 
 To get started with the Zion Subscription Automation Platform, you need to sign up for an PayU account, complete your onboarding, and then contact you PayU Key Account Manager (KAM).
 
-- What are the main components of Zion?
+* What are the main components of Zion?
 
  The main components are Plans, Subscriptions, and Invoices. Plans define billing amounts and frequencies. Subscriptions associate a customer with one or more plans. Invoices are the recurring charges executed on the customer's payment method per the subscription.
 
-- What is the difference between PayU Zion platform and Recurring Payments offerings?
+* What is the difference between PayU Zion platform and Recurring Payments offerings?
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Zion Subscription Automation",
-    "h-1": "Recurring Payments",
-    "0-0": "- Enables merchants to automate their subscription billing process.  \n- Provides features such as subscription management, payment processing, and more.  \n- Offers flexible billing options such as daily, weekly, monthly, and yearly billing cycles.  \n- Allows merchants to create customized subscription plans based on their business needs.  \n- Provides invoicing capabilities",
-    "0-1": "- Refers to regular and automatic transactions where a predetermined amount is charged to a customer’s card at specified intervals.  \n- Allows merchants to offer their customers standing instruction feature for Credit Card, selected Debit cards and Net Banking (e-NACH and e-mandate), through various integration methods.  \n- Offers simple, transparent pricing.  \n- Enables recurring payments via multiple payment modes while being 100% compliant."
-  },
-  "cols": 2,
-  "rows": 1,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Zion Subscription Automation
+      </th>
 
+      <th>
+        Recurring Payments
+      </th>
+    </tr>
+  </thead>
 
-- What is the effort involved with PayU Zion platform in comparison with Recurring Payments?
+  <tbody>
+    <tr>
+      <td>
+        * Enables merchants to automate their subscription billing process.  
+        * Provides features such as subscription management, payment processing, and more.  
+        * Offers flexible billing options such as daily, weekly, monthly, and yearly billing cycles.  
+        * Allows merchants to create customized subscription plans based on their business needs.  
+        * Provides invoicing capabilities
+      </td>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Zion Subscription Automation",
-    "h-1": "Recurring Payments",
-    "0-0": "Just call the Consent transaction and everything else is taking care by PayU.  \nHence, it is called Zion Subscription Automation platform. For more information, [Zion Workflow](doc:building-billing-experience-with-zion).",
-    "0-1": "For Cards/UPI, the following is the flow:  \n   1. [Payment Consent Transaction with Merchant Hosted Checkout](ref:payment-consent-transaction-merchant-hosted)  \n   2. [Pre-Debit Notification API](ref:pre_debit_notification_api)  \n   3. [Recurring Payment Transaction API](ref:recurring_payment_api)  \nFor Net Banking, the following is the flow:  \n   1. [Net Banking Consent Transaction](ref:netbanking-recurring-payment-consent-transaction)  \n   2. [Recurring Payment Transaction API](ref:recurring_payment_api)  \n**Note**: The PayUBiz Dashboard can be used to set up the recurring payment transactions. For more information, refer to [Using PayUBiz Dashboard](doc:recurring-payments-using-payubiz-dashboard)."
-  },
-  "cols": 2,
-  "rows": 1,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+      <td>
+        * Refers to regular and automatic transactions where a predetermined amount is charged to a customer’s card at specified intervals.  
+        * Allows merchants to offer their customers standing instruction feature for Credit Card, selected Debit cards and Net Banking (e-NACH and e-mandate), through various integration methods.  
+        * Offers simple, transparent pricing.  
+        * Enables recurring payments via multiple payment modes while being 100% compliant.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
+* What is the effort involved with PayU Zion platform in comparison with Recurring Payments?
 
-- How does the billing process work with Zion?
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Zion Subscription Automation
+      </th>
+
+      <th>
+        Recurring Payments
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Just call the Consent transaction and everything else is taking care by PayU.
+        Hence, it is called Zion Subscription Automation platform. For more information, [Zion Workflow](doc:building-billing-experience-with-zion).
+      </td>
+
+      <td>
+        For Cards/UPI, the following is the flow:  
+
+        1. [Payment Consent Transaction with Merchant Hosted Checkout](ref:payment-consent-transaction-merchant-hosted)  
+        2. [Pre-Debit Notification API](ref:pre_debit_notification_api)  
+        3. [Recurring Payment Transaction API](ref:recurring_payment_api)\
+           For Net Banking, the following is the flow:  
+        4. [Net Banking Consent Transaction](ref:netbanking-recurring-payment-consent-transaction)  
+        5. [Recurring Payment Transaction API](ref:recurring_payment_api)  
+
+        * \*Note\*\*: The PayUBiz Dashboard can be used to set up the recurring payment transactions. For more information, refer to [Using PayUBiz Dashboard](doc:recurring-payments-using-payubiz-dashboard).
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+* How does the billing process work with Zion?
 
  First a "consent transaction" occurs where the customer signs up and the merchant gets one-time authentication. After consent, Standing Instructions allow recurring charges without further customer approval. The merchant defines subscriptions, and Zion automatically generates invoices per the subscription plans, notifying the merchant through webhook.
 
-- How are subscriptions started and ended?
+* How are subscriptions started and ended?
 
  The merchant initiates a subscription using the Zion APIs. Subscriptions automatically end after all invoices related to the included plans are processed. Merchants can also allow customers to actively end subscriptions via their website/portal.
 
-- What payment methods does Zion support for subscriptions?
+* What payment methods does Zion support for subscriptions?
 
  Zion leverages PayU's payment infrastructure and supports major credit cards, debit cards, Net Banking, and UPI payment methods.
 
-- How does Zion handle failed or declined subscription payments?
+* How does Zion handle failed or declined subscription payments?
 
  Zion will automatically retry and eventually notify you if a payment fails after multiple retries. The subscription status would be updated accordingly.
 
-- Can subscriptions be changed mid-cycle?
+* Can subscriptions be changed mid-cycle?
 
   You can initiate plan changes on active subscriptions, which would take effect after the current billing cycle. This allows flexibility to upgrade/downgrade plans in real-time.
 
@@ -105,7 +138,7 @@ A: Consent transactions are mandated by RBI guidelines for recurring payments wi
 
 Q: What should merchants check after a consent transaction?
 
-A: Merchants should verify the status, card_token, payment_source and mihpayid values to confirm the transaction was authorized properly for future recurring billing.
+A: Merchants should verify the status, card\_token, payment\_source and mihpayid values to confirm the transaction was authorized properly for future recurring billing.
 
 Q: How are consent transactions implemented?
 
@@ -203,7 +236,7 @@ A: If an invoice payment fails, Zion will automatically retry for the next 3 day
 
 Q: Can merchants manually trigger invoices?
 
-A: Yes, merchants can call the **Create Invoice API **to trigger invoices, for example in ad-hoc billing models based on usage. For more information, refer to [Create Invoice API](ref:create-invoice-api-zion).
+A: Yes, merchants can call the **Create Invoice API** to trigger invoices, for example in ad-hoc billing models based on usage. For more information, refer to [Create Invoice API](ref:create-invoice-api-zion).
 
 Q: How can merchants retrieve invoice details?
 
@@ -237,7 +270,7 @@ A: No, subscriptions inherit the billing settings from associated plans. Custom 
 
 Q: How can merchants change or delete plans?
 
-A: The **Update Plan** and** Delete Plan** APIs allow modifying and removing existing plans as needed. Deleting stops usage in subscriptions. For more information, refer to [Update Existing Plan for Subscription API](ref:update-existing-plan-for-subscription-api) or [Delete a Plan](ref:delete-a-plan).
+A: The **Update Plan** and **Delete Plan** APIs allow modifying and removing existing plans as needed. Deleting stops usage in subscriptions. For more information, refer to [Update Existing Plan for Subscription API](ref:update-existing-plan-for-subscription-api) or [Delete a Plan](ref:delete-a-plan).
 
 Q: What happens if a used plan is deleted?
 
