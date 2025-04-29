@@ -16,22 +16,22 @@ Status of the transaction can be traced from the Payouts Dashboard and Status Ch
 
 Transaction status can be traced on the Dashboard along with:
 
-- [View Payouts Details](doc:view-payouts-details) for transaction initiation
-- Transaction processing details – Name Match and VPA details
-- [Payouts Lifecycle](https://docs.payu.in/docs/payouts-lifecycle)  for significance of various transfer status.
+* [View Payouts Details](doc:view-payouts-details) for transaction initiation
+* Transaction processing details – Name Match and VPA details
+* [Payouts Lifecycle](https://docs.payu.in/docs/payouts-lifecycle)  for significance of various transfer status.
 
 ## Status Check API 
 
 To check status of any payouts to phone requests, you can using the **Check Transfer Status** API to pull real-time transfer status of any request from PayU. 
 
-- For a date range 
-- For particular status 
-- For single or a list of merchant reference id 
+* For a date range 
+* For particular status 
+* For single or a list of merchant reference id 
 
 > 📘 Reference:
-> 
-> - [Check Transfer Status API](https://docs.payu.in/reference/check-transfer-status-api) for ** Check Transfer Status** API.
-> - [Payouts Lifecycle](https://docs.payu.in/docs/payouts-lifecycle) for significance of various transfer status.
+>
+> * [Check Transfer Status API](https://docs.payu.in/reference/check-transfer-status-api) for **Check Transfer Status** API.
+> * [Payouts Lifecycle](https://docs.payu.in/docs/payouts-lifecycle) for significance of various transfer status.
 
 ## Webhooks 
 
