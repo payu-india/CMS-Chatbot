@@ -16,27 +16,29 @@ next:
 This API returns the authentication token generated using the client ID and client secret.
 
 > 📘 Note:
-> 
-> The token received using this API has to be passed in the authorization headers to authorize each subsequent request. Example: **Authorization: Bearer {token\_value}**
+>
+> The token received using this API has to be passed in the authorization headers to authorize each subsequent request. Example: **Authorization: Bearer `{token_value}`**
 
 <BBPSEnvironment />
 
-<details><summary> Sample request</summary>
+<details>
+  <summary> Sample request</summary>
 
 ```curl
 curl -X POST \ 
-  'https://<hostName>/oauth/token \ 
+  'https://<hostName>/oauth/token' \ 
   -H 'content-type: application/x-www-form-urlencoded' \ 
-  -d 'client_id=<agent client id shared by payu>&client_secret=<client secret id shared by payu>f&grant_type=client_credentials&scope=<scopes>' 
+  -d 'client_id=&lt;agent client id shared by payu&gt;&client_secret=&lt;client secret id shared by payu&gt;&grant_type=client_credentials&scope=&lt;scopes&gt;' 
 ```
 
 </details>
 
-<details><summary> Response parameters</summary>
+<details>
+  <summary> Response parameters</summary>
 
 | **Field Name** | **Description**                                               |
 | -------------- | ------------------------------------------------------------- |
-| access\_token  | The access token for the validation  for all subsequent apis. |
+| access\_token  | The access token for the validation for all subsequent apis.  |
 | token\_type    | The token type and It will always be **Bearer**.              |
 | expires\_in    | The expiry time for the token will be in seconds.             |
 | scope          | The scope for which the token is applicable for.              |
@@ -44,9 +46,10 @@ curl -X POST \
 
 </details>
 
-<details><summary> Sample response</summary>
+<details>
+  <summary> Sample response</summary>
 
-- Success scenario
+* Success scenario
 
 ```plaintext
 {
@@ -58,7 +61,7 @@ curl -X POST \
 }
 ```
 
-- Failure scenario
+* Failure scenario
 
 ```plaintext
 { 
@@ -67,16 +70,16 @@ curl -X POST \
   "payload": { 
     "errors": [ 
       { 
-        "reason": "<error message>", 
-        "errorCode": "<error code>" 
+        "reason": "&lt;error message&gt;", 
+        "errorCode": "&lt;error code&gt;" 
       } 
     ], 
     "refId": null, 
     "type": "category_response", 
-    "message": "category_response_failed" 
+    "message": "category_response_failed", 
     "additionalParams":{ 
-           "Key1": "value1" 
-           "Key2": "value2" 
+           "Key1": "value1", 
+           "Key2": "value2", 
            "Key3": "value3" 
      } 
   } 
