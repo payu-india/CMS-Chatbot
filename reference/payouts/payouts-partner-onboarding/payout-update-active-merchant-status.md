@@ -19,7 +19,8 @@ This API is used to update merchant active status.
 
 <PayoutsPartnerEnvionment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 'https://uatoneapi.payu.in/payout/partner/merchant/updateActiveMerchantStatus?payoutMerchantId=1111157&isActive=true' \
