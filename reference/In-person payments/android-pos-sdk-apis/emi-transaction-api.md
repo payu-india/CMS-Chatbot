@@ -16,74 +16,282 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "Handler   \n`mandatory`",
-    "0-1": "`handler` Handlers are used for sending and receiving the data within the two classes.",
-    "0-2": "handler",
-    "1-0": "Device type   \n`mandatory`",
-    "1-1": "`string` The name of the bluetooth of the respective device",
-    "1-2": "DeviceType.ME30S",
-    "2-0": "Address   \n`mandatory`",
-    "2-1": "`string` The bluetooth address incase of MAC devices.",
-    "2-2": "",
-    "3-0": "Amount  \n`mandatory`",
-    "3-1": "`string` The amount that is being transacted.",
-    "3-2": "11.00",
-    "4-0": "Transaction type   \n`mandatory`",
-    "4-1": "`string` The type of the transaction.",
-    "4-2": "PaymentTransactionConst ants.SALE/EMI",
-    "5-0": "Payment Type   \n`mandatory`",
-    "5-1": "`string` Type of payment is POS for Mobile POS devices.(PayU have multiple payment types like POS,Wallet,qr.)",
-    "5-2": "PaymentTransactionConst ants.POS",
-    "6-0": "Mobile Number  \n `Optional`",
-    "6-1": "`string` The mobile number of the customer.",
-    "6-2": "9000000000",
-    "7-0": "Name  \n Optional",
-    "7-1": "`string` The name of the customer.",
-    "7-2": "",
-    "8-0": "Latitude  \n `Optional`",
-    "8-1": "`double` Geolocation where the transaction took place.",
-    "8-2": "71.000001",
-    "9-0": "Longitude  \n `Optional`",
-    "9-1": "`double` Geolocation where the transaction took place.",
-    "9-2": "17.0000001",
-    "10-0": "Merchant reference number   \n`mandatory`",
-    "10-1": "`string` Merchant Invoice Reference Number or pass current date time stamp. [Max upto 40 characters ]",
-    "10-2": "123456",
-    "11-0": "Cash back amount   \n `Optional`",
-    "11-1": "**string** Pass cash back amount only for SALE WITH CASH BACK  \ntransaction type otherwise pass null value.",
-    "11-2": "null",
-    "12-0": "deviceCommMode   \n `Optional`",
-    "12-1": "`int` Select device communication mode. It’s only applicable for QPOS device rest all devices can be ‘N’.",
-    "12-2": "DeviceCommunicationMode.BLUETOOTHCOMMUNICATION",
-    "13-0": "orderReferenceNo   \n `Optional`",
-    "13-1": "`string` Order reference no (only for PayUs internal apps)",
-    "13-2": "",
-    "14-0": "appName   \n `Optional`",
-    "14-1": "`string` The name of the app.",
-    "14-2": "",
-    "15-0": "appVersion  \n `Optional`",
-    "15-1": "`string` The version of the app.",
-    "15-2": "",
-    "16-0": "EMI  \n`mandatory`",
-    "16-1": "`objectComplete` details about EMI  \ntransaction.",
-    "16-2": "<<Refer Section8.5>>"
-  },
-  "cols": 3,
-  "rows": 17,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Handler 
+        `mandatory`
+      </td>
+
+      <td>
+        `handler` Handlers are used for sending and receiving the data within the two classes.
+      </td>
+
+      <td>
+        handler
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Device type \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The name of the bluetooth of the respective device
+      </td>
+
+      <td>
+        DeviceType.ME30S
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Address \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The bluetooth address incase of MAC devices.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Amount\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The amount that is being transacted.
+      </td>
+
+      <td>
+        11.00
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Transaction type \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The type of the transaction.
+      </td>
+
+      <td>
+        PaymentTransactionConst ants.SALE/EMI
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Payment Type \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` Type of payment is POS for Mobile POS devices.(PayU have multiple payment types like POS,Wallet,qr.)
+      </td>
+
+      <td>
+        PaymentTransactionConst ants.POS
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Mobile Number\
+         `Optional`
+      </td>
+
+      <td>
+        `string` The mobile number of the customer.
+      </td>
+
+      <td>
+        9000000000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Name\
+         Optional
+      </td>
+
+      <td>
+        `string` The name of the customer.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Latitude\
+         `Optional`
+      </td>
+
+      <td>
+        `double` Geolocation where the transaction took place.
+      </td>
+
+      <td>
+        71.000001
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Longitude\
+         `Optional`
+      </td>
+
+      <td>
+        `double` Geolocation where the transaction took place.
+      </td>
+
+      <td>
+        17.0000001
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Merchant reference number \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` Merchant Invoice Reference Number or pass current date time stamp. [Max upto 40 characters ]
+      </td>
+
+      <td>
+        123456
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Cash back amount \
+         `Optional`
+      </td>
+
+      <td>
+        * \*string\*\* Pass cash back amount only for SALE WITH CASH BACK\
+          transaction type otherwise pass null value.
+      </td>
+
+      <td>
+        null
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        deviceCommMode \
+         `Optional`
+      </td>
+
+      <td>
+        `int` Select device communication mode. It’s only applicable for QPOS device rest all devices can be ‘N’.
+      </td>
+
+      <td>
+        DeviceCommunicationMode.BLUETOOTHCOMMUNICATION
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        orderReferenceNo \
+         `Optional`
+      </td>
+
+      <td>
+        `string` Order reference no (only for PayUs internal apps)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        appName \
+         `Optional`
+      </td>
+
+      <td>
+        `string` The name of the app.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        appVersion\
+         `Optional`
+      </td>
+
+      <td>
+        `string` The version of the app.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        EMI\
+        `mandatory`
+      </td>
+
+      <td>
+        `objectComplete` details about EMI\
+        transaction.
+      </td>
+
+      <td>
+        {user["Refer Section8.5"]}
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
@@ -94,26 +302,40 @@ selectedBankDetails);
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "ICCTransactionRes  \nponse",
-    "0-1": "`objectICCTransactionRespons` returns a list of transaction details such as `transactionStatus`,  `responseMessaege` etc.",
-    "0-2": "Refer to `ICCTransactionResponse `payload objects."
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        ICCTransactionRes
+        ponse
+      </td>
+
+      <td>
+        `objectICCTransactionRespons` returns a list of transaction details such as `transactionStatus`,  `responseMessaege` etc.
+      </td>
+
+      <td>
+        Refer to `ICCTransactionResponse `payload objects.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample response
 
