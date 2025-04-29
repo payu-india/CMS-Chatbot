@@ -24,21 +24,21 @@ The Checkout Pro SDK provides a complete Mobile Checkout solution for iOS Apps. 
 
 The Checkout Pro SDK gives you the following key capabilities: 
 
-- A complete, ready-to-use native Checkout UI
-- Support for multiple payment options:
-  - All major card providers (Amex, Mastercard, Rupay, Visa, and more)
-  - Netbanking with 150+ Indian banks
-  - UPI Payments (Intent & Collect)
-  - Prepaid Wallets
-  - Credit Card EMI Payments
-  - Recurring Payments
-- Convenience Fee support
-- Offers support
-- LazyPay Support
-- Multi-Currency Payments Support
-- OTP read for faster and improved OTP authentication
-- Customization capabilities to make the SDK your own
+* A complete, ready-to-use native Checkout UI
+* Support for multiple payment options:
+  * All major card providers (Amex, Mastercard, Rupay, Visa, and more)
+  * Netbanking with 150+ Indian banks
+  * UPI Payments (Intent & Collect)
+  * Prepaid Wallets
+  * Credit Card EMI Payments
+  * Recurring Payments
+* Convenience Fee support
+* Offers support
+* LazyPay Support
+* Multi-Currency Payments Support
+* OTP read for faster and improved OTP authentication
+* Customization capabilities to make the SDK your own
 
 ## Compatibility for iOS
 
-- Minimum iOS version: iOS 11
+* Minimum iOS version: iOS 11
