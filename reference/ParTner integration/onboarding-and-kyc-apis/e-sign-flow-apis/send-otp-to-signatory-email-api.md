@@ -10,36 +10,34 @@ metadata:
 next:
   description: ''
 ---
-This API is used to send OTP to the signatory email, and this OTP is used by the **E-Sign Merged Agreement** API to sign the document. This API sends both mobile and email OTP, where the mobile number is the merchant’s registered mobile number.  For more information on the **E-Sign Merged Agreement** API, refer to [E-Sign Merchant Agreement API](ref:e-sign-merchant-agreement-api).
+This API is used to send OTP to the signatory email, and this OTP is used by the **E-Sign Merged Agreement** API to sign the document. This API sends both mobile and email OTP, where the mobile number is the merchant’s registered mobile number. For more information on the **E-Sign Merged Agreement** API, refer to [E-Sign Merchant Agreement API](ref:e-sign-merchant-agreement-api).
 
 **Environment**
 
 |                            |                             |
 | :------------------------- | :-------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in> |
-| **Production Environment** | <https://oneapi.payu.in>    |
+| **Test Environment**       | &lt;https://uatoneapi.payu.in&gt; |
+| **Production Environment** | &lt;https://oneapi.payu.in&gt;    |
 
 ## Request Headers
 
 > 📘 Note:
-> 
-> The access token with the scope as **client\_manage\_agreement** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
-
-
+>
+> The access token with the scope as **client\_manage\_agreement** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
 |               |                         |
 | ------------- | ----------------------- |
-| Authorization | Bearer {{access_token}} |
+| Authorization | Bearer `{access_token}` |
 | Content-Type  | multipart/form-data     |
 
 ## Sample Request
 
 ```curl
-curl --location --request GET '{{onboarding_url}}/api/v1/merchants/{{merchant_uuid}}/generate_merged_document_for_esign' \
---header 'Authorization: Bearer {{access_token}}'
+curl --location --request GET '{`{onboarding_url}`}/api/v1/merchants/{`{merchant_uuid}`}/generate_merged_document_for_esign' \
+--header 'Authorization: Bearer `{access_token}`'
 ```
 
-Where **{{onboarding\_url}}** is substituted with the URL specified in the Test or Production environment as mentioned in the _Environment_ section.
+Where **`{onboarding\_url}`** is substituted with the URL specified in the Test or Production environment as mentioned in the _Environment_ section.
 
 ## Sample Response
 
@@ -77,7 +75,7 @@ Agreement not found
 }
 ```
 
-- KYC document not found with the given **merged\_document\_uuid**
+- KYC document not found with the given **`{merged\_document\_uuid}`**
 
 ```plaintext
 {
