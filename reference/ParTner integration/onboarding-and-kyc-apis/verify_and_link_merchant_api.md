@@ -45,18 +45,19 @@ next:
 ---
 The **Verify and Link Merchant** API is used to:
 
-- Used to link an existing merchant account to a partner account
-- Authorized via client token generated using Client ID and Client Secret
+* Used to link an existing merchant account to a partner account
+* Authorized via client token generated using Client ID and Client Secret
 
-The merchant ID in the request header must be included as a query parameter in the** mid **field.
+The merchant ID in the request header must be included as a query parameter in the **mid**field.
 
 > 📘 Note:
-> 
-> The access token with the scope as **refer_merchant** is required on the header. For more information on getting the access token, refer to [User Token APIs](ref:user-token-apis).
+>
+> The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [User Token APIs](ref:user-token-apis).
 
 <PARTNEROnboardingEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
 curl --location --request POST 'https://test-partner.payu.in/api/v1/merchants/720043/verify' \
@@ -67,7 +68,8 @@ curl --location --request POST 'https://test-partner.payu.in/api/v1/merchants/72
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
