@@ -71,12 +71,12 @@ PayPal is a globally recognized payment gateway integration provider that offers
 
 Choosing the right payment gateway integration is crucial for businesses looking to accept online payments. Consider factors such as security, payment methods, integration ease, pricing, and customer support when making your decision. Evaluate different providers like Razorpay, PayU, Instamojo, and PayPal to find the one that best fits your business requirements. Remember, a seamless payment experience can enhance customer trust and contribute to the success of your business.
 
-- Razorpay
-- PayU
-- Instamojo
-- PayPal
-- Security and Fraud Prevention
-- Payment Methods
-- Integration and Ease of Use
-- Pricing and Fees
-- Customer Support and Reputation
+* Razorpay
+* PayU
+* Instamojo
+* PayPal
+* Security and Fraud Prevention
+* Payment Methods
+* Integration and Ease of Use
+* Pricing and Fees
+* Customer Support and Reputation
