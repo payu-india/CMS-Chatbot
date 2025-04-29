@@ -64,11 +64,11 @@ To use Webhooks during integration with PayU:
 | **52.140.8.65**     | **52.140.8.89** |
 
 5. PayU will send an S2S response to the merchant’s server URL. The merchant’s server URL should be capable of handling the following content types:
-   - FormData
-   - application/x-www-form-urlencode
+   * FormData
+   * application/x-www-form-urlencode
 
 > 📘 Note:
-> 
+>
 > While creating the server URL, ensure that it can accept the data in the above content formats.
 
 Sample response from PayU to the merchant:
@@ -80,9 +80,9 @@ mihpayid=403993715528735905&mode=CASH&status=success&key=QyT13U&txnid=e41097ba86
 The parameters used in generating the above response block are similar to those you shared with PayU while triggering the transaction.
 
 > 📘 Notes:
-> 
-> - In case a parameter has not been consumed, PayU sends it back to you with an empty string.
-> - For reverse hashing the response, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
+>
+> * In case a parameter has not been consumed, PayU sends it back to you with an empty string.
+> * For reverse hashing the response, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
 
 6. Confirm (your server) the receipt with the success status response code: **200 OK** after the PayU response hits the merchant’s server URL.
 
@@ -99,10 +99,10 @@ The table below lists down the webhook events that are supported for Payment Web
 | Refund     | Payment    | Triggered when the payment is refunded           |
 | Dispute    | Payment    | Triggered when a dispute is raised for a payment |
 
-> 📘 callback_on_failure
-> 
+> 📘 callback\_on\_failure
+>
 > PayU supports another type of callback which allows the merchants to recieve webhook payloads for  pending cases in realtime. Currently this callback flag is enabled by the support team on request. 
-> 
+>
 > ***
-> 
+>
 > If you choose to enable this flag, you will be recieving webhooks in realtime for all types of pending payment statuses—see [Payment state explanation](https://docs.payu.in/reference/payment-state-explanations)—following by a successful/failed webhook when the payment state is changed to Successful or falied.
