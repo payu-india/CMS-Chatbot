@@ -14,8 +14,8 @@ This section describes the integration of third-party validation (TPV) on PayUCh
 
 #### Payment Modes Supported
 
-- Net-banking
-- UPI
+* Net-banking
+* UPI
 
 ## Step 1: Include the SDK in your app build.gradle
 
@@ -37,8 +37,8 @@ allprojects {    repositories {        maven {url  "<https://oss.sonatype
 
 The step is to perform the following:
 
-- **Beneficiary Details**: The code sets up the details of beneficiaries (such as their IFSC code and account number) who will receive payments.
-- **Payment Parameters**: These details are then added to the payment parameters, which are used to configure the payment request.  
+* **Beneficiary Details**: The code sets up the details of beneficiaries (such as their IFSC code and account number) who will receive payments.
+* **Payment Parameters**: These details are then added to the payment parameters, which are used to configure the payment request.\
   This setup is essential for ensuring that the payment gateway knows where to direct the funds during a transaction.
 
 To include TPV integration changes:
