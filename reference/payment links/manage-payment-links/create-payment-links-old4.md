@@ -28,14 +28,15 @@ The** Create a Payment Link** API is used to create a payment link for your cust
 
 |                        |                                           |
 | :--------------------- | :---------------------------------------- |
-| Test Environment       | <https://uatoneapi.payu.in/payment-links> |
-| Production Environment | <https://oneapi.payu.in/payment-links>    |
+| Test Environment       | &lt;https://uatoneapi.payu.in/payment-links&gt; |
+| Production Environment | &lt;https://oneapi.payu.in/payment-links&gt;    |
 
 > 📘 Note:
 > 
 > The access token with the scope as **create_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
@@ -87,7 +88,8 @@ Response response = client.newCall(request).execute();
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success scenario**
 
@@ -145,7 +147,8 @@ Response response = client.newCall(request).execute();
 
 ## Request parameters
 
-<details><summary>Reference info for request parameters</summary>
+<details>
+  <summary>Reference info for request parameters</summary>
 
 | Parameter     |                                                                                                                                                                  |
 | :------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
