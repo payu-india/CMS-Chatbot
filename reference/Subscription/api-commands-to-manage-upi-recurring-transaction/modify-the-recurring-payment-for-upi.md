@@ -74,7 +74,6 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ### var1 JSON fields description
 
 **var1** parameter (JSON format) fields description:
@@ -87,7 +86,7 @@ HTTP Method: **POST**
     "0-0": "authPayuId  \n**mandatory**",
     "0-1": "This parameter must contain the mihpayid returned in the payment response of the Registration transaction when the transaction is successfully completed. As explained earlier in the [Register a Recurring Payment](ref:upi-recurring-payment-consent-transaction) section, the merchant needs to map this value against the customer profile at their end so that correct authPayuid will be passed in the request.",
     "1-0": "amount  \n**optional**",
-    "1-1": "\"The new amount of the mandate which has been modified.",
+    "1-1": "The new amount of the mandate which has been modified.",
     "2-0": "endDate  \n**optional**",
     "2-1": "The new end date of the mandate which has been modified.",
     "3-0": "requestId  \n**mandatory**",
@@ -101,7 +100,6 @@ HTTP Method: **POST**
   ]
 }
 [/block]
-
 
 ## Response parameters
 
@@ -129,7 +127,7 @@ HTTP Method: **POST**
     "5-0": "endDate",
     "5-1": "This parameter returns the last date of the mandate.",
     "5-2": "2022-10-06 00:00:00",
-    "6-0": "mandateN  \number",
+    "6-0": "mandateNumber",
     "6-1": "This parameter returns the unique mandate number (UMN) for the registration.",
     "6-2": "700010006213657@mybank",
     "7-0": "hash",
@@ -145,7 +143,6 @@ HTTP Method: **POST**
   ]
 }
 [/block]
-
 
 ## Sample response
 
@@ -195,7 +192,7 @@ It will be an async call to customer for approving the mandate modification in t
 {
 "status":0,
 "action": " MANDATE_UPDATE ",
-"message": 'authPayuId is mandatory "
+"message": "authPayuId is mandatory "
 }
 ```
 
@@ -205,7 +202,7 @@ It will be an async call to customer for approving the mandate modification in t
 {
 "status":0,
 "action": " MANDATE_UPDATE ",
-"message": "requestId is mandatory'"
+"message": "requestId is mandatory"
 }
 ```
 
