@@ -27,9 +27,9 @@ PayU allows merchants to create offers for specific Products/SKUs in the cart. T
 
 **Example**: A merchant has created offer 1 on mobile and offer 2 on watch. During checkout, the following will be shown for a user on the merchant store page:
 
-- If the cart has Smartphone, offer 1 (SKU ID is smartphone234) would show up for the user.  
-- If the cart has an Smartwatch132, offer 2 (SKU ID is smartwatch) would show up for the user.
-- If the cart has both mobile and watch, both offer 1 and offer 2 would show up and user will be able to apply both the offers.
+* If the cart has Smartphone, offer 1 (SKU ID is smartphone234) would show up for the user.  
+* If the cart has an Smartwatch132, offer 2 (SKU ID is smartwatch) would show up for the user.
+* If the cart has both mobile and watch, both offer 1 and offer 2 would show up and user will be able to apply both the offers.
 
 The procedure to add SKU-based offer includes some extra steps when you provide the basic details about the offer. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
 
@@ -37,13 +37,13 @@ After you create a SKU-based offer, you can collect payments from your customers
 
 To include the SKU-based offer details along with the basic details of the offer:
 
-1. Navigate to the **Upload Stock Keeping Units (SKUs)** section of the _Set Offer Rules_ page.
+1. Navigate to the **Upload Stock Keeping Units (SKUs)** section of the *Set Offer Rules* page.
 
-[block:image]{"images":[{"image":["https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/05/Screenshot-2022-05-26-at-11.20.54-AM-875x1024.png",null,null],"align":"center","border":true}]}[/block]
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/05/Screenshot-2022-05-26-at-11.20.54-AM-875x1024.png" />
 
 2. Select any of the following options in the **In case of multiple quantity of same product** field:
-   - **Apply offer once**: Select this option to apply the offer only once for multiple quantity of the same product.
-   - **Apply many times**: Select this option to apply the offer many times for multiple quantity of the same product.
+   * **Apply offer once**: Select this option to apply the offer only once for multiple quantity of the same product.
+   * **Apply many times**: Select this option to apply the offer many times for multiple quantity of the same product.
 3. Click **Download Sample File** if you are not having the XLSX sample file template.The XLSX file contains some sample product details, which you need to update according to your requirements.  
 
 The sample Excel file contains the columns similar to the following screenshot:
@@ -53,15 +53,15 @@ The sample Excel file contains the columns similar to the following screenshot:
 The sample Excel file contains the following columns and the values for the **Product ID** column is mandatory:
 
 > 📘 Note:
-> 
+>
 > The **Product ID** in this Excel file and the **skuId** request parameter used in the PayU Hosted or Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the **skuId** parameter. For more information on Merchant Hosted Checkout Integration for SKU-based offer, refer to [Integrate with PayU Hosted Checkout](doc:payu-hosted-checkout-integration-with-offers) or [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout).
 
-- **Product ID**: The unique product identifier for the product that you wish to apply the SKU-based offer.
-- **Product Name**: The name of the product for which you wish to apply the SKU-based offer.
-- **Min Amount**: For a customer, the minimum amount for which the SKU-based offer is applicable for this product.
-- **Max Amount**: For a customer, the maximum amount for which the SKU-based offer is applicable for this product.
-- **Min Quantity**: The minimum quantity of the product that a customer must order to avail the SKU-based offer.
-- **Max Quantity**: The maximum quantity of the product that a customer can order to avail the SKU-based offer.
+* **Product ID**: The unique product identifier for the product that you wish to apply the SKU-based offer.
+* **Product Name**: The name of the product for which you wish to apply the SKU-based offer.
+* **Min Amount**: For a customer, the minimum amount for which the SKU-based offer is applicable for this product.
+* **Max Amount**: For a customer, the maximum amount for which the SKU-based offer is applicable for this product.
+* **Min Quantity**: The minimum quantity of the product that a customer must order to avail the SKU-based offer.
+* **Max Quantity**: The maximum quantity of the product that a customer can order to avail the SKU-based offer.
 
 4. Update the CSV or text file to include the SKU details. For updating the XLSX file, you can use Microsoft Excel or any other Spreadsheet tool. 
 5. Click **Select file from your library** and select the CSV or text file. 
