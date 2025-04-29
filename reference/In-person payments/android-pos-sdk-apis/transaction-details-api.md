@@ -18,41 +18,115 @@ Create a `PaymentInitialization` class object and call `initiateTransactionDetai
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Sample",
-    "0-0": "Handler object  \n`mandatory`",
-    "0-1": "`handler` Create a handler inner class. This class will return response message.",
-    "0-2": "handler",
-    "1-0": "`RefNO`   \nmandatory",
-    "1-1": "`string` Pass transaction reference number that returns the initiateTransaction response.",
-    "1-2": "Refer to **<<ICCTransactionResponse>>** payload objects.",
-    "2-0": "merchantRefNo   \n`mandatory`",
-    "2-1": "`string` Pass merchant reference number.",
-    "2-2": "123654789",
-    "3-0": "appName   \n`Optional`",
-    "3-1": "`string` The name of the application.",
-    "3-2": "null",
-    "4-0": "appVersion   \n`Optional`",
-    "4-1": "`string` The version of the application.",
-    "4-2": "null",
-    "5-0": "Transaction Type   \n`Optional`",
-    "5-1": "`string` Pass the Type of the transaction (Available inside Payment TransactionConstants class)",
-    "5-2": "MICRO_ATM"
-  },
-  "cols": 3,
-  "rows": 6,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Sample
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Handler object
+        `mandatory`
+      </td>
+
+      <td>
+        `handler` Create a handler inner class. This class will return response message.
+      </td>
+
+      <td>
+        handler
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `RefNO` \
+        mandatory
+      </td>
+
+      <td>
+        `string` Pass transaction reference number that returns the initiateTransaction response.
+      </td>
+
+      <td>
+        Refer to **{user.ICCTransactionResponse}** payload objects.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchantRefNo \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` Pass merchant reference number.
+      </td>
+
+      <td>
+        123654789
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        appName \
+        `Optional`
+      </td>
+
+      <td>
+        `string` The name of the application.
+      </td>
+
+      <td>
+        null
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        appVersion \
+        `Optional`
+      </td>
+
+      <td>
+        `string` The version of the application.
+      </td>
+
+      <td>
+        null
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Transaction Type \
+        `Optional`
+      </td>
+
+      <td>
+        `string` Pass the Type of the transaction (Available inside Payment TransactionConstants class)
+      </td>
+
+      <td>
+        MICRO\_ATM
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
@@ -73,9 +147,9 @@ catch (RuntimeException e)
 
 ## Response parameters
 
-| Parameter                    | Description                                                                                                                  | Sample                                            |
-| :--------------------------- | :--------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------ |
-| `TransactionStatus Response` | objectTransactionStatusResponse returns the details of transaction such as card type, card holder name, reference number etc | Refer to <<TransactionResponse>> payload objects. |
+| Parameter                    | Description                                                                                                                  | Sample                                               |
+| :--------------------------- | :--------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------- |
+| `TransactionStatus Response` | objectTransactionStatusResponse returns the details of transaction such as card type, card holder name, reference number etc | Refer to {user.TransactionResponse} payload objects. |
 
 ## Sample response
 
