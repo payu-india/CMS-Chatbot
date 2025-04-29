@@ -12,8 +12,8 @@ next:
 ---
 The **Banking** section comprises the two major functions:
 
-- [Bank Accounts](https://devguide.payu.in/dashboard/banking/bank-accounts/)
-- [Vendor Payments](https://devguide.payu.in/dashboard/banking/vendor-payments/)
+* [Bank Accounts](https://devguide.payu.in/dashboard/banking/bank-accounts/)
+* [Vendor Payments](https://devguide.payu.in/dashboard/banking/vendor-payments/)
 
 #### **Bank Accounts**
 
@@ -44,7 +44,7 @@ To add a new vendor:
 1. Navigate to **Dashboard > Banking > Account Payable**.
 2. Click **Add Vendor**.
 
-   The _Add New Vendor_ pop-up page is displayed.
+   The *Add New Vendor* pop-up page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/08/image-78.png)
 
@@ -57,38 +57,38 @@ To add bills or invoices in bulk:
 
 1. Click the **Add Bill** menu and select **Add Single Bill**.
 
-   The _Add Single Bill_ page is displayed.
+   The *Add Single Bill* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-79.png)
 
 1. Enter the following basic details of the bill:
 
-- Bill number
-- Description
-- Bill date and Due date (Select dated from Calendar)
-- Gross Amount
+* Bill number
+* Description
+* Bill date and Due date (Select dated from Calendar)
+* Gross Amount
 
 **Note:** Add additional notes to enter more information.
 
 2. Click **Save & Next** to proceed to the next page.
 3. Enter the following vendor details:
-   - **Vendor Name**
-   - **Mobile Number**
-   - **Email**
-   - **GSTIN** no.
+   * **Vendor Name**
+   * **Mobile Number**
+   * **Email**
+   * **GSTIN** no.
 4. Perform any of the following steps:
-   - Select the **Add Bank Account Details** option and enter the bank account details of the vendor:
-     - Account Holder Name
-     - Account Number
-     - IFSC code.
-   - Select the **Add UPI details** option and enter the UPI ID in the **UPI Id** field.
+   * Select the **Add Bank Account Details** option and enter the bank account details of the vendor:
+     * Account Holder Name
+     * Account Number
+     * IFSC code.
+   * Select the **Add UPI details** option and enter the UPI ID in the **UPI Id** field.
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-80.png)
 
 5. Select the **This will be saved as the Default account details for this vendor** checkbox to save the account details like the default account for the vendor.
 6. Click **Save and Next** to complete.
 
-    The vendor successfully added message is displayed on the page. The _Payment Details_ page is displayed.
+   The vendor successfully added message is displayed on the page. The *Payment Details* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-82.png)
 
@@ -153,10 +153,10 @@ The filter option enables you to filter the bill records using the Status, Bill 
 
 You can perform the below functions using the Actions fields.
 
-- Make a payment on your bill
-- Edit the bill created
-- Delete the bill
+* Make a payment on your bill
+* Edit the bill created
+* Delete the bill
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-89.png)
 
-**Note:** Use the Select all checkbox to select or unselect all bills on the page. Use the specific checkbox to select an individual to perform any action (Edit, Pay or Delete)_._
+**Note:** Use the Select all checkbox to select or unselect all bills on the page. Use the specific checkbox to select an individual to perform any action (Edit, Pay or Delete)*.*
