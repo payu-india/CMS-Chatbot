@@ -14,33 +14,78 @@ The **Get SuperCoins Balance** API is used to get the rewards balance for a cust
 
 #### Endpoints
 
-<table style="border:0.1rem solid rgb(242, 242, 242);"><tbody><tr><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;"><strong>Test Environment</strong></td><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;">https://test.payu.in/</td></tr><tr><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;"><strong>Production Environment</strong></td><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;">&lt;TBD&gt;</td></tr></tbody></table>
+<table style={{ border: "0.1rem solid rgb(242, 242, 242)" }}>
+  <tbody>
+    <tr>
+      <td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>
+        <strong>Test Environment</strong>
+      </td>
+      <td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>
+        https://test.payu.in/
+      </td>
+    </tr>
+    <tr>
+      <td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>
+        <strong>Production Environment</strong>
+      </td>
+      <td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>
+        &lt;TBD&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## Request Header
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "Authorization  \n**mandatory**",
-    "0-1": "`String` Specify the access token generated during authentication in this parameter/.",
-    "0-2": "Bearer {access\\_token}",
-    "1-0": "Content-Type  \n**mandatory**",
-    "1-1": "`String` Indicates the format in which the request is sent",
-    "1-2": "application/json"
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Authorization
+        **mandatory**
+      </td>
+
+      <td>
+        `String` Specify the access token generated during authentication in this parameter/.
+      </td>
+
+      <td>
+        Bearer `{access_token}`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Content-Type\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` Indicates the format in which the request is sent
+      </td>
+
+      <td>
+        application/json
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Request Parameters
 
@@ -74,8 +119,6 @@ curl 'https://pp225api.payu.in/loyalty-points/v1/balance' \
   --data-raw '{"mobileNumber":"8076499393","loyaltyProvider":"SUPERCOIN","merchantTxnId":"dafbe2503deda3c04baa"}' \
   --compressed Response :    {"usableAmount":9.50,"amount"... by Bobby Sharma
 ```
-
-
 
 ## Sample Response
 
