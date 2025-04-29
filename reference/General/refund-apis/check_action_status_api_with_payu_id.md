@@ -29,7 +29,7 @@ next:
       slug: refund_transaction_api
       title: Refund Transaction API
 ---
-The **check_action_status** API has another usage too. For a particular PayUID, it returns any of the following the states:
+The **check\_action\_status** API has another usage too. For a particular PayUID, it returns any of the following the states:
 
 <RefundStates />
 
@@ -37,27 +37,43 @@ The **check_action_status** API has another usage too. For a particular PayUID, 
 
 ## Reference information for request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Reference",
-    "0-0": "key",
-    "0-1": "For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n\\- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  \n  \n- **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "1-0": "hash",
-    "1-1": "Hash logic for this API is:  \n`sha512(key\\|command\\|var1\\|salt) sha512`"
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        Reference
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        key
+      </td>
+      <td>
+        For more information on how to generate the Key and Salt, refer to any of the following:  
 
+        \- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  
 
-<details><summary>Sample request</summary>
+        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        hash
+      </td>
+      <td>
+        Hash logic for this API is: sha512(key\|command\|var1\|salt) sha512
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl -X POST "https://test.payu.in/merchant/postservice?form=2
@@ -68,7 +84,7 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
 
 **Failure scenarios**
 
-- If mihpayid is not found, the response is similar to the following:
+* If mihpayid is not found, the response is similar to the following:
 
 ```plaintext
 {
@@ -80,7 +96,7 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
 }
 ```
 
-- If mihpayid is missing, the response is similar to the following:
+* If mihpayid is missing, the response is similar to the following:
 
 ```plaintext
 {
@@ -91,7 +107,8 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
 
 </details>
 
-<details>  <summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 On successful processing from PayU, the response is similar to the following:
 
@@ -284,23 +301,25 @@ On successful processing from PayU, the response is similar to the following:
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
-The **transaction_details** parameter of the response is in JSON format. For more information, refer to [Additional Info for General APIs](/reference/addl-info-general-apis#response-parameters-check-refund-status-with-request-idpayu-id-or-get-transaction-details).
+The **transaction\_details** parameter of the response is in JSON format. For more information, refer to [Additional Info for General APIs](/reference/addl-info-general-apis#response-parameters-check-refund-status-with-request-idpayu-id-or-get-transaction-details).
 
 </details>
 
 ## Request parameters
 
-<details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
 <KeyHashForGeneralParametersDescription />
 
 </details>
 
-**Example values **
+**Example values**
 
 Use the following sample values while trying out the API:
 
-- `var1` (mihpayid): 403993715521937565
-- `var2`: payuid
+* `var1` (mihpayid): 403993715521937565
+* `var2`: payuid
