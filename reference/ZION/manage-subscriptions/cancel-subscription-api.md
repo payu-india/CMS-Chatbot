@@ -10,11 +10,11 @@ metadata:
 next:
   description: ''
 ---
-Cancel subscription interface stops subscription and further processing of the associted immediately. Merchant needs to be mindful before executing this because once Cancelled, same subscription cannot be resumed.
+Cancel subscription interface stops subscription and further processing of the associated immediately. Merchant needs to be mindful before executing this because once Cancelled, same subscription cannot be resumed.
 
 **HTTP method**: DELETE
 
-**Path**: {base_url}/api/sub/v1/merchant/subscriptions/{subscriptionId}
+**Path**: `{base_url}/api/sub/v1/merchant/subscriptions/`{`subscriptionId`}
 
 ## Request parameters
 
@@ -38,7 +38,6 @@ Cancel subscription interface stops subscription and further processing of the a
   ]
 }
 [/block]
-
 
 ### Generating X-PayU-Subscription-Signature
 
