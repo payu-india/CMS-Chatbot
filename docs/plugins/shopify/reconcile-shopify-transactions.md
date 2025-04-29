@@ -31,45 +31,15 @@ To export orders on Shopify:
 2. Navigate to the orders using filters for which you wish get the transaction details.
 3. Click **Export**.
 
-   The _Export orders_ page is displayed.
+   The *Export orders* page is displayed.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-2.31.54-PM-1024x719.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "422px"
-    }
-  ]
-}
-[/block]
+<Image align="center" width="422px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-2.31.54-PM-1024x719.png" />
 
-
-4. Retain the default settings on the _Export orders_ page.
+4. Retain the default settings on the *Export orders* page.
 5. Click **Export orders** to download the transactions listed on the page.
 6. Open the CSV and navigate to the **Payment Reference** column.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-3.19.11-PM-1024x440.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "522px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="522px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-3.19.11-PM-1024x440.png" />
 
 ### Individual Order Details
 
@@ -95,8 +65,8 @@ To get the PayU ID from the transaction details for an order:
 
 You can get the transaction details for a given date range using any of the following APIs:
 
-- The Get Transaction Info (**get\_transaction\_info)** API. For more information, refer to [Get Transaction Info API](ref:get_transaction_info_api)
-- The Get Transaction Details (**get\_Transaction\_Details**) API. For more information, refer to [Get Transaction Details API](ref:get_transaction_details_api)
+* The Get Transaction Info (**get\_transaction\_info)** API. For more information, refer to [Get Transaction Info API](ref:get_transaction_info_api)
+* The Get Transaction Details (**get\_Transaction\_Details**) API. For more information, refer to [Get Transaction Details API](ref:get_transaction_details_api)
 
 ### In Bulk using Excel Exported from PayU Dashboard
 
@@ -139,5 +109,5 @@ To get the transaction details from PayU dashboard:
 
 You need to map Shopify transaction IDs with the Merchant Ref ID in PayU to reconcile. You may reconcile the transaction using vLookup from the Excel sheets obtained using the following procedures in this section:
 
-- [In Bulk using Excel Exported](https://docs.payu.in/docs/reconcile-shopify-transactions#in-bulk-using-excel-exported)
-- [In Bulk using Excel Exported from PayU Dashboard](https://docs.payu.in/docs/reconcile-shopify-transactions#in-bulk-using-excel-exported-from-payu-dashboard)
+* [In Bulk using Excel Exported](https://docs.payu.in/docs/reconcile-shopify-transactions#in-bulk-using-excel-exported)
+* [In Bulk using Excel Exported from PayU Dashboard](https://docs.payu.in/docs/reconcile-shopify-transactions#in-bulk-using-excel-exported-from-payu-dashboard)
