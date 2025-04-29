@@ -13,7 +13,7 @@ next:
 The PayUCheckoutPro SDK provides several customization options allowing you to make the SDK closer to the Look & Feel of your app and control some advanced capabilities provided by the SDK.
 
 > 📘 Remember:
-> 
+>
 > You can dynamically make the changes listed in this section using the PayU Dashboard. For more information, refer to [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
 
 ## Modify theme
@@ -40,7 +40,7 @@ You can customise the font used in the PayU checkout page as per your preference
 Here, we are setting the fontFamily attribute to the font file that you want to access. See Add a font as an XML resource in the Android developer documentation to learn more.
 
 > 📘 Note
-> 
+>
 > See[ Add a font as an XML resource](https://developer.android.com/develop/ui/views/text-and-emoji/fonts-in-xml)  in the Android developer documentation to learn more.
 
 ## Set WebChromeClient
@@ -538,22 +538,7 @@ payUCheckoutProConfig.enableSslDialog = true //true/false
 
 . The error message is shown as received from the SSL error description
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/c19a750-MicrosoftTeams-image_8.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "200px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="200px" src="https://files.readme.io/c19a750-MicrosoftTeams-image_8.png" />
 
 ### Hide the Toolbar in the Custom Browser (CB)
 
@@ -707,10 +692,10 @@ Merchants can specify the checkout payment options order. For this, the merchant
 
 The resulting order on the initial Checkout screen will be:
 
-- Cards (credit/debit)
-- UPI
-- Net Banking
-- Wallets
+* Cards (credit/debit)
+* UPI
+* Net Banking
+* Wallets
 
 ### Enforced Payment Modes
 
@@ -794,14 +779,14 @@ put(PayUCheckoutProConstants.CP_CARD_SCHEMA, CardScheme.AMEX.name)
         })
 ```
 
-| Enforced Payment Mode | Key                                      | Value                       |
-| :-------------------- | :--------------------------------------- | :-------------------------- |
-| Card                  | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.CARD.name()     |
-| Net Banking           | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.NB.name()       |
-| Wallet                | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.WALLET.name()   |
-| UPI                   | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.UPI.name()      |
-| EMI                   | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.EMI.name()      |
-| NEFT / RTGS           | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.NEFTRTGS.name() |
-| Buy Now Pay Later     | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.BNPL.name()     |
+| Enforced Payment Mode | Key                                        | Value                       |
+| :-------------------- | :----------------------------------------- | :-------------------------- |
+| Card                  | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.CARD.name()     |
+| Net Banking           | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.NB.name()       |
+| Wallet                | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.WALLET.name()   |
+| UPI                   | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.UPI.name()      |
+| EMI                   | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.EMI.name()      |
+| NEFT / RTGS           | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.NEFTRTGS.name() |
+| Buy Now Pay Later     | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.BNPL.name()     |
 
 Kindly refer to the below link to get the list of [Bank and Card code](https://docs.payu.in/docs/bank-and-card-codes-for-integration) details
