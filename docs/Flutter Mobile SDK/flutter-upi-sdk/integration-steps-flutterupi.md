@@ -34,9 +34,9 @@ import 'package:payu_upi_flutter/payu_upi_flutter.dart';
 ```
 
 > 📘 Note:
-> 
+>
 > If you are developing for iOS, Install the pod using the following command inside “ios” folder.
-> 
+>
 > ```
 > //Install payu dependencies in your ios project. 
 > $ pod install 
@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> implements PayUUPIProtocol {
 ```
 
 > 🚧 Keep in mind
-> 
+>
 > If you are developing for iOS, make sure your minimum deployment target is iOS 11.
 
 ## Step 3: Implement the Callback protocol
@@ -141,7 +141,7 @@ String parsePayUResponse(Map response){
 ## Step 4: Setup Payment Hashes
 
 > 🚧 Warning
-> 
+>
 > Always generate the hash at your backend to ensure security.
 
 Hash is required to authenticate the request and to make sure MiTM has not happened while data was traveling over the network. You have to set the hash in the hash parameter during the creation of payment parameters.  Use the following format to generate the hash:
@@ -149,17 +149,16 @@ Hash is required to authenticate the request and to make sure MiTM has not happe
 `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)`
 
 > 📘 Note
-> 
+>
 > For TPV transactions, use the following format to generate the hash:
-> 
+>
 > `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)`
-> 
-> The **beneficiarydetail** parameter value will be at last or the last value to be appended.{"beneficiaryAccountNumber":<Account No>,"ifscCode":<IFSC>}
+>
+> The **beneficiarydetail** parameter value will be at last or the last value to be appended.\{"beneficiaryAccountNumber":<Account No>,"ifscCode":<IFSC>}
 
 Here is a sample hash value for your reference:
 
- `smsplus|1695662774012|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||
- {"beneficiaryAccountNumber":"1234567890","ifscCode":"IFSC0000024"}|1b1b0`
+ `smsplus|1695662774012|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||  {"beneficiaryAccountNumber":"1234567890","ifscCode":"IFSC0000024"}|1b1b0`
 
 ## Step 5: Generate Payment Parameters
 
@@ -217,68 +216,257 @@ var si_details = {
 
 ### Payment Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Notes",
-    "0-0": "key  \n`mandatory`",
-    "0-1": "`String` This parameter must contain your merchant key received from PayU.",
-    "0-2": "Cannot be null or empty",
-    "1-0": "transaction_id  \n`mandatory`",
-    "1-1": "`String` It should be unique for each transaction.",
-    "1-2": "Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: -\\_/",
-    "2-0": "amount  \n`mandatory`",
-    "2-1": "`String` Total transaction amount.",
-    "2-2": "Cannot be null or empty and should be a valid double-stringified example: “100.0”",
-    "3-0": "product_info  \n`mandatory`",
-    "3-1": "`String`Product information.",
-    "3-2": "Cannot be null or empty",
-    "4-0": "first_name  \n`mandatory`",
-    "4-1": "`String` Customer’s first name",
-    "4-2": " Cannot be null or empty",
-    "5-0": "email  \n`mandatory`",
-    "5-1": "`String` Customer’s email id",
-    "5-2": "Cannot be null or empty",
-    "6-0": "phone  \n`mandatory`",
-    "6-1": " `String` Customer’s phone number.",
-    "6-2": "There should be a valid phone number",
-    "7-0": "ios_surl  \n`mandatory`",
-    "7-1": "`String` When the transaction is successful, PayU will load this URL and pass the transaction response.  \n**Note**: This field is applicable for iOS integration",
-    "7-2": "Should be a valid URL",
-    "8-0": "ios_furl  \n`mandatory`",
-    "8-1": "`String` When the transaction fails, PayU will load this URL and pass the transaction response.  \nNo\\*\\*\\*\\*te: This field is applicable for iOS integration",
-    "8-2": " Should be a valid URL",
-    "9-0": "android_surl  \n`mandatory`",
-    "9-1": " `String` When the transaction is successful, PayU will load this URL and pass the transaction response.  \n**Note**: This field is applicable for Android integration",
-    "9-2": "Should be a valid URL",
-    "10-0": "android_furl  \n`mandatory`",
-    "10-1": "`String` When the transaction fails, PayU will load this URL and pass the transaction response.  \nWhen the transaction is a success, PayU will load this URL and pass the transaction response.  \n**Note**: This field is applicable for Android integration",
-    "10-2": "Should be a valid URL",
-    "11-0": "environment  \n`mandatory`",
-    "11-1": "`String` Environment of SDK",
-    "11-2": " \"0\" for Production and \"1\" for Test",
-    "12-0": "user_credentials  \n`mandatory`",
-    "12-1": "`String`User bank account number for TPV transaction.",
-    "12-2": "",
-    "13-0": "beneficiary_ifsc  \n`no`",
-    "13-1": "`String` IFSC of bank account for TPV transaction.",
-    "13-2": "",
-    "14-0": "beneficiary_account_number ",
-    "14-1": "Users bank account number for TPV transaction.",
-    "14-2": ""
-  },
-  "cols": 3,
-  "rows": 15,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Notes
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must contain your merchant key received from PayU.
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        transaction\_id\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` It should be unique for each transaction.
+      </td>
+
+      <td>
+        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: -\_/
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Total transaction amount.
+      </td>
+
+      <td>
+        Cannot be null or empty and should be a valid double-stringified example: “100.0”
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        product\_info\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Product information.
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        first\_name\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Customer’s first name
+      </td>
+
+      <td>
+         Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Customer’s email id
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        `mandatory`
+      </td>
+
+      <td>
+         `String` Customer’s phone number.
+      </td>
+
+      <td>
+        There should be a valid phone number
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ios\_surl\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` When the transaction is successful, PayU will load this URL and pass the transaction response.  
+
+        * \*Note\*\*: This field is applicable for iOS integration
+      </td>
+
+      <td>
+        Should be a valid URL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ios\_furl\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` When the transaction fails, PayU will load this URL and pass the transaction response.\
+        No\*\*\*\*te: This field is applicable for iOS integration
+      </td>
+
+      <td>
+         Should be a valid URL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        android\_surl\
+        `mandatory`
+      </td>
+
+      <td>
+         `String` When the transaction is successful, PayU will load this URL and pass the transaction response.  
+
+        * \*Note\*\*: This field is applicable for Android integration
+      </td>
+
+      <td>
+        Should be a valid URL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        android\_furl\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` When the transaction fails, PayU will load this URL and pass the transaction response.\
+        When the transaction is a success, PayU will load this URL and pass the transaction response.  
+
+        * \*Note\*\*: This field is applicable for Android integration
+      </td>
+
+      <td>
+        Should be a valid URL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        environment\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Environment of SDK
+      </td>
+
+      <td>
+         "0" for Production and "1" for Test
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        user\_credentials\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`User bank account number for TPV transaction.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        beneficiary\_ifsc\
+        `no`
+      </td>
+
+      <td>
+        `String` IFSC of bank account for TPV transaction.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        beneficiary\_account\_number 
+      </td>
+
+      <td>
+        Users bank account number for TPV transaction.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Step 6: Initiate the payment
 
