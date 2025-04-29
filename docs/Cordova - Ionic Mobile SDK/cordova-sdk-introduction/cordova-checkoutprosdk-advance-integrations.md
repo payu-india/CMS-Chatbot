@@ -12,26 +12,26 @@ next:
 ---
 You can perform the following after completing the basic integration:
 
-- [Change the theme](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#change-the-theme)
-- [Set merchant logo](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#set-merchant-logo)
-- [Set merchant name](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#set-merchant-name)
-- [Hide Checkout screen Back button Dialog box](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#hide-checkout-screen-back-button-dialog-box)
-- [Hide Back button dialog box after payment initialisation](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#hide-back-button-dialog-box-after-payment-initialisation)
-- [Auto Select OTP](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#auto-select-otp)
-- [Set merchant response timeout](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#set-merchant-response-timeout)
-- [Review order](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#review-order)
-- [Additional payment options on the Checkout screen](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#additional-payment-options-on-the-checkout-screen)
-- [Configure checkout payment modes order](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#configure-checkout-payment-modes-order)
-- [Offers](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#offers)
-- [Native OTP Assist](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#native-otp-assist)
-- [Custom Note integration](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#custom-note-integration)
-- [Enforced payment modes](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#enforced-payment-modes)
-- [Android specific configurations](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#android-specific-configurations)
+* [Change the theme](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#change-the-theme)
+* [Set merchant logo](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#set-merchant-logo)
+* [Set merchant name](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#set-merchant-name)
+* [Hide Checkout screen Back button Dialog box](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#hide-checkout-screen-back-button-dialog-box)
+* [Hide Back button dialog box after payment initialisation](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#hide-back-button-dialog-box-after-payment-initialisation)
+* [Auto Select OTP](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#auto-select-otp)
+* [Set merchant response timeout](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#set-merchant-response-timeout)
+* [Review order](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#review-order)
+* [Additional payment options on the Checkout screen](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#additional-payment-options-on-the-checkout-screen)
+* [Configure checkout payment modes order](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#configure-checkout-payment-modes-order)
+* [Offers](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#offers)
+* [Native OTP Assist](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#native-otp-assist)
+* [Custom Note integration](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#custom-note-integration)
+* [Enforced payment modes](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#enforced-payment-modes)
+* [Android specific configurations](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#android-specific-configurations)
 
 > 🚧 Callout
-> 
+>
 > Before you begin with the advanced integration with PayUCheckoutPro, the payUCheckoutProConfig object needs to be passed with payUPaymentParams in the openCheckoutScreen method of `PayUBizSdk`. You can use the following sample code snippet:
-> 
+>
 > ```
 > let payuParams = {
 >       payUPaymentParams: <PayUPaymentParams>,
@@ -52,7 +52,7 @@ var payUCheckoutProConfig = {
 }
 ```
 
-**For Android**: To change the primary color, add the color values in your Android colors.xml. For more information, refer to [Customize your Integration](<>).
+**For Android**: To change the primary color, add the color values in your Android colors.xml. For more information, refer to [Customize your Integration]().
 
 ***
 
@@ -198,11 +198,11 @@ var payUCheckoutProConfig = {
 
 The resulting payment order on the initial Checkout screen will be: 
 
-- Cards (Credit or Debit)
-- Net Banking
-- UPI
-- Wallets
-- EMI
+* Cards (Credit or Debit)
+* Net Banking
+* UPI
+* Wallets
+* EMI
 
 ## Offers
 
