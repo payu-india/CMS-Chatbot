@@ -35,36 +35,22 @@ next:
 ---
 ## Features
 
-- Supports  UPI, card, and wallet payment modes
-- Opens as an in-app experience without any redirection
-- UPI PIN authentication
-- For Phonepe pay, no CVV rather an OTP with auto read/ submit is there
-- Fallbacks to collect in case the app is not installed
+* Supports  UPI, card, and wallet payment modes
+* Opens as an in-app experience without any redirection
+* UPI PIN authentication
+* For Phonepe pay, no CVV rather an OTP with auto read/ submit is there
+* Fallbacks to collect in case the app is not installed
 
 ## PayU offers two types of PhonePe flows:
 
-- In-App Flow
-- Web Flow
+* In-App Flow
+* Web Flow
 
 ## In-App flow
 
 Where the user device has the PhonePe application installed. We invoke the Installed PhonePe application to do the payment transaction. Users will see the Bottom-sheet (In-app) like the UI on the checkout screen of the following video:
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/82ae086-ezgif.com-resize_2.gif",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/82ae086-ezgif.com-resize_2.gif" />
 
 ## Web flow
 
@@ -72,6 +58,6 @@ If the user device doesn’t have the PhonePe application installed, we will sho
 
 ## Compatibility
 
-- Min SDK Version: 21
-- Compile SDK Version: 31 and above
-- Kotlin version: 1.6.10
+* Min SDK Version: 21
+* Compile SDK Version: 31 and above
+* Kotlin version: 1.6.10
