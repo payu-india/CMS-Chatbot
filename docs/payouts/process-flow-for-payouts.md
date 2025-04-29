@@ -35,12 +35,12 @@ Payouts payment workflow is simple and hassle-free. Payouts can be done through 
 
 For more information, refer to following sections under API Reference:
 
-- [Authentication for Payouts](ref:authentication-for-payouts)
-- [Initiation and Tracking](ref:payouts-initiation-and-tracking)
-- [Verification and Validation](ref:verification-and-validation)
-- [Smart Send APIs](ref:smart-send-apis)
-- [Bulk Smart Send](ref:bulk-smart-send)
-- [Beneficiary Management](ref:beneficiary-management)
+* [Authentication for Payouts](ref:authentication-for-payouts)
+* [Initiation and Tracking](ref:payouts-initiation-and-tracking)
+* [Verification and Validation](ref:verification-and-validation)
+* [Smart Send APIs](ref:smart-send-apis)
+* [Bulk Smart Send](ref:bulk-smart-send)
+* [Beneficiary Management](ref:beneficiary-management)
 
 ## Payouts using CSV Flow
 
