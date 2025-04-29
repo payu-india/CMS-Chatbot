@@ -19,10 +19,11 @@ This API is used to cancel a particular smart send payment link.
 
 |                            |                                                                         |
 | -------------------------- | ----------------------------------------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/v2/smartSend/expiry/{smartSendId}>    |
-| **Production Environment** | <https://payout.payumoney.com/payout/v2/smartSend/expiry/{smartSendId}> |
+| **Test Environment**       | &lt;https://uatoneapi.payu.in/payout/v2/smartSend/expiry/`{smartSendId}`&gt;    |
+| **Production Environment** | &lt;https://payout.payumoney.com/payout/v2/smartSend/expiry/`{smartSendId}`&gt; |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location --request POST 'https://test.payumoney.com/payout/smartPay/cancel?merchantRefId=Test6Sep3' \--header 'Authorization: Bearer 0eabb5d79b6324ceae72c96c6099932b219d58d293642d6b9503f5ace7e416ed' \--header 'payoutMerchantId: 1111766' \--header 'Content-Type: application/json'
@@ -30,7 +31,8 @@ curl --location --request POST 'https://test.payumoney.com/payout/smartPay/cance
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Failure scenario**
 
