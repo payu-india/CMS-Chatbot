@@ -8,3 +8,4 @@
 - expire-intent-link-api
 - print-invoice-qr-api
 - send-invoice-qr-to-sms-api
+- transaction-callback-api
