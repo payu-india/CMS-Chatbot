@@ -31,13 +31,13 @@ HTTP Method: **POST**
     "h-2": "**Example**",
     "0-0": "client\\_id  \n**mandatory**",
     "0-1": "`String` This parameter must contain the public identifier of the client to access the platform.",
-    "0-2": "{{client\\_id}}",
+    "0-2": "`{client\\_id}`",
     "1-0": "client\\_secret  \n**mandatory**",
     "1-1": "`String` This parameter must contain a unique secret of the client for authorization.",
-    "1-2": "{{client\\_secret}}",
+    "1-2": "`{client\\_secret}`",
     "2-0": "token",
     "2-1": "`String`This parameter must contain the token that must be revoked.",
-    "2-2": "{{token}}"
+    "2-2": "`{token}`"
   },
   "cols": 3,
   "rows": 3,
@@ -49,13 +49,11 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ## Sample request
 
 ```curl
 curl --location -g --request POST 'https://uat-accounts.payu.in/revoke' \
---header 'merchantId: {{merchantId}}' \
+--header 'merchantId: `{merchantId}`' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer {{access_token}}' \
-}'
+--header 'Authorization: Bearer `{access_token}`'
 ```
