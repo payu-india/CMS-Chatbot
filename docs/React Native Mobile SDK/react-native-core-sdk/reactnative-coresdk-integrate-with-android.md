@@ -24,9 +24,9 @@ To integrate React Native Code SDK on Android, follow these steps:
 1. [Installation](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#step-1-installation)
 2. [Generate payment hash](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#step-2-generate-payment-hash)
 3. [Build the Payment Parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#step-3-build-the-payment-parameters)
-   - [Set Net Banking params for payment](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#set-net-banking-params-for-payment)
-   - [Set Card payment parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#set-card-payment-parameters)
-   - [Set Wallet payment parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#set-wallet-payment-parameters)
+   * [Set Net Banking params for payment](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#set-net-banking-params-for-payment)
+   * [Set Card payment parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#set-card-payment-parameters)
+   * [Set Wallet payment parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#set-wallet-payment-parameters)
 4. [Make payment](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#step-4-make-payment)
 5. [Register listeners](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#step-5-register-listeners)
 6. [Check the response](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#step-6-check-the-response)
@@ -70,7 +70,7 @@ Generate the payment hash and pass the hash in the JSON `payUPaymentParams.hashe
 To learn more about sash generation, see Hash Generation.
 
 > 📘 Remember
-> 
+>
 > Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
 
 ***
