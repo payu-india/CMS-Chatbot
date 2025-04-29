@@ -19,10 +19,11 @@ The **Verify Account** API will return the account holder’s name against the b
 
 |                            |                                                               |
 | -------------------------- | ------------------------------------------------------------- |
-| **Production Environment** | \<<https://payout.payumoney.com/payout/payment/verifyAccount> |
-| **Test Environment**       | \<<https://uatoneapi.payu.in/payout/payment/verifyAccount>    |
+| **Production Environment** | &lt;&lt;https://payout.payumoney.com/payout/payment/verifyAccount&gt; |
+| **Test Environment**       | &lt;&lt;https://uatoneapi.payu.in/payout/payment/verifyAccount&gt;    |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location --request POST 'https://test.payumoney.com/payout/payment/verifyAccount' \
@@ -41,7 +42,8 @@ curl --location --request POST 'https://test.payumoney.com/payout/payment/verify
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success scenario**
 
