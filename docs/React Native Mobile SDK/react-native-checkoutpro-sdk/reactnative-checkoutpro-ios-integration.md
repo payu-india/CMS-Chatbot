@@ -24,18 +24,18 @@ next:
 ---
 To integrate with the CheckoutPro mobile SDK: 
 
-- Include the SDK in your app project​
-- Set up the payment hashes​
-- ​Build the payment parameters​
-- ​Initiate the payment​
-- ​Handle the payment completion​
-- Customization
+* Include the SDK in your app project​
+* Set up the payment hashes​
+* ​Build the payment parameters​
+* ​Initiate the payment​
+* ​Handle the payment completion​
+* Customization
 
 ***
 
 ## Step 1: Include the SDK in your app project
 
-CheckoutPro is a dynamic framework. If you are not using ‘use_frameworks!’, add the following entries at the end of your `podfile`:
+CheckoutPro is a dynamic framework. If you are not using ‘use\_frameworks!’, add the following entries at the end of your `podfile`:
 
 ```
 $dynamic_framework = ['PayUAssetLibraryKit', 'PayUBizCoreKit', 'PayUCheckoutProBaseKit', 'PayUCheckoutProKit', 'PayUCustomBrowser', 'PayULoggerKit', 'PayUNetworkingKit', 'PayUUPICoreKit', 'Socket.IO-Client-Swift', 'Starscream']
@@ -108,49 +108,189 @@ generateHash = (e) => {
 
 To initiate a payment, your app needs to send transactional information to the Checkout Pro SDK.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "Key  \n`mandatory`",
-    "0-1": "`String` This parameter must contain your merchant key received from PayU.",
-    "1-0": "transactionId  \n`mandatory`",
-    "1-1": "`String` It should be unique for each transaction.",
-    "2-0": "Amount  \n`mandatory`",
-    "2-1": "`String` Total transaction amount.",
-    "3-0": "productInfo  \n`mandatory`",
-    "3-1": "`String` Information about the product.",
-    "4-0": "firstName  \n`mandatory`",
-    "4-1": "`String` Customer’s first name.",
-    "5-0": "Email  \n`mandatory`",
-    "5-1": "`String` Customer’s email id.",
-    "6-0": "Phone  \n`mandatory`",
-    "6-1": "`String` Customer’s phone number, **Max character limit** : 10 Digits",
-    "7-0": "ios_surl  \n`mandatory`",
-    "7-1": "`String` When the transaction gets successful, PayU will load this URL and pass the transaction response.  \n**Note**: This field is applicable for iOS integration  \n**Sample URL**: <https://cbjs.payu.in/sdk/success>",
-    "8-0": "ios_furl  \n`mandatory`",
-    "8-1": "`String` When the transaction fails, PayU will load this URL and pass the transaction response.  \n**Note**: This field is applicable for iOS integration  \n**Sample URL**: <https://cbjs.payu.in/sdk/failure>",
-    "9-0": "android_surl  \n`mandatory`",
-    "9-1": "`String` When the transaction gets successful, PayU will load this URL and pass the transaction response.  \n**Note**: This field is applicable for Android integration",
-    "10-0": "Environment  \n`mandatory`",
-    "10-1": "`String` Environment of SDK",
-    "11-0": "User Credential  \n`mandatory`",
-    "11-1": "`String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:  \n`<merchantKey>:<userId>`  \nHere,  \nUserId is any id/email/phone number to uniquely identify the user.",
-    "12-0": "additionalCharges",
-    "12-1": "String  \nThis parameter is required if merchant want to take additional charge from user,\tshould be string with PG:Amount or IBIBOCode:Amount  \nSample : CC:10,NB:20,SBIB:15",
-    "13-0": "percentageAdditionalCharges",
-    "13-1": "String  \nThis parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable,  \nshould be string with PG:Amount or IBIBOCode:Amount  \nSample : CC:100,NB:50,SBIB:25"
-  },
-  "cols": 2,
-  "rows": 14,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Key
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must contain your merchant key received from PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        transactionId\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` It should be unique for each transaction.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Amount\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Total transaction amount.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productInfo\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Information about the product.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstName\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Customer’s first name.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Email\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Customer’s email id.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Phone\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Customer’s phone number, **Max character limit** : 10 Digits
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ios\_surl\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.  
+
+        * \*Note\*\*: This field is applicable for iOS integration  
+        * \*Sample URL\*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ios\_furl\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` When the transaction fails, PayU will load this URL and pass the transaction response.  
+
+        * \*Note\*\*: This field is applicable for iOS integration  
+        * \*Sample URL\*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        android\_surl\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.  
+
+        * \*Note\*\*: This field is applicable for Android integration
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Environment\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Environment of SDK
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        User Credential\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:\
+        `<merchantKey>:<userId>`\
+        Here,\
+        UserId is any id/email/phone number to uniquely identify the user.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        additionalCharges
+      </td>
+
+      <td>
+        String\
+        This parameter is required if merchant want to take additional charge from user,	should be string with PG:Amount or IBIBOCode:Amount\
+        Sample : CC:10,NB:20,SBIB:15
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        percentageAdditionalCharges
+      </td>
+
+      <td>
+        String\
+        This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable,\
+        should be string with PG:Amount or IBIBOCode:Amount\
+        Sample : CC:100,NB:50,SBIB:25
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/ios-standing-instructions-parameters).
 
@@ -158,16 +298,16 @@ For details on Standing Instructions parameters, refer to [PayU Standing Instruc
 
 The additional parameters (optional) that can be passed to SDK are udf` `parameters, static hashes, and other parameters. For more details on Static Hash generation and passing them, refer to [Generate Hashes](https://docs.payu.in/docs/ios-checkoutpro-generate-hash). The following is a list of parameters that can be passed in additional parameters:
 
-| Parameter                                 | Description                                                                                                                                                              |
-| :---------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PayUCheckoutProConstants.CP_UDF1          | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
-| PayUCheckoutProConstants.CP_UDF2          | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
-| PayUCheckoutProConstants.CP_UDF3          | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
-| PayUCheckoutProConstants.CP_UDF4          | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
-| PayUCheckoutProConstants.CP_UDF5          | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
-| Static hashes                             | `String` The static hashes are specified in this parameter. For more information, refer to the [Generate Hash](https://docs.payu.in/docs/ios-checkoutpro-generate-hash). |
-| PayUCheckoutProConstants.SODEX_OSOURC_EID | `String` Sodexo Source ID, Merchant can store it from the third field of the PayU response.                                                                              |
-| PaymentParamConstant.walletUrn            | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                       |
+| Parameter                                   | Description                                                                                                                                                              |
+| :------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PayUCheckoutProConstants.CP\_UDF1           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
+| PayUCheckoutProConstants.CP\_UDF2           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
+| PayUCheckoutProConstants.CP\_UDF3           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
+| PayUCheckoutProConstants.CP\_UDF4           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
+| PayUCheckoutProConstants.CP\_UDF5           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
+| Static hashes                               | `String` The static hashes are specified in this parameter. For more information, refer to the [Generate Hash](https://docs.payu.in/docs/ios-checkoutpro-generate-hash). |
+| PayUCheckoutProConstants.SODEX\_OSOURC\_EID | `String` Sodexo Source ID, Merchant can store it from the third field of the PayU response.                                                                              |
+| PaymentParamConstant.walletUrn              | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                       |
 
 The payment parameters and additional parameters can be passed using the following code snippet:
 
