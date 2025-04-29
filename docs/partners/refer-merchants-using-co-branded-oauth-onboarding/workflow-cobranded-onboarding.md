@@ -12,7 +12,7 @@ next:
 ---
 Co-Branded (OAuth) Onboarding or OAuth Workflow (technical workflow) involves the steps as illustrated in the following diagram:
 
-[block:image]{"images":[{"image":["https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/diagram-description-automatically-generated.png",null,null],"align":"center","border":true}]}[/block]
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/diagram-description-automatically-generated.png" />
 
 The merchant’s workflow involves the following steps:
 
@@ -20,21 +20,21 @@ The merchant’s workflow involves the following steps:
 2. After onboarding on PayU, they are asked to give consent to their partner for sharing their credentials.
 3. On acceptance, the merchant is redirected to the URL specified in the partner account.
 
-> **Example**: If the redirect URL is <https://abc.com>, the merchant will be redirected to the following URL:
+> **Example**: If the redirect URL is [https://abc.com](https://abc.com), the merchant will be redirected to the following URL:
 
-<https://abc.com?auth_code=${code}&merchantId=${mid}>
+[https://abc.com?auth\_code=$\{code}\&merchantId=$\{mid}](https://abc.com?auth_code=$\{code}\&merchantId=$\{mid})
 
 > **Note**: The steps to get the merchant credentials require only two APIs. This removes the entry of merchant key and salt on a partner website. PayU recommends this for the seamless onboarding of merchants.
 
-4. From the above authorization code, call valid Auth code and client API_**.**_ For more information, refer [Validate Auth Code and Client](ref:validate_authcode_and_client_api).
+4. From the above authorization code, call valid Auth code and client AP&#x49;***.*** For more information, refer [Validate Auth Code and Client](ref:validate_authcode_and_client_api).
 
-{{hub\_base\_url}}/oauth/token
+\{\{hub\_base\_url}}/oauth/token
 
    Partner will get access token in response
 
 5. Call the Credential API using the access token from Step 4. For more information, refer to [Get Merchant Credentials API](ref:get_merchant_credentials_api)
 
-{{partner\_base\_url}}/api/v1/merchants/{{mid}}/credential
+\{\{partner\_base\_url}}/api/v1/merchants/\{\{mid}}/credential
 
 ## Merchant Sign-Up Workflow with Co-Branded Onboarding
 
@@ -70,17 +70,17 @@ To sign up a merchant using OAuth:
 ![Picture 7](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/picture-7.png)
 
 5. Select any of the following roles:
-   - Business Owner
-   - Developer
-   - Customer
+   * Business Owner
+   * Developer
+   * Customer
 
 ![Picture 8](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/picture-8.png)
 
-A list of questions is displayed on the _What are you looking for from PayU_? page similar to the following screenshot:
+A list of questions is displayed on the *What are you looking for from PayU*? page similar to the following screenshot:
 
 ![Picture 9](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/picture-9.png)
 
-6. Provide input for each question on the _What are you looking for from PayU_? page.
+6. Provide input for each question on the *What are you looking for from PayU*? page.
 
 A welcome message is displayed similar to the following screenshot.
 
@@ -88,7 +88,7 @@ A welcome message is displayed similar to the following screenshot.
 
 7. Click **Activate Account**.
 
-The _Complete your full KYC_ page, similar to the following screenshot is displayed. For more information on completing your KYC, refer to [Activate Account](doc:complete-your-kyc)
+The *Complete your full KYC* page, similar to the following screenshot is displayed. For more information on completing your KYC, refer to [Activate Account](doc:complete-your-kyc)
 
 ![Picture 11](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/picture-11.png)
 
@@ -104,7 +104,7 @@ The merchant login workflow with Co-Branded (OAuth) Onboarding involves:
 
    For example:
 
-<https://onboarding.payu.in/app/account?reseller_id=11ea-c29b-c691cce0-8256-02aa98a2d2b0&email=[ishikanarang27@gmail.com](mailto:ishikanarang27@gmail.com)>
+[https://onboarding.payu.in/app/account?reseller\_id=11ea-c29b-c691cce0-8256-02aa98a2d2b0\&email=\[ishikanarang27@gmail.com\](mailto:ishikanarang27@gmail.com)](https://onboarding.payu.in/app/account?reseller_id=11ea-c29b-c691cce0-8256-02aa98a2d2b0\&email=\[ishikanarang27@gmail.com]\(mailto:ishikanarang27@gmail.com\))
 
    The Merchant Login page is displayed.
 
@@ -112,7 +112,7 @@ The merchant login workflow with Co-Branded (OAuth) Onboarding involves:
 
 2. Enter the merchant password and click **Verify**.
 
-   The _Authorize Your Account_ page is displayed.
+   The *Authorize Your Account* page is displayed.
 
 ![Image](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/image-6.png)
 
@@ -122,4 +122,4 @@ The merchant login workflow with Co-Branded (OAuth) Onboarding involves:
 
 ![Image](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/image-7.png)
 
-4. Click **Back to \<app name> app**.
+4. Click **Back to\<app name> app**.
