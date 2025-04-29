@@ -18,8 +18,8 @@ HTTP Method: **POST**
 
 |                            |                                                              |
 | -------------------------- | ------------------------------------------------------------ |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/payment/fetchMaskedVpa>    |
-| **Production Environment** | <https://payout.payumoney.com/payout/payment/fetchMaskedVpa> |
+| **Test Environment**       | &lt;https://uatoneapi.payu.in/payout/payment/fetchMaskedVpa&gt; |
+| **Production Environment** | &lt;https://payout.payumoney.com/payout/payment/fetchMaskedVpa&gt; |
 
 ## Header parameters
 
@@ -31,7 +31,7 @@ HTTP Method: **POST**
     "h-2": "**Example**",
     "0-0": "Authorization`\nmandatory`",
     "0-1": "`String`Specify the access token generated during authentication in this parameter.",
-    "0-2": "Bearer {access\\_token}",
+    "0-2": "Bearer `{access_token}`",
     "1-0": "payoutMerchantId  \n`mandatory`",
     "1-1": "`String`Specify the merchant ID provided while onboarding for Payouts in this parameter.",
     "1-2": "1111126",
@@ -48,7 +48,6 @@ HTTP Method: **POST**
   ]
 }
 [/block]
-
 
 > 📘 Note:
 > 
@@ -75,7 +74,6 @@ HTTP Method: **POST**
   ]
 }
 [/block]
-
 
 ## Sample request
 
@@ -113,7 +111,6 @@ curl --location --request GET 'https://test.payumoney.com/payout/payment/fetchMa
 }
 [/block]
 
-
 ### Description of data JSON fields
 
 [block:parameters]
@@ -134,7 +131,6 @@ curl --location --request GET 'https://test.payumoney.com/payout/payment/fetchMa
   ]
 }
 [/block]
-
 
 ## Sample response
 
