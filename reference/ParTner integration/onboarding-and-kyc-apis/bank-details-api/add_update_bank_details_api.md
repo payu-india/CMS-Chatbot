@@ -15,16 +15,17 @@ next:
 ---
 This API is used to perform the following:
 
-- Used to add or update the bank account details, only after a successful verification of merchant’s PAN card details.
-- Authorized using the user token received from verify OTP API
+* Used to add or update the bank account details, only after a successful verification of merchant’s PAN card details.
+* Authorized using the user token received from verify OTP API
 
 > 📘 Note:
-> 
-> The access token with the scope as **create_bank_details** (to create bank details) or **update_bank_details** (to update bank details) is required on the header. For more information on getting the access token, refer to [User Token APIs](ref:user-token-apis).
+>
+> The access token with the scope as **create\_bank\_details** (to create bank details) or **update\_bank\_details** (to update bank details) is required on the header. For more information on getting the access token, refer to [User Token APIs](ref:user-token-apis).
 
 <PARTNEROnboardingEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location -g --request POST '{{partner_base_url}}/api/v1/merchants/{{merchant_uuid}}/add_bank_detail' \
@@ -41,7 +42,8 @@ curl --location -g --request POST '{{partner_base_url}}/api/v1/merchants/{{merch
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
@@ -54,12 +56,10 @@ curl --location -g --request POST '{{partner_base_url}}/api/v1/merchants/{{merch
         "uuid": "11ea-b455-b8d8cf3a-b32e-38f9d3c7f51b",
         "created_at": "2020-06-22T06:58:05.000Z",
         "updated_at": "2020-06-22T06:58:05.000Z",
-        "bank_name": "AXIS BANK",
+        "bank_name": "AXIS BANK"
     }
 }
 ```
-
-<br>
 
 </details>
 
