@@ -22,7 +22,7 @@ metadata:
 next:
   description: ''
 ---
-The Verify Payment (**verify_payment**) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU’s database after you receive the response, where var1 is your transaction ID.
+The Verify Payment (**verify\_payment**) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU’s database after you receive the response, where var1 is your transaction ID.
 
 <GENERALAPIsEnvironment />
 
@@ -41,7 +41,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 
 <details>  <summary>Sample response</summary>
 
-- If credit card payment is made, the response is similar to the following:
+* If credit card payment is made, the response is similar to the following:
 
 ```plaintext
 {
@@ -101,7 +101,7 @@ AI-generated content may be incorrect
 
 ```
 
-- Offer availed on cart level
+* Offer availed on cart level
 
 ```
 {
@@ -194,7 +194,7 @@ AI-generated content may be incorrect
 }
 ```
 
-- Offer availed at Transaction level
+* Offer availed at Transaction level
 
 ```
 {
@@ -249,7 +249,7 @@ AI-generated content may be incorrect
 
 #### Failure Responses
 
-- If txnID is not found, the response is similar to the following:
+* If txnID is not found, the response is similar to the following:
 
 ```plaintext
 {
@@ -263,52 +263,107 @@ Successfully","transaction_details":{"IhfgcZnXR4o4nB":{"mihpayid":"Not Found","s
 
 <details>  <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of web service call. The status can be any of the following:  \n_ 0 - If web service call failed.  \n_ 1 - If web service call succeeded",
-    "0-2": "0",
-    "1-0": "msg",
-    "1-1": "This parameter returns the reason string.",
-    "1-2": "For example, any of the following messages are displayed:  \n  \n- Parameter missing\n- Token is empty \n- Amount is empty\n- Transaction not exists",
-    "2-0": "transaction\\_details",
-    "2-1": "This parameter contains the response in a JSON format. For more information refer to [JSON fields description for transaction_details parameter ](#json-field-description-for-transaction_details-parameter).",
-    "2-2": "",
-    "3-0": "request\\_id",
-    "3-1": "PayU Request ID for a request in a Transaction. For example, a transaction can have a refund request.",
-    "3-2": "7800456",
-    "4-0": "bank\\_ref\\_num",
-    "4-1": "This parameter returns the bank reference number. If the bank provides after a successful action.",
-    "4-2": "204519474956"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        This parameter returns the status of web service call. The status can be any of the following:  
+
+        * 0 - If web service call failed.  
+        * 1 - If web service call succeeded
+      </td>
+
+      <td>
+        0
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        msg
+      </td>
+
+      <td>
+        This parameter returns the reason string.
+      </td>
+
+      <td>
+        For example, any of the following messages are displayed:  
+
+        * Parameter missing
+        * Token is empty 
+        * Amount is empty
+        * Transaction not exists
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        transaction\_details
+      </td>
+
+      <td>
+        This parameter contains the response in a JSON format. For more information refer to [JSON fields description for transaction\_details parameter ](#json-field-description-for-transaction_details-parameter).
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        request\_id
+      </td>
+
+      <td>
+        PayU Request ID for a request in a Transaction. For example, a transaction can have a refund request.
+      </td>
+
+      <td>
+        7800456
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bank\_ref\_num
+      </td>
+
+      <td>
+        This parameter returns the bank reference number. If the bank provides after a successful action.
+      </td>
+
+      <td>
+        204519474956
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes). 
 
-[block:tutorial-tile]
-{
-  "backgroundColor": "#018FF4",
-  "emoji": "🦉",
-  "id": "65afb6e90a4e0500389d3886",
-  "link": "https://docs.payu.in/v1/recipes/parse-the-verify-payment-api-response",
-  "slug": "parse-the-verify-payment-api-response",
-  "title": "Parse the Verify Payment API response"
-}
-[/block]
-
+<TutorialTile backgroundColor="#018FF4" emoji="🦉" id="65afb6e90a4e0500389d3886" link="https://docs.payu.in/v1/recipes/parse-the-verify-payment-api-response" slug="parse-the-verify-payment-api-response" title="Parse the Verify Payment API response" />
 
 </details>
 
@@ -324,4 +379,4 @@ To learn more about the possible error codes and their description, refer to [Er
 
 Use the following sample values while trying out the API:
 
-- `var1` (your transaction ID/order ID): 7fa6c4783a363b3da573
+* `var1` (your transaction ID/order ID): 7fa6c4783a363b3da573
