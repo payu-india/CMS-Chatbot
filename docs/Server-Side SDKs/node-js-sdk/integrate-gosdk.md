@@ -19,8 +19,8 @@ First, create a PayU account. See [Register for a merchant account](https://docs
 ***
 
 > 🚧 Download NodeJS SDK
-> 
-> You can download the NodeJS Web SDK from the following GitHub link: <https://github.com/payu-intrepos/web-sdk-nodejs>
+>
+> You can download the NodeJS Web SDK from the following GitHub link: [https://github.com/payu-intrepos/web-sdk-nodejs](https://github.com/payu-intrepos/web-sdk-nodejs)
 
 ## Install the SDK
 
@@ -93,7 +93,7 @@ payuClient.verifyPayment(<txnID>).then((res)=>{
 
 ## Get transaction details
 
-The `get_Transaction_Details` method takes the START_DATE and END_DATE, and returns the details of all transaction happened during that period. The output consists of the status of the API (success or failed) and all the transaction details in an array format.
+The `get_Transaction_Details` method takes the START\_DATE and END\_DATE, and returns the details of all transaction happened during that period. The output consists of the status of the API (success or failed) and all the transaction details in an array format.
 
 ```Text Node.js
 const PayU = require("payu");
@@ -177,12 +177,12 @@ payuClient.getIssuingBankStatus(<bin>).then((res)=>{
 
 ## Get checkout details
 
-The get_checkout_details API is a generic API using which they can get information when you create the custom checkout-pages, that will contain the payment options, offers, recommendations, and downtime details. The API provides the following details: 
+The get\_checkout\_details API is a generic API using which they can get information when you create the custom checkout-pages, that will contain the payment options, offers, recommendations, and downtime details. The API provides the following details: 
 
-- **Payment option details**: The extended details for each payment option available for the merchant.
-- **Additional charges**: The additional charges configured for all payment options.  
+* **Payment option details**: The extended details for each payment option available for the merchant.
+* **Additional charges**: The additional charges configured for all payment options.\
   eligibility details
-- **Downtime details**: The downtime status of the payment options.
+* **Downtime details**: The downtime status of the payment options.
 
 ```Text Node.js
 const PayU = require("payu");
@@ -224,7 +224,7 @@ payuClient.getEmiAmountAccordingToInterest(<amount>).then((res)=>{
 
 ## Create an invoice
 
-The Create Invoice API (create_invoice) allows you to create an email invoice for your customer and provides an option to send the email invoice to the customer either immediately or later through automation.
+The Create Invoice API (create\_invoice) allows you to create an email invoice for your customer and provides an option to send the email invoice to the customer either immediately or later through automation.
 
 ```Text Node.js
 const PayU = require("payu");
@@ -245,7 +245,7 @@ payuClient.createInvoice(<JSON>).then((res)=>{
 
 ## Expire an invoice
 
-The Expire Invoice API (expire_invoice) is used to expire an invoice link corresponding to the txnID. In few cases, an invoice might be sent to an incorrect email ID by the merchant. In such scenario, you can discard that invoice by expiring it.
+The Expire Invoice API (expire\_invoice) is used to expire an invoice link corresponding to the txnID. In few cases, an invoice might be sent to an incorrect email ID by the merchant. In such scenario, you can discard that invoice by expiring it.
 
 ```Text Node.js
 const PayU = require("payu");
@@ -313,7 +313,7 @@ payuClient.checkIsDomestic(<bin>).then((res)=>{
 
 ## Check action status
 
-The Check Action Status API (check_action_status) is used to check the status of the refund or cancel requests. 
+The Check Action Status API (check\_action\_status) is used to check the status of the refund or cancel requests. 
 
 ```Text Node.js
 const PayU = require("payu");
@@ -334,7 +334,7 @@ payuClient.checkActionStatus(<request_id>).then((res)=>{
 
 ## Cancel refund transactions
 
-The Cancel Refund Transaction API (cancel_refund_transaction) can be used for the following purposes:
+The Cancel Refund Transaction API (cancel\_refund\_transaction) can be used for the following purposes:
 
 1. Cancel a transaction that is in ‘auth’ state at the moment
 2. Refund a transaction that is in a ‘captured’ state at the moment.
