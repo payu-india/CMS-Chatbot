@@ -50,5 +50,5 @@ The workflow for users with PayU Vault are:
 5. User can update or  delete the card details when required.
 
 > 📘 Note:
-> 
+>
 > You need to ensure that you have filled the “[Self-Assessment Questionnaire A-EP and Attestation of Compliance](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf)” form from PCI, which is mandatory for all entities seeking to store, process, and transmit cardholder data.
