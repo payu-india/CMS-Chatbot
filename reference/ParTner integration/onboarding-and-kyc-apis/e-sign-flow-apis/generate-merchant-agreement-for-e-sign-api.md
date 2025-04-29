@@ -22,24 +22,22 @@ This API is used to generate merchant agreements used while E-Sign PayU Service 
 ## Request Headers
 
 > 📘 Note:
-> 
+>
 > The access token with the scope as **client\_manage\_agreement** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
-
-
 
 |               |                         |
 | ------------- | ----------------------- |
-| Authorization | Bearer {{access_token}} |
+| Authorization | Bearer `{access_token}` |
 | Content-Type  | multipart/form-data     |
 
 ## Sample Request
 
 ```curl
-curl --location --request GET '{{onboarding_url}}/api/v1/merchants/{{merchant_uuid}}/generate_merged_document_for_esign' \
---header 'Authorization: Bearer {{access_token}}'
+curl --location --request GET '{onboarding_url}/api/v1/merchants/{merchant_uuid}/generate_merged_document_for_esign' \
+--header 'Authorization: Bearer {access_token}'
 ```
 
-Where **{{onboarding\_url}}** is substituted with the URL specified in the Test or Production environment as mentioned in the _Environment_ section.
+Where **`{onboarding_url}`** is substituted with the URL specified in the Test or Production environment as mentioned in the _Environment_ section.
 
 ## Sample Response
 
