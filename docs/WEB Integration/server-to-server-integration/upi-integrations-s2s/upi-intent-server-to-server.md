@@ -1,0 +1,221 @@
+---
+title: UPI Intent S2S Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+The following steps allow you to integrate the server-to-server UPI intent:
+
+1. [Initiate payment](#step-1-initiate-payment)
+2. [Invoke UPI Intent on customer’s device](#step-2-invoke-upi-intent-on-customers-device)
+3. [Check UPI transaction status](#step-3-check-upi-transaction-status)
+4. [PayU sends Server-to-Server callback response](#step-4-payu-sends-server-to-server-callback-response)
+
+<RegisterMerchantPrerequiste />
+
+### Intent Flow Diagram
+
+The following diagram depicts the UPI intent flow from server to server:
+
+![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/UPI-Intent-Process-Flow-1024x511.png)
+
+***
+
+## Step 1: Initiate payment
+
+### Environment
+
+| Production | <https://secure.payu.in/\_payment> |
+| :--------- | :--------------------------------- |
+| Test       | <https://test.payu.in/\_payment>   |
+
+The **\_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="\_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
+
+This needs to be a server-to-server cURL request. This API is used for both Cards and UPI for generating a new transaction.
+
+If specific intent has to be opened instead of Generic Intent, then the **bankcode** values will change accordingly:
+
+- For Generic Intent, **bankcode** = INTENT
+
+> 📘 Notes:
+> 
+> - If you are using this for their application, then the Generic Intent, and Specific Intent, can be invoked.
+> - If you are using this for your Mobile Web, then only Generic Intent can be invoked. To invoke App specific intents on the mobile web, the libraries have to be added separately. PayU offers the same for GPay Intent through the Mobile web. Refer to the GPay Seamless Integration Document for the same.
+> - User VPA is not required for this flow.
+
+### Request parameters
+
+For the complete list of parameters, refer to <a href="\_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "Parameter",
+    "h-1": "Description",
+    "h-2": "Example",
+    "0-0": "key  \n`mandatory`",
+    "0-1": "`String` The merchant key provided by PayU must be included.  \n**Reference**: For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n- **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)\n- **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
+    "0-2": "",
+    "1-0": "txnid  \n`mandatory`",
+    "1-1": "`String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\\<= 50 characters & excluding >,\\<, =,:,\\&, ‘).",
+    "1-2": "1234_abcdedf",
+    "2-0": "amount  \n`mandatory`",
+    "2-1": "`String` (rounded to two decimal places) This parameter must contain the amount for which QR needs to be generated. The amount should be greater than or equal to Rs.1.00.",
+    "2-2": "1000",
+    "3-0": "phone  \n`mandatory`",
+    "3-1": "`String` This parameter must contain the customer phone number (10 characters).",
+    "3-2": "9876786756",
+    "4-0": "productinfo  \n`mandatory`",
+    "4-1": "`String` (alphanumeric) This field must contain the product name. By default, the value is 'storefront' (max. 100 characters).",
+    "4-2": "iPhone 12",
+    "5-0": "firstname  \n`mandatory`",
+    "5-1": "`String` This parameter must contain the customer's first name (max. 60 characters).",
+    "5-2": "Sundar",
+    "6-0": "email  \n`mandatory`",
+    "6-1": "`String` This parameter must contain the customer email ID.",
+    "6-2": "[hello@payu.in](mailto:hello@payu.in)",
+    "7-0": "<<glossary:pg>>  \n`mandatory`",
+    "7-1": "`String` It must be set as UPI for this transaction.",
+    "7-2": "UPI",
+    "8-0": "<<glossary:bankcode>>  \n`mandatory`",
+    "8-1": "`String` It must be set as INTENT for this transaction.",
+    "8-2": "INTENT",
+    "9-0": "lastname  \n`optional`",
+    "9-1": "`String` This parameter must contain the customer last name (maximum 20 characters).",
+    "9-2": "Teja",
+    "10-0": "address1  \n`optional`",
+    "10-1": "`String` This parameter must contain the first line of customer address (up to 100 characters).",
+    "10-2": "PayU, Bestech Business Tower, Gurgaon",
+    "11-0": "address2  \n`optional`",
+    "11-1": "`String` This parameter must contain the second line of the customer address (up to 100 characters).",
+    "11-2": "Sohna Road",
+    "12-0": "city  \n`optional`",
+    "12-1": "`String` This parameter must contain the customer city (max. 50 characters).",
+    "12-2": "Gurgaon",
+    "13-0": "country  \n`optional`",
+    "13-1": "`String` This parameter must contain the customer's country that is part of the address (max. 50 characters).",
+    "13-2": "India",
+    "14-0": "state  \n`optional`",
+    "14-1": "String This parameter must contain the customer state that is part of the address (max 50 characters).",
+    "14-2": "Haryana",
+    "15-0": "zipcode  \n`optional`",
+    "15-1": "`Numeric` This parameter must contain the customer's PIN code (6 digits).",
+    "15-2": "122018",
+    "16-0": "udf1  \n`optional`",
+    "16-1": "`String` This parameter can include any custom information in request (up to 255 characters).",
+    "16-2": "Website order",
+    "17-0": "udf2  \n`optional`",
+    "17-1": "`String` This parameter can include any custom information in request (up to 255 characters.).",
+    "17-2": "",
+    "18-0": "udf3  \n`optional`",
+    "18-1": "`String` This parameter can include any custom information in request.  \n(up to 255 characters.)",
+    "18-2": "",
+    "19-0": "udf4  \noptional",
+    "19-1": "`String` This parameter can include any custom information in request.  \n(up to 255 characters.)",
+    "19-2": "",
+    "20-0": "udf5  \n`optional`",
+    "20-1": "`String` This parameter can include any custom information in request.  \n(up to 255 characters.)",
+    "20-2": "",
+    "21-0": "txn\\_s2s\\_flow  \n`mandatory`",
+    "21-1": " `Numeric` This parameter must be passed with the value as 4",
+    "21-2": "4",
+    "22-0": "s2s\\_client\\_ip  \n`mandatory`",
+    "22-1": "`varchar` This parameter must have the source IP of the user's device.  \n**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.",
+    "22-2": "",
+    "23-0": "s2s\\_device\\_info  \n`mandatory`",
+    "23-1": "`varchar` This parameter must have the user agent of device.  \n**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.",
+    "23-2": "",
+    "24-0": "upiAppName  \n`mandatory`",
+    "24-1": "For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum’s expected for major apps:  \n  \n- phonepe\n- googlepay\n- paytm\n- bhim\n- cred\n- amazonpay\n- whatsapp\n- genericintent – For any other app apart from  \n  above",
+    "24-2": "phonepe",
+    "25-0": "hash  \n`mandatory`",
+    "25-1": "`String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to  <a href=\"hashing-request-and-response\" target=\"_blank\">Generate Hash</a>.",
+    "25-2": ""
+  },
+  "cols": 3,
+  "rows": 26,
+  "align": [
+    "left",
+    "left",
+    "left"
+  ]
+}
+[/block]
+
+
+> 📘 Support queries:
+> 
+> For any issues or queries related to UPI integration, send an email to [integration@payu.in](mailto:integration@payu.in).
+
+### Response for S2S request
+
+Collect the response in the  [UPI Collection - S2S](ref:_payment_s2s_upi_collection). under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs.](ref:addl_info-payment-apis#response-for-initial-server-to-server-request)
+
+#### Using the IntentURIData value in response
+
+The **IntentURIData** parameter returns the URI in the response. For example, it contains the first debit amount .
+
+> 📘 Notes:
+> 
+> - Every time there is a change, you need to incorporate the changes to avoid breaking the transactions.
+> - The **tid** value which is passed in the intent URI acts as a validation check at NPCI’s end which do not allow duplicate transaction.
+> - The tr value not necessary and it is a payU_id. It can be any reference id for PayU’s internal reconciliation.
+
+## Step 2: Invoke UPI Intent on customer’s device
+
+You need to invoke intent in the customer’s mobile device using the merchant VPA URL. Make sure that only this merchant VPA is embedded in the intent call since this helps to track the status of the transaction.
+
+Open the UPI Intent as per the NPCI Guidelines. Merchants can also open any specific app instead of making the Generic Intent call. For example, Google Pay, PhonePe, etc. This URL can then be fired using an Intent or a hyperlink which would open an Intent tray with a list of available supporting apps on the user’s mobile device. The following sample UPI Deep Link URL and the format used for creating the URL:
+
+**Sample URL** (with values from the above sample JSON):
+
+```plaintext
+upi://pay?pa=payu@axisbank&pn=SMSPLUS&tr=8312916361&am=10.17
+```
+
+**Format for UPI Deep Linking URL** (as per NPCI guidelines):
+
+```plaintext
+"upi://pay?pa=" + merchantVpa + "&pn=" + merchantName + "&tr=" + referenceId + "&am=" + amount 
+```
+
+Where the description of the parameters used in the URL is as described in the following table:
+
+| **Parameter** | **Description**                                                                                   |
+| ------------- | ------------------------------------------------------------------------------------------------- |
+| merchantVpa   | As received in JSON response in key merchantVPA’                                                  |
+| merchantName  | As received in JSON response in key merchantName.                                                 |
+| referenceId   | As received in JSON response in key referenceId.                                                  |
+| amount        | Amount of transaction. This must be the same as the amount passed to the **initiatePayment** API. |
+
+***
+
+## Step 3: Check UPI transaction status
+
+Check the UPI transaction status using the **Verify Payment API** (verify\_payment) API. For more information, refer to  <a href="verify_payment_api" target="_blank"> Verify Payment API</a>.
+
+***
+
+## Step 4: PayU sends Server-to-Server callback response
+
+PayU can also send a server-to-server callback response whenever the transaction status gets updated.
+
+### Implementation
+
+The server-to-server response would be sent by PayU on a pre-set URL, which has to be provided by you. PayU will configure it at your back end. This response would be sent in key/value pair separated by the ampersand (&) character. In case any parameter is not used, we would send it back to you with an empty string. The sample response is similar to the following:
+
+```plaintext
+unmappedstatus=success&phone=9999999999&txnid=FCDA1R100870163781&hash=84e3 35094bbcb2ddaa0f9a488eb338e143b273765d89c9dfa502402562d0b6f3c7935e28194ca92f7 380be7c84c3695415b106dcf52cb016a15fcf6adc98d724&status=success&curl=https://www. abc.in/payment/handlepayuresposne&firstname=NA&card_no=519619XXXXXX5049&furl= https://www.abc.in/payment/handlepayuresposne&productinfo=2&mode=DC&amount=800. 00&field4=6807112311042810&field3=6807112311042810&field2=838264&field9=SUCC ESS&email=NA&mihpayid=175477248&surl=https://www.ABC.in/payment/handlepayuresp osne&card_hash=9e88cb0573d4a826b61d808c0a870ed4a990682459b0ec9e95ea421e8e47b e8c&field1=42812
+```
+
+The parameter list format is similar to the following:
+
+```plaintext
+mihpayid,mode,status,key,txnid,amount,productinfo,firstname,lastname,address1,address2,city,state,country,zipcode,email,phone,udf1,udf2,udf3,udf4,udf5,udf6,udf7,udf8,udf9,udf10,card_token,card_no,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9,offer,discou nt,offer_availed,unmappedstatus,hash,bank_ref_no,surl,curl,furl,card_hash
+```
