@@ -15,7 +15,7 @@ next:
 The Save Card API is used for saving a card to the vault. After successfully storing a card, it returns the `cardToken`.
 
 > 📘 Note
-> 
+>
 > As per RBI guidelines, taking consent from the customer and doing an additional factor of authentication is mandatory to tokenize the card. You must ensure this is done before using this API.
 
 ## Response Parameters
@@ -26,7 +26,7 @@ For the response parameter descriptions, refer to[ Additional Info for Simple RE
 
 # Edit a Card API
 
-The **Edit a Card **API is used to edit the details of an existing stored card on the vault. In this case, along with all the parameters required to save to the card, the **cardToken** has to be posted. After successfully editing the card, it returns the **cardToken** of the card.
+The **Edit a Card** API is used to edit the details of an existing stored card on the vault. In this case, along with all the parameters required to save to the card, the **cardToken** has to be posted. After successfully editing the card, it returns the **cardToken** of the card.
 
 ## Response Parameters
 
@@ -36,7 +36,7 @@ For the response parameter description, refer to [Additional Info for Simple RES
 
 # Get User Cards
 
-The **Get User Cards **API is used to fetch all the cards corresponding to the user. In this API, the card number and other sensitive information are not returned.
+The **Get User Cards** API is used to fetch all the cards corresponding to the user. In this API, the card number and other sensitive information are not returned.
 
 ## Response Parameters
 
