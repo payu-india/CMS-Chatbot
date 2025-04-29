@@ -11,11 +11,11 @@ next:
   description: ''
 ---
 > 🚧 Before you proceed
-> 
+>
 > Contact your Key Account Manager at PayU to get the following credentials:
-> 
-> - Merchant Access Key
-> - Merchant Secret Key
+>
+> * Merchant Access Key
+> * Merchant Secret Key
 
 ## Step 1: Create request
 
