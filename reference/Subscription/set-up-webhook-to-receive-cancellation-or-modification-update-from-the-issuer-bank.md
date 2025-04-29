@@ -37,44 +37,138 @@ When an action is taken on the mandate for SI by the issuing bank for cards, suc
 
 ### Payload of Mandate
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "The status of the SI. The status can be any of the following:  \n- active  \n- deleted",
-    "0-2": "active",
-    "1-0": "authpayuid  \n`mandatory`",
-    "1-1": "The value of mihpayid returned in the response of mandate registration transaction once the transaction is successfully completed.",
-    "1-2": "6611192557",
-    "2-0": "notificationType",
-    "2-1": "The action that is taken on the mandate by the bank. The action can be either of the following:  \n**MANDATE_MODIFICATION**: Indicates that the mandate is modified .  \n**MANDATE_CANCELLATION**: Indicates that the mandate is cancelled.  \n**MANDATE_CANCELLATION_TOKEN_DELETION**: Indicates that the mandate token is deleted.",
-    "2-2": "MANDATE\\_MODIFICATION",
-    "3-0": "si\\_details",
-    "3-1": "Contains the following fields about the SI in a JSON format:  \nbillingAmount: Billing amount of the SI transaction.  \npaymentStartDate: Start date of SI  \npaymentEndDate: : End date of SI",
-    "3-2": " {  \n“billingAmount”:”10”,  \n“paymentStartDate”:”20-06-2022”,  \n“paymentEndDate”:”30-06-2023”  \n}",
-    "4-0": "eventDate",
-    "4-1": "Event date of the modification.",
-    "4-2": "30-11-2022",
-    "5-0": "message",
-    "5-1": "Message for the webhook",
-    "5-2": "Request Successful",
-    "6-0": "hash `mandatory`",
-    "6-1": "Unique hash string to validate the authenticity of the Webhook payload. The hash logic is as follows: sha512(status|authpayuId|notificationType|billingAmount|paymentStartDate|paymentEndDate|message|eventDate|key|udf1|udf2|udf3|udf4|udf5|salt)",
-    "6-2": ""
-  },
-  "cols": 3,
-  "rows": 7,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        The status of the SI. The status can be any of the following:  
+
+        * active  
+        * deleted
+      </td>
+
+      <td>
+        active
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        authpayuid\
+        `mandatory`
+      </td>
+
+      <td>
+        The value of mihpayid returned in the response of mandate registration transaction once the transaction is successfully completed.
+      </td>
+
+      <td>
+        6611192557
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        notificationType
+      </td>
+
+      <td>
+        The action that is taken on the mandate by the bank. The action can be either of the following:  
+
+        * \*MANDATE\_MODIFICATION\*\*: Indicates that the mandate is modified .  
+        * \*MANDATE\_CANCELLATION\*\*: Indicates that the mandate is cancelled.  
+        * \*MANDATE\_CANCELLATION\_TOKEN\_DELETION\*\*: Indicates that the mandate token is deleted.
+      </td>
+
+      <td>
+        MANDATE\_MODIFICATION
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        si\_details
+      </td>
+
+      <td>
+        Contains the following fields about the SI in a JSON format:\
+        billingAmount: Billing amount of the SI transaction.\
+        paymentStartDate: Start date of SI\
+        paymentEndDate: : End date of SI
+      </td>
+
+      <td>
+         \{\
+        “billingAmount”:”10”,\
+        “paymentStartDate”:”20-06-2022”,\
+        “paymentEndDate”:”30-06-2023”\
+        }
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        eventDate
+      </td>
+
+      <td>
+        Event date of the modification.
+      </td>
+
+      <td>
+        30-11-2022
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        message
+      </td>
+
+      <td>
+        Message for the webhook
+      </td>
+
+      <td>
+        Request Successful
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash `mandatory`
+      </td>
+
+      <td>
+        Unique hash string to validate the authenticity of the Webhook payload. The hash logic is as follows: sha512(status|authpayuId|notificationType|billingAmount|paymentStartDate|paymentEndDate|message|eventDate|key|udf1|udf2|udf3|udf4|udf5|salt)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### Verify the WebHook Payload
 
@@ -85,7 +179,7 @@ sha512(status|authpayuId|notificationType|billingAmount|paymentStartDate|payment
 ```
 
 > 📘 **Note**:
-> 
+>
 > PayU recommends you to generate the hash at your server for security purposes.
 
 ### Sample Payloads
@@ -167,59 +261,179 @@ sha512(status|authpayuId|notificationType|billingAmount|paymentStartDate|payment
 Merchant needs to expose a webhook and needs to request Integration team/PayU team. If this webhook is configured, merchant will receive the response object over HTTP form:
 
 > 📘 Notes:
-> 
-> - This webhook is crucial and it’s mandatory to implement the same to get the latest updates about the consumer actions.
-> - The webhook does not support a retry mechanism
+>
+> * This webhook is crucial and it’s mandatory to implement the same to get the latest updates about the consumer actions.
+> * The webhook does not support a retry mechanism
 
 Status defines acknowledgement from PayU. Possible values are:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "Returns the status of the transactions and can be any of the following:  \n- **active** –Mandate is in active state  \n- **revoked** – Mandate is cancelled  \n- **pause** – Mandate is paused",
-    "0-2": "paused",
-    "1-0": "authpayuid",
-    "1-1": "This parameter returns the consent transaction Id",
-    "1-2": "700010006213657",
-    "2-0": "action",
-    "2-1": "This parameter returns the action of the mandate and can be any of the following:  \n- MANDATE\\_PAUSE: Indicates that the mandate is paused .  \n- MANDATE\\_\\\\UNPAUSE: Indicates that the mandate is unpaused  \n- MANDATE\\_REVOKE: Indicates that the mandate is cancelled.",
-    "2-2": " ",
-    "3-0": "dateTime",
-    "3-1": "This parameter returns the start date of the mandate",
-    "3-2": "\"2020-09-16 18:18:21\"",
-    "4-0": "amount",
-    "4-1": "This parameter returns the amount of the mandate created",
-    "4-2": "159.00",
-    "5-0": "endDate",
-    "5-1": "This parameter returns the last date of the mandate",
-    "5-2": "\"2021-09-16 18:18:21\"",
-    "6-0": "mandateNumber",
-    "6-1": "This parameter returns the unique mandate number (UMN)",
-    "6-2": "700010006213657@mybank",
-    "7-0": "pauseStartDate",
-    "7-1": "This parameter returns from when the pause is started by the customer.",
-    "7-2": "",
-    "8-0": "pauseEndDate",
-    "8-1": "This parameter returns from when the mandate was resumed by the customer.",
-    "8-2": "",
-    "9-0": "hash",
-    "9-1": " Unique hash string to validate the authenticity of the Webhook payload. The hash logic is as follows: `status\\|action\\|authpayuid\\|dateTime\\|amount\\|endDate\\|salt`",
-    "9-2": " "
-  },
-  "cols": 3,
-  "rows": 10,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        Returns the status of the transactions and can be any of the following:  
+
+        * **active** –Mandate is in active state  
+        * **revoked** – Mandate is cancelled  
+        * **pause** – Mandate is paused
+      </td>
+
+      <td>
+        paused
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        authpayuid
+      </td>
+
+      <td>
+        This parameter returns the consent transaction Id
+      </td>
+
+      <td>
+        700010006213657
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        action
+      </td>
+
+      <td>
+        This parameter returns the action of the mandate and can be any of the following:  
+
+        * MANDATE\_PAUSE: Indicates that the mandate is paused .  
+        * MANDATE\_\\UNPAUSE: Indicates that the mandate is unpaused  
+        * MANDATE\_REVOKE: Indicates that the mandate is cancelled.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        dateTime
+      </td>
+
+      <td>
+        This parameter returns the start date of the mandate
+      </td>
+
+      <td>
+        "2020-09-16 18:18:21"
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount
+      </td>
+
+      <td>
+        This parameter returns the amount of the mandate created
+      </td>
+
+      <td>
+        159.00
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        endDate
+      </td>
+
+      <td>
+        This parameter returns the last date of the mandate
+      </td>
+
+      <td>
+        "2021-09-16 18:18:21"
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        mandateNumber
+      </td>
+
+      <td>
+        This parameter returns the unique mandate number (UMN)
+      </td>
+
+      <td>
+        700010006213657\@mybank
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pauseStartDate
+      </td>
+
+      <td>
+        This parameter returns from when the pause is started by the customer.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pauseEndDate
+      </td>
+
+      <td>
+        This parameter returns from when the mandate was resumed by the customer.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash
+      </td>
+
+      <td>
+         Unique hash string to validate the authenticity of the Webhook payload. The hash logic is as follows: `status\|action\|authpayuid\|dateTime\|amount\|endDate\|salt`
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Sample Payload
 
@@ -245,13 +459,13 @@ Status defines acknowledgement from PayU. Possible values are:
 ## Mandate for UPI
 
 > 📘 Note:
-> 
+>
 > No unpause webhook will be triggered automatically after the mandate gets unpause. These webhooks are subject to the action taken by the customer from their PSP app only (pause, unpause, revoke).
 
 ### Mandate Pause webhook
 
 > 📘 Note:
-> 
+>
 > For every mandate pause, Payu will be able to trigger the mandate unpause webhook, since it is being sent by the ecosystem, post which the Mandate becomes ACTIVE, and further operations can be done for that mandate.
 
 ```
