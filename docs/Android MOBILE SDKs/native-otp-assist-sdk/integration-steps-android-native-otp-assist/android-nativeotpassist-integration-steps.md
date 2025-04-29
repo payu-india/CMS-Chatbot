@@ -21,7 +21,7 @@ metadata:
 next:
   description: ''
 ---
-Before you start with the integration, enable the payment methods that you want to offer to your customers from Dashboard > Settings > Payment methods. We enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you.
+Before you start with the integration, enable the payment methods that you want to offer to your customers from Dashboard &gt; Settings &gt; Payment methods. We enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you.
 
 ## Step 1: Create a PayU account
 
@@ -41,9 +41,9 @@ implementation 'in.payu:native-otp-assist:1.6.0'
 
 ### Generate payment hash
 
-For more information on the generation of Payment Hash, refer to  [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
+For more information on the generation of Payment Hash, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
-> 🚧 Remeber
+> 🚧 Remember
 > 
 > Every transaction (payment or non-payment) needs a hash set up by you before sending the transaction details to PayU. Hash is required for PayU to validate the authenticity of the transaction. This hashing should be done on your server.
 
@@ -71,7 +71,8 @@ payUOtpAssistConfig.postData = "POST_DATA_FOR_TRANSACTION"
 PayUOtpAssist.open(
     context: Context, 
     payUOtpAssistCallback: PayUOtpAssistCallback,  
-    payUOtpAssistConfig: PayUOtpAssistConfig) 
+    payUOtpAssistConfig: PayUOtpAssistConfig
+) 
 ```
 
 > 📘 Remember
@@ -89,43 +90,41 @@ The following is a list of callback functions provided by PayUOtpAssistCallback 
 - `fun onError(errorCode: String?, errorMessage: String?)`: Called when we got some error, where:
   - `errorCode`: Error Code
   - `errorMessage`: Error Description
-- `fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest)`: Boolean – It’s an optional callback, override when you want to handle the Bank page redirection flow. You just need to change the return value to false. You can also open CustomeBrowser in fallback scenarios. The following code snippet is to launch the CustomBrowser.
+- `fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest)`: Boolean – It’s an optional callback, override when you want to handle the Bank page redirection flow. You just need to change the return value to false. You can also open CustomBrowser in fallback scenarios. The following code snippet is to launch the CustomBrowser.
 
 ```Text JAVA
-boolean shouldHandleFallback(PayUAcsRequest payUAcsRequest){
+boolean shouldHandleFallback(PayUAcsRequest payUAcsRequest) {
   CustomBrowserConfig customBrowserConfig = new CustomBrowserConfig(merchantKey, txnId);
   //Set the issuerUrl and issuerPostData to open in WebView for otp assist redirection to bank page
-  if (payUAcsRequest.getIssuerUrl()!=null && payUAcsRequest.getIssuerPostData()!=null) {
-  customBrowserConfig.setPostURL(payUAcsRequest.getIssuerUrl());
-  customBrowserConfig.setPayuPostData(payUAcsRequest.getIssuerPostData())
-  }else if (payUAcsRequest.getAcsTemplate()!=null){
-  customBrowserConfig.setHtmlData(payUAcsRequest.getAcsTemplate());
-  }else {
-  //Set the first url to open in WebView
-  customBrowserConfig.setPostURL(url);
-  customBrowserConfig.setPayuPostData(payuConfig.getData);
+  if (payUAcsRequest.getIssuerUrl() != null && payUAcsRequest.getIssuerPostData() != null) {
+    customBrowserConfig.setPostURL(payUAcsRequest.getIssuerUrl());
+    customBrowserConfig.setPayuPostData(payUAcsRequest.getIssuerPostData());
+  } else if (payUAcsRequest.getAcsTemplate() != null) {
+    customBrowserConfig.setHtmlData(payUAcsRequest.getAcsTemplate());
+  } else {
+    //Set the first url to open in WebView
+    customBrowserConfig.setPostURL(url);
+    customBrowserConfig.setPayuPostData(payuConfig.getData);
   }
   return false;
 }
 ```
 ```Text Kotlin
-fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest) : Boolean {
-
-val customBrowserConfig = CustomBrowserConfig(merchantKey, txnId)
+fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest): Boolean {
+  val customBrowserConfig = CustomBrowserConfig(merchantKey, txnId)
    
   //Set the issuerUrl and issuerPostData to open in WebView for otp assist redirection to bank page
   if (!payUAcsRequest?.issuerUrl.isNullOrEmpty() && !payUAcsRequest?.issuerPostData.isNullOrEmpty()) {
     customBrowserConfig.postURL = payUAcsRequest?.issuerUrl
     customBrowserConfig.payuPostData = payUAcsRequest?.issuerPostData
-
-}else if (!payUAcsRequest?.acsTemplate.isNullOrEmpty()){
+  } else if (!payUAcsRequest?.acsTemplate.isNullOrEmpty()) {
     customBrowserConfig.htmlData = payUAcsRequest?.acsTemplate
-}else {
+  } else {
     //Set the first url to open in WebView
     customBrowserConfig.postURL = url
     customBrowserConfig.payuPostData = payuConfig.data
-}
-return false
+  }
+  return false
 }
 ```
 
@@ -133,7 +132,7 @@ You will get PayUAcsRequest on `shouldHandleFallback()` callback. Whether you wi
 
 | PayUAcsRequest field | Description                                                                                                                                   |
 | :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-| `issuerUrl	`         | It’s the Bank/ACS page Url.                                                                                                                   |
+| `issuerUrl`          | It’s the Bank/ACS page Url.                                                                                                                   |
 | `issuerPostData`     | You need to load issuerUrl to the Webview along with this issuerPostdata string. Ex: webView.postUrl(issuerUrl, issuerPostData.toByteArray()) |
 | `acsTemplate`        | If the `issuerUrl` is empty, you need to load acsTemplate to the Webview. Ex: webView.loadData(acsTemplate, “text/html”, “UTF-8”);            |
 
@@ -158,6 +157,6 @@ After you get the response from SDK, make sure to confirm it with the PayU serve
 
 Note: It is recommended to implement the PayU Webhook or backend verifies calls from your backend.
 
-Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended for the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks,
+Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended for the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation &gt; Webhooks,
 
 Also, you can verify payment through polling, the transaction status after the SDK callback from your backend. For more information, refer to Verify the Transaction.
