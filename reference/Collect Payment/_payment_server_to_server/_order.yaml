@@ -1,3 +1,4 @@
 - _payment_s2s_classic_integration
 - _payment_s2s_decoupled_flow
 - _payment_s2s_direct_authorization_flow
+- _payment_s2s_upi_collection
