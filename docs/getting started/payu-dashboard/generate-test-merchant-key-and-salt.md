@@ -1,0 +1,93 @@
+---
+title: Access Test Merchant Key and Salt
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Access Test Merchant Key and Salt
+  description: >-
+    To integrate your website with PayU products in the Test environment, you
+    must register for a merchant account, complete onboarding, and obtain your
+    API key and Salt from the PayU Merchant Dashboard by switching to Test Mode
+    and accessing the Developer section.
+  keywords:
+    - PayU test merchant key
+    - ' PayU salt generation'
+    - ' PayU API credentials'
+    - ' PayU test integration'
+    - ' Generate PayU test keys'
+    - ' PayU dashboard test mode'
+    - ' PayU salt-32 bit'
+    - ' PayU salt-256 bit'
+    - ' Staging Key and Salt'
+  robots: index
+next:
+  description: ''
+---
+Before starting Web Checkout integration or integrating your website with PayU products for the Test environment, you need to get your API key and Salt for your test merchant from the PayU Merchant Dashboard. 
+
+## Before you Begin
+
+You need to register for a merchant account with PayU. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+
+> 📘 Notes:
+> 
+> - The API key and Salt will not be visible or accessible for merchants who have not completed onboarding or website was verified by PayU. While onboarding, the website verification takes 1-2 days.
+> - The API key and Salt will not be visible for merchants without a website.
+
+## Procedure
+
+To generate test merchant API key and Salt:
+
+1. Log in to PayU Dashboard using the following log on page:
+
+<https://onboarding.payu.in/app/account/signin>
+
+2. Switch to **Test Mode** from the toggle option on the menu bar. 
+
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/2282abf-dashboard_select_test_mode.png",
+        "",
+        ""
+      ],
+      "align": "center",
+      "sizing": "320px",
+      "border": true
+    }
+  ]
+}
+[/block]
+
+
+3. Select **Developer** from the menu on the left-pane and select the** API Details **tab if required.
+
+The_ Developers_ page is displayed similar to the following screenshot. The values for the following fields are generated automatically (for the first time) and displayed similar to the following screenshot:
+
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/ab723100609b4fa6179ab350ba7d5755807aaf52f1027a134dacc87f21a48bda-Screenshot_2024-09-09_at_6.25.24_PM.png",
+        null,
+        ""
+      ],
+      "align": "center",
+      "border": true
+    }
+  ]
+}
+[/block]
+
+
+- **key**: The API key that you must use for all payment requests.
+- **Salt-32 bit**: The Salt, v1 is the 32-character string that you must use to generate a hash and further post the hash along with parameters when posting a payment request with PayU.
+- **Salt-256 bit**: The Salt, v2 that you must use to generate a hash and further post the hash along with parameters when posting a payment request with PayU.
+
+> 📘 Note:
+> 
+> Use the** Copy Key** or **Copy Salt** button next to each field to copy them to a text file and save them in a confidential location for your perusal. This will avoid any typos with the merchant key.
