@@ -46,8 +46,8 @@ use_frameworks!
 pod 'PayUIndia-CheckoutPro' 
 ```
 
-- Install dependency using the pod install command in terminal
-- Add the following imports in the class where you need to initiate a payment.
+* Install dependency using the pod install command in terminal
+* Add the following imports in the class where you need to initiate a payment.
 
 ```Text Swift
 import PayUCheckoutProKit
@@ -61,17 +61,17 @@ import PayUParamsKit
 #import <PayUParamsKit/PayUParamsKit.h>
 ```
 
-- Refer to the following Test the key and salt environments:
-  - **Production**: [Generate Production Merchant Key and Salt](https://onboarding.payu.in/app/account/signup)
-  - **Test**: [Generate Test Merchant Key and Salt](https://uat-onepayuonboarding.payu.in/app/account/signup)
+* Refer to the following Test the key and salt environments:
+  * **Production**: [Generate Production Merchant Key and Salt](https://onboarding.payu.in/app/account/signup)
+  * **Test**: [Generate Test Merchant Key and Salt](https://uat-onepayuonboarding.payu.in/app/account/signup)
 
 ### Swift Package Manager Integration
 
 You can integrate PayUIndia-Checkoutpro with your app or SDK using the following methods:
 
-- Using Xcode: Navigate to File > Add Package menu and add the following package:  
-  <https://github.com/payu-intrepos/PayUCheckoutPro-iOS>
-- Using Package.Swift: Add the following line in the Package.swift dependencies: `.package(name: "PayUCheckoutProKit", url: "https://github.com/payu-intrepos/PayUCheckoutPro-iOS", from: "7.4.0")`
+* Using Xcode: Navigate to File > Add Package menu and add the following package:\
+  [https://github.com/payu-intrepos/PayUCheckoutPro-iOS](https://github.com/payu-intrepos/PayUCheckoutPro-iOS)
+* Using Package.Swift: Add the following line in the Package.swift dependencies: `.package(name: "PayUCheckoutProKit", url: "https://github.com/payu-intrepos/PayUCheckoutPro-iOS", from: "7.4.0")`
 
 ### CrashReporter
 
@@ -85,7 +85,7 @@ PayUCheckoutPro.start()
 ```
 
 > 🚧 Remember
-> 
+>
 > Please add NSCameraUsageDescription key in your application `Info.plist` file.
 
 ## Step 2: Build the payment parameters (mandatory step)
@@ -124,75 +124,270 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 ```
 
 > 📘 Notes:
-> 
-> - The URL used in **surl** and **furl** are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed.
-> - Kindly refer the below to[Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
-> - The **TransactionId** parameter cannot have a special character and not more than 25 characters.
+>
+> * The URL used in **surl** and **furl** are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed.
+> * Kindly refer the below to[Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+> * The **TransactionId** parameter cannot have a special character and not more than 25 characters.
 
 ### Mandatory parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Data Type and Validation",
-    "0-0": "Key  \n`mandatory`",
-    "0-1": "`String` Merchant Key received from PayU Dashboard",
-    "0-2": "Cannot be null or empty",
-    "1-0": "TransactionId  \n`mandatory`",
-    "1-1": "`String` Cannot be null or empty and should be unique for each transaction. Maximum allowed length is 25 characters. It cannot contain special characters like: - /, & , @ etc.",
-    "1-2": "Should be unique for each transaction",
-    "2-0": "Amount  \n`mandatory`",
-    "2-1": "`String` Total transaction amount.",
-    "2-2": "Cannot be null or empty",
-    "3-0": "Product Info  \n`mandatory`",
-    "3-1": "`String` Information about Product",
-    "3-2": "Cannot be null or empty",
-    "4-0": "First Name  \n`mandatory`",
-    "4-1": "`String` Customer’s first name",
-    "4-2": "Cannot be null or empty",
-    "5-0": "Email  \n`mandatory`",
-    "5-1": "`String` Customer’s Email ID",
-    "5-2": "Cannot be null or empty",
-    "6-0": "Phone  \n`mandatory`",
-    "6-1": "`String` Customer’s phone number",
-    "6-2": "Should be of 10 digits",
-    "7-0": "surl  \n`mandatory`",
-    "7-1": "`String` When the transaction gets successful, PayU will load this URL and pass the transaction response.  \n**Sample URL**: <https://cbjs.payu.in/sdk/success>  \n**Note**:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)",
-    "7-2": "Cannot be null or empty",
-    "8-0": "furl  \n`mandatory`",
-    "8-1": "`String` When the transaction gets fail, PayU will load this url and pass transaction response.  \n**Sample URL**: <https://cbjs.payu.in/sdk/failure>  \n**Note**:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)",
-    "8-2": "Cannot be null or empty",
-    "9-0": "Environment  \n`mandatory`",
-    "9-1": "`String`Environment of SDK",
-    "9-2": "Should be either  \n**Swift**: `production or test `**ObjectiveC**: `EnvironmentProduction `or `EnvironmentTest`",
-    "10-0": "User Credential  \n`optional`",
-    "10-1": "`String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards",
-    "10-2": "Should be a unique value  \nFormat: <merchantKey>:<userId>  \nHere, UserId is any id/email/phone number to uniquely identify the user",
-    "11-0": "PayUSIParams  \n`optional`",
-    "11-1": "`Object` of PayUSIParams. This contains SI Details. ",
-    "11-2": "Object of PayUSIParams",
-    "12-0": "SplitPaymentDetails  \n`optional`",
-    "12-1": "`String`  \nThis parameter is required for splitting the transactions.",
-    "12-2": "Should be a json String",
-    "13-0": "additionalCharges",
-    "13-1": "String  \nThis parameter is required if merchant want to take additional charge from user",
-    "13-2": "should be string with PG:Amount or IBIBOCode:Amount  \nSample: CC:10,NB:20,SBIB:15",
-    "14-0": "percentageAdditionalCharges",
-    "14-1": "String  \nThis parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable",
-    "14-2": "should be string with PG:Amount or IBIBOCode:Amount  \nSample: CC:100,NB:50,SBIB:25"
-  },
-  "cols": 3,
-  "rows": 15,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Data Type and Validation
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Key
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Merchant Key received from PayU Dashboard
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        TransactionId\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Cannot be null or empty and should be unique for each transaction. Maximum allowed length is 25 characters. It cannot contain special characters like: - /, & , @ etc.
+      </td>
+
+      <td>
+        Should be unique for each transaction
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Amount\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Total transaction amount.
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Product Info\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Information about Product
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        First Name\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Customer’s first name
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Email\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Customer’s Email ID
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Phone\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Customer’s phone number
+      </td>
+
+      <td>
+        Should be of 10 digits
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        surl\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.  
+
+        * \*Sample URL\*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)  
+        * \*Note\*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        furl\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` When the transaction gets fail, PayU will load this url and pass transaction response.  
+
+        * \*Sample URL\*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)  
+        * \*Note\*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Environment\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Environment of SDK
+      </td>
+
+      <td>
+        Should be either  
+
+        * \*Swif&#x74;**:`production or test `**&#x4F;bjectiveC\*\*: `EnvironmentProduction `or `EnvironmentTest`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        User Credential\
+        `optional`
+      </td>
+
+      <td>
+        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards
+      </td>
+
+      <td>
+        Should be a unique value\
+        Format: <merchantKey>:<userId>\
+        Here, UserId is any id/email/phone number to uniquely identify the user
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        PayUSIParams\
+        `optional`
+      </td>
+
+      <td>
+        `Object` of PayUSIParams. This contains SI Details. 
+      </td>
+
+      <td>
+        Object of PayUSIParams
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        SplitPaymentDetails\
+        `optional`
+      </td>
+
+      <td>
+        `String`\
+        This parameter is required for splitting the transactions.
+      </td>
+
+      <td>
+        Should be a json String
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        additionalCharges
+      </td>
+
+      <td>
+        String\
+        This parameter is required if merchant want to take additional charge from user
+      </td>
+
+      <td>
+        should be string with PG:Amount or IBIBOCode:Amount\
+        Sample: CC:10,NB:20,SBIB:15
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        percentageAdditionalCharges
+      </td>
+
+      <td>
+        String\
+        This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable
+      </td>
+
+      <td>
+        should be string with PG:Amount or IBIBOCode:Amount\
+        Sample: CC:100,NB:50,SBIB:25
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 The code block for passing the parameters is similar to the following:
 
@@ -258,7 +453,7 @@ paymentParam.siParams = siParam;
 For more information on the PayUSIParams parameters, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/ios-standing-instructions-parameters).
 
 > 🚧 UPI Intent SI And UPI Intent OTM not supported
-> 
+>
 > We don't support UPI Intent SI or UPI Intent OTM in IOS, We support only Card/NB/UPI Collect.
 
 ### Step 2.4: For Split Payments details (Optional)
@@ -279,9 +474,9 @@ paymentParam.splitPaymentDetails = @"";
 The sample JSON structure for the splitPaymentDetails field:
 
 > 🚧 Remember
-> 
-> - For the **absolute** type split, you must ensure that the sum of amount of all splits is equal to the parent transaction amount.
-> - For the **percentage** type split, you must ensure that the sum of percentage of all splits is equal to 100. You can use any number decimal places for each split, but ensure the sum of percentage of all splits is equal to 100.
+>
+> * For the **absolute** type split, you must ensure that the sum of amount of all splits is equal to the parent transaction amount.
+> * For the **percentage** type split, you must ensure that the sum of percentage of all splits is equal to 100. You can use any number decimal places for each split, but ensure the sum of percentage of all splits is equal to 100.
 
 ```Text JSON
 {
@@ -302,29 +497,68 @@ The sample JSON structure for the splitPaymentDetails field:
 
 The following fields are included in the splitPaymentDetails parameter in a JSON format to specify the split details. The fields in the JSON format are described in the following table:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "type  \n`mandatory`",
-    "0-1": "`string` Any of the following types of split is specified in this field.  \n  \n**absolute**: The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment  \n  \n**percentage**: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment",
-    "0-2": "absolute",
-    "1-0": "splitInfo  \n`mandatory`",
-    "1-1": "`JSON` This parameter must include the list of aggregator sub-transaction IDs and sub-amounts as follows:  \n  \n**aggregatorSubTxnId**: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only to child merchants.  \n  \n**aggregatorSubAmt**: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.  \n  \n**aggregatorCharges**: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.  \n  \n**Note**: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.  \nThe sample request structure JSON Request Structure of splitInfo Field.",
-    "1-2": "{  \n\"merchantKey1\": {  \n\"aggregatorSubTxnId\": \"30nknyhkhib\",  \n\"aggregatorSubAmt\": \"8\",  \n}"
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        type
+        `mandatory`
+      </td>
+
+      <td>
+        `string` Any of the following types of split is specified in this field.  
+
+        * \*absolute\*\*: The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment  
+        * \*percentage\*\*: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment
+      </td>
+
+      <td>
+        absolute
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        splitInfo\
+        `mandatory`
+      </td>
+
+      <td>
+        `JSON` This parameter must include the list of aggregator sub-transaction IDs and sub-amounts as follows:  
+
+        * \*aggregatorSubTxnId\*\*: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only to child merchants.  
+        * \*aggregatorSubAmt\*\*: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.  
+        * \*aggregatorCharges\*\*: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.  
+        * \*Note\*\*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.\
+          The sample request structure JSON Request Structure of splitInfo Field.
+      </td>
+
+      <td>
+        \{\
+        "merchantKey1": \{\
+        "aggregatorSubTxnId": "30nknyhkhib",\
+        "aggregatorSubAmt": "8",\
+        }
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Step 2.4:For Additional Charges
 
@@ -344,7 +578,7 @@ For more information on the Additional Charges, refer to \[[Collect Additional C
 ## Step 3: Set up the payment hashes
 
 > 🚧 Remember
-> 
+>
 > Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
 
 The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. The CheckoutPro SDK requires two types of hashes. For more information on the two types of hashes, refer to [Hash Generation for CheckoutPro SDK](https://docs.payu.in/docs/set-up-the-payment-hashes).
@@ -466,9 +700,9 @@ Currently, PayU supports only PhonePe and GooglePay through Intent. Add the quer
 # Sample Responses
 
 > 🚧 Watch Out
-> 
-> - In case of UPI intent/Collect flow, you will not receive a callback response in surl or furl. In this case, the format of PayU response received will be different from other payment options that you need to handle at your end.
-> - Consider the **mihpayid** in the PayU response as **PayU ID/ID**
+>
+> * In case of UPI intent/Collect flow, you will not receive a callback response in surl or furl. In this case, the format of PayU response received will be different from other payment options that you need to handle at your end.
+> * Consider the **mihpayid** in the PayU response as **PayU ID/ID**
 
 ## Card/NB/Wallet and other transactions
 
@@ -696,7 +930,7 @@ PayU provides a fat framework that allows you to test your app seamlessly on the
 
 ### Step 1: Create a Custom Note list
 
-Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom_note and custom_note_category need to be passed.
+Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and custom\_note\_category need to be passed.
 
 ```Text Swift
   var customNotes = [PayUCustomNote]() 
@@ -739,13 +973,13 @@ By default, when no convenience fee is set, an amount breakup will be similar to
 ### Integrate Closed Loop wallet
 
 > 📘 Before you begin
-> 
-> - Enable Closed-Loop Wallet from your Dashboard.
-> - Build the payment parameters with PaymentParamConstant.walletURN parameters. See Integrate with PayU checkoutpro for iOS to learn more.
+>
+> * Enable Closed-Loop Wallet from your Dashboard.
+> * Build the payment parameters with PaymentParamConstant.walletURN parameters. See Integrate with PayU checkoutpro for iOS to learn more.
 
 The following screens show how Closed-Loop wallet payment works on the PayU payment page:
 
-- When you enable the Closed-Loop wallet for your account, your customer sees the Closed-Loop wallet payment on top of the payment page under the SAVED OPTION tab.
-- The closed-loop wallet balance is fetched and loaded (see the screenshot below) by default.
-- If the balance is not loaded due to some error, an error message will be displayed (see the screenshot below). The customer can tap on the wallet option to reload the amount.
-- Once the balance is loaded the customer can make the payment by clicking Pay Now.
+* When you enable the Closed-Loop wallet for your account, your customer sees the Closed-Loop wallet payment on top of the payment page under the SAVED OPTION tab.
+* The closed-loop wallet balance is fetched and loaded (see the screenshot below) by default.
+* If the balance is not loaded due to some error, an error message will be displayed (see the screenshot below). The customer can tap on the wallet option to reload the amount.
+* Once the balance is loaded the customer can make the payment by clicking Pay Now.
