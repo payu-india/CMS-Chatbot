@@ -72,15 +72,10 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ## Sample request
 
 ```curl
-curl -X \
- \
- POST "https://test.payu.in/merchant/postservice.php?form=2" -H "accept: application/json" -H \
- \
- "Content-Type: application/x-www-form-urlencoded" -d”key=JF*y&command=check_mandate_status&var1={“authPayuId”: “10731087875”,`“requestId”: “1892432asds15g6”x}&hash=e36568b2dfc460eab0eb3387fb7d90543ed861154f273b9593d6fcc152ed93a91e529c2f4be0965eeb57104e82d58889fa5efb52811ec78cbd1ad646e39c29a0”
+curl -X POST "https://test.payu.in/merchant/postservice.php?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JF*y&command=check_mandate_status&var1={\"authPayuId\": \"10731087875\", \"requestId\": \"1892432asds15g6\"}&hash=e36568b2dfc460eab0eb3387fb7d90543ed861154f273b9593d6fcc152ed93a91e529c2f4be0965eeb57104e82d58889fa5efb52811ec78cbd1ad646e39c29a0"
 ```
 
 ## Response parameters
@@ -112,10 +107,9 @@ curl -X \
 }
 [/block]
 
-
 ## Sample response
 
-```curl
+```json
 {
 	"status": "active",
 	"action": "MANDATE_STATUS",
