@@ -17,100 +17,53 @@ PayU Point of Sale (POS) terminals are Electronic Data capture machines that fac
 
 The types of terminals available are:
 
-- <<Smart POS with Printer>>
-- <<Smart POS>>
-- <<MPOS terminal>>
-- <<Android terminal>>
+* {user["Smart POS with Printer"]}
+* {user["Smart POS"]}
+* {user["MPOS terminal"]}
+* {user["Android terminal"]}
 
 ## Smart POS with Printer
 
 PayU Smart POS Printer terminal is a compact and easily portable terminal with an inbuilt thermal printer that enables businesses to collect payments with various payment options.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/eb57510-Screenshot_2023-09-13_at_12.54.04_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "50% ",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" width="50% " border={true} src="https://files.readme.io/eb57510-Screenshot_2023-09-13_at_12.54.04_PM.png" />
 
 ### Features
 
 PayU Smart POS with Printer comes with the following features:
 
-- Linux OS with inbuilt thermal printer
-- Keypad for PIN entry
-- Insert/Swipe/Tap card functionality
-- Connectivity: GPRS/Wi-Fi
+* Linux OS with inbuilt thermal printer
+* Keypad for PIN entry
+* Insert/Swipe/Tap card functionality
+* Connectivity: GPRS/Wi-Fi
 
 ## MPOS Terminal
 
 PayU mobile POS terminal is a compact and easily portable terminal that enables businesses to collect payment by installing a PayU software application on the Android & iOS smartphone, and then connecting to a device through Bluetooth, or you can perform SDK integration and start accepting payments.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/85fe39f-Screenshot_2023-09-13_at_12.55.37_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "75% ",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" width="75% " border={true} src="https://files.readme.io/85fe39f-Screenshot_2023-09-13_at_12.55.37_PM.png" />
 
 ### Features
 
 PayU MPOS comes with the following features:
 
-- The app supports Android & i0S platform
-- Communication: Bluetooth v2.1-v4.0
-- Lightweight portable device; can be used to collect payments in delivery use cases
-- Digital charge slips to the customer’s mobile
+* The app supports Android & i0S platform
+* Communication: Bluetooth v2.1-v4.0
+* Lightweight portable device; can be used to collect payments in delivery use cases
+* Digital charge slips to the customer’s mobile
 
 ## Android Terminal
 
 The PayU Android terminal features an advanced 5-inch touch screen display, an inbuilt printer, and a wide range of services to enhance merchant experiences. Furthermore, it has integrated Wi-Fi, Bluetooth, and 4G capabilities.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/a463ffe-Screenshot_2023-09-13_at_12.57.04_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "75% ",
-      "border": true
-    }
-  ]
-}
-[/block]
-
-
+<Image align="center" className="border" width="75% " border={true} src="https://files.readme.io/a463ffe-Screenshot_2023-09-13_at_12.57.04_PM.png" />
 
 ### Features
 
 PayU Android Terminal comes with the following features:
 
-- Innovative design; compact and handy
-- App supports 5.1 & 7.0 version
-- Android OS-based, dual CPU design
-- Standard 4G, Wi-Fi & Bluetooth connectivity
-- PCI 5.X, EMV, TQM safety certified
+* Innovative design; compact and handy
+* App supports 5.1 & 7.0 version
+* Android OS-based, dual CPU design
+* Standard 4G, Wi-Fi & Bluetooth connectivity
+* PCI 5.X, EMV, TQM safety certified
