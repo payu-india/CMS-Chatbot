@@ -33,13 +33,13 @@ PayU allows merchants to create offers for specific Products/SKUs in the cart an
 
 Add the following dependencies:
 
-- **Cocoapods**: Use PayUIndia-CheckoutPro version 7.5.1.
+* **Cocoapods**: Use PayUIndia-CheckoutPro version 7.5.1.
 
 ```
 pod 'PayUIndia-CheckoutPro'
 ```
 
-- **SPM**: Use PayUIndia-CheckoutPro version 7.5.1.
+* **SPM**: Use PayUIndia-CheckoutPro version 7.5.1.
 
 ```
 .package(name: "PayUIndia-CheckoutPro", url: "https://github.com/payu-intrepos/PayUCheckoutPro-iOS", from: "7.5.1")
@@ -48,7 +48,7 @@ pod 'PayUIndia-CheckoutPro'
 ## Step 2: Initialise the SDK
 
 > 🚧 Make sure you integrate with CheckoutPro SDK for iOS
-> 
+>
 > For step to integrate Checkoutpro in App, refer to [Checkout Pro Integration Steps](ios-checkoutprosdk-integration-steps)
 
 ## Step 3: Create SKU Details
@@ -97,7 +97,7 @@ paymentParam.skuDetail = <create SKU Details as mention above and provide here>
 ```
 
 > 🚧 Keep in mind
-> 
+>
 > if we are adding details of SKU offers, the amount passed in `PayUPaymentParam` must be equal to the sum of quantities \* `skuAmount` of each item.
 
 ## Step 5: Generate the hash
