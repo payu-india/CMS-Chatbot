@@ -19,7 +19,7 @@ This API is used to retrieve invoice details. You can fetch invoice details eith
 
 **HTTP Method**: GET
 
-**Path**: \_{base\_url}/\_api/sub/v1/merchant/invoices/{invoiceId}
+**Path**: _{base\_url}/_api/sub/v1/merchant/invoices/`{invoiceId}`
 
 **Environment**
 
@@ -46,7 +46,6 @@ This API is used to retrieve invoice details. You can fetch invoice details eith
   ]
 }
 [/block]
-
 
 ### Sample request
 
@@ -81,7 +80,7 @@ https://subscriptiontest.citruspay.com/api/sub/v1/merchant/invoices/5c9902082fc4
 
 All the invoices for a Subscription Id can be also fetched through using Subscription ID as query string.
 
-**Path**: \_{base\_url}/\_api/sub/v1/merchant/invoices/{invoiceId}
+**Path**: _{base\_url}/_api/sub/v1/merchant/invoices/`{invoiceId}`
 
 **Environment**
 
@@ -111,7 +110,6 @@ All the invoices for a Subscription Id can be also fetched through using Subscri
 }
 [/block]
 
-
 #### Body
 
 [block:parameters]
@@ -135,11 +133,10 @@ All the invoices for a Subscription Id can be also fetched through using Subscri
 }
 [/block]
 
-
 ### Sample request
 
 ```
-https://subscriptiontest.citruspay.com/api/sub/v1/merchant/invoices/?subscription Id=5c988769652d405ed9834f67&skip=0&limit=15
+https://subscriptiontest.citruspay.com/api/sub/v1/merchant/invoices/?subscriptionId=5c988769652d405ed9834f67&skip=0&limit=15
 ```
 
 ### Sample response
