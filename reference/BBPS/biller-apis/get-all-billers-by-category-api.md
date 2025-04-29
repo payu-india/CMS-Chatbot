@@ -18,8 +18,8 @@ The **Get All Billers by Category** API fetches all the billers from PayU based 
 <BBPSEnvironment />
 
 > 📘 Note:
-> 
-> Send the scope of the Get Token API as **read_billers** to obtain the access_token for this request. For more information refer to [Get Token API - BBPS](ref:get-token-api-bbps).
+>
+> Send the scope of the Get Token API as **read\_billers** to obtain the access\_token for this request. For more information refer to [Get Token API - BBPS](ref:get-token-api-bbps).
 
 <details><summary>Sample request</summary>
 
@@ -33,73 +33,220 @@ curl --location --request GET 'https://<hostName>/payu-nbc/v1/nbc/getBillerByBil
 
 <details><summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field Name**",
-    "h-1": "**Description**",
-    "0-0": "code",
-    "0-1": "The global response code and can be any of the following:  \n  \n- **0**: If web service call failed\n- **1**: if web service call succeeded",
-    "1-0": "status",
-    "1-1": "The status of the API command and can be any of the following:  \n  \n- SUCCESS\n- FAILURE",
-    "2-0": "payload",
-    "2-1": "It will contain a list of biller categories. For more information, refer to the [payload](#payload) table."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Field Name**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        code
+      </td>
+
+      <td>
+        The global response code and can be any of the following:  
+
+        * **0**: If web service call failed
+        * **1**: if web service call succeeded
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        The status of the API command and can be any of the following:  
+
+        * SUCCESS
+        * FAILURE
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        payload
+      </td>
+
+      <td>
+        It will contain a list of biller categories. For more information, refer to the [payload](#payload) table.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### payload
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field Name**",
-    "h-1": "**Description**",
-    "0-0": "**Success Scenarios**",
-    "0-1": "",
-    "1-0": "billerCategories",
-    "1-1": "This field contains the biller categories in an array format.",
-    "2-0": "billerName",
-    "2-1": "This field contains the biller name.",
-    "3-0": "billerCategory",
-    "3-1": "This field contains the biller category.",
-    "4-0": "",
-    "4-1": "",
-    "5-0": "**Failure Scenarios**",
-    "5-1": "",
-    "6-0": "refId",
-    "6-1": "For failure scenarios, This parameter contains the reference ID.  \n**Note**: In case of category fetch refId will be null.",
-    "7-0": "type",
-    "7-1": "For failure scenarios, this field contains the type of error.",
-    "8-0": "code",
-    "8-1": "The global response code",
-    "9-0": "payload",
-    "9-1": "It will contain payload with error messages.",
-    "10-0": "status",
-    "10-1": "The status of the response. Example, SUCCESS/FAILURE",
-    "11-0": "message",
-    "11-1": "For failure scenarios, this field contains the description of error type for failure or success.",
-    "12-0": "errors",
-    "12-1": "For failure scenarios, this field contains the following in the response:  \n  \n- **reason**: The error description if the request has failed.\n- **errorCode**: The error code of the error if the request has failed",
-    "13-0": "additionalParams",
-    "13-1": "For failure scenarios, this field contains the additional fields (if any) related to billers in an array format."
-  },
-  "cols": 2,
-  "rows": 14,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Field Name**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **Success Scenarios**
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        billerCategories
+      </td>
+
+      <td>
+        This field contains the biller categories in an array format.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        billerName
+      </td>
+
+      <td>
+        This field contains the biller name.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        billerCategory
+      </td>
+
+      <td>
+        This field contains the biller category.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Failure Scenarios**
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        refId
+      </td>
+
+      <td>
+        For failure scenarios, This parameter contains the reference ID.  
+
+        * \*Note\*\*: In case of category fetch refId will be null.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        type
+      </td>
+
+      <td>
+        For failure scenarios, this field contains the type of error.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        code
+      </td>
+
+      <td>
+        The global response code
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        payload
+      </td>
+
+      <td>
+        It will contain payload with error messages.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        The status of the response. Example, SUCCESS/FAILURE
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        message
+      </td>
+
+      <td>
+        For failure scenarios, this field contains the description of error type for failure or success.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        errors
+      </td>
+
+      <td>
+        For failure scenarios, this field contains the following in the response:  
+
+        * **reason**: The error description if the request has failed.
+        * **errorCode**: The error code of the error if the request has failed
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        additionalParams
+      </td>
+
+      <td>
+        For failure scenarios, this field contains the additional fields (if any) related to billers in an array format.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
