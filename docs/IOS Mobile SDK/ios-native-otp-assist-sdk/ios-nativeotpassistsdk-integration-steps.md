@@ -28,30 +28,16 @@ import PayUNativeOtpAssist
 ```
 
 > 📘 Compatibilty
-> 
-> - Min SDK Version: 21
+>
+> * Min SDK Version: 21
 
 > **Note**: Configure Excluded Architectures to arm64 in the Build Settings of your project to run in Simulator.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/23a362b-Screenshot_2023-08-12_at_8.48.27_PM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/23a362b-Screenshot_2023-08-12_at_8.48.27_PM.png" />
 
 In order to receive all the crashes related to our SDKs, add the below-mentioned line to your AppDelegate's `didFinishLaunchingWithOptions`.
 
-**CrashReporter**  
+**CrashReporter**\
 In order to receive all the crashes related to our SDKs, add the below-mentioned line to your AppDelegate’s `didFinishLaunchingWithOptions`.
 
 ```Text Objective-C
@@ -65,9 +51,9 @@ PayUOtpAssist.start()
 
 You can integrate PayUIndia-NativeOtpAssist with your app or SDK with the following methods:
 
-- **Using Xcode**: Navigate to the File > Add Package menu and install the following package:  
-  <https://github.com/payu-intrepos/PayUNativeOtpAssist-iOS>
-- **Using Package.Swift**: Add the following line in the Package.swift dependencies:
+* **Using Xcode**: Navigate to the File > Add Package menu and install the following package:\
+  [https://github.com/payu-intrepos/PayUNativeOtpAssist-iOS](https://github.com/payu-intrepos/PayUNativeOtpAssist-iOS)
+* **Using Package.Swift**: Add the following line in the Package.swift dependencies:
 
 `.package(name: "PayUIndia-NativeOtpAssist", url: "https://github.com/payu-intrepos/PayUNativeOtpAssist-iOS", from: "2.0.0")`
 
@@ -78,7 +64,7 @@ You can integrate PayUIndia-NativeOtpAssist with your app or SDK with the follow
 For detailed information on hash generation, refer to [Hash Generation](https://docs.payu.in/docs/ios-checkoutpro-generate-hash).
 
 > ❗️ Callout
-> 
+>
 > Every transaction (payment or non-payment) needs a hash by the merchant before sending the transaction details to PayU. This is required for PayU to validate the authenticity of the transaction. This should be done on your server.
 
 ***
@@ -140,7 +126,7 @@ paymentParam.userCredential = <#T##String#> // For saving and fetching user’s 
 ```
 
 > 📘 Note
-> 
+>
 > Use Core SDK library to generate payment post data.
 
 ***
@@ -162,22 +148,22 @@ PayUOtpAssist.open(
 ```
 
 > 📘 Note:
-> 
+>
 > Initiate payment must be on the Main thread.
 
 ### Callbacks
 
 The list of the callback function provided by PayUOtpAssistCallback class:
 
-- `fun onPaymentSuccess(merchantResponse: String?, payUResponse: String?)`– Called when payment succeeds. merchantResponse:
+* `fun onPaymentSuccess(merchantResponse: String?, payUResponse: String?)`– Called when payment succeeds. merchantResponse:
 
-- `fun onPaymentFailure(merchantResponse: String?, payUResponse: String?)`– Called when a payment fails.
+* `fun onPaymentFailure(merchantResponse: String?, payUResponse: String?)`– Called when a payment fails.
 
-- `fun onError(errorCode: String?, errorMessage: String?`)- Called when we got some error where,
+* `fun onError(errorCode: String?, errorMessage: String?`)- Called when we got some error where,
   1. `errorCode`: Error Code
   2. `errorMessage`: Error Description
 
-- `fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest):` Boolean – It’s an optional callback, override when you want to handle the Bank page redirection flow. You just need to change the return value to false. You can also open CustomBrowser in fallback scenarios. The following code snippet is used to open the CustomBrowser. For more information on using CustomBrowser, refer to [iOS CustomBrowser SDK](https://docs.payu.in/docs/ios-custombrowser-sdk).
+* `fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest):` Boolean – It’s an optional callback, override when you want to handle the Bank page redirection flow. You just need to change the return value to false. You can also open CustomBrowser in fallback scenarios. The following code snippet is used to open the CustomBrowser. For more information on using CustomBrowser, refer to [iOS CustomBrowser SDK](https://docs.payu.in/docs/ios-custombrowser-sdk).
 
 ```Text Swift
 fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest) : Boolean {
@@ -226,14 +212,14 @@ You will get `PayUAcsRequest on shouldHandleFallback(`) callback. whether you wi
 After you get the response from SDK, make sure to confirm it with the PayU server.
 
 > 🚧 Remember
-> 
+>
 > It is recommended to implement the PayU Webhook or backend verify call from your backend.
 
 ### Implementation of PayU Verify API
 
-Since you already have the txnID (Order ID generated at your end) value for such cases, you simply need to execute the verify_payment API with the necessary input parameters. The output would return you the transaction status in the `status` key and various other parameters also. For more information, refer to the [Verify Payment Status ](https://docs.payu.in/reference/verify_payment_api)API.
+Since you already have the txnID (Order ID generated at your end) value for such cases, you simply need to execute the verify\_payment API with the necessary input parameters. The output would return you the transaction status in the `status` key and various other parameters also. For more information, refer to the [Verify Payment Status ](https://docs.payu.in/reference/verify_payment_api)API.
 
-Endpoint URL: <https://info.payu.in/merchant/postservice.php?form=2>
+Endpoint URL: [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2)
 
 **Sample Request**
 
