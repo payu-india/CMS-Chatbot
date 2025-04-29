@@ -30,8 +30,8 @@ If you want to know whether an user has purchased a product on your ecommerce we
 
 You can use PayU Webhooks to recieve a callback on your URL whenever a specific event occurs. When these events occurs, PayU sends an HTTP POST request with a JSON payload on the Webhook's configured endpoint.
 
-- You can create Webhooks from PayU Dashboard and configure separate Webhooks URL for LIVE or TEST mode. Know more about creating Webhooks. 
-- An Webhook created in the TEST mode of PayU dashboard receives events for test transactions. Know more about testing your Webhooks. 
+* You can create Webhooks from PayU Dashboard and configure separate Webhooks URL for LIVE or TEST mode. Know more about creating Webhooks. 
+* An Webhook created in the TEST mode of PayU dashboard receives events for test transactions. Know more about testing your Webhooks. 
 
 ## Webhook Security
 
