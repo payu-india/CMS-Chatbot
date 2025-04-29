@@ -149,8 +149,6 @@ The following codes are used to indicate the issuer or bank name in the response
 }
 ```
 
-
-
 ## Debit Card EMI
 
 | Issuer Name         | Code   |
@@ -194,9 +192,9 @@ The following codes are used to indicate the issuer or bank name in the response
 | ------------- | --------- |
 | Axio          | AXIO      |
 | Bajaj Finance | BAJFIN    |
-| HDFC Bank     | HDFC_CL   |
+| HDFC Bank     | HDFC\_CL  |
 | Homecredit    | HMECDT    |
-| ICICI Bank    | ICICI_CL  |
+| ICICI Bank    | ICICI\_CL |
 | Kreditbee     | KREDITBEE |
 | Zest Money    | ZESTMON   |
 | Kotak Bank    | KOTAKC    |
