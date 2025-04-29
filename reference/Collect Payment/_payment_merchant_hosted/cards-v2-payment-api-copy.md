@@ -30,53 +30,116 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 ### additionalInfo object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "enforcePaymethod  \n `optional`",
-    "0-1": "`String`Methods of payment that are enforced in the payment process.",
-    "1-0": "forcePgid  \n `optional`",
-    "1-1": "`String`Force identification for payment gateway integration.",
-    "2-0": "partnerHoldTime  \n `optional`",
-    "2-1": "`String`Time held by partner for the transaction.",
-    "3-0": "userCredentials  \n `optional`",
-    "3-1": "`String`Credentials for user authentication during payment."
-  },
-  "cols": 2,
-  "rows": 4,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        enforcePaymethod
+         `optional`
+      </td>
+
+      <td>
+        `String`Methods of payment that are enforced in the payment process.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        forcePgid\
+         `optional`
+      </td>
+
+      <td>
+        `String`Force identification for payment gateway integration.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        partnerHoldTime\
+         `optional`
+      </td>
+
+      <td>
+        `String`Time held by partner for the transaction.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        userCredentials\
+         `optional`
+      </td>
+
+      <td>
+        `String`Credentials for user authentication during payment.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### order object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "productInfo  \n `mandatory`",
-    "0-1": "`String`Details about the product being purchased. For more information, refer to[ userDefinedFields object fields description](#userdefinedfields-object-fields-description).",
-    "1-0": "userDefinedFields  \n `optional`",
-    "1-1": "`Object`Custom fields defined by the user for additional information.",
-    "2-0": "paymentChargeSpecification  \n `mandatory`",
-    "2-1": "`Object` Payment details including amount, additional charges and PayU offers to be applied. For more information, refer to [paymentChargeSpecification object fields description](#paymentchargespecification-object-fields-description)."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        productInfo
+         `mandatory`
+      </td>
+
+      <td>
+        `String`Details about the product being purchased. For more information, refer to[ userDefinedFields object fields description](#userdefinedfields-object-fields-description).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        userDefinedFields\
+         `optional`
+      </td>
+
+      <td>
+        `Object`Custom fields defined by the user for additional information.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentChargeSpecification\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Payment details including amount, additional charges and PayU offers to be applied. For more information, refer to [paymentChargeSpecification object fields description](#paymentchargespecification-object-fields-description).
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### userDefinedFields object fields description
 
@@ -95,51 +158,79 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 #### paymentChargeSpecification object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "price  \n`mandatory`",
-    "0-1": "This field must contain the price or transaction amount to be posted.",
-    "0-2": "10.00"
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        price
+        `mandatory`
+      </td>
+
+      <td>
+        This field must contain the price or transaction amount to be posted.
+      </td>
+
+      <td>
+        10.00
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <ErrorHandling />
 
 #### paymentChargeSpecification object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "price  \n`mandatory`",
-    "0-1": "This field must contain the price or transaction amount to be posted.",
-    "0-2": "10.00"
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        price
+        `mandatory`
+      </td>
+
+      <td>
+        This field must contain the price or transaction amount to be posted.
+      </td>
+
+      <td>
+        10.00
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <BillingDetailsObjectDescription />
 
@@ -228,27 +319,53 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "referenceId",
-    "0-1": "This parameter contains the reference ID of the transaction.  \nstatusCode",
-    "1-0": "paymentId",
-    "1-1": "This parameter contains the payment ID of the transaction.  \nstatusCode",
-    "2-0": "message",
-    "2-1": "This parameter contains the status message of the transaction."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        referenceId
+      </td>
+
+      <td>
+        This parameter contains the reference ID of the transaction.\
+        statusCode
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentId
+      </td>
+
+      <td>
+        This parameter contains the payment ID of the transaction.\
+        statusCode
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        message
+      </td>
+
+      <td>
+        This parameter contains the status message of the transaction.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample response
 
@@ -262,5 +379,5 @@ Array
 ```
 
 > 📘 Reference:
-> 
+>
 > To check the transaction status, refer to[Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
