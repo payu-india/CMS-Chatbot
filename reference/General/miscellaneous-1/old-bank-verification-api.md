@@ -22,13 +22,13 @@ The **Bank Verification** API is used to verify bank account using penny drop/pe
 | **Production Environment** | <https://onepayuonboarding.payu.in/dvs/bank_accounts/acc_verification> |
 
 > 📘 Note:
-> 
+>
 > The access token with the scope as **verify_bank_account ** and grant type as **client_credentials** are required on the header. For more information on getting the access token, refer to [Get Token API - Bank Verification](ref:gettoken-bank-verification).
 
 <br />
 
 <details>
-<summary>Request parameters</summary>
+  <summary>Request parameters</summary>
 
 ### Header
 
@@ -50,7 +50,6 @@ The **Bank Verification** API is used to verify bank account using penny drop/pe
   ]
 }
 [/block]
-
 
 ### Body
 
@@ -79,11 +78,10 @@ The **Bank Verification** API is used to verify bank account using penny drop/pe
 }
 [/block]
 
-
 </details>
 
 <details>
-<summary>Sample request</summary>
+  <summary>Sample request</summary>
 
 ```
 curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_verification' \
@@ -102,7 +100,7 @@ curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_ver
 </details>
 
 <details>
-<summary>Response parameters</summary>
+  <summary>Response parameters</summary>
 
 [block:parameters]
 {
@@ -125,7 +123,6 @@ curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_ver
 }
 [/block]
 
-
 ### result JSON fields description
 
 | Field         | Description                                                          | Example                |
@@ -137,7 +134,7 @@ curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_ver
 
 </details>
 <details>
-<summary>Sample response</summary>
+  <summary>Sample response</summary>
 
 #### Success scenario
 
