@@ -37,40 +37,25 @@ To filter the bulk upload transactions on Subscriptions Dashboard:
 
 > **Note**: The filter options vary for **Registration** and **Recurring** sub-tabs.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/8eac6a4f41d33e35d3569f924bffd819c71406b011b7ea152dc9937f4b0713d9-Screenshot_2024-09-16_at_11.23.10_AM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/8eac6a4f41d33e35d3569f924bffd819c71406b011b7ea152dc9937f4b0713d9-Screenshot_2024-09-16_at_11.23.10_AM.png" />
 
 4. Click to select any of the following check box from the **Filter** drop-down menu for the **Registration** sub-tab.
 
-- Processed
-- Processing
-- Partial Processing
+* Processed
+* Processing
+* Partial Processing
 
 For the **Recurring** sub-tab, the following options are displayed:
 
-- Processed 
-- Processing
+* Processed 
+* Processing
 
 5. Click **Apply** to get the results.
 
 > 📘 Reference:
-> 
+>
 > You can filter the bulk upload transactions by last week, month or by custom date range similar to Transactions Dashboard. For more information, refer to [View Transactions for a Custom Period](doc:view-transactions-for-a-custom-period).
 
 > 📘 Note:
-> 
+>
 > You can use the **Reset** to clear all checkbox selections.
