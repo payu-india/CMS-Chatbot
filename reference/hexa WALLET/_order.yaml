@@ -15,3 +15,4 @@
 - delete-beneficiary-api
 - change-card-status-api
 - link-card-api
+- verify-cardholder-api
