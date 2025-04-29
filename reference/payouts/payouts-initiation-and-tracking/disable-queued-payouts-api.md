@@ -28,7 +28,8 @@ Transactions go into the queue if the merchant is not having enough balance in h
 > 
 > The payoutMerchantId is different from PayU Merchant Id. Check the Payouts Dashboard or call the PayU Customer Support if you don’t know your payoutMerchantId.
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location 'https://uatoneapi.payu.in/payout/setQueueTxnFlag' \
@@ -41,7 +42,8 @@ curl --location 'https://uatoneapi.payu.in/payout/setQueueTxnFlag' \
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ### Success scenario
 
@@ -77,3 +79,5 @@ curl --location 'https://uatoneapi.payu.in/payout/setQueueTxnFlag' \
  "data": null
  }
 ```
+
+</details>
