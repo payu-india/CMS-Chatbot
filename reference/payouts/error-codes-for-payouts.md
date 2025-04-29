@@ -44,4 +44,4 @@ The following are possible errors and error codes for a payouts transaction. 
 | 1030           | INVALID\_CARD\_CRYPTOGRAM       |
 | 1031           | INVALID\_ISTOKENIZED\_VALUE     |
 | 1032           | EXCEEDED\_TXN\_LIMIT            |
-| 1128           | TXN_LIMIT_EXCEEDED              |
+| 1128           | TXN\_LIMIT\_EXCEEDED            |
