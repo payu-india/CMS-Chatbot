@@ -19,8 +19,8 @@ First, create a PayU account. See [Register for a Merchant Account.](https://doc
 ***
 
 > 🚧 Download php SDK
-> 
-> You can download the php web SDK from the following github link: <https://github.com/payu-intrepos/web-sdk-php>
+>
+> You can download the php web SDK from the following github link: [https://github.com/payu-intrepos/web-sdk-php](https://github.com/payu-intrepos/web-sdk-php)
 
 ## Build PayU object
 
