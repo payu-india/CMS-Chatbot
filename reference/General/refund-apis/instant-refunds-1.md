@@ -58,8 +58,8 @@ These are the parameter and modes posted for instant refunds:
 | 3    | IMPS    | \<= 2,00,000 | PayU will push funds through IMPS into the account number shared                                                                              |
 | 4    | NEFT    | \>= 2,00,000 | PayU will push funds through NEFT into the account number shared.                                                                             |
 
-> 📘 Note: 
-> 
+> 📘 Note:
+>
 > ​Priority order followed by PayU if the mode **1** is passed: Instant Refund Through PG > Instant Refund Through UPI > Instant Refund Through IMPS > Instant Refund Through NEFT > Normal PG Refunds.
 
 ## Sample request
@@ -78,8 +78,6 @@ curl --location -g --request POST '{{http_endpoint}}/merchant/postservice.php?fo
 --form 'var7="{ "test_sms_child_1": { "amount": 100, aggreatorRefundAmount: 40 }, "test_sms_child_2": {"amount": 20, aggreatorCommission: 0 }}"'
 ```
 
-
-
 ## Sample response
 
 ### Success response
@@ -88,8 +86,8 @@ curl --location -g --request POST '{{http_endpoint}}/merchant/postservice.php?fo
 { "status": 1, "msg": "Refund Request Queued", "request_id": "6582898821", "bank_ref_num": null, "mihpayid": 7043873219, "error_code": 102 }
 ```
 
-> 📘 Note: 
-> 
+> 📘 Note:
+>
 > In the case of Aggregator merchants, the sample success response will be as follows:
 
 ```plaintext
