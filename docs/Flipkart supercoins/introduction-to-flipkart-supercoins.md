@@ -28,7 +28,7 @@ Using this payment option, customers can pay the whole amount or partial amount 
 
 This part of the documentation includes:
 
-- [Customer Journey for FKSC](doc:customer-journey-for-fksc)
-- [PayU Hosted Checkout Integration](doc:payu-hosted-checkout-fksc)
-- [Merchant Hosted Integration](doc:merchant-hosted-integration-fksc)
-- [Understanding Refunds](doc:understanding-refunds-fksc)
+* [Customer Journey for FKSC](doc:customer-journey-for-fksc)
+* [PayU Hosted Checkout Integration](doc:payu-hosted-checkout-fksc)
+* [Merchant Hosted Integration](doc:merchant-hosted-integration-fksc)
+* [Understanding Refunds](doc:understanding-refunds-fksc)
