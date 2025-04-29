@@ -18,85 +18,165 @@ HTTP Method: **POST**
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "key  \n**mandatory**",
-    "0-1": "This parameter must contain your merchant key shared by PayU during onboarding.",
-    "0-2": "Your Test Key",
-    "1-0": "command  \n**mandatory**",
-    "1-1": "This parameters must contain the API command as **check\\_balance**.",
-    "1-2": "check\\_balance",
-    "2-0": "hash  \n**mandatory**",
-    "2-1": "This parameter contains the hash. Use the following hash generation format:  \n`sha512(key\\|command\\|var1\\|salt) sha512`",
-    "2-2": " ",
-    "3-0": "var1  \n**mandatory**",
-    "3-1": "This parameter must contain the Sodexo Source ID in JSON format as provided in the example.",
-    "3-2": "`{sodexoSourceId\":\"src_81e2c860-631b-4b01-aefa-19cfa9c63415\"}`"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+      <th>
+        **Description**
+      </th>
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        key
+        **mandatory**
+      </td>
+      <td>
+        This parameter must contain your merchant key shared by PayU during onboarding.
+      </td>
+      <td>
+        Your Test Key
+      </td>
+    </tr>
+    <tr>
+      <td>
+        command\
+        **mandatory**
+      </td>
+      <td>
+        This parameters must contain the API command as **check\_balance**.
+      </td>
+      <td>
+        check\_balance
+      </td>
+    </tr>
+    <tr>
+      <td>
+        hash\
+        **mandatory**
+      </td>
+      <td>
+        This parameter contains the hash. Use the following hash generation format:\
+        sha512(key|command|var1|salt) sha512
+      </td>
+      <td>
+         
+      </td>
+    </tr>
+    <tr>
+      <td>
+        var1\
+        **mandatory**
+      </td>
+      <td>
+        This parameter must contain the Sodexo Source ID in JSON format as provided in the example.
+      </td>
+      <td>
+        `{"sodexoSourceId":"src_81e2c860-631b-4b01-aefa-19cfa9c63415"}`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 > 📘 Notes:
-> 
-> - **var1** is in a JSON format. All the sub fields are to be sent as a json in var1. The whole JSON string should be used for hash generation.
-> - **sourceId** is shared by PayU with merchants in the field3 parameter in any of the following API responses for all successful transactions wherever customer has provided permission to save their card.
->   - ws\_callback
->   - [Verify Payment API](ref:verify_payment_api)
+>
+> * **var1** is in a JSON format. All the sub fields are to be sent as a json in var1. The whole JSON string should be used for hash generation.
+> * **sourceId** is shared by PayU with merchants in the field3 parameter in any of the following API responses for all successful transactions wherever customer has provided permission to save their card.
+>   * ws\_callback
+>   * [Verify Payment API](ref:verify_payment_api)
 
 ## Sample request
 
 ```curl
 curl -X POST "https://test.payu.in/merchant/postservice?form=2
 -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d
-"key=JP***g&command=check_balance&var1={"sodexoSourceId":"src_81e2c860-631b-4b01-aefa-19cfa9c63415"}&hash=fbd44e564f49aaa271250df4fc9fdc5a7eff98d961d6ca8e8049ae0f830d7ee7ff73a4b74c69c9742ccfe0c0478e737c4c685a3fe614ba5ef7edf706097e3346"
+"key=JP***g&command=check_balance&var1={\"sodexoSourceId\":\"src_81e2c860-631b-4b01-aefa-19cfa9c63415\"}&hash=fbd44e564f49aaa271250df4fc9fdc5a7eff98d961d6ca8e8049ae0f830d7ee7ff73a4b74c69c9742ccfe0c0478e737c4c685a3fe614ba5ef7edf706097e3346"
 ```
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of web service call. The status can be any of the following:  \n   - 0 - If web service call failed.  \n   - 1 - If web service call succeeded.",
-    "0-2": "1",
-    "1-0": "cardNo",
-    "1-1": "This parameter contains the Sodexo card number.",
-    "1-2": "637513XXXXXX9318",
-    "2-0": "cardBalance",
-    "2-1": "This parameter returns the card balance (in rupees).",
-    "2-2": "3000.00",
-    "3-0": "cardName",
-    "3-1": "This parameter contains name of the customer as on the Sodexo card.",
-    "3-2": "test",
-    "4-0": "msg",
-    "4-1": "This parameter contains the message, that is successful or failure.",
-    "4-2": "success"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+      <th>
+        **Description**
+      </th>
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+      <td>
+        This parameter returns the status of web service call. The status can be any of the following:  
 
+        * 0 - If web service call failed.  
+        * 1 - If web service call succeeded.
+      </td>
+      <td>
+        1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cardNo
+      </td>
+      <td>
+        This parameter contains the Sodexo card number.
+      </td>
+      <td>
+        637513XXXXXX9318
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cardBalance
+      </td>
+      <td>
+        This parameter returns the card balance (in rupees).
+      </td>
+      <td>
+        3000.00
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cardName
+      </td>
+      <td>
+        This parameter contains name of the customer as on the Sodexo card.
+      </td>
+      <td>
+        test
+      </td>
+    </tr>
+    <tr>
+      <td>
+        msg
+      </td>
+      <td>
+        This parameter contains the message, that is successful or failure.
+      </td>
+      <td>
+        success
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample response
 
@@ -108,19 +188,19 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
 
 ### Failure scenarios
 
-- Hash is invalid
+* Hash is invalid
 
 ```plaintext
 {"status":0,"msg":"Invalid Hash."}
 ```
 
-- Unable to fetch balance
+* Unable to fetch balance
 
 ```plaintext
 {"status":0,"msg":"Unable to fetch balance"}
 ```
 
-- Sodexo Source ID is not found
+* Sodexo Source ID is not found
 
 ```plaintext
 {"status":0,"msg":"Source not found."}
