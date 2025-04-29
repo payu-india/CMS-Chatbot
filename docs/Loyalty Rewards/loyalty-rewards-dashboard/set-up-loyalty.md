@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The _Set-up Loyalty_ page is designed to help you configure their loyalty programs by setting up how points are branded, earned, and redeemed. It includes options for defining point naming, branding visuals, redemption rules, and earning conditions, allowing for a tailored loyalty experience that aligns with the merchant's brand and objectives.
+The *Set-up Loyalty* page is designed to help you configure their loyalty programs by setting up how points are branded, earned, and redeemed. It includes options for defining point naming, branding visuals, redemption rules, and earning conditions, allowing for a tailored loyalty experience that aligns with the merchant's brand and objectives.
 
 To set up loyalty:
 
@@ -24,44 +24,13 @@ To set up loyalty:
 
    A confirmation message is displayed similar to the following screenshot: 
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/c424d38a1e5e50fc482a82b10480d5174bd31ef3efcd84a1441269c2b08e1193-setup-loyalty-update-confirmation.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "320px",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" width="320px" border={true} src="https://files.readme.io/c424d38a1e5e50fc482a82b10480d5174bd31ef3efcd84a1441269c2b08e1193-setup-loyalty-update-confirmation.png" />
 
 4. Click **Proceed**.
 
-The _Set-up Loyalty_ wizard is displayed with _Step 1 - Points Branding_ page.
+The *Set-up Loyalty* wizard is displayed with *Step 1 - Points Branding* page.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ba91303d91a845bd16552cebd1431a9eb19b82a46c83ed596ad3f3c97fcfa74e-setup-loyalty-step1-points-branding.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/ba91303d91a845bd16552cebd1431a9eb19b82a46c83ed596ad3f3c97fcfa74e-setup-loyalty-step1-points-branding.png" />
 
 5. Enter a short name for your loyalty points in the  **Name Your Loyalty Points**  field that will be visible to your customers. For example, Star.
 
@@ -69,24 +38,9 @@ The _Set-up Loyalty_ wizard is displayed with _Step 1 - Points Branding_ page.
 
 7. Click **Save & Next**.
 
-The _Step 2:Burn Loyalty _ page of  _Set-up Loyalty_ wizard is displayed.
+The *Step 2:Burn Loyalty* page of  *Set-up Loyalty* wizard is displayed.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/559196081c40dd47d28806bcdad7d7a5bfac232e99af551e284f71bb199b711a-setup-loyalty-step2-burn-rules.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/559196081c40dd47d28806bcdad7d7a5bfac232e99af551e284f71bb199b711a-setup-loyalty-step2-burn-rules.png" />
 
 8. Enter the following details to configure the redemption logic:
 
@@ -101,29 +55,14 @@ The _Step 2:Burn Loyalty _ page of  _Set-up Loyalty_ wizard is displayed.
 
 9. Click **Save & Next**.
 
-The _Step 3: Earn Configuration _ page of  _Set-up Loyalty_ wizard is displayed.
+The *Step 3: Earn Configuration* page of  *Set-up Loyalty* wizard is displayed.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/a1349b0e19d9755645af06c9cdc9634e722a2bc4f7b6c98594b44ddaf99723d4-setup-loyalty-step3-earn-config.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/a1349b0e19d9755645af06c9cdc9634e722a2bc4f7b6c98594b44ddaf99723d4-setup-loyalty-step3-earn-config.png" />
 
 10. Select any of the following to specify earn points based on
 
-- Final Payable amount
-- Order amount
+* Final Payable amount
+* Order amount
 
 11. Specify the duration in days or when points will expirein the **Set Point Expiry** field. You may choose to leave blank for no expiry.
 
