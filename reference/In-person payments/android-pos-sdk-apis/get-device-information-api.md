@@ -13,42 +13,92 @@ next:
 The **Get Device Information**API  is used to device-related information. To get the device related information such as device serial number, device model, device OS pass the parameters as mentioned in the request parameter table.
 
 > 🚧 Warning!
-> 
+>
 > The get device information feature is applicable only for N910 device.
 
 **Method**: POST
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "Handler   \n`mandatory`",
-    "0-1": "`handler` Handlers are used to passing the data and receiving the data between the two classes.",
-    "0-2": "handler",
-    "1-0": "DeviceName   \n`mandatory`",
-    "1-1": "`string` Device name is used to find the device.",
-    "1-2": "DeviceType.N 910",
-    "2-0": "address   \n`Optional`",
-    "2-1": "`string` Connected device mac address.",
-    "2-2": "“XXXXXXX69 09”",
-    "3-0": "deviceCom mMode   \n`Optional`",
-    "3-1": "`int` Type of communication (USB or bluetooth).",
-    "3-2": "0"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Handler 
+        `mandatory`
+      </td>
+
+      <td>
+        `handler` Handlers are used to passing the data and receiving the data between the two classes.
+      </td>
+
+      <td>
+        handler
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        DeviceName \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` Device name is used to find the device.
+      </td>
+
+      <td>
+        DeviceType.N 910
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        address \
+        `Optional`
+      </td>
+
+      <td>
+        `string` Connected device mac address.
+      </td>
+
+      <td>
+        “XXXXXXX69 09”
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        deviceCom mMode \
+        `Optional`
+      </td>
+
+      <td>
+        `int` Type of communication (USB or bluetooth).
+      </td>
+
+      <td>
+        0
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
