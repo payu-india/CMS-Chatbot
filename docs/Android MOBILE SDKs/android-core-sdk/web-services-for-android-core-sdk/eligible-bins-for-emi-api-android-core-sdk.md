@@ -13,11 +13,11 @@ next:
 The **Eligible BINs for EMI** API fetches a list of eligible Bins for EMI corresponding to each Bank name along with minimum amount. 
 
 > 📘 Hash logic
-> 
+>
 > The hash logic for this API is:
-> 
+>
 > `<key>|eligibleBinsForEMI|default|<salt>`
-> 
+>
 > For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
 ## Step 1: Set parameters
