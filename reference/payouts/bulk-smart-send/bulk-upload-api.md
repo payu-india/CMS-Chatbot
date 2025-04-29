@@ -18,7 +18,7 @@ HTTP Method: **POST**
 
 |                            |                                                                         |
 | -------------------------- | ----------------------------------------------------------------------- |
-| **Test Environment**       | <https://staging.payu.in/payout/v2/smartSend/bulkUpload/transfers>      |
+| **Test Environment**       | <https://staging.payu.in/payout/v2/smartSend/bulkUpload/transfers> |
 | **Production Environment** | <https://payout.payumoney.com/payout/v2/smartSend/bulkUpload/transfers> |
 
 ## Request header and parameters
@@ -31,7 +31,7 @@ HTTP Method: **POST**
     "h-2": "**Example**",
     "0-0": "Authorization`\nmandatory`",
     "0-1": "`String` Specify the access token generated earlier in this parameter.",
-    "0-2": "Bearer {access\\_token}",
+    "0-2": "Bearer `{access_token}`",
     "1-0": "pid`\nmandatory`",
     "1-1": "`String` Specify the payout merchant id provided while onboarding or creating Payout account.",
     "1-2": "1111126",
@@ -52,9 +52,8 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 > 📘 Note:
-> 
+>
 > The **pid** is **payoutMerchantId**, however it is different from the PayU merchant id. Check the Payouts Dashboard or call the PayU Customer Support if you don’t know your **payoutsMerchantID**.
 
 For the list of error messages and their description that you may encounter when Smart Send APIs integration, refer to [Error Codes](ref:error-codes-for-payouts).
@@ -94,5 +93,4 @@ curl --location 'https://testoneapi.payu.in/payout/v2/smartSend/bulkUpload/trans
         "fileSource": "DASHBOARD_SMART_SEND"
     }
 }
-
 ```
