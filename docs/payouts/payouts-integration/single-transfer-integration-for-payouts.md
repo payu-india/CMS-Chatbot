@@ -71,7 +71,7 @@ You can transfer through various payment modes described in [Initiate Transfer A
 
 ## Step 4. Check transfer status
 
-Fetch the status of the transfer by posting the merchant’s reference ID as a parameter using the Check Transfer Status API. For more information on Payouts statuses, refer to [Payouts Lifecycle](doc:payouts-lifecycle) For more information on Check Transfer Status API, refer to the
+Fetch the status of the transfer by posting the merchant’s reference ID as a parameter using the Check Transfer Status API. For more information on Payouts statuses, refer to [Payouts Lifecycle](doc:payouts-lifecycle). For more information on Check Transfer Status API, refer to the
 
 ## Step 5. Integrate with webhooks
 
