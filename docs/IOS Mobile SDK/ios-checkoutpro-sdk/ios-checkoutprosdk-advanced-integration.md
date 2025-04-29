@@ -12,22 +12,22 @@ next:
 ---
 The iOS CheckoutPro SDK provides the following advanced integration options:
 
-- [Enable offer](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#enable-offer)
-- [Change theme](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#change-theme)
-- [Configure merchant name & logo](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#configure-merchant-name--logo)
-- [Hide Checkout screen Back button dialog box](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#hide-checkout-screen-back-button-dialog-box)
-- [Hide the Back button dialog box after Payment Initialisation](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#hide-the-back-button-dialog-box-after-payment-initialisation)
-- [Auto Select OTP](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#auto-select-otp)
-- [Auto Submit OTP](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#auto-submit-otp)
-- [Configure merchant response timeout](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#configure-merchant-response-timeout)
-- [Review order](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#review-order)
-- [Additional payment options on the Checkout screen](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#additional-payment-options-on-the-checkout-screen)
-- [Configure checkout payment modes order](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#configure-checkout-payment-modes-order)
-- [Set Native OTP Assist](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#set-native-otp-assist)
-- [Enforced payment modes](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#enforced-payment-modes)
+* [Enable offer](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#enable-offer)
+* [Change theme](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#change-theme)
+* [Configure merchant name & logo](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#configure-merchant-name--logo)
+* [Hide Checkout screen Back button dialog box](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#hide-checkout-screen-back-button-dialog-box)
+* [Hide the Back button dialog box after Payment Initialisation](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#hide-the-back-button-dialog-box-after-payment-initialisation)
+* [Auto Select OTP](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#auto-select-otp)
+* [Auto Submit OTP](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#auto-submit-otp)
+* [Configure merchant response timeout](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#configure-merchant-response-timeout)
+* [Review order](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#review-order)
+* [Additional payment options on the Checkout screen](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#additional-payment-options-on-the-checkout-screen)
+* [Configure checkout payment modes order](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#configure-checkout-payment-modes-order)
+* [Set Native OTP Assist](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#set-native-otp-assist)
+* [Enforced payment modes](https://docs.payu.in/docs/ios-checkoutprosdk-advanced-integration#enforced-payment-modes)
 
 > 📘 Tip
-> 
+>
 > You can dynamically make the changes listed in this section using the PayU Dashboard. For more information, refer to Dynamic Configuration using Dashboard.
 
 ## Enable offer
@@ -173,10 +173,10 @@ This will display Google Pay, PhonePe, and Paytm respectively on top of availabl
 
 The default payment modes order on the checkout screen is as follows:
 
-- Card
-- NetBanking
-- UPI
-- Wallets
+* Card
+* NetBanking
+* UPI
+* Wallets
 
 You can configure the above checkout payment options order. For this, you need to provide a list of payment modes. Checkout order will be the order of items in the list. If not all payment modes' order is mentioned in the list, other payment modes will be displayed in their default order as shown above.
 
@@ -207,17 +207,17 @@ config.paymentModesOrder = preferredPaymentModes;
 
 The resulting order on the initial checkout screen will be:
 
-- Cards (credit/debit)
-- Net Banking
-- UPI
-- Wallets
-- EMI
+* Cards (credit/debit)
+* Net Banking
+* UPI
+* Wallets
+* EMI
 
 ***
 
 ## Set Native OTP Assist
 
-It offers to capture OTP in the merchant app without any redirection to the bank’s 3Dsecure/ACS page. This means that there’s one less point of failure in the checkout process and a faster completion rate for transactions. To integrate this, please get enabled txn_s2s_flow on your merchant key from your Key Account Manager at PayU.
+It offers to capture OTP in the merchant app without any redirection to the bank’s 3Dsecure/ACS page. This means that there’s one less point of failure in the checkout process and a faster completion rate for transactions. To integrate this, please get enabled txn\_s2s\_flow on your merchant key from your Key Account Manager at PayU.
 
 For more information on Native OTP Assist experience, refer to [iOS Native OTP Assist SDK](doc:ios-native-otp-assist-sdk).
 
@@ -266,5 +266,5 @@ config.enforcePaymentList = enforcePaymentList;
 ```
 
 > 📘 Note:
-> 
+>
 > To enforce CC or DC we can add PaymentParamConstant.cc or PaymentParamConstant.dc in the key PaymentParamConstant.cardType. This is an optional parameter. To support both you can ignore this parameter.
