@@ -13,51 +13,64 @@ metadata:
 next:
   description: ''
 ---
-You can use the **Get Payment Status** API to manually request the status of a bill payment transaction. Sometime the response of a **Bill Payment **API can be interrupted due to network failures. To handle such situations you can programmatically use this API to make a manual request.
+You can use the **Get Payment Status** API to manually request the status of a bill payment transaction. Sometime the response of a **Bill Payment** API can be interrupted due to network failures. To handle such situations you can programmatically use this API to make a manual request.
 
 <BBPSEnvironment />
 
 > 📘 Note:
-> 
-> Send the scope of the Get Token API as **read_transactions** to obtain the access_token for this request. For more information, refer to  [Get Token API - BBPS](ref:get-token-api-bbps).
+>
+> Send the scope of the Get Token API as **read\_transactions** to obtain the access\_token for this request. For more information, refer to [Get Token API - BBPS](ref:get-token-api-bbps).
 
-<details> <summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
-curl --location -g --request GET 'https://<hostName>/<host name>/v2/nbc/status/billpayment?refId={refId} ' \
+curl --location -g --request GET 'https://<hostName>/<host name>/v2/nbc/status/billpayment?refId=`{refId}` ' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {{access_token}}' 
 ```
 
 </details>
 
-<details> <summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field Name**",
-    "h-1": "**Description**",
-    "0-0": "code",
-    "0-1": "This field contains the global response code and can be any of the following:  \n  \n- **0**: If web service call failed\n- **1**: if web service call succeeded",
-    "1-0": "status",
-    "1-1": "The status of the API command and can be any of the following:  \n  \n- **SUCCESS**\n- **FAILURE**",
-    "2-0": "payload",
-    "2-1": "This parameter contains the bill fetch transaction data. For more information, refer to the [payload](#payload) table."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>**Field Name**</th>
+      <th>**Description**</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>code</td>
+      <td>
+        This field contains the global response code and can be any of the following:  
+        * **0**: If web service call failed
+        * **1**: if web service call succeeded
+      </td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>
+        The status of the API command and can be any of the following:  
+        * **SUCCESS**
+        * **FAILURE**
+      </td>
+    </tr>
+    <tr>
+      <td>payload</td>
+      <td>
+        This parameter contains the bill fetch transaction data. For more information, refer to the [payload](#payload) table.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### payload
 
-| Field            | Descritpion                                                                                                                                                                                                                                                                                           |
+| Field            | Description                                                                                                                                                                                                                                                                                           |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | refId            | This field contains the reference ID for the queried payment request.                                                                                                                                                                                                                                 |
 | txnStatus        | This field contains the status related to requested refId. It will contain status as in the Transaction Status Code table. For more information, refer to [Transaction Status Code](https://devguide.vercel.app/agent-api-integration/bill-apis/bill-payment-transaction-status/#Transaction_Status). |
@@ -69,7 +82,8 @@ curl --location -g --request GET 'https://<hostName>/<host name>/v2/nbc/status/b
 
 </details>
 
-<details> <summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ### Success scenario
 
@@ -105,7 +119,7 @@ curl --location -g --request GET 'https://<hostName>/<host name>/v2/nbc/status/b
 
 ### Failure scenario
 
-- When the PayU Transaction ID does not exist:
+* When the PayU Transaction ID does not exist:
 
 ```
 {
@@ -124,7 +138,7 @@ curl --location -g --request GET 'https://<hostName>/<host name>/v2/nbc/status/b
 }
 ```
 
-- When Payment transaction failed at biller’s end and failure status captured at PayU’s end:
+* When Payment transaction failed at biller’s end and failure status captured at PayU’s end:
 
 ```
 {
@@ -143,7 +157,7 @@ curl --location -g --request GET 'https://<hostName>/<host name>/v2/nbc/status/b
 }
 ```
 
-- When Payment transaction is not captured at PayU’s end and PayU is also waiting for the actual status of the transaction:
+* When Payment transaction is not captured at PayU’s end and PayU is also waiting for the actual status of the transaction:
 
 ```
 {
