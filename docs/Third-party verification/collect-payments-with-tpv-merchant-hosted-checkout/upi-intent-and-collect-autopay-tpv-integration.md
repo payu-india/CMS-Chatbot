@@ -15,16 +15,16 @@ For recurring payment use-case, you can use UPI as a payment instrument. It requ
 The Third-Party Verification (TPV) functionality is now being added to the UPI Autopay too. 
 
 > 📘 Notes:
-> 
-> - Currently, PayU supports UPI Autopay only with Seamless integration.
-> - Contact your PayU Key Account Manager (KAM) or [PayU Support ](https://help.payu.in)to activate this feature.
+>
+> * Currently, PayU supports UPI Autopay only with Seamless integration.
+> * Contact your PayU Key Account Manager (KAM) or [PayU Support ](https://help.payu.in)to activate this feature.
 
 ### Use Cases
 
 Merchants have use cases, which requires the transactions to be allowed only for selected accounts only. These accounts are provided by the customer before hand (during customer registration on merchant platform). Few merchant use cases are:
 
-- Mutual Funds (SEBI guideines)
-- Loan Repayment
+* Mutual Funds (SEBI guideines)
+* Loan Repayment
 
 However, as part of UPI, customer has the flexibility to link multiple accounts under the same VPA and on run-time, change the account for authorisation. So using TPV services, merchant makes sure that customer authorises the transaction using pre-registered accounts only.
 
@@ -41,5 +41,5 @@ The merchant initiates the call to PayU with SI details, **bankcode** as **INTTP
 To integrate the UPI Collect Intent TPV Flow, refer to [UPI Intent Autopay TPV Integration](doc:upi-intent-autopay-tpv-integration).
 
 > 📘 Note:
-> 
+>
 > Validation is done only in the registration step of the mandate. If the account matches, rest of the journey for UPI Autopay will remain as-is.
