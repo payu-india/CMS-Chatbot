@@ -31,142 +31,447 @@ This section describes the procedure to upload the registration transactions in 
 
 ## Prerequisites
 
-- Download the sample file as in below [procedure](#procedure) (Steps 1 to 5) and update it to include the data to be uploaded.
-- Ensure that all mandatory fields in the file are filled with the correct details. The columns in the Excel sheet for upload are described in the following table:
+* Download the sample file as in below [procedure](#procedure) (Steps 1 to 5) and update it to include the data to be uploaded.
+* Ensure that all mandatory fields in the file are filled with the correct details. The columns in the Excel sheet for upload are described in the following table:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Column Name",
-    "h-1": "Field Type (Mandatory/ Optional)",
-    "h-2": "Character Limit",
-    "0-0": "Amount",
-    "0-1": "Mandatory",
-    "0-2": "No Limit",
-    "1-0": "Invoice Id",
-    "1-1": "Optional",
-    "1-2": "16 (Should be unique)",
-    "2-0": "Merchant Ref Id",
-    "2-1": "Optional",
-    "2-2": "50 (should be unique and to support - \"^\\[A-Za-z0-9@#().+\\_;\\\\\\\\-\\\\\\\\\\[\\\\\\\\\\]\\]\\*$\" )",
-    "3-0": "Product Description",
-    "3-1": "Mandatory",
-    "3-2": "255",
-    "4-0": "Customer Name",
-    "4-1": "Optional",
-    "4-2": "255",
-    "5-0": "Customer Email",
-    "5-1": "Optional",
-    "5-2": "Basic email validations",
-    "6-0": "Customer Phone Number",
-    "6-1": "Optional",
-    "6-2": "Basic phone number validations",
-    "7-0": "Validation Period",
-    "7-1": "Optional",
-    "7-2": "No max limit. Should be numeric ",
-    "8-0": "Time Unit",
-    "8-1": "Optional",
-    "8-2": "The default value is D (days). Other supported values = M (minutes), H (hours)",
-    "9-0": "Sendsms",
-    "9-1": "Optional",
-    "9-2": "Supported value = 0, 1 or empty   \n**Note**: To send a SMS, the following is required:  \n  \n- Phone number must be specified\n- **Sendsms**column = 1\n- **Notify via SMS** check box specified in Step 7  is selected",
-    "10-0": "Sendemail",
-    "10-1": "Optional",
-    "10-2": "Supported value = 0, 1 or empty  \n**Note**: To send an email, the following is required:  \n  \n- Email ID must be specified\n- **Sendemail** column = 1\n- **Notify via Email** check box specified in Step 7  is selected",
-    "11-0": "Customer Address",
-    "11-1": "Optional",
-    "11-2": "255",
-    "12-0": "Cutomer City",
-    "12-1": "Optional",
-    "12-2": "255",
-    "13-0": "Customer State",
-    "13-1": "Optional",
-    "13-2": "255",
-    "14-0": "Customer Country",
-    "14-1": "Optional",
-    "14-2": "255",
-    "15-0": "Zip code",
-    "15-1": "Optional",
-    "15-2": "255",
-    "16-0": "Udf 1",
-    "16-1": "Optional",
-    "16-2": "255",
-    "17-0": "Udf 2",
-    "17-1": "Optional",
-    "17-2": "255",
-    "18-0": "Udf 3",
-    "18-1": "Optional",
-    "18-2": "255",
-    "19-0": "Udf 4",
-    "19-1": "Optional",
-    "19-2": "255",
-    "20-0": "Udf 5",
-    "20-1": "Optional",
-    "20-2": "255",
-    "21-0": "IsSiEnabled",
-    "21-1": "Mandatory",
-    "21-2": "Supported value = 0, 1 or empty. If the value = 1 only then SI bulk upload link will be generated and the SI-related parameters will be  mandatory",
-    "22-0": "Billing amount",
-    "22-1": "Mandatory (if isSienabled =1)",
-    "22-2": "Minimum value = 1",
-    "23-0": "Billing cycle",
-    "23-1": "Mandatory (if isSienabled =1)",
-    "23-2": "Value should be monthly, daily, weekly, adhoc, yearly",
-    "24-0": "Billing interval",
-    "24-1": "Mandatory   a. if isSienabled =1  b. if billing cycle ≠ adhoc",
-    "24-2": "For adhoc cycle, it is not mandatory, for other billing cycles, it is mandatory",
-    "25-0": "Start date",
-    "25-1": "Mandatory (if isSienabled =1)",
-    "25-2": "DD/MM/YYYY format",
-    "26-0": "End date",
-    "26-1": "Mandatory (if isSienabled =1)",
-    "26-2": "DD/MM/YYYY format",
-    "27-0": "Payment Method",
-    "27-1": "Mandatory (if isSienabled =1)",
-    "27-2": "`creditcard\\|debitcard\\|upi\\|enach`"
-  },
-  "cols": 3,
-  "rows": 28,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Column Name
+      </th>
 
+      <th>
+        Field Type (Mandatory/ Optional)
+      </th>
 
-- Ensure that your bulk upload files are in the CSV format, as this is the only supported file type. 
-- The upload file size should not exceed 5 MB to ensure smooth processing. 
-- Each batch can contain up to 60,000 records (approximately), which is the maximum number of records processed in a single batch.
+      <th>
+        Character Limit
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Amount
+      </td>
+
+      <td>
+        Mandatory
+      </td>
+
+      <td>
+        No Limit
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Invoice Id
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        16 (Should be unique)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Merchant Ref Id
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        50 (should be unique and to support - "^\[A-Za-z0-9@#().+\_;\\\\-\\\\\[\\\\\]\]\*$" )
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Product Description
+      </td>
+
+      <td>
+        Mandatory
+      </td>
+
+      <td>
+        255
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Customer Name
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        255
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Customer Email
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Basic email validations
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Customer Phone Number
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Basic phone number validations
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Validation Period
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        No max limit. Should be numeric 
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Time Unit
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        The default value is D (days). Other supported values = M (minutes), H (hours)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Sendsms
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Supported value = 0, 1 or empty   
+
+        * \*Note\*\*: To send a SMS, the following is required:  
+        * Phone number must be specified
+        * **Sendsms**column = 1
+        * **Notify via SMS** check box specified in Step 7  is selected
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Sendemail
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Supported value = 0, 1 or empty  
+
+        * \*Note\*\*: To send an email, the following is required:  
+        * Email ID must be specified
+        * **Sendemail** column = 1
+        * **Notify via Email** check box specified in Step 7  is selected
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Customer Address
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        255
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Cutomer City
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        255
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Customer State
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        255
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Customer Country
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        255
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Zip code
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        255
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Udf 1
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        255
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Udf 2
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        255
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Udf 3
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        255
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Udf 4
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        255
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Udf 5
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        255
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        IsSiEnabled
+      </td>
+
+      <td>
+        Mandatory
+      </td>
+
+      <td>
+        Supported value = 0, 1 or empty. If the value = 1 only then SI bulk upload link will be generated and the SI-related parameters will be  mandatory
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Billing amount
+      </td>
+
+      <td>
+        Mandatory (if isSienabled =1)
+      </td>
+
+      <td>
+        Minimum value = 1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Billing cycle
+      </td>
+
+      <td>
+        Mandatory (if isSienabled =1)
+      </td>
+
+      <td>
+        Value should be monthly, daily, weekly, adhoc, yearly
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Billing interval
+      </td>
+
+      <td>
+        Mandatory   a. if isSienabled =1  b. if billing cycle ≠ adhoc
+      </td>
+
+      <td>
+        For adhoc cycle, it is not mandatory, for other billing cycles, it is mandatory
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Start date
+      </td>
+
+      <td>
+        Mandatory (if isSienabled =1)
+      </td>
+
+      <td>
+        DD/MM/YYYY format
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        End date
+      </td>
+
+      <td>
+        Mandatory (if isSienabled =1)
+      </td>
+
+      <td>
+        DD/MM/YYYY format
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Payment Method
+      </td>
+
+      <td>
+        Mandatory (if isSienabled =1)
+      </td>
+
+      <td>
+        `creditcard\|debitcard\|upi\|enach`
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+* Ensure that your bulk upload files are in the CSV format, as this is the only supported file type. 
+* The upload file size should not exceed 5 MB to ensure smooth processing. 
+* Each batch can contain up to 60,000 records (approximately), which is the maximum number of records processed in a single batch.
 
 ## Procedure
 
 1. Login to the Merchant Dashboard. For more information, refer to [Log in to Dashboard](https://docs.payu.in/docs/log-in-to-dashboard). 
 2. Navigate to **Subscriptions.** 
 
-The _Subscriptions Overview_ page is displayed on the right-pane. 
+The *Subscriptions Overview* page is displayed on the right-pane. 
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/b6a07fd76749d355187ca08a22fdbba9ed1b34147b404b8584e1270e99886f6d-bulk_upload_button.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/b6a07fd76749d355187ca08a22fdbba9ed1b34147b404b8584e1270e99886f6d-bulk_upload_button.png" />
 
 3. Click **Bulk Upload** at the top-right corner. 
 
-The _Bulk Upload_ pop-up page is displayed. 
+The *Bulk Upload* pop-up page is displayed. 
 
 ![](https://files.readme.io/16f626114a4d368f0a1b88113810cadf8875f013df740549c2d14af9f94a9cab-Screenshot_2024-09-16_at_11.03.44_AM.png) 
 
@@ -180,8 +485,8 @@ The **Bulk Upload Registration** screen is displayed. 
 6. Enter a batch description in the **Batch Description** to identify this particular upload. 
 7. Select the following check boxes if you wish to notify the customer: 
 
-- Email 
-- SMS 
+* Email 
+* SMS 
 
 8. Click **Continue**. 
 
@@ -202,18 +507,4 @@ After your file is successfully uploaded, a message similar to the following scr
 
 A record is added with the status as “Partially Processed” to the **Registration** tab sub-tab under the **Bulk Upload** tab similar to the following screenshot. 
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/35cc9bc263042e23420dafde87d37f6b212ecce5fd7d6547a4c471e1c5aba69f-bulk_upload_listing.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" border={true} src="https://files.readme.io/35cc9bc263042e23420dafde87d37f6b212ecce5fd7d6547a4c471e1c5aba69f-bulk_upload_listing.png" />
