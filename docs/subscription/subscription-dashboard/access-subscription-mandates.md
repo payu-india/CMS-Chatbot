@@ -29,39 +29,24 @@ next:
 ---
 The **Mandates** tab on the Subscriptions Dashboard allows you to view all mandates done manually, check their statuses, and track the payment methods used, all in one place. It also provides a comprehensive view of all activities related to each mandate, detailing every recurring payment. It supports mandates created through various payment methods, such as Cards, eNACH, and UPI, making it accessible and convenient on a single platform.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/68ddc2bd0da45682b940b391fcdd7778d29a825d90f486cd7e802b32858b95fb-dashboard-subscriptions-mandate.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/68ddc2bd0da45682b940b391fcdd7778d29a825d90f486cd7e802b32858b95fb-dashboard-subscriptions-mandate.png" />
 
 This part of the document includes the following sections:
 
-- [Filter Subscription Mandates](doc:filter-subscription-mandates)
-- [View a Mandate Details](doc:view-a-mandate-details)
-- [View a Mandate Activity](doc:view-a-mandate-activity)
-- [View Payments Received for a Mandate](doc:view-payments-received-for-a-mandate)
-- [Download Memo for a Bounced Transaction](doc:download-memo-for-bounced-transaction)
+* [Filter Subscription Mandates](doc:filter-subscription-mandates)
+* [View a Mandate Details](doc:view-a-mandate-details)
+* [View a Mandate Activity](doc:view-a-mandate-activity)
+* [View Payments Received for a Mandate](doc:view-payments-received-for-a-mandate)
+* [Download Memo for a Bounced Transaction](doc:download-memo-for-bounced-transaction)
 
 > 📘 Reference:
-> 
+>
 > You can perform the following for mandates on Subscriptions Dashboard similar to Transactions Dashboard:
-> 
-> - Export the subscription mandates. For more information, refer to [Export the Transaction Records](doc:export-the-transaction-records).
-> - You can filter the mandates by last week, month or by custom date range.  For more information, refer to [View Transactions for a Custom Period](doc:view-transactions-for-a-custom-period).
-> - Search the mandates based on the following parameters. For more information, refer to [Search the Transactions](doc:search-the-transactions).
->   - PayU ID
->   - Merchant Transaction ID
->   - UMRN
->   - Recurring PayU ID
+>
+> * Export the subscription mandates. For more information, refer to [Export the Transaction Records](doc:export-the-transaction-records).
+> * You can filter the mandates by last week, month or by custom date range.  For more information, refer to [View Transactions for a Custom Period](doc:view-transactions-for-a-custom-period).
+> * Search the mandates based on the following parameters. For more information, refer to [Search the Transactions](doc:search-the-transactions).
+>   * PayU ID
+>   * Merchant Transaction ID
+>   * UMRN
+>   * Recurring PayU ID
