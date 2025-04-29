@@ -18,14 +18,14 @@ When your customer makes a payment by redeeming their SuperCoins, you can check 
 
 Use the following APIs to check the SuperCoins balance:
 
-- [Send OTP API](ref:send-otp-api-fksc) (one-time)
-- [Verify Token API](ref:verify-token-api-fksc) (one-time)
-- [Get SuperCoins Balance API](ref:get-supercoins-balance-api)
+* [Send OTP API](ref:send-otp-api-fksc) (one-time)
+* [Verify Token API](ref:verify-token-api-fksc) (one-time)
+* [Get SuperCoins Balance API](ref:get-supercoins-balance-api)
 
 > 📘 Notes:
-> 
-> - The **Send OTP** and **Verify OTP** APIs for Flipkart Supercoins will be used only for the first time when the customer logs in using the mobile number associated with  Flipkart. After the OTP validation is successful, PayU responds to the merchant with a token. The merchant must save this token and must be used in repeat flows when the same customer uses Flipkart Supercoins for payments.
-> - Merchant has to create screens to accept their customer’s mobile number to send the OTP using the **Send OTP** API and authenticate the OTP using the **Verify OTP** API.
+>
+> * The **Send OTP** and **Verify OTP** APIs for Flipkart Supercoins will be used only for the first time when the customer logs in using the mobile number associated with  Flipkart. After the OTP validation is successful, PayU responds to the merchant with a token. The merchant must save this token and must be used in repeat flows when the same customer uses Flipkart Supercoins for payments.
+> * Merchant has to create screens to accept their customer’s mobile number to send the OTP using the **Send OTP** API and authenticate the OTP using the **Verify OTP** API.
 
 ## Step 2: Initiate the Payment
 
@@ -53,87 +53,345 @@ Use the following APIs to check the SuperCoins balance:
 ```
 
 > 📘 Note:
-> 
+>
 > The above HTML code block is for Merchant Checkout integration on the SuperCoins call for the test environment.
 
 ### Request Parameters for Transaction Request
 
 Along with the mandatory parameters mentioned in [Collect Payments with Merchant Hosted Checkout](https://devguide.payu.in/merchant-integration/merchant-hosted-checkout/merchant-hosted-integration#Step2), you must post the following parameters for the Flipkart Supercoins:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "key  \n**mandatory**",
-    "0-1": "`varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account.",
-    "0-2": "Your Test Key",
-    "1-0": "txnid  \n**mandatory**",
-    "1-1": "`varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.  \n`Character limit`: 25  \n**Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’",
-    "1-2": "fd3e847h2",
-    "2-0": "amount  \n**mandatory**",
-    "2-1": "`float` This parameter should contain the payment amount of the particular transaction.  \n  \n**Note**: Type-cast the amount to float type  \nDepending upon the merchant use case, this value will vary.  \n  \n- It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.  \n- In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI",
-    "2-2": "1000",
-    "3-0": "productinfo  \n**mandatory**",
-    "3-1": "`varchar` This parameter should contain a brief product description. It should be a string describing the product.  \n`Character limit`: 100",
-    "3-2": "Time Magazine Subscription",
-    "4-0": "firstname  \n**mandatory**",
-    "4-1": "`varchar` Must contain the first name of the customer.  \n`Character limit`: 60",
-    "4-2": "Ashish",
-    "5-0": "email  \n**mandatory**",
-    "5-1": "`varchar` Must contain the email of the customer.  \nThis information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.  \nAlso, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.  \nCharacter limit: 50",
-    "5-2": "[Ashish@test.com](mailto:Ashish@test.com)",
-    "6-0": "phone  \n**mandatory**",
-    "6-1": "`varchar` Must contain the phone number of the customer.  \n  \nThis information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.  \nCharacter limit: 50",
-    "6-2": "9843176540",
-    "7-0": "surl  \n**mandatory**",
-    "7-1": "surL is the acronym for Success URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is successful.",
-    "7-2": "",
-    "8-0": "furl  \n**mandatory**",
-    "8-1": "furl is the acronym for for Failure URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is failed.",
-    "8-2": "",
-    "9-0": "api_version  \n**mandatory**",
-    "9-1": "This parameter must always needs to be passed as 7.",
-    "9-2": "7",
-    "10-0": "hash  \n**mandatory**",
-    "10-1": "Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU’s payment interface while registration transactions.  \n  \nIt is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.  \n  \nIn the case of registration transaction, the formula is used to calculate this hash is similar to the following:  \n`HASH = SHA512(key\\|txnid\\|amount\\|productinfo\\|firstname\\|email\\|udf1\\|udf2\\|udf3\\|udf4\\|udf5\\||\\||\\||si_details\\|SALT)`",
-    "10-2": "",
-    "11-0": "pg  \n**mandatory**",
-    "11-1": "`String` The pg parameter must contain the payment category using the Merchant Hosted Checkout integration. For a FKSC redemption, \"LR\" must be specified in the pg parameter.  \n   - EFTNET (NEFT/RTGS): **NEFTRTGS**",
-    "11-2": "",
-    "12-0": "bankcode  \n**mandatory**",
-    "12-1": "`String` Pass the bankcode as **FKSC** for Flipkart Supercoins redemption.",
-    "12-2": "",
-    "13-0": "ud1  \n**optional for seamless flow**",
-    "13-1": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.  \n`Character Limit-255`",
-    "13-2": "",
-    "14-0": "ud2  \n**optional for seamless flow**",
-    "14-1": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.  \n`Character Limit-255`",
-    "14-2": "",
-    "15-0": "ud3  \n**optional for seamless flow**",
-    "15-1": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.  \n`Character Limit-255`",
-    "15-2": "",
-    "16-0": "ud4  \n**optional for seamless flow**",
-    "16-1": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.  \n`Character Limit-255`",
-    "16-2": "",
-    "17-0": "ud15  \n**optional for seamless flow**",
-    "17-1": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.  \n`Character Limit-255`",
-    "17-2": "",
-    "18-0": "",
-    "18-1": "",
-    "18-2": ""
-  },
-  "cols": 3,
-  "rows": 19,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account.
+      </td>
+
+      <td>
+        Your Test Key
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txnid\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.\
+        `Character limit`: 25  
+
+        * \*Note\*\*: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’
+      </td>
+
+      <td>
+        fd3e847h2
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount\
+        **mandatory**
+      </td>
+
+      <td>
+        `float` This parameter should contain the payment amount of the particular transaction.  
+
+        * \*Note\*\*: Type-cast the amount to float type\
+          Depending upon the merchant use case, this value will vary.\
+            
+        * It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.  
+        * In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
+      </td>
+
+      <td>
+        1000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productinfo\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` This parameter should contain a brief product description. It should be a string describing the product.\
+        `Character limit`: 100
+      </td>
+
+      <td>
+        Time Magazine Subscription
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstname\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` Must contain the first name of the customer.\
+        `Character limit`: 60
+      </td>
+
+      <td>
+        Ashish
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` Must contain the email of the customer.\
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.\
+        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.\
+        Character limit: 50
+      </td>
+
+      <td>
+        [Ashish@test.com](mailto:Ashish@test.com)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        **mandatory**
+      </td>
+
+      <td>
+        `varchar` Must contain the phone number of the customer.  
+
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.\
+        Character limit: 50
+      </td>
+
+      <td>
+        9843176540
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        surl\
+        **mandatory**
+      </td>
+
+      <td>
+        surL is the acronym for Success URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is successful.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        furl\
+        **mandatory**
+      </td>
+
+      <td>
+        furl is the acronym for for Failure URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is failed.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        api\_version\
+        **mandatory**
+      </td>
+
+      <td>
+        This parameter must always needs to be passed as 7.
+      </td>
+
+      <td>
+        7
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash\
+        **mandatory**
+      </td>
+
+      <td>
+        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU’s payment interface while registration transactions.  
+
+        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.  
+
+        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:\
+        `HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||si_details\|SALT)`
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pg\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` The pg parameter must contain the payment category using the Merchant Hosted Checkout integration. For a FKSC redemption, "LR" must be specified in the pg parameter.  
+
+        * EFTNET (NEFT/RTGS): **NEFTRTGS**
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankcode\
+        **mandatory**
+      </td>
+
+      <td>
+        `String` Pass the bankcode as **FKSC** for Flipkart Supercoins redemption.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ud1\
+        **optional for seamless flow**
+      </td>
+
+      <td>
+        User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.\
+        `Character Limit-255`
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ud2\
+        **optional for seamless flow**
+      </td>
+
+      <td>
+        User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.\
+        `Character Limit-255`
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ud3\
+        **optional for seamless flow**
+      </td>
+
+      <td>
+        User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.\
+        `Character Limit-255`
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ud4\
+        **optional for seamless flow**
+      </td>
+
+      <td>
+        User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.\
+        `Character Limit-255`
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ud15\
+        **optional for seamless flow**
+      </td>
+
+      <td>
+        User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.\
+        `Character Limit-255`
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Sample Request
 
