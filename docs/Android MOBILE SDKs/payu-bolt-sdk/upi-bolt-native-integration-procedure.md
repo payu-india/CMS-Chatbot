@@ -22,9 +22,9 @@ For hash generation logic and Listener/Callback integration, the [Hash generatio
 
 ## Prerequisites
 
-- Minimum Android SDK Version - 23 and above.
-- Compile SDK Version - 31 and above.
-- The following .aar (Android archive) files provided by PayU during onboarding:
+* Minimum Android SDK Version - 23 and above.
+* Compile SDK Version - 31 and above.
+* The following .aar (Android archive) files provided by PayU during onboarding:
   1. NPCI Secure Component
   2. AXIS Olive
 
@@ -66,22 +66,7 @@ api(files("$projectDir/libs/oliveupi-payu-release_PROD_02-12-2024_2.0.2.aar")) /
 
 The screenshot of libs directory is similar to the following:
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/1af3684beef4a3b10716b5fc7de478bc9a07ff6f82ae0cec8041bbb94d8c754c-bolt_native_flow_aar_directory_structure.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "360px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="360px" src="https://files.readme.io/1af3684beef4a3b10716b5fc7de478bc9a07ff6f82ae0cec8041bbb94d8c754c-bolt_native_flow_aar_directory_structure.png" />
 
 ## Step 3: Initialize the SDK
 
@@ -97,41 +82,131 @@ val bolt = PayUUPIBoltUI.getInstance(
 
 The following fields are needed as a request for this API:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Fields",
-    "h-1": "Definition",
-    "0-0": "activity  \n` mandatory`",
-    "0-1": "`AppCompatActivity` Calling activity of the merchant App",
-    "1-0": "config  \n` mandatory`",
-    "1-1": "`PayUUPIBoltUIConfig` Config includes the below fields.",
-    "2-0": "hashGenerationListener  \n` mandatory`",
-    "2-1": "`PayUHashGenerationListener` Callback listener for hash generation",
-    "3-0": "merchantKey  \n` mandatory`",
-    "3-1": "`String`PayU Merchant Key",
-    "4-0": "phone  \n` mandatory`",
-    "4-1": "`String`Phone number for registration",
-    "5-0": "email  \n` mandatory`",
-    "5-1": "`String`Customer Email Id",
-    "6-0": "pluginType  \n` mandatory`",
-    "6-1": "`String Array`List of Supported Banks (“AXIS, HDFC”)",
-    "7-0": "isProd  \n` optional`",
-    "7-1": "`Boolean`Prod - ture, staging - false",
-    "8-0": "excludedBanksIINs  \n` optional`",
-    "8-1": "`String Array`List of Bank’s IIN to exclude",
-    "9-0": "requestId  \n` mandatory`",
-    "9-1": "`String`Unique reference ID"
-  },
-  "cols": 2,
-  "rows": 10,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Fields
+      </th>
 
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        activity
+        ` mandatory`
+      </td>
+
+      <td>
+        `AppCompatActivity` Calling activity of the merchant App
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        config\
+        ` mandatory`
+      </td>
+
+      <td>
+        `PayUUPIBoltUIConfig` Config includes the below fields.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hashGenerationListener\
+        ` mandatory`
+      </td>
+
+      <td>
+        `PayUHashGenerationListener` Callback listener for hash generation
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchantKey\
+        ` mandatory`
+      </td>
+
+      <td>
+        `String`PayU Merchant Key
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        ` mandatory`
+      </td>
+
+      <td>
+        `String`Phone number for registration
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email\
+        ` mandatory`
+      </td>
+
+      <td>
+        `String`Customer Email Id
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pluginType\
+        ` mandatory`
+      </td>
+
+      <td>
+        `String Array`List of Supported Banks (“AXIS, HDFC”)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        isProd\
+        ` optional`
+      </td>
+
+      <td>
+        `Boolean`Prod - ture, staging - false
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        excludedBanksIINs\
+        ` optional`
+      </td>
+
+      <td>
+        `String Array`List of Bank’s IIN to exclude
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        requestId\
+        ` mandatory`
+      </td>
+
+      <td>
+        `String`Unique reference ID
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Response
 
@@ -140,7 +215,7 @@ The following fields are needed as a request for this API:
 | `PayUUPIBoltUI` | PayUUPIBoltUI object for invoking SDK APIs |
 
 > 📘 Callback:
-> 
+>
 > After the SDK is initialised, use the same object to call the sdk methods.
 
 ## De-initialise PayUBolt UI SDK
@@ -169,70 +244,187 @@ boltUI.registerAndPay(paymentParams PayUUPIBoltPaymentParams, callback: PayUUPIB
 ```
 
 > 📘 Callback reference:
-> 
+>
 > For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic) sub-section.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Definition",
-    "0-0": "paymentParams  \n`mandatory`",
-    "0-1": "**Object** This parameter includes the fields listed in the ",
-    "1-0": "callback  \n`mandatory`",
-    "1-1": "**PayUUPIBoltUICallBack** This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section."
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        paymentParams
+        `mandatory`
+      </td>
+
+      <td>
+        * \*Object\*\* This parameter includes the fields listed in the 
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        callback\
+        `mandatory`
+      </td>
+
+      <td>
+        * \*PayUUPIBoltUICallBack\*\* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### paymentParams object
 
 The following fields are part of `paymentParams` object:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Definition",
-    "0-0": "amount  \n`mandatory`",
-    "0-1": "`String` Amount to be paid",
-    "1-0": "txnId  \n`mandatory`",
-    "1-1": "`String`Unique transaction ID",
-    "2-0": "productInfo  \n`mandatory`",
-    "2-1": "`String`Product description",
-    "3-0": "firstName  \n`mandatory`",
-    "3-1": "`String`First name of the user",
-    "4-0": "furl  \n`optional`",
-    "4-1": "`String`Failure URL ",
-    "5-0": "surl  \n`optional`",
-    "5-1": " `String`Success URL",
-    "6-0": "udf1  \n`optional`",
-    "6-1": " `String`User defined field",
-    "7-0": "udf2  \n`optional`",
-    "7-1": "  `String`User defined field",
-    "8-0": "udf3  \n`optional`",
-    "8-1": "  `String`User defined field",
-    "9-0": "udf4  \n`optional`",
-    "9-1": "  `String`User defined field",
-    "10-0": "udf5  \n`optional`",
-    "10-1": "  `String`User defined field"
-  },
-  "cols": 2,
-  "rows": 11,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        amount
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Amount to be paid
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txnId\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Unique transaction ID
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productInfo\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Product description
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstName\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`First name of the user
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        furl\
+        `optional`
+      </td>
+
+      <td>
+        `String`Failure URL 
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        surl\
+        `optional`
+      </td>
+
+      <td>
+         `String`Success URL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf1\
+        `optional`
+      </td>
+
+      <td>
+         `String`User defined field
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf2\
+        `optional`
+      </td>
+
+      <td>
+          `String`User defined field
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf3\
+        `optional`
+      </td>
+
+      <td>
+          `String`User defined field
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf4\
+        `optional`
+      </td>
+
+      <td>
+          `String`User defined field
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf5\
+        `optional`
+      </td>
+
+      <td>
+          `String`User defined field
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Manage UPI accounts
 
@@ -243,38 +435,71 @@ boltUI.openUPIManagement(enforceScreenType: EnforceScreenType, callback: PayUUPI
 ```
 
 > 📘 Callback reference:
-> 
+>
 > For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic) sub-section.
 
 The following fields are needed as a request for this API:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Fields",
-    "h-1": "Data Type",
-    "h-2": "Optional /Mandatory",
-    "h-3": "Definition",
-    "0-0": "enforceScreenType",
-    "0-1": "EnforceScreenType",
-    "0-2": "O",
-    "0-3": "`\"ALL\" or \"TRANSACTIONHISTORY\" or \"MANAGEUPIACCOUNTS\" or \"DISPUTE\" or \"DEREGISTERUPI\"`",
-    "1-0": "callback  \n`mandatory`",
-    "1-1": "PayUUPIBoltUICallBack",
-    "1-2": "M",
-    "1-3": "**PayUUPIBoltUICallBack** This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)   sub-section."
-  },
-  "cols": 4,
-  "rows": 2,
-  "align": [
-    null,
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Fields
+      </th>
 
+      <th>
+        Data Type
+      </th>
+
+      <th>
+        Optional /Mandatory
+      </th>
+
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        enforceScreenType
+      </td>
+
+      <td>
+        EnforceScreenType
+      </td>
+
+      <td>
+        O
+      </td>
+
+      <td>
+        `"ALL" or "TRANSACTIONHISTORY" or "MANAGEUPIACCOUNTS" or "DISPUTE" or "DEREGISTERUPI"`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        callback\
+        `mandatory`
+      </td>
+
+      <td>
+        PayUUPIBoltUICallBack
+      </td>
+
+      <td>
+        M
+      </td>
+
+      <td>
+        * \*PayUUPIBoltUICallBack\*\* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)   sub-section.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Listener or Callback logic
 
