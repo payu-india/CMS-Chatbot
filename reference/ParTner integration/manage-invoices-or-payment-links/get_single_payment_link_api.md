@@ -19,13 +19,11 @@ The invoice number in the request header must be included as a query parameter i
 
 > 📘 Note:
 > 
-> The access token with the scope as **read_payment_links**  is required on the header. For more information on getting the access token, refer to [User Token APIs](ref:user-token-apis).
-
-
+> The access token with the scope as **read_payment_links** is required on the header. For more information on getting the access token, refer to [User Token APIs](ref:user-token-apis).
 
 ### Environment
 
 |                            |                             |
 | :------------------------- | :-------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in> |
-| **Production Environment** | <https://oneapi.payu.in>    |
+| **Test Environment**       | &lt;https://uatoneapi.payu.in&gt; |
+| **Production Environment** | &lt;https://oneapi.payu.in&gt;    |
