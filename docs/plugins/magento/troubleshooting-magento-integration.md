@@ -14,8 +14,8 @@ When integrating PayU with Magento v2.4, you may sometimes encounter some issues
 
 ## PayU Plugin is not working
 
-- Check whether you have downloaded the correct PayU plugin version from PayU GitHub and installed. For more information, refer to [Install Plugin for Magento v2.4](#install-plugin) based on the Magento version you are using.
-- Check whether the merchant API key and Salt are configured accurately and navigate to [Merchant Dashboard](http://onboarding.payu.in/) and verify these values. For more information, refer to [Configure Magento v2.4](#configure-magento-v24). For more information on generating API key and salt, refer to [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt).
+* Check whether you have downloaded the correct PayU plugin version from PayU GitHub and installed. For more information, refer to [Install Plugin for Magento v2.4](#install-plugin) based on the Magento version you are using.
+* Check whether the merchant API key and Salt are configured accurately and navigate to [Merchant Dashboard](http://onboarding.payu.in/) and verify these values. For more information, refer to [Configure Magento v2.4](#configure-magento-v24). For more information on generating API key and salt, refer to [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt).
 
 ## Payments are not reflected
 
@@ -43,5 +43,5 @@ php bin/magento setup:di:compile
 ```
 
 > 📘 Note:
-> 
+>
 > For any other issues you face with Magento v2.4, refer to [Magento Troubleshooting](https://support.magento.com/hc/en-us/categories/115000200533-Troubleshooting).
