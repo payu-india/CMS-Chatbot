@@ -29,27 +29,27 @@ next:
       slug: custom-checkout-merchant-hosted
       title: Merchant Hosted Checkout
 ---
-To process payments with credit/debit card, UPI, wallet, etc. on your website using PayU, collect the payment details on your website and submit them to PayU via API. This eliminates the need for redirection to PayU’s payment page, resulting in a more secure and efficient transaction. 
+To process payments with credit/debit card, UPI, wallet, etc. on your website using PayU, collect the payment details on your website and submit them to PayU via API. This eliminates the need for redirection to PayU’s payment page, resulting in a more secure and efficient transaction.
 
 > 📘 Reference:
-> 
+>
 > To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](https://docs.payu.in/v1/docs/handling-the-redirect-urls).
 
 <PaymentAPIEnvironment />
 
 You can get the **Try It** experience for the following payment modes:
 
-- [Net Banking](https://docs.payu.in/v2/reference/_payment_v2_merchant_hosted_netbanking)
-- [Cards](https://docs.payu.in/v2/reference/_payment-v2-merchant-hosted-cards)
-- [UPI](https://docs.payu.in/v2/reference/_payment_v2_merchant_hosted_upi)
-- [Wallet](https://docs.payu.in/v2/reference/collect_v2_payment_wallet)
-- [EMI](https://docs.payu.in/v2/reference/collect-payments-with-emi-v2_payment)
-- [BNPL](https://docs.payu.in/v2/reference/bnpl-v2_payment-merchant-hosted)
+* [Net Banking](https://docs.payu.in/v2/reference/_payment_v2_merchant_hosted_netbanking)
+* [Cards](https://docs.payu.in/v2/reference/_payment-v2-merchant-hosted-cards)
+* [UPI](https://docs.payu.in/v2/reference/_payment_v2_merchant_hosted_upi)
+* [Wallet](https://docs.payu.in/v2/reference/collect_v2_payment_wallet)
+* [EMI](https://docs.payu.in/v2/reference/collect-payments-with-emi-v2_payment)
+* [BNPL](https://docs.payu.in/v2/reference/bnpl-v2_payment-merchant-hosted)
 
 > 📘 Note:
-> 
+>
 > Collecting the information for the following parameters from customers is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information:
-> 
-> - email
-> - phone
-> - address1
+>
+> * email
+> * phone
+> * address1
