@@ -47,29 +47,29 @@ PayU Partner Program is a way to grow your business exponentially, raising your 
 
 ## Advantages
 
-- Quick and easy integration
-- Refer merchants and get rewarded
-- Easy Account reconciliation
-- Real-time merchant onboarding status updates
-- Onboard merchants quickly using Partner Partner Integration APIs
-- Onboard merchants and validate KYC automatically on the Partner Portal
-- Customize Partner Portal with OAuth and onboard merchants with a branded portal.
+* Quick and easy integration
+* Refer merchants and get rewarded
+* Easy Account reconciliation
+* Real-time merchant onboarding status updates
+* Onboard merchants quickly using Partner Partner Integration APIs
+* Onboard merchants and validate KYC automatically on the Partner Portal
+* Customize Partner Portal with OAuth and onboard merchants with a branded portal.
 
 ## Who can become a partner?
 
 PayU welcomes any small- or large-scale enterprise into their partner program. The following list demonstrates LOBs that have partnered with PayU:
 
-- Web Designers and Developers
-- Digital Service Providers
-- Web Hosting Services
-- Freelancers & Small-scale Businesses
-- Accelerator Firms
-- E-commerce Businesses
+* Web Designers and Developers
+* Digital Service Providers
+* Web Hosting Services
+* Freelancers & Small-scale Businesses
+* Accelerator Firms
+* E-commerce Businesses
 
 ## Types of partner
 
-- **Platform Partner**: Companies who are providing ready-to-use eCommerce websites, software solutions for retailers, and accountants, or restaurants, partnering with PayU helps you create new revenue streams and scale internationally. For example, Shopify, Zoho, ClearTax, etc.
-- **Resellers:** Resellers are freelancers/entrepreneurs looking to accelerate their business by earning incentives through their clients.
+* **Platform Partner**: Companies who are providing ready-to-use eCommerce websites, software solutions for retailers, and accountants, or restaurants, partnering with PayU helps you create new revenue streams and scale internationally. For example, Shopify, Zoho, ClearTax, etc.
+* **Resellers:** Resellers are freelancers/entrepreneurs looking to accelerate their business by earning incentives through their clients.
 
 After you onboard the merchants, they can start collecting payments from their customers. For more information, refer to [Web Integration](doc:introduction-web).
 
