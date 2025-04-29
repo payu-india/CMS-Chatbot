@@ -18,45 +18,95 @@ HTTP Method: **POST**
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameters**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "client\\_id  \n`mandatory`",
-    "0-1": "`String`Pass the public Client ID which is same for every Payout merchant. Refer to example column for the Client ID of Production and Test environment.  \n**Note**: In the **Example** column, there is only one client ID.",
-    "0-2": "**Production**: ccbb70745faad9c06092bb5c79bfd919b6f45fd45  \n4f34619d83920893e90ae6b  \n**Test**:6f8bb4951e030d4d7349e64a144a53477  \n8673585f86039617c167166e9154f7e",
-    "1-0": "grant\\_type  \n`mandatory`",
-    "1-1": "`String`This parameter will contain the Constant value",
-    "1-2": "password",
-    "2-0": "username  \n`mandatory`",
-    "2-1": "`String`This parameter will contain the registered mobile number or Email ID.",
-    "2-2": "[payouttest5@mailinator.com](mailto:payouttest5@mailinator.com)",
-    "3-0": "password  \n`mandatory`",
-    "3-1": "`String`This parameter will contain the registered Account password",
-    "3-2": "Tester@123",
-    "4-0": "scope  \n`mandatory`",
-    "4-1": "`String`This parameter will contain the Constant value.",
-    "4-2": "create\\_payout\\_transactions"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameters**
+      </th>
+      <th>
+        **Description**
+      </th>
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        client\_id
+        `mandatory`
+      </td>
+      <td>
+        `String`Pass the public Client ID which is same for every Payout merchant. Refer to example column for the Client ID of Production and Test environment.  
 
+        * \*Not&#x65;**: In the**Example\*\* column, there is only one client ID.
+      </td>
+      <td>
+        * \*Production\*\*: ccbb70745faad9c06092bb5c79bfd919b6f45fd45\
+          4f34619d83920893e90ae6b  
+        * \*Test\*\*:6f8bb4951e030d4d7349e64a144a53477\
+          8673585f86039617c167166e9154f7e
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grant\_type\
+        `mandatory`
+      </td>
+      <td>
+        `String`This parameter will contain the Constant value
+      </td>
+      <td>
+        password
+      </td>
+    </tr>
+    <tr>
+      <td>
+        username\
+        `mandatory`
+      </td>
+      <td>
+        `String`This parameter will contain the registered mobile number or Email ID.
+      </td>
+      <td>
+        [payouttest5@mailinator.com](mailto:payouttest5@mailinator.com)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        password\
+        `mandatory`
+      </td>
+      <td>
+        `String`This parameter will contain the registered Account password
+      </td>
+      <td>
+        Tester\@123
+      </td>
+    </tr>
+    <tr>
+      <td>
+        scope\
+        `mandatory`
+      </td>
+      <td>
+        `String`This parameter will contain the Constant value.
+      </td>
+      <td>
+        create\_payout\_transactions
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 > 📘 Note:
-> 
+>
 > Use the following client\_id value to proceed because the public Client ID remains the same for all Payouts Merchants:
-> 
-> - **Test**:6f8bb4951e030d4d7349e64a144a534778673585f86039617c167166e9154f7e
-> - **Production**: ccbb70745faad9c06092bb5c79bfd919b6f45fd45  
+>
+> * **Test**:6f8bb4951e030d4d7349e64a144a534778673585f86039617c167166e9154f7e
+> * **Production**: ccbb70745faad9c06092bb5c79bfd919b6f45fd45\
 >   4f34619d83920893e90ae6b
 
 ## Sample Request
