@@ -1,0 +1,751 @@
+---
+title: 1. SDK Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: PayU iOS SDK Checkout Pro Integration Steps
+  description: >-
+    This document provides a detailed guide on integrating the PayU CheckoutPro
+    SDK into your iOS app, including setting up a PayU account, setting up pods,
+    building payment parameters, setting up payment hashes, initiating payments,
+    handling payment completion, and integrating additional features like UPI
+    Intent, custom notes, convenience fees, and closed-loop wallets. It also
+    includes sample responses for successful and failed transactions and
+    instructions for distributing your app.
+  keywords:
+    - IOS Checkout Pro SDK Integration Steps
+    - PayU IOS SDK integration steps
+    - Mobile payment integration with PayU IOS SDK steps
+    - PayU IOS Checkout Pro set up for Mobile
+    - IOS CheckoutPro SDK integration steps
+    - PayU Hosted Checkout SDK for Mobile steps
+    - Mobile IOS SDK Basic Integration with Checkout Pro
+    - Mobile IOS SDK Recurring Payments Integration with Checkout Pro
+    - Mobile IOS SDK Standing Instruction Integration with Checkout Pro
+    - Mobile IOS SDK Split Payments Integration with Checkout Pro
+    - Mobile IOS SDK Split Settlements Integration with Checkout Pro
+  robots: index
+next:
+  description: ''
+---
+## Create a PayU account
+
+First, create a PayU account. For more information, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard).
+
+## Step 1: Set up pod
+
+The CheckoutPro SDK is offered through CocoaPods. To add the SDK in your app project:
+
+Include the SDK framework in your podfile.
+
+```
+// make sure to add below-mentioned line to use dynamic frameworks
+use_frameworks!
+// Add this to include our SDK
+pod 'PayUIndia-CheckoutPro' 
+```
+
+- Install dependency using the pod install command in terminal
+- Add the following imports in the class where you need to initiate a payment.
+
+```Text Swift
+import PayUCheckoutProKit
+import PayUCheckoutProBaseKit
+import PayUParamsKit
+```
+```Text Objective-C
+#import <PayUCheckoutProKit/PayUCheckoutProKit.h>
+#import <PayUCheckoutProBaseKit/PayUCheckoutProBaseKit.h>
+#import <PayUBizCoreKit/PayUBizCoreKit.h>
+#import <PayUParamsKit/PayUParamsKit.h>
+```
+
+- Refer to the following Test the key and salt environments:
+  - **Production**: [Generate Production Merchant Key and Salt](https://onboarding.payu.in/app/account/signup)
+  - **Test**: [Generate Test Merchant Key and Salt](https://uat-onepayuonboarding.payu.in/app/account/signup)
+
+### Swift Package Manager Integration
+
+You can integrate PayUIndia-Checkoutpro with your app or SDK using the following methods:
+
+- Using Xcode: Navigate to File > Add Package menu and add the following package:  
+  <https://github.com/payu-intrepos/PayUCheckoutPro-iOS>
+- Using Package.Swift: Add the following line in the Package.swift dependencies: `.package(name: "PayUCheckoutProKit", url: "https://github.com/payu-intrepos/PayUCheckoutPro-iOS", from: "7.4.0")`
+
+### CrashReporter
+
+In order to receive all the crashes related to our SDKs, add the following line to your AppDelegate’s `didFinishLaunchingWithOptions`:
+
+```Text Swift
+PayUCheckoutPro.start()
+```
+```Text Objective-C
+[PayUCheckoutPro start];
+```
+
+> 🚧 Remember
+> 
+> Please add NSCameraUsageDescription key in your application `Info.plist` file.
+
+## Step 2: Build the payment parameters (mandatory step)
+
+To initiate a payment, your app must send the transaction information to the Checkout Pro SDK. To pass this information, build a payment parameter object as in the following code snippet:
+
+### Step 2.1: Basic Integration
+
+```Text Swift
+let paymentParam = PayUPaymentParam(key: <String>,
+                                    transactionId: <String>,
+                                    amount: <String>,
+                                    productInfo: <String>,
+                                    firstName: <String>,
+                                    email: <String>,
+                                    phone: <String>,
+                                    surl: <String>,//Pass your own surl
+                                    furl: <String>,//Pass your own furl
+                                    environment: <Environment> /*.production or .test*/)
+                                    
+paymentParam.userCredential = <String> // For saving and fetching user’s saved card
+```
+```Text Onjective-C
+PayUPaymentParam *paymentParam = [[PayUPaymentParam alloc] initWithKey:<#(NSString * _Nonnull)#>
+                                                         transactionId:<#(NSString * _Nonnull)#>
+                                                                amount:<#(NSString * _Nonnull)#>
+                                                           productInfo:<#(NSString * _Nonnull)#>
+                                                             firstName:<#(NSString * _Nonnull)#>
+                                                                 email:<#(NSString * _Nonnull)#>
+                                                                 phone:<#(NSString * _Nonnull)#>
+                                                                  surl:<#(NSString * _Nonnull)#>
+                                                                  furl:<#(NSString * _Nonnull)#>
+                                                           environment:<#(enum Environment)#> /*EnvironmentProduction or EnvironmentTest*/];
+
+paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use saved card
+```
+
+> 📘 Notes:
+> 
+> - The URL used in **surl** and **furl** are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed.
+> - Kindly refer the below to[Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+> - The **TransactionId** parameter cannot have a special character and not more than 25 characters.
+
+### Mandatory parameters
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "Parameter",
+    "h-1": "Description",
+    "h-2": "Data Type and Validation",
+    "0-0": "Key  \n`mandatory`",
+    "0-1": "`String` Merchant Key received from PayU Dashboard",
+    "0-2": "Cannot be null or empty",
+    "1-0": "TransactionId  \n`mandatory`",
+    "1-1": "`String` Cannot be null or empty and should be unique for each transaction. Maximum allowed length is 25 characters. It cannot contain special characters like: - /, & , @ etc.",
+    "1-2": "Should be unique for each transaction",
+    "2-0": "Amount  \n`mandatory`",
+    "2-1": "`String` Total transaction amount.",
+    "2-2": "Cannot be null or empty",
+    "3-0": "Product Info  \n`mandatory`",
+    "3-1": "`String` Information about Product",
+    "3-2": "Cannot be null or empty",
+    "4-0": "First Name  \n`mandatory`",
+    "4-1": "`String` Customer’s first name",
+    "4-2": "Cannot be null or empty",
+    "5-0": "Email  \n`mandatory`",
+    "5-1": "`String` Customer’s Email ID",
+    "5-2": "Cannot be null or empty",
+    "6-0": "Phone  \n`mandatory`",
+    "6-1": "`String` Customer’s phone number",
+    "6-2": "Should be of 10 digits",
+    "7-0": "surl  \n`mandatory`",
+    "7-1": "`String` When the transaction gets successful, PayU will load this URL and pass the transaction response.  \n**Sample URL**: <https://cbjs.payu.in/sdk/success>  \n**Note**:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)",
+    "7-2": "Cannot be null or empty",
+    "8-0": "furl  \n`mandatory`",
+    "8-1": "`String` When the transaction gets fail, PayU will load this url and pass transaction response.  \n**Sample URL**: <https://cbjs.payu.in/sdk/failure>  \n**Note**:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)",
+    "8-2": "Cannot be null or empty",
+    "9-0": "Environment  \n`mandatory`",
+    "9-1": "`String`Environment of SDK",
+    "9-2": "Should be either  \n**Swift**: `production or test `**ObjectiveC**: `EnvironmentProduction `or `EnvironmentTest`",
+    "10-0": "User Credential  \n`optional`",
+    "10-1": "`String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards",
+    "10-2": "Should be a unique value  \nFormat: <merchantKey>:<userId>  \nHere, UserId is any id/email/phone number to uniquely identify the user",
+    "11-0": "PayUSIParams  \n`optional`",
+    "11-1": "`Object` of PayUSIParams. This contains SI Details. ",
+    "11-2": "Object of PayUSIParams",
+    "12-0": "SplitPaymentDetails  \n`optional`",
+    "12-1": "`String`  \nThis parameter is required for splitting the transactions.",
+    "12-2": "Should be a json String",
+    "13-0": "additionalCharges",
+    "13-1": "String  \nThis parameter is required if merchant want to take additional charge from user",
+    "13-2": "should be string with PG:Amount or IBIBOCode:Amount  \nSample: CC:10,NB:20,SBIB:15",
+    "14-0": "percentageAdditionalCharges",
+    "14-1": "String  \nThis parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable",
+    "14-2": "should be string with PG:Amount or IBIBOCode:Amount  \nSample: CC:100,NB:50,SBIB:25"
+  },
+  "cols": 3,
+  "rows": 15,
+  "align": [
+    "left",
+    "left",
+    "left"
+  ]
+}
+[/block]
+
+
+The code block for passing the parameters is similar to the following:
+
+If you required any value in the response then pass the below value
+
+```Text Swift
+paymentParam.additionalParam[PaymentParamConstant.udf1] = <String>
+paymentParam.additionalParam[PaymentParamConstant.udf2] = <String>
+paymentParam.additionalParam[PaymentParamConstant.udf3] = <String>
+paymentParam.additionalParam[PaymentParamConstant.udf4] = <String>
+paymentParam.additionalParam[PaymentParamConstant.udf5] = <String>
+paymentParam.additionalParam[PaymentParamConstant.walletURN] = <String>  // Required for Amul Wallet
+```
+```Text Objective-C
+paymentParam.additionalParam = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                    <#(NSString)#>, PaymentParamConstant.udf1,
+                                    <#(NSString)#>, PaymentParamConstant.udf2,
+                                    <#(NSString)#>, PaymentParamConstant.udf3,
+                                    <#(NSString)#>, PaymentParamConstant.udf4,
+                                    <#(NSString)#>, PaymentParamConstant.udf5,
+                                    <#(NSString)#>, PaymentParamConstant.walletURN,
+                                    nil];
+```
+
+### Step 2.2:For Recurring Payments(SI) (Optional)
+
+If you are integrating SI, create an object of SIParam. After creating an object, pass the object similar to the following code:
+
+```Text Swift
+ let siInfo = PayUSIParams(billingAmount: <String>,
+                           paymentStartDate: <Date>,
+                           paymentEndDate: <Date>,
+                           billingCycle: <PayUBillingCycle>,
+                           billingInterval: <NSNumber>)
+
+            siInfo.billingLimit = <PayuBillingLimit>
+            siInfo.billingRule = <PayuBillingRule>
+            
+            paymentParam.siParam = siInfo
+```
+```Text Onjective-C
+paymentParam.siParams = siParam;
+```
+
+For more information on the PayUSIParams parameters, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/ios-standing-instructions-parameters).
+
+### Step 2.3:For UPI One Time Mandate Payments (Optional)
+
+If you are integrating UPI OTM, create an object of SIParam. After creating an object, pass the object similar to the following code:
+
+```Text Swift
+ let siInfo = PayUSIParams(billingAmount: <String>,
+                           paymentStartDate: <Date>,
+                           isPreAuthTxn:<Bool>)
+            
+            paymentParam.siParam = siInfo
+ #isPreAuthTxn must be true for OTM transactions
+```
+```Text Onjective-C
+paymentParam.siParams = siParam;
+```
+
+For more information on the PayUSIParams parameters, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/ios-standing-instructions-parameters).
+
+> 🚧 UPI Intent SI And UPI Intent OTM not supported
+> 
+> We don't support UPI Intent SI or UPI Intent OTM in IOS, We support only Card/NB/UPI Collect.
+
+### Step 2.4: For Split Payments details (Optional)
+
+If you are integrating Split Settlements, the splitPaymentDetails parameter is required to split the transactions.
+
+After creating an object, pass the object similar to the following code:
+
+```Text Swift
+paymentParam.splitPaymentDetails = ""
+```
+```Text Objective-C
+paymentParam.splitPaymentDetails = @"";
+```
+
+#### JSON request structure of splitInfo field
+
+The sample JSON structure for the splitPaymentDetails field:
+
+> 🚧 Remember
+> 
+> - For the **absolute** type split, you must ensure that the sum of amount of all splits is equal to the parent transaction amount.
+> - For the **percentage** type split, you must ensure that the sum of percentage of all splits is equal to 100. You can use any number decimal places for each split, but ensure the sum of percentage of all splits is equal to 100.
+
+```Text JSON
+{
+   "type":"absolute",
+   "splitInfo":{
+      "P****Y":{
+         "aggregatorSubTxnId":"9a70ea0155268101001ba",
+         "aggregatorSubAmt":"50",
+         "aggregatorCharges":"20"
+      },
+      "P***K":{
+         "aggregatorSubTxnId":"9a70ea0155268101001bb",
+         "aggregatorSubAmt":"30"
+      }
+   }
+}
+```
+
+The following fields are included in the splitPaymentDetails parameter in a JSON format to specify the split details. The fields in the JSON format are described in the following table:
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "Field",
+    "h-1": "Description",
+    "h-2": "Example",
+    "0-0": "type  \n`mandatory`",
+    "0-1": "`string` Any of the following types of split is specified in this field.  \n  \n**absolute**: The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment  \n  \n**percentage**: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment",
+    "0-2": "absolute",
+    "1-0": "splitInfo  \n`mandatory`",
+    "1-1": "`JSON` This parameter must include the list of aggregator sub-transaction IDs and sub-amounts as follows:  \n  \n**aggregatorSubTxnId**: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only to child merchants.  \n  \n**aggregatorSubAmt**: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.  \n  \n**aggregatorCharges**: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.  \n  \n**Note**: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.  \nThe sample request structure JSON Request Structure of splitInfo Field.",
+    "1-2": "{  \n\"merchantKey1\": {  \n\"aggregatorSubTxnId\": \"30nknyhkhib\",  \n\"aggregatorSubAmt\": \"8\",  \n}"
+  },
+  "cols": 3,
+  "rows": 2,
+  "align": [
+    "left",
+    "left",
+    "left"
+  ]
+}
+[/block]
+
+
+### Step 2.4:For Additional Charges
+
+If you are integrating additional charges or percentage additional charges, then generate the below payment params additionally
+
+```Text Swift
+paymentParam.additionalCharges = "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55"
+paymentParam.percentageAdditionalCharges = "CC:50,SBIB:100,DINR:100,DC:25,NB:50"
+```
+```Text Objective-C
+paymentParam.additionalCharges = @"CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
+paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50";
+```
+
+For more information on the Additional Charges, refer to \[[Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges)].
+
+## Step 3: Set up the payment hashes
+
+> 🚧 Remember
+> 
+> Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
+
+The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. The CheckoutPro SDK requires two types of hashes. For more information on the two types of hashes, refer to [Hash Generation for CheckoutPro SDK](https://docs.payu.in/docs/set-up-the-payment-hashes).
+
+## Step 4: Initiate the payment
+
+Initialize and launch the Checkout Pro SDK by calling the following method from your UIViewController subclass:
+
+```Text Swift
+PayUCheckoutPro.open(on: self, paymentParam: paymentParam, config: <PayUCheckoutProConfig>, delegate: self)
+```
+```Text Objective-C
+[PayUCheckoutPro openOn:self paymentParam:paymentParam config:<#(PayUCheckoutProConfig * _Nullable)#> delegate:self];
+```
+
+## Step 5: Handle the payment completion
+
+Confirm to PayUCheckoutProDelegate and use these functions to get appropriate callbacks from the SDK:
+
+```Text Swift
+/// This function is called when we successfully process the payment
+/// - Parameter response: success response
+func onPaymentSuccess(response: Any?) {
+    
+}
+
+/// This function is called when we get failure while processing the payment
+/// - Parameter response: failure response
+func onPaymentFailure(response: Any?) {
+    
+}
+
+/// This function is called when the user cancel’s the transaction
+/// - Parameter isTxnInitiated: tells whether payment cancelled after reaching bankPage
+func onPaymentCancel(isTxnInitiated: Bool) {
+    
+}
+
+/// This function is called when we encounter some error while fetching payment options or there is some validation error
+/// - Parameter error: This contains error information
+func onError(_ error: Error?) {
+    
+}
+
+/// Use this function to provide hashes
+/// - Parameters:
+///   - param: Dictionary that contains key as HashConstant.hashName & HashConstant.hashString
+///   - onCompletion: Once you fetch the hash from server, pass that hash with key as param[HashConstant.hashName]
+func generateHash(for param: DictOfString, onCompletion: @escaping PayUHashGenerationCompletion) {
+    // Send this string to your backend and append the salt at the end and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
+    let hashStringWithoutSalt = param[HashConstant.hashString] ?? ""
+    // Or you can send below string hashName to your backend and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
+    let hashName = param[HashConstant.hashName] ?? ""
+    let postSalt = param[HashConstant.postSalt] ?? "" //// compulsory for Additional Charges and Split Payment
+    // Set the hash in below string which is fetched from your server
+		//  "<create SHA -512 hash of 'hashString+salt+postSalt'>" 
+    let hashFetchedFromServer = <#T##String#>
+    
+    onCompletion([hashName : hashFetchedFromServer])
+}
+```
+```Text Objective-C
+/// This function is called when we successfully process the payment
+/// @param response  success response
+- (void)onPaymentSuccessWithResponse:(id _Nullable)response {
+    
+}
+
+/// This function is called when we get failure while processing the payment
+/// @param response failure response
+- (void)onPaymentFailureWithResponse:(id _Nullable)response {
+    
+}
+
+/// This function is called when the user cancel’s the transaction
+/// @param isTxnInitiated tells whether payment cancelled after reaching bankPage
+- (void)onPaymentCancelWithIsTxnInitiated:(BOOL)isTxnInitiated {
+    
+}
+
+/// This function is called when we encounter some error while fetching payment options or there is some validation error
+/// @param error This contains error information
+- (void)onError:(NSError * _Nullable)error {
+    
+}
+
+/// Use this function to provide hashes
+/// @param param NSDictionary that contains key as HashConstant.hashName & HashConstant.hashString
+/// @param onCompletion Once you fetch the hash from server, pass that hash with key as param[HashConstant.hashName]
+- (void)generateHashFor:(NSDictionary<NSString *, NSString *> * _Nonnull)param onCompletion:(void (^ _Nonnull)(NSDictionary<NSString *, NSString *> * _Nonnull))onCompletion {
+    // Send below string hashStringWithoutSalt to your backend and append the salt at the end and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
+    NSString *hashStringWithoutSalt = [param objectForKey:HashConstant.hashString];
+    // Or you can send below string hashName to your backend and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
+    NSString * hashName = [param objectForKey:HashConstant.hashName];
+    
+    // Set the hash in below string which is fetched from your server
+    NSString *hashFetchedFromServer = <#(NSString)#>;
+    
+    NSDictionary *hashResponseDict = [NSDictionary dictionaryWithObjectsAndKeys:hashFetchedFromServer, hashName, nil];
+    onCompletion(hashResponseDict);
+}
+```
+
+## UPI Intent (Optional)
+
+Currently, PayU supports only PhonePe and GooglePay through Intent. Add the query schemes in the`info.plist`:
+
+```Text Info.plist Code for Intent
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>phonepe</string>
+		<string>tez</string>
+		<string>paytm</string>
+		<string>bhim</string>
+		<string>credpay</string>
+	</array>
+```
+
+# Sample Responses
+
+> 🚧 Watch Out
+> 
+> - In case of UPI intent/Collect flow, you will not receive a callback response in surl or furl. In this case, the format of PayU response received will be different from other payment options that you need to handle at your end.
+> - Consider the **mihpayid** in the PayU response as **PayU ID/ID**
+
+## Card/NB/Wallet and other transactions
+
+```Text Success
+{
+  "id": 403993715526319631,
+  "mode": "CC",
+  "status": "success",
+  "unmappedstatus": "captured",
+  "key": "gtKFFx",
+  "txnid": "iOS220530192146",
+  "transaction_fee": "1.00",
+  "amount": "1.00",
+  "cardCategory": "domestic",
+  "discount": "0.00",
+  "addedon": "2022-05-30 19:22:39",
+  "productinfo": "Nokia",
+  "firstname": "Umang",
+  "email": "umang@arya.com",
+  "phone": "9876543210",
+  "udf1": "udf11",
+  "udf2": "udf22",
+  "udf3": "udf33",
+  "udf4": "udf44",
+  "udf5": "udf55",
+  "hash": "35e9b2f143abb2bcfbbe5e1b3fb7d95a8a2fad3b8e0fc2d737aa087b52a2f620847048e2794bfcfd06708e8095428314268a88867fffa30430275c496dc70847",
+  "field1": "718984",
+  "field2": "617544",
+  "field3": "20220530",
+  "field4": "0",
+  "field5": "172989726099",
+  "field6": "00",
+  "field7": "AUTHPOSITIVE",
+  "field8": "Approved or completed successfully",
+  "field9": "No Error",
+  "payment_source": "payu",
+  "PG_TYPE": "CC-PG",
+  "bank_ref_no": "718984",
+  "ibibo_code": "MASTCC",
+  "error_code": "E000",
+  "Error_Message": "No Error",
+  "offer_key": "CardsOfferKey@11311",
+  "offer_failure_reason": "Invalid Offer Key.",
+  "name_on_card": "PayUUser",
+  "card_no": "512345XXXXXX2346",
+  "issuing_bank": "HDFC",
+  "card_type": "MAST",
+  "is_seamless": 2,
+  "surl": "https://payu.herokuapp.com/ios_success",
+  "furl": "https://payu.herokuapp.com/ios_failure"
+}
+```
+```Text Failure
+{
+  "id": 403993715530851078,
+  "mode": "CC",
+  "status": "failure",
+  "unmappedstatus": "failed",
+  "key": "gtKFFx",
+  "txnid": "iOS240117182325",
+  "transaction_fee": "1.00",
+  "amount": "1.00",
+  "cardCategory": "domestic",
+  "discount": "0.00",
+  "addedon": "2024-01-17 18:23:43",
+  "productinfo": "Nokia",
+  "firstname": "Umang",
+  "email": "umang@arya.com",
+  "phone": "9999999999",
+  "udf1": "udf11",
+  "udf2": "udf22",
+  "udf3": "udf33",
+  "udf4": "udf44",
+  "udf5": "udf55",
+  "hash": "0503b628ba7fe4716a7a96ac6b2c668634200419416af887766a417f3fc048200b155b04ccd3f4f5f601f5a22c3fb3af571773499605ee0446c98fe541b089f9",
+  "field1": 793583808525231700,
+  "field2": 833617,
+  "field5": "63",
+  "field6": "02",
+  "field7": "AUTHNEGATIVE",
+  "field9": "Bank was unable to authenticate.",
+  "payment_source": "payu",
+  "PG_TYPE": "CC-PG",
+  "bank_ref_no": 793583808525231700,
+  "ibibo_code": "CC",
+  "error_code": "E308",
+  "Error_Message": "Transaction Failed at bank end.",
+  "card_no": "XXXXXXXXXXXX2346",
+  "issuing_bank": "AXIS",
+  "card_type": "MAST",
+  "is_seamless": 2,
+  "surl": "https://cbjs.payu.in/sdk/success",
+  "furl": "https://cbjs.payu.in/sdk/failure"
+}
+```
+
+## UPI Collect/Intent payments
+
+```Text Success
+{
+  "txnid": "iOS240117183850",
+  "address1": "",
+  "udf1": "udf11",
+  "furl": "https://cbjs.payu.in/sdk/failure",
+  "address2": "",
+  "field6": "NA!NA!NA!NA",
+  "lastname": "",
+  "zipcode": "",
+  "status": "success",
+  "offer_key": null,
+  "udf5": "udf55",
+  "city": "",
+  "udf9": "",
+  "field2": "87768967657",
+  "udf4": "udf44",
+  "field7": "APPROVED OR COMPLETED SUCCESSFULLY|00",
+  "addedon": "2024-01-17 18:39:13",
+  "state": "",
+  "field0": "",
+  "udf6": "",
+  "card_no": "",
+  "discount": "0.00",
+  "udf10": "",
+  "hash": "44161a41207d4bc29ad802ecd6e06f0b350930fa539675bdd24ba8321e22972d2d12fee84a02af549717a5e52fd93db56be5f1c89388eaf2a2740b20491f8bac",
+  "field4": "",
+  "mode": "UPI",
+  "bank_ref_num": "401789868507",
+  "field9": "SUCCESS|Completed Using Callback",
+  "offer_availed": null,
+  "udf3": "udf33",
+  "payment_source": "payuPureS2S",
+  "key": "smsplus",
+  "productinfo": "Nokia",
+  "field1": "",
+  "bank_ref_no": "401789868507",
+  "mihpayid": 18978067105,
+  "field8": "Phone Pe",
+  "country": "",
+  "curl": "https://cbjs.payu.in/sdk/failure",
+  "bankcode": "INTENT",
+  "udf2": "udf22",
+  "field3": "8700908382@ybl",
+  "phone": "9999999999",
+  "email": "umang@arya.com",
+  "net_amount_debit": 1,
+  "amount": "1.00",
+  "firstname": "Umang",
+  "field5": "PPPL18978067105170124183913",
+  "card_token": "",
+  "unmappedstatus": "captured",
+  "surl": "https://cbjs.payu.in/sdk/success",
+  "udf8": "",
+  "error": "E000",
+  "error_Message": "No Error",
+  "udf7": "",
+  "PG_TYPE": "UPI-PG"
+}
+```
+```Text Failure
+{
+  "address2": "",
+  "field0": "",
+  "field1": "",
+  "udf9": "",
+  "udf1": "udf11",
+  "hash": "f995befdf65dacf0b71db83a94776efe9154ab9f0c5a378f4f07821fd61088a6f0a9cedbbf273df9048df64c4a4adb071701e9b2136e0b3e60f3c30e21aaa1ca",
+  "txnid": "iOS220706164103",
+  "field3": "",
+  "mode": "UPI",
+  "field5": "",
+  "surl": "https://payu.herokuapp.com/ios_success",
+  "udf7": "",
+  "bankcode": "TEZ",
+  "amount": "1.00",
+  "udf5": "udf55",
+  "additionalCharges": "0.59",
+  "bank_ref_no": null,
+  "payment_source": "payuPureS2S",
+  "zipcode": "",
+  "firstname": "Umang",
+  "lastname": "",
+  "net_amount_debit": 0,
+  "productinfo": "Nokia",
+  "city": "",
+  "udf2": "udf22",
+  "mihpayid": 15463188898,
+  "email": "umang@arya.com",
+  "field4": "",
+  "state": "",
+  "phone": "9876543210",
+  "furl": "https://payu.herokuapp.com/ios_failure",
+  "curl": "https://payu.herokuapp.com/ios_failure",
+  "card_token": "",
+  "PG_TYPE": "UPI-PG",
+  "field6": "",
+  "addedon": "2022-07-06 16:41:28",
+  "udf6": "",
+  "udf8": "",
+  "bank_ref_num": null,
+  "field7": "",
+  "udf10": "",
+  "error": "E308",
+  "field2": "",
+  "udf3": "udf33",
+  "card_no": "",
+  "field9": "P|PENDING|Completed Using Verify API",
+  "field8": "INTENT",
+  "unmappedstatus": "failed",
+  "key": "3TnMpV",
+  "udf4": "udf44",
+  "country": "",
+  "status": "failure",
+  "address1": "",
+  "error_Message": "Transaction Failed at bank end."
+}
+```
+
+## Distributing your app (App Store / Ad-hoc)
+
+PayU provides a fat framework that allows you to test your app seamlessly on the device as well as a simulator. But before archiving your app, you need to remove simulator slices from the framework. To archive your app with the PayU CheckoutPro integration, refer to [Releasing the app](https://docs.payu.in/docs/ios-releasing-the-app-to-the-app-store).
+
+# Additional integration
+
+## Add custom notes
+
+### Step 1: Create a Custom Note list
+
+Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom_note and custom_note_category need to be passed.
+
+```Text Swift
+  var customNotes = [PayUCustomNote]() 
+// for specific custom_note_category
+  let customNote = PayUCustomNote()
+  customNote.note = "Please welcome note"
+  customNote.noteCategories =  [.ccdc]
+  customNotes.append(customNote)
+  // when want to pass same custom note for multiple custom_note_category
+  let customNote2 = PayUCustomNote()
+   customNote2.note = "Please welcome note"
+   customNote2.noteCategories =  [.ccdc , .netBanking]
+   customNotes.append(customNote2)
+// If you want to show custom note on L1 screen, please set custom_note_category to nil
+  let customNote3 = PayUCustomNote()
+  customNote3.note = "Please welcome note"
+  customNote3.noteCategories =  nil
+  customNotes.append(customNote3)
+```
+
+## Step 2: Pass the Custom Note list to SDK
+
+To pass the custom note list (array) created in Step 1 to the SDK, create a PayUCheckoutProConfig object and set `customNotes` similar to the following code block:
+
+```Text Swift
+let checkoutProConfig = PayUCheckoutProConfig()
+config.customNotes = customNotes
+```
+
+### Integrate convenience fee
+
+#### Set up Convenience Fee
+
+When the Convenience Fee is set for a payment mode like NB. In CheckoutPro SDK, whenever the user selects any NetBanking option then the header amount will be updated with a convenience fee. Amount breakup is accessed by clicking “View Details” in the toolbar. Below screen will be displayed that shows the breakup of the transaction amount with a convenience fee.
+
+The above screenshot displays the amount breakup with the Convenience Fee
+
+By default, when no convenience fee is set, an amount breakup will be similar to the following screenshot.
+
+### Integrate Closed Loop wallet
+
+> 📘 Before you begin
+> 
+> - Enable Closed-Loop Wallet from your Dashboard.
+> - Build the payment parameters with PaymentParamConstant.walletURN parameters. See Integrate with PayU checkoutpro for iOS to learn more.
+
+The following screens show how Closed-Loop wallet payment works on the PayU payment page:
+
+- When you enable the Closed-Loop wallet for your account, your customer sees the Closed-Loop wallet payment on top of the payment page under the SAVED OPTION tab.
+- The closed-loop wallet balance is fetched and loaded (see the screenshot below) by default.
+- If the balance is not loaded due to some error, an error message will be displayed (see the screenshot below). The customer can tap on the wallet option to reload the amount.
+- Once the balance is loaded the customer can make the payment by clicking Pay Now.
