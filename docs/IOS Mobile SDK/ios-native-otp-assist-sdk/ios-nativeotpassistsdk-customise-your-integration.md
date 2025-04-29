@@ -14,11 +14,11 @@ The Native OTP Assist SDK provides several customization options allowing you to
 
 ## Customisation Options
 
-- [Customisation Options](https://docs.payu.in/docs/ios-nativeotpassistsdk-customise-your-integration#customisation-options)
-- [Change theme colour](https://docs.payu.in/docs/ios-nativeotpassistsdk-customise-your-integration#change-theme-colour)
-- [Change Waiting for OTP timeout](https://docs.payu.in/docs/ios-nativeotpassistsdk-customise-your-integration#change-waiting-for-otp-timeout)
-- [Disable Auto-Submit OTP flag](https://docs.payu.in/docs/ios-nativeotpassistsdk-customise-your-integration#disable-auto-submit-otp-flag)
-- [Card BIN eligibility check](#card-bin-eligibility-check)
+* [Customisation Options](https://docs.payu.in/docs/ios-nativeotpassistsdk-customise-your-integration#customisation-options)
+* [Change theme colour](https://docs.payu.in/docs/ios-nativeotpassistsdk-customise-your-integration#change-theme-colour)
+* [Change Waiting for OTP timeout](https://docs.payu.in/docs/ios-nativeotpassistsdk-customise-your-integration#change-waiting-for-otp-timeout)
+* [Disable Auto-Submit OTP flag](https://docs.payu.in/docs/ios-nativeotpassistsdk-customise-your-integration#disable-auto-submit-otp-flag)
+* [Card BIN eligibility check](#card-bin-eligibility-check)
 
 ***
 
