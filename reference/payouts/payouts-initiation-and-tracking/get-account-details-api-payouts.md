@@ -22,7 +22,8 @@ The **getAccountDetail** API returns complete account details of the merchant’
 | **Test Environment**       | <https://uatoneapi.payu.in/payout/merchant/getAccountDetail>    |
 | **Production Environment** | <https://payout.payumoney.com/payout/merchant/getAccountDetail> |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl -X GET \
@@ -35,7 +36,8 @@ curl -X GET \
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
@@ -59,7 +61,8 @@ curl -X GET \
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
 [block:parameters]
 {
@@ -101,7 +104,6 @@ curl -X GET \
   ]
 }
 [/block]
-
 
 </details>
 
