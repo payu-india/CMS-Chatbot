@@ -22,8 +22,8 @@ HTTP Method: **POST**
 
 |                        |                                  |
 | :--------------------- | :------------------------------- |
-| Test Environment       | <https://test.payu.in/merchant/> |
-| Production Environment | <https://info.payu.in/merchant/> |
+| Test Environment       | &lt;https://test.payu.in/merchant/&gt; |
+| Production Environment | &lt;https://info.payu.in/merchant/&gt; |
 
 ## Request parameters
 
@@ -59,7 +59,6 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ## Sample request
 
 ```curl
@@ -88,7 +87,6 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"
   ]
 }
 [/block]
-
 
 ## Sample Response
 
