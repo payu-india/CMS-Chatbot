@@ -63,17 +63,17 @@ Add the following meta-tag & JS script in the HTML header section of your websit
  <script src="https://jssdk.payu.in/ppi/ppi.min.js"></script>`
 ```
 
-> 📘 
-> 
+> 📘
+>
 > Test Script
-> 
+>
 > Replace the script mentioned in the earlier code snippet with [https://jssdk-uat.payu.in/ppi/ppi.min.js](https://jssdk-uat.payu.in/bolt/bolt.min.js) to test the integration.
 
 ## Step 4: Pass request objects
 
 The `ppi.launch()` function takes two arguments.
 
-- In the first argument, the data objects contain the  request data. The format of the data object is as shown below:
+* In the first argument, the data objects contain the  request data. The format of the data object is as shown below:
 
 ```javascript
 var data = {
@@ -81,7 +81,7 @@ var data = {
 }
 ```
 
-- The second argument is the Handler which contains two functions. The `responseHandler()` function and the `catchException()` function.
+* The second argument is the Handler which contains two functions. The `responseHandler()` function and the `catchException()` function.
 
 ## Step 5: Catch exception
 
@@ -121,5 +121,5 @@ $(document).on('click', '#submit', function() {
 ```
 
 > 📘 Note:
-> 
+>
 > Here, when your customer clicks on the card button (#submit), this code triggers the `ppi.launch()` function that passes the parameters along with the `responseHandler()` and `catchException()`functions as arguments.
