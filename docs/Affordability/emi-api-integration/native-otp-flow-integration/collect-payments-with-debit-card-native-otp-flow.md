@@ -24,32 +24,32 @@ Before initiating a payment request for a customer, it is necessary to check the
 
 Send the transaction information to PayU through a server-to-server curl request to initiate the transaction. As a result of this API call, the customer will receive the OTP. For more information, refer to [Collect Payment API - Server-to-Server](ref:_payment_server_to_server).
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "s2s\\_device\\_info  \n`mandatory`",
-    "0-1": "`String` This parameter must have the customer agent’s device.  <br>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.",
-    "0-2": "Mozilla",
-    "1-0": "s2s\\_client\\_ip  \n`mandatory`",
-    "1-1": "`String` This parameter must have the source IP of the customer.  <br>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.",
-    "1-2": "10.11.101.11'",
-    "2-0": "txn\\_s2s\\_flow  \n`mandatory`",
-    "2-1": "`String` This parameter must be passed with the value as 4.",
-    "2-2": "4"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>s2s\_device\_info `mandatory`</td>
+      <td>`String` This parameter must have the customer agent’s device.  <br>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
+      <td>Mozilla</td>
+    </tr>
+    <tr>
+      <td>s2s\_client\_ip\ `mandatory`</td>
+      <td>`String` This parameter must have the source IP of the customer.  <br>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
+      <td>10.11.101.11</td>
+    </tr>
+    <tr>
+      <td>txn\_s2s\_flow\ `mandatory`</td>
+      <td>`String` This parameter must be passed with the value as 4.</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Step 3: Submit the OTP
 
