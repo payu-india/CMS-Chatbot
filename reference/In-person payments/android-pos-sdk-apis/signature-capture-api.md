@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The** Signature Capture** API is used to capture the signature from the customer based on the `PinVerifiedFlag` parameter. When the PinVerifiedFlag is false then this API collects the signature from the customer and send it to SDK.
+The **Signature Capture** API is used to capture the signature from the customer based on the `PinVerifiedFlag` parameter. When the PinVerifiedFlag is false then this API collects the signature from the customer and send it to SDK.
 
 **Method**: POST
 
@@ -18,32 +18,70 @@ Create a `PaymentInitialization` class object and call `initiateSignatureCapture
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Sample",
-    "0-0": "Handler object   \n`mandatory`",
-    "0-1": "`handlerhandler` Create a handler inner class. This class will return response message",
-    "0-2": "handler",
-    "1-0": "Ref.No   \n`mandatory`",
-    "1-1": "`stringPass` Transaction reference number which returns from initiateTransaction response.",
-    "1-2": "Refer to \\<\\<**ICCTransactionResponse**>> payload objects.",
-    "2-0": "Signature  \n`mandatory`",
-    "2-1": "`byte` signature for transaction confirmation.",
-    "2-2": ""
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Sample
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Handler object 
+        `mandatory`
+      </td>
+
+      <td>
+        `handlerhandler` Create a handler inner class. This class will return response message
+      </td>
+
+      <td>
+        handler
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Ref.No \
+        `mandatory`
+      </td>
+
+      <td>
+        `stringPass` Transaction reference number which returns from initiateTransaction response.
+      </td>
+
+      <td>
+        Refer to \<\<**ICCTransactionResponse**>> payload objects.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Signature\
+        `mandatory`
+      </td>
+
+      <td>
+        `byte` signature for transaction confirmation.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
