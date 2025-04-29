@@ -19,10 +19,11 @@ next:
 
 |                            |                                                                        |
 | -------------------------- | ---------------------------------------------------------------------- |
-| **Test Environment**       | <https://staging.payu.in/payout/v2/bulkUpload/transfers/{fileId}>      |
-| **Production Environment** | <https://payout.payumoney.com/payout/v2/bulkUpload/transfers/{fileId}> |
+| **Test Environment**       | &lt;https://staging.payu.in/payout/v2/bulkUpload/transfers/`{fileId}`&gt;      |
+| **Production Environment** | &lt;https://payout.payumoney.com/payout/v2/bulkUpload/transfers/`{fileId}`&gt; |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location 'https://uatoneapi.payu.in/payout/v2/bulkUpload/transfers/1' \
@@ -33,7 +34,8 @@ curl --location 'https://uatoneapi.payu.in/payout/v2/bulkUpload/transfers/1' \
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
