@@ -26,22 +26,7 @@ To use PayU Hosted Checkout, merchants need to integrate the PayU payment gatewa
 
 Once the payment is processed, the customer will be redirected back to the merchant's website where they can view the payment result.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/932f800-payuhosted_wf.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/932f800-payuhosted_wf.png" />
 
 ## Customer journey
 
@@ -50,83 +35,21 @@ The following sample customer journey is for cards payment mode:
 1. The customer clicks **Pay Now** on merchant website after checkout.
 2. The customer is redirected to \_PayU Payment \_page.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "622px",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" width="622px" border={true} src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" />
 
 3. The customer chooses a payment mode from the \_PayU Payment \_page. For example, **Cards (Debit/Credit)**.
 4. The card details are provided by the customer and clicks **Proceed**.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/fd09cbd284ffe7fb3b60d03e2acd8a5a51d850dd1795f1eca9879893b3569603-Screenshot_2024-09-06_at_11.56.40_AM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "622px",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" width="622px" border={true} src="https://files.readme.io/fd09cbd284ffe7fb3b60d03e2acd8a5a51d850dd1795f1eca9879893b3569603-Screenshot_2024-09-06_at_11.56.40_AM.png" />
 
    A consent message is displayed whether the card the details can be stored.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/caa8481-Screenshot_2023-10-05_at_10.37.33_AM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "622px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="622px" src="https://files.readme.io/caa8481-Screenshot_2023-10-05_at_10.37.33_AM.png" />
 
 5. Customer clicks **Save and Continue**.
 6. The OTP page is displayed where the customer enters OTP sent to the them.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/289fa82-Screenshot_2023-10-05_at_10.37.42_AM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "422px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="422px" src="https://files.readme.io/289fa82-Screenshot_2023-10-05_at_10.37.42_AM.png" />
 
 6. PayU redirects back to the merchant website based on the success URL (surl) or failure URL (furl) specified.
 
@@ -134,9 +57,9 @@ The following sample customer journey is for cards payment mode:
 
 PayU manages the checkout experience on your website. The features of PayU Hosted Checkout are:
 
-- Enables the customer to select the payment option through the readymade payment page hosted on the PayU server, and accept corresponding payment details. After submitting the details, PayU will take the customer to the desired payment options webpage for further authentication. For configuring payment modes on payment page, refer to [Configure Checkout Payment Methods](doc:checkout-payment-modes).
-- Facilitates access to color schemes, customize logo, and display language (some Indian languages supported) though PayU owns this page. For more information, refer to [Change the Language](doc:changing-the-language)  and r [Configure Checkout Settings](doc:configure-checkout-settings).
-- Enables easy and quick integration so you can integrate with minimal technical knowledge.
+* Enables the customer to select the payment option through the readymade payment page hosted on the PayU server, and accept corresponding payment details. After submitting the details, PayU will take the customer to the desired payment options webpage for further authentication. For configuring payment modes on payment page, refer to [Configure Checkout Payment Methods](doc:checkout-payment-modes).
+* Facilitates access to color schemes, customize logo, and display language (some Indian languages supported) though PayU owns this page. For more information, refer to [Change the Language](doc:changing-the-language)  and r [Configure Checkout Settings](doc:configure-checkout-settings).
+* Enables easy and quick integration so you can integrate with minimal technical knowledge.
 
 Web Checkout provides multiple payment options that can be easily pre-configured by you on-demand, according to your business case. You can execute PayU Hosted Checkout integration efficiently with PayU web payments systems using a PG integration kit provided by PayU.
 
@@ -144,12 +67,12 @@ Web Checkout provides multiple payment options that can be easily pre-configured
 
 The following is a list of benefits of PayU Hosted Checkout:
 
-- Simplified payment workflow for your customers while reducing the cost of designing complex payment functionalities within your environment.
-- Going live with new payment modes requires zero development. They can be enabled with a simple switch.
-- Assures the security of your customer payment credentials.
-- PCI-DSS certifications to operate your facility are not mandatory.
-- PayU Hosted Checkout extends cross-functional support at organizational roles within the organization.
-- The Native UI feature of Web Checkout Pro allows you to ensure continuous usability (UX) and brand coherence by customizing the PayU-hosted environment with the business logo and color scheme of your choice, simulating your business website.
-- Offers zero direction OTP authentication flow for cards with Native OTP.
-- Supports specific and generic intent for UPI payments on mobile web
-- Personalized payment experience (using recommendations) and offers.
+* Simplified payment workflow for your customers while reducing the cost of designing complex payment functionalities within your environment.
+* Going live with new payment modes requires zero development. They can be enabled with a simple switch.
+* Assures the security of your customer payment credentials.
+* PCI-DSS certifications to operate your facility are not mandatory.
+* PayU Hosted Checkout extends cross-functional support at organizational roles within the organization.
+* The Native UI feature of Web Checkout Pro allows you to ensure continuous usability (UX) and brand coherence by customizing the PayU-hosted environment with the business logo and color scheme of your choice, simulating your business website.
+* Offers zero direction OTP authentication flow for cards with Native OTP.
+* Supports specific and generic intent for UPI payments on mobile web
+* Personalized payment experience (using recommendations) and offers.
