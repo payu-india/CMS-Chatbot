@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-In the request parameters of the **Get Checkout Details **API, you can use the following codes in the JSON array for EMI with the **paymentoption** field of the **filters** parameter. For example, the following can be used for **filters** parameter.
+In the request parameters of the **Get Checkout Details** API, you can use the following codes in the JSON array for EMI with the **paymentoption** field of the **filters** parameter. For example, the following can be used for **filters** parameter.
 
 ```
 { "paymentOptions": { "emi": { "dc": "SBIN,KKBK,ICIC" } } }
@@ -55,13 +55,13 @@ In the request parameters of the **Get Checkout Details **API, you can use the f
 
 ## Cardless EMI options
 
-| Issuer Name   | Code     |
-| ------------- | -------- |
-| Axio          | AXIO     |
-| Bajaj Finance | BAJFIN   |
-| HDFC Bank     | HDFC_CL  |
-| Homecredit    | HMECDT   |
-| ICICI Bank    | ICICI_CL |
-| Kotak Bank    | KOTAKC   |
-| Kreditbee     | KBEE     |
-| Zest Money    | ZESTMON  |
+| Issuer Name   | Code      |
+| ------------- | --------- |
+| Axio          | AXIO      |
+| Bajaj Finance | BAJFIN    |
+| HDFC Bank     | HDFC\_CL  |
+| Homecredit    | HMECDT    |
+| ICICI Bank    | ICICI\_CL |
+| Kotak Bank    | KOTAKC    |
+| Kreditbee     | KBEE      |
+| Zest Money    | ZESTMON   |
