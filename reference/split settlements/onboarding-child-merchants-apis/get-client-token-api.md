@@ -21,7 +21,7 @@ HTTP Method: **POST**
 | **Test**       | <https://uat-accounts.payu.in> |
 | **Production** | <https://accounts.payu.in>     |
 
-Base URL: {{base\_url}}/oauth/token
+Base URL: `{{base_url}}/oauth/token`
 
 ## Request parameters
 
@@ -53,7 +53,6 @@ Base URL: {{base\_url}}/oauth/token
   ]
 }
 [/block]
-
 
 ## Sample request
 
@@ -99,7 +98,6 @@ curl --location -g --request POST '{{hub_base_url}}/oauth/token' \
   ]
 }
 [/block]
-
 
 ## Sample response
 
