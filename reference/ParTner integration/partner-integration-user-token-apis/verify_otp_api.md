@@ -33,7 +33,7 @@ The **Verify OTP** API involves the following:
 
 > 📘 Note:
 > 
-> The access token is required in the **Bearer **field of the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+> The access token is required in the **Bearer** field of the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
 **Environment**
 
@@ -42,7 +42,8 @@ The **Verify OTP** API involves the following:
 | **Test**       | <https://uat-accounts.payu.in> |
 | **Production** | <https://accounts.payu.in>     |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location -g --request POST '{{partner_base_url}}/api/v1/otps/verify_otp' \
@@ -56,7 +57,8 @@ curl --location -g --request POST '{{partner_base_url}}/api/v1/otps/verify_otp' 
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success scenario**
 
@@ -78,12 +80,12 @@ curl --location -g --request POST '{{partner_base_url}}/api/v1/otps/verify_otp' 
 
 | **Error Code** | **Description**                              | **Sample Code Block**                                                                                                                                                                                                                                                                                         |
 | -------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401            | When token is invalid/expired                | { “status”: “Unauthorized” }                                                                                                                                                                                                                                                                                  |
-| 422            | When OTP (type) is invalid                   | { “errors”: { “type”: \[ “invalid” \] }, “messages”: { “type”: “Type has invalid value” }, “additional\_data”: { “type”: { “value”: “SignInas” } } }                                                                                                                                                          |
-| 401            | When token does not have scopes              | { “status”: “Unauthorized” }                                                                                                                                                                                                                                                                                  |
-| 422            | When identity/channel is required            | { “errors”: { “identity”: \[ “invalid\_format” \], “channels”: \[ “not\_permitted” \] }, “messages”: { “identity”: “Identity has invalid value”, “channels”: “Channels has invalid value” }, “additional\_data”: { “identity”: { “value”: “88027794841” }, “channels”: { “value”: \[ “email”, “smsq” \] } } } |
-| 422            | When user does not exist with given identity | { “errors”: { “user”: \[ “not\_found” \] }, “messages”: { “user”: “User not found” }, “additional\_data”: { “user”: { “search\_term”: “9044199921” } } }                                                                                                                                                      |
-| 422            | When user account is locked                  | { “errors”: { “user”: \[ “locked” \] }, “messages”: { “user”: “User account is locked” }, “additional\_data”: { “user”: { “lock\_duration”: 1744, “search\_term”: “8802779484” } } }                                                                                                                          |
+| 401            | When token is invalid/expired                | `{ “status”: “Unauthorized” }`                                                                                                                                                                                                                                                                                  |
+| 422            | When OTP (type) is invalid                   | `{ “errors”: { “type”: [ “invalid” ] }, “messages”: { “type”: “Type has invalid value” }, “additional_data”: { “type”: { “value”: “SignInas” } } }`                                                                                                                                                          |
+| 401            | When token does not have scopes              | `{ “status”: “Unauthorized” }`                                                                                                                                                                                                                                                                                  |
+| 422            | When identity/channel is required            | `{ “errors”: { “identity”: [ “invalid_format” ], “channels”: [ “not_permitted” ] }, “messages”: { “identity”: “Identity has invalid value”, “channels”: “Channels has invalid value” }, “additional_data”: { “identity”: { “value”: “88027794841” }, “channels”: { “value”: [ “email”, “smsq” ] } } }` |
+| 422            | When user does not exist with given identity | `{ “errors”: { “user”: [ “not_found” ] }, “messages”: { “user”: “User not found” }, “additional_data”: { “user”: { “search_term”: “9044199921” } } }`                                                                                                                                                      |
+| 422            | When user account is locked                  | `{ “errors”: { “user”: [ “locked” ] }, “messages”: { “user”: “User account is locked” }, “additional_data”: { “user”: { “lock_duration”: 1744, “search_term”: “8802779484” } } }`                                                                                                                          |
 
 </details>
 
