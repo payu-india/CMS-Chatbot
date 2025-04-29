@@ -51,15 +51,17 @@ All successful registration transactions are charged over the recurring interfac
 | Production Environment | <https://info.payu.in/merchant/> |
 | Test Environment       | <https://test.payu.in/merchant/> |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
-curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d"key=JP***g&command=si_transaction&var1={"authpayuid": "6611192557",“invoiceDisplayNumber”:”12345678910”"amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "chota.bheem@gmail.com","udf2": "","udf3": "","udf4": "","udf5": ""}&hash=jbUS07Og8BToVZ"
+curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=si_transaction&var1={\"authpayuid\": \"6611192557\",\"invoiceDisplayNumber\":\"12345678910\",\"amount\": 3,\"txnid\": \"REC15113506209\",\"phone\": \"9999999999\",\"email\": \"chota.bheem@gmail.com\",\"udf2\": \"\",\"udf3\": \"\",\"udf4\": \"\",\"udf5\": \"\"}&hash=jbUS07Og8BToVZ"
 ```
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success scenario** 
 
@@ -118,11 +120,13 @@ Here is a sample response object returned against recurring payment API when the
             "email": ""
         }
     }
+}
 ```
 
 </details>
 
-</details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
 **JSON fields description of the Details parameter**
 
@@ -149,7 +153,7 @@ You must map the order status using this parameter only. The possible values of 
 - **captured**: If the transaction is successful, the value will be captured. In some cases, the response of Net banking recurring can be captured over real-time basis (ICICI bank in the specific scenario).  
 - **pending**: This is common with most Net Banking (except ICICI in the specific scenario) or UPI recurring transaction. In that case, the merchant should consider this as successful initiation of payment with bank / NPCI. The status will be notified back to the merchant over payment processing with individual bank gets completed.  
   For UPI, “pending” transactions get usually get converted into captured or failed within 10 mins from the time of initiation. The Query API can be called post 10 mins from initiation, whereas for Net Banking, it can be called up to T+2 once a day. For more information, refer to [Capture response of Recurring Transaction](#capture-response-of-recurring-transaction-for-net-banking-and-upi).  
-  For Net Banking, “pending” transaction gets converted into “captured” or “failed” from the same day till T+2 anytime, depending upon the bank account used by the customer in setting up registration.  
+  For Net Banking, “pending” transaction gets converted into “captured” or “failed” from the same day till T+2 anytime, depending upon the bank account used by the customer in setting up registration.
 - **failed**: The value of the status as “failed” or blank must be treated as a failed transaction only.
 - **in-progress**: The status of transaction is in progress.
 
@@ -166,17 +170,18 @@ To capture the final status of “pending” transaction to either “captured�
 
 ## Request parameters
 
-<details> <summary>Reference information</summary>
+<details>
+  <summary>Reference information</summary>
 
 [block:parameters]
 {
   "data": {
     "h-0": "Parameter",
     "h-1": "Reference",
-    "0-0": "<<glossary:key>>",
+    "0-0": "&lt;&lt;glossary:key&gt;&gt;",
     "0-1": "For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)\n- **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "1-0": "<<glossary:hash>>",
-    "1-1": "Hash logic for this API is:  \n`sha512(key\\|command\\|var1\\|salt) sha512\n`",
+    "1-0": "&lt;&lt;glossary:hash&gt;&gt;",
+    "1-1": "Hash logic for this API is:  \nsha512(key\\|command\\|var1\\|salt)sha512\n",
     "2-0": "var1",
     "2-1": "For JSON fields description, refer to [Additional Info. for Recurring Payment APIs](ref:additional-info-for-recurring-payment-apis)"
   },
@@ -188,6 +193,5 @@ To capture the final status of “pending” transaction to either “captured�
   ]
 }
 [/block]
-
 
 </details>
