@@ -2,3 +2,4 @@
 - update-subscription-api
 - get-list-of-subscriptions-api
 - cancel-subscription-api
+- get-subscription-details-api
