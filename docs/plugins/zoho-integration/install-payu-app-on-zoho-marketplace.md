@@ -20,9 +20,9 @@ To install PayU extension from Zoho Marketplace:
 
    The Zoho Marketplace page is displayed.
 
-[block:image]{"images":[{"image":["https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Zoho_Marketplace-1024x560.png",null,null],"align":"center","border":true}]}[/block]
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Zoho_Marketplace-1024x560.png" />
 
 2. Search for **PayU for Zoho Books** using the **Search apps** field and select it.
 
-   The _PayU for Zoho Books_ page is displayed.
+   The *PayU for Zoho Books* page is displayed.
 3. Click **Install** on the top-right corner.
