@@ -19,7 +19,8 @@ This API is used to update virtual account belonging to partner ID.
 
 <PayoutsPartnerEnvionment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location --request PUT
@@ -42,7 +43,8 @@ curl --location --request PUT
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
