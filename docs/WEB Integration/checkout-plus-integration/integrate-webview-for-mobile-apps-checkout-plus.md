@@ -12,8 +12,8 @@ next:
 ---
 You can collect payments from your mobile apps by opening the the PayU checkout form in a WebView. This allows you to reuse your PayU Hosted Checkout integration and get started quickly.
 
-- [Configure WebView for Android](#webview-integration-for-android)
-- [Configure WebView for iOS](#webview-integration-for-ios)
+* [Configure WebView for Android](#webview-integration-for-android)
+* [Configure WebView for iOS](#webview-integration-for-ios)
 
 ## WebView integration for Android
 
