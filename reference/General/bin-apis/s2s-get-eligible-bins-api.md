@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The  S2S Eligible BINs API (**s2sEligibleBins **) API is similar to the **Get BIN Info** API, but used in S2S environment. For more information on Get BIN Info API, refer to [Get Bin Info API](ref:get_bin_info_api).
+The S2S Eligible BINs API (**s2sEligibleBins**) API is similar to the **Get BIN Info** API, but used in S2S environment. For more information on Get BIN Info API, refer to [Get Bin Info API](ref:get_bin_info_api).
 
 **Environment**
 
@@ -48,9 +48,6 @@ The  S2S Eligible BINs API (**s2sEligibleBins **) API is similar to the **Get BI
   ]
 }
 [/block]
-
-
-
 
 ## Sample request
 
