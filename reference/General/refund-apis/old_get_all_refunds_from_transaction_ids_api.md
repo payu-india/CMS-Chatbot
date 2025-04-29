@@ -36,7 +36,8 @@ The **Get All Refunds for a Transaction ID** API (getAllRefundsFromTxnIds) comma
 
 <GENERALAPIsEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl -X POST "https://test.payu.in/merchant/postservice?form=2
@@ -47,7 +48,8 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
 
 </details>
 
-<details>  <summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success Scenario**
 
@@ -197,47 +199,87 @@ If no refunds found for the transaction:
 
 </details>
 
-<details><summary>Response parameters description</summary>
+<details>
+  <summary>Response parameters description</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "The status of the response can be any of the following:  \n  \n- **1:** Success\n- ** 2:** Failure",
-    "0-2": "1",
-    "1-0": "msg",
-    "1-1": "The description of the response whether the card details were stored successfully or not.",
-    "1-2": "Refunds fetched successfully.",
-    "2-0": "Refund Details",
-    "2-1": "The details are sent by PayU in JSON format for the successful response. For more information, refer to [Additional Info for General APIs](ref:addl-info-general-apis#description-of-the-refund-details-json-fields).",
-    "2-2": ""
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        The status of the response can be any of the following:  
+
+        * **1:** Success
+        * **2:** Failure
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        msg
+      </td>
+
+      <td>
+        The description of the response whether the card details were stored successfully or not.
+      </td>
+
+      <td>
+        Refunds fetched successfully.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Refund Details
+      </td>
+
+      <td>
+        The details are sent by PayU in JSON format for the successful response. For more information, refer to [Additional Info for General APIs](ref:addl-info-general-apis#description-of-the-refund-details-json-fields).
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
 ## Request parameters
 
-<details><summary>Reference information for request parameters</summary>
+<details>
+  <summary>Reference information for request parameters</summary>
 
 <KeyHashForGeneralParametersDescription />
 
 </details>
 
-**Example values ** 
+**Example values** 
 
 Use the following sample values while trying out the API:
 
-- `var1` (txnid): db97dd56eff7296e5061
+* `var1` (txnid): db97dd56eff7296e5061
