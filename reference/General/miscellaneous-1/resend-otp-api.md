@@ -36,8 +36,8 @@ HTTP Method: **POST**
     "1-1": "`String` Pass the value as 1 to resend the OTP.",
     "1-2": "1",
     "2-0": "data  \n**optional**",
-    "2-1": "`String` You must pass {\"payuPureS2S\":\"1\"} as the value of this parameter.",
-    "2-2": "{\"payuPureS2S\":\"1\"}"
+    "2-1": "`String` You must pass `{ \"payuPureS2S\":\"1\" }` as the value of this parameter.",
+    "2-2": "`{ \"payuPureS2S\":\"1\" }`"
   },
   "cols": 3,
   "rows": 3,
@@ -48,7 +48,6 @@ HTTP Method: **POST**
   ]
 }
 [/block]
-
 
 ## Sample request
 
