@@ -16,9 +16,9 @@ The OTP Assist SDK provides a complete authentication flow for card transactions
 
 The Native OTP Assist SDK gives you the following key capabilities:
 
-- Read OTP on the merchant app without redirecting to the bank page, for eligible bins.
-- If the bin is not eligible, then it will redirect to the bank’s 3d-secure/ACS page.
-- Support for Android native SMS permission, as well as Google Consent API.
+* Read OTP on the merchant app without redirecting to the bank page, for eligible bins.
+* If the bin is not eligible, then it will redirect to the bank’s 3d-secure/ACS page.
+* Support for Android native SMS permission, as well as Google Consent API.
 
 ## Integration Steps
 
