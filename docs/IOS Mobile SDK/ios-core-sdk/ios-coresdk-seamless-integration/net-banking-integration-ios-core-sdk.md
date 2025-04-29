@@ -21,7 +21,6 @@ To pay using Net Banking, perform the following steps.
 paymentParamForPassing.bankCode = "AXIB" //BankCode
 ```
 ```Text Objective-C
-
 ```
 
 2. Get the request by using the `createRequestWithPaymentParam` method as follows:
