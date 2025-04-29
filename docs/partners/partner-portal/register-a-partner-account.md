@@ -35,16 +35,16 @@ To create a Partner Account:
 
 1. Navigate to the following PayU Affiliate Partner Program URL:
 
-<https://partner.payu.in/>
+[https://partner.payu.in/](https://partner.payu.in/)
 
 The PayU Affiliate Partner Program page is displayed.
 
-[block:image]{"images":[{"image":["https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-20-1024x507.png",null,null],"align":"center","border":true}]}[/block]
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-20-1024x507.png" />
 
 2. Click **Become a Partner** button.
 3. Enter your email address in the Enter Email field and click **Next**.
 
-[block:image]{"images":[{"image":["https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-21-1024x512.jpg",null,null],"align":"center","border":true}]}[/block]
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-21-1024x512.jpg" />
 
 ```
  The _Tell us more about yourself_ page is displayed.
@@ -54,27 +54,59 @@ The PayU Affiliate Partner Program page is displayed.
 
 4. Provide the details for the fields as described in the following table:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "0-0": "**Enter Name**",
-    "0-1": "Enter your name in this field.",
-    "1-0": "**Phone Number**",
-    "1-1": "Enter your mobile phone number in this field.  \n**Note:** PayU will send an OTP on this number for verification purposes.",
-    "2-0": "**Enter Password**",
-    "2-1": "Enter the password that you wish to use while logging into your merchant account with PayU. Your password must strictly meet these requirements:  \n  \n- at least eight characters\n- at least one uppercase alphabet\n- at least one lowercase alphabet\n- at least one numeral\n- at least one special character"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Field**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **Enter Name**
+      </td>
+
+      <td>
+        Enter your name in this field.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Phone Number**
+      </td>
+
+      <td>
+        Enter your mobile phone number in this field.  
+
+        * \*Note:\*\* PayU will send an OTP on this number for verification purposes.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Enter Password**
+      </td>
+
+      <td>
+        Enter the password that you wish to use while logging into your merchant account with PayU. Your password must strictly meet these requirements:  
+
+        * at least eight characters
+        * at least one uppercase alphabet
+        * at least one lowercase alphabet
+        * at least one numeral
+        * at least one special character
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 5. Click **Next.**
 
@@ -86,12 +118,12 @@ The PayU Affiliate Partner Program page is displayed.
 
    The registration for the merchant in PayU is complete.
 
-> **Note:** If you have already registered for PayU Partner Program using the entered phone number then following message gets displayed:  
-> _“Mobile Number already exists with PayU._  
-> _83\*\*\*\*\*\*\*\*_  
-> _Please continue with your old password to add merchant account.”_
+> **Note:** If you have already registered for PayU Partner Program using the entered phone number then following message gets displayed:\
+> *“Mobile Number already exists with PayU.*\
+> *83\*\*\*\*\*\*\*\**\
+> *Please continue with your old password to add merchant account.”*
 
-[block:image]{"images":[{"image":["https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-22-1024x418.png",null,null],"align":"center","border":true}]}[/block]
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-22-1024x418.png" />
 
 ## Complete your profile on Partner Portal
 
@@ -99,43 +131,28 @@ After registering as a partner, complete your profile as described in this secti
 
 The **Profile** tab is used to complete your profile and contains the following sections:
 
-- [General Details](#general-details)
-- [Business Details](#business-details)
-- [PAN Details](#pan-details)
-- [Bank Details](#bank-details)
+* [General Details](#general-details)
+* [Business Details](#business-details)
+* [PAN Details](#pan-details)
+* [Bank Details](#bank-details)
 
 If you have not completed your profile, the **Get Paid> Complete your onboarding** tile is displayed on the top after you log in. Click **Get Paid** to complete your profile.
 
-[block:image]{"images":[{"image":["https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-26-at-10.09.22-AM-1024x930.png",null,null],"align":"center","border":true}]}[/block]
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-26-at-10.09.22-AM-1024x930.png" />
 
 OR
 
 Click your profile photo at the top-right corner and select **My Profile** from the drop-down menu.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-9.59.59-AM.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "250px"
-    }
-  ]
-}
-[/block]
+<Image align="center" width="250px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-9.59.59-AM.png" />
 
-
-The**Profile**tab is displayed with _Fill the details below to generate your partnership agreement_ as the title.
+The**Profile**tab is displayed with *Fill the details below to generate your partnership agreement* as the title.
 
 ## General Details
 
 The details on the **General Details** pane are automatically updated based on the details you filled in during registration. You can update these details if required.
 
-[block:image]{"images":[{"image":["https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.19.50-AM-1024x731.png",null,null],"align":"center","border":true}]}[/block]
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.19.50-AM-1024x731.png" />
 
 ## Business details
 
@@ -159,7 +176,7 @@ To complete the PAN details:
 
 1. Expand the **PAN Details** pane.
 
-[block:image]{"images":[{"image":["https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.21.02-AM-1024x744.png",null,null],"align":"center","border":true}]}[/block]
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.21.02-AM-1024x744.png" />
 
 1. Enter the name in the **Name on PAN Card (PAN card of the signing authority)** field.
 2. Enter your PAN number in the **Number on PAN Card** field.
