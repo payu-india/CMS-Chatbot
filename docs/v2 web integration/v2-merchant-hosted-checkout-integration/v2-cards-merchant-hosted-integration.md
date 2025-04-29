@@ -12,14 +12,14 @@ next:
 ---
 PayU supports the following debit cards and credit cards:
 
-- American Express (AMEX)
-- Visa
-- Mastercard
-- Diners
-- Rupay
+* American Express (AMEX)
+* Visa
+* Mastercard
+* Diners
+* Rupay
 
 > 📘 Note:
-> 
+>
 > PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team ([integration@pay.in](mailto:integration@pay.in)).
 
 If you are storing or transmitting cardholder data, you must fill the “[Self-Assessment Questionnaire A-EP and Attestation of Compliance](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf)” form. For more information on Save Cards API integration, refer to PayU Save Cards API Integration docs.
@@ -31,14 +31,14 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
 3. [Verify the payment](#step-4-verify-the-payment)
 
 > 👍 Before you begin:
-> 
+>
 > PayU recommends you to integrate with Test environment initially. For more information, contact you PayU Key Account Manager (KAM) or PayU Support.
 
 ## Step 1: Validate the card type
 
-When customers use debit cards or credit cards on your website, you can validate the card type with the first six digits. Use the **check_isDomestic** API (known as BIN API) to validate the type of card. For more information, refer to  <a href="bin-apis" target="_blank"> BIN APIs</a>.
+When customers use debit cards or credit cards on your website, you can validate the card type with the first six digits. Use the **check\_isDomestic** API (known as BIN API) to validate the type of card. For more information, refer to  <a href="bin-apis" target="_blank"> BIN APIs</a>.
 
-After the customer enters the card number, you can validate the first six digits with the **check_isDomestic** API. For more information, refer to <a href="https://docs.payu.in/v1/reference/check_is_domestic_api" target="_blank">Check is Domestic API</a>.
+After the customer enters the card number, you can validate the first six digits with the **check\_isDomestic** API. For more information, refer to <a href="https://docs.payu.in/v1/reference/check_is_domestic_api" target="_blank">Check is Domestic API</a>.
 
 ## Step 2: Initiate the payment to PayU
 
@@ -116,137 +116,398 @@ return true;
 
 ### Request Body
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "accountId  \n `mandatory`",
-    "0-1": "`String` The merchant key provided by PayU during onboarding.",
-    "0-2": "MERCHANT123",
-    "1-0": "referenceId  \n `mandatory`",
-    "1-1": "`String` Reference ID for transaction tracking and this must be unique for every transaction.",
-    "1-2": "REF123456",
-    "2-0": "amount  \n `optional`",
-    "2-1": "`String` Amount of the transaction.  \n**Note**: This value will not be considered as the transaction. Only the details in the `order.paymentChargeSpecificationparameter.price`field will be considered.",
-    "2-2": "1000",
-    "3-0": "currency  \n `mandatory`",
-    "3-1": "`String` Currency of the transaction. By default, `INR` is posted.",
-    "3-2": "INR",
-    "4-0": "paymentSource`\noptional`",
-    "4-1": "`String`Contains the payment source.",
-    "4-2": "WEB",
-    "5-0": "paymentMethod  \n `mandatory`",
-    "5-1": "`Object` Details about the payment method used. For more information, refer to [paymentMethod object fields description](#paymentmethod-object-fields-description).",
-    "5-2": " {  \n        \"name\": \"NetBanking\",\t  \n        \"bankCode\": \"TESTNB\"  \n    }",
-    "6-0": "order  \n `mandatory`",
-    "6-1": "`Object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to [order object fields description](#order-object-fields-description)",
-    "6-2": "",
-    "7-0": "additionalInfo  \n `mandatory`",
-    "7-1": "`Object` Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to [additionalInfo object fields description](#additionaiInfo-object-fields-description)",
-    "7-2": "",
-    "8-0": "callBackActions  \n `mandatory`",
-    "8-1": "`Object` Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to [callbackActions object fields description](#callbackactions-object-fields-description)",
-    "8-2": " ",
-    "9-0": "billingDetails  \n`mandatory`",
-    "9-1": "`Object` Billing details of the customer including name, address, phone number, email, etc. For more information, refer to [billingDetails object field descriptions](#billingdetails-object-field-descriptions).",
-    "9-2": ""
-  },
-  "cols": 3,
-  "rows": 10,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        accountId
+         `mandatory`
+      </td>
+
+      <td>
+        `String` The merchant key provided by PayU during onboarding.
+      </td>
+
+      <td>
+        MERCHANT123
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        referenceId\
+         `mandatory`
+      </td>
+
+      <td>
+        `String` Reference ID for transaction tracking and this must be unique for every transaction.
+      </td>
+
+      <td>
+        REF123456
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount\
+         `optional`
+      </td>
+
+      <td>
+        `String` Amount of the transaction.  
+
+        * \*Note\*\*: This value will not be considered as the transaction. Only the details in the `order.paymentChargeSpecificationparameter.price`field will be considered.
+      </td>
+
+      <td>
+        1000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        currency\
+         `mandatory`
+      </td>
+
+      <td>
+        `String` Currency of the transaction. By default, `INR` is posted.
+      </td>
+
+      <td>
+        INR
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentSource```
+
+        optional
+        ```
+      </td>
+
+      <td>
+        `String`Contains the payment source.
+      </td>
+
+      <td>
+        WEB
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentMethod\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Details about the payment method used. For more information, refer to [paymentMethod object fields description](#paymentmethod-object-fields-description).
+      </td>
+
+      <td>
+         \{\
+                "name": "NetBanking",	\
+                "bankCode": "TESTNB"\
+            }
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        order\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to [order object fields description](#order-object-fields-description)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        additionalInfo\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to [additionalInfo object fields description](#additionaiInfo-object-fields-description)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        callBackActions\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to [callbackActions object fields description](#callbackactions-object-fields-description)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        billingDetails\
+        `mandatory`
+      </td>
+
+      <td>
+        `Object` Billing details of the customer including name, address, phone number, email, etc. For more information, refer to [billingDetails object field descriptions](#billingdetails-object-field-descriptions).
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <br />
 
 ### paymentMethod object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "name  \n `mandatory`",
-    "0-1": "`String` This field must contain the payment mode code. For cards, this must contain any of the following:  \n  \n- creditcard for credit card\n- debitcard for debit card",
-    "1-0": "bankCode  \n `mandatory`",
-    "1-1": "`String`This field must contain the bank code. For more information, refer to [Card Type Codes and Supported Banks for Cards](https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards)",
-    "2-0": "paymentCard `mandatory for cards`",
-    "2-1": "`Object`This object will contain the physical card or saved card token details. For more information, refer to[ paymentCard object fields description](#paymentcard-object-fields-description)."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        name
+         `mandatory`
+      </td>
+
+      <td>
+        `String` This field must contain the payment mode code. For cards, this must contain any of the following:  
+
+        * creditcard for credit card
+        * debitcard for debit card
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankCode\
+         `mandatory`
+      </td>
+
+      <td>
+        `String`This field must contain the bank code. For more information, refer to [Card Type Codes and Supported Banks for Cards](https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentCard `mandatory for cards`
+      </td>
+
+      <td>
+        `Object`This object will contain the physical card or saved card token details. For more information, refer to[ paymentCard object fields description](#paymentcard-object-fields-description).
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### paymentCard object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "cardNumber  \n `mandatory for physical card`",
-    "0-1": "`String`This field must contain the card number. For validating the card number, refer to [Card Number Formats](https://docs.payu.in/v1/docs/card-number-formats).",
-    "1-0": "validThrough  \n `mandatory for physical card`",
-    "1-1": "`String`This field must contain the card expiry in MM/YYYY format.",
-    "2-0": "ownerName  \n `mandatory for physical card`",
-    "2-1": "`String`This field must contain the name of the card holder as printed on card.",
-    "3-0": "cvv  \n `mandatory for physical card`",
-    "3-1": "`String`This field must contain the CVV printed on the back of the card.  ",
-    "4-0": "tavv  \n `mandatory for saved card`",
-    "4-1": "`String`This field must contain the cryptogram of card.",
-    "5-0": "last4Digits  \n `mandatory for saved card`",
-    "5-1": "`String`This field must contain the last four digits of card.",
-    "6-0": "cardTokenType  \n `mandatory for saved card`",
-    "6-1": "`String`This field must contain the any of the following based on the:  \n  \n- PAYU\n- NETWORK\n- ISSUER\"",
-    "7-0": "cardToken  \n `mandatory for saved card`",
-    "7-1": "`String`This field must contain the card token of stored card."
-  },
-  "cols": 2,
-  "rows": 8,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        cardNumber
+         `mandatory for physical card`
+      </td>
+
+      <td>
+        `String`This field must contain the card number. For validating the card number, refer to [Card Number Formats](https://docs.payu.in/v1/docs/card-number-formats).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        validThrough\
+         `mandatory for physical card`
+      </td>
+
+      <td>
+        `String`This field must contain the card expiry in MM/YYYY format.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ownerName\
+         `mandatory for physical card`
+      </td>
+
+      <td>
+        `String`This field must contain the name of the card holder as printed on card.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cvv\
+         `mandatory for physical card`
+      </td>
+
+      <td>
+        `String`This field must contain the CVV printed on the back of the card.  
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        tavv\
+         `mandatory for saved card`
+      </td>
+
+      <td>
+        `String`This field must contain the cryptogram of card.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        last4Digits\
+         `mandatory for saved card`
+      </td>
+
+      <td>
+        `String`This field must contain the last four digits of card.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardTokenType\
+         `mandatory for saved card`
+      </td>
+
+      <td>
+        `String`This field must contain the any of the following based on the:  
+
+        * PAYU
+        * NETWORK
+        * ISSUER"
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardToken\
+         `mandatory for saved card`
+      </td>
+
+      <td>
+        `String`This field must contain the card token of stored card.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### order object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "productInfo  \n `mandatory`",
-    "0-1": "`String`Details about the product being purchased. For more information, refer to[ userDefinedFields object fields description](#userdefinedfields-object-fields-description).",
-    "1-0": "userDefinedFields  \n `optional`",
-    "1-1": "`Object`Custom fields defined by the user for additional information.",
-    "2-0": "paymentChargeSpecification  \n `mandatory`",
-    "2-1": "`Object` Payment details including amount, additional charges and PayU offers to be applied. For more information, refer to [paymentChargeSpecification object fields description](#paymentchargespecification-object-fields-description)."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        productInfo
+         `mandatory`
+      </td>
+
+      <td>
+        `String`Details about the product being purchased. For more information, refer to[ userDefinedFields object fields description](#userdefinedfields-object-fields-description).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        userDefinedFields\
+         `optional`
+      </td>
+
+      <td>
+        `Object`Custom fields defined by the user for additional information.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentChargeSpecification\
+         `mandatory`
+      </td>
+
+      <td>
+        `Object` Payment details including amount, additional charges and PayU offers to be applied. For more information, refer to [paymentChargeSpecification object fields description](#paymentchargespecification-object-fields-description).
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### userDefinedFields object fields description
 
@@ -265,125 +526,305 @@ return true;
 
 #### paymentChargeSpecification object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "price  \n`mandatory`",
-    "0-1": "This field must contain the price or transaction amount to be posted.",
-    "0-2": "10.00"
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        price
+        `mandatory`
+      </td>
+
+      <td>
+        This field must contain the price or transaction amount to be posted.
+      </td>
+
+      <td>
+        10.00
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### callbackActions object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "successAction  \n `mandatory`",
-    "0-1": "`String`URL to redirect to upon successful payment.",
-    "1-0": "failureAction  \n `mandatory`",
-    "1-1": "`String`URL to redirect to if the payment is failed.",
-    "2-0": "cancelAction  \n `mandatory`",
-    "2-1": "`String`URL to redirect to if the transaction is cancelled.",
-    "3-0": "codAction  \n `optional`",
-    "3-1": "`String`URL to handle Cash on Delivery actions.",
-    "4-0": "termAction  \n `optional`",
-    "4-1": "`String`URL for completing terms and conditions actions.",
-    "5-0": "returnAction  \n `optional`",
-    "5-1": "`String`URL to return to after successful payment action is completed."
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        successAction
+         `mandatory`
+      </td>
+
+      <td>
+        `String`URL to redirect to upon successful payment.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        failureAction\
+         `mandatory`
+      </td>
+
+      <td>
+        `String`URL to redirect to if the payment is failed.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cancelAction\
+         `mandatory`
+      </td>
+
+      <td>
+        `String`URL to redirect to if the transaction is cancelled.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        codAction\
+         `optional`
+      </td>
+
+      <td>
+        `String`URL to handle Cash on Delivery actions.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        termAction\
+         `optional`
+      </td>
+
+      <td>
+        `String`URL for completing terms and conditions actions.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        returnAction\
+         `optional`
+      </td>
+
+      <td>
+        `String`URL to return to after successful payment action is completed.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <ErrorHandling />
 
 #### paymentChargeSpecification object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "price  \n`mandatory`",
-    "0-1": "This field must contain the price or transaction amount to be posted.",
-    "0-2": "10.00"
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        price
+        `mandatory`
+      </td>
+
+      <td>
+        This field must contain the price or transaction amount to be posted.
+      </td>
+
+      <td>
+        10.00
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### billingDetails object field descriptions
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "firstName  \n`mandatory`",
-    "0-1": "First name of the billing contact",
-    "0-2": "Ashish",
-    "1-0": "lastName  \n`optional`",
-    "1-1": "Last name of the billing contact",
-    "1-2": "Kumar",
-    "2-0": "phone  \n`mandatory`",
-    "2-1": "Phone number of the billing contact",
-    "2-2": "9123456789",
-    "3-0": "email  \n`mandatory`",
-    "3-1": "Email address of the billing contact",
-    "3-2": "[ashish@abc.com](mailto:ashish@abc.com)",
-    "4-0": "city  \n`optional`",
-    "4-1": "City of the billing address",
-    "4-2": "Bengaluru",
-    "5-0": "state  \n`optional`",
-    "5-1": "State of the billing address",
-    "5-2": "Karnatka",
-    "6-0": "country  \n`optional`",
-    "6-1": "Country of the billing address",
-    "6-2": "Indiia",
-    "7-0": "zipCode  \n`optional`",
-    "7-1": "Postal/Zip code of the billing address",
-    "7-2": "560071"
-  },
-  "cols": 3,
-  "rows": 8,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        firstName
+        `mandatory`
+      </td>
+
+      <td>
+        First name of the billing contact
+      </td>
+
+      <td>
+        Ashish
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        lastName\
+        `optional`
+      </td>
+
+      <td>
+        Last name of the billing contact
+      </td>
+
+      <td>
+        Kumar
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        `mandatory`
+      </td>
+
+      <td>
+        Phone number of the billing contact
+      </td>
+
+      <td>
+        9123456789
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email\
+        `mandatory`
+      </td>
+
+      <td>
+        Email address of the billing contact
+      </td>
+
+      <td>
+        [ashish@abc.com](mailto:ashish@abc.com)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        city\
+        `optional`
+      </td>
+
+      <td>
+        City of the billing address
+      </td>
+
+      <td>
+        Bengaluru
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        state\
+        `optional`
+      </td>
+
+      <td>
+        State of the billing address
+      </td>
+
+      <td>
+        Karnatka
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        country\
+        `optional`
+      </td>
+
+      <td>
+        Country of the billing address
+      </td>
+
+      <td>
+        Indiia
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        zipCode\
+        `optional`
+      </td>
+
+      <td>
+        Postal/Zip code of the billing address
+      </td>
+
+      <td>
+        560071
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
@@ -478,7 +919,7 @@ curl --location 'https://pp78api.payu.in/v2/payments' \
 ## Sample response
 
 > 📘 Note:
-> 
+>
 > Reverse hashing of the response is not required with that of v2/payment API.
 
 ```
@@ -495,5 +936,5 @@ Array
 Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api) under API Reference.
 
 > 📘 Note:
-> 
+>
 > The transaction ID that you posted in Step 1 with PayU must be used here.
