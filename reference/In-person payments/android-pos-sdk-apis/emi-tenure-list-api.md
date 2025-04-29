@@ -42,7 +42,6 @@ The **EMI Tenure List** API is used to get EMI Tenure list from the correspondin
 }
 [/block]
 
-
 ## Sample request
 
 ```Text JAVA
@@ -52,10 +51,10 @@ selectedBankDetails);
 
 ## Response parameters
 
-| Parameter      | Description                                                                                | Sample                                      |
-| :------------- | :----------------------------------------------------------------------------------------- | :------------------------------------------ |
-| ArrayList<EMI> | `object` Returns the list of the available banks' name and the minimum transaction amount. | Refer to <<AcquirerBanks>> payload objects. |
-|                |                                                                                            |                                             |
+| Parameter          | Description                                                                                | Sample                                      |
+| :----------------- | :----------------------------------------------------------------------------------------- | :------------------------------------------ |
+| ArrayList&lt;EMI&gt; | `object` Returns the list of the available banks' name and the minimum transaction amount. | Refer to &lt;&lt;AcquirerBanks&gt;&gt; payload objects. |
+|                    |                                                                                            |                                             |
 
 ## Sample response
 
