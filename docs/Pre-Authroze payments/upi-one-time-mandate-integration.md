@@ -42,40 +42,40 @@ For any product, a mandate can be set up for the product amount. The amount will
 
 ## Features of UPI OTM
 
-- **Fund Assurance**: Unlike 7 days for cards, funds are held by the customer’s account for up to 60 days. 
-- **Enhanced Customer Experience**: If a transaction is canceled, the amount is instantly credited back to the payer’s source account, ensuring a smoother refund process. 
-- **Seamless Merchant Experience**: UPI OTM allows merchants to block a specific amount in the customer's account at the time of order placement and capture the payment only when needed. The capture confirmation is also received real-time, providing additional factor of confidence to the customer. This helps in scenarios like pre-orders, reservations, and delayed deliveries. 
+* **Fund Assurance**: Unlike 7 days for cards, funds are held by the customer’s account for up to 60 days. 
+* **Enhanced Customer Experience**: If a transaction is canceled, the amount is instantly credited back to the payer’s source account, ensuring a smoother refund process. 
+* **Seamless Merchant Experience**: UPI OTM allows merchants to block a specific amount in the customer's account at the time of order placement and capture the payment only when needed. The capture confirmation is also received real-time, providing additional factor of confidence to the customer. This helps in scenarios like pre-orders, reservations, and delayed deliveries. 
 
 ##  Workflow of UPI OTM: 
 
 **Block:** 
 
-- UPI OTM allows merchants to block funds in a customer's account without actually debiting the funds. 
-- The merchant can set the block period for up to 60 days (can be shorter, but not longer). 
-- Guaranteed availability of funds as long as the block is 'Active.' 
+* UPI OTM allows merchants to block funds in a customer's account without actually debiting the funds. 
+* The merchant can set the block period for up to 60 days (can be shorter, but not longer). 
+* Guaranteed availability of funds as long as the block is 'Active.' 
 
 **Capture:** 
 
-- The merchant can choose to activate the fund flow once the service is rendered by using 'Capture.' 
-- When 'Capture' is invoked, a real-time debit from the customer's account occurs. 
-- If 'Capture' fails, the merchant can retry, providing an opportunity to improve the success rate. 
+* The merchant can choose to activate the fund flow once the service is rendered by using 'Capture.' 
+* When 'Capture' is invoked, a real-time debit from the customer's account occurs. 
+* If 'Capture' fails, the merchant can retry, providing an opportunity to improve the success rate. 
 
 **Release:** 
 
-- In cases where the service was not provided, the merchant can choose not to activate the fund flow by using 'Release.' 
-- The merchant can release the funds any time before the set period. 
-- Funds are automatically released after the period expires or after 60 days, whichever is earlier. 
+* In cases where the service was not provided, the merchant can choose not to activate the fund flow by using 'Release.' 
+* The merchant can release the funds any time before the set period. 
+* Funds are automatically released after the period expires or after 60 days, whichever is earlier. 
 
 **Refunds:** 
 
-- For successfully captured funds, refunds are supported similar to standard UPI transactions. 
+* For successfully captured funds, refunds are supported similar to standard UPI transactions. 
 
 > 📘 Note:
-> 
+>
 > Currentyly, NPCI is not allowing PA'a to support multiple captures on a single authorization request. It supports single capture only - either full or partial.
 
 UPI OTM is supported for below flows with various integrations: 
 
-- Merchant Hosted Integration (seamless flow)
-  - [UPI Intent](doc:upi-intent-one-time-mandate-integration)
-  - [UPI Collect](doc:upi-collect-one-time-mandate-integration)
+* Merchant Hosted Integration (seamless flow)
+  * [UPI Intent](doc:upi-intent-one-time-mandate-integration)
+  * [UPI Collect](doc:upi-collect-one-time-mandate-integration)
