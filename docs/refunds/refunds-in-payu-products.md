@@ -12,8 +12,8 @@ next:
 ---
 The following sections describe how the refunds work in the various PayU products:
 
-- [Refunds for Offers](doc:refunds-for-offers)
-- [Refund APIs for Split Settlements](doc:refund-apis-for-split-settlements)
-- [Partner Refunds](doc:partner-refunds)
-- [Refunds for EMI](doc:refunds-for-emi)
-- [Refunds for BNPL](doc:refunds-for-bnpl)
+* [Refunds for Offers](doc:refunds-for-offers)
+* [Refund APIs for Split Settlements](doc:refund-apis-for-split-settlements)
+* [Partner Refunds](doc:partner-refunds)
+* [Refunds for EMI](doc:refunds-for-emi)
+* [Refunds for BNPL](doc:refunds-for-bnpl)
