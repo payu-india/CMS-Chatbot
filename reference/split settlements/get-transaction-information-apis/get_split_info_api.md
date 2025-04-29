@@ -16,7 +16,7 @@ metadata:
 next:
   description: ''
 ---
-The **Get Split Info **API is used for getting split info of the parent transaction in the aggregator flow.
+The **Get Split Info** API is used for getting split info of the parent transaction in the aggregator flow.
 
 <GENERALAPIsEnvironment />
 
@@ -24,35 +24,72 @@ The **Get Split Info **API is used for getting split info of the parent transact
 
 The request body contains the following parameters:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Params**",
-    "h-1": "**Description**",
-    "h-2": "Example",
-    "0-0": "key  \n`mandatory`",
-    "0-1": "Merchant key provided by PayU",
-    "0-2": "JPM\\*\\*\\*g",
-    "1-0": "command  \n`mandatory`",
-    "1-1": "This parameter must contain the API Command for getting Transaction. It should be `get_split_info` for **Get Split Info** API.",
-    "1-2": "",
-    "2-0": "var1  \n`mandatory`",
-    "2-1": "This parameter must contain the PayU ID",
-    "2-2": " 403993715532325577",
-    "3-0": "hash  \n`mandatory`",
-    "3-1": "This parameter must contain the hash value to be calculated at your end. Hash logic for this API is:  `\nsha512(key\\|command\\|payuId\\|salt) sha512`",
-    "3-2": ""
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Params**
+      </th>
+      <th>
+        **Description**
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+      <td>
+        Merchant key provided by PayU
+      </td>
+      <td>
+        JPM\*\*\*g
+      </td>
+    </tr>
+    <tr>
+      <td>
+        command\
+        `mandatory`
+      </td>
+      <td>
+        This parameter must contain the API Command for getting Transaction. It should be `get_split_info` for **Get Split Info** API.
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        var1\
+        `mandatory`
+      </td>
+      <td>
+        This parameter must contain the PayU ID
+      </td>
+      <td>
+         403993715532325577
+      </td>
+    </tr>
+    <tr>
+      <td>
+        hash\
+        `mandatory`
+      </td>
+      <td>
+        This parameter must contain the hash value to be calculated at your end. Hash logic for this API is:
+        ```
+        sha512(key|command|payuId|salt) sha512
+        ```
+      </td>
+      <td>
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
@@ -67,41 +104,86 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=1' \
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of web service call. The status can be any of the following:  \n_ 0 - If web service call failed.  \n_ 1 - If web service call succeeded",
-    "0-2": "0",
-    "1-0": "payuId",
-    "1-1": "This parameter returns the parent merchant PayU ID that was posted in the API request.",
-    "1-2": "403993715532325577",
-    "2-0": "splitStatus",
-    "2-1": "This parameter returns the reason string. For a list of error codes for failure scenarios, refer to [Error codes for failure scenario](#error-codes-for-failure-scenario)",
-    "2-2": "success",
-    "3-0": "splits",
-    "3-1": "This parameter contains the response in a JSON array format. Each JSON object contains the following:  \n  \n- merchant key\n- aggregator sub-transaction ID\n- amount\n- Transaction_details field.",
-    "3-2": "`{\n            \"merchantKey\": \"iC***G\",\n            \"aggregatorSubTxnId\": \"dkjgfrfgnfm\",\n            \"amount\": 900.00,\n            \"splitType\": \"split\"\n  }`"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+      <th>
+        **Description**
+      </th>
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+      <td>
+        This parameter returns the status of web service call. The status can be any of the following:  
+        * 0 - If web service call failed.  
+        * 1 - If web service call succeeded
+      </td>
+      <td>
+        0
+      </td>
+    </tr>
+    <tr>
+      <td>
+        payuId
+      </td>
+      <td>
+        This parameter returns the parent merchant PayU ID that was posted in the API request.
+      </td>
+      <td>
+        403993715532325577
+      </td>
+    </tr>
+    <tr>
+      <td>
+        splitStatus
+      </td>
+      <td>
+        This parameter returns the reason string. For a list of error codes for failure scenarios, refer to [Error codes for failure scenario](#error-codes-for-failure-scenario)
+      </td>
+      <td>
+        success
+      </td>
+    </tr>
+    <tr>
+      <td>
+        splits
+      </td>
+      <td>
+        This parameter contains the response in a JSON array format. Each JSON object contains the following:  
+        * merchant key
+        * aggregator sub-transaction ID
+        * amount
+        * Transaction\_details field.
+      </td>
+      <td>
+        ```
+        {
+                    "merchantKey": "iC***G",
+                    "aggregatorSubTxnId": "dkjgfrfgnfm",
+                    "amount": 900.00,
+                    "splitType": "split"
+          }
+        ```
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <br />
 
 ## Sample response
 
-### Success scenariro
+### Success scenario
 
 ```
 {
@@ -127,28 +209,56 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=1' \
 
 ## Error codes for failure scenario
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Condition**",
-    "h-1": "**error\\_code**",
-    "h-2": "**error\\_message**",
-    "0-0": "Hash validation failed",
-    "0-1": "AGG-300",
-    "0-2": "Hash validation failed",
-    "1-0": "invalid parent transaction Payu ID:  \n  \n- non-existent PayuID\n- PayuID is not a parent transaction of aggregator flow\n- Payu ID belongs to some other merchant.",
-    "1-1": "AGG-301",
-    "1-2": "Invalid PayuID",
-    "2-0": "Split doesn’t exist for the transaction",
-    "2-1": "AGG-302",
-    "2-2": "Split doesn't exist for this transaction"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Condition**
+      </th>
+      <th>
+        **error\_code**
+      </th>
+      <th>
+        **error\_message**
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Hash validation failed
+      </td>
+      <td>
+        AGG-300
+      </td>
+      <td>
+        Hash validation failed
+      </td>
+    </tr>
+    <tr>
+      <td>
+        invalid parent transaction Payu ID:  
+        * non-existent PayuID
+        * PayuID is not a parent transaction of aggregator flow
+        * Payu ID belongs to some other merchant.
+      </td>
+      <td>
+        AGG-301
+      </td>
+      <td>
+        Invalid PayuID
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Split doesn’t exist for the transaction
+      </td>
+      <td>
+        AGG-302
+      </td>
+      <td>
+        Split doesn't exist for this transaction
+      </td>
+    </tr>
+  </tbody>
+</Table>
