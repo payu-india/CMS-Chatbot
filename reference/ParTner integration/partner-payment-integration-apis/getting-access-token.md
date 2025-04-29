@@ -19,9 +19,9 @@ To get access token to be used in WhatsApp integration:
    You will receive an accesss\_token.  
 
 3. Use the accesss\_token in the following integrations:
-   - [UPI S2S Integration API - WhatsApp](ref:upi-s2s-integration-api) flow 
-   - [Hosted Checkout API](doc:hosted-checkout-api-whatsapp-integration)flow
+   * [UPI S2S Integration API - WhatsApp](ref:upi-s2s-integration-api) flow 
+   * [Hosted Checkout API](doc:hosted-checkout-api-whatsapp-integration)flow
 
 > 📘 Note:
-> 
+>
 > [Refresh Token API for WhatsApp Integration](ref:refresh-token-whatsapp-integration) is used to fetch new access\_token using the refresh\_token received in the **Validate Auth Code and Client** API.
