@@ -27,28 +27,28 @@ A payment gateway is a technology used by merchants to accept debit or credit ca
 
 # Benefits
 
-- Safer, faster, smoother transactions that give customers peace of mind.
-- Secure and protect customers from frauds.
-- Improves user experience, saves time, and empowers your customers. 
-- Enables you to accept multiple payment types and cards securely
-- Reduces declined payments with real time transactions.
+* Safer, faster, smoother transactions that give customers peace of mind.
+* Secure and protect customers from frauds.
+* Improves user experience, saves time, and empowers your customers. 
+* Enables you to accept multiple payment types and cards securely
+* Reduces declined payments with real time transactions.
 
 # PayU offerings
 
-- Web Checkout: For more information, refer to [Choose your Integration](doc:choose-your-payment-gateway).
-- Mobile SDK: For more information, refer to  [Choose your Integration](doc:choose-your-payment-gateway).
-- eCommerce Plugins: For more information, refer to  [Choose your Integration](doc:choose-your-payment-gateway).
-- Partner Integration: For more information, refer to [Choose your Integration](doc:choose-your-payment-gateway).
-- Payouts: For more information, refer to  [Choose your Integration](doc:choose-your-payment-gateway).
+* Web Checkout: For more information, refer to [Choose your Integration](doc:choose-your-payment-gateway).
+* Mobile SDK: For more information, refer to  [Choose your Integration](doc:choose-your-payment-gateway).
+* eCommerce Plugins: For more information, refer to  [Choose your Integration](doc:choose-your-payment-gateway).
+* Partner Integration: For more information, refer to [Choose your Integration](doc:choose-your-payment-gateway).
+* Payouts: For more information, refer to  [Choose your Integration](doc:choose-your-payment-gateway).
 
 > 📘 Notes:
-> 
+>
 > PayU recommends you to:
-> 
-> - Understand the product integration steps on this **Integration Guide** and later refer to API Reference.
-> - The [API Reference](ref:introduction-api-reference) pages for various APIs allows you to make mock API calls with most of the PayU APIs (using a static test key for General or Integration APIs).  Also, it provides support in 16 language bindings, so you can get the source code in apart from cURL.
-> - It is recommended to follow the **Integration Checklist** for checkout or SDK integrations to ensure that your integration is complete before making your integration live.
+>
+> * Understand the product integration steps on this **Integration Guide** and later refer to API Reference.
+> * The [API Reference](ref:introduction-api-reference) pages for various APIs allows you to make mock API calls with most of the PayU APIs (using a static test key for General or Integration APIs).  Also, it provides support in 16 language bindings, so you can get the source code in apart from cURL.
+> * It is recommended to follow the **Integration Checklist** for checkout or SDK integrations to ensure that your integration is complete before making your integration live.
 
 # Get support
 
-Our dedicated support team is here to assist you if you encounter any issues or have questions during your integration process. Visit <https://help.payu.in> and raise a ticket.
+Our dedicated support team is here to assist you if you encounter any issues or have questions during your integration process. Visit [https://help.payu.in](https://help.payu.in) and raise a ticket.
