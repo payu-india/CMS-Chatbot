@@ -49,7 +49,6 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ## Sample request
 
 ```curl
