@@ -18,8 +18,8 @@ If you want to make payments by any third-party payment application, such as Goo
 
 Configure the following in the payment post data:
 
-- Bank code parameter with the value as TEZ
-- PG parameter with the value of as UPI
+* Bank code parameter with the value as TEZ
+* PG parameter with the value of as UPI
 
 ### Gradle dependency
 
@@ -35,8 +35,8 @@ implementation 'in.payu:payu-gpay:3.1.4'
 
 Configure the following in the payment post data:
 
-- Bankcode parameter with the value as PPINTENT.
-- PG parameter with the value as CASH.
+* Bankcode parameter with the value as PPINTENT.
+* PG parameter with the value as CASH.
 
 ### Gradle dependency
 
