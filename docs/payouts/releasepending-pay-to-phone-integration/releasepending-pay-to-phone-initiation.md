@@ -18,11 +18,11 @@ You can initiate single payouts to phone API requests using the Initiate Transfe
 
 ### Required parameters
 
-- beneficiaryName
-- mobileNumber
-- amount
-- purpose
-- paymentType as **PHONE** .
+* beneficiaryName
+* mobileNumber
+* amount
+* purpose
+* paymentType as **PHONE** .
 
 ### Sample request
 
@@ -74,46 +74,17 @@ curl --location 'https://uatoneapi.payu.in/payout/v2/payment' \
 
 You can initiate single payouts to phone request from the Dashboard in the ‘[Make A Transfer](https://docs.payu.in/docs/make-a-transfer)’ journey, by clicking on ‘**PHONE**’ and providing the beneficiary’s name, mobile, purpose and amount.  
 
-- You can also schedule the payout for future dates.   
-- Before submission, you can set the merchant reference id as per your internal mapping. 
+* You can also schedule the payout for future dates.   
+* Before submission, you can set the merchant reference id as per your internal mapping. 
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/2687448-image.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/2687448-image.png" />
 
 ### Bulk Payouts to Phone from Dashboard  
 
 You can initiate multiple payouts to phone requests from the Dashboard in the ‘[Make A Transfer](https://docs.payu.in/docs/make-a-transfer)’ journey, by clicking on ‘Pay to Phone’ in ‘BULK TRANSFERS’ and uploading a csv file with the beneficiary name, beneficiary mobile, amount, purpose without providing the beneficiary account number, IFSC or VPA details.  
 
-- Each row entry in csv file will be processed as a single payout to the beneficiary. 
-- Max 10,000 payouts to phone can be initiated in a single csv file upload 
-- Required Values – Beneficiary Name, Mobile Number, Amount, Purpose and payment type as ‘PHONE’ 
+* Each row entry in csv file will be processed as a single payout to the beneficiary. 
+* Max 10,000 payouts to phone can be initiated in a single csv file upload 
+* Required Values – Beneficiary Name, Mobile Number, Amount, Purpose and payment type as ‘PHONE’ 
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/1f26904-image.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" border={true} src="https://files.readme.io/1f26904-image.png" />
