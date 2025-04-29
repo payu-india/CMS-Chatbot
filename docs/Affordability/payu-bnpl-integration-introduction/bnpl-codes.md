@@ -18,7 +18,7 @@ metadata:
 next:
   description: ''
 ---
-The <<glossary:BNPL>> codes must be used as value with the bankcode parameter while posting payment requests using the Payment API.
+The <Glossary>BNPL</Glossary> codes must be used as value with the bankcode parameter while posting payment requests using the Payment API.
 
 | **BNPL Player**  | **bankcode** | **tenure**                                                                                                                            |
 | ---------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
