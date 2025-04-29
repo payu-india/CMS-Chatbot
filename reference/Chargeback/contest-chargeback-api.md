@@ -26,12 +26,12 @@ This must contain the header with token you get using the Get Token API in the f
 
 **Form data**
 
-| Parameter     | Description                                                                                                                                                                                          | Example                              |
-| :------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------- |
-| chargeback_id | This parameter must contain the chargeback ID that customer received from PayU.                                                                                                                      | 1035881                              |
-| merchant_id   | The merchant ID provided to merchant while onboarding.                                                                                                                                               | 2                                    |
-| identifier    | The identifier that was received in response when you used the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api).                                        | 6f92dad0-4446-4465-bfea-17f587e973d4 |
-| value         | The response that you wish to send (to the frontend). The value can be any of the responses from the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api) . | 1                                    |
+| Parameter      | Description                                                                                                                                                                                          | Example                              |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------- |
+| chargeback\_id | This parameter must contain the chargeback ID that customer received from PayU.                                                                                                                      | 1035881                              |
+| merchant\_id   | The merchant ID provided to merchant while onboarding.                                                                                                                                               | 2                                    |
+| identifier     | The identifier that was received in response when you used the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api).                                        | 6f92dad0-4446-4465-bfea-17f587e973d4 |
+| value          | The response that you wish to send (to the frontend). The value can be any of the responses from the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api) . | 1                                    |
 
 ## Sample request
 
@@ -58,7 +58,7 @@ curl --location --globoff --request PATCH 'https://chbuat.payu.in/api/v1/chargeb
 | Parameter  | Description                                                                                                                                                                |
 | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id         | This parameter contains the  merchant ID.                                                                                                                                  |
-| type       | The parameter contains the **chargeback-details ** as type.                                                                                                                |
+| type       | The parameter contains the **chargeback-details** as type.                                                                                                                 |
 | attributes | This parameter contains the chargeback details in a JSON format. For more information, refer to  [attributes JSON field descriptions](attributes-json-field-descriptions). |
 
 ### attributes JSON field descriptions
