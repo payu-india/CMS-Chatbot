@@ -10,10 +10,10 @@ metadata:
 next:
   description: ''
 ---
-This API will helps in posting only subvention amount refunds. Also, transaction refunds must be initiated beforehand to get these refunds processed. Subvention Refund of the given transaction will not be allowed otherwise.
+This API will help in posting only subvention amount refunds. Also, transaction refunds must be initiated beforehand to get these refunds processed. Subvention Refund of the given transaction will not be allowed otherwise.
 
 > 📘 Note:
-> 
+>
 > Subvention Refunds will only be processed if it is activated on the respective merchant by PayU.
 
 HTTP Method: **POST**
@@ -22,8 +22,8 @@ HTTP Method: **POST**
 
 |                        |                                  |
 | :--------------------- | :------------------------------- |
-| Test Environment       | <https://test.payu.in/merchant/> |
-| Production Environment | <https://info.payu.in/merchant/> |
+| Test Environment       | &lt;https://test.payu.in/merchant/&gt; |
+| Production Environment | &lt;https://info.payu.in/merchant/&gt; |
 
 ## Request parameters
 
@@ -49,10 +49,10 @@ HTTP Method: **POST**
     "4-1": "`string` unique alphanumeric token to distinguish refund",
     "4-2": "PLYH68898398TGHKL",
     "5-0": "var3    \n**mandatory**",
-    "5-1": "`string(json)` This parameter contains the refund mode and beneficiary details in the following format:  \n  \n{\"subvention_mode\":3, \"beneficiary_full_name\":\" Nucleus\",\" beneficiary_account_no\":\" 50100002965304\",\" beneficiary_ifsc”:\"HDFC0001626\"}  \n  \nWhere:  \n- **Payout to Account Number** : \"subvention_m ode\":3  \n-** Payout to Internal Cards** : \"subvention_mode\":1",
+    "5-1": "`string(json)` This parameter contains the refund mode and beneficiary details in the following format:  \n  \n{\"subvention_mode\":3, \"beneficiary_full_name\":\" Nucleus\",\" beneficiary_account_no\":\" 50100002965304\",\" beneficiary_ifsc\":\"HDFC0001626\"}  \n  \nWhere:  \n- **Payout to Account Number** : \"subvention_m ode\":3  \n-** Payout to Internal Cards** : \"subvention_mode\":1",
     "5-2": " ",
     "6-0": "var4  \n**mandatory**",
-    "6-1": "`string(json)` This parameters contains the refunds split for each child payuid in the following format:   \n  \n{\"5\\*\\*\\*\\*8\":{\"subventionAmount\":5,\" originalRefundAmount\":1},\"73gAMf\":{\"subventionAmount\":5,\" originalRefundAmount”:3}}  \n  \nWhere:  \n**originalRefundAmount** is the value of the refund that has been fired prior to calling this API.  \n**subventionAmount **is the amount to be deducted from the subvented amount.",
+    "6-1": "`string(json)` This parameters contains the refunds split for each child payuid in the following format:   \n  \n{\"5\\*\\*\\*\\*8\":{\"subventionAmount\":5,\" originalRefundAmount\":1},\"73gAMf\":{\"subventionAmount\":5,\" originalRefundAmount\":3}}  \n  \nWhere:  \n**originalRefundAmount** is the value of the refund that has been fired prior to calling this API.  \n**subventionAmount **is the amount to be deducted from the subvented amount.",
     "6-2": " "
   },
   "cols": 3,
@@ -65,8 +65,7 @@ HTTP Method: **POST**
 }
 [/block]
 
-
-The valid values for **subvention\_mode** are listed in the following table:
+The valid values for **subvention_mode** are listed in the following table:
 
 | **Refund mode** | **Value** | **Description**                |
 | --------------- | --------- | ------------------------------ |
@@ -81,8 +80,8 @@ The valid values for **subvention\_mode** are listed in the following table:
 curl --request POST \
      --url 'https://info.payu.in/merchant/postservice.php?form=2' \
      --header 'content-type: application/x-www-form-urlencoded' \
-     --data 'var3={"subvention_mode":3, "beneficiary_full_name":" Nucleus"," beneficiary_account_no":" 50100002965304","beneficiary_ifsc”:"HDFC0001626"}' \
-     --data 'var4={"5***8":{"subventionAmount":5," originalRefundAmount":1},"7****f":{"subventionAmount":5," originalRefundAmount”:3}}' \
+     --data 'var3={"subvention_mode":3, "beneficiary_full_name":" Nucleus"," beneficiary_account_no":" 50100002965304","beneficiary_ifsc":"HDFC0001626"}' \
+     --data 'var4={"5***8":{"subventionAmount":5," originalRefundAmount":1},"7****f":{"subventionAmount":5," originalRefundAmount":3}}' \
      --data key=5***8 \
      --data command=subvention_refund_aggregator \
      --data var1=403993715525150780 \
@@ -117,7 +116,6 @@ curl --request POST \
   ]
 }
 [/block]
-
 
 ## Sample responses
 
