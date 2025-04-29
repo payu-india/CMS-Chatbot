@@ -36,12 +36,12 @@ In a card context, it replaces the actual card number with a dummy reference ID.
 
 ## PayU’s interpretation of RBI guidelines
 
-- Only Issuers & Payment Networks are allowed to store customer card data. ​
-- Limited data can be stored by non-payment entities (Bank Name,  Last 4 digits of card)​
-- Every token to be stored with customer consent (AFA)​
-- Customers should be able to manage their details on business and Issuing bank platforms​
-- Every token is unique to a user, card, and the merchant
-- Existing data migration is not possible
+* Only Issuers & Payment Networks are allowed to store customer card data. ​
+* Limited data can be stored by non-payment entities (Bank Name,  Last 4 digits of card)​
+* Every token to be stored with customer consent (AFA)​
+* Customers should be able to manage their details on business and Issuing bank platforms​
+* Every token is unique to a user, card, and the merchant
+* Existing data migration is not possible
 
 ## Who can Tokenize Cards?
 
@@ -55,5 +55,5 @@ PayU is working with both the networks and issuers to be able to provide toke
 
 PayU will provide both network tokens and issuer tokens for its merchants along with other suites of products to maintain and manage the vault services:
 
-- **Network Tokens**: Network tokens are virtual payment cards created by the payment schemes (VISA, Mastercard), and they replace the original card in the digital space. This allows for several network tokens to be created per card, and they function in the same way as the original card when storing and transacting with them. 
-- **Issuer Tokens**: Issuer tokens are virtual payment cards created by the card-issuing bank, and they replace the original card in the digital space. However, **these tokens are not understood by the network schemes**
+* **Network Tokens**: Network tokens are virtual payment cards created by the payment schemes (VISA, Mastercard), and they replace the original card in the digital space. This allows for several network tokens to be created per card, and they function in the same way as the original card when storing and transacting with them. 
+* **Issuer Tokens**: Issuer tokens are virtual payment cards created by the card-issuing bank, and they replace the original card in the digital space. However, **these tokens are not understood by the network schemes**
