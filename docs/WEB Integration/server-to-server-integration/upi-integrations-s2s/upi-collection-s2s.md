@@ -59,9 +59,9 @@ For the "Try It" experience, refer to <a href="_payment_s2s_upi_collection" targ
 
 **PayU URL Endpoint:**
 
-| Production | <https://secure.payu.in/_payment> |
-| :--------- | :-------------------------------- |
-| Test       | <https://test.payu.in/_payment>   |
+| Production | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+| :--------- | :------------------------------------------------------------------ |
+| Test       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 
 ### Post parameters
 
@@ -69,104 +69,452 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
 
 ### Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "key  \n`mandatory`",
-    "0-1": "`String` The merchant key provided by PayU must be included.  \n**Reference**: For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n- **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)\n- **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "0-2": "",
-    "1-0": "txnid  \n`mandatory`",
-    "1-1": "`String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\\<= 50 characters & excluding >,\\<, =,:,\\&, ‘).",
-    "1-2": "1234_abcdedf",
-    "2-0": "amount  \n`mandatory`",
-    "2-1": "`String` (rounded to two decimal places) This parameter must contain the amount for which QR needs to be generated. The amount should be greater than or equal to Rs.1.00.",
-    "2-2": "1000",
-    "3-0": "phone  \n`mandatory`",
-    "3-1": "`String` This parameter must contain the customer phone number (10 characters).",
-    "3-2": "9876786756",
-    "4-0": "productinfo  \n`mandatory`",
-    "4-1": "`String` (alphanumeric) This field must contain the product name. By default, the value is 'storefront' (max. 100 characters).",
-    "4-2": "iPhone 12",
-    "5-0": "firstname  \n`mandatory`",
-    "5-1": "`String` This parameter must contain the customer's first name (max. 60 characters).",
-    "5-2": "Sundar",
-    "6-0": "email  \n`mandatory`",
-    "6-1": "`String` This parameter must contain the customer email ID.",
-    "6-2": "[hello@payu.in](mailto:hello@payu.in)",
-    "7-0": "<<glossary:pg>>  \n`mandatory`",
-    "7-1": "`String` It must be set as UPI for this transaction.",
-    "7-2": "UPI",
-    "8-0": "<<glossary:bankcode>>  \n`mandatory`",
-    "8-1": "`String` Value should be \"UPI\": for UPI collect transaction  \n\"INTENT\": for initiating the UPI Intent transaction ",
-    "8-2": "UPI",
-    "9-0": "lastname  \n`optional`",
-    "9-1": "`String` This parameter must contain the customer last name (maximum 20 characters).",
-    "9-2": "Teja",
-    "10-0": "address1  \n`optional`",
-    "10-1": "`String` This parameter must contain the first line of customer address (up to 100 characters).",
-    "10-2": "PayU, Bestech Business Tower, Gurgaon",
-    "11-0": "address2  \n`optional`",
-    "11-1": "`String` This parameter must contain the second line of the customer address (up to 100 characters).",
-    "11-2": "Sohna Road",
-    "12-0": "city  \n`optional`",
-    "12-1": "`String` This parameter must contain the customer city (max. 50 characters).",
-    "12-2": "Gurgaon",
-    "13-0": "country  \n`optional`",
-    "13-1": "`String` This parameter must contain the customer's country that is part of the address (max. 50 characters).",
-    "13-2": "India",
-    "14-0": "state  \n`optional`",
-    "14-1": "String This parameter must contain the customer state that is part of the address (max 50 characters).",
-    "14-2": "Haryana",
-    "15-0": "zipcode  \n`optional`",
-    "15-1": "`Numeric` This parameter must contain the customer's PIN code (6 digits).",
-    "15-2": "122018",
-    "16-0": "udf1  \n`optional`",
-    "16-1": "`String` This parameter can include any custom information in request (up to 255 characters).",
-    "16-2": "Website order",
-    "17-0": "udf2  \n`optional`",
-    "17-1": "`String` This parameter can include any custom information in request (up to 255 characters.).",
-    "17-2": "",
-    "18-0": "udf3  \n`optional`",
-    "18-1": "`String` This parameter can include any custom information in request.  \n(up to 255 characters.)",
-    "18-2": "",
-    "19-0": "udf4  \noptional",
-    "19-1": "`String` This parameter can include any custom information in request.  \n(up to 255 characters.)",
-    "19-2": "",
-    "20-0": "udf5  \n`optional`",
-    "20-1": "`String` This parameter can include any custom information in request.  \n(up to 255 characters.)",
-    "20-2": "",
-    "21-0": "s2s\\_client\\_ip  \n`mandatory`",
-    "21-1": "`Sting` This parameter must have the source IP of the user's device.  \n**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.",
-    "21-2": "",
-    "22-0": "s2s\\_device\\_info  \n`mandatory`",
-    "22-1": "`String` This parameter must have the user agent of device.  \n**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.",
-    "22-2": "",
-    "23-0": "txn_s2s_flow  \n`mandatory`",
-    "23-1": "`String`This parameter must be posted with the values a **4** for transaction flow.",
-    "23-2": "4",
-    "24-0": "upiAppName  \n`mandatory`",
-    "24-1": "`String` For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum’s expected for major apps:  \n  \n- phonepe\n- googlepay\n- paytm\n- bhim\n- cred\n- amazonpay\n- whatsapp\n- genericintent – For any other app apart from  \n  above",
-    "24-2": "phonepe",
-    "25-0": "vpa  \n`mandatory`",
-    "25-1": "`String` Virtual Private Address. VPA can first be validated using VPA validate web service. Also, add regex where ‘@’ exists. Example: 8800411088@upi This needs to be passed in case of collect flow of UPI only.",
-    "25-2": "8800411088@upi",
-    "26-0": "hash  \n`mandatory`",
-    "26-1": "`String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to  <a href=\"hashing-request-and-response\" target=\"_blank\"> Generate Hash</a>.",
-    "26-2": ""
-  },
-  "cols": 3,
-  "rows": 27,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        `String` The merchant key provided by PayU must be included.  
+
+        * \*Reference\*\*: For more information on how to generate the Key and Salt, refer to any of the following:  
+        * **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+        * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txnid\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,\&, ‘).
+      </td>
+
+      <td>
+        1234\_abcdedf
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` (rounded to two decimal places) This parameter must contain the amount for which QR needs to be generated. The amount should be greater than or equal to Rs.1.00.
+      </td>
+
+      <td>
+        1000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must contain the customer phone number (10 characters).
+      </td>
+
+      <td>
+        9876786756
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productinfo\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` (alphanumeric) This field must contain the product name. By default, the value is 'storefront' (max. 100 characters).
+      </td>
+
+      <td>
+        iPhone 12
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstname\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must contain the customer's first name (max. 60 characters).
+      </td>
+
+      <td>
+        Sundar
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must contain the customer email ID.
+      </td>
+
+      <td>
+        [hello@payu.in](mailto:hello@payu.in)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <Glossary>pg</Glossary>\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` It must be set as UPI for this transaction.
+      </td>
+
+      <td>
+        UPI
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <Glossary>bankcode</Glossary>\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Value should be "UPI": for UPI collect transaction\
+        "INTENT": for initiating the UPI Intent transaction 
+      </td>
+
+      <td>
+        UPI
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        lastname\
+        `optional`
+      </td>
+
+      <td>
+        `String` This parameter must contain the customer last name (maximum 20 characters).
+      </td>
+
+      <td>
+        Teja
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        address1\
+        `optional`
+      </td>
+
+      <td>
+        `String` This parameter must contain the first line of customer address (up to 100 characters).
+      </td>
+
+      <td>
+        PayU, Bestech Business Tower, Gurgaon
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        address2\
+        `optional`
+      </td>
+
+      <td>
+        `String` This parameter must contain the second line of the customer address (up to 100 characters).
+      </td>
+
+      <td>
+        Sohna Road
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        city\
+        `optional`
+      </td>
+
+      <td>
+        `String` This parameter must contain the customer city (max. 50 characters).
+      </td>
+
+      <td>
+        Gurgaon
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        country\
+        `optional`
+      </td>
+
+      <td>
+        `String` This parameter must contain the customer's country that is part of the address (max. 50 characters).
+      </td>
+
+      <td>
+        India
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        state\
+        `optional`
+      </td>
+
+      <td>
+        String This parameter must contain the customer state that is part of the address (max 50 characters).
+      </td>
+
+      <td>
+        Haryana
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        zipcode\
+        `optional`
+      </td>
+
+      <td>
+        `Numeric` This parameter must contain the customer's PIN code (6 digits).
+      </td>
+
+      <td>
+        122018
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf1\
+        `optional`
+      </td>
+
+      <td>
+        `String` This parameter can include any custom information in request (up to 255 characters).
+      </td>
+
+      <td>
+        Website order
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf2\
+        `optional`
+      </td>
+
+      <td>
+        `String` This parameter can include any custom information in request (up to 255 characters.).
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf3\
+        `optional`
+      </td>
+
+      <td>
+        `String` This parameter can include any custom information in request.\
+        (up to 255 characters.)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf4\
+        optional
+      </td>
+
+      <td>
+        `String` This parameter can include any custom information in request.\
+        (up to 255 characters.)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf5\
+        `optional`
+      </td>
+
+      <td>
+        `String` This parameter can include any custom information in request.\
+        (up to 255 characters.)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        s2s\_client\_ip\
+        `mandatory`
+      </td>
+
+      <td>
+        `Sting` This parameter must have the source IP of the user's device.  
+
+        * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        s2s\_device\_info\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must have the user agent of device.  
+
+        * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txn\_s2s\_flow\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`This parameter must be posted with the values a **4** for transaction flow.
+      </td>
+
+      <td>
+        4
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        upiAppName\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum’s expected for major apps:  
+
+        * phonepe
+        * googlepay
+        * paytm
+        * bhim
+        * cred
+        * amazonpay
+        * whatsapp
+        * genericintent – For any other app apart from\
+          above
+      </td>
+
+      <td>
+        phonepe
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        vpa\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Virtual Private Address. VPA can first be validated using VPA validate web service. Also, add regex where ‘@’ exists. Example: 8800411088\@upi This needs to be passed in case of collect flow of UPI only.
+      </td>
+
+      <td>
+        8800411088\@upi
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to  <a href="hashing-request-and-response" target="_blank"> Generate Hash</a>.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <HashingRequestParameters />
 
@@ -196,7 +544,7 @@ eyJzdGF0dXMiOiJzdWNjZXNzIiwicmVzdWx0Ijp7Im1paHBheWlkIjoiNzYwMTI2NTU4NSIsIm1vZGUi
 ```
 
 > 📘 Note:
-> 
+>
 > In case of an invalid VPA, the final result will be a JSON in plain text as follows.
 
 ```plaintext
