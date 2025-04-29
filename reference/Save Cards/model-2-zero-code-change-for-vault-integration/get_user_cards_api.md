@@ -26,7 +26,7 @@ next:
 Use the **Get User Cards** API to get the card details of a customer in Model 2.
 
 > 📘 Note
-> 
+>
 > While PayU token is sent in payment response, the network/issuer token creation may fail. In this case, the subsequent transaction with the said PayU token may fail. Merchant can do a **get\_user\_cards API** to fetch only active/tokenized cards or listen to notification API (to be published) to maintain state at your end.
 
 The Get User Cards API (**get\_user\_cards**) is used to fetch all the cards for a customer which were saved earlier. In this API, the card number and other sensitive information are not returned.
@@ -52,7 +52,7 @@ curl --request POST \
 
 <details> <summary>Sample response</summary>
 
-- Cards are found in the vault for PCI Compliant Merchants
+* Cards are found in the vault for PCI Compliant Merchants
 
 ```plaintext
 {
@@ -85,7 +85,7 @@ curl --request POST \
 }
 ```
 
-- Response for Non-PCI Compliant Merchants
+* Response for Non-PCI Compliant Merchants
 
 ```plaintext
 {
@@ -115,7 +115,7 @@ curl --request POST \
 }
 ```
 
-- No cards are found for the user
+* No cards are found for the user
 
 ```plaintext
 {
@@ -128,100 +128,341 @@ curl --request POST \
 
 <details> <summary> Response parameters</summary> <details>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "The status of the response can be any of the following:  \n1: Success  \n  \n2: Failure",
-    "0-2": "1",
-    "1-0": "msg",
-    "1-1": "The description of the response whether the card details were stored successfully or not stored.",
-    "1-2": "Cards fetched Succesfully",
-    "2-0": "user\\_cards",
-    "2-1": "(JSON format) | The details are sent by PayU in JSON format for the successful response. For more information, refer to the next table.",
-    "2-2": "Refer the [sample response](ref:get_user_cards_api_model3)."
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        The status of the response can be any of the following:\
+        1: Success  
+
+        2: Failure
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        msg
+      </td>
+
+      <td>
+        The description of the response whether the card details were stored successfully or not stored.
+      </td>
+
+      <td>
+        Cards fetched Succesfully
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        user\_cards
+      </td>
+
+      <td>
+        (JSON format) | The details are sent by PayU in JSON format for the successful response. For more information, refer to the next table.
+      </td>
+
+      <td>
+        Refer the [sample response](ref:get_user_cards_api_model3).
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 The details on the JSON format for a successful response is described in the following table:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**JSON Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "card\\_name",
-    "0-1": "**Note**: This parameter has been deprecated.",
-    "0-2": "NA",
-    "1-0": "card\\_type",
-    "1-1": "This field returns the card type code. For the list of card type codes, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).",
-    "1-2": "CC",
-    "2-0": "card\\_token",
-    "2-1": "This field returns the PayU Token for the card.",
-    "2-2": "745d72e2fXXX7e88824fef4e7ed7dXXXfe624b7",
-    "3-0": "network\\_token",
-    "3-1": "This field returns the details of the network token in a JSON format.",
-    "3-2": "\"token_value\": \"51XXX56789012346\",  \n  \n\"is_expired\": 0,  \n  \n\"token_exp_mon\": \"11\",  \n  \n\"token_exp_yr\": \"2021\",  \n  \n\"token_bin\": \"512345\"  \n  \n}",
-    "4-0": "issuer\\_token",
-    "4-1": "This field returns the details of the issuer token in a JSON format.",
-    "4-2": "{  \n  \n\"token_value\": \"51XXX567890XXX46\",  \n  \n\"is_expired\": 0,  \n  \n\"token_exp_mon\": \"11\",  \n  \n\"token_exp_yr\": \"2021\",  \n  \n\"token_bin\": \"512345\"  \n  \n}",
-    "5-0": "is\\_expired",
-    "5-1": "This field returns any of the following values to signify whether the card is active or not:  \n1: Card has expired  \n  \n0: Card is active",
-    "5-2": "1",
-    "6-0": "card\\_mode",
-    "6-1": "This field returns the card mode.",
-    "6-2": "CC",
-    "7-0": "card\\_no",
-    "7-1": "This field returns a masked card number with only the last four digits.",
-    "7-2": "xxxxxxxxxxxx2356",
-    "8-0": "card\\_brand",
-    "8-1": "This field returns the card brand.",
-    "8-2": "VISA",
-    "9-0": "card\\_bin",
-    "9-1": "**Note**: This parameter has been deprecated.",
-    "9-2": "NA",
-    "10-0": "token\\_bin",
-    "10-1": "This field returns the token bin information of respective token type (network or issuer).",
-    "10-2": "123456",
-    "11-0": "card\\_PAR",
-    "11-1": "This field returns the PAR (Payment Account Reference). This is a unique identity for the card across all the tokens. Typically, this will be used for offers and risk checks.",
-    "11-2": "abcdefgh123456789123456789fgh",
-    "12-0": "card\\_metadata",
-    "12-1": "This field returns the JSON object with all the metadata and card art.",
-    "12-2": " ",
-    "13-0": "token\\_exp\\_yr",
-    "13-1": "This field returns the expiry year of the network token.",
-    "13-2": "2022",
-    "14-0": "token\\_exp\\_mon",
-    "14-1": "This field returns the expiry month of the network token.",
-    "14-2": "10",
-    "15-0": "token\\_value",
-    "15-1": "The field returns the value of the network or issuer token.",
-    "15-2": "51XXX5678XXX2346"
-  },
-  "cols": 3,
-  "rows": 16,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **JSON Field**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        card\_name
+      </td>
+
+      <td>
+        * \*Note\*\*: This parameter has been deprecated.
+      </td>
+
+      <td>
+        NA
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_type
+      </td>
+
+      <td>
+        This field returns the card type code. For the list of card type codes, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).
+      </td>
+
+      <td>
+        CC
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_token
+      </td>
+
+      <td>
+        This field returns the PayU Token for the card.
+      </td>
+
+      <td>
+        745d72e2fXXX7e88824fef4e7ed7dXXXfe624b7
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        network\_token
+      </td>
+
+      <td>
+        This field returns the details of the network token in a JSON format.
+      </td>
+
+      <td>
+        "token\_value": "51XXX56789012346",  
+
+        "is\_expired": 0,  
+
+        "token\_exp\_mon": "11",  
+
+        "token\_exp\_yr": "2021",  
+
+        "token\_bin": "512345"  
+
+        }
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        issuer\_token
+      </td>
+
+      <td>
+        This field returns the details of the issuer token in a JSON format.
+      </td>
+
+      <td>
+        \{  
+
+        "token\_value": "51XXX567890XXX46",  
+
+        "is\_expired": 0,  
+
+        "token\_exp\_mon": "11",  
+
+        "token\_exp\_yr": "2021",  
+
+        "token\_bin": "512345"  
+
+        }
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        is\_expired
+      </td>
+
+      <td>
+        This field returns any of the following values to signify whether the card is active or not:\
+        1: Card has expired  
+
+        0: Card is active
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_mode
+      </td>
+
+      <td>
+        This field returns the card mode.
+      </td>
+
+      <td>
+        CC
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_no
+      </td>
+
+      <td>
+        This field returns a masked card number with only the last four digits.
+      </td>
+
+      <td>
+        xxxxxxxxxxxx2356
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_brand
+      </td>
+
+      <td>
+        This field returns the card brand.
+      </td>
+
+      <td>
+        VISA
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_bin
+      </td>
+
+      <td>
+        * \*Note\*\*: This parameter has been deprecated.
+      </td>
+
+      <td>
+        NA
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        token\_bin
+      </td>
+
+      <td>
+        This field returns the token bin information of respective token type (network or issuer).
+      </td>
+
+      <td>
+        123456
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_PAR
+      </td>
+
+      <td>
+        This field returns the PAR (Payment Account Reference). This is a unique identity for the card across all the tokens. Typically, this will be used for offers and risk checks.
+      </td>
+
+      <td>
+        abcdefgh123456789123456789fgh
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_metadata
+      </td>
+
+      <td>
+        This field returns the JSON object with all the metadata and card art.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        token\_exp\_yr
+      </td>
+
+      <td>
+        This field returns the expiry year of the network token.
+      </td>
+
+      <td>
+        2022
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        token\_exp\_mon
+      </td>
+
+      <td>
+        This field returns the expiry month of the network token.
+      </td>
+
+      <td>
+        10
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        token\_value
+      </td>
+
+      <td>
+        The field returns the value of the network or issuer token.
+      </td>
+
+      <td>
+        51XXX5678XXX2346
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
