@@ -22,13 +22,14 @@ metadata:
 next:
   description: ''
 ---
-The **Edit a Card **API is used to edit the details of an existing stored card on the vault. In this case, along with all the parameters required to save to the card, the **cardToken** has to be posted. After successfully editing the card, it returns the **cardToken** of the card.
+The **Edit a Card** API is used to edit the details of an existing stored card on the vault. In this case, along with all the parameters required to save to the card, the **cardToken** has to be posted. After successfully editing the card, it returns the **cardToken** of the card.
 
 HTTP Method: **POST**
 
 <GENERALAPIsEnvironment />
 
-<details> <summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --request POST \
@@ -51,9 +52,10 @@ curl --request POST \
 
 </details>
 
-<details> <summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
-- On successful update of card details
+* On successful update of card details
 
 ```plaintext
 {
@@ -67,11 +69,11 @@ curl --request POST \
 }
 ```
 
-- If the wrong card token is provided to edit
+* If the wrong card token is provided to edit
 
 ```plaintext
 {
-"status": 0
+"status": 0,
 "msg": Card not found to edit
 }
 ```
@@ -104,57 +106,102 @@ curl --request POST \
 }
 ```
 
-- No cards are found for the user
+* No cards are found for the user
 
 ```plaintext
 {
-"status": 0
+"status": 0,
 "msg": Card not found.
 }
 ```
 
 </details>
 
-<details> <summary>Rrsponse parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "The status of the response can be any of the following:  \n_ 1: Success  \n_ 0: Failure",
-    "0-2": "1",
-    "1-0": "msg",
-    "1-1": "The description of the response whether the card details were stored successfully or not stored.",
-    "1-2": "My\\_card Edited Successfully",
-    "2-0": "cardToken",
-    "2-1": "The card token is sent by PayU for the successful response.",
-    "2-2": "`745d7XXXd9b7e88824fXXXe7ed7XXX1fe624b74`",
-    "3-0": "networkToken",
-    "3-1": "The network token is sent by PayU for the successful response.",
-    "3-2": "`1234 5XXX XXXX 3456`",
-    "4-0": "issuerToken",
-    "4-1": "The issuer token is sent by PayU for the successful response.",
-    "4-2": "`3456 7XXX XXXX EFGH`"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+      <th>
+        **Description**
+      </th>
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+      <td>
+        The status of the response can be any of the following:  
 
+        * 1: Success  
+        * 0: Failure
+      </td>
+      <td>
+        1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        msg
+      </td>
+      <td>
+        The description of the response whether the card details were stored successfully or not stored.
+      </td>
+      <td>
+        My\_card Edited Successfully
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cardToken
+      </td>
+      <td>
+        The card token is sent by PayU for the successful response.
+      </td>
+      <td>
+        745d7XXXd9b7e88824fXXXe7ed7XXX1fe624b74
+      </td>
+    </tr>
+    <tr>
+      <td>
+        networkToken
+      </td>
+      <td>
+        The network token is sent by PayU for the successful response.
+      </td>
+      <td>
+        1234 5XXX XXXX 3456
+      </td>
+    </tr>
+    <tr>
+      <td>
+        issuerToken
+      </td>
+      <td>
+        The issuer token is sent by PayU for the successful response.
+      </td>
+      <td>
+        3456 7XXX XXXX EFGH
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
 ## Request Parameters
 
-<details> <summary>Reference Info for Request Parameters</summary>
+<details>
+  <summary>Reference Info for Request Parameters</summary>
 
 <KeyHashForGeneralParametersDescription />
 
