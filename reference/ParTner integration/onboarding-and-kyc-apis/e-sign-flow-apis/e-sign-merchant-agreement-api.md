@@ -24,10 +24,8 @@ This API requires an access token using the **Get Token** API with the scope as 
 ## Request Headers
 
 > 📘 Note:
-> 
+>
 > The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
-
-
 
 |               |                         |
 | ------------- | ----------------------- |
@@ -53,11 +51,10 @@ This API requires an access token using the **Get Token** API with the scope as 
 }
 [/block]
 
-
 ## Sample Request
 
 ```curl
-curl --location --request POST ''{{onboarding_url}}/api/v1/merchants/{{merchant_uuid}}/kyc_documents/{{kyc_doc_uuid}}/esign_merged_document' \
+curl --location --request POST '{{onboarding_url}}/api/v1/merchants/{{merchant_uuid}}/kyc_documents/{{kyc_doc_uuid}}/esign_merged_document' \
 --header 'Authorization: Bearer {{access_token}}' \
 --data-urlencode 'otp=0025'
 ```
@@ -156,7 +153,7 @@ KYC document not found with the given merged\_document\_uuid
 
 - Unauthorized response
 
-Unatuhorized response
+Unauthorized response
 
 ```plaintext
 {
