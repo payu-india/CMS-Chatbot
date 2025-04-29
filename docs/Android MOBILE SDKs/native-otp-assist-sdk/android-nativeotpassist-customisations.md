@@ -81,7 +81,7 @@ After the payment gets successful, the user's mobile vibrates for 0.5Sec. You ne
 ```
 
 > 📘 Tip
-> 
+>
 > You can disable the vibration behavior from PayUOtpAssistConfig also.
 
 ## Disable merchant summary from UI
