@@ -55,7 +55,6 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ## Sample request Body
 
 ```plaintext
@@ -92,7 +91,6 @@ HTTP Method: **POST**
         "availablePoints": 800.00
     }
 }
-
 ```
 
 ### Failure scenario
