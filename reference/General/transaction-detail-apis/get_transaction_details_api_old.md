@@ -27,13 +27,14 @@ next:
       slug: verify_payment_api
       title: Verify Payment API
 ---
-The Get Transaction Details **(get_Transaction_Details)** API works based on input as two dates (initial and final), between which the transaction details are needed. The output consists of the status of the API (success or failure) and all the transaction details in an array format.
+The Get Transaction Details **(get\_Transaction\_Details)** API works based on input as two dates (initial and final), between which the transaction details are needed. The output consists of the status of the API (success or failure) and all the transaction details in an array format.
 
 ### Environment
 
 <GENERALAPIsEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl -X POST "https://test.payu.in/merchant/postservice?form=2
@@ -44,9 +45,10 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
 
 </details>
 
-<details>  <summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
-- Success scenario
+* Success scenario
 
 ```plaintext
 {
@@ -159,7 +161,7 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
 }
 ```
 
-- Failure scenario
+* Failure scenario
 
 If transaction is not found, the response is similar to the following:
 
@@ -183,9 +185,10 @@ If invalid date is posted, the response is similar to the following:
 
 </details>
 
-<details>  <summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
-Transaction_details parameter of the response is in the JSON format. For the details of the fields in the JSON format, refer to [Additional Info for General APIs](ref:addl-info-general-apis).
+Transaction\_details parameter of the response is in the JSON format. For the details of the fields in the JSON format, refer to [Additional Info for General APIs](ref:addl-info-general-apis).
 
 To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes). 
 
@@ -193,7 +196,8 @@ To learn more about the possible error codes and their description, refer to [Er
 
 ## Request parameters
 
-<details>  <summary>Reference information for request parameters</summary>
+<details>
+  <summary>Reference information for request parameters</summary>
 
 <KeyHashForGeneralParametersDescription />
 
@@ -203,5 +207,5 @@ To learn more about the possible error codes and their description, refer to [Er
 
 Use the following sample values while trying out the API:
 
-- `var1`: 2020-10-20
-- `var2`: 2020-10-27
+* `var1`: 2020-10-20
+* `var2`: 2020-10-27
