@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The** Get Checkout Details** API provides information on `additionalCharges`, `bankDownStatus`, `taxSpecification`, `offerDetails`, `customerEligibility`, `merchantDetails`, `extendedPaymentDetails`, and pg id information for payment options on a merchant key. 
+The **Get Checkout Details** API provides information on `additionalCharges`, `bankDownStatus`, `taxSpecification`, `offerDetails`, `customerEligibility`, `merchantDetails`, `extendedPaymentDetails`, and pg id information for payment options on a merchant key. 
 
 To integrate this API:
 
