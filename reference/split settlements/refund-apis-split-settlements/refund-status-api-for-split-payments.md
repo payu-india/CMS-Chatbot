@@ -56,7 +56,6 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 The valid values for **subvention\_mode** are listed in the following table:
 
 | **Refund mode** | **Value** | **Description**                |
@@ -110,7 +109,7 @@ The **transactionItems** JSON that is part of the response for a successful tra
         "prev_status": null,
         "refund_mode": "-"
       }
-    
+    }
 ```
 
 ### splitItems JSON
@@ -233,7 +232,6 @@ The **splitItems** JSON that is part of the response for a successful transacti
     }
   }
 }
- 
 ```
 
 ### Failure scenarios
@@ -243,9 +241,8 @@ The **splitItems** JSON that is part of the response for a successful transacti
 ```plaintext
 {
 "status": 0,
-"msg": “Merchant is not authorized to use PayU API"
+"msg": "Merchant is not authorized to use PayU API"
 }
- 
 ```
 
 - Invalid hash
@@ -255,5 +252,4 @@ The **splitItems** JSON that is part of the response for a successful transacti
 "status": 0,
 "msg": "Invalid Hash."
 }
-
 ```
