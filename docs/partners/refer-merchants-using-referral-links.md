@@ -14,11 +14,11 @@ Share the referral link (affiliate link) with your clients and ask them to creat
 
 **Features:**
 
-- PayU manages the complete onboarding journey
-- Partners don’t need to do any integrations
-- Complete onboarding is done on the PayU website
-- No platform or integration is required for partner
-- Ideal for Individual resellers
+* PayU manages the complete onboarding journey
+* Partners don’t need to do any integrations
+* Complete onboarding is done on the PayU website
+* No platform or integration is required for partner
+* Ideal for Individual resellers
 
 ## Onboarding through a referral link
 
@@ -52,9 +52,9 @@ Share the referral link (affiliate link) with your clients and ask them to creat
 
 If you want to get payments directly into your bank account and without integrating your website or mobile application, you need to use the following options:
 
-- **Payment Link**: Send payment links to customers via SMS or email and collect instant payments directly into your account
-- **Payment Button**: Create a Payment Button within no time by just copy-pasting the code
-- **Excel Plugin**: Get payments using the excel sheet plugins
+* **Payment Link**: Send payment links to customers via SMS or email and collect instant payments directly into your account
+* **Payment Button**: Create a Payment Button within no time by just copy-pasting the code
+* **Excel Plugin**: Get payments using the excel sheet plugins
 
 ## Collecting payments through payment gateway
 
@@ -91,4 +91,4 @@ If you opt for Payment Gateway Integration, enable settlements using the followi
 The Service Agreement is displayed similar to the following screenshot:
 ```
 
-![S&A](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/08/image-187-1024x489.png)
+![S\&A](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/08/image-187-1024x489.png)
