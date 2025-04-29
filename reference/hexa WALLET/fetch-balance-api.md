@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The **check\_balance** API command is used to check the balance using the customer’s mobile number. When using Seamless Integration, integrate this API and display the balance on the Checkout page to your customers.
+The **check_balance** API command is used to check the balance using the customer’s mobile number. When using Seamless Integration, integrate this API and display the balance on the Checkout page to your customers.
 
 **Environment**
 
@@ -34,7 +34,7 @@ The **check\_balance** API command is used to check the balance using the custom
     "1-1": "This parameter must contain your merchant key shared by PayU during onboarding.",
     "1-2": "Your Test Key",
     "2-0": "hash  \n**mandatory**",
-    "2-1": "This parameter contains the hash. Use the following hash generation format:`\nsha512(key\\|command\\|var1\\|salt) sha512`",
+    "2-1": "This parameter contains the hash. Use the following hash generation format:\nsha512(key\\|command\\|var1\\|salt) sha512",
     "2-2": " ",
     "3-0": "var1  \n**mandatory**",
     "3-1": "This parameter must be in a JSON format as described in [var1 fields description](#var1-fields-description) table.",
@@ -49,7 +49,6 @@ The **check\_balance** API command is used to check the balance using the custom
   ]
 }
 [/block]
-
 
 > 📘 Notes:
 > 
@@ -76,7 +75,7 @@ The var1 is posted in the following format:
 ```curl
 curl -X POST "https://test.payu.in/merchant/postservice?form=2
 -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d
-"key=JP***g&command=check_balance&  var1={"walletIdentifier":"AMUL","mobile":"9886575652","ibibo_code":"PAY"}&hash=fbd44e564f49aaa271250df4fc9fdc5a7eff98d961d6ca8e8049ae0f830d7ee7ff73a4b74c69c9742ccfe0c0478e737c4c685a3fe614ba5ef7edf706097e3346"
+"key=JP***g&command=check_balance&  var1={\"walletIdentifier\":\"AMUL\",\"mobile\":\"9886575652\",\"ibibo_code\":\"PAY\"}&hash=fbd44e564f49aaa271250df4fc9fdc5a7eff98d961d6ca8e8049ae0f830d7ee7ff73a4b74c69c9742ccfe0c0478e737c4c685a3fe614ba5ef7edf706097e3346"
 ```
 
 ## Response parameters
@@ -106,7 +105,6 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
   ]
 }
 [/block]
-
 
 ## Sample response
 
