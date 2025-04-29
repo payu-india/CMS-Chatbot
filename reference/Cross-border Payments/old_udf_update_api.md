@@ -19,27 +19,43 @@ The **UDF Update** API is used to update the UDF1-UDF5 values of a transaction. 
 
 ## Reference info for request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Reference**",
-    "0-0": "key",
-    "0-1": "The merchant key provided by PayU while onboarding.  \nFor more information on how to generate the Key and Salt, refer to any of the following:  \n\\- **Production**: [Generate Merchant Key and Salt](https://payu-hosted-checkout.readme.io/docs/generate-merchant-key-and-salt-on-payu-dashboard)  \n\\- **Test**: [Generate Test Merchant Key and Salt](https://payu-hosted-checkout.readme.io/docs/generate-test-merchant-key-and-salt) \\|",
-    "1-0": "hash",
-    "1-1": "Hash logic for \\_payment API is:  \n`sha512(key\\|command\\|var1\\|salt) sha512`"
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+      <th>
+        **Reference**
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        key
+      </td>
+      <td>
+        The merchant key provided by PayU while onboarding.\
+        For more information on how to generate the Key and Salt, refer to any of the following:\
+        \- **Production**: [Generate Merchant Key and Salt](https://payu-hosted-checkout.readme.io/docs/generate-merchant-key-and-salt-on-payu-dashboard)\
+        \- **Test**: [Generate Test Merchant Key and Salt](https://payu-hosted-checkout.readme.io/docs/generate-test-merchant-key-and-salt)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        hash
+      </td>
+      <td>
+        Hash logic for \_payment API is:\
+        sha512(key\|command\|var1\|salt)
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
-
-<details><summary>Sample request for Cards </summary>
+<details>
+  <summary>Sample request for Cards</summary>
 
 ```
 curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
@@ -51,12 +67,12 @@ curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2'
 --form 'var5="SellerName"' \
 --form 'var6="INV000000005"' \
 --form 'hash="{{hash}}"'
-}
 ```
 
 </details>
 
-<details><summary>Sample request for UPI autopay </summary>
+<details>
+  <summary>Sample request for UPI autopay</summary>
 
 ```
 curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
@@ -70,11 +86,12 @@ curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2'
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ### Success Scenario
 
-- If successfully updated for cards
+* If successfully updated for cards
 
 ```plaintext
 {
@@ -88,10 +105,9 @@ curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2'
 }
 ```
 
-- If successfully updated for UPI autopay:
+* If successfully updated for UPI autopay:
 
-```
- 
+```plaintext
 {
     "status": "UDF values updated",
     "transaction_id": "my_order_64240",
@@ -105,7 +121,7 @@ curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2'
 
 ### Failure Scenarios
 
-- If the transaction ID is empty
+* If the transaction ID is empty
 
 ```plaintext
 ( 
@@ -114,7 +130,7 @@ curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2'
 ) 
 ```
 
-- If the transaction ID is invalid
+* If the transaction ID is invalid
 
 ```plaintext
 ( 
@@ -123,9 +139,9 @@ curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2'
 ) 
 ```
 
-- If Hash is invalid:
+* If Hash is invalid:
 
-```
+```plaintext
 {
     "status": 0,
     "msg": "Invalid Hash."
