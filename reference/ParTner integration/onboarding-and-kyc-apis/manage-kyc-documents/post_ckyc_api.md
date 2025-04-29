@@ -17,7 +17,8 @@ This API is used to submit the post the CKYC details of your partner. The access
 
 <PARTNEROnboardingEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location -g --request POST '{{onboarding_url}}/api/v3/merchants/kyc_document/ckyc_data' \
@@ -31,7 +32,8 @@ curl --location -g --request POST '{{onboarding_url}}/api/v3/merchants/kyc_docum
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
@@ -48,5 +50,5 @@ curl --location -g --request POST '{{onboarding_url}}/api/v3/merchants/kyc_docum
 ## Request headers
 
 > 📘 Note:
-> 
+>
 > The access token with the scope as **client\_manage\_kyc\_details** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
