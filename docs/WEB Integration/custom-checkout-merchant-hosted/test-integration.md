@@ -66,28 +66,10 @@ You can use the following Debit and Credit cards to test Emi integration.
 
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Wallet",
-    "h-1": "Mobile Number",
-    "h-2": "OTP",
-    "0-0": "PayTM",
-    "0-1": "7777777777",
-    "0-2": "888888",
-    "1-0": "PhonePe",
-    "1-1": "Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: <https://developer.phonepe.com/v1/docs/setting-up-test-account>  \nDownload the app and register your mobile number and follow the instructions as described in the above PhonePe docs.",
-    "1-2": "NA",
-    "2-0": "AmazonPay",
-    "2-1": "You can test using your original Amazon account details.",
-    "2-2": ""
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+{/* block:parameters */}
+| Wallet    | Mobile Number                                                                                                                                                                                                                                                                                                                                                  | OTP    |
+|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|
+| PayTM     | 7777777777                                                                                                                                                                                                                                                                                                                                                     | 888888 |
+| PhonePe   | Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: &lt;https://developer.phonepe.com/v1/docs/setting-up-test-account&gt;  <br />Download the app and register your mobile number and follow the instructions as described in the above PhonePe docs.                                                       | NA     |
+| AmazonPay | You can test using your original Amazon account details.                                                                                                                                                                                                                                                                                                       |        |
+{/* /block */}
