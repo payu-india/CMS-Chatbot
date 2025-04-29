@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The **Get EMI According to Interest **API helps you get details of all the available EMIs. 
+The **Get EMI According to Interest** API helps you get details of all the available EMIs. 
 
 To integrate this API:
 
