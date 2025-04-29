@@ -19,13 +19,14 @@ This API for fetching the details of a particular Smart Send using payoutMerchan
 
 |                            |                                                                  |
 | -------------------------- | ---------------------------------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/merchant/smartSend/details>    |
-| **Production Environment** | <https://payout.payumoney.com/payout/merchant/smartSend/details> |
+| **Test Environment**       | &lt;https://uatoneapi.payu.in/payout/merchant/smartSend/details&gt;    |
+| **Production Environment** | &lt;https://payout.payumoney.com/payout/merchant/smartSend/details&gt; |
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
-curl --location 'https://payout.payumoney.com/payout/merchant/smartSend/details?payoutMerchantId=2212618&merchantRefId=abcde’ \
+curl --location 'https://payout.payumoney.com/payout/merchant/smartSend/details?payoutMerchantId=2212618&merchantRefId=abcde' \
 --header 'accept: application/json, text/plain, */*' \
 --header 'content-type: application/json' \
 --header 'authorization: Bearer 89fec7522b42cfe5387672a4eb9c8f568bf1da59304c3ee54bcf77db7ef23e22'
@@ -33,35 +34,37 @@ curl --location 'https://payout.payumoney.com/payout/merchant/smartSend/details?
 
 </details>
 
-<details><summary>Response parameter description</summary>
+<details>
+  <summary>Response parameter description</summary>
 
 | Key                  | Description                                                                                                                                                                                                                                         | Data Type        | Possible Values                       |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------------------------------- |
 | merchantRefId        | Unique reference Id used while creating smart send                                                                                                                                                                                                  | String           | "abcde"                               |
 | payoutMerchantId     | Specify the payout merchant id provided while onboarding or creating Payout account.                                                                                                                                                                | Long             | 2212618                               |
-| smartSendStatus      | Current status of Smart send, status list can be found at the end of page                                                                                                                                                                           | String           | “EXPIRED”                             |
-| addedOn              | Creation time of Smart send                                                                                                                                                                                                                         | Timestamp in UTC | “2023-11-06T20:16:39.000+0000”        |
-| expiryDate           | Expiry Time of Smart Send                                                                                                                                                                                                                           | Timestamp in UTC | “2023-11-09T00:00:00.000+0000”        |
-| description          | Purpose of smart send                                                                                                                                                                                                                               | String           | “Test”                                |
+| smartSendStatus      | Current status of Smart send, status list can be found at the end of page                                                                                                                                                                           | String           | "EXPIRED"                             |
+| addedOn              | Creation time of Smart send                                                                                                                                                                                                                         | Timestamp in UTC | "2023-11-06T20:16:39.000+0000"        |
+| expiryDate           | Expiry Time of Smart Send                                                                                                                                                                                                                           | Timestamp in UTC | "2023-11-09T00:00:00.000+0000"        |
+| description          | Purpose of smart send                                                                                                                                                                                                                               | String           | "Test"                                |
 | amount               | Amount of Smart send                                                                                                                                                                                                                                | Double           | 10.0                                  |
 | updatedOn            | Last updated timestamp of smart send                                                                                                                                                                                                                | Timestamp in UTC | "2023-11-09T00:00:03.000+0000"        |
-| transferType         | Smart Send Payout mode basis beneficiary's choice of receiving funds into Account or VPA                                                                                                                                                            | String           | “UPI” , “IMPS” etc.                   |
-| bankTransactionRefNo | Contains the bank transfer reference number                                                                                                                                                                                                         | String           | “U8712301293”                         |
-| payuTransactionRefNo | Contains the PayU transaction reference number.                                                                                                                                                                                                     | String           | “PAYOUT1702966295695uQNG9eyN84z”      |
-| txnStatus            | Contains the transaction status for this transaction. For list of transaction status, refer to [Transaction Status](https://devguide.payu.in/payouts-api/payouts-initiation-and-tracking/check-transfer-status-api/#Transaction_Status) sub-section | String           | “SUCCESS”                             |
+| transferType         | Smart Send Payout mode basis beneficiary's choice of receiving funds into Account or VPA                                                                                                                                                            | String           | "UPI" , "IMPS" etc.                   |
+| bankTransactionRefNo | Contains the bank transfer reference number                                                                                                                                                                                                         | String           | "U8712301293"                         |
+| payuTransactionRefNo | Contains the PayU transaction reference number.                                                                                                                                                                                                     | String           | "PAYOUT1702966295695uQNG9eyN84z"      |
+| txnStatus            | Contains the transaction status for this transaction. For list of transaction status, refer to [Transaction Status](https://devguide.payu.in/payouts-api/payouts-initiation-and-tracking/check-transfer-status-api/#Transaction_Status) sub-section | String           | "SUCCESS"                             |
 | txnSubStatus         | Contains the sub-status of the transaction                                                                                                                                                                                                          | String           |                                       |
-| lastStatusUpdateDate | Last updated on transaction                                                                                                                                                                                                                         | Timestamp in UTC | “2023-11-09T00:00:00.000+0000”        |
-| custName             | Indicates the Beneficiary name to which the link is to be sent                                                                                                                                                                                      | String           | “ABC”                                 |
+| lastStatusUpdateDate | Last updated on transaction                                                                                                                                                                                                                         | Timestamp in UTC | "2023-11-09T00:00:00.000+0000"        |
+| custName             | Indicates the Beneficiary name to which the link is to be sent                                                                                                                                                                                      | String           | "ABC"                                 |
 | custEmail            | Indicates the email address of the beneficiary                                                                                                                                                                                                      | String           | [xyz@email.com](mailto:xyz@email.com) |
 | custMobile           | Indicates the mobile number of the beneficiary                                                                                                                                                                                                      | String           | 9999999999                            |
 | msg                  | Contains the response message for transaction                                                                                                                                                                                                       | String           |                                       |
 | link                 | Contains the Smart pay link                                                                                                                                                                                                                         | String           |                                       |
-| succeedOn            | Timestamp when Transaction got succeeded                                                                                                                                                                                                            | Timestamp in UTC | “2023-11-09T00:00:01.000+0000”        |
-| txnSource            | Contains source of transcation                                                                                                                                                                                                                      | String           | “API”                                 |
+| succeedOn            | Timestamp when Transaction got succeeded                                                                                                                                                                                                            | Timestamp in UTC | "2023-11-09T00:00:01.000+0000"        |
+| txnSource            | Contains source of transcation                                                                                                                                                                                                                      | String           | "API"                                 |
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success Scenario**
 
@@ -136,5 +139,5 @@ curl --location 'https://payout.payumoney.com/payout/merchant/smartSend/details?
 ## Request header and parameters
 
 > 📘 Note:
-> 
-> The **pid** is **payoutMerchantId**, however it is different from the PayU merchant id. Check the Payouts Dashboard or call the PayU Customer Support if you don’t know your **payoutsMerchantID**.
+>
+> The **pid** is **payoutMerchantId**, however it is different from the PayU merchant id. Check the Payouts Dashboard or call the PayU Customer Support if you don’t know your **payoutsMerchantID**.
