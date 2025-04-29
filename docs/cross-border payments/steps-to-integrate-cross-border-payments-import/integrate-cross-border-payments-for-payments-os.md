@@ -31,7 +31,7 @@ If you do not have a local entity in India and your business is classified as so
 For the **Create Payment** request. the following object contains the mandatory parameters for Cross-Border integration:
 
 > 📘 **Reference**:
-> 
+>
 > For more information on **Create Change** request, refer to the [PayU Payments OS](https://developers.paymentsos.com/docs/connect/payu-countries-and-regions/payu-india.html#implementing-an-opgsp-flow) documentation.
 
 ```
@@ -50,9 +50,9 @@ For the **Create Payment** request. the following object contains the mandatory 
 
 After registering for an PACB flow, you must post the following using the **Create Change** request (similar to the following sample code):
 
-- invoice ID using the **invoice\_id** parameter
-- buyer’s permanent account number using the **additionalDescription1** parameter
-- buyers’s date of birth using the **additionalDescription3** parameter.
+* invoice ID using the **invoice\_id** parameter
+* buyer’s permanent account number using the **additionalDescription1** parameter
+* buyers’s date of birth using the **additionalDescription3** parameter.
 
 ```javascript
 {
