@@ -26,24 +26,9 @@ next:
 ---
 ## Base rates
 
-The _Merchant Plan_ page is displayed during the registration process, and the same list is displayed on the _Here is your incentive plan_ page, similar to the following screenshot. For more information, refer to [Track Incentives](doc:track-incentives).
+The *Merchant Plan* page is displayed during the registration process, and the same list is displayed on the *Here is your incentive plan* page, similar to the following screenshot. For more information, refer to [Track Incentives](doc:track-incentives).
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/05/Screenshot-2022-05-16-at-1.21.16-PM-896x1024.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "522px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="522px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/05/Screenshot-2022-05-16-at-1.21.16-PM-896x1024.png" />
 
 To view your incentives on Partner Portal, refer to [Track Incentives](doc:track-incentives).
 
@@ -51,25 +36,10 @@ To view your incentives on Partner Portal, refer to [Track Incentives](doc:track
 
 After reseller registration is completed, the reseller rate or client TDR is displayed under the **Commercial Details** section of the agreement.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/05/Screenshot-2022-05-16-at-1.06.36-PM-1-1024x754.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "522px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="522px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/05/Screenshot-2022-05-16-at-1.06.36-PM-1-1024x754.png" />
 
 > 📘 Note:
-> 
+>
 > If you wish to the change the reseller rate listed above, you need to contact your PayU Account Manager.
 
 Your net incentive is the **(Client TDR** – **Base Rate**)**\*Transaction Value**.
