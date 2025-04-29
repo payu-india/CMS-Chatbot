@@ -24,11 +24,11 @@ With the PayU Hosted Checkout integration, the entire payment experience is cont
 3. Customer is displayed the Closed Loop wallet as the primary option (For first time customer, OTP authentication is required to display balance)
 4. Basis comparison between transaction amount and balance amount, further journey will be initiated
 
-- Sufficient Balance: This will trigger a one-click payment to debit the customer’s wallet
+* Sufficient Balance: This will trigger a one-click payment to debit the customer’s wallet
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/09/word-image.png)
 
-- Insufficient Balance: This will ask customer to add money (minimum residual amount) on the fly in the wallet and then debit the transaction amount. (For cases where wallet is being used just for cashback posting, **configuration to disable load and pay** is also there)
+* Insufficient Balance: This will ask customer to add money (minimum residual amount) on the fly in the wallet and then debit the transaction amount. (For cases where wallet is being used just for cashback posting, **configuration to disable load and pay** is also there)
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/09/word-image-1.png)
 
