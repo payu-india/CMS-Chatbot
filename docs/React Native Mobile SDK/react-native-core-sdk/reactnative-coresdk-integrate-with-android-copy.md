@@ -24,9 +24,9 @@ The React Native Core SDK integration with iOS involves the following steps:
 1. [Installation](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android-copy#step-1-installation)
 2. [Generate payment hash](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android-copy#step-2-generate-payment-hash)
 3. [Build the Payment Parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android-copy#step-3-build-the-payment-parameters)
-   - [Set Net Banking params for payment](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android-copy#set-net-banking-params-for-payment)
-   - [Set Card payment parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android-copy#set-card-payment-parameters)
-   - [Set Wallet payment parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android-copy#set-wallet-payment-parameters)
+   * [Set Net Banking params for payment](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android-copy#set-net-banking-params-for-payment)
+   * [Set Card payment parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android-copy#set-card-payment-parameters)
+   * [Set Wallet payment parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android-copy#set-wallet-payment-parameters)
 4. [Make Payment](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android-copy#step-4-make-payment)
 5. [Register Listeners](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android-copy#step-5-register-listeners)
 6. [Check the Response](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android-copy#step-6-check-the-response)
@@ -70,7 +70,7 @@ Generate the payment hash and pass the hash in the JSON payUPaymentParams.hashes
 To learn more about sash generation, see Hash Generation.
 
 > 📘 Remember
-> 
+>
 > Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
 
 ***
