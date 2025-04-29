@@ -18,76 +18,104 @@ The **Check Health Status** API can be used to check the working status of the P
 <BBPSEnvironment />
 
 > 📘 Note:
-> 
-> Send the scope of the GET Token API as check_health_status to obtain the access_token for this request. For more information, refer to  [Get Token API - BBPS](ref:get-token-api-bbps).
+>
+> Send the scope of the GET Token API as check\_health\_status to obtain the access\_token for this request. For more information, refer to [Get Token API - BBPS](ref:get-token-api-bbps).
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
-curl --location --request POST 'https://<hostName>/payu-nbc/v1/nbc/heartBeat?agentId={agentId}&refId={refId}' \
+curl --location --request POST 'https://<hostName>/payu-nbc/v1/nbc/heartBeat?agentId=`{agentId}`&refId=`{refId}`' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer <token>'
 ```
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field Name**",
-    "h-1": "**Description**",
-    "0-0": "code",
-    "0-1": "The global response code and can be any of the following:  \n  \n- **0**: If web service call failed\n- **1**: if web service call succeeded",
-    "1-0": "status",
-    "1-1": "The status of the API command and can be any of the following:  \n  \n- SUCCESS\n- FAILURE",
-    "2-0": "payload",
-    "2-1": "It will contain a list of biller categories. For more information, refer to the [payload](#payload) table.  \nIf the transaction had failed, it will contain:  \n  \n- additional data related to transactions\n- List of errors which caused failure transactions"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>**Field Name**</th>
+      <th>**Description**</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>code</td>
+      <td>
+        The global response code and can be any of the following:  
+        * **0**: If web service call failed
+        * **1**: if web service call succeeded
+      </td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>
+        The status of the API command and can be any of the following:  
+        * SUCCESS
+        * FAILURE
+      </td>
+    </tr>
+    <tr>
+      <td>payload</td>
+      <td>
+        It will contain a list of biller categories. For more information, refer to the [payload](#payload) table.\
+        If the transaction had failed, it will contain:  
+        * additional data related to transactions
+        * List of errors which caused failure transactions
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### payload
 
 </details>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Paramater**",
-    "h-1": "**Description**",
-    "0-0": "status",
-    "0-1": "This parameter can contain any of the following:  \n  \n- UP\n- DOWN",
-    "1-0": "type",
-    "1-1": "This field contains the the type of request.",
-    "2-0": "refId",
-    "2-1": "This field contains the reference ID received in request from the agent.",
-    "3-0": "payuId",
-    "3-1": "It will be payU system ID and it will be unique every time.",
-    "4-0": "message",
-    "4-1": "For failure scenario, this field contains the message as **heart\\_beat\\_failure**.",
-    "5-0": "errors",
-    "5-1": "For failure scenario, the errors are displayed in an array format."
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>**Paramater**</th>
+      <th>**Description**</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>status</td>
+      <td>
+        This parameter can contain any of the following:  
+        * UP
+        * DOWN
+      </td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>This field contains the the type of request.</td>
+    </tr>
+    <tr>
+      <td>refId</td>
+      <td>This field contains the reference ID received in request from the agent.</td>
+    </tr>
+    <tr>
+      <td>payuId</td>
+      <td>It will be payU system ID and it will be unique every time.</td>
+    </tr>
+    <tr>
+      <td>message</td>
+      <td>For failure scenario, this field contains the message as **heart\_beat\_failure**.</td>
+    </tr>
+    <tr>
+      <td>errors</td>
+      <td>For failure scenario, the errors are displayed in an array format.</td>
+    </tr>
+  </tbody>
+</Table>
 
-
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ### Success scenario
 
