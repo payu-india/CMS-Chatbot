@@ -13,11 +13,12 @@ metadata:
 next:
   description: ''
 ---
-The Check Payment (**check_payment**) API functions similar to the [Verify Payment API](ref:verify_payment_api). However, the input parameter in this API is the PayUID or mihpayuID generated at PayU’s Server unlike **verify_payment** API where the input parameter is the TxnID (Transaction ID generated at merchant’s server). It returns all the parameters for a given transaction.
+The Check Payment (**check\_payment**) API functions similar to the [Verify Payment API](ref:verify_payment_api). However, the input parameter in this API is the PayUID or mihpayuID generated at PayU’s Server unlike **verify\_payment** API where the input parameter is the TxnID (Transaction ID generated at merchant’s server). It returns all the parameters for a given transaction.
 
 <GENERALAPIsEnvironment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
@@ -30,7 +31,8 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 
 </details>
 
-<details>  <summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ### Success scenario
 
@@ -84,7 +86,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 
 ### Failure scenario
 
-- If the PayU ID (mihpayuid) is missing:
+* If the PayU ID (mihpayuid) is missing:
 
 ```
 {
@@ -94,40 +96,74 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 
 </details>
 
-<details>  <summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of web service call. The status can be any of the following:  \n_ 0 - If web service call failed.  \n_ 1 - If web service call succeeded",
-    "0-2": "0",
-    "1-0": "msg",
-    "1-1": "This parameter returns the reason string.",
-    "1-2": "For example, any of the following messages are displayed:  \n  \n- Parameter missing\n- Token is empty \n- Amount is empty\n- Transaction not exists",
-    "2-0": "transaction\\_details",
-    "2-1": "This parameter contains the response in a JSON format. For more information refer to [JSON fields description for transaction_details parameter ](#json-field-description-for-transaction_details-parameter).",
-    "2-2": ""
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+      <th>
+        **Description**
+      </th>
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+      <td>
+        This parameter returns the status of web service call. The status can be any of the following:
 
+        * 0 - If web service call failed.
+        * 1 - If web service call succeeded
+      </td>
+      <td>
+        0
+      </td>
+    </tr>
+    <tr>
+      <td>
+        msg
+      </td>
+      <td>
+        This parameter returns the reason string.
+      </td>
+      <td>
+        For example, any of the following messages are displayed:
+
+        * Parameter missing
+        * Token is empty
+        * Amount is empty
+        * Transaction not exists
+      </td>
+    </tr>
+    <tr>
+      <td>
+        transaction\_details
+      </td>
+      <td>
+        This parameter contains the response in a JSON format. For more information refer to [JSON fields description for transaction\_details parameter ](#json-field-description-for-transaction_details-parameter).
+      </td>
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
 ## Request parameters
 
-<details>  <summary>Reference information for request parameters</summary>
+<details>
+  <summary>Reference information for request parameters</summary>
 
 <KeyHashForGeneralParametersDescription />
 
@@ -137,4 +173,4 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 
 Use the following sample values while trying out the API:
 
-- `var1` (your transaction ID/order ID): 403993715521889530
+* `var1` (your transaction ID/order ID): 403993715521889530
