@@ -20,7 +20,7 @@ To update an existing role on Dashboard:
 
 3. Click the **Edit** button (Pencil) on the role entry that you wish to update.
 
-   The _Edit Role Details_ pop-up page is displayed.
+   The *Edit Role Details* pop-up page is displayed.
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/Screenshot-2021-08-18-at-9.55.14-PM-1024x745.jpg)
 
