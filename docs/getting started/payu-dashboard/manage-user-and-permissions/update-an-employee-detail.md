@@ -18,7 +18,7 @@ To update existing employee details:
 
 2. Click the **Edit** button (Pencil) next on the employee entry that you wish to update.
 
-   The _Edit Employee Details_ pop-up page is displayed.
+   The *Edit Employee Details* pop-up page is displayed.
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/Screenshot-2021-08-18-at-9.49.24-PM-1024x688.png)
 
