@@ -27,7 +27,8 @@ The **Validate Auth Code and Client** API is used for validating auth code and c
 > - The grant type for the **grant_type** parameter for this API is** authorization_code**. 
 > - For the client credentials, refer to [Download Client Credentials](doc:download-client-credentials).
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location --request POST 'https://test-accounts.payu.in/oauth/token' \
@@ -41,7 +42,8 @@ curl --location --request POST 'https://test-accounts.payu.in/oauth/token' \
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Success response**
 
@@ -65,7 +67,8 @@ curl --location --request POST 'https://test-accounts.payu.in/oauth/token' \
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
 <PartnerAuthenticationResponseParameters />
 
