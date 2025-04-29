@@ -7,3 +7,4 @@
 - signature-capture-api
 - transaction-details-api
 - initiate-void-transaction-api
+- send-sms-and-email-api
