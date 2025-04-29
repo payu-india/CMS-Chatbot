@@ -10,9 +10,9 @@ metadata:
 next:
   description: ''
 ---
-The following table provides description for each status of the transaction. You must map the order status using the payment state specified in the **Status** column of the following table. As Test environment  (Sandbox) is a replica of the Production environment, you can push the code in production by just replacing account credentials and URL.
+The following table provides description for each status of the transaction. You must map the order status using the payment state specified in the **Status** column of the following table. As Test environment (Sandbox) is a replica of the Production environment, you can push the code in production by just replacing account credentials and URL.
 
-[block:parameters]
+<block:parameters>
 {
   "data": {
     "h-0": "Unmapped Status",
@@ -29,7 +29,7 @@ The following table provides description for each status of the transaction. You
     "2-2": "This status is used when a transaction is canceled by the customer.",
     "3-0": "bounced",
     "3-1": "Failure",
-    "3-2": "When a transaction is not completed by the customer. For example, the customer does not click **Pay Now** on the PayU Payment page (PayU Hosted Checkout) and forfeits the transaction. In such cases, the transaction as bounced.  \nThis can happen due to various reasons: intent of the customer, Internet issues, etc.",
+    "3-2": "When a transaction is not completed by the customer. For example, the customer does not click **Pay Now** on the PayU Payment page (PayU Hosted Checkout) and forfeits the transaction. In such cases, the transaction as bounced.\nThis can happen due to various reasons: intent of the customer, Internet issues, etc.",
     "4-0": "dropped",
     "4-1": "Failure",
     "4-2": "When a transaction reaches PayU, the transaction is redirected to the respective payment gateway. The payment gateway sends the response back to PayU with the status of the transaction. In few instances, PayU not get any response from the payment gateway. In such cases, PayU marks the transaction as dropped.",
@@ -57,4 +57,4 @@ The following table provides description for each status of the transaction. You
     null
   ]
 }
-[/block]
+</block:parameters>
