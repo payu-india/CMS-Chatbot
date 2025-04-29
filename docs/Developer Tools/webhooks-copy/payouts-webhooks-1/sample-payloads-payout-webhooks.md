@@ -12,7 +12,7 @@ next:
 ---
 Following is the list of events that are currently available for Payouts
 
-## Deposit_Success
+## Deposit\_Success
 
 ```Text JSON
 {
