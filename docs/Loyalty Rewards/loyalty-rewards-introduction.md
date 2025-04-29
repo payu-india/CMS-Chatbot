@@ -14,29 +14,29 @@ The PayU Loyalty Rewards integrates loyalty points into transaction processes, e
 
 ## Benefits of PayU India Loyalty Product
 
-- **Enhanced Customer Engagement**: Encourage repeat purchases.
-- **Flexible Payment Options**: Combine loyalty points with traditional methods.
-- **Increased Savings**: Customers redeem points for discounts.
-- **Detailed Reporting**: Comprehensive transaction insights.
-- **Seamless Integration**: Smooth checkout process with existing systems.
-- **Customizable Campaigns**: Tailored loyalty campaigns.
-- **Chargeback Management**: Efficient dispute resolution.
-- **Customer Insights**: Understanding spending patterns.
-- **Revenue Opportunities**: Additional revenue streams through loyalty charges.
-- **User-Friendly Experience**: Enhances overall satisfaction for merchants and customers.
+* **Enhanced Customer Engagement**: Encourage repeat purchases.
+* **Flexible Payment Options**: Combine loyalty points with traditional methods.
+* **Increased Savings**: Customers redeem points for discounts.
+* **Detailed Reporting**: Comprehensive transaction insights.
+* **Seamless Integration**: Smooth checkout process with existing systems.
+* **Customizable Campaigns**: Tailored loyalty campaigns.
+* **Chargeback Management**: Efficient dispute resolution.
+* **Customer Insights**: Understanding spending patterns.
+* **Revenue Opportunities**: Additional revenue streams through loyalty charges.
+* **User-Friendly Experience**: Enhances overall satisfaction for merchants and customers.
 
 ## Customer Workflow
 
 1. **Checkout Process**:
-   - **Logged-in** customers see their point balance and pre-ticked options to use points.
-   - **Non-logged-in** customers are prompted to log in for balance access.
+   * **Logged-in** customers see their point balance and pre-ticked options to use points.
+   * **Non-logged-in** customers are prompted to log in for balance access.
 2. **Usage of Points**:
-   - **Zero Balance**: Proceed with other payment methods.
-   - **Insufficient Balance**: Combine points with other payments.
+   * **Zero Balance**: Proceed with other payment methods.
+   * **Insufficient Balance**: Combine points with other payments.
 3. **Transaction**:
-   - Sufficient points allow checkout solely with points.
-   - Offers are integrated with loyalty benefits, and applicable errors are managed.
+   * Sufficient points allow checkout solely with points.
+   * Offers are integrated with loyalty benefits, and applicable errors are managed.
 4. **Refunds and Adjustments**:
-   - Adjustments of points during refunds ensure accurate processing.
+   * Adjustments of points during refunds ensure accurate processing.
 
 This workflow facilitates seamless use and management of loyalty points during transactions, resulting in a rewarding customer experience.
