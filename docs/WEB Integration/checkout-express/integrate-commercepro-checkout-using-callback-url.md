@@ -16,12 +16,12 @@ This section describes the procedure to integrate CommercePro Checkout using Cal
 
 Load the the following URL using script tag on the page:
 
-<https://jssdk.payu.in/bolt/bolt.min.js>
+[https://jssdk.payu.in/bolt/bolt.min.js](https://jssdk.payu.in/bolt/bolt.min.js)
 
 > 📘 Note:
-> 
-> To test your integration of CommercePro on UAT environment, use the following URL:  
-> <https://jssdk-uat.payu.in/bolt/bolt.min.js>
+>
+> To test your integration of CommercePro on UAT environment, use the following URL:\
+> [https://jssdk-uat.payu.in/bolt/bolt.min.js](https://jssdk-uat.payu.in/bolt/bolt.min.js)
 
 ```Text HTML
 <script src='https://jssdk.payu.in/bolt/bolt.min.js'></script>
@@ -101,73 +101,308 @@ const  authHeader = 'hmac username="' + key + '", ' + 'algorithm="' + AUTH_TYPE 
 
 ### Transaction Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "key  \n`mandatory`",
-    "0-1": "`string` The merchant key generated from the PayU.",
-    "1-0": "txnid  \n `mandatory`",
-    "1-1": "`string` The unique ID of the transaction.",
-    "2-0": "amount  \n `mandatory`",
-    "2-1": "`string` The transaction amount, expressed in the currency subunit, such as paise (in case of INR). For example, for an actual amount of “299.35”.",
-    "3-0": "firstname  \n  `mandatory`",
-    "3-1": "`string` The customer first name.",
-    "4-0": "lastname  \n  `optional`",
-    "4-1": "`string` The customer last name.",
-    "5-0": "email  \n`optional`",
-    "5-1": "`string` The email address of the customer.",
-    "6-0": "phone  \n`mandatory`",
-    "6-1": "`string` The mobile number of the customer. In case mobile number is not available, send empty string.",
-    "7-0": "productinfo  \n`optional`",
-    "7-1": "`string` The brief details of the product.",
-    "8-0": "surl  \n`mandatory`",
-    "8-1": "`string` The success URL provided by merchant.",
-    "9-0": "furl  \n`mandatory`",
-    "9-1": "`string` The failure URL provided by merchant.",
-    "10-0": "isCheckoutExpress  `mandatory`",
-    "10-1": "`boolean` This value is always true",
-    "11-0": "icp\\_source  \n`mandatory`",
-    "11-1": "`string` This value is always “express”",
-    "12-0": "orderid  \n `mandatory`",
-    "12-1": "`string` Use this parameter to create new order or edit existing order.",
-    "13-0": "cart\\_details  \n `mandatory`",
-    "13-1": "`object` Use this parameter to create cart for express transaction and to load SKU offers. The amount passed must be equal to the cart amount when there no extra charges. In case of extra charges, total ",
-    "14-0": "udf1  \n`optional`",
-    "14-1": "`String` User-defined fields1",
-    "15-0": "udf2  \n`optional`",
-    "15-1": "`String` User-defined fields2",
-    "16-0": "udf3  \n`optional`",
-    "16-1": "`String` User-defined fields3",
-    "17-0": "udf4  `\noptional`",
-    "17-1": "`String` User-defined fields4",
-    "18-0": "udf5  \n`optional`",
-    "18-1": "`String` User-defined fields5",
-    "19-0": "custom\\_note  \n`optional`",
-    "19-1": "`String` Any custom note that you want to display on the checkout screen",
-    "20-0": "note\\_category  \n `optional`",
-    "20-1": "`String` CC, NB will show the custom\\_note for Credit Card & Net banking only",
-    "21-0": "offer\\_auto\\_apply  \n`optional` ",
-    "21-1": "`Boolean` If value is true then best offer will be applied for user for the payment mode from which payment is being done.",
-    "22-0": "editPhoneAllowed   \n`optional` ",
-    "22-1": "`String` The value will be either **true** or **false**. In case true then phone number edit would not be allowed on express screen, and user would be allowed to login from merchant passed phone number only.",
-    "23-0": "editEmailAllowed  \n`optional`",
-    "23-1": "`String` The value will be either **true** or **false**. In case true then email edit would not be allowed on express screen.",
-    "24-0": "emailRequired  \n`optional`",
-    "24-1": "`String` The value will be either **true** or **false**.In case true then email entry, would be mandatory on login page .",
-    "25-0": "extraCharges   \n`optional` ",
-    "25-1": "`Static` The extra charges object will be required if merchant want to show extra charges to user on express screen. "
-  },
-  "cols": 2,
-  "rows": 26,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The merchant key generated from the PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txnid\
+         `mandatory`
+      </td>
+
+      <td>
+        `string` The unique ID of the transaction.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount\
+         `mandatory`
+      </td>
+
+      <td>
+        `string` The transaction amount, expressed in the currency subunit, such as paise (in case of INR). For example, for an actual amount of “299.35”.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstname\
+          `mandatory`
+      </td>
+
+      <td>
+        `string` The customer first name.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        lastname\
+          `optional`
+      </td>
+
+      <td>
+        `string` The customer last name.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email\
+        `optional`
+      </td>
+
+      <td>
+        `string` The email address of the customer.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The mobile number of the customer. In case mobile number is not available, send empty string.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productinfo\
+        `optional`
+      </td>
+
+      <td>
+        `string` The brief details of the product.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        surl\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The success URL provided by merchant.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        furl\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The failure URL provided by merchant.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        isCheckoutExpress  `mandatory`
+      </td>
+
+      <td>
+        `boolean` This value is always true
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        icp\_source\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` This value is always “express”
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        orderid\
+         `mandatory`
+      </td>
+
+      <td>
+        `string` Use this parameter to create new order or edit existing order.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cart\_details\
+         `mandatory`
+      </td>
+
+      <td>
+        `object` Use this parameter to create cart for express transaction and to load SKU offers. The amount passed must be equal to the cart amount when there no extra charges. In case of extra charges, total 
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf1\
+        `optional`
+      </td>
+
+      <td>
+        `String` User-defined fields1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf2\
+        `optional`
+      </td>
+
+      <td>
+        `String` User-defined fields2
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf3\
+        `optional`
+      </td>
+
+      <td>
+        `String` User-defined fields3
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf4  ```
+
+        optional
+        ```
+      </td>
+
+      <td>
+        `String` User-defined fields4
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf5\
+        `optional`
+      </td>
+
+      <td>
+        `String` User-defined fields5
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        custom\_note\
+        `optional`
+      </td>
+
+      <td>
+        `String` Any custom note that you want to display on the checkout screen
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        note\_category\
+         `optional`
+      </td>
+
+      <td>
+        `String` CC, NB will show the custom\_note for Credit Card & Net banking only
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        offer\_auto\_apply\
+        `optional` 
+      </td>
+
+      <td>
+        `Boolean` If value is true then best offer will be applied for user for the payment mode from which payment is being done.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        editPhoneAllowed \
+        `optional` 
+      </td>
+
+      <td>
+        `String` The value will be either **true** or **false**. In case true then phone number edit would not be allowed on express screen, and user would be allowed to login from merchant passed phone number only.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        editEmailAllowed\
+        `optional`
+      </td>
+
+      <td>
+        `String` The value will be either **true** or **false**. In case true then email edit would not be allowed on express screen.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        emailRequired\
+        `optional`
+      </td>
+
+      <td>
+        `String` The value will be either **true** or **false**.In case true then email entry, would be mandatory on login page .
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        extraCharges \
+        `optional` 
+      </td>
+
+      <td>
+        `Static` The extra charges object will be required if merchant want to show extra charges to user on express screen. 
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Step 3: Fetch the response with Callback URL
 
@@ -196,67 +431,251 @@ bolt.launch({
 
 ### Response parameters description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Descruiption",
-    "0-0": "mihpayid",
-    "0-1": "It is a unique reference number created for each transaction at PayU’s end which is used to identify a transaction in case of a refund.",
-    "1-0": "mode",
-    "1-1": "This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  <br><br>_ Credit Card – CC <br>_ Debit Card – DC <br>_ Net Banking – NB<br>_ Cash Card – CASH<br>_ EMI – EMI <br>_ Cardless EMI – CLEMI<br>\\* Buy Now Pay Later - BNPL",
-    "2-0": "bankcode",
-    "2-1": "This parameter contains the code indicating the payment option used for the transaction. For example, Visa Debit Card – VISA, Master Debit Card – MAST.",
-    "3-0": "txnStatus",
-    "3-1": "This parameter returns the status of the transaction and must be used to map the order status. Possible values are SUCCESS, FAILED and CANCEL",
-    "4-0": "unmappedstatus",
-    "4-1": "This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to  [Payment State Explanations](https://docs.payu.in/reference/payment-state-explanations).",
-    "5-0": "key",
-    "5-1": "This parameter contains the merchant key.",
-    "6-0": "error",
-    "6-1": "For the failed transactions, this parameter provides the reason for failure.",
-    "7-0": "error_Message",
-    "7-1": "This parameter contains the error message. For the list of error message, refer to [Error Codes](https://docs.payu.in/reference/error-codes).",
-    "8-0": "bank\\_ref\\_num",
-    "8-1": "For each successful transaction – this parameter contains the bank reference number generated by the bank.",
-    "9-0": "txnid",
-    "9-1": "This parameter contains the transaction ID value posted by the merchant during the transaction request.",
-    "10-0": "amount",
-    "10-1": "This parameter contains the original amount which was sent in the transaction request by the merchant.",
-    "11-0": "productinfo",
-    "11-1": "This parameter contains the same value of product information which was sent in the transaction request from the merchant’s end to PayU.",
-    "12-0": "firstname",
-    "12-1": "This parameter contains the same value of first name which was sent in the transaction request from the merchant’s end to PayU.",
-    "13-0": "lastname",
-    "13-1": "This parameter contains the same value of last name which was sent in the transaction request from the merchant’s end to PayU.",
-    "14-0": "email",
-    "14-1": "This parameter contains the same value of email which was sent in the transaction request from the merchant’s end to PayU.",
-    "15-0": "phone",
-    "15-1": "This parameter contains the same value of phone which was sent in the transaction request from the merchant’s end to PayU.",
-    "16-0": "hash",
-    "16-1": "This parameter is crucial and is similar to the hash parameter used in the transaction request. For more information, refer to  <a href=\"generate-hash-merchant-hosted\" target=\"_blank\"> Generate Hash</a>.",
-    "17-0": "udf1",
-    "17-1": "This parameter contains the same value of udf1 which was sent in the transaction request from the merchant’s end to PayU.",
-    "18-0": "udf2",
-    "18-1": "This parameter contains the same value of udf2 which was sent in the transaction request from the merchant’s end to PayU.",
-    "19-0": "udf3",
-    "19-1": "This parameter contains the same value of udf3 which was sent in the transaction request from the merchant’s end to PayU.",
-    "20-0": "udf4",
-    "20-1": "This parameter contains the same value of udf4 which was sent in the transaction request from the merchant’s end to PayU.",
-    "21-0": "udf5",
-    "21-1": "This parameter contains the same value of udf5 which was sent in the transaction request from the merchant’s end to PayU.",
-    "22-0": "shipping_address",
-    "22-1": "This parameter is an object containing address the customer chose to make payment with. Example:  <br>{  <br>    \"name\": \"\\<name\\_with\\_saved_address>\",  <br>    \"email\": \"\\<email\\_with\\_the\\_saved\\_address>\",  <br>    \"addressLine\": \"\\<address_string>\",  <br>    \"addressPhoneNumber\": \"\\<address_number>\",  <br>    \"landmark\": ‘\\<landmark\\_with\\_address>’,  <br>    \"pincode\": \\<pincode\\_with\\_address>,  <br>    \"city\": \"\\<city\\_with\\_address>\",  <br>    \"state\": “\\<state\\_with\\_address>\"  <br>}"
-  },
-  "cols": 2,
-  "rows": 23,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Descruiption
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        mihpayid
+      </td>
+
+      <td>
+        It is a unique reference number created for each transaction at PayU’s end which is used to identify a transaction in case of a refund.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        mode
+      </td>
+
+      <td>
+        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  <br><br>*Credit Card – CC<br>* Debit Card – DC <br>*Net Banking – NB<br>* Cash Card – CASH<br>*EMI – EMI<br>* Cardless EMI – CLEMI<br>\* Buy Now Pay Later - BNPL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankcode
+      </td>
+
+      <td>
+        This parameter contains the code indicating the payment option used for the transaction. For example, Visa Debit Card – VISA, Master Debit Card – MAST.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txnStatus
+      </td>
+
+      <td>
+        This parameter returns the status of the transaction and must be used to map the order status. Possible values are SUCCESS, FAILED and CANCEL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        unmappedstatus
+      </td>
+
+      <td>
+        This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to  [Payment State Explanations](https://docs.payu.in/reference/payment-state-explanations).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        key
+      </td>
+
+      <td>
+        This parameter contains the merchant key.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        error
+      </td>
+
+      <td>
+        For the failed transactions, this parameter provides the reason for failure.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        error\_Message
+      </td>
+
+      <td>
+        This parameter contains the error message. For the list of error message, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bank\_ref\_num
+      </td>
+
+      <td>
+        For each successful transaction – this parameter contains the bank reference number generated by the bank.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txnid
+      </td>
+
+      <td>
+        This parameter contains the transaction ID value posted by the merchant during the transaction request.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount
+      </td>
+
+      <td>
+        This parameter contains the original amount which was sent in the transaction request by the merchant.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productinfo
+      </td>
+
+      <td>
+        This parameter contains the same value of product information which was sent in the transaction request from the merchant’s end to PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstname
+      </td>
+
+      <td>
+        This parameter contains the same value of first name which was sent in the transaction request from the merchant’s end to PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        lastname
+      </td>
+
+      <td>
+        This parameter contains the same value of last name which was sent in the transaction request from the merchant’s end to PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email
+      </td>
+
+      <td>
+        This parameter contains the same value of email which was sent in the transaction request from the merchant’s end to PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone
+      </td>
+
+      <td>
+        This parameter contains the same value of phone which was sent in the transaction request from the merchant’s end to PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash
+      </td>
+
+      <td>
+        This parameter is crucial and is similar to the hash parameter used in the transaction request. For more information, refer to  <a href="generate-hash-merchant-hosted" target="_blank"> Generate Hash</a>.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf1
+      </td>
+
+      <td>
+        This parameter contains the same value of udf1 which was sent in the transaction request from the merchant’s end to PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf2
+      </td>
+
+      <td>
+        This parameter contains the same value of udf2 which was sent in the transaction request from the merchant’s end to PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf3
+      </td>
+
+      <td>
+        This parameter contains the same value of udf3 which was sent in the transaction request from the merchant’s end to PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf4
+      </td>
+
+      <td>
+        This parameter contains the same value of udf4 which was sent in the transaction request from the merchant’s end to PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf5
+      </td>
+
+      <td>
+        This parameter contains the same value of udf5 which was sent in the transaction request from the merchant’s end to PayU.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        shipping\_address
+      </td>
+
+      <td>
+        This parameter is an object containing address the customer chose to make payment with. Example:  <br>\{  <br>    "name": "\<name\_with\_saved\_address>",  <br>    "email": "\<email\_with\_the\_saved\_address>",  <br>    "addressLine": "\<address\_string>",  <br>    "addressPhoneNumber": "\<address\_number>",  <br>    "landmark": ‘\<landmark\_with\_address>’,  <br>    "pincode": \<pincode\_with\_address>,  <br>    "city": "\<city\_with\_address>",  <br>    "state": “\<state\_with\_address>"  <br>}
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Step 4: Catch Exceptions
 
