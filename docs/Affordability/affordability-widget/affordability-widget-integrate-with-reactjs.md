@@ -14,8 +14,8 @@ You can natively integrate affordability widget on you webpage that you have bui
 
 ## Integration steps
 
-- Create a React Component using PayU’s ready to use code snippet
-- Import the React component on your product page
+* Create a React Component using PayU’s ready to use code snippet
+* Import the React component on your product page
 
 ## Step 1: Create a React component
 
