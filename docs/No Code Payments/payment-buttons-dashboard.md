@@ -34,27 +34,13 @@ To create a new Payment Button:
 
 1. Select **Payment Tools** > **Payment Buttons** from the left pane of the Dashboard.
 
-   The list of existing buttons are listed on the _Buttons_ page.
+   The list of existing buttons are listed on the *Buttons* page.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/b082dec-Screenshot_2023-09-29_at_12.15.58_PM.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/b082dec-Screenshot_2023-09-29_at_12.15.58_PM.png" />
 
 2. Click **Create New Button** at the top-right corner.
 
-   The _Create New Payment Button_ page is displayed.
+   The *Create New Payment Button* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-11.00.51-AM-1024x807.jpg)
 
@@ -63,10 +49,10 @@ To create a new Payment Button:
 To customize the Payment Button:
 
 1. Select any of the following button label that must be displayed:
-   - Buy Now
-   - Pay Now
-   - Book Now
-   - Donate Now
+   * Buy Now
+   * Pay Now
+   * Book Now
+   * Donate Now
 2. Enter the description in the **Item Name** field.
 3. Enter the amount that must be collected in the **Amount** field.
 
@@ -74,9 +60,9 @@ To customize the Payment Button:
 
 4. Select the color of the button from the primary colours or use the dropper to select a custom color.
 5. Select any the following button size that suits your website:
-   - Small
-   - Medium
-   - Large
+   * Small
+   * Medium
+   * Large
 
 ## Step 3: Customize the Checkout page
 
@@ -84,67 +70,65 @@ To customize the Payment Button:
 
    The fields on the **Custom Details** tile are displayed.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-1.19.59-PM-1024x529.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "412px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="412px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-1.19.59-PM-1024x529.png" />
 
 2. Add each fields on the **Custom Details** tile to your Check Out page as follows:
-   - Select the check box against the field.
-   - Click the pencil button next to the field to launch the pop-up page similar to the following and then provide the details as described in the following table and click **Add Field**:
+   * Select the check box against the field.
+   * Click the pencil button next to the field to launch the pop-up page similar to the following and then provide the details as described in the following table and click **Add Field**:
 
 > **Note**: Use the **Add Fields** option at the bottom to add more fields on your Check Out page if required.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-1.22.13-PM.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "312px"
-    }
-  ]
-}
-[/block]
+<Image align="center" width="312px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-1.22.13-PM.png" />
 
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Field**
+      </th>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "0-0": "Field Type",
-    "0-1": "Select the any of Select the any of the following field types or controls that you would like add on your Check Out page:  \n  \n- Text  \n- Calendar  \n- Drop-downthe following field types or controls that you would like add on your Check Out page:",
-    "1-0": "Field Name",
-    "1-1": "Enter the field label that must be shown on the Check Out page.",
-    "2-0": "Mark as mandatory",
-    "2-1": "Select this check box to make the field mandatory so that customer has to provide input."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <tr>
+      <td>
+        Field Type
+      </td>
+
+      <td>
+        Select the any of Select the any of the following field types or controls that you would like add on your Check Out page:  
+
+        * Text  
+        * Calendar  
+        * Drop-downthe following field types or controls that you would like add on your Check Out page:
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Field Name
+      </td>
+
+      <td>
+        Enter the field label that must be shown on the Check Out page.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Mark as mandatory
+      </td>
+
+      <td>
+        Select this check box to make the field mandatory so that customer has to provide input.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Step 4: Customize the Advanced options
 
@@ -156,22 +140,7 @@ To customize the advanced options (after payment page):
 
    The fields on the **Advanced Options**tile are displayed.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-2.20.46-PM-1024x502.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "412px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="412px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-2.20.46-PM-1024x502.png" />
 
 2. Enter the page URL in the **Success URL** field to which the customer must be redirected if the payment is successful.
 3. Enter the page URL in the **Cancel URL** field to which the customer must be redirected if the customer cancels or aborts the payment.
@@ -190,12 +159,12 @@ To filter the payment buttons by date range:
 
 1. Click **Past 1 Year** drop-down menu to view the date filter options.
 2. Click to select any of the the date range:
-   - Today
-   - Yesterday
-   - Past 7 days
-   - Past 30 days
-   - Past 1 year
-   - Custom Range
+   * Today
+   * Yesterday
+   * Past 7 days
+   * Past 30 days
+   * Past 1 year
+   * Custom Range
 
 > **Note**: For the **Custom Range** option, select the start date and end date for which the payment buttons must be displayed.
 
@@ -222,27 +191,12 @@ To download the payment button records:
 
   A pop-up page is displayed with the status of the generated report.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-7.41.29-PM.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "312px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="312px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-7.41.29-PM.png" />
 
 3. Perform any of the following steps:
-   - Click **Download Report** to complete the action.
-   - Click **Share**, enter the recipient email ID, and then click **Share**.
+   * Click **Download Report** to complete the action.
+   * Click **Share**, enter the recipient email ID, and then click **Share**.
 
-> 📘 Note: 
-> 
+> 📘 Note:
+>
 > You can share the report to multiple email IDs by entering the comma-separated entries.
