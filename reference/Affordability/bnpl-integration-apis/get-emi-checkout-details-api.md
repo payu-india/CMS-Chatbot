@@ -52,7 +52,6 @@ The request header contains the following fields:
 }
 [/block]
 
-
 #### Required parameters for calculating authorization
 
 - Date
@@ -135,7 +134,6 @@ function isEmpty(obj) {
 }
 [/block]
 
-
 ## Sample request
 
 ```
@@ -168,18 +166,18 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
          {
             "Lazypay":{
                "status":1,
-               "kfsLink":"https":,
+               "kfsLink":"https://",
                "eligible":true,
                "customerLinked":true,
-               "PayuToken":“Token12345”
+               "PayuToken":"Token12345"
             },
             "Simpl":{
                "status":1,
                "availableBalance":500,
-               "kfsLink":"https":,
+               "kfsLink":"https://",
                "eligible":true,
                "customerLinked":true,
-               "PayuToken":“Token78901”
+               "PayuToken":"Token78901"
             }
          }
       ]
@@ -204,7 +202,6 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
     }
   }
 }
-
 ```
 
 - Customer not eligible
@@ -219,5 +216,4 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
     "failure_reason": "The transaction or loan amount is greater than the available credit line with the customer"
   }
 }
-
 ```
