@@ -30,21 +30,7 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 3. After the device verification, UPI ID creation and the Bank selection will be done. Add bank journey will be completed after adding a bank account connected to the same mobile number used for device verification.
 4. Finally, customers can do a transaction using the added bank account. In case the customer is using the bank account for the first time they will need to set the MPIN as well. 
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6c8ab77aaa068c2667ab98f46c81e24f881e3255566bdff3d6bb84130587dd4f-bolt_reg_and_pay_flow.jpeg",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/6c8ab77aaa068c2667ab98f46c81e24f881e3255566bdff3d6bb84130587dd4f-bolt_reg_and_pay_flow.jpeg" />
 
 ### Pay
 
@@ -52,21 +38,7 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 2. The customer needs to select the already added bank account and enter the MPIN and the transaction will be completed.
 3. The customer can also check the balance before making a transaction to avoid low-balance transaction failure. 
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/253c320479271a77460a628915a381d0fcfbfc1cab71e93e46704127689b382a-bolt_pay_flow.jpeg",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/253c320479271a77460a628915a381d0fcfbfc1cab71e93e46704127689b382a-bolt_pay_flow.jpeg" />
 
 ### Profile Management Journey
 
@@ -75,17 +47,4 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 3. Customers can see all the raised disputes from the Dispute history screen.
 4. Customers can also deregister their all accounts with PayU UI Bolt SDK.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/85fc63476b9a08cd16d8d51d5e3f03c1744f82d0ce104186286268ae16ece310-bolt_profile_mgmt_flow.jpeg",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+<Image align="center" src="https://files.readme.io/85fc63476b9a08cd16d8d51d5e3f03c1744f82d0ce104186286268ae16ece310-bolt_profile_mgmt_flow.jpeg" />
