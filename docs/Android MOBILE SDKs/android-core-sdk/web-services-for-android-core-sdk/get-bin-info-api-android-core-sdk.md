@@ -14,13 +14,13 @@ The **Get Bin Info** API is used to get the following using the BIN number, that
 
 **BIN information**
 
-- Detect whether a particular BIN number is international or domestic.
-- Determine the card’s issuing bank, the card type brand, that is, Visa, Master, etc.,
-- Determine the card category, that is, credit, debit, etc.
+* Detect whether a particular BIN number is international or domestic.
+* Determine the card’s issuing bank, the card type brand, that is, Visa, Master, etc.,
+* Determine the card category, that is, credit, debit, etc.
 
 This API is used to get the card BIN details. For this API, you need to set the following parameter in the payment params similar to the following code block:
 
-## Step 1: Create Post Request 
+## Step 1: Create Post Request
 
 ```Text Java
 MerchantWebService merchantWebService = new MerchantWebService();
