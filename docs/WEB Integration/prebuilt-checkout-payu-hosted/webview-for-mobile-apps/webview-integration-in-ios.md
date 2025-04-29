@@ -146,9 +146,9 @@ webView.configuration.websiteDataStore = WKWebsiteDataStore.default()
 
 #### 2. In the ICP checkout being opened within a webview inside the application. This configuration is leading to unexpected and unusual behavior, likely due to the way the webview is interacting with the ICP checkout:
 
- Set Correct User Agent String value otherwise may get unexpected UI and function Issues in custom webView. Ex:- For IOS device (Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1).
+ Set Correct User Agent String value otherwise may get unexpected UI and function Issues in custom webView. Ex:- For IOS device (Mozilla/5.0 (iPhone; CPU iPhone OS 12\_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1).
 
-#### 3. Some issues arise when merchants configure their system to close the webview whenever an error occurs on the checkout page Eg ERR_BLOCKED_BY_ORB:
+#### 3. Some issues arise when merchants configure their system to close the webview whenever an error occurs on the checkout page Eg ERR\_BLOCKED\_BY\_ORB:
 
 This may be because web Page is not loaded/rendered properly. this type of error can be ignored.
 
@@ -188,7 +188,7 @@ If in manifest file this is not added, keyboard opens on top of input field. :- 
 
 a simple string is sent from Javascript to native swift code via WKScriptMessageHandler interface
 
-extension WebViewController: WKScriptMessageHandler {
+extension WebViewController: WKScriptMessageHandler \{
 
 ```
 func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -196,9 +196,9 @@ func userContentController(_ userContentController: WKUserContentController, did
    print("User message got") }}
 ```
 
-#### 10. How to handle window.open in Webview
+#### 10. How to handle window\.open in Webview
 
-As webview did not support multiple tab need to implement below function and create new webview to handle window.open()
+As webview did not support multiple tab need to implement below function and create new webview to handle window\.open()
 
 ```
 func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
