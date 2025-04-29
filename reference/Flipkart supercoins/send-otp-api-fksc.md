@@ -14,35 +14,82 @@ The **Send OTP** API is used to send the OTP to the customer and then verify the
 
 ## Request Header
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "Content-Type  \n**mandatory**",
-    "0-1": "Indicates the format in which the request is sent.",
-    "0-2": "application/json",
-    "1-0": "clientType",
-    "1-1": "Pass the type of client making the request and in this case, it is **loyalty**.",
-    "1-2": "loyalty",
-    "2-0": "Origin",
-    "2-1": "Pass the origin URL (the domain) from which the request is being made.",
-    "2-2": "<https://staging-rewards-api.payu.in'>",
-    "3-0": "Referer",
-    "3-1": "Pass the URL that the client was on when the request was done.",
-    "3-2": "<https://staging-rewards-api.payu.in/>"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Content-Type
+        **mandatory**
+      </td>
+
+      <td>
+        Indicates the format in which the request is sent.
+      </td>
+
+      <td>
+        application/json
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        clientType
+      </td>
+
+      <td>
+        Pass the type of client making the request and in this case, it is **loyalty**.
+      </td>
+
+      <td>
+        loyalty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Origin
+      </td>
+
+      <td>
+        Pass the origin URL (the domain) from which the request is being made.
+      </td>
+
+      <td>
+        [https://staging-rewards-api.payu.in'](https://staging-rewards-api.payu.in')
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Referer
+      </td>
+
+      <td>
+        Pass the URL that the client was on when the request was done.
+      </td>
+
+      <td>
+        [https://staging-rewards-api.payu.in/](https://staging-rewards-api.payu.in/)
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Request Parameters
 
@@ -73,8 +120,6 @@ curl 'https://sandbox.payu.in/otp/send' \
   --data-raw '{"mobileNumber":"8076499393"}' \
   --compressed
 ```
-
-
 
 ## Response Parameters
 
