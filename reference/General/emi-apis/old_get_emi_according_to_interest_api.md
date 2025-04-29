@@ -20,7 +20,7 @@ metadata:
 next:
   description: ''
 ---
-The **Get EMI Amount According to Interest **API (**getEmiAmountAccordingToInterest** API) is used to get the EMI interest bank rates for all the enabled EMIs.
+The **Get EMI Amount According to Interest** API (**getEmiAmountAccordingToInterest** API) is used to get the EMI interest bank rates for all the enabled EMIs.
 
 <GENERALAPIsEnvironment />
 
@@ -1116,62 +1116,199 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: appli
 The response includes the JSON array and each JSON has the fields as described in the following table:
 
 > 📘 Reference:
-> 
-> In the JSON Array of the response of the **Get EMI Amount According to Interest **API, the code displayed for the each issuer (at the beginning of each object). The significance of these codes are described in [EMI Options for Get EMI According to Interest API](ref:emi-options-for-get-emi-according-to-interest-api).
+>
+> In the JSON Array of the response of the **Get EMI Amount According to Interest** API, the code displayed for the each issuer (at the beginning of each object). The significance of these codes are described in [EMI Options for Get EMI According to Interest API](ref:emi-options-for-get-emi-according-to-interest-api).
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "transactionAmount",
-    "0-1": "The transaction amount that is will be converted into EMI.",
-    "0-2": "20000",
-    "1-0": "loanAmount",
-    "1-1": "The loan amount that needs to be converted as EMI.",
-    "1-2": "20000",
-    "2-0": "emiAmount",
-    "2-1": "The amount that needs to be converted as EMI.",
-    "2-2": "20000",
-    "3-0": "additionalCost",
-    "3-1": "The processing fee or additional cost for processing the EMI excluding interest.",
-    "3-2": "0.00",
-    "4-0": "emiMdrNote",
-    "4-1": "The EMI Merchant Discount Rate (MDR) note if any for the transaction.",
-    "4-2": "0.25",
-    "5-0": "bankRate",
-    "5-1": "The interest rate in percentage for the EMI. This is excluding the processing fee. For example, 12%, 18%, 24%, etc.",
-    "5-2": "13",
-    "6-0": "bankCharge",
-    "6-1": "The bank charges for the EMI transaction.",
-    "6-2": "0",
-    "7-0": "amount",
-    "7-1": "The principal part of the EMI.",
-    "7-2": "6666.67",
-    "8-0": "card\\_type",
-    "8-1": "The card type used by the customer and can be any of the following:  \n_ credit card   \n_ debit card",
-    "8-2": "credit card",
-    "9-0": "emi\\_value",
-    "9-1": "The amount to be paid per EMI.",
-    "9-2": "6811.63",
-    "10-0": "emi\\_interest\\_paid",
-    "10-1": "The total interest paid for all the EMIs.",
-    "10-2": "434.89",
-    "11-0": "tenure",
-    "11-1": "The tenure for the EMI in months. For example, 3, 6, 12, 24, 36, etc.",
-    "11-2": "3"
-  },
-  "cols": 3,
-  "rows": 12,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        transactionAmount
+      </td>
+
+      <td>
+        The transaction amount that is will be converted into EMI.
+      </td>
+
+      <td>
+        20000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        loanAmount
+      </td>
+
+      <td>
+        The loan amount that needs to be converted as EMI.
+      </td>
+
+      <td>
+        20000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        emiAmount
+      </td>
+
+      <td>
+        The amount that needs to be converted as EMI.
+      </td>
+
+      <td>
+        20000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        additionalCost
+      </td>
+
+      <td>
+        The processing fee or additional cost for processing the EMI excluding interest.
+      </td>
+
+      <td>
+        0.00
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        emiMdrNote
+      </td>
+
+      <td>
+        The EMI Merchant Discount Rate (MDR) note if any for the transaction.
+      </td>
+
+      <td>
+        0.25
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankRate
+      </td>
+
+      <td>
+        The interest rate in percentage for the EMI. This is excluding the processing fee. For example, 12%, 18%, 24%, etc.
+      </td>
+
+      <td>
+        13
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankCharge
+      </td>
+
+      <td>
+        The bank charges for the EMI transaction.
+      </td>
+
+      <td>
+        0
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount
+      </td>
+
+      <td>
+        The principal part of the EMI.
+      </td>
+
+      <td>
+        6666.67
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        card\_type
+      </td>
+
+      <td>
+        The card type used by the customer and can be any of the following:  
+
+        * credit card   
+        * debit card
+      </td>
+
+      <td>
+        credit card
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        emi\_value
+      </td>
+
+      <td>
+        The amount to be paid per EMI.
+      </td>
+
+      <td>
+        6811.63
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        emi\_interest\_paid
+      </td>
+
+      <td>
+        The total interest paid for all the EMIs.
+      </td>
+
+      <td>
+        434.89
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        tenure
+      </td>
+
+      <td>
+        The tenure for the EMI in months. For example, 3, 6, 12, 24, 36, etc.
+      </td>
+
+      <td>
+        3
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
@@ -1181,30 +1318,62 @@ The response includes the JSON array and each JSON has the fields as described i
 
 Use the following sample values while trying out the API:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Reference",
-    "0-0": "key",
-    "0-1": "For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n\\- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  \n  \n- **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "1-0": "hash",
-    "1-1": "Hash logic for this API is:  \n`sha512(key\\|command\\|var1\\|salt) sha512\n`For more information about the hash generation process, refer to [Encryption of Request.](/docs/hashing-request-and-response)",
-    "2-0": "var1",
-    "2-1": "For JSON fields description, refer to [Additional Info for General APIs](ref:addl-info-general-apis)"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Reference
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+      </td>
+
+      <td>
+        For more information on how to generate the Key and Salt, refer to any of the following:  
+
+        \- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  
+
+        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash
+      </td>
+
+      <td>
+        Hash logic for this API is:\
+        ```
+        sha512(key\|command\|var1\|salt) sha512
+
+        ```For more information about the hash generation process, refer to [Encryption of Request.](/docs/hashing-request-and-response)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var1
+      </td>
+
+      <td>
+        For JSON fields description, refer to [Additional Info for General APIs](ref:addl-info-general-apis)
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
 **Example values**:
 
-- `var1`: Any amount.
+* `var1`: Any amount.
