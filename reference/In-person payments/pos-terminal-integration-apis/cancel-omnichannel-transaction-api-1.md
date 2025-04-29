@@ -13,76 +13,156 @@ next:
 The **Cancel Omnichannel Transaction** API is used to cancel the auth transaction with PayU when the merchant needs to cancel a transaction after successfully accepting the customer’s payment due to internal reasons.
 
 > 👍 Callouts
-> 
-> - Only transactions that are in auth status and added on the same day can only be marked as canceled.
-> - Only transactions that are collected by Credit Card and Debit Card can only be canceled.
-> - Pre Auth transactions cannot be canceled.
-> - The same merchant key should be used to cancel the payment which was used to initiate the payment.
+>
+> * Only transactions that are in auth status and added on the same day can only be marked as canceled.
+> * Only transactions that are collected by Credit Card and Debit Card can only be canceled.
+> * Pre Auth transactions cannot be canceled.
+> * The same merchant key should be used to cancel the payment which was used to initiate the payment.
 
 ## Environment
 
-| Environment | URL                                             |
-| :---------- | :---------------------------------------------- |
-| Test        | <https://test.payu.in/merchant/postservice.php> |
-| Production  | <https://info.payu.in/merchant/postservice.php> |
+| Environment | URL                                                                                            |
+| :---------- | :--------------------------------------------------------------------------------------------- |
+| Test        | [https://test.payu.in/merchant/postservice.php](https://test.payu.in/merchant/postservice.php) |
+| Production  | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Sample Value",
-    "0-0": "key  \n`mandatory`",
-    "0-1": "`string` The merchant key that was provided by PayU.  \nReference: For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n**Production**: Generate Production Merchant Key and Sat.  \n  \n**Test**: Generate Test Merchant Key and Salt.",
-    "0-2": "Your Test Key",
-    "1-0": "command  \n`mandatory`",
-    "1-1": "`string` The parameter must contain the name of the web service. For this API, the value must be cancel_omni_payment.",
-    "1-2": "string The parameter must contain the name of the web service. For this API, the value must be cancel_omni_payment.",
-    "2-0": "hash  \n`mandatory`",
-    "2-1": "string This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below: `sha512(key\\|command\\|var1\\|salt)`",
-    "2-2": "",
-    "3-0": "var1  \n`mandatory`",
-    "3-1": "json This parameter is in JSON format. For the description of fields in JSON Format, refer to the next table.",
-    "3-2": "Refer the next table."
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Sample Value
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The merchant key that was provided by PayU.\
+        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
+
+        * \*Production\*\*: Generate Production Merchant Key and Sat.  
+        * \*Test\*\*: Generate Test Merchant Key and Salt.
+      </td>
+
+      <td>
+        Your Test Key
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        command\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The parameter must contain the name of the web service. For this API, the value must be cancel\_omni\_payment.
+      </td>
+
+      <td>
+        string The parameter must contain the name of the web service. For this API, the value must be cancel\_omni\_payment.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash\
+        `mandatory`
+      </td>
+
+      <td>
+        string This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below: `sha512(key\|command\|var1\|salt)`
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var1\
+        `mandatory`
+      </td>
+
+      <td>
+        json This parameter is in JSON format. For the description of fields in JSON Format, refer to the next table.
+      </td>
+
+      <td>
+        Refer the next table.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 **Var1**
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Sample",
-    "0-0": "transactionId  \nmandatory",
-    "0-1": "String This is the transactionId with which initial transaction is initiated.",
-    "0-2": "cancel1234",
-    "1-0": "product_type   \noptional",
-    "1-1": "String This parameter indicates the product if the merchant has initiated multiple in-progress transactions with the same txnid. For this API, you must specify only the values as POS.",
-    "1-2": "POS"
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Sample
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        transactionId
+        mandatory
+      </td>
+
+      <td>
+        String This is the transactionId with which initial transaction is initiated.
+      </td>
+
+      <td>
+        cancel1234
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        product\_type \
+        optional
+      </td>
+
+      <td>
+        String This parameter indicates the product if the merchant has initiated multiple in-progress transactions with the same txnid. For this API, you must specify only the values as POS.
+      </td>
+
+      <td>
+        POS
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
