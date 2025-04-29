@@ -25,13 +25,14 @@ metadata:
 next:
   description: ''
 ---
-This API is used to get the payment details of an existing card stored on PayU Vault so that you can use it with third-party tokenization. The payment details include the cryptogram, PAR, card number, card token, issuer token details and network token details as listed in the [Response Parameters table](#response-parameters) of this section.
+This API is used to get the payment details of an existing card stored on PayU Vault so that you can use it with third-party tokenization. The payment details include the cryptogram, PAR, card number, card token, issuer token details, and network token details as listed in the [Response Parameters table](#response-parameters) of this section.
 
 HTTP Method: **POST**
 
 <GENERALAPIsEnvironment />
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Successful Scenario**
 
@@ -72,40 +73,50 @@ HTTP Method: **POST**
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "The status of the response can be any of the following:  \n_ 1: Success  \n_. 2: Failure",
-    "0-2": "1",
-    "1-0": "msg",
-    "1-1": "The description of the response whether the card details were stored successfully or not stored.",
-    "1-2": "Instrument details",
-    "2-0": "card details",
-    "2-1": "(Array format) | The details are sent by PayU in Array format for the successful response. The next table describes the details in the Array format.",
-    "2-2": ""
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>**Parameter**</th>
+      <th>**Description**</th>
+      <th>**Example**</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>status</td>
+      <td>
+        The status of the response can be any of the following:  
+        * 1: Success  
+        * 2: Failure
+      </td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>msg</td>
+      <td>
+        The description of the response whether the card details were stored successfully or not stored.
+      </td>
+      <td>Instrument details</td>
+    </tr>
+    <tr>
+      <td>card details</td>
+      <td>
+        (Array format) | The details are sent by PayU in Array format for the successful response. The next table describes the details in the Array format.
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</Table>
 
 </details>
 
 ## Request parameters
 
-<details><summary>Reference info for request parameters</summary>
+<details>
+  <summary>Reference info for request parameters</summary>
 
 <KeyHashForGeneralParametersDescription />
 
