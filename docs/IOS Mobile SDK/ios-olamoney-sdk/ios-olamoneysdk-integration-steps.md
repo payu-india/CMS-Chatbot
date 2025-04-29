@@ -28,14 +28,14 @@ The recommended procedure to include the PayUOlaMoneySDK in your iOS app is thro
 
 If you do not want to use Cocoapods, download the framework manually and integrate it into your mobile app. To integrate manually, please follow the steps below:
 
-1. Download the framework files from the following location: <https://github.com/payu-intrepos/payu-olamoney-ios/>
+1. Download the framework files from the following location: [https://github.com/payu-intrepos/payu-olamoney-ios/](https://github.com/payu-intrepos/payu-olamoney-ios/)
 2. Link the framework from your Xcode project
 
 ### Dependencies
 
 The PayUOlaMoneySDK framework requires the following dependencies. When integrating through Cocoapods, these dependencies are added automatically, and you do not need to take any additional action.
 
-If you are integrating with the PayUOlaMoneySDK manually, you will need to include the dependencies mentioned below. To include the frameworks manually, refer to the following PayU Github link: <https://github.com/payu-intrepos/payu-upi-ios-sdk/tree/master/Dependencies>
+If you are integrating with the PayUOlaMoneySDK manually, you will need to include the dependencies mentioned below. To include the frameworks manually, refer to the following PayU Github link: [https://github.com/payu-intrepos/payu-upi-ios-sdk/tree/master/Dependencies](https://github.com/payu-intrepos/payu-upi-ios-sdk/tree/master/Dependencies)
 
 1. **PayU Networking**: This is used by PayUOlaMoneySDK to handle network requests.
 2. **PayU Logger**: This is used by PayUOlaMoneySDK to log errors and verbose data.
@@ -89,17 +89,17 @@ paymentParams?.offerKey = "cardnumber@8370,cardnumbers2@8380,for particular bins
 ```
 
 4. Fetch hashes and save them in the `paymentParams` object
-   - You need to set the hashes property in `paymentParams`. Hashes ensure that requests are untampered. This helps in ensuring the security of the transaction. Property hashes are of the type `PayUOMHashes`.
+   * You need to set the hashes property in `paymentParams`. Hashes ensure that requests are untampered. This helps in ensuring the security of the transaction. Property hashes are of the type `PayUOMHashes`.
 
 > 📘 Note
-> 
+>
 > Hashes must be generated only on your server. Your secret key (also known as salt) must never be included in your app.For more information, refer to [Hash Generation](https://docs.payu.in/docs/ios-checkoutpro-generate-hash).
 
-- PayUHashes has two properties. Each of these three is used for a distinct API call. The two properties are as follows:  
-  `paymentHash`: This is required to create transactions at PayU’s end.  
+* PayUHashes has two properties. Each of these three is used for a distinct API call. The two properties are as follows:\
+  `paymentHash`: This is required to create transactions at PayU’s end.\
   `eligibilityHash`: This is required by the checkEligibility API to check eligibility if user is eligible/registered for the Ola Money
-- You need to provide hashes before asking SDK to initiate the payment and check the user’s eligibility.
-- Command and var1 values for generating paymentRelatedDetailsForMobileSDKHash and validateVPAHash as defined in the following table:
+* You need to provide hashes before asking SDK to initiate the payment and check the user’s eligibility.
+* Command and var1 values for generating paymentRelatedDetailsForMobileSDKHash and validateVPAHash as defined in the following table:
 
 | Hash for Param  | Command                        | var1                                                                                                                                                                                                                                                |
 | :-------------- | :----------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
