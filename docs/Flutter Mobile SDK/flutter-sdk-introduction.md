@@ -24,16 +24,16 @@ Software development kits (SDK) or dev kits are a collection of tools and progra
 
 In addition to Flutter, PayU provides the following SDKs based on the mobile platform you want to integrate with:
 
-- Android SDKs
-- Apple iOS SDKs
-- React Native
-- Cordova SDK
+* Android SDKs
+* Apple iOS SDKs
+* React Native
+* Cordova SDK
 
 ## PayU’s SDK offerings
 
 PayU’s Mobile SDK offers important mobility features that help customers to make smooth and easy transactions using mobile phones:
 
-- Plug and Play modules for payments
-- Native Mobile Interface for PayU’s API
-- Easy Integration and Cost Saving
-- Zero Management effort in rolling updates
+* Plug and Play modules for payments
+* Native Mobile Interface for PayU’s API
+* Easy Integration and Cost Saving
+* Zero Management effort in rolling updates
