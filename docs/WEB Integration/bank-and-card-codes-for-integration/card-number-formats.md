@@ -10,9 +10,9 @@ metadata:
 next:
   description: ''
 ---
-> 📘 Note: 
-> 
-> To validate whether the card was issued in India, you must use the **check_isDomestic** API by posting the first six digits of the card number. For more information, refer to the [BIN APIs](ref:bin-apis).
+> 📘 Note:
+>
+> To validate whether the card was issued in India, you must use the **check\_isDomestic** API by posting the first six digits of the card number. For more information, refer to the [BIN APIs](ref:bin-apis).
 
 | **Card Type** | **Card Number Format**                                                              |
 | ------------- | ----------------------------------------------------------------------------------- |
