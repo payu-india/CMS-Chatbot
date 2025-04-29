@@ -27,29 +27,18 @@ The PayU Dynamic Currency Conversion (DCC) or Multi Currency Payments (MCP) inte
 
 For businesses that want to ensure a smooth e-commerce checkout flow and process, PayU has an assortment of options available. For Indian merchants who want to expand their business internationally:
 
-- **Dynamic Currency Conversion (DCC)**: allows your customers to transact in their local currency via local debit/credit card, and merchants to receive funds in INR
-- **Multi-Currency Conversion (MCC)**: allows your customers to see listing of product/services on merchant website in their local currency.
+* **Dynamic Currency Conversion (DCC)**: allows your customers to transact in their local currency via local debit/credit card, and merchants to receive funds in INR
+* **Multi-Currency Conversion (MCC)**: allows your customers to see listing of product/services on merchant website in their local currency.
 
 ## Benefits
 
 PayU’s International platforms allow you to provide a seamless and card payment experience to their customers without any additional code changes in existing integration. Some of the integration benefits are:
 
-- Highly secure payment experience
-- Supporting skid-3DS and 3DS transactions based on merchant requirements
-- Ability to convert real-time transaction amount into the customer’s card issuing currency, which includes 130 currencies and about 230 countries.
-- Flexibility to get fund settlement in INR irrespective of card issuing currency
+* Highly secure payment experience
+* Supporting skid-3DS and 3DS transactions based on merchant requirements
+* Ability to convert real-time transaction amount into the customer’s card issuing currency, which includes 130 currencies and about 230 countries.
+* Flexibility to get fund settlement in INR irrespective of card issuing currency
 
 The following video describes the benefits of Dynamic Currency Conversion for your business:
 
-[block:embed]
-{
-  "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2F-9MCbZGShvo%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D-9MCbZGShvo&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2F-9MCbZGShvo%2Fhqdefault.jpg&key=7788cb384c9f4d5dbbdbeffd9fe4b92f&type=text%2Fhtml&schema=youtube\" width=\"854\" height=\"480\" scrolling=\"no\" title=\"YouTube embed\" frameborder=\"0\" allow=\"autoplay; fullscreen; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe>",
-  "url": "https://www.youtube.com/watch?v=-9MCbZGShvo",
-  "title": "PayU International Payments - Receive Payments From Across The Globe",
-  "favicon": "https://www.google.com/favicon.ico",
-  "image": "https://i.ytimg.com/vi/-9MCbZGShvo/hqdefault.jpg",
-  "provider": "https://www.youtube.com/",
-  "href": "https://www.youtube.com/watch?v=-9MCbZGShvo",
-  "typeOfEmbed": "youtube"
-}
-[/block]
+<Embed url="https://www.youtube.com/watch?v=-9MCbZGShvo" title="PayU International Payments - Receive Payments From Across The Globe" favicon="https://www.google.com/favicon.ico" image="https://i.ytimg.com/vi/-9MCbZGShvo/hqdefault.jpg" provider="youtube.com" href="https://www.youtube.com/watch?v=-9MCbZGShvo" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252F-9MCbZGShvo%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253D-9MCbZGShvo%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252F-9MCbZGShvo%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
