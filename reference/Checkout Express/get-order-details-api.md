@@ -23,10 +23,10 @@ You can use the Get Order Details API to fetch the order details and order statu
 
 ## Environment
 
-| Environment | URL                                            |
-| :---------- | :--------------------------------------------- |
-| Test        | <https://apitest.payu.in/cart/order/{{txnid}}> |
-| Production  | <https://api.payu.in/cart/order/{{txnid}}>     |
+| Environment | URL                                                                                              |
+| :---------- | :----------------------------------------------------------------------------------------------- |
+| Test        | [https://apitest.payu.in/cart/order/\{\{txnid}}](https://apitest.payu.in/cart/order/\{\{txnid}}) |
+| Production  | [https://api.payu.in/cart/order/\{\{txnid}}](https://api.payu.in/cart/order/\{\{txnid}})         |
 
 ## Sample Request
 
@@ -38,7 +38,7 @@ curl --location 'https://apitest.payu.in/cart/order/768_240214:64' \
 ```
 
 > 🚧 Keep in mind
-> 
+>
 > Date and Authorization headers are also needed to authenticate the request. Sample Java code to create the authentication headers - V2 SHA512 Authentication
 
 ### Create V2 SHA512 Authentication
