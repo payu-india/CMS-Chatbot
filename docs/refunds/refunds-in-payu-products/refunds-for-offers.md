@@ -42,7 +42,7 @@ You would need to adjust the discount amount before calling the **Cancel Refund 
 
 ### **Example**
 
-If the amount was ₹100 and the discount was ₹10, and if you wish to process a full refund, you will need to pass ₹90 as the refund amount.   
+If the amount was ₹100 and the discount was ₹10, and if you wish to process a full refund, you will need to pass ₹90 as the refund amount. \
 For partial refunds, you can decide whether to deduct the discount amount or not. You need to pass the exact value to be refunded back to the user.
 
 ## **Cashback Transactions**
@@ -51,6 +51,6 @@ There is no need to adjust refunds where cashback was applied earlier with the t
 
 ### **Example**
 
-If the amount was ₹100 and the cashback was ₹10, and if you wish to process a full refund, you will need to pass ₹100 as the refund amount.  
-If you wish to adjust the cashback amount, reduce it from the refund amount and submit it in the request.  
+If the amount was ₹100 and the cashback was ₹10, and if you wish to process a full refund, you will need to pass ₹100 as the refund amount.\
+If you wish to adjust the cashback amount, reduce it from the refund amount and submit it in the request.\
 In the above example, pass ₹90 as the refund amount.
