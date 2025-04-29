@@ -10,48 +10,110 @@ metadata:
 next:
   description: ''
 ---
-The** Print Receipts** API is used to print the charge slip of a transaction for N10 devices only.
+The **Print Receipts** API is used to print the charge slip of a transaction for N10 devices only.
 
 **Method**: POST
 
 > 🚧 Warning
-> 
+>
 > This API is applicable only for N10 device.
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "Handler   \n`mandatory`",
-    "0-1": "`handler` Create a handler inner class. This class will return the response message.",
-    "0-2": "handler",
-    "1-0": "deviceType   \n`mandatory`",
-    "1-1": "`string` The device type of the POS terminal",
-    "1-2": "N910",
-    "2-0": "referenceNumber  \n`mandatory`",
-    "2-1": "`string` The transaction reference number.",
-    "2-2": "123-45-8575",
-    "3-0": "receiptImage   \n`Optional`",
-    "3-1": "`bitmap` Pass this parameter to print your company logo in the receipt.",
-    "3-2": "",
-    "4-0": "customerCopy   \n`Optional`",
-    "4-1": "`boolean` Determines whether or not to print the customer copy.",
-    "4-2": "True"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Handler 
+        `mandatory`
+      </td>
+
+      <td>
+        `handler` Create a handler inner class. This class will return the response message.
+      </td>
+
+      <td>
+        handler
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        deviceType \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The device type of the POS terminal
+      </td>
+
+      <td>
+        N910
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        referenceNumber\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The transaction reference number.
+      </td>
+
+      <td>
+        123-45-8575
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        receiptImage \
+        `Optional`
+      </td>
+
+      <td>
+        `bitmap` Pass this parameter to print your company logo in the receipt.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        customerCopy \
+        `Optional`
+      </td>
+
+      <td>
+        `boolean` Determines whether or not to print the customer copy.
+      </td>
+
+      <td>
+        True
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
@@ -99,15 +161,15 @@ private final Handler printHandler = new Handler()
 Use the custom printer API for customization of print receipt such as the size of the fonts in the receipt, the alignment of the texts in the receipt, etc.
 
 > ❗️ Warning
-> 
+>
 > This API is applicable only for N910 device.
 
 Custom printer allows you to print the following:
 
-- Print text
-- Print image
-- Print QR code.
-- Print multi-language and special characters
+* Print text
+* Print image
+* Print QR code.
+* Print multi-language and special characters
 
 Custom printer has the following customization options:
 
@@ -136,36 +198,74 @@ Custom printer has the following customization options:
 
 **Method**: POST
 
-Use this API to print text. If you require to print custom text, use <<print custom text API>> instead.
+Use this API to print text. If you require to print custom text, use {user["print custom text API"]} instead.
 
 ## Request parameter
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "Handler   \n`mandatory`",
-    "0-1": "`handler` Create a handler inner class. This class will return response message.",
-    "0-2": "",
-    "1-0": "DeviceType   \n`mandatory`",
-    "1-1": "`string` This parameter is used to Identify the device.",
-    "1-2": "",
-    "2-0": "StringBuffer  \n`mandatory`",
-    "2-1": "`stringBuffer` Used to append, concatenate, and manipulate Strings or sequence of characters.",
-    "2-2": "`StringBuffer sb=newStringBuffer();`"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Handler 
+        `mandatory`
+      </td>
+
+      <td>
+        `handler` Create a handler inner class. This class will return response message.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        DeviceType \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` This parameter is used to Identify the device.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        StringBuffer\
+        `mandatory`
+      </td>
+
+      <td>
+        `stringBuffer` Used to append, concatenate, and manipulate Strings or sequence of characters.
+      </td>
+
+      <td>
+        `StringBuffer sb=newStringBuffer();`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
@@ -219,7 +319,7 @@ private final Handler printerHandler = new Handler()
 Use this API to print custom text.
 
 > 📘 Remember
-> 
+>
 > If print characters are more than 32 ,the text will print in the next line.
 
 ## Sample request
@@ -242,35 +342,90 @@ Use this API to print image.
 
 ## Request parameter
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "Handler   \n`mandatory`",
-    "0-1": "`handler` Create a handler inner class. This class will return response message.",
-    "0-2": "",
-    "1-0": "DeviceType   \n`mandatory`",
-    "1-1": "`string` This parameter is used to Identify the device.",
-    "1-2": "",
-    "2-0": "Map\\<String,Bitmap>  \n`mandatory`",
-    "2-1": "`bitmap` This parameter stores the data in a pair such  \nthat each element  has a key associated  with it.",
-    "2-2": "`Map<String,Bitmap>  \nmap=new  \nMap<String,Bitmap>`",
-    "3-0": "StringBuffer  \n`mandatory`",
-    "3-1": "`stringBuffer` Used to append, concatenate, and manipulate Strings or sequence of characters.",
-    "3-2": "`StringBuffer sb=newStringBuffer();`"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Handler 
+        `mandatory`
+      </td>
+
+      <td>
+        `handler` Create a handler inner class. This class will return response message.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        DeviceType \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` This parameter is used to Identify the device.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Map\<String,Bitmap>\
+        `mandatory`
+      </td>
+
+      <td>
+        `bitmap` This parameter stores the data in a pair such\
+        that each element  has a key associated  with it.
+      </td>
+
+      <td>
+        ```
+        Map<String,Bitmap>  
+        map=new  
+        Map<String,Bitmap>
+        ```
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        StringBuffer\
+        `mandatory`
+      </td>
+
+      <td>
+        `stringBuffer` Used to append, concatenate, and manipulate Strings or sequence of characters.
+      </td>
+
+      <td>
+        `StringBuffer sb=newStringBuffer();`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
@@ -322,32 +477,70 @@ Use this API to print QR code.
 
 ## Request Parameter
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "Handler   \n`mandatory`",
-    "0-1": "`handler` Create a handler inner class. This class will return response message.",
-    "0-2": "",
-    "1-0": "DeviceType   \n`mandatory`",
-    "1-1": "`string` This parameter is used to Identify the device.",
-    "1-2": "",
-    "2-0": "StringBuffer  \n`mandatory`",
-    "2-1": "`stringBuffer` Used to append, concatenate, and manipulate Strings or sequence of characters.",
-    "2-2": "`StringBuffer sb=newStringBuffer();`"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Handler 
+        `mandatory`
+      </td>
+
+      <td>
+        `handler` Create a handler inner class. This class will return response message.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        DeviceType \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` This parameter is used to Identify the device.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        StringBuffer\
+        `mandatory`
+      </td>
+
+      <td>
+        `stringBuffer` Used to append, concatenate, and manipulate Strings or sequence of characters.
+      </td>
+
+      <td>
+        `StringBuffer sb=newStringBuffer();`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
@@ -359,7 +552,7 @@ PaymentInitialization initialization = new PaymentInitialization(ScannerViewActi
 ```
 
 > 👍 Callout
-> 
+>
 > In above sample request maximum range of size can be 50 to 350 and maximum range of width can be 1 to 3.
 
 ## Sample response
@@ -389,45 +582,111 @@ Use this API to print multi-language and special characters.
 
 ## Request parameter
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "Handler   \n`mandatory`",
-    "0-1": "`handler` Create a handler inner class. This class will return response message.",
-    "0-2": "",
-    "1-0": "DeviceType   \n`mandatory`",
-    "1-1": "`string` Passed for Identification of the device.",
-    "1-2": "",
-    "2-0": "Font  \n`mandatory`",
-    "2-1": "`string` This parameter prints language other than English and special characters.",
-    "2-2": "Roboto.ttf",
-    "3-0": "Map\\<String,Bitmap>  \n`mandatory`",
-    "3-1": "`bitmap` This parameter stores the data in a pair such that each element has a key associated with it.",
-    "3-2": "`Map<String,Bitmap>  \nmap=new  \nMap<String,Bitmap>`",
-    "4-0": "StringBuffer  \n`mandatory`",
-    "4-1": "`stringBuffer` Used to append, concatenate, and manipulate Strings or sequence of characters.",
-    "4-2": "`StringBuffer sb=newStringBuffer();`"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Handler 
+        `mandatory`
+      </td>
+
+      <td>
+        `handler` Create a handler inner class. This class will return response message.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        DeviceType \
+        `mandatory`
+      </td>
+
+      <td>
+        `string` Passed for Identification of the device.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Font\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` This parameter prints language other than English and special characters.
+      </td>
+
+      <td>
+        Roboto.ttf
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Map\<String,Bitmap>\
+        `mandatory`
+      </td>
+
+      <td>
+        `bitmap` This parameter stores the data in a pair such that each element has a key associated with it.
+      </td>
+
+      <td>
+        ```
+        Map<String,Bitmap>  
+        map=new  
+        Map<String,Bitmap>
+        ```
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        StringBuffer\
+        `mandatory`
+      </td>
+
+      <td>
+        `stringBuffer` Used to append, concatenate, and manipulate Strings or sequence of characters.
+      </td>
+
+      <td>
+        `StringBuffer sb=newStringBuffer();`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 > **Notes**:
 >
 > 1. If Image is not required in print you can pass the Map object as null. The specified font must be available in the application assets folder, else it will print boxes instead. Ensure that you are using proper .ttf file which supports both language and special characters. Example: src/main/assets/Roboto.ttf
-> 2. If you are using Locale to get string resources, ensure that you are setting it to English at the end of print.  
->    Example, for Hindi: Context context = LocaleHelper.setLocale(context,”hi”);  
->    Resources resources =context.getResources().getString(R.string.your_string); You need to set Locale again at the end of print, else the device language will get changed. Example, if you want to change the language to english: Context context = LocaleHelper.setLocale(context,”en”);  
+> 2. If you are using Locale to get string resources, ensure that you are setting it to English at the end of print.\
+>    Example, for Hindi: Context context = LocaleHelper.setLocale(context,”hi”);\
+>    Resources resources =context.getResources().getString(R.string.your\_string); You need to set Locale again at the end of print, else the device language will get changed. Example, if you want to change the language to english: Context context = LocaleHelper.setLocale(context,”en”);\
 >    Once a transaction is initiated, back button must be disabled until the transaction is completed.
 
 ## Sample request
