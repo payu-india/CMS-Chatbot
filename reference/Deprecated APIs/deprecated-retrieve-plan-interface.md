@@ -16,25 +16,36 @@ Retrieve plan interface returns details about created plan by HTTP Get method. T
 
 HTTP Method: **GET**
 
-Path: {base_url}/api/sub/v1/merchant/plans/{planId}
+Path: \{base\_url}/api/sub/v1/merchant/plans/\{planId}
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "merchantId  \n**mandatory**",
-    "0-1": "Merchant Key received during onboarding.  \n**Example**: Ysr1r"
-  },
-  "cols": 2,
-  "rows": 1,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        merchantId
+        **mandatory**
+      </td>
+
+      <td>
+        Merchant Key received during onboarding.  
+
+        * \*Example\*\*: Ysr1r
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Retrieve all plans
 
@@ -42,36 +53,69 @@ Retrieve plan interface returns details about created plan by HTTP Get method. T
 
 HTTP Method: **GET**
 
-Path: {base_url}/api/sub/v1/merchant/plans?
+Path: \{base\_url}/api/sub/v1/merchant/plans?
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "merchantId  \n**mandatory**",
-    "0-1": "Merchant Key received during onboarding.  \n**Example**: Ysr1r",
-    "1-0": "skip  \n**mandatory**",
-    "1-1": "Skip is the number of plans to be skip from the data set fetched from database for given merchantId before applying the limit on it. It should be greater than or equal to zero.  \n**Example**: 5",
-    "2-0": "limit  \n**mandatory**",
-    "2-1": "_Number of plans to be fetch. It should be greater than zero.  \nMax value of limit is 50_  \n**Example**: 20"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        merchantId
+        **mandatory**
+      </td>
+
+      <td>
+        Merchant Key received during onboarding.  
+
+        * \*Example\*\*: Ysr1r
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        skip\
+        **mandatory**
+      </td>
+
+      <td>
+        Skip is the number of plans to be skip from the data set fetched from database for given merchantId before applying the limit on it. It should be greater than or equal to zero.  
+
+        * \*Example\*\*: 5
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        limit\
+        **mandatory**
+      </td>
+
+      <td>
+        * Number of plans to be fetch. It should be greater than zero.\
+          Max value of limit is 50\_  
+        * \*Example\*\*: 20
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 Example URL:
 
-_{base\_url}/api/sub_[_/v1/merchant/plans_](https://subscriptiontest.citruspay.com/api-docs/mercury.html)_?merchantId=Ysr1r&skip=10&limit=50_
+*\{base\_url}/api/sub*[*/v1/merchant/plans*](https://subscriptiontest.citruspay.com/api-docs/mercury.html)*?merchantId=Ysr1r\&skip=10\&limit=50*
 
 In given URL format, for merchant having key as “Ysr1r” all the plans will be returned from 11 till 60 sorted by latest date, total 50 plans
 
-_{base\_url}/api/sub_[_/v1/merchant/plans_](https://subscriptiontest.citruspay.com/api-docs/mercury.html)_?merchantId=Ysr1r&skip=0&limit=10_
+*\{base\_url}/api/sub*[*/v1/merchant/plans*](https://subscriptiontest.citruspay.com/api-docs/mercury.html)*?merchantId=Ysr1r\&skip=0\&limit=10*
 
 In given URL format, latest 10 plans will be returned.
