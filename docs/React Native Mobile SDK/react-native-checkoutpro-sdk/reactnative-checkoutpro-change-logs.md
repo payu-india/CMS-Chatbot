@@ -14,9 +14,9 @@ next:
 
 ### Added
 
-- Added support for SI and offers.
-- Added support for EMI and cards in the L1 screen.
-- Update Native Android CheckoutPro to v1.3.0
+* Added support for SI and offers.
+* Added support for EMI and cards in the L1 screen.
+* Update Native Android CheckoutPro to v1.3.0
 
 ***
 
@@ -24,8 +24,8 @@ next:
 
 ## Added
 
-- Added Merchant logo support.
-- Added support for EMI and cards in the L1 screen.
+* Added Merchant logo support.
+* Added support for EMI and cards in the L1 screen.
 
 ***
 
@@ -33,8 +33,8 @@ next:
 
 ### Added
 
-- Native Checkout Pro Android SDK Version updated to 1.1.1
-- Native Checkout Pro iOS SDK Version updated to 1.1.1
+* Native Checkout Pro Android SDK Version updated to 1.1.1
+* Native Checkout Pro iOS SDK Version updated to 1.1.1
 
 ***
 
@@ -42,8 +42,8 @@ next:
 
 ## Added
 
-- Added CheckoutPro support.
-- Updated Sample App as per the Checkout Pro implementation.
+* Added CheckoutPro support.
+* Updated Sample App as per the Checkout Pro implementation.
 
 ***
 
@@ -51,8 +51,8 @@ next:
 
 ### Added
 
-- Added CheckoutPro support.
-- Updated Sample.
+* Added CheckoutPro support.
+* Updated Sample.
 
 ***
 
@@ -68,4 +68,4 @@ Updated CustomBrowser SDK version to 6.0 and 3.9.3 for iOS.
 
 ### Fixed
 
-- Updated package name to `com.payubiz`
+* Updated package name to `com.payubiz`
