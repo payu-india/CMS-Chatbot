@@ -1,0 +1,204 @@
+---
+title: UPI Collection S2S Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+In UPI Collect, the sequence of APIs is called to follow for redirection less experience.
+
+### **Steps to Integrate**
+
+1. [Validate VPA](#step-1-validate-vpa)
+2. [Initiate the payment to PayU](#step-2-initiate-the-payment-to-payu)
+3. [Check UPI Transaction Status](#step-3-check-upi-transaction-status)
+4. [S2S Call Back Response](#step-4-check-the-s2s-callback-response)
+
+<RegisterMerchantPrerequiste />
+
+### UPI Content Flow
+
+The following diagram illustrates the UPI content process flow from the initiation of the transaction by the customer to the success of payment.
+
+![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/UPI-Content-Flow-1024x457.png)
+
+**UPI Collect Process Steps**
+
+1. Customer selects UPI from the website or mobile app to make payment through. 
+
+2. PayU ​pre-fills the VPA address issuer to reduce customer input. ​ 
+
+3. PayU verifies the customer’s VPA and shares the customer’s name.  
+
+4. Customer proceeds with the transaction after confirmation 
+
+   The customer sees a payment screen pre-filled with the amount and your name.  
+
+5. Customer accepts the payment to complete the transaction. ​ 
+
+***
+
+## Step 1: Validate VPA
+
+This web service will let you validate VPA if it is a valid VPA or not.
+
+After the customer enters VPA on your website, you need to call this API to check for VPA validation. If VPA is valid, you need to proceed with the next step. For a sample request or response, refer to  <a href="validate_vpa_api" target="_blank"> Validate VPA</a>.
+
+Collect the response in the  <a href="_payment_s2s_upi_collection" target="_blank"> UPI Collection</a> under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to <a href="addl_info-payment-apis#response-for-initial-server-to-server-request" target="_blank"> Additional Info for Payment APIs</a>.
+
+## Step 2: Initiate the payment to PayU
+
+To start with, the request is raised from the Merchant to PayU with the required transaction mandatory/optional parameters. This needs to be a server-to-server curl call request. This API is used for both Cards and UPI for generating a new transaction. Parameters and their descriptions are mentioned below.
+
+For the "Try It" experience, refer to <a href="_payment_s2s_upi_collection" target="_blank"> UPI Collection</a>. 
+
+**PayU URL Endpoint:**
+
+| Production | <https://secure.payu.in/_payment> |
+| :--------- | :-------------------------------- |
+| Test       | <https://test.payu.in/_payment>   |
+
+### Post parameters
+
+Some of the parameters are mandatory for S2S integration, and a few are optional. You need to include the following parameters.
+
+### Request parameters
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "Parameter",
+    "h-1": "Description",
+    "h-2": "Example",
+    "0-0": "key  \n`mandatory`",
+    "0-1": "`String` The merchant key provided by PayU must be included.  \n**Reference**: For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n- **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)\n- **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
+    "0-2": "",
+    "1-0": "txnid  \n`mandatory`",
+    "1-1": "`String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\\<= 50 characters & excluding >,\\<, =,:,\\&, ‘).",
+    "1-2": "1234_abcdedf",
+    "2-0": "amount  \n`mandatory`",
+    "2-1": "`String` (rounded to two decimal places) This parameter must contain the amount for which QR needs to be generated. The amount should be greater than or equal to Rs.1.00.",
+    "2-2": "1000",
+    "3-0": "phone  \n`mandatory`",
+    "3-1": "`String` This parameter must contain the customer phone number (10 characters).",
+    "3-2": "9876786756",
+    "4-0": "productinfo  \n`mandatory`",
+    "4-1": "`String` (alphanumeric) This field must contain the product name. By default, the value is 'storefront' (max. 100 characters).",
+    "4-2": "iPhone 12",
+    "5-0": "firstname  \n`mandatory`",
+    "5-1": "`String` This parameter must contain the customer's first name (max. 60 characters).",
+    "5-2": "Sundar",
+    "6-0": "email  \n`mandatory`",
+    "6-1": "`String` This parameter must contain the customer email ID.",
+    "6-2": "[hello@payu.in](mailto:hello@payu.in)",
+    "7-0": "<<glossary:pg>>  \n`mandatory`",
+    "7-1": "`String` It must be set as UPI for this transaction.",
+    "7-2": "UPI",
+    "8-0": "<<glossary:bankcode>>  \n`mandatory`",
+    "8-1": "`String` Value should be \"UPI\": for UPI collect transaction  \n\"INTENT\": for initiating the UPI Intent transaction ",
+    "8-2": "UPI",
+    "9-0": "lastname  \n`optional`",
+    "9-1": "`String` This parameter must contain the customer last name (maximum 20 characters).",
+    "9-2": "Teja",
+    "10-0": "address1  \n`optional`",
+    "10-1": "`String` This parameter must contain the first line of customer address (up to 100 characters).",
+    "10-2": "PayU, Bestech Business Tower, Gurgaon",
+    "11-0": "address2  \n`optional`",
+    "11-1": "`String` This parameter must contain the second line of the customer address (up to 100 characters).",
+    "11-2": "Sohna Road",
+    "12-0": "city  \n`optional`",
+    "12-1": "`String` This parameter must contain the customer city (max. 50 characters).",
+    "12-2": "Gurgaon",
+    "13-0": "country  \n`optional`",
+    "13-1": "`String` This parameter must contain the customer's country that is part of the address (max. 50 characters).",
+    "13-2": "India",
+    "14-0": "state  \n`optional`",
+    "14-1": "String This parameter must contain the customer state that is part of the address (max 50 characters).",
+    "14-2": "Haryana",
+    "15-0": "zipcode  \n`optional`",
+    "15-1": "`Numeric` This parameter must contain the customer's PIN code (6 digits).",
+    "15-2": "122018",
+    "16-0": "udf1  \n`optional`",
+    "16-1": "`String` This parameter can include any custom information in request (up to 255 characters).",
+    "16-2": "Website order",
+    "17-0": "udf2  \n`optional`",
+    "17-1": "`String` This parameter can include any custom information in request (up to 255 characters.).",
+    "17-2": "",
+    "18-0": "udf3  \n`optional`",
+    "18-1": "`String` This parameter can include any custom information in request.  \n(up to 255 characters.)",
+    "18-2": "",
+    "19-0": "udf4  \noptional",
+    "19-1": "`String` This parameter can include any custom information in request.  \n(up to 255 characters.)",
+    "19-2": "",
+    "20-0": "udf5  \n`optional`",
+    "20-1": "`String` This parameter can include any custom information in request.  \n(up to 255 characters.)",
+    "20-2": "",
+    "21-0": "s2s\\_client\\_ip  \n`mandatory`",
+    "21-1": "`Sting` This parameter must have the source IP of the user's device.  \n**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.",
+    "21-2": "",
+    "22-0": "s2s\\_device\\_info  \n`mandatory`",
+    "22-1": "`String` This parameter must have the user agent of device.  \n**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.",
+    "22-2": "",
+    "23-0": "txn_s2s_flow  \n`mandatory`",
+    "23-1": "`String`This parameter must be posted with the values a **4** for transaction flow.",
+    "23-2": "4",
+    "24-0": "upiAppName  \n`mandatory`",
+    "24-1": "`String` For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum’s expected for major apps:  \n  \n- phonepe\n- googlepay\n- paytm\n- bhim\n- cred\n- amazonpay\n- whatsapp\n- genericintent – For any other app apart from  \n  above",
+    "24-2": "phonepe",
+    "25-0": "vpa  \n`mandatory`",
+    "25-1": "`String` Virtual Private Address. VPA can first be validated using VPA validate web service. Also, add regex where ‘@’ exists. Example: 8800411088@upi This needs to be passed in case of collect flow of UPI only.",
+    "25-2": "8800411088@upi",
+    "26-0": "hash  \n`mandatory`",
+    "26-1": "`String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to  <a href=\"hashing-request-and-response\" target=\"_blank\"> Generate Hash</a>.",
+    "26-2": ""
+  },
+  "cols": 3,
+  "rows": 27,
+  "align": [
+    "left",
+    "left",
+    "left"
+  ]
+}
+[/block]
+
+
+<HashingRequestParameters />
+
+## Step 3: Check UPI transaction status
+
+Check the UPI transaction status using the **Verify Payment API** (verify\_payment) API. For more information, refer to [Verify Payment API](ref:verify_payment_api)
+
+***
+
+## Step 4: Check the S2S callback response
+
+The response to this call would be a base64 encoded JSON containing transaction ID and other transaction details.
+
+<ReverseHashing />
+
+### Sample response
+
+```plaintext
+eyJzdGF0dXMiOiJzdWNjZXNzIiwicmVzdWx0Ijp7Im1paHBheWlkIjoiNzYwMTI2NTU4NSIsIm1vZGUiOiJVUEkiLCJzdGF0dXMiOiJwZW5kaW5nIiwia2V5IjoiTWVyY2hhbnRLZXkiLCJ0eG5pZCI6IjZiMmYzZDY4NWVjMWJiYTdkZDRiIiwiYW1vdW50IjoiMTAuMDAiLCJhZGRlZG9uIjoiMjAxOC0xMS0wMSAxOTo1NjozMiIsInByb2R1Y3RpbmZvIjoiUHJvZHVjdCBJbmZvIiwiZmlyc3RuYW1lIjoiUGF5dS1Vc2VyIiwibGFzdG5hbWUiOiIiLCJhZGRyZXNzMSI6IiIsImFkZHJlc3MyIjoiIiwiY2l0eSI6IiIsInN0YXRlIjoiIiwiY291bnRyeSI6IiIsInppcGNvZGUiOiIiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJwaG9uZSI6IjEyMzQ1Njc4OTAiLCJ1ZGYxIjoiIiwidWRmMiI6IiIsInVkZjMiOiIiLCJ1ZGY0IjoiIiwidWRmNSI6IiIsInVkZjYiOiIiLCJ1ZGY3IjoiIiwidWRmOCI6IiIsInVkZjkiOiIiLCJ1ZGYxMCI6IiIsImNhcmRfdG9rZW4iOiIiLCJjYXJkX25vIjoiIiwiZmllbGQwIjoiIiwiZmllbGQxIjoiYWJjZEB1cGkiLCJmaWVsZDIiOiIiLCJmaWVsZDMiOiIiLCJmaWVsZDQiOiIiLCJmaWVsZDUiOiIiLCJmaWVsZDYiOiIiLCJmaWVsZDciOiIiLCJmaWVsZDgiOiIiLCJmaWVsZDkiOiIiLCJwYXltZW50X3NvdXJjZSI6InBheXVQdXJlUzJTIiwiUEdfVFlQRSI6IkFYSVNVIiwiZXJyb3IiOiJFMDAwIiwiZXJyb3JfTWVzc2FnZSI6Ik5vIEVycm9yIiwibmV0X2Ftb3VudF9kZWJpdCI6IjAiLCJhZGRpdGlvbmFsQ2hhcmdlcyI6IjI5LjUiLCJ1bm1hcHBlZHN0YXR1cyI6ImluIHByb2dyZXNzIiwiaGFzaCI6IjU2NzQ3OGE5ZDUyMzhlZTIyZGFhMDM2ZWMwMjAxMzk0OGY2YjgwNGUzMWNhYzNkYmQyMDc1NmU5ZjFkNDFlMjI4ZTQxYzJkYjcwZmU4ZWRlZmMyNDBiOTQwODZlN2QzN2Y4ZDQ2OTA4MzU4Y2NjNzA4Y2JjNWVlNTJjMjlkYWEwIiwiYmFua19yZWZfbm8iOiJBWEk5MTEwMDAwMDAwMDQ5MTg0NzY2MTU0MTc5OTcwNTY5OCIsImJhbmtfcmVmX251bSI6IkFYSTkxMTAwMDAwMDAwNDkxODQ3NjYxNTQxNzk5NzA1Njk4IiwiYmFua2NvZGUiOiJVUEkiLCJzdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UiLCJjdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UiLCJmdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UifX0
+```
+
+**Base64 decoded response:**
+
+```plaintext
+{"status":"success","result":{"mihpayid":"7601265585","mode":"UPI","status":"pending","key":"MerchantKey","txnid":"6b2f3d685ec1bba7dd4b","amount":"10.00","addedon":"2018-11-01
+19:56:32","productinfo":"ProductInfo","firstname":"PayuUser","lastname":"","address1":"","address2":"","city":"","state":"","country":"","zipcode":"","email":"test@example.com","phone":"1234567890","udf1":"","udf2":"","udf3":"","udf4":"","udf5":"","udf6":"","udf7":"","udf8":"","udf9":"","udf10":"","card_token":"","card_no":"","field0":"","field1":"abcd@upi","field2":"","field3":"","field4":"","field5":"","field6":"","field7":"","field8":"","field9":"","payment_source":"payuPureS2S","PG_TYPE":"AXISU","error":"E000","error_Message":"NoError","net_amount_debit":"0","additionalCharges":"29.5","unmappedstatus":"inprogress","hash":"567478a9d5238ee22daa036ec02013948f6b804e31cac3dbd20756e9f1d41e228e41c2db70fe8edefc240b94086e7d37f8d46908358ccc708cbc5ee52c29daa0","bank_ref_no":"AXI91100000000491847661541799705698","bank_ref_num":"AXI91100000000491847661541799705698","bankcode":"UPI","surl":"https:\/\/admin.payu.in\/test_response","curl":"https:\/\/admin.payu.in\/test_response","furl":"https:\/\/admin.payu.in\/test_response"}}
+```
+
+> 📘 Note:
+> 
+> In case of an invalid VPA, the final result will be a JSON in plain text as follows.
+
+```plaintext
+{"result":null,"status":"failed","error":"E1617","message":"Invalid vpa"}
+```
