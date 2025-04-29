@@ -23,7 +23,7 @@ Hash required to make payment.
 
 Code samples to generate hash are present here - [JAVA](https://docs.google.com/document/d/18iaMVr5oq2bjuzTJvMvSpAyFrbQVLJegz5CdmdwBzIs/edit), [PHP](https://docs.google.com/document/d/1wby1TStudKuOtIRmUIc3ZqDVOg20mks8q5mT40i60qw/edit).
 
-## For SI Payment 
+## For SI Payment
 
 When doing Recurring(SI) transaction, Payment hash need to be calculated as mentioned [here](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk#for-si-payment)
 
@@ -31,9 +31,9 @@ When doing Recurring(SI) transaction, Payment hash need to be calculated as ment
 
 To call any PayU API, you need to generate hash from your server using following pattern :
 
-> sha512(key|command|var1|salt)  
-> where  
-> key=YOUR KEY  
-> command=Api Commands  
-> salt= YOUR SALT  
-> var1= default(if you want stored cards use var1 as user_credentials else default)
+> sha512(key|command|var1|salt)\
+> where\
+> key=YOUR KEY\
+> command=Api Commands\
+> salt= YOUR SALT\
+> var1= default(if you want stored cards use var1 as user\_credentials else default)
