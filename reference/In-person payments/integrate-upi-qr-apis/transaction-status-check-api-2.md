@@ -12,52 +12,139 @@ next:
 ---
 The **Transaction Status Check** API is used to check the status of the transaction based on the status of the transaction in PayU system further course of action is determined. If the transaction status is pending in PayU then we hit bank API to get the transaction’s status. Based on the bank response, we mark transaction success, fail, or pending in our system and provide a response.
 
-| Environment | URI                                             |
-| :---------- | :---------------------------------------------- |
-| Production  | <https://info.payu.in/merchant/postservice.php> |
+| Environment | URI                                                                                            |
+| :---------- | :--------------------------------------------------------------------------------------------- |
+| Production  | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Sample Value",
-    "0-0": "key  \n`mandatory`",
-    "0-1": "`string` This parameter must include the Merchant key that was provided by PayU.  \nReference: For more information on how to generate the Key and Salt, refer to any of the following:  \nProduction: Generate Production Merchant Key and Sat.  \nTest: Generate Test Merchant Key and Salt.",
-    "0-2": "Your Test Key",
-    "1-0": "command  \n`mandatory`",
-    "1-1": "`string` The parameter must contain the name of the web service.",
-    "1-2": "check_bqr_txn_status",
-    "2-0": "hash  \n`mandatory`",
-    "2-1": "`string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:  \n  \nsha512(key|command|var1|salt)  \nsha512 is the encryption method used here.",
-    "2-2": "ajh84babvav",
-    "3-0": "var1: transactionId  \n`mandatory`",
-    "3-1": "`string` (alphanumeric) This parameter will include the transaction Identifier of the transaction for which the status is being checked.",
-    "3-2": "1234abcd",
-    "4-0": "var2: paymentmode  \n`optional`",
-    "4-1": "`string` This parameter will include any of the following values to specify the mode of transaction:  \n  \nCARD: Debit/Credit Card  \n  \nUPI: UPI",
-    "4-2": "CARD",
-    "5-0": "var3: productype  \n`optional`",
-    "5-1": "`string` This parameter will include any of the following values to specify the product type:  \n‘’ or ‘’.  \n  \nDBQR: DBQR  \nISBQR: ISBQR",
-    "5-2": "DBQR"
-  },
-  "cols": 3,
-  "rows": 6,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Sample Value
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        `string` This parameter must include the Merchant key that was provided by PayU.\
+        Reference: For more information on how to generate the Key and Salt, refer to any of the following:\
+        Production: Generate Production Merchant Key and Sat.\
+        Test: Generate Test Merchant Key and Salt.
+      </td>
+
+      <td>
+        Your Test Key
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        command\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` The parameter must contain the name of the web service.
+      </td>
+
+      <td>
+        check\_bqr\_txn\_status
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:  
+
+        sha512(key|command|var1|salt)\
+        sha512 is the encryption method used here.
+      </td>
+
+      <td>
+        ajh84babvav
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var1: transactionId\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` (alphanumeric) This parameter will include the transaction Identifier of the transaction for which the status is being checked.
+      </td>
+
+      <td>
+        1234abcd
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var2: paymentmode\
+        `optional`
+      </td>
+
+      <td>
+        `string` This parameter will include any of the following values to specify the mode of transaction:  
+
+        CARD: Debit/Credit Card  
+
+        UPI: UPI
+      </td>
+
+      <td>
+        CARD
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var3: productype\
+        `optional`
+      </td>
+
+      <td>
+        `string` This parameter will include any of the following values to specify the product type:\
+        ‘’ or ‘’.  
+
+        DBQR: DBQR\
+        ISBQR: ISBQR
+      </td>
+
+      <td>
+        DBQR
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
 ```Text cURL
-
 ```
 ```Text Python
 import http.client
@@ -97,31 +184,60 @@ Response response = client.newCall(request).execute();
 
 ## Response parmeters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of web service call. The status can be any of the following:  \n  \n0 - If web service call failed.  \n1 - If web service call succeeded",
-    "1-0": "msg",
-    "1-1": "This parameter returns the following message if the SMS was sent successfully:  \nsms request successful  \nresult",
-    "2-0": "result",
-    "2-1": "Encoded transaction and status details."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        This parameter returns the status of web service call. The status can be any of the following:  
+
+        0 - If web service call failed.\
+        1 - If web service call succeeded
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        msg
+      </td>
+
+      <td>
+        This parameter returns the following message if the SMS was sent successfully:\
+        sms request successful\
+        result
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        result
+      </td>
+
+      <td>
+        Encoded transaction and status details.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample response
 
-- **Success**
+* **Success**
 
 ```Text JSON
 {
@@ -131,7 +247,7 @@ Response response = client.newCall(request).execute();
 }
 ```
 
-- **Pending** 
+* **Pending** 
 
 ```Text JSON
 {
@@ -141,7 +257,7 @@ Response response = client.newCall(request).execute();
 }
 ```
 
-- **Failed at backend**
+* **Failed at backend**
 
 ```Text JSON
 {
@@ -151,7 +267,7 @@ Response response = client.newCall(request).execute();
 }
 ```
 
-- **Pending Status at PayU but Success at Backend**
+* **Pending Status at PayU but Success at Backend**
 
 ```Text JSON
 {
