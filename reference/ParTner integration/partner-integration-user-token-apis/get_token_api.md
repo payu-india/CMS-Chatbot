@@ -32,65 +32,117 @@ next:
 ---
 The **Get Token API** returns the authentication token generated using the client ID and client secret for the following products: 
 
-- [Payment Link API Integration](doc:integration-api-for-payment-links)
-- [Partner Integration API Integration](doc:refer-merchants)
+* [Payment Link API Integration](doc:integration-api-for-payment-links)
+* [Partner Integration API Integration](doc:refer-merchants)
 
 ### Environment
 
-| Test           | <https://uat-accounts.payu.in> |
-| :------------- | :----------------------------- |
-| **Production** | <https://accounts.payu.in>     |
+| Test           | [https://uat-accounts.payu.in](https://uat-accounts.payu.in) |
+| :------------- | :----------------------------------------------------------- |
+| **Production** | [https://accounts.payu.in](https://accounts.payu.in)         |
 
 ## Additional information for request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameters",
-    "h-1": "Description",
-    "0-0": "client_id",
-    "0-1": "For getting your client ID, refer to [Download Client Credentials](doc:download-client-credentials).",
-    "1-0": "client_secret",
-    "1-1": "For getting your client secret, refer to [Download Client Credentials](doc:download-client-credentials).",
-    "2-0": "scope",
-    "2-1": "The scopes to be used for various use cases in Parter Integration are:  \n  \n- Refer Merchant, Verify Link Merchant, Get Merchant, and Update Merchant: **refer_merchant**\n- Send Sign In OTP: **send_sign_in_otp**\n- Verify Sign In OTP: **verify_sign_in_otp**\n- Client Manage Agreement (Used in E-Sign flow): **client_manage_agreement**\n- Client Manage KYC Details (Used in managing KYC documents): **client_manage_kyc_details**\n- Create Bank Details: **create_bank_details**\n- Penny Verify - **user_token**\n- Manage Payment Links: **create_payment_links**",
-    "3-0": "grant_type",
-    "3-1": "This parameter contains a constant value used to get the access token. The grant_type used across the partner integration is **client_credentials**."
-  },
-  "cols": 2,
-  "rows": 4,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameters
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        client\_id
+      </td>
+      <td>
+        For getting your client ID, refer to [Download Client Credentials](doc:download-client-credentials).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        client\_secret
+      </td>
+      <td>
+        For getting your client secret, refer to [Download Client Credentials](doc:download-client-credentials).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        scope
+      </td>
+      <td>
+        The scopes to be used for various use cases in Parter Integration are:  
+        * Refer Merchant, Verify Link Merchant, Get Merchant, and Update Merchant: **refer\_merchant**
+        * Send Sign In OTP: **send\_sign\_in\_otp**
+        * Verify Sign In OTP: **verify\_sign\_in\_otp**
+        * Client Manage Agreement (Used in E-Sign flow): **client\_manage\_agreement**
+        * Client Manage KYC Details (Used in managing KYC documents): **client\_manage\_kyc\_details**
+        * Create Bank Details: **create\_bank\_details**
+        * Penny Verify - **user\_token**
+        * Manage Payment Links: **create\_payment\_links**
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grant\_type
+      </td>
+      <td>
+        This parameter contains a constant value used to get the access token. The grant\_type used across the partner integration is **client\_credentials**.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
-
-<details><summary>Response parameters</summary>
-
-| Parameter    | Description                                              |
-| :----------- | :------------------------------------------------------- |
-| access_token | The access token to be used in Partner Integration APIs. |
-| token_type   | The token type of the access token.                      |
-| expires_in   | The expiry time in seconds of the access token.          |
-| scope        | The scope of the access token.                           |
-| created_at   | The UNIX time stamp when the access token was created.   |
-
-> 📘 Note:
-> 
-> The expiry period of the token generated using this API is configurable by you (partner). The expiry period (in seconds) of the token is displayed in the **expires_in** parameter of the response. For example, in the following response, the value of the **expires_in** is 7200 seconds:
-> 
-> ```
-> {
->   "access_token": "82c38b64e072f3d64da6e4e6efee9789ffe1250f0cd04c20753d6e6f25df9cc7",
->   "token_type": "Bearer",
->   "expires_in": 7200,
->   "scope": "send_sign_in_otp",
->   "created_at": 1595411399
-> }
-> ```
-
+<details>
+  <summary>Response parameters</summary>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>access\_token</td>
+        <td>The access token to be used in Partner Integration APIs.</td>
+      </tr>
+      <tr>
+        <td>token\_type</td>
+        <td>The token type of the access token.</td>
+      </tr>
+      <tr>
+        <td>expires\_in</td>
+        <td>The expiry time in seconds of the access token.</td>
+      </tr>
+      <tr>
+        <td>scope</td>
+        <td>The scope of the access token.</td>
+      </tr>
+      <tr>
+        <td>created\_at</td>
+        <td>The UNIX time stamp when the access token was created.</td>
+      </tr>
+    </tbody>
+  </table>
+  > 📘 Note:
+  >
+  > The expiry period of the token generated using this API is configurable by you (partner). The expiry period (in seconds) of the token is displayed in the **expires\_in** parameter of the response. For example, in the following response, the value of the **expires\_in** is 7200 seconds:
+  >
+  > ```
+  > {
+  >   "access_token": "82c38b64e072f3d64da6e4e6efee9789ffe1250f0cd04c20753d6e6f25df9cc7",
+  >   "token_type": "Bearer",
+  >   "expires_in": 7200,
+  >   "scope": "send_sign_in_otp",
+  >   "created_at": 1595411399
+  > }
+  > ```
 </details>
 
 ## Request parameters
