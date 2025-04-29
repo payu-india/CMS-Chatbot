@@ -19,14 +19,15 @@ This API is used to share the payment link in the given list of email IDs.
 
 |                        |                                                      |
 | :--------------------- | :--------------------------------------------------- |
-| Test Environment       | <https://uatoneapi.payu.in/payment-links/{id}/share> |
-| Production Environment | <https://oneapi.payu.in/payment-links/{id}/share>    |
+| Test Environment       | &lt;https://uatoneapi.payu.in/payment-links/`{id}`/share&gt; |
+| Production Environment | &lt;https://oneapi.payu.in/payment-links/`{id}`/share&gt;    |
 
 > 📘 Note:
 > 
 > The access token with the scope as **read_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
 
-<details> <summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 		curl --request POST \
@@ -39,7 +40,8 @@ This API is used to share the payment link in the given list of email IDs.
 
 </details>
 
-<details> <summary>Sample response </summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
@@ -74,7 +76,6 @@ This API is used to share the payment link in the given list of email IDs.
 }
 [/block]
 
-
 ## Path parameters
 
 [block:parameters]
@@ -97,10 +98,10 @@ This API is used to share the payment link in the given list of email IDs.
 }
 [/block]
 
-
 ## Query parameters
 
-<details> <summary> Reference info for request parameters </summary>
+<details>
+  <summary>Reference info for request parameters</summary>
 
 | Parameter   | Reference                                                                                                         |
 | :---------- | :---------------------------------------------------------------------------------------------------------------- |
