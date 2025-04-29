@@ -16,10 +16,10 @@ Order cancellations are an unfortunate reality for any business. Customers may c
 
 Refunds can be classified into two types:
 
-- **Partial refund**: Where the refund amount is less than the payment amount. This means the merchant is refunding only part of the payment done by the customer. This happens when only part of the order is canceled.  
+* **Partial refund**: Where the refund amount is less than the payment amount. This means the merchant is refunding only part of the payment done by the customer. This happens when only part of the order is canceled.\
   Ex. Customer purchases two products from merchant or value Rs. 500 and Rs. 7000. Customer pays a total of Rs. 7,500 to the merchant via online payment. Now the customer returns product 1 of value Rs. 500. Now, the merchant only must return Rs. 500 to the customer (instead of the transaction amount of Rs. 7,500).
-- **Instant refund**: If the instant refund is enabled for you, the refunds are completed within 5 minutes of the refund request.
-- **Full refund**: Where the refund amount is equal to the payment amount. This means that the merchant is refunding the entire payment done by the customer for a transaction. This happens when either merchant or customer cancels the entire order.  
+* **Instant refund**: If the instant refund is enabled for you, the refunds are completed within 5 minutes of the refund request.
+* **Full refund**: Where the refund amount is equal to the payment amount. This means that the merchant is refunding the entire payment done by the customer for a transaction. This happens when either merchant or customer cancels the entire order.\
   Ex. Customer purchases two products from merchant or value Rs. 500 and Rs. 7000. Customer pays a total of Rs. 7,500 to the merchant via online payment. Now the customer returns both the product. Now, the merchant must return Rs. 7,500 to the customer.
 
 ## Understanding Refunds
@@ -28,8 +28,8 @@ Refunds can be classified into two types:
 
 PayU offers refunds for payments made using PayU India products: PayU Offers, PayU Partners, Split Settlements, etc. Generally, you need to initiate a refund request using any of the following methods:
 
-- **Cancel Refund Transaction** API: For more information, refer to [Refund Transaction API](ref:refund_transaction_api).
-- **PayU Dashboard**: For more information, refer to [Refunds Dashboard](doc:refunds-dashboard#initiate-a-refund-using-dashboard).
+* **Cancel Refund Transaction** API: For more information, refer to [Refund Transaction API](ref:refund_transaction_api).
+* **PayU Dashboard**: For more information, refer to [Refunds Dashboard](doc:refunds-dashboard#initiate-a-refund-using-dashboard).
 
 ### How long does it take to get a refund?
 
@@ -55,7 +55,7 @@ The transaction details are displayed for the transaction.
 
 1. Click **Send Refund** at the top-right corner of the page.
 
-The _Refund Payment_ pop-up page is displayed.
+The *Refund Payment* pop-up page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_initiate_refunds_page-2.png)
 
@@ -68,10 +68,10 @@ The _Refund Payment_ pop-up page is displayed.
 
 Bulk upload allows merchants using PayU Dashboard to issue refunds in bulk using a .xls, .xlsx, or .csv file. Every file you upload containing refund information on Dashboard is known as a batch. After a batch is uploaded successfully, it is picked up for processing within 60 mins. After a batch is picked for processing the status against that batch gets updated. A batch file can be in either of these states:
 
-- **UPLOADED**: This is the initial state of the file when it is uploaded. Once you upload a file, it stays ‘uploaded’ and gets picked up for processing within 60 mins.
-- **QUEUED**: This state indicates that the file is read and refunds are queued in the system for processing.
-- **PROCESSING**: This state indicates that the batch file is getting processed.
-- **COMPLETED**: This is the final state of the file. It indicates that all the rows in the batch file were processed, either successfully or unsuccessfully. Merchants can download the batch output file from the dashboard to check the status of each refund.
+* **UPLOADED**: This is the initial state of the file when it is uploaded. Once you upload a file, it stays ‘uploaded’ and gets picked up for processing within 60 mins.
+* **QUEUED**: This state indicates that the file is read and refunds are queued in the system for processing.
+* **PROCESSING**: This state indicates that the batch file is getting processed.
+* **COMPLETED**: This is the final state of the file. It indicates that all the rows in the batch file were processed, either successfully or unsuccessfully. Merchants can download the batch output file from the dashboard to check the status of each refund.
 
 After a batch crosses the **Uploaded** stage, the **Download Output** option gets enabled for that batch. You can then download the output file for the batch to check the refund status when required.
 
@@ -93,19 +93,19 @@ A list of batches uploaded in the past is displayed on this page. The batches ca
 
 3. Click Upload to upload a batch of refunds.
 
-   The _Batch Upload_ pop-up page is displayed with instructions to upload the file.
+   The *Batch Upload* pop-up page is displayed with instructions to upload the file.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-3.png)
 
 4. Use the **Download sample file** option to download the Excel file template that can be used for including the refund information:
-   - Add the PayU ID/transaction ID against which the refund needs to be initiated in the first column of the Excel file.
-   - Add the refund amount in the second column against each transaction ID.
-   - Save the file.
+   * Add the PayU ID/transaction ID against which the refund needs to be initiated in the first column of the Excel file.
+   * Add the refund amount in the second column against each transaction ID.
+   * Save the file.
 
 > 📘 Notes:
-> 
-> - Both these columns are mandatory and the column header should not be changed.
-> - A unique file name should be uploaded each time
+>
+> * Both these columns are mandatory and the column header should not be changed.
+> * A unique file name should be uploaded each time
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-4.png)
 
@@ -137,22 +137,22 @@ After the batch is uploaded, the status is displayed as **Uploaded** under the *
 A refund can be in any of these states:
 ```
 
-- **IN PROGRESS**: When the refund is initiated and is being processed.
-- **REQUESTED**: When the refund is sent to the bank for offline processing. In such cases, it takes 5-7 business days for the credit to reflect into the customer’s account.
-- **SUCCESS**: When the refund is successfully processed
-- **FAILURE**: When the refund failed while processing with the PG. The merchant can download the output file to see the failure reason.
-- **REJECTED**: When the refund got rejected during initiation due to some validation failures. The merchant can download the output file to see the failure reason.
+* **IN PROGRESS**: When the refund is initiated and is being processed.
+* **REQUESTED**: When the refund is sent to the bank for offline processing. In such cases, it takes 5-7 business days for the credit to reflect into the customer’s account.
+* **SUCCESS**: When the refund is successfully processed
+* **FAILURE**: When the refund failed while processing with the PG. The merchant can download the output file to see the failure reason.
+* **REJECTED**: When the refund got rejected during initiation due to some validation failures. The merchant can download the output file to see the failure reason.
 
 ## **Track Refunds on Dashboard**
 
-The **Refunds** tab of the \_Transactions_page summarizes all the refunds for the selected date range. You can view the detailed transaction records and the option to export the transaction records for the selected period.
+The **Refunds** tab of the \_Transactions\_page summarizes all the refunds for the selected date range. You can view the detailed transaction records and the option to export the transaction records for the selected period.
 
 To view the refunds for a preferred interval:
 
 1. Login to the Merchant Dashboard. For more information, refer to [Log in to Dashboard](doc:log-in-to-dashboard).
 2. Navigate to **Track > Transactions** and then select the **Refunds** tab.
 
-   The **Refunds** tab of the _Transactions_ page is displayed.
+   The **Refunds** tab of the *Transactions* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_refunds_tab-1024x801.png)
 
