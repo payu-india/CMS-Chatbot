@@ -34,9 +34,9 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 ## Step 2: Include the SDK in your app build.gradle
 
 > ❗️ Move to Maven Central
-> 
+>
 > PayU has moved to Maven Central, Please update your existing dependency using the following configuration:
-> 
+>
 > ```Text build.gradle
 > api 'in.payu:payu-sdk:7.7.0'
 > ```
@@ -68,32 +68,28 @@ mPaymentParams.setHash("<pass the payment Hash>");
 
 ```
 ```Text Kotlin
-
 ```
 
-> - Transaction ID should be kept unique for each transaction and not more than 25 characters.
-> - udf1 to udf5 are options params where you can pass additional information related to transaction. If you don't want to use it, then send them as empty string like, udf1=""
-> - Email and First name can be empty strings "" if you don't want to use them
-> - For store user card feature  
->    /\*_ These are used for store card feature. If you are not using it then user_credentials = "default"  
->       _ user_credentials takes of the form like user_credentials = "merchant_key : user_id"  
->       _ here merchant_key = your merchant key,  
->       _ user_id = unique id related to user like, email, phone number, etc._/
-> - For SURL ,Success url is where the transaction response is posted by PayU on successful transaction.PayU recommends you to design or use your own surl and furl after testing is completed. See Handling SURL and FURL.
-> - For FURL, Failure url is where the transaction response is posted by PayU on failed transaction. PayU recommends you to design or use your own surl and furl after testing is completed. See Handling SURL and FURL.
-> - For offers `mPaymentParams.setOfferKey`("your_offer_key")
-> - For any other payment default param (like phone and others) mPaymentParams.setPhone("your_number")
+> * Transaction ID should be kept unique for each transaction and not more than 25 characters.
+> * udf1 to udf5 are options params where you can pass additional information related to transaction. If you don't want to use it, then send them as empty string like, udf1=""
+> * Email and First name can be empty strings "" if you don't want to use them
+> * For store user card feature\
+>    /\**These are used for store card feature. If you are not using it then user\_credentials = "default"\&#xA;* user *credentials takes of the form like user\_credentials = "merchant\_key : user\_id"\&#xA;* here merchant *key = your merchant key,\&#xA;* user*id = unique id related to user like, email, phone number, etc.*/
+> * For SURL ,Success url is where the transaction response is posted by PayU on successful transaction.PayU recommends you to design or use your own surl and furl after testing is completed. See Handling SURL and FURL.
+> * For FURL, Failure url is where the transaction response is posted by PayU on failed transaction. PayU recommends you to design or use your own surl and furl after testing is completed. See Handling SURL and FURL.
+> * For offers `mPaymentParams.setOfferKey`("your\_offer\_key")
+> * For any other payment default param (like phone and others) mPaymentParams.setPhone("your\_number")
 
 ## Step 4: Hash generation
 
 > 📘 Generate Hash from Server
-> 
+>
 > It is recommended to generate hash from server only. Keep your key and salt in server side hash generation code. For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
-The following approach for generating hash is not recommended. However, this approach can be used to test in PRODUCTION_ENV
+The following approach for generating hash is not recommended. However, this approach can be used to test in PRODUCTION\_ENV
 
-- if your server-side hash generation code is not completely setup. While going live, this approach for hash generation
-- should not be used.
+* if your server-side hash generation code is not completely setup. While going live, this approach for hash generation
+* should not be used.
 
 ```
 /******************************
@@ -392,9 +388,9 @@ mPaymentParams.setSubventionAmount(“4000”);
 ```
 
 > 📘 Hash Formula
-> 
+>
 > If the subvention amount is passed, the hash formula for payment hash will be similar to the following
-> 
+>
 > sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|SubventionAmount)
 
 #### Fetch a List of No-Cost EMI-supporting banks
@@ -433,8 +429,8 @@ mPaymentParams.setVpa(virtualPaymentAddress);
 
 You need to validate the following for the virtual payment address (VPA):
 
-- VPA length should be less than or equal to 50 characters
-- Regex for VPA: value.match(/^([A-Za-z0-9.])+@[A-Za-z0-9]+$/)
+* VPA length should be less than or equal to 50 characters
+* Regex for VPA: value.match(/^([A-Za-z0-9.])+@[A-Za-z0-9]+$/)
 
 2. Get the request by using the `PaymentPostParams` method as follows:
 
@@ -469,7 +465,7 @@ try{
 
 ### TwidPay
 
-1. To Pay using TwidPay, create the post data with PayuConstants.PAY_BY_REWARDS.
+1. To Pay using TwidPay, create the post data with PayuConstants.PAY\_BY\_REWARDS.
 
 ```
  try {
@@ -487,7 +483,7 @@ mPaymentParams.setTwidCustomerHash("Twid customer hash");
 
 ### Sodexo
 
-1. To pay using Sodexo, create the post data with PAYMENT_PG_SODEXO:
+1. To pay using Sodexo, create the post data with PAYMENT\_PG\_SODEXO:
 
 ```Text Java
 mPaymentParams.setCardNumber(cardNumber);
