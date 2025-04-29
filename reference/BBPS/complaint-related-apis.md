@@ -12,5 +12,5 @@ next:
 ---
 This part of the document includes the following complaint related APIs:
 
-- [Raise BBPS Complaint API](ref:raise-bbps-complaint-api)
-- [Check Complaint Status API](ref:check-complaint-status-api)
+* [Raise BBPS Complaint API](ref:raise-bbps-complaint-api)
+* [Check Complaint Status API](ref:check-complaint-status-api)
