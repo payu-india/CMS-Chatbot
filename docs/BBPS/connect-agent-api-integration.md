@@ -18,9 +18,9 @@ National Payments Corporation of India (NPCI) functions as the authorised Bhara
 
 PayU Connect API Integration provides:
 
-- **Faster go-to-market:** Get access to  multiple use cases – BBPS, prepaid mobile  recharge and direct biller categories like loan  repayments, insurance, cable and  education with just one integration​
-- ​**Reduce customer acquisition cost:** PayU  brings multiple use-case to reduce your  customer and merchant acquisition cost​
-- **One API integration:** Save integration  cost and free-up tech bandwidth​
-- **One settlement:** Settle only to PayU and  we manage settlements with merchants​
+* **Faster go-to-market:** Get access to  multiple use cases – BBPS, prepaid mobile  recharge and direct biller categories like loan  repayments, insurance, cable and  education with just one integration​
+* ​**Reduce customer acquisition cost:** PayU  brings multiple use-case to reduce your  customer and merchant acquisition cost​
+* **One API integration:** Save integration  cost and free-up tech bandwidth​
+* **One settlement:** Settle only to PayU and  we manage settlements with merchants​
 
 This Agent API integration documentation describes the workflow and how the agents use the Agent APIs to integrate and use it for various use cases in BBPS.
