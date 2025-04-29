@@ -23,28 +23,13 @@ To clone an existing offer:
 
 1. Select **Offers Engine** > **Manage** from the menu on the left pane.
 
-   The _Offers_ Overview page is displayed and the **Offers List** pane at the bottom.
+   The *Offers* Overview page is displayed and the **Offers List** pane at the bottom.
 
 2. Click the **Actions** (**…**) menu and select **Clone**.
 
    A confirmation message is displayed.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/offers_dash_clone_confirm.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "412px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="412px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/offers_dash_clone_confirm.png" />
 
 3. Click **Confirm** to pause the selected offer.
 
