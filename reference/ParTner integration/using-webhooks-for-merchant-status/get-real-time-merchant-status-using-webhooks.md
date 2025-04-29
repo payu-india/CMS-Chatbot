@@ -18,15 +18,15 @@ To configure webhooks:
 
 1. If real-time merchant status service is enabled for Partner, PayU will hit the partner webhook URL. It will be a POST request which will consist of an authorization header and request payload. For more information on registering webhooks for real-time merchant status, refer to [Register Webhooks API to Get Real-Time Merchant Status](ref:register-webhooks-api-to-get-real-time-merchant-status).
 2. The Authorization header will be generated using the following criteria:
-   - HMAC will be generated using the SHA-256 function using request payload passed to webhook URL, and a **client\_secret** of partner application will be used as secret key to sign it and get a hashed string. This hashed string will be passed in the Authorization header.
+   * HMAC will be generated using the SHA-256 function using request payload passed to webhook URL, and a **client\_secret** of partner application will be used as secret key to sign it and get a hashed string. This hashed string will be passed in the Authorization header.
 
-- The formula for HMAC:
+* The formula for HMAC:
 
 ```plaintext
 OpenSSL::HMAC.hexdigest("SHA256", client_secret, payload.sort.join)
 ```
 
-- Sample HMAC:
+* Sample HMAC:
 
 ```plaintext
 "d59e5be387204e8c37bc8f46306f5013197b2f9d082ec859da1b09f9bc703036"
@@ -74,13 +74,13 @@ The payload will contain the following data:
 
 Possible values of status in case of KYC document update (`SIGNED_AUTHORISATION_LETTER` /`PATNERSHIP_PAN_CARD` /`GOVT_ISSUED_CERTIFICATE` /`BANK_PROOF` /`ADDRESS_PROOF_SIGNED_AUTHORITY` /`PANCARD_SIGNED_AUTHORITY`) are:
 
-- Pending
-- Received
-- Approved
-- Declined
-- Reuploaded
-- Exceptionally
+* Pending
+* Received
+* Approved
+* Declined
+* Reuploaded
+* Exceptionally
 
 > 📘 Note:
-> 
+>
 > For errors or remarks, refer to [KYC Errors and Solutions](ref:kyc-errors-and-solutions).
