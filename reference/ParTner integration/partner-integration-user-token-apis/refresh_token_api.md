@@ -26,7 +26,8 @@ This API is used to generate a refresh token to obtain a renewed access token us
 | **Test**       | <https://uat-accounts.payu.in> |
 | **Production** | <https://accounts.payu.in>     |
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```curl
 curl --request POST \
@@ -41,7 +42,8 @@ curl --request POST \
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 **Successful transaction**
 
@@ -63,7 +65,8 @@ curl --request POST \
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+  <summary>Response parameters</summary>
 
 <PartnerAuthenticationResponseParameters />
 
@@ -71,7 +74,8 @@ curl --request POST \
 
 ## Request Parameters
 
-<details><summary>Additional Information for Request Parameters</summary>
+<details>
+  <summary>Additional Information for Request Parameters</summary>
 
 | Parameters    | Description                                                                                              |
 | ------------- | -------------------------------------------------------------------------------------------------------- |
