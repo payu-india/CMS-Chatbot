@@ -14,28 +14,14 @@ next:
 
 By default, the system assigns a name match threshold score (80%) for all pay to phone transfers.   
 
-- Setting a much higher threshold can increase rejections due to name matching below the threshold even for a correct beneficiary, while setting a much lower threshold may lead to untended transfer.  
-- You can set your own name match threshold score to override this system threshold as well depending on your use case and observed patterns from Dashboard and APIs 
+* Setting a much higher threshold can increase rejections due to name matching below the threshold even for a correct beneficiary, while setting a much lower threshold may lead to untended transfer.  
+* You can set your own name match threshold score to override this system threshold as well depending on your use case and observed patterns from Dashboard and APIs 
 
 ## Overriding Threshold Score from Dashboard 
 
 You can set up the name match threshold score percentage between 0 to 100 by configuring ‘Name Match Threshold’ score on [Payouts Settings section on Dashboard](https://docs.payu.in/docs/configure-payouts-dashboard-settings).  
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/51fe7fd-payouts_thresholdc_configuration.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/51fe7fd-payouts_thresholdc_configuration.png" />
 
 ## Overriding Threshold Score using API 
 
