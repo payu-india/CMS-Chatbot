@@ -40,7 +40,7 @@ implementation 'in.payu:payu-checkout-pro:2.2.1'
 ## Step 2: Initialise the SDK
 
 > 🚧 Make sure you integrate with CheckoutPro SDK for Android
-> 
+>
 > Refer to [Android CheckoutPro Integration Steps](doc:android-checkoutpro-integration-steps) integrate Checkout Pro in App.
 
 ## Step 3: Create SKU Details
@@ -94,7 +94,7 @@ PayUPaymentParams.Builder()
 ```
 
 > 🚧 Keep in mind
-> 
+>
 > if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities skuAmount of each item.
 
 ## Step 5: Generate Hash
