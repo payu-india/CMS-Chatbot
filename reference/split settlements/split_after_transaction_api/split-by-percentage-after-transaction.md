@@ -56,7 +56,6 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ## JSON request structure table
 
 [block:parameters]
@@ -84,7 +83,6 @@ HTTP Method: **POST**
   ]
 }
 [/block]
-
 
 ## Request structure for var1 to be included in payment\_split API
 
@@ -129,14 +127,16 @@ The sample JSON structure for a split request:
       "subvention_amount": 0,
       "txnId": "CHild101",
       "additional_charges": 0,
-      "transaction_fee": 50    },
+      "transaction_fee": 50
+    },
     {
       "merchantKey": "merchantKey2",
       "amount": 50,
       "subvention_amount": 0,
       "txnId": "Child202",
       "additional_charges": 0,
-      "transaction_fee": 50    },
+      "transaction_fee": 50
+    }
   ]
 }
 ```
@@ -147,7 +147,7 @@ The response for Rs.100 transaction with Rs. 10 as convenience fee:
 
 ```plaintext
 {
-  "status"1,
+  "status": 1,
   "message": "Splits creation successful.",
   "splitStatus": "success",
   "splitSegments": [
