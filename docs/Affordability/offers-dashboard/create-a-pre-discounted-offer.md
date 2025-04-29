@@ -18,13 +18,13 @@ next:
 Pre-discounted offers are applied at your (merchant) end and the transaction amount passed is the discounted transaction amount. PayU is primarily used for doing certain checks and validations rather than applying the discount itself. Pre-discounted offers help you with the following:
 
 - Better user experience on the PayU Payment page (PayU Hosted Checkout) as the offer is already applied at your side, PayU will not be showing the list of offers on the PayU Payment page.
-- Reconciliation and Settlements (offer engine back calculates original transaction amount, discount amount, and the net debit amount which can be used on reconciliation & settlements.
-- The **Don’t allow transaction, if offer is not applicable** flag is s enabled by default.
+- Reconciliation and Settlements (offer engine back calculates original transaction amount, discount amount, and the net debit amount which can be used on reconciliation & settlements).
+- The **Don’t allow transaction, if offer is not applicable** flag is enabled by default.
 
 This procedure describes how to create a Prebuilt offer on PayU Dashboard and it is similar to creating a Discount offer.
 
 > 📘 Note:
-> 
+>
 > In Merchant Hosted Checkout integration, hide all other offers if Pre-Discounted offer is used.
 
 ***
@@ -39,7 +39,7 @@ This procedure describes how to create a Prebuilt offer on PayU Dashboard and it
 
 ***
 
-After you create a Pre-Dsicounted Offer, you can collect payments from your customers using PayU Hosted (Non-seamless) as described in the PayU Hosted Checkout Integration with Offers.
+After you create a Pre-Discounted Offer, you can collect payments from your customers using PayU Hosted (Non-seamless) as described in the PayU Hosted Checkout Integration with Offers.
 
 ***
 
