@@ -18,7 +18,7 @@ To reset the Dashboard Login password:
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/07/Screenshot-2022-07-11-at-7.48.37-PM-1-1024x629.png)
 
-The _Forgot Password_ page is displayed.
+The *Forgot Password* page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/01/Dashboard_Forgot_Password-1024x457.png)
 
