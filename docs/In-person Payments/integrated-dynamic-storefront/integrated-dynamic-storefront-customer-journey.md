@@ -12,23 +12,7 @@ next:
 ---
 The customer journey using the Dynamic Storefront QR involves:
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6b53f01-Screenshot_2023-09-13_at_3.02.13_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "75% ",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" width="75% " border={true} src="https://files.readme.io/6b53f01-Screenshot_2023-09-13_at_3.02.13_PM.png" />
 
 1. The customer scans the QR or clicks on the payment link and lands on the order summary page.
 2. The customer reviews the details on the order summary page.
