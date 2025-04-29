@@ -12,22 +12,22 @@ next:
 ---
 SDK supports the following payment types, and additional parameters are supported. The additional parameters that can be configured in the PaymentParams object created earlier are described in this section.
 
-- Credit Card/Debit Card/Stored Card (Use PayuConstants.CC)
-- NetBanking (Use PayUConstants.NB)
-- EMI (Use PayUConstants.EMI)
-- No Cost EMI (Use PayUConstants.EMI)
-- Cash Cards/Wallets (Use PayUConstants.CASH)
-- UPI (Use PayUConstants.UPI)
-- LazyPay (Use PayUConstants.LAZYPAY)
-- TwidPay (Use PayUConstants.PAY_BY_REWARDS)
-- Sodexo (Use PayUConstans.PAYMENT_PG_SODEXO)
+* Credit Card/Debit Card/Stored Card (Use PayuConstants.CC)
+* NetBanking (Use PayUConstants.NB)
+* EMI (Use PayUConstants.EMI)
+* No Cost EMI (Use PayUConstants.EMI)
+* Cash Cards/Wallets (Use PayUConstants.CASH)
+* UPI (Use PayUConstants.UPI)
+* LazyPay (Use PayUConstants.LAZYPAY)
+* TwidPay (Use PayUConstants.PAY\_BY\_REWARDS)
+* Sodexo (Use PayUConstans.PAYMENT\_PG\_SODEXO)
 
 Also, the following payment methods are supported:
 
-- PayU Money (Use PayUConstants.PAYU_MONEY)
-- Intent (Use PayUConstants.UPI_INTENT)
-- Google Pay (Use PayUConstants.TEZ)
-- PhonePe (Use PayUConstants.PHONEPE_INTENT)
+* PayU Money (Use PayUConstants.PAYU\_MONEY)
+* Intent (Use PayUConstants.UPI\_INTENT)
+* Google Pay (Use PayUConstants.TEZ)
+* PhonePe (Use PayUConstants.PHONEPE\_INTENT)
 
 ## Credit card/debit card
 
@@ -183,8 +183,8 @@ mPaymentParams.setVpa(virtualPaymentAddress);
 
 You need to validate the following for the virtual payment address (VPA):
 
-- VPA length should be less than or equal to 50 characters
-- Regex for VPA: value.match(/^([A-Za-z0-9.])+@[A-Za-z0-9]+$/)
+* VPA length should be less than or equal to 50 characters
+* Regex for VPA: value.match(/^([A-Za-z0-9.])+@[A-Za-z0-9]+$/)
 
 ## LazyPay
 
@@ -196,7 +196,7 @@ mPaymentParams.setNotifyURL(<Merchant Callback Url>);
 
 ## TwidPay
 
-To Pay using TwidPay, create the post data with PayuConstants.PAY_BY_REWARDS.
+To Pay using TwidPay, create the post data with PayuConstants.PAY\_BY\_REWARDS.
 
 After a successful payment, you will get the Twid customer hash in field5 params of PayuResponse, which would use for the next transaction to skip authentication.
 
@@ -206,7 +206,7 @@ mPaymentParams.setTwidCustomerHash("Twid customer hash");
 
 ## Sodexo
 
-To pay using Sodexo, create the post data with PAYMENT_PG_SODEXO:
+To pay using Sodexo, create the post data with PAYMENT\_PG\_SODEXO:
 
 ```Text Node
 mPaymentParams.setCardNumber(cardNumber);
