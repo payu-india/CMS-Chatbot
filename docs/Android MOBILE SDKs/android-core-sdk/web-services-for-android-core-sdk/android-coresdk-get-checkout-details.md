@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The **Get Check Out Details **API provides information on the bank down status, tax info, and offers enabled on a merchant key. You can call this API is similar to other Web Services. The only difference is that it requires a JSON in var1 as in the following code block:
+The **Get Check Out Details** API provides information on the bank down status, tax info, and offers enabled on a merchant key. You can call this API is similar to other Web Services. The only difference is that it requires a JSON in var1 as in the following code block:
 
 ```Text JSON
 {
@@ -20,7 +20,7 @@ The **Get Check Out Details **API provides information on the bank down status, 
    },
     "customerDetails": {
       // optional
-      "mobile": "9999999999", // optional
+      "mobile": "9999999999" // optional
     },
    "useCase":{
       "getAdditionalCharges":true,
@@ -56,7 +56,7 @@ Mobile SDK has a Utility class to create a JSON, as explained above. The impleme
   //to check EMI eligibility based on mobile number
   CustomerDetails.Builder customerDetails = new CustomerDetails.Builder()
   .setMobile("9999999999") //pass the mobile number if want to get eligibility status in payment option
-  .build()
+  .build();
   
   String var1 = new GetCheckoutDetailsRequest.Builder()
             .setUsecase(usecase)
@@ -65,7 +65,7 @@ Mobile SDK has a Utility class to create a JSON, as explained above. The impleme
             .build().prepareJSON();
 ```
 
-After getting var1, pass that in Merchant Web Service with the command as PayuConstants.GET_CHECKOUT_DETAILS. 
+After getting var1, pass that in Merchant Web Service with the command as PayuConstants.GET\_CHECKOUT\_DETAILS. 
 
 ## Step 2: Get API response
 
@@ -78,28 +78,15 @@ Additional Charges are returned in the PaymentDetails object for each payment op
 ```Text JAVA
 //if netbanking is available on merchant key
 if(payuResponse.isNetBanksAvailable()){
-ArrayList<PaymentDetails> = payuResponse.getNetbanks();
+ArrayList<PaymentDetails> netbanks = payuResponse.getNetbanks();
 }
 ```
 
-- Additional Charge is available inside each `PaymentDetails` object and can be accessed using the `paymentDetails.getAdditionalCharge()` method
-- Similarly, bank health is available inside each `PaymentDetails` object and can be accessed using the `paymentDetails.isBankDown()` method.
-- For Offers, An ArrayList<PayuOffer> is available inside each `PaymentDetails` object. To get the offers list, use the`paymentDetails.getOfferDetailsList().`
+* Additional Charge is available inside each `PaymentDetails` object and can be accessed using the `paymentDetails.getAdditionalCharge()` method
+* Similarly, bank health is available inside each `PaymentDetails` object and can be accessed using the `paymentDetails.isBankDown()` method.
+* For Offers, An ArrayList<PayuOffer> is available inside each `PaymentDetails` object. To get the offers list, use the `paymentDetails.getOfferDetailsList()`.
 
 ### Get tax info
-
-Tax is not applied on individual Net Banking or card schemes but instead applied at the payment mode level for all CC(Credit Card), DC(Debit Card), NB(Net Banking), Wallets, etc. So, to fetch the Tax Specification, use the following code block:
-
-```Text JAVA
-if(payuResponse.isTaxSpecificationAvailable())
-TaxSpecification taxSpecification = payuResponse.getTaxSpecification();
-
-taxSpecification.getCcTaxValue() //tax applicable on CC transactions
-taxSpecification.getDcTaxValue() //tax applicable on DC transactions
-taxSpecification.getNbTaxValue() //tax applicable on NB transactions
-taxSpecification.getCashTaxValue() //tax applicable on Wallet transactions
-...
-```
 
 Tax is not applied on individual Net Banking or card schemes but instead applied at the payment mode level for all CC(Credit Card), DC(Debit Card), NB(Net Banking), Wallets, etc. So, to fetch the Tax Specification, use the following code block:
 
