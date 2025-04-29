@@ -34,32 +34,20 @@ BNPL is offered by third-party payment providers or financial institutions that 
 BNPL can be a convenient option for customers who may not have the funds to make a large purchase upfront, but still want to make the purchase and pay for it over time. However, customers should be aware of the terms and conditions of their BNPL agreement, including any interest or fees that may be charged, as well as the potential impact on their credit score.
 
 > 👍 Before you begin:
-> 
+>
 > Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
 The following video describes PayU’s BNPL offering:
 
-[block:embed]
-{
-  "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FPdEHY2_fYj4%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DPdEHY2_fYj4&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FPdEHY2_fYj4%2Fhqdefault.jpg&key=7788cb384c9f4d5dbbdbeffd9fe4b92f&type=text%2Fhtml&schema=youtube\" width=\"640\" height=\"480\" scrolling=\"no\" title=\"YouTube embed\" frameborder=\"0\" allow=\"autoplay; fullscreen; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe>",
-  "url": "https://www.youtube.com/watch?v=PdEHY2_fYj4",
-  "title": "How To Grow Your Business With PayU Buy Now, Pay Later?",
-  "favicon": "https://www.google.com/favicon.ico",
-  "image": "https://i.ytimg.com/vi/PdEHY2_fYj4/hqdefault.jpg",
-  "provider": "youtube.com",
-  "href": "https://www.youtube.com/watch?v=PdEHY2_fYj4",
-  "typeOfEmbed": "youtube"
-}
-[/block]
-
+<Embed url="https://www.youtube.com/watch?v=PdEHY2_fYj4" title="How To Grow Your Business With PayU Buy Now, Pay Later?" favicon="https://www.google.com/favicon.ico" image="https://i.ytimg.com/vi/PdEHY2_fYj4/hqdefault.jpg" provider="youtube.com" href="https://www.youtube.com/watch?v=PdEHY2_fYj4" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FPdEHY2_fYj4%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DPdEHY2_fYj4%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FPdEHY2_fYj4%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22640%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
 
 ## **BNPL Benefits**
 
-<<glossary:BNPL>> offers following benefits to both customers and merchants:
+<Glossary>BNPL</Glossary> offers following benefits to both customers and merchants:
 
-- **Flexible payment options**: Customers can make purchases and pay for them over time, with flexible payment options ranging from a few weeks to several months.
-- **Instant approval**: Customers can get instant approval for BNPL, which means they can complete their purchase and receive their goods or services without any delay.
-- **Interest-free instalments**: Offers interest-free instalments, which means customers can spread the cost of their purchase over time without incurring any additional interest charges.
-- **Easy checkout**: Easy to use and is integrated with many online merchants, allowing customers to complete their purchase quickly and easily.
-- **Increased sales for merchants**: Merchants can increase sales by offering customers a convenient payment option that allows them to make purchases they might not have been able to afford otherwise.
-- **Risk management**: PayU provides risk management solutions to merchants, including fraud detection and prevention, to help minimize the risk of chargebacks and other payment-related issues.
+* **Flexible payment options**: Customers can make purchases and pay for them over time, with flexible payment options ranging from a few weeks to several months.
+* **Instant approval**: Customers can get instant approval for BNPL, which means they can complete their purchase and receive their goods or services without any delay.
+* **Interest-free instalments**: Offers interest-free instalments, which means customers can spread the cost of their purchase over time without incurring any additional interest charges.
+* **Easy checkout**: Easy to use and is integrated with many online merchants, allowing customers to complete their purchase quickly and easily.
+* **Increased sales for merchants**: Merchants can increase sales by offering customers a convenient payment option that allows them to make purchases they might not have been able to afford otherwise.
+* **Risk management**: PayU provides risk management solutions to merchants, including fraud detection and prevention, to help minimize the risk of chargebacks and other payment-related issues.
