@@ -23,5 +23,5 @@ You can make test payments using one of the payment methods configured at the Ch
 ### Test UPI Intent/InApp flow
 
 > ❗️ Callout
-> 
+>
 > The UPI in-app and UPI intent flow is not available in the Test mode.
