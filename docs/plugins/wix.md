@@ -25,18 +25,18 @@ Wix is a cloud-based website builder with drag-and-drop tools and over 500+ read
 
 The PayU India plugin app on Wix allows merchants to accept following payment methods on their Wix store:
 
-- Cards
-  - VISA
-  - MasterCard
-  - Diners
-  - American Express
-- Net Banking
-- UPI
-- EMI
-- Wallets
+* Cards
+  * VISA
+  * MasterCard
+  * Diners
+  * American Express
+* Net Banking
+* UPI
+* EMI
+* Wallets
 
 You can log on to your Wix account and quickly set up PayU as a payment mode for your customers. When your customer completes shopping and does check out, the customer is taken to PayU to make a secure payment using the above-listed cards. After your customer makes a payment on the PayU Payments page, the order is confirmed, and the customer is redirected back to your Wix store.
 
 > 👍 Before you begin:
-> 
+>
 > Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
