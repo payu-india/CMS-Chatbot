@@ -19,7 +19,8 @@ This API is used to whitelist IP for partner account at virtual account-level an
 
 <PayoutsPartnerEnvionment />
 
-\<details<summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```curl
 curl --location --request POST
@@ -32,7 +33,8 @@ erchantIps=14.143.127.46' \
 
 </details>
 
-\<details<summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
 {
