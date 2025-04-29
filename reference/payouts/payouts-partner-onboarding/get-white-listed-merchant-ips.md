@@ -19,7 +19,8 @@ This API is used to get a list of whitelisted partner merchant IPs.
 
 <PayoutsPartnerEnvionment />
 
-<details><summary>Sample request</summary>
+<details>
+  <summary>Sample request</summary>
 
 ```
 curl --location
@@ -30,7 +31,8 @@ curl --location
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+  <summary>Sample response</summary>
 
 ```
 {
