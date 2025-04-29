@@ -19,11 +19,11 @@ next:
 ---
 PayU payment gateway can be set up for the following Zoho products:
 
-- [Zoho One](#zoho-one)
-- [Zoho Commerce](#zoho-commerce)
-- [Zoho Invoice](#zoho-Invoice)
-- [Zoho Billing](#zoho-billing)
-- [Zoho Inventory](#zoho-inventory)
+* [Zoho One](#zoho-one)
+* [Zoho Commerce](#zoho-commerce)
+* [Zoho Invoice](#zoho-Invoice)
+* [Zoho Billing](#zoho-billing)
+* [Zoho Inventory](#zoho-inventory)
 
 ## Zoho One
 
@@ -52,10 +52,10 @@ Zoho Billing is an online billing and invoicing software that offers a range of 
 
 Zoho Inventory is an online inventory management software that enables businesses to manage their inventory, orders, shipping, and warehouses. It offers a range of features such as:
 
-- Accurate stock tracking
-- Multichannel selling
-- Warehouse management
-- Customizable workflows
+* Accurate stock tracking
+* Multichannel selling
+* Warehouse management
+* Customizable workflows
 
 Zoho Inventory is designed to support common inventory disciplines like periodic inventory management and first-in, first-out (FIFO). It is a flexible and extensible platform that can be personalized to work with your business needs. 
 
