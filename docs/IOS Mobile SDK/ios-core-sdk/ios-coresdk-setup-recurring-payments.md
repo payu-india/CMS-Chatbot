@@ -26,7 +26,7 @@ Hash = sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|u
 ```
 
 > 📘 Reference:
-> 
+>
 > For more information on Static Hashing, refer to [Generate Static Hash](doc:generate-static-hash-ios).
 
 ## Step 2: Make payment
