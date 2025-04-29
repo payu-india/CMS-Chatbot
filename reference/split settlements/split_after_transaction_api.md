@@ -56,7 +56,6 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ## Request structure for var1 to be included in  payment\_split API
 
 ```plaintext
@@ -69,15 +68,15 @@ HTTP Method: **POST**
          "aggregatorSubAmt":"<amount to be transferred to this child merchant>",
          "aggregatorCharges":"<charges associated with this entity's part of the transaction to be transferred to parent (optional)>"
       },
-      "<Child merchant 2 key >":{
+      "<Child merchant 2 key>":{
          "aggregatorSubTxnId":"<unique transaction ID for this specific sub-transaction>",
          "aggregatorSubAmt":"<amount to be transferred to this child merchant>"
       },
        "Child merchant 3 key":
        {
-        "aggregatorSubTxnId": ""<unique transaction ID for this specific sub-transaction>"",
+        "aggregatorSubTxnId": "<unique transaction ID for this specific sub-transaction>",
         "aggregatorSubAmt": "<amount to be transferred to this child merchant>",
-        "aggregatorCharges": "<charges associated with this entity's part of the transaction to be transferred to parent (optional)>"" 
+        "aggregatorCharges": "<charges associated with this entity's part of the transaction to be transferred to parent (optional)>"
        }
     }
 }
@@ -113,7 +112,6 @@ The **var1** parameter is in JSON format. The fields in the JSON format are desc
 }
 [/block]
 
-
 ## Sample request
 
 ```curl
@@ -147,7 +145,7 @@ When split get saved & created
       "subvention_amount": 0,
       "txnId": "Child202",
       "additional_charges": 0,
-      "transaction_fee": 50    },
+      "transaction_fee": 50    }
   ]
 }
 ```
@@ -171,12 +169,10 @@ In this sample response, the **error\_code** and **error\_desc** parameters disp
 ```plaintext
 {
   "status": 0,
-  "error_code": "AGG-107"
+  "error_code": "AGG-107",
   "error_desc": "Invalid split payload in payment request"
 }
 ```
-
-<br />
 
 ```plaintext
 {
