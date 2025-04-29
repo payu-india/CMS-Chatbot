@@ -18,24 +18,24 @@ It combines billing plans at one place and associates them with preferred paymen
 
 Also, subscription provides a foundation to manage complete billing cycle for the customer by providing different touch points like -
 
-- Smart Retries
-- Change of payment instrument
-- Payment link generation
-- Auto completion of billing plan
-- Association of billing plan with specific start and end dates
-- Comprehensive Subscription management panel
+* Smart Retries
+* Change of payment instrument
+* Payment link generation
+* Auto completion of billing plan
+* Association of billing plan with specific start and end dates
+* Comprehensive Subscription management panel
 
 The following APIs are used to manage subscriptions:
 
-- [Define Subscription API](ref:create-a-subscription)
-- [Update Subscription API](ref:update-subscription-api)
-- [Get List of Subscriptions API](ref:get-list-of-subscriptions-api)
-- [Cancel Subscription API](ref:cancel-subscription-api)
-- [Get Subscription Details API](ref:get-subscription-details-api)
+* [Define Subscription API](ref:create-a-subscription)
+* [Update Subscription API](ref:update-subscription-api)
+* [Get List of Subscriptions API](ref:get-list-of-subscriptions-api)
+* [Cancel Subscription API](ref:cancel-subscription-api)
+* [Get Subscription Details API](ref:get-subscription-details-api)
 
 The following APIs are used to link or de-link plans with a subscription:
 
-- [Subscription Life Cycle and role of Webhooks](ref:subscription-life-cycle-and-role-of-webhooks-)
+* [Subscription Life Cycle and role of Webhooks](ref:subscription-life-cycle-and-role-of-webhooks-)
 
 ## Manage Plans
 
@@ -45,5 +45,5 @@ Merchant can create subscription plan with combination of billing cycles and bil
 
 Charge requests triggered automatically by Zion against customer’s preferred payment instrument on the billing date are known as invoices. For every plan associated with subscription, Invoices are triggered specific to individual plans and run independently as per the schedule mentioned for that plan. The APIs to manage invoice are:
 
-- [Get Invoice API](ref:get-invoice-interfaces-api-zion)
-- [Create Invoice API](ref:create-invoice-api-zion)
+* [Get Invoice API](ref:get-invoice-interfaces-api-zion)
+* [Create Invoice API](ref:create-invoice-api-zion)
