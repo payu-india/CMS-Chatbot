@@ -55,7 +55,6 @@ HTTP Method: **POST**
 }
 [/block]
 
-
 ### skus JSON field description
 
 | **Parameter**  | **Description**                                           | **Example** |
