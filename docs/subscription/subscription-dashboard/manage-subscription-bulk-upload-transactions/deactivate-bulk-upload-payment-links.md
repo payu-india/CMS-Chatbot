@@ -24,46 +24,15 @@ next:
 To deactivate a registration transactions done through bulk upload:
 
 1. Navigate to **Subscriptions** on the PayU Dashboard.
-2. Select the** Bulk Upload** tab.
+2. Select the **Bulk Upload** tab.
 3. Select the **Registration** sub-tab under the **Bulk Upload** tab.
 4. Filter the transactions so the you can list the transaction for which you wish to deactivate.
 5. Click the **Deactivate** button under the **Action** column for which you wish to download report similar to the following screenshot:
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/3598c0e5ad693862791efb7cbbae17085e2191ab2a1930d6d9ea58e6dc6fea4f-dashboard-suibscriptions-deactivate-registration-transaction.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/3598c0e5ad693862791efb7cbbae17085e2191ab2a1930d6d9ea58e6dc6fea4f-dashboard-suibscriptions-deactivate-registration-transaction.png" />
 
 A pop-up page is displayed for confirmation:
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ba5c50a92667b268d5c9e958571c26cc1736776b47427bed91a3504721947be7-dashboard-suibscriptions-deactivate-confirmation.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "400px",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" width="400px" border={true} src="https://files.readme.io/ba5c50a92667b268d5c9e958571c26cc1736776b47427bed91a3504721947be7-dashboard-suibscriptions-deactivate-confirmation.png" />
 
-
-5. Click the **Yes, Deactivate **button to deactivate the transactions you had selected.
+5. Click the **Yes, Deactivate** button to deactivate the transactions you had selected.
