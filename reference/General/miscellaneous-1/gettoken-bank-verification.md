@@ -10,13 +10,13 @@ metadata:
 next:
   description: ''
 ---
-This **Get Token API** returns the authentication token generated using the client ID and client secret where,  `grant_type` is **client_credentials** and `scope` is **verify_bank_account**.
+This **Get Token API** returns the authentication token generated using the client ID and client secret where, `grant_type` is **client_credentials** and `scope` is **verify_bank_account**.
 
 ## Environment
 
 |            |                            |
 | :--------- | :------------------------- |
-| Production | <https://accounts.payu.in> |
+| Production | &lt;https://accounts.payu.in&gt; |
 
 ## Request parameters
 
@@ -42,7 +42,6 @@ This **Get Token API** returns the authentication token generated using the clie
   ]
 }
 [/block]
-
 
 ## Sample request
 
