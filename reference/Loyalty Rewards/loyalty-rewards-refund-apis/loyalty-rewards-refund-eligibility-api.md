@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The **Refund Eligibility **API is used to check the eligibility for refund for the Loyalty Rewards integration.
+The **Refund Eligibility** API is used to check the eligibility for refund for the Loyalty Rewards integration.
 
 HTTP Method: **POST**
 
@@ -47,7 +47,6 @@ You have to provide either loyaltyTxnId (ledger id - primary Key) or eventId (It
   ]
 }
 [/block]
-
 
 ## Request Body
 
@@ -86,12 +85,11 @@ The result is an array which will have only one item, Response on eventId could 
         }
     ]
 }
-
 ```
 
 #### Passing eventId
 
-```
+```plaintext
 {
     "status": 1,
     "message": "Transaction fetched successfully",
@@ -124,7 +122,6 @@ The result is an array which will have only one item, Response on eventId could 
         }
     ]
 }
-
 ```
 
 <br />
@@ -133,7 +130,7 @@ The result is an array which will have only one item, Response on eventId could 
 
 - No transaction found
 
-```
+```plaintext
 { 
     "status": 0, (Fetch Failure status) 
     "message": "No transaction found" 
