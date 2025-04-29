@@ -14,107 +14,374 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Value",
-    "0-0": "key  \n`mandatory`",
-    "0-1": "This parameter must contain the merchant key provided by PayU.  \nReference: For more information on how to generate the Key and Salt, refer to any of the following:  \n**Production**: Generate Production Merchant Key and Sat.  \n**Test**: Generate Test Merchant Key and Salt.",
-    "0-2": "Your Test Key",
-    "1-0": "command  \n`mandatory`",
-    "1-1": "This parameter must have the API command name.",
-    "1-2": "generate_insta_account",
-    "2-0": "hash  \nmandatory",
-    "2-1": "This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:  \nsha512(key|command|var1|salt)",
-    "2-2": "c24ee06c7cf40314ede424 b1fcc2b97a12f97a7d3dd2 06876eef16660eb09fd374 fd82861f66d8152e",
-    "3-0": "var1  \n`mandatory`",
-    "3-1": "This parameter must contain the fields in a JSON format. For more information, refer to <<Description of var1 Parameter Fields>>.",
-    "3-2": "Refer to Sample var1 section."
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: "left" }}>
+        Parameter
+      </th>
 
+      <th style={{ textAlign: "left" }}>
+        Description
+      </th>
+
+      <th style={{ textAlign: "left" }}>
+        Value
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        key
+        `mandatory`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        This parameter must contain the merchant key provided by PayU.\
+        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
+
+        * \*Production\*\*: Generate Production Merchant Key and Sat.  
+        * \*Test\*\*: Generate Test Merchant Key and Salt.
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Your Test Key
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        command\
+        `mandatory`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        This parameter must have the API command name.
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        generate\_insta\_account
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        hash\
+        mandatory
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:\
+        sha512(key|command|var1|salt)
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        c24ee06c7cf40314ede424 b1fcc2b97a12f97a7d3dd2 06876eef16660eb09fd374 fd82861f66d8152e
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        var1\
+        `mandatory`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        This parameter must contain the fields in a JSON format. For more information, refer to {user["Description of var1 Parameter Fields"]}.
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Refer to Sample var1 section.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 > 🚧 Callouts
-> 
-> - In case the optional details are not posted, PayU will use the details registered against the merchant during the on-boarding process. If the details are not present at merchant-level, PayU will use PayU Payments Pvt. Ltd., Gurgaon & 122001 respectively.
-> - The parameters udf1, udf2, udf3, udf4 & udf5 which are sent at the time of QR generation are recorded against every payment made on that QR. These parameters can be used to internally reconcile the payments at individual customer level & is the best possible way to reconcile payments for every transaction.
-> - Merchant VPA series should be configured against the merchant ID before you start generating QR on production environment (not required in case `subMerchantRegistration` is passed as 1). Contact your PayU account manager & integration POC before you go live on production.
-> - For real-time registration of sub-merchant, parameters such as `mebussname`, `strCntMobile` , `panNo`, `legalStrName`, and `awlmcc` are mandatory parameters for this API.
+>
+> * In case the optional details are not posted, PayU will use the details registered against the merchant during the on-boarding process. If the details are not present at merchant-level, PayU will use PayU Payments Pvt. Ltd., Gurgaon & 122001 respectively.
+> * The parameters udf1, udf2, udf3, udf4 & udf5 which are sent at the time of QR generation are recorded against every payment made on that QR. These parameters can be used to internally reconcile the payments at individual customer level & is the best possible way to reconcile payments for every transaction.
+> * Merchant VPA series should be configured against the merchant ID before you start generating QR on production environment (not required in case `subMerchantRegistration` is passed as 1). Contact your PayU account manager & integration POC before you go live on production.
+> * For real-time registration of sub-merchant, parameters such as `mebussname`, `strCntMobile` , `panNo`, `legalStrName`, and `awlmcc` are mandatory parameters for this API.
 
 ### var1 JSON fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Key",
-    "h-1": "Data Type",
-    "h-2": "Sample",
-    "0-0": "customerId  \n`conditional`",
-    "0-1": "`numeric` This parameter must contain the merchant transaction identifier. The value must be unique & numeric special (less than or equal to 20 characters & Only \".\" is allowed).",
-    "0-2": "1234",
-    "1-0": "merchantVpa  \n`conditional`",
-    "1-1": "`string` This parameter must contain the merchant's VPA in which payment will be collected.VPA to be embedded in QR. This value must be unique & alphanumeric special (less than or equal to 50 characters & Only \"@\", \".\", \",\" are allowed). The variable part of the VPA series can only be numeric. For example, if the series configured is _.payu@hdfc then the VPA can only be 123445.payu@hdfc and not a13s.payu@hdfc (_ part of the series will always be numeric).",
-    "1-2": "[1202020@hdfc.bank](mailto:1202020@hdfc.bank)",
-    "2-0": "name  \n`optional`",
-    "2-1": "string This parameter contains the customer name part of the customer details, to be embedded in QR (less than or equal to 20 characters). If this value is not sent, merchant’s name registered during the onboarding process will be used.",
-    "2-2": "Test User",
-    "3-0": "city  \n`optional`",
-    "3-1": "`string` This parameter contains the customer city as part of the customer details, to be embedded in QR (less than or equal to 15 characters).If the value is not sent, merchant’s city registered during the onboarding process will be used.",
-    "3-2": "Gurgaon",
-    "4-0": "pinCode  \n`optional`",
-    "4-1": "`string` This parameter contains the PIN code as part of the customer details, to be embedded in the QR(less than or equal to 10 characters). If not sent, merchant’s PIN code registered during the onboarding process will be used.",
-    "4-2": "122001",
-    "5-0": "instaProduct  \n`mandatory`",
-    "5-1": "`string` This parameter contains the QR generation flag and must be qr.",
-    "5-2": "qr",
-    "6-0": "address  \n`optional`",
-    "6-1": "`string` This parameter must contain the customer address (less than or equal to 100 characters).",
-    "6-2": "Payu, Bestech Business Tower, Gurgaon",
-    "7-0": "udf1 - udf5  \n`optional`",
-    "7-1": "`string` This parameter must contain the udf1, udf2, udf3, udf4 and udf5 can be sent in request to include any transactional information.",
-    "7-2": "-",
-    "8-0": "outputType  \n`optional`",
-    "8-1": "`string` This parameter must contain the flag for outputType and can be any of the following  \n  \n'' (blank)  \n'string'  \n'base64'  \n  \nBy default, base64 JSPN encoded qrSting in response is sent.",
-    "8-2": "string",
-    "9-0": "submerchantRegistration  \n`optional`",
-    "9-1": "`string` This parameter can contain any of the following:  \n`1`: This is passed then the request is passed to the acquiring bank.  \n`0`: This is passed the request is processed internally at PayU end.",
-    "9-2": "1 or 0",
-    "10-0": "mebussname  \n`conditional`",
-    "10-1": "`string` This parameter contains the mebussname. It will be visible to the customers upon scanning this QR.  \n  \n**For non-aggregator** merchants, the mebussname will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  \n  \n**For aggregator-merchants**, the mebussname passed in this parameter should largely match with the name on the PAN card of the details passed in the panNo parameter.  \n  \nThis parameter is mandatory for the aggregator-merchant.",
-    "10-2": "PayU",
-    "11-0": "strCntMobile  \n`conditional`",
-    "11-1": "`string` This parameter must contain the phone number associated for the entity for whom VPA is being created.  \n  \n**For non-aggregator merchants**, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  \n  \n**For aggregator-merchants**, the strCntMobile is mandatory.",
-    "11-2": "9833270176",
-    "12-0": "panNo  \n`conditional`",
-    "12-1": "`string` This parameter must contain the PAN number associated for the entity for whom VPA is being created.  \n  \n`For non-aggregator merchants`, the panNo will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  \n  \n`For aggregator-merchants`, the panNo of the actual beneficiary needs to be passed. This key is mandatory for the aggregator-merchants.",
-    "12-2": "BPEPK5437G",
-    "13-0": "legalStrName  \n`conditional`",
-    "13-1": "`string` This parameter must contain the legal name associated for the entity for whom VPA is being created.  \n  \n**For non-aggregator merchants**, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  \n  \n**For aggregator-merchants**, the legalStrName should largely match with the name on the PAN card of the details passed in the panNo key.  \n  \nThis parameter is mandatory for the aggregator-merchants.",
-    "13-2": "PayU payments pvt ltd",
-    "14-0": "awlmcc  \n`conditional`",
-    "14-1": "`string` This parameter must contain the merchant category code as per NPCI guidelines and is typically a numeric value of length = 4.  \n  \n**For non-aggregator merchants**, the merchant category code will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  \n  \n**For aggregator-merchants**, the merchant category code of the actual beneficiary needs to be passed.  \n  \nThis parameter is mandatory for the aggregator-merchants",
-    "14-2": "7999"
-  },
-  "cols": 3,
-  "rows": 15,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Key
+      </th>
 
+      <th>
+        Data Type
+      </th>
+
+      <th>
+        Sample
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        customerId
+        `conditional`
+      </td>
+
+      <td>
+        `numeric` This parameter must contain the merchant transaction identifier. The value must be unique & numeric special (less than or equal to 20 characters & Only "." is allowed).
+      </td>
+
+      <td>
+        1234
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchantVpa\
+        `conditional`
+      </td>
+
+      <td>
+        `string` This parameter must contain the merchant's VPA in which payment will be collected.VPA to be embedded in QR. This value must be unique & alphanumeric special (less than or equal to 50 characters & Only "@", ".", "," are allowed). The variable part of the VPA series can only be numeric. For example, if the series configured is *.payu\@hdfc then the VPA can only be 123445.payu\@hdfc and not a13s.payu\@hdfc (* part of the series will always be numeric).
+      </td>
+
+      <td>
+        [1202020@hdfc.bank](mailto:1202020@hdfc.bank)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        name\
+        `optional`
+      </td>
+
+      <td>
+        string This parameter contains the customer name part of the customer details, to be embedded in QR (less than or equal to 20 characters). If this value is not sent, merchant’s name registered during the onboarding process will be used.
+      </td>
+
+      <td>
+        Test User
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        city\
+        `optional`
+      </td>
+
+      <td>
+        `string` This parameter contains the customer city as part of the customer details, to be embedded in QR (less than or equal to 15 characters).If the value is not sent, merchant’s city registered during the onboarding process will be used.
+      </td>
+
+      <td>
+        Gurgaon
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pinCode\
+        `optional`
+      </td>
+
+      <td>
+        `string` This parameter contains the PIN code as part of the customer details, to be embedded in the QR(less than or equal to 10 characters). If not sent, merchant’s PIN code registered during the onboarding process will be used.
+      </td>
+
+      <td>
+        122001
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        instaProduct\
+        `mandatory`
+      </td>
+
+      <td>
+        `string` This parameter contains the QR generation flag and must be qr.
+      </td>
+
+      <td>
+        qr
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        address\
+        `optional`
+      </td>
+
+      <td>
+        `string` This parameter must contain the customer address (less than or equal to 100 characters).
+      </td>
+
+      <td>
+        Payu, Bestech Business Tower, Gurgaon
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf1 - udf5\
+        `optional`
+      </td>
+
+      <td>
+        `string` This parameter must contain the udf1, udf2, udf3, udf4 and udf5 can be sent in request to include any transactional information.
+      </td>
+
+      <td>
+        *
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        outputType\
+        `optional`
+      </td>
+
+      <td>
+        `string` This parameter must contain the flag for outputType and can be any of the following  
+
+        '' (blank)\
+        'string'\
+        'base64'  
+
+        By default, base64 JSPN encoded qrSting in response is sent.
+      </td>
+
+      <td>
+        string
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        submerchantRegistration\
+        `optional`
+      </td>
+
+      <td>
+        `string` This parameter can contain any of the following:\
+        `1`: This is passed then the request is passed to the acquiring bank.\
+        `0`: This is passed the request is processed internally at PayU end.
+      </td>
+
+      <td>
+        1 or 0
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        mebussname\
+        `conditional`
+      </td>
+
+      <td>
+        `string` This parameter contains the mebussname. It will be visible to the customers upon scanning this QR.  
+
+        * \*For non-aggregator\*\* merchants, the mebussname will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
+        * \*For aggregator-merchants\*\*, the mebussname passed in this parameter should largely match with the name on the PAN card of the details passed in the panNo parameter.  
+
+        This parameter is mandatory for the aggregator-merchant.
+      </td>
+
+      <td>
+        PayU
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        strCntMobile\
+        `conditional`
+      </td>
+
+      <td>
+        `string` This parameter must contain the phone number associated for the entity for whom VPA is being created.  
+
+        * \*For non-aggregator merchants\*\*, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
+        * \*For aggregator-merchants\*\*, the strCntMobile is mandatory.
+      </td>
+
+      <td>
+        9833270176
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        panNo\
+        `conditional`
+      </td>
+
+      <td>
+        `string` This parameter must contain the PAN number associated for the entity for whom VPA is being created.  
+
+        `For non-aggregator merchants`, the panNo will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
+
+        `For aggregator-merchants`, the panNo of the actual beneficiary needs to be passed. This key is mandatory for the aggregator-merchants.
+      </td>
+
+      <td>
+        BPEPK5437G
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        legalStrName\
+        `conditional`
+      </td>
+
+      <td>
+        `string` This parameter must contain the legal name associated for the entity for whom VPA is being created.  
+
+        * \*For non-aggregator merchants\*\*, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
+        * \*For aggregator-merchants\*\*, the legalStrName should largely match with the name on the PAN card of the details passed in the panNo key.  
+
+        This parameter is mandatory for the aggregator-merchants.
+      </td>
+
+      <td>
+        PayU payments pvt ltd
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        awlmcc\
+        `conditional`
+      </td>
+
+      <td>
+        `string` This parameter must contain the merchant category code as per NPCI guidelines and is typically a numeric value of length = 4.  
+
+        * \*For non-aggregator merchants\*\*, the merchant category code will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
+        * \*For aggregator-merchants\*\*, the merchant category code of the actual beneficiary needs to be passed.  
+
+        This parameter is mandatory for the aggregator-merchants
+      </td>
+
+      <td>
+        7999
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Sample vat1
 
@@ -201,35 +468,63 @@ Response response = client.newCall(request).execute();
 
 ## Response parameters
 
-The transaction_details parameter of the response is in JSON format and the parameters in this JSON are described in the following table:
+The transaction\_details parameter of the response is in JSON format and the parameters in this JSON are described in the following table:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "qrString",
-    "0-1": "The value received in this parameter is based on the value passed in the outputType (var1) in the request. It will be in any of the following format containing information associated to the QR, the QR string can be converted into image and used for accepting transactions.  \n  \nPlain text format if the value in the outputType request parameter is string  \n  \nbase64 format if the value in the outputType request parameter is base64",
-    "1-0": "qrId",
-    "1-1": "This parameter contains the QR ID.",
-    "2-0": "vpa",
-    "2-1": "This parameter contains the VPA."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        qrString
+      </td>
+
+      <td>
+        The value received in this parameter is based on the value passed in the outputType (var1) in the request. It will be in any of the following format containing information associated to the QR, the QR string can be converted into image and used for accepting transactions.  
+
+        Plain text format if the value in the outputType request parameter is string  
+
+        base64 format if the value in the outputType request parameter is base64
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        qrId
+      </td>
+
+      <td>
+        This parameter contains the QR ID.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        vpa
+      </td>
+
+      <td>
+        This parameter contains the VPA.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample response
 
 ### Success scenario
 
-- UPI QR String response
+* UPI QR String response
 
 ```Text JSON
 {
@@ -239,7 +534,7 @@ The transaction_details parameter of the response is in JSON format and the para
 }
 ```
 
-- UPI QR base64 response
+* UPI QR base64 response
 
 ```Text JSON
 {
@@ -249,7 +544,7 @@ The transaction_details parameter of the response is in JSON format and the para
 }
 ```
 
-- Bharat QR String Response
+* Bharat QR String Response
 
 ```Text JSON
 {
@@ -259,7 +554,7 @@ The transaction_details parameter of the response is in JSON format and the para
 }
 ```
 
-- Bharat QR base64 response
+* Bharat QR base64 response
 
 ```Text JSON
 {
@@ -271,7 +566,7 @@ The transaction_details parameter of the response is in JSON format and the para
 
 ### Failure scenario
 
-- VPA ID already exists
+* VPA ID already exists
 
 ```
 {
@@ -282,9 +577,9 @@ The transaction_details parameter of the response is in JSON format and the para
 ```
 
 > 🚧 Callout
-> 
-> - The response sent for QR generation request is json encoded and will be a base64 encoded string of the actual QR image, in case outputType is not shared
-> - To obtain the actual QR image, first decode the json encoded response and then convert the base64 encoded string to actual QR image.
-> - For every QR generation request, in the response we will share back the unique identifier, qrId, embedded in the QR & merchantVpa, embedded in the QR.
-> - Map the QR image to this qrId and merchantVpa and also with respective customer/entity who will use this QR for making payments to you. This qrId or merchantVpa will be available at the time of transaction callback which you can use to identify the customer who made the payment.
-> - In some scenarios, qrId will not be available in the transaction callback details. In such scenarios, use the merchantVpa field4 in the transaction callback details to identify the customer who made the payment.
+>
+> * The response sent for QR generation request is json encoded and will be a base64 encoded string of the actual QR image, in case outputType is not shared
+> * To obtain the actual QR image, first decode the json encoded response and then convert the base64 encoded string to actual QR image.
+> * For every QR generation request, in the response we will share back the unique identifier, qrId, embedded in the QR & merchantVpa, embedded in the QR.
+> * Map the QR image to this qrId and merchantVpa and also with respective customer/entity who will use this QR for making payments to you. This qrId or merchantVpa will be available at the time of transaction callback which you can use to identify the customer who made the payment.
+> * In some scenarios, qrId will not be available in the transaction callback details. In such scenarios, use the merchantVpa field4 in the transaction callback details to identify the customer who made the payment.
