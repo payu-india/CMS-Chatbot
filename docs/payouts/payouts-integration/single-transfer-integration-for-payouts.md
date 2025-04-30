@@ -34,8 +34,8 @@ Single Transfer Integration with Payouts allows you to make instant payments to 
 
 |                            |                                            |
 | -------------------------- | ------------------------------------------ |
-| **Test Environment**       | <https://uat-accounts.payu.in/oauth/token> |
-| **Production Environment** | <https://accounts.payu.in/oauth/token>     |
+| **Test Environment**       | \<https://uat-accounts.payu.in/oauth/token> |
+| **Production Environment** | \<https://accounts.payu.in/oauth/token>     |
 
 ## Step 1. Generate authentication token
 
@@ -75,4 +75,4 @@ Fetch the status of the transfer by posting the merchant’s reference ID as a p
 
 ## Step 5. Integrate with webhooks
 
-You can integrate with webhooks to track the status of your payment. For more information, refer to the [Payouts Webhooks](doc:payouts-webhooks).
+You can integrate with webhooks to track the status of your payment. For more information, refer to the [Payouts Webhooks](doc:payouts-webhooks). 
