@@ -38,11 +38,14 @@ next:
 ---
 You can collect payments from customers with leading wallets using the Merchant Hosted integration. You need to ensure that **CASH** for the **pg** parameter and wallet code based on the desired wallet for the **bankcode** parameter is posted.
 
-<PaymentAPIEnvironment />
+**Environment**
 
-<details>
+|                            |                                                                         |
+| -------------------------- | ----------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/\_payment>](https://test.payu.in/_payment%3E)     |
+| Production Environment | [https://secure.payu.in/\_payment>](https://secure.payu.in/_payment%3E) |
 
-<summary>Sample request</summary>
+## Sample request
 
 ```curl
 curl -X \
@@ -50,11 +53,7 @@ curl -X \
  "Content-Type: application/x-www-form-urlencoded" -d"key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&producinfo=iPhone&firstname=Ashish&email=test@gmail.com&phone=9876543210&pg=cash&bankcode=paytm&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
 ```
 
-</details>
-
-<details>  
-
-<summary>Sample response</summary>
+## Sample response
 
 ```
 Array
@@ -110,10 +109,7 @@ Array
 )
 ```
 
-</details>
-
-<details>
-  <summary>Response parameters</summary>
+## Response parameters
 
 <Table>
   <thead>
@@ -480,15 +476,8 @@ Array
   </tbody>
 </Table>
 
-</details>
 
 ## Request parameters
-
-<details>  <summary>Additional info for request parameters</summary>
-
-<Additional_paymentRequestParams />
-
-</details>
 
 > 📘 Reference
 >
