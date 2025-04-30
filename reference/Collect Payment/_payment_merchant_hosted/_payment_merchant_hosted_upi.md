@@ -34,13 +34,13 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
 
 ### Recommended prerequisite before initiating payment
 
-When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. 
+When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The validateVpa API is used to validate the UPI handle. 
 
-Validate the VPA (UPI handle) using the **validateVpa** API.  For more information, refer to [Validate VPA Handle API](ref:validate_vpa_api).
+Validate the VPA (UPI handle) using the validateVpa API.  For more information, refer to [Validate VPA Handle API](ref:validate_vpa_api).
 
 ### Environment
 
-<PaymentAPIEnvironment />
+
 
 <details>
 
@@ -483,11 +483,9 @@ Array
 
 ## Request parameters
 
-<details> <summary> Additional info for request parameters</summary>
+###Additional info for request parameters
 
 <Additional_paymentRequestParams />
-
-</details>
 
 > 📘 Reference
 >
