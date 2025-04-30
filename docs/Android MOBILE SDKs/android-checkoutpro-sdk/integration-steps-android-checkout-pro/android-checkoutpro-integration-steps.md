@@ -1,8 +1,8 @@
 ---
 title: 1. SDK Integration
 excerpt: >-
-  Explore a complete, working code sample of integration with Android checkout
-  pro SDK.
+  Android Payment SDK Documentation: Comprehensive Integration Guide for
+  Checkout Flow Implementation
 deprecated: false
 hidden: false
 metadata:
@@ -39,7 +39,7 @@ next:
       slug: android-checkoutpro-test-integration
       title: 2. Test the Integration
 ---
-Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard > Settings > Payment methods**.  For more information, refer. to [Checkout Payment Modes](doc:checkout-payment-modes). By default, Cards, UPI, and other payment methods are enabled, and PayU recommends you to enable other payment methods that are relevant to you.
+Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard > Settings > Payment methods**.  For more information, refer. to [Checkout Payment Modes](doc:checkout-payment-modes). By default, Cards, UPI, and other payment methods are enabled, and PayU recommends that you to enable other payment methods that are relevant to you.
 
 ## Step 1: Create a PayU account
 
@@ -79,7 +79,7 @@ compileOptions {
 > 🚧 Import Runtime Issue
 >
 > 1. Dependency '`androidx.activity:activity:1.8.0`' requires libraries and applications that\
->          depend on it to compile against version 34 or later of the Android APIs.
+>    depend on it to compile against version 34 or later of the Android APIs.
 >
 >    ```
 >      :app is currently compiled against android-33.
@@ -93,7 +93,7 @@ compileOptions {
 >      minSdk (which determines which devices the app can be installed
 >      on).
 >    ```
-> 2. Error: `Attribute application@theme value=(@style/Theme.TestApp) from AndroidManifest.xml:13:9-45
+> 2. Error: `Attribute application@theme value=(@style/Theme.TestApp) from AndroidManifest.xml:13:9-45  
 >    is also present at [in.payu:payu-checkout-pro-ui:1.9.20] AndroidManifest.xml:29:9-44 value=(@style/OnePayuTheme).
 >    Suggestion: add 'tools:replace="android:theme"' to <application> element at AndroidManifest.xml:5:5-24:19 to override`.
 >
@@ -103,7 +103,7 @@ compileOptions {
 > tools:replace="android:theme"
 > ```
 >
-> 3. Manifest merger failed: `Attribute application@allowBackup value=(true) from AndroidManifest.xml:6:9-35
+> 3. Manifest merger failed: `Attribute application@allowBackup value=(true) from AndroidManifest.xml:6:9-35  
 >    is also present at [com.minkasu:minkasu-2fa:3.0.0] AndroidManifest.xml:14:18-45 value=(false).
 >    Suggestion: add 'tools:replace="android:allowBackup"' to <application> element at AndroidManifest.xml:5:5-25:19 to override`.
 >
@@ -152,11 +152,11 @@ val payUPaymentParams = PayUPaymentParams.Builder()
     .build()  
 ```
 
- See [Payment Params Definition](https://docs.payu.in/docs/android-checkoutpro-integration-steps#step-35-payment-param-definitions) for parameter descriptions and sample values. 
+See [Payment Params Definition](https://docs.payu.in/docs/android-checkoutpro-integration-steps#step-35-payment-param-definitions) for parameter descriptions and sample values.
 
 > 📘 Important:
 >
-> * The URLs used in surl and furl are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed. See [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk). 
+> * The URLs used in surl and furl are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed. See [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
 >
 > * The **TransactionId** parameter must not include special characters and must not exceed 25 characters.
 
@@ -235,7 +235,7 @@ paymentParam.setPercentageAdditionalCharges("CC:50,AMEX:100,DINR:75,DC:25")
 paymentParam.setAdditionalCharges("CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55").setPercentageAdditionalCharges("CC:50,SBIB:100,DINR:100,DC:25,NB:50");
 ```
 
-For more information on the Additional Charges, refer to [Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges). 
+For more information on the Additional Charges, refer to [Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges).
 
 ### Step 3:5: For split Payments details (Optional)
 
@@ -295,15 +295,15 @@ The following fields are included in the `splitPaymentDetails` parameter in a JS
   <tbody>
     <tr>
       <td>
-           type
+        type
         `mandatory`
       </td>
 
       <td>
-        `string` Any of the following types of split is specified in this field.  
+        `string` Any of the following types of split is specified in this field.
 
-        * \*- absolute:\*\* The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment  
-        * \*- percentage\*\*: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment
+        * *- absolute:*\* The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment
+        * *- percentage*\*: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment
       </td>
 
       <td>
@@ -318,20 +318,20 @@ The following fields are included in the `splitPaymentDetails` parameter in a JS
       </td>
 
       <td>
-        `JSON` This parameter must include the list of aggregator sub-transaction IDs and sub-amounts as follows:  
+        `JSON` This parameter must include the list of aggregator sub-transaction IDs and sub-amounts as follows:
 
-        * \*- aggregatorSubTxnId\*\*: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only for child merchants.  
-        * \*- aggregatorSubAmt\*\*: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.  
-        * \*- aggregatorCharges\*\*: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.  
-        * \*Note\*\*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.\
+        * *- aggregatorSubTxnId*\*: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only for child merchants.
+        * *- aggregatorSubAmt*\*: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.
+        * *- aggregatorCharges*\*: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.
+        * *Note*\*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.\
           The sample request structure JSON Request Structure of splitInfo Field.
       </td>
 
       <td>
         \{\
-        "merchantKey1": \{\
-        "aggregatorSubTxnId": "30nknyhkhib",\
-        "aggregatorSubAmt": "8",\
+        "merchantKey1": \{
+        "aggregatorSubTxnId": "30nknyhkhib",
+        "aggregatorSubAmt": "8",
         }
       </td>
     </tr>
@@ -482,12 +482,12 @@ val additionalParamsMap: HashMap = HashMap()
 
     <tr>
       <td>
-        transactionId\
+        transactionId
         `mandatory`
       </td>
 
       <td>
-        `String` It should be unique for each transaction.\
+        `String` It should be unique for each transaction.
         Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "\_,$,%,&, etc"
       </td>
 
@@ -498,7 +498,7 @@ val additionalParamsMap: HashMap = HashMap()
 
     <tr>
       <td>
-        Amount\
+        Amount
         `mandatory`
       </td>
 
@@ -513,7 +513,7 @@ val additionalParamsMap: HashMap = HashMap()
 
     <tr>
       <td>
-        productInfo\
+        productInfo
         `mandatory`
       </td>
 
@@ -528,7 +528,7 @@ val additionalParamsMap: HashMap = HashMap()
 
     <tr>
       <td>
-        firstName\
+        firstName
         `mandatory`
       </td>
 
@@ -543,7 +543,7 @@ val additionalParamsMap: HashMap = HashMap()
 
     <tr>
       <td>
-        Email\
+        Email
         `mandatory`
       </td>
 
@@ -558,7 +558,7 @@ val additionalParamsMap: HashMap = HashMap()
 
     <tr>
       <td>
-        Phone\
+        Phone
         `mandatory`
       </td>
 
@@ -573,15 +573,15 @@ val additionalParamsMap: HashMap = HashMap()
 
     <tr>
       <td>
-        Surl\
+        Surl
         `mandatory`
       </td>
 
       <td>
-        `String` When the transaction is successful, PayU will load this URL and pass the transaction response.  
+        `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
 
-        * \*Sample SURL for testing\*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)  
-        * \*Note\*\*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
+        * *Sample SURL for testing*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+        * *Note*\*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
       </td>
 
       <td>
@@ -596,10 +596,10 @@ val additionalParamsMap: HashMap = HashMap()
       </td>
 
       <td>
-        `String` When the transaction fails, PayU will load this URL and pass the transaction response.  
+        `String` When the transaction fails, PayU will load this URL and pass the transaction response.
 
-        * \*Sample FURL for testing\*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)  
-        * \*Note\*\*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error. 
+        * *Sample FURL for testing*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+        * *Note*\*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
       </td>
 
       <td>
@@ -615,7 +615,7 @@ val additionalParamsMap: HashMap = HashMap()
 
       <td>
         `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:\
-        `<merchantKey>:<userId>  `\
+        `<merchantKey>:<userId>  `
         Here, the `UserId` is any ID/email/phone number to uniquely identify the user. \*\*
       </td>
 
@@ -630,7 +630,7 @@ val additionalParamsMap: HashMap = HashMap()
       </td>
 
       <td>
-        `String` Set the value of this parameter as `true`When you deploy the integration in production. To test the integration set the value as `false`. 
+        `String` Set the value of this parameter as `true`When you deploy the integration in production. To test the integration set the value as `false`.
       </td>
 
       <td>
@@ -645,12 +645,7 @@ val additionalParamsMap: HashMap = HashMap()
       </td>
 
       <td>
-        `String` The use for this param is to allow the offer engine to apply velocity rules at a user level.  
-
-        -**Card Based Offers (CC, DC, EMI):** For card payment mode offers, if this parameter is passed then the velocity rules would be applied on this token, if not passed the same would be applied to the card number.  
-
-        \-**UPI, NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.\
-                                                                                                                                   \- \*Note:- \*\*When we use Offer features then it's a mandatory parameter otherwise it's not required.
+        `String` The use for this param is to allow the offer engine to apply velocity rules at a user level.-**Card Based Offers (CC, DC, EMI):** For card payment mode offers, if this parameter is passed then the velocity rules would be applied on this token, if not passed the same would be applied to the card number.-**UPI, NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
       </td>
 
       <td>
@@ -665,7 +660,7 @@ val additionalParamsMap: HashMap = HashMap()
       </td>
 
       <td>
-        Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to PayUPaymentParams.  
+        Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to PayUPaymentParams.
 
         * \*Note:- \*\*When we use SKU features then it's a mandatory parameter otherwise it's not required.
       </td>
@@ -980,7 +975,7 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
 
 > 🚧 Watch Out
 >
-> * In case of `UPI intent/InApp flow`,  you will not receive a callback response in surl or furl. In this case, the format of PayU response received will be different from other payment options that you need to handle at your end.                                                    
+> * In case of `UPI intent/InApp flow`,  you will not receive a callback response in surl or furl. In this case, the format of PayU response received will be different from other payment options that you need to handle at your end.
 > * Consider the **mihpayid** in the PayU response as **PayU ID/ID**
 
 ### Card/NB/Wallet and other transactions
@@ -1238,21 +1233,21 @@ paymentParam.setUserToken = "";
     <tr>
       <td>
         user\_token
-        `mandatory` 
+        `mandatory`
       </td>
 
       <td>
-        The use for this param is to allow the offer engine to apply velocity rules at a user level.  
+        The use for this param is to allow the offer engine to apply velocity rules at a user level.
 
-        -**Card Based Offers (CC, DC, EMI):** In the case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied to the card number.  
+        -**Card Based Offers (CC, DC, EMI):** In the case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied to the card number.
 
-        \-**UPI, NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.                                                                                                                                 **Note:-**&#x57;hen we use Offer features then it's a mandatory parameter otherwise it's not required.
+        -**UPI, NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.                                                                                                                                 \*\*Note:-\*\*When we use Offer features then it's a mandatory parameter otherwise it's not required.
       </td>
     </tr>
   </tbody>
 </Table>
 
-Kindly refer to the below [link](https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers) for more details about Offer Integration. 
+Kindly refer to the below [link](https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers) for more details about Offer Integration.
 
 ## MCP Integration
 
@@ -1348,4 +1343,4 @@ checkoutProConfig.customNoteDetails = customNote
 
 ## Additional SDK Offerings
 
- If you want to add features like **Native OTP**, **Gpay InApp**, **PhonePe Inapp**, and **Ola Money** in our PayUCheckoutPro SDK, then please refer to the below [Add-on SDKs](https://dash.readme.com/project/payu-hosted-checkout/v1/docs/android-checkoutpro-addonsdks)
+If you want to add features like **Native OTP**, **Gpay InApp**, **PhonePe Inapp**, and **Ola Money** in our PayUCheckoutPro SDK, then please refer to the below [Add-on SDKs](https://dash.readme.com/project/payu-hosted-checkout/v1/docs/android-checkoutpro-addonsdks)
