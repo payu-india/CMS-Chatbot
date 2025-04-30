@@ -22,17 +22,16 @@ metadata:
 next:
   description: ''
 ---
-The **Get Transaction Info** API (get_transaction_info) can take input as the exact time in terms of minutes and seconds the output would be in the same format as \*_[get_Transaction_Details\*](ref:get_transaction_details_api)\_ API output.
+The **Get Transaction Info** API (get_transaction_info) can take input as the exact time in terms of minutes and seconds the output would be in the same format as [get_Transaction_Details](ref:get_transaction_details_api) API output.
 
 **Environment**
 
-|                        |                                                           |
+|  | | 
 | :--------------------- | :-------------------------------------------------------- |
-| Test Environment       | <https://apitest.payu.in/merchant/postservice.php?form=2> |
-| Production Environment | <https://info.payu.in/merchant/postservice?form=2>        |
+| Test Environment       | [https://apitest.payu.in/merchant/postservice.php?form=2](https://apitest.payu.in/merchant/postservice.php?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2)        |
 
-<details>
-  <summary>Sample request</summary>
+## Sample request
 
 ```curl
 curl --location 'https://test.payu.in/merchant/postservice?form=2' \
@@ -44,14 +43,11 @@ curl --location 'https://test.payu.in/merchant/postservice?form=2' \
 --data-urlencode 'var2=2024-10-11 14:00:00'
 ```
 
-</details>
-
-<details>
-  <summary>Sample response</summary>
+## Sample response
 
 - Success scenario
 
-```plaintext
+```json
 {
       "status": 1,
       "msg": "Transaction Fetched Successfully",
@@ -136,7 +132,7 @@ curl --location 'https://test.payu.in/merchant/postservice?form=2' \
 
 If transaction is not found, the response is similar to the following:
 
-```
+```json
 {
       "status": 1,
       "msg": "Transaction Fetched Successfully",
@@ -146,32 +142,20 @@ If transaction is not found, the response is similar to the following:
 
 If invalid date is posted, the response is similar to the following:
 
-```plaintext
+```json
 {
       "status": 0,
       "msg": "Invalid Date Entered. Date format should be yyyy-mm-dd"
 }
 ```
 
-</details>
-
-<details>
-  <summary>Response parameters</summary>
+## Response parameters
 
 For the details of fields in the JSON, refer to [Additional Info for General APIs](ref:addl-info-general-apis).
 
 To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 
-</details>
-
 ## Request parameters
-
-<details>
-  <summary>Reference information for request parameters</summary>
-
-<KeyHashForGeneralParametersDescription />
-
-</details>
 
 **Sample values**
 
