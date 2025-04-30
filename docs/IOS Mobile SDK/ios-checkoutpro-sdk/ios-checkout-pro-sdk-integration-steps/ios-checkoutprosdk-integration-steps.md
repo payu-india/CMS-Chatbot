@@ -319,7 +319,7 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 
       <td>
         Should be a unique value\
-        Format: <merchantKey>:<userId>\
+        Format: \<merchantKey>:\<userId>
         Here, UserId is any id/email/phone number to uniquely identify the user
       </td>
     </tr>
