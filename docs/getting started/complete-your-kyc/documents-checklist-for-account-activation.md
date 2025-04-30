@@ -91,7 +91,8 @@ These are additional documents are required based on the industry type:
 
 * The following documents are acceptable as additional Government proof: MSME, IEC, FSSAI, ITR
 * Upload a clear image of the address proof (both sides) if applicable.
-* In case of Aadhaar, upload proof with masked Aadhaar Number.</details>
+* In case of Aadhaar, upload proof with masked Aadhaar Number.
+</details>
 
 ## Partnership
 
@@ -121,7 +122,8 @@ These are additional documents are required based on the industry type:
 
 * Upload complete partnership deed, it should be verified by notary or registrar on stamp paper.
 * The document should have the profit sharing ratios.
-* In case of any amendments or changes, the supplement or amendment deed should also be uploaded along with the original deed.</details>
+* In case of any amendments or changes, the supplement or amendment deed should also be uploaded along with the original deed.
+</details>
 
 <details>
 <summary>5. Government Issued Certificate</summary>
@@ -186,7 +188,8 @@ These are additional documents are required based on the industry type:
 
 * Kindly upload complete LLP deed, it should be verified by notary or registrar on stamp paper.
 * The document should have the profit sharing ratios.
-* In case of any amendments or changes, the supplement or amendment deed should also be uploaded along with the original deed.</details>
+* In case of any amendments or changes, the supplement or amendment deed should also be uploaded along with the original deed
+</details>
 
 <details>
 <summary>6. PAN Card of LLP</summary>
@@ -243,18 +246,21 @@ These are additional documents are required based on the industry type:
 <summary>5. Memorandum of Association</summary>
 
 * Upload complete Memorandum of Association having all pages.
-* Missing pages will lead to rejection in Memorandum of Association.</details>
+* Missing pages will lead to rejection in Memorandum of Association
+</details>
 
 <details>
 <summary>6. Articles of Association</summary>
 
 * Upload complete Articles of Association having all pages.
-* Missing pages will lead to rejection in Articles of Association.</details>
+* Missing pages will lead to rejection in Articles of Association
+</details>
 
 <details>
 <summary>7. PAN Card of Company</summary>
 
-* The document will be validated via API. However, in case of any discrepancies, keep this document handy to process your onboarding.</details>
+* The document will be validated via API. However, in case of any discrepancies, keep this document handy to process your onboarding
+</details>
 
 <details>
 <summary>8. Authorisation Letter</summary>
@@ -296,13 +302,15 @@ These are additional documents are required based on the industry type:
 <summary>5. Memorandum of Association</summary>
 
 * Upload complete Memorandum of Association having all pages.
-* Missing pages will lead to rejection in Memorandum of Association.</details>
+* Missing pages will lead to rejection in Memorandum of Association
+</details>
 
 <details>
 <summary>6. Articles of Association</summary>
 
 * Upload complete Articles of Association having all pages.
-* Missing pages will lead to rejection in Articles of Association.</details>
+* Missing pages will lead to rejection in Articles of Association
+</details>
 
 <details>
 <summary>7. PAN Card of Company</summary>
@@ -359,13 +367,15 @@ These are additional documents are required based on the industry type:
 <summary>5. Trust Deed</summary>
 
 * Kindly upload complete deed copy.
-* Trust deed should be either notarized or verified by registrar.</details>
+* Trust deed should be either notarized or verified by registrar
+</details>
 
 <details>
 <summary>6. Beneficiary List</summary>
 
 * Kindly upload the list of trustees/beneficiaries/settlor/members as on date.
-* It should be on company letterhead and should be duly signed and stamped by an authorized person.</details>
+* It should be on company letterhead and should be duly signed and stamped by an authorized person
+</details>
 
 <details>
 <summary>7. PAN Card of Trust</summary>
@@ -389,7 +399,8 @@ These are additional documents are required based on the industry type:
 > These documents may be needed if you do not manually disclose your UBO.
 
 * Provisioned shareholding document should clarify 100% distribution of ownership and should be duly signed and stamped by an authorized person with date.
-* Along with the shareholding document, kindly share the KYC document (PAN and address proof) of all individuals holding more than 10% ownership.</details>
+* Along with the shareholding document, kindly share the KYC document (PAN and address proof) of all individuals holding more than 10% ownership
+</details>
 
 <details>
 <summary>10. Darpan Portal Document</summary>
@@ -397,7 +408,8 @@ These are additional documents are required based on the industry type:
 This document is only required for NPOs, where they are Trust entity only.
 
 * Kindly upload a declaration that no individual or entity holds any shareholding or profit in the trust.
-* It should be declared by an authorized person of the trust.</details>
+* It should be declared by an authorized person of the trust
+</details>
 
 ## Society
 
@@ -433,7 +445,8 @@ This document is only required for NPOs, where they are Trust entity only.
 <summary>5. Bye-Laws for Society</summary>
 
 * Kindly upload complete copy of bye laws or Memorandum of Association.
-* Missing pages will lead to rejection.</details>
+* Missing pages will lead to rejection
+</details>
 
 <details>
 <summary>6. PAN Card of Society</summary>
@@ -453,7 +466,8 @@ This document is only required for NPOs, where they are Trust entity only.
 <summary>8. List of members certified by Registrar of society with shareholding</summary>
 
 * Shareholding document providing 100% ownership and should be duly signed and stamped by an authorized person with date.
-* Upload KYC documents (PAN and Address proof) of individuals having more than 15% ownership.</details>
+* Upload KYC documents (PAN and Address proof) of individuals having more than 15% ownership
+</details>
 
 ## Government
 
@@ -489,7 +503,8 @@ This document is only required for NPOs, where they are Trust entity only.
 <details>
 <summary>5. Evidence of registration or Office order</summary>
 
-* Upload Registration Certificate/ UGC Care certificate/GST.</details>
+* Upload Registration Certificate/ UGC Care certificate/GST
+</details>
 
 ## One Person Company
 
@@ -525,13 +540,15 @@ This document is only required for NPOs, where they are Trust entity only.
 <summary>5. Memorandum of Association</summary>
 
 * Upload complete Memorandum of Association having all pages.
-* Missing pages will lead to rejection in Memorandum of Association.</details>
+* Missing pages will lead to rejection in Memorandum of Association
+</details>
 
 <details>
 <summary>6. Articles of Association</summary>
 
 * Upload complete Articles of Association having all pages.
-* Missing pages will lead to rejection in Articles of Association.</details>
+* Missing pages will lead to rejection in Articles of Association
+</details>
 
 <details>
 <summary>7. PAN Card of Company</summary>
@@ -596,7 +613,8 @@ This document is only required for NPOs, where they are Trust entity only.
 <details>
 <summary>5. Evidence of registration or Office order</summary>
 
-* Upload Registration Certificate/ UGC Care certificate/GST.</details>
+* Upload Registration Certificate/ UGC Care certificate/GST
+</details>
 
 ## Local Authority
 
@@ -631,7 +649,8 @@ This document is only required for NPOs, where they are Trust entity only.
 <details>
 <summary>5. Evidence of registration or Office order</summary>
 
-* Upload Registration Certificate/ UGC Care certificate/GST.</details>
+* Upload Registration Certificate/ UGC Care certificate/GST
+</details>
 
 ## NGO
 
@@ -876,5 +895,5 @@ Please declare the information regarding the senior stakeholders on within the o
 
 | Category        | Details Required                                                                                     |
 | --------------- | ---------------------------------------------------------------------------------------------------- |
-| Partnership/LLP | 1. Please declare all applicable partners <br> 2. Please declare all KMPs (Key Management Personnel) |
-| Public/Private  | 1. Please declare all Directors <br> 2. Please declare all KMPs (Key Management Personnel)           |
+| Partnership/LLP | 1. Please declare all applicable partners <br/> 2. Please declare all KMPs (Key Management Personnel) |
+| Public/Private  | 1. Please declare all Directors <br/> 2. Please declare all KMPs (Key Management Personnel)           |
