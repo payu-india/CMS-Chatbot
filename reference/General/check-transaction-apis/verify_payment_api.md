@@ -24,10 +24,13 @@ next:
 ---
 The Verify Payment (**verify\_payment**) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU’s database after you receive the response, where var1 is your transaction ID.
 
-<GENERALAPIsEnvironment />
+**Environemnt**
+|   |   |
+| --- | --- |
+| Test Environment | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
-<details><summary>Sample request</summary>
-
+##Sample request
 ```curl
 curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -36,10 +39,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 --data-urlencode 'var1=IhfgcZnXR4o4nB' \
 --data-urlencode 'hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
 ```
-
-</details>
-
-<details>  <summary>Sample response</summary>
+## Sample response
 
 * If credit card payment is made, the response is similar to the following:
 
@@ -259,9 +259,7 @@ Successfully","transaction_details":{"IhfgcZnXR4o4nB":{"mihpayid":"Not Found","s
 }
 ```
 
-</details>
-
-<details>  <summary>Response parameters</summary>
+## Response parameters
 
 <Table>
   <thead>
@@ -365,15 +363,8 @@ To learn more about the possible error codes and their description, refer to [Er
 
 <TutorialTile backgroundColor="#018FF4" emoji="🦉" id="65afb6e90a4e0500389d3886" link="https://docs.payu.in/v1/recipes/parse-the-verify-payment-api-response" slug="parse-the-verify-payment-api-response" title="Parse the Verify Payment API response" />
 
-</details>
 
 ## Request parameters
-
-<details>  <summary>Reference information for request parameters</summary>
-
-<KeyHashForGeneralParametersDescription />
-
-</details>
 
 **Sample values**
 
