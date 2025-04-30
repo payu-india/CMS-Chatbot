@@ -20,6 +20,8 @@ metadata:
 next:
   description: ''
 ---
+# Get EMI Amount According to Interest API
+
 The **Get EMI Amount According to Interest** API (**getEmiAmountAccordingToInterest** API) is used to get the EMI interest bank rates for all the enabled EMIs.
 
 ## Sample request
@@ -116,7 +118,7 @@ The response includes the JSON array and each JSON has the fields as described i
     </tr>
     <tr>
       <td>card_type</td>
-      <td>The card type used by the customer and can be any of the following:  * credit card   * debit card</td>
+      <td>The card type used by the customer and can be any of the following:  * credit card  * debit card</td>
       <td>credit card</td>
     </tr>
     <tr>
@@ -153,11 +155,11 @@ Use the following sample values while trying out the API:
   <tbody>
     <tr>
       <td>key</td>
-      <td>For more information on how to generate the Key and Salt, refer to any of the following:  **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard) **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)</td>
+      <td>For more information on how to generate the Key and Salt, refer to any of the following:  **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)</td>
     </tr>
     <tr>
       <td>hash</td>
-      <td>Hash logic for this API is: <code>sha512(key|command|var1|salt) sha512</code> For more information about the hash generation process, refer to [Encryption of Request.](/docs/hashing-request-and-response)</td>
+      <td>Hash logic for this API is:<code>sha512(key|command|var1|salt) sha512</code> For more information about the hash generation process, refer to [Encryption of Request.](/docs/hashing-request-and-response)</td>
     </tr>
     <tr>
       <td>var1</td>
