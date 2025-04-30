@@ -101,7 +101,9 @@ Kindly provide any two of the required government proofs to facilitate your onbo
 <AddressProof />
 
 </details>
-<details> <summary>PAN Card of Signing Authority</summary>
+
+<details>
+<summary>4. PAN Card of Signing Authority</summary>
 
 <PANCard />
 
@@ -137,7 +139,8 @@ Kindly provide any two of the required government proofs to facilitate your onbo
 
 * Upload complete partnership deed. All partners have to sign on deed and it should be on stamp paper.
 * The document should have the profit sharing ratios.
-* In case of any amendments or changes, the supplement or amendment deed should also be uploaded along with the original deed.</details>
+* In case of any amendments or changes, the supplement or amendment deed should also be uploaded along with the original deed.
+</details>
 
 <details>
 <summary>5. Government Issued Certificate</summary>
@@ -204,7 +207,8 @@ Kindly provide any two of the required government proofs to facilitate your onbo
 
 * Kindly upload complete LLP deed, it should be verified by notary or registrar on stamp paper.
 * The document should have the profit sharing ratios.
-* In case of any amendments or changes, the supplement or amendment deed should also be uploaded along with the original deed.</details>
+* In case of any amendments or changes, the supplement or amendment deed should also be uploaded along with the original deed.
+</details>
 
 <details>
 <summary>6. PAN Card of LLP</summary>
@@ -265,18 +269,21 @@ Kindly provide any two of the required government proofs to facilitate your onbo
 <summary>5. Memorandum of Association</summary>
 
 * Upload complete Memorandum of Association having all pages.
-* Missing pages will lead to rejection in Memorandum of Association.</details>
+* Missing pages will lead to rejection in Memorandum of Association.
+</details>
 
 <details>
 <summary>6. Articles of Association</summary>
 
 * Upload complete Articles of Association having all pages.
-* Missing pages will lead to rejection in Articles of Association.</details>
+* Missing pages will lead to rejection in Articles of Association.
+</details>
 
 <details>
 <summary>7. PAN Card of Company</summary>
 
-* The document will be validated via API. However, in case of any discrepancies, keep this document handy to process your onboarding.</details>
+* The document will be validated via API. However, in case of any discrepancies, keep this document handy to process your onboarding.
+</details>
 
 <details>
 <summary>8. Authorization Letter</summary> 
@@ -311,7 +318,9 @@ Kindly provide any two of the required government proofs to facilitate your onbo
 
 <AddressProof />
 
-</details><details>
+</details>
+
+<details>
 <summary>3. Bank Account Proof</summary>
 
 <BankAccountProof />
@@ -329,13 +338,15 @@ Kindly provide any two of the required government proofs to facilitate your onbo
 <summary>5. Memorandum of Association</summary>
 
 * Upload complete Memorandum of Association having all pages.
-* Missing pages will lead to rejection in Memorandum of Association.</details>
+* Missing pages will lead to rejection in Memorandum of Association.
+</details>
 
 <details>
 <summary>6. Articles of Association</summary>
 
 * Upload complete Articles of Association having all pages.
-* Missing pages will lead to rejection in Articles of Association.</details>
+* Missing pages will lead to rejection in Articles of Association.
+</details>
 
 <details>
 <summary>7. PAN Card of Company</summary>
@@ -392,13 +403,15 @@ Kindly provide any two of the required government proofs to facilitate your onbo
 <summary>5. Trust Deed</summary>
 
 * Kindly upload complete deed copy.
-* Trust deed should be either notarized or verified by registrar.</details>
+* Trust deed should be either notarized or verified by registrar.
+</details>
 
 <details>
 <summary>6. Beneficiary List</summary>
 
 * Kindly upload the list of trustees/beneficiaries/settlor/members as on date.
-* It should be on company letterhead and should be duly signed and stamped by an authorized person.</details>
+* It should be on company letterhead and should be duly signed and stamped by an authorized person.
+</details>
 
 <details>
 <summary>7. PAN Card of Trust</summary>
@@ -419,7 +432,8 @@ Kindly provide any two of the required government proofs to facilitate your onbo
 
 * These documents may be needed if you do not manually disclose your UBO.
 * Provisioned shareholding document should clarify 100% distribution of ownership and should be duly signed and stamped by an authorized person with date.
-* Along with the shareholding document, kindly share the KYC document (PAN and address proof) of all individuals holding 10% or more ownership.</details>
+* Along with the shareholding document, kindly share the KYC document (PAN and address proof) of all individuals holding 10% or more ownership.
+</details>
 
 <details>
 <summary>10. Darpan Portal Document</summary>
@@ -427,7 +441,8 @@ Kindly provide any two of the required government proofs to facilitate your onbo
 This document is only required for NPOs or NGOs, where they are Trust entity only.
 
 * Kindly upload a declaration that no individual or entity holds any shareholding or profit in the trust.
-* It should be declared by an authorized person of the trust.</details>
+* It should be declared by an authorized person of the trust.
+</details>
 
 ## Society
 
@@ -463,7 +478,8 @@ This document is only required for NPOs or NGOs, where they are Trust entity onl
 <summary>5. Bye-Laws for Society</summary>
 
 * Kindly upload complete copy of bye laws or Memorandum of Association.
-* Missing pages will lead to rejection.</details>
+* Missing pages will lead to rejection.
+</details>
 
 <details>
 <summary>6. PAN Card of Society</summary>
@@ -483,12 +499,12 @@ This document is only required for NPOs or NGOs, where they are Trust entity onl
 <summary>8. List of members certified by Registrar of society with shareholding</summary>
 
 * Shareholding document providing 100% ownership and should be duly signed and stamped by an authorized person with date.
-* Upload KYC documents (PAN and Address proof) of individuals having more than 15% ownership.</details>
+* Upload KYC documents (PAN and Address proof) of individuals having more than 15% ownership.
+</details>
 
 ## Government
 
 <details>
-
 <summary>1. PAN Card of Signing Authority</summary>
 
 <PANCard />
@@ -519,7 +535,8 @@ This document is only required for NPOs or NGOs, where they are Trust entity onl
 <details>
 <summary>5. Evidence of registration or Office order</summary>
 
-* Upload Registration Certificate/ UGC Care certificate/GST.</details>
+* Upload Registration Certificate/ UGC Care certificate/GST.
+</details>
 
 ## One Person Company
 
@@ -555,13 +572,15 @@ This document is only required for NPOs or NGOs, where they are Trust entity onl
 <summary>5. Memorandum of Association</summary>
 
 * Upload complete Memorandum of Association having all pages.
-* Missing pages will lead to rejection in Memorandum of Association.</details>
+* Missing pages will lead to rejection in Memorandum of Association.
+</details>
 
 <details>
 <summary>6. Articles of Association</summary>
 
 * Upload complete Articles of Association having all pages.
-* Missing pages will lead to rejection in Articles of Association.</details>
+* Missing pages will lead to rejection in Articles of Association.
+</details>
 
 <details>
 <summary>7. PAN Card of Company</summary>
@@ -601,7 +620,7 @@ This document is only required for NPOs or NGOs, where they are Trust entity onl
 </details>
 
 <details>
-  <summary>5. Other docs</summary>
+<summary>5. Other docs</summary>
 
 * Power of attorney or another suitable authorisation granted to act on its behalf
 * Duly signed and stamp by KARTA
@@ -642,7 +661,8 @@ This document is only required for NPOs or NGOs, where they are Trust entity onl
 <details>
 <summary>5. Evidence of registration or Office order</summary>
 
-* Upload Registration Certificate/ UGC Care certificate/GST.</details>
+* Upload Registration Certificate/ UGC Care certificate/GST.
+</details>
 
 ## Local Authority
 
@@ -677,7 +697,8 @@ This document is only required for NPOs or NGOs, where they are Trust entity onl
 <details>
 <summary>5. Evidence of registration or Office order</summary>
 
-* Upload Registration Certificate/ UGC Care certificate/GST.</details>
+* Upload Registration Certificate/ UGC Care certificate/GST.
+</details>
 
 <br />
 
@@ -723,7 +744,7 @@ This document is only required for NPOs or NGOs, where they are Trust entity onl
 
 </details>
 
-## Educational Services 
+## Educational Services 
 
 <Table align={["left","left"]}>
   <thead>
@@ -756,7 +777,7 @@ This document is only required for NPOs or NGOs, where they are Trust entity onl
   </tbody>
 </Table>
 
-## E-Commerce 
+## E-Commerce 
 
 <Table align={["left","left"]}>
   <thead>
@@ -790,7 +811,7 @@ This document is only required for NPOs or NGOs, where they are Trust entity onl
   </tbody>
 </Table>
 
-## Donations/Crowdfunding 
+## Donations/Crowdfunding 
 
 <Table align={["left","left"]}>
   <thead>
@@ -824,7 +845,7 @@ This document is only required for NPOs or NGOs, where they are Trust entity onl
   </tbody>
 </Table>
 
-## Healthcare 
+## Healthcare 
 
 <Table align={["left","left"]}>
   <thead>
@@ -919,5 +940,5 @@ Please declare the information regarding the senior stakeholders on within the o
 
 | Category        | Details Required                                                                                     |
 | --------------- | ---------------------------------------------------------------------------------------------------- |
-| Partnership/LLP | 1. Please declare all applicable partners <br> 2. Please declare all KMPs (Key Management Personnel) |
-| Public/Private  | 1. Please declare all Directors <br> 2. Please declare all KMPs (Key Management Personnel)           |
+| Partnership/LLP | 1. Please declare all applicable partners  2. Please declare all KMPs (Key Management Personnel) |
+| Public/Private  | 1. Please declare all Directors 2. Please declare all KMPs (Key Management Personnel)           |
