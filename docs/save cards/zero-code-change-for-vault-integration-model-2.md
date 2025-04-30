@@ -34,21 +34,14 @@ To create the token, only minor code changes is required in your implementation.
 
    Here, consent is taken from customer on the merchant’s website (similar to the step 2 of [Model 1 - PayU Hosted Checkout Integration](doc:payu-hosted-checkout-integration-with-vault-model-1) before passing the consent value).
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/payu_hosted_consent_crop.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "512px"
-    }
-  ]
-}
-[/block]
+<Image
+  src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/payu_hosted_consent_crop.png"
+  alt=""
+  caption=""
+  width="512px"
+  align="center"
+/>
+
 
 - If the merchant is already using the PayU vault, only consent parameter needs to be passed.
 - If the merchant is newly onboarded on the PayU vault, consent and user ID parameters need to be passed.
@@ -77,31 +70,43 @@ The following flow diagram illustrates the workflow for first-time payment workf
 
 |                            |                                 |
 | :------------------------- | :------------------------------ |
-| **Test Environment**       | <https://test.payu.in/_payment> |
-| **Production Environment** | <https://info.payu.in/_payment> |
+| **Test Environment**       | \<https://test.payu.in/_payment> |
+| **Production Environment** | \<https://info.payu.in/_payment> |
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "user\\_credentials  \n**mandatory**",
-    "0-1": "`varchar` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the **save\\_user\\_cards** API. The format of the value is `<merchant key>:<user ID>`",
-    "0-2": "a:b",
-    "1-0": "store\\_card  \n**mandatory**",
-    "1-1": "`integer` This is an existing field, where the card token flag is passed by merchant. The values for this field can be:  \n  \n- **0** – Consent was not provided by customer  \n- **1** – Consent was provided by customer  \n  \nIf the consent is provided by the customer, the value is passed as **1**.",
-    "1-2": "1"
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>user_credentials<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the <strong>save_user_cards</strong> API. The format of the value is <code>&lt;merchant key&gt;:&lt;user ID&gt;</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>a:b</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>store_card<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>integer</code> This is an existing field, where the card token flag is passed by merchant. The values for this field can be:  </p>
+<ul>
+<li><strong>0</strong> – Consent was not provided by customer  </li>
+<li><strong>1</strong> – Consent was provided by customer</li>
+</ul>
+<p>If the consent is provided by the customer, the value is passed as <strong>1</strong>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 > 📘 Notes:
 > 
@@ -139,31 +144,43 @@ If you have not received a response from PayU with First-Time Payment Workflow, 
 
 ### Extra parameters to be posted with saved card using _payment API
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "user\\_credentials  \n**mandatory**",
-    "0-1": "_varchar_ It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save\\_user\\_cards API.",
-    "0-2": " a:b",
-    "1-0": "store\\_card\\_token",
-    "1-1": "_varchar_ It is the card token for a card that is returned by PayU when you store a card. When you store a card using the save\\_user\\_cards API, the response from PayU contains the card token value in the cardToken parameter.",
-    "1-2": "57cb996f2eaeee525765a",
-    "2-0": "storecard\\_token\\_type  \n**optional for PayU token flow**",
-    "2-1": "_integer_ This parameter can be posted with the value as **0** as you are using PayU token hub.",
-    "2-2": "0"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>user_credentials<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><em>varchar</em> It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save_user_cards API.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> a:b</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>store_card_token</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><em>varchar</em> It is the card token for a card that is returned by PayU when you store a card. When you store a card using the save_user_cards API, the response from PayU contains the card token value in the cardToken parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>57cb996f2eaeee525765a</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>storecard_token_type<br><strong>optional for PayU token flow</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><em>integer</em> This parameter can be posted with the value as <strong>0</strong> as you are using PayU token hub.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>0</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 > 📘 Note:
 > 
