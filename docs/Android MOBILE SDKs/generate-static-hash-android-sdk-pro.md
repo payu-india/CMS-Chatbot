@@ -14,19 +14,16 @@ The static hashes can be passed to SDK during integration and do not change. Unl
 
 The following table describes all static hashes:
 
-| Hash Name                                 | Description                                                                                                                         | Hash Formula                                                                                      |
-| :---------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------ |
-| `payment_related_ details_for_mobile_sdk` | It is used to fetch enabled payment options. If not passed, checkout screen will not appear.                                        | 
-```
-<key>\\|payment_related_details_for_mobile_sdk\\|<userCredential>\\|<salt>
-```
-                      |
-| `eligibleBinsForEMI`                      | It is used to fetch the eligible bins for EMI when EMI is enabled. If not passed, EMI payment will not work.                        | `<key>\\|eligibleBinsForEMI\\|default\\|<salt>`                                                   |
-| `getEmiAmount   AccordingToInterest`      | It is used to fetch EMI details like, amount, interest rate, etc when EMI is enabled. If not passed, EMI payment will not work.     | `<key>\\|vas_for_mobile_sdk\\|<amount>\\|<salt>`                                                  |
-| `Payment`                                 | It is used for making payment. If not passed, payment will not happen.                                                              | key\|txnid\|amount\|productinfo\|firstname\|email \|udf1\|udf2\| udf3\|udf4\|udf5\|\|\|\|\|\|salt |
-| `delete_payment_instrument`               | It is used to delete the Tokenised card                                                                                             | `<key>\\|delete_payment_instrument\\|<userCredential\\| <salt>`                                   |
-| `get_payment_instrument`                  | It is used to get all stored tokenised cards                                                                                        | `<key> \\|get_payment_instrument\\|<userCredential\\|<salt>`                                      |
-| `get_payment_details`                     | It is used to get the payment details of an existing card stored on PayU Vault so that you can use it with third-party tokenisation | `<key>\\|get_payment_details\\|<userCredential\\|<salt>`                                          |
+| Hash Name                          | Description                                                                                                                         | Hash Formula                                                                                     |
+| :--------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
+| `payment_related_details_for_mobile_sdk` | Used to fetch enabled payment options. If not passed, checkout screen will not appear.       | `\<key>\|\payment_related_details_for_mobile_sdk\|\<userCredential>\|\<salt>\`         |
+| `eligibleBinsForEMI`              | Used to fetch the eligible bins for EMI when EMI is enabled. If not passed, EMI payment will not work.                             | `\<key>\|\eligibleBinsForEMI\|\default\|\<salt>\`                                       |
+| `getEmiAmountAccordingToInterest` | Used to fetch EMI details like amount, interest rate, etc. If not passed, EMI payment will not work.                                | `\<key>\|\vas_for_mobile_sdk\|\<amount>\|\<salt>\`                                     |
+| `Payment`                         | Used for making payment. If not passed, payment will not happen.                                                                   | `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt`              |
+| `delete_payment_instrument`       | Used to delete the tokenised card                                                                                                   | `\<key>\|\delete_payment_instrument\|\<userCredential>\|\<salt>\`                      |
+| `get_payment_instrument`          | Used to get all stored tokenised cards                                                                                              | `\<key>\|\get_payment_instrument\|\<userCredential>\|<salt>\`                         |
+| `get_payment_details`             | Used to get the payment details of an existing card stored on PayU Vault                                                            | `\<key>\|\get_payment_details\|\<userCredential>\|\<salt>\`                            |
+
 
 After setting the values in the above formula, generate `sha512` over it and pass the same in additional parameters
 
