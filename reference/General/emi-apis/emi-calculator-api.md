@@ -29,68 +29,120 @@ You can use this API to display the EMI plans along with all offers on the check
 - Fetch EMI plans with one offer applied
 - Fetch EMI plans with SKU based offers
 
-**Environment**
+## Environment
 
-|                            |                                           |
-| -------------------------- | ----------------------------------------- |
-| **Test Environment**       | <https://apitest.payu.in/calculateEmi/v2> |
-| **Production Environment** | <https://api.payu.in/calculateEmi/v2>     |
+<Table>
+  <thead>
+    <tr>
+      <th>Environment</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>**Test Environment**</td>
+      <td>https://apitest.payu.in/calculateEmi/v2</td>
+    </tr>
+    <tr>
+      <td>**Production Environment**</td>
+      <td>https://api.payu.in/calculateEmi/v2</td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Header parameters
 
-| Parameter             | Example          |
-| --------------------- | ---------------- |
-| accept                | application/json |
-| content-type          | application/json |
-| x-credential-username | OADt8R           |
+<Table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>accept</td>
+      <td>application/json</td>
+    </tr>
+    <tr>
+      <td>content-type</td>
+      <td>application/json</td>
+    </tr>
+    <tr>
+      <td>x-credential-username</td>
+      <td>OADt8R</td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "amount  \n`mandatory`",
-    "0-1": "This parameter must include the principal amount that needs to be converted into EMI.",
-    "1-0": "additional_charges  \n`optional`",
-    "1-1": "This parameter must include the convenience fee if the merchant wants to collect.",
-    "2-0": "offer_key  \n`optional`",
-    "2-1": "This parameter must contain the offer key for the transaction-level offer.",
-    "3-0": "autoApplyOffer  \n`optional`",
-    "3-1": "This parameter must be set to **true** if the merchant wants to apply best offer when no transaction offer keys specified.",
-    "4-0": "skus  \n`optional`",
-    "4-1": "This parameter must include the SKU data.",
-    "5-0": "skus.skuAmount  \nmandatory",
-    "5-1": "This parameter must contain the amount per SKU.",
-    "6-0": "skus.quantity  \nmandatory",
-    "6-1": "This parameter must contain the SKU quantity.",
-    "7-0": "skus.skuName  \nmandatory",
-    "7-1": "This parameter must contain the name of SKU.",
-    "8-0": "skus.offerKeys  \n`optional`",
-    "8-1": "This parameter must contain the offer key for SKU.",
-    "9-0": "skus.autoApplyOffer",
-    "9-1": "This parameter must be set to **true** if the merchant wants to apply best offer when no SKU offer keys specified..",
-    "10-0": "bankCodes  \n`optional`",
-    "10-1": "This parameter must contain the bank codes for filtering.",
-    "11-0": "emiCodes  \n`optional`",
-    "11-1": "This parameter must contain the EMI  bankcodes for filtering.",
-    "12-0": "disableOverrideNceConfig  \n`optional`",
-    "12-1": "This parameter must be set to **true ** PayU will not consider NCE through merchant parameters for the merchant."
-  },
-  "cols": 2,
-  "rows": 13,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>amount<br/><code>mandatory</code></td>
+      <td>This parameter must include the principal amount that needs to be converted into EMI.</td>
+    </tr>
+    <tr>
+      <td>additional_charges<br/><code>optional</code></td>
+      <td>This parameter must include the convenience fee if the merchant wants to collect.</td>
+    </tr>
+    <tr>
+      <td>offer_key<br/><code>optional</code></td>
+      <td>This parameter must contain the offer key for the transaction-level offer.</td>
+    </tr>
+    <tr>
+      <td>autoApplyOffer<br/><code>optional</code></td>
+      <td>This parameter must be set to **true** if the merchant wants to apply best offer when no transaction offer keys specified.</td>
+    </tr>
+    <tr>
+      <td>skus<br/><code>optional</code></td>
+      <td>This parameter must include the SKU data.</td>
+    </tr>
+    <tr>
+      <td>skus.skuAmount<br/><code>mandatory</code></td>
+      <td>This parameter must contain the amount per SKU.</td>
+    </tr>
+    <tr>
+      <td>skus.quantity<br/><code>mandatory</code></td>
+      <td>This parameter must contain the SKU quantity.</td>
+    </tr>
+    <tr>
+      <td>skus.skuName<br/><code>mandatory</code></td>
+      <td>This parameter must contain the name of SKU.</td>
+    </tr>
+    <tr>
+      <td>skus.offerKeys<br/><code>optional</code></td>
+      <td>This parameter must contain the offer key for SKU.</td>
+    </tr>
+    <tr>
+      <td>skus.autoApplyOffer</td>
+      <td>This parameter must be set to **true** if the merchant wants to apply best offer when no SKU offer keys specified.</td>
+    </tr>
+    <tr>
+      <td>bankCodes<br/><code>optional</code></td>
+      <td>This parameter must contain the bank codes for filtering.</td>
+    </tr>
+    <tr>
+      <td>emiCodes<br/><code>optional</code></td>
+      <td>This parameter must contain the EMI bankcodes for filtering.</td>
+    </tr>
+    <tr>
+      <td>disableOverrideNceConfig<br/><code>optional</code></td>
+      <td>This parameter must be set to **true** PayU will not consider NCE through merchant parameters for the merchant.</td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
-```curl
+```bash
 curl --location --request POST 'https://apitest.payu.in/calculateEmi/v2' \
 --header 'x-credential-username: smsplus' \
 --header 'Content-Type: application/json' \
@@ -119,79 +171,313 @@ curl --location --request POST 'https://apitest.payu.in/calculateEmi/v2' \
         }
     ]
 }'
-
 ```
 
 ## Response parameters
 
-| Field                | Description                                                                                                                                                                                   | Example  |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| message              | Response message indicating success or failure of the API call.                                                                                                                               | Success  |
-| status               | Status code indicating the result of the API call (1 for success, 0 for failure).                                                                                                             | 1        |
-| result               | The result is in JSON format with an array of EMI options. For example, EMI6, EMI12, EMI18, etc. For more information, refer to [EMI JSON fields description](#emi-json-fields-description) . | 10000.0  |
-| nceDiscount.total    | In NCE (No-Cost EMI), total non-cash equivalent discount amount.                                                                                                                              | 1266.78  |
-| nceDiscount.instant  | In NCE (No-Cost EMI), instant non-cash equivalent discount applied.                                                                                                                           | 1266.78  |
-| nceDiscount.cashback | In NCE (No-Cost EMI), cashback from non-cash equivalent discount.                                                                                                                             | 0.0      |
-| sku                  | SKU details in a JSON format. For more information, refer to [sku JSON fields description](#sku-json-fields-description)                                                                      | Product1 |
-| totalPayableAmount   | Total amount payable after discounts and EMI.                                                                                                                                                 | 10000.0  |
-| nceDiscountAmount    | Total non-cash equivalent discount amount applied.                                                                                                                                            | 1266.78  |
-| revisedPrincipal     | Revised principal loan amount.                                                                                                                                                                | 10000.0  |
-| subventionAmount     | Subvention amount considered for the transaction.                                                                                                                                             | 10000.0  |
-| gstSubvention        | Indicates if GST is included in subvention.                                                                                                                                                   | true     |
-| nceViaConfig         | Indicates if NCE discount is via configuration.                                                                                                                                               | true     |
-| bankCode             | Bank code of the bank providing EMI. For more information, refer to [EMI Codes](doc:emi-codes).                                                                                               | YESB     |
-| emi_value            | EMI value calculated.                                                                                                                                                                         | 555.55   |
-| emi_interest_paid    | Total interest paid over the EMI tenure.                                                                                                                                                      | 1266.78  |
+<Table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>message</td>
+      <td>Response message indicating success or failure of the API call.</td>
+      <td>Success</td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>Status code indicating the result of the API call (1 for success, 0 for failure).</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>result</td>
+      <td>The result is in JSON format with an array of EMI options. For example, EMI6, EMI12, EMI18, etc. For more information, refer to <a href="#emi-json-fields-description">EMI JSON fields description</a>.</td>
+      <td>10000.0</td>
+    </tr>
+    <tr>
+      <td>nceDiscount.total</td>
+      <td>In NCE (No-Cost EMI), total non-cash equivalent discount amount.</td>
+      <td>1266.78</td>
+    </tr>
+    <tr>
+      <td>nceDiscount.instant</td>
+      <td>In NCE (No-Cost EMI), instant non-cash equivalent discount applied.</td>
+      <td>1266.78</td>
+    </tr>
+    <tr>
+      <td>nceDiscount.cashback</td>
+      <td>In NCE (No-Cost EMI), cashback from non-cash equivalent discount.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>sku</td>
+      <td>SKU details in a JSON format. For more information, refer to <a href="#sku-json-fields-description">sku JSON fields description</a>.</td>
+      <td>Product1</td>
+    </tr>
+    <tr>
+      <td>totalPayableAmount</td>
+      <td>Total amount payable after discounts and EMI.</td>
+      <td>10000.0</td>
+    </tr>
+    <tr>
+      <td>nceDiscountAmount</td>
+      <td>Total non-cash equivalent discount amount applied.</td>
+      <td>1266.78</td>
+    </tr>
+    <tr>
+      <td>revisedPrincipal</td>
+      <td>Revised principal loan amount.</td>
+      <td>10000.0</td>
+    </tr>
+    <tr>
+      <td>subventionAmount</td>
+      <td>Subvention amount considered for the transaction.</td>
+      <td>10000.0</td>
+    </tr>
+    <tr>
+      <td>gstSubvention</td>
+      <td>Indicates if GST is included in subvention.</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>nceViaConfig</td>
+      <td>Indicates if NCE discount is via configuration.</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>bankCode</td>
+      <td>Bank code of the bank providing EMI. For more information, refer to <a href="doc:emi-codes">EMI Codes</a>.</td>
+      <td>YESB</td>
+    </tr>
+    <tr>
+      <td>emi_value</td>
+      <td>EMI value calculated.</td>
+      <td>555.55</td>
+    </tr>
+    <tr>
+      <td>emi_interest_paid</td>
+      <td>Total interest paid over the EMI tenure.</td>
+      <td>1266.78</td>
+    </tr>
+  </tbody>
+</Table>
 
 ### EMI JSON fields description
 
-| Field                  | Description                                                         | Example     |
-| ---------------------- | ------------------------------------------------------------------- | ----------- |
-| transactionAmount      | The total transaction amount for which the EMI is calculated.       | 10000.0     |
-| payBackAmount          | The amount to be paid back over the EMI tenure, including interest. | 0.0         |
-| emiAmount              | The EMI amount to be paid in each installment.                      | 555.56      |
-| additionalCost         | Any additional costs apart from the EMI amount.                     | "0.0"       |
-| emiMdrNote             | Merchant discount rate note related to EMI.                         | 0.0         |
-| emiBankInterest        | Interest rate charged by the bank for the EMI.                      | 15.0        |
-| bankRate               | Bank's rate for the EMI calculation.                                | 0.0         |
-| bankCharge             | Additional bank charges associated with the EMI.                    | 0.0         |
-| amount                 | Amount per EMI installment including any charges.                   | 555.56      |
-| cardType               | Type of card used for the transaction.                              | credit card |
-| tenure                 | Duration of the EMI plan.                                           | 18 months   |
-| loanAmount             | Principal loan amount for EMI.                                      | 10000.0     |
-| offerKeys              | Keys associated with any offers applied.                            | null        |
-| offerDiscount.total    | Total discount amount provided as part of the offer.                | 0.0         |
-| offerDiscount.instant  | Instant discount amount applied.                                    | 0.0         |
-| offerDiscount.cashback | Cashback amount provided as part of the offer.                      | 0.0         |
+<Table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>transactionAmount</td>
+      <td>The total transaction amount for which the EMI is calculated.</td>
+      <td>10000.0</td>
+    </tr>
+    <tr>
+      <td>payBackAmount</td>
+      <td>The amount to be paid back over the EMI tenure, including interest.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>emiAmount</td>
+      <td>The EMI amount to be paid in each installment.</td>
+      <td>555.56</td>
+    </tr>
+    <tr>
+      <td>additionalCost</td>
+      <td>Any additional costs apart from the EMI amount.</td>
+      <td>"0.0"</td>
+    </tr>
+    <tr>
+      <td>emiMdrNote</td>
+      <td>Merchant discount rate note related to EMI.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>emiBankInterest</td>
+      <td>Interest rate charged by the bank for the EMI.</td>
+      <td>15.0</td>
+    </tr>
+    <tr>
+      <td>bankRate</td>
+      <td>Bank's rate for the EMI calculation.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>bankCharge</td>
+      <td>Additional bank charges associated with the EMI.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>amount</td>
+      <td>Amount per EMI installment including any charges.</td>
+      <td>555.56</td>
+    </tr>
+    <tr>
+      <td>cardType</td>
+      <td>Type of card used for the transaction.</td>
+      <td>credit card</td>
+    </tr>
+    <tr>
+      <td>tenure</td>
+      <td>Duration of the EMI plan.</td>
+      <td>18 months</td>
+    </tr>
+    <tr>
+      <td>loanAmount</td>
+      <td>Principal loan amount for EMI.</td>
+      <td>10000.0</td>
+    </tr>
+    <tr>
+      <td>offerKeys</td>
+      <td>Keys associated with any offers applied.</td>
+      <td>null</td>
+    </tr>
+    <tr>
+      <td>offerDiscount.total</td>
+      <td>Total discount amount provided as part of the offer.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>offerDiscount.instant</td>
+      <td>Instant discount amount applied.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>offerDiscount.cashback</td>
+      <td>Cashback amount provided as part of the offer.</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</Table>
 
 ### sku JSON fields description
 
-| Field                  | Description                                        | Example  |
-| ---------------------- | -------------------------------------------------- | -------- |
-| skuId                  | SKU identifier for the product.                    | Product1 |
-| amountPerSku           | Amount per SKU for the product.                    | 8000.0   |
-| amount                 | Total amount for the SKUs provided.                | 8000.0   |
-| quantity               | Quantity of the SKU.                               | 1        |
-| offerKeys              | Keys associated with any offers on SKU.            | null     |
-| emiAmount              | EMI amount specific to SKU.                        | 444.44   |
-| emiBankInterest        | EMI bank interest for SKU.                         | 15.0     |
-| emiValue               | EMI value calculated for SKU.                      | 444.44   |
-| emiInterestPaid        | Interest paid for EMI on SKU.                      | 1013.42  |
-| offerDiscount.total    | Total offer discount on SKU.                       | 0.0      |
-| offerDiscount.instant  | Instant offer discount on SKU.                     | 0.0      |
-| offerDiscount.cashback | Cashback offer on SKU.                             | 0.0      |
-| nceDiscount.total      | Total non-cash equivalent discount on SKU.         | 1013.42  |
-| nceDiscount.instant    | Instant non-cash equivalent discount on SKU.       | 1013.42  |
-| nceDiscount.cashback   | Cashback from non-cash equivalent discount on SKU. | 0.0      |
-| totalPayableAmount     | Total amount payable for the SKU.                  | 7999.92  |
-| nceDiscountAmount      | NCE discount amount applied on SKU.                | 1013.42  |
-| subventionAmount       | Subvention amount for SKU.                         | 8000.0   |
-| revisedPrincipal       | Revised principal amount for SKU.                  | 8000.0   |
-| additionalCharge       | Additional charge applicable to SKU.               | 0.0      |
+<Table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>skuId</td>
+      <td>SKU identifier for the product.</td>
+      <td>Product1</td>
+    </tr>
+    <tr>
+      <td>amountPerSku</td>
+      <td>Amount per SKU for the product.</td>
+      <td>8000.0</td>
+    </tr>
+    <tr>
+      <td>amount</td>
+      <td>Total amount for the SKUs provided.</td>
+      <td>8000.0</td>
+    </tr>
+    <tr>
+      <td>quantity</td>
+      <td>Quantity of the SKU.</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>offerKeys</td>
+      <td>Keys associated with any offers on SKU.</td>
+      <td>null</td>
+    </tr>
+    <tr>
+      <td>emiAmount</td>
+      <td>EMI amount specific to SKU.</td>
+      <td>444.44</td>
+    </tr>
+    <tr>
+      <td>emiBankInterest</td>
+      <td>EMI bank interest for SKU.</td>
+      <td>15.0</td>
+    </tr>
+    <tr>
+      <td>emiValue</td>
+      <td>EMI value calculated for SKU.</td>
+      <td>444.44</td>
+    </tr>
+    <tr>
+      <td>emiInterestPaid</td>
+      <td>Interest paid for EMI on SKU.</td>
+      <td>1013.42</td>
+    </tr>
+    <tr>
+      <td>offerDiscount.total</td>
+      <td>Total offer discount on SKU.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>offerDiscount.instant</td>
+      <td>Instant offer discount on SKU.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>offerDiscount.cashback</td>
+      <td>Cashback offer on SKU.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>nceDiscount.total</td>
+      <td>Total non-cash equivalent discount on SKU.</td>
+      <td>1013.42</td>
+    </tr>
+    <tr>
+      <td>nceDiscount.instant</td>
+      <td>Instant non-cash equivalent discount on SKU.</td>
+      <td>1013.42</td>
+    </tr>
+    <tr>
+      <td>nceDiscount.cashback</td>
+      <td>Cashback from non-cash equivalent discount on SKU.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>totalPayableAmount</td>
+      <td>Total amount payable for the SKU.</td>
+      <td>7999.92</td>
+    </tr>
+    <tr>
+      <td>nceDiscountAmount</td>
+      <td>NCE discount amount applied on SKU.</td>
+      <td>1013.42</td>
+    </tr>
+    <tr>
+      <td>subventionAmount</td>
+      <td>Subvention amount for SKU.</td>
+      <td>8000.0</td>
+    </tr>
+    <tr>
+      <td>revisedPrincipal</td>
+      <td>Revised principal amount for SKU.</td>
+      <td>8000.0</td>
+    </tr>
+    <tr>
+      <td>additionalCharge</td>
+      <td>Additional charge applicable to SKU.</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample response
 
-```
+```json
 {
     "message": "Success",
     "status": 1,
@@ -284,6 +570,8 @@ curl --location --request POST 'https://apitest.payu.in/calculateEmi/v2' \
                 "bankCode": "YESB",
                 "emi_value": 555.55,
                 "emi_interest_paid": 1266.78
-            },
-
+            }
+        }
+    }
+}
 ```
