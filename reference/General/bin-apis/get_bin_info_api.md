@@ -22,10 +22,6 @@ metadata:
 next:
   description: ''
 ---
-Here's the fixed version of the content with all MDX issues resolved:
-
-```markdown
-# Get BIN Info API
 
 The **Get BIN Info** API or **getBinInfo** API is used to determine the following for a single card or multiple cards: 
 
