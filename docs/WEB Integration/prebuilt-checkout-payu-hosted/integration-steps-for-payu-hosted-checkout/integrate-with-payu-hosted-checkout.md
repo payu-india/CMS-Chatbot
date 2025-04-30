@@ -20,7 +20,7 @@ To integrate with PayU Hosted Checkout, you need to send a request and check the
 
 > 👍 Before you begin:
 >
-> * PayU recommends you to integrate with Test environment initially. For merchants registered before August 3rd, 2023, use the following URL to sign up for the Test environment:
+> * PayU recommends you to integrate with Test environment initially. For merchants registered before August 3rd, 2023, use the following URL to sign up for the Test environment:\
 >   [https://uat-onepayuonboarding.payu.in/app/account/signup](https://uat-onepayuonboarding.payu.in/app/account/signup)
 > * Later, register for a production account with PayU. For more information, refer to [Register for a Merchant Account](register-for-a-merchant-account-on-dashboard).
 
@@ -64,7 +64,7 @@ The code block is a sample post request that you need to send to PayU:
 
 ### Request and response
 
-
+The Collect Payment (**\_payment**) API is used for collecting payments in Web Checkout integration. For request and response, refer to <a href="_payment_payu_hosted_checkout" target="_blank">Collect Payments API</a> under API Reference.
 
 
 
@@ -78,7 +78,7 @@ The code block is a sample post request that you need to send to PayU:
 
 #### Request parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -182,7 +182,7 @@ The code block is a sample post request that you need to send to PayU:
       </td>
 
       <td>
-        [abc@payu.in](mailto:abc@payu.in)   
+        [abc@payu.in](mailto:abc@payu.in)
       </td>
     </tr>
 
@@ -253,9 +253,9 @@ The code block is a sample post request that you need to send to PayU:
       </td>
 
       <td>
-        `String`It is the hash calculated by the merchant. The hash calculation logic is:` sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)`  
+        `String`It is the hash calculated by the merchant. The hash calculation logic is:` sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)`
 
-        * \*Reference\*\*: For detailed information on hashing, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a> . 
+        * *Reference*\*: For detailed information on hashing, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a> .
       </td>
 
       <td>
@@ -270,9 +270,9 @@ The code block is a sample post request that you need to send to PayU:
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -347,7 +347,7 @@ The code block is a sample post request that you need to send to PayU:
       </td>
 
       <td>
-        `String` Billing address zip code is mandatory for the cardless EMI option.  <br/>`Character Limit-20`
+        `String` Billing address zip code is mandatory for the cardless EMI option.  <br />`Character Limit-20`
       </td>
 
       <td>
@@ -672,5 +672,9 @@ PayU recommends this step to reconcile with PayU’s database after you receive 
 > 📘 Tip
 >
 > The Transaction ID (txnid) value that you passed in request of Step 1 with PayU must be used here.
+
+<TutorialTile backgroundColor="#018FF4" emoji="🦉" id="65afb6e90a4e0500389d3886" link="https://docs.payu.in/v1/recipes/parse-the-verify-payment-api-response" slug="parse-the-verify-payment-api-response" title="Parse the Verify Payment API response" />
+
+<br />
 
 <TutorialTile backgroundColor="#018FF4" emoji="🦉" id="65afb6e90a4e0500389d3886" link="https://docs.payu.in/v1/recipes/parse-the-verify-payment-api-response" slug="parse-the-verify-payment-api-response" title="Parse the Verify Payment API response" />
