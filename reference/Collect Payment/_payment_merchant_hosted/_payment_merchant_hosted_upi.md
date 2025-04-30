@@ -40,6 +40,8 @@ Validate the VPA (UPI handle) using the validateVpa API.  For more information, 
 
 ### Environment
 
+<br />
+
 ## Sample request
 
 ```curl
@@ -101,7 +103,7 @@ Array
 )
 ```
 
-\##>Response parameters
+## > Response parameters
 
 <Table>
   <thead>
@@ -134,13 +136,13 @@ Array
 
       <td>
         This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  
-        &#x9;•	Credit Card – CC 
-        &#x9;•	Debit Card – DC 
-        &#x9;•	Net Banking – NB
-        &#x9;•	Cash Card – CASH
-        &#x9;•	EMI – EMI 
-        &#x9;•	Cardless EMI – CLEMI
-        &#x9;•	Buy Now Pay Later - BNPL
+        •	Credit Card – CC 
+        •	Debit Card – DC 
+        •	Net Banking – NB
+        •	Cash Card – CASH
+        •	EMI – EMI 
+        •	Cardless EMI – CLEMI
+        •	Buy Now Pay Later - BNPL
       </td>
     </tr>
 
@@ -161,8 +163,8 @@ Array
 
       <td>
         This parameter returns the status of the transaction and must be used to map the order status. Possible values are success, failure, or pending. The significance of the values for these values are:  
-        &#x9;•	**Success**: If the value of status parameter is ’success’, the transaction is successful. 
-        &#x9;•	**Failed**: If the value of status parameter is ‘failure’ or ‘pending’, must only be treated as a failed transaction.
+        •	**Success**: If the value of status parameter is ’success’, the transaction is successful. 
+        •	**Failed**: If the value of status parameter is ‘failure’ or ‘pending’, must only be treated as a failed transaction.
       </td>
     </tr>
 
