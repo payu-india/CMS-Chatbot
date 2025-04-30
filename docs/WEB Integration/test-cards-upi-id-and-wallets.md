@@ -24,7 +24,7 @@ metadata:
 next:
   description: ''
 ---
-<TestCardsCallout />
+`<TestCardsCallout />`
 
 ## Test Cards
 
@@ -62,106 +62,204 @@ The following table provides details of some of the test cards that you can use 
 > 
 > Any value can be used for the **name** parameter in Test environment.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Payment Flow**",
-    "h-1": "**Card Number**",
-    "h-2": "**Expiry**",
-    "h-3": "**CVV**",
-    "h-4": "**OTP**",
-    "h-5": "**Mobile (mandatory for EMIs)**",
-    "0-0": "Kotak Bank DC EMI",
-    "0-1": "4706137805099594  \n**Note**: Amount range is : 5000.00 to 10000.00",
-    "0-2": "05/25",
-    "0-3": "any random three-digit number",
-    "0-4": "111111",
-    "0-5": "9123412345",
-    "1-0": "AXIS Bank DC EMI",
-    "1-1": "4011510000000007",
-    "1-2": "05/25",
-    "1-3": "any random three-digit number",
-    "1-4": "123456",
-    "1-5": "8884758579",
-    "2-0": "HDFC Bank CC EMI",
-    "2-1": "4453341065876437",
-    "2-2": "05/25",
-    "2-3": "any random three-digit number",
-    "2-4": "123456",
-    "2-5": "9123412345",
-    "3-0": "ICICI Bank CC EMI",
-    "3-1": "4808557848741463",
-    "3-2": "05/25",
-    "3-3": "any random three-digit number",
-    "3-4": "123456",
-    "3-5": "9123412345",
-    "4-0": "Onecard CC EMI",
-    "4-1": "4010636236612108",
-    "4-2": "05/25",
-    "4-3": "any random three-digit number",
-    "4-4": "123456",
-    "4-5": "9123412345",
-    "5-0": "Axis Bank CC EMI",
-    "5-1": "5241784703665106",
-    "5-2": "05/25",
-    "5-3": "123",
-    "5-4": "123456",
-    "5-5": "9123412345",
-    "6-0": "Standard Chartered CC EMI",
-    "6-1": "5404608014083225",
-    "6-2": "05/25",
-    "6-3": "any random three-digit number",
-    "6-4": "123456",
-    "6-5": "9123412345",
-    "7-0": "HSBC Bank CC EMI",
-    "7-1": "4862696278807023",
-    "7-2": "05/25",
-    "7-3": "any random three-digit number",
-    "7-4": "123456",
-    "7-5": "9123412345",
-    "8-0": "Kotak Bank CC EMI",
-    "8-1": "4363888155006621",
-    "8-2": "05/25",
-    "8-3": "any random three-digit number",
-    "8-4": "123456",
-    "8-5": "9123412345",
-    "9-0": "IndusInd Bank CC EMI",
-    "9-1": "4029706572777150",
-    "9-2": "05/25",
-    "9-3": "any random three-digit number",
-    "9-4": "123456",
-    "9-5": "9123412345",
-    "10-0": "Citibank CC EMI",
-    "10-1": "4550387246273400",
-    "10-2": "05/25",
-    "10-3": "any random three-digit number",
-    "10-4": "123456",
-    "10-5": "9123412345",
-    "11-0": "SBI CC EMI",
-    "11-1": "5264686823451576",
-    "11-2": "05/25",
-    "11-3": "any random three-digit number",
-    "11-4": "123456",
-    "11-5": "9123412345",
-    "12-0": "HSBC Bank CC EMI",
-    "12-1": "4862696278807023",
-    "12-2": "05/25",
-    "12-3": "any random three-digit number",
-    "12-4": "123456",
-    "12-5": "9123412345"
-  },
-  "cols": 6,
-  "rows": 13,
-  "align": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Payment Flow</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Card Number</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Expiry</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>CVV</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>OTP</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Mobile (mandatory for EMIs)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Kotak Bank DC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>4706137805099594<br><strong>Note</strong>: Amount range is : 5000.00 to 10000.00</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>111111</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123412345</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>AXIS Bank DC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>4011510000000007</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>8884758579</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>HDFC Bank CC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>4453341065876437</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123412345</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>ICICI Bank CC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>4808557848741463</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123412345</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Onecard CC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>4010636236612108</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123412345</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Axis Bank CC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>5241784703665106</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123412345</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Standard Chartered CC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>5404608014083225</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123412345</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>HSBC Bank CC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>4862696278807023</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123412345</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Kotak Bank CC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>4363888155006621</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123412345</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>IndusInd Bank CC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>4029706572777150</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123412345</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Citibank CC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>4550387246273400</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123412345</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>SBI CC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>5264686823451576</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123412345</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>HSBC Bank CC EMI</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>4862696278807023</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123412345</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ### Other EMIs
 
