@@ -84,7 +84,7 @@ ArrayList<PaymentDetails> netbanks = payuResponse.getNetbanks();
 
 * Additional Charge is available inside each `PaymentDetails` object and can be accessed using the `paymentDetails.getAdditionalCharge()` method
 * Similarly, bank health is available inside each `PaymentDetails` object and can be accessed using the `paymentDetails.isBankDown()` method.
-* For Offers, An ArrayList<PayuOffer> is available inside each `PaymentDetails` object. To get the offers list, use the `paymentDetails.getOfferDetailsList()`.
+* For Offers, An `ArrayList<PayuOffer>` is available inside each `PaymentDetails` object. To get the offers list, use the `paymentDetails.getOfferDetailsList()`.
 
 ### Get tax info
 
