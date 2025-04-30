@@ -303,7 +303,8 @@ const  authHeader = 'hmac username="' + key + '", ' + 'algorithm="' + AUTH_TYPE 
 
     <tr>
       <td>
-        udf4  ```
+        udf4  
+        ```
 
         optional
         ```
@@ -461,7 +462,7 @@ bolt.launch({
       </td>
 
       <td>
-        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  <br><br>*Credit Card – CC<br>* Debit Card – DC <br>*Net Banking – NB<br>* Cash Card – CASH<br>*EMI – EMI<br>* Cardless EMI – CLEMI<br>\* Buy Now Pay Later - BNPL
+        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  <br/><br/>*Credit Card – CC<br/>* Debit Card – DC <br/>*Net Banking – NB<br/>* Cash Card – CASH<br/>*EMI – EMI<br/>* Cardless EMI – CLEMI<br/>\* Buy Now Pay Later - BNPL
       </td>
     </tr>
 
@@ -671,7 +672,7 @@ bolt.launch({
       </td>
 
       <td>
-        This parameter is an object containing address the customer chose to make payment with. Example:  <br>\{  <br>    "name": "\<name\_with\_saved\_address>",  <br>    "email": "\<email\_with\_the\_saved\_address>",  <br>    "addressLine": "\<address\_string>",  <br>    "addressPhoneNumber": "\<address\_number>",  <br>    "landmark": ‘\<landmark\_with\_address>’,  <br>    "pincode": \<pincode\_with\_address>,  <br>    "city": "\<city\_with\_address>",  <br>    "state": “\<state\_with\_address>"  <br>}
+        This parameter is an object containing address the customer chose to make payment with. Example:  <br/>\{  <br/>    "name": "\<name\_with\_saved\_address>",  <br/>    "email": "\<email\_with\_the\_saved\_address>",  <br/>    "addressLine": "\<address\_string>",  <br/>    "addressPhoneNumber": "\<address\_number>",  <br/>    "landmark": ‘\<landmark\_with\_address>’,  <br/>    "pincode": \<pincode\_with\_address>,  <br/>    "city": "\<city\_with\_address>",  <br/>    "state": “\<state\_with\_address>"  <br/>}
       </td>
     </tr>
   </tbody>
