@@ -24,44 +24,55 @@ The UPI Number API command is used to fetch the VPA from the NPCI database. Afte
 
 HTTP Method: **GET**
 
-**Environment**
+## Environment
 
-|                |                                                |
-| -------------- | ---------------------------------------------- |
-| **Production** | <https://info.payu.in/payment-mode/v1/upi/vpa> |
+<Table>
+  <thead>
+    <tr>
+      <th>Environment</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>**Production**</td>
+      <td>https://info.payu.in/payment-mode/v1/upi/vpa</td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Request parameters
 
-> 📘 Note:
+> 📘 **Note:**
 > 
 > The request parameters must be passed in headers.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "Date  \n **mandatory**",
-    "0-1": "`String` The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT. ",
-    "0-2": "Thu, 17 Feb 2022 08:17:59 GMT ",
-    "1-0": "Digest  \n **mandatory**",
-    "1-1": "`Sttring` Base 64 encode of (sha256 hash of the JSON data (post to server). ",
-    "1-2": "`vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=`",
-    "2-0": "Authorization  \n **mandatory**",
-    "2-1": "`String` This field is in the String format. For more information, refer to [Authorization field format](#authorization-field-format).",
-    "2-2": "   "
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>**Field**</th>
+      <th>**Description**</th>
+      <th>**Example**</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Date<br/><code>mandatory</code></td>
+      <td><code>String</code> The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.</td>
+      <td>Thu, 17 Feb 2022 08:17:59 GMT</td>
+    </tr>
+    <tr>
+      <td>Digest<br/><code>mandatory</code></td>
+      <td><code>String</code> Base 64 encode of (sha256 hash of the JSON data (post to server).</td>
+      <td><code>vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=</code></td>
+    </tr>
+    <tr>
+      <td>Authorization<br/><code>mandatory</code></td>
+      <td><code>String</code> This field is in the String format. For more information, refer to [Authorization field format](#authorization-field-format).</td>
+      <td></td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Authorization field format
 
@@ -71,15 +82,17 @@ The **Authorization** field format is similar to the following example:
 hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="
 ```
 
- Where, the fields in this example are:
+Where, the fields in this example are:
 
 - **username**: The merchant key of the merchant.
 - **algorithm**: This must have the value as hmac-sha256 that is used for this API.
 - **headers**: This must have the value as date digest.
-- **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:  
-  - **signing\_string**: It must be in the "date: {dateValue}"+"\\n"+"digest: {digestValue}" format. Here, the dateVale and digestValue is the same values in the fields listed in this table For example, "date: Thu, 17 Feb 2022 08:17:59 GMT\\ndigest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
-  - **merchant\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.
-
+- **signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:  
+  - **signing_string**: It must be in the following format. Here, the dateVale and digestValue is the same values in the fields listed in this table For example, "date: Thu, 17 Feb 2022 08:17:59 GMT\\ndigest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
+```
+"date: {dateValue}"+"\\n"+"digest: {digestValue}"
+  - **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.
+```
 The following sample Java code contains the logic used to encrypt as described in the above table:
 
 ```java
@@ -142,7 +155,7 @@ public class HmacAuth {
 
 The sample header is similar to the following:
 
-> 📘 Note:
+> 📘 **Note:**
 > 
 > You need to include the current date and time in the **Date** field of the header.
 
@@ -156,63 +169,86 @@ The sample header is similar to the following:
 
 ### For UPI Collect
 
-```curl
-curl --location --request GET 'https://info.payu.in/payment-mode/v1/upi/vpa?upiNumber=9123412345 \ 
---header 'Content-Type: application/json' \ 
---header 'Date: Thu, 09 Feb 2023 10:13:28 GMT' \ 
---header 'Digest: 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' \ 
---header 'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="T4FRZcZ3AUYNCMnpZOePT6EKwhiGwCPgglp0RLyYN6Q="' 
+```bash
+curl --location --request GET 'https://info.payu.in/payment-mode/v1/upi/vpa?upiNumber=9123412345' \
+--header 'Content-Type: application/json' \
+--header 'Date: Thu, 09 Feb 2023 10:13:28 GMT' \
+--header 'Digest: 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' \
+--header 'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="T4FRZcZ3AUYNCMnpZOePT6EKwhiGwCPgglp0RLyYN6Q="'
 ```
 
 ### For UPI Autopay
 
-```curl
-curl --location --request GET 'https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=true&upiNumber=9123412345' \ 
---header 'Content-Type: application/json' \ 
---header 'Date: Thu, 09 Feb 2023 10:13:28 GMT' \ 
---header 'Digest: 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' \ 
---header 'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="T4FRZcZ3AUYNCMnpZOePT6EKwhiGwCPgglp0RLyYN6Q="' 
+```bash
+curl --location --request GET 'https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=true&upiNumber=9123412345' \
+--header 'Content-Type: application/json' \
+--header 'Date: Thu, 09 Feb 2023 10:13:28 GMT' \
+--header 'Digest: 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' \
+--header 'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="T4FRZcZ3AUYNCMnpZOePT6EKwhiGwCPgglp0RLyYN6Q="'
 ```
 
 ## Response parameters
 
-| **Field** | **Description**                                                                                                                                                                                                                                     | **Example**                    |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| message   | `String` This parameter returns whether the API call is success or not                                                                                                                                                                              | Success                        |
-| status    | `String` This parameter returns the any of the following status of web service call:                                                                                                                                                                | 1                              |
-| result    | `JSON Object` This field contains the result of the API query including Payer VPA and Payer Name in a JSON format. For more information on fields in the JSON, refer to [Description of Fields in JSON](#description-of-fields-in-the-result-json). | Refer to the subsection below  |
+<Table>
+  <thead>
+    <tr>
+      <th>**Field**</th>
+      <th>**Description**</th>
+      <th>**Example**</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>message</td>
+      <td><code>String</code> This parameter returns whether the API call is success or not</td>
+      <td>Success</td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td><code>String</code> This parameter returns the any of the following status of web service call:</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>result</td>
+      <td><code>JSON Object</code> This field contains the result of the API query including Payer VPA and Payer Name in a JSON format. For more information on fields in the JSON, refer to <a href="#description-of-fields-in-the-result-json">Description of Fields in JSON</a>.</td>
+      <td>Refer to the subsection below</td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Description of fields in the Result JSON
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "isValidVpa ",
-    "0-1": "Whether the UPI Number is Valid or not ",
-    "0-2": "true ",
-    "1-0": "payerAccountName ",
-    "1-1": "If UPI Number is valid, Name associated with the VPA ",
-    "1-2": "Abc",
-    "2-0": "vpa ",
-    "2-1": "VPA associated with the UPI Number ",
-    "2-2": "9123412345@okhdfcbank ",
-    "3-0": "isAutoPayVPAValid ",
-    "3-1": "Whether the VPA is UPI Autopay supported or not.  \nNote: This will only be included if **isAutoVPAValid**\\=true is sent as part of the request.",
-    "3-2": "true"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>**Field**</th>
+      <th>**Description**</th>
+      <th>**Example**</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>isValidVpa</td>
+      <td>Whether the UPI Number is Valid or not</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>payerAccountName</td>
+      <td>If UPI Number is valid, Name associated with the VPA</td>
+      <td>Abc</td>
+    </tr>
+    <tr>
+      <td>vpa</td>
+      <td>VPA associated with the UPI Number</td>
+      <td>9123412345@okhdfcbank</td>
+    </tr>
+    <tr>
+      <td>isAutoPayVPAValid</td>
+      <td>Whether the VPA is UPI Autopay supported or not.Note: This will only be included if **isAutoVPAValid**=true is sent as part of the request.</td>
+      <td>true</td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample Response
 
@@ -220,43 +256,43 @@ curl --location --request GET 'https://info.payu.in/payment-mode/v1/upi/vpa?isAu
 
 - For UPI Collect
 
-```plaintext
+```json
 { 
-    "message": "Success", 
-    "status": 1, 
-    "result": { 
-        "isValidVpa": true, 
-        "payerAccountName": "Abc", 
-        "vpa": "9123412345@okhdfcbank" 
-    } 
-} 
+    "message": "Success", 
+    "status": 1, 
+    "result": { 
+        "isValidVpa": true, 
+        "payerAccountName": "Abc", 
+        "vpa": "9123412345@okhdfcbank" 
+    } 
+}
 ```
 
 - For UPI Autopay
 
-```plaintext
+```json
 { 
-    "message": "Success", 
-    "status": 1, 
-    "result": { 
-        "isValidVpa": true, 
-        "payerAccountName": "Abc", 
-        "vpa": "9123412345@okhdfcbank", 
-        "isAutoPayVPAValid": true 
-    } 
+    "message": "Success", 
+    "status": 1, 
+    "result": { 
+        "isValidVpa": true, 
+        "payerAccountName": "Abc", 
+        "vpa": "9123412345@okhdfcbank", 
+        "isAutoPayVPAValid": true 
+    } 
 }
 ```
 
 ### Failure Scenario
 
-```plaintext
+```json
 { 
-    "message": "Success", 
-    "status": 1, 
-    "result": { 
-        "isValidVpa": false, 
-        "payerAccountName": "NA", 
-        "vpa": null 
-    } 
-} 
+    "message": "Success", 
+    "status": 1, 
+    "result": { 
+        "isValidVpa": false, 
+        "payerAccountName": "NA", 
+        "vpa": null 
+    } 
+}
 ```
