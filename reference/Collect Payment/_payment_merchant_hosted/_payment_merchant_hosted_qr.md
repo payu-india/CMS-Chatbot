@@ -16,8 +16,12 @@ Collect payments using QR codes with Merchant Hosted Checkout integration as des
 >
 > QR does not work in PayU Test environment, so the **Try It** experience is not enabled.
 
-### Environment
+**Environment**
 
+|   |   |
+| --- | --- |
+| Test Environment | [https://test.payu.in/_payment\](https://test.payu.in/_payment) |
+| Production Environment | [https://secure.payu.in/_payment\](https://secure.payu.in/_payment) |
 
 
 ## Request parameters
