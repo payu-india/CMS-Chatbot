@@ -24,7 +24,7 @@ metadata:
 next:
   description: ''
 ---
-> 💬 Pre-requisites
+> 💬 Pre-requisites 
 > 
 > To start transacting through Google Pay, register yourself on Google Pay using the following [Google Onboarding](https://pay.google.com/about/business/) form. In this registration process, add the Merchant VPA Ids created by PayU for you. In case of multiple VPAs, all of them need to be registered. For any queries regarding the same, raise a [ticket with PayU](https://help.payu.in/query).
 
@@ -34,7 +34,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
 ## Step 2: Set up build.gradle
 
-Add the PayU UPI SDK (available at Maven Central) to <<glossary:build.gradle>>:
+Add the PayU UPI SDK (available at Maven Central) to `<<glossary:build.gradle>>`:
 
 ```Text build.gradle
 implementation 'in.payu:upisdk:1.8.1'
@@ -337,21 +337,9 @@ You can disable the Manual VPA Fallback option from the Generic Intent tray from
 
 In order to disable it from front-end, set UpiConfig.TRUE to setDisableIntentSeamlessFailure flag of UpiConfig.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6aec066-assets_-Lj-v4fCXINPv0sVDofj_-LtdCEZoMrdiTIODfgKB_-LtdMRKu_890gaU_n0FY_image.webp",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<p align="center">
+  <img src="https://files.readme.io/6aec066-assets_-Lj-v4fCXINPv0sVDofj_-LtdCEZoMrdiTIODfgKB_-LtdMRKu_890gaU_n0FY_image.webp" alt="Centered image" style={{ maxWidth: '100%' }} />
+</p>
 
 ```Text JAVA
 upiConfig.setDisableIntentSeamlessFailure(UpiConfig.FALSE/UpiConfig.TRUE);
