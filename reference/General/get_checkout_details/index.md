@@ -36,14 +36,18 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
 
 |                        |                                                    |
 | :--------------------- | :------------------------------------------------- |
-| Test Environment       | <https://test.payu.in/merchant/postservice?form=2> |
-| Production Environment | <https://info.payu.in/merchant/postservice?form=2> |
+| Test Environment       | [https://test.payu.in-merchant/postservice?form=2](https://test.payu.in-merchant/postservice?form=2) |
+| Production Environment | [https://info.payu.in-merchant/postservice?form=2](https://info.payu.in-merchant/postservice?form=2) |
 
-<details> <summary>Sample request and response </summary>
+<details>
+
+<summary>Sample request and response </summary>
+
+
 
 ### Get extended payment details
 
-```curl
+```bash
 {
   // Mandatory field, random id for debugging purposes only
   "requestId": "12345678",
@@ -58,10 +62,9 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
   }
 }
 ```
-
 **Response**
 
-```plaintext
+```json
 {
   "status": 1,
   "details": {
@@ -230,10 +233,9 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
   }
 }
 ```
-
 ### Get additional charges
 
-```curl
+```bash
 {
     "requestId": "12345678",
     "transactionDetails": {
@@ -244,10 +246,9 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
     }
   }
 ```
-
 **Response**
 
-```plaintext
+```json
 {
   "status": 1,
   "details": {
@@ -336,10 +337,9 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
   }
 }
 ```
-
 ### Get tax specification
 
-```curl
+```bash
 {
   // Mandatory field, random id for debugging purposes only
   "requestId": "12345678",
@@ -353,10 +353,9 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
   }
 }
 ```
-
 **Response**
 
-```plaintext
+```json
 {
   "status": 1,
   "details": {
@@ -379,10 +378,9 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
   }
 }
 ```
-
 ### Check down status
 
-```curl
+```bash
 {
   // Mandatory field, random id for debugging purposes only
   "requestId": "12345678",
@@ -396,10 +394,9 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
   }
 }
 ```
-
 ** Response**
 
-```plaintext
+```json
 {
   "status": 1,
   "details": {
@@ -428,19 +425,17 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
   }
 }
 ```
-
 ### Check customer eligibility
 
 This field is used to check the customer eligibility.
 
-```curl
+```bash
 curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
 --form 'key="merchant key"' \
 --form 'command="get_checkout_details"' \
 --form 'var1="{\"requestId\":\"Test212345\",\"transactionDetails\":{\"amount\":10000},\"customerDetails\":{\"mobile\":\"9368252248\"},\"useCase\":{\"checkCustomerEligibility\":true},\"filters\":{\"paymentOptions\":{\"emi\":{\"dc\":\"all\",\"cc\":\"all\",\"cardless\":\"all\"},\"bnpl\":\"all\"}}}"' \
 --form 'hash="hash value"'
 ```
-
 **Sample response**
 
 ```
@@ -1620,10 +1615,9 @@ curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
     }
 }
 ```
-
 #### emi field in the **paymentOptions **field with filters parameter
 
-In this example, SBI, Kotak Mahindra and ICICI Bank EMI options are filtered. For list of EMI options, refer to [EMI Options for Get Checkout Details API](ref:emi-options-for-get-checkout-details-api).
+In this example, SBI, Kotak Mahindra and ICICI Bank EMI options are filtered. For list of EMI options, refer to [EMI Options for Get Checkout Details API](#emi-options-for-get-checkout-details-api).
 
 ```
 {
@@ -1646,7 +1640,6 @@ In this example, SBI, Kotak Mahindra and ICICI Bank EMI options are filtered. Fo
   }
 }
 ```
-
 **Response**
 
 ```
@@ -1799,14 +1792,17 @@ In this example, SBI, Kotak Mahindra and ICICI Bank EMI options are filtered. Fo
 }
 has context menu
 ```
-
 </details>
 
-<details> <summary>Response parameters </summary>
+<details>
+
+<summary>Response parameters </summary>
+
+
 
 ### JSON Format
 
-```curl
+```bash
 {
     "requestId": "12345678", // random id - mandatory
     "transactionDetails": {
@@ -1838,134 +1834,65 @@ has context menu
     }
   }
 ```
-
 ### JSON Fields Description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**JSON Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "requestId  \n**mandatory**",
-    "0-1": "`String` This parameter must contain the request ID.",
-    "0-2": "12345678",
-    "1-0": "transactionDetails  \n**mandatory**",
-    "1-1": "`JSON` This parameter must contain the following fields in a JSON format as in the example:  \n  \n- **amount**: This field contains the transaction amount\n- ` **txnid**: This fields contains the transaction ID.`",
-    "1-2": " `{  \n    \"amount\": 12345.12  \n  }`",
-    "2-0": "useCase  \n**mandatory**",
-    "2-1": "`JSON` This field contains list of fields for which you want get information. For the list of fields and its description, refer to the [Additional Info for General APIs > useCase JSON Field Description](#usecase-json-field-descriptions). table.",
-    "2-2": "` {  \n  \"getExtendedPaymentDetails\": true  \n  }`",
-    "3-0": "filters  \n**optional**",
-    "3-1": "`JSON`This parameter is used to filter the response of this API based on one or more following in the **paymentOptions** field:  \n  \n- **cc**: Filter the credit cards.\n- **dc**: Filter the debit cards.\n- **nb**: Filter the Net Banking\n- **emi**:  Filter the EMI options. For list of EMI options, refer to [EMI Options for Get Checkout Details API](ref:emi-options-for-get-checkout-details-api).\n- **upi**: Filter the UPI\n- **cash**: Filter the wallets",
-    "3-2": "`{\n\"paymentOptions\": \n   {\n      \"emi\": { \n                   \"dc\": \"SBIN,KKBK,ICIC\"\n              }\n     }\n}`"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+| **JSON Field** | **Description** | **Example** |
+| --- | --- | --- |
+| requestId   **mandatory** | `String` This parameter must contain the request ID. | 12345678 |
+| transactionDetails   **mandatory** | `JSON` This parameter must contain the following fields in a JSON format as in the example:      - **amount**: This field contains the transaction amount - ` **txnid**: This fields contains the transaction ID.` |  `{       "amount": 12345.12     }` |
+| useCase   **mandatory** | `JSON` This field contains list of fields for which you want get information. For the list of fields and its description, refer to the [Additional Info for General APIs > useCase JSON Field Description](#usecase-json-field-descriptions). table. | ` {     "getExtendedPaymentDetails": true     }` |
+| filters   **optional** | `JSON`This parameter is used to filter the response of this API based on one or more following in the **paymentOptions** field:      - **cc**: Filter the credit cards. - **dc**: Filter the debit cards. - **nb**: Filter the Net Banking - **emi**:  Filter the EMI options. For list of EMI options, refer to [EMI Options for Get Checkout Details API](#emi-options-for-get-checkout-details-api). - **upi**: Filter the UPI - **cash**: Filter the wallets | `{ "paymentOptions":     {       "emi": {                     "dc": "SBIN,KKBK,ICIC"               }      } }` |
+
 
 
 ### useCase JSON Field Description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**useCase Field**",
-    "h-1": "**Description**",
-    "0-0": "getExtendedPaymentDetails  \n**optional**",
-    "0-1": "`Boolean` This flag is posted as **true** to check EMI eligibility based on mobile number and/or card number depending on the payment method used. Also, checks the eligibility for “Buy Now Pay Later” payment modes.  \n**Example**: Title, EMI amount breakup, etc details are displayed in the response. For a sample request or response using this field, refer to the [Get Extended Payment Details](#get-extended-payment-details) section.",
-    "1-0": "getAdditionalCharges  \n**optional**",
-    "1-1": "`Boolean` This flag is posted as **true** to return the additional charges configured for all payment options. For a sample request or response using this field, refer to the [Get Additional Charges](#get-additional-charges) section.  \n**Note**: You need to use the **getTaxSpecification** field if you want to calculate the tax split of additional charges on their end.",
-    "2-0": "getTaxSpecification`\n`**optional**",
-    "2-1": "`Boolean` This flag is posted as **true** to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option. For a sample request or response using this field, refer to the [Get Tax Specification](#get-tax-specification) section.",
-    "3-0": "checkDownStatus`\n`**optional**",
-    "3-1": "`Boolean` This flag is posted as **true** to return the downtime of the payment options. For a sample request or response using this field, refer to [Check Down Status](#check-down-status) field.",
-    "4-0": "checkCustomerEligibility  \n**optional**",
-    "4-1": "`Boolean` This flag is posted as **true** to return the customer eligibility. For a sample request or response using this field, refer to [Check Customer Eligibility](#check-customer-eligibility)  field."
-  },
-  "cols": 2,
-  "rows": 5,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+| **useCase Field** | **Description** |
+| --- | --- |
+| getExtendedPaymentDetails   **optional** | `Boolean` This flag is posted as **true** to check EMI eligibility based on mobile number and-or card number depending on the payment method used. Also, checks the eligibility for “Buy Now Pay Later” payment modes.   **Example**: Title, EMI amount breakup, etc details are displayed in the response. For a sample request or response using this field, refer to the [Get Extended Payment Details](#get-extended-payment-details) section. |
+| getAdditionalCharges   **optional** | `Boolean` This flag is posted as **true** to return the additional charges configured for all payment options. For a sample request or response using this field, refer to the [Get Additional Charges](#get-additional-charges) section.   **Note**: You need to use the **getTaxSpecification** field if you want to calculate the tax split of additional charges on their end. |
+| getTaxSpecification` `**optional** | `Boolean` This flag is posted as **true** to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option. For a sample request or response using this field, refer to the [Get Tax Specification](#get-tax-specification) section. |
+| checkDownStatus` `**optional** | `Boolean` This flag is posted as **true** to return the downtime of the payment options. For a sample request or response using this field, refer to [Check Down Status](#check-down-status) field. |
+| checkCustomerEligibility   **optional** | `Boolean` This flag is posted as **true** to return the customer eligibility. For a sample request or response using this field, refer to [Check Customer Eligibility](#check-customer-eligibility)  field. |
+
 
 
 </details>
 
 ## Request parameters
 
-<details><summary>Additional information for request parameters</summary>
+<details>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Reference",
-    "0-0": "<<glossary:key>>",
-    "0-1": "For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n\\- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  \n  \n- **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "1-0": "<<glossary:hash>>",
-    "1-1": "Hash logic for this API is:  \n`sha512(key\\|command\\|var1\\|salt) sha512\n`",
-    "2-0": "var1",
-    "2-1": "For JSON fields description, refer to [var1 JSON fields description](#var1-JSON-fields-description)."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<summary>Additional information for request parameters</summary>
+
+
+
+| Parameter | Reference |
+| --- | --- |
+| **key** | For more information on how to generate the Key and Salt, refer to any of the following:      \- **Production**: [Generate Merchant Key and Salt](#generate-merchant-key-and-salt-on-payu-dashboard)      - **Test**: [Generate Test Merchant Key and Salt](#generate-test-merchant-key-and-salt) |
+| **hash** | Hash logic for this API is:   `sha512(key\|command\|var1\|salt) sha512 ` |
+| var1 | For JSON fields description, refer to [var1 JSON fields description](#var1-JSON-fields-description). |
+
 
 
 ### var1 JSON fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**JSON Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "requestId  \n**mandatory**",
-    "0-1": "`String` This parameter must contain the request ID.",
-    "0-2": "12345678",
-    "1-0": "transactionDetails  \n**mandatory**",
-    "1-1": "`JSON` This parameter must contain the following fields in a JSON format as in the example:  \n  \n- **amount**: This field contains the transaction amount\n- ` **txnid**: This fields contains the transaction ID.`",
-    "1-2": " `{  \n    \"amount\": 12345.12  \n  }`",
-    "2-0": "useCase  \n**mandatory**",
-    "2-1": "`JSON` This field contains list of fields for which you want get information. For the list of fields and its description, refer to the [useCase JSON field descriptions](#usecase-json-field-descriptions). table.",
-    "2-2": "` {  \n  \"getExtendedPaymentDetails\": true  \n  }`",
-    "3-0": "filters  \n**optional**",
-    "3-1": "`JSON`This parameter is used to filter the response of this API based on one or more following in the **paymentOptions** field:  \n  \n- **cc**: Filter the credit cards.\n- **dc**: Filter the debit cards.\n- **nb**: Filter the Net Banking\n- **emi**:  Filter the EMI options. For list of EMI options, refer to [EMI Options for Get Checkout Details API](ref:emi-options-for-get-checkout-details-api).\n- **upi**: Filter the UPI\n- **cash**: Filter the wallets",
-    "3-2": "`{\n\"paymentOptions\": \n   {\n      \"emi\": { \n                   \"dc\": \"SBIN,KKBK,ICIC\"\n              }\n     }\n}`"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+| **JSON Field** | **Description** | **Example** |
+| --- | --- | --- |
+| requestId   **mandatory** | `String` This parameter must contain the request ID. | 12345678 |
+| transactionDetails   **mandatory** | `JSON` This parameter must contain the following fields in a JSON format as in the example:      - **amount**: This field contains the transaction amount - ` **txnid**: This fields contains the transaction ID.` |  `{       "amount": 12345.12     }` |
+| useCase   **mandatory** | `JSON` This field contains list of fields for which you want get information. For the list of fields and its description, refer to the [useCase JSON field descriptions](#usecase-json-field-descriptions). table. | ` {     "getExtendedPaymentDetails": true     }` |
+| filters   **optional** | `JSON`This parameter is used to filter the response of this API based on one or more following in the **paymentOptions** field:      - **cc**: Filter the credit cards. - **dc**: Filter the debit cards. - **nb**: Filter the Net Banking - **emi**:  Filter the EMI options. For list of EMI options, refer to [EMI Options for Get Checkout Details API](#emi-options-for-get-checkout-details-api). - **upi**: Filter the UPI - **cash**: Filter the wallets | `{ "paymentOptions":     {       "emi": {                     "dc": "SBIN,KKBK,ICIC"               }      } }` |
+
 
 
 ### useCase JSON field descriptions
 
 | **useCase Field**                   | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| getExtendedPaymentDetails`optional` | `Boolean` This flag is posted as **true** to check EMI eligibility based on mobile number and/or card number depending on the payment method used. Also, checks the eligibility for “Buy Now Pay Later” payment modes. **Example**: Title, EMI amount breakup, etc details are displayed in the response. For a sample request or response using this field, refer to the [Get Extended Payment Details](https://devguide.vercel.app/api/get-checkout-details/#getExtendedPaymentDetails)  section. |
-| getAdditionalCharges`optional`      | `Boolean` This flag is posted as **true** to return the additional charges configured for all payment options. For a sample request or response using this field, refer to the [Get Additional Charges](https://devguide.vercel.app/api/get-checkout-details/#getAdditionalCharges) section. **Note**: You need to use the **getTaxSpecification** field if you want to calculate the tax split of additional charges on their end.                                                                 |
-| getTaxSpecification`optional`       | `Boolean` This flag is posted as **true** to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option. For a sample request or response using this field, refer to the [Get Tax Specification](https://devguide.vercel.app/api/get-checkout-details/#getTaxSpecification) section.                                                                                                                       |
-| checkDownStatus`optional`           | `Boolean` This flag is posted as **true** to return the downtime of the payment options. For a sample request or response using this field, refer to [Check Down Status](https://devguide.vercel.app/api/get-checkout-details/#checkDownStatus) field.                                                                                                                                                                                                                                              |
+| getExtendedPaymentDetails`optional` | `Boolean` This flag is posted as **true** to check EMI eligibility based on mobile number and-or card number depending on the payment method used. Also, checks the eligibility for “Buy Now Pay Later” payment modes. **Example**: Title, EMI amount breakup, etc details are displayed in the response. For a sample request or response using this field, refer to the [Get Extended Payment Details](https://devguide.vercel.app-api/get-checkout-details/#getExtendedPaymentDetails)  section. |
+| getAdditionalCharges`optional`      | `Boolean` This flag is posted as **true** to return the additional charges configured for all payment options. For a sample request or response using this field, refer to the [Get Additional Charges](https://devguide.vercel.app-api/get-checkout-details/#getAdditionalCharges) section. **Note**: You need to use the **getTaxSpecification** field if you want to calculate the tax split of additional charges on their end.                                                                 |
+| getTaxSpecification`optional`       | `Boolean` This flag is posted as **true** to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option. For a sample request or response using this field, refer to the [Get Tax Specification](https://devguide.vercel.app-api/get-checkout-details/#getTaxSpecification) section.                                                                                                                       |
+| checkDownStatus`optional`           | `Boolean` This flag is posted as **true** to return the downtime of the payment options. For a sample request or response using this field, refer to [Check Down Status](https://devguide.vercel.app-api/get-checkout-details/#checkDownStatus) field.                                                                                                                                                                                                                                              |
 
 </details>
