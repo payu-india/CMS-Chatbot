@@ -108,7 +108,10 @@ Use the following sample values while trying out the API:
       </td>
 
       <td>
-        For more information on how to generate the Key and Salt, refer to any of the following:  **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+        For more information on how to generate the Key and Salt, refer to any of the following:
+
+        * **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
       </td>
     </tr>
 
@@ -118,7 +121,7 @@ Use the following sample values while trying out the API:
       </td>
 
       <td>
-        Hash logic for this API is:
+        Hash logic for this API is:\
         `sha512(key\|command\|var1\|salt) sha512 `
         For more information about the hash generation process, refer to [Encryption of Request.](/docs/hashing-request-and-response)
       </td>
