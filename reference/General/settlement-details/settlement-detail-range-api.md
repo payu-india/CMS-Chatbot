@@ -4973,9 +4973,9 @@ To learn more about the possible error codes and their description, refer to [Er
 }
 ```
 
-- Invalid request
+### Invalid request
 
-```
+```json
 {
     "message": "Page size can't be more that 50000",
     "status": 1,
@@ -4983,20 +4983,10 @@ To learn more about the possible error codes and their description, refer to [Er
 }
 ```
 
-- Authorization failed
+### Authorization failed
 
-```
+```json
 {
     "message": "Unauthorized"
-}
-```
-
-- If the date range is more than 3 days:
-
-```
-{
-    "message": "Cannot give data for more than 3 days",
-    "status": 1,
-    "result": "Cannot give data for more than 3 days"
 }
 ```
