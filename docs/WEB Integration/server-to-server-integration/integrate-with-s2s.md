@@ -19,9 +19,7 @@ next:
 >
 > You must be **PCI-DSS** certified to use Server-to-Server integration. For more information on PCI-DSS certification, contact your Account Manager at PayU.
 
-<HTMLBlock>{` 
-<RegisterMerchantPrerequiste />
-`}</HTMLBlock>
+`<RegisterMerchantPrerequiste />`
 
 ### Integration security
 
@@ -47,13 +45,13 @@ Along with the request, the sensitive information should not be a part of any me
 
 ## Step 1: Post the parameters to PayU
 
-The first request from you to PayU with the required transaction mandatory/ optional parameters. This needs to be a server-to-server Curl call request. For the sample request and response,  refer to  <a href="_payment_s2s_classic_integration" target="_blank"> Collect Payment - General Integration</a>.  
+The first request from you to PayU with the required transaction mandatory/ optional parameters. This needs to be a server-to-server Curl call request. For the sample request and response,  refer to  <a href="_payment_s2s_classic_integration" target="_blank"> Collect Payment - General Integration</a>.
 
 `<PaymentAPIEnvironment />`
 
 ### Request parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -89,7 +87,7 @@ The first request from you to PayU with the required transaction mandatory/ opti
     <tr>
       <td>
         <Glossary>txnid</Glossary>\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -161,7 +159,7 @@ The first request from you to PayU with the required transaction mandatory/ opti
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -180,7 +178,7 @@ The first request from you to PayU with the required transaction mandatory/ opti
       </td>
 
       <td>
-        `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value. 
+        `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value.
       </td>
 
       <td>
@@ -205,7 +203,7 @@ The first request from you to PayU with the required transaction mandatory/ opti
     <tr>
       <td>
         ccnum\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -328,7 +326,7 @@ The first request from you to PayU with the required transaction mandatory/ opti
       </td>
 
       <td>
-        `String`This parameter must be passed with the value as:  
+        `String`This parameter must be passed with the value as:
 
         * **4**for Legacy Decoupled flow.
         * **3** for Direct Authorization.
@@ -346,9 +344,9 @@ The first request from you to PayU with the required transaction mandatory/ opti
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
