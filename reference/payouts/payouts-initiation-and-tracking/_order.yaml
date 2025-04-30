@@ -1,6 +1,5 @@
 - get-account-details-api-payouts
 - initiate-transfer-api
-- initiate-transfer-api-old4
 - check-transfer-status-api
 - cancel-transfer-api
 - disable-queued-payouts-api
