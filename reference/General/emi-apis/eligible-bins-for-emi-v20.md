@@ -22,7 +22,6 @@ The Eligible Bin for EMI API v2.0 is used only when the merchant needs the EMI f
 
 HTTP Method: **POST**
 
-<GENERALAPIsEnvironment />
 
 You can post a request using any of the following methods:
 
