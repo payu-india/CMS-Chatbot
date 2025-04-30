@@ -13,35 +13,39 @@ metadata:
 next:
   description: ''
 ---
-PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to [UPI Handles](doc:upi-handles).  The **buyer\_type\_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
+PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to [UPI Handles](doc:upi-handles). The **buyer_type_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
 
 After the payment is complete, you must use the [Invoice Upload API](ref:invoice_upload_api) to upload the invoices for banks processing.
 
-### Recommended prerequisite before initiating payment
+## Recommended prerequisite before initiating payment
 
-When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. 
+When your customer makes payment through UPI, you can validate the customer's Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. 
 
-Validate the VPA (UPI handle) using the **validateVpa** API.  For more information, refer to [Validate VPA Handle API](ref:validate_vpa_api).
+Validate the VPA (UPI handle) using the **validateVpa** API. For more information, refer to [Validate VPA Handle API](ref:validate_vpa_api).
 
-### Environment
+## Environment
 
-<PaymentAPIEnvironment />
+| Environment | URL |
+|:------------|:----|
+| **Test Environment** | https://test.payu.in/_payment |
+| **Production Environment** | https://secure.payu.in/_payment |
 
 <details>
-
 <summary>Sample request</summary>
 
-```curl
-curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=xdB9G7qYpfqszo&amount=10&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=UPI&bankcode=UPI&vpa=VPA-anything@payu&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
+```bash
+curl -X POST "https://test.payu.in/_payment" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "key=JP***g&txnid=xdB9G7qYpfqszo&amount=10&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=UPI&bankcode=UPI&vpa=VPA-anything@payu&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
 ```
 
 </details>
 
 <details>  
-
 <summary>Sample response</summary>
 
-```
+```plaintext
 Array
 (
     [mihpayid] => 403993715523409521
@@ -99,387 +103,79 @@ Array
 <details>
   <summary>Response parameters</summary>
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        mihpayid
-      </td>
-
-      <td>
-        It is a unique reference number created for each transaction at PayU’s end which is used to identify a transaction in case of a refund.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        mode
-      </td>
-
-      <td>
-        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  \
-        &#x9;•	Credit Card – CC \
-        &#x9;•	Debit Card – DC \
-        &#x9;•	Net Banking – NB\
-        &#x9;•	Cash Card – CASH\
-        &#x9;•	EMI – EMI \
-        &#x9;•	Cardless EMI – CLEMI\
-        &#x9;•	Buy Now Pay Later - BNPL
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankcode
-      </td>
-
-      <td>
-        This parameter contains the code indicating the payment option used for the transaction. For example, Visa Debit Card – VISA, Master Debit Card – MAST.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        status
-      </td>
-
-      <td>
-        This parameter returns the status of the transaction and must be used to map the order status. Possible values are success, failure, or pending. The significance of the values for these values are:  \
-        &#x9;•	**Success**: If the value of status parameter is ’success’, the transaction is successful. \
-        &#x9;•	**Failed**: If the value of status parameter is ‘failure’ or ‘pending’, must only be treated as a failed transaction.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        unmappedstatus
-      </td>
-
-      <td>
-        This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to  [Payment State Explanations](ref:payment-state-explanations).
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        key
-      </td>
-
-      <td>
-        This parameter contains the merchant key.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        error
-      </td>
-
-      <td>
-        For the failed transactions, this parameter provides the reason for failure.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        error\_message
-      </td>
-
-      <td>
-        This parameter contains the error message. For the list of error message, refer to [Error Codes](ref:error-codes).
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bank\_ref\_num
-      </td>
-
-      <td>
-        For each successful transaction – this parameter contains the bank reference number generated by the bank.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnid
-      </td>
-
-      <td>
-        This parameter contains the transaction ID value posted by the merchant during the transaction request.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount
-      </td>
-
-      <td>
-        This parameter contains the original amount which was sent in the transaction request by the merchant.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cardCategory
-      </td>
-
-      <td>
-        This parameter contains the card category to indicate whether it is domestic or international.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        discount
-      </td>
-
-      <td>
-        This parameter contains the discount amount by the merchant.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        net\_amount\_debit
-      </td>
-
-      <td>
-        This parameter contains the net amount debited.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        addedon
-      </td>
-
-      <td>
-        The transaction date and time of the transaction.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productinfo
-      </td>
-
-      <td>
-        This parameter contains the same value of product information which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstname
-      </td>
-
-      <td>
-        This parameter contains the same value of first name which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        lastname
-      </td>
-
-      <td>
-        This parameter contains the same value of last name which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email
-      </td>
-
-      <td>
-        This parameter contains the same value of email which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone
-      </td>
-
-      <td>
-        This parameter contains the same value of phone which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        hash
-      </td>
-
-      <td>
-        This parameter is crucial and is similar to the hash parameter used in the transaction request. For more information, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        PG\_TYPE
-      </td>
-
-      <td>
-        This parameter gives information on the payment gateway used for the transaction.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf1
-      </td>
-
-      <td>
-        This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf2
-      </td>
-
-      <td>
-        This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf3
-      </td>
-
-      <td>
-        This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5 which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf4
-      </td>
-
-      <td>
-        This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf5
-      </td>
-
-      <td>
-        This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf6
-      </td>
-
-      <td>
-        This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf7
-      </td>
-
-      <td>
-        This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant’s end to PayU.\*\*\*\*
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf8
-      </td>
-
-      <td>
-        This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf9
-      </td>
-
-      <td>
-        This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        success\_at
-      </td>
-
-      <td>
-        This parameter contains the date and timestamp when the transaction was successful.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cardnum
-      </td>
-
-      <td>
-        The parameter contains the card number masked and only last 4 digits are returned.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        issuing\_bank
-      </td>
-
-      <td>
-        The parameters contains the card issuing bank.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| **Parameter** | **Description** |
+|:--------------|:----------------|
+| mihpayid | It is a unique reference number created for each transaction at PayU's end which is used to identify a transaction in case of a refund. |
+| mode | This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  
+• Credit Card – CC  
+• Debit Card – DC  
+• Net Banking – NB  
+• Cash Card – CASH  
+• EMI – EMI  
+• Cardless EMI – CLEMI  
+• Buy Now Pay Later - BNPL |
+| bankcode | This parameter contains the code indicating the payment option used for the transaction. For example, Visa Debit Card – VISA, Master Debit Card – MAST. |
+| status | This parameter returns the status of the transaction and must be used to map the order status. Possible values are success, failure, or pending. The significance of the values for these values are:  
+• **Success**: If the value of status parameter is 'success', the transaction is successful.  
+• **Failed**: If the value of status parameter is 'failure' or 'pending', must only be treated as a failed transaction. |
+| unmappedstatus | This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to [Payment State Explanations](ref:payment-state-explanations). |
+| key | This parameter contains the merchant key. |
+| error | For the failed transactions, this parameter provides the reason for failure. |
+| error_message | This parameter contains the error message. For the list of error message, refer to [Error Codes](ref:error-codes). |
+| bank_ref_num | For each successful transaction – this parameter contains the bank reference number generated by the bank. |
+| txnid | This parameter contains the transaction ID value posted by the merchant during the transaction request. |
+| amount | This parameter contains the original amount which was sent in the transaction request by the merchant. |
+| cardCategory | This parameter contains the card category to indicate whether it is domestic or international. |
+| discount | This parameter contains the discount amount by the merchant. |
+| net_amount_debit | This parameter contains the net amount debited. |
+| addedon | The transaction date and time of the transaction. |
+| productinfo | This parameter contains the same value of product information which was sent in the transaction request from the merchant's end to PayU. |
+| firstname | This parameter contains the same value of first name which was sent in the transaction request from the merchant's end to PayU. |
+| lastname | This parameter contains the same value of last name which was sent in the transaction request from the merchant's end to PayU. |
+| email | This parameter contains the same value of email which was sent in the transaction request from the merchant's end to PayU. |
+| phone | This parameter contains the same value of phone which was sent in the transaction request from the merchant's end to PayU. |
+| hash | This parameter is crucial and is similar to the hash parameter used in the transaction request. For more information, refer to [Generate Hash](doc:generate-hash-merchant-hosted). |
+| PG_TYPE | This parameter gives information on the payment gateway used for the transaction. |
+| udf1 | This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU. |
+| udf2 | This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU. |
+| udf3 | This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5 which was sent in the transaction request from the merchant's end to PayU. |
+| udf4 | This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU. |
+| udf5 | This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU. |
+| udf6 | This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU. |
+| udf7 | This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU. |
+| udf8 | This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU. |
+| udf9 | This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU. |
+| success_at | This parameter contains the date and timestamp when the transaction was successful. |
+| cardnum | The parameter contains the card number masked and only last 4 digits are returned. |
+| issuing_bank | The parameters contains the card issuing bank. |
 
 </details>
 
 ## Request parameters
 
-<details> <summary> Additional info for request parameters</summary>
+<details>
+<summary>Additional info for request parameters</summary>
 
-<Additional_paymentRequestParams />
+### Payment Request Parameters
+
+The payment request parameters include standard fields like key, txnid, amount, firstname, email, phone, and productinfo. For UPI payments, the following specific parameters are important:
+
+- **pg**: Set to "UPI" to indicate UPI payment method
+- **bankcode**: Set to "UPI" for UPI transactions
+- **vpa**: The Virtual Payment Address (UPI ID) of the customer
+
+For a comprehensive list of all parameters and their descriptions, please refer to the API documentation.
 
 </details>
 
-> 📘 Reference
+> 📘 **Reference**
 >
 > For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
-> 🚧 You can test UPI only with the anything\@payu or [9999999999@payu.in](mailto:9999999999@payu.in) as VPA.
-
-> ❗️ Error handling
+> 🚧 **Testing UPI**
 >
-> If any error message is displayed with an error code, refer to the <a href="error-codes" target="_blank">Error Codes</a> section to understand the reason for these error codes.
+> You can test UPI only with the anything@payu or 9999999999@payu.in as VPA.
+
+> ❗️ **Error handling**
+>
+> If any error message is displayed with an error code, refer to the [Error Codes](ref:error-codes) section to understand the reason for these error codes.
