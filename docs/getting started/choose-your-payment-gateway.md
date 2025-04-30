@@ -25,6 +25,7 @@ PayU India offers following products to choose from:
 
 <details>
   <summary>Product Offerings</summary>
+<HTMLBlock>{`
   <ul>
     <li>Web Checkout
       <ul>
@@ -84,6 +85,7 @@ PayU India offers following products to choose from:
       </ul>
     </li>
   </ul>
+`}</HTMLBlock>
 </details>
 
 # Collect payment from your website
