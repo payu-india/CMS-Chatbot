@@ -36,10 +36,10 @@ HTTP Method: **POST**
 
 | **Parameter** | **Description** | **Example** |
 |:--------------|:----------------|:------------|
-| referenceId<br>`mandatory` | `String` Pass the ID returned in the response of the transaction request. | `bbed416d21dda9941a90cc72819c5b52` |
-| consent<br>`conditional` | `String` If the transaction request returns parameter such as **tncUrl** and **tncText** that indicates that the merchant need to collect the consent from the customer. In such cases, collect the customer's consent and pass the value as **1**. | 1 |
-| data<br>`optional` | `String` You must pass `{ "payuPureS2S": "1" }` as the value of this parameter. | { "payuPureS2S": "1" } |
-| otp<br>`mandatory` | `String` The OTP collected from the customer that they receive from the bank. | 345635 |
+| referenceId `mandatory` | `String` Pass the ID returned in the response of the transaction request. | `bbed416d21dda9941a90cc72819c5b52` |
+| consent `conditional` | `String` If the transaction request returns parameter such as **tncUrl** and **tncText** that indicates that the merchant need to collect the consent from the customer. In such cases, collect the customer's consent and pass the value as **1**. | 1 |
+| data `optional` | `String` You must pass `{ "payuPureS2S": "1" }` as the value of this parameter. | { "payuPureS2S": "1" } |
+| otp `mandatory` | `String` The OTP collected from the customer that they receive from the bank. | 345635 |
 
 ## Sample request
 
