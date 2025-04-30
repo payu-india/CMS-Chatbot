@@ -34,27 +34,19 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
 
 ### Recommended prerequisite before initiating payment
 
-When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The validateVpa API is used to validate the UPI handle. 
+When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The validateVpa API is used to validate the UPI handle.
 
 Validate the VPA (UPI handle) using the validateVpa API.  For more information, refer to [Validate VPA Handle API](ref:validate_vpa_api).
 
 ### Environment
 
-
-
-<details>
-
-<summary>Sample request</summary>
+## Sample request
 
 ```curl
 curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=xdB9G7qYpfqszo&amount=10&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=UPI&bankcode=UPI&vpa=VPA-anything@payu&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
 ```
 
-</details>
-
-<details>  
-
-<summary>Sample response</summary>
+## Sample response
 
 ```
 Array
@@ -109,10 +101,7 @@ Array
 )
 ```
 
-</details>
-
-<details>
-  <summary>Response parameters</summary>
+\##>Response parameters
 
 <Table>
   <thead>
@@ -144,13 +133,13 @@ Array
       </td>
 
       <td>
-        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  \
-        &#x9;•	Credit Card – CC \
-        &#x9;•	Debit Card – DC \
-        &#x9;•	Net Banking – NB\
-        &#x9;•	Cash Card – CASH\
-        &#x9;•	EMI – EMI \
-        &#x9;•	Cardless EMI – CLEMI\
+        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  
+        &#x9;•	Credit Card – CC 
+        &#x9;•	Debit Card – DC 
+        &#x9;•	Net Banking – NB
+        &#x9;•	Cash Card – CASH
+        &#x9;•	EMI – EMI 
+        &#x9;•	Cardless EMI – CLEMI
         &#x9;•	Buy Now Pay Later - BNPL
       </td>
     </tr>
@@ -171,8 +160,8 @@ Array
       </td>
 
       <td>
-        This parameter returns the status of the transaction and must be used to map the order status. Possible values are success, failure, or pending. The significance of the values for these values are:  \
-        &#x9;•	**Success**: If the value of status parameter is ’success’, the transaction is successful. \
+        This parameter returns the status of the transaction and must be used to map the order status. Possible values are success, failure, or pending. The significance of the values for these values are:  
+        &#x9;•	**Success**: If the value of status parameter is ’success’, the transaction is successful. 
         &#x9;•	**Failed**: If the value of status parameter is ‘failure’ or ‘pending’, must only be treated as a failed transaction.
       </td>
     </tr>
@@ -479,11 +468,9 @@ Array
   </tbody>
 </Table>
 
-</details>
-
 ## Request parameters
 
-###Additional info for request parameters
+### Additional info for request parameters
 
 <Additional_paymentRequestParams />
 
