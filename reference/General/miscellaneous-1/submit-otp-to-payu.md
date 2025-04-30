@@ -10,80 +10,63 @@ metadata:
 next:
   description: ''
 ---
+I'll fix the content to be compatible with Acorn parser by converting it to plain Markdown instead of using MDX components:
+
+```markdown
+# Submit OTP API
+
 After collecting the OTP from your customer on the payment page, submit the OTP to PayU by using this API.
 
 You must pass the **reference id** of the corresponding transaction along with other parameters (see request parameters) in the request body of the Submit OTP API.
 
-> 📘 Note:
+> 📘 **Note:**
 > 
 > To find the reference id, see the response of the initiate transaction request of the corresponding transaction.
 
 HTTP Method: **POST**
 
-**Environment**
+## Environment
 
-|                            |                                              |
-| -------------------------- | -------------------------------------------- |
-| **Test Environment**       | <https://test.payu.in/ResponseHandler.php>   |
-| **Production Environment** | <https://secure.payu.in/ResponseHandler.php> |
+| Environment | URL |
+|:------------|:----|
+| **Test Environment** | https://test.payu.in/ResponseHandler.php |
+| **Production Environment** | https://secure.payu.in/ResponseHandler.php |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Description**",
-    "0-0": "referenceId  \n**mandatory**",
-    "0-1": "`String` Pass the ID returned in the response of the transaction request.",
-    "0-2": "`bbed416d21dda9941a90cc72819c5b52`",
-    "1-0": "consent  \n**conditional**",
-    "1-1": "`String` If the transaction request returns parameter such as **tncUrl** and **tncText** that indicates that the merchant need to collect the consent from the customer. In such cases, collect the customer's consent and pass the value as **1**.",
-    "1-2": "1",
-    "2-0": "data  \n**optional**",
-    "2-1": "`String` You must pass `{ \"payuPureS2S\": \"1\" }` as the value of this parameter.",
-    "2-2": "{ \"payuPureS2S\": \"1\" }",
-    "3-0": "otp  \n**mandatory**",
-    "3-1": "`String` The OTP collected from the customer that they receive from the bank.",
-    "3-2": "345635"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+| **Parameter** | **Description** | **Example** |
+|:--------------|:----------------|:------------|
+| referenceId<br>`mandatory` | `String` Pass the ID returned in the response of the transaction request. | `bbed416d21dda9941a90cc72819c5b52` |
+| consent<br>`conditional` | `String` If the transaction request returns parameter such as **tncUrl** and **tncText** that indicates that the merchant need to collect the consent from the customer. In such cases, collect the customer's consent and pass the value as **1**. | 1 |
+| data<br>`optional` | `String` You must pass `{ "payuPureS2S": "1" }` as the value of this parameter. | { "payuPureS2S": "1" } |
+| otp<br>`mandatory` | `String` The OTP collected from the customer that they receive from the bank. | 345635 |
 
 ## Sample request
 
 ### Without consent
 
-```curl
-curl --location --request POST 'https://test.payu.in/ResponseHandler.php' \ 
---header 'Content-Type: application/x-www-form-urlencoded' \ 
---header 'Cookie: PHPSESSID=ef4510abes5uo7ephv7o20ossc; PHPSESSID=63fefa045789a' \ 
---data-urlencode 'referenceId=42df570fa8c4d9de6209a71970acb661' \ 
---data-urlencode 'otp=725356' \ 
+```bash
+curl --location --request POST 'https://test.payu.in/ResponseHandler.php' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=ef4510abes5uo7ephv7o20ossc; PHPSESSID=63fefa045789a' \
+--data-urlencode 'referenceId=42df570fa8c4d9de6209a71970acb661' \
+--data-urlencode 'otp=725356'
 ```
 
 ### With consent
 
-Certain issuers require their customer to provide consent while authorizing a transaction. For such issuers, you need to capture your customer’s consent and pass them to PayU using the **Submit OTP** API.
+Certain issuers require their customer to provide consent while authorizing a transaction. For such issuers, you need to capture your customer's consent and pass them to PayU using the **Submit OTP** API.
 
-```curl
-curl --location --request POST 'https://test.payu.in/ResponseHandler.php' \ 
---header 'Content-Type: application/x-www-form-urlencoded' \ 
---header 'Cookie: PHPSESSID=ef4510abes5uo7ephv7o20ossc; PHPSESSID=63fefa045789a' \ 
---data-urlencode 'referenceId=42df570fa8c4d9de6209a71970acb661' \ 
---data-urlencode 'otp=725356' \ 
---data-urlencode 'consent=1' 
+```bash
+curl --location --request POST 'https://test.payu.in/ResponseHandler.php' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=ef4510abes5uo7ephv7o20ossc; PHPSESSID=63fefa045789a' \
+--data-urlencode 'referenceId=42df570fa8c4d9de6209a71970acb661' \
+--data-urlencode 'otp=725356' \
+--data-urlencode 'consent=1'
 ```
 
-> 📘 Note:
+> 📘 **Note:**
 > 
 > If you fail to collect and send the consent with the **Submit OTP** API, the transaction will remain in an **In Progress** state.
 
@@ -93,7 +76,7 @@ Based on the type of request sent (with consent/without consent) you may receive
 
 ### Submit OTP success
 
-```plaintext
+```json
 { 
     "metaData": { 
         "message": "No Error", 
@@ -163,12 +146,12 @@ Based on the type of request sent (with consent/without consent) you may receive
         "curl": "https://pp94admin.payu.in/test_response", 
         "furl": "https://pp94admin.payu.in/test_response" 
     } 
-} 
+}
 ```
 
 ### Consent required but not sent
 
-```plaintext
+```json
 { 
     "metaData": { 
         "message": "Consent not given by the customer for Terms & Conditions", 
@@ -177,12 +160,12 @@ Based on the type of request sent (with consent/without consent) you may receive
         "unmappedStatus": "in progress" 
     }, 
     "result": null 
-} 
+}
 ```
 
 ### Submit OTP failed
 
-```plaintext
+```json
 { 
     "metaData": { 
         "message": "Unauthorized", 
@@ -195,10 +178,11 @@ Based on the type of request sent (with consent/without consent) you may receive
         } 
     }, 
     "result": null 
-} 
+}
 ```
 
-> 📘 Notes:
+> 📘 **Notes:**
 > 
 > - In case of a failed response the **retryAttemptCount** parameter indicates the number of retries left for OTP submission. In the above-failed response scenario, the `"retryAttemptCount": "2"` indicates that the customer can retry the OTP submission twice.
-> - If the customer enters an incorrect OTP or it had expired, you need to use the **Resend OTP** API to resend the OTP. With each retry, you need to submit the OTP using the **Submit OTP** API described in this section. For more information on **Resend OTP** API, refer to [Resend OTP API](ref:resend-otp-api)
+> - If the customer enters an incorrect OTP or it had expired, you need to use the **Resend OTP** API to resend the OTP. With each retry, you need to submit the OTP using the **Submit OTP** API described in this section. For more information on **Resend OTP** API, refer to [Resend OTP API](ref:resend-otp-api)
+```
