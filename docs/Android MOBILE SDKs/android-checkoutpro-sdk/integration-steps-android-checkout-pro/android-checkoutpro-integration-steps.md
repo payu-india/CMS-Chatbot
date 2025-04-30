@@ -774,7 +774,7 @@ Checkout Pro SDK will give a callback in the `generateHash()` method whenever an
 
 To extract the hash string and hash name from the map received in `generateHash()` method, use the following keys:
 
-`CP_HASH_STRING` -> This will contain a complete hash string excluding salt. For eg, for vas for mobile SDK hash, the hash string will contain “<key>\|<command>\|<var1>|”. Merchant can append their salt at the end of the hash string to calculate the hash.\
+`CP_HASH_STRING` -> This will contain a complete hash string excluding salt. For eg, for vas for mobile SDK hash, the hash string will contain `“<key>\|<command>\|<var1>|”`. Merchant can append their salt at the end of the hash string to calculate the hash.\
 `CP_HASH_NAME `-> This will contain the hash name.
 
 ### Step 4.4: Pass generated hash to SDK
