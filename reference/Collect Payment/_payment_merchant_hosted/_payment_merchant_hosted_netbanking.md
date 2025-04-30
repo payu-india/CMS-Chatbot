@@ -47,7 +47,7 @@ You can check whether the Net Banking server is up and running using the **getNe
 >
 > For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -366,6 +366,36 @@ You can check whether the Net Banking server is up and running using the **getNe
       <td>
         udf3\
         `mandatory for Cross-Border Payments`
+      </td>
+
+      <td>
+        `string` This parameter has been made for you to keep any information corresponding to the transaction.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf4\
+        `optional`
+      </td>
+
+      <td>
+        `string` This parameter has been made for you to keep any information corresponding to the transaction.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf5\
+        `optional`
       </td>
 
       <td>
