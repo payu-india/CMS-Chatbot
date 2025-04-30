@@ -22,7 +22,7 @@ Collect payments using Bharat or UPI QR with Merchant Hosted Checkout integratio
 2. [Check the response from PayU](#step-2-check-response-from-payu)
 3. [Verify Payment](#step-3-verify-the-payment)
 
-<RegisterMerchantPrerequiste />
+`<RegisterMerchantPrerequiste />`
 
 ## Step 1: Initiate the payment to PayU
 
@@ -60,9 +60,10 @@ Post Request Syntax & Composition for QR
 
 The following parameters vary for the QR payment in the **Collect Payment** API (**\_payment** API). 
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 <br />
+
 
 <Table>
   <thead>
@@ -84,7 +85,9 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
   <tbody>
     <tr>
       <td>
+<HTMLBlock>{`
         <Glossary>key</Glossary>
+ `}</HTMLBlock>
         **mandatory**
       </td>
 
@@ -189,7 +192,9 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        <Glossary>pg</Glossary>\
+<HTMLBlock>{`
+        <Glossary>pg</Glossary>
+ `}</HTMLBlock>\
         **mandatory**
       </td>
 
@@ -204,7 +209,9 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        <Glossary>bankcode</Glossary>\
+         <HTMLBlock>{`
+        <Glossary>bankcode</Glossary>
+ `}</HTMLBlock>\
         **mandatory**
       </td>
 
@@ -252,15 +259,19 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        <Glossary>hash</Glossary>\
+         <HTMLBlock>{`
+        <Glossary>hash</Glossary>
+ `}</HTMLBlock>\
         **mandatory**
       </td>
 
       <td>
-        `String`The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: ```
+        `String`The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: 
+```
         sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)
 
-        ```For more information, refer to [Generate Hash](doc:hashing-request-and-response).
+        ```
+For more information, refer to [Generate Hash](doc:hashing-request-and-response).
       </td>
 
       <td>
@@ -447,7 +458,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
   </tbody>
 </Table>
 
-<HashingRequestParameters />
+
+`<HashingRequestParameters />`
 
 ### Sample request
 
@@ -460,7 +472,7 @@ curl -X \
 
 ## Step 2: Check response from PayU
 
-<ReverseHashing />
+`<ReverseHashing />`
 
 ### Sample response (parsed)
 
