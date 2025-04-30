@@ -15,60 +15,28 @@ next:
 ---
 You can use the **Get Settlement Details** API to retrieve settlement details which the bank has to settle for you. The input is the date for which settlement details are required, where the var1 parameter is the date you want to know the settlement status or UTR (Unique Transaction Reference number). This API can be posted with version (1 or 2) in the var5 parameter.
 
-**Environment**
+## Environment
 
-|                        |                                                    |
-| :--------------------- | :------------------------------------------------- |
-| Test Environment       | Not applicable for Test environment                |
-| Production Environment | <https://info.payu.in/merchant/postservice?form=2> |
+| Environment | URL |
+|:------------|:----|
+| Test Environment | Not applicable for Test environment |
+| Production Environment | https://info.payu.in/merchant/postservice?form=2 |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Reference",
-    "h-2": "Example",
-    "0-0": "<<glossary:key>>  \n`mandatory`",
-    "0-1": "This parameter must contain the key provided by PayU. For more information on how to generate the Key and Salt, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).",
-    "0-2": "",
-    "1-0": "command  \n`mandatory`",
-    "1-1": "This parameter must contain the API command as **get_settlement_details**.",
-    "1-2": "",
-    "2-0": "var1  \n`mandatory`",
-    "2-1": "This parameter must either contain either date for the settlement or UTR (Unique Transaction Reference number).",
-    "2-2": "2023-09-26",
-    "3-0": "var2  \n`mandatory`",
-    "3-1": "This parameter must contain the page number to be fetched.",
-    "3-2": "5",
-    "4-0": "var3  \n`mandatory`",
-    "4-1": "This parameter must contain the number of records to be paginated on each page is specified in this parameter. If not specified, 2000 records will be fetched.",
-    "4-2": "1000",
-    "5-0": "var4  \n`optional`",
-    "5-1": "This parameter must contain either L or leave it blank.",
-    "5-2": "L",
-    "6-0": "var5  \n`optional`",
-    "6-1": "This parameter must contain the version of the API that can be either 1 or 2.",
-    "6-2": "1",
-    "7-0": "<<glossary:hash>>  \n`mandatory`",
-    "7-1": "Hash logic for this API is:  \n`sha512(key\\|command\\|var1\\|salt) sha512`",
-    "7-2": ""
-  },
-  "cols": 3,
-  "rows": 8,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+| Parameter | Reference | Example |
+|:----------|:----------|:--------|
+| **key** `mandatory` | This parameter must contain the key provided by PayU. For more information on how to generate the Key and Salt, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard). | |
+| **command** `mandatory` | This parameter must contain the API command as **get_settlement_details**. | |
+| **var1** `mandatory` | This parameter must either contain either date for the settlement or UTR (Unique Transaction Reference number). | 2023-09-26 |
+| **var2** `mandatory` | This parameter must contain the page number to be fetched. | 5 |
+| **var3** `mandatory` | This parameter must contain the number of records to be paginated on each page is specified in this parameter. If not specified, 2000 records will be fetched. | 1000 |
+| **var4** `optional` | This parameter must contain either L or leave it blank. | L |
+| **var5** `optional` | This parameter must contain the version of the API that can be either 1 or 2. | 1 |
+| **hash** `mandatory` | Hash logic for this API is:  
+`sha512(key|command|var1|salt) sha512` | |
 
-
-</details>
-
-**Example values ** 
+## Example values
 
 Use the following sample values while trying out the API:
 
@@ -80,150 +48,71 @@ Use the following sample values while trying out the API:
 
 ### For version 1
 
-```curl
-curl -X POST "https://test.payu.in/merchant/postservice?form=2
--H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d
-
-"key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8"
+```bash
+curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8"
 ```
 
 ### For version 2
 
+```bash
+curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8&var2&var3&var4=L&var5=2"
 ```
-curl -X POST "https://test.payu.in/merchant/postservice?form=2
--H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d
 
-"key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8&var2&var3&var4=L&var5=2"
-```
-
-> 📘 Note
+> 📘 **Note**
 > 
 > The dates queried in the above requests using version 1 or version 2 are the same. The second sample request (under Sample Request for Version 2) includes the var5 parameter with the value 2 to indicate that it is for version 2.
 
 ## Response parameters description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "payuid",
-    "0-1": "This parameter contains a unique sale transaction id generated by Payu for every sale transaction.",
-    "0-2": "403993715521937565",
-    "1-0": "txn\\_id",
-    "1-1": "This parameter contains the sale transaction ID (merchant reference ID for sale).",
-    "1-2": "13818",
-    "2-0": "txn\\_date",
-    "2-1": "This parameter contains the date of the transaction.",
-    "2-2": "2021-08-10 23:46:25",
-    "3-0": "mode",
-    "3-1": "This parameter contains the mode of the transaction such as credit card, debit card, etc. For more information, refer to [Payment Mode Codes](doc:payment-mode-codes).",
-    "3-2": "CC",
-    "4-0": "amount",
-    "4-1": "This parameter contains the original amount which was sent in the transaction request by the merchant.",
-    "4-2": "100",
-    "5-0": "request_id",
-    "5-1": "This parameter contains the unique request id generated from PayU with any of the following transaction actions: capture/refund/chargeback/refundReversal/chargebackreversal actions actions.",
-    "5-2": "131278418",
-    "6-0": "requestdate",
-    "6-1": "This parameter contains the request date and time stamp.",
-    "6-2": "2021-08-10 23:49:16",
-    "7-0": "requestaction",
-    "7-1": "This parameter contains the action taken on the transaction. The action can be any of the following:  \n_ capture   \n_ refund   \n_ cancel  \n_ chargeback  \n_ chargeback reversal  \n_ refundreversal",
-    "7-2": "refund",
-    "8-0": "requestamount",
-    "8-1": "The parameter contains the amount requested by the merchant to the bank.",
-    "8-2": "100",
-    "9-0": "mer\\_UTR",
-    "9-1": "This parameter contains the merchant Unique Transaction Reference (UTR) number.",
-    "9-2": "N223211598444659",
-    "10-0": "mer\\_service\\_fee",
-    "10-1": "This parameter contains the service fee paid by the merchant to the bank. for the transaction",
-    "10-2": "239.6000",
-    "11-0": "mer\\_service\\_tax",
-    "11-1": "This parameter contains the tax on service fee paid by the merchant to the bank. for the transaction",
-    "11-2": "43.1300",
-    "12-0": "mer\\_net\\_amount",
-    "12-1": "This parameter contains the net amount to be settled by bank to merchant.",
-    "12-2": "100",
-    "13-0": "bank\\_name",
-    "13-1": "This parameter contains the bank name or the card type based on the transaction.",
-    "13-2": "MAST",
-    "14-0": "issuing\\_bank",
-    "14-1": "This parameter contains the card issuing bank name is displayed.",
-    "14-2": "SBI",
-    "15-0": "merchant\\_subvention\\_amount",
-    "15-1": "This parameter contains merchant subvention amount.",
-    "15-2": "100",
-    "16-0": "cgst",
-    "16-1": "This parameter contains the CGST (Central GST) for the transaction.",
-    "16-2": "43.13000",
-    "17-0": "igst",
-    "17-1": "This parameter contains the IGST (Integrated GST) for the transaction.",
-    "17-2": "43.13000",
-    "18-0": "sgst",
-    "18-1": "This parameter contains the SGST (State GST) for the transaction where the supplier or merchant is from a different state of the customer.",
-    "18-2": "43.13000",
-    "19-0": "PG\\_TYPE",
-    "19-1": "This parameter contains the payment gateway type is displayed in this transaction.",
-    "19-2": "HDFC\\_Internal\\_Plus",
-    "20-0": "Card Type",
-    "20-1": "This parameter indicates whether the card is international or domestic",
-    "20-2": "Domestic.",
-    "21-0": "SettlementType",
-    "21-1": "This describes about the charges whether its regular processing fee or instant charges",
-    "21-2": "Regular or Instant",
-    "22-0": "Scheme",
-    "22-1": "This parameter contains the scheme.",
-    "22-2": "",
-    "23-0": "FeeType",
-    "23-1": "This parameter contains fee type if the fee is collected for instant settlements or refunds.",
-    "23-2": "tdrFee",
-    "24-0": "InstantSettlementTDR",
-    "24-1": "This parameter contains the TDR collected for instant settlement.",
-    "24-2": "0.0",
-    "25-0": "InstantSettlementTDRTax",
-    "25-1": "This parameter contains the tax for the TDR collected for instant settlement.",
-    "25-2": "0.0",
-    "26-0": "InstantSettlementTdrType",
-    "26-1": "This parameter contains the TDR type for instant settlement.",
-    "26-2": "0.0",
-    "27-0": "InstantRefundTDR",
-    "27-1": "This parameter contains the TDR collected for instant refunds.",
-    "27-2": "0.0",
-    "28-0": "InstantRefundTDRTax",
-    "28-1": "This parameter contains the tax for the TDR collected for instant refunds.",
-    "28-2": "0.0",
-    "29-0": "InstantRefundTdrType",
-    "29-1": "This parameter contains the TDR type for instant refund.",
-    "29-2": "0.0",
-    "30-0": "perDayServiceFee",
-    "30-1": "This parameter contains the per day service fee for instant settlement or refunds.",
-    "30-2": "0,0",
-    "31-0": "perDayServiceTax",
-    "31-1": "This parameter contains the per day service tax for instant settlement or refunds.",
-    "31-2": "0,0",
-    "32-0": "pricingDays",
-    "32-1": "This parameter contains the pricing days for instant settlement or refunds.",
-    "32-2": "1",
-    "33-0": "offerServiceFee",
-    "33-1": "This parameter contains the service fee for offer.",
-    "33-2": "0,0",
-    "34-0": "offerServiceTax",
-    "34-1": "This parameter contains the tax for offer service fee.",
-    "34-2": "0,0"
-  },
-  "cols": 3,
-  "rows": 35,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
-
+| **Field** | **Description** | **Example** |
+|:----------|:----------------|:------------|
+| payuid | This parameter contains a unique sale transaction id generated by Payu for every sale transaction. | 403993715521937565 |
+| txn_id | This parameter contains the sale transaction ID (merchant reference ID for sale). | 13818 |
+| txn_date | This parameter contains the date of the transaction. | 2021-08-10 23:46:25 |
+| mode | This parameter contains the mode of the transaction such as credit card, debit card, etc. For more information, refer to [Payment Mode Codes](doc:payment-mode-codes). | CC |
+| amount | This parameter contains the original amount which was sent in the transaction request by the merchant. | 100 |
+| request_id | This parameter contains the unique request id generated from PayU with any of the following transaction actions: capture/refund/chargeback/refundReversal/chargebackreversal actions actions. | 131278418 |
+| requestdate | This parameter contains the request date and time stamp. | 2021-08-10 23:49:16 |
+| requestaction | This parameter contains the action taken on the transaction. The action can be any of the following:  
+- capture  
+- refund  
+- cancel  
+- chargeback  
+- chargeback reversal  
+- refundreversal | refund |
+| requestamount | The parameter contains the amount requested by the merchant to the bank. | 100 |
+| mer_UTR | This parameter contains the merchant Unique Transaction Reference (UTR) number. | N223211598444659 |
+| mer_service_fee | This parameter contains the service fee paid by the merchant to the bank. for the transaction | 239.6000 |
+| mer_service_tax | This parameter contains the tax on service fee paid by the merchant to the bank. for the transaction | 43.1300 |
+| mer_net_amount | This parameter contains the net amount to be settled by bank to merchant. | 100 |
+| bank_name | This parameter contains the bank name or the card type based on the transaction. | MAST |
+| issuing_bank | This parameter contains the card issuing bank name is displayed. | SBI |
+| merchant_subvention_amount | This parameter contains merchant subvention amount. | 100 |
+| cgst | This parameter contains the CGST (Central GST) for the transaction. | 43.13000 |
+| igst | This parameter contains the IGST (Integrated GST) for the transaction. | 43.13000 |
+| sgst | This parameter contains the SGST (State GST) for the transaction where the supplier or merchant is from a different state of the customer. | 43.13000 |
+| PG_TYPE | This parameter contains the payment gateway type is displayed in this transaction. | HDFC_Internal_Plus |
+| Card Type | This parameter indicates whether the card is international or domestic | Domestic. |
+| SettlementType | This describes about the charges whether its regular processing fee or instant charges | Regular or Instant |
+| Scheme | This parameter contains the scheme. | |
+| FeeType | This parameter contains fee type if the fee is collected for instant settlements or refunds. | tdrFee |
+| InstantSettlementTDR | This parameter contains the TDR collected for instant settlement. | 0.0 |
+| InstantSettlementTDRTax | This parameter contains the tax for the TDR collected for instant settlement. | 0.0 |
+| InstantSettlementTdrType | This parameter contains the TDR type for instant settlement. | 0.0 |
+| InstantRefundTDR | This parameter contains the TDR collected for instant refunds. | 0.0 |
+| InstantRefundTDRTax | This parameter contains the tax for the TDR collected for instant refunds. | 0.0 |
+| InstantRefundTdrType | This parameter contains the TDR type for instant refund. | 0.0 |
+| perDayServiceFee | This parameter contains the per day service fee for instant settlement or refunds. | 0,0 |
+| perDayServiceTax | This parameter contains the per day service tax for instant settlement or refunds. | 0,0 |
+| pricingDays | This parameter contains the pricing days for instant settlement or refunds. | 1 |
+| offerServiceFee | This parameter contains the service fee for offer. | 0,0 |
+| offerServiceTax | This parameter contains the tax for offer service fee. | 0,0 |
 
 ## Sample response
 
@@ -231,65 +120,58 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
 
 On successful processing from PayU, the response is similar to the following:
 
-```plaintext
-(
-	    [status] => 1
-	    [msg] => 1 transactions settled on 2021-08-11
-	    [Txn_details] => Array
-        (
-			[1] => Array
-                (
-                    [payuid] => 13799177287
-                    [txnid] => 13818
-                    [txndate] => 2021-08-10 23:46:25
-                    [mode] => DC
-                    [amount] => 11979.88
-                    [requestid] => 9586840660
-                    [requestdate] => 2021-08-10 23:49:16
-                    [requestaction] => capture
-                    [requestamount] => 11979.88
-                    [mer_utr] => N223211598444659
-                    [mer_service_fee] => 239.6000
-                    [mer_service_tax] => 43.1300
-                    [mer_net_amount] => 11697.1500
-                    [bank_name] => MAST
-                    [issuing_bank] => SBI
-                    [merchant_subvention_amount] => 0.00
-                    [cgst] => 0.00000
-                    [igst] => 43.13000
-                    [sgst] => 0.00000
-                    [PG_TYPE] => HDFC_Internal_Plus
-                    [Card Type] => 
-                    [token] => 
-                )
-
-        )
-
-)
+```json
+{
+    "status": 1,
+    "msg": "1 transactions settled on 2021-08-11",
+    "Txn_details": {
+        "1": {
+            "payuid": "13799177287",
+            "txnid": "13818",
+            "txndate": "2021-08-10 23:46:25",
+            "mode": "DC",
+            "amount": "11979.88",
+            "requestid": "9586840660",
+            "requestdate": "2021-08-10 23:49:16",
+            "requestaction": "capture",
+            "requestamount": "11979.88",
+            "mer_utr": "N223211598444659",
+            "mer_service_fee": "239.6000",
+            "mer_service_tax": "43.1300",
+            "mer_net_amount": "11697.1500",
+            "bank_name": "MAST",
+            "issuing_bank": "SBI",
+            "merchant_subvention_amount": "0.00",
+            "cgst": "0.00000",
+            "igst": "43.13000",
+            "sgst": "0.00000",
+            "PG_TYPE": "HDFC_Internal_Plus",
+            "Card Type": "",
+            "token": ""
+        }
+    }
+}
 ```
 
 ### Failure scenario
 
 If the date format is incorrect:
 
-```
+```json
 {
-      "status": 0,
-      "msg": "Please check date format it should be YYYY-MM-DD"
+    "status": 0,
+    "msg": "Please check date format it should be YYYY-MM-DD"
 }
 ```
 
 If no data found for the particular date queried:
 
-```
-Array 
-(
-      [status] => 1
-      [msg] => 0 transactions settled on 2015-05-01 
-      [Txn_details] => Array
-                (
-                 ) 
-)
+```json
+{
+    "status": 1,
+    "msg": "0 transactions settled on 2015-05-01",
+    "Txn_details": {}
+}
 ```
 
-To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
+For the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
