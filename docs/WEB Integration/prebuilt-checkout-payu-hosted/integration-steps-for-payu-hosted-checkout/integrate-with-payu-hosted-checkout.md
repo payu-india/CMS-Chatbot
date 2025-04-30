@@ -62,6 +62,19 @@ The code block is a sample post request that you need to send to PayU:
  
 ```
 
+### Request and response
+
+
+
+
+
+> ❗️ Error Handling
+>
+> If any error message is displayed with an error code, refer to <a href="error-codes-for-refund-initiation" target="_blank"> Error Codes for Refund Initiation</a> to understand the reason for these error codes.
+
+> 📘 Reference
+>
+> For an example of how to submit a payment request on your website, refer to <a href="submitting-payment-request-on-your-website" target="_blank"> Integrating on your Website</a>. To handle redirect URLs (surl and furl), refer to <a href="handling-the-redirect-urls" target="_blank"> Handling the Redirect URLs </a>.
 
 #### Request parameters
 
