@@ -19,11 +19,11 @@ next:
 >
 > You must be **PCI-DSS** certified to use Server-to-Server integration. For more information on PCI-DSS certification, contact your Account Manager at PayU.
 
-<RegisterMerchantPrerequiste />
+`<RegisterMerchantPrerequiste />`
 
 ### Integration security
 
-After receiving a response from PayU, you must calculate the hash again and validate it against the hash that you sent in the request to ensure the transaction is secure. PayU recommends implementing the transaction details APIs and **webhook**/**callbac**k as an extra security measure. You can find more information on this process in the  \<a href="transaction-detail-apis="\_blank"> Transaction Detail APIs</a> and \<a href="webhooks="\_blank">Webhooks</a>  documentation.
+After receiving a response from PayU, you must calculate the hash again and validate it against the hash that you sent in the request to ensure the transaction is secure. PayU recommends implementing the transaction details APIs and **webhook**/**callbac**k as an extra security measure. You can find more information on this process in the [Transaction Detail APIs](transaction-detail-apis) and [Webhooks](webhooks) documentation.
 
 You need to ensure that sensitive information related to the integration is not part of the payment request to PayU. The details including — but are not limited to — the following are considered sensitive information:
 
@@ -47,7 +47,7 @@ Along with the request, the sensitive information should not be a part of any me
 
 The first request from you to PayU with the required transaction mandatory/ optional parameters. This needs to be a server-to-server Curl call request. For the sample request and response,  refer to  <a href="_payment_s2s_classic_integration" target="_blank"> Collect Payment - General Integration</a>.  
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 ### Request parameters
 
