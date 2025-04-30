@@ -15,73 +15,84 @@ next:
 ---
 The **Bank Verification** API is used to verify bank account using penny drop/penniless transaction.
 
-**Environment**
+## Environment
 
-|                            |                                                                        |
-| :------------------------- | :--------------------------------------------------------------------- |
-| **Production Environment** | <https://onepayuonboarding.payu.in/dvs/bank_accounts/acc_verification> |
+<Table>
+  <thead>
+    <tr>
+      <th>Environment</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>**Production Environment**</td>
+      <td>https://onepayuonboarding.payu.in/dvs/bank_accounts/acc_verification</td>
+    </tr>
+  </tbody>
+</Table>
 
-> 📘 Note:
+> 📘 **Note:**
 > 
-> The access token with the scope as **verify_bank_account ** and grant type as **client_credentials** are required on the header. For more information on getting the access token, refer to [Get Token API - Bank Verification](ref:gettoken-bank-verification).
+> The access token with the scope as **verify_bank_account** and grant type as **client_credentials** are required on the header. For more information on getting the access token, refer to [Get Token API - Bank Verification](ref:gettoken-bank-verification).
 
 ## Request parameters
 
 ### Header
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "Bearer token  \n`mandatory`",
-    "0-1": "The access token with the scope as **verify_bank_account ** and grant type as **client_credentials** are required on the header. For more information on getting the access token, refer to [Get Token API - Bank Verification](ref:gettoken-bank-verification) .",
-    "1-0": "",
-    "1-1": ""
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bearer token<br/><code>mandatory</code></td>
+      <td>The access token with the scope as **verify_bank_account** and grant type as **client_credentials** are required on the header. For more information on getting the access token, refer to [Get Token API - Bank Verification](ref:gettoken-bank-verification).</td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Body
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "account_number  \n`mandatory`",
-    "0-1": "`String `This parameter must contain the account number to be verified.",
-    "1-0": "ifsc  \n`mandatory`",
-    "1-1": "`String` This parameter must contain the bank IFSC code.",
-    "2-0": "name  \n`mandatory`",
-    "2-1": "`String` This parameter must contain the account holder name.",
-    "3-0": "name_match_required  \n`optional`",
-    "3-1": "`Boolean` This parameter must be set to `true` if the name must match along with bank account verification.",
-    "4-0": "leniency  \n`optional`",
-    "4-1": "`String` If name_match_required is set to `true`, this parameter must contain any of the following:  \n  \n- Medium\n- High\n- Lo"
-  },
-  "cols": 2,
-  "rows": 5,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>account_number<br/><code>mandatory</code></td>
+      <td><code>String</code> This parameter must contain the account number to be verified.</td>
+    </tr>
+    <tr>
+      <td>ifsc<br/><code>mandatory</code></td>
+      <td><code>String</code> This parameter must contain the bank IFSC code.</td>
+    </tr>
+    <tr>
+      <td>name<br/><code>mandatory</code></td>
+      <td><code>String</code> This parameter must contain the account holder name.</td>
+    </tr>
+    <tr>
+      <td>name_match_required<br/><code>optional</code></td>
+      <td><code>Boolean</code> This parameter must be set to <code>true</code> if the name must match along with bank account verification.</td>
+    </tr>
+    <tr>
+      <td>leniency<br/><code>optional</code></td>
+      <td><code>String</code> If name_match_required is set to <code>true</code>, this parameter must contain any of the following:- Medium - High - Lo</td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
-```
+```bash
 curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_verification' \
---header 'clientId: &lt;client Id&gt;' \
+--header 'clientId: <client Id>' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: ••••••' \
 --header 'Cookie: Path=/' \
@@ -95,42 +106,68 @@ curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_ver
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "payuRequestId",
-    "0-1": "This parameter returns the PayU request ID.",
-    "1-0": "result",
-    "1-1": "This parameter returns the results of the verification in a JSON format. For more information, refer to[ result JSON fields description](#result-json-fields-description) table.",
-    "2-0": "requestAttributes",
-    "2-1": "This parameter contains the following details posted in the request in a JSON format:  \n  \n- name\n- ifsc\n- accountNumber"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
-
+<Table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>payuRequestId</td>
+      <td>This parameter returns the PayU request ID.</td>
+    </tr>
+    <tr>
+      <td>result</td>
+      <td>This parameter returns the results of the verification in a JSON format. For more information, refer to <a href="#result-json-fields-description">result JSON fields description</a> table.</td>
+    </tr>
+    <tr>
+      <td>requestAttributes</td>
+      <td>This parameter contains the following details posted in the request in a JSON format: - name - ifsc - accountNumber</td>
+    </tr>
+  </tbody>
+</Table>
 
 ### result JSON fields description
 
-| Field         | Description                                                          | Example                |
-| ------------- | -------------------------------------------------------------------- | ---------------------- |
-| accountName   | The masked name of the account holder for privacy.                   | Ashish                 |
-| bankResponse  | The response message from the bank regarding the transaction status. | Transaction successful |
-| bankTxnStatus | A boolean value indicating if the bank transaction was successful.   | true                   |
-| accountStatus | The current status of the account.                                   | ACTIVE                 |
+<Table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>accountName</td>
+      <td>The masked name of the account holder for privacy.</td>
+      <td>Ashish</td>
+    </tr>
+    <tr>
+      <td>bankResponse</td>
+      <td>The response message from the bank regarding the transaction status.</td>
+      <td>Transaction successful</td>
+    </tr>
+    <tr>
+      <td>bankTxnStatus</td>
+      <td>A boolean value indicating if the bank transaction was successful.</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>accountStatus</td>
+      <td>The current status of the account.</td>
+      <td>ACTIVE</td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample response
 
-#### Success scenario
+### Success scenario
 
-```
+```json
 {
   "payuRequestId": "ba659237-34de-4805-a5cf-ef9dd7a1cda2",
   "result": {
@@ -147,11 +184,11 @@ curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_ver
 }
 ```
 
-#### Failure scenario
+### Failure scenario
 
 - Missing client_id value in header
 
-```
+```json
 {
   "error": "Missing required client_id header"
 }
@@ -159,7 +196,7 @@ curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_ver
 
 - Invalid account number
 
-```
+```json
 {
   "payuRequestId": "0aeb7a65-cea3-4e81-9355-38548bb8f795",
   "error": {
