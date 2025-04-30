@@ -40,21 +40,13 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 - Highest uptime through multiple 3DS Server in future.​
 - Compliant EMVCO certified 3DS SDK with more control across the whole customer journey.​
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/5013bc0-Screenshot_2023-10-16_at_11.45.39_AM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image
+  src="https://files.readme.io/5013bc0-Screenshot_2023-10-16_at_11.45.39_AM.png"
+  alt=""
+  caption=""
+  border={true}
+  align="center"
+/>
 
 
 ## Integration
@@ -95,35 +87,68 @@ fun initiatePayment(
 
 You have to pass the following parameters:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "activity",
-    "0-1": "This parameter contains the `AppCompatActivity` reference.",
-    "1-0": "config",
-    "1-1": "This parameter contains the following properties:  \n  \n**config.uiCustomisation** = Set UI customization object. For more information, refer to GUI Customisation  \n  \n**config.isProduction** = Set environment where you want to test:  \n  \n**true** for the Production environment  \n  \n**false** for the Test environment  \n  \n**config.fallback3DS1** = Set the value as true to complete payment on the bank page in case of any failure. By default, the value is false  \n  \n**config.autoRead **= Set the values as true to allow auto-read OTP and fill in the OTP field. By default, the value is false.  \n  \n**config.autoSubmit** = Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.  \n  \n**config.authenticateOnly** = Pass this as true if you want to authenticate only using PayU. By default we will authorize.  \n  \n**config.setDefaultProgressLoader(true, \"HexColor\")**: Set to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode.  \n  \n\\*\\*config.enableCustomizedOtpUIFlow = //To customise UI with your content please pass as true  \n  \n\\*\\*config.enableTxnTimeoutTimer = //pass as true to show timer for page timeout  \n  \n\\*\\*config.merchantName = \"merchant name\"// pass merchant name  with customised OTP Flow  \n  \n\\*\\*config.amount = \"txn amount\"// pass transaction amount with customised OTP Flow  \n  \nval acsContentConfig = ACSContentConfig()  \nacsContentConfig.otpContent = \"OTP has been sent to your registered mobile number\". //you can set this value to as per your need  \nacsContentConfig.resendButtonTitle = //you can set this value to as per your need  \nacsContentConfig.submitButtonTitle = //you can set this value to as per your need  \nacsContentConfig.resendInfoContent = //you can set this value to as per your need  \nacsContentConfig.maxResendInfoContent = //you can set this value to as per your need  \nconfig.acsContentConfig = acsContentConfig ",
-    "2-0": "paymentParams",
-    "2-1": "Merchants have to create the payment param object and pass it which will contain info such as `cardDeatails`, SI details, etc. The following code has the parameters. Refer to the following <<code snippet>> below the table.",
-    "3-0": "callback",
-    "3-1": "This parameter contains the following methods:  \n  \n**fun onPaymentSuccess(successResponse: Any)**: It will contain a success response. This will be a JSON Object, parse response as per your need.  \n  \n**fun onPaymentFailure(failureResponse: Any)**: It will contain a failure response. This will be a JSON Object, parse response as per your need.  \n  \n**fun onPaymentCancel(isTxnInitiated: Boolean)**: It will tell if payment was canceled.  \n  \n**fun onError(errorCode: Int, errorMessage: String)**: It will contain failure reason code and reason.  \n  \n**fun generateHash(map: HashMap\\<String, String>, hashGenerationListener**: PayUHashGeneratedListener): Merchant will get a map with the type of hash and hash string as the value of the map. Refer for more details"
-  },
-  "cols": 2,
-  "rows": 4,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>activity</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the <code>AppCompatActivity</code> reference.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>config</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the following properties:  </p>
+<p><strong>config.uiCustomisation</strong> = Set UI customization object. For more information, refer to GUI Customisation  </p>
+<p><strong>config.isProduction</strong> = Set environment where you want to test:  </p>
+<p><strong>true</strong> for the Production environment  </p>
+<p><strong>false</strong> for the Test environment  </p>
+<p><strong>config.fallback3DS1</strong> = Set the value as true to complete payment on the bank page in case of any failure. By default, the value is false  </p>
+<p>**config.autoRead **= Set the values as true to allow auto-read OTP and fill in the OTP field. By default, the value is false.  </p>
+<p><strong>config.autoSubmit</strong> = Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.  </p>
+<p><strong>config.authenticateOnly</strong> = Pass this as true if you want to authenticate only using PayU. By default we will authorize.  </p>
+<p><strong>config.setDefaultProgressLoader(true, &quot;HexColor&quot;)</strong>: Set to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode.  </p>
+<p>**config.enableCustomizedOtpUIFlow = //To customise UI with your content please pass as true  </p>
+<p>**config.enableTxnTimeoutTimer = //pass as true to show timer for page timeout  </p>
+<p>**config.merchantName = &quot;merchant name&quot;// pass merchant name  with customised OTP Flow  </p>
+<p>**config.amount = &quot;txn amount&quot;// pass transaction amount with customised OTP Flow  </p>
+<p>val acsContentConfig = ACSContentConfig()<br>acsContentConfig.otpContent = &quot;OTP has been sent to your registered mobile number&quot;. //you can set this value to as per your need<br>acsContentConfig.resendButtonTitle = //you can set this value to as per your need<br>acsContentConfig.submitButtonTitle = //you can set this value to as per your need<br>acsContentConfig.resendInfoContent = //you can set this value to as per your need<br>acsContentConfig.maxResendInfoContent = //you can set this value to as per your need<br>config.acsContentConfig = acsContentConfig </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentParams</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Merchants have to create the payment param object and pass it which will contain info such as <code>cardDeatails</code>, SI details, etc. The following code has the parameters. Refer to the following &lt;<code snippet>> below the table.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>callback</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the following methods:  </p>
+<p><strong>fun onPaymentSuccess(successResponse: Any)</strong>: It will contain a success response. This will be a JSON Object, parse response as per your need.  </p>
+<p><strong>fun onPaymentFailure(failureResponse: Any)</strong>: It will contain a failure response. This will be a JSON Object, parse response as per your need.  </p>
+<p><strong>fun onPaymentCancel(isTxnInitiated: Boolean)</strong>: It will tell if payment was canceled.  </p>
+<p><strong>fun onError(errorCode: Int, errorMessage: String)</strong>: It will contain failure reason code and reason.  </p>
+<p><strong>fun generateHash(map: HashMap&lt;String, String&gt;, hashGenerationListener</strong>: PayUHashGeneratedListener): Merchant will get a map with the type of hash and hash string as the value of the map. Refer for more details</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ## Decoupled Flow
 
 ### Step 1:Initialise SDK
 
-Initialization of SDK is required if the merchant is utilizing PayU 3DS 2.0 for Decoupled functionality. For more information on properties, refer to <<Description of Properties in Initialization>>.
+Initialization of SDK is required if the merchant is utilizing PayU 3DS 2.0 for Decoupled functionality. For more information on properties, refer to \<\<Description of Properties in Initialization>>.
 
 ```Text Kotlin
 PayU3DS2.initialise(
@@ -210,26 +235,38 @@ enum class FontName {
 
 The response includes the following parameters:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of the web service call. The status can be any of the following:  \n  \n0 - If the web service call succeeded  \n  \n1 - If the web service call failed.",
-    "1-0": "errorMessage",
-    "1-1": "The error message with details of what went wrong.",
-    "2-0": "result",
-    "2-1": "Success response with details. Refer to the following class (below the table) for the response structure."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:  </p>
+<p>0 - If the web service call succeeded  </p>
+<p>1 - If the web service call failed.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 The following items are in the response:
@@ -263,26 +300,38 @@ cardScheme expected values:
 
 **PayU3DS2Response**: Three items are in the response:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of the web service call. The status can be any of the following:  \n  \n0 - If the web service call succeeded  \n  \n1 - If the web service call failed.",
-    "1-0": "errorMessage",
-    "1-1": "The error message with details of what went wrong.",
-    "2-0": "result",
-    "2-1": "Success response with details. Refer to the following class (below the table) for the response structure."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:  </p>
+<p>0 - If the web service call succeeded  </p>
+<p>1 - If the web service call failed.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ```Text Kotlin
@@ -310,24 +359,35 @@ Call the following function to start the challenge:
 PayU3DS2.initiateChallenge(activity: Activity, challengeParameter: ChallengeParameter, listener: PayU3DS2BaseCallback)
 ```
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "activity",
-    "0-1": "This parameter contains the `AppCompatActivity` reference.",
-    "1-0": "challengeParameter",
-    "1-1": "Create an object of ChallengeParameter class with the following parameters :  \n  \nChallengeParameter(\"acsSignedContent\", \"acsRefNumber\", \"acsTransactionID\", \"threeDSServerTransactionID\")  \n  \n**acsSignedContent**= Send ACS Signed Content received in ARes  \n  \n**acsRefNumber**= Send ACS Ref Number Content received in ARes  \n  \n**acsTransactionID**= Send ACS Transaction ID received in ARes  \n  \n**threeDSServerTransactionID**= Send ThreeDS Server Transaction ID received in ARes"
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>activity</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the <code>AppCompatActivity</code> reference.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>challengeParameter</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Create an object of ChallengeParameter class with the following parameters :  </p>
+<p>ChallengeParameter(&quot;acsSignedContent&quot;, &quot;acsRefNumber&quot;, &quot;acsTransactionID&quot;, &quot;threeDSServerTransactionID&quot;)  </p>
+<p><strong>acsSignedContent</strong>= Send ACS Signed Content received in ARes  </p>
+<p><strong>acsRefNumber</strong>= Send ACS Ref Number Content received in ARes  </p>
+<p><strong>acsTransactionID</strong>= Send ACS Transaction ID received in ARes  </p>
+<p><strong>threeDSServerTransactionID</strong>= Send ThreeDS Server Transaction ID received in ARes</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 Before invoking this method, generate the authentication request through any aggregator and pass the above-defined challenge parameters to initiate challenges.
