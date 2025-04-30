@@ -650,6 +650,3 @@ mihpayid=403993715531077182&mode=CC&status=success&unmappedstatus=captured&key=J
 <TransactionStages />
 
 <TutorialTile backgroundColor="#018FF4" emoji="🦉" id="65af7cd8114cd8005335bc30" link="https://docs.payu.in/v1/recipes/payu-hosted-checkout-curl-request-walkthrough" slug="payu-hosted-checkout-curl-request-walkthrough" title="PayU Hosted Checkout cURL Request Walkthrough" />
-
-```
-```
