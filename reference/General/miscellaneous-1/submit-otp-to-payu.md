@@ -24,11 +24,7 @@ You must pass the **reference id** of the corresponding transaction along with o
 
 > 📘 **Note:**> To find the reference id, see the response of the initiate transaction request of the corresponding transaction.
 >
->
->
 > HTTP Method: **POST**
->
->
 
 ## Environment
 
@@ -191,6 +187,3 @@ Based on the type of request sent (with consent/without consent) you may receive
 >
 > * In case of a failed response the **retryAttemptCount** parameter indicates the number of retries left for OTP submission. In the above-failed response scenario, the `"retryAttemptCount": "2"` indicates that the customer can retry the OTP submission twice.
 > * If the customer enters an incorrect OTP or it had expired, you need to use the **Resend OTP** API to resend the OTP. With each retry, you need to submit the OTP using the **Submit OTP** API described in this section. For more information on **Resend OTP** API, refer to [Resend OTP API](ref:resend-otp-api)
-
-```
-```
