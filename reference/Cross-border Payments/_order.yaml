@@ -4,7 +4,6 @@
 - udf_update_api
 - collect-payment-api-cross-border-payments
 - old_udf_update_api
-- invoice_upload_api_old
 - invoice_upload_api
 - response-code-and-description-invoice-upload-api
 - settlement-detail-range-api-for-cross-border
