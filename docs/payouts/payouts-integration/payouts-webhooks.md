@@ -36,32 +36,50 @@ If you want to listen to Payouts transfer success event, You need to create an _
 
 ## PayU IP addresses for webhooks
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "",
-    "h-1": "",
-    "0-0": "<h3>PayU Production IP Addresses</h3>",
-    "0-1": "",
-    "1-0": "Existing IP’s",
-    "1-1": "180.179.168.225",
-    "2-0": "New IP’s",
-    "2-1": "180.179.168.225  \n13.71.57.148  \n52.140.8.68  \n180.179.174.1",
-    "3-0": "<h3>PayU Test IP Address</h3>",
-    "3-1": "",
-    "4-0": "Existing IPs",
-    "4-1": "180.179.165.250  \n13.71.57.148",
-    "5-0": "New IP",
-    "5-1": "13.235.110.253"
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><h3>PayU Production IP Addresses</h3></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Existing IP’s</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>180.179.168.225</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>New IP’s</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>180.179.168.225<br>13.71.57.148<br>52.140.8.68<br>180.179.174.1</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><h3>PayU Test IP Address</h3></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Existing IPs</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>180.179.165.250<br>13.71.57.148</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>New IP</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>13.235.110.253</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 > 📘 Note:
