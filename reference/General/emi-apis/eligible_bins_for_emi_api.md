@@ -23,32 +23,35 @@ next:
 ---
 The Eligible BINs for EMI API (**eligibleBinsForEMI**) version 1.0 is used only when the merchant needs the EMI feature of PayU. If you are managing card details on your website, this API can tell the issuing bank of the card bin. It also provides the minimum eligible amount for a particular bank.
 
-<Image align="center" src="https://files.readme.io/2eaac64-emi_eligible_bins_flow.png" />
+![EMI Eligible BINs Flow](https://files.readme.io/2eaac64-emi_eligible_bins_flow.png)
 
 You can post a request using any of the following methods:
 
 * **Request without Bank Selection**: This is submitting API without bank name in var3 field.
 * **Request with Bank Selection**: This is submitting API with bank name in var3 field so that you will get the details for the specified bank.
 
-<GENERALAPIsEnvironment />
+## Environment
 
-<details>
-  <summary>Sample request</summary>
+| Environment | URL |
+|:------------|:----|
+| Test Environment | https://test.payu.in/merchant/postservice?form=2 |
+| Production Environment | https://info.payu.in/merchant/postservice?form=2 |
 
-```curl
-curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d"key=JP***g&command=eligibleBinsForEMI&var1=Bin&var2=512345&hash=3c923a16606d07f12aa984487626abbc0981f540131f8bb0d24b6322c362089bbd4114d710129ce54128691956775352ac53e7d7943392959d37275c934245f2"
+## Sample request
+
+```bash
+curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+-H "accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "key=JP***g&command=eligibleBinsForEMI&var1=Bin&var2=512345&hash=3c923a16606d07f12aa984487626abbc0981f540131f8bb0d24b6322c362089bbd4114d710129ce54128691956775352ac53e7d7943392959d37275c934245f2"
 ```
-
-</details>
-
-<details>
-  <summary>Sample response</summary>
+## Sample response
 
 **Success Scenario**
 
 On successful processing from PayU, the response is similar to the following:
 
-```plaintext
+```json
 {
       "status": 1,
       "msg": "Details fetched successfully",
@@ -64,114 +67,40 @@ On successful processing from PayU, the response is similar to the following:
 
 If eligibility is not found:
 
-```plaintext
-Array 
-(
-    [status] => 1
-    [msg] => Details fetched successfully
-    [details] => Array
-    (
-        [isEligible] => 0
-    ) 
-)
+```json
+{
+    "status": 1,
+    "msg": "Details fetched successfully",
+    "details": {
+        "isEligible": 0
+    } 
+}
 ```
+## Response parameters
 
-</details>
+| **Parameter** | **Description** | **Example** |
+|:--------------|:----------------|:------------|
+| status | This parameter returns the status of web service call. The status can be any of the following:<ul><li>0 - If web service call failed.</li><li>1 - If web service call succeeded</li></ul> | |
+| msg | This parameter returns whether the EMI details were fetched successfully or not found. | Details fetched successfully |
+| details | The details of the EMI offer is displayed in a JSON format and it contains the following fields:<ul><li>**isEligible** - This parameter can be any of the following values:<ul><li>0 - If EMI offers are not available for the given card BIN.</li><li>1 - If EMI offers are available for the given card BIN.</li></ul></li><li>**bank** - The name of bank that corresponds to the given card BIN</li><li>**minAmount** - The minimum amount for which the EMI offer is available</li></ul> | `{"isEligible": 1, "bank": "AXIS", "minAmount": 2500}` |
 
-<details>
-  <summary>Response parameters</summary>
-
-<Table>
-  <thead>
-    <tr>
-      <th>**Parameter**</th>
-      <th>**Description**</th>
-      <th>**Example**</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>status</td>
-      <td>This parameter returns the status of web service call. The status can be any of the following:
-        <ul>
-          <li>0 - If web service call failed.</li>
-          <li>1 - If web service call succeeded</li>
-        </ul>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>msg</td>
-      <td>This parameter returns whether the EMI details were fetched successfully or not found.</td>
-      <td>Details fetched successfully</td>
-    </tr>
-    <tr>
-      <td>details</td>
-      <td>The details of the EMI offer is displayed in a JSON format and it contains the following fields:
-        <ul>
-          <li>**isEligible** - This parameter can be any of the following values:
-            <ul>
-              <li>0 - If EMI offers are not available for the given card BIN.</li>
-              <li>1 - If EMI offers are available for the given card BIN.</li>
-            </ul>
-          </li>
-          <li>**bank** - The name of bank that corresponds to the given card BIN</li>
-          <li>**minAmount** - The minimum amount for which the EMI offer is available</li>
-        </ul>
-      </td>
-      <td>
-        `{"isEligible": 1, "bank": "AXIS", "minAmount": 2500}`
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-</details>
 
 ## Request parameters
+###Reference information
 
-<details>
-  <summary>Reference information</summary>
+| Parameter | Reference |
+|:----------|:----------|
+| key | For more information on how to generate the Key and Salt, refer to any of the following:<ul><li>**Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)</li><li>**Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)</li></ul> |
+| hash | Hash logic for this API is:<br/>`sha512(key|command|var1|salt) sha512` |
+| var1 | For JSON fields description, refer to [Additional Info for General APIs](ref:addl-info-general-apis) |
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Reference</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>key</td>
-      <td>For more information on how to generate the Key and Salt, refer to any of the following:
-        <ul>
-          <li>**Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)</li>
-          <li>**Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>hash</td>
-      <td>Hash logic for this API is:
-        ```plaintext
-        sha512(key|command|var1|salt) sha512
-        ```
-      </td>
-    </tr>
-    <tr>
-      <td>var1</td>
-      <td>For JSON fields description, refer to [Additional Info for General APIs](ref:addl-info-general-apis)</td>
-    </tr>
-  </tbody>
-</Table>
 
-</details>
+### Example values
 
 Use the following sample values while trying out the API:
-
-**Example values**:
 
 * `var1`: Bin or NET
 * `var2` (first 6/8/9 digits of the card):
   * **AXIS EMI**: 4453-3410-6587-6437
   * **ICICI EMI**: 4808-5578-4874-1463
+```
