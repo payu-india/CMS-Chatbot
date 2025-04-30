@@ -42,25 +42,27 @@ The parameters for redeeming the Supercoins remain the same as mentioned in the 
 
 If you wish to enforce the FKSC redemption as the payment and hide other payment modes, you can use the following parameters and other PayU Hosted Checkout parameters according to your requirements.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "enforce\\_paymethod  \n**optional**",
-    "0-1": "This parameter allows you to customize the payment options for each individual transaction. To enforce Flipkart Supercoins as the payment method, specify **FKSC**.",
-    "0-2": "FKSC"
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>enforce_paymethod<br><strong>optional</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter allows you to customize the payment options for each individual transaction. To enforce Flipkart Supercoins as the payment method, specify <strong>FKSC</strong>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>FKSC</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ### Dropping the FKSC Card Payment
 
