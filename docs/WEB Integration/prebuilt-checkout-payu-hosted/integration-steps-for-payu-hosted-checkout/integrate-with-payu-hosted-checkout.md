@@ -66,7 +66,7 @@ The code block is a sample post request that you need to send to PayU:
 
 The Collect Payment (**\_payment**) API is used for collecting payments in Web Checkout integration. For request and response, refer to <a href="_payment_payu_hosted_checkout" target="_blank">Collect Payments API</a> under API Reference.
 
-
+`<PaymentAPIEnvironment />`
 
 > ❗️ Error Handling
 >
