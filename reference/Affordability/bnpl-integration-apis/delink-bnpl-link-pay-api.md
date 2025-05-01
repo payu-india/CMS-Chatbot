@@ -14,8 +14,8 @@ next:
 
 |                        |                                                         |
 | ---------------------- | ------------------------------------------------------- |
-| Test Environment       | <https://test.payu.in/info/linkAndPay/delinkInstrument> |
-| Production Environment | <https://info.payu.in/linkAndPay/delinkInstrument>      |
+| Test Environment       | \<https://test.payu.in/info/linkAndPay/delinkInstrument> |
+| Production Environment | \<https://info.payu.in/linkAndPay/delinkInstrument>      |
 
 ## Request Parameters
 
@@ -23,34 +23,61 @@ next:
 
 The request header contains the following fields:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "Date  \n**mandatory**",
-    "0-1": "The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.",
-    "0-2": "Thu, 17 Feb 2022 08:17:59 GMT",
-    "1-0": "Digest  \n**mandatory**",
-    "1-1": "Base 64 encode of (sha256 hash of the JSON data (post to server).",
-    "1-2": "`vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=`",
-    "2-0": "Authorization  \n**mandatory**",
-    "2-1": "This field is in the following format:  \n`hmac username=\"smsplus\", algorithm=\"hmac-sha512\", headers=\"date digest\", signature=\"CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4=\"`  \nWhere the above format includes the following:  \n  \n- **username**: The merchant key of the merchant.\n- **algorithm**: This must have the value as **hmac-sha512** that is used for this API\n- **headers**: This must have the value as **date digest**\n- **signature**: This must contain the hmacsha512 of (signing\\_string, merchant\\_secret), where:\n  - **signing\\_string**: This is in the \"**Date**\"+\"\\\\n\"+\"**Digest**\" format. Here, the Date and Digest is the same values in the fields listed in this table For example, \"Thu, 17 Feb 2022 08:17:59 GMT\"\"\\\\n\"+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“\n  - **merchant\\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)",
-    "2-2": " hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=\"",
-    "3-0": "platformId  \n**mandatory**",
-    "3-1": "This field contains the platform ID and include the value as **1**.",
-    "3-2": "1"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Date<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Thu, 17 Feb 2022 08:17:59 GMT</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Digest<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Base 64 encode of (sha256 hash of the JSON data (post to server).</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field is in the following format:<br><code>hmac username=&quot;smsplus&quot;, algorithm=&quot;hmac-sha512&quot;, headers=&quot;date digest&quot;, signature=&quot;CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4=&quot;</code><br>Where the above format includes the following:  </p>
+<ul>
+<li><strong>username</strong>: The merchant key of the merchant.</li>
+<li><strong>algorithm</strong>: This must have the value as <strong>hmac-sha512</strong> that is used for this API</li>
+<li><strong>headers</strong>: This must have the value as <strong>date digest</strong></li>
+<li><strong>signature</strong>: This must contain the hmacsha512 of (signing_string, merchant_secret), where:<ul>
+<li><strong>signing_string</strong>: This is in the &quot;<strong>Date</strong>&quot;+&quot;\n&quot;+&quot;<strong>Digest</strong>&quot; format. Here, the Date and Digest is the same values in the fields listed in this table For example, &quot;Thu, 17 Feb 2022 08:17:59 GMT&quot;&quot;\n&quot;+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“</li>
+<li><strong>merchant_secret</strong>: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt on PayU Dashboard</a></li>
+</ul>
+</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> hmac username=&quot;smsplus&quot;, algorithm=&quot;hmac-sha256&quot;, headers=&quot;date digest&quot;, signature=&quot;zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>platformId<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the platform ID and include the value as <strong>1</strong>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 **Required parameters for calculating authorization**
@@ -135,46 +162,87 @@ public class HmacAuth {
 > - pg+bankcode+user_credentials
 > - payuToken+user_credentials
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "requestId   \n`mandatory`",
-    "0-1": "`String `This parameter must contain the unique ID for making an eligibility request.",
-    "0-2": "Test1234",
-    "1-0": "amount   \n`mandatory`",
-    "1-1": "`String`The transaction amount for which the eligibility is checked is to be passed here",
-    "1-2": "{\"amount\":\"10000\"}",
-    "2-0": "pg `\nmandatory`",
-    "2-1": "`String`It defines the payment category using the Merchant Hosted Checkout integration. For a BNPL payment, \"BNPL\" must be specified in the **pg** parameter. This parameter must used in combination with **bankcode** and **user_credentials**. For more information, refer to sample request [With pg, bankcode and user_credentials](#pg-bankcode-and-user-credentials) ",
-    "2-2": "BNPL",
-    "3-0": "bankcode   \n`mandatory with pg`",
-    "3-1": "`String`The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bankcodes for BNPL, refer to [BNPL Codes](https://docs.payu.in/docs/bnpl-codes).   \nThis parameter is mandatory when used in combination with **pg** and **user_credentials**. For more information, refer to [With pg, bankcode and user_credentials](#pg-bankcode-and-user-credentials)  [Sample request](#sample-request)  .",
-    "3-2": "LAZYPAY",
-    "4-0": "phone  \n`mandatory`",
-    "4-1": "`String`This parameter must contain the customer’s phone number for which the eligibility is to be checked needs to be passed",
-    "4-2": "“9999999999”",
-    "5-0": "payuToken  \n`mandatory`",
-    "5-1": "`String`This parameter must contain is the PayU instrument token for saved card. This parameter must used in combination with **user_credentials**. For more information, refer to  [With payuToken and user_credentials](#with-payuToken-and-user_credentials) under  [Sample request](#sample-request)  .",
-    "5-2": "Token12345  <br><br>Note: One or multiple payu tokens can be passed and max 10 tokens supported in a request.",
-    "6-0": "user_credentials  \n`mandatory`",
-    "6-1": "`String`This parameter must contain an unique user credential mapped against each user, to be passed by the merchant for saved card.or more information, refer to [Sample request](#sample-request) .",
-    "6-2": "abc:xyz",
-    "7-0": "key   \n`optional`",
-    "7-1": "`String` The merchant key provided by PayU.   \n**Reference**: For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n- **Production**: [Generate Production Merchant Key and Sat](https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard). \n- **Test**: [Generate Test Merchant Key and Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt).",
-    "7-2": "Your Test Key"
-  },
-  "cols": 3,
-  "rows": 8,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>requestId <br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String </code>This parameter must contain the unique ID for making an eligibility request.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Test1234</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount <br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The transaction amount for which the eligibility is checked is to be passed here</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{&quot;amount&quot;:&quot;10000&quot;}</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pg <code> mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>It defines the payment category using the Merchant Hosted Checkout integration. For a BNPL payment, &quot;BNPL&quot; must be specified in the <strong>pg</strong> parameter. This parameter must used in combination with <strong>bankcode</strong> and <strong>user_credentials</strong>. For more information, refer to sample request <a href="#pg-bankcode-and-user-credentials">With pg, bankcode and user_credentials</a> </p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>BNPL</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>bankcode <br><code>mandatory with pg</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bankcodes for BNPL, refer to <a href="https://docs.payu.in/docs/bnpl-codes">BNPL Codes</a>. <br>This parameter is mandatory when used in combination with <strong>pg</strong> and <strong>user_credentials</strong>. For more information, refer to <a href="#pg-bankcode-and-user-credentials">With pg, bankcode and user_credentials</a>  <a href="#sample-request">Sample request</a>  .</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>LAZYPAY</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain the customer’s phone number for which the eligibility is to be checked needs to be passed</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>“9999999999”</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>payuToken<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain is the PayU instrument token for saved card. This parameter must used in combination with <strong>user_credentials</strong>. For more information, refer to  <a href="#with-payuToken-and-user_credentials">With payuToken and user_credentials</a> under  <a href="#sample-request">Sample request</a>  .</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Token12345  <br><br>Note: One or multiple payu tokens can be passed and max 10 tokens supported in a request.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>user_credentials<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain an unique user credential mapped against each user, to be passed by the merchant for saved card.or more information, refer to <a href="#sample-request">Sample request</a> .</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>abc:xyz</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>key <br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU. <br><strong>Reference</strong>: For more information on how to generate the Key and Salt, refer to any of the following:  </p>
+<ul>
+<li><strong>Production</strong>: <a href="https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Production Merchant Key and Sat</a>. </li>
+<li><strong>Test</strong>: <a href="https://docs.payu.in/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a>.</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Your Test Key</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ## Sample request
