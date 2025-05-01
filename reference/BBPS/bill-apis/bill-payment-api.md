@@ -15,7 +15,7 @@ next:
 ---
 Use the **Bill Payment** API to send the payment information to make the bill payment.
 
-<BBPSEnvironment />
+`<BBPSEnvironment />`
 
 > 📘 Note:
 >
@@ -44,57 +44,93 @@ curl --location --request POST 'https://<hostName>/payu-nbc/v1/nbc/billpaymentre
   </thead>
   <tbody>
     <tr>
-      <td>code</td>
-      <td>This field contains the global response code and can be any of the following:  
+          <td>
+    code
+    </td>
+          <td>
+    This field contains the global response code and can be any of the following:
 
-        * **0**: If web service call failed
-        * **1**: if web service call succeeded
-      </td>
-    </tr>
+            * **0**: If web service call failed
+            * **1**: if web service call succeeded
+          </td>
+        </tr>
     <tr>
-      <td>status</td>
-      <td>The status of the API command and can be any of the following:  
+      <td>
+      status
+      </td>
+      <td>
+      The status of the API command and can be any of the following:
 
         * SUCCESS
         * FAILURE
       </td>
     </tr>
     <tr>
-      <td>payload</td>
-      <td>It will contain payload which are explained as subsequent parameters.</td>
+      <td>
+      payload
+      </td>
+      <td>
+      It will contain payload which are explained as subsequent parameters.
+      </td>
     </tr>
     <tr>
-      <td>timeStamp</td>
-      <td>This contains the server time stamp when the request or response in initiated.</td>
+      <td>
+      timeStamp
+      </td>
+      <td>
+      This contains the server time stamp when the request or response in initiated.
+      </td>
     </tr>
     <tr>
-      <td>paidAmount</td>
-      <td>This contains the paid amount by customer.</td>
+      <td>
+      paidAmount
+      </td>
+      <td>
+      This contains the paid amount by customer.
+      </td>
     </tr>
     <tr>
-      <td>refId</td>
-      <td>This contains the reference ID passed by agent/consumer in payment request.The length of refID should be between 34 to 35.</td>
+      <td>
+      refId
+      </td>
+      <td>
+      This contains the reference ID passed by agent/consumer in payment request.The length of refID should be between 34 to 35.
+      </td>
     </tr>
     <tr>
-      <td>billerId</td>
-      <td>This contains the biller Identification Number passed by agent/consumer in payment request.</td>
+      <td>
+      billerId
+      </td>
+      <td>
+      This contains the biller Identification Number passed by agent/consumer in payment request.
+      </td>
     </tr>
     <tr>
-      <td>additionalParams</td>
-      <td>This contains the additional information provided by biller. Keys and Values can be dynamic inside this block except txnRefId and billerReferenceNumber.  
-        For BBPS response:  
+      <td>
+      additionalParams
+      </td>
+      <td>
+      This contains the additional information provided by biller. Keys and Values can be dynamic inside this block except txnRefId and billerReferenceNumber.
+        For BBPS response:
 
         * **txnRefId**: txn Id returned to agent with every payment response if the biller is on BBPS platform. Also it will contain other required information in case of any specific biller. 
         * **billerReferenceNumber**: Reference Number is returned by Biller after payment.For Non-BBPS response, t may contain any additional information if required to share with agents in future.
       </td>
     </tr>
     <tr>
-      <td>planResponse</td>
-      <td>This contains the details of plans chooses by customer while payment. This field is conditional and BOU will pass if billerResponseType for respective biller is SELECTIVE type.</td>
+      <td>
+      planResponse
+      </td>
+      <td>
+      This contains the details of plans chooses by customer while payment. This field is conditional and BOU will pass if billerResponseType for respective biller is SELECTIVE type.
+      </td>
     </tr>
     <tr>
-      <td>message</td>
-      <td>This parameter is applicable for failure scenarios. It will contain two messages in case of:  
+      <td>
+      message
+      </td>
+      <td>
+      This parameter is applicable for failure scenarios. It will contain two messages in case of:
 
         * **Failure**: payment\_request\_failed
         * **Pending**: payment\_request\_pending
@@ -115,7 +151,7 @@ curl --location --request POST 'https://<hostName>/payu-nbc/v1/nbc/billpaymentre
 > * The agent should not override transaction status against the same reference ID in repeated requests. Ideally, each Payment Request should be raised with a unique Ref Id. 
 > * As the Bill Payment API is transactional, so to avoid any issue like duplicate RefId, make sure to post a request with a unique reference ID for a payment call. Each call is mandatorily required to be posted with a unique RefId only. Our fetch flow & payment flow go hand in hand with one reference ID. In case of any issue with the Bill Payment API, Bill Payment Transaction Status API must be used.  For more information, refer to Bill Payment Transaction Status API.
 >
-> For the following exceptional cases, PayU recommends using the Bill Payment Transaction Status API, which will provide the correct status for payment.  
+> For the following exceptional cases, PayU recommends using the Bill Payment Transaction Status API, which will provide the correct status for payment. 
 >
 > * Connection Failure/ Socket Issue  
 > * CU is Down
