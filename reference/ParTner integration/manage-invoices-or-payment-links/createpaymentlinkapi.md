@@ -30,8 +30,8 @@ This API is used to create a payment link for your customer with Partner Integra
 
 |                            |                             |
 | :------------------------- | :-------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in> |
-| **Production Environment** | <https://oneapi.payu.in>    |
+| **Test Environment**       | \<https://uatoneapi.payu.in> |
+| **Production Environment** | \<https://oneapi.payu.in>    |
 
 <details>
   <summary>Sample request</summary>
