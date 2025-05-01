@@ -43,7 +43,7 @@ curl -X POST \
 <details>
   <summary>Sample response</summary>
 
-<br>
+<br/>
 
 Success response
 
