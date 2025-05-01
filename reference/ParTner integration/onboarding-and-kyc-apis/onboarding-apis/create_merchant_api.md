@@ -35,7 +35,8 @@ This API is authorised through a client token generated using the client ID and 
 >
 > The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
-<details><summary>Sample response</summary>
+<details>
+<summary>Sample response</summary>
 
 ```
 {
@@ -109,7 +110,8 @@ This API is authorised through a client token generated using the client ID and 
 
 </details>
 
-<details><summary>Response parameters<details><summary>
+<details>
+<summary>Response parameters</summary>
 
 <Table>
   <thead>
@@ -201,7 +203,7 @@ This API is authorised through a client token generated using the client ID and 
       </td>
 
       <td>
-        This parameter contains any of the following PAN verification statuses:  
+        This parameter contains any of the following PAN verification statuses:
 
          \
         &#x9;•	Success\
@@ -216,7 +218,7 @@ This API is authorised through a client token generated using the client ID and 
       </td>
 
       <td>
-        This parameter contains any of the following website approval statuses:  
+        This parameter contains any of the following website approval statuses:
 
          \
         &#x9;•	Website Not live\
@@ -356,7 +358,7 @@ This API is authorised through a client token generated using the client ID and 
       </td>
 
       <td>
-        This parameter contains the document status and can be any of the following:  
+        This parameter contains the document status and can be any of the following:
 
          \
         &#x9;•	Pending: It indicates that document not yet submitted\
@@ -372,7 +374,8 @@ This API is authorised through a client token generated using the client ID and 
 
 ## Request Parameters
 
-<details><summary>Reference information for request parameters</summary>
+<details>
+<summary>Reference information for request parameters</summary>
 
 | Parameter                          | Reference                                                                                                                  |
 | :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
