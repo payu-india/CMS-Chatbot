@@ -16,8 +16,8 @@ The **Validate Auth Code and Client** API is used for validating auth code and c
 
 |                |                                |
 | :------------- | :----------------------------- |
-| **Test**       | <https://uat-accounts.payu.in> |
-| **Production** | <https://accounts.payu.in>     |
+| **Test**       | \<https://uat-accounts.payu.in> |
+| **Production** | \<https://accounts.payu.in>     |
 
 > 📘 Notes:
 > 
@@ -25,37 +25,59 @@ The **Validate Auth Code and Client** API is used for validating auth code and c
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "client\\_id  \n**mandatory**",
-    "0-1": "`string` The client identifier is specified in this parameter. ",
-    "0-2": "68a276132f82c056a6ed9b5  \ne00e45523c260544b87dd3cc91840d591bd93",
-    "1-0": "client\\_secret  \n**mandatory**",
-    "1-1": "`string` The client secret code is specified in this parameter.",
-    "1-2": "93f29bd09aca64f304ee8380232310f7  \ncaa0bc2dcd838f15903dc85b0110b",
-    "2-0": "grant\\_type  \n**mandatory**",
-    "2-1": "`string` Grant type is used by clients to obtain an access token outside of the context of a user. The grant type is specified in this parameter.",
-    "2-2": "authorization\\_code",
-    "3-0": "code  \n**mandatory**",
-    "3-1": "`string` The client authorization code is specified in this parameter.",
-    "3-2": "23e563c95e3c433e38072fef0c8d1  \n8b21d8598c51eb498814e7c9cadd60edc09",
-    "4-0": "redirect\\_uri  \n**mandatory**",
-    "4-1": "`string` The redirect URL is specified in this parameter.",
-    "4-2": "<https://www.abcdefghi/success>"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>client_id<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The client identifier is specified in this parameter. </p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>68a276132f82c056a6ed9b5<br>e00e45523c260544b87dd3cc91840d591bd93</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>client_secret<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The client secret code is specified in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>93f29bd09aca64f304ee8380232310f7<br>caa0bc2dcd838f15903dc85b0110b</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>grant_type<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> Grant type is used by clients to obtain an access token outside of the context of a user. The grant type is specified in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>authorization_code</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>code<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The client authorization code is specified in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>23e563c95e3c433e38072fef0c8d1<br>8b21d8598c51eb498814e7c9cadd60edc09</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>redirect_uri<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The redirect URL is specified in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="https://www.abcdefghi/success">https://www.abcdefghi/success</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
