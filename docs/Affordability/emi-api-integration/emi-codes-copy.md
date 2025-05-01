@@ -12,15 +12,15 @@ metadata:
 next:
   description: ''
 ---
-<h2 class=\"heading heading-2 header-scroll\" align=\"\">
-  <div class=\"heading-anchor anchor waypoint\" id=\"credit-card-emi-codes\"></div>
-  <div class=\"heading-text\">
-    <div id=\"section-credit-card-emi-codes\" class=\"heading-anchor_backwardsCompatibility\"></div>Credit Card EMI Codes
+<h2 class="heading heading-2 header-scroll" align="">
+  <div class="heading-anchor anchor waypoint" id="credit-card-emi-codes"></div>
+  <div class="heading-text">
+    <div id="section-credit-card-emi-codes" class="heading-anchor_backwardsCompatibility"></div>Credit Card EMI Codes
   </div>
-  <a aria-label=\"Skip link to Credit Card EMI Codes\" class=\"heading-anchor-icon fa fa-anchor\" href=\"#credit-card-emi-codes\"></a>
+  <a aria-label="Skip link to Credit Card EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#credit-card-emi-codes"></a>
 </h2>
-<div class=\"rdmd-table\">
-  <div class=\"rdmd-table-inner\">
+<div class="rdmd-table">
+  <div class="rdmd-table-inner">
     <table>
       <thead>
         <tr>
@@ -10909,15 +10909,15 @@ next:
       </tbody>
     </table>
   </div>
-</div><br><h2 class=\"heading heading-2 header-scroll\" align=\"\">
-  <div class=\"heading-anchor anchor waypoint\" id=\"debit-card-emi-codes\"></div>
-  <div class=\"heading-text\">
-    <div id=\"section-debit-card-emi-codes\" class=\"heading-anchor_backwardsCompatibility\"></div>Debit Card EMI Codes
+</div><br/><h2 class="heading heading-2 header-scroll" align="">
+  <div class="heading-anchor anchor waypoint" id="debit-card-emi-codes"></div>
+  <div class="heading-text">
+    <div id="section-debit-card-emi-codes" class="heading-anchor_backwardsCompatibility"></div>Debit Card EMI Codes
   </div>
-  <a aria-label=\"Skip link to Debit Card EMI Codes\" class=\"heading-anchor-icon fa fa-anchor\" href=\"#debit-card-emi-codes\"></a>
+  <a aria-label="Skip link to Debit Card EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#debit-card-emi-codes"></a>
 </h2>
-<div class=\"rdmd-table\">
-  <div class=\"rdmd-table-inner\">
+<div class="rdmd-table">
+  <div class="rdmd-table-inner">
     <table>
       <thead>
         <tr>
@@ -11384,15 +11384,15 @@ next:
     </table>
   </div>
 </div>
-<br>
-<h2 class=\"heading heading-2 header-scroll\" align=\"\">
-  <div class=\"heading-anchor anchor waypoint\" id=\"cardless-emi-codes\"></div>
-  <div class=\"heading-text\">
-    <div id=\"section-cardless-emi-codes\" class=\"heading-anchor_backwardsCompatibility\"></div>Cardless EMI Codes
+<br/>
+<h2 class="heading heading-2 header-scroll" align="">
+  <div class="heading-anchor anchor waypoint" id="cardless-emi-codes"></div>
+  <div class="heading-text">
+    <div id="section-cardless-emi-codes" class="heading-anchor_backwardsCompatibility"></div>Cardless EMI Codes
   </div>
-  <a aria-label=\"Skip link to Cardless EMI Codes\" class=\"heading-anchor-icon fa fa-anchor\" href=\"#cardless-emi-codes\"></a>
-</h2> <div class=\"rdmd-table\">
-  <div class=\"rdmd-table-inner\">
+  <a aria-label="Skip link to Cardless EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#cardless-emi-codes"></a>
+</h2> <div class="rdmd-table">
+  <div class="rdmd-table-inner">
     <table>
       <thead>
         <tr>
@@ -11659,15 +11659,15 @@ next:
 </table>
  </div>
 </div>
-<br>
-<h2 class=\"heading heading-2 header-scroll\" align=\"\">
-  <div class=\"heading-anchor anchor waypoint\" id=\"oupi-cc-emi-codes\"></div>
-  <div class=\"heading-text\">
-    <div id=\"section-upi-cc-emi-codes\" class=\"heading-anchor_backwardsCompatibility\"></div>UPI CC EMI Codes
+<br/>
+<h2 class="heading heading-2 header-scroll" align="">
+  <div class="heading-anchor anchor waypoint" id="oupi-cc-emi-codes"></div>
+  <div class="heading-text">
+    <div id="section-upi-cc-emi-codes" class="heading-anchor_backwardsCompatibility"></div>UPI CC EMI Codes
   </div>
-  <a aria-label=\"Skip link to UPI CC EMI Codes\" class=\"heading-anchor-icon fa fa-anchor\" href=\"#upi-cc-emi-codes\"></a>
-</h2> <div class=\"rdmd-table\">
-  <div class=\"rdmd-table-inner\">
+  <a aria-label="Skip link to UPI CC EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#upi-cc-emi-codes"></a>
+</h2> <div class="rdmd-table">
+  <div class="rdmd-table-inner">
     <table>
       <thead>
         <tr>
@@ -11760,15 +11760,15 @@ next:
      </table>
   </div>
 </div>
-<br>
-<h2 class=\"heading heading-2 header-scroll\" align=\"\">
-  <div class=\"heading-anchor anchor waypoint\" id=\"other-emi-codes\"></div>
-  <div class=\"heading-text\">
-    <div id=\"section-other-emi-codes\" class=\"heading-anchor_backwardsCompatibility\"></div>Other EMI Codes
+<br/>
+<h2 class="heading heading-2 header-scroll" align="">
+  <div class="heading-anchor anchor waypoint" id="other-emi-codes"></div>
+  <div class="heading-text">
+    <div id="section-other-emi-codes" class="heading-anchor_backwardsCompatibility"></div>Other EMI Codes
   </div>
-  <a aria-label=\"Skip link to Other EMI Codes\" class=\"heading-anchor-icon fa fa-anchor\" href=\"#other-emi-codes\"></a>
-</h2> <div class=\"rdmd-table\">
-  <div class=\"rdmd-table-inner\">
+  <a aria-label="Skip link to Other EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#other-emi-codes"></a>
+</h2> <div class="rdmd-table">
+  <div class="rdmd-table-inner">
     <table>
       <thead>
         <tr>
