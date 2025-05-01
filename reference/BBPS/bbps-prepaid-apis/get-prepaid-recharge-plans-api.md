@@ -15,7 +15,7 @@ next:
 ---
 The **Get Prepaid Recharge Plans**API for getting prepaid plans. It will provide all the available prepaid recharge plans available for a given agent ID, circle ID and operator ID.
 
-<BBPSEnvironment />
+`<BBPSEnvironment />`
 
 > 📘 Note:
 >
@@ -44,22 +44,32 @@ curl --location --request GET 'https:///payu-nbc/v2/nbc/getRechargePlans?agentId
   </thead>
   <tbody>
     <tr>
-      <td>code</td>
-      <td>The global response code and can be any of the following:  
+      <td>
+      code
+      </td>
+      <td>
+      The global response code and can be any of the following:  
         * **0**: If web service call failed
         * **1**: if web service call succeeded
       </td>
     </tr>
     <tr>
-      <td>status</td>
-      <td>The status of the API command and can be any of the following:  
+      <td>
+      status
+      </td>
+      <td>
+      The status of the API command and can be any of the following:  
         * SUCCESS
         * FAILURE
       </td>
     </tr>
     <tr>
-      <td>payload</td>
-      <td>It will contain a list of biller categories. For more information, refer to the [payload](#payload) table.</td>
+      <td>
+      payload
+      </td>
+      <td>
+      It will contain a list of biller categories. For more information, refer to the [payload](#payload) table.
+      </td>
     </tr>
   </tbody>
 </Table>
@@ -77,12 +87,18 @@ The **payload** parameter contains the values in a JSON format are described in 
   </thead>
   <tbody>
     <tr>
-      <td>**Success Scenario**</td>
-      <td></td>
+      <td>
+      **Success Scenario**
+      </td>
+      <td>
+      </td>
     </tr>
     <tr>
-      <td>circlesInfo</td>
-      <td>This field contains the following set of values for each circle in an JSON array format:  
+      <td>
+      circlesInfo
+      </td>
+      <td>
+      This field contains the following set of values for each circle in an JSON array format:  
         * **planName**: This field contains the plan name.
         * **price**: This field contains the plan price.
         * **validity**: This field contains the validity period of the plan.
@@ -93,28 +109,51 @@ The **payload** parameter contains the values in a JSON format are described in 
       </td>
     </tr>
     <tr>
-      <td>**Failure Scenario**</td>
-      <td></td>
+      <td>
+      **Failure Scenario**
+      </td>
+      <td>
+      </td>
     </tr>
     <tr>
-      <td>refId</td>
-      <td>For failure scenarios, this parameter contains the reference ID.</td>
+      <td>
+      refId
+      </td>
+      <td>
+      For failure scenarios, this parameter contains the reference ID.
+      </td>
     </tr>
     <tr>
-      <td>type</td>
-      <td>This field contains the value as **mobile\_plans** for this API.</td>
+      <td>
+      type
+      </td>
+      <td>
+      This field contains the value as **mobile\_plans** for this API.
+      </td>
     </tr>
     <tr>
-      <td>error</td>
-      <td>For failure scenarios, this field contains the error message in an array format.</td>
+      <td>
+      error
+      </td>
+      <td>
+      For failure scenarios, this field contains the error message in an array format.
+      </td>
     </tr>
     <tr>
-      <td>message</td>
-      <td>This field contains the message type as **mobile\_fetch\_request\_failed** for this API.</td>
+      <td>
+      message
+      </td>
+      <td>
+      This field contains the message type as **mobile\_fetch\_request\_failed** for this API.
+      </td>
     </tr>
     <tr>
-      <td>additionalParams</td>
-      <td>For failure scenarios, this field contains the additional fields related to billers in an array format. If there is no any additional info, it will be null. </td>
+      <td>
+      additionalParams
+      </td>
+      <td>
+      For failure scenarios, this field contains the additional fields related to billers in an array format. If there is no any additional info, it will be null. 
+      </td>
     </tr>
   </tbody>
 </Table>
