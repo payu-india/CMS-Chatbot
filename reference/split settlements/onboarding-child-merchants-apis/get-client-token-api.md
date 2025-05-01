@@ -18,8 +18,8 @@ HTTP Method: **POST**
 
 |                |                                |
 | :------------- | :----------------------------- |
-| **Test**       | <https://uat-accounts.payu.in> |
-| **Production** | <https://accounts.payu.in>     |
+| **Test**       | \<https://uat-accounts.payu.in> |
+| **Production** | \<https://accounts.payu.in>     |
 
 Base URL: `{{base_url}}/oauth/token`
 
@@ -31,28 +31,47 @@ Base URL: `{{base_url}}/oauth/token`
 > - **refer_child_merchant** scope should be whitelisted on caller client on Hub
 > - Get Aggregator flag enabled on parent merchant
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "client\\_id",
-    "0-1": "The unique client identifier for the client.",
-    "1-0": "client\\_secret",
-    "1-1": "The client secret code is passed in this parameter.",
-    "2-0": "grant\\_type",
-    "2-1": "The client credentials is posted in this parameter.",
-    "3-0": "scope",
-    "3-1": "The scope is posted in this parameter. The scope can be any of the following:  \n- **refer_child_merchant:** Use this scope when you want to refer and create a child merchant  \n- **fetch_child_merchants**: Use this scope when you want to fetch the child merchants under a merchant  \n  \n**Note**: Use this API with the scope as refer_child_merchant to create client token from Hub."
-  },
-  "cols": 2,
-  "rows": 4,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>client_id</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The unique client identifier for the client.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>client_secret</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The client secret code is passed in this parameter.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>grant_type</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The client credentials is posted in this parameter.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>scope</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The scope is posted in this parameter. The scope can be any of the following:  </p>
+<ul>
+<li><strong>refer_child_merchant:</strong> Use this scope when you want to refer and create a child merchant  </li>
+<li><strong>fetch_child_merchants</strong>: Use this scope when you want to fetch the child merchants under a merchant</li>
+</ul>
+<p><strong>Note</strong>: Use this API with the scope as refer_child_merchant to create client token from Hub.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
@@ -67,37 +86,59 @@ curl --location -g --request POST '{{hub_base_url}}/oauth/token' \
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "access\\_token",
-    "0-1": "This parameter contains the access token.",
-    "0-2": "453226e88f0e6d1  \n8b24fe4eedb817b  \n0ff096cb740f0354  \ne4b133188555d2b151",
-    "1-0": "token\\_type",
-    "1-1": "This parameter contains any of the following token type:",
-    "1-2": "Bearer",
-    "2-0": "expires\\_in",
-    "2-1": "This parameter contains the time (in seconds) at which the token shall expire from the creation time. The creation time can be found in the **created\\_at** time.",
-    "2-2": "2591999",
-    "3-0": "scope",
-    "3-1": "This parameter contains the scope as specified in the request.",
-    "3-2": "refer\\_child\\_merchant",
-    "4-0": "created\\_at",
-    "4-1": "This parameter contains the time stamp when the token was created.",
-    "4-2": "1642509515"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>access_token</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the access token.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>453226e88f0e6d1<br>8b24fe4eedb817b<br>0ff096cb740f0354<br>e4b133188555d2b151</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>token_type</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains any of the following token type:</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>expires_in</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the time (in seconds) at which the token shall expire from the creation time. The creation time can be found in the <strong>created_at</strong> time.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2591999</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>scope</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the scope as specified in the request.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>refer_child_merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>created_at</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the time stamp when the token was created.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1642509515</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample response
 
