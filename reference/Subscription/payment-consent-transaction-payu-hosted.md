@@ -34,7 +34,7 @@ next:
       slug: introduction-recurring-payments-integration
       title: Introduction
 ---
-This section describes the how set up a Payment Consent or <<glossary:Registration transaction>> transaction using PayU Hosted Checkout integration.
+This section describes the how set up a Payment Consent or \<\<glossary:Registration transaction>> transaction using PayU Hosted Checkout integration.
 
 HTTP Method: **POST**
 
@@ -42,71 +42,145 @@ HTTP Method: **POST**
 
 |                            |                                   |
 | :------------------------- | :-------------------------------- |
-| **Production Environment** | <https://secure.payu.in/_payment> |
-| **Test Environment**       | <https://test.payu.in/_payment>   |
+| **Production Environment** | \<https://secure.payu.in/_payment> |
+| **Test Environment**       | \<https://test.payu.in/_payment>   |
 
 ## Request parameters
 
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "key  \n**mandatory**",
-    "0-1": "`varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account.",
-    "0-2": "Your Test Key",
-    "1-0": "txnid  \n**mandatory**",
-    "1-1": "`varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.  \n`Character limit`: 25  \n**Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’",
-    "1-2": "fd3e847h2",
-    "2-0": "amount  \n**mandatory**",
-    "2-1": "`float` This parameter should contain the payment amount of the particular transaction.  \n  \n**Note**: Type-cast the amount to float type  \nDepending upon the merchant use case, this value will vary.  \n  \n- It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.\n- In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI",
-    "2-2": "1000",
-    "3-0": "productinfo  \n**mandatory**",
-    "3-1": "`varchar` This parameter should contain a brief product description. It should be a string describing the product.  \n`Character limit`: 100",
-    "3-2": "Time Magazine Subscription",
-    "4-0": "firstname  \n**mandatory**",
-    "4-1": "`varchar` Must contain the first name of the customer.  \n`Character limit`: 60",
-    "4-2": "Ashish",
-    "5-0": "email  \n**mandatory**",
-    "5-1": "`varchar` Must contain the email of the customer.  \nThis information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.  \nAlso, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.  \nCharacter limit: 50",
-    "5-2": "[Ashish@test.com](mailto:Ashish@test.com)",
-    "6-0": "phone  \n**mandatory**",
-    "6-1": "`varchar` Must contain the phone number of the customer.  \n  \nThis information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.  \nCharacter limit: 50",
-    "6-2": "9843176540",
-    "7-0": "surl  \n**mandatory**",
-    "7-1": "surL is the acronym for Success URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is successful.",
-    "7-2": "",
-    "8-0": "furl  \n**mandatory**",
-    "8-1": "furl is the acronym for for Failure URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is failed.",
-    "8-2": "",
-    "9-0": "api_version  \n**mandatory**",
-    "9-1": "This parameter must always needs to be passed as 7.",
-    "9-2": "7",
-    "10-0": "si  \n**mandatory**",
-    "10-1": "This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.  \n**Notes**: You can modify or cancel existing recurring payment registration as described in the following sections:  \n_.   [Manage Recurring Payment for Cards](ref:manage-recurring-payment-for-cards)  \n_.   [Manage UPI Recurring Transaction](ref:api-commands-to-manage-upi-recurring-transaction)",
-    "10-2": "1",
-    "11-0": "free_trial  \n**optional**",
-    "11-1": "This is mandatory only if the merchant wants to support free trial use case with card and net banking together that too on PayU Hosted Checkout integration.  \n  \nIn this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request.  \nThis parameter has no significance in the case of seamless flow.",
-    "11-2": "",
-    "12-0": "si_details  \n**mandatory**",
-    "12-1": "This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.  \n  \n**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – <https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0> )  \n  \nThis is a JSON object and it includes a set of fields. For more information,  refer to [SI Parameter JSON Details](ref:si-parameter-json-details)",
-    "12-2": "{“billingAmount”: “100.00”,”billingCurrency”: “INR”,”billingCycle”: “MONTHLY”,”billingInterval”: 1,”paymentStartDate”: “2019-09-01″,”paymentEndDate”: “2019-12-01”}",
-    "13-0": "hash  \n**mandatory**",
-    "13-1": "Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU’s payment interface while registration transactions.  \n  \nIt is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.  \n  \nIn the case of registration transaction, the formula is used to calculate this hash is similar to the following:  \n`HASH = SHA512(key\\|txnid\\|amount\\|productinfo\\|firstname\\|email\\|udf1\\|udf2\\|udf3\\|udf4\\|udf5\\||\\||\\||si_details\\|SALT)`",
-    "13-2": ""
-  },
-  "cols": 3,
-  "rows": 14,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> This parameter is the unique Merchant Key provided by PayU for your merchant account.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Your Test Key</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnid<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.<br><code>Character limit</code>: 25<br><strong>Note</strong>: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>fd3e847h2</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>float</code> This parameter should contain the payment amount of the particular transaction.  </p>
+<p><strong>Note</strong>: Type-cast the amount to float type<br>Depending upon the merchant use case, this value will vary.  </p>
+<ul>
+<li>It can be either 0 INR (for Net Banking) or min 1 INR (for Cards &amp; UPI) in penny transaction use case.</li>
+<li>In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>productinfo<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> This parameter should contain a brief product description. It should be a string describing the product.<br><code>Character limit</code>: 100</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Time Magazine Subscription</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>firstname<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> Must contain the first name of the customer.<br><code>Character limit</code>: 60</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Ashish</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> Must contain the email of the customer.<br>This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.<br>Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br>Character limit: 50</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="mailto:Ashish@test.com">Ashish@test.com</a></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> Must contain the phone number of the customer.  </p>
+<p>This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br>Character limit: 50</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9843176540</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>surl<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>surL is the acronym for Success URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is successful.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>furl<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>furl is the acronym for for Failure URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is failed.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>api_version<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must always needs to be passed as 7.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>7</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>si<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.<br><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections:<br>_.   <a href="ref:manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a><br>_.   <a href="ref:api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>free_trial<br><strong>optional</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is mandatory only if the merchant wants to support free trial use case with card and net banking together that too on PayU Hosted Checkout integration.  </p>
+<p>In this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request.<br>This parameter has no significance in the case of seamless flow.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>si_details<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.  </p>
+<p><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&amp;Mode=0</a> )  </p>
+<p>This is a JSON object and it includes a set of fields. For more information,  refer to <a href="ref:si-parameter-json-details">SI Parameter JSON Details</a></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{“billingAmount”: “100.00”,”billingCurrency”: “INR”,”billingCycle”: “MONTHLY”,”billingInterval”: 1,”paymentStartDate”: “2019-09-01″,”paymentEndDate”: “2019-12-01”}</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU’s payment interface while registration transactions.  </p>
+<p>It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.  </p>
+<p>In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br><code>HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||si_details\|SALT)</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ## Sample request
