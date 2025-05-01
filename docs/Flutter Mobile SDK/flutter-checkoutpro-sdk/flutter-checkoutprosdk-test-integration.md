@@ -22,7 +22,7 @@ next:
 ---
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
-> 🚧 Callout
+> 🚧 Callout 
 > 
 > The UPI in-app and UPI intent flow is not available in the Test mode.
 
@@ -71,7 +71,7 @@ For Testing the UPI Collect flow, Please follow the below steps:- 
 2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
 3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
 
-<https://pgsim01.payu.in/UPI-test-transaction/confirm/>`<Txn_id>`
+[https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)`<Txn_id>`
 
 #### For Android
 
@@ -102,28 +102,39 @@ You can use the following Debit and Credit cards to test Emi integration.
 
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Wallet",
-    "h-1": "Mobile Number",
-    "h-2": "OTP",
-    "0-0": "PayTM",
-    "0-1": "7777777777",
-    "0-2": "888888",
-    "1-0": "PhonePe",
-    "1-1": "Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: <https://developer.phonepe.com/v1/docs/setting-up-test-account>  \nDownload the app register your mobile number and follow the instructions as described in the above PhonePe docs.",
-    "1-2": "NA",
-    "2-0": "AmazonPay",
-    "2-1": "You can test using your original Amazon account details.",
-    "2-2": ""
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Wallet</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Mobile Number</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">OTP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>PayTM</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>7777777777</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>888888</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>PhonePe</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: <a href="https://developer.phonepe.com/v1/docs/setting-up-test-account">https://developer.phonepe.com/v1/docs/setting-up-test-account</a><br>Download the app register your mobile number and follow the instructions as described in the above PhonePe docs.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>NA</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>AmazonPay</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>You can test using your original Amazon account details.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
