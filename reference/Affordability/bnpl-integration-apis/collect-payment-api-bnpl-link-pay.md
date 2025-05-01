@@ -12,7 +12,7 @@ next:
 ---
 You can collection payments with BNPL using Link and Pay. This section provides the request and response parameter with sample request and response..For more information on integration, refer to [Collect Payments with BNPL using Link and Pay](doc:collect-payments-with-bnpl-using-link-and-pay).
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 ## Request parameters
 
@@ -311,7 +311,7 @@ You can collection payments with BNPL using Link and Pay. This section provides 
         `string` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: ```
         sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)
 
-        ```For more information, refer to [Generate Hash](doc:hashing-request-and-response).
+        ```For more information, refer to [Generate Hash](doc:hashing-request-and-response).```
       </td>
 
       <td>
@@ -702,7 +702,7 @@ The result JSON contains the acsTemplate with base64 encoding.
       </td>
 
       <td>
-        PayU calculates the hash using a string of other parameters and returns it to the merchant. The merchant must verify the hash, and only then mark a transaction as success/failure. This is to make sure that the transaction hasn’t been tampered with. The calculation is as follows: sha512(SALT|status|udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)    <br>**Note**: The handling of udf1 – udf5 parameters remains similar to the hash calculation when the merchant sends it in the transaction request to PayU. If any of the udf (udf1-udf5) was posted in the transaction request, it must be taken in hash calculation also. If none of the udf parameters were posted in the transaction request, they should be left empty in the hash calculation too.
+        PayU calculates the hash using a string of other parameters and returns it to the merchant. The merchant must verify the hash, and only then mark a transaction as success/failure. This is to make sure that the transaction hasn’t been tampered with. The calculation is as follows: sha512(SALT|status|udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)    <br/>**Note**: The handling of udf1 – udf5 parameters remains similar to the hash calculation when the merchant sends it in the transaction request to PayU. If any of the udf (udf1-udf5) was posted in the transaction request, it must be taken in hash calculation also. If none of the udf parameters were posted in the transaction request, they should be left empty in the hash calculation too.
       </td>
     </tr>
 
@@ -712,7 +712,7 @@ The result JSON contains the acsTemplate with base64 encoding.
       </td>
 
       <td>
-        For the failed transactions, this parameter provides the reason for  failure.    <br>**Note**: The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another. The merchant can use this parameter to retrieve the reason for failure for a particular transaction.
+        For the failed transactions, this parameter provides the reason for  failure.    <br/>**Note**: The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another. The merchant can use this parameter to retrieve the reason for failure for a particular transaction.
       </td>
     </tr>
 
@@ -762,7 +762,7 @@ The result JSON contains the acsTemplate with base64 encoding.
       </td>
 
       <td>
-        This parameter contains the status of the customer linking on the merchant. The values can be: <br><br>True: If customer is linked  <br><br>False: If customer is not linked
+        This parameter contains the status of the customer linking on the merchant. The values can be: <br/><br/>True: If customer is linked  <br/><br/>False: If customer is not linked
       </td>
     </tr>
 
