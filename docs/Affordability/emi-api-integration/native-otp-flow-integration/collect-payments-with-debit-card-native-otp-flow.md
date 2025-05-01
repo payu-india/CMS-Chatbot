@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The steps involved in debit card integration with native OTP flow:
+The steps involved in debit card integration with native OTP flow: 
 
 1. [Check Pre-EMI Eligibility](#step-1-check-pre-emi-eligibility)
 2. [Initiate the payment request](#step-2-initiate-the-payment-request)
@@ -51,7 +51,7 @@ Send the transaction information to PayU through a server-to-server curl request
       </td>
 
       <td>
-        `String` This parameter must have the customer agent’s device.  <br>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        `String` This parameter must have the customer agent’s device.  <br/>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -66,7 +66,7 @@ Send the transaction information to PayU through a server-to-server curl request
       </td>
 
       <td>
-        `String` This parameter must have the source IP of the customer.  <br>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        `String` This parameter must have the source IP of the customer.  <br/>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
