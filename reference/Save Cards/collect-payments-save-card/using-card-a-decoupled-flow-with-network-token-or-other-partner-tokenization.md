@@ -33,7 +33,7 @@ This scenario is applicable where you are on a decoupled flow. This is where you
 
 HTTP Method: **POST**
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 ## Request parameters
 
@@ -386,10 +386,10 @@ HTTP Method: **POST**
       </td>
       <td>
         This parameter will contain the additional information in the following JSON format:\
-        {"`{user.glossay:last4Digits}`": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}
+        `\{user.glossay:last4Digits}`": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}
       </td>
       <td>
-        {"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}
+        \{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}
       </td>
     </tr>
   </tbody>
