@@ -36,7 +36,7 @@ The following parameters (mandatory) must be posted using the **\_payment** API:
 
 The following are the additional request parameter required for cross-border payments with all of the above integrations. 
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 <Table>
   <thead>
@@ -471,8 +471,8 @@ To post a recurring transaction:
 >
 > For the UDFs above:
 >
-> * If first value is absent, then UDF param will be sent as  NULL || <VALUE>  
-> * If second value is absent, then UDF param will be sent as \ <VALUE>
+> * If first value is absent, then UDF param will be sent as  NULL || \<VALUE>  
+> * If second value is absent, then UDF param will be sent as \<VALUE>
 
 3. If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter. For more information, refer to [UDF Update API](ref:udf_update_api).
 4. According to the RBI guidelines, the invoice file must be shared with PayU within 10 days of the transaction. The invoices can be uploaded using the **Invoice Upload** API. For more information, refer to [Invoice Upload API](ref:invoice_upload_api).
