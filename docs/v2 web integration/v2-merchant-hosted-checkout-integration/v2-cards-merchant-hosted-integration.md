@@ -198,7 +198,8 @@ return true;
 
     <tr>
       <td>
-        paymentSource```
+        paymentSource
+```
 
         optional
         ```
@@ -645,7 +646,7 @@ return true;
   </tbody>
 </Table>
 
-<ErrorHandling />
+`<ErrorHandling />`
 
 #### paymentChargeSpecification object fields description
 
