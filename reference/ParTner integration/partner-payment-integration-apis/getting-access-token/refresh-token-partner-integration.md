@@ -20,39 +20,54 @@ This API is used to generate a refresh token to obtain a renewed access token us
 
 |                |                                |
 | :------------- | :----------------------------- |
-| **Test**       | <https://uat-accounts.payu.in> |
-| **Production** | <https://accounts.payu.in>     |
+| **Test**       | \<https://uat-accounts.payu.in> |
+| **Production** | \<https://accounts.payu.in>     |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "client\\_ID  \n**mandatory**",
-    "0-1": "`String`This parameter will contain the public Client ID.",
-    "0-2": "`6f8bb4951e030d4d7349e64a144a53477\n8673585f86039617c167166e9154f7e`",
-    "1-0": "client\\_secret  \n**optional**",
-    "1-1": "`String`This parameter will contain the client secret.",
-    "1-2": "",
-    "2-0": "grant\\_type  \n**mandatory**",
-    "2-1": "`String`This parameter will contain the value as **refresh\\_token**.",
-    "2-2": "refresh\\_token",
-    "3-0": "refresh\\_token  \n**mandatory**",
-    "3-1": "`String` Indicates the refresh token. This is the token that was generated using the  [Get Access Token - WhatsApp](ref:getting-access-token).",
-    "3-2": " "
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>client_ID<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter will contain the public Client ID.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>6f8bb4951e030d4d7349e64a144a53477 8673585f86039617c167166e9154f7e</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>client_secret<br><strong>optional</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter will contain the client secret.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>grant_type<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter will contain the value as <strong>refresh_token</strong>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>refresh_token</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>refresh_token<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Indicates the refresh token. This is the token that was generated using the  <a href="ref:getting-access-token">Get Access Token - WhatsApp</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
