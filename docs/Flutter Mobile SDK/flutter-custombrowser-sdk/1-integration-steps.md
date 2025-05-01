@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
+To integrate PayU CustomBrowser with flutter SDK, perform the following steps: 
 
 1. [Include the SDK in your app](https://docs.payu.in/docs/1-integration-steps#step-1-include-the-sdk-in-your-app)
 2. [Initialise the SDK ](https://docs.payu.in/docs/1-integration-steps#step-2-sdk-initialisation)
@@ -288,7 +288,7 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
       </td>
 
       <td>
-        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. **Format**:\ <merchantKey>:<userId>\
+        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. **Format**: `<merchantKey>:<userId>`
         Here, the UserId is any ID/email/phone number to uniquely identify the user. \*\*
       </td>
 
