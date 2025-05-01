@@ -18,7 +18,7 @@ You can split during a transaction made using **\_payment** API by percentage, w
 
 HTTP Method: **POST**
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 ## Request parameters
 
@@ -224,8 +224,8 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `String`It is the hash calculated by the merchant. The hash calculation logic is:```
-
+        `String`It is the hash calculated by the merchant. The hash calculation logic is:
+        ```
         sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT\|splitRequest
         ```
       </td>
