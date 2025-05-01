@@ -21,7 +21,7 @@ This scenario is the application on a decoupled flow using the PayU for either a
 
 HTTP Method: **POST**
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 ## Request parameters
 
@@ -110,8 +110,8 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `String` It should be a string containing a brief description of the product.```
-
+        `String` It should be a string containing a brief description of the product.
+        ```
         Character Limit-100
         ```
       </td>
@@ -128,8 +128,8 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `String` The first name of the customer.```
-
+        `String` The first name of the customer.
+        ```
         Character Limit-60
         ```
       </td>
@@ -146,8 +146,8 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `String` The email of the customer.```
-
+        `String` The email of the customer.
+        ```
         Character Limit-50
         ```
       </td>
@@ -164,7 +164,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `String` The phone number of the customer.  
+        `String` The phone number of the customer.
 
         * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
@@ -181,8 +181,8 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `String` The last name of the customer.```
-
+        `String` The last name of the customer.
+        ```
         Character Limit-60
         ```
       </td>
@@ -199,8 +199,8 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `String` The first line of the billing address.```
-
+        `String` The first line of the billing address.
+        ```
         Character Limit-100
         ```
       </td>
@@ -277,8 +277,8 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `String` Billing address zip code is mandatory for the cardless EMI option.```
-
+        `String` Billing address zip code is mandatory for the cardless EMI option.
+        ```
         Character Limit-20
         ```
       </td>
@@ -291,7 +291,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         surl\
-        `mandatory` 
+        `mandatory`
       </td>
 
       <td>
@@ -306,7 +306,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         furl\
-        `mandatory` 
+        `mandatory`
       </td>
 
       <td>
@@ -320,8 +320,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        hash```
-
+        hash
+        ```
         mandatory
         ```
       </td>
@@ -338,7 +338,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         <Glossary>pg</Glossary>\
-        `mandatory` 
+        `mandatory`
       </td>
 
       <td>
@@ -434,11 +434,11 @@ HTTP Method: **POST**
 
       <td>
         This parameter will contain the additional information in the following JSON format:\
-        \{“{user.glossay:last4Digits}”: “1234”, “<Glossary>TAVV</Glossary>”: “ABCDEFGH”,”<Glossary>trid</Glossary>”:”1234567890”, “<Glossary>tokenRefNo</Glossary>”:”abcde123456”}
+        \{"\{user.glossay:last4Digits}": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}
       </td>
 
       <td>
-        \{“last4Digits”: “1234”, “tavv”: “ABCDEFGH”,”trid”:”1234567890”, “tokenRefNo”:”abcde123456”
+        \{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"
       </td>
     </tr>
   </tbody>
