@@ -22,7 +22,7 @@ Post the additional parameters for using the Pre-Auth. For complete list of para
 
 **Environment**
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 The **pre\_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API. 
 
@@ -310,7 +310,7 @@ The **pre\_authorize** parameter as specified is used to pre-authorize payments 
       </td>
 
       <td>
-        `String` Billing address zip code is mandatory for the cardless EMI option.  <br>`Character Limit-20`
+        `String` Billing address zip code is mandatory for the cardless EMI option.  <br/>`Character Limit-20`
       </td>
 
       <td>
@@ -450,7 +450,7 @@ https://apiplayground-response.herokuapp.com/
 
 ## Step 2: Check the response from PayU
 
-<ReverseHashing />
+`<ReverseHashing />`
 
 ### Sample response
 
@@ -521,7 +521,7 @@ To capture a pre-authorized payment, use the following command. After the API co
 
 **Environment**
 
-<GENERALAPIsEnvironment />
+`<GENERALAPIsEnvironment />`
 
 ### Sample request
 
