@@ -20,41 +20,68 @@ The **fetch\_offers** API fetches all active (with the **Live** status on Dashbo
 
 |                            |                                               |
 | -------------------------- | --------------------------------------------- |
-| **Test Environment**       | <https://sandbox.payu.in/offers/transactions> |
-| **Production Environment** | <https://api.payu.in/offers/transactions>     |
+| **Test Environment**       | \<https://sandbox.payu.in/offers/transactions> |
+| **Production Environment** | \<https://api.payu.in/offers/transactions>     |
 
 ## Request Headers
 
 The request header contains the following fields:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "Date  \n**mandatory**",
-    "0-1": "The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.",
-    "0-2": "Thu, 17 Feb 2022 08:17:59 GMT",
-    "1-0": "Digest  \n**mandatory**",
-    "1-1": "Base 64 encode of (sha256 hash of the JSON data (post to server).",
-    "1-2": "`vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=`",
-    "2-0": "Authorization  \n**mandatory**",
-    "2-1": "This field is in the following format:  \n`hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4=\"`  \nWhere the above format includes the following:  \n  \n- **username**: The merchant key of the merchant.\n- **algorithm**: This must have the value as **hmac-sha256** that is used for this API\n- **headers**: This must have the value as **date digest**\n- **signature**: This must contain the hmacsha256 of (signing\\_string, merchant\\_secret), where:\n  - **signing\\_string**: This is in the \"**Date**\"+\"\\\\n\"+\"**Digest**\" format. Here, the Date and Digest is the same values in the fields listed in this table For example, \"Thu, 17 Feb 2022 08:17:59 GMT\"\"\\\\n\"+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“\n  - **merchant\\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)",
-    "2-2": " hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=\"",
-    "3-0": "platformId  \n**mandatory**",
-    "3-1": "This field contains the platform ID and include the value as **1**.",
-    "3-2": "1"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Date<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Thu, 17 Feb 2022 08:17:59 GMT</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Digest<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Base 64 encode of (sha256 hash of the JSON data (post to server).</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field is in the following format:<br><code>hmac username=&quot;smsplus&quot;, algorithm=&quot;hmac-sha256&quot;, headers=&quot;date digest&quot;, signature=&quot;CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4=&quot;</code><br>Where the above format includes the following:  </p>
+<ul>
+<li><strong>username</strong>: The merchant key of the merchant.</li>
+<li><strong>algorithm</strong>: This must have the value as <strong>hmac-sha256</strong> that is used for this API</li>
+<li><strong>headers</strong>: This must have the value as <strong>date digest</strong></li>
+<li><strong>signature</strong>: This must contain the hmacsha256 of (signing_string, merchant_secret), where:<ul>
+<li><strong>signing_string</strong>: This is in the &quot;<strong>Date</strong>&quot;+&quot;\n&quot;+&quot;<strong>Digest</strong>&quot; format. Here, the Date and Digest is the same values in the fields listed in this table For example, &quot;Thu, 17 Feb 2022 08:17:59 GMT&quot;&quot;\n&quot;+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“</li>
+<li><strong>merchant_secret</strong>: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt on PayU Dashboard</a></li>
+</ul>
+</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> hmac username=&quot;smsplus&quot;, algorithm=&quot;hmac-sha256&quot;, headers=&quot;date digest&quot;, signature=&quot;zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>platformId<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the platform ID and include the value as <strong>1</strong>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 The following sample Java code contains the logic used to encrypt as described in the above table:
@@ -119,40 +146,64 @@ public class HmacAuth {
 
 ## Request Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "Amount  \n`optional`",
-    "0-1": "`float`The offer transaction amount",
-    "0-2": "",
-    "1-0": "offerKeys  \n`optional`",
-    "1-1": "`String Array`This field contains list of keys to filter the offer in an array format.",
-    "1-2": "SummerSpecialOffer2021@q1Bh0jsogwqP",
-    "2-0": "paymentId  \n`optional`",
-    "2-1": "`Long`Unique reference ID for a transaction which is generated by merchant and sent in the request",
-    "2-2": "110",
-    "3-0": "userToken  \n`optional`",
-    "3-1": "`String Long`This parameter is used to uniquely identify a user for a client/merchant.",
-    "3-2": "",
-    "4-0": "skusDetail  \n`optional`",
-    "4-1": "`String Array`The skusDetail is in an array format and contains the SKU offer details. For more information, refer to",
-    "4-2": "",
-    "5-0": "autoApply  \n`optional`",
-    "5-1": "`Boolean` This parameter must be set to true if the offer is automatically applied.",
-    "5-2": "true"
-  },
-  "cols": 3,
-  "rows": 6,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Amount<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>float</code>The offer transaction amount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>offerKeys<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String Array</code>This field contains list of keys to filter the offer in an array format.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>SummerSpecialOffer2021@q1Bh0jsogwqP</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentId<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Long</code>Unique reference ID for a transaction which is generated by merchant and sent in the request</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>110</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>userToken<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String Long</code>This parameter is used to uniquely identify a user for a client/merchant.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>skusDetail<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String Array</code>The skusDetail is in an array format and contains the SKU offer details. For more information, refer to</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>autoApply<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> This parameter must be set to true if the offer is automatically applied.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 > 📘 Notes:
@@ -164,28 +215,42 @@ public class HmacAuth {
 
 In addition to the request parameters listed in the [Fetch Offers API](ref:fetch-offers-api) section, the **skusDetail** parameter is posted with the following fields are posted in an array:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "0-0": "skuAmount  \n`optional`",
-    "0-1": "`String` The price of one/ single unit of SKU is specified in this field.",
-    "1-0": "skuId  \n`mandatory`",
-    "1-1": "`String` The product identifier to select offer is specified in this field.",
-    "2-0": "quantity   \n`optional`",
-    "2-1": "`String` The quantity for the product is specified in this field.",
-    "3-0": "offerKeys  \n` optional`",
-    "3-1": "`String`The offer keys to filter at SKU-level is specified in this field."
-  },
-  "cols": 2,
-  "rows": 4,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>skuAmount<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The price of one/ single unit of SKU is specified in this field.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>skuId<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The product identifier to select offer is specified in this field.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>quantity <br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The quantity for the product is specified in this field.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>offerKeys<br><code> optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The offer keys to filter at SKU-level is specified in this field.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ## Sample request and response for a normal transactional offer
@@ -999,34 +1064,55 @@ Merchant ID does not exists
 
 The response involves the following parameters and the **result** parameter contains the offer results:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "code",
-    "0-1": "This parameter returns the HTTP status code based on .",
-    "0-2": "200",
-    "1-0": "message",
-    "1-1": "`String` This parameter is the result message which contains information about the result",
-    "1-2": "Offer Validated Successfull",
-    "2-0": "status",
-    "2-1": "This parameter returns the status of web service call. The status can be any of the following:  \n  \n- 0 - If web service call failed.\n- 1 - If web service call succeeded",
-    "2-2": "1",
-    "3-0": "result",
-    "3-1": "`JSON Object` This parameter gives the information about the result of the API response in a JSON format. For more information, refer to the [result Parameter JSON Details](#result-parameter-json-details) subsection.",
-    "3-2": "Refer to the [result Field JSON Details](#result-parameter-json-details) subsection."
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>code</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the HTTP status code based on .</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>200</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>message</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter is the result message which contains information about the result</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Offer Validated Successfull</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of web service call. The status can be any of the following:  </p>
+<ul>
+<li>0 - If web service call failed.</li>
+<li>1 - If web service call succeeded</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code> This parameter gives the information about the result of the API response in a JSON format. For more information, refer to the <a href="#result-parameter-json-details">result Parameter JSON Details</a> subsection.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Refer to the <a href="#result-parameter-json-details">result Field JSON Details</a> subsection.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ### result Parameter JSON Details
@@ -1207,94 +1293,240 @@ The sample value for the **result** parameter in a JSON format is similar to the
 
 The **offers** field in the **result** JSON contains the offer details and details for each payment mode in a JSON format as described in the following table:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "failureReason",
-    "0-1": "`String` This field contains reason for offer failure.",
-    "0-2": "",
-    "1-0": "stepSize",
-    "1-1": "`String` This field contains step size.",
-    "1-2": "",
-    "2-0": "externalOfferType",
-    "2-1": "`String` This field contains the external offer type.",
-    "2-2": "",
-    "3-0": "recordSubType",
-    "3-1": "`String` This field contains the record sub-type.",
-    "3-2": "",
-    "4-0": "valid",
-    "4-1": "`String `This field contains flag whether the is valid.",
-    "4-2": "",
-    "5-0": "offerKey",
-    "5-1": "`String` This field contains the unique identifier for a particular offer.",
-    "5-2": "SummerSpecialOffer2021@q1Bh0jsogwqP",
-    "6-0": "type",
-    "6-1": "`String` This field contains the offer owner.",
-    "6-2": "MERCHANT",
-    "7-0": "title",
-    "7-1": "`String` This field contains the title of the offer that will be displayed for customers.",
-    "7-2": "festive\\_500",
-    "8-0": "description",
-    "8-1": "`String` This field contains the description of offer for the merchant's reference.",
-    "8-2": "festive discount",
-    "9-0": "tnc",
-    "9-1": "`String` This field contains the Terms & Conditions for applying promo that will be displayed to customers while accessing the link provided in the **tncLink** field.",
-    "9-2": "abc",
-    "10-0": "tncLink",
-    "10-1": "`String` This field contains URL to fetch details on Terms & Conditions and details specified in the **tnc** is displayed.",
-    "10-2": "abcd",
-    "11-0": "minTxnAmount",
-    "11-1": "`Float` The field contains the minimum transaction amount offer will be applicable.",
-    "11-2": "10.00",
-    "12-0": "maxTxnAmount",
-    "12-1": "`Float` The field contains the maximum transaction amount offer will be applicable",
-    "12-2": "25000.00",
-    "13-0": "offerType",
-    "13-1": "`String` The field contains any of the following type of offer:  \n  \n- INSTANT \n- CASHBACK",
-    "13-2": "INSTANT",
-    "14-0": "validFrom",
-    "14-1": "`String` The field contains the offer start time.",
-    "14-2": "2021-07-01 17:02:11",
-    "15-0": "validTo",
-    "15-1": "`String` The field contains the offer end time.",
-    "15-2": "2022-08-05 15:53:16",
-    "16-0": "discountDetail",
-    "16-1": "`JSON Object` This field contains the discount detail of the offer in a JSON format. This field contain the following fields in a JSON format:  \n  \n- **discountType**: This field contains any of the following discount type that was defined:\n  - ABSOLUTE \n  - PERCENTAGE\n- **discountPercentage**: This field contains the define the discount percentage.\n- **discount**: This field contains the total discount available on the transaction once applied the specific offer.\n- **discountedAmount**: This field contains the final Net amount of the transaction after applying the specific offer.\n- **maxDiscount**: The field contains the max discount available on an offer.",
-    "16-2": " ",
-    "17-0": "isNoCostEmi",
-    "17-1": "`Boolean`This field contains any of the following values to specify whether th_e offer is no cost EMI offer or normal offer.",
-    "17-2": "true",
-    "18-0": "creditCard",
-    "18-1": "`JSON Object` The field contains the offer configuration details for credit card with the fields in a JSON format:  \n  \n- **networks**: The list of card networks for which the offer is supported similar to the example.\n- **banks**: The list of banks with codes supported are listed similar to the example.\n- **title**: This parameter contains the payment title that is used to identify the particular payment option.\n- **paymentCode**: the payment code that is used to identify the particular payment option.\n- **discountDetail**: The discount detail an array format as in the example.",
-    "18-2": "networks:  \n{  \n\"code\": \"MAST\",  \n\"title\": \"Master Network\"  \n},  \n{  \n\"code\": \"VISA\",  \n\"title\": \"VIsa Network\"  \n}  \nbanks:  \n{  \n\"code\": \"ICICI\",  \n\"title\": \"ICICI credit card\"  \n},  \n{  \n\"code\": \"HDFC\",  \n\"title\": \"HDFC credit card\"  \n}",
-    "19-0": "debitCard",
-    "19-1": "`JSON Object`The field contains the offer configuration details for debit card in a JSON format with the following fields:  \n  \n- **networks**: The list of card networks for which the offer is supported similar to the example.\n- **banks**: The list of banks with codes supported are listed similar to the example.\n- **title**: This parameter contains the payment title that is used to identify the particular payment option.\n- **paymentCode**: the payment code that is used to identify the particular payment option.",
-    "19-2": "networks:  \n{  \n\"code\": \"MAST\",  \n\"title\": \"Master Network\"  \n},  \n{  \n\"code\": \"VISA\",  \n\"title\": \"Visa Network\"  \n}  \n  \nbanks:  \n{  \n\"code\": \"ICICI\",  \n\"title\": \"ICICI debit card\"  \n},  \n{  \n\"code\": \"HDFC\",  \n\"title\": \"HDFC debit card\"  \n}",
-    "20-0": "netBanking",
-    "20-1": "`JSON Object` The field contains the offer configuration details for NetBanking in JSON format similar to the example.",
-    "20-2": "{  \n\"title\": \"axis bank\",  \n\"paymentCode\": \"AXIB1\"  \n},  \n{  \n\"title\": \"Bank of India\",  \n\"paymentCode\": \"BOIB\"  \n},  \n{  \n\"title\": \"Canara Bank\",  \n\"paymentCode\": \"CABB\"  \n}  \n} ",
-    "21-0": "wallet",
-    "21-1": "`JSON Object`The field contains the offer configuration details for Wallet in a JSON format similar to the example.",
-    "21-2": "{  \n\"title\": \"freecharge\",  \n\"paymentCode\": \"FREC\"  \n} ",
-    "22-0": "upi",
-    "22-1": "`JSON Object`The field contains the offer configuration details for UPI in JSON format similar to the example.",
-    "22-2": " {  \n\"title\": \"upi\",  \n\"paymentCode\": \"UPI\"  \n}",
-    "23-0": "emi",
-    "23-1": "`JSON Object` The field contains the offer configuration details for EMI in a JSON format with the following fields:  \n  \n- **debitCard**: Contains the list of banks and tenure option similar to the example.\n- **creditCard**: Contains the list of banks and tenure option similar to the example.",
-    "23-2": "DebitCard:  \n{  \n\"banks\": \\[  \n{  \n\"bankCode\": \"CITI\",  \n\"tenureOption\": [  \n{  \n\"title\": \"CITI Bank 3EMI\",  \n\"paymentCode\": \"EMI03\",  \n\"discountDetail\": null  \n},  \n{  \n\"title\": \"CITI Bank 6 EMI\",  \n\"paymentCode\": \"EMI06\",  \n\"discountDetail\": null  \n}  \n]  \n},  \n{  \n\"bankCode\": \"AXIS\",  \n\"tenureOption\": [  \n{  \n\"title\": \"AXIS Bank 3 EMI\",  \n\"paymentCode\": \"EMI3\",  \n\"discountDetail\": null  \n}  \n]  \n}  \n]  \n}  \n  \ncreditCard:  \n{  \n\"banks\": \\[  \n{  \n\"bankCode\": \"CITI\",  \n\"tenureOption\": [  \n{  \n\"title\": \"CITI Bank 9 EMI\",  \n\"paymentCode\": \"EMI09\",  \n\"discountDetail\": null  \n}  \n]  \n},  \n{  \n\"bankCode\": \"AXIS\",  \n\"tenureOption\": [  \n{  \n\"title\": \"AXIS Bank 12 EMI\",  \n\"paymentCode\": \"EMI12\",  \n\"discountDetail\": null  \n}  \n]  \n}  \n]  \n}  \n}"
-  },
-  "cols": 3,
-  "rows": 24,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>failureReason</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field contains reason for offer failure.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>stepSize</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field contains step size.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>externalOfferType</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field contains the external offer type.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>recordSubType</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field contains the record sub-type.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>valid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String </code>This field contains flag whether the is valid.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>offerKey</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field contains the unique identifier for a particular offer.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>SummerSpecialOffer2021@q1Bh0jsogwqP</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>type</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field contains the offer owner.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>title</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field contains the title of the offer that will be displayed for customers.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>festive_500</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>description</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field contains the description of offer for the merchant&#39;s reference.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>festive discount</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>tnc</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field contains the Terms &amp; Conditions for applying promo that will be displayed to customers while accessing the link provided in the <strong>tncLink</strong> field.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>abc</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>tncLink</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field contains URL to fetch details on Terms &amp; Conditions and details specified in the <strong>tnc</strong> is displayed.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>abcd</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>minTxnAmount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Float</code> The field contains the minimum transaction amount offer will be applicable.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>10.00</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>maxTxnAmount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Float</code> The field contains the maximum transaction amount offer will be applicable</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>25000.00</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>offerType</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The field contains any of the following type of offer:  </p>
+<ul>
+<li>INSTANT </li>
+<li>CASHBACK</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>INSTANT</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>validFrom</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The field contains the offer start time.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2021-07-01 17:02:11</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>validTo</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The field contains the offer end time.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2022-08-05 15:53:16</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>discountDetail</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code> This field contains the discount detail of the offer in a JSON format. This field contain the following fields in a JSON format:  </p>
+<ul>
+<li><strong>discountType</strong>: This field contains any of the following discount type that was defined:<ul>
+<li>ABSOLUTE </li>
+<li>PERCENTAGE</li>
+</ul>
+</li>
+<li><strong>discountPercentage</strong>: This field contains the define the discount percentage.</li>
+<li><strong>discount</strong>: This field contains the total discount available on the transaction once applied the specific offer.</li>
+<li><strong>discountedAmount</strong>: This field contains the final Net amount of the transaction after applying the specific offer.</li>
+<li><strong>maxDiscount</strong>: The field contains the max discount available on an offer.</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>isNoCostEmi</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code>This field contains any of the following values to specify whether th_e offer is no cost EMI offer or normal offer.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>creditCard</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code> The field contains the offer configuration details for credit card with the fields in a JSON format:  </p>
+<ul>
+<li><strong>networks</strong>: The list of card networks for which the offer is supported similar to the example.</li>
+<li><strong>banks</strong>: The list of banks with codes supported are listed similar to the example.</li>
+<li><strong>title</strong>: This parameter contains the payment title that is used to identify the particular payment option.</li>
+<li><strong>paymentCode</strong>: the payment code that is used to identify the particular payment option.</li>
+<li><strong>discountDetail</strong>: The discount detail an array format as in the example.</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>networks:<br>{<br>&quot;code&quot;: &quot;MAST&quot;,<br>&quot;title&quot;: &quot;Master Network&quot;<br>},<br>{<br>&quot;code&quot;: &quot;VISA&quot;,<br>&quot;title&quot;: &quot;VIsa Network&quot;<br>}<br>banks:<br>{<br>&quot;code&quot;: &quot;ICICI&quot;,<br>&quot;title&quot;: &quot;ICICI credit card&quot;<br>},<br>{<br>&quot;code&quot;: &quot;HDFC&quot;,<br>&quot;title&quot;: &quot;HDFC credit card&quot;<br>}</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>debitCard</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code>The field contains the offer configuration details for debit card in a JSON format with the following fields:  </p>
+<ul>
+<li><strong>networks</strong>: The list of card networks for which the offer is supported similar to the example.</li>
+<li><strong>banks</strong>: The list of banks with codes supported are listed similar to the example.</li>
+<li><strong>title</strong>: This parameter contains the payment title that is used to identify the particular payment option.</li>
+<li><strong>paymentCode</strong>: the payment code that is used to identify the particular payment option.</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>networks:<br>{<br>&quot;code&quot;: &quot;MAST&quot;,<br>&quot;title&quot;: &quot;Master Network&quot;<br>},<br>{<br>&quot;code&quot;: &quot;VISA&quot;,<br>&quot;title&quot;: &quot;Visa Network&quot;<br>}  </p>
+<p>banks:<br>{<br>&quot;code&quot;: &quot;ICICI&quot;,<br>&quot;title&quot;: &quot;ICICI debit card&quot;<br>},<br>{<br>&quot;code&quot;: &quot;HDFC&quot;,<br>&quot;title&quot;: &quot;HDFC debit card&quot;<br>}</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>netBanking</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code> The field contains the offer configuration details for NetBanking in JSON format similar to the example.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{<br>&quot;title&quot;: &quot;axis bank&quot;,<br>&quot;paymentCode&quot;: &quot;AXIB1&quot;<br>},<br>{<br>&quot;title&quot;: &quot;Bank of India&quot;,<br>&quot;paymentCode&quot;: &quot;BOIB&quot;<br>},<br>{<br>&quot;title&quot;: &quot;Canara Bank&quot;,<br>&quot;paymentCode&quot;: &quot;CABB&quot;<br>}<br>} </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>wallet</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code>The field contains the offer configuration details for Wallet in a JSON format similar to the example.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{<br>&quot;title&quot;: &quot;freecharge&quot;,<br>&quot;paymentCode&quot;: &quot;FREC&quot;<br>} </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>upi</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code>The field contains the offer configuration details for UPI in JSON format similar to the example.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> {<br>&quot;title&quot;: &quot;upi&quot;,<br>&quot;paymentCode&quot;: &quot;UPI&quot;<br>}</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>emi</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code> The field contains the offer configuration details for EMI in a JSON format with the following fields:  </p>
+<ul>
+<li><strong>debitCard</strong>: Contains the list of banks and tenure option similar to the example.</li>
+<li><strong>creditCard</strong>: Contains the list of banks and tenure option similar to the example.</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>DebitCard:<br>{<br>&quot;banks&quot;: [<br>{<br>&quot;bankCode&quot;: &quot;CITI&quot;,<br>&quot;tenureOption&quot;: [<br>{<br>&quot;title&quot;: &quot;CITI Bank 3EMI&quot;,<br>&quot;paymentCode&quot;: &quot;EMI03&quot;,<br>&quot;discountDetail&quot;: null<br>},<br>{<br>&quot;title&quot;: &quot;CITI Bank 6 EMI&quot;,<br>&quot;paymentCode&quot;: &quot;EMI06&quot;,<br>&quot;discountDetail&quot;: null<br>}<br>]<br>},<br>{<br>&quot;bankCode&quot;: &quot;AXIS&quot;,<br>&quot;tenureOption&quot;: [<br>{<br>&quot;title&quot;: &quot;AXIS Bank 3 EMI&quot;,<br>&quot;paymentCode&quot;: &quot;EMI3&quot;,<br>&quot;discountDetail&quot;: null<br>}<br>]<br>}<br>]<br>}  </p>
+<p>creditCard:<br>{<br>&quot;banks&quot;: [<br>{<br>&quot;bankCode&quot;: &quot;CITI&quot;,<br>&quot;tenureOption&quot;: [<br>{<br>&quot;title&quot;: &quot;CITI Bank 9 EMI&quot;,<br>&quot;paymentCode&quot;: &quot;EMI09&quot;,<br>&quot;discountDetail&quot;: null<br>}<br>]<br>},<br>{<br>&quot;bankCode&quot;: &quot;AXIS&quot;,<br>&quot;tenureOption&quot;: [<br>{<br>&quot;title&quot;: &quot;AXIS Bank 12 EMI&quot;,<br>&quot;paymentCode&quot;: &quot;EMI12&quot;,<br>&quot;discountDetail&quot;: null<br>}<br>]<br>}<br>]<br>}<br>}</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 The sample value for **offers** field in a JSON is similar to the following:
