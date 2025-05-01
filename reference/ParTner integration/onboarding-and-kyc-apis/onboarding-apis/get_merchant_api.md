@@ -23,7 +23,7 @@ The **Get Merchant** API is used to get the merchant details. You require the ac
 >
 > The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
 
-<PARTNEROnboardingEnvironment />
+`<PARTNEROnboardingEnvironment />`
 
 <details>
   <summary>Sample request</summary>
@@ -402,4 +402,4 @@ curl --location -g --request GET '{{partner_base_url}}/api/v1/merchants/7060013'
 
 ## Request parameters
 
-<br>
+<br/>
