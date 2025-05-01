@@ -18,49 +18,84 @@ HTTP Method: **POST**
 
 |                        |                                  |
 | :--------------------- | :------------------------------- |
-| Test Environment       | <https://test.payu.in/merchant/> |
-| Production Environment | <https://info.payu.in/merchant/> |
+| Test Environment       | \<https://test.payu.in/merchant/> |
+| Production Environment | \<https://info.payu.in/merchant/> |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "Merchant key  \n**mandatory**",
-    "0-1": "`varchar` The merchant key is included in this parameter.",
-    "0-2": "Your Test Key",
-    "1-0": "command  \n**mandatory**",
-    "1-1": "`varchar` The API command name **get\\_settlement\\_details\\_range** must be included in this parameter.",
-    "1-2": "get\\_settlement\\_details\\_range",
-    "2-0": "hash  \n**mandatory**",
-    "2-1": "`varchar` The hash string encryption is specified in this parameter. The format of the hash is:  \n`string key\\|command\\|var1\\|salt  \n`Where var1 is the date is the date range.",
-    "2-2": "string tXjTgO",
-    "3-0": "var1: datefrom  \n**mandatory**",
-    "3-1": "`varchar` The parameter contains the date on which the range starts or particular date.",
-    "3-2": "2022-08-22",
-    "4-0": "var2: dateTo  \n**optional**",
-    "4-1": "`varchar` The parameter contains the end date until which the statement is required.",
-    "4-2": "2022-08-25",
-    "5-0": " var3: aggregator  \n**optional**",
-    "5-1": "`boolean` This parameter can contain any of the following values:  \n- **true**: It will return the information of the children as well.  \n- **false**: It will return the information of the parent only.",
-    "5-2": "true",
-    "6-0": "var4: page  \n**optional**",
-    "6-1": " `integer`This parameter can include the page number that is used if the API returns several pages as a result ",
-    "6-2": "2"
-  },
-  "cols": 3,
-  "rows": 7,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
-
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Merchant key<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> The merchant key is included in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Your Test Key</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>command<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> The API command name <strong>get_settlement_details_range</strong> must be included in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>get_settlement_details_range</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> The hash string encryption is specified in this parameter. The format of the hash is:<br><code>string key\|command\|var1\|salt   </code>Where var1 is the date is the date range.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>string tXjTgO</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var1: datefrom<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> The parameter contains the date on which the range starts or particular date.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2022-08-22</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var2: dateTo<br><strong>optional</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> The parameter contains the end date until which the statement is required.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2022-08-25</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> var3: aggregator<br><strong>optional</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>boolean</code> This parameter can contain any of the following values:  </p>
+<ul>
+<li><strong>true</strong>: It will return the information of the children as well.  </li>
+<li><strong>false</strong>: It will return the information of the parent only.</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var4: page<br><strong>optional</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> <code>integer</code>This parameter can include the page number that is used if the API returns several pages as a result </p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
@@ -72,43 +107,76 @@ curl -X POST "https://info.payu.in/merchant/postservice?form=2"
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "rows",
-    "0-1": "The number of rows returned.",
-    "0-2": "2",
-    "1-0": "message",
-    "1-1": "The summary of the response that includes the number of settlements and date of them.",
-    "1-2": "2 Settlements found for the 2022-07-23T00:00 and 2022-07-26T23:59:59.999999999",
-    "2-0": "status",
-    "2-1": "This response can contain any of the following:  \n   - **1** if API call is a success  \n   - **0** in case of failure you'll get system handled failure reasons in this case",
-    "2-2": "1",
-    "3-0": "result",
-    "3-1": "This parameter contains the settlements in a JSON format. For detailed information, refer to [result JSON Fields Description](#resul-json-fields-description).",
-    "3-2": " Refer to [Sample Response](#sample_response)",
-    "4-0": "guid",
-    "4-1": " This parameter contains the geographically unique ID of the transaction.",
-    "4-2": "",
-    "5-0": "sessionId",
-    "5-1": " This parameter contains the session ID of the transaction",
-    "5-2": "",
-    "6-0": "errorCode",
-    "6-1": "This parameter contains the error code if the transaction had failed. The error can be any of the following: | Please pass valid merchant key",
-    "6-2": ""
-  },
-  "cols": 3,
-  "rows": 7,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>rows</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The number of rows returned.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>message</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The summary of the response that includes the number of settlements and date of them.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2 Settlements found for the 2022-07-23T00:00 and 2022-07-26T23:59:59.999999999</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This response can contain any of the following:  </p>
+<ul>
+<li><strong>1</strong> if API call is a success  </li>
+<li><strong>0</strong> in case of failure you&#39;ll get system handled failure reasons in this case</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the settlements in a JSON format. For detailed information, refer to <a href="#resul-json-fields-description">result JSON Fields Description</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> Refer to <a href="#sample_response">Sample Response</a></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>guid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> This parameter contains the geographically unique ID of the transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>sessionId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> This parameter contains the session ID of the transaction</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>errorCode</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the error code if the transaction had failed. The error can be any of the following: | Please pass valid merchant key</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 
@@ -131,112 +199,257 @@ The **result** parameter contains the following fields in a JSON format:
 
 The **transaction** field contains the following fields in a JSON format:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "action",
-    "0-1": "This field contains the purpose of the transaction. This field can contain any of the following values:  \n- Capture  \n- Adjustment_credit  \n- Adjustment_debit  \n- Refund  \n- Failed",
-    "0-2": "Adjustment\\_credit",
-    "1-0": "payuId",
-    "1-1": "This field contains the PayU ID of the child merchant.",
-    "1-2": "ADJ122538",
-    "2-0": "transactionAmount",
-    "2-1": "This field contains the transaction amount that needs to be settled.",
-    "2-2": "6942.00",
-    "3-0": "merchantServiceFee",
-    "3-1": "This field contains the merchant service fee.",
-    "3-2": "8.0000",
-    "4-0": "merchantServiceTax",
-    "4-1": "This field contains merchant service tax.",
-    "4-2": "8.0000",
-    "5-0": "merchantNetAmount",
-    "5-1": "This field contains the net amount settled to the merchant.",
-    "5-2": " ",
-    "6-0": "cgst",
-    "6-1": "This field contains the CGST amount part of the transaction.",
-    "6-2": " ",
-    "7-0": "igst",
-    "7-1": "This field contains the IGST amount pat of the transation",
-    "7-2": " ",
-    "8-0": "transactionsgst",
-    "8-1": "This field contains the SGST part of the transaction",
-    "8-2": " ",
-    "9-0": "merchantTransactionId",
-    "9-1": "This field contains the merchant transaction ID",
-    "9-2": "ADJ122538",
-    "10-0": "<h3>For Adjustment Status Transactions</h3>",
-    "10-1": "",
-    "10-2": "",
-    "11-0": "adjustmentType",
-    "11-1": "This field contains the adjustment type",
-    "11-2": "credit",
-    "12-0": "referenceId",
-    "12-1": "This field contains the reference ID.",
-    "12-2": "1",
-    "13-0": "blockType",
-    "13-1": "This field contains the block type.",
-    "13-2": " ",
-    "14-0": "adjustmentAction",
-    "14-1": " ",
-    "14-2": "TDR Adjustment",
-    "15-0": "<h3>For Adjustment Credit Status Transactions</h3>",
-    "15-1": "",
-    "15-2": "",
-    "16-0": "mode",
-    "16-1": "This field contains the payment mode for the tranaction.",
-    "16-2": "credit",
-    "17-0": "cardType",
-    "17-1": "This field contains the card type used for the transaction.",
-    "17-2": " ",
-    "18-0": "paymentStatus",
-    "18-1": "This field contains the payment status to the child merchant.",
-    "18-2": "inProgress",
-    "19-0": "transactionDate",
-    "19-1": "This field contains the transaction date and time.",
-    "19-2": "2022-07-23 01:45:43",
-    "20-0": "requestedAmount",
-    "20-1": "This field contains the amount requested by the child merchant.",
-    "20-2": "6942.00",
-    "21-0": "requestDate",
-    "21-1": "This field contains the date when the child merchant requested the amount.",
-    "21-2": "2022-07-23 01:45:43",
-    "22-0": "bankName",
-    "22-1": "This field contains the bank involved in card, Net Banking or UPI transaction.",
-    "22-2": " ",
-    "23-0": "token",
-    "23-1": "This field contains the card token if the card is tokenised.",
-    "23-2": " ",
-    "24-0": "<h3>For Refund Status Transactions</h3>",
-    "24-1": "",
-    "24-2": "",
-    "25-0": "paymentId",
-    "25-1": "This field contains the payment ID of the transaction.",
-    "25-2": "58871981",
-    "26-0": "refundStatus",
-    "26-1": "This field contains the refund status",
-    "26-2": "refundinprogress",
-    "27-0": "paymentAddedOn",
-    "27-1": "This field contains the date when the payment was added on.",
-    "27-2": "2017-12-08",
-    "28-0": "paymentAmount",
-    "28-1": "This field contains the payment amount.",
-    "28-2": "200.00",
-    "29-0": "saleAmount",
-    "29-1": "This field contains the original sale amount.",
-    "29-2": "200.00"
-  },
-  "cols": 3,
-  "rows": 30,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>action</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the purpose of the transaction. This field can contain any of the following values:  </p>
+<ul>
+<li>Capture  </li>
+<li>Adjustment_credit  </li>
+<li>Adjustment_debit  </li>
+<li>Refund  </li>
+<li>Failed</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Adjustment_credit</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>payuId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the PayU ID of the child merchant.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>ADJ122538</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>transactionAmount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the transaction amount that needs to be settled.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>6942.00</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantServiceFee</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the merchant service fee.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>8.0000</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantServiceTax</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains merchant service tax.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>8.0000</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantNetAmount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the net amount settled to the merchant.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>cgst</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the CGST amount part of the transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>igst</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the IGST amount pat of the transation</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>transactionsgst</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the SGST part of the transaction</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantTransactionId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the merchant transaction ID</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>ADJ122538</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><h3>For Adjustment Status Transactions</h3></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>adjustmentType</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the adjustment type</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>credit</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the reference ID.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>blockType</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the block type.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>adjustmentAction</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>TDR Adjustment</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><h3>For Adjustment Credit Status Transactions</h3></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>mode</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the payment mode for the tranaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>credit</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>cardType</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the card type used for the transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentStatus</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the payment status to the child merchant.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>inProgress</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>transactionDate</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the transaction date and time.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2022-07-23 01:45:43</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>requestedAmount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the amount requested by the child merchant.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>6942.00</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>requestDate</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the date when the child merchant requested the amount.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2022-07-23 01:45:43</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>bankName</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the bank involved in card, Net Banking or UPI transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>token</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the card token if the card is tokenised.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><h3>For Refund Status Transactions</h3></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the payment ID of the transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>58871981</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>refundStatus</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the refund status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>refundinprogress</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentAddedOn</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the date when the payment was added on.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2017-12-08</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentAmount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the payment amount.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>200.00</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>saleAmount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the original sale amount.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>200.00</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ## Sample response
