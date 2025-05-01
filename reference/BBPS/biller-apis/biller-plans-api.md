@@ -15,7 +15,7 @@ next:
 ---
 The** Biller Plans** API to fetch the plans for a biller.
 
-<BBPSEnvironment />
+`<BBPSEnvironment />`
 
 > 📘 Note:
 > 
@@ -37,26 +37,44 @@ curl --location -g --request POST 'https://<hostName>/payu-nbc/v1/nbc/billerPlan
 <details>
   <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field Name**",
-    "h-1": "**Description**",
-    "0-0": "code",
-    "0-1": "This field contains the global response code and can be any of the following:  \n  \n- **0**: If web service call failed\n- **1**: if web service call succeeded",
-    "1-0": "status",
-    "1-1": "The status of the API command and can be any of the following:  \n  \n- **SUCCESS**\n- **FAILURE**",
-    "2-0": "payload",
-    "2-1": "This parameter contains the bill fetch transaction data. Ror more information, refer to the [payload](#payload) table."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field Name</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>code</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the global response code and can be any of the following:  </p>
+<ul>
+<li><strong>0</strong>: If web service call failed</li>
+<li><strong>1</strong>: if web service call succeeded</li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The status of the API command and can be any of the following:  </p>
+<ul>
+<li><strong>SUCCESS</strong></li>
+<li><strong>FAILURE</strong></li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>payload</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the bill fetch transaction data. Ror more information, refer to the <a href="#payload">payload</a> table.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ### payload
 
