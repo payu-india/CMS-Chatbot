@@ -79,21 +79,28 @@ curl --location -g --request POST '{{partner_base_url}}/api/v1/otps/send_otp' \
 <details>
   <summary>Additional info for request parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "otp[scope]",
-    "0-1": "Indicates the purpose of the API. The following APIs use different scopes in this field  \n_   Add or Update Bank Detail API uses any of the following according to the use case:  \n    -   create_bank_details  \n    -  update_bank_details  \n_   For Payment Link APIs:  \n   - Create Payment Link API: create_payment_links  \n   - Get Single Payment Link API: read_payment_links  \n   - Change Status and Expiry for a Payment Link API: update_payment_links"
-  },
-  "cols": 2,
-  "rows": 1,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>otp[scope]</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Indicates the purpose of the API. The following APIs use different scopes in this field<br>_   Add or Update Bank Detail API uses any of the following according to the use case:<br>    -   create_bank_details<br>    -  update_bank_details<br>_   For Payment Link APIs:  </p>
+<ul>
+<li>Create Payment Link API: create_payment_links  </li>
+<li>Get Single Payment Link API: read_payment_links  </li>
+<li>Change Status and Expiry for a Payment Link API: update_payment_links</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 </details>
