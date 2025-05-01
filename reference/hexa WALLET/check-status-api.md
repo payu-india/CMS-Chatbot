@@ -18,7 +18,7 @@ This API will fetch the response dump for any API call based on the value of **c
 
 ## Request parameters
 
-<WalletHeader />
+`<WalletHeader />`
 
 ### Request body
 
@@ -46,7 +46,7 @@ This API will fetch the response dump for any API call based on the value of **c
   <tbody>
     <tr>
       <td>
-        <h>Encrypted</h3>
+        <h3>Encrypted</h3>
       </td>
 
       <td>
@@ -126,8 +126,8 @@ This API will fetch the response dump for any API call based on the value of **c
       </td>
 
       <td>
-        `Numeric` Local Date and time stamp when the transaction originated from the client in YYYYMMDDHHMMSS with time in 24 hr format. ```
-
+        `Numeric` Local Date and time stamp when the transaction originated from the client in YYYYMMDDHHMMSS with time in 24 hr format.
+        ```
         Character Limit - 14
         ```
       </td>
@@ -144,8 +144,8 @@ This API will fetch the response dump for any API call based on the value of **c
       </td>
 
       <td>
-        `String` The value of “clientTxnId” passed in the request body of the API call for which response dump is needed.```
-
+        `String` The value of “clientTxnId” passed in the request body of the API call for which response dump is needed.
+        ```
         Character Limit - 100
         ```
       </td>
@@ -162,8 +162,8 @@ This API will fetch the response dump for any API call based on the value of **c
       </td>
 
       <td>
-        `String` The initial value for time range in which to search for the transaction, in YYYY-MM-DD format. ```
-
+        `String` The initial value for time range in which to search for the transaction, in YYYY-MM-DD format.
+         ```
         Character Limit - 10
         ```
       </td>
@@ -411,7 +411,7 @@ This API will fetch the response dump for any API call based on the value of **c
 
 ```plaintext
 {
-“token”:"Pl8F5kDZcvADIiursiAvvbHNuL9Wv5eaFdorGVFU6FKfIEnV/YskkzJlAov2ZHJWnqGNLOXfBq4SQqw8Ep4sK0gCAAkRXATCb1nSY6s=" 
+“token”:"Pl8F5kDZcvADIiursiAvvbHNuL9Wv5eaFdorGVFU6FKfIEnV/YskkzJlAov2ZHJWnqGNLOXfBq4SQqw8Ep4sK0gCAAkRXATCb1nSY6s="
 }
 ```
 
