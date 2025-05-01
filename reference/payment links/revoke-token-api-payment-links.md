@@ -18,36 +18,48 @@ HTTP Method: **POST**
 
 |                            |                                              |
 | -------------------------- | -------------------------------------------- |
-| **Test Environment**       | <https://uat-accounts.payu.in/payment-links> |
-| **Production Environment** | <https://accounts.payu.in/payment-links>     |
+| **Test Environment**       | \<https://uat-accounts.payu.in/payment-links> |
+| **Production Environment** | \<https://accounts.payu.in/payment-links>     |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameters**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "client\\_id  \n**mandatory**",
-    "0-1": "`String` This parameter must contain the public identifier of the client to access the platform.",
-    "0-2": "`{client\\_id}`",
-    "1-0": "client\\_secret  \n**mandatory**",
-    "1-1": "`String` This parameter must contain a unique secret of the client for authorization.",
-    "1-2": "`{client\\_secret}`",
-    "2-0": "token",
-    "2-1": "`String`This parameter must contain the token that must be revoked.",
-    "2-2": "`{token}`"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>client_id<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the public identifier of the client to access the platform.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{client\_id}</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>client_secret<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain a unique secret of the client for authorization.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{client\_secret}</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>token</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain the token that must be revoked.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{token}</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
