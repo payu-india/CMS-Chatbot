@@ -22,7 +22,7 @@ Statement Inquiry API is called by the client to fetch the relevant transactions
 
 ## Request parameters
 
-<WalletHeader />
+`<WalletHeader />`
 
 ### Body
 
@@ -191,8 +191,8 @@ Statement Inquiry API is called by the client to fetch the relevant transactions
       </td>
 
       <td>
-        `Numeric` Page number indexed from 1. ```
-
+        `Numeric` Page number indexed from 1. 
+        ```
         Character Limit - 500
         ```
       </td>
