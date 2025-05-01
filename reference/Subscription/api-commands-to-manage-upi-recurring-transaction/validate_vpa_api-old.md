@@ -17,9 +17,10 @@ This API (**validateVPA**) will let you validate VPA if it is a valid VPA or not
 
 After the customer enters VPA on the merchant page, you need to call this API to check for VPA validation. If VPA is valid only then, the second call should be made.
 
-<GENERALAPIsEnvironment />
+`<GENERALAPIsEnvironment />`
 
-<details><summary>Sample request</summary>
+<details>
+<summary>Sample request</summary>
 
 **Validate VPA**
 
@@ -35,7 +36,8 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: appli
 
 </details>
 
-<details>  <summary>Sample response</summary>
+<details> 
+ <summary>Sample response</summary>
 
 **Success scenario**
 
@@ -96,7 +98,8 @@ PayBankValid":NA,"payerAccountName":"NA"
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+<summary>Response parameters</summary>
 
 <Table>
   <thead>
@@ -192,7 +195,8 @@ PayBankValid":NA,"payerAccountName":"NA"
 
 You can use any valid VPA while trying out the API:
 
-<details><summary>Additional information for request parameters</summary>
+<details>
+<summary>Additional information for request parameters</summary>
 
 <Table align={["left","left"]}>
   <thead>
