@@ -15,9 +15,10 @@ next:
 ---
 The **pre\_authorize** parameter is used to pre-authorize payments using the Merchant Hosted Checkout integration along with the parameters to collect card details.
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
-<details><summary>Sample request</summary>
+<details>
+<summary>Sample request</summary>
 
 ```curl
 curl --request POST \
@@ -46,7 +47,8 @@ curl --request POST \
 
 </details>
 
-<details><summary>Sample request</summary>
+<details>
+<summary>Sample request</summary>
 
 The formatted sample response body is similar to the following, and you need to look for the following parameters:
 
@@ -114,7 +116,8 @@ The formatted sample response body is similar to the following, and you need to 
 
 ## Request parameters
 
-<details><summary>Reference for request parameters</summary>
+<details>
+<summary>Reference for request parameters</summary>
 
 ## Reference info for request parameters
 
