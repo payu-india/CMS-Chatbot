@@ -23,8 +23,8 @@ This API is used to generate a refresh token to obtain a renewed access token us
 
 |                |                                |
 | :------------- | :----------------------------- |
-| **Test**       | <https://uat-accounts.payu.in> |
-| **Production** | <https://accounts.payu.in>     |
+| **Test**       | \<https://uat-accounts.payu.in> |
+| **Production** | \<https://accounts.payu.in>     |
 
 <details>
   <summary>Sample response</summary>
