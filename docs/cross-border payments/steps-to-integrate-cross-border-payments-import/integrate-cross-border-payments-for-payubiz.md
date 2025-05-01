@@ -46,7 +46,7 @@ The following parameters (mandatory) must be posted using any of the following W
 
 The following are the additional request parameter required for cross-border payments with all of the above integrations. 
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 <Table>
   <thead>
@@ -68,10 +68,9 @@ The following are the additional request parameter required for cross-border pay
   <tbody>
     <tr>
       <td>
-        key ```
+        key
 
         mandatory
-        ```
       </td>
 
       <td>
