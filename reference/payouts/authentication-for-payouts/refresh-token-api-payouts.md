@@ -23,31 +23,43 @@ HTTP Method: **POST**
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "client\\_id`\nmandatory`",
-    "0-1": "`String`This parameter will contain the public Client ID which is identical for and used by all Payouts Merchants. For getting your client_id , refer to [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard).",
-    "0-2": " ",
-    "1-0": "grant\\_type`\nmandatory`",
-    "1-1": "`String`This parameter will contain the grant type and for this API, it is **refresn\\_token**.",
-    "1-2": "refresh\\_token",
-    "2-0": "refresh\\_token  \n`mandatory`",
-    "2-1": "`String`Refresh Token received in Authentication Token Generation APIs.",
-    "2-2": " "
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>client_id<code> mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter will contain the public Client ID which is identical for and used by all Payouts Merchants. For getting your client_id , refer to <a href="doc:get-client-id-and-secret-from-dashboard">Get Client ID and Secret from Dashboard</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>grant_type<code> mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter will contain the grant type and for this API, it is <strong>refresn_token</strong>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>refresh_token</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>refresh_token<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Refresh Token received in Authentication Token Generation APIs.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
