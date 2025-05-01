@@ -27,43 +27,82 @@ HTTP Method: **POST**
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "key  \n**mandatory**",
-    "0-1": "`string` This parameter must contain the merchant key provided by PayU.",
-    "0-2": "Your Test Key",
-    "1-0": "command   \n**mandatory**",
-    "1-1": "`string` command to be used to invoke subvention API for aggregator merchants",
-    "1-2": "subvention\\_refund\\_aggregator",
-    "2-0": "hash    \n**mandatory**",
-    "2-1": "`string`  sha512(key|command|var1|salt)  \nsha512 is the encryption method used here.",
-    "2-2": "command",
-    "3-0": "var1    \n**mandatory**",
-    "3-1": "`string` Parent Payuid",
-    "3-2": "8768769869678678",
-    "4-0": "var2   \n**mandatory**",
-    "4-1": "`string` unique alphanumeric token to distinguish refund",
-    "4-2": "PLYH68898398TGHKL",
-    "5-0": "var3    \n**mandatory**",
-    "5-1": "`string(json)` This parameter contains the refund mode and beneficiary details in the following format:  \n  \n{\"subvention_mode\":3, \"beneficiary_full_name\":\" Nucleus\",\" beneficiary_account_no\":\" 50100002965304\",\" beneficiary_ifsc\":\"HDFC0001626\"}  \n  \nWhere:  \n- **Payout to Account Number** : \"subvention_m ode\":3  \n-** Payout to Internal Cards** : \"subvention_mode\":1",
-    "5-2": " ",
-    "6-0": "var4  \n**mandatory**",
-    "6-1": "`string(json)` This parameters contains the refunds split for each child payuid in the following format:   \n  \n{\"5\\*\\*\\*\\*8\":{\"subventionAmount\":5,\" originalRefundAmount\":1},\"73gAMf\":{\"subventionAmount\":5,\" originalRefundAmount\":3}}  \n  \nWhere:  \n**originalRefundAmount** is the value of the refund that has been fired prior to calling this API.  \n**subventionAmount **is the amount to be deducted from the subvented amount.",
-    "6-2": " "
-  },
-  "cols": 3,
-  "rows": 7,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> This parameter must contain the merchant key provided by PayU.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Your Test Key</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>command <br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> command to be used to invoke subvention API for aggregator merchants</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>subvention_refund_aggregator</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash  <br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code>  sha512(key|command|var1|salt)<br>sha512 is the encryption method used here.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>command</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var1  <br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> Parent Payuid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>8768769869678678</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var2 <br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> unique alphanumeric token to distinguish refund</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>PLYH68898398TGHKL</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var3  <br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string(json)</code> This parameter contains the refund mode and beneficiary details in the following format:  </p>
+<p>{&quot;subvention_mode&quot;:3, &quot;beneficiary_full_name&quot;:&quot; Nucleus&quot;,&quot; beneficiary_account_no&quot;:&quot; 50100002965304&quot;,&quot; beneficiary_ifsc&quot;:&quot;HDFC0001626&quot;}  </p>
+<p>Where:  </p>
+<ul>
+<li><strong>Payout to Account Number</strong> : &quot;subvention_m ode&quot;:3<br>-** Payout to Internal Cards** : &quot;subvention_mode&quot;:1</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var4<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string(json)</code> This parameters contains the refunds split for each child payuid in the following format:   </p>
+<p>{&quot;5****8&quot;:{&quot;subventionAmount&quot;:5,&quot; originalRefundAmount&quot;:1},&quot;73gAMf&quot;:{&quot;subventionAmount&quot;:5,&quot; originalRefundAmount&quot;:3}}  </p>
+<p>Where:<br><strong>originalRefundAmount</strong> is the value of the refund that has been fired prior to calling this API.<br>**subventionAmount **is the amount to be deducted from the subvented amount.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 The valid values for **subvention_mode** are listed in the following table:
 
@@ -90,32 +129,54 @@ curl --request POST \
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "request\\_id",
-    "0-1": "The unique reference number of the refund request is returned in this parameter.",
-    "1-0": "subvention-refund\\_status",
-    "1-1": "The status of Subvention refund is returned with any of the following:  \n    - **1**: Returns this values if request has been accepted  \n    - **0**: Returns this value if the request is not successful",
-    "2-0": "mihpayid",
-    "2-1": "The transaction reference number provided by PayU.",
-    "3-0": "msg",
-    "3-1": "The message statement is returned in this parameter.",
-    "4-0": "txn status",
-    "4-1": "The current status of the transaction for the given token is returned in this parameter.",
-    "5-0": "amount",
-    "5-1": "The amount of the transaction for the given token is returned in this parameter."
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>request_id</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The unique reference number of the refund request is returned in this parameter.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>subvention-refund_status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The status of Subvention refund is returned with any of the following:<br>    - <strong>1</strong>: Returns this values if request has been accepted<br>    - <strong>0</strong>: Returns this value if the request is not successful</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>mihpayid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The transaction reference number provided by PayU.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>msg</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The message statement is returned in this parameter.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txn status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The current status of the transaction for the given token is returned in this parameter.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The amount of the transaction for the given token is returned in this parameter.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample responses
 
