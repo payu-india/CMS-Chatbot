@@ -27,25 +27,27 @@ HTTP Method: **PUT**
 
 ## Path parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameters**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "ID  \n`mandatory`",
-    "0-1": "`String` This parameter must contain the payment link invoice number.",
-    "0-2": "INV8446471886220"
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>ID<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the payment link invoice number.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>INV8446471886220</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Request headers
 
@@ -56,58 +58,126 @@ HTTP Method: **PUT**
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameters**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "ID  \n`mandatory`",
-    "0-1": "`String` This parameter must contain the payment link invoice number.",
-    "0-2": "INV8446471886220",
-    "1-0": "subAmount  \n`optional`",
-    "1-1": "`String` This parameter must contain the payment sub amount.",
-    "1-2": "100.00",
-    "2-0": "tax  \n`optional`",
-    "2-1": "`String` This parameter must contain the tax amount for the transaction.",
-    "2-2": "1.00",
-    "3-0": "shippingCharge  \n`optional`",
-    "3-1": "`String` This parameter must contain the shipping charge.",
-    "3-2": "10.00",
-    "4-0": "isPartialPaymentAllowed  \n`optional`",
-    "4-1": "`Boolean` This parameter includes whether partial payment is allowed.",
-    "4-2": "false",
-    "5-0": "active  \n`optional`",
-    "5-1": "`Boolean` This parameter includes whether the payment link is active.",
-    "5-2": "true",
-    "6-0": "expiry  \n`optional`",
-    "6-1": "`String` This parameter must contain the expiry date.",
-    "6-2": "2024-04-01",
-    "7-0": "udf  \n`optional`",
-    "7-1": "`JSON`This parameter contains the following UDF parameters in a JSON format as in the example:  \n  \n- udf1\t\n- udf2\t\n- udf3\t\n- udf4\t\n- udf5\t  ",
-    "7-2": "{  \n\"udf1\": \"string\",  \n\"udf2\": \"string\",  \n\"udf3\": \"string\",  \n\"udf4\": \"string\",  \n\"udf5\": \"string\"  \n}",
-    "8-0": "userToken  \n`optional`",
-    "8-1": "`String`This parameter must contain the payment link creation from date.",
-    "8-2": "2023-04-01",
-    "9-0": "address  \n`optional`",
-    "9-1": "`JSON`This parameter must contain the address details in a JSON format as in the example.",
-    "9-2": "{  \n\"line1\": \"string\",  \n\"line2\": \"string\",  \n\"city\": \"string\",  \n\"state\": \"string\",  \n\"country\": \"string\",  \n\"zipCode\": \"string\"  \n}",
-    "10-0": "reminder  \n`optional`",
-    "10-1": "`JSON`This parameter must contain the following reminder details in a JSON format (as in the example):  \n  \n- scheduledAt: The time at the which the reminder was scheduled.\n- channels: The channels used to send the reminder. ",
-    "10-2": "{  \n\"id\": 0,  \n\"scheduledAt\": \"string\",  \n\"channels\": [mobile]  \n}",
-    "11-0": "customAttributes  \n`optional`",
-    "11-1": "`JSON`This parameter must contain the  custom attributes in a JSON format as in the example.",
-    "11-2": "{  \n\"customAttributeId\": 0,  \n\"entityType\": \"string\",  \n\"toolId\": 0,  \n\"customAttributeName\": \"string\",  \n\"attributeType\": \"string\",  \n\"options\": \\[],  \n\"checked\": true,  \n\"required\": true  \n}"
-  },
-  "cols": 3,
-  "rows": 12,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>ID<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the payment link invoice number.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>INV8446471886220</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>subAmount<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the payment sub amount.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>100.00</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>tax<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the tax amount for the transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1.00</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>shippingCharge<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the shipping charge.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>10.00</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>isPartialPaymentAllowed<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> This parameter includes whether partial payment is allowed.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>false</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>active<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> This parameter includes whether the payment link is active.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>expiry<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the expiry date.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2024-04-01</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>udf<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code>This parameter contains the following UDF parameters in a JSON format as in the example:  </p>
+<ul>
+<li>udf1	</li>
+<li>udf2	</li>
+<li>udf3	</li>
+<li>udf4	</li>
+<li>udf5</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{<br>&quot;udf1&quot;: &quot;string&quot;,<br>&quot;udf2&quot;: &quot;string&quot;,<br>&quot;udf3&quot;: &quot;string&quot;,<br>&quot;udf4&quot;: &quot;string&quot;,<br>&quot;udf5&quot;: &quot;string&quot;<br>}</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>userToken<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain the payment link creation from date.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2023-04-01</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>address<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code>This parameter must contain the address details in a JSON format as in the example.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{<br>&quot;line1&quot;: &quot;string&quot;,<br>&quot;line2&quot;: &quot;string&quot;,<br>&quot;city&quot;: &quot;string&quot;,<br>&quot;state&quot;: &quot;string&quot;,<br>&quot;country&quot;: &quot;string&quot;,<br>&quot;zipCode&quot;: &quot;string&quot;<br>}</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>reminder<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code>This parameter must contain the following reminder details in a JSON format (as in the example):  </p>
+<ul>
+<li>scheduledAt: The time at the which the reminder was scheduled.</li>
+<li>channels: The channels used to send the reminder.</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{<br>&quot;id&quot;: 0,<br>&quot;scheduledAt&quot;: &quot;string&quot;,<br>&quot;channels&quot;: [mobile]<br>}</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>customAttributes<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code>This parameter must contain the  custom attributes in a JSON format as in the example.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{<br>&quot;customAttributeId&quot;: 0,<br>&quot;entityType&quot;: &quot;string&quot;,<br>&quot;toolId&quot;: 0,<br>&quot;customAttributeName&quot;: &quot;string&quot;,<br>&quot;attributeType&quot;: &quot;string&quot;,<br>&quot;options&quot;: [],<br>&quot;checked&quot;: true,<br>&quot;required&quot;: true<br>}</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
