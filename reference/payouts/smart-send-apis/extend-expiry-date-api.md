@@ -19,8 +19,8 @@ This API is used to extend the expiry date of a valid link. A valid link is one 
 
 |                            |                                                                 |
 | -------------------------- | --------------------------------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/v2/smartSend/extendExpiry>    |
-| **Production Environment** | <https://payout.payumoney.com/payout/v2/smartSend/extendExpiry> |
+| **Test Environment**       | \<https://uatoneapi.payu.in/payout/v2/smartSend/extendExpiry>    |
+| **Production Environment** | \<https://payout.payumoney.com/payout/v2/smartSend/extendExpiry> |
 
 <details>
   <summary>Sample request</summary>
