@@ -22,7 +22,7 @@ The **Retrieve Customer Record** API return the customer profile based on urn or
 
 ## Request parameters
 
-<WalletHeader />
+`<WalletHeader />`
 
 ### Body
 
@@ -94,8 +94,8 @@ The **Retrieve Customer Record** API return the customer profile based on urn or
       </td>
 
       <td>
-        `Numeric` Code to Identify load card request type.```
-
+        `Numeric` Code to Identify load card request type.
+        ```
         Character Limit - 4
         ```
       </td>
@@ -255,7 +255,7 @@ CKMqQJtSSQs4JVYBohia1TPP1yJULHN+TLIVKFRZsg0GokTPI+ZKpNPcrKrQSa70qV/RtVWMv6Cmq RH
 } ],
 "newCardStatus": "Active",
 "loadAmount": "0",
-"eventid": 303001 
+"eventid": 303001
 }
 ```
 
@@ -604,9 +604,9 @@ CKMqQJtSSQs4JVYBohia1TPP1yJULHN+TLIVKFRZsg0GokTPI+ZKpNPcrKrQSa70qV/RtVWMv6Cmq RH
       </td>
 
       <td>
-        ReKyc status of the user:  
+        ReKyc status of the user:
 
-        * True- Eligible for reKyc  
+        * True- Eligible for reKyc
         * False- reKyc Not required
       </td>
 
@@ -866,7 +866,7 @@ CKMqQJtSSQs4JVYBohia1TPP1yJULHN+TLIVKFRZsg0GokTPI+ZKpNPcrKrQSa70qV/RtVWMv6Cmq RH
 
 ```plaintext
 {
-    “token”: “h/0YSUdGzgNsMcmfYAvIIPgF3Z80/kMJkW/7l9wG9L+bXt//P/HBG0NsuoPtbn6ugjzNOLl/wQPJFbCKMqQJtSSQs4JVYBohia1TPP1yJULHN+TLIVKFRZsg0GokTPI+ZKpNPcrKrQSa70qV/RtVWMv6CmqRHaG1gQvgAYKjNyOpip7G3Io5IDEF4b2cXOlH4G1hbOtjAHQ/7ZS9KrkmJA==”} 
+    “token”: “h/0YSUdGzgNsMcmfYAvIIPgF3Z80/kMJkW/7l9wG9L+bXt//P/HBG0NsuoPtbn6ugjzNOLl/wQPJFbCKMqQJtSSQs4JVYBohia1TPP1yJULHN+TLIVKFRZsg0GokTPI+ZKpNPcrKrQSa70qV/RtVWMv6CmqRHaG1gQvgAYKjNyOpip7G3Io5IDEF4b2cXOlH4G1hbOtjAHQ/7ZS9KrkmJA==”}
 ```
 
 ### Packet sample (Decrypted)
@@ -904,7 +904,7 @@ CKMqQJtSSQs4JVYBohia1TPP1yJULHN+TLIVKFRZsg0GokTPI+ZKpNPcrKrQSa70qV/RtVWMv6Cmq RH
          "email":"shinjan.patra@wibmo.com",
          "statusDescription":"Active",
          "docList":[
-            
+
          ],
          "transactionProfiles":[
             {
@@ -914,7 +914,7 @@ CKMqQJtSSQs4JVYBohia1TPP1yJULHN+TLIVKFRZsg0GokTPI+ZKpNPcrKrQSa70qV/RtVWMv6Cmq RH
                "transactionRegionName":"DOMESTIC"
             },
             {
-               
+
             }
          ],
          "transactionProfileId":2,
