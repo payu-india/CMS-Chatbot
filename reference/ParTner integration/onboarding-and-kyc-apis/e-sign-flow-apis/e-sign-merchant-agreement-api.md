@@ -18,8 +18,8 @@ This API requires an access token using the **Get Token** API with the scope as 
 
 |                            |                             |
 | :------------------------- | :-------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in> |
-| **Production Environment** | <https://oneapi.payu.in>    |
+| **Test Environment**       | \<https://uatoneapi.payu.in> |
+| **Production Environment** | \<https://oneapi.payu.in>    |
 
 ## Request Headers
 
@@ -29,27 +29,29 @@ This API requires an access token using the **Get Token** API with the scope as 
 
 |               |                         |
 | ------------- | ----------------------- |
-| Authorization | Bearer {{access_token}} |
+| Authorization | Bearer \{\{access_token}} |
 | Content-Type  | multipart/form-data     |
 
 ## Request Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "otp  \n**mandatory** ",
-    "0-1": "This parameter must include the OTP that is received by merchant when you initiate the Send OTP to Signatory Email API. For more information, refer to [Send OTP to Signatory Email API](ref:send-otp-to-signatory-email-api)"
-  },
-  "cols": 2,
-  "rows": 1,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>otp<br><strong>mandatory</strong> </p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must include the OTP that is received by merchant when you initiate the Send OTP to Signatory Email API. For more information, refer to <a href="ref:send-otp-to-signatory-email-api">Send OTP to Signatory Email API</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample Request
 
@@ -59,7 +61,7 @@ curl --location --request POST '{{onboarding_url}}/api/v1/merchants/{{merchant_u
 --data-urlencode 'otp=0025'
 ```
 
-Where **{{onboarding\_url}}** is substituted with the URL specified in the Test or Production environment as mentioned in the _Environment_ section.
+Where **\{\{onboarding\_url}}** is substituted with the URL specified in the Test or Production environment as mentioned in the _Environment_ section.
 
 ## Sample Response
 
