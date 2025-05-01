@@ -27,8 +27,8 @@ HTTP Method: **POST**
 
 |                            |                                                                 |
 | -------------------------- | --------------------------------------------------------------- |
-| **Test Environment**       | <https://uat-onepayuonboarding.payu.in/api/v3/product_accounts> |
-| **Production Environment** | <https://onboarding.payu.in/api/v3/product_accounts>            |
+| **Test Environment**       | \<https://uat-onepayuonboarding.payu.in/api/v3/product_accounts> |
+| **Production Environment** | \<https://onboarding.payu.in/api/v3/product_accounts>            |
 
 ## Step 1: Add child merchant
 
@@ -40,64 +40,131 @@ HTTP Method: **POST**
 
 ### Request Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "product  \n**mandatory**",
-    "0-1": "This parameter must be passed with the following value: \"PayUBiz\"",
-    "0-2": "PayUBiz",
-    "1-0": "name  \n**mandatory**",
-    "1-1": "The display name of the child merchant",
-    "1-2": "Harsh Agarwal",
-    "2-0": "email  \n**mandatory**",
-    "2-1": "The child merchant email.",
-    "2-2": "[test.user94@payu.in](mailto:test.user94@payu.in)",
-    "3-0": "mobile  \n**mandatory**",
-    "3-1": "The mobile number of the child merchant",
-    "3-2": "995315\\*\\*\\*1",
-    "4-0": "aggregator\\_parent\\_mid  \n**mandatory**",
-    "4-1": "The parent merchant MID is specified in this parameter.",
-    "4-2": "7210921",
-    "5-0": "merchant\\_type  \n**mandatory**",
-    "5-1": "This parameter is used to specify the merchant type as aggregator.  \n**Note**: The value for this parameter must be posted as **aggregator**.",
-    "5-2": "aggregator",
-    "6-0": "business\\_entity\\_id  \n**mandatory**",
-    "6-1": "The business entity ID of the merchant. The business entity ID and corresponding business entity is listed in the [Business Entity Mapping](#business_entity_mapping) table of this section.",
-    "6-2": "2",
-    "7-0": "pancard\\_number  \n**mandatory**",
-    "7-1": "The PAN card number of the child merchant.",
-    "7-2": "DBZPK4951B",
-    "8-0": "pancard\\_name  \n**mandatory**",
-    "8-1": "The name of the child merchant as in the PAN card.",
-    "8-2": "kapil kumar",
-    "9-0": "business\\_category\\_id  \n**mandatory**",
-    "9-1": "The business category ID of the child merchant. For the list business category ID, refer to [Business Category & Sub-category UUIDs List](ref:business-category-sub-category-uuids-for-split-settlements).",
-    "9-2": "16",
-    "10-0": "business\\_sub\\_category\\_id  \n**mandatory**",
-    "10-1": "The business sub category ID of the child merchant. For the list business sub-category ID, refer to [Business Category & Sub-category UUIDs List](ref:business-category-sub-category-uuids-for-split-settlements#business-sub-category-list) .  \n**Note**: Each business sub-category is dependent on business category. Hence, you must enter the sub-category according to the value you post in the **business\\_category\\_id** parameter.",
-    "10-2": "128",
-    "11-0": "gst\\_number  \n**optional**",
-    "11-1": "The GST number of the child merchant registered with the Sales tax department.",
-    "11-2": "09ABQFA5416M1ZX",
-    "12-0": "monthly\\_expected\\_volume  \n\"**mandatory**",
-    "12-1": "The monthly expected volume of the child merchant.",
-    "12-2": "60000",
-    "13-0": "business\\_name  \n**mandatory**",
-    "13-1": "The business name of the child merchant, similar to PAN.",
-    "13-2": "Harsh Agarwal"
-  },
-  "cols": 3,
-  "rows": 14,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>product<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must be passed with the following value: &quot;PayUBiz&quot;</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>PayUBiz</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The display name of the child merchant</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Harsh Agarwal</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The child merchant email.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="mailto:test.user94@payu.in">test.user94@payu.in</a></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>mobile<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The mobile number of the child merchant</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>995315***1</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>aggregator_parent_mid<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The parent merchant MID is specified in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>7210921</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchant_type<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter is used to specify the merchant type as aggregator.<br><strong>Note</strong>: The value for this parameter must be posted as <strong>aggregator</strong>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>aggregator</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>business_entity_id<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business entity ID of the merchant. The business entity ID and corresponding business entity is listed in the <a href="#business_entity_mapping">Business Entity Mapping</a> table of this section.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pancard_number<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The PAN card number of the child merchant.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>DBZPK4951B</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pancard_name<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The name of the child merchant as in the PAN card.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>kapil kumar</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>business_category_id<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business category ID of the child merchant. For the list business category ID, refer to <a href="ref:business-category-sub-category-uuids-for-split-settlements">Business Category &amp; Sub-category UUIDs List</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>16</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>business_sub_category_id<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business sub category ID of the child merchant. For the list business sub-category ID, refer to <a href="ref:business-category-sub-category-uuids-for-split-settlements#business-sub-category-list">Business Category &amp; Sub-category UUIDs List</a> .<br><strong>Note</strong>: Each business sub-category is dependent on business category. Hence, you must enter the sub-category according to the value you post in the <strong>business_category_id</strong> parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>128</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>gst_number<br><strong>optional</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The GST number of the child merchant registered with the Sales tax department.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>09ABQFA5416M1ZX</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>monthly_expected_volume<br>&quot;<strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The monthly expected volume of the child merchant.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>60000</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>business_name<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business name of the child merchant, similar to PAN.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Harsh Agarwal</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ### Business Entity Mapping
@@ -441,25 +508,26 @@ After adding the child merchant in[ Step 1: Add a child merchant](##step-1-add-c
 
 ### Request Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": " bank\\_detail  \n**mandatory**",
-    "0-1": "The details of bank account of the child merchant is specified in the following JSON format. The details of the fields are described in the next table.  \n`{  \n\"bank_account_number\": \"6633809947434\",  \n\"holder_name”:”Harsh Agarwal”,  \n\"ifsc_code\": \"ICIC0000031\"  \n}`",
-    "0-2": ""
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> bank_detail<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The details of bank account of the child merchant is specified in the following JSON format. The details of the fields are described in the next table.<br><code>{   &quot;bank_account_number&quot;: &quot;6633809947434&quot;,   &quot;holder_name”:”Harsh Agarwal”,   &quot;ifsc_code&quot;: &quot;ICIC0000031&quot;   }</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 > 📘 Authorization:
