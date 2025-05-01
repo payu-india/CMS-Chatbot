@@ -34,69 +34,144 @@ HTTP Method: **POST**
 
 |                        |                                                           |
 | :--------------------- | :-------------------------------------------------------- |
-| Test Environment       | <https://apitest.payu.in/merchant/postservice.php?form=2> |
-| Production Environment | <https://info.payu.in/merchant/postservice?form=2>        |
+| Test Environment       | \<https://apitest.payu.in/merchant/postservice.php?form=2> |
+| Production Environment | \<https://info.payu.in/merchant/postservice?form=2>        |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Reference",
-    "h-2": "Example",
-    "0-0": "key  \n`mandatory`",
-    "0-1": "`String` The merchant key provided by PayU while onboarding.  \nFor more information on how to generate the Key and Salt, refer to any of the following:  \n  \n- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)\n- **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "0-2": "JP**\\***g",
-    "1-0": "command  \n`mandatory`",
-    "1-1": "`String`The command name for this REST API call must be included in this parameter. For getting user cards details, use **save_payment_instrument** here.",
-    "1-2": "save_payment_instrument",
-    "2-0": "hash  \n`mandatory`",
-    "2-1": "`String`The hash must be included in this parameter. Hash logic for this API is:  \n`sha512(key\\|command\\|var1\\|salt) sha512 \n`",
-    "2-2": "",
-    "3-0": "var1  \n`mandatory`",
-    "3-1": "`String`The user credentials are posted in this parameter in the following format: MerchantKey:UserId",
-    "3-2": "JP\\*\\*\\*G:abc",
-    "4-0": "var2  \n`mandatory`",
-    "4-1": "`String`The nickname of the card is specified in this parameter.",
-    "4-2": "My_card",
-    "5-0": "var3  \nmandatory",
-    "5-1": "`String`The card mode is specified in this parameter. For more information on card mode codes, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).",
-    "5-2": "CC",
-    "6-0": "var4  \n`mandatory`",
-    "6-1": "`String`The card type of the card is specified in this parameter. For more information on card type codes, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards)",
-    "6-2": "AMEX",
-    "7-0": "var5  \n`mandatory`",
-    "7-1": "`String`The name on the card is specified in this parameter.",
-    "7-2": "Ashish",
-    "8-0": "var6  \n`mandatory`",
-    "8-1": "`String`The card number is is specified in this parameter. For the **test cards** to do mock API calls, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).",
-    "8-2": "",
-    "9-0": "var7  \n`mandatory`",
-    "9-1": "`String`The card expiry month is specified in this parameter.",
-    "9-2": "9",
-    "10-0": "var8  \n`mandatory`",
-    "10-1": "`String`The card expiry year is specified in this parameter.",
-    "10-2": "2021",
-    "11-0": "var9  \n`mandatory for Rupay and AMEX cards`",
-    "11-1": "`String`This parameter can be any of the following based on the Rupay or AMEX card used:  \n  \n- The authorization reference number received during authorization call of Rupay card transactions.\n- The &lt;&lt;glossary:AEVV&gt;&gt; received during authorization call of Amex card transactions.  \n  **Notes**:\n- This parameter is mandatory for Rupay cards. Authentication reference number will be sent by the PG in the authorization response. Currently, this check is skipped by Rupay.\n- This parameter is mandatory for AMEX cards. American Express Verification Value will be sent by the PG in the authorization response.",
-    "11-2": "6381242223626382106105",
-    "12-0": "var10  \n`optional`",
-    "12-1": "`String`This parameter must be set to **true** if the transaction authentication has been done for the tokenisation.",
-    "12-2": "true",
-    "13-0": "var11  \n`optional`",
-    "13-1": "`String`This parameter must be set to **true** if the user has given consent to tokenise the card.",
-    "13-2": "true"
-  },
-  "cols": 3,
-  "rows": 14,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Reference</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU while onboarding.<br>For more information on how to generate the Key and Salt, refer to any of the following:  </p>
+<ul>
+<li><strong>Production</strong>: <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
+<li><strong>Test</strong>: <a href="doc:generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>JP*****g</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>command<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The command name for this REST API call must be included in this parameter. For getting user cards details, use <strong>save_payment_instrument</strong> here.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>save_payment_instrument</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The hash must be included in this parameter. Hash logic for this API is:<br><code>sha512(key\|command\|var1\|salt) sha512  </code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var1<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The user credentials are posted in this parameter in the following format: MerchantKey:UserId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>JP***G:abc</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var2<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The nickname of the card is specified in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>My_card</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var3<br>mandatory</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card mode is specified in this parameter. For more information on card mode codes, refer to <a href="doc:card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>CC</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var4<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card type of the card is specified in this parameter. For more information on card type codes, refer to <a href="doc:card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>AMEX</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var5<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The name on the card is specified in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Ashish</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var6<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card number is is specified in this parameter. For the <strong>test cards</strong> to do mock API calls, refer to <a href="doc:test-cards-upi-id-and-wallets">Test Cards, UPI ID and Wallets</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var7<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card expiry month is specified in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var8<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card expiry year is specified in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2021</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var9<br><code>mandatory for Rupay and AMEX cards</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter can be any of the following based on the Rupay or AMEX card used:  </p>
+<ul>
+<li>The authorization reference number received during authorization call of Rupay card transactions.</li>
+<li>The &lt;&lt;glossary:AEVV&gt;&gt; received during authorization call of Amex card transactions.<br><strong>Notes</strong>:</li>
+<li>This parameter is mandatory for Rupay cards. Authentication reference number will be sent by the PG in the authorization response. Currently, this check is skipped by Rupay.</li>
+<li>This parameter is mandatory for AMEX cards. American Express Verification Value will be sent by the PG in the authorization response.</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>6381242223626382106105</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var10<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must be set to <strong>true</strong> if the transaction authentication has been done for the tokenisation.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var11<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must be set to <strong>true</strong> if the user has given consent to tokenise the card.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
@@ -211,34 +286,56 @@ The following table describes the parameters in the response:
 
 **Note**: For every successful payment transactions, PayU returns the **mihpayuid** and **cardToken** parameters to the merchants, but networkToken and issuer\_token are returned only if you are PCI-DSS compliant.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "status",
-    "0-1": "The status of the response can be any of the following:  \n_ 1: Success   \n_  0: Failure",
-    "0-2": "1",
-    "1-0": "msg",
-    "1-1": "The description of the response whether the card details were stored successfully or not stored.",
-    "1-2": "Card Stored Successfully.",
-    "2-0": "cardToken",
-    "2-1": "The cardToken is sent by PayU for the successful response.",
-    "2-2": "`74\\*\\*\\*2e2fd9b7e\\*\\*\\*24fef4e7ed7dac1fe624b7`",
-    "3-0": "network\\_token",
-    "3-1": "The network token is returned in this parameter.",
-    "3-2": "`1234 5*** 9*** 3456`",
-    "4-0": "issuer\\_token",
-    "4-1": "The parameter contains the issuer token that is returned by issuer.",
-    "4-2": "`3456 7*** A*** EFGH`"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The status of the response can be any of the following:<br>_ 1: Success <br>_  0: Failure</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>msg</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The description of the response whether the card details were stored successfully or not stored.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Card Stored Successfully.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>cardToken</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The cardToken is sent by PayU for the successful response.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>74\*\*\*2e2fd9b7e\*\*\*24fef4e7ed7dac1fe624b7</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>network_token</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The network token is returned in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>1234 5*** 9*** 3456</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>issuer_token</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The parameter contains the issuer token that is returned by issuer.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>3456 7*** A*** EFGH</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
