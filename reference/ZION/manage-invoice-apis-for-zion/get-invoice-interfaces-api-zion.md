@@ -19,33 +19,35 @@ This API is used to retrieve invoice details. You can fetch invoice details eith
 
 **HTTP Method**: GET
 
-**Path**: _{base\_url}/_api/sub/v1/merchant/invoices/`{invoiceId}`
+**Path**: _\{base\_url}/_api/sub/v1/merchant/invoices/`{invoiceId}`
 
 **Environment**
 
 |            |                                           |
 | :--------- | :---------------------------------------- |
-| Test       | <https://subscriptiontest.citruspay.com/> |
-| Production | <https://subscription.citruspay.com/>     |
+| Test       | \<https://subscriptiontest.citruspay.com/> |
+| Production | \<https://subscription.citruspay.com/>     |
 
 ### Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "merchantId  \n**mandatory**",
-    "0-1": "Merchant key received during onboarding.  \n**Example**: YQeVda"
-  },
-  "cols": 2,
-  "rows": 1,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantId<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Merchant key received during onboarding.<br><strong>Example</strong>: YQeVda</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ### Sample request
 
@@ -80,58 +82,70 @@ https://subscriptiontest.citruspay.com/api/sub/v1/merchant/invoices/5c9902082fc4
 
 All the invoices for a Subscription Id can be also fetched through using Subscription ID as query string.
 
-**Path**: _{base\_url}/_api/sub/v1/merchant/invoices/`{invoiceId}`
+**Path**: _\{base\_url}/_api/sub/v1/merchant/invoices/`{invoiceId}`
 
 **Environment**
 
 |            |                                           |
 | :--------- | :---------------------------------------- |
-| Test       | <https://subscriptiontest.citruspay.com/> |
-| Production | <https://subscription.citruspay.com/>     |
+| Test       | \<https://subscriptiontest.citruspay.com/> |
+| Production | \<https://subscription.citruspay.com/>     |
 
 ### Request parameters
 
 #### Header
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "merchantId  \n**mandatory**",
-    "0-1": "Merchant key received during onboarding.  \n**Example**: YQeVda"
-  },
-  "cols": 2,
-  "rows": 1,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantId<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Merchant key received during onboarding.<br><strong>Example</strong>: YQeVda</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 #### Body
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "subscriptionId  \n**mandatory**",
-    "0-1": "Subscription ID for which invoices needs to be fetched.",
-    "1-0": "skip  \n**mandatory**",
-    "1-1": "Skip is the number of subscriptions to be skip from the data-set fetched from database for given merchantId before applying the limit on it. It should be greater than or equal to zero.",
-    "2-0": "limit  \n**mandatory**",
-    "2-1": "Number of subscriptions to be fetch. It should be greater than zero. Max value of limit is 20"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>subscriptionId<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Subscription ID for which invoices needs to be fetched.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>skip<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Skip is the number of subscriptions to be skip from the data-set fetched from database for given merchantId before applying the limit on it. It should be greater than or equal to zero.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>limit<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Number of subscriptions to be fetch. It should be greater than zero. Max value of limit is 20</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ### Sample request
 
