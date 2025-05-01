@@ -16,8 +16,8 @@ Partners need to register their webhooks using the Register Webhooks API with hu
 
 |            |                                                                |
 | :--------- | :------------------------------------------------------------- |
-| Test       | <https://uat-partner.payu.in/api/v1/partners/register_webhook> |
-| Production | <https://partner.payu.in/api/v1/partners/register_webhook>     |
+| Test       | \<https://uat-partner.payu.in/api/v1/partners/register_webhook> |
+| Production | \<https://partner.payu.in/api/v1/partners/register_webhook>     |
 
 ## Request header
 
@@ -31,24 +31,30 @@ Partners need to register their webhooks using the Register Webhooks API with hu
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "webhook_url  \n`mandatory`",
-    "0-1": "This parameter must contain the Webhooks URL to which the status must be notified.",
-    "1-0": "reseller_uuid  \n`mandatory`",
-    "1-1": "This parameter must contain the reseller UUID."
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>webhook_url<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must contain the Webhooks URL to which the status must be notified.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>reseller_uuid<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must contain the reseller UUID.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
