@@ -19,8 +19,8 @@ The **payment** API is used to initiate/schedule a single transfer to the benefi
 
 |                            |                                               |
 | -------------------------- | --------------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/v2/payment> |
-| **Production Environment** | <https://payout.payumoney.com/payout/payment> |
+| **Test Environment**       | \<https://uatoneapi.payu.in/payout/v2/payment> |
+| **Production Environment** | \<https://payout.payumoney.com/payout/payment> |
 
 <details>
   <summary>Sample request</summary>
@@ -109,27 +109,43 @@ The **payment** API is used to initiate/schedule a single transfer to the benefi
 <details>
   <summary>Additional information for Request parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "merchantRefId`\noptional`",
-    "0-1": "`String`Indicates a unique reference ID at the merchant side to distinguish between multiple transfers.  \n**Max char length**: 40.  \n**Notes** :  \n  \n- Same value will be used by the merchant in the status check of transfer.\n- In case if the merchant reference ID is not passed, an auto generated ID will be used.",
-    "0-2": " ",
-    "1-0": "paymentType  \n`mandatory`",
-    "1-1": "`String` Specify the any of the following mode of payment in this field:  \n  \n- IMPS\n- UPI\n- NEFT\n- RTGS",
-    "1-2": "UPI"
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantRefId<code> optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Indicates a unique reference ID at the merchant side to distinguish between multiple transfers.<br><strong>Max char length</strong>: 40.<br><strong>Notes</strong> :  </p>
+<ul>
+<li>Same value will be used by the merchant in the status check of transfer.</li>
+<li>In case if the merchant reference ID is not passed, an auto generated ID will be used.</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentType<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Specify the any of the following mode of payment in this field:  </p>
+<ul>
+<li>IMPS</li>
+<li>UPI</li>
+<li>NEFT</li>
+<li>RTGS</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>UPI</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 </details>
