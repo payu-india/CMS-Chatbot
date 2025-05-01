@@ -31,7 +31,7 @@ Collect or prepare a list of account numbers that must be posted to PayU for TPV
 
 With the following additional parameters, make the transaction request with the customer’s bank account number to the PayU using the Collect Payment (**\_payment**) API. For more information, refer to <a href="ref:_payment_merchant_hosted" target="_blank"> Collect Payment API - Merchant Hosted Checkout</a>.
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 ### Request parameters
 
@@ -81,7 +81,7 @@ With the following additional parameters, make the transaction request with the 
         This is a JSON format text and there should be key named beneficiaryAccountNumber with account number as value and ifscCode with customer IFSC code as value.
       </td>
       <td>
-        {"beneficiaryAccountNumber":"6612262***5|323132312***3123",\
+        \{"beneficiaryAccountNumber":"6612262***5|323132312***3123",\
         "ifscCode":"KKBK0006749|HDFC000231|SBIN213213213"}
       </td>
     </tr>
