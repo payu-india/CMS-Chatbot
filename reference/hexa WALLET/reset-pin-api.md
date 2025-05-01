@@ -18,7 +18,7 @@ The **Reset PIN** API is called by the client if a cardholder forgot his existin
 
 ## Request parameters
 
-<WalletHeader />
+`<WalletHeader />`
 
 ### Body
 
@@ -268,7 +268,7 @@ The **Reset PIN** API is called by the client if a cardholder forgot his existin
 
     <tr>
       <td>
-        <h3>Decrypted\</h3>
+        <h3>Decrypted</h3>
       </td>
 
       <td>
