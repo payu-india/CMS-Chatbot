@@ -19,8 +19,8 @@ The **Validate Auth Code and Client** API is used for validating auth code and c
 
 |                |                                |
 | :------------- | :----------------------------- |
-| **Test**       | <https://uat-accounts.payu.in> |
-| **Production** | <https://accounts.payu.in>     |
+| **Test**       | \<https://uat-accounts.payu.in> |
+| **Production** | \<https://accounts.payu.in>     |
 
 > 📘 Notes:
 > 
