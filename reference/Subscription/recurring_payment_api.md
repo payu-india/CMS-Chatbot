@@ -48,8 +48,8 @@ All successful registration transactions are charged over the recurring interfac
 
 |                        |                                  |
 | :--------------------- | :------------------------------- |
-| Production Environment | <https://info.payu.in/merchant/> |
-| Test Environment       | <https://test.payu.in/merchant/> |
+| Production Environment | \<https://info.payu.in/merchant/> |
+| Test Environment       | \<https://test.payu.in/merchant/> |
 
 <details>
   <summary>Sample request</summary>
@@ -173,25 +173,39 @@ To capture the final status of “pending” transaction to either “captured�
 <details>
   <summary>Reference information</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Reference",
-    "0-0": "&lt;&lt;glossary:key&gt;&gt;",
-    "0-1": "For more information on how to generate the Key and Salt, refer to any of the following:  \n  \n- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)\n- **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)",
-    "1-0": "&lt;&lt;glossary:hash&gt;&gt;",
-    "1-1": "Hash logic for this API is:  \nsha512(key\\|command\\|var1\\|salt)sha512\n",
-    "2-0": "var1",
-    "2-1": "For JSON fields description, refer to [Additional Info. for Recurring Payment APIs](ref:additional-info-for-recurring-payment-apis)"
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:key&gt;&gt;</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>For more information on how to generate the Key and Salt, refer to any of the following:  </p>
+<ul>
+<li><strong>Production</strong>: <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
+<li><strong>Test</strong>: <a href="doc:generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:hash&gt;&gt;</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Hash logic for this API is:<br>sha512(key|command|var1|salt)sha512</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>For JSON fields description, refer to <a href="ref:additional-info-for-recurring-payment-apis">Additional Info. for Recurring Payment APIs</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 </details>
