@@ -27,67 +27,118 @@ HTTP Method: **GET**
 
 ## Request headers
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "mid  \n**mandatory**",
-    "0-1": "`String` This contains the merchant identifier.",
-    "1-0": "Authorization  \n**mandatory**",
-    "1-1": "Bearer `String` This contains the client\\_token. For getting a token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links) ."
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>mid<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This contains the merchant identifier.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer <code>String</code> This contains the client_token. For getting a token, refer to <a href="ref:get-token-api-payment-links">Get Token API - Payment Links</a> .</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Query parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameters**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "pageOffset",
-    "0-1": "The parameter needs to include the page offset in terms of the rows.",
-    "0-2": "2",
-    "1-0": "pageSize",
-    "1-1": "The parameter needs to include the number of rows to be displayed per page in the response.",
-    "1-2": "20",
-    "2-0": "orderBy",
-    "2-1": "This parameter can contain any of the following column names by which the rows in the API response are sorted:  \n**addedOn**",
-    "2-2": "addedOn",
-    "3-0": "order",
-    "3-1": "This parameter can contain any of the following values:  \n  \n- **asc**-The payment links are arranged in ascending order in the API response.\n- **des**-The payment links are arranged in descending order in the API response.",
-    "3-2": "asc",
-    "4-0": "dateFrom`\n`**mandatory**",
-    "4-1": "`String`This parameter must contain the date from which the payment links are required. This must be in \"yyyy-MM-dd\" format.",
-    "4-2": "2022-01-22",
-    "5-0": "searchText",
-    "5-1": "`String` This parameter contains the description of payment link that must be searched for.",
-    "5-2": "Insurance Premium Payment",
-    "6-0": "dateTo`\n`**mandatory**",
-    "6-1": "`String`This parameter must contain the date to which the payment links are required. This must be in \"yyyy-MM-dd\" format.",
-    "6-2": "2022-01-28",
-    "7-0": "active",
-    "7-1": "`String`This parameter can include any of the following status as the value:  \n    - active  \n  \n- inactive\n- expired",
-    "7-2": "active"
-  },
-  "cols": 3,
-  "rows": 8,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pageOffset</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The parameter needs to include the page offset in terms of the rows.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pageSize</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The parameter needs to include the number of rows to be displayed per page in the response.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>20</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>orderBy</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter can contain any of the following column names by which the rows in the API response are sorted:<br><strong>addedOn</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>addedOn</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>order</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter can contain any of the following values:  </p>
+<ul>
+<li><strong>asc</strong>-The payment links are arranged in ascending order in the API response.</li>
+<li><strong>des</strong>-The payment links are arranged in descending order in the API response.</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>asc</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>dateFrom<code> </code><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain the date from which the payment links are required. This must be in &quot;yyyy-MM-dd&quot; format.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2022-01-22</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>searchText</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the description of payment link that must be searched for.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Insurance Premium Payment</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>dateTo<code> </code><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain the date to which the payment links are required. This must be in &quot;yyyy-MM-dd&quot; format.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2022-01-28</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>active</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter can include any of the following status as the value:<br>    - active  </p>
+<ul>
+<li>inactive</li>
+<li>expired</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>active</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
