@@ -508,7 +508,7 @@ Status defines acknowledgement from PayU. Possible values are:
 }
 ```
 
-<br>
+<br/>
 
 ### Mandate revoke webhook
 
@@ -530,4 +530,4 @@ Status defines acknowledgement from PayU. Possible values are:
 }
 ```
 
-<br>
+<br/>
