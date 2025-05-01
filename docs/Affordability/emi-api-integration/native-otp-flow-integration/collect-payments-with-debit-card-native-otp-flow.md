@@ -35,12 +35,12 @@ Send the transaction information to PayU through a server-to-server curl request
   <tbody>
     <tr>
       <td>s2s\_device\_info `mandatory`</td>
-      <td>`String` This parameter must have the customer agent’s device.  <br>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
+      <td>`String` This parameter must have the customer agent’s device.  <br/>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
       <td>Mozilla</td>
     </tr>
     <tr>
       <td>s2s\_client\_ip\ `mandatory`</td>
-      <td>`String` This parameter must have the source IP of the customer.  <br>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
+      <td>`String` This parameter must have the source IP of the customer.  <br/>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
       <td>10.11.101.11</td>
     </tr>
     <tr>
