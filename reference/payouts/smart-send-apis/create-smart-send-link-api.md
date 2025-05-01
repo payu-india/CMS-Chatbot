@@ -19,8 +19,8 @@ The** Create Smart Send Link** API is used to create and send the Smart Send lin
 
 |                            |                                                         |
 | -------------------------- | ------------------------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/v2/smartSend/link>    |
-| **Production Environment** | <https://payout.payumoney.com/payout/v2/smartSend/link> |
+| **Test Environment**       | \<https://uatoneapi.payu.in/payout/v2/smartSend/link>    |
+| **Production Environment** | \<https://payout.payumoney.com/payout/v2/smartSend/link> |
 
 <details>
   <summary>Sample request</summary>
