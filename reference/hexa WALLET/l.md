@@ -23,7 +23,7 @@ This API is called by the client to create a credit transaction entry into the w
 
 ## Request parameters
 
-<WalletHeader />
+`<WalletHeader />`
 
 ### Body
 
@@ -67,8 +67,8 @@ This API is called by the client to create a credit transaction entry into the w
       </td>
 
       <td>
-        `Numeric` Code to Identify load card request type.```
-
+        `Numeric` Code to Identify load card request type.
+        ```
         Character Limit - 4
         ```
       </td>
