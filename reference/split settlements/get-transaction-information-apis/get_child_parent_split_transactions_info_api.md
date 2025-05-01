@@ -28,10 +28,11 @@ The **Get Child/Parent Split Transactions** API is for getting the transaction i
 
 |                        |                                         |
 | ---------------------- | --------------------------------------- |
-| Test Environment       | <https://uat-onepayuonboarding.payu.in> |
-| Production Environment | <https://onboarding.payu.in>            |
+| Test Environment       | \<https://uat-onepayuonboarding.payu.in> |
+| Production Environment | \<https://onboarding.payu.in>            |
 
-<details> <summary>Sample request</summary>
+<details> 
+<summary>Sample request</summary>
 
 ```curl
 curl --location --request POST 'https://info.payu.in/merchant/postservice?form=2' \
@@ -48,111 +49,249 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice?form=2
 
 </details> 
 
-<details> <summary>Response parameters</summary>
+<details> 
+<summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "status",
-    "0-1": "This parameter contains the status of response. It can be any of the following:  \n  \n- **0:** Failed\n- **1:**Success",
-    "1-0": "msg",
-    "1-1": "This parameter contains the response or error message.",
-    "2-0": "Transaction\\_details",
-    "2-1": "This parameter contains the transaction details in an array format and it is displayed only when the **status** field returns the value as **1**. For more information on each field in the array, refer to the next table."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the status of response. It can be any of the following:  </p>
+<ul>
+<li><strong>0:</strong> Failed</li>
+<li>**1:**Success</li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>msg</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the response or error message.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Transaction_details</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the transaction details in an array format and it is displayed only when the <strong>status</strong> field returns the value as <strong>1</strong>. For more information on each field in the array, refer to the next table.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ### Fields in the  Transaction\_details array
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "id",
-    "0-1": "This field contains the PayU transaction ID.",
-    "1-0": "status",
-    "1-1": "This field contains the transaction status.",
-    "2-0": "key",
-    "2-1": "This field contains the parent merchant key.",
-    "3-0": "merchantname",
-    "3-1": "This field contains the parent merchant name.",
-    "4-0": "txnid",
-    "4-1": "This field contains the transaction ID.",
-    "5-0": "base\\_id",
-    "5-1": "This field contains the base PayU Transaction ID. It will be null for a parent transaction.",
-    "6-0": "firstname",
-    "6-1": "This field contains the first name of the customer who did the transaction.",
-    "7-0": "lastname",
-    "7-1": "This field contains the last name of the customer who did the transaction.",
-    "8-0": "addedon",
-    "8-1": "This field contains the transaction created date and time. Format: yyyy-mm-dd hh:ii:ss",
-    "9-0": "bank\\_name",
-    "9-1": "This field contains the bank name of payment transaction.",
-    "10-0": "payment\\_gateway",
-    "10-1": "This field contains the payment gateway used in the transaction.",
-    "11-0": "phone",
-    "11-1": "This field contains the contact number of the customer who did the transaction.",
-    "12-0": "email",
-    "12-1": "This field contains the email ID of the customer who did the transaction.",
-    "13-0": "transaction\\_fee",
-    "13-1": "This field contains the transaction fee without discount and additional charges.",
-    "14-0": "amount",
-    "14-1": "This field contains the total amount paid by customer.",
-    "15-0": "discount",
-    "15-1": "This field contains the discount or Subvention charges on the transaction.",
-    "16-0": "additional\\_charges",
-    "16-1": "This field contains the additional charges on transaction.",
-    "17-0": "productinfo",
-    "17-1": "This field contains the product information provided by merchant.",
-    "18-0": "error\\_code",
-    "18-1": "This field contains the transaction error code. For more information on errors, refer to [Error Handling](doc:error-handling)",
-    "19-0": "bank\\_ref\\_no",
-    "19-1": "This field contains the bank reference number.",
-    "20-0": "ibibo\\_code",
-    "20-1": "This field contains the IBIBO Code or bank\\_code that was submitted in transaction by the merchant to PayU.",
-    "21-0": "mode",
-    "21-1": "This field contains the Mode of transaction, such as, CC, DC, NB, EMI.",
-    "22-0": "address2",
-    "22-1": "This field contains the address of the customer.",
-    "23-0": "city",
-    "23-1": "This field contains the city of the customer.",
-    "24-0": "zipcode",
-    "24-1": "This field contains the PIN code of the customer.",
-    "25-0": "pg\\_mid",
-    "25-1": "This field contains the PG ID.",
-    "26-0": "offer\\_type",
-    "26-1": "This field contains the offer type if any offers were used.",
-    "27-0": "splitCreated",
-    "27-1": "This field contains no value or null.",
-    "28-0": "is\\_parent\\_transaction",
-    "28-1": "This field contains any of the the flag to indicate whether it is a Parent Transaction:  \n  \n- **true**; When the transaction is a parent transaction\n- **false **; When the transaction is not a parent transaction",
-    "29-0": "splitInfo",
-    "29-1": "This field contains no value or null for child transactions."
-  },
-  "cols": 2,
-  "rows": 30,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>id</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the PayU transaction ID.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the transaction status.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>key</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the parent merchant key.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantname</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the parent merchant name.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the transaction ID.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>base_id</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the base PayU Transaction ID. It will be null for a parent transaction.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>firstname</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the first name of the customer who did the transaction.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>lastname</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the last name of the customer who did the transaction.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>addedon</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the transaction created date and time. Format: yyyy-mm-dd hh:ii:ss</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>bank_name</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the bank name of payment transaction.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>payment_gateway</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the payment gateway used in the transaction.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>phone</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the contact number of the customer who did the transaction.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>email</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the email ID of the customer who did the transaction.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>transaction_fee</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the transaction fee without discount and additional charges.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the total amount paid by customer.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>discount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the discount or Subvention charges on the transaction.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>additional_charges</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the additional charges on transaction.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>productinfo</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the product information provided by merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>error_code</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the transaction error code. For more information on errors, refer to <a href="doc:error-handling">Error Handling</a></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>bank_ref_no</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the bank reference number.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>ibibo_code</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the IBIBO Code or bank_code that was submitted in transaction by the merchant to PayU.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>mode</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the Mode of transaction, such as, CC, DC, NB, EMI.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>address2</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the address of the customer.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>city</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the city of the customer.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>zipcode</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the PIN code of the customer.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pg_mid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the PG ID.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>offer_type</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the offer type if any offers were used.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>splitCreated</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains no value or null.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>is_parent_transaction</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains any of the the flag to indicate whether it is a Parent Transaction:  </p>
+<ul>
+<li><strong>true</strong>; When the transaction is a parent transaction</li>
+<li>**false **; When the transaction is not a parent transaction</li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>splitInfo</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains no value or null for child transactions.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 </details>
 
-<details> <summary>Sample response</summary>
+<details> 
+<summary>Sample response</summary>
 
 **Success scenario**
 
