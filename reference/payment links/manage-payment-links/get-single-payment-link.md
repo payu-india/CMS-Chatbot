@@ -27,46 +27,54 @@ HTTP Method: **GET**
 
 ## Request headers
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "0-0": "mid  \n**mandatory**",
-    "0-1": "`String` This contains the merchant identifier.",
-    "1-0": "Authorization  \n**mandatory**",
-    "1-1": "Bearer `String` This contains the client\\_token. For getting a token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links) ."
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>mid<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This contains the merchant identifier.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer <code>String</code> This contains the client_token. For getting a token, refer to <a href="ref:get-token-api-payment-links">Get Token API - Payment Links</a> .</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Path parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameters**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "Id  \n**mandatory**",
-    "0-1": "`String` This parameter must contain the payment link invoice number.",
-    "0-2": "INV8446471886220"
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Id<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the payment link invoice number.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>INV8446471886220</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
