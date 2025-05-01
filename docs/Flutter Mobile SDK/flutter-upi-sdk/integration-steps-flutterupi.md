@@ -30,7 +30,7 @@ The UPI SDK for Flutter is offered through Flutter` pub.dev.` To add the SDK plu
 $ flutter pub add payu_upi_flutter
 
 //Import UPI Plugin in your dart code
-import 'package:payu_upi_flutter/payu_upi_flutter.dart';
+import 'package:payu_upi_flutter/payu_upi_flutter.dart'; 
 ```
 
 > 📘 Note:
@@ -154,7 +154,7 @@ Hash is required to authenticate the request and to make sure MiTM has not happe
 >
 > `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)`
 >
-> The **beneficiarydetail** parameter value will be at last or the last value to be appended.\{"beneficiaryAccountNumber":<Account No>,"ifscCode":<IFSC>}
+> The **beneficiarydetail** parameter value will be at last or the last value to be appended.`{"beneficiaryAccountNumber":<Account No>,"ifscCode":<IFSC>}`
 
 Here is a sample hash value for your reference:
 
