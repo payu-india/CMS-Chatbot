@@ -39,8 +39,8 @@ The **Verify OTP** API involves the following:
 
 |                |                                |
 | :------------- | :----------------------------- |
-| **Test**       | <https://uat-accounts.payu.in> |
-| **Production** | <https://accounts.payu.in>     |
+| **Test**       | \<https://uat-accounts.payu.in> |
+| **Production** | \<https://accounts.payu.in>     |
 
 <details>
   <summary>Sample request</summary>
