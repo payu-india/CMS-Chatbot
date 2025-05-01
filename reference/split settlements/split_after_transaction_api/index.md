@@ -22,39 +22,56 @@ HTTP Method: **POST**
 
 |                            |                                                        |
 | :------------------------- | :----------------------------------------------------- |
-| **Test Environment**       | <https://test.payu.in/merchant/postservice.php?form=2> |
-| **Production Environment** | <https://info.payu.in/merchant/postservice.php?form=2> |
+| **Test Environment**       | \<https://test.payu.in/merchant/postservice.php?form=2> |
+| **Production Environment** | \<https://info.payu.in/merchant/postservice.php?form=2> |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Sample Value**",
-    "0-0": "key",
-    "0-1": "`string` This parameter must include the Merchant key that was provided by PayU.",
-    "0-2": "vDy3i7",
-    "1-0": "command",
-    "1-1": "`string` The parameter must contain the name of the web service.",
-    "1-2": "payment\\_split",
-    "2-0": "hash",
-    "2-1": "`String` The hash string encryption is specified in this parameter. The format of the hash is:  \n|sha512(key|command|var1|salt)  \nWhere, var1 contains the fields as described in the var1 description.",
-    "2-2": " ",
-    "3-0": "var1",
-    "3-1": "`string (JSON)` This parameter is in a JSON format and fields included in the JSON format are explained the [JSON request structure table](#json-request-structure).",
-    "3-2": "For an example, refer the [Request Structure](#request-structure-for-var1-to-be-included-in--payment_split-api) subsection."
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Sample Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>key</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> This parameter must include the Merchant key that was provided by PayU.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>vDy3i7</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>command</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The parameter must contain the name of the web service.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>payment_split</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The hash string encryption is specified in this parameter. The format of the hash is:<br>|sha512(key|command|var1|salt)<br>Where, var1 contains the fields as described in the var1 description.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string (JSON)</code> This parameter is in a JSON format and fields included in the JSON format are explained the <a href="#json-request-structure">JSON request structure table</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>For an example, refer the <a href="#request-structure-for-var1-to-be-included-in--payment_split-api">Request Structure</a> subsection.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Request structure for var1 to be included in  payment\_split API
 
@@ -86,31 +103,48 @@ HTTP Method: **POST**
 
 The **var1** parameter is in JSON format. The fields in the JSON format are described in the following table:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "type",
-    "0-1": "The type of split is specified in this field. Use **absolute** in this field. The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator.",
-    "0-2": "absolute",
-    "1-0": "payuid",
-    "1-1": "The payment identifier provided by PayU for the transaction.",
-    "1-2": "403993715525003544",
-    "2-0": "splitInfo",
-    "2-1": "This parameter must include the list of aggregator sub transaction IDs and sub amounts as specified in the [Request Structure for var1](#request-structure-for-var1-to-be-included-in--payment_split-api) subsection:  \n  \n- **aggregatorSubTxnId**: The aggregator sub transaction ID is specified in this field.\n- **aggregatorSubAmt**: The aggregator sub amount is specified in this field.\n- **aggregatorCharges**: The aggregator charges is specified in this field.**Note**: The aggregatorCharges field can only be used by parent merchant to get the aggregator commission.",
-    "2-2": "Refer to [Request Structure for var1](#request-structure-for-var1-to-be-included-in--payment_split-api) subsection."
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>type</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The type of split is specified in this field. Use <strong>absolute</strong> in this field. The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>absolute</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>payuid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The payment identifier provided by PayU for the transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>403993715525003544</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>splitInfo</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must include the list of aggregator sub transaction IDs and sub amounts as specified in the <a href="#request-structure-for-var1-to-be-included-in--payment_split-api">Request Structure for var1</a> subsection:  </p>
+<ul>
+<li><strong>aggregatorSubTxnId</strong>: The aggregator sub transaction ID is specified in this field.</li>
+<li><strong>aggregatorSubAmt</strong>: The aggregator sub amount is specified in this field.</li>
+<li><strong>aggregatorCharges</strong>: The aggregator charges is specified in this field.<strong>Note</strong>: The aggregatorCharges field can only be used by parent merchant to get the aggregator commission.</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Refer to <a href="#request-structure-for-var1-to-be-included-in--payment_split-api">Request Structure for var1</a> subsection.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
