@@ -34,7 +34,7 @@ The **Check Mandate Status** API enables you to understand the current state of 
 
 HTTP Method: **POST**
 
-<GENERALAPIsEnvironment />
+`<GENERALAPIsEnvironment />`
 
 ## Request parameters
 
@@ -88,7 +88,7 @@ HTTP Method: **POST**
         * **requestId** (mandatory): Unique request value generated at merchant’s end to distinguish independent request call.
       </td>
       <td>
-        {"authPayuId":"403993715532526870",
+        \{"authPayuId":"403993715532526870",
         "requestId":"403993715532526858_check_3"}
       </td>
     </tr>
@@ -327,4 +327,4 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 }
 ```
 
-If you need any further assistance, feel free to ask!
+If you need any further assistance, feel free to ask! 
