@@ -18,39 +18,64 @@ HTTP Method: **GET**
 
 |                            |                                         |
 | -------------------------- | --------------------------------------- |
-| **Test Environment**       | <https://uat-onepayuonboarding.payu.in> |
-| **Production Environment** | <https://onboarding.payu.in>            |
+| **Test Environment**       | \<https://uat-onepayuonboarding.payu.in> |
+| **Production Environment** | \<https://onboarding.payu.in>            |
 
 ## Post parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "Parameter Type",
-    "h-2": "**Description**",
-    "0-0": "parent_merchant_uuid",
-    "0-1": "Path",
-    "0-2": "This parameter must contain the parent merchant MID.",
-    "1-0": "Authorization  \nMerchant access token or client token with the scope as**fetch\\_child\\_merchants** from Hub.",
-    "1-1": "Query",
-    "1-2": "Bearer {{access\\_token}}",
-    "2-0": "search_term",
-    "2-1": "Query",
-    "2-2": "This parameter must contain any of the following search term:  \n  \n- identifier\n- phone\n- email\n- name  \n  brand_name",
-    "3-0": "search_text",
-    "3-1": "Query",
-    "3-2": "- This parameter must contain the search text."
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    "left",
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter Type</th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>parent_merchant_uuid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Path</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must contain the parent merchant MID.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br>Merchant access token or client token with the scope as<strong>fetch_child_merchants</strong> from Hub.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Query</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer {{access_token}}</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>search_term</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Query</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must contain any of the following search term:  </p>
+<ul>
+<li>identifier</li>
+<li>phone</li>
+<li>email</li>
+<li>name<br>brand_name</li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>search_text</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Query</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><ul>
+<li>This parameter must contain the search text.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ## Sample request
@@ -71,124 +96,334 @@ curl --location -g --request GET '{{onboarding_base_url}}/api/v3/product_account
 
 ## Response Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "id",
-    "0-1": "The ID of the child merchant",
-    "1-0": "mid",
-    "1-1": "The mid of the child merchant",
-    "2-0": "uuid",
-    "2-1": "The uuid (Universally unique identifier) of the child merchant",
-    "3-0": "product",
-    "3-1": "This parameter must be passed with the following value: \"PayUBiz\"",
-    "4-0": "device",
-    "4-1": "The app device used by child merchant to sell the products.",
-    "5-0": "business\\_type",
-    "5-1": "Business type of the child merchant.",
-    "6-0": "quality\\_score",
-    "6-1": "Quality score of the child merchant based on the verification by PayU.",
-    "7-0": "display\\_name",
-    "7-1": "The display name of the child merchant",
-    "8-0": "account\\_id",
-    "8-1": "Account ID of the child merchant.",
-    "9-0": "business\\_entity\\_id",
-    "9-1": "The business entity ID of the merchant. The business entity ID and corresponding business entity is listed in the [Partner Category List](ref:partner-category-list) table of this section.",
-    "10-0": "business\\_category\\_id",
-    "10-1": "The business category ID of the merchant.",
-    "11-0": "business\\_sub\\_category\\_id",
-    "11-1": "The business sub category ID of the merchant.",
-    "12-0": "business\\_name",
-    "12-1": "Business name of the merchant, similar to PAN.",
-    "13-0": "pancard\\_name",
-    "13-1": "Name of the child merchant as in the PAN card.",
-    "14-0": "pancard\\_number",
-    "14-1": "PAN card number of the child merchant.",
-    "15-0": "website\\_url",
-    "15-1": "Website URL of the child merchant",
-    "16-0": "ios\\_url",
-    "16-1": "IOS app URL of the merchant.",
-    "17-0": "business\\_origin",
-    "17-1": "Business origin of the merchant.,",
-    "18-0": "gst\\_number",
-    "18-1": "GST number of the merchant registered with the Sales tax department.",
-    "19-0": "integration\\_type",
-    "19-1": "The integration type of the merchant. It can be any of the following:  \n  \n- Tools\n- ThirdParty",
-    "20-0": "routing\\_mid",
-    "20-1": "Routing MID is displayed in this parameter",
-    "21-0": "average\\_delivery\\_time",
-    "21-1": "Average delivery time of the merchant",
-    "22-0": "downjones\\_check",
-    "22-1": "Downjones check details by PayU",
-    "23-0": "aggregator\\_type",
-    "23-1": "Aggregator type for the child merchant",
-    "24-0": "monthly\\_expected\\_volume",
-    "24-1": "Monthly expected volume of the child merchant.",
-    "25-0": "campaign\\_name",
-    "25-1": "Campaign name through which the child merchant joined.",
-    "26-0": "campaign\\_medium",
-    "26-1": "Campaign medium through which the child merchant joined.",
-    "27-0": "campaign\\_source",
-    "27-1": "Campaign source through which the child merchant joined.",
-    "28-0": "campaign\\_term",
-    "28-1": "Campaign period of the campaign through which the child merchant joined.",
-    "29-0": "partner\\_uuid",
-    "29-1": "Parent partner UUID of the child merchant",
-    "30-0": "created\\_at",
-    "30-1": "Child merchant creation timestamp",
-    "31-0": "updated\\_at",
-    "31-1": "Child merchant details last updated time stamp.",
-    "32-0": "admin\\_user\\_id",
-    "32-1": "Admin user ID of the child merchant.",
-    "33-0": "email",
-    "33-1": "The child merchant email.",
-    "34-0": "mobile",
-    "34-1": "Mobile number of the child merchant",
-    "35-0": "terms\\_and\\_condition\\_accepted\\_at",
-    "35-1": "Timestamp when the Terms and Conditions was accepted by the child merchant.",
-    "36-0": "website\\_approval\\_statu",
-    "36-1": "Website approval status of the child merchant",
-    "37-0": "sub\\_source",
-    "37-1": "Sub source of the child merchant.",
-    "38-0": "account\\_uuid",
-    "38-1": "Account UUID of the child merchant.",
-    "39-0": "pan\\_verification\\_status",
-    "39-1": "PAN card verification status of the child merchant.",
-    "40-0": "website\\_remarks",
-    "40-1": "Website verification remarks by PayU.",
-    "41-0": "settlement\\_status",
-    "41-1": "Last settlement status of the child merchant.",
-    "42-0": "source\\_details",
-    "42-1": "Source details of the child merchant.",
-    "43-0": "merchant\\_vertical",
-    "43-1": "Child merchant business vertical.",
-    "44-0": "notification\\_email",
-    "44-1": "Email ID of the child merchant to which the notifications need to be sent by PayU",
-    "45-0": "bank\\_update\\_attempt\\_count",
-    "45-1": "Was the bank update attempt was successful by PayU",
-    "46-0": "partner\\_source",
-    "46-1": "Partner source of the child merchant",
-    "47-0": "integration\\_status",
-    "47-1": "Integration status of the child merchant",
-    "48-0": "merchant\\_type",
-    "48-1": "Merchant type will have the value as \"Aggregator.\"",
-    "49-0": "child\\_aggregator",
-    "49-1": "Child aggregator if any of the current child merchant.",
-    "50-0": "shop\\_number",
-    "50-1": "Shop telephone number of the child merchant.",
-    "51-0": "area\\_code",
-    "51-1": "Area code of the child merchant."
-  },
-  "cols": 2,
-  "rows": 52,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>id</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The ID of the child merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>mid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The mid of the child merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>uuid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The uuid (Universally unique identifier) of the child merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>product</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must be passed with the following value: &quot;PayUBiz&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>device</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The app device used by child merchant to sell the products.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>business_type</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Business type of the child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>quality_score</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Quality score of the child merchant based on the verification by PayU.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>display_name</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The display name of the child merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>account_id</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Account ID of the child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>business_entity_id</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business entity ID of the merchant. The business entity ID and corresponding business entity is listed in the <a href="ref:partner-category-list">Partner Category List</a> table of this section.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>business_category_id</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business category ID of the merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>business_sub_category_id</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business sub category ID of the merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>business_name</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Business name of the merchant, similar to PAN.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pancard_name</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Name of the child merchant as in the PAN card.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pancard_number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>PAN card number of the child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>website_url</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Website URL of the child merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>ios_url</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>IOS app URL of the merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>business_origin</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Business origin of the merchant.,</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>gst_number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>GST number of the merchant registered with the Sales tax department.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>integration_type</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The integration type of the merchant. It can be any of the following:  </p>
+<ul>
+<li>Tools</li>
+<li>ThirdParty</li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>routing_mid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Routing MID is displayed in this parameter</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>average_delivery_time</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Average delivery time of the merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>downjones_check</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Downjones check details by PayU</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>aggregator_type</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Aggregator type for the child merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>monthly_expected_volume</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Monthly expected volume of the child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>campaign_name</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Campaign name through which the child merchant joined.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>campaign_medium</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Campaign medium through which the child merchant joined.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>campaign_source</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Campaign source through which the child merchant joined.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>campaign_term</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Campaign period of the campaign through which the child merchant joined.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>partner_uuid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Parent partner UUID of the child merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>created_at</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Child merchant creation timestamp</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>updated_at</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Child merchant details last updated time stamp.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>admin_user_id</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Admin user ID of the child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>email</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The child merchant email.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>mobile</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Mobile number of the child merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>terms_and_condition_accepted_at</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Timestamp when the Terms and Conditions was accepted by the child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>website_approval_statu</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Website approval status of the child merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>sub_source</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Sub source of the child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>account_uuid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Account UUID of the child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pan_verification_status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>PAN card verification status of the child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>website_remarks</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Website verification remarks by PayU.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>settlement_status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Last settlement status of the child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>source_details</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Source details of the child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchant_vertical</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Child merchant business vertical.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>notification_email</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Email ID of the child merchant to which the notifications need to be sent by PayU</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>bank_update_attempt_count</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Was the bank update attempt was successful by PayU</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>partner_source</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Partner source of the child merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>integration_status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Integration status of the child merchant</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchant_type</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Merchant type will have the value as &quot;Aggregator.&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>child_aggregator</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Child aggregator if any of the current child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>shop_number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Shop telephone number of the child merchant.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>area_code</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Area code of the child merchant.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ## Sample Response
