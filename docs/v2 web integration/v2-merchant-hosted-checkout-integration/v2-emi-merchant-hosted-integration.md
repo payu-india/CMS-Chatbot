@@ -27,8 +27,8 @@ You can collect payments from customers with leading wallets using the **v2/paym
 
 |                            |                                       |
 | :------------------------- | :------------------------------------ |
-| **Test Environment**       | <https://apitest.payu.in/v2/payments> |
-| **Production Environment** | <https://api.payu.in/v2/payments>     |
+| **Test Environment**       | \<https://apitest.payu.in/v2/payments> |
+| **Production Environment** | \<https://api.payu.in/v2/payments>     |
 
 ### Request header
 
@@ -100,140 +100,250 @@ return true;
 
 ### Request body
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "accountId  \n `mandatory`",
-    "0-1": "`String` The merchant key provided by PayU during onboarding.",
-    "0-2": "MERCHANT123",
-    "1-0": "referenceId  \n `mandatory`",
-    "1-1": "`String` Reference ID for transaction tracking and this must be unique for every transaction.",
-    "1-2": "REF123456",
-    "2-0": "amount  \n `optional`",
-    "2-1": "`String` Amount of the transaction.  \n**Note**: This value will not be considered as the transaction. Only the details in the `order.paymentChargeSpecificationparameter.price`field will be considered.",
-    "2-2": "1000",
-    "3-0": "currency  \n `mandatory`",
-    "3-1": "`String` Currency of the transaction. By default, `INR` is posted.",
-    "3-2": "INR",
-    "4-0": "paymentSource`\noptional`",
-    "4-1": "`String`Contains the payment source.",
-    "4-2": "WEB",
-    "5-0": "paymentMethod  \n `mandatory`",
-    "5-1": "`Object` Details about the payment method used. For more information, refer to [paymentMethod object fields description](#paymentmethod-object-fields-description).",
-    "5-2": " {  \n        \"name\": \"NetBanking\",\t  \n        \"bankCode\": \"TESTNB\"  \n    }",
-    "6-0": "order  \n `mandatory`",
-    "6-1": "`Object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to [order object fields description](#order-object-fields-description)",
-    "6-2": "",
-    "7-0": "additionalInfo  \n `mandatory`",
-    "7-1": "`Object` Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to [additionalinfo object fields description](#additionalInfo-object-fields-description)",
-    "7-2": "",
-    "8-0": "callBackActions  \n `mandatory`",
-    "8-1": "`Object` Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to [callbackActions object fields description](#callbackactions-object-fields-description)",
-    "8-2": " ",
-    "9-0": "billingDetails  \n`mandatory`",
-    "9-1": "`Object` Billing details of the customer including name, address, phone number, email, etc. For more information, refer to [billingDetails object field descriptions](#billingdetails-object-field-descriptions).",
-    "9-2": ""
-  },
-  "cols": 3,
-  "rows": 10,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Reference ID for transaction tracking and this must be unique for every transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br> <code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the <code>order.paymentChargeSpecificationparameter.price</code>field will be considered.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Currency of the transaction. By default, <code>INR</code> is posted.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>INR</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentSource<code> optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Contains the payment source.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>WEB</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For more information, refer to <a href="#paymentmethod-object-fields-description">paymentMethod object fields description</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> {<br>        &quot;name&quot;: &quot;NetBanking&quot;,	<br>        &quot;bankCode&quot;: &quot;TESTNB&quot;<br>    }</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to <a href="#additionalInfo-object-fields-description">additionalinfo object fields description</a></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to <a href="#callbackactions-object-fields-description">callbackActions object fields description</a></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="#billingdetails-object-field-descriptions">billingDetails object field descriptions</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 #### paymentMethod object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "name  \n `mandatory`",
-    "0-1": "`String` This field must contain the payment mode code. For more information, refer to [Payment Mode Codes](https://docs.payu.in/v1/docs/payment-mode-codes). For cards, this must contain **EMI**:",
-    "1-0": "bankCode  \n `mandatory`",
-    "1-1": "`String`This field must contain the bank code. For more information, refer to [EMI Codes](https://docs.payu.in/v1/docs/emi-codes).",
-    "2-0": "paymentCard `mandatory for EMI`",
-    "2-1": "`Object`This object will contain the physical card or saved card token details. For more information, refer to[ paymentCard object fields description](#paymentCard-object-fields-description)."
-  },
-  "cols": 2,
-  "rows": 3,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For more information, refer to <a href="https://docs.payu.in/v1/docs/payment-mode-codes">Payment Mode Codes</a>. For cards, this must contain <strong>EMI</strong>:</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the bank code. For more information, refer to <a href="https://docs.payu.in/v1/docs/emi-codes">EMI Codes</a>.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentCard <code>mandatory for EMI</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code>This object will contain the physical card or saved card token details. For more information, refer to<a href="#paymentCard-object-fields-description"> paymentCard object fields description</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ##### paymentCard object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "cardNumber  \n `mandatory for physical card`",
-    "0-1": "`String`This field must contain the card number. For validating the card number, refer to [Card Number Formats](https://docs.payu.in/v1/docs/card-number-formats).",
-    "1-0": "validThrough  \n `mandatory for physical card`",
-    "1-1": "`String`This field must contain the card expiry in MM/YYYY format.",
-    "2-0": "ownerName  \n `mandatory for physical card`",
-    "2-1": "`String`This field must contain the name of the card holder as printed on card.",
-    "3-0": "cvv  \n `mandatory for physical card`",
-    "3-1": "`String`This field must contain the CVV printed on the back of the card.  ",
-    "4-0": "tavv  \n `mandatory for saved card`",
-    "4-1": "`String`This field must contain the cryptogram of card.",
-    "5-0": "last4Digits  \n `mandatory for saved card`",
-    "5-1": "`String`This field must contain the last four digits of card.",
-    "6-0": "cardTokenType  \n `mandatory for saved card`",
-    "6-1": "`String`This field must contain the any of the following based on the:  \n  \n- PAYU\n- NETWORK\n- ISSUER\"",
-    "7-0": "cardToken  \n `mandatory for saved card`",
-    "7-1": "`String`This field must contain the card token of stored card."
-  },
-  "cols": 2,
-  "rows": 8,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>cardNumber<br> <code>mandatory for physical card</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the card number. For validating the card number, refer to <a href="https://docs.payu.in/v1/docs/card-number-formats">Card Number Formats</a>.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>validThrough<br> <code>mandatory for physical card</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the card expiry in MM/YYYY format.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>ownerName<br> <code>mandatory for physical card</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the name of the card holder as printed on card.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>cvv<br> <code>mandatory for physical card</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the CVV printed on the back of the card.  </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>tavv<br> <code>mandatory for saved card</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the cryptogram of card.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>last4Digits<br> <code>mandatory for saved card</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the last four digits of card.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>cardTokenType<br> <code>mandatory for saved card</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the any of the following based on the:  </p>
+<ul>
+<li>PAYU</li>
+<li>NETWORK</li>
+<li>ISSUER&quot;</li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>cardToken<br> <code>mandatory for saved card</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the card token of stored card.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ##### callbackActions object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "0-0": "successAction  \n `mandatory`",
-    "0-1": "`String`URL to redirect to upon successful payment.",
-    "1-0": "failureAction  \n `mandatory`",
-    "1-1": "`String`URL to redirect to if the payment is failed.",
-    "2-0": "cancelAction  \n `mandatory`",
-    "2-1": "`String`URL to redirect to if the transaction is cancelled.",
-    "3-0": "codAction  \n `optional`",
-    "3-1": "`String`URL to handle Cash on Delivery actions.",
-    "4-0": "termAction  \n `optional`",
-    "4-1": "`String`URL for completing terms and conditions actions.",
-    "5-0": "returnAction  \n `optional`",
-    "5-1": "`String`URL to return to after successful payment action is completed."
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>successAction<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to redirect to upon successful payment.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>failureAction<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to redirect to if the payment is failed.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>cancelAction<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to redirect to if the transaction is cancelled.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>codAction<br> <code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to handle Cash on Delivery actions.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>termAction<br> <code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL for completing terms and conditions actions.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>returnAction<br> <code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to return to after successful payment action is completed.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 > ❗️ Error Handling
@@ -242,46 +352,83 @@ return true;
 
 #### billingDetails object field descriptions
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "firstName  \n`mandatory`",
-    "0-1": "First name of the billing contact",
-    "0-2": "Ashish",
-    "1-0": "lastName  \n`optional`",
-    "1-1": "Last name of the billing contact",
-    "1-2": "Kumar",
-    "2-0": "phone  \n`mandatory`",
-    "2-1": "Phone number of the billing contact",
-    "2-2": "9123456789",
-    "3-0": "email  \n`mandatory`",
-    "3-1": "Email address of the billing contact",
-    "3-2": "[ashish@abc.com](mailto:ashish@abc.com)",
-    "4-0": "city  \n`optional`",
-    "4-1": "City of the billing address",
-    "4-2": "Bengaluru",
-    "5-0": "state  \n`optional`",
-    "5-1": "State of the billing address",
-    "5-2": "Karnatka",
-    "6-0": "country  \n`optional`",
-    "6-1": "Country of the billing address",
-    "6-2": "Indiia",
-    "7-0": "zipCode  \n`optional`",
-    "7-1": "Postal/Zip code of the billing address",
-    "7-2": "560071"
-  },
-  "cols": 3,
-  "rows": 8,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>firstName<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>First name of the billing contact</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Ashish</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>lastName<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Last name of the billing contact</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Kumar</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Phone number of the billing contact</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123456789</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Email address of the billing contact</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="mailto:ashish@abc.com">ashish@abc.com</a></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>city<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>City of the billing address</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bengaluru</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>state<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>State of the billing address</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Karnatka</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>country<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Country of the billing address</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Indiia</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>zipCode<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Postal/Zip code of the billing address</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>560071</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ### Sample request
