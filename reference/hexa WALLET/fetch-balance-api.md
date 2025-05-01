@@ -16,39 +16,57 @@ The **check_balance** API command is used to check the balance using the custome
 
 |                        |                                                 |
 | :--------------------- | :---------------------------------------------- |
-| Test Environment       | <https://test.payu.in/merchant/postservice.php> |
-| Production Environment | <https://info.payu.in/merchant/postservice.php> |
+| Test Environment       | \<https://test.payu.in/merchant/postservice.php> |
+| Production Environment | \<https://info.payu.in/merchant/postservice.php> |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "command  \n**mandatory**",
-    "0-1": "This parameters must contain the API command as **check\\_balance**.",
-    "0-2": "check\\_balance",
-    "1-0": "key  \n**mandatory**",
-    "1-1": "This parameter must contain your merchant key shared by PayU during onboarding.",
-    "1-2": "Your Test Key",
-    "2-0": "hash  \n**mandatory**",
-    "2-1": "This parameter contains the hash. Use the following hash generation format:\nsha512(key\\|command\\|var1\\|salt) sha512",
-    "2-2": " ",
-    "3-0": "var1  \n**mandatory**",
-    "3-1": "This parameter must be in a JSON format as described in [var1 fields description](#var1-fields-description) table.",
-    "3-2": "`{sodexoSourceId\":\"src_81e2c860-631b-4b01-aefa-19cfa9c63415\"}`"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>command<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameters must contain the API command as <strong>check_balance</strong>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>check_balance</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must contain your merchant key shared by PayU during onboarding.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Your Test Key</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the hash. Use the following hash generation format:
+sha512(key|command|var1|salt) sha512</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var1<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must be in a JSON format as described in <a href="#var1-fields-description">var1 fields description</a> table.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{sodexoSourceId&quot;:&quot;src_81e2c860-631b-4b01-aefa-19cfa9c63415&quot;}</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 > 📘 Notes:
 > 
@@ -80,31 +98,47 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of web service call. The status can be any of the following:  \n  \n- 0 - If web service call failed.\n- 1 - If web service call succeeded.",
-    "0-2": "1",
-    "1-0": "cardBalance",
-    "1-1": "This parameter returns the card balance (in rupees).",
-    "1-2": "3000.00",
-    "2-0": "cardName",
-    "2-1": "This parameter contains name of the customer as on the Sodexo card.",
-    "2-2": "test"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of web service call. The status can be any of the following:  </p>
+<ul>
+<li>0 - If web service call failed.</li>
+<li>1 - If web service call succeeded.</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>cardBalance</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the card balance (in rupees).</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>3000.00</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>cardName</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains name of the customer as on the Sodexo card.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>test</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample response
 
