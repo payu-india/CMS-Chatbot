@@ -23,31 +23,43 @@ HTTP Method: **POST**
 
 ## Header parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "Authorization`\nmandatory`",
-    "0-1": "`String`Specify the access token generated during authentication in this parameter.",
-    "0-2": "Bearer `{access_token}`",
-    "1-0": "payoutMerchantId  \n`mandatory`",
-    "1-1": "`String`Specify the merchant ID provided while onboarding for Payouts in this parameter.",
-    "1-2": "1111126",
-    "2-0": "Content-Type`\nmandatory`",
-    "2-1": "`String`Indicates the format in which the request is sent.",
-    "2-2": "application/x-www-form-urlencoded"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<code> mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Specify the access token generated during authentication in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer <code>{access_token}</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>payoutMerchantId<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Specify the merchant ID provided while onboarding for Payouts in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1111126</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Content-Type<code> mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Indicates the format in which the request is sent.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>application/x-www-form-urlencoded</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 > 📘 Note:
 > 
@@ -55,25 +67,27 @@ HTTP Method: **POST**
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameters**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "mobileNumber  \n`mandatory`",
-    "0-1": "`String`Indicates the mobile number of the beneficiary",
-    "0-2": "9999999999"
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>mobileNumber<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Indicates the mobile number of the beneficiary</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9999999999</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
@@ -88,49 +102,73 @@ curl --location --request GET 'https://test.payumoney.com/payout/payment/fetchMa
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of web service call. The status can be any of the following:  \n   -** 0** - If web service call succeeded  \n   -**  1** - If web service call failed",
-    "1-0": "msg",
-    "1-1": "This parameter returns the success or failure message.",
-    "2-0": "code",
-    "2-1": "This parameter returns the error code if the API failed to verify or invalid details.",
-    "3-0": "data",
-    "3-1": "This parameter returns the saved card details in a JSON format. For more information, refer to the next table."
-  },
-  "cols": 2,
-  "rows": 4,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of web service call. The status can be any of the following:<br>   -** 0** - If web service call succeeded<br>   -**  1** - If web service call failed</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>msg</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the success or failure message.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>code</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the error code if the API failed to verify or invalid details.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>data</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the saved card details in a JSON format. For more information, refer to the next table.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ### Description of data JSON fields
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "0-0": "result",
-    "0-1": "The version of the results displayed for this API.",
-    "1-0": "VPA ID",
-    "1-1": "This field returns the following details in an array format:  \n   - **Token**: The token for the VPA. For example, \"13e3a8caa1ede3c56a524\"  \n   - **name**: The name of the account holder.  \n    - **App_Name**: The name of the UPI provider through which the UPI is used by beneficiary. For example, Google Pay"
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The version of the results displayed for this API.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>VPA ID</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field returns the following details in an array format:  </p>
+<ul>
+<li><strong>Token</strong>: The token for the VPA. For example, &quot;13e3a8caa1ede3c56a524&quot;  </li>
+<li><strong>name</strong>: The name of the account holder.<br>- <strong>App_Name</strong>: The name of the UPI provider through which the UPI is used by beneficiary. For example, Google Pay</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample response
 
