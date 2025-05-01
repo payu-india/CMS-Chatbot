@@ -34,7 +34,7 @@ Get subscription interface returns all details about defined subscription throug
   <tbody>
     <tr>
       <td>
-        X-PayU-_<br><br>_Subscription- Signature
+        X-PayU-_<br/><br/>_Subscription- Signature
         **mandatory**
       </td>
       <td>
