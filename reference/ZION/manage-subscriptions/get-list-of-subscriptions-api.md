@@ -47,7 +47,7 @@ Signature = SHA512("merchantId:" + merchantId + "|subscriptionId:" + subscriptio
         **mandatory**
       </td>
       <td>
-        Skip is the number of subscriptions to be skip from the data-set fetched from database for given merchantId before applying the limit on it.<br><br>  <br> <br><br>It should be greater than or equal to zero.
+        Skip is the number of subscriptions to be skip from the data-set fetched from database for given merchantId before applying the limit on it.<br/><br/>  <br/> <br/><br/>It should be greater than or equal to zero.
       </td>
     </tr>
     <tr>
@@ -65,7 +65,7 @@ Signature = SHA512("merchantId:" + merchantId + "|subscriptionId:" + subscriptio
         **optional**
       </td>
       <td>
-        Subscription status having possible values as<br><br>*Defined<br>* Enabled<br>*Completed<br>* Cancelled
+        Subscription status having possible values as<br/><br/>*Defined<br/>* Enabled<br/>*Completed<br/>* Cancelled
       </td>
     </tr>
     <tr>
