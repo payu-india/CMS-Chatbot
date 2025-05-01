@@ -27,37 +27,58 @@ HTTP Method: **POST**
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "key  \n**mandatory**",
-    "0-1": "`varchar` The merchant key is included in this parameter.",
-    "0-2": "Your Test Key",
-    "1-0": "command  \n**mandatory**",
-    "1-1": "`varchar` The **release\\_settlement** must be included in this parameter",
-    "1-2": "release\\_settlement",
-    "2-0": "hash  \n**mandatory**",
-    "2-1": "`varchar` The hash string encryption is specified in this parameter.  \nThe format of the hash is:  \nstring key|command|var1|salt  \nWhere var1 is your mihpayuid",
-    "2-2": "",
-    "3-0": "var1  \n**mandatory**",
-    "3-1": "`varchar` The mihpayuId is specified in this parameter",
-    "3-2": "8000123",
-    "4-0": "var2  \n**mandatory**",
-    "4-1": "`varchar` The childMid is specified in this parameter.",
-    "4-2": "393437"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> The merchant key is included in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Your Test Key</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>command<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> The <strong>release_settlement</strong> must be included in this parameter</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>release_settlement</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> The hash string encryption is specified in this parameter.<br>The format of the hash is:<br>string key|command|var1|salt<br>Where var1 is your mihpayuid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var1<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> The mihpayuId is specified in this parameter</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>8000123</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var2<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> The childMid is specified in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>393437</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
@@ -69,24 +90,34 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "status",
-    "0-1": "The status can contain any of the following values:  \n-    Status will be 1 if API call is a success  \n-    Status will be 0 in case of failure you'll get system handled failure reasons in this case",
-    "1-0": "msg",
-    "1-1": "Message string for both success and failure cases. "
-  },
-  "cols": 2,
-  "rows": 2,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The status can contain any of the following values:  </p>
+<ul>
+<li>Status will be 1 if API call is a success  </li>
+<li>Status will be 0 in case of failure you&#39;ll get system handled failure reasons in this case</li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>msg</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Message string for both success and failure cases. </p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample Response
 
