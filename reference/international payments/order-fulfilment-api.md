@@ -18,8 +18,8 @@ Merchants need to pass details around order fulfillment by integrating the **Ord
 
 |            |                                            |
 | :--------- | :----------------------------------------- |
-| Test       | <https://apitest.payu.in/v1/order/fulfill> |
-| Production | <https://api.payu.in/v1/order/fulfill>     |
+| Test       | \<https://apitest.payu.in/v1/order/fulfill> |
+| Production | \<https://api.payu.in/v1/order/fulfill>     |
 
 **HTTP Method**: POST
 
@@ -27,31 +27,53 @@ Merchants need to pass details around order fulfillment by integrating the **Ord
 
 The request header contains the following fields:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Field**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "Date  \n**mandatory**",
-    "0-1": "The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.",
-    "0-2": "Thu, 17 Feb 2022 08:17:59 GMT",
-    "1-0": "Digest  \n**mandatory**",
-    "1-1": "Base 64 encode of (sha256 hash of the JSON data (post to server).",
-    "1-2": "`vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=`",
-    "2-0": "Authorization  \n**mandatory**",
-    "2-1": "This field is in the following format:  \n`hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4=\"`  \nWhere the above format includes the following:  \n  \n- **username**: The merchant key of the merchant.\n- **algorithm**: This must have the value as **hmac-sha256** that is used for this API\n- **headers**: This must have the value as **date digest**\n- **signature**: This must contain the hmacsha256 of (signing\\_string, merchant\\_secret), where:\n  - **signing\\_string**: This is in the \"**Date**\"+\"\\\\n\"+\"**Digest**\" format. Here, the Date and Digest is the same values in the fields listed in this table For example, \"Thu, 17 Feb 2022 08:17:59 GMT\"\"\\\\n\"+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“\n  - **merchant\\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)",
-    "2-2": " hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=\""
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Date<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Thu, 17 Feb 2022 08:17:59 GMT</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Digest<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Base 64 encode of (sha256 hash of the JSON data (post to server).</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field is in the following format:<br><code>hmac username=&quot;smsplus&quot;, algorithm=&quot;hmac-sha256&quot;, headers=&quot;date digest&quot;, signature=&quot;CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4=&quot;</code><br>Where the above format includes the following:  </p>
+<ul>
+<li><strong>username</strong>: The merchant key of the merchant.</li>
+<li><strong>algorithm</strong>: This must have the value as <strong>hmac-sha256</strong> that is used for this API</li>
+<li><strong>headers</strong>: This must have the value as <strong>date digest</strong></li>
+<li><strong>signature</strong>: This must contain the hmacsha256 of (signing_string, merchant_secret), where:<ul>
+<li><strong>signing_string</strong>: This is in the &quot;<strong>Date</strong>&quot;+&quot;\n&quot;+&quot;<strong>Digest</strong>&quot; format. Here, the Date and Digest is the same values in the fields listed in this table For example, &quot;Thu, 17 Feb 2022 08:17:59 GMT&quot;&quot;\n&quot;+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“</li>
+<li><strong>merchant_secret</strong>: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt on PayU Dashboard</a></li>
+</ul>
+</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> hmac username=&quot;smsplus&quot;, algorithm=&quot;hmac-sha256&quot;, headers=&quot;date digest&quot;, signature=&quot;zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=&quot;</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 The following sample Java code contains the logic used to encrypt as described in the above table:
@@ -117,66 +139,99 @@ public class HmacAuth {
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": " **sample**",
-    "0-0": "id  \n`mandatory`",
-    "0-1": "_String_ This parameter must contain the PayU ID of order.",
-    "0-2": "12345",
-    "1-0": "fulfillments  \n`mandatory`",
-    "1-1": "_Object_ This parameter must contain the nested object containing fulfillment details for order as described in the [fulfillments object fields description](#fulfillments-object-fields-description).",
-    "1-2": ""
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"> <strong>sample</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>id<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><em>String</em> This parameter must contain the PayU ID of order.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>12345</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>fulfillments<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><em>Object</em> This parameter must contain the nested object containing fulfillment details for order as described in the <a href="#fulfillments-object-fields-description">fulfillments object fields description</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ### fulfillments object fields description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": " **sample**",
-    "0-0": "fulfillment\\_id  \n`mandatory`",
-    "0-1": "_String_ This parameter must contain the unique ID for fulfilment.",
-    "0-2": "COC78FRQ7DR",
-    "1-0": "created\\_at  \n`mandatory`",
-    "1-1": "_String_ This parameter must contain the Timestamp when fulfilment is created.",
-    "1-2": "2021-08-05T09:12:25.877Z",
-    "2-0": "status  \n`mandatory`",
-    "2-1": "_String_ This parameter must contain the status of fulfilment.",
-    "2-2": "success/cancelled/error",
-    "3-0": "tracking\\_company  \n`mandatory`",
-    "3-1": "_String_ This parameter must contain the logistics partner for fulfilment.",
-    "3-2": "fedex",
-    "4-0": "tracking\\_number  \n`mandatory`",
-    "4-1": "_String_ This parameter must contain the tracking number for order",
-    "4-2": "abc123",
-    "5-0": "tracking\\_urls  \n`mandatory`",
-    "5-1": "_String_ This parameter must contain the tracking URL",
-    "5-2": "<http://fedex.com/track?q=abc123>"
-  },
-  "cols": 3,
-  "rows": 6,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"> <strong>sample</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>fulfillment_id<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><em>String</em> This parameter must contain the unique ID for fulfilment.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>COC78FRQ7DR</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>created_at<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><em>String</em> This parameter must contain the Timestamp when fulfilment is created.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2021-08-05T09:12:25.877Z</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><em>String</em> This parameter must contain the status of fulfilment.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>success/cancelled/error</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>tracking_company<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><em>String</em> This parameter must contain the logistics partner for fulfilment.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>fedex</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>tracking_number<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><em>String</em> This parameter must contain the tracking number for order</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>abc123</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>tracking_urls<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><em>String</em> This parameter must contain the tracking URL</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="http://fedex.com/track?q=abc123">http://fedex.com/track?q=abc123</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ## Sample request
