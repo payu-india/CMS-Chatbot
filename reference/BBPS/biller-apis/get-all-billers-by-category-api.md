@@ -15,13 +15,14 @@ next:
 ---
 The **Get All Billers by Category** API fetches all the billers from PayU based on the biller category name passed in the request.
 
-<BBPSEnvironment />
+`<BBPSEnvironment />`
 
 > 📘 Note:
 >
 > Send the scope of the Get Token API as **read\_billers** to obtain the access\_token for this request. For more information refer to [Get Token API - BBPS](ref:get-token-api-bbps).
 
-<details><summary>Sample request</summary>
+<details>
+<summary>Sample request</summary>
 
 ```
 curl --location --request GET 'https://<hostName>/payu-nbc/v1/nbc/getBillerByBillerCategory?billerCategoryName=&agentId=&pageNumber=&pageSize=' \
@@ -31,7 +32,8 @@ curl --location --request GET 'https://<hostName>/payu-nbc/v1/nbc/getBillerByBil
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+<summary>Response parameters</summary>
 
 <Table>
   <thead>
@@ -250,7 +252,8 @@ curl --location --request GET 'https://<hostName>/payu-nbc/v1/nbc/getBillerByBil
 
 </details>
 
-<details><summary>Sample response</summary>
+<details>
+<summary>Sample response</summary>
 
 ### Success scenario
 
