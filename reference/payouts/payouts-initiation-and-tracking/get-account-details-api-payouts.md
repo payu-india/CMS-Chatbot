@@ -19,8 +19,8 @@ The **getAccountDetail** API returns complete account details of the merchant’
 
 |                            |                                                                 |
 | -------------------------- | --------------------------------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/merchant/getAccountDetail>    |
-| **Production Environment** | <https://payout.payumoney.com/payout/merchant/getAccountDetail> |
+| **Test Environment**       | \<https://uatoneapi.payu.in/payout/merchant/getAccountDetail>    |
+| **Production Environment** | \<https://payout.payumoney.com/payout/merchant/getAccountDetail> |
 
 <details>
   <summary>Sample request</summary>
@@ -64,46 +64,100 @@ curl -X GET \
 <details>
   <summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "Status",
-    "0-1": "Indicates any of the following API status codes as:  \n0: Success  \n1: Failure",
-    "1-0": "msg",
-    "1-1": "Displays the API response message in this parameter.",
-    "2-0": "code",
-    "2-1": "Displays the error code in case of any error in this field. For the list of error codes, refer to [Error Codes](ref:error-codes-for-payouts).",
-    "3-0": "data.payoutMerchantId",
-    "3-1": "Displays the unique Payouts Merchant ID in this field.",
-    "4-0": "data.uuid",
-    "4-1": "Displays the unique User ID of user in this field.",
-    "5-0": "data.virtualAccountNumber",
-    "5-1": "Displays the virtual account number of merchant in this field. This is used for prefunding the merchant payout account",
-    "6-0": "data.ifsc",
-    "6-1": "Displays the IFSC Code of the bank account in this field.",
-    "7-0": "data.type",
-    "7-1": "Displays the type of the bank account in this field.",
-    "8-0": "data.transferableAmount",
-    "8-1": "Displays the the amount or limit set for transfer from futuristic payments in this field.",
-    "9-0": "data.balance",
-    "9-1": "Displays the current balance of merchant’s Payout account in this field.",
-    "10-0": "data.lowBalance",
-    "10-1": "Displays any of the following flag in this field:  \n  \n- **True**: Payout Account holds low balance to process next transfer request\n- **False**: Payout Account holds enough balance to process next transfer request",
-    "11-0": "data.clientId",
-    "11-1": "Displays the public client ID for generating access token in this field.",
-    "12-0": "data.transitAccountNumber",
-    "12-1": "Displays the transit account number in this field."
-  },
-  "cols": 2,
-  "rows": 13,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Indicates any of the following API status codes as:<br>0: Success<br>1: Failure</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>msg</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Displays the API response message in this parameter.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>code</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Displays the error code in case of any error in this field. For the list of error codes, refer to <a href="ref:error-codes-for-payouts">Error Codes</a>.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>data.payoutMerchantId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Displays the unique Payouts Merchant ID in this field.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>data.uuid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Displays the unique User ID of user in this field.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>data.virtualAccountNumber</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Displays the virtual account number of merchant in this field. This is used for prefunding the merchant payout account</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>data.ifsc</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Displays the IFSC Code of the bank account in this field.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>data.type</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Displays the type of the bank account in this field.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>data.transferableAmount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Displays the the amount or limit set for transfer from futuristic payments in this field.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>data.balance</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Displays the current balance of merchant’s Payout account in this field.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>data.lowBalance</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Displays any of the following flag in this field:  </p>
+<ul>
+<li><strong>True</strong>: Payout Account holds low balance to process next transfer request</li>
+<li><strong>False</strong>: Payout Account holds enough balance to process next transfer request</li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>data.clientId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Displays the public client ID for generating access token in this field.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>data.transitAccountNumber</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Displays the transit account number in this field.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 </details>
 
