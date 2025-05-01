@@ -19,8 +19,8 @@ Transactions go into the queue if the merchant is not having enough balance in h
 
 |                            |                                                     |
 | -------------------------- | --------------------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/setQueueTxnFlag>  |
-| **Production Environment** | <https://www.payumoney.com//payout/setQueueTxnFlag> |
+| **Test Environment**       | \<https://uatoneapi.payu.in/payout/setQueueTxnFlag>  |
+| **Production Environment** | \<https://www.payumoney.com//payout/setQueueTxnFlag> |
 
 ## Header and request parameters
 
