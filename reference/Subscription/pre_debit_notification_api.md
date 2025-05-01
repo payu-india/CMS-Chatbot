@@ -43,10 +43,11 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
 
 |                        |                                  |
 | :--------------------- | :------------------------------- |
-| Production Environment | <https://info.payu.in/merchant/> |
-| Test Environment       | <https://test.payu.in/merchant/> |
+| Production Environment | \<https://info.payu.in/merchant/> |
+| Test Environment       | \<https://test.payu.in/merchant/> |
 
-<details><summary>Sample request</summary>
+<details>
+<summary>Sample request</summary>
 
 ```curl
 curl --location --request POST 'https://test.info.payu.in/merchant/postservice.php?form=2' \
@@ -59,7 +60,8 @@ curl --location --request POST 'https://test.info.payu.in/merchant/postservice.p
 
 </details>
 
-<details>  <summary>Sample response</summary>
+<details> 
+ <summary>Sample response</summary>
 
 **Successful sceanario**
 
@@ -100,108 +102,206 @@ Where, the **message** parameter in the response will display according to the s
 
 </details>
 
-<details><summary>Response parameters</summary>
+<details>
+<summary>Response parameters</summary>
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter Name",
-    "h-1": "Description",
-    "0-0": "status",
-    "0-1": "Status defines acknowledgment from PayU. Possible values are :  \n· **1**- This value indicates that pre-debit notification is triggered successfully for customer or deleted successfully in case of action delete.  \n  \n· **0** – This value indicates pre-debit notification failed to get triggered and merchant should retry after some time to trigger the same or failed to get deleted in case of action delete.",
-    "1-0": "action",
-    "1-1": "Always returned as “MANDATE\\_PRE\\_DEBIT” to highlight the type of action.",
-    "2-0": "message",
-    "2-1": "Description of the pre-debit notification process",
-    "3-0": "invoiceId  \n`only for cards`",
-    "3-1": "This is an acknowledgment ID that a pre debit notification has been sent for processing.",
-    "4-0": "invoiceStatus  \n`only for cards`",
-    "4-1": "This is the status of the invoice whether it has been charged for recurring or not. Values can be:  \n  \n- Paid\n- Unpaid\n- DeletedSince these statuses come from a third-party vendor, so these can vary if there is an addition of new status at the vendor end",
-    "5-0": "approvedStatus  \n`only for cards`",
-    "5-1": "This is for cases where the transaction is above 15000 as RBI guideline says approval is required through AFA (Additional Factor authentication). Values can be:  \n  \n- Pending \n- Approved\n- Not\\_applicable  \n  Since these statuses come from third-party vendors, so these can vary if there is an addition of new status at the vendor end."
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter Name</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Status defines acknowledgment from PayU. Possible values are :<br>· <strong>1</strong>- This value indicates that pre-debit notification is triggered successfully for customer or deleted successfully in case of action delete.  </p>
+<p>· <strong>0</strong> – This value indicates pre-debit notification failed to get triggered and merchant should retry after some time to trigger the same or failed to get deleted in case of action delete.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>action</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Always returned as “MANDATE_PRE_DEBIT” to highlight the type of action.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>message</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Description of the pre-debit notification process</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>invoiceId<br><code>only for cards</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is an acknowledgment ID that a pre debit notification has been sent for processing.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>invoiceStatus<br><code>only for cards</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is the status of the invoice whether it has been charged for recurring or not. Values can be:  </p>
+<ul>
+<li>Paid</li>
+<li>Unpaid</li>
+<li>DeletedSince these statuses come from a third-party vendor, so these can vary if there is an addition of new status at the vendor end</li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>approvedStatus<br><code>only for cards</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is for cases where the transaction is above 15000 as RBI guideline says approval is required through AFA (Additional Factor authentication). Values can be:  </p>
+<ul>
+<li>Pending </li>
+<li>Approved</li>
+<li>Not_applicable<br>Since these statuses come from third-party vendors, so these can vary if there is an addition of new status at the vendor end.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 </details>
 
 ## Request parameters
 
-<details><summary>Reference information</summary>
+<details>
+<summary>Reference information</summary>
 
 <KeyHashForGeneralParametersDescription />
 
 </details>
 
-<details><summary>Response Parameters var1 JSON fields description</summary>
+<details>
+<summary>Response Parameters var1 JSON fields description</summary>
 
 **Additional information**
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter Name",
-    "h-1": "Description",
-    "0-0": "status",
-    "0-1": "Status defines acknowledgment from PayU. Possible values are :  \n 1- This value indicates that pre-debit notification is triggered successfully for customer or deleted successfully in case of action delete.  \n· 0 – This value indicates pre-debit notification failed to get triggered and merchant should retry after some time to trigger the same or failed to get deleted in case of action delete.",
-    "1-0": "action",
-    "1-1": "Always returned as “MANDATE\\_PRE\\_DEBIT” to highlight the type of action.",
-    "2-0": "message",
-    "2-1": "Description of the pre-debit notification process",
-    "3-0": "invoiceId",
-    "3-1": "This is an acknowledgment ID that a pre debit notification has been sent for processing.",
-    "4-0": "invoiceStatus",
-    "4-1": "This is the status of the invoice whether it has been charged for recurring or not. Values can be:  \n  \n- Paid\n- Unpaid\n- Deleted  \n  Since these statuses come from a third-party vendor, so these can vary if there is an addition of new status at the vendor end",
-    "5-0": "approvedStatus",
-    "5-1": "This is for cases where the transaction is above 15000 as RBI guideline says approval is required through AFA (Additional Factor authentication) Values can be.:  \n  \n- Pending \n- Approved\n- Not\\_applicable  \n  Since these statuses come from third-party vendors, so these can vary if there is an addition of new status at the vendor end."
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter Name</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Status defines acknowledgment from PayU. Possible values are :<br> 1- This value indicates that pre-debit notification is triggered successfully for customer or deleted successfully in case of action delete.<br>· 0 – This value indicates pre-debit notification failed to get triggered and merchant should retry after some time to trigger the same or failed to get deleted in case of action delete.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>action</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Always returned as “MANDATE_PRE_DEBIT” to highlight the type of action.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>message</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Description of the pre-debit notification process</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>invoiceId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is an acknowledgment ID that a pre debit notification has been sent for processing.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>invoiceStatus</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is the status of the invoice whether it has been charged for recurring or not. Values can be:  </p>
+<ul>
+<li>Paid</li>
+<li>Unpaid</li>
+<li>Deleted<br>Since these statuses come from a third-party vendor, so these can vary if there is an addition of new status at the vendor end</li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>approvedStatus</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is for cases where the transaction is above 15000 as RBI guideline says approval is required through AFA (Additional Factor authentication) Values can be.:  </p>
+<ul>
+<li>Pending </li>
+<li>Approved</li>
+<li>Not_applicable<br>Since these statuses come from third-party vendors, so these can vary if there is an addition of new status at the vendor end.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 **var1 JSON fields description**
 
 The **var1** variable is in JSON format and comprises of the following parameters:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "JSON Field",
-    "h-1": "Description",
-    "0-0": "authpayuid  \n**mandatory**",
-    "0-1": "The value of mihpayid returned in the payment response of Registration transaction when transaction is successfully completed. As explained earlier in the document, you need to map this value against customer profile at his end so that correct authPayuid will be passed in the request.",
-    "1-0": "requestId  \n**mandatory**",
-    "1-1": "Unique request value generated at merchant’s end to distinguish independent request call.",
-    "2-0": "debitDate  \n**mandatory for cards and UPI**",
-    "2-1": "This parameter contains the date of debit when the recurring would be charged by merchant.  \n\\*In UPI:\\*\\*  \n  \n- For all frequencies (other than Daily and Adhoc), the merchant must send the notification 48 hours before the debit.\n- For Daily and Adhoc frequency, the merchant must send the notification 24 hours before the debit. If the notification is sent after these durations, then the debit will fail.",
-    "3-0": "invoiceDisplayNumber  \n**mandatory only for cards**",
-    "3-1": "A unique display number by merchant for every subsequent invoice/recurring charge. This can be displayed on the merchant’s panel to the customer. This same value needs to be sent in the recurring api also.",
-    "4-0": "amount  \n**mandatory for cards and UPI**",
-    "4-1": "The transaction amount which will be deducted from the customer’s payment instrument.  \n**For Cards:**  \n  \n- In case of Fixed billing plan, this amount should be same as  \n  billingAmount sent during Registration transaction.\n- In case of Adhoc billing plan, this amount should be equal to or lesser than billingAmount sent during the Registration transaction.  \n  **\\*Note**: The amount mentioned in the Pre-Debit notification API for UPI should be same as the next execution amount. Else, the next recurring execution request will fail.",
-    "5-0": "action  \n**optional**",
-    "5-1": "Any of the following actions can be performed:  \n\\* **Retrieve**: Query the status of the pre-debit notification. Only authpayuid and invoice display numbers are mandatory for this action.  \n\\* **Delete**: Delete the already generated pre debit. Only authpayuid and invoice display numbers are mandatory for this action."
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">JSON Field</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>authpayuid<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The value of mihpayid returned in the payment response of Registration transaction when transaction is successfully completed. As explained earlier in the document, you need to map this value against customer profile at his end so that correct authPayuid will be passed in the request.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>requestId<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Unique request value generated at merchant’s end to distinguish independent request call.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>debitDate<br><strong>mandatory for cards and UPI</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the date of debit when the recurring would be charged by merchant.<br>*In UPI:**  </p>
+<ul>
+<li>For all frequencies (other than Daily and Adhoc), the merchant must send the notification 48 hours before the debit.</li>
+<li>For Daily and Adhoc frequency, the merchant must send the notification 24 hours before the debit. If the notification is sent after these durations, then the debit will fail.</li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>invoiceDisplayNumber<br><strong>mandatory only for cards</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>A unique display number by merchant for every subsequent invoice/recurring charge. This can be displayed on the merchant’s panel to the customer. This same value needs to be sent in the recurring api also.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br><strong>mandatory for cards and UPI</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The transaction amount which will be deducted from the customer’s payment instrument.<br><strong>For Cards:</strong>  </p>
+<ul>
+<li>In case of Fixed billing plan, this amount should be same as<br>billingAmount sent during Registration transaction.</li>
+<li>In case of Adhoc billing plan, this amount should be equal to or lesser than billingAmount sent during the Registration transaction.<br><strong>*Note</strong>: The amount mentioned in the Pre-Debit notification API for UPI should be same as the next execution amount. Else, the next recurring execution request will fail.</li>
+</ul>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>action<br><strong>optional</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Any of the following actions can be performed:<br>* <strong>Retrieve</strong>: Query the status of the pre-debit notification. Only authpayuid and invoice display numbers are mandatory for this action.<br>* <strong>Delete</strong>: Delete the already generated pre debit. Only authpayuid and invoice display numbers are mandatory for this action.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 </details>
