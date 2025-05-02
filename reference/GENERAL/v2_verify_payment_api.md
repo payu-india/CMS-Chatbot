@@ -18,8 +18,8 @@ HTTP Method: **POST**
 
 |                        |                                       |
 | :--------------------- | :------------------------------------ |
-| Test Environment       | <https://test.payu.in/v1/transaction> |
-| Production Environment | <https://info.payu.in/v1/transaction> |
+| Test Environment       | \<https://test.payu.in/v1/transaction> |
+| Production Environment | \<https://info.payu.in/v1/transaction> |
 
 ## Request parameters
 
@@ -93,25 +93,31 @@ return true;
 
 ## Body parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "txnId  \n**mandatory**",
-    "0-1": "You need post the **referenceId** sent by the **v2/payments** API. For more information, refer to any of the following:  \n  \n- [Collect Payment API for PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)\n- [Collect Payment API for Merchant Hosted Checkout](ref:_payment_merchant_hosted)",
-    "0-2": "54dzPX68BZzE46Q2VYWw"
-  },
-  "cols": 3,
-  "rows": 1,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br><strong>mandatory</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>You need post the <strong>referenceId</strong> sent by the <strong>v2/payments</strong> API. For more information, refer to any of the following:  </p>
+<ul>
+<li><a href="ref:_payment_payu_hosted_checkout">Collect Payment API for PayU Hosted Checkout</a></li>
+<li><a href="ref:_payment_merchant_hosted">Collect Payment API for Merchant Hosted Checkout</a></li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>54dzPX68BZzE46Q2VYWw</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ## Sample request
