@@ -28,17 +28,15 @@ The Refund Transaction API (**cancel\_refund\_transaction**) can be used for the
 
 To learn more about different payment states, refer to [Payment States Explanations](https://docs.payu.in/reference/payment-state-explanations).
 
-***
-
-## API Parameters
-
 In this API:
 
 * **var1** is the Payu ID (mihpayid) of the transaction
 * **var2** should contain the Token ID (unique token from the merchant)
 * **var3** parameter should contain the amount that needs to be refunded
 
-## Sample Requests
+<br />
+
+## Sample request
 
 ### Simple sample request
 
@@ -223,8 +221,6 @@ Array
 > 📘 **Note on Error Codes**
 >
 > The error\_code value **102** should be treated as success; the rest are failures. To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
-
-***
 
 ## Request Parameters Reference
 
