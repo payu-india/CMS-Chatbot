@@ -16,18 +16,77 @@ HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                   |
-| -------------------------- | ------------------------------------------------- |
-| **Test Environment**       | https://uatoneapi.payu.in/payout/beneficiary      |
-| **Production Environment** | https://payout.payumoney.com/payout/beneficiary   |
+|                            |                                                                                                    |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Test Environment**       | [https://uatoneapi.payu.in/payout/beneficiary](https://uatoneapi.payu.in/payout/beneficiary)       |
+| **Production Environment** | [https://payout.payumoney.com/payout/beneficiary](https://payout.payumoney.com/payout/beneficiary) |
 
 ## Request header
 
-| **Parameter** | **Description** | **Example** |
-| ------------- | --------------- | ----------- |
-| Authorization<br />`mandatory` | `String` Specify the access token generated earlier in this parameter. | Bearer `{access_token}` |
-| payoutMerchantId<br />`mandatory` | `String` Specify the payout merchant id provided while onboarding or creating Payout account. | 1111126 |
-| Content-Type<br />`mandatory` | `String` Indicates the format in which the request is sent. | application/json |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Authorization
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Specify the access token generated earlier in this parameter.
+      </td>
+
+      <td>
+        Bearer `{access_token}`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        payoutMerchantId
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Specify the payout merchant id provided while onboarding or creating Payout account.
+      </td>
+
+      <td>
+        1111126
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Content-Type
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Indicates the format in which the request is sent.
+      </td>
+
+      <td>
+        application/json
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 > 📘 Note:
 >
@@ -35,14 +94,87 @@ HTTP Method: **POST**
 
 ## Request parameters
 
-| **Parameters** | **Description** |
-| -------------- | --------------- |
-| accountNo<br />`conditional` | `String` Indicates Account number of customer |
-| ifsc<br />`conditional` | `String` Indicates IFSC code of the bank account |
-| vpa<br />`conditional` | `String` Indicates UPI ID of customer<br />**Note:** Same value will be used by the merchant in the status check of transfer. |
-| name<br />`optional` | `String` Indicates of the customer |
-| email<br />`optional` | `String` Indicates Email Address of customer |
-| mobile<br />`conditional` | `String` Indicates Mobile Number of customer |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameters**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        accountNo
+        `conditional`
+      </td>
+
+      <td>
+        `String` Indicates Account number of customer
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ifsc
+        `conditional`
+      </td>
+
+      <td>
+        `String` Indicates IFSC code of the bank account
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        vpa
+        `conditional`
+      </td>
+
+      <td>
+        `String` Indicates UPI ID of customer<br />**Note:** Same value will be used by the merchant in the status check of transfer.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        name
+        `optional`
+      </td>
+
+      <td>
+        `String` Indicates of the customer
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email
+        `optional`
+      </td>
+
+      <td>
+        `String` Indicates Email Address of customer
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        mobile
+        `conditional`
+      </td>
+
+      <td>
+        `String` Indicates Mobile Number of customer
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
@@ -64,12 +196,12 @@ curl --location 'https://uatoneapi.payu.in/payout/beneficiary' \
 
 ## Response parameters
 
-| **Parameter** | **Description** |
-| ------------- | --------------- |
-| status | This parameter returns the status of web service call. The status can be any of the following:<br /><br />- **0** - If web service call succeeded<br />- **1** - If web service call failed |
-| msg | This parameter returns the success or failure message. |
-| code | This parameter returns the error code if the API failed to verify or invalid details. |
-| data | This parameter returns the saved card details in a JSON format. For more information, refer to the next table. |
+| **Parameter** | **Description**                                                                                                                                                                             |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| status        | This parameter returns the status of web service call. The status can be any of the following:<br /><br />- **0** - If web service call succeeded<br />- **1** - If web service call failed |
+| msg           | This parameter returns the success or failure message.                                                                                                                                      |
+| code          | This parameter returns the error code if the API failed to verify or invalid details.                                                                                                       |
+| data          | This parameter returns the saved card details in a JSON format. For more information, refer to the next table.                                                                              |
 
 ### Description of data JSON Fields
 
@@ -92,7 +224,7 @@ curl --location 'https://uatoneapi.payu.in/payout/beneficiary' \
 
 ## Sample response
 
-- Success scenario
+* Success scenario
 
 ```json
 { 
@@ -118,7 +250,7 @@ curl --location 'https://uatoneapi.payu.in/payout/beneficiary' \
 }
 ```
 
-- Failure scenario
+* Failure scenario
 
 ```json
 {
