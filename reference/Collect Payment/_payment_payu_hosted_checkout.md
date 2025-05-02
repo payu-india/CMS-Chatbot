@@ -45,7 +45,7 @@ The Collect Payment API (**\_payment** API) is used to collect payments for all 
 | **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
-## Sample request
+\<details>\<summary> Sample request\</summary>
 
 ```curl
 curl -X POST "https://test.payu.in/_payment" \
@@ -97,6 +97,8 @@ if (httpResponse.getEntity() != null) {
     System.out.println(html);
 }
 ```
+
+\</details>
 
 ## Sample response
 
