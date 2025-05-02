@@ -19,31 +19,43 @@ You can configure webhooks using PayU Dashboard too. For more information, check
 
 ## Request header parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "Authorization`\nmandatory`",
-    "0-1": "`String` Specify the access token generated earlier in this parameter.",
-    "0-2": "Bearer `{access_token}`",
-    "1-0": "payoutMerchantId`\nmandatory`",
-    "1-1": "`String` Specify the payout merchant id provided while onboarding or creating Payout account.",
-    "1-2": "1111126",
-    "2-0": "Content-Type  \n`mandatory`",
-    "2-1": "`String` Indicates the format in which the request is sent.",
-    "2-2": "application/json"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<code> mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Specify the access token generated earlier in this parameter.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer <code>{access_token}</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>payoutMerchantId<code> mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Specify the payout merchant id provided while onboarding or creating Payout account.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1111126</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Content-Type<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Indicates the format in which the request is sent.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>application/json</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 > 📘 Note:
 > 
