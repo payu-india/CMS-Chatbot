@@ -31,10 +31,14 @@ next:
 ---
 The **check\_action\_status** API has another usage too. For a particular PayUID, it returns any of the following the states:
 
-<RefundStates />
+To learn more about different payment states, refer to [Payment States Explanations](https://docs.payu.in/reference/payment-state-explanations).
 
-<GENERALAPIsEnvironment />
+**Environment**
 
+| Environment | URL |
+| ----------- | --- |
+| Test Environment | https://test.payu.in/merchant/postservice.php?form=2 |
+| Production Environment | https://info.payu.in/merchant/postservice?form=2 |
 ## Reference information for request parameters
 
 <Table align={["left","left"]}>
