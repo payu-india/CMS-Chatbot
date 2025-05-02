@@ -40,8 +40,6 @@ This section describes how to use the \_payment API to cancel a recurring paymen
 
 **HTTP Method**: POST
 
-<PaymentAPIEnvironment />
-
 ## Request parameters
 
 The following table describes the parameters for modifying the recurring payment details for a card.
