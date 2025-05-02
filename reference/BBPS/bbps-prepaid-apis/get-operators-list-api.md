@@ -15,7 +15,9 @@ next:
 ---
 The **Get Operator List** API gets all the available operators related to mobile prepaid recharge with basic information. There is no change in this API from v1 other than the endpoint.
 
-<BBPSEnvironment />
+|            |                                                                                                                      |
+| :--------- | :------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://bbps-sb.payu.in/payu-nbc/v1/nbc/billfetchrequest](https://bbps-sb.payu.in/payu-nbc/v1/nbc/billfetchrequest) |
 
 > 📘 Note:
 >
