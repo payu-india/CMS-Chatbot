@@ -15,9 +15,10 @@ next:
 ---
 The **Get Circle List** API gets a list of all the available circles. There is no change in this API from v1 other than the endpoint.
 
-<BBPSEnvironment />
+|            |                                                                                                                      |
+| :--------- | :------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://bbps-sb.payu.in/payu-nbc/v1/nbc/billfetchrequest](https://bbps-sb.payu.in/payu-nbc/v1/nbc/billfetchrequest) |
 
-<br />
 
 > 📘 Note:
 >
