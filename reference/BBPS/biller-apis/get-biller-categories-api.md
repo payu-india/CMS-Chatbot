@@ -13,8 +13,6 @@ metadata:
 next:
   description: ''
 ---
-# Get Biller Categories
-
 The **Get Biller Categories** API will fetch all the categories from PayU.
 
 
