@@ -621,16 +621,6 @@ mihpayid=403993715531077182&mode=CC&status=success&unmappedstatus=captured&key=J
   </tbody>
 </Table>
 
-> 📘 Notes:
->
-> To identify a particular transaction is routed to which aggregator you have to check the udf parameters of the response. The following aggregators are showing udf parameters if the transaction are routed them:
->
-> * PayU
-> * RazorPay
-> * BillDesk
-> * Pinelabs
-> * Paytm
-
 ## Request parameters
 
 <AddionalCards_paymentRequestParametersInformation />
