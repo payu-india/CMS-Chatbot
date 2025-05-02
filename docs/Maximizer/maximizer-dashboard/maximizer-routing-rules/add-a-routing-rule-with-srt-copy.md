@@ -2,7 +2,7 @@
 title: Add a Priority-Based Routing Rule
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
