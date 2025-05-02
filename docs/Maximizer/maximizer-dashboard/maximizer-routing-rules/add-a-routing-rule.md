@@ -2,7 +2,7 @@
 title: Add a SRT Routing Rule
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
