@@ -15,9 +15,9 @@ next:
 ---
 The **Bill Fetch** API will fetch data from the biller and provide responses with pending amounts and other useful information.
 
-<BBPSEnvironment />
-
-<br />
+|            |                                                                                                          |
+| :--------- | :------------------------------------------------------------------------------------------------------- |
+| Production | [https://bbps-sb.payu.in/payu-nbc/v1/nbc/billfetchrequest?](https://bbps-sb.payu.in/payu-nbc/v1/nbc/getRegions) |
 
 > 📘 Note:
 >
