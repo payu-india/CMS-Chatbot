@@ -34,7 +34,12 @@ In this API:
 * **var2** should contain the Token ID (unique token from the merchant)
 * **var3** parameter should contain the amount that needs to be refunded
 
-<br />
+**Environment**
+
+|                        |                                                                                                              |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
 ## Sample request
 
