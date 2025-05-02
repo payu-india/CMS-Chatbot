@@ -2,7 +2,7 @@
 title: Add a Percentage-Based Routing Rule
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
