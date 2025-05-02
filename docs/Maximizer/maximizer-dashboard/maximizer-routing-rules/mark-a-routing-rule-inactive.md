@@ -2,7 +2,7 @@
 title: Mark a Routing Rule Inactive
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
