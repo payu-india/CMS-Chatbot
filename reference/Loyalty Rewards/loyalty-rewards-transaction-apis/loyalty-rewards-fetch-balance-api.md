@@ -18,42 +18,61 @@ HTTP Method: **POST**
 
 |            |                                                            |
 | :--------- | :--------------------------------------------------------- |
-| Production | <https://apitest.payu.in/loyalty-points/points/v1/balance> |
+| Production | \<https://apitest.payu.in/loyalty-points/points/v1/balance> |
 |            |                                                            |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "loyaltyProvider  \n`mandatory`",
-    "0-1": "Identifier for the loyalty service provider.",
-    "0-2": "`\"LPX\"`",
-    "1-0": "orderAmount  \n`optional`",
-    "1-1": "Total monetary value of the order.",
-    "1-2": "`1000`",
-    "2-0": "",
-    "2-1": "",
-    "2-2": "",
-    "3-0": "userDetail  \n`mandatory`",
-    "3-1": "Information related to the user involved in the transaction.",
-    "3-2": "`{ \"phoneNumber\": \"8901555****\" }`",
-    "4-0": "skusDetail  \n`optional`",
-    "4-1": "Details of stock keeping units (SKUs) in the transaction. This parameter must contain the array of SKU details (skus as in example) For the description of the fields in **skus**, refer to[ skus JSON field description](skus-json-field-description).",
-    "4-2": " \"skus\": \\[  \n            {  \n                \"skuId\": \"airpod\",  \n                \"quantity\": null,  \n                \"skuAmount\": 900,  \n                \"skuOrderAmount\": 1000  \n            }  \n]"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>loyaltyProvider<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Identifier for the loyalty service provider.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>&quot;LPX&quot;</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>orderAmount<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Total monetary value of the order.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>1000</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>userDetail<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Information related to the user involved in the transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{ &quot;phoneNumber&quot;: &quot;8901555****&quot; }</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>skusDetail<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Details of stock keeping units (SKUs) in the transaction. This parameter must contain the array of SKU details (skus as in example) For the description of the fields in <strong>skus</strong>, refer to<a href="skus-json-field-description"> skus JSON field description</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> &quot;skus&quot;: [<br>            {<br>                &quot;skuId&quot;: &quot;airpod&quot;,<br>                &quot;quantity&quot;: null,<br>                &quot;skuAmount&quot;: 900,<br>                &quot;skuOrderAmount&quot;: 1000<br>            }<br>]</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ### skus JSON field description
 
