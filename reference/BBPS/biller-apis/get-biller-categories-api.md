@@ -13,13 +13,14 @@ metadata:
 next:
   description: ''
 ---
+# Get Biller Categories
+
 The **Get Biller Categories** API will fetch all the categories from PayU.
 
-<BBPSEnvironment />
 
 > 📘 Note:
 >
-> Send the scope of the GET Token API as **read\_biller\_categories** to obtain the access\_token for this request. For more information, refer to [Get Token API - BBPS](ref:get-token-api-bbps).
+> Send the scope of the GET Token API as **read_biller_categories** to obtain the access_token for this request. For more information, refer to [Get Token API - BBPS](ref:get-token-api-bbps).
 
 <details>
   <summary>Sample request</summary>
@@ -39,10 +40,10 @@ curl --location -g --request GET 'https://{{host_name}}/payu-nbc//v1/getbillerca
   <thead>
     <tr>
       <th>
-        **Field Name**
+        Field Name
       </th>
       <th>
-        **Description**
+        Description
       </th>
     </tr>
   </thead>
@@ -74,7 +75,7 @@ curl --location -g --request GET 'https://{{host_name}}/payu-nbc//v1/getbillerca
         payload
       </td>
       <td>
-        It will contain a list of biller categories. For more information, refer to the [payload](#payload) table.
+        It will contain a list of biller categories. For more information, refer to the payload table below.
       </td>
     </tr>
   </tbody>
@@ -86,19 +87,17 @@ curl --location -g --request GET 'https://{{host_name}}/payu-nbc//v1/getbillerca
   <thead>
     <tr>
       <th>
-        **Field Name**
+        Field Name
       </th>
       <th>
-        **Description**
+        Description
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>
+      <td colSpan="2">
         **Success Scenarios**
-      </td>
-      <td>
       </td>
     </tr>
     <tr>
@@ -110,10 +109,8 @@ curl --location -g --request GET 'https://{{host_name}}/payu-nbc//v1/getbillerca
       </td>
     </tr>
     <tr>
-      <td>
+      <td colSpan="2">
         **Failure Scenarios**
-      </td>
-      <td>
       </td>
     </tr>
     <tr>
@@ -123,7 +120,7 @@ curl --location -g --request GET 'https://{{host_name}}/payu-nbc//v1/getbillerca
       <td>
         For failure scenarios, This parameter contains the reference ID.  
 
-        * \*Note\*\*: In case of category fetch refId will be null.
+        **Note**: In case of category fetch refId will be null.
       </td>
     </tr>
     <tr>
@@ -195,7 +192,7 @@ curl --location -g --request GET 'https://{{host_name}}/payu-nbc//v1/getbillerca
 
 ### Success scenario
 
-```
+```json
 { 
   "code": 200, 
   "status": "SUCCESS", 
@@ -212,7 +209,7 @@ curl --location -g --request GET 'https://{{host_name}}/payu-nbc//v1/getbillerca
 
 ### Failure scenario
 
-```
+```json
 { 
   "code": 600, 
   "status": "FAILURE", 
