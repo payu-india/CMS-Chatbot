@@ -18,152 +18,31 @@ The **Cancel QR Transaction** API is used to cancel the initiated transaction wi
 
 ## Request parameters
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Sample Value
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        key
-        `mandatory`
-      </td>
-
-      <td>
-        `string` Merchant key provided by PayU.\
-        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
-
-        Production: Generate Production Merchant Key and Sat.\
-        Test: Generate Test Merchant Key and Salt.
-      </td>
-
-      <td>
-        Your Test Key
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        command\
-        `mandatory`
-      </td>
-
-      <td>
-        `string` The parameter must contain the name of the web service.
-      </td>
-
-      <td>
-        cancel\_qr\_payment
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        hash\
-        `mandatory`
-      </td>
-
-      <td>
-        `string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below: `sha512(key\|command\|var1\|salt`. sha512 is the encryption method used here.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        var1\
-        `mandatory`
-      </td>
-
-      <td>
-        json This parameter is in JSON format. For the description of fields in JSON Format, refer to the <next table.>
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameter | Description | Sample Value |
+| --------- | ----------- | ------------ |
+| key `mandatory` | `string` Merchant key provided by PayU. Reference: For more information on how to generate the Key and Salt, refer to any of the following: Production: Generate Production Merchant Key and Sat. Test: Generate Test Merchant Key and Salt. | Your Test Key |
+| command `mandatory` | `string` The parameter must contain the name of the web service. | cancel_qr_payment |
+| hash `mandatory` | `string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below: `sha512(key\|command\|var1\|salt`. sha512 is the encryption method used here. | |
+| var1 `mandatory` | json This parameter is in JSON format. For the description of fields in JSON Format, refer to the next table. | |
 
 The var1 parameter is in a JSON format and the fields are described in the following table:
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Sample
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        transactionId
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This is the transactionId with which initial transaction is initiated.
-      </td>
-
-      <td>
-        cancel1234
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        product\_type \
-        `optional`
-      </td>
-
-      <td>
-        `String` This parameter can be used to indicate the product if merchant has initiated multiple in progress transactions with same txnid.
-      </td>
-
-      <td>
-        DBQR
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Field | Description | Sample |
+| ----- | ----------- | ------ |
+| transactionId `mandatory` | `String` This is the transactionId with which initial transaction is initiated. | cancel1234 |
+| product_type `optional` | `String` This parameter can be used to indicate the product if merchant has initiated multiple in progress transactions with same txnid. | DBQR |
 
 ## Sample request
 
-```Text cURL
+```curl
 curl --location --request POST 'https://info.payu.in/merchant/postservice.php' \
 --data-urlencode 'key=J****g' \
 --data-urlencode 'command=cancel_qr_payment' \
 --data-urlencode 'hash=8bb33d0ed43485019eab261cc5f73838149e3bbc1d253e63ca829ff05975c173ec9f308bafe022605aa7fce31821ea3b18df3752accd8a7f50658a96552a0860' \
---data-urlencode 'var1={"transactionId":"",”product_type”:”DBQR”}'
+--data-urlencode 'var1={"transactionId":"","product_type":"DBQR"}'
 ```
-```Text Python
+
+```python
 import http.client
 
 conn = http.client.HTTPSConnection("info.payu.in")
@@ -174,7 +53,8 @@ res = conn.getresponse()
 data = res.read()
 print(data.decode("utf-8"))
 ```
-```Text php
+
+```php
 <?php
 require_once 'HTTP/Request2.php';
 $request = new HTTP_Request2();
@@ -187,7 +67,7 @@ $request->addPostParameter(array(
   'key' => 'J****g',
   'command' => 'cancel_qr_payment',
   'hash' => '8bb33d0ed43485019eab261cc5f73838149e3bbc1d253e63ca829ff05975c173ec9f308bafe022605aa7fce31821ea3b18df3752accd8a7f50658a96552a0860',
-  'var1' => '{"transactionId":"",”product_type”:”DBQR”}'
+  'var1' => '{"transactionId":"","product_type":"DBQR"}'
 ));
 try {
   $response = $request->send();
@@ -203,11 +83,12 @@ catch(HTTP_Request2_Exception $e) {
   echo 'Error: ' . $e->getMessage();
 }
 ```
-```Text JAVA
+
+```java
 OkHttpClient client = new OkHttpClient().newBuilder()
   .build();
 MediaType mediaType = MediaType.parse("text/plain");
-RequestBody body = RequestBody.create(mediaType, "key=J****g&command=cancel_qr_payment&hash=8bb33d0ed43485019eab261cc5f73838149e3bbc1d253e63ca829ff05975c173ec9f308bafe022605aa7fce31821ea3b18df3752accd8a7f50658a96552a0860&var1={\"transactionId\":\"\",”product_type”:”DBQR”}");
+RequestBody body = RequestBody.create(mediaType, "key=J****g&command=cancel_qr_payment&hash=8bb33d0ed43485019eab261cc5f73838149e3bbc1d253e63ca829ff05975c173ec9f308bafe022605aa7fce31821ea3b18df3752accd8a7f50658a96552a0860&var1={\"transactionId\":\"\",\"product_type\":\"DBQR\"}");
 Request request = new Request.Builder()
   .url("https://info.payu.in/merchant/postservice.php")
   .method("POST", body)
@@ -235,7 +116,7 @@ For every success response based on outputType param:
 | failed | transactionId is empty                                                                                                               | E2003      | "transactionId to be sent by the third Party Merchant (limit is 10 characters)"   |
 | failed | "1. the status of transaction with the given transactionId is not 'in progress' or there is no transaction with given transactionId" | E2019      | "transactionId to be sent by the third Party Merchant (limit is 10 characters)"   |
 | failed | "1. the status of transaction with the given transactionId is not 'in progress' or there is no transaction with given transactionId" | E2019      | "There is no \[in progress] transaction with given transactionId"                 |
-| failed | Invalid product\_type                                                                                                                | E2051      | value sent in the field 'product\_type' does not match with payu's product\_type" |
+| failed | Invalid product_type                                                                                                                | E2051      | value sent in the field 'product_type' does not match with payu's product_type" |
 | failed | Amount is empty or less than 1                                                                                                       | E2004      | -                                                                                 |
 | failed | Amount is less than 1                                                                                                                | E2006      | -                                                                                 |
 
@@ -243,7 +124,7 @@ For every success response based on outputType param:
 
 ### Empty transaction id
 
-```Text JSON
+```json
 {
   "status": "failed",
   "message": "transactionId is empty",
@@ -253,7 +134,7 @@ For every success response based on outputType param:
 
 ### Invalid transaction id
 
-```Text JSON
+```json
 {
   "status": "failed",
   "message": "There is no [in progress] transaction with given transactionId",
@@ -263,7 +144,7 @@ For every success response based on outputType param:
 
 ### Cancel successful
 
-```Text JSON
+```json
 {
   "status": "success",
   "message": "Cancellation Successful",
@@ -273,11 +154,10 @@ For every success response based on outputType param:
 
 ### Invalid product type
 
-```Text JSON
+```json
 {
   "status": "failed",
   "message": "Invalid product_type",
   "errorCode": "E2051"
 }
-
 ```
