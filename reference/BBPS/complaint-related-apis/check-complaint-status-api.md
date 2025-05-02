@@ -15,7 +15,9 @@ next:
 ---
 The **Check Complaint Status** API is to check the status of a non-BBPS complaint by passing the ID of the complaint in the request.
 
-<BBPSEnvironment />
+|            |                                                                                                                      |
+| :--------- | :------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://bbps-sb.payu.in/payu-nbc/v1/nbc/](https://bbps-sb.payu.in/payu-nbc/v1/nbc/) |
 
 <br />
 
