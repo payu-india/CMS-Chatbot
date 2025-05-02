@@ -33,9 +33,6 @@ The **Get Mandate Status** API enables you to understand the current state of th
 
 HTTP Method: **POST**
 
-**Environment**
-
-<GENERALAPIsEnvironment />
 
 ## Request parameters
 
