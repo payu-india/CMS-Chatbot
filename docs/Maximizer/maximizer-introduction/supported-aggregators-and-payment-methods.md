@@ -2,7 +2,7 @@
 title: Supported Aggregators and Payment Methods
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: >-
