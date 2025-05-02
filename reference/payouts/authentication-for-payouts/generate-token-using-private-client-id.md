@@ -17,7 +17,12 @@ This API is used to generate authentication tokens using client\_secret and priv
 
 HTTP Method: **POST**
 
-<PAYOUTSEnvironment />
+**Environment**
+
+|                            |                                                                                      |
+| -------------------------- | ------------------------------------------------------------------------------------ |
+| **Test Environment**       | [https://uat-accounts.payu.in/oauth/token](https://uat-accounts.payu.in/oauth/token) |
+| **Production Environment** | [https://accounts.payu.in/oauth/token](https://accounts.payu.in/oauth/token)         |
 
 <details>
   <summary>Sample request</summary>
