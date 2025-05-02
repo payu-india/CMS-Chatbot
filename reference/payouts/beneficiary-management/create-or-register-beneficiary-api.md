@@ -18,69 +18,31 @@ HTTP Method: **POST**
 
 |                            |                                                   |
 | -------------------------- | ------------------------------------------------- |
-| **Test Environment**       | <https://uatoneapi.payu.in/payout/beneficiary>    |
-| **Production Environment** | <https://payout.payumoney.com/payout/beneficiary> |
+| **Test Environment**       | https://uatoneapi.payu.in/payout/beneficiary      |
+| **Production Environment** | https://payout.payumoney.com/payout/beneficiary   |
 
 ## Request header
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "Authorization`\nmandatory`",
-    "0-1": "`String` Specify the access token generated earlier in this parameter.",
-    "0-2": "Bearer `{access_token}`",
-    "1-0": "payoutMerchantId  \nmandatory\\`",
-    "1-1": "`String` Specify the payout merchant id provided while onboarding or creating Payout account.",
-    "1-2": "1111126",
-    "2-0": "Content-Type  \n`mandatory`",
-    "2-1": "`String` Indicates the format in which the request is sent.",
-    "2-2": "application/json"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+| **Parameter** | **Description** | **Example** |
+| ------------- | --------------- | ----------- |
+| Authorization<br />`mandatory` | `String` Specify the access token generated earlier in this parameter. | Bearer `{access_token}` |
+| payoutMerchantId<br />`mandatory` | `String` Specify the payout merchant id provided while onboarding or creating Payout account. | 1111126 |
+| Content-Type<br />`mandatory` | `String` Indicates the format in which the request is sent. | application/json |
 
 > 📘 Note:
 >
-> The **pid** is **payoutMerchantId**, however it is different from the PayU merchant id. Check the Payouts Dashboard or call the PayU Customer Support if you don’t know your **payoutsMerchantID**.
+> The **pid** is **payoutMerchantId**, however it is different from the PayU merchant id. Check the Payouts Dashboard or call the PayU Customer Support if you don't know your **payoutsMerchantID**.
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameters**",
-    "h-1": "**Description**",
-    "0-0": "accountNo`\nconditional`",
-    "0-1": "`String`Indicates Account number of customer",
-    "1-0": "ifsc  \n`conditional`",
-    "1-1": "`String`Indicates IFSC code of the bank account",
-    "2-0": "vpa  \n`conditional`",
-    "2-1": "`String`Indicates UPI ID of customer  \n**Note:** Same value will be used by the merchant in the status check of transfer.",
-    "3-0": "name`\noptional`",
-    "3-1": "`String`Indicates of the customer",
-    "4-0": "email  \n`optional`",
-    "4-1": "`String`Indicates Email Address of customer",
-    "5-0": "mobile`\nconditional`",
-    "5-1": "`String`Indicates Mobile Number of customer"
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+| **Parameters** | **Description** |
+| -------------- | --------------- |
+| accountNo<br />`conditional` | `String` Indicates Account number of customer |
+| ifsc<br />`conditional` | `String` Indicates IFSC code of the bank account |
+| vpa<br />`conditional` | `String` Indicates UPI ID of customer<br />**Note:** Same value will be used by the merchant in the status check of transfer. |
+| name<br />`optional` | `String` Indicates of the customer |
+| email<br />`optional` | `String` Indicates Email Address of customer |
+| mobile<br />`conditional` | `String` Indicates Mobile Number of customer |
 
 ## Sample request
 
@@ -102,28 +64,12 @@ curl --location 'https://uatoneapi.payu.in/payout/beneficiary' \
 
 ## Response parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "status",
-    "0-1": "This parameter returns the status of web service call. The status can be any of the following:  \n  \n- **0** - If web service call succeeded\n- ** 1** - If web service call failed",
-    "1-0": "msg",
-    "1-1": "This parameter returns the success or failure message.",
-    "2-0": "code",
-    "2-1": "This parameter returns the error code if the API failed to verify or invalid details.",
-    "3-0": "data",
-    "3-1": "This parameter returns the saved card details in a JSON format. For more information, refer to the next table."
-  },
-  "cols": 2,
-  "rows": 4,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+| **Parameter** | **Description** |
+| ------------- | --------------- |
+| status | This parameter returns the status of web service call. The status can be any of the following:<br /><br />- **0** - If web service call succeeded<br />- **1** - If web service call failed |
+| msg | This parameter returns the success or failure message. |
+| code | This parameter returns the error code if the API failed to verify or invalid details. |
+| data | This parameter returns the saved card details in a JSON format. For more information, refer to the next table. |
 
 ### Description of data JSON Fields
 
@@ -148,9 +94,8 @@ curl --location 'https://uatoneapi.payu.in/payout/beneficiary' \
 
 - Success scenario
 
-```
+```json
 { 
-
     "status": 0, 
     "msg": "Beneficiary Created with Id :16", 
     "code": null, 
@@ -169,12 +114,13 @@ curl --location 'https://uatoneapi.payu.in/payout/beneficiary' \
         "isVerified": null, 
         "nameWithBank": null, 
         "cardNo": null 
-} 
+    }
+}
 ```
 
 - Failure scenario
 
-```
+```json
 {
   "status": 0,
   "msg": null,
