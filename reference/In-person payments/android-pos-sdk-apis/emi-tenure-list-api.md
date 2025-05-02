@@ -16,35 +16,15 @@ The **EMI Tenure List** API is used to get EMI Tenure list from the correspondin
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Sample",
-    "0-0": "Handler object   \n`mandatory`",
-    "0-1": "`handler` Create a handler inner class. This class will return response message",
-    "0-2": "handler",
-    "1-0": "Amount   \n`mandatory`",
-    "1-1": "`string` The amount that is being used for the transaction.",
-    "1-2": "2000.00",
-    "2-0": "selectedBankDetails   \n`mandatory`",
-    "2-1": "`object` The bank which is selected to process the EMI transaction (selected from EMI list VO).",
-    "2-2": "Bank Details"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+| Parameter | Description | Sample |
+| --------- | ----------- | ------ |
+| Handler object<br />`mandatory` | `handler` Create a handler inner class. This class will return response message | handler |
+| Amount<br />`mandatory` | `string` The amount that is being used for the transaction. | 2000.00 |
+| selectedBankDetails<br />`mandatory` | `object` The bank which is selected to process the EMI transaction (selected from EMI list VO). | Bank Details |
 
 ## Sample request
 
-```Text JAVA
+```java
 initialization.getSelectedBankEMITenureList(selectedbankhandler, amount,
 selectedBankDetails);
 ```
@@ -53,14 +33,14 @@ selectedBankDetails);
 
 | Parameter          | Description                                                                                | Sample                                      |
 | :----------------- | :----------------------------------------------------------------------------------------- | :------------------------------------------ |
-| ArrayList&lt;EMI&gt; | `object` Returns the list of the available banks' name and the minimum transaction amount. | Refer to &lt;&lt;AcquirerBanks&gt;&gt; payload objects. |
+| ArrayList\<EMI\> | `object` Returns the list of the available banks' name and the minimum transaction amount. | Refer to \<\<AcquirerBanks\>\> payload objects. |
 |                    |                                                                                            |                                             |
 
 ## Sample response
 
 Use this code to fetch the response for this API.
 
-```Text JAVA
+```java
 @SuppressLint("HandlerLeak")
 private final Handler selectedbankhandler = new Handler()
 {
