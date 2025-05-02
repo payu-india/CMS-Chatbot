@@ -36,10 +36,6 @@ The **upi\_mandate\_modify** API allows you to modify UPI registration from thei
 
 HTTP Method: **POST**
 
-**Environment**
-
-<GENERALAPIsEnvironment />
-
 ## Request parameters
 
 <Table align={["left","left","left"]}>
