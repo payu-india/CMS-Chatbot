@@ -25,7 +25,13 @@ The **Get All Refunds for a Transaction ID** API (getAllRefundsFromTxnIds) comma
 
 <RefundStates />
 
-<GENERALAPIsEnvironment />
+**Environment**
+
+| Environment | URL |
+| ----------- | --- |
+| Test Environment | https://test.payu.in/merchant/postservice.php?form=2 |
+| Production Environment | https://info.payu.in/merchant/postservice?form=2 |
+
 
 <details>
   <summary>Sample request</summary>
