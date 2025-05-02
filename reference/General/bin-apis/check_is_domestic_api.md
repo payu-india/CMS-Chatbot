@@ -24,23 +24,23 @@ metadata:
 next:
   description: ''
 ---
-The **Check is Domestic** or **Card BIN** API is used to detect whether a particular BIN number is international or domestic. It is also useful to determine: 
+The **Check is Domestic** or **Card BIN** API is used to detect whether a particular BIN number is international or domestic. It is also useful to determine: 
 
-* card’s issuing bank
+* card's issuing bank
 * card type such as, Visa, Master, etc.,
-* card category such as Credit/Debit, etc. 
+* card category such as Credit/Debit, etc. 
 * var1 is bin number which is the first 6 digits of a Credit/Debit card.
 
-<GENERALAPIsEnvironment />
+| Environment | URL |
+| ----------- | --- |
+| Test Environment | https://test.payu.in/merchant/postservice.php?form=2 |
+| Production Environment | https://info.payu.in/merchant/postservice?form=2 |
 
 <details>
   <summary>Sample request</summary>
 
 ```curl
-curl -X POST "https://test.payu.in/merchant/postservice?form=2
--H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d
-
-"key=JP***g&command=check_isDomestic&var1=462273&hash=df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
+curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=check_isDomestic&var1=462273&hash=df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
 ```
 
 </details>
@@ -50,7 +50,7 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
 
 If the card is domestic
 
-```plaintext
+```json
 {
       "isDomestic": "Y",
       "issuingBank": "SCB",
@@ -61,7 +61,7 @@ If the card is domestic
 
 If the card is international
 
-```plaintext
+```json
 {
       "isDomestic": "N",
       "issuingBank": "UNKNOWN",
@@ -75,6 +75,7 @@ If the card is international
 <details>
   <summary>Response parameters description</summary>
 
+{/* Properly formatted JSX Table */}
 <Table>
   <thead>
     <tr>
@@ -153,6 +154,7 @@ To learn more about the possible error codes and their description, refer to [Er
 <details>
   <summary>Reference information</summary>
 
+{/* Properly formatted JSX Table with align attribute */}
 <Table align={["left","left"]}>
   <thead>
     <tr>
@@ -169,28 +171,28 @@ To learn more about the possible error codes and their description, refer to [Er
   <tbody>
     <tr>
       <td>
+        {/* Properly formatted JSX component */}
         <Glossary>key</Glossary>
       </td>
 
       <td>
         For more information on how to generate the Key and Salt, refer to any of the following:  
 
-        \- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  
-
-        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+        - **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  
+        - **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
       </td>
     </tr>
 
     <tr>
       <td>
+        {/* Properly formatted JSX component */}
         <Glossary>hash</Glossary>
       </td>
 
       <td>
-        Hash logic for this API is:\
+        Hash logic for this API is:
         ```
-        sha512(key|command|var1|salt) sha512
-
+        sha512(key|command|var1|salt) sha512
         ```
       </td>
     </tr>
