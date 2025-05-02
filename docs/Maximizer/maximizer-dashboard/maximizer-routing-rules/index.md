@@ -2,7 +2,7 @@
 title: Maximizer Routing Rules
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
