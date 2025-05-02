@@ -27,35 +27,94 @@ next:
       slug: collect-payments-save-card
       title: Collect Payments - Save Card
 ---
-
 The **Save Card BIN** API helps you determine whether CVV needs to be collected from your customers and validated or not be collected for saved card transactions.
 
 HTTP Method: **POST**
 
 ## Environment
 
-| Environment | URL |
-|:------------|:----|
-| **Test Environment** | https://test.payu.in/issuing-bank/v1/bin |
-| **Production Environment** | https://info.payu.in/issuing-bank/v1/bin |
+| Environment                | URL                                                                                  |
+| :------------------------- | :----------------------------------------------------------------------------------- |
+| **Test Environment**       | [https://test.payu.in/issuing-bank/v1/bin](https://test.payu.in/issuing-bank/v1/bin) |
+| **Production Environment** | [https://info.payu.in/issuing-bank/v1/bin](https://info.payu.in/issuing-bank/v1/bin) |
 
 ## Request headers
 
 The request header contains the following fields:
 
-| **Field** | **Description** | **Example** |
-|:----------|:----------------|:------------|
-| Date `mandatory` | The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT. | Thu, 17 Feb 2022 08:17:59 GMT |
-| Digest `mandatory` | Base 64 encode of (sha256 hash of the JSON data (post to server). | `vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=` |
-| Authorization `mandatory` | This field is in the following format:
-`hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="`
-Where the above format includes the following:
-- **username**: The merchant key of the merchant.
-- **algorithm**: This must have the value as **hmac-sha256** that is used for this API
-- **headers**: This must have the value as **date digest**
-- **signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:
-  - **signing_string**: This is in the "**Date**"+"\\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
-  - **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard) | hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=" |
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        **Field**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Date
+        `mandatory`
+      </td>
+
+      <td>
+        The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.
+      </td>
+
+      <td>
+        Thu, 17 Feb 2022 08:17:59 GMT
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Digest
+        `mandatory`
+      </td>
+
+      <td>
+        Base 64 encode of (sha256 hash of the JSON data (post to server).
+      </td>
+
+      <td>
+        `vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Authorization
+        `mandatory`
+      </td>
+
+      <td>
+        This field is in the following format:
+        `hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="\`
+        Where the above format includes the following:
+
+        * **username**: The merchant key of the merchant.
+        * **algorithm**: This must have the value as **hmac-sha256** that is used for this API
+        * **headers**: This must have the value as **date digest**
+        * **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:
+          * **signing\_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
+          * **merchant\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)  | hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=" |
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 The following sample Java code contains the logic used to encrypt as described in the above table:
 
@@ -121,12 +180,13 @@ public class HmacAuth {
 
 In addition to the [Request Headers](#request-headers) listed above, the **data** parameter is posted with the following fields are posted in an array:
 
-| **Field** | **Description** |
-|:----------|:----------------|
-| bin | `String` The Network Token BIN or the first 9-digits of the network token is posted in this parameter. |
-| checkCVVRequired | `Boolean` This parameter may contain any of the following:
-   - **True**: Request the API to check if card CVV must be checked for the saved card transaction so that merchant need to validate the CVV accordingly.
-   - **False**: Request the API not to check if card CVV need to be checked for the saved card transaction |
+| **Field**        | **Description**                                                                                        |
+| :--------------- | :----------------------------------------------------------------------------------------------------- |
+| bin              | `String` The Network Token BIN or the first 9-digits of the network token is posted in this parameter. |
+| checkCVVRequired | `Boolean` This parameter may contain any of the following:                                             |
+
+* **True**: Request the API to check if card CVV must be checked for the saved card transaction so that merchant need to validate the CVV accordingly.
+* **False**: Request the API not to check if card CVV need to be checked for the saved card transaction |
 
 ## Sample request
 
@@ -148,36 +208,37 @@ curl --location 'https://info.payu.in/issuing-bank/v1/bin' \
 
 The response involves the following parameters and the **result** parameter contains the offer results:
 
-| **Parameter** | **Description** | **Example** |
-|:--------------|:----------------|:------------|
-| code | This parameter returns the status of web service call. The status can be any of the following:
-0: If web service call failed.
-1 : If web service call succeeded. | 200 |
-| result | `JSON Object` This parameter gives the information about the result of the API response in a JSON format. For more information, refer to the [result Field JSON Details](#result-parameter-json-details) subsection. | Refer to the [result Field JSON Details](#result-parameter-json-details) subsection. |
+| **Parameter**                      | **Description**                                                                                                                                                                                                      | **Example**                                                                          |
+| :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------- |
+| code                               | This parameter returns the status of web service call. The status can be any of the following:                                                                                                                       |                                                                                      |
+| 0: If web service call failed.     |                                                                                                                                                                                                                      |                                                                                      |
+| 1 : If web service call succeeded. | 200                                                                                                                                                                                                                  |                                                                                      |
+| result                             | `JSON Object` This parameter gives the information about the result of the API response in a JSON format. For more information, refer to the [result Field JSON Details](#result-parameter-json-details) subsection. | Refer to the [result Field JSON Details](#result-parameter-json-details) subsection. |
 
 ### result parameter JSON details
 
 The **result** parameter contains the result in a JSON format and the fields in the JSON are described in the following table:
 
-| **Field** | **Description** | **Example** |
-|:----------|:----------------|:------------|
-| status | This parameter returns the status of card. The status can be any of the following: | 1 |
-| category | This field contains the card category of the card. | debitcard |
-| bin | `Integer` This field contains the first 9-digits of the card or Network Token. | 512345789 |
-| cvvLessSupported | This field contains any of the following values:
-   - **true**: The card does not require CVV validation
-   - **false** : The card requires CVV validation. | true |
-| is_domestic | `Boolean` This field contains any of the following values:
-   - **true**: The card is domestic card
-   - **false** : The card is an international card or issued outside India | true |
-| card_type | This field contains the card type or the card network. | VISA |
-| issuing_bank | This field contains the card issuing bank. | HDFC |
-| otp_on_fly | This field contains any of the following values:
-   - **true**: The OTP needs to be entered by the customer when redirected
-   - **false** : The customer need not enter the OTP to validate the card | false |
-| is_atmpin_card | This field contains any of the following values:
-   - **0**: The card is not an ATM card
-   - **1**: The card is an ATM card | 0 |
+| **Field**        | **Description**                                                                    | **Example** |
+| :--------------- | :--------------------------------------------------------------------------------- | :---------- |
+| status           | This parameter returns the status of card. The status can be any of the following: | 1           |
+| category         | This field contains the card category of the card.                                 | debitcard   |
+| bin              | `Integer` This field contains the first 9-digits of the card or Network Token.     | 512345789   |
+| cvvLessSupported | This field contains any of the following values:                                   |             |
+
+* **true**: The card does not require CVV validation
+* **false** : The card requires CVV validation. | true |\
+  \| is\_domestic | `Boolean` This field contains any of the following values:
+* **true**: The card is domestic card
+* **false** : The card is an international card or issued outside India | true |\
+  \| card\_type | This field contains the card type or the card network. | VISA |
+  \| issuing\_bank | This field contains the card issuing bank. | HDFC |
+  \| otp\_on\_fly | This field contains any of the following values:
+* **true**: The OTP needs to be entered by the customer when redirected
+* **false** : The customer need not enter the OTP to validate the card | false |\
+  \| is\_atmpin\_card | This field contains any of the following values:
+* **0**: The card is not an ATM card
+* **1**: The card is an ATM card | 0 |
 
 ## Sample response
 
