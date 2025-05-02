@@ -31,9 +31,13 @@ Whenever the **cancel\_refund\_transaction** API is executed successfully to can
 
 In **check\_action\_status** API, you need to input this Request ID to get the current status of the request. The return parameters are MIHPayID, Amount, Discount, Mode, and Status of transaction. It returns any of the following states:
 
-<RefundStates />
 
-<GENERALAPIsEnvironment />
+**Environment**
+
+|                        |                                                                                                              |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
 <details>
   <summary>Sample request</summary>
