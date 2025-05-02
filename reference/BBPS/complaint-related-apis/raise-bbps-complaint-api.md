@@ -20,7 +20,9 @@ The complaints can be either of the following:
 * When a customer wants to raise a complaint against the biller.
 * When a customer wants to raise a complaint against a particular transaction.
 
-<BBPSEnvironment />
+|            |                                                                                                                      |
+| :--------- | :------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://bbps-sb.payu.in/payu-nbc/v1/nbc/](https://bbps-sb.payu.in/payu-nbc/v1/nbc/) |
 
 > 📘 Note:
 >
