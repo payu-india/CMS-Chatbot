@@ -34,8 +34,6 @@ To make an Pay and Subscribe consent transaction, you must post the **SI=4** ins
 > * You need to enable the Pay and Subscribe on PayU Dashboard as per your requirements. For example, you want only UPI and cards instead of ENACH to be listed for the register auto-debit feature.
 > * The request parameters includes **SI=4**, but rest of the parameters and response remains the same as in Payment Consent Transaction. For more information, refer to [Payment Consent Transaction using PayU Hosted Checkout](ref:payment-consent-transaction-payu-hosted).
 
-<PaymentAPIEnvironment />
-
 ## Request Parameters
 
 The request parameters for the one-time mandate includes **SI=4** and rest of the parameter remains the same. For more information, refer to [Payment Consent Transaction using PayU Hosted Checkout](ref:payment-consent-transaction-payu-hosted#request-parameters).
@@ -43,7 +41,7 @@ The request parameters for the one-time mandate includes **SI=4** and rest of th
 ## Sample Request
 
 ```curl
-curl -X POST "https://test.payu.in/_payment"-H "Content-Type: application/x-www-form-urlencoded" -d"key=JP***g&txnid=fM3O2HnkpJ8XEC&amount=100.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&si=4&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&si_details={“billingAmount”: “100.00”,”billingCurrency”: “INR”,”billingCycle”: “MONTHLY”,”billingInterval”: 1,”paymentStartDate”: “2022-09-01″,”paymentEndDate”: “2022-12-01”}&hash=2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5"
+curl -X POST "https://test.payu.in/_payment" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=fM3O2HnkpJ8XEC&amount=100.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&si=4&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&si_details={"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}&hash=2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5"
 ```
 
 ## Sample Response
