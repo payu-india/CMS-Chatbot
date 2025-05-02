@@ -10,104 +10,28 @@ metadata:
 next:
   description: ''
 ---
-This API is used to generate the authentication token using the merchant's credentials like username and password. You must pass the generated token as the value of the **Authorization** header for all Payout APIs.
+This API is used to generate the authentication token using the merchant's credentials like username and password. You must pass the generated token as the value of the **Authorization** header for all Payout APIs.
 
 HTTP Method: **POST**
 
-<PAYOUTSEnvironment />
+
 
 ## Request parameters
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Parameters**
-      </th>
-      <th>
-        **Description**
-      </th>
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        client\_id
-        `mandatory`
-      </td>
-      <td>
-        `String`Pass the public Client ID which is same for every Payout merchant. Refer to example column for the Client ID of Production and Test environment.  
-
-        * \*Not&#x65;**: In the**Example\*\* column, there is only one client ID.
-      </td>
-      <td>
-        * \*Production\*\*: ccbb70745faad9c06092bb5c79bfd919b6f45fd45\
-          4f34619d83920893e90ae6b  
-        * \*Test\*\*:6f8bb4951e030d4d7349e64a144a53477\
-          8673585f86039617c167166e9154f7e
-      </td>
-    </tr>
-    <tr>
-      <td>
-        grant\_type\
-        `mandatory`
-      </td>
-      <td>
-        `String`This parameter will contain the Constant value
-      </td>
-      <td>
-        password
-      </td>
-    </tr>
-    <tr>
-      <td>
-        username\
-        `mandatory`
-      </td>
-      <td>
-        `String`This parameter will contain the registered mobile number or Email ID.
-      </td>
-      <td>
-        [payouttest5@mailinator.com](mailto:payouttest5@mailinator.com)
-      </td>
-    </tr>
-    <tr>
-      <td>
-        password\
-        `mandatory`
-      </td>
-      <td>
-        `String`This parameter will contain the registered Account password
-      </td>
-      <td>
-        Tester\@123
-      </td>
-    </tr>
-    <tr>
-      <td>
-        scope\
-        `mandatory`
-      </td>
-      <td>
-        `String`This parameter will contain the Constant value.
-      </td>
-      <td>
-        create\_payout\_transactions
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameters | Description | Example |
+| ---------- | ----------- | ------- |
+| client_id `mandatory` | `String` Pass the public Client ID which is same for every Payout merchant. Refer to example column for the Client ID of Production and Test environment. * **Note**: In the **Example** column, there is only one client ID. | * **Production**: ccbb70745faad9c06092bb5c79bfd919b6f45fd454f34619d83920893e90ae6b  * **Test**: 6f8bb4951e030d4d7349e64a144a534778673585f86039617c167166e9154f7e |
+| grant_type `mandatory` | `String` This parameter will contain the Constant value | password |
+| username `mandatory` | `String` This parameter will contain the registered mobile number or Email ID. | [payouttest5@mailinator.com](mailto:payouttest5@mailinator.com) |
+| password `mandatory` | `String` This parameter will contain the registered Account password | Tester@123 |
+| scope `mandatory` | `String` This parameter will contain the Constant value. | create_payout_transactions |
 
 > 📘 Note:
 >
-> Use the following client\_id value to proceed because the public Client ID remains the same for all Payouts Merchants:
+> Use the following client_id value to proceed because the public Client ID remains the same for all Payouts Merchants:
 >
-> * **Test**:6f8bb4951e030d4d7349e64a144a534778673585f86039617c167166e9154f7e
-> * **Production**: ccbb70745faad9c06092bb5c79bfd919b6f45fd45\
->   4f34619d83920893e90ae6b
+> * **Test**: 6f8bb4951e030d4d7349e64a144a534778673585f86039617c167166e9154f7e
+> * **Production**: ccbb70745faad9c06092bb5c79bfd919b6f45fd454f34619d83920893e90ae6b
 
 ## Sample Request
 
@@ -121,15 +45,15 @@ curl -X POST \
 
 ## Response parameters
 
-| **Key**        | **Description**                                                                                                                           |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| access\_token  | Indicates the Security Token used to get access in Payouts API calls.                                                                     |
-| token\_type    | Type of authorization token                                                                                                               |
-| expire\_in     | Indicates the TTL, i.e., the time limit (in seconds) after which the Security Token will expire                                           |
-| refresh\_token | Used to refresh the access\_token. For more information, refer to Refresh Token.                                                          |
-| scope          | Represents the allowed scopes in the generated security token. For example, the generated token can be used only for Payouts API requests |
-| created\_at    | Indicates the Time of Creation in milliseconds                                                                                            |
-| user\_uuid     | Indicates the Unique Identifier for the user.                                                                                             |
+| Key | Description |
+| --- | ----------- |
+| access_token | Indicates the Security Token used to get access in Payouts API calls. |
+| token_type | Type of authorization token |
+| expire_in | Indicates the TTL, i.e., the time limit (in seconds) after which the Security Token will expire |
+| refresh_token | Used to refresh the access_token. For more information, refer to Refresh Token. |
+| scope | Represents the allowed scopes in the generated security token. For example, the generated token can be used only for Payouts API requests |
+| created_at | Indicates the Time of Creation in milliseconds |
+| user_uuid | Indicates the Unique Identifier for the user. |
 
 ## Sample response
 
