@@ -28,27 +28,20 @@ This API (**validateVPA**) will let you validate VPA if it is a valid VPA or not
 
 After the customer enters VPA on the merchant page, you need to call this API to check for VPA validation. If VPA is valid only then, the second call should be made.
 
-<GENERALAPIsEnvironment />
-
-<details>
-  <summary>Sample request</summary>
+## Sample request
 
 **Validate VPA**
 
 ```curl
-curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d"key=JP***g&command=validateVPA&var1=9999999999@upi&hash=75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e""
+curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=validateVPA&var1=9999999999@upi&hash=75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
 ```
 
 **Validate VPA for Recurring Payment**
 
+```curl
+curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=validateVPA&var1=9999999999@upi&var2={"validateAutoPayVPA":"1"}&hash=75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
 ```
-curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d"key=JP***g&command=validateVPA&var1=9999999999@upi&var2={\"validateAutoPayVPA\":\"1\"}&hash=75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e""
-```
-
-</details>
-
-<details>
-  <summary>Sample response</summary>
+## Sample response
 
 **Success scenario**
 
@@ -91,7 +84,7 @@ if successfully validated:
 
 * Customer valid but handle not supporting SI (Autopay):
 
-```
+```plaintext
 {
   "status":"SUCCESS","vpa":"xyz@freecharge","isVPAValid":1,"isAutoPayVPAValid":0,"isAutoPayBankValid":"NA","payerAccountName":"XYZ"
 }
@@ -99,17 +92,14 @@ if successfully validated:
 
 * Neither customer valid nor handle supporting Autopay:
 
-```
+```plaintext
 {
   "status":"SUCCESS","vpa":"xyz@freecharge","isVPAValid":0,"isAutoPayVPAValid":0,"isAutoPayBankValid":"NA","payerAccountName":"NA"
 }
 ```
+## Response parameters
 
-</details>
-
-<details>
-  <summary>Response parameters</summary>
-
+{/* Properly formatted JSX Table */}
 <Table>
   <thead>
     <tr>
@@ -153,10 +143,9 @@ if successfully validated:
       </td>
 
       <td>
-        This parameter returns any of the following to indicate whether the VPA is valid or not:\
-           -**1**: Indicates that VPA is valid  
-
-        * **0**: Indicates the VPA is invalid
+        This parameter returns any of the following to indicate whether the VPA is valid or not:  
+        - **1**: Indicates that VPA is valid  
+        - **0**: Indicates the VPA is invalid
       </td>
     </tr>
 
@@ -198,8 +187,6 @@ if successfully validated:
   </tbody>
 </Table>
 
-</details>
-
 ## Request parameters
 
 You can use any valid VPA while trying out the API:
@@ -207,6 +194,7 @@ You can use any valid VPA while trying out the API:
 <details>
   <summary>Additional information for request parameters</summary>
 
+{/* Properly formatted JSX Table with align attribute */}
 <Table align={["left","left"]}>
   <thead>
     <tr>
@@ -223,28 +211,28 @@ You can use any valid VPA while trying out the API:
   <tbody>
     <tr>
       <td>
+        {/* Properly formatted JSX component */}
         <Glossary>key</Glossary>
       </td>
 
       <td>
         For more information on how to generate the Key and Salt, refer to any of the following:  
 
-        \- **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  
-
-        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+        - **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  
+        - **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
       </td>
     </tr>
 
     <tr>
       <td>
+        {/* Properly formatted JSX component */}
         <Glossary>hash</Glossary>
       </td>
 
       <td>
-        Hash logic for this API is:\
+        Hash logic for this API is:
         ```
-        sha512(key\|command\|var1\|salt) sha512
-
+        sha512(key|command|var1|salt) sha512
         ```
       </td>
     </tr>
