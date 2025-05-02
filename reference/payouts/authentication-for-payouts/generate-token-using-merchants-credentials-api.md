@@ -14,9 +14,16 @@ This API is used to generate the authentication token using the merchant's crede
 
 HTTP Method: **POST**
 
+**Environment**
+
+|                            |                                                                                      |
+| -------------------------- | ------------------------------------------------------------------------------------ |
+| **Test Environment**       | [https://uat-accounts.payu.in/oauth/token](https://uat-accounts.payu.in/oauth/token) |
+| **Production Environment** | [https://accounts.payu.in/oauth/token](https://accounts.payu.in/oauth/token)         |
+
 ## Request parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
