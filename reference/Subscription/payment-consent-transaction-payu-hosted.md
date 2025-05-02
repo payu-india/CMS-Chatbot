@@ -40,10 +40,10 @@ HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                   |
-| :------------------------- | :-------------------------------- |
-| **Production Environment** | \<https://secure.payu.in/_payment> |
-| **Test Environment**       | \<https://test.payu.in/_payment>   |
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment>)    |
 
 ## Request parameters
 
@@ -182,7 +182,6 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 </table>
 `}</HTMLBlock>
 
-
 ## Sample request
 
 ```curl
@@ -194,13 +193,13 @@ Characters allowed for parameters
 
 For parameters address1, address2, city, state, country, product info, email, and phone following characters are allowed:
 
-- Characters: A to Z, a to z, 0 to 9
-- – (Minus)
-- \_ (Underscore)
-- @ ()
-- / (Slash)
-- (Space)
-- . (Dot)
+* Characters: A to Z, a to z, 0 to 9
+* – (Minus)
+* \_ (Underscore)
+* @ ()
+* / (Slash)
+* (Space)
+* . (Dot)
 
 ## Sample response
 
