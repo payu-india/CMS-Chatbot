@@ -42,9 +42,6 @@ The **Cancel Recurring Payments** API allows the merchants to cancel their Cards
 
 HTTP Method: **POST**
 
-**Environment**
-
-<GENERALAPIsEnvironment />
 
 ## Request parameters
 
