@@ -15,7 +15,9 @@ next:
 ---
 The **Check Health Status** API can be used to check the working status of the PayU server.
 
-<BBPSEnvironment />
+|            |                                                                                                                      |
+| :--------- | :------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://bbps-sb.payu.in/payu-nbc/v1/nbc/](https://bbps-sb.payu.in/payu-nbc/v1/nbc/) |
 
 > 📘 Note:
 >
