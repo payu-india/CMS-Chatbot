@@ -16,57 +16,91 @@ HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                                         |
-| -------------------------- | ----------------------------------------------------------------------- |
-| **Test Environment**       | \<https://staging.payu.in/payout/v2/smartSend/bulkUpload/transfers> |
-| **Production Environment** | \<https://payout.payumoney.com/payout/v2/smartSend/bulkUpload/transfers> |
+|                        |                                                                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Test Environment       | [https://staging.payu.in/payout/v2/smartSend/bulkUpload/transfers>](https://staging.payu.in/payout/v2/smartSend/bulkUpload/transfers>)           |
+| Production Environment | [https://payout.payumoney.com/payout/v2/smartSend/bulkUpload/transfers>](https://payout.payumoney.com/payout/v2/smartSend/bulkUpload/transfers>) |
 
 ## Request header and parameters
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<code> mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Specify the access token generated earlier in this parameter.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer <code>{access_token}</code></p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>pid<code> mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Specify the payout merchant id provided while onboarding or creating Payout account.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>1111126</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Content-Type<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Indicates the format in which the request is sent.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>application/json</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>file<br>mandatory</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Specify the file name ( with location) that contains the payouts informationto be uploaded.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Authorization
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Specify the access token generated earlier in this parameter.
+      </td>
+
+      <td>
+        Bearer `{access_token}`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pid
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Specify the payout merchant id provided while onboarding or creating Payout account.
+      </td>
+
+      <td>
+        1111126
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Content-Type `mandatory`
+      </td>
+
+      <td>
+        `String` Indicates the format in which the request is sent.
+      </td>
+
+      <td>
+        application/json
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        file
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Specify the file name (with location) that contains the payouts information to be uploaded.
+      </td>
+
+      <td>
+         
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 > 📘 Note:
 >
