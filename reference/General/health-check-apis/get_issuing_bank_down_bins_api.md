@@ -25,7 +25,10 @@ next:
 ---
 The **Getting Issuing Bank Down Bins** API (**gettingIssuingBankDownBins**) is used to retrieve the card BINs for all the banks that are observing either full downtime or partial downtime at an instance.
 
-<GENERALAPIsEnvironment />
+| Environment | URL |
+| ----------- | --- |
+| Test Environment | https://test.payu.in/merchant/postservice.php?form=2 |
+| Production Environment | https://info.payu.in/merchant/postservice?form=2 |
 
 <details>
   <summary>Sample request</summary>
