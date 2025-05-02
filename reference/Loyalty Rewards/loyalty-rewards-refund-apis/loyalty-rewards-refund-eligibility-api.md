@@ -18,35 +18,42 @@ HTTP Method: **POST**
 
 |            |                                                                       |
 | :--------- | :-------------------------------------------------------------------- |
-| Production | <https://apitest.payu.in/loyalty-points/points/v1/refund/eligibility> |
+| Production | \<https://apitest.payu.in/loyalty-points/points/v1/refund/eligibility> |
 |            |                                                                       |
 
 ## Request Parameters
 
 You have to provide either loyaltyTxnId (ledger id - primary Key) or eventId (It will be loyaltyRefId).
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "loyaltyTxnId  \n`mandatory if eventId \nis not posted`",
-    "0-1": "The ledger ID must be posted here.",
-    "0-2": "1",
-    "1-0": "eventId  \n`mandatory if loyaltyTxnId \nis not posted`",
-    "1-1": "The merchant's transaction ID for refund",
-    "1-2": "504"
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>loyaltyTxnId<br><code>mandatory if eventId  is not posted</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The ledger ID must be posted here.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>eventId<br><code>mandatory if loyaltyTxnId  is not posted</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The merchant&#39;s transaction ID for refund</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>504</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Request Body
 
