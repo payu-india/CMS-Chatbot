@@ -15,7 +15,9 @@ next:
 ---
 The **Get Prepaid Recharge Plans** API for getting prepaid plans. It will provide all the available prepaid recharge plans available for a given agent ID, circle ID and operator ID.
 
-<BBPSEnvironment />
+|            |                                                                                                                      |
+| :--------- | :------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://bbps-sb.payu.in/payu-nbc/v1/nbc/billfetchrequest](https://bbps-sb.payu.in/payu-nbc/v1/nbc/billfetchrequest) |
 
 > 📘 Note:
 >
