@@ -24,7 +24,12 @@ next:
 ---
 The Check Payment (**check\_payment**) API functions similar to the [Verify Payment API](ref:verify_payment_api). However, the input parameter in this API is the PayUID or mihpayuID generated at PayU’s Server unlike **verify\_payment** API where the input parameter is the TxnID (Transaction ID generated at merchant’s server). It returns all the parameters for a given transaction.
 
-<GENERALAPIsEnvironment />
+**Environment**
+
+|                        |                                                                                                              |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
 <details>
   <summary>Sample request</summary>
