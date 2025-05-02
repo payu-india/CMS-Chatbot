@@ -15,7 +15,9 @@ next:
 ---
 The **Get Custom Recharge Plans**API for getting available prepaid plans for a mobile number.
 
-<BBPSEnvironment />
+|            |                                                                                                                      |
+| :--------- | :------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://bbps-sb.payu.in/payu-nbc/v1/nbc/billfetchrequest](https://bbps-sb.payu.in/payu-nbc/v1/nbc/billfetchrequest) |
 
 > 📘 Note:
 >
