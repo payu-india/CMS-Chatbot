@@ -18,48 +18,80 @@ HTTP Method: **POST**
 
 |            |                                                         |
 | :--------- | :------------------------------------------------------ |
-| Production | <https://apitest.payu.in/loyalty-points/points/v1/hold> |
+| Production | \<https://apitest.payu.in/loyalty-points/points/v1/hold> |
 |            |                                                         |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example\\*",
-    "0-0": "loyaltyProvider  \n`mandatory`",
-    "0-1": "Identifier for the loyalty service provider.",
-    "0-2": "\"LPX\"",
-    "1-0": "redemptionDetail  \n`mandatory`",
-    "1-1": "Details about the points being redeemed in the transaction.",
-    "1-2": "`{\"redeemLoyaltyKey\": \"Diamond@RUISebLORdLw\", \"redeemPoints\": 100}`",
-    "2-0": "orderId  \n`mandatory`",
-    "2-1": "A unique identifier assigned to the order.",
-    "2-2": "\"8878787\"",
-    "3-0": "orderAmount  \n`mandatory`",
-    "3-1": "Total monetary value of the order.",
-    "3-2": "1000",
-    "4-0": "loyaltyRefId  \n`mandatory`",
-    "4-1": "Reference ID given for tracking the loyalty transaction.",
-    "4-2": "\"534\"",
-    "5-0": "txnAmount  \n`optional`",
-    "5-1": "Amount transacted after applying loyalty points reductions.",
-    "5-2": "900",
-    "6-0": "userDetail  \n`mandatory`",
-    "6-1": "Information related to the user participating in the transaction.",
-    "6-2": "`{\"phoneNumber\": \"8901555****\"}`"
-  },
-  "cols": 3,
-  "rows": 7,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Example*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>loyaltyProvider<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Identifier for the loyalty service provider.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;LPX&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>redemptionDetail<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Details about the points being redeemed in the transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{&quot;redeemLoyaltyKey&quot;: &quot;Diamond@RUISebLORdLw&quot;, &quot;redeemPoints&quot;: 100}</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>orderId<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>A unique identifier assigned to the order.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;8878787&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>orderAmount<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Total monetary value of the order.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>loyaltyRefId<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Reference ID given for tracking the loyalty transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;534&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnAmount<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Amount transacted after applying loyalty points reductions.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>900</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>userDetail<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Information related to the user participating in the transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{&quot;phoneNumber&quot;: &quot;8901555****&quot;}</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 <br />
 
