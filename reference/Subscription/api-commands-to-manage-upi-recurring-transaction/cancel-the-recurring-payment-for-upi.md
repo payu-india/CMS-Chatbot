@@ -36,10 +36,6 @@ next:
 
 HTTP Method: **POST**
 
-**Environment**
-
-<GENERALAPIsEnvironment />
-
 ## Request parameters
 
 <Table>
