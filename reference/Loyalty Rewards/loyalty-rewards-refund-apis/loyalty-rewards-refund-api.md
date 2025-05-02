@@ -18,42 +18,64 @@ HTTP Method: **POST**
 
 |            |                                                           |
 | :--------- | :-------------------------------------------------------- |
-| Production | <https://apitest.payu.in/loyalty-points/points/v1/refund> |
+| Production | \<https://apitest.payu.in/loyalty-points/points/v1/refund> |
 |            |                                                           |
 
 ## Request Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "orderId`\nmandatory`",
-    "0-1": "The unique identifier of the merchant's transaction.",
-    "0-2": "\"merchantTxnId\"",
-    "1-0": "refundType  \n`mandatory`",
-    "1-1": "Specifies whether the refund is partial or full.",
-    "1-2": "\"PARTIAL\"",
-    "2-0": "refundAmount  \n`mandatory`",
-    "2-1": "Amount to be refunded to the customer.",
-    "2-2": "1000",
-    "3-0": "skuInfo`\nmandatory for SKUs`",
-    "3-1": "Details of stock keeping units (SKUs) in the transaction. This parameter must contain the array of SKU details (skus as in example) For the description of the fields in **skus**, refer to[ skus JSON field description](skus-json-field-description) .",
-    "3-2": "\"skus\": \\[  \n            {  \n                \"skuId\": \"airpod\",  \n                \"quantity\": null,  \n                \"skuAmount\": 900,  \n                \"skuOrderAmount\": 1000  \n            }  \n]",
-    "4-0": "refundId  \n`mandatory`",
-    "4-1": "Unique identifier for the refund transaction. Optional identifier for tracking.",
-    "4-2": "\"refundId\""
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>orderId<code> mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The unique identifier of the merchant&#39;s transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;merchantTxnId&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>refundType<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Specifies whether the refund is partial or full.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;PARTIAL&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>refundAmount<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Amount to be refunded to the customer.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>skuInfo<code> mandatory for SKUs</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Details of stock keeping units (SKUs) in the transaction. This parameter must contain the array of SKU details (skus as in example) For the description of the fields in <strong>skus</strong>, refer to<a href="skus-json-field-description"> skus JSON field description</a> .</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;skus&quot;: [<br>            {<br>                &quot;skuId&quot;: &quot;airpod&quot;,<br>                &quot;quantity&quot;: null,<br>                &quot;skuAmount&quot;: 900,<br>                &quot;skuOrderAmount&quot;: 1000<br>            }<br>]</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>refundId<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Unique identifier for the refund transaction. Optional identifier for tracking.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;refundId&quot;</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ### skus JSON field description
 
