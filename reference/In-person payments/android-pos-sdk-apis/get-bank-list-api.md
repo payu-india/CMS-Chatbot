@@ -16,48 +16,30 @@ Fetch the list of banks for an EMI transaction by passing the handler and amount
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "Handler object  \n`mandatory`",
-    "0-1": "`handlerCreate` a handler inner class. This class will return response message.",
-    "0-2": "handler",
-    "1-0": "Amount  \n`mandatory`",
-    "1-1": "`stringEMI` The transaction amount.",
-    "1-2": "2500"
-  },
-  "cols": 3,
-  "rows": 2,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+| Parameter | Description | Example |
+| --------- | ----------- | ------- |
+| Handler object<br />`mandatory` | `handlerCreate` a handler inner class. This class will return response message. | handler |
+| Amount<br />`mandatory` | `stringEMI` The transaction amount. | 2500 |
 
 ## Sample request
 
-```Text JAVA
+```java
 initialization = new PaymentInitialization(getApplicationContext());
 initialization.getEMIBankList(handler, amount);
 ```
 
-## Response paramters
+## Response parameters
 
-| Parameter     | Description                                                         |                                         |
-| :------------ | :------------------------------------------------------------------ | :-------------------------------------- |
+| Parameter     | Description                                                         | Example                                |
+| :------------ | :------------------------------------------------------------------ | :------------------------------------- |
 | AcquirerBanks | object List of Available bank names and minimum transaction amount. | Refer to AcquirerBanks payload objects. |
-| Amount        | stringThe transaction amount.                                       | 2500                                    |
+| Amount        | string The transaction amount.                                      | 2500                                   |
 
 ## Sample response
 
 Use this code to fetch the response of this API.
 
-```Text JAVA
+```java
 @SuppressLint("HandlerLeak")
 private final Handler handler = new Handler() {
   @SuppressWarnings("unchecked")
