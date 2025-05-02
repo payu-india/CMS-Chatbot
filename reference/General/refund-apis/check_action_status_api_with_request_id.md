@@ -29,7 +29,11 @@ next:
 ---
 Whenever the **cancel\_refund\_transaction** API is executed successfully to cancel a transaction, a Request ID is returned in the output parameters for that particular request. For more information on the cancel\_refund\_transaction API, refer to Refund Transaction.
 
-In **check\_action\_status** API, you need to input this Request ID to get the current status of the request. The return parameters are MIHPayID, Amount, Discount, Mode, and Status of transaction. To learn more about different payment states, refer to [Payment States Explanations](https://docs.payu.in/reference/payment-state-explanations).
+In **check\_action\_status** API, you need to input this Request ID to get the current status of the request. The return parameters are MIHPayID, Amount, Discount, Mode, and Status of transaction. The following are different payment states:
+
+<RefundStates />
+
+<br />
 
 **Environment**
 
