@@ -2,7 +2,7 @@
 title: Reconciliation of Payments
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
