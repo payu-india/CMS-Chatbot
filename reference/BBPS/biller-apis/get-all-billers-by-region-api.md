@@ -15,7 +15,9 @@ next:
 ---
 The **getBillerByRegion** API fetches all billers by a specific region.
 
-<BBPSEnvironment />
+|            |                                                                                                          |
+| :--------- | :------------------------------------------------------------------------------------------------------- |
+| Production | [https://bbps-sb.payu.in/payu-nbc/v1/nbc/getRegions](https://bbps-sb.payu.in/payu-nbc/v1/nbc/getRegions) |
 
 > 📘 Note:
 >
