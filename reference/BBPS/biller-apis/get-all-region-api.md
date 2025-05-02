@@ -15,10 +15,6 @@ next:
 ---
 This API will fetch all the regions, So that billers can be fetched according to the specific region.
 
-<BBPSEnvironment />
-
-<br />
-
 > 📘 Note:
 >
 > Send the scope of the Get Token API as **read\_regions** to obtain the access\_token for this request. For more information, refer to [Get Token API - BBPS](ref:get-token-api-bbps).
