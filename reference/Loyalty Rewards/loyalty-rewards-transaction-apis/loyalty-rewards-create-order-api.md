@@ -18,42 +18,68 @@ HTTP Method: **POST**
 
 |            |                                                          |
 | :--------- | :------------------------------------------------------- |
-| Production | <https://apitest.payu.in/loyalty-points/points/v1/order> |
+| Production | \<https://apitest.payu.in/loyalty-points/points/v1/order> |
 |            |                                                          |
 
 ## Request Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "loyaltyProvider  \n`mandatory`",
-    "0-1": "A static value which need to passed for LoyaltyPointClose Loop flow",
-    "0-2": "\"LPX\"",
-    "1-0": "orderId  \n`mandatory`",
-    "1-1": "Identifier for the order",
-    "1-2": "\"223234\"",
-    "2-0": "orderAmount  \n`mandatory`",
-    "2-1": "The total amount of the order",
-    "2-2": "1000",
-    "3-0": "txnAmount  \n`optional`",
-    "3-1": "The order amount that can be any of the following purposes:  \n  \n- discount\n- burn points amount",
-    "3-2": "900",
-    "4-0": "userDetail  \n`mandatory`",
-    "4-1": "The user details such as phone number",
-    "4-2": "{  \n        \"phoneNumber\": \"8901555\\*\\*\\*\\*\"  \n    }"
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>loyaltyProvider<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>A static value which need to passed for LoyaltyPointClose Loop flow</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;LPX&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>orderId<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Identifier for the order</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;223234&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>orderAmount<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The total amount of the order</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnAmount<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The order amount that can be any of the following purposes:  </p>
+<ul>
+<li>discount</li>
+<li>burn points amount</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>900</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>userDetail<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The user details such as phone number</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{<br>        &quot;phoneNumber&quot;: &quot;8901555****&quot;<br>    }</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request Body
 
