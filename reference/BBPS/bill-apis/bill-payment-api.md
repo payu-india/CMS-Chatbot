@@ -15,7 +15,9 @@ next:
 ---
 Use the **Bill Payment** API to send the payment information to make the bill payment.
 
-<br />
+|            |                                                                                      |
+| :--------- | :----------------------------------------------------------------------------------- |
+| Production | [https://bbps-sb.payu.in/payu-nbc/v1/nbc/](https://bbps-sb.payu.in/payu-nbc/v1/nbc/) |
 
 > 📘 Note:
 >
