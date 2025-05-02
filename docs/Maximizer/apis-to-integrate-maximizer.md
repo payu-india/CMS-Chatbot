@@ -2,7 +2,7 @@
 title: Integration APIs for Maximizer
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
