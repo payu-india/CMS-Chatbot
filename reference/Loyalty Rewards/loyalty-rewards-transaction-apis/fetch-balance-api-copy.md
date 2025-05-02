@@ -18,89 +18,157 @@ HTTP Method: **POST**
 
 |            |                                                             |
 | :--------- | :---------------------------------------------------------- |
-| Production | <https://apitest.payu.in/loyalty-points/points/v1/transact> |
+| Production | \<https://apitest.payu.in/loyalty-points/points/v1/transact> |
 |            |                                                             |
 
 ## Request parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "loyaltyProvider  \n`mandatory`",
-    "0-1": "Identifier for the loyalty service provider.",
-    "0-2": "\\`LPX",
-    "1-0": "txnAmount  \n`optional`",
-    "1-1": "The transaction amount after discounts and loyalty point reductions.",
-    "1-2": "`900`",
-    "2-0": "orderAmount  \n`mandatory`",
-    "2-1": "The total order amount before applying any discounts or loyalty points.",
-    "2-2": "`1000`",
-    "3-0": "status  \n`mandatory`",
-    "3-1": "Transaction status indicating success or failure.",
-    "3-2": "\"SUCCESS\" or \"FAILED\"",
-    "4-0": "pgPaymentId  \n`optional`",
-    "4-1": "Payment gateway ID. For example, IDs for Razorpay or PayU.",
-    "4-2": "\"31234124234234\"",
-    "5-0": "orderId  \n`mandatory`",
-    "5-1": "Unique identifier for the order assigned by the merchant.",
-    "5-2": "\"merchantTxnId\"",
-    "6-0": "loyaltyRefId  \n`optional`",
-    "6-1": "Reference ID for the loyalty transaction.",
-    "6-2": "\"504\"",
-    "7-0": "userDetail  \n`mandatory`",
-    "7-1": "Information related to the user involved in the transaction.",
-    "7-2": "{ \"phoneNumber\": \"8901555\\*\\*\\*\\*\" }",
-    "8-0": "redemptionDetails  \n`optional`",
-    "8-1": "Details of redemption, including key and points redeemed.",
-    "8-2": "{ \"redeemLoyaltyKey\": \"test@lzbevLxNILTS\", \"redeemPoints\": 100 }",
-    "9-0": "earnDetails  \n`optional`",
-    "9-1": "Details regarding points earned in the transaction.",
-    "9-2": "`{ \"earnLoyaltyKey\": \"test@lzbevLxNILTS\", \"earnPoints\": 100, \"autoApply\": true }`",
-    "10-0": "paymentDetails  \n`mandatory for seamless`",
-    "10-1": "Includes payment method info such as card number.",
-    "10-2": "`{ \"category\": \"CREDITCARD\", \"paymentCode\": \"CC\", \"cardNumber\": \"4808550000000000\" }`"
-  },
-  "cols": 3,
-  "rows": 11,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>loyaltyProvider<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Identifier for the loyalty service provider.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>\`LPX</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnAmount<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The transaction amount after discounts and loyalty point reductions.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>900</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>orderAmount<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The total order amount before applying any discounts or loyalty points.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>1000</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Transaction status indicating success or failure.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;SUCCESS&quot; or &quot;FAILED&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pgPaymentId<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Payment gateway ID. For example, IDs for Razorpay or PayU.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;31234124234234&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>orderId<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Unique identifier for the order assigned by the merchant.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;merchantTxnId&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>loyaltyRefId<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Reference ID for the loyalty transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;504&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>userDetail<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Information related to the user involved in the transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{ &quot;phoneNumber&quot;: &quot;8901555****&quot; }</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>redemptionDetails<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Details of redemption, including key and points redeemed.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{ &quot;redeemLoyaltyKey&quot;: &quot;test@lzbevLxNILTS&quot;, &quot;redeemPoints&quot;: 100 }</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>earnDetails<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Details regarding points earned in the transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{ &quot;earnLoyaltyKey&quot;: &quot;test@lzbevLxNILTS&quot;, &quot;earnPoints&quot;: 100, &quot;autoApply&quot;: true }</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentDetails<br><code>mandatory for seamless</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Includes payment method info such as card number.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{ &quot;category&quot;: &quot;CREDITCARD&quot;, &quot;paymentCode&quot;: &quot;CC&quot;, &quot;cardNumber&quot;: &quot;4808550000000000&quot; }</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ### paymentDetails JSON field description
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "h-2": "**Example**",
-    "0-0": "`category`",
-    "0-1": "Indicates the type or category of payment method being used. It can be any of the following:  \n  \n- CREDITCARD\n- DEBITCARD\n- NETBANKING",
-    "0-2": "",
-    "1-0": "`paymentCode`",
-    "1-1": "A specific code representing the payment method; often used to facilitate backend processing.",
-    "1-2": "`\"CC\"`",
-    "2-0": "`cardNumber`",
-    "2-1": "The masked or partially visible card number used for the transaction, usually following PCI DSS standards.",
-    "2-2": "`\"4808550000000000\"`"
-  },
-  "cols": 3,
-  "rows": 3,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>category</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Indicates the type or category of payment method being used. It can be any of the following:  </p>
+<ul>
+<li>CREDITCARD</li>
+<li>DEBITCARD</li>
+<li>NETBANKING</li>
+</ul>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>paymentCode</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>A specific code representing the payment method; often used to facilitate backend processing.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>&quot;CC&quot;</code></p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>cardNumber</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The masked or partially visible card number used for the transaction, usually following PCI DSS standards.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>&quot;4808550000000000&quot;</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 
 ## Sample request body
