@@ -2,7 +2,7 @@
 title: View Audit Trials
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
