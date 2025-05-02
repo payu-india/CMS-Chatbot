@@ -2,7 +2,7 @@
 title: Include an Amount Range with a Routing Rule
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
