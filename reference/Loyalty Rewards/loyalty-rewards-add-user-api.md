@@ -23,34 +23,51 @@ HTTP Method: **POST**
 
 ## Request Parameters
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Parameter",
-    "h-1": "Description",
-    "h-2": "Example",
-    "0-0": "loyaltyProvider  \n`mandatory`",
-    "0-1": "A static identifier for the loyalty provider to facilitate the Close Loop flow.",
-    "0-2": "\"LPX\"",
-    "1-0": "orderAmount  \n`optional`",
-    "1-1": "Represents the total monetary value of the order, affecting loyalty calculations.",
-    "1-2": "1000",
-    "2-0": "userDetail  \n`mandatory`",
-    "2-1": "An object containing details about the user, such as the phone number.",
-    "2-2": "{ \"phoneNumber\": \"8901555\\*\\*\\*\\*\" }",
-    "3-0": "phoneNumber  \n`mandatory`",
-    "3-1": "The customer phone number, used as a unique identifier in the loyalty system.",
-    "3-2": "8901555\\*\\*\\*\\*"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    null,
-    null,
-    null
-  ]
-}
-[/block]
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>loyaltyProvider<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>A static identifier for the loyalty provider to facilitate the Close Loop flow.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>&quot;LPX&quot;</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>orderAmount<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Represents the total monetary value of the order, affecting loyalty calculations.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>userDetail<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>An object containing details about the user, such as the phone number.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{ &quot;phoneNumber&quot;: &quot;8901555****&quot; }</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>phoneNumber<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The customer phone number, used as a unique identifier in the loyalty system.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>8901555****</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request body
 
