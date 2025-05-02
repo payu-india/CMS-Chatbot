@@ -16,28 +16,118 @@ HTTP Method: **GET**
 
 **Environment**
 
-| | |
-| -------------------------- | -------------------------------------------------------------------- |
-| **Test Environment**       | https://uatoneapi.payu.in/payout/beneficiary?beneficiaryId=`{id}`    |
-| **Production Environment** | https://payout.payumoney.com/payout/beneficiary?beneficiaryId=`{id}` |
+|                            |                                                                                                                                                |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Test Environment**       | [https://uatoneapi.payu.in/payout/beneficiary?beneficiaryId=`\{id}`](https://uatoneapi.payu.in/payout/beneficiary?beneficiaryId=`\{id}`)       |
+| **Production Environment** | [https://payout.payumoney.com/payout/beneficiary?beneficiaryId=`\{id}`](https://payout.payumoney.com/payout/beneficiary?beneficiaryId=`\{id}`) |
 
 ## Request header
 
-| **Parameter** | **Description** | **Example** |
-| ------------- | --------------- | ----------- |
-| Authorization<br />`mandatory` | `String` Specify the access token generated earlier in this parameter. | Bearer `{access_token}` |
-| payoutMerchantId<br />`mandatory` | `String` Specify the payout merchant id provided while onboarding or creating Payout account. | 1111126 |
-| Content-Type<br />`mandatory` | `String` Indicates the format in which the request is sent. | application/json |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Authorization
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Specify the access token generated earlier in this parameter.
+      </td>
+
+      <td>
+        Bearer `{access_token}`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        payoutMerchantId
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Specify the payout merchant id provided while onboarding or creating Payout account.
+      </td>
+
+      <td>
+        1111126
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Content-Type
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Indicates the format in which the request is sent.
+      </td>
+
+      <td>
+        application/json
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 > 📘 Note:
-> 
+>
 > The **pid** is **payoutMerchantId**, however it is different from the PayU merchant id. Check the Payouts Dashboard or call the PayU Customer Support if you don't know your **payoutsMerchantID**.
 
 ## Request parameters
 
-| **Parameters** | **Description** | **Example** |
-| -------------- | --------------- | ----------- |
-| beneficiaryId<br />`mandatory` | `Long` Indicates beneficiary ID returned while creation | |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameters**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        beneficiaryId
+        `mandatory`
+      </td>
+
+      <td>
+        `Long` Indicates beneficiary ID returned while creation
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
