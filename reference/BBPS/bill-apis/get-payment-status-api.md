@@ -15,7 +15,9 @@ next:
 ---
 You can use the **Get Payment Status** API to manually request the status of a bill payment transaction. Sometime the response of a **Bill Payment** API can be interrupted due to network failures. To handle such situations you can programmatically use this API to make a manual request.
 
-<BBPSEnvironment />
+|            |                                                                                                                      |
+| :--------- | :------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://bbps-sb.payu.in/payu-nbc/v1/nbc/billfetchrequest](https://bbps-sb.payu.in/payu-nbc/v1/nbc/billfetchrequest) |
 
 > 📘 Note:
 >
