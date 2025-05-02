@@ -18,7 +18,9 @@ This API can be used by all the BBPS and Connect billers who support the followi
 * Optional
 * Mandatory
 
-<BBPSEnvironment />
+|            |                                                                                                                      |
+| :--------- | :------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://bbps-sb.payu.in/payu-nbc/v1/nbc/billfetchrequest](https://bbps-sb.payu.in/payu-nbc/v1/nbc/) |
 
 > 📘 Note:
 >
