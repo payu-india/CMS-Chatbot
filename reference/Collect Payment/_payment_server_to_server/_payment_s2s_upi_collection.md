@@ -19,11 +19,6 @@ next:
 ---
 This section provides the request and response parameters used in Step 1 of [UPI Collection S2S Integration](doc:upi-collection-s2s). You can get the sample request and response when use the "Try It" experience. For the complete integration steps, refer to [UPI Collection S2S Integration](doc:upi-collection-s2s).
 
-<PaymentAPIEnvironment />
-
-<details>
-  <summary>Reference information for request parameters</summary>
-
 > 📘 Reference
 >
 > For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
@@ -47,8 +42,8 @@ This section provides the request and response parameters used in Step 1 of [UPI
     <tr>
       <td>hash</td>
       <td>
-        Hash logic for **\_payment** API is:\
-        sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)\
+        Hash logic for **\_payment** API is:  
+        sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)  
         For more information about the hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
       </td>
     </tr>
@@ -65,7 +60,6 @@ This section provides the request and response parameters used in Step 1 of [UPI
 > * s2s\_client\_ip
 > * s2s\_device\_info
 
-</details>
 
 ## Response parameters
 
