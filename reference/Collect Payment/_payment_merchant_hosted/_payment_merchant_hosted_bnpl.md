@@ -30,23 +30,19 @@ Buy Now Pay Later (<Glossary>BNPL</Glossary>) allows your customers to spread th
 
 You can collect payments from customers in EMI using the Merchant Hosted integration. You need to ensure that **BNPL** for the **pg** parameter and BNPL code based on the provider and tenure for the **bankcode** parameter is posted.
 
-### Environment
+**Environment**
 
-<PaymentAPIEnvironment />
+|                            |                                                                         |
+| -------------------------- | ----------------------------------------------------------------------- |
+| **Test Environment**       | [https://test.payu.in/\_payment>](https://test.payu.in/_payment%3E)     |
+| **Production Environment** | [https://secure.payu.in/\_payment>](https://secure.payu.in/_payment%3E) |
 
-<details>
-
-<summary>Sample request</summary>
+## Sample request
 
 ```curl
 curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=J****g&txnid=5jJ9xYceXX1ydT&amount=1000.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=BNPL&bankcode=LAZYPAY&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
 ```
-
-</details>
-
-<details>  
-
-<summary>Sample response</summary>
+## Sample response
 
 ```
 Array
@@ -100,11 +96,7 @@ Array
     [error_Message] => No Error
 )
 ```
-
-</details>
-
-<details>
-  <summary>Response parameters</summary>
+## Response parameters
 
 <Table>
   <thead>
@@ -471,16 +463,8 @@ Array
   </tbody>
 </Table>
 
-</details>
 
 ## Request parameters
-
-<details>
-  <summary>Additional info for request parameters</summary>
-
-<Additional_paymentRequestParams />
-
-</details>
 
 > 📘 Reference
 >
