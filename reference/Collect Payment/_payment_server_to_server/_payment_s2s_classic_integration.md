@@ -23,20 +23,12 @@ next:
       slug: integrate-with-s2s-for-cards-classic-integration
       title: Classic Integration for Cards
 ---
-You can collect card payments using Server-to-Server integration. This section provides the request and response parameters used in Step 1 of  [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration).. You can get the sample request and response when use the "Try It" experience. For the complete integration steps, refer to [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration).
-
-<PaymentAPIEnvironment />
-
-<details>
-  <summary>Reference information for request parameters</summary>
+You can collect card payments using Server-to-Server integration. This section provides the request and response parameters used in Step 1 of  [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration). You can get the sample request and response when use the "Try It" experience. For the complete integration steps, refer to [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration).
 
 > 📘 Reference
 >
 > For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
-<AddionalCards_paymentRequestParametersInformation />
-
-<br />
 
 > 📘 Note:
 >
@@ -48,19 +40,12 @@ You can collect card payments using Server-to-Server integration. This section p
 > * s2s\_client\_ip
 > * s2s\_device\_info
 
-</details>
-
-<details>
-  <summary>Sample request</summary>
+## Sample request
 
 ```curl
 curl --location --request POST 'https://secure.payu.in/_payment' --header 'Content-Type: application/x-www-form-urlencoded' --header 'Cookie: PHPSESSID=mj185cifujktpv1igu9tmuoaal; PAYUID=eac5648ac59712238883a78e71f35717; PHPSESSID=638b1b5173542' --data-urlencode 'hash=d89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42' --data-urlencode 'key=s*****s' --data-urlencode 'txnid=payuTestTransaction3818940' --data-urlencode 'amount=1.0' --data-urlencode 'firstname=Ashish' --data-urlencode 'email=test@payu.in' --data-urlencode 'phone=9988776655' --data-urlencode 'productinfo=Product Info' --data-urlencode 'surl=https://admin.payu.in/test_response' --data-urlencode 'furl=https://admin.payu.in/test_response' --data-urlencode 'notifyurl=https://admin.payu.in/test_response' --data-urlencode 'codurl=https://admin.payu.in/test_response' --data-urlencode 'ipurl=https://admin.payu.in/test_response' --data-urlencode 'lastname=' --data-urlencode 'udf1=' --data-urlencode 'udf2=' --data-urlencode 'udf3=' --data-urlencode 'udf4=' --data-urlencode 'udf5=' --data-urlencode 'pg=CC' --data-urlencode 'bankcode=DC' --data-urlencode 'ccnum=XXXXXXXXXXX8811' --data-urlencode 'ccname=Ashish' --data-urlencode 'ccvv=XXX' --data-urlencode 'ccexpmon=12' --data-urlencode 'ccexpyr=2023' --data-urlencode 'txn_s2s_flow=4' --data-urlencode 'authentication_flow=REDIRECT' 
 ```
-
-</details>
-
-<details>
-  <summary>Sample response</summary>
+## Sample response
 
 ```
 {
@@ -85,11 +70,7 @@ curl --location --request POST 'https://secure.payu.in/_payment' --header 'Conte
    }
 }
 ```
-
-</details>
-
-<details>
-  <summary>Response parameters</summary>
+## Response parameters
 
 | **Parameter**            | **Description**                                                                                                                                                                                                                                                                             |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -99,9 +80,7 @@ curl --location --request POST 'https://secure.payu.in/_payment' --header 'Conte
 | binData.pureS2SSupported | `Boolean` The value for this parameter will be returned **false** for REDIRECT.                                                                                                                                                                                                             |
 | result                   | `JSON` This is a JSON object containing response of the request and to be used in subsequent steps.                                                                                                                                                                                         |
 | result.otpPostUrl        | `String` The parameter will have null value in case of REDIRECT.                                                                                                                                                                                                                            |
-| resutl.acsTemplate       | `String` acsTemplate is a **base64 encoded** string. The merchant needs to decode acsTemplate, which is an HTML format with auto submit, which then needs to be shown on the customer’s browser. The HTML being auto submit, it will take the customer to the bank page for authentication. |
-
-</details>
+| result.acsTemplate       | `String` acsTemplate is a **base64 encoded** string. The merchant needs to decode acsTemplate, which is an HTML format with auto submit, which then needs to be shown on the customer's browser. The HTML being auto submit, it will take the customer to the bank page for authentication. |
 
 For the response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
