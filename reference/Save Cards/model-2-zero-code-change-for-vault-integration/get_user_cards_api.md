@@ -33,9 +33,10 @@ The Get User Cards API (**get\_user\_cards**) is used to fetch all the cards for
 
 HTTP Method: **POST**
 
-<GENERALAPIsEnvironment />
+`<GENERALAPIsEnvironment />`
 
-<details> <summary>Sample request</summary>
+<details> 
+<summary>Sample request</summary>
 
 ```curl
 curl --request POST \
@@ -50,7 +51,8 @@ curl --request POST \
 
 </details>
 
-<details> <summary>Sample response</summary>
+<details> 
+<summary>Sample response</summary>
 
 * Cards are found in the vault for PCI Compliant Merchants
 
@@ -126,7 +128,8 @@ curl --request POST \
 
 </details>
 
-<details> <summary> Response parameters</summary> <details>
+<details>
+ <summary> Response parameters</summary>
 
 <Table>
   <thead>
@@ -468,7 +471,8 @@ The details on the JSON format for a successful response is described in the fol
 
 ## Request parameters
 
-<details> <summary>Reference info for request parameters</summary>
+<details> 
+<summary>Reference info for request parameters</summary>
 
 <KeyHashForGeneralParametersDescription />
 
