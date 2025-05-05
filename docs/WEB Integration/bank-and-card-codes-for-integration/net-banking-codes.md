@@ -55,6 +55,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | Jana Small Finance Bank                          | JANANB   |
 | Janata Sahakari Bank Pune                        | JSBNB    |
 | Karnataka Bank                                   | KRKB     |
+| Karnataka Gramin Bank                            | KGBNB    |
 | Karur Vysya - Corporate Banking                  | KRVBC    |
 | Karur Vysya Bank                                 | KRVB     |
 | Kotak Mahindra Bank                              | 162B     |
