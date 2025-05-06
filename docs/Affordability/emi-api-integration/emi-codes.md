@@ -2,7 +2,7 @@
 title: EMI Codes
 excerpt: >-
   The codesses listed in the section are used as value for the bankcode
-  parameter along with the pg parameter as EMI. ##
+  parameter along with the pg parameter as EMI. 
 deprecated: false
 hidden: false
 metadata:
@@ -2153,4 +2153,3 @@ next:
 | Bajaj Finserv Limited  | BAJFIN06   | 6 Months  | No-Cost EMI Only |        4980 |       60000 |
 | Bajaj Finserv Limited  | BAJFIN08   | 8 Months  | No-Cost EMI Only |       11999 |       60000 |
 | Bajaj Finserv Limited  | BAJFIN09   | 9 Months  | No-Cost EMI Only |        7470 |       90000 |
-
