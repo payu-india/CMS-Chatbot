@@ -12,11 +12,6 @@ metadata:
 next:
   description: ''
 ---
----
-title: 'EMI Codes Information'
-description: 'Information about EMI codes for various payment methods'
----
-
 # EMI Codes Information
 
 ## Credit Card EMI Codes
