@@ -63,7 +63,9 @@ The S2S Eligible BINs API (**s2sEligibleBins**) API is similar to the **Get BIN 
       </td>
 
       <td>
-        Specify any of the following values in this field based on the output you required: - 1: Specify this value if a single bin-level information is required. Output contains the information on a single bin only. - 2: Specify this value if a specific feature-level information is required. Output would give the bin list. - 3: Specify this value if all the bins and their information are required
+        Specify any of the following values in this field based on the output you required: -
+        0 - Specify this value to fetch all the active and inactive bins.
+        1 - Specify this value to fetch the active bins only.
       </td>
     </tr>
 
