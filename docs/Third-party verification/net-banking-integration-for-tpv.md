@@ -37,7 +37,7 @@ Collect or prepare a list of account numbers that must be posted to PayU for TPV
 
 With the following additional parameters, make the transaction request with the customer’s bank account number to the PayU using the Collect Payment (**\_payment**) API. For more information, refer to <a href="ref:_payment_merchant_hosted" target="_blank"> Collect Payment API - Merchant Hosted Checkiout</a>..
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 ### Request parameters
 
