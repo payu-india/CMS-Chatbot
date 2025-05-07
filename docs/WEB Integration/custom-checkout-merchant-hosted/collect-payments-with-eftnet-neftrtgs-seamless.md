@@ -266,12 +266,9 @@ The following parameters vary for the EFTNEFT payment mode in the **Collect Paym
 </table>
 `}</HTMLBlock>
 
-| **Parameter**                         | **Description** | **Example** |
-| ------------------------------------- | --------------- | ----------- |
-|                                       |                 | NEFTRTGS    |
-| `<<glossary:bankcode>>` **mandatory** |                 | EFTAXIS     |
+<br />
 
-`<HashingRequestParameters />`
+<HashingRequestParameters />
 
 ### Sample request
 
