@@ -25,7 +25,12 @@ The following are the sequence of API calls for SDK less Deep-Offer integration:
 
 First request from Merchant to PayU with the required transaction mandatory/ optional parameters. This needs to be a server-to-server curl call request. For the sample request and response, refer to [Collect Payment API - Server-to-Server](ref:_payment_server_to_server).
 
-<PaymentAPIEnvironment />
+**Environment**
+
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 > 📘 Notes:
 >
