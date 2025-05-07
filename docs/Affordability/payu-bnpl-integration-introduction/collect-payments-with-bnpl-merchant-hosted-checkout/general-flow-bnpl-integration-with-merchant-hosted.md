@@ -419,7 +419,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
   </tbody>
 </Table>
 
-Checked the response mentioned in `<a href="_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API - BNPL</a>` under API Reference..
+Checked the response mentioned in <a href="_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API - BNPL</a> under API Reference..
 
 <HashingRequestParameters />
 
