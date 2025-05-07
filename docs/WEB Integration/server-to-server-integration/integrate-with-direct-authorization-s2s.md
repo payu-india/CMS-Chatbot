@@ -309,7 +309,7 @@ Initiate an authorization request with the payment details provided post a succe
       </td>
 
       <td>
-        `JSON` This parameter contains the authentication information in a JSON format for direct authorization. For more information refer to authentication\_info JSON Fields Description.
+        `JSON` This parameter contains the authentication information in a JSON format for direct authorization. For more information, refer to [authentication\_info JSON object](#authentication_info-json-object)
       </td>
 
       <td>
@@ -323,7 +323,9 @@ Initiate an authorization request with the payment details provided post a succe
       </td>
 
       <td>
-        `JSON` This parameter contains the threeDSVersion and deviceChannel fields in an array format.
+        \`JSON` This parameter contains the threeDSVersion and deviceChannel fields in an array format.  
+        For example:
+        \{"threeDSVersion":"2.2.0","deviceChannel":"APP/BRW"}
       </td>
 
       <td>
@@ -409,20 +411,7 @@ Initiate an authorization request with the payment details provided post a succe
 
       <td>
         `String` Billing address zip code is mandatory for the cardless EMI option.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `Character Limit`-20
-      </td>
-
-      <td>
-
+        Character Limit -20
       </td>
 
       <td>
@@ -503,6 +492,16 @@ Initiate an authorization request with the payment details provided post a succe
 </Table>
 
 <HashingRequestParameters />
+
+### authentication\_info JSON object
+
+#### Example
+
+```
+`{"eci":"05","cavv":"AAABAWFlmQAAAABjRWWZEEFgFz","flowType":"Frictionless","threeDSServerTransID":"eea30d14-71cf-41af-b961-f95b7d67dc93","threeDSTransID":"67b4c71f-19bf-4d97-bd09-4e3687dc9e42","threeDSTransStatus":"Y","threeDSTransStatusReason":"01","acquirer_bin":"401200"}`
+```
+
+<br />
 
 ### Sample request
 
