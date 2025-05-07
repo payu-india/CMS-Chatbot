@@ -22,7 +22,6 @@ You can collect payments from customers with leading wallets using the Merchant 
 2. [Check response from PayU](#step-2-check-response-from-payu)
 3. [Verify Payment](#step-3-verify-the-payment)
 
-<RegisterMerchantPrerequiste />
 
 ## Step 1: Initiate the payment with PayU
 
@@ -57,7 +56,12 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 The following parameters vary for the Wallet payment mode in the **Collect Payment** API (**\_payment** API). 
 
-<PaymentAPIEnvironment />
+**Environment**
+
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 > 📘 Reference:
 >
