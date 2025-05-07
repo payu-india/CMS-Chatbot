@@ -22,7 +22,7 @@ Collect payments using Bharat or UPI QR with Merchant Hosted Checkout integratio
 2. [Check the response from PayU](#step-2-check-response-from-payu)
 3. [Verify Payment](#step-3-verify-the-payment)
 
-`<RegisterMerchantPrerequiste />`
+<RegisterMerchantPrerequiste />
 
 ## Step 1: Initiate the payment to PayU
 
@@ -58,26 +58,28 @@ Post Request Syntax & Composition for QR
 
 ### Post parameters
 
-The following parameters vary for the QR payment in the **Collect Payment** API (**\_payment** API). 
+The following parameters vary for the QR payment in the **Collect Payment** API (**\_payment** API).
 
-`<PaymentAPIEnvironment />`
+**Environment**
 
-<br />
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
-
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
-        **Parameter**
+        Parameter
       </th>
 
       <th>
-        **Description**
+        Description
       </th>
 
       <th>
-        **Example**
+        Example
       </th>
     </tr>
   </thead>
@@ -85,10 +87,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
   <tbody>
     <tr>
       <td>
-<HTMLBlock>{`
-        <Glossary>key</Glossary>
- `}</HTMLBlock>
-        **mandatory**
+        key
+        `mandatory`
       </td>
 
       <td>
@@ -102,8 +102,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        txnid\
-        **mandatory**
+        txnid
+        `mandatory`
       </td>
 
       <td>
@@ -117,8 +117,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        amount\
-        **mandatory**
+        amount
+        `mandatory`
       </td>
 
       <td>
@@ -132,12 +132,12 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        productinfo\
-        **mandatory**
+        productinfo
+        `mandatory`
       </td>
 
       <td>
-        `String` This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice). 
+        `String` This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice).
       </td>
 
       <td>
@@ -147,8 +147,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        firstname\
-        **mandatory**
+        firstname
+        mandatory
       </td>
 
       <td>
@@ -162,8 +162,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        email\
-        **mandatory**
+        email
+        `mandatory`
       </td>
 
       <td>
@@ -177,8 +177,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        phone\
-        **mandatory**
+        phone
+        `mandatory`
       </td>
 
       <td>
@@ -192,10 +192,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-<HTMLBlock>{`
-        <Glossary>pg</Glossary>
- `}</HTMLBlock>\
-        **mandatory**
+       pg
       </td>
 
       <td>
@@ -209,14 +206,11 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-         <HTMLBlock>{`
-        <Glossary>bankcode</Glossary>
- `}</HTMLBlock>\
-        **mandatory**
+       bankcode
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. You must use any of the following bank code for QR:  
+        `String` Each payment option is identified with a unique bank code at PayU. You must use any of the following bank code for QR:
 
         * **UPIQR** for accepting payments with UPI QR.
         * **BQR** for accepting payments with Bharath QR
@@ -234,7 +228,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
       </td>
 
       <td>
-         `String`The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.
+        `String`The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.
       </td>
 
       <td>
@@ -259,19 +253,18 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-         <HTMLBlock>{`
-        <Glossary>hash</Glossary>
- `}</HTMLBlock>\
-        **mandatory**
+        hash
       </td>
 
       <td>
-        `String`The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: 
-```
-        sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)
+        `String`The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash:
 
         ```
-For more information, refer to [Generate Hash](doc:hashing-request-and-response).
+                sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)
+
+        ```
+
+        For more information, refer to [Generate Hash](doc:hashing-request-and-response).
       </td>
 
       <td>
@@ -457,7 +450,6 @@ For more information, refer to [Generate Hash](doc:hashing-request-and-response)
     </tr>
   </tbody>
 </Table>
-
 
 `<HashingRequestParameters />`
 
