@@ -192,7 +192,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-       pg
+        pg
+        `mandatory`
       </td>
 
       <td>
@@ -206,7 +207,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-       bankcode
+        bankcode
+        `mandatory`
       </td>
 
       <td>
@@ -224,7 +226,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
     <tr>
       <td>
         surl\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -239,7 +241,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
     <tr>
       <td>
         furl\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -253,7 +255,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        hash
+        hash\
+        `mandatory`
       </td>
 
       <td>
@@ -275,7 +278,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
     <tr>
       <td>
         lastname\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -290,7 +293,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
     <tr>
       <td>
         address1\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -305,7 +308,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
     <tr>
       <td>
         address2\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -335,7 +338,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
     <tr>
       <td>
         state\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -350,7 +353,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
     <tr>
       <td>
         country\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -365,7 +368,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
     <tr>
       <td>
         zipcode\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -379,7 +382,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        udf1
+        udf1\
+        `optional`
       </td>
 
       <td>
@@ -394,7 +398,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
     <tr>
       <td>
         udf2\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -408,7 +412,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        udf3
+        udf3\
+        `optional`
       </td>
 
       <td>
@@ -423,7 +428,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
     <tr>
       <td>
         udf4\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -437,7 +442,8 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
 
     <tr>
       <td>
-        udf5
+        udf5\
+        `optional`
       </td>
 
       <td>
@@ -451,7 +457,7 @@ The following parameters vary for the QR payment in the **Collect Payment** API 
   </tbody>
 </Table>
 
-`<HashingRequestParameters />`
+<HashingRequestParameters />
 
 ### Sample request
 
@@ -464,7 +470,7 @@ curl -X \
 
 ## Step 2: Check response from PayU
 
-`<ReverseHashing />`
+<ReverseHashing />
 
 ### Sample response (parsed)
 
