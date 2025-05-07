@@ -35,7 +35,7 @@ Make the transaction request to the PayU Test server.
 
 > 📘 Tip
 >
-> When the customer is redirected to the PayU payment page, you can enforce certain payment modes or drop categories. For more information on customizing the payment codes and categories, refer to Enforce refer to <a href="enforce-pay-method-or-remove-category" target="_blank"> Enforce Pay Method or Remove Category</a> .
+> When the customer is redirected to the PayU payment page, you can enforce certain payment modes or drop categories. For more information on customizing the payment codes and categories, refer to Enforce refer to  [Enforce Pay Method or Remove Category](doc:enforce-pay-method-or-remove-category).
 
 ### Post request syntax & composition
 
