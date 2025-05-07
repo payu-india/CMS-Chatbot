@@ -21,12 +21,10 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
 **Environment**
 
-|                            |                                                                         |
-| :------------------------- | :---------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
-
-
+|                            |                                                                      |
+| :------------------------- | :------------------------------------------------------------------- |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)      |
+| **Production Environment** | [https://secure.payu.in/\_payment>](https://secure.payu.in/_payment) |
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -63,15 +61,15 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
     <tr>
       <td>
-        txnid\
+        txnid
         `mandatory`
       </td>
 
       <td>
-        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.\
-        `Character limit`: 25  
+        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.
+        `Character limit`: 25
 
-        * \*Note\*\*: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’
+        * *Note*\*: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’
       </td>
 
       <td>
@@ -86,9 +84,9 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
       </td>
 
       <td>
-        `float` This parameter should contain the payment amount of the particular transaction.  
+        `float` This parameter should contain the payment amount of the particular transaction.
 
-        * \*Note\*\*: Type-cast the amount to float type
+        * *Note*\*: Type-cast the amount to float type
       </td>
 
       <td>
@@ -136,8 +134,8 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
       <td>
         `varchar` Must contain the email of the customer.\
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.\
-        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.\
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.
+        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
         Character limit: 50
       </td>
 
@@ -153,7 +151,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
       </td>
 
       <td>
-        `varchar` Must contain the phone number of the customer.  
+        `varchar` Must contain the phone number of the customer.
 
         This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.\
         Character limit: 50
@@ -230,7 +228,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
       </td>
 
       <td>
-        This parameter contains the following information in JSON format:  
+        This parameter contains the following information in JSON format:
 
         * paymentStartDate
         * paymentEndDate**Example**:  \{"paymentStartDate":"2024-07-24","paymentEndDate":"2024-07-28"}
@@ -248,9 +246,9 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
       </td>
 
       <td>
-        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU’s payment interface while registration transactions.  
+        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU’s payment interface while registration transactions.
 
-        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.  
+        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.
 
         In the case of registration transaction, the formula is used to calculate this hash is similar to the following:\
         \`HASH = sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
@@ -265,7 +263,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
 ### Hashing
 
-You must hash the request parameters using the following hash logic: 
+You must hash the request parameters using the following hash logic:
 
 ```
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
@@ -384,23 +382,24 @@ To capture a pre-authorized payment, use the following command. After the API co
   <tbody>
     <tr>
       <td>
-        key ```
+        key \`\`\`
 
         mandatory
-        ```
-      </td>
 
-      <td>
+        ````
+        </td>
+
+        <td>
         This parameter is the unique Merchant Key provided by PayU for your merchant account. The Merchant Key acts as the unique identifier (primary key) to identify a Merchant Account in our database. <br> *Sample value* – YbfVda
-      </td>
-    </tr>
+        </td>
+        </tr>
 
-    <tr>
-      <td>
+        <tr>
+        <td>
         command ```
 
         mandatory
-        ```
+        ````
       </td>
 
       <td>
@@ -410,24 +409,25 @@ To capture a pre-authorized payment, use the following command. After the API co
 
     <tr>
       <td>
-        hash ```
+        hash \`\`\`
 
         mandatory
-        ```
-      </td>
 
-      <td>
+        ````
+        </td>
+
+        <td>
         This parameter must contain the hash value to be calculated at merchant end. Hash logic for this API is:\
         sha512(key|command|var1|salt) sha512
-      </td>
-    </tr>
+        </td>
+        </tr>
 
-    <tr>
-      <td>
+        <tr>
+        <td>
         var1```
 
         mandatory
-        ```
+        ````
       </td>
 
       <td>
@@ -437,23 +437,24 @@ To capture a pre-authorized payment, use the following command. After the API co
 
     <tr>
       <td>
-        var2 ```
+        var2 \`\`\`
 
         mandatory
-        ```
-      </td>
 
-      <td>
+        ````
+        </td>
+
+        <td>
         This parameter contains the token, that is, merchant unique reference number.
-      </td>
-    </tr>
+        </td>
+        </tr>
 
-    <tr>
-      <td>
+        <tr>
+        <td>
         var3```
 
         mandatory
-        ```
+        ````
       </td>
 
       <td>
