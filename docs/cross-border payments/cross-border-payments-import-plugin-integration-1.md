@@ -26,7 +26,27 @@ Download the Cross-Border Payments Import plugin and install it from the followi
 
 To integrate the Cross-Border Payments Import plugin, refer the following recipe or step-by-step procedure:
 
-<TutorialTile backgroundColor="#018FF4" emoji="🦉" id="64d4d316dd0711050277e0d2" link="https://payu-hosted-checkout.readme.io/v1.3.0/recipes/cross-border-payments-import-plugin" slug="cross-border-payments-import-plugin" title="Cross-Border Payments Import Plugin" />
+<a
+      href='https://payu-hosted-checkout.readme.io/v1.3.0/recipes/cross-border-payments-import-plugin'
+      style={{
+        backgroundColor: '#018FF4',
+        display: 'block',
+        padding: '20px',
+        borderRadius: '8px',
+        textDecoration: 'none',
+        color: '#fff',
+        fontFamily: 'Arial, sans-serif',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        transition: 'transform 0.2s',
+      }}
+      onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+      onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <span style={{ fontSize: '24px' }}>{"🦉"}</span>
+        <h3 style={{ margin: 0, fontSize: '18px' }}>{`Cross-Border Payments Import Plugin`}</h3>
+      </div>
+    </a>
 
 1. Import the PayU package:
 
