@@ -18,7 +18,7 @@ Collect payments using Net Banking with Merchant Hosted Checkout integration as 
 2. [Check the response from PayU](#step-2-check-response-from-payu)
 3. [Verify Payment](#step-3-verify-the-payment)
 
-
+<RegisterMerchantPrerequiste />
 
 ## Step 1: Initiate the payment to PayU
 
@@ -53,7 +53,7 @@ Post Request Syntax & Composition for Net Banking
 
 ### Request parameters
 
-The following parameters vary for the NetBanking payment mode in the **Collect Payment** API (**\_payment** API). 
+The following parameters vary for the NetBanking payment mode in the **Collect Payment** API (**\_payment** API).
 
 **Environment**
 
@@ -68,7 +68,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
 
 <br />
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -97,14 +97,14 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-         JPg\*\*\*r
+        JPg\*\*\*r
       </td>
     </tr>
 
     <tr>
       <td>
         <Glossary>txnid</Glossary>\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -112,7 +112,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-         ypl938459435
+        ypl938459435
       </td>
     </tr>
 
@@ -126,7 +126,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-         10.00
+        10.00
       </td>
     </tr>
 
@@ -140,7 +140,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-         iPhone
+        iPhone
       </td>
     </tr>
 
@@ -169,14 +169,14 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-         [abc@payu.in](mailto:abc@payu.in)
+        [abc@payu.in](mailto:abc@payu.in)
       </td>
     </tr>
 
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -208,9 +208,9 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bank codes that can be used with the **bankcode** parameter, refer to [Net Banking Codes](doc:net-banking-codes) .  
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bank codes that can be used with the **bankcode** parameter, refer to [Net Banking Codes](doc:net-banking-codes) .
 
-        * \*Reference\*\*: For the test Net Banking credentials, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) .
+        * *Reference*\*: For the test Net Banking credentials, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) .
       </td>
 
       <td>
@@ -271,9 +271,9 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
