@@ -111,7 +111,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
 
 #### Endpoint
 
-<table style="border:0.1rem solid rgb(242, 242, 242);"><tbody><tr><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;">Test</td><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;">https://test.payu.in/_payment</td></tr><tr><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;">Production</td><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;">https://secure.payu.in/_payment</td></tr></tbody></table>
+<table style={{border:"0.1rem solid rgb(242, 242, 242)"}}><tbody><tr><td style={{border: "0.1rem solid rgb(242, 242, 242)", padding:"0.8em"}}>Test</td><td style={{border: "0.1rem solid rgb(242, 242, 242)", padding:"0.8em"}}>https://test.payu.in/_payment</td></tr><tr><td style={{border: "0.1rem solid rgb(242, 242, 242)", padding:"0.8em"}}>Production</td><td style={{border: "0.1rem solid rgb(242, 242, 242)", padding:"0.8em"}}>https://secure.payu.in/_payment</td></tr></tbody></table>
 
 #### Request Parameters
 
