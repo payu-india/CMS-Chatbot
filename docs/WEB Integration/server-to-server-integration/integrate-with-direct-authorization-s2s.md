@@ -323,7 +323,7 @@ Initiate an authorization request with the payment details provided post a succe
       </td>
 
       <td>
-        \`JSON` This parameter contains the threeDSVersion and deviceChannel fields in an array format.  
+        `JSON` This parameter contains the threeDSVersion and deviceChannel fields in an array format.
         For example:
         \{"threeDSVersion":"2.2.0","deviceChannel":"APP/BRW"}
       </td>
@@ -364,7 +364,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        city `optional`
+        city
+        `optional`
       </td>
 
       <td>
@@ -378,7 +379,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        state `optional`
+        state `  
+        optional`
       </td>
 
       <td>
@@ -392,7 +394,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        country `optional`
+        country
+        `optional`
       </td>
 
       <td>
@@ -406,7 +409,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        zipcode `optional`
+        zipcode
+        `optional`
       </td>
 
       <td>
@@ -421,7 +425,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf1 `optional`
+        udf1
+        `optional`
       </td>
 
       <td>
@@ -435,7 +440,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf2 `optional`
+        udf2
+        `optional`
       </td>
 
       <td>
@@ -449,7 +455,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf3 `optional`
+        udf3
+        `optional`
       </td>
 
       <td>
@@ -463,7 +470,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf4 `optional`
+        udf4
+        `optional`
       </td>
 
       <td>
@@ -477,7 +485,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf5 `optional`
+        udf5
+        `optional`
       </td>
 
       <td>
