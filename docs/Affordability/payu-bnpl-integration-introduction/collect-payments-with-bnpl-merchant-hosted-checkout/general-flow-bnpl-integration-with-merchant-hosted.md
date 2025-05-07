@@ -40,7 +40,7 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
 
 You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code based on the desired BNPL for the **bankcode** parameter is posted. For API reference, refer to <a href="_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API</a> under API Reference.
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 #### **Post Request Syntax & Composition**
 
