@@ -22,10 +22,10 @@ next:
 
 ### Environment
 
-|            |                                   |
-| :--------- | :-------------------------------- |
-| Production | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
-| Test       | [https://test.payu.in/_payment](https://test.payu.in/_payment)  |
+|            |                                                                     |
+| :--------- | :------------------------------------------------------------------ |
+| Production | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+| Test       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 
 The Omni Channel API allows you to call the service request using the specific bank codes.
 
@@ -300,14 +300,14 @@ If specific intent has to be opened instead of Generic Intent, the **bankcode**
 | PhonePe          | PPINTENT     |
 
 > 📘 Note:
-> 
+>
 > User VPA is not required for this flow. The different parameters and their descriptions are in the following table.
 
-Collect the response in the <a href="\_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>. under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to <a href="addl_info-payment-apis#response-for-initial-server-to-server-request" target="_blank"> Additional Info for Payment APIs</a>.
+Collect the response in the [UPI Collection - S2S](ref:payment_s2s_upi_collection) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request) .
 
 ## Step 2: Check UPI transaction status
 
-After receiving a successful response from the above API, the need to check the status of the transaction using the **Verify Payment **API. Web services can be accessed by making a server to server call on the following PayU URLs. For a sample request or response, refer to   <a href="verify_payment_api" target="_blank"> Verify Payment API</a> under API Reference.
+After receiving a successful response from the above API, the need to check the status of the transaction using the \*\*Verify Payment \*\*API. Web services can be accessed by making a server to server call on the following PayU URLs. For a sample request or response, refer to  [Verify Payment API](doc:verify_payment_api)under API Reference.
 
 ## Step 3: PayU sends S2S callback response
 
@@ -335,7 +335,7 @@ mihpayid, mode, status, key, txnid, amount, productinfo, firstname, lastname, ad
 
 Whitelisting is required at both merchant’s and PayU’s end to establish this connection.
 
-- You need to white list the following IP address on your Firewall:
-  - 180.179.174.1
-  - 180.179.174.2
-- PayU will white list merchant server side IP address that you have provided to PayU.
+* You need to white list the following IP address on your Firewall:
+  * 180.179.174.1
+  * 180.179.174.2
+* PayU will white list merchant server side IP address that you have provided to PayU.
