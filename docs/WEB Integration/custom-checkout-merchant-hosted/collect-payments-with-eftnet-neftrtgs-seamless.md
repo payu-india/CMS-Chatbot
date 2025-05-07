@@ -14,7 +14,7 @@ metadata:
 next:
   description: ''
 ---
-Collect payments using EFTNET (NEFT/RTGS) with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU. 
+Collect payments using EFTNET (NEFT/RTGS) with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
 
 To integrate with EFTNET:
 
@@ -24,7 +24,7 @@ To integrate with EFTNET:
 2. [Check response from PayU](#step-2-check-response-from-payu)
 3. [Verify the payment](#step-3-verify-the-payment)
 
-`<RegisterMerchantPrerequiste />`
+<RegisterMerchantPrerequiste />
 
 ## Step 1: Initiate the payment with PayU
 
@@ -53,7 +53,7 @@ To integrate with EFTNET:
 ```
 
 > 📘 Note:
-> 
+>
 > The sample HTML code mentioned above is for Merchant Checkout integration with the NEFT/RTGS payment method call for the test environment.
 
 ### Optional configuration
@@ -62,7 +62,7 @@ PayU provides an optional **Back to Merchant** button on the payment challan of 
 
 In this scenario, if a customer clicks on **Back to Merchant** button the merchant will receive the response on the furl shared in the [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted).
 
-_Sample challan of a NEFT/RTGS transaction_
+*Sample challan of a NEFT/RTGS transaction*
 
 <img
   src="https://files.readme.io/4f959a8-neftrtgs_challan.jpeg"
@@ -74,14 +74,16 @@ _Sample challan of a NEFT/RTGS transaction_
   }}
 />
 
-
 ### Post parameters
 
-The following parameters vary for the EFTNEFT payment mode in the **Collect Payment **API (**\_payment** API).
+The following parameters vary for the EFTNEFT payment mode in the **Collect Payment**API (**\_payment** API).
 
-`<PaymentAPIEnvironment />`
+**Environment**
 
-<br />
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -264,10 +266,9 @@ The following parameters vary for the EFTNEFT payment mode in the **Collect Paym
 </table>
 `}</HTMLBlock>
 
-
-| **Parameter**                       | **Description** | **Example** |
-| ----------------------------------- | --------------- | ----------- |
-|                                     |                 | NEFTRTGS    |
+| **Parameter**                         | **Description** | **Example** |
+| ------------------------------------- | --------------- | ----------- |
+|                                       |                 | NEFTRTGS    |
 | `<<glossary:bankcode>>` **mandatory** |                 | EFTAXIS     |
 
 `<HashingRequestParameters />`
@@ -766,7 +767,7 @@ namespace PayUNeftIntegration
 `<ReverseHashing />`
 
 > 📘 Note on Response:
-> 
+>
 > For security reasons, the sample response or URL is not included here.
 
 ## Step 3: Verify the payment
@@ -774,5 +775,5 @@ namespace PayUNeftIntegration
 Verify the transaction details using the Verification APIs. For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a> under API Reference.
 
 > 📘 Note:
-> 
+>
 > The transaction ID that you posted in Step 1 with PayU must be used here.
