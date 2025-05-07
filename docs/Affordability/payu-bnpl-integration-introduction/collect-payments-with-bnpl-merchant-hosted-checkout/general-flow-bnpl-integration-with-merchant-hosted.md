@@ -22,13 +22,13 @@ This section describes the general steps to integrate <Glossary>BNPL</Glossary>.
 
 ### Steps to Integrate:
 
-1. [Check the BNPL eligibility](#step-1-check-the-bnpl-eligibility)
-2. [Initiate the payment](#step-2-initiate-the-payment)
-3. [Check the response from PayU](#step-3-check-the-response-from-payu)
+1. <a href="#step-1-check-the-bnpl-eligibility">Check the BNPL eligibility</a>
+2. <a href="#step-2-initiate-the-payment">Initiate the payment</a>
+3. <a href="#step-3-check-the-response-from-payu">Check the response from PayU</a>
 
 ### Step 1: Check the BNPL eligibility
 
-When your customer makes a payment through BNPL, you can check the customer’s eligibility using the [Get Checkout Details API](ref:get_checkout_details#check-customer-eligibility)  and then initiate payment. 
+When your customer makes a payment through BNPL, you can check the `customer’s` eligibility using the [Get Checkout Details API](ref:get_checkout_details#check-customer-eligibility)  and then initiate payment. 
 
 > 🚧 Minimum amount for BNPL transaction
 >
@@ -40,7 +40,7 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
 
 You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code based on the desired BNPL for the **bankcode** parameter is posted. For API reference, refer to <a href="_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API</a> under API Reference.
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 #### **Post Request Syntax & Composition**
 
@@ -58,7 +58,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 <input type="hidden" name="bankcode" value="LAZYPAY" />
 <input type="hidden" name="surl" value="your own success url" />
 <input type="hidden" name="furl" value="your own failure url" />
-<input type="hidden" name="phone" value="9988776655” />
+<input type="hidden" name="phone" value="9988776655" />
 <input type="hidden" name="hash" value="eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972" />
 <input type="submit" value="submit"> </form>
 </body>
@@ -100,7 +100,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
       </td>
 
       <td>
-         JPg\*\*\*r
+         `JPg***r`
       </td>
     </tr>
 
@@ -163,8 +163,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        email\
-        `mandatory`
+        `email mandatory`
       </td>
 
       <td>
@@ -178,8 +177,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        phone\
-         `mandatory`
+        `phone mandatory`
       </td>
 
       <td>
@@ -197,7 +195,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
       </td>
 
       <td>
-        * String\_ It defines the payment category using the Merchant Hosted Checkout integration. For a BNPL payment, "BNPL" must be specified in the pg parameter.
+        * String It defines the payment category using the Merchant Hosted Checkout integration. For a BNPL payment, "BNPL" must be specified in the pg parameter.
       </td>
 
       <td>
@@ -221,8 +219,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        furl\
-        `mandatory`
+        `furl mandatory`
       </td>
 
       <td>
@@ -236,8 +233,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        surl\
-        `mandatory`
+        `surl mandatory`
       </td>
 
       <td>
@@ -251,8 +247,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        hash\
-        `mandatory`
+        `hash mandatory`
       </td>
 
       <td>
@@ -267,14 +262,13 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        address1\
-        `optional`
+        `address1 optional`
       </td>
 
       <td>
         `String` The first line of the billing address.  
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        **For Fraud Detection**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -284,8 +278,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        address2\
-        `optional`
+        `address2 optional`
       </td>
 
       <td>
@@ -299,8 +292,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        city\
-        `optional`
+        `city optional`
       </td>
 
       <td>
@@ -314,8 +306,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        state\
-        `optional`
+        `state optional`
       </td>
 
       <td>
@@ -329,8 +320,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        country\
-        `optional`
+        `country optional`
       </td>
 
       <td>
@@ -344,8 +334,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        zipcode\
-        `optional`
+        `zipcode optional`
       </td>
 
       <td>
@@ -360,8 +349,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        udf1\
-        `optional`
+        `udf1 optional`
       </td>
 
       <td>
@@ -375,8 +363,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        udf2\
-        `optional`
+        `udf2 optional`
       </td>
 
       <td>
@@ -390,8 +377,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        udf3\
-        `optional`
+        `udf3 optional`
       </td>
 
       <td>
@@ -405,8 +391,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        udf4\
-        `optional`
+        `udf4 optional`
       </td>
 
       <td>
@@ -420,8 +405,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
 
     <tr>
       <td>
-        udf5\
-        `optional`
+        `udf5 optional`
       </td>
 
       <td>
@@ -435,7 +419,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
   </tbody>
 </Table>
 
-Checked the response mentioned in <a href="_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API - BNPL</a> under API Reference..
+Checked the response mentioned in `<a href="_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API - BNPL</a>` under API Reference..
 
 <HashingRequestParameters />
 
