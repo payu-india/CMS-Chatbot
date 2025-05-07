@@ -29,7 +29,6 @@ You can collect card payments using Server-to-Server integration. This section p
 >
 > For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
-
 > 📘 Note:
 >
 > Collecting the information for the following parameters from customers is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information:
@@ -40,11 +39,19 @@ You can collect card payments using Server-to-Server integration. This section p
 > * s2s\_client\_ip
 > * s2s\_device\_info
 
+**Environment**
+
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+
 ## Sample request
 
 ```curl
 curl --location --request POST 'https://secure.payu.in/_payment' --header 'Content-Type: application/x-www-form-urlencoded' --header 'Cookie: PHPSESSID=mj185cifujktpv1igu9tmuoaal; PAYUID=eac5648ac59712238883a78e71f35717; PHPSESSID=638b1b5173542' --data-urlencode 'hash=d89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42' --data-urlencode 'key=s*****s' --data-urlencode 'txnid=payuTestTransaction3818940' --data-urlencode 'amount=1.0' --data-urlencode 'firstname=Ashish' --data-urlencode 'email=test@payu.in' --data-urlencode 'phone=9988776655' --data-urlencode 'productinfo=Product Info' --data-urlencode 'surl=https://admin.payu.in/test_response' --data-urlencode 'furl=https://admin.payu.in/test_response' --data-urlencode 'notifyurl=https://admin.payu.in/test_response' --data-urlencode 'codurl=https://admin.payu.in/test_response' --data-urlencode 'ipurl=https://admin.payu.in/test_response' --data-urlencode 'lastname=' --data-urlencode 'udf1=' --data-urlencode 'udf2=' --data-urlencode 'udf3=' --data-urlencode 'udf4=' --data-urlencode 'udf5=' --data-urlencode 'pg=CC' --data-urlencode 'bankcode=DC' --data-urlencode 'ccnum=XXXXXXXXXXX8811' --data-urlencode 'ccname=Ashish' --data-urlencode 'ccvv=XXX' --data-urlencode 'ccexpmon=12' --data-urlencode 'ccexpyr=2023' --data-urlencode 'txn_s2s_flow=4' --data-urlencode 'authentication_flow=REDIRECT' 
 ```
+
 ## Sample response
 
 ```
@@ -70,6 +77,7 @@ curl --location --request POST 'https://secure.payu.in/_payment' --header 'Conte
    }
 }
 ```
+
 ## Response parameters
 
 | **Parameter**            | **Description**                                                                                                                                                                                                                                                                             |
