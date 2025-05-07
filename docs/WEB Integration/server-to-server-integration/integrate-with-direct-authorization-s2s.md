@@ -22,11 +22,16 @@ next:
 
 ## Step 1: Post the parameters to PayU
 
-Initiate an authorization request with the payment details provided post a successful authentication via the MPI/3DSS. For the request parameters, refer to <a href="_payment_s2s_direct_authorization_flow" target="_blank">Cards Direct Authorization Flow</a>.
+Initiate an authorization request with the payment details provided post a successful authentication via the MPI/3DSS. For the request parameters, refer to [Cards Direct Authorization Flow](ref:_payment_s2s_direct_authorization_flow) .
 
 ### Request parameters
 
-<br />
+**Environment**
+
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 <Table align={["left","left","left","left","left","left","left","left","left","left","left","left","left","left","left","left","left"]}>
   <thead>
