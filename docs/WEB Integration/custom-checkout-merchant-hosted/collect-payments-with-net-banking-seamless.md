@@ -18,7 +18,7 @@ Collect payments using Net Banking with Merchant Hosted Checkout integration as 
 2. [Check the response from PayU](#step-2-check-response-from-payu)
 3. [Verify Payment](#step-3-verify-the-payment)
 
-<RegisterMerchantPrerequiste />
+
 
 ## Step 1: Initiate the payment to PayU
 
@@ -55,7 +55,12 @@ Post Request Syntax & Composition for Net Banking
 
 The following parameters vary for the NetBanking payment mode in the **Collect Payment** API (**\_payment** API). 
 
-<PaymentAPIEnvironment />
+**Environment**
+
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 > 📘 Reference:
 >
