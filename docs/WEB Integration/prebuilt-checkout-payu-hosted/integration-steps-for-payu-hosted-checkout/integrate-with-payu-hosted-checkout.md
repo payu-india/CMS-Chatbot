@@ -64,7 +64,7 @@ The code block is a sample post request that you need to send to PayU:
 
 ### Request and response
 
-The Collect Payment (**\_payment**) API is used for collecting payments in Web Checkout integration. For request and response, refer to <a href="_payment_payu_hosted_checkout" target="_blank">Collect Payments API</a> under API Reference.
+The Collect Payment (**\_payment**) API is used for collecting payments in Web Checkout integration. For request and response, refer to [Collect Payment API - Merchant Hosted Checkout](doc:_payment_merchant_hosted) under API Reference.
 
 **Environment**
 
@@ -79,7 +79,7 @@ The Collect Payment (**\_payment**) API is used for collecting payments in Web C
 
 > 📘 Reference
 >
-> For an example of how to submit a payment request on your website, refer to <a href="submitting-payment-request-on-your-website" target="_blank"> Integrating on your Website</a>. To handle redirect URLs (surl and furl), refer to <a href="handling-the-redirect-urls" target="_blank"> Handling the Redirect URLs </a>.
+> To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](doc:handling-the-redirect-urls).
 
 #### Request parameters
 
