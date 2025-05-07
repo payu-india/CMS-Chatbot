@@ -19,7 +19,9 @@ next:
 >
 > You must be **PCI-DSS** certified to use Server-to-Server integration. For more information on PCI-DSS certification, contact your Account Manager at PayU.
 
-`<RegisterMerchantPrerequiste />`
+<RegisterMerchantPrerequiste />
+
+<br />
 
 ### Integration security
 
