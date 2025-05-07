@@ -19,7 +19,12 @@ The **pre\_authorize** parameter is used for pre-authorize payments using the se
 
 Post the additional parameters for with the Pre-Authorization using the Merchant Hosted Checkout. For API Reference, refer to [UPI One-Time Mandate Consent Transaction API](ref:_payment-upi-tpv-one-time-mandate-consent-transaction-api).
 
-<PaymentAPIEnvironment />
+**Environment**
+
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 The pre\_authorize parameter as specified is used to pre-authorize payments using the Merchant Hosted Checkout integration with the \_payment API.
 
