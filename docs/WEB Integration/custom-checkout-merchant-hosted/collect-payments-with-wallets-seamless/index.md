@@ -995,7 +995,7 @@ Array
 
 ## Step 3: Verify the payment
 
-Verify the transaction details using the Verification APIs. For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a> under API Reference.
+Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](doc:verify_payment_api)under API Reference.
 
 > 📘 Tip
 >
