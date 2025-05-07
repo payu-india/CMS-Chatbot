@@ -31,7 +31,7 @@ Collect or prepare a list of account numbers that must be posted to PayU for TPV
 
 With the following additional parameters, make the transaction request with the customer’s bank account number to the PayU using the Collect Payment (**\_payment**) API. For more information, refer to <a href="ref:_payment_merchant_hosted" target="_blank"> Collect Payment API - Merchant Hosted Checkiout</a>.
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 ### Request parameters
 
@@ -121,7 +121,14 @@ PayU provides an optional **Back to Merchant** button on the payment challan of 
 
 *Sample challan of a NEFT/RTGS transaction*
 
-<Image align="center" width="400px" src="https://files.readme.io/4f959a8-neftrtgs_challan.jpeg" />
+<div align="center">
+  <img
+    src="https://files.readme.io/4f959a8-neftrtgs_challan.jpeg"
+    alt="NEFT/RTGS Challan"
+    width="400px"
+  />
+</div>
+
 
 ### Sample request
 
