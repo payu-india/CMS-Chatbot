@@ -138,7 +138,7 @@ The following parameters vary for the UPI payment mode in the **Collect Payment*
 
 > 📘 Reference:
 >
-> For the **Try It** experience and response, refer to <a href="_payment_merchant_hosted_upi" target="_blank">Collect Payments API</a> under API Reference.
+> For the **Try It** experience and response, refer to [Collect Payment API - Merchant Hosted Checkout](doc:_payment_merchant_hosted) under API Reference.
 
 <Table align={["left","left","left"]}>
   <thead>
