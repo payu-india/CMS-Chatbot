@@ -22,6 +22,7 @@ You can collect payments from customers with leading wallets using the Merchant 
 2. [Check response from PayU](#step-2-check-response-from-payu)
 3. [Verify Payment](#step-3-verify-the-payment)
 
+<RegisterMerchantPrerequiste />
 
 ## Step 1: Initiate the payment with PayU
 
@@ -54,7 +55,7 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 ### Request parameters
 
-The following parameters vary for the Wallet payment mode in the **Collect Payment** API (**\_payment** API). 
+The following parameters vary for the Wallet payment mode in the **Collect Payment** API (**\_payment** API).
 
 **Environment**
 
@@ -67,7 +68,7 @@ The following parameters vary for the Wallet payment mode in the **Collect Payme
 >
 > For the Try It\*\* experience ) and response, refer to <a href="_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -96,14 +97,14 @@ The following parameters vary for the Wallet payment mode in the **Collect Payme
       </td>
 
       <td>
-         JPg\*\*\*r
+        JPg\*\*\*r
       </td>
     </tr>
 
     <tr>
       <td>
         <Glossary>txnid</Glossary>\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -111,7 +112,7 @@ The following parameters vary for the Wallet payment mode in the **Collect Payme
       </td>
 
       <td>
-         ypl938459435
+        ypl938459435
       </td>
     </tr>
 
@@ -125,7 +126,7 @@ The following parameters vary for the Wallet payment mode in the **Collect Payme
       </td>
 
       <td>
-         10.00
+        10.00
       </td>
     </tr>
 
@@ -139,7 +140,7 @@ The following parameters vary for the Wallet payment mode in the **Collect Payme
       </td>
 
       <td>
-         iPhone
+        iPhone
       </td>
     </tr>
 
@@ -168,14 +169,14 @@ The following parameters vary for the Wallet payment mode in the **Collect Payme
       </td>
 
       <td>
-         [abc@payu.in](mailto:abc@payu.in)
+        [abc@payu.in](mailto:abc@payu.in)
       </td>
     </tr>
 
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -283,9 +284,9 @@ The following parameters vary for the Wallet payment mode in the **Collect Payme
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
