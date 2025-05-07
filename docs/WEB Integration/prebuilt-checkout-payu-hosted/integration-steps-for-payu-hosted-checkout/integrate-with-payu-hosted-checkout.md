@@ -75,7 +75,7 @@ The Collect Payment (**\_payment**) API is used for collecting payments in Web C
 
 > ❗️ Error Handling
 >
-> If any error message is displayed with an error code, refer to <a href="error-codes-for-refund-initiation" target="_blank"> Error Codes for Refund Initiation</a> to understand the reason for these error codes.
+> If any error message is displayed with an error code, refer to [Error Codes for Refund Initiation](doc:error-codes-for-refund-initiation) to understand the reason for these error codes.
 
 > 📘 Reference
 >
