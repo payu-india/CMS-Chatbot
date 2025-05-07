@@ -20,7 +20,25 @@ REST API can be accessed by making a server-to-server call on the following PayU
 >
 > Refer to the following recipe for a walkthrough of a cURL request for a REST API.
 >
-> <TutorialTile backgroundColor="#018FF4" emoji="🦉" id="65084edbb1c590100cf1243e" link="https://payu-hosted-checkout.readme.io/v1/recipes/curl-walkthrough" slug="curl-walkthrough" title="CURL Walkthrough" />
+<a
+  href="https://payu-hosted-checkout.readme.io/v1/recipes/curl-walkthrough"
+  id="65084edbb1c590100cf1243e"
+  style={{
+    display: "block",
+    backgroundColor: "#018FF4",
+    color: "white",
+    padding: "1rem",
+    borderRadius: "0.5rem",
+    textDecoration: "none",
+    maxWidth: "400px",
+    marginBottom: "1rem",
+  }}
+>
+  <div style={{ fontSize: "2rem" }}>🦉</div>
+  <h3 style={{ margin: "0.5rem 0 0" }}>CURL Walkthrough</h3>
+  <p style={{ margin: 0 }}>Learn how to make API calls using CURL</p>
+</a>
+
 
 ## URLs for Test and Production environment
 
