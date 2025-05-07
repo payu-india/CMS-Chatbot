@@ -22,7 +22,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
 **Environment**
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 The **pre\_authorize** parameter as specified is used to pre-authorize payments using the Merchant Hosted Checkout integration with the **\_payment** API. 
 
@@ -479,7 +479,7 @@ The **pre\_authorize** parameter as specified is used to pre-authorize payments 
   </tbody>
 </Table>
 
-<HashingRequestParameters />
+`<HashingRequestParameters />`
 
 ### Sample request
 
@@ -510,7 +510,7 @@ curl --request POST \
 
 ## Step 2: Check the response from PayU
 
-<ReverseHashing />
+`<ReverseHashing />`
 
 ### Sample response
 
@@ -582,7 +582,7 @@ To capture a pre-authorized payment, use the following command. After the API co
 
 **Environment**
 
-<GENERALAPIsEnvironment />
+`<GENERALAPIsEnvironment />`
 
 ### Sample request
 
