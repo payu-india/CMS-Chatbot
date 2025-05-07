@@ -66,7 +66,7 @@ The following parameters vary for the Wallet payment mode in the **Collect Payme
 
 > 📘 Reference:
 >
-> For the Try It\*\* experience ) and response, refer to <a href="_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
+> For the Try It\*\* experience ) and response, refer to [Collect Payment API - Merchant Hosted Checkout](doc:_payment_merchant_hosted) under API Reference.
 
 <Table align={["left","left","left"]}>
   <thead>
