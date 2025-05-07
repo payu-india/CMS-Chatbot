@@ -37,7 +37,12 @@ When your customer makes payment through UPI, you can validate the customer’s 
 
 With the following parameters, make the transaction request with the customer’s bank account number to the PayU using the Collect Payment (**\_payment**) API. 
 
-<PaymentAPIEnvironment />
+**Environment**
+
+|                            |                                                                         |
+| -------------------------- | ----------------------------------------------------------------------- |
+| **Test Environment**       | [https://test.payu.in/\_payment>](https://test.payu.in/_payment%3E)     |
+| **Production Environment** | [https://secure.payu.in/\_payment>](https://secure.payu.in/_payment%3E) |
 
 ### Request parameters
 
