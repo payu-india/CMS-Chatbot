@@ -22,10 +22,10 @@ Post the additional parameters for using the Pre-Auth. For complete list of para
 
 **Environment**
 
-|                            |                                                                         |
-| :------------------------- | :---------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
+|                            |                                                                       |
+| :------------------------- | :-------------------------------------------------------------------- |
+| **Test Environment**       | [https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | [https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 The **pre\_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API.
 
@@ -524,7 +524,10 @@ To capture a pre-authorized payment, use the following command. After the API co
 
 **Environment**
 
-`<GENERALAPIsEnvironment />`
+|                        |                                                                                                              |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
 ### Sample request
 
@@ -648,113 +651,59 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 
 ```
 { 
-
     "status": 1, 
-
     "msg": "1 out of 1 Transactions Fetched Successfully", 
-
     "transaction_details": { 
-
         "18283829909": { 
-
             "12781896792": { 
-
                 "mihpayid": "18283829909", 
-
                 "bank_ref_num": "6966342376826003206121", 
-
                 "request_id": "12781896792", 
-
                 "amt": "1031.00", 
-
                 "mode": "CC", 
-
                 "action": "auth", 
-
                 "token": "", 
-
                 "status": "SUCCESS", 
-
                 "bank_arn": null, 
-
                 "settlement_id": null, 
-
                 "amount_settled": null, 
-
                 "UTR_no": null, 
-
                 "value_date": null, 
-
                 "refund_mode": "-" 
-
             }, 
-
             "12781896793": { 
-
                 "mihpayid": "18283829909", 
-
                 "bank_ref_num": "6969233152136917105030", 
-
                 "request_id": "12781896793", 
-
                 "amt": "426.00", 
-
                 "mode": "CC", 
-
                 "action": "capture", 
-
                 "token": "PZT2310070446VG2VC01", 
-
                 "status": "success", // Auth is successful 
-
                 "bank_arn": null, 
-
                 "settlement_id": "202310111115", 
-
                 "amount_settled": "418.7100", 
-
                 "UTR_no": null, 
-
                 "value_date": null, 
-
                 "refund_mode": "-" 
-
             }, 
-
             "12806008126": { 
-
                 "mihpayid": "18283829909", 
-
                 "bank_ref_num": null, 
-
                 "request_id": "12806008126", 
-
                 "amt": "605.00", 
-
                 "mode": "CC", 
-
                 "action": "cancel", 
-
                 "token": "825816e28afb809be802c7b", 
-
                 "status": "SUCCESS", // Capture is successful 
-
                 "bank_arn": null, 
-
                 "settlement_id": null, 
-
                 "amount_settled": null, 
-
                 "UTR_no": null, 
-
                 "value_date": null, 
-
                 "refund_mode": "-" 
-
             } 
-
         } 
-
     } 
 
 } 
