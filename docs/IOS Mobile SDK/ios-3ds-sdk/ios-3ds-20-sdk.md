@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The iOS 3DS SDK integration involves the following steps:
+The iOS 3DS SDK integration involves the following steps: 
 
 1. [Install the SDK in your app project](https://docs.payu.in/docs/ios-3ds-20-sdk#step-1-install-the-sdk-in-your-app-project)
 2. [Initialise the SDK](https://docs.payu.in/docs/ios-3ds-20-sdk#step-2-initialise-the-sdk)
