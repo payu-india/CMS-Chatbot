@@ -33,7 +33,7 @@ Initiate an authorization request with the payment details provided post a succe
 | **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -327,7 +327,7 @@ Initiate an authorization request with the payment details provided post a succe
       </td>
 
       <td>
-        \{"threeDSVersion":"2.2.0","deviceChannel":"APP/BRW"}
+
       </td>
     </tr>
 
