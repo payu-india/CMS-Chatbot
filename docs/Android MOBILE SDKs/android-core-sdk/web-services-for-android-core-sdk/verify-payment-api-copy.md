@@ -1,7 +1,7 @@
 ---
 title: Verify Payment API (COPY)
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Verify Payment API - Android Core SDK
   robots: index
