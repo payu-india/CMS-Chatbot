@@ -266,6 +266,8 @@ The following parameters vary for the EFTNEFT payment mode in the **Collect Paym
 </table>
 `}</HTMLBlock>
 
+### Request parameters
+
 <br />
 
 <HashingRequestParameters />
@@ -761,7 +763,7 @@ namespace PayUNeftIntegration
 
 ## Step 2: Check response from PayU
 
-`<ReverseHashing />`
+<ReverseHashing />
 
 > 📘 Note on Response:
 >
