@@ -22,7 +22,10 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
 **Environment**
 
-<PaymentAPIEnvironment />
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 The **pre\_authorize** parameter as specified is used to pre-authorize payments using the Merchant Hosted Checkout integration with the **\_payment** API. 
 
@@ -582,7 +585,11 @@ To capture a pre-authorized payment, use the following command. After the API co
 
 **Environment**
 
-<GENERALAPIsEnvironment />
+
+| Environment            | URL                                                                                                  |
+| :--------------------- | :--------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/merchant/postservice?form=2](https://test.payu.in/merchant/postservice?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2) |
 
 ### Sample request
 
