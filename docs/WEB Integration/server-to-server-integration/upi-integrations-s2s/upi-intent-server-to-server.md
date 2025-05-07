@@ -31,9 +31,10 @@ The following diagram depicts the UPI intent flow from server to server:
 
 ### Environment
 
-| Production | [https://secure.payu.in/\\\_payment](https://secure.payu.in/\\_payment) |
-| :--------- | :---------------------------------------------------------------------- |
-| Test       | [https://test.payu.in/\\\_payment](https://test.payu.in/\\_payment)     |
+|            |                                                                     |
+| :--------- | :------------------------------------------------------------------ |
+| Test       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| Production | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 The **\_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="\_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
 
@@ -78,9 +79,9 @@ For the complete list of parameters, refer to <a href="\_payment_s2s_upi_collect
       </td>
 
       <td>
-        `String` The merchant key provided by PayU must be included.  
+        `String` The merchant key provided by PayU must be included.
 
-        * \*Reference\*\*: For more information on how to generate the Key and Salt, refer to any of the following:  
+        * *Reference*\*: For more information on how to generate the Key and Salt, refer to any of the following:
         * **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
         * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
       </td>
@@ -97,7 +98,7 @@ For the complete list of parameters, refer to <a href="\_payment_s2s_upi_collect
       </td>
 
       <td>
-        `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,\&, ‘).
+        `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,&, ‘).
       </td>
 
       <td>
@@ -400,7 +401,7 @@ For the complete list of parameters, refer to <a href="\_payment_s2s_upi_collect
       </td>
 
       <td>
-         `Numeric` This parameter must be passed with the value as 4
+        `Numeric` This parameter must be passed with the value as 4
       </td>
 
       <td>
@@ -415,9 +416,9 @@ For the complete list of parameters, refer to <a href="\_payment_s2s_upi_collect
       </td>
 
       <td>
-        `varchar` This parameter must have the source IP of the user's device.  
+        `varchar` This parameter must have the source IP of the user's device.
 
-        * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -432,9 +433,9 @@ For the complete list of parameters, refer to <a href="\_payment_s2s_upi_collect
       </td>
 
       <td>
-        `varchar` This parameter must have the user agent of device.  
+        `varchar` This parameter must have the user agent of device.
 
-        * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -449,7 +450,7 @@ For the complete list of parameters, refer to <a href="\_payment_s2s_upi_collect
       </td>
 
       <td>
-        For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum’s expected for major apps:  
+        For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum’s expected for major apps:
 
         * phonepe
         * googlepay
@@ -474,7 +475,7 @@ For the complete list of parameters, refer to <a href="\_payment_s2s_upi_collect
       </td>
 
       <td>
-        `String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to  <a href="hashing-request-and-response" target="_blank">Generate Hash</a>.
+        `String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to  [Generate Hash](doc:hashing-request-and-response)
       </td>
 
       <td>
