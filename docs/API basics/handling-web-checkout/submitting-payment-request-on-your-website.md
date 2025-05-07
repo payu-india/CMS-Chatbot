@@ -15,7 +15,29 @@ next:
 ---
 This section provides some sample code blocks to submit the details you collected from your customer and they click **Pay Now**.
 
-<TutorialTile backgroundColor="#018FF4" emoji="🦉" id="64ddc9dedc4121001ff5871c" link="https://payu-hosted-checkout.readme.io/v1.3.0/recipes/submitting-payment-request-on-your-website" slug="submitting-payment-request-on-your-website" title="Submitting Payment Request on your Website" />
+<a
+  href="https://payu-hosted-checkout.readme.io/v1.3.0/recipes/submitting-payment-request-on-your-website"
+  id="64ddc9dedc4121001ff5871c"
+  style={{
+    display: "block",
+    backgroundColor: "#018FF4",
+    color: "white",
+    padding: "1rem",
+    borderRadius: "0.5rem",
+    textDecoration: "none",
+    maxWidth: "400px",
+    marginBottom: "1rem",
+  }}
+>
+  <div style={{ fontSize: "2rem" }}>🦉</div>
+  <h3 style={{ margin: "0.5rem 0 0" }}>
+    Submitting Payment Request on your Website
+  </h3>
+  <p style={{ margin: 0 }}>
+    Learn how to post a payment request directly from your site
+  </p>
+</a>
+
 
 ```python
 import hashlib
