@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-With the Merchant Hosted Checkout integration, the entire payment experience is controlled by PayU. This section describes how to use the Merchant Hosted Integration to collect payments with offers grouping.
+With the Merchant Hosted Checkout integration, the entire payment experience is controlled by PayU. This section describes how to use the Merchant Hosted Integration to collect payments with offers grouping. 
 
 ## **Integration Steps**
 
