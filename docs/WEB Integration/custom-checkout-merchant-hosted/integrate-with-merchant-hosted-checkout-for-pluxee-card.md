@@ -24,6 +24,9 @@ This section describes the parameters required to collect payments using the Plu
 2. [Check response from PayU](#step-2-check-response-from-payu)
 3. [Verify the payment](#step-3-verify-the-payment)
 
+<RegisterMerchantPrerequiste />
+
+<br />
 
 ***
 
@@ -32,7 +35,7 @@ This section describes the parameters required to collect payments using the Plu
 The following describes the characteristics and workflow involved using Merchant Hosted Checkout with Pluxee:
 
 * The existing **\_payment** API used to initiate payments for online transactions will be used to initiate seamless payments for Pluxee payment option.
-* For Sodexo payment option mode or PG is **MC** and Ibibo\_code or bankcodeis **SODEXO**. 
+* For Sodexo payment option mode or PG is **MC** and Ibibo\_code or bankcodeis **SODEXO**.
 * In case customer provides the consent to save the card details with merchant on their check-out page:
   * Merchant should pass **save\_sodexo\_card** parameter value as **1** when initiating the transaction using **\_payment** API.
   * After the transaction is processed and successful, for saved card transactions, Sodexo will share the sourceId with PayU and PayU will share this **sourceId** with merchant in the field3 parameter.
@@ -45,7 +48,7 @@ The following describes the characteristics and workflow involved using Merchant
 
 ## Step 1: Post the payment request to PayU
 
-Customers will select the **Pluxee** payment option on your website and enter the Pluxee card details and the amount will be based on the goods or services added to the cart.  
+Customers will select the **Pluxee** payment option on your website and enter the Pluxee card details and the amount will be based on the goods or services added to the cart.
 
 **Environment**
 
@@ -54,9 +57,9 @@ Customers will select the **Pluxee** payment option on your website and enter th
 | **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
-Post the following additional parameters for the Pluxee card integration. 
+Post the following additional parameters for the Pluxee card integration.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -92,7 +95,7 @@ Post the following additional parameters for the Pluxee card integration.
     <tr>
       <td>
         <Glossary>txnid</Glossary>\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -164,7 +167,7 @@ Post the following additional parameters for the Pluxee card integration.
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -208,12 +211,12 @@ Post the following additional parameters for the Pluxee card integration.
     <tr>
       <td>
         ccnum\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
         `String` This parameter must contain the 16-digit\
-        Sodexo card number. PayU recommends the following best practices:  
+        Sodexo card number. PayU recommends the following best practices:
 
         * When you collect the customer's credit card details, you can validate the card number using the LUHN algorithm. For more information, refer to Card Number Formats.
         * While validating the card number entered by the customer, if the card number is invalid, PayU recommends you display an error message and re-enter the card number..
@@ -289,7 +292,7 @@ Post the following additional parameters for the Pluxee card integration.
       </td>
 
       <td>
-        This parameter is used to specify the flag to save the Sodexo card along with the payment. Specify any of the following values:  
+        This parameter is used to specify the flag to save the Sodexo card along with the payment. Specify any of the following values:
 
         * **0**- Do not save the Sodexo card.
         * **1** - Save the Sodexo card details.
@@ -322,7 +325,7 @@ Post the following additional parameters for the Pluxee card integration.
       </td>
 
       <td>
-        `String` This parameter is used to specify the flag to check the Sodexo card balance and then the payment amount posted if the Sodexo card has sufficient balance. Specify any of the following values:  
+        `String` This parameter is used to specify the flag to check the Sodexo card balance and then the payment amount posted if the Sodexo card has sufficient balance. Specify any of the following values:
 
         * **0** - Do not check the Sodexo card balance before making the payment transaction.
 
@@ -388,9 +391,9 @@ Post the following additional parameters for the Pluxee card integration.
 
       <td>
         `String` The first line of the billing address.\
-        **Notes:**  
+        **Notes:**
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.  
+        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
         * Mandatory for Cross-Border payments.
       </td>
 
@@ -421,9 +424,9 @@ Post the following additional parameters for the Pluxee card integration.
       </td>
 
       <td>
-        `String` The city where your customer resides as part of the billing address.  
+        `String` The city where your customer resides as part of the billing address.
 
-        * \*Note\*\* Mandatory for Cross-Border payments.
+        * *Note*\* Mandatory for Cross-Border payments.
       </td>
 
       <td>
@@ -438,9 +441,9 @@ Post the following additional parameters for the Pluxee card integration.
       </td>
 
       <td>
-        `String` The state where your customer resides as part of the billing address,  
+        `String` The state where your customer resides as part of the billing address,
 
-        * \*Note\*\* Mandatory for Cross-Border payments.
+        * *Note*\* Mandatory for Cross-Border payments.
       </td>
 
       <td>
@@ -455,9 +458,9 @@ Post the following additional parameters for the Pluxee card integration.
       </td>
 
       <td>
-        `String` The country where your customer resides.  
+        `String` The country where your customer resides.
 
-        * \*Note\*\* Mandatory for Cross-Border payments.
+        * *Note*\* Mandatory for Cross-Border payments.
       </td>
 
       <td>
@@ -473,9 +476,9 @@ Post the following additional parameters for the Pluxee card integration.
 
       <td>
         `String` Billing address zip code is mandatory for the cardless EMI option.\
-        `Character Limit`-20  
+        `Character Limit`-20
 
-        * \*Note\*\* Mandatory for Cross-Border payments.
+        * *Note*\* Mandatory for Cross-Border payments.
       </td>
 
       <td>
@@ -490,9 +493,9 @@ Post the following additional parameters for the Pluxee card integration.
       </td>
 
       <td>
-        `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.  
+        `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
 
-        * \*For Cross-Border payments\*\*: Mandatory if AD bank request this detail. This parameter must include the Permanent Account Number (PAN) of the buyer must be collected in this field.
+        * *For Cross-Border payments*\*: Mandatory if AD bank request this detail. This parameter must include the Permanent Account Number (PAN) of the buyer must be collected in this field.
       </td>
 
       <td>
@@ -522,9 +525,9 @@ Post the following additional parameters for the Pluxee card integration.
       </td>
 
       <td>
-        `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.  
+        `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.
 
-        * \*For Cross-Border payments\*\*:If AD bank request this detail. This parameter must include the date of birth of the buyer must be collected using this field in the DD-MM-YYYY format.
+        * *For Cross-Border payments*\*:If AD bank request this detail. This parameter must include the date of birth of the buyer must be collected using this field in the DD-MM-YYYY format.
       </td>
 
       <td>
@@ -539,9 +542,9 @@ Post the following additional parameters for the Pluxee card integration.
       </td>
 
       <td>
-        `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.  
+        `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.
 
-        * \*For Cross-Border payments\*\*: Mandatory for payment aggregators. This parameter must include end merchant legal entity name.
+        * *For Cross-Border payments*\*: Mandatory for payment aggregators. This parameter must include end merchant legal entity name.
       </td>
 
       <td>
@@ -556,9 +559,9 @@ Post the following additional parameters for the Pluxee card integration.
       </td>
 
       <td>
-        `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.  
+        `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.
 
-        * \*For Cross-Border payments\*\*:This parameter must includeThe invoice ID or invoice number must be collected using this field.
+        * *For Cross-Border payments*\*:This parameter must includeThe invoice ID or invoice number must be collected using this field.
       </td>
 
       <td>
