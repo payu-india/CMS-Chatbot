@@ -22,11 +22,14 @@ Post the additional parameters for using the Pre-Auth. For complete list of para
 
 **Environment**
 
-`<PaymentAPIEnvironment />`
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
-The **pre\_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API. 
+The **pre\_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -130,7 +133,7 @@ The **pre\_authorize** parameter as specified is used to pre-authorize payments 
       </td>
 
       <td>
-        [abc@payu.in](mailto:abc@payu.in)   
+        [abc@payu.in](mailto:abc@payu.in)
       </td>
     </tr>
 
@@ -216,9 +219,9 @@ The **pre\_authorize** parameter as specified is used to pre-authorize payments 
       </td>
 
       <td>
-        `String`It is the hash calculated by the merchant. The hash calculation logic is:` sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)`  
+        `String`It is the hash calculated by the merchant. The hash calculation logic is:` sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)`
 
-        * \*Reference\*\*: For detailed information on hashing, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a> . 
+        * *Reference*\*: For detailed information on hashing, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a> .
       </td>
 
       <td>
@@ -233,9 +236,9 @@ The **pre\_authorize** parameter as specified is used to pre-authorize payments 
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -310,7 +313,7 @@ The **pre\_authorize** parameter as specified is used to pre-authorize payments 
       </td>
 
       <td>
-        `String` Billing address zip code is mandatory for the cardless EMI option.  <br/>`Character Limit-20`
+        `String` Billing address zip code is mandatory for the cardless EMI option.  <br />`Character Limit-20`
       </td>
 
       <td>
