@@ -88,7 +88,7 @@ If your website is not validated or onboarding is not completed by PayU, you wil
 
 Check whether you are using the **Production** endpoint for Production Key and Salt. For PayU Hosted or Merchant Hosted integrations, you have to use the following endpoints with **\_payment** API:
 
-<table style="border:0.1rem solid rgb(242, 242, 242);"><tbody><tr><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;"><strong>Test Environment</strong></td><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;">https://test.payu.in/_payment</td></tr><tr><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;"><strong>Production Environment</strong></td><td style="border:0.1rem solid rgb(242, 242, 242);padding:0.8em;">https://secure.payu.in/_payment</td></tr></tbody></table>
+<table style={{border:"0.1rem solid rgb(242, 242, 242)"}}><tbody><tr><td style={{border:"0.1rem solid rgb(242, 242, 242)", padding:"0.8em"}}><strong>Test Environment</strong></td><td style={{border:"0.1rem solid rgb(242, 242, 242)", padding:"0.8em"}}>https://test.payu.in/_payment</td></tr><tr><td style={{border:"0.1rem solid rgb(242, 242, 242)", padding:"0.8em"}}><strong>Production Environment</strong></td><td style={{border:"0.1rem solid rgb(242, 242, 242)", padding:"0.8em"}}>https://secure.payu.in/_payment</td></tr></tbody></table>
 
 If the Key and Salt are still not working, contact your KAM or raise a ticket with PayU support on [help.payu.in](https://help.payu.in/).
 
