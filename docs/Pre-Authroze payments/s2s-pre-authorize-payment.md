@@ -22,7 +22,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
 **Environment**
 
-<PaymentAPIEnvironment />
+`<PaymentAPIEnvironment />`
 
 The **pre\_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API. For the complete list of parameters for **\_payment** API, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 
@@ -116,7 +116,7 @@ To capture a pre-authorized payment, use the following command. After the API co
 
 **Environment**
 
-<GENERALAPIsEnvironment />
+`<GENERALAPIsEnvironment />`
 
 ### Sample request
 
