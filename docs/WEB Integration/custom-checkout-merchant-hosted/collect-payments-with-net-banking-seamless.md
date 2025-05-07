@@ -64,7 +64,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
 
 > 📘 Reference:
 >
-> For the complete list of parameters and response, refer to <a href="_payment_merchant_hosted_netbanking" target="_blank">Collect Payments API</a> under API Reference.
+> For the complete list of parameters and response, refer to [Collect Payment API - Merchant Hosted Checkout](doc:_payment_merchant_hosted) under API Reference.
 
 <br />
 
