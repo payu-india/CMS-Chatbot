@@ -18,7 +18,7 @@ This is server-to-server integration over the Redirect experience for cards invo
 2. [Redirect the customer](#step-2-redirect-the-customer)
 3. [Check the response from PayU](#step-3-check-the-response-from-payu)
 
-
+<RegisterMerchantPrerequiste />
 
 ***
 
@@ -37,7 +37,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
 
 ### Request parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -73,7 +73,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
     <tr>
       <td>
         <Glossary>txnid</Glossary>\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -145,7 +145,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -164,7 +164,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
       </td>
 
       <td>
-        `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value. 
+        `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value.
       </td>
 
       <td>
@@ -189,7 +189,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
     <tr>
       <td>
         ccnum\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -312,7 +312,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
       </td>
 
       <td>
-        `String`This parameter must be passed with the value as:  
+        `String`This parameter must be passed with the value as:
 
         * **4**for Legacy Decoupled flow.
         * **3** for Direct Authorization.
@@ -326,7 +326,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
     <tr>
       <td>
         s2s\_client\_ip\
-        `mandatory`  
+        `mandatory`
       </td>
 
       <td>
@@ -360,9 +360,9 @@ The merchant initiates PayU with the required transaction mandatory or optional 
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
