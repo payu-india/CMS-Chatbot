@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-With the PayU Hosted Checkout integration, the entire payment experience is controlled by PayU. This section describes how to use the PayU Hosted Integration to collect payments with offers grouping.
+With the PayU Hosted Checkout integration, the entire payment experience is controlled by PayU. This section describes how to use the PayU Hosted Integration to collect payments with offers grouping. 
 
 ## Integration Steps
 
