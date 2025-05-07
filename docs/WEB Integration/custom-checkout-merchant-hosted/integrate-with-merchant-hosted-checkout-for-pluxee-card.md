@@ -24,7 +24,6 @@ This section describes the parameters required to collect payments using the Plu
 2. [Check response from PayU](#step-2-check-response-from-payu)
 3. [Verify the payment](#step-3-verify-the-payment)
 
-<RegisterMerchantPrerequiste />
 
 ***
 
@@ -48,7 +47,12 @@ The following describes the characteristics and workflow involved using Merchant
 
 Customers will select the **Pluxee** payment option on your website and enter the Pluxee card details and the amount will be based on the goods or services added to the cart.  
 
-<PaymentAPIEnvironment />
+**Environment**
+
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 Post the following additional parameters for the Pluxee card integration. 
 
