@@ -29,13 +29,13 @@ Merchant Hosted or S2S (Seamless) integration has to be done as per the standard
 
 ## Step 1: Validate VPA
 
-When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API. For more information, refer to [Validate VPA Handle API](https://docs.payu.in/reference/validate_vpa_api). 
+When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API. For more information, refer to [Validate VPA Handle API](ref:validate_vpa_api).
 
 ***
 
 ## Step 2: Post the parameters to PayU
 
-With the following parameters, make the transaction request with the customer’s bank account number to the PayU using the Collect Payment (**\_payment**) API. 
+With the following parameters, make the transaction request with the customer’s bank account number to the PayU using the Collect Payment (**\_payment**) API.
 
 **Environment**
 
@@ -46,7 +46,7 @@ With the following parameters, make the transaction request with the customer’
 
 ### Request parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -75,14 +75,14 @@ With the following parameters, make the transaction request with the customer’
       </td>
 
       <td>
-         JPg\*\*\*r
+        JPg\*\*\*r
       </td>
     </tr>
 
     <tr>
       <td>
         <Glossary>txnid</Glossary>\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -90,7 +90,7 @@ With the following parameters, make the transaction request with the customer’
       </td>
 
       <td>
-         ypl938459435
+        ypl938459435
       </td>
     </tr>
 
@@ -104,7 +104,7 @@ With the following parameters, make the transaction request with the customer’
       </td>
 
       <td>
-         10.00
+        10.00
       </td>
     </tr>
 
@@ -118,7 +118,7 @@ With the following parameters, make the transaction request with the customer’
       </td>
 
       <td>
-         iPhone
+        iPhone
       </td>
     </tr>
 
@@ -147,14 +147,14 @@ With the following parameters, make the transaction request with the customer’
       </td>
 
       <td>
-         [abc@payu.in](mailto:abc@payu.in)
+        [abc@payu.in](mailto:abc@payu.in)
       </td>
     </tr>
 
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -186,7 +186,7 @@ With the following parameters, make the transaction request with the customer’
       </td>
 
       <td>
-        `String` It defines the bank with which you wish to perform TPV using the bank code.The values can be any one of the following values:  
+        `String` It defines the bank with which you wish to perform TPV using the bank code.The values can be any one of the following values:
 
         * **UPITPV**: Used for UPI Collect
         * **INTTPV**: : Used for UPI Intent
@@ -224,7 +224,7 @@ With the following parameters, make the transaction request with the customer’
       </td>
 
       <td>
-        Refer to [beneficiarydetail JSON Object Fields](https://docs.payu.in/docs/net-banking-integration-for-tpv#beneficiarydetail-json-object-fields) 
+        Refer to [beneficiarydetail JSON Object Fields](https://docs.payu.in/docs/net-banking-integration-for-tpv#beneficiarydetail-json-object-fields)
       </td>
     </tr>
 
@@ -295,9 +295,9 @@ With the following parameters, make the transaction request with the customer’
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
