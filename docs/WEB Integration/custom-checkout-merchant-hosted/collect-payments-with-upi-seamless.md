@@ -23,72 +23,72 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
 3. [Check response from PayU](#step-3-check-response-from-payu)
 4. [Verify the payment](#step-4-verify-the-payment)
 
+<RegisterMerchantPrerequiste />
 
 ## Step 1: Validate the UPI handle
 
 When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API.  For more information, refer to [Validate VPA Handle API](ref:validate_vpa_api).
 
 <details>
-<summary>Sample VPA validation code</summary>
+  <summary>Sample VPA validation code</summary>
 
-```javascript
-	// JavaScript example for VPA validation before payment submission
-// This should be run on your server, not client-side
+  ```javascript
+  	// JavaScript example for VPA validation before payment submission
+  // This should be run on your server, not client-side
 
-async function validateVpa(vpa) {
-    try {
-        // Get hash from server endpoint
-        const hashResponse = await fetch('/generate-vpa-hash', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ vpa })
-        });
-        const { hash } = await hashResponse.json();
-        
-        // Validate VPA with PayU
-        const response = await fetch('https://test.payu.in/merchant/postservice?form=2', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-                key: 'YOUR_MERCHANT_KEY',
-                command: 'validateVPA',
-                var1: vpa, // VPA to validate
-                hash: hash
-            })
-        });
-        
-        const result = await response.json();
-        
-        // Sample response:
-        // {"status":1,"msg":"VPA is valid","isVPAValid":1,"isUPIBarredBank":0}
-        // OR
-        // {"status":0,"msg":"VPA is invalid","isVPAValid":0}
-        
-        return {
-            isValid: result.isVPAValid === 1,
-            message: result.msg
-        };
-    } catch (error) {
-        console.error('VPA validation error:', error);
-        return { isValid: false, message: 'Validation service error' };
-    }
-}
+  async function validateVpa(vpa) {
+      try {
+          // Get hash from server endpoint
+          const hashResponse = await fetch('/generate-vpa-hash', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ vpa })
+          });
+          const { hash } = await hashResponse.json();
+          
+          // Validate VPA with PayU
+          const response = await fetch('https://test.payu.in/merchant/postservice?form=2', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams({
+                  key: 'YOUR_MERCHANT_KEY',
+                  command: 'validateVPA',
+                  var1: vpa, // VPA to validate
+                  hash: hash
+              })
+          });
+          
+          const result = await response.json();
+          
+          // Sample response:
+          // {"status":1,"msg":"VPA is valid","isVPAValid":1,"isUPIBarredBank":0}
+          // OR
+          // {"status":0,"msg":"VPA is invalid","isVPAValid":0}
+          
+          return {
+              isValid: result.isVPAValid === 1,
+              message: result.msg
+          };
+      } catch (error) {
+          console.error('VPA validation error:', error);
+          return { isValid: false, message: 'Validation service error' };
+      }
+  }
 
-```
-```curl
-# Once you have the hash, make the API call
+  ```
+  ```curl
+  # Once you have the hash, make the API call
 
-curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=YOUR_MERCHANT_KEY" \
-  -d "command=validateVPA" \
-  -d "var1=customer@upi" \
-  -d "hash=$HASH"
+  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=YOUR_MERCHANT_KEY" \
+    -d "command=validateVPA" \
+    -d "var1=customer@upi" \
+    -d "hash=$HASH"
 
-```
+  ```
 
-<br />
-
+  <br />
 </details>
 
 <br />
@@ -140,7 +140,7 @@ The following parameters vary for the UPI payment mode in the **Collect Payment*
 >
 > For the **Try It** experience and response, refer to <a href="_payment_merchant_hosted_upi" target="_blank">Collect Payments API</a> under API Reference.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -169,14 +169,14 @@ The following parameters vary for the UPI payment mode in the **Collect Payment*
       </td>
 
       <td>
-         JPg\*\*\*r
+        JPg\*\*\*r
       </td>
     </tr>
 
     <tr>
       <td>
         <Glossary>txnid</Glossary>\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -184,7 +184,7 @@ The following parameters vary for the UPI payment mode in the **Collect Payment*
       </td>
 
       <td>
-         ypl938459435
+        ypl938459435
       </td>
     </tr>
 
@@ -198,7 +198,7 @@ The following parameters vary for the UPI payment mode in the **Collect Payment*
       </td>
 
       <td>
-         10.00
+        10.00
       </td>
     </tr>
 
@@ -212,7 +212,7 @@ The following parameters vary for the UPI payment mode in the **Collect Payment*
       </td>
 
       <td>
-         iPhone
+        iPhone
       </td>
     </tr>
 
@@ -241,14 +241,14 @@ The following parameters vary for the UPI payment mode in the **Collect Payment*
       </td>
 
       <td>
-         [abc@payu.in](mailto:abc@payu.in)
+        [abc@payu.in](mailto:abc@payu.in)
       </td>
     </tr>
 
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -295,7 +295,7 @@ The following parameters vary for the UPI payment mode in the **Collect Payment*
       </td>
 
       <td>
-        String The VPA of the customer. For the list of bank name part of the handles, refer to [UPI Handles](doc:upi-handles) . **Reference**: For the list of test card numbers for EMI, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) 
+        String The VPA of the customer. For the list of bank name part of the handles, refer to [UPI Handles](doc:upi-handles) . **Reference**: For the list of test card numbers for EMI, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets)
       </td>
 
       <td>
@@ -356,9 +356,9 @@ The following parameters vary for the UPI payment mode in the **Collect Payment*
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
