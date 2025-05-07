@@ -12,7 +12,7 @@ metadata:
 next:
   description: ''
 ---
-## Credit Card EMI Codes
+## Credit Card EMI Codes 
 
 | Bank Name                             | bank_code | Tenure    | Interest Rate | Min. Amt. | Max. Amt  | Default Processing Fee | Min. Processing Fee | Last updated  |
 | ------------------------------------- | --------- | --------- | ------------- | --------- | --------- | ---------------------- | ------------------- | ------------- |
