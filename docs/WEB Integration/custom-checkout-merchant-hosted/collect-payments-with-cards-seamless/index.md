@@ -35,9 +35,9 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
 
 ## Step 1: Validate the card type
 
-When customers use debit cards or credit cards on your website, you can validate the card type with the first six digits. Use the **check\_isDomestic** API (known as BIN API) to validate the type of card. For more information, refer to  <a href="bin-apis" target="_blank"> BIN APIs</a>.
+When customers use debit cards or credit cards on your website, you can validate the card type with the first six digits. Use the **check\_isDomestic** API (known as BIN API) to validate the type of card. For more information, refer to  [BIN APIs](doc:bin-apis).
 
-After the customer enters the card number, you can validate the first six digits with the **check\_isDomestic** API. For more information, refer to <a href="check_is_domestic_api" target="_blank">Check is Domestic API</a>.
+After the customer enters the card number, you can validate the first six digits with the **check\_isDomestic** API. For more information, refer to [Check is Domestic API](doc:check_is_domestic_api).
 
 ## Step 2: Initiate the payment to PayU
 
