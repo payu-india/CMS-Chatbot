@@ -174,7 +174,7 @@ The **pre\_authorize** parameter as specified is used to pre-authorize payments 
       </td>
 
       <td>
-        `String`The success URL, which is the page PayU will redirect to if the transaction is successful.
+        `String` The success URL, which is the page PayU will redirect to if the transaction is successful.
       </td>
 
       <td>
@@ -189,7 +189,7 @@ The **pre\_authorize** parameter as specified is used to pre-authorize payments 
       </td>
 
       <td>
-        `String`The Failure URL, which is the page PayU will redirect to if the transaction is failed.
+        `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed.
       </td>
 
       <td>
@@ -204,7 +204,7 @@ The **pre\_authorize** parameter as specified is used to pre-authorize payments 
       </td>
 
       <td>
-        `String`This parameter is set to**1** to pre-authorize payment using PayU Hosted Checkout.
+        `String` This parameter is set to**1** to pre-authorize payment using PayU Hosted Checkout.
       </td>
 
       <td>
@@ -219,7 +219,7 @@ The **pre\_authorize** parameter as specified is used to pre-authorize payments 
       </td>
 
       <td>
-        `String`It is the hash calculated by the merchant. The hash calculation logic is:` sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)`
+        `String` It is the hash calculated by the merchant.
 
         * *Reference*\*: For detailed information on hashing, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a> .
       </td>
