@@ -35,7 +35,7 @@ Collect or prepare a list of account numbers that must be posted to PayU for TPV
 
 ## Step 2: Post the parameters to PayU
 
-With the following additional parameters, make the transaction request with the customer’s bank account number to the PayU using the Collect Payment (**\_payment**) API. For more information, refer to <a href="ref:_payment_merchant_hosted" target="_blank"> Collect Payment API - Merchant Hosted Checkiout</a>..
+With the following additional parameters, make the transaction request with the customer’s bank account number to the PayU using the Collect Payment (**\_payment**) API. For more information, refer to[Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted) .\
 **Environment**
 
 |                            |                                                                         |
@@ -45,7 +45,7 @@ With the following additional parameters, make the transaction request with the 
 
 ### Request parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -74,14 +74,14 @@ With the following additional parameters, make the transaction request with the 
       </td>
 
       <td>
-         JPg\*\*\*r
+        JPg\*\*\*r
       </td>
     </tr>
 
     <tr>
       <td>
         <Glossary>txnid</Glossary>\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -89,7 +89,7 @@ With the following additional parameters, make the transaction request with the 
       </td>
 
       <td>
-         ypl938459435
+        ypl938459435
       </td>
     </tr>
 
@@ -103,7 +103,7 @@ With the following additional parameters, make the transaction request with the 
       </td>
 
       <td>
-         10.00
+        10.00
       </td>
     </tr>
 
@@ -117,7 +117,7 @@ With the following additional parameters, make the transaction request with the 
       </td>
 
       <td>
-         iPhone
+        iPhone
       </td>
     </tr>
 
@@ -146,14 +146,14 @@ With the following additional parameters, make the transaction request with the 
       </td>
 
       <td>
-         [abc@payu.in](mailto:abc@payu.in)
+        [abc@payu.in](mailto:abc@payu.in)
       </td>
     </tr>
 
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -185,7 +185,7 @@ With the following additional parameters, make the transaction request with the 
       </td>
 
       <td>
-        `String` It defines the bank with which you wish to perform TPV using the bank code. For more information on the list of bank codes, refer to [Bank Codes for TPV](doc:bank-codes-for-tpv) 
+        `String` It defines the bank with which you wish to perform TPV using the bank code. For more information on the list of bank codes, refer to [Bank Codes for TPV](doc:bank-codes-for-tpv)
       </td>
 
       <td>
@@ -200,7 +200,7 @@ With the following additional parameters, make the transaction request with the 
       </td>
 
       <td>
-        This is a JSON format text and there should be key named **beneficiaryAccountNumber** with the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter. 
+        This is a JSON format text and there should be key named **beneficiaryAccountNumber** with the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter.
       </td>
 
       <td>
@@ -275,9 +275,9 @@ With the following additional parameters, make the transaction request with the 
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
