@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The following are the sequence of API calls for SDK less Deep-Offer integration:  
+The following are the sequence of API calls for SDK less Deep-Offer integration:
 
 1. [Initiate S2S Transaction with PayU and Check Response](#step-1-initiate-s2s-transaction-with-payu-and-check-the-response)
 2. [Invoke Intent on The Customer’s Device](#step-2-invoke-intent-in-the-customers-device)
@@ -60,6 +60,8 @@ First request from Merchant to PayU with the required transaction mandatory/ opt
 > }return false; 
 > } 
 > ```
+>
+>
 
 Collect the response in the [Collect Payment API - Server-to-Server](ref:_payment_server_to_server) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
 
@@ -91,7 +93,7 @@ super.onActivityResult(requestCode, resultCode, data);
 
 ## Step 3: Get Web Service Response
 
-After receiving a successful debit response from the application, you check the transaction status with PayU. Based on the debit request, the transaction should not be marked as success. It has to be marked successful only after checking with PayU servers through the **get\_ws\_response** API and WS Call Response. 
+After receiving a successful debit response from the application, you check the transaction status with PayU. Based on the debit request, the transaction should not be marked as success. It has to be marked successful only after checking with PayU servers through the **get\_ws\_response** API and WS Call Response.
 
 ***
 
