@@ -23,7 +23,6 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
 3. [Check response from PayU](#step-3-check-response-from-payu)
 4. [Verify the payment](#step-4-verify-the-payment)
 
-<RegisterMerchantPrerequiste />
 
 ## Step 1: Validate the UPI handle
 
@@ -130,7 +129,12 @@ Post Request Syntax & Composition for UPI
 
 The following parameters vary for the UPI payment mode in the **Collect Payment** API (**\_payment** API).
 
-<PaymentAPIEnvironment />
+**Environment**
+
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 > 📘 Reference:
 >
