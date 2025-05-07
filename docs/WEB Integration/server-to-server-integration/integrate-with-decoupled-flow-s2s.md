@@ -19,12 +19,12 @@ The S2S decoupled flow for cards involves the following steps for the **redirect
 3. [Authorize (charge) the Payment](#step-3-authorize-charge-the-payment)
 4. [Check the response from PayU](#step-4-check-the-response-from-payu)
 
-`<RegisterMerchantPrerequiste />`
+<RegisterMerchantPrerequiste />
 
 > 📘 Notes:
-> 
-> - This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions. 
-> - If you are using legacy integration of decoupled flow for S2S, refer to [Legacy Flow for Server-to-Server](legacy-flow-for-server-to-server).
+>
+> * This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions. 
+> * If you are using legacy integration of decoupled flow for S2S, refer to [Legacy Flow for Server-to-Server](legacy-flow-for-server-to-server).
 
 ***
 
@@ -348,7 +348,7 @@ curl --location \
 ### Sample response
 
 > 📘 Understanding response parameters:
-> 
+>
 > The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to <a href="addl_info-payment-apis#response-for-initial-server-to-server-request" target="_blank"> Additional Info for Payment APIs</a>.
 
 ```
@@ -380,9 +380,9 @@ curl --location \
 Basis a successful response of the authentication API, you need to redirect the user to the bank page using **acsTemplate**.  This API specifies the response that is posted to `termUrl` after the authentication for the transaction has been processed.
 
 > 📘 Notes:
-> 
-> - All callbacks POST form data on the merchant’s `termUrl` that is passed in Initiate Transaction API. 
-> - Validation of the response happens on the basis of the hash value being returned in the hash value of the response.
+>
+> * All callbacks POST form data on the merchant’s `termUrl` that is passed in Initiate Transaction API. 
+> * Validation of the response happens on the basis of the hash value being returned in the hash value of the response.
 
 ### Request parameters
 
@@ -492,7 +492,6 @@ Basis a successful response of the authentication API, you need to redirect the 
 </table>
 `}</HTMLBlock>
 
-
 ### Sample response
 
 ```plaintext
@@ -531,9 +530,9 @@ The authorization request is the final step of transaction processing. This agai
 
 #### Environment
 
-|            |                                                   |
-| ---------- | ------------------------------------------------- |
-| Test       | [https://test.payu.in/AuthorizeTransaction.php](https://test.payu.in/AuthorizeTransaction.php)   |
+|            |                                                                                                    |
+| ---------- | -------------------------------------------------------------------------------------------------- |
+| Test       | [https://test.payu.in/AuthorizeTransaction.php](https://test.payu.in/AuthorizeTransaction.php)     |
 | Production | [https://secure.payu.in/AuthorizeTransaction.php](https://secure.payu.in/AuthorizeTransaction.php) |
 
 <HTMLBlock>{`
