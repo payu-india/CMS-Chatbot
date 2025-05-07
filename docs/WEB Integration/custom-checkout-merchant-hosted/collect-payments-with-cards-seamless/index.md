@@ -31,7 +31,7 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
 3. [Check the response from PayU](#step-3-check-response-from-payu)
 4. [Verify the payment](#step-4-verify-the-payment)
 
-
+<RegisterMerchantPrerequiste />
 
 ## Step 1: Validate the card type
 
@@ -90,7 +90,7 @@ Post the following parameters for the card payment to PayU using the Merchant Ho
 >
 > For the **Try It** experience and response, refer to <a href="_payment_merchant_hosted_cards" target="_blank">Collect Payments API</a> under API Reference.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -126,7 +126,7 @@ Post the following parameters for the card payment to PayU using the Merchant Ho
     <tr>
       <td>
         <Glossary>txnid</Glossary>\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -198,7 +198,7 @@ Post the following parameters for the card payment to PayU using the Merchant Ho
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -217,7 +217,7 @@ Post the following parameters for the card payment to PayU using the Merchant Ho
       </td>
 
       <td>
-        `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value. 
+        `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value.
       </td>
 
       <td>
@@ -231,7 +231,7 @@ Post the following parameters for the card payment to PayU using the Merchant Ho
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to <a href="card-type-codes-and-supported-banks-for-cards" target="_blank"> Card Type Codes and Supported Banks for Cards</a>. 
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to <a href="card-type-codes-and-supported-banks-for-cards" target="_blank"> Card Type Codes and Supported Banks for Cards</a>.
       </td>
 
       <td>
@@ -242,7 +242,7 @@ Post the following parameters for the card payment to PayU using the Merchant Ho
     <tr>
       <td>
         ccnum\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -365,9 +365,9 @@ Post the following parameters for the card payment to PayU using the Merchant Ho
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
