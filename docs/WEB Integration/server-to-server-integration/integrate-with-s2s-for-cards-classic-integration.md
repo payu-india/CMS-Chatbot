@@ -178,7 +178,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to\ <a href="card-type-codes-and-supported-banks-for-cards" target="_blank"> Card Type Codes and Supported Banks for Cards</a>.
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards)
       </td>
 
       <td>
@@ -193,7 +193,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
       </td>
 
       <td>
-        `String` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to  <a href="card-number-formats" target="_blank"> Card Number Formats</a> and display error message on invalid input.
+        `String` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to [Card Number Formats](doc:card-number-formats)  and display error message on invalid input.
       </td>
 
       <td>
