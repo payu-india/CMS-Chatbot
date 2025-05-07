@@ -32,7 +32,12 @@ The S2S decoupled flow for cards involves the following steps for the **redirect
 
 The merchant initiates PayU with the required transaction mandatory or optional parameters. This needs to be a server-to-server curl call request. URL, parameters, and their descriptions. For more information, refer to [Cards Decoupled Flow](_payment_s2s_decoupled_flow).
 
-`<PaymentAPIEnvironment />`
+**Environment**
+
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 ### Request parameters
 
@@ -303,7 +308,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
 </table>
 `}</HTMLBlock>
 
-`<HashingRequestParameters />`
+<HashingRequestParameters />
 
 ### Sample request
 
