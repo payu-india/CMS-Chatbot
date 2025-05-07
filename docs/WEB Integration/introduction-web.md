@@ -77,4 +77,3 @@ PayU offers the following Web Checkout integrations to cater to merchants with o
 </Table>
 
 The following video describes what is a payment gateway and how it works:
-
