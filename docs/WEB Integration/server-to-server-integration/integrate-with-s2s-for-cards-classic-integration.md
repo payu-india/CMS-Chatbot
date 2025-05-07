@@ -18,7 +18,7 @@ This is server-to-server integration over the Redirect experience for cards invo
 2. [Redirect the customer](#step-2-redirect-the-customer)
 3. [Check the response from PayU](#step-3-check-the-response-from-payu)
 
-<RegisterMerchantPrerequiste />
+
 
 ***
 
@@ -26,7 +26,12 @@ This is server-to-server integration over the Redirect experience for cards invo
 
 The merchant initiates PayU with the required transaction mandatory or optional parameters. This needs to be a server-to-server cURL call request. URL, parameters, and descriptions. For more information, refer to [Cards Classic Integration](ref:_payment_s2s_classic_integration). Collect the response in the [Cards Classic Integration](ref:_payment_s2s_classic_integration) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
 
-<PaymentAPIEnvironment />
+**Environment**
+
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 <HashingRequestParameters />
 
