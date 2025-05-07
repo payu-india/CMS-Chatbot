@@ -31,7 +31,7 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
 3. [Check the response from PayU](#step-3-check-response-from-payu)
 4. [Verify the payment](#step-4-verify-the-payment)
 
-<RegisterMerchantPrerequiste />
+
 
 ## Step 1: Validate the card type
 
@@ -79,7 +79,12 @@ Post Request Syntax & Composition for Cards
 
 Post the following parameters for the card payment to PayU using the Merchant Hosted integration.
 
-<PaymentAPIEnvironment />
+**Environment**
+
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 > 📘 Reference:
 >
