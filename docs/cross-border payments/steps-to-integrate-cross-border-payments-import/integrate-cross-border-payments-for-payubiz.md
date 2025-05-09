@@ -44,11 +44,11 @@ The following parameters (mandatory) must be posted using any of the following W
 
 ### Request parameters
 
-The following are the additional request parameter required for cross-border payments with all of the above integrations. 
+The following are the additional request parameter required for cross-border payments with all of the above integrations.
 
-`<PaymentAPIEnvironment />`
+<br />
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -70,7 +70,7 @@ The following are the additional request parameter required for cross-border pay
       <td>
         key
 
-        mandatory
+        `mandatory`
       </td>
 
       <td>
@@ -84,10 +84,8 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        txnid ```
-
-        mandatory
-        ```
+        txnid\
+        `mandatory`
       </td>
 
       <td>
@@ -95,24 +93,21 @@ The following are the additional request parameter required for cross-border pay
       </td>
 
       <td>
-         ypl938459435
+        ypl938459435
       </td>
     </tr>
 
     <tr>
       <td>
-        amount ```
-
-        mandatory
-        ```
+        amount
       </td>
 
       <td>
-        `String`The payment amount for the transaction.
+        `String`The transaction amount.
       </td>
 
       <td>
-        10.00 
+        100.00
       </td>
     </tr>
 
@@ -164,7 +159,7 @@ The following are the additional request parameter required for cross-border pay
     <tr>
       <td>
         email\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -179,7 +174,7 @@ The following are the additional request parameter required for cross-border pay
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -194,14 +189,14 @@ The following are the additional request parameter required for cross-border pay
     <tr>
       <td>
         address1\
-          `mandatory`
+        `mandatory`
       </td>
 
       <td>
         `String` The first line of the billing address.\
-        H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai  
+        H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai
 
-        * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -212,7 +207,7 @@ The following are the additional request parameter required for cross-border pay
     <tr>
       <td>
         address2\
-          `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -257,7 +252,7 @@ The following are the additional request parameter required for cross-border pay
     <tr>
       <td>
         country\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -523,7 +518,7 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'zipcode=122018'
 ```
 
-## Step 2: Update Invoice ID \[Conditional\]
+## Step 2: Update Invoice ID \[Conditional]
 
 **Case**: If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter. For more information, refer to [UDF Update API](ref:udf_update_api).
 
