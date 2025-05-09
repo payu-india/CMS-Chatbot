@@ -14,12 +14,12 @@ PayU provides payment gateway solutions to online businesses through its cutting
 
 To choose the right products (API Integration) for your business, you need to consider factors like:
 
-- The type of payments you want to accept (cards, UPI, wallets, etc.)
-- The currencies you want to support
-- The level of security and fraud prevention you need
-- The features and functionalities you want to offer your customers (save card, retry option, express checkout, etc.)
-- Split the payments while the transaction or later
-- Become a partner and onboard your merchants
+* The type of payments you want to accept (cards, UPI, wallets, etc.)
+* The currencies you want to support
+* The level of security and fraud prevention you need
+* The features and functionalities you want to offer your customers (save card, retry option, express checkout, etc.)
+* Split the payments while the transaction or later
+* Become a partner and onboard your merchants
 
 PayU India offers following products to choose from:
 
@@ -31,31 +31,38 @@ PayU India offers following products to choose from:
         <th>Offering</th>
       </tr>
     </thead>
+
     <tbody>
       <tr>
         <td>Web Checkout</td>
-        <td>Choose between Prebuilt Web Checkout (PayU Hosted Checkout), Custom Checkout (Merchant Hosted Checkout) or Low Code Web SDK integration based on your resources and time to integrate as described in <a href="#collect-payment-from-your-website">Collect Payment from your website</a>. With your Web Checkout integration, you can opt-in for the following PayU products: <br /><br />- <a href="doc:introduction-recurring-payments-integration">Subscriptions or Recurring payments</a> <br />- <a href="doc:introduction-dynamic-currency-conversion">Dynamic Currency Conversion or International Payments</a><br />- <a href="doc:introduction-cross-border-payments-import">Cross-Border Payments (Import)</a><br />- <a href="doc:split-settlements">Split Settlements</a> <br /> You can value add to your existing PayU Web Checkout integration with the following products:<br />- <a href="doc:introduction-save-cards">Save Cards or Tokenization</a><br />- <a href="doc:offers-dashboard">Offers</a><br />- <a href="doc:recommendation-engine">Recommendation Engine</a></td>
+        <td>Choose between Prebuilt Web Checkout (PayU Hosted Checkout), Custom Checkout (Merchant Hosted Checkout) or Low Code Web SDK integration based on your resources and time to integrate as described in <a href="#collect-payment-from-your-website">Collect Payment from your website</a>. With your Web Checkout integration, you can opt-in for the following PayU products: <br /><br />- <a href="doc:introduction-recurring-payments-integration">Subscriptions or Recurring payments</a> <br />- <a href="doc:introduction-dynamic-currency-conversion">Dynamic Currency Conversion or International Payments</a><br />- <a href="doc:introduction-cross-border-payments-import">Cross-Border Payments (Import)</a><br />- <a href="doc:split-settlments">Split Settlements</a> <br /> You can value add to your existing PayU Web Checkout integration with the following products:<br />- <a href="doc:introduction-save-cards">Save Cards or Tokenization</a><br />- <a href="doc:offers-dashboard">Offers</a><br />- <a href="doc:recommendation-engine">Recommendation Engine</a></td>
       </tr>
+
       <tr>
         <td>Mobile SDK</td>
         <td>- PayU offers following mobile SDK platforms to choose from:<br />  - <a href="doc:explore-android-sdks">Android</a><br />  - <a href="doc:explore-ios-sdks">iOS</a><br />  - <a href="doc:explore-reactnative-sdks">React Native</a><br />  - <a href="doc:cordova-sdk-introduction">Cordova</a><br />  - <a href="doc:flutter-sdk-introduction">Flutter</a> <br /> You can choose to integrate using the PayU Checkout Pro, the pre-built GUI for Android, iOS or React Native or use various SDK components as described in <a href="#collect-payment-from-mobile">Collect payment from Mobile</a>.</td>
       </tr>
+
       <tr>
         <td>Payment Links</td>
         <td>Send payment links instantly to your customers.</td>
       </tr>
+
       <tr>
         <td>Plugins for eCommerce platforms</td>
         <td>PayU offers plugins for major eCommerce platforms including WhatsApp for Business, Shopify, WooCommerce, BigCommerce, etc. as described in <a href="#collect-payment-on-ecommerce-platforms">Collect payment on eCommerce platforms</a>.</td>
       </tr>
+
       <tr>
         <td>Partner Integration</td>
         <td>PayU offers you a platform to refer merchants and earn incentives. For more information, refer to <a href="#become-a-partner">Become a partner</a>.</td>
       </tr>
+
       <tr>
         <td>Omnichannel</td>
         <td>Share QR codes to your customers instantly. For more information, refer to <a href="#collect-payment-thru-omnichannel">Collect payment thru Omnichannel</a>.</td>
       </tr>
+
       <tr>
         <td>Payouts</td>
         <td>Make instant payments to your vendors or employees. For more information, refer to <a href="#make-payments">Make payments</a>.</td>
@@ -90,15 +97,15 @@ PayU India offers following products to choose from:
 
 You can send payment links using after any one of the following integration:
 
-- **PayU Hosted Checkout**: Send payment links to your customers using PayU Dashboard or using Payment Link APIs. For more information, refer to [Dashboard for Payment Links](doc:payment-links-dashboard) or [Integration APIs for Payment Links](doc:integration-api-for-payment-links).
-- **Merchant Hosted Checkout**: Send payment links to your customers using Payment Link APIs. For more information, refer to [Integration APIs for Payment Links](doc:integration-api-for-payment-links).
+* **PayU Hosted Checkout**: Send payment links to your customers using PayU Dashboard or using Payment Link APIs. For more information, refer to [Dashboard for Payment Links](doc:payment-links-dashboard) or [Integration APIs for Payment Links](doc:integration-api-for-payment-links).
+* **Merchant Hosted Checkout**: Send payment links to your customers using Payment Link APIs. For more information, refer to [Integration APIs for Payment Links](doc:integration-api-for-payment-links).
 
 # Collect payment through Omnichannel
 
 You can collect payments using Omnichannel after any one of the following integration:
 
-- **PayU Hosted Checkout**: Share QR to your customers using Omnichannel Integration APIs. For more information, refer to [Integrated Dynamic Storefront](doc:integrated-dynamic-storefront)
-- **Merchant Hosted Checkout**: Share QR to your customers using Omnichannel Integration APIs. For more information, refer to [QR Generation API](doc:qr-generation-api).
+* **PayU Hosted Checkout**: Share QR to your customers using Omnichannel Integration APIs. For more information, refer to [Integrated Dynamic Storefront](doc:integrated-dynamic-storefront)
+* **Merchant Hosted Checkout**: Share QR to your customers using Omnichannel Integration APIs. For more information, refer to [QR Generation API](doc:qr-generation-api).
 
 # Collect payment on eCommerce Platforms
 
@@ -110,20 +117,25 @@ You can configure PayU plugins for the following eCommerce platforms within few 
     <td><a href="doc:wix">Wix</a></td>
     <td><a href="doc:woocommerce">WooCommerce</a></td>
   </tr>
+
   <tr>
     <td><a href="doc:interakt-for-whatsapp-business">Interakt for WhatsApp Business</a></td>
     <td><a href="doc:magento">Magento</a></td>
     <td><a href="doc:opencart">OpenCart</a></td>
   </tr>
+
   <tr>
     <td><a href="doc:shopmatic">Shopmatic</a></td>
     <td><a href="doc:prestashop">PrestaShop</a></td>
     <td><a href="doc:bigcommerce">BigCommerce</a></td>
   </tr>
+
   <tr>
     <td><a href="doc:zoho-integration">Zoho</a></td>
-    <td></td>
-    <td></td>
+
+    <td />
+
+    <td />
   </tr>
 </table>
 
@@ -131,10 +143,10 @@ You can configure PayU plugins for the following eCommerce platforms within few 
 
 Become a partner to onboard merchants and earn incentives for payments collected by merchants onboarded by you. You can onboard merchants through any of the following methods:
 
-- [Using Partner Portal or Dashboard](doc:referral-onboarding)
-- [Using Co-Branded (OAuth) Onboarding](doc:refer-merchants-using-co-branded-oauth-onboarding)
-- [Using Integration APIs](doc:refer-merchants-using-api)
-- [Using Referral Links](doc:refer-merchants-using-referral-links)
+* [Using Partner Portal or Dashboard](doc:referral-onboarding)
+* [Using Co-Branded (OAuth) Onboarding](doc:refer-merchants-using-co-branded-oauth-onboarding)
+* [Using Integration APIs](doc:refer-merchants-using-api)
+* [Using Referral Links](doc:refer-merchants-using-referral-links)
 
 For more information, refer to [Partner Integration](doc:payu-partner-program-overview).
 
