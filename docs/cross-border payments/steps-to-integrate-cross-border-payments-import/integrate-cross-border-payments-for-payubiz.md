@@ -46,7 +46,12 @@ The following parameters (mandatory) must be posted using any of the following W
 
 The following are the additional request parameter required for cross-border payments with all of the above integrations.
 
-<br />
+**Environment**
+
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 <Table align={["left","left","left"]}>
   <thead>
