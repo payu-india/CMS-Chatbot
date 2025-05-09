@@ -18,7 +18,12 @@ You can split during the transaction by amount, where you must ensure that the s
 
 HTTP Method: **POST**
 
-`<PaymentAPIEnvironment />`
+**Environment**
+
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 ## Request parameters
 
@@ -50,7 +55,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         <Glossary>txnid</Glossary>\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -102,7 +107,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -117,7 +122,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value. 
+        `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value.
       </td>
     </tr>
 
@@ -134,7 +139,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         ccnum\
-         `mandatory for cards`
+        `mandatory for cards`
       </td>
 
       <td>
@@ -225,6 +230,7 @@ HTTP Method: **POST**
 
       <td>
         `String`It is the hash calculated by the merchant. The hash calculation logic is:
+
         ```
         sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT\|splitRequest
         ```
@@ -238,9 +244,9 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
     </tr>
 
@@ -361,7 +367,7 @@ HTTP Method: **POST**
 
 The following fields are included in the **splitRequest** parameter in a JSON format to specify the absolute split details. The fields in the JSON format are described in the following table:
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -396,24 +402,24 @@ The following fields are included in the **splitRequest** parameter in a JSON f
 
     <tr>
       <td>
-        splitInfo\
+        splitInfo
         **mandatory**
       </td>
 
       <td>
-        `JSON` This parameter must include the list of aggregator sub transaction IDs and sub amounts as follows:  
+        `JSON` This parameter must include the list of aggregator sub transaction IDs and sub amounts as follows:
 
         * **aggregatorSubTxnId**: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only for child merchants.
         * **aggregatorSubAmt**: The transaction amount or percentage split for the aggregator is posted in this parameter. This field is mandatory.
-        * **aggregatorCharges** (optional): The transaction amount or percentage split for aggregator charges is posted in this parameter. This field is optional.  
-          * \*Note\*\*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.
+        * **aggregatorCharges** (optional): The transaction amount or percentage split for aggregator charges is posted in this parameter. This field is optional.
+          * *Note*\*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.
       </td>
 
       <td>
         \{\
-        "merchantKey1": \{\
-        "aggregatorSubTxnId": "30nknyhkhib",\
-        "aggregatorSubAmt": "8"\
+        "merchantKey1": \{
+        "aggregatorSubTxnId": "30nknyhkhib",
+        "aggregatorSubAmt": "8"
         } 
       </td>
     </tr>
