@@ -6,7 +6,7 @@ excerpt: >-
   processing fee, or No-Cost EMI and tenure. If the customer is eligible, you
   can post the transaction with EMI conversion.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Collect Payments with EMI - Merchant Hosted Checkout
   description: ''
