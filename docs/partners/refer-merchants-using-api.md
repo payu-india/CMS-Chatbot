@@ -35,15 +35,51 @@ PayU merchant onboarding APIs allows partners to:
 * Handle electronic signatures for agreements
 * Receive real-time status updates via webhooks
 
-<Accordion title="Token Management Flow" icon="fa-info-circle">
-  The token-based authentication works as follows:
+\<Accordion title="Token Management Flow" icon="fa-info-circle">
+&#x20; The token-based authentication works as follows:
 
-  * Partners obtain an access token using their credentials
-  * This token is included in subsequent API requests
-  * Tokens expire after a set period and must be refreshed
+&#x20; \* Partners obtain an access token using their credentials
+&#x20; \* This token is included in subsequent API requests
+&#x20; \* Tokens expire after a set period and must be refreshed
 
-  > **Important**: Access tokens should be securely stored and never exposed in client-side code.
-</Accordion>
+&#x20; \> \*\*Important\*\*: Access tokens should be securely stored and never exposed in client-side code.
+\</Accordion>
+
+\<Tabs>
+&#x20; \<Tab title="Authentication and Authorization">
+&#x20;   \## Authentication and Authorization
+
+PayU Merchant Onboarding employs token-based authentication with OAuth 2.0 standards. Partners must obtain tokens through appropriate authentication endpoints before accessing the API resources.
+
+\### Token Management Flow
+
+The token-based authentication works as follows:
+
+\* Partners obtain an access token using their credentials
+\* This token is included in subsequent API requests
+\* Tokens expire after a set period and must be refreshed
+
+\> \*\*Important\*\*: Access tokens should be securely stored and never exposed in client-side code.
+
+\### User Token APIs
+
+The Merchant Onboarding Integration offers several token-related endpoints for authentication purposes. These endpoints handle token generation, refresh, and OTP verification when required.
+
+For detailed request and response specifications, please refer to:
+
+\* \[Partner Integration User Token APIs]\(https\://docs.payu.in/reference/partner-integration-user-token-apis#/)
+\* \[Get Token API]\(https\://docs.payu.in/reference/get\_token\_api#/)
+\* \[Refresh Token API]\(https\://docs.payu.in/reference/refresh\_token\_api#/).
+&#x20; \</Tab>
+
+&#x20; \<Tab title="Second Tab">
+&#x20;   Here's content that's only inside the second Tab.
+&#x20; \</Tab>
+
+&#x20; \<Tab title="Third Tab">
+&#x20;   Here's content that's only inside the third Tab.
+&#x20; \</Tab>
+\</Tabs>
 
 ## Authentication and Authorization
 
