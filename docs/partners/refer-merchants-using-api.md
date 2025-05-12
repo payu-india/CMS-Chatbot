@@ -35,51 +35,9 @@ PayU merchant onboarding APIs allows partners to:
 * Handle electronic signatures for agreements
 * Receive real-time status updates via webhooks
 
-\<Accordion title="Token Management Flow" icon="fa-info-circle">
-&#x20; The token-based authentication works as follows:
+***
 
-&#x20; \* Partners obtain an access token using their credentials
-&#x20; \* This token is included in subsequent API requests
-&#x20; \* Tokens expire after a set period and must be refreshed
-
-&#x20; \> \*\*Important\*\*: Access tokens should be securely stored and never exposed in client-side code.
-\</Accordion>
-
-\<Tabs>
-&#x20; \<Tab title="Authentication and Authorization">
-&#x20;   \## Authentication and Authorization
-
-PayU Merchant Onboarding employs token-based authentication with OAuth 2.0 standards. Partners must obtain tokens through appropriate authentication endpoints before accessing the API resources.
-
-\### Token Management Flow
-
-The token-based authentication works as follows:
-
-\* Partners obtain an access token using their credentials
-\* This token is included in subsequent API requests
-\* Tokens expire after a set period and must be refreshed
-
-\> \*\*Important\*\*: Access tokens should be securely stored and never exposed in client-side code.
-
-\### User Token APIs
-
-The Merchant Onboarding Integration offers several token-related endpoints for authentication purposes. These endpoints handle token generation, refresh, and OTP verification when required.
-
-For detailed request and response specifications, please refer to:
-
-\* \[Partner Integration User Token APIs]\(https\://docs.payu.in/reference/partner-integration-user-token-apis#/)
-\* \[Get Token API]\(https\://docs.payu.in/reference/get\_token\_api#/)
-\* \[Refresh Token API]\(https\://docs.payu.in/reference/refresh\_token\_api#/).
-&#x20; \</Tab>
-
-&#x20; \<Tab title="Second Tab">
-&#x20;   Here's content that's only inside the second Tab.
-&#x20; \</Tab>
-
-&#x20; \<Tab title="Third Tab">
-&#x20;   Here's content that's only inside the third Tab.
-&#x20; \</Tab>
-\</Tabs>
+<br />
 
 ## Authentication and Authorization
 
@@ -104,6 +62,10 @@ For detailed request and response specifications, please refer to:
 * [Partner Integration User Token APIs](https://docs.payu.in/reference/partner-integration-user-token-apis#/)
 * [Get Token API](https://docs.payu.in/reference/get_token_api#/)
 * [Refresh Token API](https://docs.payu.in/reference/refresh_token_api#/)
+
+***
+
+<br />
 
 ## Merchant Onboarding Process
 
@@ -137,6 +99,10 @@ For specifications on bank verification, please refer to:
 * [Penny Verify API](https://docs.payu.in/reference/penny_verify_api#/)
 * [Verify and Link Merchant API](https://docs.payu.in/reference/verify_and_link_merchant_api#/)
 
+***
+
+<br />
+
 ## KYC Document Management
 
 The KYC process requires merchants to provide various identification and business documents. These APIs facilitate document upload and verification.
@@ -164,11 +130,22 @@ PayU accepts various document types for KYC verification, including:
 
 Documents must meet specific format and quality requirements to be accepted.
 
+***
+
+<br />
+
 ## E-Sign Flow
 
 The electronic signature process is required to complete merchant agreements. PayU provides specific APIs to manage this workflow.
 
 For e-signature specifications, please refer to:
+
+<Accordion title="E-sign APIs" icon="fa-info-circle">
+  * [E-Sign Flow APIs](https://docs.payu.in/reference/e-sign-flow-apis#/)
+  * [Generate Merchant Agreement for E-Sign API](https://docs.payu.in/reference/generate-merchant-agreement-for-e-sign-api#/)
+  * [Send OTP to Signatory Email API](https://docs.payu.in/reference/send-otp-to-signatory-email-api#/)
+  * [E-Sign Merchant Agreement API](https://docs.payu.in/reference/e-sign-merchant-agreement-api#/)
+</Accordion>
 
 * [E-Sign Flow APIs](https://docs.payu.in/reference/e-sign-flow-apis#/)
 * [Generate Merchant Agreement for E-Sign API](https://docs.payu.in/reference/generate-merchant-agreement-for-e-sign-api#/)
