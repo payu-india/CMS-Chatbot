@@ -30,7 +30,7 @@ The **Create Merchant** API creates a new merchant account on PayU and posts all
 
 This API is authorised through a client token generated using the client ID and secret. To create a token, call the get token API with `refer merchant` as a scope.  Refer to the  [Get Token API](ref:get_token_api) doc for more information.
 
-<br />
+## Sample response
 
 <details>
   <summary>Sample response</summary>
