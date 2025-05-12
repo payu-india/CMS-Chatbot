@@ -424,15 +424,16 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
 
     <tr>
       <td>
-
+        vpa\
+        `mandatory for UPI`
       </td>
 
       <td>
-
+        `String` The VPA of the customer. For the list of bank name part of the handles, refer to [UPI Handles](doc:upi-handles)  . **Reference**: For the list of test card numbers for EMI, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets)
       </td>
 
       <td>
-
+        test\@payu
       </td>
     </tr>
 
