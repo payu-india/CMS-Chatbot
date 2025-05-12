@@ -14,7 +14,7 @@ next:
 
 | **Error**                                                                                 | **Solution**                                                                                                                                    |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| Authorized person name not mentioned in authorization letter                              | Re-upload the authorization letter copy with authorized person name.                                                                            |
+| <h3>Authorisation Letter Document</h3>                                                    |                                                                                                                                                 |
 | Not all partners have signed on authorization letter                                      | Re-upload the authorization letter copy with name and signature from all the partners                                                           |
 | Names of all partners are not mentioned in authorization Letter                           | Re-upload the authorization letter copy with name and signature from all the partners                                                           |
 | Authorization Letter copy uploaded is not on firm's letterhead                            | Re-upload the authorization letter copy on firm's letterhead                                                                                    |
