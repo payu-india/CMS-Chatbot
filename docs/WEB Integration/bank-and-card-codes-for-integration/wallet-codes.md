@@ -24,5 +24,5 @@ In the Merchant Hosted Checkout integration, you must use **CASH** with the **pg
 | ItzCash      | ITZC         |
 | HDFC PayZapp | PAYZP        |
 | Yes Bank     | YESW         |
-| MobiKwik     | mobikwik     |
+| MobiKwik     | MOBIKWIK     |
 | PhonePe      | PHONEPE      |
