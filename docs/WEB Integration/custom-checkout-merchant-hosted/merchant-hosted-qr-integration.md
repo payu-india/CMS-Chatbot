@@ -2,7 +2,7 @@
 title: QR Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: QR Integration with Merchant Hosted Checkout
   description: >-
