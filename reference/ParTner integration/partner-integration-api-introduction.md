@@ -24,7 +24,7 @@ next:
 ---
 This documentation includes the APIs related to Partner Program Integration. It is recommended to use the APIs in this documentation as described in the following flow diagram:
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-19-at-10.30.15-AM.png)
+<Image align="center" src="https://files.readme.io/0448b6806e7c38a12a8542b86d85322ebf8ff6cab0d471d74b4d50541daec0a3-Screenshot_2025-05-12_at_12.17.17_PM.png" />
 
 ## List of APIs
 
