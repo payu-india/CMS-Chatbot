@@ -35,9 +35,7 @@ PayU merchant onboarding APIs allows partners to:
 * Handle electronic signatures for agreements
 * Receive real-time status updates via webhooks
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
-  ### Token Management Flow
-
+<Accordion title="Token Management Flow" icon="fa-info-circle">
   The token-based authentication works as follows:
 
   * Partners obtain an access token using their credentials
