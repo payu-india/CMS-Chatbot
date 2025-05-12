@@ -2,7 +2,7 @@
 title: Wallets Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Collect Payments with Wallets - Merchant Hosted Checkout
   description: >-
