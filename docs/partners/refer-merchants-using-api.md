@@ -53,15 +53,13 @@ The token-based authentication works as follows:
 
 > **Important**: Access tokens should be securely stored and never exposed in client-side code.
 
-### User Token APIs
+<Accordion title="User Token APIs" icon="fa-info-circle">
+  The Merchant Onboarding Integration offers several token-related endpoints for authentication purposes. These endpoints handle token generation, refresh, and OTP verification when required.
 
-The Merchant Onboarding Integration offers several token-related endpoints for authentication purposes. These endpoints handle token generation, refresh, and OTP verification when required.
-
-For detailed request and response specifications, please refer to:
-
-* [Partner Integration User Token APIs](https://docs.payu.in/reference/partner-integration-user-token-apis#/)
-* [Get Token API](https://docs.payu.in/reference/get_token_api#/)
-* [Refresh Token API](https://docs.payu.in/reference/refresh_token_api#/)
+  * [Partner Integration User Token APIs](https://docs.payu.in/reference/partner-integration-user-token-apis#/)
+  * [Get Token API](https://docs.payu.in/reference/get_token_api#/)
+  * [Refresh Token API](https://docs.payu.in/reference/refresh_token_api#/)
+</Accordion>
 
 ***
 
@@ -78,26 +76,26 @@ The Merchant Onboarding flow consists of several key steps:
 5. Complete e-signature process for merchant agreement
 6. Monitor merchant status through webhooks
 
-### Creating and Managing Merchants
+<Accordion title="Creating and Managing Merchants" icon="fa-info-circle">
+  The APIs for merchant creation and management allow partners to register new merchants and update their information.
 
-The APIs for merchant creation and management allow partners to register new merchants and update their information.
+  For detailed specifications on merchant onboarding, please refer to:
 
-For detailed specifications on merchant onboarding, please refer to:
+  * [Create Merchant API](https://docs.payu.in/reference/create_merchant_api#/)
+  * [Update Merchant Details API](https://docs.payu.in/reference/update_merchant_details_api#/)
+  * [Get Merchant API](https://docs.payu.in/reference/get_merchant_api#/)
+</Accordion>
 
-* [Create Merchant API](https://docs.payu.in/reference/create_merchant_api#/)
-* [Update Merchant Details API](https://docs.payu.in/reference/update_merchant_details_api#/)
-* [Get Merchant API](https://docs.payu.in/reference/get_merchant_api#/)
+<Accordion title="Bank Account Verification" icon="fa-info-circle">
+  Bank account verification is a critical step in the merchant onboarding process. PayU provides specific APIs for adding, updating, and verifying bank details.
 
-### Bank Account Verification
+  For specifications on bank verification, please refer to:
 
-Bank account verification is a critical step in the merchant onboarding process. PayU provides specific APIs for adding, updating, and verifying bank details.
-
-For specifications on bank verification, please refer to:
-
-* [Bank Details API](https://docs.payu.in/reference/bank-details-api#/)
-* [Add Update Bank Details API](https://docs.payu.in/reference/add_update_bank_details_api#/)
-* [Penny Verify API](https://docs.payu.in/reference/penny_verify_api#/)
-* [Verify and Link Merchant API](https://docs.payu.in/reference/verify_and_link_merchant_api#/)
+  * [Bank Details API](https://docs.payu.in/reference/bank-details-api#/)
+  * [Add Update Bank Details API](https://docs.payu.in/reference/add_update_bank_details_api#/)
+  * [Penny Verify API](https://docs.payu.in/reference/penny_verify_api#/)
+  * [Verify and Link Merchant API](https://docs.payu.in/reference/verify_and_link_merchant_api#/)
+</Accordion>
 
 ***
 
@@ -111,13 +109,13 @@ The KYC process requires merchants to provide various identification and busines
 
 Different merchant types require different documentation. The exact requirements should be determined by referencing the official PayU documentation.
 
-### Document Upload APIs
+<Accordion title="Document Upload APIs" icon="fa-info-circle">
+  For specifications on KYC document management, please refer to:
 
-For specifications on KYC document management, please refer to:
-
-* [Manage KYC Documents](https://docs.payu.in/reference/manage-kyc-documents#/)
-* [Docs Required API](https://docs.payu.in/reference/docs_required_api#/)
-* [Create KYC Document API](https://docs.payu.in/reference/create_kyc_document_api#/)
+  * [Manage KYC Documents](https://docs.payu.in/reference/manage-kyc-documents#/)
+  * [Docs Required API](https://docs.payu.in/reference/docs_required_api#/)
+  * [Create KYC Document API](https://docs.payu.in/reference/create_kyc_document_api#/)
+</Accordion>
 
 ### Document Types and Guidelines
 
@@ -147,10 +145,7 @@ For e-signature specifications, please refer to:
   * [E-Sign Merchant Agreement API](https://docs.payu.in/reference/e-sign-merchant-agreement-api#/)
 </Accordion>
 
-* [E-Sign Flow APIs](https://docs.payu.in/reference/e-sign-flow-apis#/)
-* [Generate Merchant Agreement for E-Sign API](https://docs.payu.in/reference/generate-merchant-agreement-for-e-sign-api#/)
-* [Send OTP to Signatory Email API](https://docs.payu.in/reference/send-otp-to-signatory-email-api#/)
-* [E-Sign Merchant Agreement API](https://docs.payu.in/reference/e-sign-merchant-agreement-api#/)
+<br />
 
 ## Webhooks for Real-Time Updates
 
@@ -172,7 +167,11 @@ Webhook requests should be authenticated to ensure they come from PayU. Implemen
 
 KYC document verification can encounter various issues. For detailed information on common errors and their solutions, please refer to:
 
-* [KYC Errors and Solutions](https://docs.payu.in/reference/kyc-errors-and-solutions#/)
+<Accordion title="KYC errors" icon="fa-info-circle">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
 
 Common issues include:
 
