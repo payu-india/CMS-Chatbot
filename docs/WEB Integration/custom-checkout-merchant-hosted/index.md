@@ -1004,8 +1004,6 @@ The following table summarizes the supported payment methods for PayU’s Mercha
 > * Test your integration thoroughly in the PayU sandbox environment before going live. 
 > * For NEFT/RTGS transactions, implement a reconciliation process to track transaction status and match payments with orders.
 
-###
-
 ## Security and Testing the Integration
 
 ### Security Considerations
