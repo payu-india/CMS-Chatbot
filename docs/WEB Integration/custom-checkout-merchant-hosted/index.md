@@ -326,7 +326,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bank codes that can be used with the **bankcode** parameter, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration).
       </td>
 
       <td>
