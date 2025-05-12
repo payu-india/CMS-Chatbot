@@ -2,7 +2,7 @@
 title: Generate Hash
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Generate Hash for Merchant Hosted Checkout
   description: >-
