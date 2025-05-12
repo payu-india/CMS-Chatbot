@@ -955,6 +955,104 @@ Array
 )
 ```
 
+### Payment Methods
+
+Merchant Hosted Checkout supports a wide range of payment methods: 
+
+* **Credit Cards and Debit Cards**: Visa, Mastercard, American Express, etc. 
+* **Net Banking**: Collect payments through EFTNET (NEFT/RTGS) transactions using PayU’s Merchant Hosted Checkout integration. Merchants should always send both customer account no and customer IFSC Code in Request. For NEFT/RTGS TPV, the flow will work for txn\_s2s\_flow = 1 or txn\_s2s\_flow = 4 as is. EFTAXTPV must be used as bankcode for NEFT/RTGS. The api\_version “6” must be passed for this parameter for NEFT/RTGS. 
+* **Wallets**: Integrate with popular wallets like Paytm, PhonePe, and others. 
+* **UPI**: Collect payments via UPI using the customer’s UPI ID. 
+* **EMI (Equated Monthly Installments)**: Offer customers the option to pay in installments. 
+* **BNPL (Buy Now, Pay Later)**: Integrate with BNPL providers to allow customers to spread payments over time. 
+* **PayPal**: Facilitate international payments through PayPal. If you’re using the PayU Hosted Checkout or Merchant Hosted integration, you need to activate PayPal from PayU Dashboard. 
+* **Pluxee Card**: Integrate with Pluxee (formerly Sodexo) meal cards. For Sodexo payment option mode or PG is MC and Ibibo\_code or bankcodeis SODEXO. In case customer provides the consent to save the card details with merchant on their check-out page: Merchant should pass save\_sodexo\_card parameter value as 1 when initiating the transaction using \_payment API. Merchants are recommended to use the check\_balance API for checking the Sodexo card balance. 
+* **QR Code**: Enable payments via QR codes. 
+
+> 📘 Note:
+>
+> For each payment method, you may need to pass specific parameters in the \_payment API request. Refer to the PayU documentation for each payment method for details. For all the supported wallets, refer to Wallet Codes to understand exact value which needs to be passed against bankcode parameter. 
+
+### Supported Payment Methods: Details for API Integration\*\* 
+
+The following table summarizes the supported payment methods for PayU’s Merchant Hosted Checkout, along with the corresponding bankcode and pg values required in the \_payment API request. It also includes other relevant details and considerations for each payment method. 
+
+| Payment Method       | pg     | bankcode                 | Additional Details                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| -------------------- | ------ | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Credit/Debit Cards   | CC     | N/A                      | No bankcode is needed for card payments. Card details (ccnum, ccname, ccexpmon, ccexpyr, ccvv) must be collected securely on your website. Ensure PCI DSS compliance if collecting card details directly. Implement 3D Secure for enhanced security.                                                                                                                                                                                  |
+| Net Banking          | NB     | Varies (Bank-Specific)   | Refer to the PayU documentation for a complete list of bank codes. Each bank has a unique code. Collect customer's net banking credentials securely. If you are using Merchant Hosted Checkout, you will collect card details on your own website and therefore you must be PCI-DSS compliant. Always use HTTPS to encrypt data transmitted between your website and the customer's browser, as well as between your server and PayU. |
+| Wallets              | CASH   | Varies (Wallet-Specific) | Refer to the PayU documentation for a complete list of wallet codes. Examples: PAYTM, PHONEPE, AMAZONPAY. The bankcode value should correspond to the specific wallet the customer chooses. Ensure you display the available wallet options to the customer clearly.                                                                                                                                                                  |
+| UPI                  | UPI    | N/A                      | UPI payments require the customer to enter their UPI ID or scan a QR code. The pg value depends on whether its collect or intent flow. If its UPI collect, the customer will need to manually authorize the payment from the UPI app and no bankcode is required for UPI.                                                                                                                                                             |
+| EMI                  | CC     | N/A                      | EMI is usually processed through credit cards. The pg value is CC. You may need to pass additional parameters related to the EMI plan, such as the number of months and the interest rate. The availability of EMI options depends on the card issuing bank and PayU's agreements.                                                                                                                                                    |
+| BNPL                 | Varies | Varies                   | The pg and bankcode values depend on the specific BNPL provider. Refer to the PayU documentation for the correct values for each provider. Integration requirements vary depending on the provider.                                                                                                                                                                                                                                   |
+| PayPal               | PAYPAL | N/A                      | Activate PayPal from the PayU Dashboard before integrating. No bankcode is required for PayPal. Settlements are typically processed in INR. You're using the PayU Hosted Checkout or Merchant Hosted integration, you need to activate PayPal from PayU Dashboard.                                                                                                                                                                    |
+| Pluxee Card (Sodexo) | MC     | SODEXO                   | Use the SODEXO bankcode. The pg value is MC. Merchants are recommended to use the check\_balance API for checking the Sodexo card balance.                                                                                                                                                                                                                                                                                            |
+| EFTNET (NEFT/RTGS)   | NB     | EFTAXTPV                 | The api\_version "6" must be passed for this parameter for NEFT/RTGS. Merchants should always send both customer account no and customer IFSC Code in Request.                                                                                                                                                                                                                                                                        |
+| QR Code              | UPI    | N/A                      | The QR code format should be as per Bharat QR specifications.                                                                                                                                                                                                                                                                                                                                                                         |
+
+**Important Notes**: 
+
+* Always refer to the official PayU documentation for the most up-to-date information on supported payment methods and their corresponding parameters. 
+* The bankcode values are case-sensitive. 
+* Ensure that the payment methods you intend to support are enabled in your PayU merchant account. 
+* Test your integration thoroughly in the PayU sandbox environment before going live. 
+* For NEFT/RTGS transactions, implement a reconciliation process to track transaction status and match payments with orders. 
+
+This table provides a quick reference for integrating different payment methods with PayU’s Merchant Hosted Checkout. Remember to consult the PayU documentation for detailed instructions and specific requirements for each payment method. 
+
+**Security Considerations** 
+
+Security is paramount when handling payment data. Implement the following security measures: 
+
+* **HTTPS**: Always use HTTPS to encrypt data transmitted between your website and the customer’s browser, as well as between your server and PayU. 
+* **Data Encryption**: Encrypt sensitive data both in transit and at rest. 
+* **Tokenization**: Use tokenization to protect sensitive card details. 
+* **Regular Security Audits**: Conduct regular security audits to identify and address potential vulnerabilities. 
+* **3D Secure**: Implement 3D Secure (3DS) for card payments to add an extra layer of authentication. PayU supports 3DS Secure 2.0 transaction with Merchant Hosted Checkout integration. 
+* **CVV Handling**: Never store the CVV (Card Verification Value). 
+* **IP Address Restriction**: Implement IP Address Restriction. 
+* **Webhooks Security**: Make sure webhooks are properly configured. 
+
+**Testing and Go-Live** 
+
+Before going live, thoroughly test your integration in the PayU sandbox environment. 
+
+**Testing Steps:** 
+
+* **Use Test Credentials**: Use your test key and salt to make test transactions. 
+* **Simulate Different Scenarios**: Test successful payments, failed payments, and pending transactions. 
+* **Verify Webhooks**: Ensure that your webhook implementation is correctly receiving and processing transaction updates. 
+* **Test Different Payment Methods**: Test all the payment methods you intend to support in your production environment. 
+* **Use Test Data**: Use test credentials for Net Banking: user name: payu. password: payu. OTP: 123456. 
+
+**Go-Live Checklist:** 
+
+* **Replace Test Credentials**: Replace your test key and salt with your production credentials. 
+* **Final Verification**: Perform a final checkout verification to ensure all payment details are collected and processed correctly. 
+* **Enable Webhooks**: Ensure that webhooks are enabled and configured to receive transaction updates in your production environment. 
+* **Monitor Transactions**: Closely monitor transactions in the first few days after going live to identify and address any issues. 
+
+**Unique Features and Advantages** 
+
+Merchant Hosted Checkout offers unique advantages, including: 
+
+* **Flexibility and Control**: Customize the checkout experience to match your brand and optimize conversion rates. 
+* **Direct Customer Interaction**: Maintain a direct relationship with your customers throughout the payment process. 
+* **Wide Range of Payment Options**: Support a variety of payment methods to cater to your customer’s preferences. 
+* **Maximizer**: Route your payment through multiple gateways by a single switch. 
+
+**Troubleshooting and Error Handling** 
+
+* **Incorrect Hash**: Double-check the hash generation logic and ensure that the parameters are in the correct order. 
+* **Invalid API Credentials**: Verify that you are using the correct key and salt for the environment (test or production). 
+* **Payment Method Not Enabled**: Ensure that the payment method you are trying to use is enabled in your PayU merchant account. 
+* **Webhook Issues**: Check your webhook logs to identify any errors in processing transaction updates. 
+
+**Support and Resources** 
+
+* **PayU Developer Documentation**: Refer to the official PayU developer documentation for detailed API references, code samples, and integration guides. 
+* **PayU Support**: Contact PayU support for assistance with integration issues, account configuration, and other inquiries.
+
 ## Step 3: Verify the payment
 
 Verify the transaction details using the Verification APIs. For more information, refer to [Verify Payment API](doc:verify_payment_api) under API Reference.
