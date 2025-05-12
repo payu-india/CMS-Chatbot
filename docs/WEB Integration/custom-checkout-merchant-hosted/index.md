@@ -1004,9 +1004,9 @@ The following table summarizes the supported payment methods for PayU’s Mercha
 > * Test your integration thoroughly in the PayU sandbox environment before going live. 
 > * For NEFT/RTGS transactions, implement a reconciliation process to track transaction status and match payments with orders.
 
-## Security and Testing the Integration
+## Security and testing the Integration
 
-### Security Considerations
+### Security considerations
 
 Security is paramount when handling payment data. Implement the following security measures: 
 
@@ -1023,7 +1023,7 @@ Security is paramount when handling payment data. Implement the following securi
 
 Before going live, thoroughly test your integration in the PayU sandbox environment. 
 
-### Testing Steps
+### Testing steps
 
 * **Use Test Credentials**: Use your test key and salt to make test transactions. 
 * **Simulate Different Scenarios**: Test successful payments, failed payments, and pending transactions. 
@@ -1038,7 +1038,7 @@ Before going live, thoroughly test your integration in the PayU sandbox environm
 * **Enable Webhooks**: Ensure that webhooks are enabled and configured to receive transaction updates in your production environment. 
 * **Monitor Transactions**: Closely monitor transactions in the first few days after going live to identify and address any issues. 
 
-### Troubleshooting and Error Handling
+### Troubleshooting and error handling
 
 * **Incorrect Hash**: Double-check the hash generation logic and ensure that the parameters are in the correct order. 
 * **Invalid API Credentials**: Verify that you are using the correct key and salt for the environment (test or production). 
