@@ -485,6 +485,21 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
 
     <tr>
       <td>
+        api\_version\
+        `optional`
+      </td>
+
+      <td>
+        `String`The api\_version is conditional. You must pass “6” for NEFT/RTGS.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
         address1\
         `optional`
       </td>
@@ -871,9 +886,19 @@ public class PayUPaymentRequest {
 
 ```
 
-## Step 2: Check response from PayU
+## Step 2: Handling the response from PayU
 
 <ReverseHashing />
+
+> 📘 Important Considerations:
+>
+> * **Verify the Hash**: Always verify the hash received in the response to ensure the integrity of the data. 
+> * **Check the Transaction Status**: Use the status parameter to determine the outcome of the transaction. 
+> * **success**: The payment was successful. 
+> * **failure**: The payment failed. 
+> * **pending**: The transaction is still being processed. 
+> * **Handle Pending Transactions**: Implement a mechanism to handle pending transactions. Use webhooks or the Verify Payment API to check the final status of the transaction. 
+> * **Display Confirmation**: Display a clear confirmation message to the customer, indicating whether the payment was successful or not.
 
 ### Sample response (parsed)
 
