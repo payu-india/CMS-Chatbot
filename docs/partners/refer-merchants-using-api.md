@@ -35,9 +35,6 @@ PayU merchant onboarding APIs allows partners to:
 * Handle electronic signatures for agreements
 * Receive real-time status updates via webhooks
 
-***
-
-<br />
 
 ## Authentication and Authorization
 
@@ -61,9 +58,6 @@ The token-based authentication works as follows:
   * [Refresh Token API](https://docs.payu.in/reference/refresh_token_api#/)
 </Accordion>
 
-***
-
-<br />
 
 ## Merchant Onboarding Process
 
@@ -97,9 +91,6 @@ The Merchant Onboarding flow consists of several key steps:
   * [Verify and Link Merchant API](https://docs.payu.in/reference/verify_and_link_merchant_api#/)
 </Accordion>
 
-***
-
-<br />
 
 ## KYC Document Management
 
@@ -128,9 +119,6 @@ PayU accepts various document types for KYC verification, including:
 
 Documents must meet specific format and quality requirements to be accepted.
 
-***
-
-<br />
 
 ## E-Sign Flow
 
@@ -145,7 +133,6 @@ For e-signature specifications, please refer to:
   * [E-Sign Merchant Agreement API](https://docs.payu.in/reference/e-sign-merchant-agreement-api#/)
 </Accordion>
 
-<br />
 
 ## Webhooks for Real-Time Updates
 
