@@ -25,9 +25,9 @@ next:
 ---
 This documentation provides comprehensive guidance for integrating with PayU's Partner Integration API. This API enables businesses and individual partners to integrate PayU's payment solutions into their platforms, onboard merchants, and manage the complete merchant lifecycle.
 
-## Partner Integration Overview
+## Overview
 
-The PayU Partner Integration API allows partners to:
+PayU merchant onboarding APIs allows partners to:
 
 * Onboard merchants to the PayU platform
 * Manage merchant KYC processes
@@ -37,7 +37,7 @@ The PayU Partner Integration API allows partners to:
 
 ## Authentication and Authorization
 
-PayU Partner API employs token-based authentication with OAuth 2.0 standards. Partners must obtain tokens through appropriate authentication endpoints before accessing the API resources.
+PayU Merchant Onboarding employs token-based authentication with OAuth 2.0 standards. Partners must obtain tokens through appropriate authentication endpoints before accessing the API resources.
 
 ### Token Management Flow
 
@@ -51,7 +51,7 @@ The token-based authentication works as follows:
 
 ### User Token APIs
 
-The Partner Integration offers several token-related endpoints for authentication purposes. These endpoints handle token generation, refresh, and OTP verification when required.
+The Merchant Onboarding Integration offers several token-related endpoints for authentication purposes. These endpoints handle token generation, refresh, and OTP verification when required.
 
 For detailed request and response specifications, please refer to:
 
@@ -61,7 +61,7 @@ For detailed request and response specifications, please refer to:
 
 ## Merchant Onboarding Process
 
-The merchant onboarding flow consists of several key steps:
+The Merchant Onboarding flow consists of several key steps:
 
 1. Create a merchant record with basic details
 2. Update additional merchant information as needed
@@ -160,14 +160,13 @@ Common issues include:
 
 ## Security Best Practices
 
-When integrating with PayU's Partner API, follow these security best practices:
+When integrating with PayU's APIs, follow these security best practices:
 
 * Implement proper token management
 * Use HTTPS for all communications
 * Validate webhook signatures
 * Securely store sensitive data
 * Implement proper error handling
-* Follow the principle of least privilege
 
 ## Testing Recommendations
 
