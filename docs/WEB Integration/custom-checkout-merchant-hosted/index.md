@@ -337,7 +337,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
     <tr>
       <td>
         ccnum\
-        `mandatory`
+        `mandatory for cards`
       </td>
 
       <td>
@@ -351,7 +351,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
 
     <tr>
       <td>
-        ccname  `mandatory`
+        ccname  `mandatory for cards`
       </td>
 
       <td>
@@ -366,7 +366,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
     <tr>
       <td>
         ccvv\
-        `mandatory`
+        `mandatory for cards`
       </td>
 
       <td>
@@ -380,7 +380,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
 
     <tr>
       <td>
-        ccexpmon  `mandatory`
+        ccexpmon  `mandatory for cards`
       </td>
 
       <td>
@@ -395,7 +395,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
     <tr>
       <td>
         ccexpyr\
-        `mandatory`
+        `mandatory for cards`
       </td>
 
       <td>
@@ -404,6 +404,35 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
 
       <td>
         2021
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        beneficiarydetail\
+        `mandatory for NetBanking and EFTNEFT`
+      </td>
+
+      <td>
+        `String`This is a JSON format text and there should be key named beneficiaryAccountNumber with account number as value and ifscCode with customer IFSC code as value.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+
       </td>
     </tr>
 
