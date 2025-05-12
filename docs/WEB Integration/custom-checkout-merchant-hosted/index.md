@@ -30,8 +30,6 @@ PayU’s Merchant Hosted Checkout allows you to create a custom payment experien
 * **Direct Customer Relationship**: Maintain control over the customer experience from start to finish. 
 * **Flexible Integration**: Integrate with a wide range of payment methods, including cards, net banking, wallets, UPI, and more.
 
-<br />
-
 > 👍 Note:
 >
 > Merchant Hosted Checkout is a specific PayU product with defined features. It’s distinct from simply hosting payment elements on your website. This guide specifically covers the PayU’s Merchant Hosted Checkout product and its associated APIs.
@@ -312,7 +310,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-        `String` The pg parameter determines which payment tabs will be displayed on the PayU page.
+        `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For more information, refer to [Supported Payment Methods with additional details of integration](#supported-payment-methods-details-for-api-integration).
       </td>
 
       <td>
@@ -886,7 +884,7 @@ public class PayUPaymentRequest {
 
 ```
 
-## Step 2: Handling the response from PayU
+### Step 2: Handling the response from PayU
 
 <ReverseHashing />
 
@@ -900,7 +898,7 @@ public class PayUPaymentRequest {
 > * **Handle Pending Transactions**: Implement a mechanism to handle pending transactions. Use webhooks or the Verify Payment API to check the final status of the transaction. 
 > * **Display Confirmation**: Display a clear confirmation message to the customer, indicating whether the payment was successful or not.
 
-### Sample response (parsed)
+#### Sample response (parsed)
 
 ```
 Array
@@ -955,7 +953,15 @@ Array
 )
 ```
 
-### Payment Methods
+### Step 3: Verify the payment
+
+Verify the transaction details using the Verification APIs. For more information, refer to [Verify Payment API](doc:verify_payment_api) under API Reference.
+
+> 📘 Tip
+>
+> The transaction ID that you posted in Step 1 with PayU must be used here.
+
+## Payment Methods
 
 Merchant Hosted Checkout supports a wide range of payment methods: 
 
@@ -973,7 +979,7 @@ Merchant Hosted Checkout supports a wide range of payment methods: 
 >
 > For each payment method, you may need to pass specific parameters in the \_payment API request. Refer to the PayU documentation for each payment method for details. For all the supported wallets, refer to Wallet Codes to understand exact value which needs to be passed against bankcode parameter. 
 
-#### Supported Payment Methods: Details for API Integration
+### Supported Payment Methods: Details for API Integration
 
 The following table summarizes the supported payment methods for PayU’s Merchant Hosted Checkout, along with the corresponding bankcode and pg values required in the \_payment API request. It also includes other relevant details and considerations for each payment method. 
 
@@ -998,13 +1004,7 @@ The following table summarizes the supported payment methods for PayU’s Mercha
 > * Test your integration thoroughly in the PayU sandbox environment before going live. 
 > * For NEFT/RTGS transactions, implement a reconciliation process to track transaction status and match payments with orders.
 
-## Step 3: Verify the payment
-
-Verify the transaction details using the Verification APIs. For more information, refer to [Verify Payment API](doc:verify_payment_api) under API Reference.
-
-> 📘 Tip
->
-> The transaction ID that you posted in Step 1 with PayU must be used here.
+###
 
 ## Security and Testing the Integration
 
