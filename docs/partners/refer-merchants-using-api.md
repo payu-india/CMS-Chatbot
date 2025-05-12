@@ -35,10 +35,6 @@ PayU merchant onboarding APIs allows partners to:
 * Handle electronic signatures for agreements
 * Receive real-time status updates via webhooks
 
-Here is a diagram for the high-level integration flow
-
-<Image align="center" src="https://files.readme.io/3dc412a7f7331a164365911e723d004fcaa6a3c31e1cab79b3d04ab4ca3ee658-Screenshot_2025-05-13_at_1.39.39_AM.png" />
-
 ## Authentication and Authorization
 
 PayU Merchant Onboarding employs token-based authentication with OAuth 2.0 standards. Partners must obtain tokens through appropriate authentication endpoints before accessing the API resources.
@@ -161,6 +157,14 @@ Common issues include:
 * Information mismatches
 * Missing required fields
 * Format incompatibility
+
+## Flow Diagram
+
+Here is a diagram for the high-level integration flow:
+
+<Image align="center" src="https://files.readme.io/c8dadf9a8456cf38beec1f5464cb0e78a277fe681bcb9105c981521178b42526-Screenshot_2025-05-13_at_1.39.39_AM.png" />
+
+<br />
 
 ## Security Best Practices
 
