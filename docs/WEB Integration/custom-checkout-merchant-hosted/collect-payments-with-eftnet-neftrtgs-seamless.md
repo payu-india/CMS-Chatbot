@@ -2,7 +2,7 @@
 title: EFTNET (NEFT/RTGS) Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Collect Payments with EFTNET (NEFT/RTGS) - Merchant Hosted Checkout
   description: >-
