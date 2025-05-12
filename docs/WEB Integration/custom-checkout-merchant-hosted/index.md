@@ -170,7 +170,7 @@ Post Request Syntax & Composition for Net Banking
 >
 > The above HTML code block is for Merchant Checkout integration on the Net Banking call for the test environment.
 
-### Request parameters
+### Step 1: Post Request to PayU
 
 The following parameters vary for the NetBanking payment mode in the **Collect Payment** API (**\_payment** API).
 
@@ -214,7 +214,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-        JPg\*\*\*r
+
       </td>
     </tr>
 
@@ -229,7 +229,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-        ypl938459435
+
       </td>
     </tr>
 
@@ -243,7 +243,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-        10.00
+
       </td>
     </tr>
 
@@ -257,7 +257,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-        iPhone
+
       </td>
     </tr>
 
@@ -286,7 +286,7 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
       </td>
 
       <td>
-        [abc@payu.in](mailto:abc@payu.in)
+
       </td>
     </tr>
 
@@ -307,31 +307,103 @@ The following parameters vary for the NetBanking payment mode in the **Collect P
 
     <tr>
       <td>
-        <Glossary>pg</Glossary> **mandatory**
+        pg\
+        `mandatory`
       </td>
 
       <td>
-        `String` This parameter defined the payment gateway.
+        `String` The pg parameter determines which payment tabs will be displayed on the PayU page.
       </td>
 
       <td>
-        TESTPG
+        CC
       </td>
     </tr>
 
     <tr>
       <td>
-        <Glossary>bankcode</Glossary> **mandatory**
+        bankcode `mandatory`
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bank codes that can be used with the **bankcode** parameter, refer to [Net Banking Codes](doc:net-banking-codes) .
-
-        * *Reference*\*: For the test Net Banking credentials, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) .
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).
       </td>
 
       <td>
-        TESTPGNB
+        AMEX
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccnum\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to  [Card Number Formats](doc:card-number-formats) and display error message on invalid input.
+      </td>
+
+      <td>
+        5123456789012346
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccname  `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must contain the name on card – as entered by the customer for the transaction.
+      </td>
+
+      <td>
+        Ashish Kumar
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccvv\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API.
+      </td>
+
+      <td>
+        123
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccexpmon  `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must contain the card’s expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
+      </td>
+
+      <td>
+        10
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccexpyr\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must contain the card’s expiry year – as entered by the customer for the transaction. It must be of four digits.
+      </td>
+
+      <td>
+        2021
       </td>
     </tr>
 
