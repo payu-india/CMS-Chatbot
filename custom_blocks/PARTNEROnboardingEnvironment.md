@@ -5,5 +5,5 @@ name: PARTNER Onboarding Environment
 
 |                            |                                |
 | :------------------------- | :----------------------------- |
-| **Test Environment**       | <https://uat-partner.payu.in/> |
-| **Production Environment** | <https://partner.payu.in/>     |
+| **Test Environment**       | https://uat-partner.payu.in/ |
+| **Production Environment** | https://partner.payu.in/    |
