@@ -12,18 +12,9 @@ next:
 ---
 The Cancel Transaction (**cancel\_transaction**) API is used to cancel a pre-authorized transaction.
 
+<GENERALAPIsEnvironment />
+
 ## Request parameters
-
-| Parameter   | Reference                                                                                | Example |
-| ----------- | ---------------------------------------------------------------------------------------- | ------- |
-| **key**     |                                                                                          |         |
-| `mandatory` | For more information on how to generate the Key and Salt, refer to any of the following: |         |
-
-* **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-
-* **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
-
-<br />
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -138,14 +129,74 @@ curl --location 'https://info.payu.in/merchant/postservice.php/?form=2' \
 
 ## Response parameters
 
-| **Parameter** | **Description** |
-|---------------|-----------------|
-| status | This parameter returns the status of web service call. The status can be any of the following:* 0 - If web service call failed* 1 - If web service call succeeded |
-| msg | This parameter returns the following message if the pre-auth transaction was successful: `Capture Request Queued` |
-| txn_update_id | This parameter returns the transaction update ID for the transaction. |
-| bank_ref_num | This parameter returns the bank reference number for the transaction. |
-| error_code | This parameter returns the error code for success or failure scenarios. |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        This parameter returns the status of web service call. The status can be any of the following:
+
+        * 0 - If web service call failed
+        * 1 - If web service call succeeded
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        msg
+      </td>
+
+      <td>
+        This parameter returns the following message if the pre-auth transaction was successful: `Capture Request Queued`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txn\_update\_id
+      </td>
+
+      <td>
+        This parameter returns the transaction update ID for the transaction.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bank\_ref\_num
+      </td>
+
+      <td>
+        This parameter returns the bank reference number for the transaction.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        error\_code
+      </td>
+
+      <td>
+        This parameter returns the error code for success or failure scenarios.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample response
 
