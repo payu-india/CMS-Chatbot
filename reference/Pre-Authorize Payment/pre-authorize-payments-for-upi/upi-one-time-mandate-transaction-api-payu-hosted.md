@@ -16,6 +16,10 @@ This section describes the request and response parameters with sample request a
 
 ## Request Parameters
 
+<PaymentAPIEnvironment />
+
+<br />
+
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
