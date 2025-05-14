@@ -16,7 +16,7 @@ This section describes the request and response parameters with sample request a
 >
 > Currently, PayU supports UPI One-Time Mandate only for the Seamless integration.
 
-<PaymentAPIEnvironment />
+
 
 ## Request Parameters
 
