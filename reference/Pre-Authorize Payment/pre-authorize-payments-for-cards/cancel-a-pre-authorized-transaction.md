@@ -25,7 +25,7 @@ The Cancel Transaction (**cancel\_transaction**) API is used to cancel a pre-aut
 
 <br />
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -138,16 +138,39 @@ curl --location 'https://info.payu.in/merchant/postservice.php/?form=2' \
 
 ## Response parameters
 
-| **Parameter** | **Description**                                                                                |
-| ------------- | ---------------------------------------------------------------------------------------------- |
-| status        | This parameter returns the status of web service call. The status can be any of the following: |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
-* 0 - If web service call failed
-* 1 - If web service call succeeded |\
-  \| msg | This parameter returns the following message if the pre-auth transaction was successful: `Capture Request Queued` |
-  \| txn\_update\_id | This parameter returns the transaction update ID for the transaction. |
-  \| bank\_ref\_num | This parameter returns the bank reference number for the transaction. |
-  \| error\_code | This parameter returns the error code for success or failure scenarios. |
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        This parameter returns the status of web service call. The status can be any of the following:
+
+        * 0 - If web service call failed
+        * 1 - If web service call succeeded
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+\| msg | This parameter returns the following message if the pre-auth transaction was successful: `Capture Request Queued` |\
+\| txn\_update\_id | This parameter returns the transaction update ID for the transaction. |
+\| bank\_ref\_num | This parameter returns the bank reference number for the transaction. |
+\| error\_code | This parameter returns the error code for success or failure scenarios. |
 
 ## Sample response
 
