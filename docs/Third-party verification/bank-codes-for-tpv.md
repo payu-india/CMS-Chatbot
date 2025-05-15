@@ -34,8 +34,8 @@ The following codes must be used as the value for the <Glossary>bankcode</Glossa
 | Indian Overseas Bank    | IOBNBTPV |
 | Indusind Bank           | INIBTPV  |
 | Karnataka Bank          | KRKBTPV  |
-| Karur Vysya Bank        | KTKNBTPV |
-| Kotak Mahindra Bank     | KVBNBTPV |
+| Karur Vysya Bank        | KVBNBTPV |
+| Kotak Mahindra Bank     | KTKNBTPV |
 | Punjab & Sindh Bank     | PSBTPV   |
 | Punjab National Bank    | PNBNBTPV |
 | RBL                     | RBLTPV   |
