@@ -5,7 +5,7 @@ api:
   file: partner-integration-updated-2.json
   operationId: PostCKYCAPI
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
