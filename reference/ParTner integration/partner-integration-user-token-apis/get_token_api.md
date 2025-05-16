@@ -30,7 +30,7 @@ metadata:
 next:
   description: ''
 ---
-The **Get Token API** returns the authentication token generated using the client ID and client secret for the following products: 
+The **Get Token API** returns the authentication token generated using the client ID and client secret for the following products:
 
 * [Payment Link API Integration](doc:integration-api-for-payment-links)
 * [Partner Integration API Integration](doc:refer-merchants)
@@ -49,48 +49,58 @@ The **Get Token API** returns the authentication token generated using the clien
       <th>
         Parameters
       </th>
+
       <th>
         Description
       </th>
     </tr>
   </thead>
+
   <tbody>
     <tr>
       <td>
         client\_id
       </td>
+
       <td>
         For getting your client ID, refer to [Download Client Credentials](doc:download-client-credentials).
       </td>
     </tr>
+
     <tr>
       <td>
         client\_secret
       </td>
+
       <td>
         For getting your client secret, refer to [Download Client Credentials](doc:download-client-credentials).
       </td>
     </tr>
+
     <tr>
       <td>
         scope
       </td>
+
       <td>
-        The scopes to be used for various use cases in Parter Integration are:  
-        * Refer Merchant, Verify Link Merchant, Get Merchant, and Update Merchant: **refer\_merchant**
+        The scopes to be used for various use cases in Parter Integration are:
+
+        * Refer Merchant, Verify Link Merchant, Get Merchant, Update Merchant, and Client Manage KYC Details: **refer\_merchant**
         * Send Sign In OTP: **send\_sign\_in\_otp**
         * Verify Sign In OTP: **verify\_sign\_in\_otp**
         * Client Manage Agreement (Used in E-Sign flow): **client\_manage\_agreement**
-        * Client Manage KYC Details (Used in managing KYC documents): **client\_manage\_kyc\_details**
-        * Create Bank Details: **create\_bank\_details**
-        * Penny Verify - **user\_token**
-        * Manage Payment Links: **create\_payment\_links**
+
+        - Create Bank Details: **create\_bank\_details**
+        - Penny Verify - **user\_token**
+        - Manage Payment Links: **create\_payment\_links**
       </td>
     </tr>
+
     <tr>
       <td>
         grant\_type
       </td>
+
       <td>
         This parameter contains a constant value used to get the access token. The grant\_type used across the partner integration is **client\_credentials**.
       </td>
@@ -100,6 +110,7 @@ The **Get Token API** returns the authentication token generated using the clien
 
 <details>
   <summary>Response parameters</summary>
+
   <table>
     <thead>
       <tr>
@@ -107,29 +118,35 @@ The **Get Token API** returns the authentication token generated using the clien
         <th>Description</th>
       </tr>
     </thead>
+
     <tbody>
       <tr>
         <td>access\_token</td>
         <td>The access token to be used in Partner Integration APIs.</td>
       </tr>
+
       <tr>
         <td>token\_type</td>
         <td>The token type of the access token.</td>
       </tr>
+
       <tr>
         <td>expires\_in</td>
         <td>The expiry time in seconds of the access token.</td>
       </tr>
+
       <tr>
         <td>scope</td>
         <td>The scope of the access token.</td>
       </tr>
+
       <tr>
         <td>created\_at</td>
         <td>The UNIX time stamp when the access token was created.</td>
       </tr>
     </tbody>
   </table>
+
   > 📘 Note:
   >
   > The expiry period of the token generated using this API is configurable by you (partner). The expiry period (in seconds) of the token is displayed in the **expires\_in** parameter of the response. For example, in the following response, the value of the **expires\_in** is 7200 seconds:
