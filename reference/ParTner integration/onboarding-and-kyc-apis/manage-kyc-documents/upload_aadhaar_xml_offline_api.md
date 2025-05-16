@@ -15,6 +15,14 @@ next:
 ---
 This API is used to submit the Aadhaar details in an XML file. The access token is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
 
+## Steps to get Aadhar XML
+
+Step 1: Go to URL https://myaadhaar.uidai.gov.in/en_IN.
+Step 2: Click on login. Enter Aadhaar Number or VID and mentioned Security Code in the screen, then click on Send OTP.
+Step 3: Enter the OTP received by registered mobile number for the given Aadhaar Number
+Step 4: Click on Offline Ekyc Option & enter a share code which will be the password for the ZIP file and click on the Download button.
+Step 5: The Zip file containing the digitally signed XML will be downloaded.
+
 <PARTNEROnboardingEnvironment />
 
 <details>
