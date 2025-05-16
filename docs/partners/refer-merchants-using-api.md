@@ -116,7 +116,10 @@ PayU accepts various document types for KYC verification, including:
 * Business registration documents
 * Bank account proofs
 
-For an exhaustive list of documents required for an entity, please refer to [KYC Checklist](https://docs.payu.in/docs/documents-checklist-for-account-activation#/) 
+For an exhaustive list of documents required for an entity, please refer to [KYC Checklist](https://docs.payu.in/docs/documents-checklist-for-account-activation#/)
+
+For an the business category & subcategory details, please refer to [Partner Category List](https://docs.payu.in/reference/partner-category-list#/)
+
 
 ## E-Sign Flow
 
