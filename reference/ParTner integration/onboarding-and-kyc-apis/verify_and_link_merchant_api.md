@@ -35,7 +35,7 @@ api:
   file: partner-apis-6.json
   operationId: VerifyandLinkmerchant
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
