@@ -103,9 +103,10 @@ Different merchant types require different documentation. The exact requirements
 <Accordion title="Document Upload APIs" icon="fa-info-circle">
   For specifications on KYC document management, please refer to:
 
-  * [Manage KYC Documents](https://docs.payu.in/reference/manage-kyc-documents#/)
   * [Docs Required API](https://docs.payu.in/reference/docs_required_api#/)
   * [Create KYC Document API](https://docs.payu.in/reference/create_kyc_document_api#/)
+  * [Delete KYC Document API](https://docs.payu.in/reference/delete_kyc_document_api#/)
+  * [Upload Aadhar XML Offline API](https://docs.payu.in/reference/upload_aadhaar_xml_offline_api#/)
 </Accordion>
 
 ### Document Types and Guidelines
@@ -140,7 +141,6 @@ Webhooks allow partners to receive notifications about changes in merchant statu
 
 For webhook integration details, please refer to:
 
-* [Using Webhooks for Merchant Status](https://docs.payu.in/reference/using-webhooks-for-merchant-status#/)
 * [Register Webhooks API](https://docs.payu.in/reference/register-webhooks-api-to-get-real-time-merchant-status#/)
 * [Get Real-Time Merchant Status Using Webhooks](https://docs.payu.in/reference/get-real-time-merchant-status-using-webhooks#/)
 
