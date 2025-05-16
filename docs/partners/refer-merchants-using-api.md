@@ -85,7 +85,6 @@ The Merchant Onboarding flow consists of several key steps:
 
   For specifications on bank verification, please refer to:
 
-  * [Bank Details API](https://docs.payu.in/reference/bank-details-api#/)
   * [Add Update Bank Details API](https://docs.payu.in/reference/add_update_bank_details_api#/)
   * [Penny Verify API](https://docs.payu.in/reference/penny_verify_api#/)
   * [Verify and Link Merchant API](https://docs.payu.in/reference/verify_and_link_merchant_api#/)
