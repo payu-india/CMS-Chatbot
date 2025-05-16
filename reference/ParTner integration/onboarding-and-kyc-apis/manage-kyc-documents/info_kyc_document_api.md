@@ -17,9 +17,14 @@ This API is used to fetch a list of documents required for completing the KYC of
 
 The merchant ID in the request header must be included as a query parameter in the mid field.
 
-> 📘 Note:
->
+## Authentication
+
 > The access token with the scope as **refer\_merchant** from is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+
+## Notes
+
+1. You can pass either the business entity type or the merchant ID in the request. However, ensure that the Merchant ID that you are passing is referred by you. 
+2. We recommend using merchant ID to get specific KYC docs for the merchant. 
 
 <PARTNEROnboardingEnvironment />
 
