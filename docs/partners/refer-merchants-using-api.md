@@ -70,7 +70,7 @@ The Merchant Onboarding flow consists of several key steps:
 5. Complete e-signature process for merchant agreement
 6. Monitor merchant status through webhooks
 
-<Accordion title="Creating and Managing Merchants" icon="fa-info-circle">
+<Accordion title="Create, Update, and Manage Merchants" icon="fa-info-circle">
   The APIs for merchant creation and management allow partners to register new merchants and update their information.
 
   For detailed specifications on merchant onboarding, please refer to:
