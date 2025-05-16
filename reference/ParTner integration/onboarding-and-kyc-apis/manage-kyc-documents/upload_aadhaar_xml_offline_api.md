@@ -23,6 +23,8 @@ This API is used to submit the Aadhaar details in an XML file. The access token 
 4. Click on Offline Ekyc Option & enter a share code which will be the password for the ZIP file and click on the Download button.
 5. The Zip file containing the digitally signed XML will be downloaded.
 
+## Endpoints
+
 <PARTNEROnboardingEnvironment />
 
 <details>
