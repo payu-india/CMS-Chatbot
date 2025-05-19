@@ -30,7 +30,7 @@ metadata:
 next:
   description: ''
 ---
-Before you start with the integration, enable the payment methods that you want to offer to your customers from Dashboard &gt; Settings &gt; Payment methods. We enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you.
+Before you start with the integration, enable the payment methods that you want to offer to your customers from Dashboard > Settings > Payment methods. We enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you.
 
 ## Step 1: Create a PayU account
 
@@ -41,20 +41,20 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 Add the following dependency in the application’s build.gradle.
 
 ```
-implementation 'in.payu:payu-gpay:3.1.4'
+implementation 'in.payu:payu-gpay:3.1.5'
 ```
 
 ## Step 3: Create Callbacks Instance
 
 The following is of list callback functions provided by PayU Google Pay:
 
-- `onPaymentFailure (String payuResponse, String merchantResponse)`: Calls when payment fails
-- `onPaymentSuccess (String payuResponse, String merchantResponse)`: Calls when payment succeeds
-- `onPaymentOptionInitialisationFailure (int errorCode, String description)`: Called for Google Pay `initialisationfailure `where:
-  - `errorCode`: Error Code
-  - `description`: Error Description
-- `onPaymentInitialisationSuccess()`: Callback when Google Pay is successfully initialized.
-- `onGpayErrorReceived(int errorCode, String description)`: Callback when found any error while making a payment transaction.
+* `onPaymentFailure (String payuResponse, String merchantResponse)`: Calls when payment fails
+* `onPaymentSuccess (String payuResponse, String merchantResponse)`: Calls when payment succeeds
+* `onPaymentOptionInitialisationFailure (int errorCode, String description)`: Called for Google Pay `initialisationfailure `where:
+  * `errorCode`: Error Code
+  * `description`: Error Description
+* `onPaymentInitialisationSuccess()`: Callback when Google Pay is successfully initialized.
+* `onGpayErrorReceived(int errorCode, String description)`: Callback when found any error while making a payment transaction.
 
 The following are error messages when the Google Pay Payment fail:
 
@@ -120,24 +120,24 @@ GPay.getInstance().checkForPaymentAvailability(Activity activity, PayUGPayCallba
 
 Where
 
-- PayUGPayCallback : the class to provide callbacks
-- Activity : Activity
-- paymentOptionHash : Payment Related Details hash (payment_related_details_for_mobile_sdk)
-- merchantKey : PayU Merchant Key
-- user_credentials : Provide user credentials or use "default"
+* PayUGPayCallback : the class to provide callbacks
+* Activity : Activity
+* paymentOptionHash : Payment Related Details hash (payment\_related\_details\_for\_mobile\_sdk)
+* merchantKey : PayU Merchant Key
+* user\_credentials : Provide user credentials or use "default"
 
 > 📘 Generate PaymentOption Hash
-> 
+>
 > To generate PaymentOption Hash, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
-> 
+>
 > **Formula** :-sha512(key|command|var1|salt)
-> 
+>
 > where
-> 
-> - key= "Your Key"
-> - command= &lt;"payment_related_details_for_mobile_sdk"&gt; // Pass Command Name
-> - salt= "Your SALT"
-> - var1= &lt;"default"&gt; // Pass the "default" value in var1
+>
+> * key= "Your Key"
+> * command= \<"payment\_related\_details\_for\_mobile\_sdk"> // Pass Command Name
+> * salt= "Your SALT"
+> * var1= \<"default"> // Pass the "default" value in var1
 
 ## Step 6: Make Payment by Google Pay
 
@@ -149,15 +149,15 @@ GPay.getInstance().makePayment(Activity activity, String postData, final PayUGPa
 
 The PayUGPayCallback class provides the following callbacks:
 
-- `Activity`: activity instance
-- `postData`: PayU postdata
-- `merchantKey`: Your Merchant Key
-- `loadingDialogView`: ProgressDialog View
+* `Activity`: activity instance
+* `postData`: PayU postdata
+* `merchantKey`: Your Merchant Key
+* `loadingDialogView`: ProgressDialog View
 
 > 📘 Generate Payment Hash
-> 
+>
 > To generate a Payment Hash refer to [Hash Generation](https://docs.payu.in/docs/hash-generation#payment-hash).
-> 
+>
 > **Formula** :-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
 
 ### **Sample PostData**
@@ -171,9 +171,9 @@ txnid=1524122818080&productinfo=product_info&user_credentials=default&key=*****&
 After you get the response from SDK, make sure to confirm it with the PayU server.
 
 > 🚧 Remember
-> 
+>
 > It is recommended to implement the PayU Webhook or backend verify call from your backend.
 
-Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended that the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation &gt; Webhooks,
+Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended that the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks,
 
 Also, you can verify payment through polling, the transaction status after the SDK callback from your backend.
