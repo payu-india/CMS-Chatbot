@@ -24,8 +24,8 @@ metadata:
 next:
   description: ''
 ---
-> 💬 Pre-requisites 
-> 
+> 💬 Pre-requisites
+>
 > To start transacting through Google Pay, register yourself on Google Pay using the following [Google Onboarding](https://pay.google.com/about/business/) form. In this registration process, add the Merchant VPA Ids created by PayU for you. In case of multiple VPAs, all of them need to be registered. For any queries regarding the same, raise a [ticket with PayU](https://help.payu.in/query).
 
 ## Step 1: Create a PayU account
@@ -37,14 +37,14 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 Add the PayU UPI SDK (available at Maven Central) to `<<glossary:build.gradle>>`:
 
 ```Text build.gradle
-implementation 'in.payu:upisdk:1.8.1'
+implementation 'in.payu:upisdk:1.8.2'
 ```
 
 > 🚧 Watch Out
-> 
+>
 > If you are getting the following compile error, expand the Merged Manifest view.
-> 
-> `Android resource linking failed /Users/sample/AndroidStudioProjects/MyApp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:18: error: unexpected element found in <manifest>
+>
+> `Android resource linking failed /Users/sample/AndroidStudioProjects/MyApp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:18: error: unexpected element found in <manifest>  
 > Manifest merger failed with multiple errors, see logs`
 
 In the Merged Manifest view, the following additional error message is displayed. This indicates that you need to fix your Gradle plugin. For more information on the Gradle plugin, refer to the Google Andriod Documentation.
@@ -68,15 +68,15 @@ force "path of conflicting library 2"
 To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
 > 📘 Tip
-> 
+>
 > Every transaction (payment or non-payment) needs a hash by you before sending the transaction details to PayU. Hash is required for PayU to validate the authenticity of the transaction. The hashing must be done on your server.
 
 ## Step 4: Payment Request Post Data
 
 > 📘 Ways to generate postdata
-> 
-> - By UPI SDK itself (recommended if you are using UPI SDK alone)
-> - By using the [PG SDK](https://dash.readme.com/project/payu-hosted-checkout/v1/docs/android-core-sdk) library.
+>
+> * By UPI SDK itself (recommended if you are using UPI SDK alone)
+> * By using the [PG SDK](https://dash.readme.com/project/payu-hosted-checkout/v1/docs/android-core-sdk) library.
 
 ### Step 4.1 Build the payment parameters (mandatory step)
 
@@ -215,7 +215,7 @@ PaymentOption.UPI_COLLECT: UPI payment through web flow.
 
 To make a payment through PhonePe, you must have to add PayU PhonePe dependency:
 
-- Add the following URL to the root project of build.gradle:
+* Add the following URL to the root project of build.gradle:
 
 ```Text build.gradle
 allprojects {
@@ -227,7 +227,7 @@ allprojects {
 }
 ```
 
-- Add the following dependency to the root project of build.gradle:
+* Add the following dependency to the root project of build.gradle:
 
 ```Text build.gradle
 implementation 'in.payu:phonepe-intent:1.7.6'
@@ -237,7 +237,7 @@ implementation 'in.payu:phonepe-intent:1.7.6'
 
 To make a payment through Google Pay, you must have to add PayU Google Pay dependency:
 
-- Add the following dependency to the root project of build.gradle:
+* Add the following dependency to the root project of build.gradle:
 
 ```Text build.gradle
 implementation 'in.payu:payu-gpay:3.0.0'
@@ -247,20 +247,20 @@ implementation 'in.payu:payu-gpay:3.0.0'
 
 To make a payment through Samsung Pay, you must have to add PayU Samsung dependency:
 
-- Add the following dependency to the root project of build.gradle:
+* Add the following dependency to the root project of build.gradle:
 
 ```Text build.gradle
 implementation 'com.payu.samsungpay:samsungpay:1.0'
 ```
 
-- Use `PaymentPostParams` class to generate Postdata. For more information, refer to TPV Integration.  
+* Use `PaymentPostParams` class to generate Postdata. For more information, refer to TPV Integration.\
   After you check the payment availability of Payment, you can go ahead to make the payment.
 
 ## Step 7: Callbacks
 
-- `onPaymentFailure`(String payuResult,String merchantResponse): Calls when payment fails.
-- `onPaymentSuccess`(String payuResult,String merchantResponse): Calls when payment succeeds.
-- `onUpiErrorReceived`(int errorCode,String errorMessage): Called for error on UPI SDK where the following error messages are displayed for Samsung Pay initialization failure.
+* `onPaymentFailure`(String payuResult,String merchantResponse): Calls when payment fails.
+* `onPaymentSuccess`(String payuResult,String merchantResponse): Calls when payment succeeds.
+* `onUpiErrorReceived`(int errorCode,String errorMessage): Called for error on UPI SDK where the following error messages are displayed for Samsung Pay initialization failure.
 
 | Error Codes | Error messages                              | Description                                                  |
 | :---------- | :------------------------------------------ | :----------------------------------------------------------- |
@@ -274,14 +274,14 @@ implementation 'com.payu.samsungpay:samsungpay:1.0'
 
 If the following error messages are received while processing payment, check your Payment Post Data or Payment hash.
 
-| Error Code | Error Message                   | Description                                                     |
-| :--------- | :------------------------------ | :-------------------------------------------------------------- |
-| 1002       | MERCHANT_INFO_NOT_PRESENT       |                                                                 |
-| 1004       | INVOKING_APP_NOT_INSTALLED_CODE | The selected app is not installed on the device.                |
-| 1005       | INVOKING_APP_NOT_ONBOARDED_CODE | Application uses have not been onboarded on UPI on the selected |
+| Error Code | Error Message                       | Description                                                     |
+| :--------- | :---------------------------------- | :-------------------------------------------------------------- |
+| 1002       | MERCHANT\_INFO\_NOT\_PRESENT        |                                                                 |
+| 1004       | INVOKING\_APP\_NOT\_INSTALLED\_CODE | The selected app is not installed on the device.                |
+| 1005       | INVOKING\_APP\_NOT\_ONBOARDED\_CODE | Application uses have not been onboarded on UPI on the selected |
 
-- `isPaymentOptionAvailable`(boolean isAvailable, PaymentOption paymentOption): The merchant must check for Samsung Pay/PhonePe payment option availability on the customer device before showing Samsung Pay/PhonePe as the payment option on their checkout page.
-- `onVpaEntered`(String vpa, IValidityCheck iValidityCheck): For Generic Intent, you need to calculate validateVpahash using VPA and provide to verifyVpa method of iValidityCheck. Hash can be calculated using the validateVpa webservice. For more information, refer to Hash Generation.
+* `isPaymentOptionAvailable`(boolean isAvailable, PaymentOption paymentOption): The merchant must check for Samsung Pay/PhonePe payment option availability on the customer device before showing Samsung Pay/PhonePe as the payment option on their checkout page.
+* `onVpaEntered`(String vpa, IValidityCheck iValidityCheck): For Generic Intent, you need to calculate validateVpahash using VPA and provide to verifyVpa method of iValidityCheck. Hash can be calculated using the validateVpa webservice. For more information, refer to Hash Generation.
 
 ```Text JAVA
 PayUUPICallback payUUpiSdkCallbackUpiSdk = new PayUUPICallback() {
@@ -353,7 +353,7 @@ upi.makePayment(payUUpiSdkCallbackUpiSdk, activity, upiConfig);
 ```
 
 > 📘 Tip
-> 
+>
 > For Device API Level 19, you must enable GMS provider service and set gmsProviderUpdatedStatus of UpiConfig similar to the following example. For more details, refer to the Andriod Documentation.
 
 ```Text JAVA
@@ -370,13 +370,13 @@ You can validate a VPA of its own using the SDK. You need to create a hash throu
 
 Where:
 
-- key= "YOUR KEY"
-- command= \<"validateVPA">
-- salt= "YOUR SALT"
-- var1=  the VPA, you want to validate
+* key= "YOUR KEY"
+* command= \<"validateVPA">
+* salt= "YOUR SALT"
+* var1=  the VPA, you want to validate
 
 > ❗️ Note
-> 
+>
 > This feature is only available from UPI SDK version 1.2.0 or later.
 
 After creating the hash, you need to call the getCommandResponse() method of UPI with postdata.
@@ -406,7 +406,7 @@ You will get the response to onCommandResponse(String payUCommandResponse, Strin
 ### Verify the transaction through Webhooks or polling
 
 > 📘 Tip
-> 
+>
 > After you get the response from SDK, make sure to confirm it with the PayU server. It is recommended to implement the PayU Webhook or backend verify call from your backend.
 
 ### Implementation of PayU WebHook
@@ -428,9 +428,9 @@ To test on Sandbox or Test Environment(test.payu.in), use your Sandbox environme
 ## Sample Response
 
 > 🚧 Watch Out
-> 
-> - In case of `UPI intent/InApp flow`, you will not receive a callback response in surl or furl. In this case, the format of PayU response received will be different from other payment options that you need to handle at your end.
-> - Consider the **mihpayid** in the PayU response as **PayU ID/ID**
+>
+> * In case of `UPI intent/InApp flow`, you will not receive a callback response in surl or furl. In this case, the format of PayU response received will be different from other payment options that you need to handle at your end.
+> * Consider the **mihpayid** in the PayU response as **PayU ID/ID**
 
 ### UPI Collect Response
 
