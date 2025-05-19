@@ -42,7 +42,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 Add the following dependency in your application’s build.gradle:
 
 ```
-implementation 'in.payu:payu-custom-browser:7.15.1'
+implementation 'in.payu:payu-custom-browser:7.15.2'
 ```
 
 > 🚧 Watch Out!
@@ -98,8 +98,8 @@ The `CheckForPaymentAvailability` function in CustomBrowser class. Checks for pa
 > where
 >
 > key= Provide your merchant key here\
-> command= "payment\_related\_details\_for\_mobile\_sdk" // Api Commands\
-> salt=  Provide your merchant salt here\
+> command= "payment\_related\_details\_for\_mobile\_sdk" // Api Commands
+> salt=  Provide your merchant salt here
 > var1= Provide user credentials or use "default"
 >
 > For more information, refer to  [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
@@ -143,7 +143,7 @@ Input:
     PayUCustomBrowserCallback : this class provide callbacks
 ```
 
-**Sample** 
+**Sample**
 
 ```Text Java
 new CustomBrowser().addCustomBrowser( Activity activity, CustomBrowserConfig customBrowserConfig, PayUCustomBrowserCallback cbPayUCustomBrowserCallback)
@@ -193,12 +193,11 @@ udf4=udf4&udf1=udf1&udf2=udf2&sdk_platform=[{"name":"PayUCheckoutPro","platform"
   <tbody>
     <tr>
       <td>
-        `pg` `**mandatory**`	 &#x9;
-        &#x9; 
+        `pg` `**mandatory**`
       </td>
 
       <td>
-        `String` It defines the payment category that the merchant wants the customer to see by default on the PayU’s payment page.\
+        `String` It defines the payment category that the merchant wants the customer to see by default on the PayU’s payment page.
         For NetBanking, pg=NB.
       </td>
 
@@ -213,7 +212,7 @@ udf4=udf4&udf1=udf1&udf2=udf2&sdk_platform=[{"name":"PayUCheckoutPro","platform"
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bank codes that can be used with the `bankcode` parameter, refer to [Net Banking Codes](https://docs.payu.in/docs/net-banking-codes).\
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bank codes that can be used with the `bankcode` parameter, refer to [Net Banking Codes](https://docs.payu.in/docs/net-banking-codes).
         Reference: For the test Net Banking credentials, refer to [Test Cards, UPI ID, and Wallets](https://docs.payu.in/docs/test-cards-upi-id-and-wallets).
       </td>
 
