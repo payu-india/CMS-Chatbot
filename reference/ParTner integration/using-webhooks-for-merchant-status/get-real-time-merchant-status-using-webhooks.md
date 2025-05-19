@@ -14,19 +14,24 @@ Partners can refer many merchants as they want, and every merchant has their own
 
 **Note**: Partners need to contact PayU or their Key Account Manager to enable the real-time merchant status service.
 
+### Configure Webhooks
+
 To configure webhooks:
 
 1. If real-time merchant status service is enabled for Partner, PayU will hit the partner webhook URL. It will be a POST request which will consist of an authorization header and request payload. For more information on registering webhooks for real-time merchant status, refer to [Register Webhooks API to Get Real-Time Merchant Status](ref:register-webhooks-api-to-get-real-time-merchant-status).
-2. The Authorization header will be generated using the following criteria:
-   * HMAC will be generated using the SHA-256 function using request payload passed to webhook URL, and a **client\_secret** of partner application will be used as secret key to sign it and get a hashed string. This hashed string will be passed in the Authorization header.
 
-* The formula for HMAC:
+### Validate the Webhook Signature
+
+* Each Webhook payload will have a HMAC signature in the Authorization header.
+* HMAC will be generated using the SHA-256 function using request payload passed to webhook URL, and a **client\_secret** of partner application will be used as secret key to sign it and get a hashed string. This hashed string will be passed in the Authorization header.
+
+**The formula for HMAC:**
 
 ```plaintext
 OpenSSL::HMAC.hexdigest("SHA256", client_secret, payload.sort.join)
 ```
 
-* Sample HMAC:
+**Sample HMAC:**
 
 ```plaintext
 "d59e5be387204e8c37bc8f46306f5013197b2f9d082ec859da1b09f9bc703036"
@@ -71,6 +76,23 @@ The payload will contain the following data:
 "remarks": "NA"
 }
 ```
+
+## Merchant onboarding events
+
+| Event Names                                  |
+| :------------------------------------------- |
+| Document status update                       |
+| Website status update                        |
+| Nodal status update                          |
+| Bank verification status update              |
+| Settlement status update                     |
+| Agreement status update                      |
+| SIGNED AUTHORISATION LETTER status update    |
+| PATNERSHIP PAN CARD status update            |
+| GOVT ISSUED CERTIFICATE status update        |
+| BANK PROOF status update                     |
+| ADDRESS PROOF SIGNED AUTHORITY status update |
+| PANCARD\_SIGNED\_AUTHORITY status update     |
 
 Possible values of status in case of KYC document update (`SIGNED_AUTHORISATION_LETTER` /`PATNERSHIP_PAN_CARD` /`GOVT_ISSUED_CERTIFICATE` /`BANK_PROOF` /`ADDRESS_PROOF_SIGNED_AUTHORITY` /`PANCARD_SIGNED_AUTHORITY`) are:
 
