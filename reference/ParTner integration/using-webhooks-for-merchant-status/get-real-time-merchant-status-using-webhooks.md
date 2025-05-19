@@ -94,6 +94,8 @@ The payload will contain the following data:
 | ADDRESS PROOF SIGNED AUTHORITY status update |
 | PANCARD\_SIGNED\_AUTHORITY status update     |
 
+<br />
+
 Possible values of status in case of KYC document update (`SIGNED_AUTHORISATION_LETTER` /`PATNERSHIP_PAN_CARD` /`GOVT_ISSUED_CERTIFICATE` /`BANK_PROOF` /`ADDRESS_PROOF_SIGNED_AUTHORITY` /`PANCARD_SIGNED_AUTHORITY`) are:
 
 * Pending
