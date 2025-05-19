@@ -38,7 +38,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 > PayU has moved to Maven Central, Please update your existing dependency using the following configuration:
 >
 > ```Text build.gradle
-> api 'in.payu:payu-sdk:7.7.0'
+> api 'in.payu:payu-sdk:7.8.0'
 > ```
 
 ## Step 3: Build the Payment Parameters
@@ -74,7 +74,7 @@ mPaymentParams.setHash("<pass the payment Hash>");
 > * udf1 to udf5 are options params where you can pass additional information related to transaction. If you don't want to use it, then send them as empty string like, udf1=""
 > * Email and First name can be empty strings "" if you don't want to use them
 > * For store user card feature\
->    /\**These are used for store card feature. If you are not using it then user\_credentials = "default"\&#xA;* user *credentials takes of the form like user\_credentials = "merchant\_key : user\_id"\&#xA;* here merchant *key = your merchant key,\&#xA;* user*id = unique id related to user like, email, phone number, etc.*/
+>   /\**These are used for store card feature. If you are not using it then user\_credentials = "default"* user *credentials takes of the form like user\_credentials = "merchant\_key : user\_id"* here merchant *key = your merchant key,* user\_id = unique id related to user like, email, phone number, etc.\_/
 > * For SURL ,Success url is where the transaction response is posted by PayU on successful transaction.PayU recommends you to design or use your own surl and furl after testing is completed. See Handling SURL and FURL.
 > * For FURL, Failure url is where the transaction response is posted by PayU on failed transaction. PayU recommends you to design or use your own surl and furl after testing is completed. See Handling SURL and FURL.
 > * For offers `mPaymentParams.setOfferKey`("your\_offer\_key")
@@ -255,7 +255,7 @@ mPaymentParam.setStoreCard(1);
 
 #### Card Tokenization with PayU
 
-1. For Cards tokenized with PayU platform merchant needs to pass the below parameters. 
+1. For Cards tokenized with PayU platform merchant needs to pass the below parameters.
 
 ```Text Java
 mPaymentParams.setCvv(cvv); // pass the correct cvv
@@ -430,7 +430,7 @@ mPaymentParams.setVpa(virtualPaymentAddress);
 You need to validate the following for the virtual payment address (VPA):
 
 * VPA length should be less than or equal to 50 characters
-* Regex for VPA: value.match(/^([A-Za-z0-9.])+@[A-Za-z0-9]+$/)
+* Regex for VPA: value.match(/^(\[A-Za-z0-9.])+@\[A-Za-z0-9]+$/)
 
 2. Get the request by using the `PaymentPostParams` method as follows:
 
