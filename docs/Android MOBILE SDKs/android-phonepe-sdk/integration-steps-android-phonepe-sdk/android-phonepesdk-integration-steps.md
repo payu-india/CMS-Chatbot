@@ -31,7 +31,7 @@ allprojects {
 Add the following dependency in your application’s build.gradle:
 
 ```Text build.gradle
-implementation 'in.payu:phonepe-intent:1.8.3'
+implementation 'in.payu:phonepe-intent:1.8.4'
 ```
 
 ## Step 3: Create Callbacks Instance
@@ -69,7 +69,7 @@ Following are error messages concerning PhonePe initialization failure.
       </td>
 
       <td>
-        MERCHANT*KEY\_NOT*\
+        MERCHANT\_KEY\_NOT\_
         REGISTER\_FOR\_PHONEPE
       </td>
 
@@ -139,7 +139,7 @@ Where:
 >
 > To generate `PaymentOption` Hash refer to  [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 >
-> **Formula** :-sha512(key|command|var1|salt) 
+> **Formula** :-sha512(key|command|var1|salt)
 >
 > where
 >
