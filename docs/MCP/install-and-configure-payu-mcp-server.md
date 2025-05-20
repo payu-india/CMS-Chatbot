@@ -1,5 +1,5 @@
 ---
-title: Install and Configure - PayU MCP Server
+title: Install and Configure
 deprecated: false
 hidden: false
 metadata:
