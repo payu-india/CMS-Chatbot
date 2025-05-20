@@ -3,6 +3,11 @@ title: Install and Configure - PayU MCP Server
 deprecated: false
 hidden: false
 metadata:
+  title: Install and Configure - PayU MCP Server
+  keywords:
+    - MCP Server
+    - Model Context Protocol Server
+    - PayU MCP Server
   robots: index
 ---
 This guide provides detailed instructions for installing and configuring the PayU MCP Server using either standard installation or Docker.
