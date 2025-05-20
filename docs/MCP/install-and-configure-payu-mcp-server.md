@@ -1,5 +1,5 @@
 ---
-title: Install and Configure
+title: Install and Configure MCP Server
 deprecated: false
 hidden: false
 metadata:
