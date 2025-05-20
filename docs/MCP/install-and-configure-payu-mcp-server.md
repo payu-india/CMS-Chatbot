@@ -12,20 +12,18 @@ metadata:
 ---
 This guide provides detailed instructions for installing and configuring the PayU MCP Server using either standard installation or Docker.
 
-## Installation Options
+## Standard Installation
 
-### Option 1: Standard Installation
-
-#### 1. Clone the Repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/payu-intrepos/payu-mcp-server.git
 cd payu-mcp-server
 ```
 
-#### 2. Install Dependencies
+### 2. Install Dependencies
 
-We recommend using `uv` for Python dependency management.
+PayU recommends you to use `uv` for Python dependency management.
 
 > **Note**: Using `uv` provides faster dependency resolution and more reliable package management.
 
@@ -48,24 +46,26 @@ pip install -r requirements.txt
 
 > **Important**: Make sure your Python version is 3.10 or higher before proceeding with the installation.
 
-### Option 2: Docker Installation
+## Docker Installation
 
-#### 1. Clone the Repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/payu-intrepos/payu-mcp-server.git
 cd payu-mcp-server
 ```
 
-#### 2. Build Docker Image
+### 2. Build Docker Image
 
 ```bash
 docker build -t payu-mcp-server .
 ```
 
-> **Note**: This step requires Docker to be installed on your system. If you don't have Docker installed, please refer to the [Docker installation guide](https://docs.docker.com/get-docker/).
+> 📘 Note:
+>
+> This step requires Docker to be installed on your system. If you don't have Docker installed, refer to the [Docker installation guide](https://docs.docker.com/get-docker/).
 
-#### 3. Run Docker Container
+### 3. Run Docker Container
 
 Run the container with your PayU credentials:
 
@@ -78,7 +78,9 @@ docker run -p 8888:8888 \
   payu-mcp-server python server.py --sse --port 8888
 ```
 
-> **Warning**: Replace `YOUR_CLIENT_ID`, `YOUR_CLIENT_SECRET`, and `YOUR_MERCHANT_ID` with your actual PayU credentials. Never share these credentials in public repositories or insecure environments.
+> 📘 Note:
+>
+> Replace `YOUR_CLIENT_ID`, `YOUR_CLIENT_SECRET`, and `YOUR_MERCHANT_ID` with your actual PayU credentials. Never share these credentials in public repositories or insecure environments.
 
 ## Connecting to MCP Client
 
@@ -116,7 +118,9 @@ Add the following to your configuration:
 }
 ```
 
-> **Implementation Note**: Replace `/path/to/payu-mcp-server` with the actual path where you cloned the repository. The path should be absolute to ensure the MCP client can locate the server files correctly.
+> 📘 Note:
+>
+> Replace `/path/to/payu-mcp-server` with the actual path where you cloned the repository. The path should be absolute to ensure the MCP client can locate the server files correctly.
 
 #### For Docker Installation:
 
@@ -132,7 +136,9 @@ Configure your MCP client to connect to the Docker container:
 }
 ```
 
-> **Implementation Note**: If you've configured Docker to use a different port, make sure to update the URL accordingly. The port in the URL should match the port mapping specified in your Docker run command.
+> 📘 Note:
+>
+> If you've configured Docker to use a different port, make sure to update the URL accordingly. The port in the URL should match the port mapping specified in your Docker run command.
 
 ## Verification
 
@@ -142,4 +148,6 @@ After completing the installation and configuration, you can verify that everyth
 2. Opening your MCP-compatible client (like Claude AI Desktop)
 3. Attempting a simple query such as "Create a payment link for ₹100 for testing"
 
-> **Note**: If you encounter any issues during verification, check the server logs for error messages that might help identify the problem.
+> 📘 Note:
+>
+> If you encounter any issues during verification, check the server logs for error messages that might help identify the problem.
