@@ -140,13 +140,13 @@ Configure your MCP client to connect to the Docker container:
 >
 > If you've configured Docker to use a different port, make sure to update the URL accordingly. The port in the URL should match the port mapping specified in your Docker run command.
 
-## Verification
+## Verify Installtion
 
 After completing the installation and configuration, you can verify that everything is working correctly by:
 
-1. Starting your MCP server (either via standard installation or Docker)
-2. Opening your MCP-compatible client (like Claude AI Desktop)
-3. Attempting a simple query such as "Create a payment link for ₹100 for testing"
+1. Start your MCP server (either via standard installation or Docker)
+2. Open your MCP-compatible client (like Claude AI Desktop)
+3. Attempt a simple query such as "Create a payment link for ₹100 for testing"
 
 > 📘 Note:
 >
