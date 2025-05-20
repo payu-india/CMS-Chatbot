@@ -21,13 +21,13 @@ PayU MCP Server provides specialized integration that enables AI tools to secure
 | **get-invoice-details**     | Retrieve comprehensive details for any invoice ID |
 | **get-transaction-details** | Access complete transaction information           |
 
-## Getting Started
-
-### Prerequisites
+## Prerequisites
 
 * Python 3.10 or higher
 * PayU Merchant Account with API access
 * MCP-compatible AI client (Claude AI, etc.)
+
+For the steps to install, refer to [Install and Configure MCP](doc:install-and-configure-payu-mcp-server).
 
 ## License
 
