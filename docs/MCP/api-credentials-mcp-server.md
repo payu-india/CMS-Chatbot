@@ -3,6 +3,11 @@ title: API Credentials - MCP Server
 deprecated: false
 hidden: false
 metadata:
+  title: API Credentials - MCP Server
+  keywords:
+    - API Credentials for MCP Server
+    - MCP API Credentials
+    - MCP Credentials
   robots: index
 ---
 This section describes how to use the API credentials with PayU MCP Server.
