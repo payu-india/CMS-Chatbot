@@ -13,7 +13,7 @@ PayU MCP Server provides specialized integration that enables AI tools to secure
 >
 > — [Model Context Protocol](https://github.com/modelcontextprotocol)
 
-## Available Tools
+## MCP Tools
 
 | Tool Name                   | Description                                       |
 | --------------------------- | ------------------------------------------------- |
@@ -28,3 +28,7 @@ PayU MCP Server provides specialized integration that enables AI tools to secure
 * Python 3.10 or higher
 * PayU Merchant Account with API access
 * MCP-compatible AI client (Claude AI, etc.)
+
+## License
+
+This project is licensed under the MIT License. For more information, refer to [PayU Github > MCP > LICENSE ](https://github.com/payu-intrepos/payu-mcp-server/blob/main/LICENSE)page.
