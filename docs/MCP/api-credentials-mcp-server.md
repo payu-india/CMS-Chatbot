@@ -14,7 +14,7 @@ This section describes how to use the API credentials with PayU MCP Server.
 
 > 📘 Reference:
 >
-> To obtain your API credentials, visit the [Get Client ID and Secret](https://docs.payu.in/docs/get-client-id-and-secret-from-dashboard).
+> To obtain your API credentials, refer to [Get Client ID and Secret](https://docs.payu.in/docs/get-client-id-and-secret-from-dashboard).
 
 Required credentials:
 
