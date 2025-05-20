@@ -10,7 +10,7 @@ metadata:
     - PayU MCP Server
   robots: index
 ---
-This guide provides detailed instructions for installing and configuring the PayU MCP Server using either standard installation or Docker.
+This section provides detailed instructions for installing and configuring the PayU MCP Server using either standard installation or Docker.
 
 ## Standard Installation
 
