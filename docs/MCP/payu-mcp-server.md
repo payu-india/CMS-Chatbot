@@ -9,9 +9,7 @@ PayU MCP Server provides specialized integration that enables AI tools to secure
 
 ## What is the Model Context Protocol (MCP)?
 
-> The Model Context Protocol (MCP) is an open protocol that enables seamless integration between LLM applications and external data sources and tools. Whether you're building an AI-powered IDE, enhancing a chat interface, or creating custom AI workflows, MCP provides a standardized way to connect LLMs with the context they need.
->
-> — [Model Context Protocol](https://github.com/modelcontextprotocol)
+The Model Context Protocol (MCP) is an open protocol that enables seamless integration between LLM applications and external data sources and tools. Whether you're building an AI-powered IDE, enhancing a chat interface, or creating custom AI workflows, MCP provides a standardized way to connect LLMs with the context they need. For more information, refer to [Model Context Protocol](https://github.com/modelcontextprotocol).
 
 ## MCP Tools
 
