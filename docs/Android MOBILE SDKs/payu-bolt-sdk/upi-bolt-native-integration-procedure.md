@@ -109,7 +109,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        config\
+        config
         ` mandatory`
       </td>
 
@@ -120,7 +120,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        hashGenerationListener\
+        hashGenerationListener
         ` mandatory`
       </td>
 
@@ -131,7 +131,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        merchantKey\
+        merchantKey
         ` mandatory`
       </td>
 
@@ -142,7 +142,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        phone\
+        phone
         ` mandatory`
       </td>
 
@@ -153,7 +153,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        email\
+        email
         ` mandatory`
       </td>
 
@@ -164,7 +164,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        pluginType\
+        pluginType
         ` mandatory`
       </td>
 
@@ -175,7 +175,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        isProd\
+        isProd
         ` optional`
       </td>
 
@@ -186,7 +186,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        excludedBanksIINs\
+        excludedBanksIINs
         ` optional`
       </td>
 
@@ -197,7 +197,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        requestId\
+        requestId
         ` mandatory`
       </td>
 
@@ -268,7 +268,7 @@ boltUI.registerAndPay(paymentParams PayUUPIBoltPaymentParams, callback: PayUUPIB
       </td>
 
       <td>
-        * \*Object\*\* This parameter includes the fields listed in the 
+        * *Object*\* This parameter includes the fields listed in [paymentParams object](#paymentarams-object).
       </td>
     </tr>
 
@@ -279,7 +279,7 @@ boltUI.registerAndPay(paymentParams PayUUPIBoltPaymentParams, callback: PayUUPIB
       </td>
 
       <td>
-        * \*PayUUPIBoltUICallBack\*\* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        * *PayUUPIBoltUICallBack*\* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
       </td>
     </tr>
   </tbody>
@@ -316,7 +316,7 @@ The following fields are part of `paymentParams` object:
 
     <tr>
       <td>
-        txnId\
+        txnId
         `mandatory`
       </td>
 
@@ -327,7 +327,7 @@ The following fields are part of `paymentParams` object:
 
     <tr>
       <td>
-        productInfo\
+        productInfo
         `mandatory`
       </td>
 
@@ -338,7 +338,7 @@ The following fields are part of `paymentParams` object:
 
     <tr>
       <td>
-        firstName\
+        firstName
         `mandatory`
       </td>
 
@@ -349,7 +349,7 @@ The following fields are part of `paymentParams` object:
 
     <tr>
       <td>
-        furl\
+        furl
         `optional`
       </td>
 
@@ -360,7 +360,7 @@ The following fields are part of `paymentParams` object:
 
     <tr>
       <td>
-        surl\
+        surl
         `optional`
       </td>
 
@@ -371,7 +371,7 @@ The following fields are part of `paymentParams` object:
 
     <tr>
       <td>
-        udf1\
+        udf1
         `optional`
       </td>
 
@@ -382,7 +382,7 @@ The following fields are part of `paymentParams` object:
 
     <tr>
       <td>
-        udf2\
+        udf2
         `optional`
       </td>
 
@@ -393,7 +393,7 @@ The following fields are part of `paymentParams` object:
 
     <tr>
       <td>
-        udf3\
+        udf3
         `optional`
       </td>
 
@@ -404,7 +404,7 @@ The following fields are part of `paymentParams` object:
 
     <tr>
       <td>
-        udf4\
+        udf4
         `optional`
       </td>
 
@@ -415,7 +415,7 @@ The following fields are part of `paymentParams` object:
 
     <tr>
       <td>
-        udf5\
+        udf5
         `optional`
       </td>
 
@@ -440,7 +440,7 @@ boltUI.openUPIManagement(enforceScreenType: EnforceScreenType, callback: PayUUPI
 
 The following fields are needed as a request for this API:
 
-<Table>
+<Table align={["left","left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -482,7 +482,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        callback\
+        callback
         `mandatory`
       </td>
 
@@ -495,7 +495,7 @@ The following fields are needed as a request for this API:
       </td>
 
       <td>
-        * \*PayUUPIBoltUICallBack\*\* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)   sub-section.
+        * *PayUUPIBoltUICallBack*\* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)   sub-section.
       </td>
     </tr>
   </tbody>
