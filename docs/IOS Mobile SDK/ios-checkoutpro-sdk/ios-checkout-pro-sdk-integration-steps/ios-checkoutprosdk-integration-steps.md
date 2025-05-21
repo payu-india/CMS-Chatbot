@@ -581,7 +581,56 @@ For more information on the Additional Charges, refer to \[[Collect Additional C
 >
 > Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
 
-The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. For more information, refer to [Hash Generation for CheckoutPro SDK](https://docs.payu.in/docs/set-up-the-payment-hashes).
+The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. For passing dynamic hashes, you will receive a call on the generateHash method of PayUCheckoutProListener.
+
+In the method parameter, you will receive a dictionary or hashMap, extract the value of hashString from that. Pass that value to the server, and now the server will append salt at the end and generate sha512 hash over it. The server will give that hash back to your app, and the app will provide that hash to PayU through a callback mechanism.
+
+There is no need to know the formula for dynamic hashes because PayU SDK gives you the string containing all the required parameters. Your server has to append salt at the end and generate sha512 hash over it.
+
+For passing dynamic hashes during integration, use the following code snippet:
+
+```Text Swift
+/// Use this function to provide hashes
+/// - Parameters:
+///   - param: Dictionary that contains key as HashConstant.hashName & HashConstant.hashString
+///   - onCompletion: Once you fetch the hash from server, pass that hash with key as param[HashConstant.hashName]
+func generateHash(for param: DictOfString, onCompletion: @escaping PayUHashGenerationCompletion) {
+    // Send this string to your backend and append the salt at the end and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
+    let hashStringWithoutSalt = param[HashConstant.hashString] ?? ""
+    // Or you can send below string hashName to your backend and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
+    let hashName = param[HashConstant.hashName] ?? ""
+
+    // Set the hash in below string which is fetched from your server
+    let hashFetchedFromServer = <String>
+    
+    onCompletion([hashName : hashFetchedFromServer])
+}
+```
+```Text Objective-C
+/// Use this function to provide hashes
+/// @param param NSDictionary that contains key as HashConstant.hashName & HashConstant.hashString
+/// @param onCompletion Once you fetch the hash from server, pass that hash with key as param[HashConstant.hashName]
+- (void)generateHashFor:(NSDictionary<NSString *, NSString *> * _Nonnull)param onCompletion:(void (^ _Nonnull)(NSDictionary<NSString *, NSString *> * _Nonnull))onCompletion {
+    // Send below string hashStringWithoutSalt to your backend and append the salt at the end and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
+    NSString *hashStringWithoutSalt = [param objectForKey:HashConstant.hashString];
+    // Or you can send below string hashName to your backend and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
+    NSString * hashName = [param objectForKey:HashConstant.hashName];
+    
+    // Set the hash in below string which is fetched from your server
+    NSString *hashFetchedFromServer = <#(NSString)#>;
+    
+    NSDictionary *hashResponseDict = [NSDictionary dictionaryWithObjectsAndKeys:hashFetchedFromServer, hashName, nil];
+    onCompletion(hashResponseDict);
+}
+```
+
+Here,
+
+           **param ->** Dictionary that contains key as **HashConstant.hashName** & **HashConstant.hashString**
+
+**onCompletion ->** Once you fetch the **hash** from server, pass that hash with key as **param\[HashConstant.hashName]**
+
+##
 
 ## Step 4: Initiate the payment
 
