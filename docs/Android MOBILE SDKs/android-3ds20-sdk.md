@@ -30,47 +30,40 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 
 ## Benefits & features​
 
-- Power native experiences on cards through our native SDK​
-- Offers bin eligibility api to route transactions through 3DS1 or 3DS2​
-- Loosely coupled. Offers two flows​
-- Everything through payu – (Device Collection + Authentication + Complete Challenge + Authorization​
-- Only Device Collection + Challenge and use any other aggregator for authentication/ authorization​
-- Device Collection  + Authentication + Complete Challenge​
-- Fallback to 3DS 1 available in case of failures in device collection.​
-- Highest uptime through multiple 3DS Server in future.​
-- Compliant EMVCO certified 3DS SDK with more control across the whole customer journey.​
+* Power native experiences on cards through our native SDK​
+* Offers bin eligibility api to route transactions through 3DS1 or 3DS2​
+* Loosely coupled. Offers two flows​
+* Everything through payu – (Device Collection + Authentication + Complete Challenge + Authorization​
+* Only Device Collection + Challenge and use any other aggregator for authentication/ authorization​
+* Device Collection  + Authentication + Complete Challenge​
+* Fallback to 3DS 1 available in case of failures in device collection.​
+* Highest uptime through multiple 3DS Server in future.​
+* Compliant EMVCO certified 3DS SDK with more control across the whole customer journey.​
 
-<Image
-  src="https://files.readme.io/5013bc0-Screenshot_2023-10-16_at_11.45.39_AM.png"
-  alt=""
-  caption=""
-  border={true}
-  align="center"
-/>
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/5013bc0-Screenshot_2023-10-16_at_11.45.39_AM.png" />
 
 ## Integration
 
 PayU SDK offers the following methods to integrate with 3DS 2.0:
 
-- **SDK Integration**:  
-  Min SDK Version is v21  
+* **SDK Integration**:\
+  Min SDK Version is v21
   Compile SDK Version is v31 or later
-- **Maven Dependency URL**  
+* **Maven Dependency URL**\
   Please use the following code snippet in your app’s build.gradle file:
 
 ```
 implementation 'in.payu:threeds-sdk:1.0.27'
 ```
 
-- Use our SDK for a complete transaction
+* Use our SDK for a complete transaction
 
 1. Collecting device details
 2. Invoking an authentication request through our 3DS Server
 3. Invoking challenge
 4. Completing authorization through us
 
-- Use our SDK for collecting device details and to render challenge screens.
+* Use our SDK for collecting device details and to render challenge screens.
 
 ## Using PayU implementation
 
@@ -87,62 +80,117 @@ fun initiatePayment(
 
 You have to pass the following parameters:
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>activity</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the <code>AppCompatActivity</code> reference.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>config</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the following properties:  </p>
-<p><strong>config.uiCustomisation</strong> = Set UI customization object. For more information, refer to GUI Customisation  </p>
-<p><strong>config.isProduction</strong> = Set environment where you want to test:  </p>
-<p><strong>true</strong> for the Production environment  </p>
-<p><strong>false</strong> for the Test environment  </p>
-<p><strong>config.fallback3DS1</strong> = Set the value as true to complete payment on the bank page in case of any failure. By default, the value is false  </p>
-<p>**config.autoRead **= Set the values as true to allow auto-read OTP and fill in the OTP field. By default, the value is false.  </p>
-<p><strong>config.autoSubmit</strong> = Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.  </p>
-<p><strong>config.authenticateOnly</strong> = Pass this as true if you want to authenticate only using PayU. By default we will authorize.  </p>
-<p><strong>config.setDefaultProgressLoader(true, &quot;HexColor&quot;)</strong>: Set to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode.  </p>
-<p>**config.enableCustomizedOtpUIFlow = //To customise UI with your content please pass as true  </p>
-<p>**config.enableTxnTimeoutTimer = //pass as true to show timer for page timeout  </p>
-<p>**config.merchantName = &quot;merchant name&quot;// pass merchant name  with customised OTP Flow  </p>
-<p>**config.amount = &quot;txn amount&quot;// pass transaction amount with customised OTP Flow  </p>
-<p>val acsContentConfig = ACSContentConfig()<br>acsContentConfig.otpContent = &quot;OTP has been sent to your registered mobile number&quot;. //you can set this value to as per your need<br>acsContentConfig.resendButtonTitle = //you can set this value to as per your need<br>acsContentConfig.submitButtonTitle = //you can set this value to as per your need<br>acsContentConfig.resendInfoContent = //you can set this value to as per your need<br>acsContentConfig.maxResendInfoContent = //you can set this value to as per your need<br>config.acsContentConfig = acsContentConfig </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentParams</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Merchants have to create the payment param object and pass it which will contain info such as <code>cardDeatails</code>, SI details, etc. The following code has the parameters. Refer to the following &lt;<code snippet>> below the table.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>callback</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the following methods:  </p>
-<p><strong>fun onPaymentSuccess(successResponse: Any)</strong>: It will contain a success response. This will be a JSON Object, parse response as per your need.  </p>
-<p><strong>fun onPaymentFailure(failureResponse: Any)</strong>: It will contain a failure response. This will be a JSON Object, parse response as per your need.  </p>
-<p><strong>fun onPaymentCancel(isTxnInitiated: Boolean)</strong>: It will tell if payment was canceled.  </p>
-<p><strong>fun onError(errorCode: Int, errorMessage: String)</strong>: It will contain failure reason code and reason.  </p>
-<p><strong>fun generateHash(map: HashMap&lt;String, String&gt;, hashGenerationListener</strong>: PayUHashGeneratedListener): Merchant will get a map with the type of hash and hash string as the value of the map. Refer for more details</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        activity
+      </td>
+
+      <td>
+        This parameter contains the `AppCompatActivity` reference.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        config
+      </td>
+
+      <td>
+        This parameter contains the following properties:
+        **config.uiCustomisation** = Set UI customization object. For more information, refer to [GUI Customisation](#gui-customization)
+        **config.isProduction** = Set environment where you want to test:
+        *true*\* for the Production environment
+        **false** for the Test environment
+        **config.fallback3DS1** = Set the value as true to complete payment on the bank page in case of any failure. By default, the value is false
+        **config.autoRead** = Set the values as true to allow auto-read OTP and fill in the OTP field. By default, the value is false.
+        **config.autoSubmit** = Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
+        **config.authenticateOnly** = Pass this as true if you want to authenticate only using PayU. By default we will authorize.
+        **config.setDefaultProgressLoader(true, "HexColor")**: Set to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode.
+        *config.enableCustomizedOtpUIFlow*\* = //To customise UI with your content please pass as true
+        **config.enableTxnTimeoutTimer** = //pass as true to show timer for page timeout
+        *config.merchantName*\* = "merchant name"// pass merchant name with customised OTP Flow
+        **config.amount** = "txn amount"// pass transaction amount with customised OTP Flow
+        val acsContentConfig = ACSContentConfig()
+        acsContentConfig.otpContent = "OTP has been sent to your registered mobile number". //you can set this value to as per your need acsContentConfig.resendButtonTitle = //you can set this value to as per your need
+        acsContentConfig.submitButtonTitle = //you can set this value to as per your need
+        acsContentConfig.resendInfoContent = //you can set this value to as per your need
+        acsContentConfig.maxResendInfoContent = //you can set this value to as per your need
+        config.acsContentConfig = acsContentConfig
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentParams
+      </td>
+
+      <td>
+        Merchants have to create the payment param object and pass it which will contain info such as `cardDeatails`, SI details, etc.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        callback
+      </td>
+
+      <td>
+        This parameter contains the following methods:
+        **fun onPaymentSuccess(successResponse: Any)**: It will contain a success response. This will be a JSON Object, parse response as per your need.
+        **fun onPaymentFailure(failureResponse: Any)**: It will contain a failure response. This will be a JSON Object, parse response as per your need
+        **fun onPaymentCancel(isTxnInitiated: Boolean)**: It will tell if payment was canceled.
+        **fun onError(errorCode: Int, errorMessage: String)**: It will contain failure reason code and reason.
+        **fun generateHash(map: HashMap\<String, String>, hashGenerationListener**: PayUHashGeneratedListener): Merchant will get a map with the type of hash and hash string as the value of the map. Refer to the[ Sample code for callback - generateHash](#sample-code-for-callback-generateHash).
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### Sample code for callback - generateHash
+
+```kotlin
+if (map.containsKey("hashString") && map.containsKey("hashName")) {
+    val hashData = map["hashString"]
+    val hashName = map["hashName"]
+    val postSalt = map["postSalt"]
+    var newsalt = salt
+    
+    if (!postSalt.isNullOrEmpty()) {
+        newsalt += postSalt
+    }
+    
+    Log.d("TAG", "generateHash: " + hashData)
+    Log.d("TAG", "generateHash: " + hashName)
+    Log.d("TAG", "generateHash: " + newsalt)
+    
+    var hash: String? 
+    // Do not generate hash from local, it needs to be calculated from server side only.
+    // Here, hashString contains hash created from your server side.
+    
+    if (!TextUtils.isEmpty(hash)) {
+        val dataMap = HashMap<String, String>()
+        dataMap[hashName!!] = hash!!
+        hashGenerationListener.onHashGenerated(dataMap)
+    }
+}
+
+```
+
+<br />
 
 ## Decoupled Flow
 
@@ -159,7 +207,7 @@ PayU3DS2.initialise(
 ```
 
 > 🚧 Callout
-> 
+>
 > If auto-read is false, auto-submit will not work whereas auto-read will work in case of auto-submit is false.
 
 | Parameter         | Description                            |
@@ -167,19 +215,18 @@ PayU3DS2.initialise(
 | Key               | The key provided to merchant by PayU.  |
 | RequestId         | Unique request ID for the transaction. |
 | AppCompatActivity | Required to initialise SDK.            |
-|                   |                                        |
 
 ## GUI customisation
 
 The following components can be customized:
 
-- Button
-- Label
-- Toolbar
-- Text box
-- Font
-- GUI
-- The sample code blocks for the above:
+* Button
+* Label
+* Toolbar
+* Text box
+* Font
+* GUI
+* The sample code blocks for the above:
 
 ```Text Kotlin
 var buttonCustomisation = ButtonCustomisation.Builder()
@@ -268,7 +315,6 @@ The response includes the following parameters:
 </table>
 `}</HTMLBlock>
 
-
 The following items are in the response:
 
 ```Text Kotlin
@@ -295,8 +341,8 @@ PayU3DS2.extractDeviceDetails(cardScheme: CardScheme): PayU3DS2Response
 
 cardScheme expected values:
 
-- VISA
-- MASTERCARD
+* VISA
+* MASTERCARD
 
 **PayU3DS2Response**: Three items are in the response:
 
@@ -332,7 +378,6 @@ cardScheme expected values:
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ```Text Kotlin
 data class PArqResponse(
@@ -389,7 +434,6 @@ PayU3DS2.initiateChallenge(activity: Activity, challengeParameter: ChallengePara
 </table>
 `}</HTMLBlock>
 
-
 Before invoking this method, generate the authentication request through any aggregator and pass the above-defined challenge parameters to initiate challenges.
 
 **PayU3DS2BaseCallback**: Callback consists of two methods:
@@ -434,16 +478,16 @@ In the method parameter, you will receive a dictionary or hashMap, and extract t
 
 In the map, you have to check for the following keys to generate a hash:
 
-- hashString
-- hashName
-- postSalt
+* hashString
+* hashName
+* postSalt
 
 At the end of that hashString, append your salt and use the SHA-512 algorithm on that final string to generate a hash.
 
 > 🚧 Callout
-> 
-> - If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algorithm on that final string to generate hash.
-> - There is no need to know the formula for dynamic hashes because PayU SDK gives you the string containing all the required parameters. Your server has to append salt at the end and generate sha512 hash over it.
+>
+> * If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algorithm on that final string to generate hash.
+> * There is no need to know the formula for dynamic hashes because PayU SDK gives you the string containing all the required parameters. Your server has to append salt at the end and generate sha512 hash over it.
 
 ## Error codes
 
