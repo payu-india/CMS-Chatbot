@@ -630,7 +630,19 @@ Here,
 
 **onCompletion ->** Once you fetch the **hash** from server, pass that hash with key as **param\[HashConstant.hashName]**
 
-##
+### Getting Hash Data to calculate hash
+
+Checkout Pro SDK will give a callback in `generateHash`**()** method whenever any hash is needed by it. Merchant need to calculate that hash and pass back to the SDK. Below is the process of doing so:
+
+To extract hash string and hash name from dictionary received in generateHash() method, use below keys -
+
+**HashConstant.hashString ->** This will contain complete hash string excluding salt. Merchant can append their salt at end of hash string to calculate the hash.
+
+**HashConstant.hashName ->** This will contain hash name.
+
+### Passing generated hash to SDK
+
+Prepare a dictionary, where key should be **param\[HashConstant.hashName]** and value should be generated **hash** value and pass this dictionary in **onCompletion()**
 
 ## Step 4: Initiate the payment
 
