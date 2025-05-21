@@ -120,9 +120,9 @@ You have to pass the following parameters:
         * **config.authenticateOnly** = Pass this as true if you want to authenticate only using PayU. By default we will authorize.
         * **config.setDefaultProgressLoader(true, "HexColor")**: Set to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode.
         * **config.enableCustomizedOtpUIFlow** = //To customise UI with your content please pass as true
-          **config.enableTxnTimeoutTimer** = //pass as true to show timer for page timeout
+        * **config.enableTxnTimeoutTimer** = //pass as true to show timer for page timeout
           *config.merchantName*\* = "merchant name"// pass merchant name with customised OTP Flow
-          **config.amount** = "txn amount"// pass transaction amount with customised OTP Flow
+        * **config.amount** = "txn amount"// pass transaction amount with customised OTP Flow
         * **val acsContentConfig** = ACSContentConfig()
         * **acsContentConfig.otpContent** = "OTP has been sent to your registered mobile number". //you can set this value to as per your need
         * **acsContentConfig.resendButtonTitle** = //you can set this value to as per your need
