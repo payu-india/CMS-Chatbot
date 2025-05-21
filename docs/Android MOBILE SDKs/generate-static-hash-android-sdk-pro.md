@@ -35,8 +35,8 @@ The following table describes all static hashes:
     <tr>
       <td style={{ textAlign: "left" }}>
         `payment_  
-        related_details_
-        for_mobile_sdk`
+                related_details_  
+                for_mobile_sdk`
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -44,7 +44,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `\<key>\|\payment_related_details_for_mobile_sdk\|\<userCredential>\|\<salt>\`
+        `<key>\|payment_related_details_for_mobile_sdk\|<userCredential>\|\<salt>`
       </td>
     </tr>
 
@@ -58,7 +58,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `\<key>\|\eligibleBinsForEMI\|\default\|\<salt>\`
+        `<key>\|eligibleBinsForEMI\|default\|<salt>`
       </td>
     </tr>
 
@@ -72,7 +72,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `\<key>\|\vas_for_mobile_sdk\|\<amount>\|\<salt>\`
+        `<key>\|vas_for_mobile_sdk\|<amount>\|<salt>`
       </td>
     </tr>
 
@@ -100,7 +100,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `\<key>\|\delete_payment_instrument\|\<userCredential>\|\<salt>\`
+        `<key>\|delete_payment_instrument\|<userCredential>\|<salt>`
       </td>
     </tr>
 
@@ -114,7 +114,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `\<key>\|\get_payment_instrument\|\<userCredential>\|<salt>\`
+        `<key>\|get_payment_instrument\|<userCredential>\|<salt>`
       </td>
     </tr>
 
@@ -128,7 +128,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `\<key>\|\get_payment_details\|\<userCredential>\|\<salt>\`
+        `<key>\|get_payment_details\|<userCredential>\|<salt>`
       </td>
     </tr>
   </tbody>
