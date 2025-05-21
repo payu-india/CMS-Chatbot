@@ -50,19 +50,17 @@ PayU SDK offers the following methods to integrate with 3DS 2.0:
   Min SDK Version is v21
   Compile SDK Version is v31 or later
 * **Maven Dependency URL**\
-  Please use the following code snippet in your app’s build.gradle file:
+  Use the following code snippet in your app’s build.gradle file:
 
 ```
 implementation 'in.payu:threeds-sdk:1.0.27'
 ```
 
-* Use our SDK for a complete transaction
-
-1. Collecting device details
-2. Invoking an authentication request through our 3DS Server
-3. Invoking challenge
-4. Completing authorization through us
-
+* Use our SDK for a complete transaction:
+  * Collecting device details
+  * Invoking an authentication request through our 3DS Server
+  * Invoking challenge
+  * Completing authorization through PayU
 * Use our SDK for collecting device details and to render challenge screens.
 
 ## Using PayU implementation
@@ -218,7 +216,7 @@ PayU3DS2.initialise(
 | RequestId         | Unique request ID for the transaction. |
 | AppCompatActivity | Required to initialise SDK.            |
 
-### GUI customisation
+#### GUI customisation
 
 The following components can be customized:
 
@@ -271,7 +269,7 @@ var uiCustomisation = UICustomisation.Builder()
                       .build()
 ```
 
-### Supported Font Type Details
+#### Supported Font Type Details
 
 ```Text Kotlin
 enum class FontName { 
@@ -280,7 +278,7 @@ enum class FontName {
 }
 ```
 
-### PayU3DS2Response:
+#### PayU3DS2Response:
 
 The response includes the following parameters:
 
@@ -333,7 +331,7 @@ enum class DeviceSeverity {
 }
 ```
 
-## Step 2: Device details(PArq)
+### Step 2: Device details(PArq)
 
 To obtain device information to initiate an authentication request:
 
@@ -398,7 +396,7 @@ Now, these device details can be used to initiate an authentication request with
 
 After the authentication request has been initiated and a response has been received, the same is used to initiate a challenge which basically means opening a UI screen to do user authentication.
 
-## Step 3: 3DS 2.0 Challenge Initiation
+### Step 3: 3DS 2.0 Challenge Initiation
 
 Call the following function to start the challenge:
 
