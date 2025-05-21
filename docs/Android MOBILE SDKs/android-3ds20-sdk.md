@@ -218,7 +218,7 @@ PayU3DS2.initialise(
 | RequestId         | Unique request ID for the transaction. |
 | AppCompatActivity | Required to initialise SDK.            |
 
-## GUI customisation
+### GUI customisation
 
 The following components can be customized:
 
@@ -271,7 +271,7 @@ var uiCustomisation = UICustomisation.Builder()
                       .build()
 ```
 
-## Supported Font Type Details
+### Supported Font Type Details
 
 ```Text Kotlin
 enum class FontName { 
@@ -280,7 +280,7 @@ enum class FontName {
 }
 ```
 
-## PayU3DS2Response:
+### PayU3DS2Response:
 
 The response includes the following parameters:
 
