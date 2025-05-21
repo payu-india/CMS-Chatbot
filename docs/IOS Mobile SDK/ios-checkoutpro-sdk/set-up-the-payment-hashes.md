@@ -12,34 +12,15 @@ next:
 ---
 For details on static and dynamic hashes, check [Generate Hash](doc:ioscheckoutpro-generate-hash)
 
-# Passing static hashes
-
-For passing static hashes during integration, use the following code snipper:
-
-```Text Swift
-paymentParam.additionalParam[HashConstant.paymentRelatedDetailForMobileSDK] = <String>
-paymentParam.additionalParam[HashConstant.vasForMobileSDK] = <String>
-paymentParam.additionalParam[HashConstant.getEmiAmountAccordingToInterest] = <String>
-paymentParam.additionalParam[HashConstant.eligibleBinsForEMI] = <String>
-paymentParam.additionalParam[HashConstant.deleteUserCard] = <String>
-paymentParam.additionalParam[HashConstant.payment] = <String>
-```
-```Text Objective-C
-    paymentParam.additionalParam = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                    <#(NSString)#>, HashConstant.paymentRelatedDetailForMobileSDK,
-                                    <#(NSString)#>, HashConstant.vasForMobileSDK,
-                                    <#(NSString)#>, HashConstant.getEmiAmountAccordingToInterest,
-                                    <#(NSString)#>, HashConstant.eligibleBinsForEMI,
-                                    <#(NSString)#>, HashConstant.deleteUserCard,
-                                    <#(NSString)#>, HashConstant.payment,
-                                    nil];
-```
-
-# Passing dynamic hashes
+## Passing dynamic hashes
 
 For passing dynamic hashes, merchant will receive a call on the method generateHash of `PayUCheckoutProListener`.
 
-In the `method` parameter you will receive a dictionary or hashMap, extract the value of hashString from that. Pass that value to server, now server will append salt at the end and generate sha512 hash over it. Server will give that hash back to your app and app will give that hash to us via callback mechanism.
+For passing dynamic hashes, you will receive a call on the generateHash method of PayUCheckoutProListener.
+
+In the method parameter, you will receive a dictionary or hashMap, extract the value of hashString from that. Pass that value to the server, and now the server will append salt at the end and generate sha512 hash over it. The server will give that hash back to your app, and the app will provide that hash to PayU through a callback mechanism.
+
+There is no need to know the formula for dynamic hashes because PayU SDK gives you the string containing all the required parameters. Your server has to append salt at the end and generate sha512 hash over it.
 
 For passing dynamic hashes during integration, use the following code snippet:
 
@@ -80,9 +61,9 @@ func generateHash(for param: DictOfString, onCompletion: @escaping PayUHashGener
 
 Here,
 
-            **param ->** Dictionary that contains key as **HashConstant.hashName** & **HashConstant.hashString**
+           **param ->** Dictionary that contains key as **HashConstant.hashName** & **HashConstant.hashString**
 
-**onCompletion ->** Once you fetch the **hash** from server, pass that hash with key as **param[HashConstant.hashName]**
+**onCompletion ->** Once you fetch the **hash** from server, pass that hash with key as **param\[HashConstant.hashName]**
 
 ## Getting Hash Data to calculate hash
 
@@ -96,4 +77,4 @@ To extract hash string and hash name from dictionary received in generateHash() 
 
 ## Passing generated hash to SDK
 
-Prepare a dictionary, where key should be **param[HashConstant.hashName]** and value should be generated **hash** value and pass this dictionary in **onCompletion()**
+Prepare a dictionary, where key should be **param\[HashConstant.hashName]** and value should be generated **hash** value and pass this dictionary in **onCompletion()**
