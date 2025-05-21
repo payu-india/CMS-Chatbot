@@ -111,25 +111,27 @@ You have to pass the following parameters:
 
       <td>
         This parameter contains the following properties:
-        **config.uiCustomisation** = Set UI customization object. For more information, refer to [GUI Customisation](#gui-customization)
-        **config.isProduction** = Set environment where you want to test:
-        *true*\* for the Production environment
-        **false** for the Test environment
-        **config.fallback3DS1** = Set the value as true to complete payment on the bank page in case of any failure. By default, the value is false
-        **config.autoRead** = Set the values as true to allow auto-read OTP and fill in the OTP field. By default, the value is false.
-        **config.autoSubmit** = Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
-        **config.authenticateOnly** = Pass this as true if you want to authenticate only using PayU. By default we will authorize.
-        **config.setDefaultProgressLoader(true, "HexColor")**: Set to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode.
-        *config.enableCustomizedOtpUIFlow*\* = //To customise UI with your content please pass as true
-        **config.enableTxnTimeoutTimer** = //pass as true to show timer for page timeout
-        *config.merchantName*\* = "merchant name"// pass merchant name with customised OTP Flow
-        **config.amount** = "txn amount"// pass transaction amount with customised OTP Flow
-        val acsContentConfig = ACSContentConfig()
-        acsContentConfig.otpContent = "OTP has been sent to your registered mobile number". //you can set this value to as per your need acsContentConfig.resendButtonTitle = //you can set this value to as per your need
-        acsContentConfig.submitButtonTitle = //you can set this value to as per your need
-        acsContentConfig.resendInfoContent = //you can set this value to as per your need
-        acsContentConfig.maxResendInfoContent = //you can set this value to as per your need
-        config.acsContentConfig = acsContentConfig
+
+        * **config.uiCustomisation** = Set UI customization object. For more information, refer to [GUI Customisation](#gui-customization)
+        * **config.isProduction** = Set environment where you want to test:
+          *true*\* for the Production environment
+        * **false** for the Test environment
+        * **config.fallback3DS1** = Set the value as true to complete payment on the bank page in case of any failure. By default, the value is false
+        * **config.autoRead** = Set the values as true to allow auto-read OTP and fill in the OTP field. By default, the value is false.
+        * **config.autoSubmit** = Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
+        * **config.authenticateOnly** = Pass this as true if you want to authenticate only using PayU. By default we will authorize.
+        * **config.setDefaultProgressLoader(true, "HexColor")**: Set to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode.
+        * **config.enableCustomizedOtpUIFlow** = //To customise UI with your content please pass as true
+          **config.enableTxnTimeoutTimer** = //pass as true to show timer for page timeout
+          *config.merchantName*\* = "merchant name"// pass merchant name with customised OTP Flow
+          **config.amount** = "txn amount"// pass transaction amount with customised OTP Flow
+        * **val acsContentConfig** = ACSContentConfig()
+        * **acsContentConfig.otpContent** = "OTP has been sent to your registered mobile number". //you can set this value to as per your need
+        * **acsContentConfig.resendButtonTitle** = //you can set this value to as per your need
+        * **acsContentConfig.submitButtonTitle** = //you can set this value to as per your need
+        * **acsContentConfig.resendInfoContent** = //you can set this value to as per your need
+        * **acsContentConfig.maxResendInfoContent** = //you can set this value to as per your need
+        * **config.acsContentConfig** = acsContentConfig
       </td>
     </tr>
 
@@ -149,7 +151,7 @@ You have to pass the following parameters:
       </td>
 
       <td>
-        This parameter contains the following methods:
+        This parameter contains the following methods:\
         **fun onPaymentSuccess(successResponse: Any)**: It will contain a success response. This will be a JSON Object, parse response as per your need.
         **fun onPaymentFailure(failureResponse: Any)**: It will contain a failure response. This will be a JSON Object, parse response as per your need
         **fun onPaymentCancel(isTxnInitiated: Boolean)**: It will tell if payment was canceled.
