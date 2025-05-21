@@ -86,7 +86,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `<key>\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||salt`
+        `<key>|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt`
       </td>
     </tr>
 
