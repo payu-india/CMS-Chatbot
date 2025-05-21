@@ -14,16 +14,125 @@ The static hashes can be passed to SDK during integration and do not change. Unl
 
 The following table describes all static hashes:
 
-| Hash Name                          | Description                                                                                                                         | Hash Formula                                                                                     |
-| :--------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
-| `payment_related_details_for_mobile_sdk` | Used to fetch enabled payment options. If not passed, checkout screen will not appear.       | `\<key>\|\payment_related_details_for_mobile_sdk\|\<userCredential>\|\<salt>\`         |
-| `eligibleBinsForEMI`              | Used to fetch the eligible bins for EMI when EMI is enabled. If not passed, EMI payment will not work.                             | `\<key>\|\eligibleBinsForEMI\|\default\|\<salt>\`                                       |
-| `getEmiAmountAccordingToInterest` | Used to fetch EMI details like amount, interest rate, etc. If not passed, EMI payment will not work.                                | `\<key>\|\vas_for_mobile_sdk\|\<amount>\|\<salt>\`                                     |
-| `Payment`                         | Used for making payment. If not passed, payment will not happen.                                                                   | `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt`              |
-| `delete_payment_instrument`       | Used to delete the tokenised card                                                                                                   | `\<key>\|\delete_payment_instrument\|\<userCredential>\|\<salt>\`                      |
-| `get_payment_instrument`          | Used to get all stored tokenised cards                                                                                              | `\<key>\|\get_payment_instrument\|\<userCredential>\|<salt>\`                         |
-| `get_payment_details`             | Used to get the payment details of an existing card stored on PayU Vault                                                            | `\<key>\|\get_payment_details\|\<userCredential>\|\<salt>\`                            |
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: "left" }}>
+        Hash Name
+      </th>
 
+      <th style={{ textAlign: "left" }}>
+        Description
+      </th>
+
+      <th style={{ textAlign: "left" }}>
+        Hash Formula
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        `payment_  
+        related_details_
+        for_mobile_sdk`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Used to fetch enabled payment options. If not passed, checkout screen will not appear.
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        `\<key>\|\payment_related_details_for_mobile_sdk\|\<userCredential>\|\<salt>\`
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        `eligibleBinsForEMI`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Used to fetch the eligible bins for EMI when EMI is enabled. If not passed, EMI payment will not work.
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        `\<key>\|\eligibleBinsForEMI\|\default\|\<salt>\`
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        `getEmiAmountAccordingToInterest`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Used to fetch EMI details like amount, interest rate, etc. If not passed, EMI payment will not work.
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        `\<key>\|\vas_for_mobile_sdk\|\<amount>\|\<salt>\`
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        `Payment`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Used for making payment. If not passed, payment will not happen.
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        `delete_payment_instrument`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Used to delete the tokenised card
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        `\<key>\|\delete_payment_instrument\|\<userCredential>\|\<salt>\`
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        `get_payment_instrument`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Used to get all stored tokenised cards
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        `\<key>\|\get_payment_instrument\|\<userCredential>\|<salt>\`
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        `get_payment_details`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Used to get the payment details of an existing card stored on PayU Vault
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        `\<key>\|\get_payment_details\|\<userCredential>\|\<salt>\`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 After setting the values in the above formula, generate `sha512` over it and pass the same in additional parameters
 
