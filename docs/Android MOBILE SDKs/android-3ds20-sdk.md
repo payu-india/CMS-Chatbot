@@ -141,7 +141,7 @@ You have to pass the following parameters:
       </td>
 
       <td>
-        Merchants have to create the payment param object and pass it which will contain info such as `cardDeatails`, SI details, etc.
+        Merchants have to create the payment param object and pass it which will contain info such as `cardDeatails`, SI details, etc. For more information, refer to [SDK Integration > Build the payment parameters](doc:android-checkoutpro-integration-steps#step-3-build-the-payment-parameters-mandatory-step).
       </td>
     </tr>
 
