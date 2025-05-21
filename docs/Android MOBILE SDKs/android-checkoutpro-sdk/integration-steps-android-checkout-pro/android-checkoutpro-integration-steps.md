@@ -714,7 +714,7 @@ This step is to generate a hash that secures your payment request to PayU.
 >
 > Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
 
-The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. The CheckoutPro SDK requires two types of hashes. For more information on the two types of hashes, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) CheckoutPro SDK.
+The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification.  For more information, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) CheckoutPro SDK.
 
 ### Step 4.1: Set Up Payment Hashes
 
