@@ -35,8 +35,8 @@ The following table describes all static hashes:
     <tr>
       <td style={{ textAlign: "left" }}>
         `payment_  
-                related_details_  
-                for_mobile_sdk`
+                        related_details_  
+                        for_mobile_sdk`
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -44,7 +44,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `<key>\|payment_related_details_for_mobile_sdk\|<userCredential>\|\<salt>`
+        `<key>\|payment_related_details_for_mobile_sdk\|<userCredential>\|<salt>`
       </td>
     </tr>
 
@@ -86,7 +86,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-
+        \| `key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||salt`
       </td>
     </tr>
 
