@@ -166,7 +166,7 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 
     <tr>
       <td>
-        TransactionId\
+        TransactionId
         `mandatory`
       </td>
 
@@ -181,7 +181,7 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 
     <tr>
       <td>
-        Amount\
+        Amount
         `mandatory`
       </td>
 
@@ -196,7 +196,7 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 
     <tr>
       <td>
-        Product Info\
+        Product Info
         `mandatory`
       </td>
 
@@ -211,7 +211,7 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 
     <tr>
       <td>
-        First Name\
+        First Name
         `mandatory`
       </td>
 
@@ -226,7 +226,7 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 
     <tr>
       <td>
-        Email\
+        Email
         `mandatory`
       </td>
 
@@ -241,7 +241,7 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 
     <tr>
       <td>
-        Phone\
+        Phone
         `mandatory`
       </td>
 
@@ -256,15 +256,15 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 
     <tr>
       <td>
-        surl\
+        surl
         `mandatory`
       </td>
 
       <td>
-        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.  
+        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
 
-        * \*Sample URL\*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)  
-        * \*Note\*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+        * *Sample URL*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+        * *Note*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
       </td>
 
       <td>
@@ -279,10 +279,10 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
       </td>
 
       <td>
-        `String` When the transaction gets fail, PayU will load this url and pass transaction response.  
+        `String` When the transaction gets fail, PayU will load this url and pass transaction response.
 
-        * \*Sample URL\*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)  
-        * \*Note\*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+        * *Sample URL*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+        * *Note*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
       </td>
 
       <td>
@@ -301,9 +301,9 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
       </td>
 
       <td>
-        Should be either  
+        Should be either
 
-        * \*Swif&#x74;**:`production or test `**&#x4F;bjectiveC\*\*: `EnvironmentProduction `or `EnvironmentTest`
+        * *Swift*\*:`production or test `**ObjectiveC**: `EnvironmentProduction `or `EnvironmentTest`
       </td>
     </tr>
 
@@ -331,7 +331,7 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
       </td>
 
       <td>
-        `Object` of PayUSIParams. This contains SI Details. 
+        `Object` of PayUSIParams. This contains SI Details.
       </td>
 
       <td>
@@ -522,10 +522,10 @@ The following fields are included in the splitPaymentDetails parameter in a JSON
       </td>
 
       <td>
-        `string` Any of the following types of split is specified in this field.  
+        `string` Any of the following types of split is specified in this field.
 
-        * \*absolute\*\*: The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment  
-        * \*percentage\*\*: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment
+        * *absolute*\*: The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment
+        * *percentage*\*: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment
       </td>
 
       <td>
@@ -540,20 +540,20 @@ The following fields are included in the splitPaymentDetails parameter in a JSON
       </td>
 
       <td>
-        `JSON` This parameter must include the list of aggregator sub-transaction IDs and sub-amounts as follows:  
+        `JSON` This parameter must include the list of aggregator sub-transaction IDs and sub-amounts as follows:
 
-        * \*aggregatorSubTxnId\*\*: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only to child merchants.  
-        * \*aggregatorSubAmt\*\*: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.  
-        * \*aggregatorCharges\*\*: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.  
-        * \*Note\*\*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.\
+        * *aggregatorSubTxnId*\*: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only to child merchants.
+        * *aggregatorSubAmt*\*: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.
+        * *aggregatorCharges*\*: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.
+        * *Note*\*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.\
           The sample request structure JSON Request Structure of splitInfo Field.
       </td>
 
       <td>
         \{\
-        "merchantKey1": \{\
-        "aggregatorSubTxnId": "30nknyhkhib",\
-        "aggregatorSubAmt": "8",\
+        "merchantKey1": \{
+        "aggregatorSubTxnId": "30nknyhkhib",
+        "aggregatorSubAmt": "8",
         }
       </td>
     </tr>
@@ -581,7 +581,7 @@ For more information on the Additional Charges, refer to \[[Collect Additional C
 >
 > Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
 
-The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. The CheckoutPro SDK requires two types of hashes. For more information on the two types of hashes, refer to [Hash Generation for CheckoutPro SDK](https://docs.payu.in/docs/set-up-the-payment-hashes).
+The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. For more information, refer to [Hash Generation for CheckoutPro SDK](https://docs.payu.in/docs/set-up-the-payment-hashes).
 
 ## Step 4: Initiate the payment
 
