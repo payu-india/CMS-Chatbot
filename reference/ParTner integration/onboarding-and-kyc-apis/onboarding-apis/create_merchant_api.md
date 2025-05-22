@@ -32,9 +32,8 @@ This API is authorised through a client token generated using the client ID and 
 
 > ❗️ Important considerations for using this API
 >
-> 1. We don't recommend sending the bank details in this API. We perform a check in the back end to ensure that Bank account holder name matches with the PAN name, hence, passing PAN & Bank details in the same API request can cause failure.
-> 2. The mobile, Pan number, GSTIN passed in the request has to be valid as checks are performed in real time.
-> 3. If Business Entity type is passed in the create merchant API, ensure that the PAN also belong to the same entity.
+> 1. The mobile, Pan number, GSTIN passed in the request has to be valid as checks are performed in real time.
+> 2. If Business Entity type is passed in the create merchant API, ensure that the PAN also belong to the same entity.
 
 <br />
 
