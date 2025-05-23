@@ -30,20 +30,20 @@ Following are the payment methods supported in PayU Test mode.
 
 Use the following credentials to test the Net Banking integration:
 
-- **user name:** payu
-- **password**: payu
-- **OTP**: 123456
+* **user name:** payu
+* **password**: payu
+* **OTP**: 123456
 
 ### Test VPA for UPI
 
 > ❗️ Callout
-> 
+>
 > The UPI in-app and UPI intent flow is not available in the Test mode.
 
 You can use either of the following VPAs to test your UPI-related integration:
 
-- [anything@upi](anything@upi)
-- [9999999999@upi](mailto:9999999999@upi)
+* [anything@upi](anything@upi)
+* [9999999999@upi](mailto:9999999999@upi)
 
 For Testing the UPI Collect flow, Please follow the below steps:-
 
@@ -51,7 +51,7 @@ For Testing the UPI Collect flow, Please follow the below steps:-
 2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
 3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
 
-\<https://pgsim01.payu.in/UPI-test-transaction/confirm/> `<Txn_id>`
+[https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/) `<Txn_id>`
 
 #### For Android
 
@@ -69,14 +69,11 @@ You can add the below metadata under the application tag in the manifest file to
 
 ### Test cards for EMI
 
-You can use the following Debit and Credit cards to test Emi integration.
+You can use the following Debit and Credit cards to test EMI integration.
 
-|              |                                                                                                                                                                                              |
-| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Kotak DC EMI | 1. **Card Number**: 4706-1378-0509-9594 2. **Expiry**: any future date (mm/yy) 3. **CVV**: 123 4. **OTP**: 111111 5. **Name**: Any name 6. **Mobile Number**: 9123412345 (mandatory for EMI) |
-| AXIS DC EMI  | 1. **Card Number**: 4011-5100-0000-0007 2. **Expiry**: any future date (mm/yy) 3. **CVV**: 123 4. **OTP**: 111111 5. **Name**: Any name 6. **Mobile Number**: 9123412345 (mandatory for EMI) |
-| HDFC CC EMI  | 1. **Card Number**: 4453-3410-65876437 2. **Expiry**: any future date (mm/yy) 3. **CVV**: 123 4. **OTP**: 111111 5. **Name**: Any name 6. **Mobile Number**: 9123412345 (mandatory for EMI)  |
-| ICICI CC EMI | 1. **Card Number**: 4453-3410-65876437 2. **Expiry**: any future date (mm/yy) 3. **CVV**: 123 4. **OTP**: 111111 5. **Name**: Any name 6. **Mobile Number**: 9123412345 (mandatory for EMI)  |
+<EMITestCards />
+
+<br />
 
 ### Test wallets
 
