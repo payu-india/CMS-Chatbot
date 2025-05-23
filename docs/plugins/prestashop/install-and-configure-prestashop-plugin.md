@@ -70,7 +70,7 @@ To configure the PrestaShop v1.7x installation after installing the PayU plugin:
       </td>
 
       <td>
-        Select any of the following gateway environment from the Gateway Mode drop-down list to which customer payment details will be redirected to.  
+        Select any of the following gateway environment from the Gateway Mode drop-down list to which customer payment details will be redirected to.
 
         * Test: This is the Test environment and no actual fund transfer will take place.
         * Production: This is the Live environment. Use this value only for your website in production. Payments sent in the production environment will get processed.
@@ -99,7 +99,7 @@ To configure the PrestaShop v1.7x installation after installing the PayU plugin:
   </tbody>
 </Table>
 
-**Reference**: For more information on how to access the Key and Salt, refer to any of the following:  
+**Reference**: For more information on how to access the Key and Salt, refer to any of the following:
 
 * **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
 * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
@@ -117,4 +117,4 @@ The configuration for the PayU plugin is complete.
 
 > 📘 Note:
 >
-> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>.
+> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>.
