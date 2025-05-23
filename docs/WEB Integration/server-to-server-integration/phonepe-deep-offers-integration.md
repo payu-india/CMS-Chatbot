@@ -27,10 +27,7 @@ First request from Merchant to PayU with the required transaction mandatory/ opt
 
 **Environment**
 
-|                            |                                                                         |
-| :------------------------- | :---------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
+<PaymentAPIEnvironment />
 
 > 📘 Notes:
 >
@@ -60,8 +57,6 @@ First request from Merchant to PayU with the required transaction mandatory/ opt
 > }return false; 
 > } 
 > ```
->
->
 
 Collect the response in the [Collect Payment API - Server-to-Server](ref:_payment_server_to_server) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
 
