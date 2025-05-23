@@ -55,7 +55,7 @@ Collect the response in the  <a href="_payment_s2s_upi_collection" target="_blan
 
 To start with, the request is raised from the Merchant to PayU with the required transaction mandatory/optional parameters. This needs to be a server-to-server curl call request. This API is used for both Cards and UPI for generating a new transaction. Parameters and their descriptions are mentioned below.
 
-For the "Try It" experience, refer to <a href="_payment_s2s_upi_collection" target="_blank"> UPI Collection</a>. 
+For the "Try It" experience, refer to <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection</a>.
 
 **PayU URL Endpoint:**
 
@@ -94,9 +94,9 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
       </td>
 
       <td>
-        `String` The merchant key provided by PayU must be included.  
+        `String` The merchant key provided by PayU must be included.
 
-        * \*Reference\*\*: For more information on how to generate the Key and Salt, refer to any of the following:  
+        * *Reference*\*: For more information on how to generate the Key and Salt, refer to any of the following:
         * **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
         * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
       </td>
@@ -113,7 +113,7 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
       </td>
 
       <td>
-        `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,\&, ‘).
+        `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,&, ‘).
       </td>
 
       <td>
@@ -219,7 +219,7 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
 
       <td>
         `String` Value should be "UPI": for UPI collect transaction\
-        "INTENT": for initiating the UPI Intent transaction 
+        "INTENT": for initiating the UPI Intent transaction
       </td>
 
       <td>
@@ -417,9 +417,9 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
       </td>
 
       <td>
-        `Sting` This parameter must have the source IP of the user's device.  
+        `Sting` This parameter must have the source IP of the user's device.
 
-        * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -434,9 +434,9 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
       </td>
 
       <td>
-        `String` This parameter must have the user agent of device.  
+        `String` This parameter must have the user agent of device.
 
-        * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -466,7 +466,7 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
       </td>
 
       <td>
-        `String` For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum’s expected for major apps:  
+        `String` For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum’s expected for major apps:
 
         * phonepe
         * googlepay
