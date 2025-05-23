@@ -53,7 +53,8 @@ Initiate an authorization request with the payment details provided post a succe
   <tbody>
     <tr>
       <td>
-        key `mandatory`
+        key
+        `mandatory`
       </td>
 
       <td>
@@ -67,7 +68,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        txnid `mandatory`
+        txnid
+        `mandatory`
       </td>
 
       <td>
@@ -81,7 +83,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        amount `mandatory`
+        amount
+        `mandatory`
       </td>
 
       <td>
@@ -123,7 +126,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        email `mandatory`
+        email
+        `mandatory`
       </td>
 
       <td>
@@ -137,7 +141,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        phone `mandatory`
+        phone
+        `mandatory`
       </td>
 
       <td>
@@ -151,7 +156,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        pg `mandatory`
+        pg
+        `mandatory`
       </td>
 
       <td>
@@ -179,7 +185,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccnum `mandatory`
+        ccnum
+        `mandatory`
       </td>
 
       <td>
@@ -207,7 +214,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccvv `mandatory`
+        ccvv
+        `mandatory`
       </td>
 
       <td>
@@ -249,7 +257,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        furl `mandatory`
+        furl
+        `mandatory`
       </td>
 
       <td>
@@ -263,7 +272,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        surl `mandatory`
+        surl
+        `mandatory`
       </td>
 
       <td>
@@ -277,7 +287,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        hash `mandatory`
+        hash
+        `mandatory`
       </td>
 
       <td>
@@ -379,8 +390,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        state `  
-        optional`
+        state `    optional`
       </td>
 
       <td>
