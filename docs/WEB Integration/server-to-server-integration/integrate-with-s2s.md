@@ -49,12 +49,7 @@ Along with the request, the sensitive information should not be a part of any me
 
 The first request from you to PayU with the required transaction mandatory/ optional parameters. This needs to be a server-to-server Curl call request. For the sample request and response,  refer to  [Collect Payment - General Integration](_payment_s2s_classic_integration) .
 
-**Environment**
-
-|                            |                                                                         |
-| :------------------------- | :---------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
+<PaymentAPIEnvironment />
 
 ### Request parameters
 
