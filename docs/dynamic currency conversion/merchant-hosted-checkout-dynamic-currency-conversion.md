@@ -146,7 +146,7 @@ Array
 
 ## Step 4: Verify the payment
 
-Verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to [Verify Payment API](doc:verify_payment_api)
+Verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to [Verify Payment API](refverify_payment_api)
 
 > 📘 Note:
 >
