@@ -78,83 +78,11 @@ You can add the below metadata under the application tag in the manifest file to
 
 ### Test cards for EMI
 
-You can use the following Debit and Credit cards to test Emi integration.
+You can use the following Debit and Credit cards to test EMI integration.
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
+<EMITestCards />
 
-      </th>
-
-      <th>
-
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        Kotak DC EMI
-      </td>
-
-      <td>
-        1. **Card Number**: 4706-1378-0509-9594  
-        2. **Expiry**: any future date (mm/yy)  
-        3. **CVV**: 123  
-        4. **OTP**: 111111  
-        5. **Name**: Any name  
-        6. **Mobile Number**: 9123412345 (mandatory for EMI)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        AXIS DC EMI
-      </td>
-
-      <td>
-        1. **Card Number**: 4011-5100-0000-0007  
-        2. **Expiry**: any future date (mm/yy)  
-        3. **CVV**: 123  
-        4. **OTP**: 111111  
-        5. **Name**: Any name  
-        6. **Mobile Number**: 9123412345 (mandatory for EMI)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        HDFC CC EMI
-      </td>
-
-      <td>
-        1. **Card Number**: 4453-3410-65876437  
-        2. **Expiry**: any future date (mm/yy)  
-        3. **CVV**: 123  
-        4. **OTP**: 111111  
-        5. **Name**: Any name  
-        6. **Mobile Number**: 9123412345 (mandatory for EMI)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ICICI CC EMI
-      </td>
-
-      <td>
-        1. **Card Number**: 4453-3410-65876437  
-        2. **Expiry**: any future date (mm/yy)  
-        3. **CVV**: 123  
-        4. **OTP**: 111111  
-        5. **Name**: Any name  
-        6. **Mobile Number**: 9123412345 (mandatory for EMI)
-      </td>
-    </tr>
-  </tbody>
-</Table>
+<br />
 
 ### Test wallets
 
@@ -198,7 +126,7 @@ You can use the following wallets and their corresponding credentials to test wa
       </td>
 
       <td>
-        Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: [https://developer.phonepe.com/v1/docs/setting-up-test-account](https://developer.phonepe.com/v1/docs/setting-up-test-account)\
+        Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: [https://developer.phonepe.com/v1/docs/setting-up-test-account](https://developer.phonepe.com/v1/docs/setting-up-test-account)
         Download the app and register your mobile number and follow the instructions as described in the above PhonePe docs.
       </td>
 
