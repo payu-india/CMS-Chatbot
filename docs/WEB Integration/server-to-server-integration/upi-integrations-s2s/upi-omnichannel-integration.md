@@ -20,12 +20,9 @@ next:
 
 ## Step 1: Initiate payment
 
-### Environment
 
-|            |                                                                     |
-| :--------- | :------------------------------------------------------------------ |
-| Production | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
-| Test       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+
+<PaymentAPIEnvironment />
 
 The Omni Channel API allows you to call the service request using the specific bank codes.
 
