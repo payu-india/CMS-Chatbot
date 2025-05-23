@@ -25,7 +25,7 @@ next:
 
 ### Integration security
 
-After receiving a response from PayU, you must calculate the hash again and validate it against the hash that you sent in the request to ensure the transaction is secure. PayU recommends implementing the transaction details APIs and **webhook**/**callbac**k as an extra security measure. You can find more information on this process in the [Transaction Detail APIs](transaction-detail-apis) and [Webhooks](webhooks) documentation.
+After receiving a response from PayU, you must calculate the hash again and validate it against the hash that you sent in the request to ensure the transaction is secure. PayU recommends implementing the transaction details APIs and **webhook**/**callbac**k as an extra security measure. You can find more information on this process in the [Transaction Detail APIs](ref:transaction-detail-apis) and [Webhooks](webhooks) documentation.
 
 You need to ensure that sensitive information related to the integration is not part of the payment request to PayU. The details including — but are not limited to — the following are considered sensitive information:
 
@@ -47,7 +47,7 @@ Along with the request, the sensitive information should not be a part of any me
 
 ## Step 1: Post the parameters to PayU
 
-The first request from you to PayU with the required transaction mandatory/ optional parameters. This needs to be a server-to-server Curl call request. For the sample request and response,  refer to  [Collect Payment - General Integration](_payment_s2s_classic_integration) .
+The first request from you to PayU with the required transaction mandatory/ optional parameters. This needs to be a server-to-server Curl call request. For the sample request and response,  refer to  [Collect Payment - General Integration](ref:_payment_s2s_classic_integration) .
 
 <PaymentAPIEnvironment />
 
@@ -592,4 +592,4 @@ Next Steps
 >
 > The response contains a combination of the following JSON objects (**metaData**, **result**, and binData) based on the use case used in S2S, and the fields in each of them are described in the following tables.
 
-Collect the response in the  [Collect Payment API - Server-to-Server](ref:_payment_s2s_classic_integration)  under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters,  refer to [Additional Info for Payment APIs](doc:addl_info-payment-apis).
+Collect the response in the  [Collect Payment API - Server-to-Server](ref:_payment_s2s_classic_integration)  under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters,  refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
