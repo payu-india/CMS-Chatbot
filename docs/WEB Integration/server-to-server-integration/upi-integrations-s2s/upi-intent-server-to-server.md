@@ -36,7 +36,7 @@ The following diagram depicts the UPI intent flow from server to server:
 | Test       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 | Production | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-The **\_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="\_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
+The **\_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
 
 This needs to be a server-to-server cURL request. This API is used for both Cards and UPI for generating a new transaction.
 
@@ -52,7 +52,7 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
 
 ### Request parameters
 
-For the complete list of parameters, refer to <a href="\_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
+For the complete list of parameters, refer to <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
 
 <Table align={["left","left","left"]}>
   <thead>
