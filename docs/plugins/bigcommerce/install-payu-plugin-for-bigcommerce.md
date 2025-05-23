@@ -20,7 +20,7 @@ To install the PayU plugin on your BigCommerce store:
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/Screenshot-2022-03-31-at-11.02.45-AM-1024x686.png)
 
-2. Perform any of the following: 
+2. Perform any of the following:
    * Scroll down the page and click **Complete Setup**.
    * Select **App marketplace** under **Apps** from the menu on the left pane.
 
@@ -52,13 +52,13 @@ The **Apps** tab is displayed on the right pane.
 
    You are redirected to the PayU website, and a page similar to the following is displayed:
 
-<Image align="center" className="border" width="550px" border={true} src="https://files.readme.io/41f238ef818257a0ca6d402394c632df23be24cac7911ea83550d7a4e4461d95-Screenshot_2025-04-25_at_4.39.13_PM.png" />
+<Image align="center" className="border" border={true} width="550px" src="https://files.readme.io/41f238ef818257a0ca6d402394c632df23be24cac7911ea83550d7a4e4461d95-Screenshot_2025-04-25_at_4.39.13_PM.png" />
 
 4. Click **Log In**.
 
 > **Note**: If you do not have a BigCommerce store account, use the **Sign up** button and create an account.
 
-   The PayU plugin installation page similar to the following is displayed on the BigCommerce store account:
+The PayU plugin installation page similar to the following is displayed on the BigCommerce store account:
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/Screenshot-2022-03-31-at-11.27.25-AM-1024x671.png)
 
@@ -79,13 +79,13 @@ The **Apps** tab is displayed on the right pane.
 
 > **Note**: If you do not have a merchant account with PayU, click the **Create New Merchant** button and create an account. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
-   The *PayU Login* page is displayed.
+The *PayU Login* page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/fea08bdc2ae55b1ab75d12f8a468acd612b62180a54da3388cfcc2315483cee6-plugin-bigcommerce-payu-ogin.png" />
 
 9. Log in to PayU account with the credentials.
 
-> **Reference**: For more information on how to access the Key and Salt, refer to any of the following:  
+> **Reference**: For more information on how to access the Key and Salt, refer to any of the following:
 
 * **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
 * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
@@ -94,7 +94,7 @@ The **Apps** tab is displayed on the right pane.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/97d0d4dffdb60a90f065a91e6dfe220b28de6edcadc43b9f1cd70738cfe4cc5e-plugin-bigcommerce-payu-acct-linking-success.png" />
 
-   The PayU India app is added to the left pane under **Apps** menu on the BigCommerce Dashboard.
+The PayU India app is added to the left pane under **Apps** menu on the BigCommerce Dashboard.
 
 <Image align="center" width="330px" src="https://files.readme.io/3e824168329df453c688946f79a8436144d7db824b6373134ac6e332066b5611-plugin-bigcommerce-payu-inida-added.png" />
 
@@ -108,7 +108,7 @@ The **Apps** tab is displayed on the right pane.
 
 > 📘 Note:
 >
-> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>.
+> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>.
 
 The PayU payment is displayed similar to the following store screenshot for example:
 
