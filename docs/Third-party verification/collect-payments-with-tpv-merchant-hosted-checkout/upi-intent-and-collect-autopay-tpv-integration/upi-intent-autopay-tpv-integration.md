@@ -172,7 +172,7 @@ On receiving valid request over PayU's payment interface (\_payment), PayU retur
 
 > 📘 Verify payment:
 >
-> PayU recommends you to verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>.
+> PayU recommends you to verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>.
 
 ## Webhook response
 
