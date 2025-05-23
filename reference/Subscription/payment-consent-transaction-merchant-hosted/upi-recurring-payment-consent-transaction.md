@@ -33,24 +33,22 @@ next:
 This section provides the request parameters, sample request and response for a UPI Recurring Payment \<\<glossary:Consent transaction>>.
 
 > 📘 Note:
-> 
-> - During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
-> - Unlike Cards
+>
+> * During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
+> * Unlike Cards
 
 HTTP Method: **POST**
 
-**Environment**
-
-|                        |                                   |
-| :--------------------- | :-------------------------------- |
-| Test Environment       | \<https://test.payu.in/_payment>   |
-| Production Environment | \<https://secure.payu.in/_payment> |
+<PaymentAPIEnvironment />
 
 ## Request parameters
 
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
 <HTMLBlock>{`
+I'll make that change and add the "free_trial" row as the last row of the table. Here's the updated HTML:
+
+\`\`\`html
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
@@ -211,9 +209,9 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to <a href="doc:hashing-request-and-response">Generate Hash</a>.<br>In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br><code>HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||si_details\|SALT)</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to <a href="doc:hashing-request-and-response">Generate Hash</a>.<br>In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br><code>HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||si_details\|SALT)</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972</code></p>
 </td>
 </tr>
 <tr>
@@ -251,7 +249,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>vpa<br><code>mandatory for UPI Collect</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> This parameter contains the customer’s VPA handle. For the list UPI handles supported, refer to <a href="doc:upi-handles">UPI Handles</a>  </p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> This parameter contains the customer's VPA handle. For the list UPI handles supported, refer to <a href="doc:upi-handles">UPI Handles</a>  </p>
 <p>The merchant is advised to check the validity of the VPA through using the VPA Validation API. PayU extends support for the same if required. For more information on using VPA Validation API, refer to <a href="ref:validate_vpa_api">Validate VPA Handle API</a>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>abc@upi</p>
@@ -265,17 +263,28 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4</p>
 </td>
 </tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>free_trial<br><code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is required only if the merchant wants to support free trial use case on PayU Hosted Checkout integration.</p> 
+    <p>TIn this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.</p>
+    <p>This parameter has no significance in the case of seamless flow.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
 </tbody>
 </table>
+\`\`\`
+
+I've now added the "free_trial (conditional)" row as the last row in the table, after the "txn_s2s_flow" parameter.
 `}</HTMLBlock>
 
-
 > 📘 Notes
-> 
+>
 > The **bankcode** parameter value can be any of the following:
-> 
-> - UPI: Pass this value for UPI transactions.
-> - INTENT: Pass this value for Intent.
+>
+> * UPI: Pass this value for UPI transactions.
+> * INTENT: Pass this value for Intent.
 
 For more information on bank codes used for recurring payments registration, refer to [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments)
 
@@ -283,20 +292,20 @@ Characters allowed for parameters
 
 For parameters address1, address2, city, state, country, product info, email, and phone following characters are allowed:
 
-- Characters: A to Z, a to z, 0 to 9
-- – (Minus)
-- \_ (Underscore)
-- @ ()
-- / (Slash)
-- (Space)
-- . (Dot)
+* Characters: A to Z, a to z, 0 to 9
+* – (Minus)
+* \_ (Underscore)
+* @ ()
+* / (Slash)
+* (Space)
+* . (Dot)
 
 ## Sample request
 
 The sample code block for UPI Seamless integration (Merchant-Hosted Checkout) is similar to the following code block:
 
 > 📘 Note:
-> 
+>
 > Before you make payment request to PayU, it is recommended to validate the UPI handle provided by your customer is eligible for recurring payment using the validateVPA API to avoid transaction failure. For more information, refer to [Validate VPA API](ref:validate_vpa_api).
 
 ### UPI Consent Transaction
@@ -333,7 +342,7 @@ The response URL returned from PayU is in the form URL format (application/x-www
 
 ### Sample response
 
-- The formatted response for UPI Consent Transaction is similar to the following:
+* The formatted response for UPI Consent Transaction is similar to the following:
 
 ```plaintext
 Array
@@ -388,7 +397,7 @@ Array
 )
 ```
 
-- The formatted response for UPI Intent:
+* The formatted response for UPI Intent:
 
 ```plaintext
 {
