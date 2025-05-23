@@ -37,10 +37,7 @@ You can install the PayU WooCommerce plugin by either using the WordPress Plugin
       <th>
         PayUI Plugin
 
-
-
-
-         Download Link
+        Download Link
       </th>
     </tr>
   </thead>
@@ -83,7 +80,7 @@ You can install the PayU WooCommerce plugin by either using the WordPress Plugin
 To install the PayU plugin using the WordPress installer:
 
 1. Login to the **WordPress Admin** panel.
-2. Navigate to **Plugin**s **\>Add New**.
+2. Navigate to **Plugin**s **>Add New**.
 3. Click **Upload Plugin**.
 
    The *Add Plugins* page is displayed in WordPress.
@@ -102,7 +99,7 @@ To install the PayU plugin using the WordPress installer:
 * Version 5.5.2: *WooCommerce\_v552\_MultiCurrency\_PayUBiz* folder.
 * Version 3.8.1: *WooCommerce\_v381\_MultiCurrency\_PayUBiz* folder.
 
-2. Copy the folder created in Step 1 to the clipboard and paste or upload it to *\<wordpress root>\\wp-content\\plugins* folder, where *\<wordpress root>* is the location where WordPress is installed.
+2. Copy the folder created in Step 1 to the clipboard and paste or upload it to *\<wordpress root>\wp-content\plugins* folder, where *\<wordpress root>* is the location where WordPress is installed.
 3. Log in to the WordPress Admin panel.
 4. Navigate to Plugins.
 5. Search for the PayU plugin and activate the plugin.
@@ -151,7 +148,7 @@ To configure WooCommerce Settings after installing the PayU plugin:
 10. Select the **Verify Payment** check box (after the currency fields) to verify the payment.
 11. Select the page from the **Return Page** drop-down list. The *My Account* option is selected by default and the selected return page is displayed after payment response.
 
-> **Note**: You may create a custom page and select from this drop-down list. However, the custom page must contain appropriate WordPress / WooCommerce codes to show custom messages. Refer to the [WooCommerce Development Guide for custom pages.](https://docs.woocommerce.com/document/woocommerce-theme-developer-handbook/) 
+> **Note**: You may create a custom page and select from this drop-down list. However, the custom page must contain appropriate WordPress / WooCommerce codes to show custom messages. Refer to the [WooCommerce Development Guide for custom pages.](https://docs.woocommerce.com/document/woocommerce-theme-developer-handbook/)
 
 12. Click **Save Changes**.
 
@@ -167,7 +164,7 @@ A page similar to the following screenshot is displayed after the customer click
 
 > 📘 Note:
 >
-> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>..
+> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>..
 
 ## Configure international payments or MCP on WooCommerce
 
