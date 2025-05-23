@@ -19,21 +19,21 @@ To enable PayU for Shopmatic:
 
 <Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-20-at-1.12.25-PM-1024x692.png" />
 
- The *India Domestic Payment* page is displayed.
+The *India Domestic Payment* page is displayed.
 
-<Image align="center" className="border" width="550px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/01/Screenshot-2023-01-23-at-12.20.09-PM-1024x838.png" />
+<Image align="center" className="border" border={true} width="550px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/01/Screenshot-2023-01-23-at-12.20.09-PM-1024x838.png" />
 
 3. Click **Enable** for PayU.
 
    The *Integrate PayU* page is displayed.
 
-<Image align="center" className="border" width="412px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/01/Screenshot-2023-01-23-at-12.20.48-PM.png" />
+<Image align="center" className="border" border={true} width="412px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/01/Screenshot-2023-01-23-at-12.20.48-PM.png" />
 
 4. Click **I already have a PayUmoney account**.
 
 > **Note**: If you already do not have a PayU account, register for a merchant account with PayU. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard)
 
-   A page similar to the following is displayed:
+A page similar to the following is displayed:
 
 <Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/01/Screenshot-2023-01-23-at-12.22.52-PM-1024x673.png" />
 
@@ -45,7 +45,7 @@ To enable PayU for Shopmatic:
 | Merchant ID   | Enter your production account key for the Production environment. |
 | Merchant Salt | Enter your Salt for Production environment.                       |
 
-> **Reference**: For more information on how to access the Key and Salt, refer to any of the following:  
+> **Reference**: For more information on how to access the Key and Salt, refer to any of the following:
 
 * **Production**:  [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
 * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
@@ -54,4 +54,4 @@ To enable PayU for Shopmatic:
 
 > 📘 Note:
 >
-> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>.
+> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>.
