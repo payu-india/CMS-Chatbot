@@ -1,7 +1,7 @@
 ---
 title: API Credentials - MCP Server
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: API Credentials - MCP Server
   keywords:
