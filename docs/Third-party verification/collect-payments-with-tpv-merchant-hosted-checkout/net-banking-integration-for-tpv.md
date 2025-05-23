@@ -25,7 +25,7 @@ Integrate <Glossary>TPV</Glossary> through Net Banking using the procedure descr
 
 ### Prerequisites
 
-Seamless integration has to be done as per the standard kit. For more information, refer to  <a href="_payment-merchant-hosted" target="_blank">Collect Payments API</a> under API Reference.
+Seamless integration has to be done as per the standard kit. For more information, refer to  <a href="https://docs.payu.in/reference/_payment-merchant-hosted" target="_blank">Collect Payments API</a> under API Reference.
 
 ***
 
