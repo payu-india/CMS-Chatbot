@@ -547,7 +547,7 @@ PayU marks the transaction status based on the response received from the bank. 
 
 ### Response parameters description
 
-The parameters in the response for similar for all S2S flows. For more information, refer to the <a href="addl_info-payment-apis#response-for-initial-server-to-server-request" target="_blank">Additional Info for Payment APIs</a>.
+The parameters in the response for similar for all S2S flows. For more information, refer to the <a href="https://docs.payu.in/reference/addl_info-payment-apis#response-for-initial-server-to-server-request" target="_blank">Additional Info for Payment APIs</a>.
 
 <ReverseHashing />
 
