@@ -46,9 +46,6 @@ HTTP Method: **POST**
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
 <HTMLBlock>{`
-I'll make that change and add the "free_trial" row as the last row of the table. Here's the updated HTML:
-
-\`\`\`html
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
@@ -267,16 +264,13 @@ I'll make that change and add the "free_trial" row as the last row of the table.
   <td style="border: 1px solid #ddd; padding: 8px;"><p>free_trial<br><code>optional</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>This is required only if the merchant wants to support free trial use case on PayU Hosted Checkout integration.</p> 
-    <p>TIn this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.</p>
+    <p>In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.</p>
     <p>This parameter has no significance in the case of seamless flow.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 </tbody>
 </table>
-\`\`\`
-
-I've now added the "free_trial (conditional)" row as the last row in the table, after the "txn_s2s_flow" parameter.
 `}</HTMLBlock>
 
 > 📘 Notes
