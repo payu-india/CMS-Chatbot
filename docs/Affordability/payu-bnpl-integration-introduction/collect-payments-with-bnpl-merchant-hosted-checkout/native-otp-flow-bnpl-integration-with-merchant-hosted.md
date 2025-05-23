@@ -57,6 +57,8 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
 >
 > For **Try It** experience, refer to <a href="https://docs.payu.in/reference/_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API - BNPL</a> under API Reference.
 
+<PaymentAPIEnvironment />
+
 ### Request parameters
 
 <Table align={["left","left","left"]}>
