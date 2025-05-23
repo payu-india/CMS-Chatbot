@@ -20,8 +20,6 @@ next:
 
 ## Step 1: Initiate payment
 
-
-
 <PaymentAPIEnvironment />
 
 The Omni Channel API allows you to call the service request using the specific bank codes.
@@ -304,7 +302,7 @@ Collect the response in the [UPI Collection - S2S](ref:payment_s2s_upi_collectio
 
 ## Step 2: Check UPI transaction status
 
-After receiving a successful response from the above API, the need to check the status of the transaction using the \*\*Verify Payment \*\*API. Web services can be accessed by making a server to server call on the following PayU URLs. For a sample request or response, refer to  [Verify Payment API](doc:verify_payment_api)under API Reference.
+After receiving a successful response from the above API, the need to check the status of the transaction using the \*\*Verify Payment \*\*API. Web services can be accessed by making a server to server call on the following PayU URLs. For a sample request or response, refer to  [Verify Payment API](ref:verify_payment_api)under API Reference.
 
 ## Step 3: PayU sends S2S callback response
 
