@@ -34,13 +34,13 @@ What are the advantages and why should merchants integrate this flow with PayU?
 * It improves the overall user experience since multiple redirections are removed. Also, the customer never leaves the merchant website, which helps in providing a seamless experience. It also reduces drop rates due to users’ fluctuating internet speed issues.
 * PayU supports all major banks – 15+ banks including HDFC, AXIS, ICICI, SBI, KOTAK, RBL, etc. – on this flow for Cards, cardless, CC EMI, DC EMI’s, and BNPLs.
 
-The flow supports the latest native OTP generation flows through the **Payment** (\_paymen&#x74;**)**&#x41;PI, followed by **Submit OTP** API, to initiate an S2S=4 transaction.
+The flow supports the latest native OTP generation flows through the **Payment** (\_payment\*\*)\*\*API, followed by **Submit OTP** API, to initiate an S2S=4 transaction.
 
 > 📘 Note:
 >
 > If you don’t have BNPL enabled, try requesting using Dashboard. For more information, refer to[ Checkout payment modes](docs:configure-user-settings#disable-checkout-payment-modes). If you could not request through Dashboard, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in/).
 
- **Steps to Integrate**
+**Steps to Integrate**
 
 1. [Check the BNPL eligibility](#check-the-bnpl-eligibility)
 2. [Initiate the payment](#initiate-the-payment)
@@ -55,11 +55,11 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
 
 > 📘 Reference:
 >
-> For **Try It** experience, refer to <a href="_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API - BNPL</a> under API Reference.
+> For **Try It** experience, refer to <a href="https://docs.payu.in/reference/_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API - BNPL</a> under API Reference.
 
 ### Request parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -88,14 +88,14 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
       </td>
 
       <td>
-         JPg\*\*\*r
+        JPg\*\*\*r
       </td>
     </tr>
 
     <tr>
       <td>
         <Glossary>txnid</Glossary>\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -103,7 +103,7 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
       </td>
 
       <td>
-         ypl938459435
+        ypl938459435
       </td>
     </tr>
 
@@ -117,7 +117,7 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
       </td>
 
       <td>
-         10.00
+        10.00
       </td>
     </tr>
 
@@ -131,7 +131,7 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
       </td>
 
       <td>
-         iPhone
+        iPhone
       </td>
     </tr>
 
@@ -160,14 +160,14 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
       </td>
 
       <td>
-         [abc@payu.in](mailto:abc@payu.in)
+        [abc@payu.in](mailto:abc@payu.in)
       </td>
     </tr>
 
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -260,9 +260,9 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -613,9 +613,9 @@ The **result** JSON contains the **acsTemplate** with base64 encoding.
       </td>
 
       <td>
-        For the failed transactions, this parameter provides the reason for  failure.   
+        For the failed transactions, this parameter provides the reason for  failure. 
 
-        * \*Note\*\*: The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another. The merchant can use this parameter to retrieve the reason for failure for a particular transaction.
+        * *Note*\*: The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another. The merchant can use this parameter to retrieve the reason for failure for a particular transaction.
       </td>
     </tr>
 
