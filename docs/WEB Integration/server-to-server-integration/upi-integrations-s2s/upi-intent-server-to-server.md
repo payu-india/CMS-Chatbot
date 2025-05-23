@@ -31,10 +31,7 @@ The following diagram depicts the UPI intent flow from server to server:
 
 ### Environment
 
-|            |                                                                     |
-| :--------- | :------------------------------------------------------------------ |
-| Test       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
-| Production | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+<PaymentAPIEnvironment />
 
 The **\_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
 
