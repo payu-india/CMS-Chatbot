@@ -20,7 +20,7 @@ After collecting the customer’s mobile number and the amount to be paid, check
 
 Post the following additional parameters for using the Cardless EMI. Check the response when you try enter the values in API Reference. For complete list of parameters, refer to [Collect Payment API - EMI](ref:_payment_merchant_hosted_emi) for the complete list parameters with **Try It** experience.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -49,14 +49,14 @@ Post the following additional parameters for using the Cardless EMI. Check the r
       </td>
 
       <td>
-
+        JP\*\*\*\*g
       </td>
     </tr>
 
     <tr>
       <td>
         <Glossary>txnid</Glossary>\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -121,7 +121,7 @@ Post the following additional parameters for using the Cardless EMI. Check the r
       </td>
 
       <td>
-
+        [abc@payu.in](mailto:abc@payu.in)
       </td>
     </tr>
 
@@ -143,7 +143,7 @@ Post the following additional parameters for using the Cardless EMI. Check the r
     <tr>
       <td>
         phone\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -187,7 +187,7 @@ Post the following additional parameters for using the Cardless EMI. Check the r
     <tr>
       <td>
         ccnum\
-         `mandatory only for Bajaj Finserv`
+        `mandatory only for Bajaj Finserv`
       </td>
 
       <td>
@@ -311,9 +311,9 @@ Post the following additional parameters for using the Cardless EMI. Check the r
       </td>
 
       <td>
-        `String` The first line of the billing address.  
+        `String` The first line of the billing address.
 
-        * \*For Fraud Detection\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -479,10 +479,10 @@ Post the following additional parameters for using the Cardless EMI. Check the r
 > * Only 4-digit number of the PAN\*\*: Pass the 4-digit numeral in a sequential order as in the PAN.
 > * This parameter is mandatory for ICICI Bank and HDFC Bank Cardless EMI. Not mandatory for other banks
 > * The data validation performed is either the whole PAN card number or 4-dig-t number of the PAN.
->   * **Whole PAN card Number**: For validating the whole PAN Card number: 
->     * It should be ten characters long.  
->     * The first five characters should be any upper case alphabets.  
->     * The next four-characters should be any number from 0 to 9.  
+>   * **Whole PAN card Number**: For validating the whole PAN Card number:
+>     * It should be ten characters long.
+>     * The first five characters should be any upper case alphabets.
+>     * The next four-characters should be any number from 0 to 9.
 >     * The last(tenth) character should be any upper case alphabet.   It should not contain any white spaces.
 
 <HashingRequestParameters />
