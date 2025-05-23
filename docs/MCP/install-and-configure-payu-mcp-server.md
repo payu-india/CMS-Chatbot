@@ -1,7 +1,7 @@
 ---
 title: Install and Configure MCP Server
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Install and Configure - PayU MCP Server
   keywords:
