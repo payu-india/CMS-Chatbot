@@ -672,7 +672,7 @@ Along with the request, the sensitive information should not be a part of any me
 
 ## Step 2: Verify the payment
 
-PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](doc:verify_payment_api) under API Reference.
+PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](ref:verify_payment_api) under API Reference.
 
 > 📘 Tip
 >
