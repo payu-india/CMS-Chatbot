@@ -59,11 +59,9 @@ For the "Try It" experience, refer to <a href="https://docs.payu.in/reference/_p
 
 **PayU URL Endpoint:**
 
-| Production | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
-| :--------- | :------------------------------------------------------------------ |
-| Test       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
-
 ### Post parameters
+
+<PaymentAPIEnvironment />
 
 Some of the parameters are mandatory for S2S integration, and a few are optional. You need to include the following parameters.
 
