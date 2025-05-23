@@ -18,7 +18,7 @@ Use the following checklist to ensure your S2S integration is complete:
 
 * Verified the Response from PayU. For more information on responses, refer to [Collect Payment API - Server-to-Server](ref:_payment_server_to_server)
 * Completed the callback response (reverse hashing) is not tampered with. For more information, refer to [Generate Hash](doc:hashing-request-and-response)
-* Confirmed the transaction status on the Server-side, if the callback fail. Use Webhooks for hearing callbacks. For more information, refer to [Verify Payment API](ref:verify_payment_api) and [Webhooks](doc:webhooks). 
+* Confirmed the transaction status on the Server-side, if the callback fail. Use Webhooks for hearing callbacks. For more information, refer to [Verify Payment API](ref:verify_payment_api) and [Webhooks](doc:webhooks).
 * Completed the integration on Production. The endpoint for the  Production environment is:
 
- [https://secure.payu.in/](https://secure.payu.in/)
+[https://secure.payu.in/](https://secure.payu.in/)
