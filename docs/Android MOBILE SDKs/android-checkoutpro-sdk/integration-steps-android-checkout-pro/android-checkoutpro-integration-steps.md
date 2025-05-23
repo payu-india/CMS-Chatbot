@@ -1247,7 +1247,7 @@ paymentParam.setUserToken = "";
   </tbody>
 </Table>
 
-Kindly refer to the below [link](https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers) for more details about Offer Integration.
+For more details on Offer Integration, refer to [Integration with PayU Hosted Checkout Integration](https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers)
 
 ## MCP Integration
 
