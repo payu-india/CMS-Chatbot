@@ -1,0 +1,3 @@
+- post_oauth-token
+- post_api-v1-otps-send-otp
+- post_api-v1-otps-verify-otp
