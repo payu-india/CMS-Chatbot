@@ -36,7 +36,10 @@ This API is authorised through a client token generated using the client ID and 
 > 2. If Business Entity type is passed in the create merchant API, ensure that the PAN also belong to the same entity.
 
 <Accordion title="Endpoints" icon="fa-info-circle">
-  endpoint
+  | Environment    | URL |
+|---|---|
+|production|https://partner.payu.in/api/v3/merchants
+|UAT| uat-partner.payu.in|
 </Accordion>
 
 ## Request Parameters
