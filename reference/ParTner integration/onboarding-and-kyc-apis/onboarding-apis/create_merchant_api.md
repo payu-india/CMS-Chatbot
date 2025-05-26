@@ -37,7 +37,7 @@ This API is authorised through a client token generated using the client ID and 
 
 <br />
 
-\<Accordion title="Sample response" icon="fa-info-circle">
+\<Accordion title="My Accordion Title" icon="fa-info-circle">
 &#x20; \{
 &#x20;  "merchant":\{
 &#x20;     "name":"test",
@@ -105,11 +105,8 @@ This API is authorised through a client token generated using the client ID and 
 &#x20;     }
 &#x20;  }
 }
+&#x20;
 \</Accordion>
-
-
-
-
 
 <br />
 
