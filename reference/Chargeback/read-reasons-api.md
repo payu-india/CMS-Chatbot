@@ -10,13 +10,9 @@ metadata:
 next:
   description: ''
 ---
-The **Read Reason** API lists all the reasons required for the merchant to provide in order to accept or contest the chargeback.\
-**Environment**
+The **Read Reason** API lists all the reasons required for the merchant to provide in order to accept or contest the chargeback.
 
-|            |                                                                                                |
-| :--------- | :--------------------------------------------------------------------------------------------- |
-| Test       | [https://chbuat.payu.in/api/v1/chargebacks](https://chbuat.payu.in/api/v1/chargebacks)         |
-| Production | [https://bankportal.payu.in/api/v1/chargebacks](https://bankportal.payu.in/api/v1/chargebacks) |
+<ChargebackEnvironment />
 
 ## Request parameters
 
