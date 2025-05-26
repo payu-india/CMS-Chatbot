@@ -15,9 +15,9 @@ next:
 ---
 The **Create KYC Document** API is used to create an instance to upload the KYC document (PAN Card). The access token is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
 
-> 📘 Note:
->
-> The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+## Authentication
+
+* The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
 <PARTNEROnboardingEnvironment />
 
