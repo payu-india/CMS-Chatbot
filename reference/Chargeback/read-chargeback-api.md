@@ -16,7 +16,7 @@ The **Read Chargeback** API responds with the all the chargebacks corresponding 
 
 ## Request parameters
 
-This must contain the header with token you get using the Get Token API in the following format: 
+This must contain the header with token you get using the Get Token API in the following format:
 
 ```
 \--header 'X-Optimus-API-Key: <Bearer token>'
@@ -59,7 +59,7 @@ This must contain the header with token you get using the Get Token API in the f
 
     <tr>
       <td>
-        from\_date\
+        from\_date
         **optional**
       </td>
 
@@ -74,7 +74,7 @@ This must contain the header with token you get using the Get Token API in the f
 
     <tr>
       <td>
-        to\_date\
+        to\_date
         **optional**
       </td>
 
@@ -111,7 +111,7 @@ curl --location 'https://bankportal.payu.in/api/v1/chargebacks?from_date=20-02-2
 
 | Parameter  | Description                                                                                                                                                                |
 | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| id         | This parameter contains the  merchant ID.                                                                                                                                  |
+| id         | This parameter contains the  chargeback ID.                                                                                                                                |
 | type       | The parameter contains the **chargebacks** as type.                                                                                                                        |
 | attributes | This parameter contains the chargeback details in a JSON format. For more information, refer to  [attributes JSON field descriptions](attributes-json-field-descriptions). |
 
@@ -299,25 +299,25 @@ curl --location 'https://bankportal.payu.in/api/v1/chargebacks?from_date=20-02-2
       </td>
 
       <td>
-         \{\
-                        "payu-id": "16652223102",\
-                        "transaction-id": "c0bb0c2107f53e791cb4",\
-                        "transaction-date": "23-Jan-2023",\
-                        "transaction-amount": "1.0",\
-                        "pg-name": "HPYIndusInd",\
-                        "card-number": "XXXXXXXXXXXX7559",\
-                        "refunded": false,\
-                        "refund-amount": null,\
-                        "bank-reference-number": "302315499715",\
-                        "settlement-date": "NA",\
-                        "merchant-utr": null,\
-                        "product-info": "Product Info",\
-                        "additional-charges": "0.0",\
-                        "transaction-fee": "1.0",\
-                        "udf-1": "",\
-                        "udf-5": null,\
-                        "card-scheme": null\
-                    }
+        \{
+        "payu-id": "16652223102",
+        "transaction-id": "c0bb0c2107f53e791cb4",
+        "transaction-date": "23-Jan-2023",
+        "transaction-amount": "1.0",
+        "pg-name": "HPYIndusInd",
+        "card-number": "XXXXXXXXXXXX7559",
+        "refunded": false,
+        "refund-amount": null,
+        "bank-reference-number": "302315499715",
+        "settlement-date": "NA",
+        "merchant-utr": null,
+        "product-info": "Product Info",
+        "additional-charges": "0.0",
+        "transaction-fee": "1.0",
+        "udf-1": "",
+        "udf-5": null,
+        "card-scheme": null
+        }
       </td>
     </tr>
   </tbody>
