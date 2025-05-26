@@ -30,9 +30,9 @@ PayU India offers following products to choose from:
                               <li>Choose between Prebuilt Web Checkout (PayU Hosted Checkout), Custom Checkout (Merchant Hosted Checkout) or Low Code Web SDK integration based on your resources and time to integrate as described in Collect Payment from your website. With your Web Checkout integration, you can opt-in for the following PayU products:
                                 <ul>
                                   <li><a href="https://docs.payu.in/docs/introduction-recurring-payments-integration/">Subscription or Recurring Payments</a></li>
-                                  <li><a href="https://docs.payu.in/docs/introduction-dynamic-currency-conversion#//">International Payments</li>
-                                  <li>Cross-Border Payments</li>
-                                  <li>Split Settlements</li>
+                                  <li><a href="https://docs.payu.in/docs/introduction-dynamic-currency-conversion/">International Payments</a></li>
+                                  <li><a href="https://docs.payu.in/docs/introduction-cross-border-payments-import/"Cross-Border Payments</a></li>
+                                  <li<a href="https://docs.payu.in/docs/split-settlments/">Split Settlements</li>
                                 </ul>
                                 You can value add to your existing PayU Web Checkout integration with the following products:
                                 <ul>
@@ -49,9 +49,9 @@ PayU India offers following products to choose from:
                                 <ul>
                                   <li><a href="#android">Android</a></li>
                                   <li> <a href="#ios">iOS</a></li>
-                                  <li>React Native</li>
-                                  <li>Cordova</li>
-                                  <li>Flutter</li>
+                                  <li><a href="https://docs.payu.in/docs/explore-reactnative-sdks"React Native</a></li>
+                                  <li><a href="https://docs.payu.in/docs/cordova-sdk-introduction/"Cordova</a></li>
+                                  <li><a href="https://docs.payu.in/docs/flutter-sdk-introduction/"Flutter</a>/li>
                                 </ul>
                                 You can choose to integrate using the Checkout Plus, the pre-built GUI for Android, iOS or React Native or use various SDK components as described in <a href="#collect-payment-from-mobile">Collect payment from Mobile</a>.
                               </li>
