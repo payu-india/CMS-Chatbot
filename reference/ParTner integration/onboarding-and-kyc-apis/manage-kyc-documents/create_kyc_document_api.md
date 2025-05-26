@@ -17,116 +17,54 @@ The **Create KYC Document** API is used to create an instance to upload the KYC 
 
 ## Authentication
 
-* The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+
+## Environments
 
 <PARTNEROnboardingEnvironment />
 
-<details>
-  <summary>List of acceptable documents</summary>
+<br />
 
-  <Table>
-    <thead>
-      <tr>
-        <th>Individuals</th>
-        <th>
-          *For individuals, merchant KYC can be done through Aadhaar or CKYC.*
+\<details>
+&#x20; \<summary>List of acceptable documents\</summary>
 
-          In case validation fails through the above two mechanisms, the merchant will have to submit document proofs ( POI, POA).
-        </th>
-      </tr>
-    </thead>
+&#x20; \<Table>
+&#x20;   \<thead>
+&#x20;     \<tr>
+&#x20;       \<th>
+&#x20;         Individuals
+&#x20;       \</th>
 
-    <tbody>
-      <tr>
-        <td>**Sole Proprietors**</td>
-        <td>
-          For sole proprietors, merchant KYC can be done through Aadhaar or CKYC. If validation fails through the above two mechanisms, the merchant will have to submit document proofs ( POI, POA & government certificate).
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+&#x20;       \<th>
+&#x20;         \*For individuals, merchant KYC can be done through Aadhaar or CKYC.\*
 
-  The list of acceptable documents for each category:
+&#x20;         In case validation fails through the above two mechanisms, the merchant will have to submit document proofs ( POI, POA).
+&#x20;       \</th>
+&#x20;     \</tr>
+&#x20;   \</thead>
 
-  **POI/ POA:** 
+&#x20;   \<tbody>
+&#x20;     \<tr>
+&#x20;       \<td>
+&#x20;         \*\*Sole Proprietors\*\*
+&#x20;       \</td>
 
-  * Passport
-  * Aadhar
-  * Voter’s ID
-  * Driving Licence
-  * Utilities Bill (electricity, water, landline, gas connection)”(recent only)
-  * Address Verification Letter from Bank
+&#x20;       \<td>
+&#x20;         For sole proprietors, merchant KYC can be done through Aadhaar or CKYC. If validation fails through the above two mechanisms, the merchant will have to submit document proofs ( POI, POA & government certificate).
+&#x20;       \</td>
+&#x20;     \</tr>
+&#x20;   \</tbody>
+&#x20; \</Table>
 
-  **Government proof** 
+&#x20; The list of acceptable documents for each category:
 
-  * GST Registration Certificate
-  * Udyog Aadhar Card Certificate
-  * NOC by Gram Panchayat
-  * TIN Certificate
-  * Service Tax Registration Certificate
-  * Shop & Establishment registration
+&#x20; \*\*POI/ POA:\*\*
 
-  ### List of Acceptable Bank Proofs
-
-  The following are acceptable bank proofs ( with validations):
-
-  **Passbook**
-
-  * Must have your name printed
-  * Must have your account number & IFSC printed
-  * Must have your photograph & bank stamp
-
-  **Bank statement**
-
-  * Must have your name printed
-  * Must have your account number & IFSC printed
-  * Mobile banking screenshots & SMS will not be considered valid
-
-  **Bank verification letter**
-
-  * Must be on a bank/ your letterhead
-  * Must have the sign & stamp of a bank manager
-  * Must have your name, account number & IFSC
-
-  **Cancelled cheque**
-
-  * Must have your name printed
-  * Must have your account number & IFSC printed
-
-  The merchant ID in the request header must be included as a query parameter in the **mid** field.
-
-</details>
-
-<details>
-  <summary>Sample request</summary>
-
-  ```
-  curl --location -g --request POST '{{partner_base_url}}/api/v3/merchants/7210405/kyc_document' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --form 'merchant[document_category]="PAN Card of Signing Authority"' \
-  --form 'merchant[document_type]="PAN Card"' \
-  --form 'merchant[processed_document]=@"fVVJ4Dn25/logo_1.jpeg"'
-  ```
-
-</details>
-
-<details>
-  <summary>Sample response</summary>
-
-  ```
-  {
-    "merchant": {
-      "mid": 7210405,
-      "kyc_document_name": "PAN Card of Signing Authority",
-      "kyc_document_uuid": "11eb-95ea-acebe9f6-b75f-acbc3279eaa7",
-      "kyc_document_status": "DOCUMENT_SUBMITTED",
-      "error_message": "null",
-      "created_at": "2021-04-05T08:41:13.000Z"
-    }
-  }
-  ```
-
-</details>
 
 ## Request parameters
+
+> ❗️ Watch it
+>
+> When passing the KYC documents, make sure that the file name does not contain any spaces or special characters to avoid errors.
+>
+> **For example**, a correct format would be AadharCard.png. Passing Aadhar Card.png or Aadhar-Card.png will result in error.
