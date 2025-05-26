@@ -34,3 +34,4 @@ The PayU Affordability suite includes the following:
   * [Dashboard](doc:offers-dashboard)
   * [Integration APIs](doc:offers-integration)
 * [BNPL Integration](doc:payu-bnpl-integration-introduction): Allow your customers to purchase goods or services & defer payment for a period of time.
+* [Affordability Widget](doc:affordability-suite):  Quickly integrate widgets to your eCommerce website to showcase the PayU Offers for your products.
