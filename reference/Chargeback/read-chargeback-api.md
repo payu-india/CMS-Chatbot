@@ -16,6 +16,53 @@ The **Read Chargeback** API responds with the all the chargebacks corresponding 
 
 ## Request parameters
 
+## Without date
+
+This must contain the header with token you get using the Get Token API in the following format:
+
+```
+\--header 'X-Optimus-API-Key: <Bearer token>'
+```
+
+**Query parameters**
+
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        merchant\_Id
+        **mandatory**
+      </td>
+
+      <td>
+        This parameter must contain the PayU ID provided by PayU.
+      </td>
+
+      <td>
+        143419
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+## With date
+
 This must contain the header with token you get using the Get Token API in the following format:
 
 ```
