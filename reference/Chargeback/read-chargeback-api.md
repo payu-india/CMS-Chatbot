@@ -117,211 +117,84 @@ curl --location 'https://bankportal.payu.in/api/v1/chargebacks?from_date=20-02-2
 
 ### attributes JSON field descriptions
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
+| Field                 | Description                                                                                                                                                         |                                  |
+| :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------- |
+| id                    | The field contains the chargeback ID.                                                                                                                               | 1295751                          |
+| chargeback-amount     | The field contains the chargeback amount.                                                                                                                           | 1.0                              |
+| chargeback-type       | The field contains the chargeback type.                                                                                                                             | CB                               |
+| status                | The field contains the chargeback status.                                                                                                                           | Closed Customer Favour           |
+| reply-before          | The field contains the date before which the merchant must reply.                                                                                                   | 24-Feb-2023                      |
+| chargeback-reason     | The field contains the chargeback reason.                                                                                                                           | Non Receipt of Goods or Services |
+| bank-case-no          | The field contains the bank case number for the chargeback.                                                                                                         | 30008130343023154997151          |
+| debit-date            | The field contains the chargeback debit date.                                                                                                                       | 24-Jul-2023                      |
+| debit-status          | The field contains the chargeback debit status.                                                                                                                     | Chargeback Debited               |
+| credit-date           | The field contains the chargeback credit date.                                                                                                                      |                                  |
+| customer-dispute-docs | The field contains the location of the docs or additional information provided to bank support about the disputed transaction.                                      |                                  |
+| transaction-details   | This field contains the transaction details in a JSON format. For sample and description, refer to [transaction-details JSON](#transaction-details-json)            |                                  |
+| meta                  | This field contains the pagination details as a JSON object. For more information, refer to [pagination JSON field description](#pagination-json-field-description) |                                  |
 
-      <th>
-        Description
-      </th>
+### transaction-details JSON
 
-      <th>
+#### Sample JSON
 
-      </th>
-    </tr>
-  </thead>
+```
+\{  
+"payu-id": "16652223102",
+"transaction-id": "c0bb0c2107f53e791cb4",
+"transaction-date": "23-Jan-2023",
+"transaction-amount": "1.0",
+"pg-name": "HPYIndusInd",
+"card-number": "XXXXXXXXXXXX7559",
+"refunded": false,
+"refund-amount": null,
+"bank-reference-number": "302315499715",
+"settlement-date": "NA",
+"merchant-utr": null,
+"product-info": "Product Info",
+"additional-charges": "0.0",
+"transaction-fee": "1.0",
+"udf-1": "",
+"udf-5": null,
+"card-scheme": null
+}
+```
 
-  <tbody>
-    <tr>
-      <td>
-        id
-      </td>
+#### JSON field description
 
-      <td>
-        The field contains the chargeback ID.
-      </td>
+| Field                 | Description                                                                                                                                                       |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| payu-id               | Unique identifier assigned by PayU for the transaction (also known as mihpayid). This serves as the primary reference for all future actions on this transaction. |
+| transaction-id        | Merchant's transaction identifier that was used when initiating the payment. This is the unique reference provided by the merchant system.                        |
+| transaction-date      | The date when the transaction was processed, typically in the format DD-MMM-YYYY (e.g., "23-Jan-2023").                                                           |
+| transaction-amount    | The monetary value of the transaction. This is the original amount that was charged to the customer.                                                              |
+| pg-name               | Payment Gateway name used for processing the transaction (e.g., "HPYIndusInd" indicates HDFC Bank Payment Gateway).                                               |
+| card-number           | Masked card number used for the transaction, with most digits replaced by X for security (e.g., "XXXXXXXXXXXX7559").                                              |
+| refunded              | Boolean flag indicating whether the transaction has been refunded (true/false).                                                                                   |
+| refund-amount         | The amount that has been refunded from the transaction, if applicable. Shows null if no refund has been processed.                                                |
+| bank-reference-number | Reference number provided by the bank for the transaction. This is used for reconciliation and serves as proof of transaction at the bank's end.                  |
+| settlement-date       | The date when the transaction amount was settled to the merchant's account. Shows "NA" if settlement is pending.                                                  |
+| merchant-utr          | Unique Transaction Reference number for merchant settlement. Used to track the settlement transaction in the merchant's bank account.                             |
+| product-info          | Information about the product or service purchased in the transaction, as provided during payment initiation.                                                     |
+| additional-charges    | Any additional charges applied to the transaction beyond the base transaction amount.                                                                             |
+| transaction-fee       | The fee charged by PayU for processing the transaction. This is typically a percentage of the transaction amount plus any fixed fees.                             |
+| udf-1                 | User-defined field 1 that can be used by merchants for storing custom data related to the transaction.                                                            |
+| udf-5                 | User-defined field 5 that can be used by merchants for storing custom data related to the transaction.                                                            |
+| card-scheme           | The card network or scheme associated with the payment card (e.g., Visa, Mastercard, RuPay, etc.).                                                                |
 
-      <td>
-        1295751
-      </td>
-    </tr>
+### meta JSON field description
 
-    <tr>
-      <td>
-        chargeback-amount
-      </td>
+| Field      | Description                                                                                                                                                                                                                                                   |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| pagination | Contains pagination information for the response. This object provides details about how the results are paginated and the total count of chargebacks. For more information, refer to [pagination JSON field description](#pagination-json-field-description) |
 
-      <td>
-        The field contains the chargeback amount.
-      </td>
+#### pagination JSON field description
 
-      <td>
-        1.0
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        chargeback-type
-      </td>
-
-      <td>
-        The field contains the chargeback type.
-      </td>
-
-      <td>
-        CB
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        status
-      </td>
-
-      <td>
-        The field contains the chargeback status.
-      </td>
-
-      <td>
-        Closed Customer Favour
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        reply-before
-      </td>
-
-      <td>
-        The field contains the date before which the merchant must reply.
-      </td>
-
-      <td>
-        24-Feb-2023
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        chargeback-reason
-      </td>
-
-      <td>
-        The field contains the chargeback reason.
-      </td>
-
-      <td>
-        Non Receipt of Goods or Services
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bank-case-no
-      </td>
-
-      <td>
-        The field contains the bank case number for the chargeback.
-      </td>
-
-      <td>
-        30008130343023154997151
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        debit-date
-      </td>
-
-      <td>
-        The field contains the chargeback debit date.
-      </td>
-
-      <td>
-        24-Jul-2023
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        debit-status
-      </td>
-
-      <td>
-        The field contains the chargeback debit status.
-      </td>
-
-      <td>
-        Chargeback Debited
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        credit-date
-      </td>
-
-      <td>
-        The field contains the chargeback credit date.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        customer-dispute-docs
-      </td>
-
-      <td>
-        The field contains the location of the docs or additional information provided to bank support about the disputed transaction.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        transaction-details
-      </td>
-
-      <td>
-        This field contains the transaction details in a JSON format.
-      </td>
-
-      <td>
-        \{
-        "payu-id": "16652223102",
-        "transaction-id": "c0bb0c2107f53e791cb4",
-        "transaction-date": "23-Jan-2023",
-        "transaction-amount": "1.0",
-        "pg-name": "HPYIndusInd",
-        "card-number": "XXXXXXXXXXXX7559",
-        "refunded": false,
-        "refund-amount": null,
-        "bank-reference-number": "302315499715",
-        "settlement-date": "NA",
-        "merchant-utr": null,
-        "product-info": "Product Info",
-        "additional-charges": "0.0",
-        "transaction-fee": "1.0",
-        "udf-1": "",
-        "udf-5": null,
-        "card-scheme": null
-        }
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Field             | Description                                                                                                                                                                                                   |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| pagination        | Contains pagination information for the response. This object provides details about how the results are paginated and the total count of chargebacks.                                                        |
+| per-page          | The number of chargeback records displayed per page in the response. In the example, this is set to 500, meaning up to 500 chargeback records can be displayed on a single page.                              |
+| total-chargebacks | The total number of chargeback records that match the query criteria. This indicates how many chargebacks exist in total, regardless of pagination. In the example, there are 3 total chargebacks.            |
+| total-pages       | The total number of pages available based on the per-page setting and the total number of chargebacks. In the example, there is 1 page since the total chargebacks (3) is less than the per-page limit (500). |
 
 ## Sample response
 
