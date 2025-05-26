@@ -35,7 +35,9 @@ This API is authorised through a client token generated using the client ID and 
 > 1. The mobile, Pan number, GSTIN passed in the request has to be valid as checks are performed in real time.
 > 2. If Business Entity type is passed in the create merchant API, ensure that the PAN also belong to the same entity.
 
-<br />
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  endpoint
+</Accordion>
 
 ## Request Parameters
 
