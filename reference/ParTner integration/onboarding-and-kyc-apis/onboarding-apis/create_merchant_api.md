@@ -35,12 +35,10 @@ This API is authorised through a client token generated using the client ID and 
 > 1. The mobile, Pan number, GSTIN passed in the request has to be valid as checks are performed in real time.
 > 2. If Business Entity type is passed in the create merchant API, ensure that the PAN also belong to the same entity.
 
-<Accordion title="Endpoints" icon="fa-info-circle">
-  | Environment    | URL |
-|---|---|
-|production|https://partner.payu.in/api/v3/merchants
-|UAT| uat-partner.payu.in|
-</Accordion>
+|\*\* Environment\*\* |\*\* URL\*\*|                                                                                 |
+\| ----------- | ------------------------------------------------------------------------------------ |
+\| production  | [https://partner.payu.in/api/v3/merchants](https://partner.payu.in/api/v3/merchants) |
+\| UAT         | uat-partner.payu.in                                                                  |
 
 ## Request Parameters
 
