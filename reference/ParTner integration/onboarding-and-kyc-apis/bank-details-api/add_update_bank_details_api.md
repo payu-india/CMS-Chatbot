@@ -19,8 +19,11 @@ This API is used to perform the following:
 * Authorized using the user token received from verify OTP API
 
 > 📘 Note:
->
-> The access token with the scope as **create\_bank\_details** (to create bank details) or **update\_bank\_details** (to update bank details) is required on the header. For more information on getting the access token, refer to [User Token APIs](ref:user-token-apis).
+To get the bearer token for this API, 
+* Use the Send OTP API with scope as **create_bank_details** to trigger an OTP to the merchants registered number. 
+* Verify the OTP using the Verify OTP API. 
+* Use the token returned in the Verify OTP API as a bearer token of the Add or update Bank Details API
+For more information, refer to [User Token APIs](ref:user-token-apis).
 
 <PARTNEROnboardingEnvironment />
 
