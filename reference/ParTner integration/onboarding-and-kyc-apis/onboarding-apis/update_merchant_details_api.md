@@ -44,6 +44,8 @@ The **Update Merchant Details** API is used to:
 >
 > The access token with the scope as **referer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
 
+## Environment
+
 | \*\* Environment\*\* | \*\* URL\*\*                                                                         |
 | :------------------- | :----------------------------------------------------------------------------------- |
 | production           | [https://partner.payu.in/api/v3/merchants](https://partner.payu.in/api/v3/merchants) |
