@@ -37,8 +37,10 @@ PayU India offers following products to choose from:
                                 You can value add to your existing PayU Web Checkout integration with the following products:
                                 <ul>
                                   <li><a href="https://docs.payu.in/docs/introduction-save-cards/">Save Cards</a></li>
-                                  <li>Offers</li>
-                                  <li>Recommendation Engine</li>
+                                  <li><a href="https://docs.payu.in/update/docs/introduction-to-affordability/"Offers</a></li>
+                                  <li><a href="https://docs.payu.in/update/docs/introduction-to-affordability/"EMI/a></li>
+                                  <li><a href="https://docs.payu.in/update/docs/recommendation-engine/">Recommendation Engine</a></li>
+                                  <li><a href="https://docs.payu.in/update/docs/affordability-widget/">Affordability Widget</a></li>
                                 </ul>
                               </li>
                             </ul>
