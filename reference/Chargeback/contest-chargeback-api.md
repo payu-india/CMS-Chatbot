@@ -18,7 +18,7 @@ HTTP Method: **PATCH**
 
 ## Request parameters
 
-This must contain the header with token you get using the Get Token API in the following format: 
+This must contain the header with token you get using the Get Token API in the following format:
 
 ```
 \--header 'X-Optimus-API-Key: <Bearer token>'
@@ -57,7 +57,7 @@ curl --location --globoff --request PATCH 'https://chbuat.payu.in/api/v1/chargeb
 
 | Parameter  | Description                                                                                                                                                                |
 | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| id         | This parameter contains the  merchant ID.                                                                                                                                  |
+| id         | This parameter contains the  chargeback ID.                                                                                                                                |
 | type       | The parameter contains the **chargeback-details** as type.                                                                                                                 |
 | attributes | This parameter contains the chargeback details in a JSON format. For more information, refer to  [attributes JSON field descriptions](attributes-json-field-descriptions). |
 
@@ -65,7 +65,7 @@ curl --location --globoff --request PATCH 'https://chbuat.payu.in/api/v1/chargeb
 
 | Field   | Description                                       | Example            |
 | :------ | :------------------------------------------------ | :----------------- |
-| id      | This field contains the  merchant ID.             | 1035881            |
+| id      | This field contains the  chargeback ID.           | 1035881            |
 | payu-id | The field contains the PayU ID of the merchant.   | 15420278029        |
 | status  | This field contains the status of the chargeback. | Pending Doc Review |
 
