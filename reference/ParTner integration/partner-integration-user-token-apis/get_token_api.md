@@ -90,7 +90,6 @@ The **Get Token API** returns the authentication token generated using the clien
         * Verify Sign In OTP: **verify\_sign\_in\_otp**
         * Client Manage Agreement (Used in E-Sign flow): **client\_manage\_agreement**
 
-        - Create Bank Details: **create\_bank\_details**
         - Penny Verify - **user\_token**
         - Manage Payment Links: **create\_payment\_links**
       </td>
