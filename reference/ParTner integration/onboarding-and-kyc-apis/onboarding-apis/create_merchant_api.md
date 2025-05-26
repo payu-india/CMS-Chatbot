@@ -37,11 +37,77 @@ This API is authorised through a client token generated using the client ID and 
 
 <br />
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
-</Accordion>
+\<Accordion title="Sample Response" icon="fa-info-circle">
+&#x20; \<code>
+&#x20;   \{
+&#x20;  "merchant":\{
+&#x20;     "name":"test",
+&#x20;     "email":"test\@payu.in",
+&#x20;     "registered\_mobile":"9999910014",
+&#x20;     "mid":129463,
+&#x20;     "product":"PayUbiz",
+&#x20;     "business\_type":"LongTail",
+&#x20;     "business\_name":"Test",
+&#x20;     "pancard\_name":"Test",
+&#x20;     "pancard\_number":"ABCPG1234J",
+&#x20;     "cin\_number":"U72400MH2006PTC293037",
+&#x20;     "website\_url":null,
+&#x20;     "android\_url":null,
+&#x20;     "ios\_url":null,
+&#x20;     "gst\_number":null,
+&#x20;     "created\_at":"2020-12-08T11:03:56.000Z",
+&#x20;     "mobile":"9999910014",
+&#x20;     "blocked":false,
+&#x20;     "first\_name":"",
+&#x20;     "last\_name":"test",
+&#x20;     "bank\_detail":\{
+&#x20;        "bank\_account\_number":"234567891",
+&#x20;        "ifsc\_code":"ICIC0000734",
+&#x20;        "holder\_name":"Test"
+&#x20;     },
+&#x20;     "operating\_address":\{
+&#x20;        "address\_line":"operational addr",
+&#x20;        "city":"Sant Ravidas Nagar",
+&#x20;        "state":"UTTAR PRADESH",
+&#x20;        "pincode":221304
+&#x20;     },
+&#x20;     "registration\_address":\{
+&#x20;        "address\_line":"busenaddres line",
+&#x20;        "city":"Sant Ravidas Nagar",
+&#x20;        "state":"UTTAR PRADESH",
+&#x20;        "pincode":221303
+&#x20;     },
+&#x20;     "business\_entity":"LLP",
+&#x20;     "status":"account\_created",
+&#x20;     "partner\_source":"Create Merchant API",
+&#x20;     "pan\_verification\_status":"Pending",
+&#x20;     "website\_approval\_status":"Pending",
+&#x20;     "notification\_email":"test\@payu.in",
+&#x20;     "settlement\_status":null,
+&#x20;     "is\_service\_agreement\_accepted":false,
+&#x20;     "is\_authorisation\_letter\_required":false,
+&#x20;     "monthly\_expected\_volume":120000,
+&#x20;     "business\_category":"Ecommerce",
+&#x20;     "business\_sub\_category":"Flowers and Gifts",
+&#x20;     "bank\_verification\_status":"Pending",
+&#x20;     "uuid":"11eb-3945-0fcf623a-86d9-026e3e71538e",
+&#x20;     "penny\_deposit\_status":"Not Initiated",
+&#x20;     "signing\_authority":\{
+&#x20;        "name":"test\_auth",
+&#x20;        "email":"test\_auth\@payu.in"
+&#x20;     },
+&#x20;     "director1\_details":\{
+&#x20;        "name":"test1\_dir",
+&#x20;        "email":"test1\_dir\@payu.in"
+&#x20;     },
+&#x20;     "director2\_details":\{
+&#x20;        "name":"test2\_dir",
+&#x20;        "email":"test2\_dir\@payu.in"
+&#x20;     }
+&#x20;  }
+}
+&#x20; \</code>
+\</Accordion>
 
 <br />
 
