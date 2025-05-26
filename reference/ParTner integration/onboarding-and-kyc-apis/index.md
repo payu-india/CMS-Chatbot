@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-This part of the document involves:
+This part of the document includes merchant onboarding-related APIs:
 
 * [Onboarding APIs](ref:onboarding-apis)
 * [Bank Details API](ref:bank-details-api)
