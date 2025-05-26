@@ -37,13 +37,8 @@ This API is authorised through a client token generated using the client ID and 
 
 <br />
 
-\<Tabs>
-&#x20; \<Tab title="Sample Request">
-&#x20; &#x20;
-&#x20; \</Tab>
-
-&#x20; \<Tab title="Sample Response">
-&#x20;  \{
+\<Accordion title="My Accordion Title" icon="fa-info-circle">
+&#x20; \{
 &#x20;  "merchant":\{
 &#x20;     "name":"test",
 &#x20;     "email":"test\@payu.in",
@@ -110,8 +105,9 @@ This API is authorised through a client token generated using the client ID and 
 &#x20;     }
 &#x20;  }
 }
-&#x20; \</Tab>
-\</Tabs>
+\</Accordion>
+
+&#x20;
 
 <br />
 
