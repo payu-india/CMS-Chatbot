@@ -45,8 +45,6 @@ This API is authorised through a client token generated using the client ID and 
 
 <br />
 
-<br />
-
 ## Request Parameters
 
 <details>
