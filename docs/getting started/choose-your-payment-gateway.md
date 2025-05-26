@@ -49,9 +49,9 @@ PayU India offers following products to choose from:
                                 <ul>
                                   <li><a href="#android">Android</a></li>
                                   <li> <a href="#ios">iOS</a></li>
-                                  <li><a href="https://docs.payu.in/docs/explore-reactnative-sdks"React Native</a></li>
-                                  <li><a href="https://docs.payu.in/docs/cordova-sdk-introduction/"Cordova</a></li>
-                                  <li><a href="https://docs.payu.in/docs/flutter-sdk-introduction/"Flutter</a>/li>
+                                  <li><a href="https://docs.payu.in/docs/explore-reactnative-sdks">React Native</a></li>
+                                  <li><a href="https://docs.payu.in/docs/cordova-sdk-introduction/>"Cordova</a></li>
+                                  <li><a href="https://docs.payu.in/docs/flutter-sdk-introduction/">Flutter</a>/li>
                                 </ul>
                                 You can choose to integrate using the Checkout Plus, the pre-built GUI for Android, iOS or React Native or use various SDK components as described in <a href="#collect-payment-from-mobile">Collect payment from Mobile</a>.
                               </li>
