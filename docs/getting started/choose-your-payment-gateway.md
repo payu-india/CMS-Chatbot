@@ -31,7 +31,7 @@ PayU India offers following products to choose from:
                                 <ul>
                                   <li><a href="https://docs.payu.in/docs/introduction-recurring-payments-integration/">Subscription or Recurring Payments</a></li>
                                   <li><a href="https://docs.payu.in/docs/introduction-dynamic-currency-conversion/">International Payments</a></li>
-                                  <li><a href="https://docs.payu.in/docs/introduction-cross-border-payments-import/"Cross-Border Payments</a></li>
+                                  <li><a href="https://docs.payu.in/docs/introduction-cross-border-payments-import/">Cross-Border Payments</a></li>
                                   <li<a href="https://docs.payu.in/docs/split-settlments/">Split Settlements</a/</li>
                                 </ul>
                                 You can value add to your existing PayU Web Checkout integration with the following products:
