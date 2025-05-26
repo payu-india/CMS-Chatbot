@@ -27,67 +27,69 @@ PayU India offers following products to choose from:
   <summary>Product Offerings</summary>
 
   <HTMLBlock>{`
-                  <ul>
-                    <li>Web Checkout
                       <ul>
-                        <li>Choose between Prebuilt Web Checkout (PayU Hosted Checkout), Custom Checkout (Merchant Hosted Checkout) or Low Code Web SDK integration based on your resources and time to integrate as described in Collect Payment from your website. With your Web Checkout integration, you can opt-in for the following PayU products:
+                        <li>Web Checkout
                           <ul>
-                            <li>Recurring Payments</li>
-                            <li>International Payments</li>
-                            <li>Cross-Border Payments</li>
-                            <li>Split Settlements</li>
+                            <li>Choose between Prebuilt Web Checkout (PayU Hosted Checkout), Custom Checkout (Merchant Hosted Checkout) or Low Code Web SDK integration based on your resources and time to integrate as described in Collect Payment from your website. With your Web Checkout integration, you can opt-in for the following PayU products:
+                              <ul>
+                                <li>Recurring Payments</li>
+                                <li>International Payments</li>
+                                <li>Cross-Border Payments</li>
+                                <li>Split Settlements</li>
+                              </ul>
+                              You can value add to your existing PayU Web Checkout integration with the following products:
+                              <ul>
+                                <li>Save Cards</li>
+                                <li>Offers</li>
+                                <li>Recommendation Engine</li>
+                              </ul>
+                            </li>
                           </ul>
-                          You can value add to your existing PayU Web Checkout integration with the following products:
+                        </li>
+                        <li>Mobile SDK
                           <ul>
-                            <li>Save Cards</li>
-                            <li>Offers</li>
-                            <li>Recommendation Engine</li>
+                            <li>PayU offers following mobile SDK platforms to choose from:
+                              <ul>
+                                <li><a href="#android">Android</a></li>
+                                <li> <a href="#ios">ios</a></li>
+                                <li>React Native</li>
+                                <li>Cordova</li>
+                                <li>Flutter</li>
+                              </ul>
+                              You can choose to integrate using the Checkout Plus, the pre-built GUI for Android, iOS or React Native or use various SDK components as described in <a href="#collect-payment-from-mobile">Collect payment from Mobile</a>.
+                            </li>
+                          </ul>
+                        </li>
+                        <li>Payment Links
+                          <ul>
+                            <li>Send payment links instantly to your customers.</li>
+                          </ul>
+                        </li>
+                        <li>Plugins for eCommerce platforms
+                          <ul>
+                            <li>PayU offers plugins for major eCommerce platforms including WhatsApp for Business, Shopify, WooCommerce, BigCommerce, etc. as described in <a href="#collect-payment-on-ecommerce-platforms">Collect payment on eCommerce platforms</a>.</li>
+                          </ul>
+                        </li>
+                        <li>Partner Integration
+                          <ul>
+                            <li>PayU offers you a platform to refer merchants and earn incentives. For more information, refer to <a href="#become-a-partner">Become a partner</a>.</li>
+                          </ul>
+                        </li>
+                        <li>Omnichannel
+                          <ul>
+                            <li>Share QR codes to your customers instantly. For more information, refer to <a href="#collect-payment-thru-omnichannel">Collect payment thru Omnichannel</a>.</li>
+                          </ul>
+                        </li>
+                        <li>Payouts
+                          <ul>
+                            <li>Make instant payments to your vendors or employees. For more information, refer to <a href="#make-payments">Make payments</a>.</li>
                           </ul>
                         </li>
                       </ul>
-                    </li>
-                    <li>Mobile SDK
-                      <ul>
-                        <li>PayU offers following mobile SDK platforms to choose from:
-                          <ul>
-                            <li>[Android](#android)</li>
-                            <li>[iOS](#ios)</li>
-                            <li>React Native</li>
-                            <li>Cordova</li>
-                            <li>Flutter</li>
-                          </ul>
-                          You can choose to integrate using the Checkout Plus, the pre-built GUI for Android, iOS or React Native or use various SDK components as described in <a href="#collect-payment-from-mobile">Collect payment from Mobile</a>.
-                        </li>
-                      </ul>
-                    </li>
-                    <li>Payment Links
-                      <ul>
-                        <li>Send payment links instantly to your customers.</li>
-                      </ul>
-                    </li>
-                    <li>Plugins for eCommerce platforms
-                      <ul>
-                        <li>PayU offers plugins for major eCommerce platforms including WhatsApp for Business, Shopify, WooCommerce, BigCommerce, etc. as described in <a href="#collect-payment-on-ecommerce-platforms">Collect payment on eCommerce platforms</a>.</li>
-                      </ul>
-                    </li>
-                    <li>Partner Integration
-                      <ul>
-                        <li>PayU offers you a platform to refer merchants and earn incentives. For more information, refer to <a href="#become-a-partner">Become a partner</a>.</li>
-                      </ul>
-                    </li>
-                    <li>Omnichannel
-                      <ul>
-                        <li>Share QR codes to your customers instantly. For more information, refer to <a href="#collect-payment-thru-omnichannel">Collect payment thru Omnichannel</a>.</li>
-                      </ul>
-                    </li>
-                    <li>Payouts
-                      <ul>
-                        <li>Make instant payments to your vendors or employees. For more information, refer to <a href="#make-payments">Make payments</a>.</li>
-                      </ul>
-                    </li>
-                  </ul>
   `}</HTMLBlock>
 </details>
+
+\</details>
 
 # Collect payment from your website
 
