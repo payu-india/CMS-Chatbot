@@ -23,13 +23,13 @@ PayU offers multiple payment workflows suitable for your online payment collecti
 
 # What is a payment gateway?
 
-A payment gateway is a technology used by merchants to accept debit or credit card, UPI, wallets, EMI, etc. for purchases made by customers.
+A payment gateway is a technology used by merchants to accept debit or credit card, UPI, wallets, EMI, etc. For purchases made by customers.
 
 # Benefits
 
 * Safer, faster, smoother transactions that give customers peace of mind.
 * Secure and protect customers from frauds.
-* Improves user experience, saves time, and empowers your customers. 
+* Improves user experience, saves time, and empowers your customers.
 * Enables you to accept multiple payment types and cards securely
 * Reduces declined payments with real time transactions.
 
@@ -45,7 +45,7 @@ A payment gateway is a technology used by merchants to accept debit or credit ca
 >
 > PayU recommends you to:
 >
-> * Understand the product integration steps on this **Integration Guide** and later refer to API Reference.
+> * Understand the product integration steps on this **Integration Guide** and later refer to [API Reference](ref:introduction-api-reference).
 > * The [API Reference](ref:introduction-api-reference) pages for various APIs allows you to make mock API calls with most of the PayU APIs (using a static test key for General or Integration APIs).  Also, it provides support in 16 language bindings, so you can get the source code in apart from cURL.
 > * It is recommended to follow the **Integration Checklist** for checkout or SDK integrations to ensure that your integration is complete before making your integration live.
 
