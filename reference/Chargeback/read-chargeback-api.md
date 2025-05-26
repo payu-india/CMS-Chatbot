@@ -141,7 +141,7 @@ curl --location 'https://bankportal.payu.in/api/v1/chargebacks?from_date=20-02-2
       </td>
 
       <td>
-        The field contains the merchant ID.
+        The field contains the chargeback ID.
       </td>
 
       <td>
