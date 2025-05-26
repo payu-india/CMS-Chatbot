@@ -30,13 +30,13 @@ Here's the HTML content converted to markdown format:
     * [Subscription or Recurring Payments](doc:introduction-recurring-payments-integration/)
     * [International Payments](doc:introduction-dynamic-currency-conversion/)
     * [Cross-Border Payments](doc:introduction-cross-border-payments-import/)
-    * [Split Settlements](https://docs.payu.in/docs/split-settlments/)
-    You can value add to your existing PayU Web Checkout integration with the following products:
+    * [Split Settlements](https://docs.payu.in/docs/split-settlments/)\
+      You can value add to your existing PayU Web Checkout integration with the following products:
     * [Save Cards](https://docs.payu.in/docs/introduction-save-cards/)
     * [Offers](https://docs.payu.in/update/docs/introduction-to-affordability/)
     * [EMI](https://docs.payu.in/update/docs/introduction-to-affordability/)
     * [Recommendation Engine](https://docs.payu.in/update/docs/recommendation-engine/)
-    * [Affordability Widget](https://docs.payu.in/update/docs/affordability-widget/)
+    * [Affordability Widget](doc:affordability-suite)
 
 * Mobile SDK
   * PayU offers following mobile SDK platforms to choose from:
@@ -44,8 +44,8 @@ Here's the HTML content converted to markdown format:
     * [iOS](#ios)
     * [React Native](https://docs.payu.in/docs/explore-reactnative-sdks)
     * [Cordova](https://docs.payu.in/docs/cordova-sdk-introduction/)
-    * [Flutter](https://docs.payu.in/docs/flutter-sdk-introduction/)
-    You can choose to integrate using the Checkout Plus, the pre-built GUI for Android, iOS or React Native or use various SDK components as described in [Collect payment from Mobile](#collect-payment-from-mobile).
+    * [Flutter](https://docs.payu.in/docs/flutter-sdk-introduction/)\
+      You can choose to integrate using the Checkout Plus, the pre-built GUI for Android, iOS or React Native or use various SDK components as described in [Collect payment from Mobile](#collect-payment-from-mobile).
 
 * Payment Links
   * [Send payment links](#collect-payment-using-links) instantly to your customers.
