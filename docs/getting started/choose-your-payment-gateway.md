@@ -31,7 +31,6 @@ Here's the HTML content converted to markdown format:
     * [International Payments](doc:introduction-dynamic-currency-conversion/)
     * [Cross-Border Payments](doc:introduction-cross-border-payments-import/)
     * [Split Settlements](https://docs.payu.in/docs/split-settlments/)
-    
     You can value add to your existing PayU Web Checkout integration with the following products:
     * [Save Cards](https://docs.payu.in/docs/introduction-save-cards/)
     * [Offers](https://docs.payu.in/update/docs/introduction-to-affordability/)
@@ -46,11 +45,10 @@ Here's the HTML content converted to markdown format:
     * [React Native](https://docs.payu.in/docs/explore-reactnative-sdks)
     * [Cordova](https://docs.payu.in/docs/cordova-sdk-introduction/)
     * [Flutter](https://docs.payu.in/docs/flutter-sdk-introduction/)
-    
     You can choose to integrate using the Checkout Plus, the pre-built GUI for Android, iOS or React Native or use various SDK components as described in [Collect payment from Mobile](#collect-payment-from-mobile).
 
 * Payment Links
-  * Send payment links instantly to your customers.
+  * [Send payment links](#collect-payment-using-links) instantly to your customers.
 
 * Plugins for eCommerce platforms
   * PayU offers plugins for major eCommerce platforms including WhatsApp for Business, Shopify, WooCommerce, BigCommerce, etc. as described in [Collect payment on eCommerce platforms](#collect-payment-on-ecommerce-platforms).
