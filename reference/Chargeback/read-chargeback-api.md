@@ -109,7 +109,14 @@ curl --location 'https://bankportal.payu.in/api/v1/chargebacks?from_date=20-02-2
 
 ## Response parameters
 
-| Parameter  | Description                                                                                                                                                                |
+| Parameter | Description                                                                                                                                                   |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| data      | This parameter contains the chargeback details as a JSON array. For more information, refer to [data JSON field descriptions](#data-json-field-descriptions). |
+| meta      | This parameter contains the pagination details as a JSON object. For more information, refer to [meta JSON field descriptions](#meta-json-field-descriptions) |
+
+### data JSON field descriptions
+
+| Feild      | Description                                                                                                                                                                |
 | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id         | This parameter contains the  chargeback ID.                                                                                                                                |
 | type       | The parameter contains the **chargebacks** as type.                                                                                                                        |
@@ -117,21 +124,20 @@ curl --location 'https://bankportal.payu.in/api/v1/chargebacks?from_date=20-02-2
 
 ### attributes JSON field descriptions
 
-| Field                 | Description                                                                                                                                                         |                                  |
-| :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------- |
-| id                    | The field contains the chargeback ID.                                                                                                                               | 1295751                          |
-| chargeback-amount     | The field contains the chargeback amount.                                                                                                                           | 1.0                              |
-| chargeback-type       | The field contains the chargeback type.                                                                                                                             | CB                               |
-| status                | The field contains the chargeback status.                                                                                                                           | Closed Customer Favour           |
-| reply-before          | The field contains the date before which the merchant must reply.                                                                                                   | 24-Feb-2023                      |
-| chargeback-reason     | The field contains the chargeback reason.                                                                                                                           | Non Receipt of Goods or Services |
-| bank-case-no          | The field contains the bank case number for the chargeback.                                                                                                         | 30008130343023154997151          |
-| debit-date            | The field contains the chargeback debit date.                                                                                                                       | 24-Jul-2023                      |
-| debit-status          | The field contains the chargeback debit status.                                                                                                                     | Chargeback Debited               |
-| credit-date           | The field contains the chargeback credit date.                                                                                                                      |                                  |
-| customer-dispute-docs | The field contains the location of the docs or additional information provided to bank support about the disputed transaction.                                      |                                  |
-| transaction-details   | This field contains the transaction details in a JSON format. For sample and description, refer to [transaction-details JSON](#transaction-details-json)            |                                  |
-| meta                  | This field contains the pagination details as a JSON object. For more information, refer to [pagination JSON field description](#pagination-json-field-description) |                                  |
+| Field                 | Description                                                                                                                                              |                                  |
+| :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------- |
+| id                    | The field contains the chargeback ID.                                                                                                                    | 1295751                          |
+| chargeback-amount     | The field contains the chargeback amount.                                                                                                                | 1.0                              |
+| chargeback-type       | The field contains the chargeback type.                                                                                                                  | CB                               |
+| status                | The field contains the chargeback status.                                                                                                                | Closed Customer Favour           |
+| reply-before          | The field contains the date before which the merchant must reply.                                                                                        | 24-Feb-2023                      |
+| chargeback-reason     | The field contains the chargeback reason.                                                                                                                | Non Receipt of Goods or Services |
+| bank-case-no          | The field contains the bank case number for the chargeback.                                                                                              | 30008130343023154997151          |
+| debit-date            | The field contains the chargeback debit date.                                                                                                            | 24-Jul-2023                      |
+| debit-status          | The field contains the chargeback debit status.                                                                                                          | Chargeback Debited               |
+| credit-date           | The field contains the chargeback credit date.                                                                                                           |                                  |
+| customer-dispute-docs | The field contains the location of the docs or additional information provided to bank support about the disputed transaction.                           |                                  |
+| transaction-details   | This field contains the transaction details in a JSON format. For sample and description, refer to [transaction-details JSON](#transaction-details-json) |                                  |
 
 ### transaction-details JSON
 
@@ -159,7 +165,7 @@ curl --location 'https://bankportal.payu.in/api/v1/chargebacks?from_date=20-02-2
 }
 ```
 
-#### JSON field description
+#### JSON field descriptions
 
 | Field                 | Description                                                                                                                                                       |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -181,13 +187,13 @@ curl --location 'https://bankportal.payu.in/api/v1/chargebacks?from_date=20-02-2
 | udf-5                 | User-defined field 5 that can be used by merchants for storing custom data related to the transaction.                                                            |
 | card-scheme           | The card network or scheme associated with the payment card (e.g., Visa, Mastercard, RuPay, etc.).                                                                |
 
-### meta JSON field description
+### meta JSON field descriptions
 
-| Field      | Description                                                                                                                                                                                                                                                   |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| pagination | Contains pagination information for the response. This object provides details about how the results are paginated and the total count of chargebacks. For more information, refer to [pagination JSON field description](#pagination-json-field-description) |
+| Field      | Description                                                                                                                                                                                                                                                     |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| pagination | Contains pagination information for the response. This object provides details about how the results are paginated and the total count of chargebacks. For more information, refer to [pagination JSON field descriptions](#pagination-json-field-descriptions) |
 
-#### pagination JSON field description
+#### pagination JSON field descriptions
 
 | Field             | Description                                                                                                                                                                                                   |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
