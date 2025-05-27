@@ -198,8 +198,8 @@ Method: **POST**
       <td>
         Status defines acknowledgment from PayU. Possible values are:
 
-        * **1** - This value indicates that NetBanking mandate is successfully canceled
-        * **0** – This value indicates that NetBanking mandate failed to get canceled
+        * **1** - This value indicates that Card subscription or mandate is successfully canceled
+        * **0** – This value indicates that Card subscription or mandate failed to get canceled
       </td>
     </tr>
 
