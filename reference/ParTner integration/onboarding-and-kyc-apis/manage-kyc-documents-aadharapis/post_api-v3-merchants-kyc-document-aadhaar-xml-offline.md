@@ -13,11 +13,11 @@ The **Aadhar XML Offline** API allows merchants to submit Aadhaar XML files (obt
 
 ### Authorization header
 
-Authorization Bearer token must be generated using \*\*Get Token API \*\* with the scope as . For more information, refer to [Get Token API](ref:get_token_api).
+Authorization Bearer token must be generated using \*\*Aadaar OTP Generation API \*\* with the scope as . For more information, refer to [Aadhar OTP generation](ref:post_api-v3-merchants-kyc-document-aadhaar-xml-consent).
 
 ### Body parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
