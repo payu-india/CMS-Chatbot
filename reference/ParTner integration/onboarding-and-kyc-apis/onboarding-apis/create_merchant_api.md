@@ -21,6 +21,31 @@ This API is authorised through a client token generated using the client ID and 
 | production           | [https://partner.payu.in/api/v3/merchants](https://partner.payu.in/api/v3/merchants) |
 | UAT                  | uat-partner.payu.in/api/v3/merchants                                                 |
 
+## Sample request
+
+```
+curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
+--header 'Authorization: Bearer 27a6389ec4d74fb8c3f2baf68b220a5780bf4cfc4cce004505d2c20ead6e1fba' \
+--form '[merchant][display_name]="DIVY HARESHKUMAR SHAH"' \
+--form 'merchant[email]="boro5@yomail.com"' \
+--form 'merchant[mobile]="9916965905"' \
+--form 'merchant[business_details][pan]="FANPS6362D"' \
+--form 'merchant[business_details][business_entity_type]="Sole Proprietorship"' \
+--form 'merchant[product]="PayUbiz"' \
+--form 'merchant[bank_details][account_no]="919010067278549"' \
+--form 'merchant[bank_details][account_holder_name]="DIVY HARESHKUMAR SHAH"' \
+--form 'merchant[bank_details][ifsc_code]="UTIB0003557"' \
+--form 'merchant[business_details][registered_name]="DIVY HARESHKUMAR SHAH"' \
+--form 'merchant[business_details][business_category]="Arts, Gifts & Stationery"' \
+--form 'merchant[business_details][business_sub_category]="Art Dealers and Galleries"' \
+--form 'merchant[website_details][website_url]="https://www.google.com"' \
+--form 'merchant[monthly_expected_volume]="12000"' \
+--form 'merchant[signing_authority_details][name]="DIVY HARESHKUMAR SHAH"' \
+--form 'merchant[signing_authority_details][pancard_number]="FANPS6362D"' \
+--form 'merchant[signing_authority_details][email]="email_test1213@yopmail.com"' \
+--form 'merchant[business_details][pancard_name]="DIVY HARESHKUMAR SHAH"'
+```
+
 ## Sample response
 
 ### Success scenario
