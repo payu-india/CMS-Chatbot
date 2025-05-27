@@ -12,6 +12,12 @@ next:
 ---
 This API is used to generate merchant agreements used while E-Sign PayU Service Agreement is generated and signed.
 
+> 📘 Prerequisite:
+>
+>
+>
+> All KYC docs and website has to be in approved state for the merchant.
+
 <PartnerKYCEnv />
 
 ## Request Headers
