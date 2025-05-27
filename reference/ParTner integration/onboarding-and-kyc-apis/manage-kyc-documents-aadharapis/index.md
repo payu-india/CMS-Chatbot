@@ -2,8 +2,8 @@
 title: Aadhaar APIs
 hidden: true
 ---
-This part of the document includes the following Aadhaar-related APIs
+This part of the document includes the following Aadhaar-related APIs:
 
-* [Aadhar XML Offline](https://docs.payu.in/reference/post_api-v3-merchants-kyc-document-aadhaar-xml-offline)
-* [Aadhar OTP generation](https://docs.payu.in/reference/post_api-v3-merchants-kyc-document-aadhaar-xml-consent)
-* [Aadhar XML Data](https://docs.payu.in/reference/post_api-v3-merchants-kyc-document-aadhaar-xml-data)
+* [Aadhaar XML Offline API](ref:aadhaar-xml-offline-api)
+* [Aadhar OTP Generation API](ref:aadhaar-otp-generation-api)
+* [Aadhaar XML Data API](ref:aadhaar-xml-data-api)
