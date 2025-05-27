@@ -1,11 +1,11 @@
 ---
-title: Create KYC Document
+title: '[OLD]Create KYC Document'
 excerpt: ''
 api:
   file: partner-apis-6.json
   operationId: create_document
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
