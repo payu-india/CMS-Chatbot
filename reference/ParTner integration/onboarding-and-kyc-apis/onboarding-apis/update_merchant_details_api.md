@@ -43,7 +43,7 @@ The **Update Merchant Details** API is used to:
 
 > 📘 Bearer Token:
 >
-> The access token with the scope as **referer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
+> The bearer token is required on the header. For more information on getting the bearer token, refer to [Send OTP API](ref:send_otp_api).
 
 ## Environment
 
