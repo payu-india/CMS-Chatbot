@@ -344,7 +344,8 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
       </td>
 
       <td>
-        Merchant ID, a unique identifier in the system
+        Merchant ID, a unique identifier in the system.
+        **Note**: PayU recommends you to save or retain this value as it is used as the path parameter with [Get Merchant API](ref:get_merchant_api)  to get the merchant details.
       </td>
 
       <td>
