@@ -26,7 +26,7 @@ This API is used to delete the document for a merchant.
 >
 > The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to o [Get Token API](ref:get_token_api).
 
-<PARTNEROnboardingEnvironment />
+<PARTNEROnboardingEnvironment/>
 
 <details>
   <summary>Sample request</summary>
