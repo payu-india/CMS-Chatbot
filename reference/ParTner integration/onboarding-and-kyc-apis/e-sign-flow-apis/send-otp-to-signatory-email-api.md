@@ -14,16 +14,17 @@ This API is used to send OTP to the signatory email, and this OTP is used by the
 
 **Environment**
 
-|                            |                             |
-| :------------------------- | :-------------------------- |
-| **Test Environment**       | &lt;https://uatoneapi.payu.in&gt; |
-| **Production Environment** | &lt;https://oneapi.payu.in&gt;    |
+|                            |                                                           |
+| :------------------------- | :-------------------------------------------------------- |
+| **Test Environment**       | \<[https://uatoneapi.payu.in](https://uatoneapi.payu.in)> |
+| **Production Environment** | \<[https://oneapi.payu.in](https://oneapi.payu.in)>       |
 
 ## Request Headers
 
 > 📘 Note:
 >
-> The access token with the scope as **client\_manage\_agreement** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+> * The access token with the scope as **client\_manage\_agreement** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+> * uuid value can be found in the response of the \*\*Create Merchant \*\*API that must be used as the path parameter. For more information, refer to [Create Merchant API](ref:create_merchant_api).
 
 |               |                         |
 | ------------- | ----------------------- |
@@ -33,11 +34,11 @@ This API is used to send OTP to the signatory email, and this OTP is used by the
 ## Sample Request
 
 ```curl
-curl --location --request GET '{`{onboarding_url}`}/api/v1/merchants/{`{merchant_uuid}`}/generate_merged_document_for_esign' \
+curl --location --request GET '{`{onboarding_url}`}/api/v1/merchants/{`{uuid}`}/generate_merged_document_for_esign' \
 --header 'Authorization: Bearer `{access_token}`'
 ```
 
-Where **`{onboarding\_url}`** is substituted with the URL specified in the Test or Production environment as mentioned in the _Environment_ section.
+Where **`{onboarding\_url}`** is substituted with the URL specified in the Test or Production environment as mentioned in the *Environment* section.
 
 ## Sample Response
 
@@ -55,7 +56,7 @@ Successful response
 
 ### Failure Scenarios
 
-- Unauthorized response
+* Unauthorized response
 
 Unauthorized response
 
@@ -65,7 +66,7 @@ Unauthorized response
 }
 ```
 
-- Merchant is not found with the given merchant\_uuid
+* Merchant is not found with the given merchant\_uuid
 
 Agreement not found
 
@@ -75,7 +76,7 @@ Agreement not found
 }
 ```
 
-- KYC document not found with the given **`{merged\_document\_uuid}`**
+* KYC document not found with the given **`{merged\_document\_uuid}`**
 
 ```plaintext
 {
