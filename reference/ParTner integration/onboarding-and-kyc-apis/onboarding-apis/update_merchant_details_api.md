@@ -45,12 +45,7 @@ The **Update Merchant Details** API is used to:
 >
 > The bearer token is required on the header. For more information on getting the bearer token, refer to [Send OTP API](ref:send_otp_api).
 
-## Environment
-
-| \*\* Environment\*\* | \*\* URL\*\*                                                                         |
-| :------------------- | :----------------------------------------------------------------------------------- |
-| production           | [https://partner.payu.in/api/v3/merchants](https://partner.payu.in/api/v3/merchants) |
-| UAT                  | uat-partner.payu.in/api/v3/merchants                                                 |
+<PARTNEROnboardingEnvironment />
 
 <details>
   <summary>Sample request</summary>
