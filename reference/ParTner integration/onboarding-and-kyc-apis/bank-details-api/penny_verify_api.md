@@ -1,5 +1,5 @@
 ---
-title: Penny Verify API
+title: '[Hidden]Penny Verify API'
 excerpt: ''
 api:
   file: partner-apis-6.json
