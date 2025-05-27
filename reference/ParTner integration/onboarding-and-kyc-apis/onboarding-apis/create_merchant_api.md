@@ -54,6 +54,7 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 > * **uuid** is used as path parameter with the following APIs:
 >   * [Update Merchant Details API](ref:update_merchant_details_api) to update the merchant details.
 >   * [Add or Update Bank Details API](ref:add_update_bank_details_api) to add or update bank details of merchants.
+>   * [Delete KYC Document API](ref:delete_kyc_document_api) to delete the KYC documents.
 > * **mid** is used as the path parameter with [Get Merchant API](ref:get_merchant_api) to get the merchant details.
 
 ```
