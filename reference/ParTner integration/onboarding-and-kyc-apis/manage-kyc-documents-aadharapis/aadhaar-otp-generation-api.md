@@ -7,7 +7,7 @@ hidden: false
 ---
 The Aadhar OTP Generation API allows merchants to generate OTP for Aadhaar verification purposes. This API is used to initiate the authentication process by sending an OTP to the mobile number registered with the Aadhaar.
 
-<PARTNEROnboardingEnvironment />
+<PartnerAuthenticationEnvironement />
 
 ## Request Parameters
 
@@ -17,7 +17,7 @@ Authorization Bearer token must be generated using \*\*Get Token API \*\* with t
 
 ### Body
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
