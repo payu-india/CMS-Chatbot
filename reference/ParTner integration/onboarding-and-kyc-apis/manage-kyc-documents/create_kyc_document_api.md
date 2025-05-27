@@ -27,33 +27,99 @@ The access token with the scope as **refer\_merchant** is required on the hea
 
 <PARTNEROnboardingEnvironment />
 
+\<details>\<summary>List of acceptable documents\</summary>
+
+\[block:parameters]
+\{
+&#x20; "data": \{
+&#x20;   "h-0": "Individuals",
+&#x20;   "h-1": "\_ For individuals, merchant KYC can be done through Aadhaar or CKYC.  \n\_  In case validation fails through the above two mechanisms, the merchant will have to submit document proofs ( POI, POA).",
+&#x20;   "0-0": "\*\*Sole Proprietors\*\*",
+&#x20;   "0-1": "For sole proprietors, merchant KYC can be done through Aadhaar or CKYC. If validation fails through the above two mechanisms, the merchant will have to submit document proofs ( POI, POA & government certificate)."
+&#x20; },
+&#x20; "cols": 2,
+&#x20; "rows": 1,
+&#x20; "align": \[
+&#x20;   null,
+&#x20;   null
+&#x20; ]
+}
+\[/block]
+
+
+The list of acceptable documents for each category: 
+
+\*\*POI/ POA:\*\*&#x20;
+
+
+* Passport
+  * Aadhar
+    * Voter’s ID
+      * Driving Licence
+        * Utilities Bill (electricity, water, landline, gas connection)”(recent only) 
+          * Address Verification Letter from Bank
+            <br />
+            **Government proof**
+            * GST Registration Certificate 
+              * Udyog Aadhar Card Certificate 
+                * NOC by Gram Panchayat 
+                  * TIN Certificate 
+                    * Service Tax Registration Certificate 
+                      * Shop & Establishment registration 
+                        <br />
+
+### List of Acceptable Bank Proofs
+
 <br />
 
-\<details>\
-\<summary>List of acceptable documents\</summary>
+The following are acceptable bank proofs ( with validations):
 
-\<Table>\
-\<thead>
-\<tr>
-\<th>
-Individuals
-\</th>
+<br />
 
-```
-```
+**Passbook**
 
-```
-```
+<br />
 
-```
-```
+* Must have your name printed 
+  * Must have your account number & IFSC printed 
+    * Must have your photograph & bank stamp 
 
-```
-```
+<br />
 
-The list of acceptable documents for each category:
+**Bank statement**
 
-**POI/ POA:**
+<br />
+
+* Must have your name printed 
+  * Must have your account number & IFSC printed 
+    * Mobile banking screenshots & SMS will not be considered valid 
+
+<br />
+
+**Bank verification letter**
+
+<br />
+
+* Must be on a bank/ your letterhead 
+  * Must have the sign & stamp of a bank manager 
+    * Must have your name, account number & IFSC 
+
+<br />
+
+**Cancelled cheque**
+
+<br />
+
+* Must have your name printed 
+  * Must have your account number & IFSC printed
+
+<br />
+
+The merchant ID in the request header must be included as a query parameter in the **mid** field.
+
+<br />
+
+\</details>
 
 ## Request parameters
 
