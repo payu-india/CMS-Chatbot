@@ -52,14 +52,68 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 
 ```
 {
-  "merchant": {
-    "mid": "8390925",
-    "kyc_document_name": "PAN Card of Signing Authority",
-    "kyc_document_uuid": "11ef-587e-43837330-95b0-021ec077a271",
-    "kyc_document_status": "DOCUMENT_SUBMITTED",
-    "error_message": null,
-    "created_at": "2024-08-12T07:41:19.000Z"
-  }
+    "merchant": {
+        "name": "DIVY HARESHKUMAR SHAH",
+        "email": "boro13@yomail.com",
+        "registered_mobile": "9916965913",
+        "mid": 760069002,
+        "product": "PayUbiz",
+        "business_type": "LongTail",
+        "business_name": null,
+        "pancard_name": null,
+        "pancard_number": null,
+        "website_url": null,
+        "android_url": null,
+        "ios_url": null,
+        "gst_number": "24FANPS6362D1ZM",
+        "created_at": "2025-05-22T11:00:04.000Z",
+        "mobile": "9916965913",
+        "blocked": false,
+        "first_name": "DIVY",
+        "last_name": "HARESHKUMAR SHAH",
+        "bank_detail": {
+            "bank_account_number": null,
+            "ifsc_code": null,
+            "holder_name": null,
+            "nodal_code": null,
+            "nodal_status": null
+        },
+        "operating_address": {
+            "address_line": null,
+            "city": null,
+            "state": null,
+            "pincode": null
+        },
+        "registration_address": {
+            "address_line": null,
+            "city": null,
+            "state": null,
+            "pincode": null
+        },
+        "business_entity": "Sole Proprietorship",
+        "status": "account_created",
+        "partner_source": "Create Merchant API",
+        "pan_verification_status": "Pending",
+        "website_approval_status": null,
+        "notification_email": "boro13@yomail.com",
+        "settlement_status": null,
+        "is_service_agreement_accepted": false,
+        "is_authorisation_letter_required": false,
+        "monthly_expected_volume": null,
+        "business_category": null,
+        "business_sub_category": null,
+        "bank_verification_status": null,
+        "uuid": "11f0-36fb-ea0981e8-9d1a-02975f21d323",
+        "penny_deposit_status": null,
+        "document_status": "Pending",
+        "kyc_status": {
+            "status": "LOCKED",
+            "kyc_status": "LOCKED"
+        },
+        "agreement_status": "Not Generated",
+        "integration_type": "Not Selected",
+        "service_intent": "default"
+    }
 }
 ```
 
