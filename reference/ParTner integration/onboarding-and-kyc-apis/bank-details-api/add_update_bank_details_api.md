@@ -36,7 +36,7 @@ This API is used to perform the following:
   <summary>Sample request</summary>
 
   ```curl
-  curl --location -g --request POST '{{partner_base_url}}/api/v1/merchants/{{merchant_uuid}}/add_bank_detail' \
+  curl --location -g --request POST '{{partner_base_url}}/api/v3/merchants/{{merchant_uuid}}/add_bank_detail' \
   --header 'Authorization: Bearer {{access_token}}' \
   --header 'Content-Type: application/json' \
   --data-raw '{
