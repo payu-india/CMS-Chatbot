@@ -51,8 +51,10 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 >
 > PayU recommends you save or retain the uuid  and mid values in the response. These values will be required when you use the following APIs:
 >
-> * uuid is used as path parameter with [Update Merchant Details API](ref:update_merchant_details_api) to update the merchant details.
-> * mid is used as the path parameter with [Get Merchant API](ref:get_merchant_api) to get the merchant details.
+> * **uuid** is used as path parameter with the following APIs:
+>   * [Update Merchant Details API](ref:update_merchant_details_api) to update the merchant details.
+>   * [Add or Update Bank Details API](ref:add_update_bank_details_api) to add or update bank details of merchants.
+> * **mid** is used as the path parameter with [Get Merchant API](ref:get_merchant_api) to get the merchant details.
 
 ```
 {
