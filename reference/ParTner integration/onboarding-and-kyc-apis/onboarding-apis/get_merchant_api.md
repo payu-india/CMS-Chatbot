@@ -17,11 +17,12 @@ metadata:
 next:
   description: ''
 ---
-The **Get Merchant** API is used to get the merchant details. You require the access token to get the merchant details using this API. The access token can be fetched using the Get Token API. For more information, refer to Get Token API.
+The **Get Merchant** API is used to get the merchant details. You require the access token to get the merchant details using this API. The access token can be fetched using the Get Token API. For more information, refer to [Get Token API - Partner Integration](ref:get_token_api).
 
-> 📘 Note:
+> 📘 Notes:
 >
-> The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
+> * The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
+> * For the **Get Merchant** API , the path parameter is the merchant ID or mid of the merchant. The mid is in the response of the [Create Merchant API](ref:create_merchant_api).
 
 ## Environment
 
