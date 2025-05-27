@@ -229,12 +229,7 @@ Method: **POST**
 
 ### Immediate response
 
-* Sample response for successful cancellation of NetBanking mandate immediately:
-
-> 📘 Note:
->
-> For NetBanking (Enach), the cancellation process is offline. After cancellation is initiated, an immediate response of acknowledgment will be similar to the following response. A file is uploaded on the bank server and within T+1 or T+2 days, the final status of cancellation is received and the merchant is updated via a webhook. For more information, refer to [Webhook Response](#webhook_response) in this subsection.
-
+* Sample response for successful cancellation of Cards subscription immediately:
 * Sample successful transaction
 
 ```
