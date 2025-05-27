@@ -1,9 +1,9 @@
 ---
-name: PARTNER Onboarding Environment
+name: PARTNEROnboardingEnvironment
 ---
 **Environment**
 
-|                            |                                |
-| :------------------------- | :----------------------------- |
-| **Test Environment**       | https://uat-partner.payu.in/ |
-| **Production Environment** | https://partner.payu.in/    |
+|                            |                                                                                          |
+| :------------------------- | :--------------------------------------------------------------------------------------- |
+| **Test Environment**       | [https://uat-partner.payu.in/api/v3/merchants](https://partner.payu.in/api/v3/merchants) |
+| **Production Environment** | [https://partner.payu.in/api/v3/merchants](https://partner.payu.in/api/v3/merchants)     |
