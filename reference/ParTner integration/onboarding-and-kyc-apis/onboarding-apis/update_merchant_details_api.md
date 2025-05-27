@@ -43,7 +43,10 @@ The **Update Merchant Details** API is used to:
 
 > 📘 Bearer Token:
 >
-> The bearer token is required on the header. For more information on getting the bearer token, refer to [Send OTP API](ref:send_otp_api).
+> The bearer token is required on the header that is generated using the following APIs:
+>
+> * [Send OTP API](ref:send_otp_api) with the send\_sign\_in\_otp as the scope.
+> * [Verify OTP API](ref:verify_otp_api) with the verify\_sign\_in\_otp as the scope
 
 <PARTNEROnboardingEnvironment />
 
