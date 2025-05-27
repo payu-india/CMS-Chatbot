@@ -14,10 +14,10 @@ This API is used to generate merchant agreements used while E-Sign PayU Service 
 
 **Environment**
 
-|                            |                             |
-| :------------------------- | :-------------------------- |
-| **Test Environment**       | \<https://uatoneapi.payu.in> |
-| **Production Environment** | \<https://oneapi.payu.in>    |
+|                            |                                                        |
+| :------------------------- | :----------------------------------------------------- |
+| **Test Environment**       | [https://uatoneapi.payu.in](https://uatoneapi.payu.in) |
+| **Production Environment** | [https://oneapi.payu.in](https://oneapi.payu.in)       |
 
 ## Request Headers
 
@@ -37,7 +37,7 @@ curl --location --request GET '{onboarding_url}/api/v1/merchants/{merchant_uuid}
 --header 'Authorization: Bearer {access_token}'
 ```
 
-Where **`{onboarding_url}`** is substituted with the URL specified in the Test or Production environment as mentioned in the _Environment_ section.
+Where **`{onboarding_url}`** is substituted with the URL specified in the Test or Production environment as mentioned in the *Environment* section.
 
 ## Sample Response
 
@@ -89,7 +89,7 @@ Successful response
 
 ### Failure Scenarios
 
-- The agreement could not be generated for the merchant
+* The agreement could not be generated for the merchant
 
 Agreement could not be generated for the merchant
 
@@ -99,7 +99,7 @@ Agreement could not be generated for the merchant
 }
 ```
 
-- Unauthorized request
+* Unauthorized request
 
 Unauthorized request
 
@@ -109,7 +109,7 @@ Unauthorized request
 }
 ```
 
-- The agreement is not found
+* The agreement is not found
 
 Agreement not found
 
