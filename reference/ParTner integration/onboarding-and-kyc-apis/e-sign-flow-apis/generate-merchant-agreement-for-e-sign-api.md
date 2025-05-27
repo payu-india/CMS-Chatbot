@@ -18,7 +18,7 @@ This API is used to generate merchant agreements used while E-Sign PayU Service 
 
 > 📘 Notes:
 >
-> * The access token with the scope as **client\_manage\_agreement** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+> * The access token with the scope as **generate\_merged\_document\_for\_esign** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 > * uuid value can be found in the response of the \*\*Create Merchant \*\* API that must be used as the path parameter. For more information, refer to [Create Merchant API](ref:create_merchant_api).
 
 |               |                         |
