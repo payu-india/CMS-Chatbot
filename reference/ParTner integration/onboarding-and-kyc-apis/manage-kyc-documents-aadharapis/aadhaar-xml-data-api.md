@@ -17,7 +17,7 @@ Authorization Bearer token must be generated using \*\*Aadhaar OTP Generation AP
 
 ### Body
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
