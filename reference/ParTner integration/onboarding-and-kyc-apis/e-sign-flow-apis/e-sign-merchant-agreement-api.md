@@ -12,7 +12,7 @@ next:
 ---
 This API is used to e-sign merchant agreements, and it is used while E-Sign PayU Service Agreement is generated and signed.
 
-This API requires an access token using the **Get Token** API with the scope as **client\_manage\_agreement**. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+This API requires an access token using the **Get Token** API with the scope as **EsignMergedDocument**. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
 **Environment**
 
