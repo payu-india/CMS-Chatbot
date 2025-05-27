@@ -7,7 +7,7 @@ hidden: false
 ---
 The Aadhaar XML Data API allows merchants to retrieve Aadhaar data after OTP verification. This API is used in the Aadhaar e-KYC process to fetch the XML data from UIDAI after the user has provided the OTP sent to their registered mobile number.
 
-<PARTNEROnboardingEnvironment />
+<PartnerAuthenticationEnvironement />
 
 ## Request Parameters
 
