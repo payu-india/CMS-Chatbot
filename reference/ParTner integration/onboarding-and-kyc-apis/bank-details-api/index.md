@@ -10,10 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The following APIs are used to update and verify the merchant bank details:
-
-* [Add or Update Bank Details API](ref:add_update_bank_details_api)
-* [Penny Verify API](ref:penny_verify_api)
+The [Add or Update Bank Details API](ref:add_update_bank_details_api) is used to add or update the merchant bank details:
 
 > 📘 Note:
 >
