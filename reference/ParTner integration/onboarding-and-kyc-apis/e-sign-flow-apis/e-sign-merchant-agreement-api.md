@@ -16,21 +16,22 @@ This API requires an access token using the **Get Token** API with the scope as 
 
 **Environment**
 
-|                            |                             |
-| :------------------------- | :-------------------------- |
-| **Test Environment**       | \<https://uatoneapi.payu.in> |
-| **Production Environment** | \<https://oneapi.payu.in>    |
+|                            |                                                            |
+| :------------------------- | :--------------------------------------------------------- |
+| **Test Environment**       | \<[https://uatoneapi.payu.in>](https://uatoneapi.payu.in>) |
+| **Production Environment** | \<[https://oneapi.payu.in>](https://oneapi.payu.in>)       |
 
 ## Request Headers
 
 > 📘 Note:
 >
-> The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+> * The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+> * uuid value can be found in the response of the \*\*Create Merchant \*\* API that must be used as the path parameter. For more information, refer to [Create Merchant API](ref:create_merchant_api).
 
-|               |                         |
-| ------------- | ----------------------- |
-| Authorization | Bearer \{\{access_token}} |
-| Content-Type  | multipart/form-data     |
+|               |                            |
+| ------------- | -------------------------- |
+| Authorization | Bearer \{\{access\_token}} |
+| Content-Type  | multipart/form-data        |
 
 ## Request Parameters
 
@@ -61,7 +62,7 @@ curl --location --request POST '{{onboarding_url}}/api/v1/merchants/{{merchant_u
 --data-urlencode 'otp=0025'
 ```
 
-Where **\{\{onboarding\_url}}** is substituted with the URL specified in the Test or Production environment as mentioned in the _Environment_ section.
+Where **\{\{onboarding\_url}}** is substituted with the URL specified in the Test or Production environment as mentioned in the *Environment* section.
 
 ## Sample Response
 
@@ -113,7 +114,7 @@ Successful response
 
 ### Failure Scenarios
 
-- Merchant is not found with the given merchant\_uuid
+* Merchant is not found with the given merchant\_uuid
 
 Merchant is not found with the given merchant\_uuid
 
@@ -123,7 +124,7 @@ Merchant is not found with the given merchant\_uuid
 }
 ```
 
-- OTP has expired
+* OTP has expired
 
 OTP has expired
 
@@ -133,7 +134,7 @@ OTP has expired
 }
 ```
 
-- OTP is incorrect
+* OTP is incorrect
 
 OTP is incorrect
 
@@ -143,7 +144,7 @@ OTP is incorrect
 }
 ```
 
-- KYC document not found with the given merged\_document\_uuid
+* KYC document not found with the given merged\_document\_uuid
 
 KYC document not found with the given merged\_document\_uuid
 
@@ -153,7 +154,7 @@ KYC document not found with the given merged\_document\_uuid
 }
 ```
 
-- Unauthorized response
+* Unauthorized response
 
 Unauthorized response
 
