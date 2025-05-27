@@ -25,10 +25,7 @@ The **Get Merchant** API is used to get the merchant details. You require the ac
 
 ## Environment
 
-| \*\* Environment\*\* | \*\* URL\*\*                                                                         |
-| :------------------- | :----------------------------------------------------------------------------------- |
-| production           | [https://partner.payu.in/api/v3/merchants](https://partner.payu.in/api/v3/merchants) |
-| UAT                  | uat-partner.payu.in/api/v3/merchants                                                 |
+<PARTNEROnboardingEnvironment />
 
 <details>
   <summary>Sample request</summary>
