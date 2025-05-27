@@ -49,7 +49,10 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 
 > 📘 Note:
 >
-> PayU recommends you save or retain the uuid values in the response that will be required when you update the merchant details using the **Update Merchant** API. For more information, refer to [Update Merchant Details API](ref:update_merchant_details_api).
+> PayU recommends you save or retain the uuid  and mid values in the response. These values will be required when you use the following APIs:
+>
+> * uuid is used as path parameter with [Update Merchant Details API](ref:update_merchant_details_api) to update the merchant details.
+> * mid is used as the path parameter with [Get Merchant API](ref:get_merchant_api) to get the merchant details.
 
 ```
 {
@@ -262,6 +265,16 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 ```
 
 ## Response parameters
+
+> 📘 Notes:
+>
+> * The `kyc_document_status` field can have the following values:
+>   * `DOCUMENT_SUBMITTED`: Document has been submitted but not yet verified
+>   * `VERIFIED`: Document has been verified and approved
+>   * `REJECTED`: Document was rejected during verification
+>   * `PENDING`: Document is pending verification
+> * The `error_message` field will only contain a value if the document was rejected or there was an issue with the submission.
+> * All timestamps are in ISO 8601 format with UTC timezone.
 
 ### merchant JSON object field descriptions
 
@@ -902,16 +915,6 @@ The `kyc_status` object contains information about the merchant's KYC verificati
 | ----------- | ------------------- | -------------------------------------------------------- |
 | status      | Overall KYC status  | e.g., "LOCKED", "UNLOCKED", "VERIFIED", etc.             |
 | kyc\_status | Detailed KYC status | e.g., "LOCKED", "UNLOCKED", "VERIFIED", "REJECTED", etc. |
-
-> 📘 Notes:
->
-> * The `kyc_document_status` field can have the following values:
->   * `DOCUMENT_SUBMITTED`: Document has been submitted but not yet verified
->   * `VERIFIED`: Document has been verified and approved
->   * `REJECTED`: Document was rejected during verification
->   * `PENDING`: Document is pending verification
-> * The `error_message` field will only contain a value if the document was rejected or there was an issue with the submission.
-> * All timestamps are in ISO 8601 format with UTC timezone.
 
 ## Request parameters
 
