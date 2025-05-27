@@ -21,8 +21,7 @@ This API is authorised through a client token generated using the client ID and 
 | production           | [https://partner.payu.in/api/v3/merchants](https://partner.payu.in/api/v3/merchants) |
 | UAT                  | uat-partner.payu.in/api/v3/merchants                                                 |
 
-\<details>
-&#x20; \<summary>Sample request\</summary>
+## Sample request
 
 ```
 curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
@@ -47,10 +46,7 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 --form 'merchant[business_details][pancard_name]="DIVY HARESHKUMAR SHAH"'
 ```
 
-\</details>
-
-\<details>
-&#x20; \<summary>Sample response\</summary>
+## Sample response
 
 ### Success scenario
 
@@ -264,10 +260,7 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 
 ```
 
-\</details>
-
-\<details>
-&#x20; \<summary>Response parameters\</summary>
+## Response parameters
 
 ### merchant JSON object field descriptions
 
@@ -367,8 +360,6 @@ The `kyc_status` object contains information about the merchant's KYC verificati
 >   * `PENDING`: Document is pending verification
 > * The `error_message` field will only contain a value if the document was rejected or there was an issue with the submission.
 > * All timestamps are in ISO 8601 format with UTC timezone.
-
-\</details>
 
 ## Request parameters
 
