@@ -13,7 +13,7 @@ The Aadhaar XML Data API allows merchants to retrieve Aadhaar data after OTP ver
 
 ### Authorization header
 
-Authorization Bearer token must be generated using \*\*Aadhaar OTP Generation API \*\* with the scope as . For more information, refer to [Aadhaar OTP generation](ref:post_api-v3-merchants-kyc-document-aadhaar-xml-consent).
+Authorization Bearer token must be generated using \*\*Aadhaar OTP Generation API \*\* with the scope as . For more information, refer to [Aadhaar OTP Generation API](ref:aadhaar-otp-generation-api).
 
 ### Body
 
