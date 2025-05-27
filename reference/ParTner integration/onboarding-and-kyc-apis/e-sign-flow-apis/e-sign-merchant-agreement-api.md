@@ -25,7 +25,7 @@ This API requires an access token using the **Get Token** API with the scope as 
 
 > 📘 Note:
 >
-> * The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+> * The access token with the scope as **EsignMergedDocument** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 > * uuid value can be found in the response of the \*\*Create Merchant \*\* API that must be used as the path parameter. For more information, refer to [Create Merchant API](ref:create_merchant_api).
 
 |               |                            |
