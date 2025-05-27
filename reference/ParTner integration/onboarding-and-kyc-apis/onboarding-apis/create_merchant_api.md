@@ -262,47 +262,94 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 
 ## Response parameters
 
-### Fields in the merchant object
+### merchant JSON object field descriptions
 
-| Field                               | Description                                                   | Example                                                       |
-| ----------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| name                                | Full name of the merchant                                     |                                                               |
-| email                               | Email address of the merchant                                 |                                                               |
-| registered\_mobile                  | Registered mobile number of the merchant                      | 10-digit mobile number                                        |
-| mid                                 | Merchant ID, a unique identifier in the system                |                                                               |
-| product                             | The product associated with the merchant                      | PayUbiz                                                       |
-| business\_type                      | Type of business                                              | LongTail                                                      |
-| business\_name                      | Name of the business. This field can be null.                 |                                                               |
-| pancard\_name                       | Name as it appears on the PAN card. This field can be null.   |                                                               |
-| pancard\_number                     | PAN card number                                               | AAAAA0000A                                                    |
-| website\_url                        | URL of the merchant's website. This field can be null.        |                                                               |
-| android\_url                        | URL of the merchant's Android app. This field can be null.    |                                                               |
-| ios\_url                            | URL of the merchant's iOS app. This field can be null.        |                                                               |
-| gst\_number                         | GST registration number                                       | 22AAAAA0000A1Z5                                               |
-| created\_at                         | Timestamp when the merchant was created                       | ISO 8601 format (UTC)                                         |
-| mobile                              | Mobile number of the merchant                                 | 10-digit mobile number                                        |
-| blocked                             | Indicates if the merchant is blocked                          | true/false                                                    |
-| first\_name                         | First name of the merchant                                    |                                                               |
-| last\_name                          | Last name of the merchant                                     |                                                               |
-| business\_entity                    | Type of business entity                                       | "Sole Proprietorship", "Partnership", "Private Limited", etc. |
-| status                              | Current status of the merchant account                        | "account\_created", "active", "suspended", etc.               |
-| partner\_source                     | Source of the merchant registration                           | "Create Merchant API"                                         |
-| pan\_verification\_status           | Status of PAN verification                                    | "Pending", "Verified", "Failed", etc.                         |
-| website\_approval\_status           | Status of website approval                                    | "Pending", "Approved", "Rejected", etc.                       |
-| notification\_email                 | Email address for notifications                               |                                                               |
-| settlement\_status                  | Status of settlement account. This field can be null          | "Pending", "Active", etc.                                     |
-| is\_service\_agreement\_accepted    | Whether service agreement is accepted                         | true/false                                                    |
-| is\_authorisation\_letter\_required | Whether authorization letter is required                      | true/false                                                    |
-| monthly\_expected\_volume           | Expected monthly transaction volume. This field can be null.  |                                                               |
-| business\_category                  | Category of the business. This field can be null.             | "Retail", "Services", etc.                                    |
-| business\_sub\_category             | Sub-category of the business. This field can be null.         |                                                               |
-| bank\_verification\_status          | Status of bank verification. This field can be null.          | "Pending", "Verified", "Failed", etc.                         |
-| uuid                                | Universally Unique Identifier                                 | Format: UUID v4                                               |
-| penny\_deposit\_status              | Status of penny deposit verification. This field can be null. | "Pending", "Verified", "Failed", etc.                         |
-| document\_status                    | Status of document verification                               | "Pending", "Verified", "Rejected", etc.                       |
-| agreement\_status                   | Status of merchant agreement                                  | "Not Generated", "Generated", "Signed", etc.                  |
-| integration\_type                   | Type of integration                                           | "Not Selected", "API", "SDK", etc.                            |
-| service\_intent                     | Service intent of the merchant                                | "default"                                                     |
+| Field                               | Description                                                                                                                                                                                     | Example                                                       |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| name                                | Full name of the merchant                                                                                                                                                                       |                                                               |
+| email                               | Email address of the merchant                                                                                                                                                                   |                                                               |
+| registered\_mobile                  | Registered mobile number of the merchant                                                                                                                                                        | 10-digit mobile number                                        |
+| mid                                 | Merchant ID, a unique identifier in the system                                                                                                                                                  |                                                               |
+| product                             | The product associated with the merchant                                                                                                                                                        | PayUbiz                                                       |
+| business\_type                      | Type of business                                                                                                                                                                                | LongTail                                                      |
+| business\_name                      | Name of the business. This field can be null.                                                                                                                                                   |                                                               |
+| pancard\_name                       | Name as it appears on the PAN card. This field can be null.                                                                                                                                     |                                                               |
+| pancard\_number                     | PAN card number                                                                                                                                                                                 | AAAAA0000A                                                    |
+| website\_url                        | URL of the merchant's website. This field can be null.                                                                                                                                          |                                                               |
+| android\_url                        | URL of the merchant's Android app. This field can be null.                                                                                                                                      |                                                               |
+| ios\_url                            | URL of the merchant's iOS app. This field can be null.                                                                                                                                          |                                                               |
+| gst\_number                         | GST registration number                                                                                                                                                                         | 22AAAAA0000A1Z5                                               |
+| created\_at                         | Timestamp when the merchant was created                                                                                                                                                         | ISO 8601 format (UTC)                                         |
+| mobile                              | Mobile number of the merchant                                                                                                                                                                   | 10-digit mobile number                                        |
+| blocked                             | Indicates if the merchant is blocked                                                                                                                                                            | true/false                                                    |
+| first\_name                         | First name of the merchant                                                                                                                                                                      |                                                               |
+| last\_name                          | Last name of the merchant                                                                                                                                                                       |                                                               |
+| business\_entity                    | Type of business entity                                                                                                                                                                         | "Sole Proprietorship", "Partnership", "Private Limited", etc. |
+| status                              | Current status of the merchant account                                                                                                                                                          | "account\_created", "active", "suspended", etc.               |
+| partner\_source                     | Source of the merchant registration                                                                                                                                                             | "Create Merchant API"                                         |
+| pan\_verification\_status           | Status of PAN verification                                                                                                                                                                      | "Pending", "Verified", "Failed", etc.                         |
+| website\_approval\_status           | Status of website approval                                                                                                                                                                      | "Pending", "Approved", "Rejected", etc.                       |
+| notification\_email                 | Email address for notifications                                                                                                                                                                 |                                                               |
+| settlement\_status                  | Status of settlement account. This field can be null                                                                                                                                            | "Pending", "Active", etc.                                     |
+| is\_service\_agreement\_accepted    | Whether service agreement is accepted                                                                                                                                                           | true/false                                                    |
+| is\_authorisation\_letter\_required | Whether authorization letter is required                                                                                                                                                        | true/false                                                    |
+| monthly\_expected\_volume           | Expected monthly transaction volume. This field can be null.                                                                                                                                    |                                                               |
+| business\_category                  | Category of the business. This field can be null.                                                                                                                                               | "Retail", "Services", etc.                                    |
+| business\_sub\_category             | Sub-category of the business. This field can be null.                                                                                                                                           |                                                               |
+| bank\_verification\_status          | Status of bank verification. This field can be null.                                                                                                                                            | "Pending", "Verified", "Failed", etc.                         |
+| uuid                                | Universally Unique Identifier                                                                                                                                                                   | Format: UUID v4                                               |
+| penny\_deposit\_status              | Status of penny deposit verification. This field can be null.                                                                                                                                   | "Pending", "Verified", "Failed", etc.                         |
+| document\_status                    | Status of document verification                                                                                                                                                                 | "Pending", "Verified", "Rejected", etc.                       |
+| agreement\_status                   | Status of merchant agreement                                                                                                                                                                    | "Not Generated", "Generated", "Signed", etc.                  |
+| integration\_type                   | Type of integration                                                                                                                                                                             | "Not Selected", "API", "SDK", etc.                            |
+| service\_intent                     | Service intent of the merchant                                                                                                                                                                  | "default"                                                     |
+| bank\_detail                        | Contains the bank\_detail in a JSON format. For more information, refer to [bank\_detail JSON object field descriptions](bank_detail-json-object-field-descriptions).                           |                                                               |
+| operating\_address                  | Contains the operating\_address in a JSON format. For more information, refer to \[operating\_address JSON object field descriptions]\(#operating\_address-json-object-field descriptions)      |                                                               |
+| registration\_address               | Contains the registration address in a JSON format. For more information, refer to [registration\_address JSON object field descriptions](registration_address-json-object-field-descriptions). |                                                               |
+| kyc\_status                         | Contains the KYC in a JSON format. For more information, refer to [KYC status JSON object field descriptions.](#kyc-status-json-object-field-descriptions.)                                     |                                                               |
+
+### bank\_detail JSON object field descriptions
+
+The `bank_detail` object contains information about the merchant's bank account.
+
+| Field                 | Description                     | Possible Values/Notes            |
+| --------------------- | ------------------------------- | -------------------------------- |
+| bank\_account\_number | Bank account number             | Can be null                      |
+| ifsc\_code            | IFSC code of the bank branch    | Can be null, Format: AAAA0000000 |
+| holder\_name          | Name of the account holder      | Can be null                      |
+| nodal\_code           | Nodal code for the bank account | Can be null                      |
+| nodal\_status         | Status of nodal account         | Can be null                      |
+
+### operating\_address JSON object field descriptions
+
+The `operating_address` object contains the merchant's operating address details.
+
+| Field         | Description          | Possible Values/Notes                          |
+| ------------- | -------------------- | ---------------------------------------------- |
+| address\_line | Street address       | Can be null                                    |
+| city          | City name            | Can be null                                    |
+| state         | State name           | Can be null                                    |
+| pincode       | PIN code/postal code | Can be null, 6-digit code for Indian addresses |
+
+### registration\_address JSON object field descriptions
+
+The `registration_address` object contains the merchant's registration address details.
+
+| Field         | Description          | Possible Values/Notes                          |
+| ------------- | -------------------- | ---------------------------------------------- |
+| address\_line | Street address       | Can be null                                    |
+| city          | City name            | Can be null                                    |
+| state         | State name           | Can be null                                    |
+| pincode       | PIN code/postal code | Can be null, 6-digit code for Indian addresses |
+
+### kyc\_ status JSON object field descriptions
+
+The `kyc_status` object contains information about the merchant's KYC verification status.
+
+| Field       | Description         | Possible Values/Notes                                    |
+| ----------- | ------------------- | -------------------------------------------------------- |
+| status      | Overall KYC status  | e.g., "LOCKED", "UNLOCKED", "VERIFIED", etc.             |
+| kyc\_status | Detailed KYC status | e.g., "LOCKED", "UNLOCKED", "VERIFIED", "REJECTED", etc. |
 
 > 📘 Notes:
 >
