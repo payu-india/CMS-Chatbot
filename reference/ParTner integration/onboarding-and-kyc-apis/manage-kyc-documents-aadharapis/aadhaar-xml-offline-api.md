@@ -7,7 +7,7 @@ hidden: false
 ---
 The **Aadhar XML Offline** API allows merchants to submit Aadhaar XML files (obtained from DigiLocker or UIDAI) for KYC verification purposes.
 
-<PARTNEROnboardingEnvironment />
+<PartnerAuthenticationEnvironement />
 
 ## Request parameters
 
