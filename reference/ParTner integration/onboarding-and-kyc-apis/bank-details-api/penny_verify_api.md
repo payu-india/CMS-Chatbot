@@ -5,7 +5,7 @@ api:
   file: partner-apis-6.json
   operationId: penny_verify
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
