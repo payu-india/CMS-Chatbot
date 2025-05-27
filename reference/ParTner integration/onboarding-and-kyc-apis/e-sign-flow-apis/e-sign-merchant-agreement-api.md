@@ -14,6 +14,10 @@ This API is used to e-sign merchant agreements, and it is used while E-Sign PayU
 
 This API requires an access token using the **Get Token** API with the scope as **EsignMergedDocument**. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
+> 📘 Prerequisite:
+>
+> All KYC docs and website has to be in approved state for the merchant.
+
 **Environment**
 
 |                            |                                                            |
