@@ -1,5 +1,5 @@
 ---
-title: Cancel Recurring Payment for a Card
+title: Cancel Recurring Payment for a Cards
 deprecated: false
 hidden: false
 metadata:
