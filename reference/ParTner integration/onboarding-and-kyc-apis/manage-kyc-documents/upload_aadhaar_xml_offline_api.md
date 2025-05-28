@@ -24,18 +24,66 @@ This API is used to submit the Aadhaar details in an XML file. The access token 
 
 ## Request parameters
 
-<br />
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        aadhaar\_file
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This field must contain the Aadhaar xml/zip file location
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        aadhaar\_share\_code
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This field must contain the Aadhaar share code.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchant\_id
+        `mandatory`
+      </td>
+
+      <td>
+        `String` The merchant ID that was provided by PayU.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
 ```curl
-curl --location -g --request POST '{{onboarding_url}}/api/v3/merchants/kyc_document/ckyc_data' \
---header 'Authorization: Bearer {{access_token}}' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "dob": "01-01-1990",
-    "merchant_id": "{{merchant_id}}"
-}'
+curl -X POST \
+  'https://api.example.com/v3/merchants/kyc_document/aadhaar_xml_offline' \
+  -H 'Authorization: Bearer YOUR_ACCESS_TOKEN' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'merchant_id=123456789' \
+  -F 'aadhaar_share_code=1234-5678-9012' \
+  -F 'aadhaar_file=@/path/to/your/aadhaar_file.xml'
+
 ```
 
 ## Sample response
