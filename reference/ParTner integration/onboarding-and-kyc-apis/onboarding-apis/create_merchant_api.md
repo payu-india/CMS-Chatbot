@@ -5,7 +5,7 @@ api:
   file: partner-apis-26.json
   operationId: create_merchantv3
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Create Merchant API
   description: >-
