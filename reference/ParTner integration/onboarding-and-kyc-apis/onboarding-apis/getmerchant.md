@@ -1,9 +1,16 @@
 ---
-title: GetMerchant
+title: Get Merchant API
 api:
   file: GetMerchant_API_Collection.json
   operationId: GetMerchant
 hidden: false
+metadata:
+  title: Get Merchant Details API
+  description: >-
+    Learn how to use the PayU Get Merchant Details API to retrieve detailed
+    information about merchants. This API Reference page provides comprehensive
+    instructions, request parameters, and sample responses for efficient
+    merchant management.
 ---
 The **Get Merchant** API is used to get the merchant details. You require the access token to get the merchant details using this API. The access token can be fetched using the Get Token API. For more information, refer to [Get Token API - Partner Integration](ref:get_token_api).
 
