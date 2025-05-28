@@ -4,6 +4,21 @@ api:
   file: UpdateMerchant_API_3.1_Collection.json
   operationId: UpdateMerchant
 hidden: false
+metadata:
+  title: Update Merchant Details API
+  description: >
+    Learn how to use the PayU Update Merchant Details API to add or update
+    merchant information, including PAN details. This API Reference page
+    provides detailed instructions, request parameters, and sample responses for
+    efficient merchant management.
+  keywords:
+    - Update Merchant Details API
+    - merchant information
+    - PAN details
+    - secure merchant management
+    - tokenization
+    - update merchant
+    - manage merchants
 ---
 The **Update Merchant Details** API is used to:
 
