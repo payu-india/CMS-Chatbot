@@ -8,4 +8,4 @@
 - old_delete_kyc_document_api
 - post_ckyc_api
 - old_upload_aadhaar_xml_offline_api
-- upload-aadhaar-xml-offline-api
+- upload_aadhaar_xml_offline_api
