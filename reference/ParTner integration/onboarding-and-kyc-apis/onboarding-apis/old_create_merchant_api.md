@@ -1,5 +1,5 @@
 ---
-title: '[OLD] Create Merchant API'
+title: Create Merchant API
 excerpt: ''
 api:
   file: partner-apis-26.json
