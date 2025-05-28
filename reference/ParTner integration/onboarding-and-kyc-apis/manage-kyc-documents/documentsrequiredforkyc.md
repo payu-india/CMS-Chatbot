@@ -4,6 +4,11 @@ api:
   file: Documents_Required_API_Collection.json
   operationId: DocumentsrequiredforKYC
 hidden: false
+metadata:
+  title: Documents Required for KYC API
+  keywords:
+    - Documents Required for KYC API
+    - Doc Required for KYC
 ---
 This API is used to fetch list of documents required for completing KYC of merchant.
 
