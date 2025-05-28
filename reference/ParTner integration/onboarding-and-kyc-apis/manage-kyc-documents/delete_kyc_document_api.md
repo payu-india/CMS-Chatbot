@@ -1,5 +1,5 @@
 ---
-title: Delete KYC Document API
+title: '[OLD]Delete KYC Document API'
 excerpt: |-
   It is used to delete document for a merchant.
 
@@ -12,7 +12,7 @@ api:
   file: partner-apis-6.json
   operationId: delete_document
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
