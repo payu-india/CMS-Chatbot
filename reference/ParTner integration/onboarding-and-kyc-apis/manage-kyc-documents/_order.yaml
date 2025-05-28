@@ -7,5 +7,5 @@
 - delete_kyc_document_api
 - old_delete_kyc_document_api
 - post_ckyc_api
-- upload_aadhaar_xml_offline_api
+- old_upload_aadhaar_xml_offline_api
 - upload-aadhaar-xml-offline-api
