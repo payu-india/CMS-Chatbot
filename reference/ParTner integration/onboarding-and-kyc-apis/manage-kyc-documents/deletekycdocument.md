@@ -1,9 +1,11 @@
 ---
-title: Delete KYC document
+title: Delete KYC Document API
 api:
   file: Delete_KYC_Document_API_Collection_v2.json
   operationId: DeleteKYCdocument
 hidden: false
+metadata:
+  title: Delete KYC Document API
 ---
 This API is used to delete the document for a merchant.
 
