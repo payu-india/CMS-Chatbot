@@ -3,7 +3,7 @@ title: CreateMerchant
 api:
   file: Create_Merchant_API_Updated.json
   operationId: post_api-v3-merchants
-hidden: false
+hidden: true
 ---
 The **Create Merchant** API creates a new merchant account on PayU and posts all KYC details. This API returns the Merchant ID (MID) in the response.
 
