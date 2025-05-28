@@ -5,6 +5,6 @@
 - create_kyc_document_api
 - create_kyc_document_api-1
 - deletekycdocument
-- delete_kyc_document_api
+- old_delete_kyc_document_api
 - post_ckyc_api
 - upload_aadhaar_xml_offline_api
