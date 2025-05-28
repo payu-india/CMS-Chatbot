@@ -1,11 +1,11 @@
 ---
-title: Add or Update Bank Details API
+title: '[OLD]Add or Update Bank Details API'
 excerpt: ''
 api:
   file: partner-integration-updated-2.json
   operationId: AddorUpdateBankDetails
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
