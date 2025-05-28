@@ -1,5 +1,5 @@
 ---
-title: GetMerchant
+title: Get Merchant Details API
 api:
   file: GetMerchant_API_Collection.json
   operationId: GetMerchant
