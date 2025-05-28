@@ -2,5 +2,5 @@
 - old_create_merchant_api
 - old_update_merchant_details_api
 - update_merchant_details_api
-- getmerchant
+- get_merchant_api
 - old_get_merchant_api
