@@ -1,11 +1,11 @@
 ---
-title: Update Merchant Details API
+title: '[OLD]Update Merchant Details API'
 excerpt: ''
 api:
   file: partner-integration-updated-2.json
   operationId: UpdateMerchantDetails
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Update Merchant Details API
   description: >-
