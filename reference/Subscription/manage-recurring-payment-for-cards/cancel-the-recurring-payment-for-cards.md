@@ -61,128 +61,182 @@ The following table describes the parameters for delete the recurring payment de
   </thead>
   <tbody>
     <tr>
-      <td><strong>key</strong> <em>(mandatory)</em></td>
+      <td>
+        <strong>key</strong><br/>
+        <code>mandatory</code>
+      </td>
       <td><code>varchar</code> This parameter is the unique Merchant Key provided by PayU for your merchant account.</td>
       <td>Your Test Key</td>
     </tr>
     <tr>
-      <td><strong>txnid</strong> <em>(mandatory)</em></td>
       <td>
-        <code>varchar</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.<br>
-        <code>Character limit</code>: 25<br>
+        <strong>txnid</strong><br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>varchar</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.<br/>
+        <code>Character limit</code>: 25<br/>
         <strong>Note</strong>: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
       </td>
       <td>fd3e847h2</td>
     </tr>
     <tr>
-      <td><strong>amount</strong> <em>(mandatory)</em></td>
       <td>
-        <code>float</code> This parameter should contain the payment amount of the particular transaction.<br><br>
-        <strong>Note</strong>: Type-cast the amount to float type<br>
-        Depending upon the merchant use case, this value will vary.<br><br>
-        - It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.<br><br>
+        <strong>amount</strong><br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>float</code> This parameter should contain the payment amount of the particular transaction.<br/><br/>
+        <strong>Note</strong>: Type-cast the amount to float type<br/>
+        Depending upon the merchant use case, this value will vary.<br/><br/>
+        - It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.<br/><br/>
         - In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
       </td>
       <td>1000</td>
     </tr>
     <tr>
-      <td><strong>productinfo</strong> <em>(mandatory)</em></td>
       <td>
-        <code>varchar</code> This parameter should contain a brief product description. It should be a string describing the product.<br>
+        <strong>productinfo</strong><br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>varchar</code> This parameter should contain a brief product description. It should be a string describing the product.<br/>
         <code>Character limit</code>: 100
       </td>
       <td>Time Magazine Subscription</td>
     </tr>
     <tr>
-      <td><strong>firstname</strong> <em>(mandatory)</em></td>
       <td>
-        <code>varchar</code> Must contain the first name of the customer.<br>
+        <strong>firstname</strong><br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>varchar</code> Must contain the first name of the customer.<br/>
         <code>Character limit</code>: 60
       </td>
       <td>Ashish</td>
     </tr>
     <tr>
-      <td><strong>email</strong> <em>(mandatory)</em></td>
       <td>
-        <code>varchar</code> Must contain the email of the customer.<br>
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.<br>
-        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br>
+        <strong>email</strong><br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>varchar</code> Must contain the email of the customer.<br/>
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.<br/>
+        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br/>
         Character limit: 50
       </td>
       <td>Ashish@test.com</td>
     </tr>
     <tr>
-      <td><strong>phone</strong> <em>(mandatory)</em></td>
       <td>
-        <code>varchar</code> Must contain the phone number of the customer.<br><br>
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br>
+        <strong>phone</strong><br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>varchar</code> Must contain the phone number of the customer.<br/><br/>
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br/>
         Character limit: 50
       </td>
       <td>9843176540</td>
     </tr>
     <tr>
-      <td><strong>api_version</strong> <em>(mandatory)</em></td>
+      <td>
+        <strong>api_version</strong><br/>
+        <code>mandatory</code>
+      </td>
       <td>This parameter must always needs to be passed as 7.</td>
       <td>7</td>
     </tr>
     <tr>
-      <td><strong>si</strong> <em>(mandatory)</em></td>
+      <td>
+        <strong>si</strong><br/>
+        <code>mandatory</code>
+      </td>
       <td>This parameter must be passed with the value as 3 to cancel an already existing subscription/consent.</td>
       <td>3</td>
     </tr>
     <tr>
-      <td><strong>pg</strong> <em>(mandatory)</em></td>
+      <td>
+        <strong>pg</strong><br/>
+        <code>mandatory</code>
+      </td>
       <td><code>String</code> This parameter defines the payment category that the merchant wants the customer to see by default on the PayU's payment page. In this example, "CC" must be specified. For more information, refer to Payment Mode Codes.</td>
       <td>AMEXSI</td>
     </tr>
     <tr>
-      <td><strong>bankcode</strong> <em>(mandatory)</em></td>
+      <td>
+        <strong>bankcode</strong><br/>
+        <code>mandatory</code>
+      </td>
       <td>Each payment option is identified with a String unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to <a href="doc:card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></td>
       <td>AMEXSI</td>
     </tr>
     <tr>
-      <td><strong>ccnum</strong> <em>(mandatory)</em></td>
+      <td>
+        <strong>ccnum</strong><br/>
+        <code>mandatory</code>
+      </td>
       <td>This parameter must contain the 13 to 19-digit card number for credit or debit cards in general.</td>
       <td></td>
     </tr>
     <tr>
-      <td><strong>ccname</strong> <em>(mandatory)</em></td>
+      <td>
+        <strong>ccname</strong><br/>
+        <code>mandatory</code>
+      </td>
       <td>This parameter must contain the name on card – as entered by the customer for the transaction.</td>
       <td></td>
     </tr>
     <tr>
-      <td><strong>ccvv</strong> <em>(mandatory)</em></td>
+      <td>
+        <strong>ccvv</strong><br/>
+        <code>mandatory</code>
+      </td>
       <td>This parameter must contain the 3-digit CVV number for credit cards or debit cards. For AMEX cards, 4-digit security code (4DBC) number of the card must be posted. Also, known as CID (Card Identification) number.</td>
       <td></td>
     </tr>
     <tr>
-      <td><strong>ccexpmon</strong> <em>(mandatory)</em></td>
       <td>
-        This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format.<br>
+        <strong>ccexpmon</strong><br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format.<br/>
         For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
       </td>
       <td></td>
     </tr>
     <tr>
-      <td><strong>ccexpyr</strong> <em>(mandatory)</em></td>
+      <td>
+        <strong>ccexpyr</strong><br/>
+        <code>mandatory</code>
+      </td>
       <td>This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.</td>
       <td></td>
     </tr>
     <tr>
-      <td><strong>si_details</strong> <em>(mandatory)</em></td>
       <td>
-        This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br><br>
-        <strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0 )<br><br>
+        <strong>si_details</strong><br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br/><br/>
+        <strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0 )<br/><br/>
         This is a JSON object and it includes a set of parameters are described in the the <a href="#si_details-parameter-json-details">si_details Parameter – JSON Details</a> table.
       </td>
       <td>Refer the example below the si_details Parameter Description table.</td>
     </tr>
     <tr>
-      <td><strong>hash</strong> <em>(mandatory)</em></td>
       <td>
-        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions.<br><br>
-        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.<br><br>
-        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br>
+        <strong>hash</strong><br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions.<br/><br/>
+        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.<br/><br/>
+        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br/>
         <code>SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||si_details|SALT)</code>
       </td>
       <td></td>
@@ -201,6 +255,7 @@ The description for the **si\_details** parameter (JSON format):
 >
 > If the request was to modify a subscription, **si\_consent\_action** parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
 
+<HTMLBlock>{`
 <table>
   <thead>
     <tr>
@@ -209,22 +264,28 @@ The description for the **si\_details** parameter (JSON format):
       <th align="left">Example</th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
-      <td><strong>authpayuid</strong> <em>(mandatory for modifying subscription with cards)</em></td>
+      <td>
+        <strong>authpayuid</strong><br/>
+        <code>mandatory for modifying subscription with cards</code>
+      </td>
       <td>This parameter is used only to modify an existing subscription/consent. Modification means modifying billing details like startDate, endDate, billing cycle, billing interval, billing amount.</td>
-
-      <td />
+      <td></td>
     </tr>
-
     <tr>
-      <td><strong>action</strong> <em>(mandatory for cards)</em></td>
+      <td>
+        <strong>action</strong><br/>
+        <code>mandatory for cards</code>
+      </td>
       <td>This parameter is used to cancel an existing subscription. Pass the values as <strong>cancel</strong> to cancel an existing subscription or consent.</td>
       <td>cancel</td>
     </tr>
   </tbody>
 </table>
+`}</HTMLBlock>
+
+<br />
 
 ### si\_details Parameter Example Values
 
@@ -259,8 +320,8 @@ curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "C
     <tr>
       <td>mode</td>
       <td>
-        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:<br>
-        • Credit Card – CC<br>
+        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:<br/>
+        • Credit Card – CC<br/>
         • Debit Card – DC
       </td>
     </tr>
@@ -271,8 +332,8 @@ curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "C
     <tr>
       <td>status</td>
       <td>
-        This parameter returns the status of the transaction and must be used to map the order status. Possible values are success, failure, or pending. The significance of the values for these values are:<br>
-        • <strong>Success</strong>: If the value of status parameter is 'success', the transaction is successful.<br>
+        This parameter returns the status of the transaction and must be used to map the order status. Possible values are success, failure, or pending. The significance of the values for these values are:<br/>
+        • <strong>Success</strong>: If the value of status parameter is 'success', the transaction is successful.<br/>
         • <strong>Failed</strong>: If the value of status parameter is 'failure' or 'pending', must only be treated as a failed transaction.
       </td>
     </tr>
@@ -399,10 +460,10 @@ curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "C
     <tr>
       <td>si_consent_action</td>
       <td>
-        This parameter will be returned only if a modify subscription request has been received. In other cases, this field will not be returned.<br>
-        Values can be<br>
-        modify<br>
-        cancel<br>
+        This parameter will be returned only if a modify subscription request has been received. In other cases, this field will not be returned.<br/>
+        Values can be<br/>
+        modify<br/>
+        cancel<br/>
         If, in billing details, the action was to modify, then to validate whether the subscription was modified, this fields need to be validated in response. If this field is not sent in response of modify request, then even if transaction is success, then money would have got deducted but the subscription would not have been modified.
       </td>
     </tr>
