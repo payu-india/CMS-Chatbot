@@ -23,7 +23,7 @@ This API is used to fetch list of documents required for completing KYC of merch
   <summary>Sample request</summary>
 
   ```
-  curl --location --request GET 'https://test-partner.payu.in/api/v3/merchants/8011767/kyc_document/required_docs' \
+  curl --location --request GET 'https://uat-partner.payu.in/api/v3/merchants/8011767/kyc_document/required_docs' \
   --header 'Authorization: Bearer 8881fa7eb0943423e0a136b44d44f7ec2632991f34302947659654515a1e7965'
   ```
 </details>
