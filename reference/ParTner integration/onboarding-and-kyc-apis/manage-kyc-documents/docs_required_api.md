@@ -21,7 +21,7 @@ This API is used to fetch list of documents required for completing KYC of merch
 
 The merchant ID in the request header must be included as a query parameter in the **mid** field.
 
-<PARTNEROnboardingEnvironment />
+<PARTNEROnboardingEnvironment/>
 
 <details>
   <summary>Sample request</summary>
