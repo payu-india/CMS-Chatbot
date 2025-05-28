@@ -1,4 +1,4 @@
 ---
 title: KycApis
-hidden: false
+hidden: true
 ---
