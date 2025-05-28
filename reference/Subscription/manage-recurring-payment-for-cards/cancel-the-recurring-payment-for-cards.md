@@ -30,8 +30,6 @@ next:
       slug: check-mandate-status-api
       title: Check Mandate Status for Cards API
 ---
-# Mandate Revoke (Cancel Recurring Payment)
-
 This section describes how to use the **\_payment** API with  to cancel a recurring payment registration for card.
 
 > 📘 Notes:
