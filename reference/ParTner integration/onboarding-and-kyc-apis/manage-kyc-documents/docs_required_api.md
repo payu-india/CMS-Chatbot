@@ -1,5 +1,5 @@
 ---
-title: Documents required for KYC
+title: Documents Required for KYC API
 api:
   file: Documents_Required_API_Collection.json
   operationId: DocumentsrequiredforKYC
