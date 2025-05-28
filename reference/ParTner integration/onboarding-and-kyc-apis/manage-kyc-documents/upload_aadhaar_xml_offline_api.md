@@ -1,11 +1,11 @@
 ---
-title: Upload Aadhaar XML Offline API
+title: '[OLD]Upload Aadhaar XML Offline API'
 excerpt: ''
 api:
   file: partner-apis-6.json
   operationId: AadhaarXMLofflineAPI
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
