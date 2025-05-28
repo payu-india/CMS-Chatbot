@@ -1,5 +1,5 @@
 ---
-title: Add/Update Bank Details
+title: Add or Update Bank Details API
 api:
   file: Add_Update_Bank_Details_API_Collection.json
   operationId: Add/UpdateBankDetails
