@@ -1,11 +1,11 @@
 ---
-title: Info KYC Document API
+title: '[OLD]Info KYC Document API'
 excerpt: ''
 api:
   file: partner-apis-6.json
   operationId: DocInfoAPI
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
