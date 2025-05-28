@@ -1,11 +1,11 @@
 ---
-title: Documents Required API
+title: '[OLD]Documents Required API'
 excerpt: ''
 api:
   file: partner-apis-6.json
   operationId: DocsrequiredAPI
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
