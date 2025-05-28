@@ -1,9 +1,11 @@
 ---
-title: Info KYC document
+title: Info KYC Document API
 api:
   file: Info_KYC_Document_API_With_BusinessEntity.json
   operationId: InfoKYCdocument
 hidden: false
+metadata:
+  title: Info KYC Document API
 ---
 This API is used to fetch a list of documents required for completing the KYC of the merchant. The access token is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
 
