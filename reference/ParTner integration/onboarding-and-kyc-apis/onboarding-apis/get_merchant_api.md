@@ -1,13 +1,13 @@
 ---
-title: Get Merchant API
+title: '[OLD]Get Merchant API'
 excerpt: ''
 api:
   file: partner-apis-6.json
   operationId: get_merchant
 deprecated: false
-hidden: false
+hidden: true
 metadata:
-  title: Get Merchant Details API
+  title: '[OLD]Get Merchant Details API'
   description: >-
     Learn how to use the PayU Get Merchant Details API to retrieve detailed
     information about merchants. This API Reference page provides comprehensive
