@@ -29,7 +29,10 @@ Before configuring a chargeback webhook, ensure that:
 <Image align="center" src="https://files.readme.io/b1afa2ecaf68bcc42dcc8906f4d56d12183126483b65652f19417ff9cac243de-Screenshot_2024-10-08_at_5.22.20_PM.png" />
 
 3. Select the **Chargeback** type from the **Type** drop-down list:
-4. Select the event type from the **Event** drop-down list.
+4. Select any of the following event type from the **Event** drop-down list:
+   * A new chargeback is created
+   * Chargeback status is changed
+   * Chargeback amount is changed
 5. Enter the webhook URL in the **Webhook URL** field.
 6. Click **Create** to finish.
 
