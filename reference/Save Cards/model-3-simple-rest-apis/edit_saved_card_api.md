@@ -26,7 +26,7 @@ The **Edit a Card** API is used to edit the details of an existing stored card o
 
 HTTP Method: **POST**
 
-<GENERALAPIsEnvironment />
+<GENERALAPIsEnvironment/>
 
 <details>
   <summary>Sample request</summary>
