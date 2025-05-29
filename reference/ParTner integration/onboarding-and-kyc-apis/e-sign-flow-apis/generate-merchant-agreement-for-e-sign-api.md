@@ -2,7 +2,7 @@
 title: Generate Merchant Agreement for E-Sign API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
