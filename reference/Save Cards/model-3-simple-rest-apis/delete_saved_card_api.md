@@ -27,7 +27,7 @@ This API is used to delete an existing card stored on PayU Vault.
 
 HTTP Method: **POST**
 
-<GENERALAPIsEnvironment />
+<GENERALAPIsEnvironment/>
 
 <details>
   <summary>Sample Response</summary>
