@@ -1,5 +1,5 @@
 - old_generate-merchant-agreement-for-e-sign-api
 - generate-merchant-agreement-for-e-sign-api
-- send-otp-to-signatory-email-api
+- old_send-otp-to-signatory-email-api
 - sendotptosignatoryemail
 - e-sign-merchant-agreement-api
