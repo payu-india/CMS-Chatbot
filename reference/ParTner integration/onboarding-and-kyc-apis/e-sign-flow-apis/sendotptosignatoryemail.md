@@ -7,6 +7,8 @@ api:
   file: Send_OTP_To_Signatory_Email_API.json
   operationId: SendOtpToSignatoryEmail
 hidden: false
+metadata:
+  title: Send OTP to Signatory Email API
 ---
 This API is used to send OTP to the signatory email, and this OTP is used by the **E-Sign Merged Agreement** API to sign the document. This API sends both mobile and email OTP, where the mobile number is the merchant’s registered mobile number. For more information on the **E-Sign Merged Agreement** API, refer to [E-Sign Merchant Agreement API](ref:e-sign-merchant-agreement-api).
 
