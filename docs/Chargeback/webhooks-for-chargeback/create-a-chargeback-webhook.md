@@ -21,10 +21,23 @@ Before configuring a chargeback webhook, ensure that:
 
 ## Using Dashboard
 
-1. Log in to your PayU merchant dashboard
-2. Navigate to the **Settings** tab on the left side
-3. Click **Webhooks**.
-4. <br />
+1. Log on to PayU Dashboard. For more information, refer to [Log in to Dashboard](doc:log-in-to-dashboard).
+2. Select **Developers** > **Webhooks tab**.
+
+<Image align="center" src="https://files.readme.io/da995061d23e136d36c3bfe4482a90bfc5d2644e5c8e13b831a304e3ded73100-Screenshot_2024-10-08_at_5.21.21_PM.png" />
+
+    The Create Webhooks page is displayed with the list of webhooks.
+
+2. Click **Create Webhook** on the top-right corner of the *Create Webhooks* page.
+
+   The *Create Webhook* pop-up page is displayed.
+
+<Image align="center" src="https://files.readme.io/b1afa2ecaf68bcc42dcc8906f4d56d12183126483b65652f19417ff9cac243de-Screenshot_2024-10-08_at_5.22.20_PM.png" />
+
+3. Select the **Chargeback** type from the **Type** drop-down list:
+4. Select the event type from the **Event** drop-down list.
+5. Enter the webhook URL in the **Webhook URL** field.
+6. Click **Create** to finish.
 
 ## Using Chargeback portal
 
