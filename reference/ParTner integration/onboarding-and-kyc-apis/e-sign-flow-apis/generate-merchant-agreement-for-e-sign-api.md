@@ -31,7 +31,7 @@ This API is used to generate merchant agreements used while E-Sign PayU Service 
 ## Sample Request
 
 ```curl
-curl --location --request GET '{onboarding_url}/api/v1/merchants/{uuid}/generate_merged_document_for_esign' \
+curl --location --request GET '{onboarding_url}/api/v3/merchants/{uuid}/generate_merged_document_for_esign' \
 --header 'Authorization: Bearer {access_token}'
 ```
 
