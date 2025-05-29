@@ -1,7 +1,7 @@
 ---
 title: MCP Usage Examples
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
