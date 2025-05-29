@@ -1,10 +1,12 @@
 ---
-title: Generate Merchant Agreement For E-Sign
+title: Generate Merchant Agreement For E-Sign API
 excerpt: Generates a merchant agreement document that can be e-signed
 api:
   file: Generate_Merchant_Agreement_For_ESign_API_v0.json
   operationId: GenerateMerchantAgreementForEsign
 hidden: false
+metadata:
+  title: Generate Merchant Agreement For E-Sign
 ---
 This API is used to generate merchant agreements used while E-Sign PayU Service Agreement is generated and signed.
 
