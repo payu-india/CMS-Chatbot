@@ -42,9 +42,8 @@ Before configuring a chargeback webhook, ensure that:
 
 ## Using Chargeback portal
 
-1. Visit [chargeback.payu.in](http://chargeback.payu.in)
-2. Log in with your merchant credentials
-3. Click the **Configure Webhooks** button.
+1. Open the Chargeback portal using the **Chargeback** menu on Dashboard.
+2. Click the **Configure Webhooks** button.
 
 The *Configure Webhook* page is displayed.
 
