@@ -5,9 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-## Webhook Payload
-
-When a chargeback event occurs, PayU will send a POST request to your configured URL with a JSON payload. Here's a sample payload:
+When a chargeback event occurs, PayU will send a POST request to your configured URL with a JSON payload similar to the following:
 
 ```json
 {
@@ -26,11 +24,7 @@ When a chargeback event occurs, PayU will send a POST request to your configured
 }
 ```
 
-<br />
-
-<br />
-
-### Key Fields in the Payload
+### Fields in the payload
 
 | Field        | Description                                    |
 | ------------ | ---------------------------------------------- |
@@ -94,20 +88,6 @@ Chargeback reason codes in the payload are descriptive text values, such as:
 * Technical-Others
 * Account Debited but confirmation not received at merchant location
 
-## Additional Information
-
-* **For Aggregator MIDs**: If you are using an aggregator MID, the webhook will be sent to the parent MID's configured webhook URL, including the child MID in the payload.
-* **IP Whitelisting**: Currently, there is no requirement for IP whitelisting.
-
-## Testing Your Webhook
-
-It's recommended to test your webhook implementation to ensure it's working correctly:
-
-1. Configure your webhook as described above
-2. Set up your endpoint to log incoming webhook requests
-3. Wait for a chargeback event or request a test webhook from PayU support
-4. Verify that your endpoint receives the webhook payload and processes it correctly
-
 ## Troubleshooting
 
 If you're not receiving webhook notifications:
@@ -116,12 +96,3 @@ If you're not receiving webhook notifications:
 * Check that your endpoint returns a 200 OK response to acknowledge receipt of the webhook
 * Ensure your webhook is set to "Active" in the configuration
 * Contact PayU support if you continue to experience issues
-
-## Need Help?
-
-If you need assistance with webhook configuration or have any questions, please contact PayU support.
-
-```
-
-Would you like me to save this as a markdown (.md) file for you as well?
-```
