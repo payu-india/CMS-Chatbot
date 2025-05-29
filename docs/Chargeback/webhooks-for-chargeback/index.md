@@ -5,6 +5,12 @@ hidden: true
 metadata:
   robots: index
 ---
+Chargeback webhooks provide real-time notifications about important chargeback events, allowing merchants to stay updated and take necessary actions promptly. Webhooks are sent for the following events:
+
+* A new chargeback is created
+* Chargeback status is changed
+* Chargeback amount is changed
+
 ## Understanding payload
 
 When a chargeback event occurs, PayU will send a POST request to your configured URL with a JSON payload similar to the following:
