@@ -33,6 +33,13 @@ Before configuring a chargeback webhook, ensure that:
 5. Enter the webhook URL in the **Webhook URL** field.
 6. Click **Create** to finish.
 
+> 📘 Reference
+>
+> To update or delete an existing webhook, refer to:
+>
+> * [Update a Webhook](doc:update-a-webhook)
+> * [Delete a Webhook](doc:delete-a-webhook-on-dashboard)
+
 ## Using Chargeback portal
 
 1. Visit [chargeback.payu.in](http://chargeback.payu.in)
