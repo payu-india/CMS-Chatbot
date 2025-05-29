@@ -52,7 +52,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         <Glossary>key</Glossary>
-        **mandatory**
+        \`mandatory\`
       </td>
 
       <td>
@@ -66,8 +66,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        api\_version\
-        **optional**
+        api_version
+        \`optional\`
       </td>
 
       <td>
@@ -81,8 +81,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        txnid\
-        **mandatory**
+        txnid
+        \`mandatory\`
       </td>
 
       <td>
@@ -96,8 +96,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        amount\
-        **mandatory**
+        amount
+        \`mandatory\`
       </td>
 
       <td>
@@ -111,8 +111,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        productinfo\
-        **mandatory**
+        productinfo
+        \`mandatory\`
       </td>
 
       <td>
@@ -129,8 +129,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        firstname\
-        **mandatory**
+        firstname
+        \`mandatory\`
       </td>
 
       <td>
@@ -147,8 +147,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        email\
-        **mandatory**
+        email
+        \`mandatory\`
       </td>
 
       <td>
@@ -165,8 +165,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        phone\
-        **mandatory**
+        phone
+        \`mandatory\`
       </td>
 
       <td>
@@ -182,8 +182,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        lastname\
-        **mandatory**
+        lastname
+        \`mandatory\`
       </td>
 
       <td>
@@ -200,8 +200,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        address1\
-        **optional**
+        address1
+        \`optional\`
       </td>
 
       <td>
@@ -218,8 +218,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        address2\
-        **optional**
+        address2
+        \`optional\`
       </td>
 
       <td>
@@ -233,8 +233,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        city\
-        **optional**
+        city
+        \`optional\`
       </td>
 
       <td>
@@ -248,8 +248,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        state\
-        **optional**
+        state
+        \`optional\`
       </td>
 
       <td>
@@ -263,8 +263,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        country\
-        **optional**
+        country
+        \`optional\`
       </td>
 
       <td>
@@ -278,8 +278,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        zipcode\
-        **optional**
+        zipcode
+        \`optional\`
       </td>
 
       <td>
@@ -296,8 +296,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        surl\
-        **mandatory**
+        surl
+        \`mandatory\`
       </td>
 
       <td>
@@ -311,8 +311,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        furl\
-        **mandatory**
+        furl
+        \`mandatory\`
       </td>
 
       <td>
@@ -326,23 +326,23 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        hash\
-        **mandatory**
+        hash
+        \`mandatory\`
       </td>
 
       <td>
-        \`String\` It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
+        \`String\` It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
       </td>
 
       <td>
-        \`eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972\`
+        \`eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972\`
       </td>
     </tr>
 
     <tr>
       <td>
-        <Glossary>pg</Glossary>\
-        **mandatory**
+        <Glossary>pg</Glossary>
+        \`mandatory\`
       </td>
 
       <td>
@@ -356,12 +356,12 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        <Glossary>bankcode</Glossary>\
-        **mandatory**
+        <Glossary>bankcode</Glossary>
+        \`mandatory\`
       </td>
 
       <td>
-        \`String\` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. 
+        \`String\` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. 
       </td>
 
       <td>
@@ -371,12 +371,12 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        udf1 - udf5\
-        **optional**
+        udf1 - udf5
+        \`optional\`
       </td>
 
       <td>
-        \`String\` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.\
+        \`String\` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
         \`Character Limit-255\`
       </td>
 
@@ -387,23 +387,23 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        ccnum\
-        **optional**
+        ccnum
+        \`optional\`
       </td>
 
       <td>
-        \`varchar\` This parameter must contain the 13 to 19-digit card number for credit or debit cards in general. 
+        \`varchar\` This parameter must contain the 13 to 19-digit card number for credit or debit cards in general. 
       </td>
 
       <td>
-        512\*\*\*6789012346
+        512***6789012346
       </td>
     </tr>
 
     <tr>
       <td>
-        ccname\
-        **optional**
+        ccname
+        \`optional\`
       </td>
 
       <td>
@@ -417,8 +417,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        ccvv\
-        **optional**
+        ccvv
+        \`optional\`
       </td>
 
       <td>
@@ -432,8 +432,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        ccexpmon\
-        **mandatory**
+        ccexpmon
+        \`mandatory\`
       </td>
 
       <td>
@@ -447,8 +447,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        ccexpyr\
-        **mandatory**
+        ccexpyr
+        \`mandatory\`
       </td>
 
       <td>
@@ -462,8 +462,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        store\_card\_token\
-        **mandatory**
+        store_card_token
+        \`mandatory\`
       </td>
 
       <td>
@@ -477,8 +477,8 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        storecard\_token\_type\
-        **mandatory**
+        storecard_token_type
+        \`mandatory\`
       </td>
 
       <td>
@@ -492,17 +492,17 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        additional\_info\
-        **mandatory**
+        additional_info
+        \`mandatory\`
       </td>
 
       <td>
-        \`varchar\` This parameter will contain the additional information in the following JSON format:\
-        \{“last4Digits”: “1234”, “<Glossary>TAVV</Glossary>”: “ABCDEFGH”,”<Glossary>trid</Glossary>”:”1234567890”, “<Glossary>tokenRefNo</Glossary>”:”abcde123456”}  
+        \`varchar\` This parameter will contain the additional information in the following JSON format:
+        {"last4Digits": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}  
       </td>
 
       <td>
-        \{“last4Digits”: “1234”, “tavv”: “ABCDEFGH”,”trid”:”1234567890”, “tokenRefNo”:”abcde123456”}
+        {"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}
       </td>
     </tr>
   </tbody>
