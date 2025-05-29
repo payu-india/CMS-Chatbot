@@ -1,11 +1,11 @@
 ---
-title: Create Merchant API
+title: '[OLD]Create Merchant API'
 excerpt: ''
 api:
   file: partner-apis-26.json
   operationId: create_merchantv3
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Create Merchant API
   description: >-
