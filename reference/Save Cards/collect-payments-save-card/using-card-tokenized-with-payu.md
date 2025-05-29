@@ -182,7 +182,10 @@ HTTP Method: **POST**
         <code>mandatory</code>
       </td>
       <td><code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted).</td>
-      <td><code>eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972</code></td>
+      <td><code>eabec285da28fd0e3054d41a4d24
+        fe9f7599c9d0b66646f7a9984303f
+        d6124044b6206daf831e9a8bda28a6200d318
+        293a13d6c193109b60bd4b4f8b09c90972</code></td>
     </tr>
     <tr>
       <td>
