@@ -90,7 +90,7 @@ PayU will retry 3 times to get a 200 OK response from the merchant’s servers b
 
 ## Webhook events for Payments
 
-The table below lists down the webhook events that are supported for Payment Webhooks types. See [Create a new Webhook ](https://docs.payu.in/docs/create-a-new-webhook) to learn more about how to create payment webhooks and subscribe to payment events. 
+The table below lists down the webhook events that are supported for Payment Webhooks types. See [Create a new Webhook ](https://docs.payu.in/docs/create-a-new-webhook) to learn more about how to create payment webhooks and subscribe to payment events.
 
 | Event Name | Event Type | Description                                      |
 | :--------- | :--------- | :----------------------------------------------- |
@@ -101,8 +101,17 @@ The table below lists down the webhook events that are supported for Payment Web
 
 > 📘 callback\_on\_failure
 >
-> PayU supports another type of callback which allows the merchants to recieve webhook payloads for  pending cases in realtime. Currently this callback flag is enabled by the support team on request. 
+> PayU supports another type of callback which allows the merchants to recieve webhook payloads for  pending cases in realtime. Currently this callback flag is enabled by the support team on request.
 >
 > ***
 >
 > If you choose to enable this flag, you will be recieving webhooks in realtime for all types of pending payment statuses—see [Payment state explanation](https://docs.payu.in/reference/payment-state-explanations)—following by a successful/failed webhook when the payment state is changed to Successful or falied.
+
+## Testing Your webhook
+
+It's recommended to test your webhook implementation to ensure it's working correctly:
+
+1. Configure your webhook as described above
+2. Set up your endpoint to log incoming webhook requests
+3. Wait for a payment event or request a test webhook from PayU support
+4. Verify that your endpoint receives the webhook payload and processes it correctly
