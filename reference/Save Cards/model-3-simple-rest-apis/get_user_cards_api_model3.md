@@ -26,7 +26,7 @@ The **Get User Cards** API is used to fetch all the cards corresponding to the u
 
 HTTP Method: **POST**
 
-<GENERALAPIsEnvironment />
+<GENERALAPIsEnvironment/>
 
 <details>
   <summary>Sample request</summary>
