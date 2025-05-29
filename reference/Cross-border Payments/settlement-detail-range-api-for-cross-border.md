@@ -2,7 +2,7 @@
 title: Settlement Detail Range API - Cross Border Payments
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
