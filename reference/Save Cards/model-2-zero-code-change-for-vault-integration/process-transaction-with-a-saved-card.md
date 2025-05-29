@@ -14,15 +14,11 @@ If you have not received a response from PayU with First-Time Payment Workflow, 
 
 HTTP Method: **POST**
 
-**Environment**
-
-| Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment) |
-| :--------------------- | :-------------------------------------------------------------- |
-| Production Environment | [https://info.payu.in/\_payment](https://info.payu.in/_payment) |
+<PaymentAPIEnvironment />
 
 ## Extra parameters to be posted with saved card using \_payment API
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -57,7 +53,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        store\_card\_token\
+        store\_card\_token
         **mandatory**
       </td>
 
@@ -72,7 +68,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        storecard\_token\_type \
+        storecard\_token\_type 
         **optional for PayU token flow**
       </td>
 
