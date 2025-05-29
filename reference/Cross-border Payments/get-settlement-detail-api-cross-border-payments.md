@@ -1,8 +1,8 @@
 ---
-title: Get Settlement Detail API - Cross Border Payments
+title: Get Settlement Detail API - CB Payments
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
