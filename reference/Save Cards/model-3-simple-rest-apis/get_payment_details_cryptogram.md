@@ -29,7 +29,7 @@ This API is used to get the payment details of an existing card stored on PayU V
 
 HTTP Method: **POST**
 
-<GENERALAPIsEnvironment />
+<GENERALAPIsEnvironment/>
 
 <details>
   <summary>Sample response</summary>
