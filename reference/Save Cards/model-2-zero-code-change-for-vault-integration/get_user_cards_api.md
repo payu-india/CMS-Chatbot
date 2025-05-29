@@ -33,7 +33,9 @@ The Get User Cards API (**get\_user\_cards**) is used to fetch all the cards for
 
 HTTP Method: **POST**
 
-`<GENERALAPIsEnvironment/>`
+<GENERALAPIsEnvironment />
+
+<br />
 
 <details>
   <summary>Sample request</summary>
