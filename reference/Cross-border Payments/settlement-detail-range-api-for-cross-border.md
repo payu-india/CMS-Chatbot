@@ -1,5 +1,5 @@
 ---
-title: Settlement Detail Range API - Cross Border Payments
+title: Settlement Detail Range API - CB Payments
 excerpt: ''
 deprecated: false
 hidden: false
