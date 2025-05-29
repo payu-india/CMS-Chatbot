@@ -59,7 +59,7 @@ This API requires an access token using the **Get Token** API with the scope as 
 ## Sample Request
 
 ```curl
-curl --location --request POST '{{onboarding_url}}/api/v1/merchants/{{merchant_uuid}}/kyc_documents/{{kyc_doc_uuid}}/esign_merged_document' \
+curl --location --request POST '{{onboarding_url}}/api/v3/merchants/{{merchant_uuid}}/kyc_documents/{{kyc_doc_uuid}}/esign_merged_document' \
 --header 'Authorization: Bearer {{access_token}}' \
 --data-urlencode 'otp=0025'
 ```
