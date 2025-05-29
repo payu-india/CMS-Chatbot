@@ -11,7 +11,7 @@ Chargeback webhooks provide real-time notifications about important chargeback e
 * Chargeback status is changed
 * Chargeback amount is changed
 
-To create webhooks using Dashboard, refer to [Create a Chargeback Webhook](doc:create-a-chargeback-webhook) > [Using Dashboard](doc:create-a-chargeback-webhook#using-dashboard). To updarte or delete an existing webhook, refer to:
+To create webhooks using Dashboard, refer to [Create a Chargeback Webhook](doc:create-a-chargeback-webhook) > [Using Dashboard](doc:create-a-chargeback-webhook#using-dashboard). To update or delete an existing webhook, refer to:
 
 * [Update a Webhook](doc:update-a-webhook)
 * [Delete a Webhook](doc:delete-a-webhook-on-dashboard)
