@@ -34,7 +34,7 @@ This API is used to send OTP to the signatory email, and this OTP is used by the
 ## Sample Request
 
 ```curl
-curl --location --request GET '{`{onboarding_url}`}/api/v1/merchants/{`{uuid}`}/generate_merged_document_for_esign' \
+curl --location --request GET '{`{onboarding_url}`}/api/v3/merchants/{`{uuid}`}/generate_merged_document_for_esign' \
 --header 'Authorization: Bearer `{access_token}`'
 ```
 
