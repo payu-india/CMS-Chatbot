@@ -51,146 +51,23 @@ This API is authorised through a client token generated using the client ID and 
 
 ### Failure scenario
 
-* Required field missing
-
-```
-{
-  "success": false,
-  "error": {
-    "code": "MISSING_REQUIRED_FIELD",
-    "message": "Required field 'merchant[display_name]' is missing",
-    "details": {
-      "field": "merchant[display_name]"
-    }
-  }
-}
-
-```
-
-* Invalid field format
-
-```
-{
-  "success": false,
-  "error": {
-    "code": "INVALID_FIELD_FORMAT",
-    "message": "Field 'merchant[email]' has invalid format",
-    "details": {
-      "field": "merchant[email]",
-      "expected_format": "valid email address (e.g., example@domain.com)"
-    }
-  }
-}
-
-```
-
 * Duplicate merchant or merchant already exists
 
 ```
 {
-  "success": false,
-  "error": {
-    "code": "DUPLICATE_MERCHANT",
-    "message": "Merchant with the same identifier already exists",
-    "details": {
-      "identifier": "9916965913",
-      "identifier_type": "mobile"
-    }
+  "errors": {
+    "error": [
+      "Account already exists for given user"
+    ]
+  },
+  "product_account": {
+    "identifier": 8245177,
+    "product": "PayUbiz"
   }
 }
-
 ```
 
-* Authentication error
-
-```
-{
-  "success": false,
-  "error": {
-    "code": "AUTHENTICATION_ERROR",
-    "message": "Invalid or missing authentication token"
-  }
-}
-
-```
-
-* Business entity error
-
-```
-{
-  "success": false,
-  "error": {
-    "code": "INVALID_BUSINESS_ENTITY_TYPE",
-    "message": "Invalid business entity type provided",
-    "details": {
-      "provided": "Undefined",
-      "allowed_values": [
-        "Sole Proprietorship",
-        "Partnership",
-        "Private Limited",
-        "Public Limited",
-        "LLP",
-        "Trust",
-        "Society",
-        "NGO"
-      ]
-    }
-  }
-}
-
-```
-
-* Dependency error
-
-```
-{
-  "success": false,
-  "error": {
-    "code": "DEPENDENCY_ERROR",
-    "message": "Field 'merchant[udyam_number]' is required when business entity type is 'Sole Proprietorship'",
-    "details": {
-      "field": "merchant[udyam_number]",
-      "dependent_field": "merchant[business_details][business_entity_type]",
-      "dependent_value": "Sole Proprietorship"
-    }
-  }
-}
-
-```
-
-* Rate limit exceeded
-
-```
-{
-  "success": false,
-  "error": {
-    "code": "RATE_LIMIT_EXCEEDED",
-    "message": "Rate limit exceeded. Please try again later",
-    "details": {
-      "retry_after": 60,
-      "limit": "100 requests per minute"
-    }
-  }
-}
-
-```
-
-* Invalid API version
-
-```
-{
-  "success": false,
-  "error": {
-    "code": "INVALID_API_VERSION",
-    "message": "The requested API version is not supported",
-    "details": {
-      "requested_version": "v2",
-      "supported_versions": ["v3", "v4"]
-    }
-  }
-}
-
-```
+<br />
 
 ## Response parameters
 
