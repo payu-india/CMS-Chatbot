@@ -37,7 +37,7 @@ Before configuring a chargeback webhook, ensure that:
 
 1. Visit [chargeback.payu.in](http://chargeback.payu.in)
 2. Log in with your merchant credentials
-3. Click on the **Configure Webhooks** button
+3. Click the **Configure Webhooks** button
 4. In the configuration form, fill in the following details:
    * **Webhook URL**: Enter the URL where you want to receive webhook payloads
    * **Fields Selection**: Select the fields you want to include in the webhook payload
