@@ -5,6 +5,8 @@ hidden: true
 metadata:
   robots: index
 ---
+## Understanding payload
+
 When a chargeback event occurs, PayU will send a POST request to your configured URL with a JSON payload similar to the following:
 
 ```json
