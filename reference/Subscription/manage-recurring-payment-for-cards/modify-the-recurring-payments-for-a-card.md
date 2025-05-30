@@ -41,8 +41,6 @@ HTTP Method: **POST**
 
 The following table describes the parameters for modifying the recurring payment details for a card.
 
-{/* Properly formatted JSX Table with align attribute */}
-
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
