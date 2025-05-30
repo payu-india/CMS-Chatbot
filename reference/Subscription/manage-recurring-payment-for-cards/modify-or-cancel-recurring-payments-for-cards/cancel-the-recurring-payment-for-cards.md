@@ -20,15 +20,15 @@ metadata:
 next:
   description: ''
   pages:
-    - type: basic
-      slug: using-api-integration-recurring-payments
+    - slug: using-api-integration-recurring-payments
       title: Using API Integration
-    - type: endpoint
-      slug: modify-the-recurring-payments-for-a-card
+      type: basic
+    - slug: modify-the-recurring-payments-for-a-card
       title: Modify the Recurring Payments for a Card
-    - type: endpoint
-      slug: check-mandate-status-api
+      type: endpoint
+    - slug: check-mandate-status-api
       title: Check Mandate Status for Cards API
+      type: endpoint
 ---
 This section describes how to use the **\_payment** API with  to cancel a recurring payment registration for card.
 
@@ -227,46 +227,6 @@ The following table describes the parameters for delete the recurring payment de
         This is a JSON object and it includes a set of parameters are described in the the <a href="#si_details-parameter-json-details">si_details Parameter – JSON Details</a> table.
       </td>
       <td>Refer the example below the si_details Parameter Description table.</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>Storecard_token</strong><br/>
-        <code>conditional</code>
-      </td>
-      <td>
-        <code>varchar</code> Required in case of SITokenRequestor 2 flow and tokenized flow. This parameter contains the network token value.
-      </td>
-      <td>{{network token value}}</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>TokenFlowType</strong><br/>
-        <code>conditional</code>
-      </td>
-      <td>
-        <code>integer</code> Required in case of SITokenRequestor 2 flow and tokenized flow. This parameter must be set to 1.
-      </td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>Additional info for tokenized flow</strong><br/>
-        <code>conditional</code>
-      </td>
-      <td>
-        <code>json</code> Required for tokenized flow. Contains additional information needed for token processing.
-      </td>
-      <td>({"tavv":"1997","last4digits":"1005","par":"A0009WTYMUG6ANFB3F9Z8CNYAKCX9"})</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>token_expiry</strong><br/>
-        <code>conditional</code>
-      </td>
-      <td>
-        <code>varchar</code> Required in case of SITokenRequestor 2 flow and tokenized flow. Contains the expiry date of the token.
-      </td>
-      <td></td>
     </tr>
     <tr>
       <td>
