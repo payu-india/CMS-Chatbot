@@ -477,83 +477,16 @@ curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "C
 
 ## Sample response
 
-<br />
-
 * Sample response for successful cancellation of a card mandate:
 
-<br />
-
-Cancelling Recurring Registration - Success Response
-
-<br />
-
 ```
-(
-    [mihpayid] => 403993715525316543
-    [mode] => CC
-    [status] => success
-    [unmappedstatus] => captured
-    [key] => JP***g
-    [txnid] => eF5yY4ArrynoIV
-    [amount] => 10.00
-    [cardCategory] => domestic
-    [discount] => 0.00
-    [net_amount_debit] => 10
-    [addedon] => 2022-02-02 15:15:07
-    [productinfo] => iPhone
-    [firstname] => Ashish
-    [lastname] => 
-    [address1] => 
-    [address2] => 
-    [city] => 
-    [state] => 
-    [country] => 
-    [zipcode] => 
-    [email] => test@gmail.com
-    [phone] => 9876543210
-    [udf1] => 
-    [udf2] => 
-    [udf3] => 
-    [udf4] => 
-    [udf5] => 
-    [udf6] => 
-    [udf7] => 
-    [udf8] => 
-    [udf9] => 
-    [udf10] => 
-    [hash] => 499fa5f6d9019cc7bda9750b18bf3ba52f161da42cb065cab094595cb9d1c90058a3f1c7f3fcb057c371baa077052522847826be269060140580a7c345206020
-    [field1] => 4296837871969451239257
-    [field2] => 601248
-    [field3] => 10.00
-    [field4] => 403993715525316543
-    [field5] => 100
-    [field6] => 02
-    [field7] => AUTHPOSITIVE
-    [field8] => 
-    [field9] => Transaction is Successful
-    [payment_source] => payu
-    [PG_TYPE] => CC-PG
-    [bank_ref_num] => 4296837871969451239257
-    [bankcode] => CC
-    [error] => E000
-    [error_Message] => No Error
-    [name_on_card] => payu
-    [cardnum] => 512345XXXXXX2346
-    [cardhash] => This field is no longer supported in postback params.
-)
+{"status":1,"message":"Mandate Revoked Successfully","action":"MANDATE_REVOKE"}
 ```
 
 <br />
 
 * Sample Response for failed cancellation
 
-Cancelling Recurring Registration - Failure Response
-
 ```
-{
-    "action": "MANDATE_REVOKE",
-    "statusCode": 0,
-    "Message": "Mandate is not active"
-}
-
+{"status":0,"message":"Mandate entry not found","action":"MANDATE_REVOKE"}
 ```
