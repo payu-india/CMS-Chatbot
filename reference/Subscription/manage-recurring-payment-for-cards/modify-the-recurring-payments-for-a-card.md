@@ -29,7 +29,7 @@ next:
       slug: cancel-the-recurring-payment-for-cards
       title: Cancel the Recurring Payment for a Card
 ---
-This section describes how to use the **\_payment** API to update an existing recurring payment for a card.
+This section describes how to use the **\_payment** API to update an existing recurring payment for a card in case the card belongs to VISA or Mastercard
 
 > 📘 Note:
 >
@@ -42,6 +42,7 @@ HTTP Method: **POST**
 The following table describes the parameters for modifying the recurring payment details for a card.
 
 {/* Properly formatted JSX Table with align attribute */}
+
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -77,13 +78,13 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        txnid  
+        txnid
         **mandatory**
       </td>
 
       <td>
-        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.  
-        `Character limit`: 25  
+        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.
+        `Character limit`: 25
 
         **Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
       </td>
@@ -95,19 +96,19 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        amount  
+        amount\
         **mandatory**
       </td>
 
       <td>
-        `float` This parameter should contain the payment amount of the particular transaction.  
+        `float` This parameter should contain the payment amount of the particular transaction.
 
-        **Note**: Type-cast the amount to float type  
-        Depending upon the merchant use case, this value will vary.  
-            
-        - It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.  
+        **Note**: Type-cast the amount to float type\
+        Depending upon the merchant use case, this value will vary.
 
-        - In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
+        * It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.
+
+        * In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
       </td>
 
       <td>
@@ -117,12 +118,12 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        productinfo  
+        productinfo\
         **mandatory**
       </td>
 
       <td>
-        `varchar` This parameter should contain a brief product description. It should be a string describing the product.  
+        `varchar` This parameter should contain a brief product description. It should be a string describing the product.\
         `Character limit`: 100
       </td>
 
@@ -133,12 +134,12 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        firstname  
+        firstname\
         **mandatory**
       </td>
 
       <td>
-        `varchar` Must contain the first name of the customer.  
+        `varchar` Must contain the first name of the customer.\
         `Character limit`: 60
       </td>
 
@@ -149,14 +150,14 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        email  
+        email\
         **mandatory**
       </td>
 
       <td>
-        `varchar` Must contain the email of the customer.  
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.  
-        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.  
+        `varchar` Must contain the email of the customer.\
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.
+        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
         Character limit: 50
       </td>
 
@@ -167,14 +168,14 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        phone  
+        phone\
         **mandatory**
       </td>
 
       <td>
-        `varchar` Must contain the phone number of the customer.  
+        `varchar` Must contain the phone number of the customer.
 
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.  
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.\
         Character limit: 50
       </td>
 
@@ -185,7 +186,7 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        api\_version  
+        api\_version\
         **mandatory**
       </td>
 
@@ -200,7 +201,7 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        si  
+        si\
         **mandatory**
       </td>
 
@@ -215,7 +216,7 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        pg  
+        pg\
         **mandatory**
       </td>
 
@@ -230,7 +231,7 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        bankcode  
+        bankcode\
         **mandatory**
       </td>
 
@@ -245,7 +246,7 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        user\_credentials  
+        user\_credentials\
         **mandatory**
       </td>
 
@@ -260,7 +261,7 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        store\_card\_token  
+        store\_card\_token\
         **mandatory**
       </td>
 
@@ -275,14 +276,14 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        free\_trial  
+        free\_trial\
         **optional**
       </td>
 
       <td>
-        This is mandatory only if the merchant wants to support free trial use case with card and net banking together that too on PayU Hosted Checkout integration.  
+        This is mandatory only if the merchant wants to support free trial use case with card and net banking together that too on PayU Hosted Checkout integration.
 
-        In this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request.  
+        In this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request.\
         This parameter has no significance in the case of seamless flow.
       </td>
 
@@ -293,14 +294,14 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        si\_details  
+        si\_details\
         **mandatory**
       </td>
 
       <td>
-        This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.  
+        This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.
 
-        **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) )  
+        **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) )
 
         This is a JSON object and it includes a set of parameters are described in the the si\_details Parameter Description table.
       </td>
@@ -312,16 +313,16 @@ The following table describes the parameters for modifying the recurring payment
 
     <tr>
       <td>
-        hash  
+        hash\
         **mandatory**
       </td>
 
       <td>
-        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions.  
+        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions.
 
-        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.  
+        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.
 
-        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:  
+        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:\
         HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si\_details|SALT)
       </td>
 
@@ -344,7 +345,8 @@ This is applicable for the following scenarios:
 > This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sent the card transaction request in the form of authentication.
 
 {/* Properly formatted JSX Table */}
-<Table>
+
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -379,7 +381,7 @@ This is applicable for the following scenarios:
 
     <tr>
       <td>
-        storecard\_token\_type  
+        storecard\_token\_type
         **mandatory**
       </td>
 
@@ -394,12 +396,12 @@ This is applicable for the following scenarios:
 
     <tr>
       <td>
-        additional\_info  
+        additional\_info
         **mandatory**
       </td>
 
       <td>
-        `String` This parameter will contain the additional information in the following JSON format:  
+        `String` This parameter will contain the additional information in the following JSON format:
         `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}`
       </td>
 
@@ -412,7 +414,7 @@ This is applicable for the following scenarios:
 
 > 📘 Notes for **additional\_info** parameter:
 >
-> The JSON format contains the following fields:  
+> The JSON format contains the following fields:
 >
 > * **trid** (Token Requestor ID) is the identity given by the networks for creating the tokens. You should be able to get the same from your token provider.
 > * **tokenRefNo** (Token Reference Number) is generated along with the network token. . You should be able to get the same from your token provider.
@@ -420,7 +422,7 @@ This is applicable for the following scenarios:
 >
 > Additional notes:
 >
-> * The last 4 digits of cards is mandatory for all transactions. 
+> * The last 4 digits of cards is mandatory for all transactions.
 > * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
 > * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
 
@@ -433,7 +435,8 @@ The description for the **si\_details** parameter (JSON format):
 > If the request was to modify a subscription,  **si\_consent\_action** parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
 
 {/* Properly formatted JSX Table */}
-<Table>
+
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -458,7 +461,7 @@ The description for the **si\_details** parameter (JSON format):
       </td>
 
       <td>
-        Billing Cycle defines whether the customer needs to be charged over Daily, Weekly basis, Monthly or Yearly basis or one time.  
+        Billing Cycle defines whether the customer needs to be charged over Daily, Weekly basis, Monthly or Yearly basis or one time.
       </td>
 
       <td>
@@ -468,36 +471,36 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        billingInterval  
+        billingInterval
         **mandatory**
       </td>
 
       <td>
-        Billing Interval is closely coupled with the **billingCycle** field and denotes at what frequency, the subscription plan needs to be executed. For monthly subscriptions, parameter values need to be sent in the request are:  
+        Billing Interval is closely coupled with the **billingCycle** field and denotes at what frequency, the subscription plan needs to be executed. For monthly subscriptions, parameter values need to be sent in the request are:
 
-        * billingCycle = MONTHLY  
-        * billingInterval = 1  
-          
-        Similarly, by keeping the following values, customer will be charged once in every 3 days:  
-        
-        * billingCycle = DAILY  
+        * billingCycle = MONTHLY
+        * billingInterval = 1
+
+        Similarly, by keeping the following values, customer will be charged once in every 3 days:
+
+        * billingCycle = DAILY
         * billingInterval = 3
       </td>
 
       <td>
-        * billingCycle = MONTHLY  
-        * billingInterval = 1 
+        * billingCycle = MONTHLY
+        * billingInterval = 1
       </td>
     </tr>
 
     <tr>
       <td>
-        billingAmount  
+        billingAmount\
         **mandatory**
       </td>
 
       <td>
-        The billing amount is passed in XX. XX format.  
+        The billing amount is passed in XX. XX format.\
         In use cases where **billingCycle = ADHOC**, amount passed is treated as maximum amount since billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.  For UPI, **billingAmount** should not be more than INR 15000 as it is the maximum limit allowed for UPI currently.
       </td>
 
@@ -508,7 +511,7 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        billingCurrency  
+        billingCurrency\
         **mandatory**
       </td>
 
@@ -523,12 +526,12 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        paymentStartDate  
+        paymentStartDate\
         **mandatory**
       </td>
 
       <td>
-        The start date of the billing plan is specified in this field with the YYYY-MM-DD format.  
+        The start date of the billing plan is specified in this field with the YYYY-MM-DD format.
 
         **Note**: All the subsequent recurring transactions will be processed from this date onwards as per **billingCycle** and **billingInterval** fields combination. This date acts as reference point for recurring payments. **Note**: In case of UPI, send the current date here and any other value will be ignored.
       </td>
@@ -540,12 +543,12 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        paymentEndDate  
+        paymentEndDate\
         **mandatory**
       </td>
 
       <td>
-        The end date of the billing plan is specified in this field with the YYYY-MM-DD format.  
+        The end date of the billing plan is specified in this field with the YYYY-MM-DD format.
 
         **Note**: Pass the correct end date to PayU. Depending upon start date and end date, number of payment iterations are internally calculated and same information is passed to acquirers or banks.
       </td>
@@ -557,15 +560,15 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        siTokenRequestor  
+        siTokenRequestor\
         **mandatory for saved cards**
       </td>
 
       <td>
-        This is optional and is only needed before 30th September, 2022 to activate new mandate setups in a controlled manner than activating it completely on all users. This involves creating token at the time of susbcription set. You can include any of the following values::  
+        This is optional and is only needed before 30th September, 2022 to activate new mandate setups in a controlled manner than activating it completely on all users. This involves creating token at the time of susbcription set. You can include any of the following values::
 
-        * **1** : PayU will tokenise the card and share it in same subscription setup call with issuers for subscription setup.  
-        * **2**: PayU will do the authorization on plain card. Later, the same response will be shared to merchant. 
+        * **1** : PayU will tokenise the card and share it in same subscription setup call with issuers for subscription setup.
+        * **2**: PayU will do the authorization on plain card. Later, the same response will be shared to merchant.
       </td>
 
       <td>
@@ -575,12 +578,12 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        remarks  
+        remarks\
         **optional**
       </td>
 
       <td>
-        This field is used to provide remarks on PSP applications during the registration transaction of UPI.  For cards and Net Banking, this parameter has no significance.  Character limit = 50.   
+        This field is used to provide remarks on PSP applications during the registration transaction of UPI.  For cards and Net Banking, this parameter has no significance.  Character limit = 50.
 
         **Note**: This field is applicable only for UPI.
       </td>
@@ -592,20 +595,20 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        billingLimit  
+        billingLimit\
         **optional**
       </td>
 
       <td>
-        For UPI, this field is used to decide the period corresponding which the debit from the mandate recurring date can happen and this mandate registration date is confirmed during registration transaction of UPI.  
+        For UPI, this field is used to decide the period corresponding which the debit from the mandate recurring date can happen and this mandate registration date is confirmed during registration transaction of UPI.
 
-        **Note**: This field is applicable only for UPI.  
-        The possible values are:  
-        
-        * **ON** = Use this parameter to deduct on a specific date  
-        * **BEFORE** = Use this parameter to deduct before and on a specific date  
-        * **AFTER** = Use this parameter to After and on the specific date  
-        
+        **Note**: This field is applicable only for UPI.\
+        The possible values are:
+
+        * **ON** = Use this parameter to deduct on a specific date
+        * **BEFORE** = Use this parameter to deduct before and on a specific date
+        * **AFTER** = Use this parameter to After and on the specific date
+
         **Note**: If no value is passed, 'AFTER' is considered by default.
       </td>
 
@@ -616,18 +619,18 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        billingRule  
+        billingRule\
         **optional**
       </td>
 
       <td>
-        For UPI, this field is used to decide the limitation on the amount of recurring debit against the mandate amount which is set during registration transaction of UPI.  
+        For UPI, this field is used to decide the limitation on the amount of recurring debit against the mandate amount which is set during registration transaction of UPI.
 
-        **Note**: This field is applicable only for UPI.  
-        The possible values are:  
-        
-        * **MAX** = This is the maximum amount that a merchant can debit, that is, merchant can debit lesser or equal to this amount for a recurring transaction.  
-        * **EXACT**= This the exact amount that a merchant can debit in recurring debits.  
+        **Note**: This field is applicable only for UPI.\
+        The possible values are:
+
+        * **MAX** = This is the maximum amount that a merchant can debit, that is, merchant can debit lesser or equal to this amount for a recurring transaction.
+        * **EXACT**= This the exact amount that a merchant can debit in recurring debits.
 
         Note: If no value is passed, 'MAX' is considered by default.
       </td>
@@ -639,7 +642,7 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        billingDate  
+        billingDate\
         **optional**
       </td>
 
@@ -654,7 +657,7 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        authpayuid  
+        authpayuid\
         **mandatory for modifying subscription with cards**
       </td>
 
@@ -663,13 +666,13 @@ The description for the **si\_details** parameter (JSON format):
       </td>
 
       <td>
-         
+
       </td>
     </tr>
 
     <tr>
       <td>
-        action  
+        action\
         **mandatory for cards**
       </td>
 
