@@ -82,7 +82,7 @@ The following describes the procedure to add a sub-account:
 
 2. Click **Proceed**.
 
-   The **Step 4: Enter Bank Details\<your name>** pane is displayed.
+   The **Step 4: Enter Bank Details \<your name>** pane is displayed.
 
 <Image align="center" src="https://files.readme.io/66ce9d738e5cb188328799bd36ac2aa51e1780b9f034c5507562fc7c42cd1ed8-Screenshot_2025-02-17_at_10.42.38_AM.png" />
 
