@@ -21,9 +21,9 @@ To split a transaction on Split Settlements Dashboard:
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/8e51d9fda36b2cb6a6f401d977db0e9d5787ae0c8e500b053a0988cb0aaaad4c-Screenshot_2025-02-17_at_11.22.56_AM.png" />
 
-   The *Select Sub-Accounts and Split Configuration* page.
+The *Select Sub-Accounts and Split Configuration* page.
 
-<Image align="center" className="border" width="412px" border={true} src="https://files.readme.io/93066d0bdb4a632dff60f559226786ed5eb031792a6378170410663422707c69-Screenshot_2025-02-17_at_11.24.34_AM.png" />
+<Image align="center" className="border" border={true} width="412px" src="https://files.readme.io/93066d0bdb4a632dff60f559226786ed5eb031792a6378170410663422707c69-Screenshot_2025-02-17_at_11.24.34_AM.png" />
 
 3. Select the sub-accounts or child merchants for the split from the **Select Sub Accounts for the Split** drop-down list. Use the check box to select one or more child merchants.
 4. Select any of the following split types from the **Split Options** drop-down list:
@@ -41,9 +41,9 @@ To split a transaction on Split Settlements Dashboard:
 
 7. Click **Proceed**.
 
-   The *Review & confirm the Split* page is displayed.
+   The *Review & confirm the split* page is displayed.
 
-<Image align="center" className="border" width="412px" border={true} src="https://files.readme.io/63ca53ec133f7c26bbfe2f2ceabd8849695a1434809f44917ba1c5655e74ce39-Screenshot_2025-02-17_at_11.29.25_AM.png" />
+<Image align="center" className="border" border={true} width="412px" src="https://files.readme.io/63ca53ec133f7c26bbfe2f2ceabd8849695a1434809f44917ba1c5655e74ce39-Screenshot_2025-02-17_at_11.29.25_AM.png" />
 
 8. Click **Confirm**.
 
