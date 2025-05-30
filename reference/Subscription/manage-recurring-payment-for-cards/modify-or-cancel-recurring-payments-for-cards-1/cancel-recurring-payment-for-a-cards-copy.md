@@ -1,5 +1,5 @@
 ---
-title: Cancel Recurring Payment for a Cards (COPY)
+title: Cancel Recurring Payment for a AMEX Cards
 deprecated: false
 hidden: false
 metadata:
