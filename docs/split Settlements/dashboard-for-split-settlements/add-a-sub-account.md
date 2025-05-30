@@ -28,15 +28,15 @@ The following describes the procedure to add a sub-account:
 
 ## Step 1: Basic details
 
-1. Select **Split & Supplier Payments** on the menu.
+1. Select **Split & Transfer Payments** on the menu.
 
-   The *Manage Sub-accounts* page is displayed.
+   The *Split Payments Overview* page is displayed.
 
 <Image align="center" src="https://files.readme.io/1c5326a2b49ee5f7a5910c5a6cf93dbc1a4b662354c88359faa4b6e4c75f5b0c-Screenshot_2025-02-17_at_10.33.30_AM.png" />
 
-2. Click **Add Sub-Merchant** at the top-right corner and select **Single Merchant**.
+2. Click **New Sub-Merchant** at the top-right corner and select **Single Merchant**.
 
-   The *Add a Child Merchant* page is displayed.
+   From the dropdown, select *Single Merchant* .
 
 <Image align="center" src="https://files.readme.io/69f73c5cdf93cbb5dbc4f25461bd492ff77625157445e784b6289d8ed0aaaff1-dashboard-add-subacct-step1.png" />
 
@@ -62,7 +62,7 @@ The following describes the procedure to add a sub-account:
 
    A pop-up page is displayed to choose the business entity.
 
-<Image align="center" className="border" width="350px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/07/split_PAN_proprietorship.png" />
+<Image align="center" className="border" border={true} width="350px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/07/split_PAN_proprietorship.png" />
 
 4. Select your business entity type from the drop-down and click the **Confirm I am\<your business name>** button. Where \<your business name> is substituted with the name you entered in the **Business PAN Card Number** field at Step 2.
 
@@ -140,12 +140,12 @@ The **Step 6: Additional documents required** pane is displayed.
 
    After the sub-account bank details are submitted, the following confirmation message is displayed.
 
-<Image align="center" className="border" width="350px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/Split_Payments_Subbacct_Added-_Successfully.png" />
+<Image align="center" className="border" border={true} width="350px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/Split_Payments_Subbacct_Added-_Successfully.png" />
 
 > 📘 Verification of Docs:
 >
 > PayU will verify the documents and activate the sub-account by two working days. If you encounter any issues, contact your PayU Account Manager or [PayU Support](https://help.payu.in).
 
-   If the sub-account bank details are not entered, the following page is displayed so that you can share it with your merchant.
+If the sub-account bank details are not entered, the following page is displayed so that you can share it with your merchant.
 
 <Image align="center" width="350px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/Split_Payments_Create_SubAcct_acct_details_last_Step.png" />
