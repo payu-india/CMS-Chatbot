@@ -1,5 +1,5 @@
 ---
-title: Modify Recurring Payments for a Card (COPY)
+title: Modify Recurring Payments for AMEX Cards
 excerpt: 'Resource: **_payment**'
 deprecated: false
 hidden: false
@@ -28,7 +28,7 @@ next:
       title: Cancel the Recurring Payment for a Card
       type: endpoint
 ---
-This section describes how to use the **\_payment** API to update an existing recurring payment for a card in case the card belongs to VISA or Mastercard
+This section describes how to use the **\_payment** API to update an existing recurring payment for American Express (AMEX) cards.
 
 > 📘 Note:
 >
