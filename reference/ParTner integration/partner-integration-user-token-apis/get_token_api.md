@@ -37,10 +37,10 @@ The **Get Token API** returns the authentication token generated using the clien
 
 ### Environment
 
-|            |                                                              |
-| :--------- | :----------------------------------------------------------- |
-| Production | [https://accounts.payu.in](https://accounts.payu.in)         |
-| Test       | [https://uat-accounts.payu.in](https://uat-accounts.payu.in) |
+|            |                                                                                      |
+| :--------- | :----------------------------------------------------------------------------------- |
+| Production | [https://accounts.payu.in/oauth/token](https://accounts.payu.in/oauth/token)         |
+| Test       | [https://uat-accounts.payu.in/oauth/token](https://uat-accounts.payu.in/oauth/token) |
 
 ## Additional information for request parameters
 
