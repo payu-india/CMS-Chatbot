@@ -29,7 +29,7 @@ next:
       title: Check Mandate Status for Cards API
       type: endpoint
 ---
-This section describes how to use the **\_payment** API with  to cancel a recurring payment registration for card.
+This section describes how to use the **\_payment** API with  to cancel a recurring payment registration for AMEX cards.
 
 > 📘 Notes:
 >
