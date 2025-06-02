@@ -344,7 +344,7 @@ The description for the **si\_details** parameter (JSON format):
 ## Sample request
 
 ```
-curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=56bb2e3fcb510f1c1521&amount=10000&firstname=Payu-Admin&email=test@example.com&phone=1234567890&productinfo=iPhone&api_version=7&si=2&pg=CC&bankcode=UTIBENCC&surl=https://test.payu.in/admin/test_response/&furl=https://test.payu.in/admin/test_response&ccnum=5123456789012346&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=Test User&si_details={"authpayuid":"403993715525316543","action":"cancel"}&hash=e36568b2dfc460eab0eb3387fb7d90543ed861154f273b9593d6fcc152ed93a91e529c2f4be0965eeb57104e82d58889fa5efb52811ec78cbd1ad646e39c29a0"
+curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=56bb2e3fcb510f1c1521&amount=10000&firstname=Payu-Admin&email=test@example.com&phone=1234567890&productinfo=iPhone&api_version=7&si=2&pg=CC&bankcode=AMEX&surl=https://test.payu.in/admin/test_response/&furl=https://test.payu.in/admin/test_response&ccnum=5123456789012346&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=Test User&si_details={"authpayuid":"403993715525316543","action":"delete"}&hash=e36568b2dfc460eab0eb3387fb7d90543ed861154f273b9593d6fcc152ed93a91e529c2f4be0965eeb57104e82d58889fa5efb52811ec78cbd1ad646e39c29a0"
 
 ```
 
@@ -373,7 +373,7 @@ curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "C
     </tr>
     <tr>
       <td>bankcode</td>
-      <td>This parameter contains the code indicating the payment option used for the transaction. For example, Visa Debit Card – VISA, Master Debit Card – MAST.</td>
+      <td>This parameter contains the code indicating the payment option used for the transaction. For AMEX, use AMEX.</td>
     </tr>
     <tr>
       <td>status</td>
