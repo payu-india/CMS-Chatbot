@@ -582,11 +582,3 @@ Array
 )
  
 ```
-
-<br />
-
-* Sample Response for failed cancellation
-
-```
-{"status":0,"message":"Mandate entry not found","action":"MANDATE_REVOKE"}
-```
