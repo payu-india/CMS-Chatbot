@@ -1,7 +1,7 @@
 ---
 title: Tracking the Efficiency of Campaigns
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
