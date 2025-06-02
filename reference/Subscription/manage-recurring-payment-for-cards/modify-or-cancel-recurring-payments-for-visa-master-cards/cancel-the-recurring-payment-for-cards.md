@@ -3,7 +3,7 @@ title: Cancel Recurring Payment for a VISA/MASTER Card
 deprecated: false
 hidden: false
 metadata:
-  title: Cancel the Recurring Payment for a Card
+  title: Cancel the Recurring Payment for a VISA/MASTER Card
   description: >-
     Learn how to cancel recurring payment registrations for cards using PayU's
     API. This documentation provides detailed instructions for revoking
