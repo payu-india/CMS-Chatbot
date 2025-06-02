@@ -203,7 +203,7 @@ The following table describes the parameters for modifying the recurring payment
       </td>
 
       <td>
-        This parameter must be passed with the value as 2 to modify an already existing subscription/consent.
+        This parameter must be passed with the value as 3 to modify an already existing subscription/consent.
       </td>
 
       <td>
@@ -427,11 +427,15 @@ This is applicable for the following scenarios:
 
 The description for the **si\_details** parameter (JSON format):
 
-> 📘 **Note**:
+> 📘 Notes:
 >
-> If the request was to modify a subscription,  **si\_consent\_action** parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
+> * One or more fields (marked optional) in the following table must be posted to modify the subscription:
+>   * billingCycle
+>   * billingInterval
+>   * billingAmount
+> * If the request was to modify a subscription,  **si\_consent\_action** parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
 
-{/* Properly formatted JSX Table */}
+<br />
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -454,7 +458,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         billingCycle
-        **mandatory**
+        **optional**
       </td>
 
       <td>
@@ -469,7 +473,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         billingInterval
-        **mandatory**
+        **optional**
       </td>
 
       <td>
@@ -493,7 +497,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         billingAmount\
-        **mandatory**
+        **optional**
       </td>
 
       <td>
@@ -509,7 +513,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         billingCurrency\
-        **mandatory**
+        **optional**
       </td>
 
       <td>
@@ -518,23 +522,6 @@ The description for the **si\_details** parameter (JSON format):
 
       <td>
         INR
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        paymentStartDate\
-        **mandatory**
-      </td>
-
-      <td>
-        The start date of the billing plan is specified in this field with the YYYY-MM-DD format.
-
-        **Note**: All the subsequent recurring transactions will be processed from this date onwards as per **billingCycle** and **billingInterval** fields combination. This date acts as reference point for recurring payments. **Note**: In case of UPI, send the current date here and any other value will be ignored.
-      </td>
-
-      <td>
-        2022-02-14
       </td>
     </tr>
 
@@ -576,7 +563,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         remarks\
-        **optional**
+        **mandatory**
       </td>
 
       <td>
