@@ -230,17 +230,17 @@ The following table describes the parameters for delete the recurring payment de
     <tr>
       <td>
         <strong>Storecard_token</strong><br/>
-        <code>conditional</code>
+        <code>mandatory SITokenRequestor 2 flow and tokenized flow</code>
       </td>
       <td>
-        <code>varchar</code> Required in case of SITokenRequestor 2 flow and tokenized flow. This parameter contains the network token value.
+        <code>varchar</code>  This parameter contains the network token value.
       </td>
       <td>{{network token value}}</td>
     </tr>
     <tr>
       <td>
         <strong>TokenFlowType</strong><br/>
-        <code>mandaotory for SITokenRequestor 2 flow and tokenized flow</code>
+        <code>mandatory for SITokenRequestor 2 flow and tokenized flow</code>
       </td>
       <td>
         <code>integer</code> This parameter must be set to 1.
