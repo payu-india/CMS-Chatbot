@@ -57,9 +57,11 @@ Scroll down for configuring details to be capturing while making payment using t
    * Customer Mobile
 8. Click **Add New Fields+** button to add custom fields to be captured when your customer uses payment links apart from the details in Step 7.
 
+The **Create New Field** pop-up page is displayed.
+
 <Image align="center" src="https://files.readme.io/8eca3400c847299b4e879cf737dee9b719af66bf2a384e7a3054c62572b0dcac-dashboard_create_new_payment_link_custom_field.png" />
 
-9. Enter the following details in the **Create New Field** pop-up page.
+9. Enter the following details in the **Create New Field** pop-up page and click **Add Field**.
    * Field Type
    * Mark as mandatory
    * Field Name
