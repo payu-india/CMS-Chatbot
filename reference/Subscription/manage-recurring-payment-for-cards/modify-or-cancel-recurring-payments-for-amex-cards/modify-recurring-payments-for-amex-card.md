@@ -259,7 +259,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         store\_card\_token\
-        **mandatory**
+        **mandatory for network token transactions**
       </td>
 
       <td>
@@ -364,7 +364,7 @@ This is applicable for the following scenarios:
     <tr>
       <td>
         store\_card\_token
-        **mandatory**
+        **mandatory for store card transactions**
       </td>
 
       <td>
