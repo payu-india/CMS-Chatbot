@@ -1,5 +1,5 @@
 ---
-title: Modify Recurring Payments for AMEX Card
+title: Modify Recurring Payments for an AMEX Card
 excerpt: 'Resource: **_payment**'
 deprecated: false
 hidden: false
