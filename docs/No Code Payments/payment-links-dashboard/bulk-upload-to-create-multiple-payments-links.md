@@ -12,11 +12,11 @@ next:
 ---
 Merchants can take below bulk actions on multiple transactions by uploading an excel file. Navigate **Dashboard > Collect Payments > Bulk Uploads to access the bulk upload option**.
 
-![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-43.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/0d3d2e942cca7d461d0539c6de7fe424515fef8a0701c15de103f9315c4eb7e6-Screenshot_2025-06-02_at_6.42.44_PM.png" />
 
 You can categorize the multiple links created using bulk uploading by selecting any one or multiple statuses of the links. Use the **Filter** option to select one or more statuses from the following:
 
-![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-44.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/81f1fd463accfc80e9405f104275270f9b2f464dc4ddd8b39594749bd47498f2-Screenshot_2025-06-02_at_6.44.36_PM.png" />
 
 ## Create Payment Links in Bulk
 
@@ -28,11 +28,11 @@ To create the payment links in bulk:
 
    The *Generate Bulk Payment links* page is displayed.
 
-<Image align="center" src="https://files.readme.io/4612b03-Screenshot_2023-09-29_at_12.06.47_PM.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/37a87c3f6d179953c5b1cbfb4ef6298650079b2353815363545d35c344046d09-Screenshot_2025-06-02_at_6.45.35_PM.png" />
 
 2. Select the file from the library and click **Upload** to complete the action.
 
-> **Note**: Click **Download Sample File** to download a sample CSV file to know the columns allowed in bulk upload. 
+> **Note**: Click **Download Sample File** to download a sample CSV file to know the columns allowed in bulk upload.
 
 The following table describes the purpose of each columns and whether it is mandatory:
 
@@ -63,7 +63,7 @@ The following table describes the purpose of each columns and whether it is mand
 
     <tr>
       <td>
-        Transaction ID\
+        Transaction ID
         `optional`
       </td>
 
@@ -74,7 +74,7 @@ The following table describes the purpose of each columns and whether it is mand
 
     <tr>
       <td>
-        Product Description\
+        Product Description
         `mandatory`
       </td>
 
@@ -85,7 +85,7 @@ The following table describes the purpose of each columns and whether it is mand
 
     <tr>
       <td>
-        Customer Name\
+        Customer Name
         `optional`
       </td>
 
@@ -96,7 +96,7 @@ The following table describes the purpose of each columns and whether it is mand
 
     <tr>
       <td>
-        Customer Email\
+        Customer Email
         `optional`
       </td>
 
@@ -107,7 +107,7 @@ The following table describes the purpose of each columns and whether it is mand
 
     <tr>
       <td>
-        Customer Mobile\
+        Customer Mobile
         `optional`
       </td>
 
@@ -118,14 +118,14 @@ The following table describes the purpose of each columns and whether it is mand
 
     <tr>
       <td>
-        Validation Period\
+        Validation Period
         `optional`
       </td>
 
       <td>
-        This column must contain the validation period of the email invoice. If this field is left empty, then default value will be taken as 365 days. This column value must be filled based on the Numerical value ( eg 7)column where the unit is defined.  
+        This column must contain the validation period of the email invoice. If this field is left empty, then default value will be taken as 365 days. This column value must be filled based on the Numerical value ( eg 7)column where the unit is defined.
 
-        * \*Note\*\*: Maximum value for validation period can be 1000 days from the time of invoice creation.
+        * *Note*\*: Maximum value for validation period can be 1000 days from the time of invoice creation.
       </td>
     </tr>
 
@@ -136,7 +136,7 @@ The following table describes the purpose of each columns and whether it is mand
       </td>
 
       <td>
-        The column must time contain the unit for invoice validation period can be any of the following:  
+        The column must time contain the unit for invoice validation period can be any of the following:
 
         * D- to expire the invoice after x days.
         * H-to expire the invoice after x hours.
@@ -152,7 +152,7 @@ The following table describes the purpose of each columns and whether it is mand
 
       <td>
         The column must time contain any of the following whether to send SMS to customer or not:\
-        .  **1**:  SMS is sent to customer  
+        .  **1**:  SMS is sent to customer
 
         * **0** : SMS isnot sent to customer\
           The default value (or if the column is left blank) is 0.
@@ -167,7 +167,7 @@ The following table describes the purpose of each columns and whether it is mand
 
       <td>
         The column must time contain:\
-        .  **1**:  Allow partial payment by customer  
+        .  **1**:  Allow partial payment by customer
 
         * **0** : Do not allow partial payment by customer\
           The default value (or if the column is left blank) is 0.
@@ -176,7 +176,7 @@ The following table describes the purpose of each columns and whether it is mand
   </tbody>
 </Table>
 
-3. Enter the batch ID in the **Batch ID** field. 
+3. Enter the batch ID in the **Batch ID** field.
 4. Enter the batch description in the **Batch Description** field.
 
 > **Note**: The input for **Upload File** (at Step 2) and **Batch description** (at Step 4) fields are mandatory.
@@ -184,11 +184,12 @@ The following table describes the purpose of each columns and whether it is mand
 5. Select any of the following check boxes to notify:
    * SMS
    * Email
-6. Click **Custom Details** to expand the pane.
 
-<Image align="center" src="https://files.readme.io/07bd0db-Screenshot_2023-09-29_at_12.10.08_PM.png" />
+Scroll down to enter the **Custom Details** to expand the pane.
 
-7. Select any of the following customer details required during checkout:
+<Image align="center" className="border" border={true} src="https://files.readme.io/c99e9bc3b74c687f1da7d8e8876675edae8ce93e59dbf5e70ef36c1b2201dd52-Screenshot_2025-06-02_at_6.47.40_PM.png" />
+
+7. Click any of the following toggle button so that must those customer details must be collected by customer during checkout:
    * Customer Name
    * Customer Address
    * Customer Email
