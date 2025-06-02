@@ -194,4 +194,14 @@ Scroll down to enter the **Custom Details** to expand the pane.
    * Customer Address
    * Customer Email
    * Customer Name
-8. Click **Create and Send Payment Links**.
+8. Click **Add New Fields+** to add custom fields to be captured when your customer uses payment links apart from the details in Step 7.
+
+   The **Create New Field** pop-up page is displayed.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/bacd6c40f13106c386056fb4350a636e9722f1c33cca6d1a750d2a6153c5be4b-Screenshot_2025-06-02_at_6.51.19_PM.png" />
+
+9. Enter the following details in the **Create New Field** pop-up page and click **Add Field**.
+   * Field Type
+   * Mark as mandatory
+   * Field Name
+10. Click **Create and Send Payment Links**.
