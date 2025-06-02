@@ -1,5 +1,5 @@
 ---
-title: Using Dashboard
+title: Launching a Loyalty Program using Dashboard
 excerpt: ''
 deprecated: false
 hidden: true
@@ -15,6 +15,12 @@ The Loyalty Rewards on Dashboard provides you with comprehensive tools to manage
 > 📘 Activate Loyalty Rewards:
 >
 > To activate Loyalty Rewards with your PayU Hosted Checkout integration, Contact you PayU Key Account Manager (KAM) or raise a ticket with [PayU Support](https://help.payu.in).
+
+To launch a loyalty program using PayU Dashboard:
+
+1. [Set up Loyalty](doc:set-up-loyalty)
+2. [Create a New Campaign](doc:create-a-new-campaign)
+3. [Track the Efficiency of Campaigns](doc:track-the-efficiency-of-campaigns)
 
 The Loyalty Rewards on PayU Dashboard provides the following features:
 
