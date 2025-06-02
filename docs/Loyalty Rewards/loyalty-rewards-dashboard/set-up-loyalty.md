@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The *Set-up Loyalty* page is designed to help you configure their loyalty programs by setting up how points are branded, earned, and redeemed. It includes options for defining point naming, branding visuals, redemption rules, and earning conditions, allowing for a tailored loyalty experience that aligns with the merchant's brand and objectives.
+The *Set-up Loyalty* page is designed to help you configure their loyalty programs by setting up how points are branded, and redeemed. It includes options for defining point naming, branding visuals, redemption rules, and allowing for a tailored loyalty experience that aligns with the merchant's brand and objectives.
 
 To set up loyalty:
 
@@ -22,9 +22,9 @@ To set up loyalty:
 
 3. Click **Edit Loyalty** at the top-right corner of the **Loyalty Campaigns** tab.
 
-   A confirmation message is displayed similar to the following screenshot: 
+   A confirmation message is displayed similar to the following screenshot:
 
-<Image align="center" className="border" width="320px" border={true} src="https://files.readme.io/c424d38a1e5e50fc482a82b10480d5174bd31ef3efcd84a1441269c2b08e1193-setup-loyalty-update-confirmation.png" />
+<Image align="center" className="border" border={true} width="320px" src="https://files.readme.io/c424d38a1e5e50fc482a82b10480d5174bd31ef3efcd84a1441269c2b08e1193-setup-loyalty-update-confirmation.png" />
 
 4. Click **Proceed**.
 
