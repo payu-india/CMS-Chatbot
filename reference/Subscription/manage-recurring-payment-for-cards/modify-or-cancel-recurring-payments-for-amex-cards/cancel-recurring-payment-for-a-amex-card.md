@@ -308,9 +308,9 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         <strong>authpayuid</strong><br/>
-        <code>mandatory for modifying subscription with cards</code>
+        <code>mandatory</code>
       </td>
-      <td>This parameter is used only to modify an existing subscription/consent. Modification means modifying billing details like startDate, endDate, billing cycle, billing interval, billing amount.</td>
+      <td>This parameter is used to cancel  an existing subscription/consent. </td>
       <td></td>
     </tr>
     <tr>
@@ -329,10 +329,16 @@ The description for the **si\_details** parameter (JSON format):
 
 ### si\_details Parameter Example Values
 
-For a yearly plan starting from 1st January 2019, having a monthly billing amount INR 100, the plan details:
+#### Token requestor 1 flow
 
 ```
-{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"}
+{"action":"delete","authPayuId":83674692837}
+```
+
+#### Token requestor 2 flow
+
+```
+{"action":"delete","authPayuId":83674692837,"siTokenRequestor":2}
 ```
 
 ## Sample request
