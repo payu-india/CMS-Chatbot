@@ -4,7 +4,7 @@ excerpt: 'Resource: **_payment**'
 deprecated: false
 hidden: false
 metadata:
-  title: Modify the Recurring Payments for a Card
+  title: Modify the Recurring Payments for a VISA/MASTER Card
   description: >-
     Learn how to modify existing recurring payment details for a card using
     PayU's API. This documentation provides detailed instructions for updating
