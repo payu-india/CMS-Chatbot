@@ -48,14 +48,14 @@ After enter the above details, the \*\*Customer Details \*\*pane is used to capt
 * Notify via SMS/Email
 * Link Expiry
 
-Scroll down for configuring details to be capturing while making payment using the payment link the \*\*Additional Customer Details \*\* pane.
+Scroll down for configuring details to be capturing while making payment using the payment link the **Additional Customer Details** pane.
 
-7. Click the toggle buttons based on the details to be capture in the \*\*Additional Customer Details \*\* pane.
+7. Click the toggle buttons based on the details to be capture in the **Additional Customer Details** pane.
    * Customer Name
    * Customer Address
    * Customer Email
    * Customer Mobile
-8. Click **Add New Fields+** button to add custom fields to be captured when your customer uses payment links apart from the details in Step 7.
+8. Click **Add New Fields+** to add custom fields to be captured when your customer uses payment links apart from the details in Step 7.
 
 The **Create New Field** pop-up page is displayed.
 
