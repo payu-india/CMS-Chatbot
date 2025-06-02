@@ -240,10 +240,10 @@ The following table describes the parameters for delete the recurring payment de
     <tr>
       <td>
         <strong>TokenFlowType</strong><br/>
-        <code>conditional</code>
+        <code>mandaotory for SITokenRequestor 2 flow and tokenized flow</code>
       </td>
       <td>
-        <code>integer</code> Required in case of SITokenRequestor 2 flow and tokenized flow. This parameter must be set to 1.
+        <code>integer</code> This parameter must be set to 1.
       </td>
       <td>1</td>
     </tr>
