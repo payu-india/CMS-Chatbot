@@ -20,3 +20,19 @@ metadata:
    * Adjustments of points during refunds ensure accurate processing.
 
 This workflow facilitates seamless use and management of loyalty points during transactions, resulting in a rewarding customer experience.
+
+## Web Checkout Workflow
+
+1. **Point Visibility**: Customers see eligible points they’ll earn during checkout on the PayU payment page 
+2. **Seamless Earning**: Points are credited automatically after successful payment via any method 
+3. **Easy Redemption**: For subsequent transactions, customers can apply earned points toward their purchase
+
+<Image align="center" src="https://files.readme.io/e8da806c0306a78271387a890bb74a83cbe4d764aac007216abc87f067386c07-loyalty_edge_workflow_step1.png" />
+
+<br />
+
+<Image align="center" src="https://files.readme.io/4970ae106a329925d53ea6612266cb9ada709eba232e3b2ece08ef8e076c67bd-loyalty_edge_workflow_step2.png" />
+
+<br />
+
+<Image align="center" src="https://files.readme.io/8f38198ab747c5e4970aae75fd80ef01b5b4d2df8d6c99b6a985d64696bba2b6-loyalty_edge_workflow_step3.png" />
