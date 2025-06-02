@@ -1,5 +1,5 @@
 ---
-title: Modify Recurring Payments for a Card
+title: Modify Recurring Payments for a VISA/MASTER Card
 excerpt: 'Resource: **_payment**'
 deprecated: false
 hidden: false
