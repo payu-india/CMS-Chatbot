@@ -526,7 +526,61 @@ curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "C
 * Sample response for successful cancellation of a card mandate:
 
 ```
-{"status":1,"message":"Mandate Revoked Successfully","action":"MANDATE_REVOKE"}
+Array
+(
+    [mihpayid] => 23501453251
+    [mode] => CC
+    [status] => success
+    [unmappedstatus] => auth
+    [key] => BmTY3G
+    [txnid] => ecccddc37a328b7bee81
+    [amount] => 1.00
+    [cardCategory] => domestic
+    [discount] => 0.00
+    [net_amount_debit] => 1
+    [addedon] => 2025-05-12 19:12:04
+    [productinfo] => Product Info
+    [firstname] => Payu-Admin
+    [lastname] =>
+    [address1] =>
+    [address2] =>
+    [city] =>
+    [state] =>
+    [country] =>
+    [zipcode] =>
+    [email] => test@example.com
+    [phone] => 1234567890
+    [udf1] =>
+    [udf2] =>
+    [udf3] =>
+    [udf4] =>
+    [udf5] =>
+    [udf6] =>
+    [udf7] =>
+    [udf8] =>
+    [udf9] =>
+    [udf10] =>
+    [hash] => e9a9cee05db5b6d66941a6df1d674d1a3f232d94f5ac4a67b1dbae13e03dd2a9cebaf6bb0f2bb9b54cadcd4215aaacfa51cc1be7ff46af4f1cbfc49456b25994
+    [field1] =>
+    [field2] => 10VBYWZKESJUJU
+    [field3] =>
+    [field4] => 23501453251auth
+    [field5] =>
+    [field6] =>
+    [field7] => 3DS_CHALLENGE_POSITIVE
+    [field8] =>
+    [field9] => Authorization done using Billdesk-AmexSiHub
+    [payment_source] => payu
+    [meCode] => {"MID":"8366132637","Key":"2a9a271f513eb63778a4ffc31b52bf91"}
+    [PG_TYPE] => CC-PG
+    [bank_ref_num] => 000061885275422
+    [bankcode] => AMEX
+    [error] => E000
+    [error_Message] => No Error
+    [cardnum] => XXXXXXXXXXXX1005
+    [cardhash] => This field is no longer supported in postback params.
+)
+ 
 ```
 
 <br />
