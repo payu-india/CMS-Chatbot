@@ -1,7 +1,7 @@
 ---
 title: Modify or Cancel Recurring Payments for AMEX Cards
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
