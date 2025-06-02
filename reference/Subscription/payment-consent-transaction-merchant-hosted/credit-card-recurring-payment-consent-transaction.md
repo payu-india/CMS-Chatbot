@@ -36,17 +36,17 @@ next:
 This section provides the request parameters, sample request and response for a Cards Recurring Payment \<\<glossary:Consent transaction>>.
 
 > 📘 Note:
-> 
+>
 > During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                   |
-| :--------------------- | :-------------------------------- |
-| Test Environment       | \<https://test.payu.in/_payment>   |
-| Production Environment | \<https://secure.payu.in/_payment> |
+|                        |                                                                         |
+| :--------------------- | :---------------------------------------------------------------------- |
+| Test Environment       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| Production Environment | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 **Content Type**: application/x-www-form-urlencoded
 
@@ -271,7 +271,7 @@ HTTP Method: **POST**
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>storecard_token_type<br><code>conditional</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> <tr id="storecard_token_type"> storecard_token_type<br><code>conditional</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>integer</code> This parameter is used to specify the store card token type. It must include any of the following values:  </p>
 <ul>
@@ -303,38 +303,37 @@ HTTP Method: **POST**
 </table>
 `}</HTMLBlock>
 
-
-> 📘 Notes for **additional_info** parameter:
-> 
-> The JSON format contains the following fields:  
-> 
+> 📘 Notes for **additional\_info** parameter:
+>
+> The JSON format contains the following fields:
+>
 >  
-> 
-> - **trid** (Token Requestor ID) is the identifier given by the networks for creating the tokens. You should be able to get the same from your token provider.
-> - **tokenRefNo** (Token Reference Number) is generated along with the network token. You should be able to get the same from your token provider.
-> - **TAVV** is a token authentication verification value given by schemes or interchange. Also, known as cryptogram.
-> 
+>
+> * **trid** (Token Requestor ID) is the identifier given by the networks for creating the tokens. You should be able to get the same from your token provider.
+> * **tokenRefNo** (Token Reference Number) is generated along with the network token. You should be able to get the same from your token provider.
+> * **TAVV** is a token authentication verification value given by schemes or interchange. Also, known as cryptogram.
+>
 > Additional notes:
-> 
-> - The last 4 digits of cards is mandatory for all transactions.   
-> - Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
-> - Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
+>
+> * The last 4 digits of cards is mandatory for all transactions.   
+> * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
+> * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
 
 > 📘 Notes for Bankcode
-> 
+>
 > Debit Card or Credit Card: There are different options like Visa Debit Card, Mastercard, Maestro, etc. For each option, a unique bank code exists and it would be returned in this bankcode parameter. For more information, refer to Card Type Codes. For example, VISA for VISA Debit Card.
 
 Characters allowed for parameters
 
 For parameters address1, address2, city, state, country, product info, email, and phone following characters are allowed:
 
-- Characters: A to Z, a to z, 0 to 9
-- – (Minus)
-- \_ (Underscore)
-- @ ()
-- / (Slash)
-- (Space)
-- . (Dot)
+* Characters: A to Z, a to z, 0 to 9
+* – (Minus)
+* \_ (Underscore)
+* @ ()
+* / (Slash)
+* (Space)
+* . (Dot)
 
 ## Sample request
 
@@ -359,9 +358,9 @@ In the case of Cards, you must ensure that the payment response from PayU has th
 | mihpayid           | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction           |
 
 > 📘 Notes:
-> 
-> - If any of the above four checks are not satisfied, that means the transaction has not been correctly authorized for Standing Instruction. The merchant must not consider this transaction eligible for the Recurring platform.
-> - Registration transaction must be successful in making it eligible for the Recurring platform.
+>
+> * If any of the above four checks are not satisfied, that means the transaction has not been correctly authorized for Standing Instruction. The merchant must not consider this transaction eligible for the Recurring platform.
+> * Registration transaction must be successful in making it eligible for the Recurring platform.
 
 At this step, if the status of the consent transaction is returned as success along with the other three conditions explained above, you can consider that the subscription setup is completed successfully.
 
