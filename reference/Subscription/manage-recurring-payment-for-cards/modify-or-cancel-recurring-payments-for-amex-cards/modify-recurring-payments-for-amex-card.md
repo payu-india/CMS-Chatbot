@@ -674,7 +674,7 @@ The description for the **si\_details** parameter (JSON format):
       </td>
 
       <td>
-        This field is used to modify or cancel an existing subscription. Include **modify** to modify a subscription.
+        This field is used to modify an existing subscription. Include **modify** to modify a subscription.
       </td>
 
       <td>
