@@ -1,5 +1,5 @@
 ---
-title: Cancel Recurring Payment for a AMEX Cards
+title: Cancel Recurring Payment for a AMEX Card
 deprecated: false
 hidden: false
 metadata:
