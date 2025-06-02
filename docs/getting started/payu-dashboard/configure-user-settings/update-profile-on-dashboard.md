@@ -31,11 +31,7 @@ To update your profile on Dashboard:
 
    The Profile page is displayed with the **Basic Details** tab selected.
 
-<details>
-  <summary>Image</summary>
-
-  <img src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Screenshot-2023-03-25-at-7.21.29-PM-1024x426.png" alt="" style={{ border: "true" }} />
-</details>
+<img src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Screenshot-2023-03-25-at-7.21.29-PM-1024x426.png" alt="" style={{ border: "true" }} />
 
 3. Update any of the following details as required:
 
