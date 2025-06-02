@@ -20,4 +20,4 @@ To filter the link results using the status:
 
 > **Note:** You can use the **Reset** to clear all checkbox selections.
 
-![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-36.png)
+<Image align="center" src="https://files.readme.io/53b5421aae446c8b0143ce30155c6d8789f8f2081d50c084083c0930fe17f839-Screenshot_2025-06-02_at_6.54.04_PM.png" />
