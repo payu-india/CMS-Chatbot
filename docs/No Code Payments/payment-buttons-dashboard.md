@@ -130,28 +130,34 @@ To customize the Payment Button:
   </tbody>
 </Table>
 
-## Step 4: Customize the Advanced options
+## Step 4: Configure the advanced options
 
-After the customer completes filling the details on Check Out page, they will be redirected to after payment page that you specify in this step.
+After the customer completes filling the details on Check Out page, they will enter the additional details as configured in this step and then redirected to after completing the checkout.
 
-To customize the advanced options (after payment page):
+To configure the additional fields (to be displayed after payment page):
 
-1. Expand the **Advanced Options** tile.
+1. Scroll down to the **Custom Details** pane.
 
-   The fields on the **Advanced Options**tile are displayed.
+   The fields on the **Custom Details**tile are displayed.
 
-<Image align="center" width="412px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-2.20.46-PM-1024x502.png" />
+<Image align="center" className="border" border={true} width="412px" src="https://files.readme.io/414d861556b165c6f6065aa4eebc25ecbc543e74e4ba08a1d6ab5fc5d7ff4fbe-Screenshot_2025-06-02_at_7.22.41_PM.png" />
 
-2. Enter the page URL in the **Success URL** field to which the customer must be redirected if the payment is successful.
-3. Enter the page URL in the **Cancel URL** field to which the customer must be redirected if the customer cancels or aborts the payment.
-4. Enter the page URL in the **Failure URL** field to which the customer must be redirected if the payment has failed.
-5. Click **Generate Button**.
+2. Click any of the following toggle button so that must those customer details must be collected by customer during checkout:
+   * Customer Name
+   * Customer Address
+   * Customer Email
+   * Customer Name
+3. Enter the page URL for the following fields:
+   * **Success URL**:  URL to which the customer must be redirected if the payment is successful.
+   * **Cancel URL**: URL  to which the customer must be redirected if the customer cancels or aborts the payment.
+   * **Failure URL** : URL to which the customer must be redirected if the payment has failed.
+4. Click **Generate Button**.
 
-### Filter the Payment buttons
+## Filter the Payment buttons
 
 The **Filter** menu enables you to filter the payment buttons based on date range or payment button type.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-7.37.18-PM-1024x684.jpg)
+<Image align="center" className="border" border={true} src="https://files.readme.io/aa8017f76337f733c85c604f5405b654e85a9d2ab165d9b60e1f34dc716fda54-Screenshot_2025-06-02_at_7.25.33_PM.png" />
 
 #### Filter by created date range
 
@@ -182,7 +188,7 @@ To filter the payment buttons based on its type:
 
 You can download the payment button records history in CSV or XSLX format.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-7.39.14-PM-1024x691.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/7e99a0e3631c410b75ab966f9d02613852a8565cb802ce7be22f23347bcddaab-Screenshot_2025-06-02_at_7.26.33_PM.png" />
 
 To download the payment button records:
 
