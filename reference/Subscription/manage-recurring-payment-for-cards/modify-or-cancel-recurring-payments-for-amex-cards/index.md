@@ -7,5 +7,5 @@ metadata:
 ---
 This part of the document includes the following to manage the recurring payments for AMEX cards:
 
-* [Modify Recurring Payments for an AMEX Card](https://docs.payu.in/reference/modify-recurring-payments-for-amex-card)
-* [Cancel Recurring Payment for a AMEX Card](https://docs.payu.in/reference/cancel-recurring-payment-for-a-amex-card)
+* [Modify Recurring Payments for an AMEX Card](ref:modify-recurring-payments-for-amex-card)
+* [Cancel Recurring Payment for a AMEX Card](ref:cancel-recurring-payment-for-a-amex-card)
