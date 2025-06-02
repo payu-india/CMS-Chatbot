@@ -40,295 +40,239 @@ HTTP Method: **POST**
 
 The following table describes the parameters for modifying the recurring payment details for a card.
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        key
-        **mandatory**
-      </td>
-
-      <td>
-        `varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account.
-      </td>
-
-      <td>
-        Your Test Key
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnid
-        **mandatory**
-      </td>
-
-      <td>
-        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.
-        `Character limit`: 25
-
-        **Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
-      </td>
-
-      <td>
-        fd3e847h2
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount\
-        **mandatory**
-      </td>
-
-      <td>
-        `float` This parameter should contain the payment amount of the particular transaction.
-
-        **Note**: Type-cast the amount to float type\
-        Depending upon the merchant use case, this value will vary.
-
-        * It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.
-
-        * In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
-      </td>
-
-      <td>
-        1000
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productinfo\
-        **mandatory**
-      </td>
-
-      <td>
-        `varchar` This parameter should contain a brief product description. It should be a string describing the product.\
-        `Character limit`: 100
-      </td>
-
-      <td>
-        Time Magazine Subscription
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstname\
-        **mandatory**
-      </td>
-
-      <td>
-        `varchar` Must contain the first name of the customer.\
-        `Character limit`: 60
-      </td>
-
-      <td>
-        Ashish
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email\
-        **mandatory**
-      </td>
-
-      <td>
-        `varchar` Must contain the email of the customer.\
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.
-        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
-        Character limit: 50
-      </td>
-
-      <td>
-        [Ashish@test.com](mailto:Ashish@test.com)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone\
-        **mandatory**
-      </td>
-
-      <td>
-        `varchar` Must contain the phone number of the customer.
-
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.\
-        Character limit: 50
-      </td>
-
-      <td>
-        9843176540
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        api\_version\
-        **mandatory**
-      </td>
-
-      <td>
-        This parameter must always needs to be passed as 7.
-      </td>
-
-      <td>
-        7
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        si\
-        **mandatory**
-      </td>
-
-      <td>
-        This parameter must be passed with the value as 3 to modify an already existing subscription/consent.
-      </td>
-
-      <td>
-        3
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        pg\
-        **mandatory**
-      </td>
-
-      <td>
-        `String` This parameter defines the payment category that the merchant wants the customer to see by default on the PayU's payment page. In this example, "CC" must be specified. For more information, refer to Payment Mode Codes.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankcode\
-        **mandatory**
-      </td>
-
-      <td>
-        Each payment option is identified with a String unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards)
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        user\_credentials\
-        **mandatory**
-      </td>
-
-      <td>
-        `String` This parameter must contain the user credentials.
-      </td>
-
-      <td>
-        a:b
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        store\_card\_token\
-        **mandatory for network token transactions**
-      </td>
-
-      <td>
-        `String` This must include the Network token generated at your end.
-      </td>
-
-      <td>
-        1234 4567 2456 3566
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        free\_trial\
-        **optional**
-      </td>
-
-      <td>
-        This is mandatory only if the merchant wants to support free trial use case with card and net banking together that too on PayU Hosted Checkout integration.
-
-        In this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request.\
-        This parameter has no significance in the case of seamless flow.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        si\_details\
-        **mandatory**
-      </td>
-
-      <td>
-        This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.
-
-        **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) )
-
-        This is a JSON object and it includes a set of parameters are described in the the si\_details Parameter Description table.
-      </td>
-
-      <td>
-        Refer the example below the si\_details Parameter Description table.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        hash\
-        **mandatory**
-      </td>
-
-      <td>
-        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions.
-
-        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.
-
-        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:\
-        HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si\_details|SALT)
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-  </tbody>
-</Table>
+\<table>
+&#x20; \<thead>
+&#x20;   \<tr>
+&#x20;     \<th align="left">Parameter\</th>
+&#x20;     \<th align="left">Description\</th>
+&#x20;     \<th align="left">Example\</th>
+&#x20;   \</tr>
+&#x20; \</thead>
+&#x20; \<tbody>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>key\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>\<code>varchar\</code> This parameter is the unique Merchant Key provided by PayU for your merchant account.\</td>
+&#x20;     \<td>Your Test Key\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>txnid\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>varchar\</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.\<br/>
+&#x20;       \<code>Character limit\</code>: 25\<br/>
+&#x20;       \<strong>Note\</strong>: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
+&#x20;     \</td>
+&#x20;     \<td>fd3e847h2\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>amount\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>float\</code> This parameter should contain the payment amount of the particular transaction.\<br/>\<br/>
+&#x20;       \<strong>Note\</strong>: Type-cast the amount to float type\<br/>
+&#x20;       Depending upon the merchant use case, this value will vary.\<br/>\<br/>
+&#x20;       \- It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.\<br/>\<br/>
+&#x20;       \- In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
+&#x20;     \</td>
+&#x20;     \<td>1000\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>productinfo\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>varchar\</code> This parameter should contain a brief product description. It should be a string describing the product.\<br/>
+&#x20;       \<code>Character limit\</code>: 100
+&#x20;     \</td>
+&#x20;     \<td>Time Magazine Subscription\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>firstname\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>varchar\</code> Must contain the first name of the customer.\<br/>
+&#x20;       \<code>Character limit\</code>: 60
+&#x20;     \</td>
+&#x20;     \<td>Ashish\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>email\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>varchar\</code> Must contain the email of the customer.\<br/>
+&#x20;       This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.\<br/>
+&#x20;       Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.\<br/>
+&#x20;       Character limit: 50
+&#x20;     \</td>
+&#x20;     \<td>Ashish\@test.com\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>phone\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>varchar\</code> Must contain the phone number of the customer.\<br/>\<br/>
+&#x20;       This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.\<br/>
+&#x20;       Character limit: 50
+&#x20;     \</td>
+&#x20;     \<td>9843176540\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>api\_version\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>This parameter must always needs to be passed as 7.\</td>
+&#x20;     \<td>7\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>si\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>This parameter must be passed with the value as 3 to cancel an already existing subscription/consent.\</td>
+&#x20;     \<td>3\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>pg\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>\<code>String\</code> This parameter defines the payment category that the merchant wants the customer to see by default on the PayU's payment page. In this example, "CC" must be specified. For more information, refer to Payment Mode Codes.\</td>
+&#x20;     \<td>AMEXSI\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>bankcode\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>Each payment option is identified with a String unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to \<a href="doc:card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards\</a>\</td>
+&#x20;     \<td>AMEXSI\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>ccnum\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>This parameter must contain the 13 to 19-digit card number for credit or debit cards in general.\</td>
+&#x20;     \<td>\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>ccname\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>This parameter must contain the name on card – as entered by the customer for the transaction.\</td>
+&#x20;     \<td>\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>ccvv\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>This parameter must contain the 3-digit CVV number for credit cards or debit cards. For AMEX cards, 4-digit security code (4DBC) number of the card must be posted. Also, known as CID (Card Identification) number.\</td>
+&#x20;     \<td>\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>ccexpmon\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format.\<br/>
+&#x20;       For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
+&#x20;     \</td>
+&#x20;     \<td>\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>ccexpyr\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.\</td>
+&#x20;     \<td>\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>si\_details\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.\<br/>\<br/>
+&#x20;       \<strong>Note\</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – https\://www\.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0 )\<br/>\<br/>
+&#x20;       This is a JSON object and it includes a set of parameters are described in the the \<a href="#si\_details-parameter-json-details">si\_details Parameter – JSON Details\</a> table.
+&#x20;     \</td>
+&#x20;     \<td>Refer the example below the si\_details Parameter Description table.\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>Storecard\_token\</strong>\<br/>
+&#x20;       \<code>mandatory for SITokenRequestor 2 flow and tokenized flow\</code>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>varchar\</code>  This parameter contains the network token value. For more information on SITokenRequestor 2 flow, refer to \<a href="https\://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction#storecard\_token\_type">Cards Consent Transaction > Request Parameters\</a>
+&#x20;     \</td>
+&#x20;     \<td>\{\{network token value}}\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>TokenFlowType\</strong>\<br/>
+&#x20;       \<code>mandatory for SITokenRequestor 2 flow and tokenized flow\</code>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>integer\</code> This parameter must be set to 1. For more information on SITokenRequestor 2 flow, refer to \<a href="https\://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction#storecard\_token\_type">Cards Consent Transaction > Request Parameters\</a>
+
+&#x20;     \</td>
+&#x20;     \<td>1\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>Additional info for tokenized flow\</strong>\<br/>
+&#x20;       \<code>mandatory for tokenized flow\</code>&#x20;
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>json\</code> Contains additional information needed for token processing. For more information on tokenized flow, refer to \<a href="https\://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction#storecard\_token\_type">Cards Consent Transaction > Request Parameters\</a>
+&#x20;     \</td>
+&#x20;     \<td>(\{"tavv":"1997","last4digits":"1005","par":"A0009WTYMUG6ANFB3F9Z8CNYAKCX9"})\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>token\_expiry\</strong>\<br/>
+&#x20;       \<code>mandatory for SITokenRequestor 2 flow and tokenized flow\</code>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>varchar\</code> Contains the expiry date of the token. For more information on SITokenRequestor 2 flow, refer to \<a href="https\://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction#storecard\_token\_type">Cards Consent Transaction > Request Parameters\</a>
+&#x20;     \</td>
+&#x20;     \<td>\</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>hash\</strong>\<br/>
+&#x20;       \<code>mandatory\</code>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions.\<br/>\<br/>
+&#x20;       It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.\<br/>\<br/>
+&#x20;       In the case of registration transaction, the formula is used to calculate this hash is similar to the following:\<br/>
+&#x20;       \<code>SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||si\_details|SALT)\</code>
+&#x20;     \</td>
+&#x20;     \<td>\</td>
+&#x20;   \</tr>
+&#x20; \</tbody>
+\</table>
 
 ### For network tokens
 
@@ -341,7 +285,7 @@ This is applicable for the following scenarios:
 >
 > This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sent the card transaction request in the form of authentication.
 
-{/* Properly formatted JSX Table */}
+<br />
 
 <Table align={["left","left","left"]}>
   <thead>
