@@ -270,8 +270,8 @@ HTTP Method: **POST**
   <td style="border: 1px solid #ddd; padding: 8px;"><p>1234 4567 2456 3566</p>
 </td>
 </tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> <tr id="storecard_token_type"> storecard_token_type<br><code>conditional</code></p>
+<tr id="storecard_token_type"
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> storecard_token_type<br><code>conditional</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>integer</code> This parameter is used to specify the store card token type. It must include any of the following values:  </p>
 <ul>
