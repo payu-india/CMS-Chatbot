@@ -233,7 +233,7 @@ The following table describes the parameters for delete the recurring payment de
         <code>mandatory for SITokenRequestor 2 flow and tokenized flow</code>
       </td>
       <td>
-        <code>varchar</code>  This parameter contains the network token value.
+        <code>varchar</code>  This parameter contains the network token value. For more information on SITokenRequestor 2 flow, refer to <a href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction#storecard_token_type">Cards Consent Transaction > Request Parameters</a>
       </td>
       <td>{{network token value}}</td>
     </tr>
@@ -243,17 +243,18 @@ The following table describes the parameters for delete the recurring payment de
         <code>mandatory for SITokenRequestor 2 flow and tokenized flow</code>
       </td>
       <td>
-        <code>integer</code> This parameter must be set to 1.
+        <code>integer</code> This parameter must be set to 1. For more information on SITokenRequestor 2 flow, refer to <a href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction#storecard_token_type">Cards Consent Transaction > Request Parameters</a>
+
       </td>
       <td>1</td>
     </tr>
     <tr>
       <td>
         <strong>Additional info for tokenized flow</strong><br/>
-        <code>mandatory for tokenized flow</code>
+        <code>mandatory for tokenized flow</code> 
       </td>
       <td>
-        <code>json</code> Contains additional information needed for token processing.
+        <code>json</code> Contains additional information needed for token processing. For more information on tokenized flow, refer to <a href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction#storecard_token_type">Cards Consent Transaction > Request Parameters</a>
       </td>
       <td>({"tavv":"1997","last4digits":"1005","par":"A0009WTYMUG6ANFB3F9Z8CNYAKCX9"})</td>
     </tr>
@@ -263,7 +264,7 @@ The following table describes the parameters for delete the recurring payment de
         <code>mandatory for SITokenRequestor 2 flow and tokenized flow</code>
       </td>
       <td>
-        <code>varchar</code> Contains the expiry date of the token.
+        <code>varchar</code> Contains the expiry date of the token. For more information on SITokenRequestor 2 flow, refer to <a href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction#storecard_token_type">Cards Consent Transaction > Request Parameters</a>
       </td>
       <td></td>
     </tr>
