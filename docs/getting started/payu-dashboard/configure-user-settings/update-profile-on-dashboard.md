@@ -12,20 +12,17 @@ next:
 ---
 The following details can be updated using the PayU Dashboard:
 
-- [Basic Details](#update-basic-details)
-- [Business Details](#business-details)
-- [Bank Details](#update-bank-details)
+* [Basic Details](#update-basic-details)
+* [Business Details](#business-details)
+* [Bank Details](#update-bank-details)
 
 If you want to update your profile before your onboarding is complete, refer to [Edit Profile Before Onboarding](#update-profile-before-onboarding). This includes uploading documents for verification.
 
 > 📘 Note:
-> 
-> When you try to update the details, the _Verify Your Password_ pop-up page is displayed to verify your password.
+>
+> When you try to update the details, the *Verify Your Password* pop-up page is displayed to verify your password.
 
-<details>
-  <summary>Image</summary>
-  <img src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Screenshot-2023-03-25-at-7.33.49-PM.png" alt="" style={{ width: "412px", border: "true" }} />
-</details>
+<img src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Screenshot-2023-03-25-at-7.33.49-PM.png" alt="" style={{ width: "412px", border: "true" }} />
 
 To update your profile on Dashboard:
 
@@ -36,13 +33,14 @@ To update your profile on Dashboard:
 
 <details>
   <summary>Image</summary>
+
   <img src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Screenshot-2023-03-25-at-7.21.29-PM-1024x426.png" alt="" style={{ border: "true" }} />
 </details>
 
 3. Update any of the following details as required:
 
-- [Basic Details](#update-basic-details)
-- [Business Details](#business-details)
+* [Basic Details](#update-basic-details)
+* [Business Details](#business-details)
 
 ## Update Basic Details
 
@@ -54,12 +52,13 @@ To update the basic details such as your mobile number and password:
 
 <details>
   <summary>Image</summary>
+
   <img src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Screenshot-2023-03-25-at-7.21.29-PM-1024x426.png" alt="" style={{ border: "true" }} />
 </details>
 
 2. Click the **Edit** button (pencil) in the following fields and update the details:
-   - Phone Number
-   - Password
+   * Phone Number
+   * Password
 3. Click **Continue**.
 
 ## Business Details
@@ -77,13 +76,14 @@ Update your website or app details using the pop-up page displayed and click **S
 
 <details>
   <summary>Image</summary>
+
   <img src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Screenshot-2023-03-25-at-7.58.47-PM.png" alt="" style={{ width: "412px", border: "true" }} />
 </details>
 
 **Note**: Your website or app details will be verified after you update and you can check the status on this page.
 
-| GST Details | Update your GST details using the pop-up page displayed and click **Submit**. |
-| Display Name | Update your display name using the pop-up page displayed and click **Submit**. You will be asked for confirmation before proceeding with updating the display name, so click **Yes, Edit**. |
+\| GST Details | Update your GST details using the pop-up page displayed and click **Submit**. |\
+\| Display Name | Update your display name using the pop-up page displayed and click **Submit**. You will be asked for confirmation before proceeding with updating the display name, so click **Yes, Edit**. |
 
 1. Click **Submit**.
 
@@ -101,6 +101,7 @@ To update your bank details:
 
 <details>
   <summary>Image</summary>
+
   <img src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Screenshot-2023-03-25-at-8.07.44-PM.png" alt="" style={{ width: "412px" }} />
 </details>
 
