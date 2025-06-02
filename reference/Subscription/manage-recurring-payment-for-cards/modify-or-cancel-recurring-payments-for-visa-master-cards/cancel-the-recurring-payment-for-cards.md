@@ -1,5 +1,5 @@
 ---
-title: Cancel Recurring Payment for a Cards
+title: Cancel Recurring Payment for a VISA/MASTER Card
 deprecated: false
 hidden: false
 metadata:
