@@ -1,5 +1,5 @@
 ---
-title: Modify or Cancel Recurring Payments for Cards
+title: Modify or Cancel Recurring Payments for VISA/MASTER Cards
 deprecated: false
 hidden: false
 metadata:
