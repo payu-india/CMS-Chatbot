@@ -458,68 +458,6 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        billingLimit\
-        **optional**
-      </td>
-
-      <td>
-        For UPI, this field is used to decide the period corresponding which the debit from the mandate recurring date can happen and this mandate registration date is confirmed during registration transaction of UPI.
-
-        **Note**: This field is applicable only for UPI.\
-        The possible values are:
-
-        * **ON** = Use this parameter to deduct on a specific date
-        * **BEFORE** = Use this parameter to deduct before and on a specific date
-        * **AFTER** = Use this parameter to After and on the specific date
-
-        **Note**: If no value is passed, 'AFTER' is considered by default.
-      </td>
-
-      <td>
-        ON = 2022-02-20
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        billingRule\
-        **optional**
-      </td>
-
-      <td>
-        For UPI, this field is used to decide the limitation on the amount of recurring debit against the mandate amount which is set during registration transaction of UPI.
-
-        **Note**: This field is applicable only for UPI.\
-        The possible values are:
-
-        * **MAX** = This is the maximum amount that a merchant can debit, that is, merchant can debit lesser or equal to this amount for a recurring transaction.
-        * **EXACT**= This the exact amount that a merchant can debit in recurring debits.
-
-        Note: If no value is passed, 'MAX' is considered by default.
-      </td>
-
-      <td>
-        MAX = 5000
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        billingDate\
-        **optional**
-      </td>
-
-      <td>
-        **Applicable for UPI only**: This field is used to decide the date/day, basis which the recurring debit should happen. This can be ignored and the debit will happen as per the start date in every cycle.
-      </td>
-
-      <td>
-        FORTNIGHTLY = 7
-      </td>
-    </tr>
-
-    <tr>
-      <td>
         authpayuid\
         **mandatory for modifying subscription with cards**
       </td>
