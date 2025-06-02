@@ -250,20 +250,20 @@ The following table describes the parameters for delete the recurring payment de
     <tr>
       <td>
         <strong>Additional info for tokenized flow</strong><br/>
-        <code>conditional</code>
+        <code>mandatory for tokenized flow</code>
       </td>
       <td>
-        <code>json</code> Required for tokenized flow. Contains additional information needed for token processing.
+        <code>json</code> Contains additional information needed for token processing.
       </td>
       <td>({"tavv":"1997","last4digits":"1005","par":"A0009WTYMUG6ANFB3F9Z8CNYAKCX9"})</td>
     </tr>
     <tr>
       <td>
         <strong>token_expiry</strong><br/>
-        <code>conditional</code>
+        <code>mandatory for SITokenRequestor 2 flow and tokenized flow</code>
       </td>
       <td>
-        <code>varchar</code> Required in case of SITokenRequestor 2 flow and tokenized flow. Contains the expiry date of the token.
+        <code>varchar</code> Contains the expiry date of the token.
       </td>
       <td></td>
     </tr>
