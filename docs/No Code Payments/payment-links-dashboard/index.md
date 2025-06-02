@@ -33,9 +33,9 @@ The following workflow is involved from your customer perspective when using Pay
 
 Select **Payment Tools** > **Payment Links** from the left pane of the Dashboard.
 
-   The Payment Links Dashboard is displayed with the **Payment Link** and **Bulk Uploads** tabs.
+The Payment Links Dashboard is displayed with the **Payment Link** and **Bulk Uploads** tabs.
 
-<Image align="center" src="https://files.readme.io/8310ceb-Screenshot_2023-09-29_at_11.58.48_AM.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/cc35b704632bded3088580a070ffaf24f203c3713f7880fb0a2cdc6e5b8bc842-Screenshot_2025-06-02_at_7.05.43_PM.png" />
 
 The **Payment Link** tab includes the following details:
 
