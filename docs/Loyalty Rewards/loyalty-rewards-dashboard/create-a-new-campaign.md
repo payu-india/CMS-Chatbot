@@ -17,7 +17,7 @@ Setting up a campaign involves the following steps:
 3. [Campaign settings](#campaign-settings)
 4. [Review and Publish](#review-and-publish)
 
-## Basic details
+## Step 1:
 
 1. Log In to PayU Dashboard
 2. Select **Loyalty and Offers Suite> Loyalty** on the navigation pane.
@@ -85,7 +85,7 @@ Select any of the following payment modes to configure offer details that is exp
       </td>
 
       <td>
-         - Search and select the bank from the Select Banks and Select Networks drop-down list.  
+         - Search and select the bank from the Select Banks and Select Networks drop-down list.
 
         * Search and select a network from the **Select Networks** drop-down list.
       </td>
@@ -199,7 +199,7 @@ The Earn Rules page is displayed.
 
     <tr>
       <td>
-        Min. Transaction Amount\
+        Min. Transaction Amount
         (Optional)
       </td>
 
@@ -210,7 +210,7 @@ The Earn Rules page is displayed.
 
     <tr>
       <td>
-        Max. Transaction Amount\
+        Max. Transaction Amount
         (Optional)
       </td>
 
@@ -221,7 +221,7 @@ The Earn Rules page is displayed.
 
     <tr>
       <td>
-        Set Point Expiry\
+        Set Point Expiry
         (Optional)
       </td>
 
@@ -296,7 +296,7 @@ The Earn Rules page is displayed.
       </td>
 
       <td>
-        Select how often to reset user limits from the drop-down list, with the following options:  
+        Select how often to reset user limits from the drop-down list, with the following options:
 
         * Do Not Reset
         * Every Day
