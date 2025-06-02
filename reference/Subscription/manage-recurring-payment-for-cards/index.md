@@ -17,6 +17,6 @@ next:
 The following sections describe how to cancel or modify the recurring payment for cards:
 
 * [Check Mandate Status API](ref:check-mandate-status-api)
-* [Modify or Cancel Recurring Payments for VISA/MASTER Cards](ref:modify-or-cancel-recurring-payments-for-cards)
+* [Modify or Cancel Recurring Payments for VISA/MASTER Cards](ref:modify-or-cancel-recurring-payments-for-visa-master-cards)
 * [Modify or Cancel Recurring Payments for AMEX Cards](ref:modify-or-cancel-recurring-payments-for-amex-cards)
 * [Cancel the Recurring Payment for a Card](ref:cancel-the-recurring-payment-for-cards)
