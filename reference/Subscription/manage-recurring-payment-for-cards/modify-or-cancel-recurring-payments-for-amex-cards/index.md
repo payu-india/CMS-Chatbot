@@ -5,4 +5,4 @@ hidden: false
 metadata:
   robots: index
 ---
-This part of the document includes the following to manage the recurring
+This part of the document includes the following to manage the recurring payments for AMEX cards:
