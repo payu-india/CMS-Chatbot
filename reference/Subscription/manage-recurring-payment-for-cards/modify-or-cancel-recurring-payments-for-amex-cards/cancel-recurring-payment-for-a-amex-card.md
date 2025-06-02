@@ -318,8 +318,8 @@ The description for the **si\_details** parameter (JSON format):
         <strong>action</strong><br/>
         <code>mandatory for cards</code>
       </td>
-      <td>This parameter is used to cancel an existing subscription. Pass the values as <strong>cancel</strong> to cancel an existing subscription or consent.</td>
-      <td>cancel</td>
+      <td>This parameter is used to cancel an existing subscription. Pass the values as <strong>delete</strong> to cancel an existing subscription or consent.</td>
+      <td>delete</td>
     </tr>
   </tbody>
 </table>
