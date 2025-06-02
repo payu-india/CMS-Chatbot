@@ -36,19 +36,19 @@ To create a new Payment Button:
 
    The list of existing buttons are listed on the *Buttons* page.
 
-<Image align="center" src="https://files.readme.io/b082dec-Screenshot_2023-09-29_at_12.15.58_PM.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/a494bb1de682ae83ec3d1023e1e13dfb65e02db0ef5332ca52b6e85232638c63-Screenshot_2025-06-02_at_7.09.40_PM.png" />
 
 2. Click **Create New Button** at the top-right corner.
 
    The *Create New Payment Button* page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-11.00.51-AM-1024x807.jpg)
+<Image align="center" className="border" border={true} src="https://files.readme.io/dace80a25807f722b25d1ee7054db2836a7a3d44d97cb7ca82f67664bdbfd54b-Screenshot_2025-06-02_at_7.09.15_PM.png" />
 
 ## Step 2: Customize the Payment button
 
 To customize the Payment Button:
 
-1. Select any of the following button label that must be displayed:
+1. Select any of the following button label that must be displayed from the **Button Text** drop-down list:
    * Buy Now
    * Pay Now
    * Book Now
@@ -56,7 +56,7 @@ To customize the Payment Button:
 2. Enter the description in the **Item Name** field.
 3. Enter the amount that must be collected in the **Amount** field.
 
-**Note**: The **Amount** field is optional and if you leave the field blank, the customers will be asked to enter the amount on the Checkout page.
+> **Note**: The **Amount** field is optional and if you leave the field blank, the customers will be asked to enter the amount on the Checkout page.
 
 4. Select the color of the button from the primary colours or use the dropper to select a custom color.
 5. Select any the following button size that suits your website:
@@ -100,10 +100,10 @@ To customize the Payment Button:
       </td>
 
       <td>
-        Select the any of Select the any of the following field types or controls that you would like add on your Check Out page:  
+        Select the any of Select the any of the following field types or controls that you would like add on your Check Out page:
 
-        * Text  
-        * Calendar  
+        * Text
+        * Calendar
         * Drop-downthe following field types or controls that you would like add on your Check Out page:
       </td>
     </tr>
@@ -189,7 +189,7 @@ To download the payment button records:
 1. Click the **Download** menu to view the options.
 2. Select the required format (CSV or XLSX) to generate the report.
 
-  A pop-up page is displayed with the status of the generated report.
+A pop-up page is displayed with the status of the generated report.
 
 <Image align="center" width="312px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-7.41.29-PM.png" />
 
