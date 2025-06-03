@@ -24,13 +24,13 @@ Create a No-Cost EMI offer as described in this section and then you can collect
 
 ### Steps to Create a No-Cost EMI Offer
 
-1. [Select the discount type](#step-1-select-the-discount-type)
-2. [Add basic details of the offer](#step-2-add-basic-details)
-3. [Include the offer rules or limitations](#step-3-include-the-offer-rules-or-limitations)
-4. [Configure the payment modes which can avail the offer](#step-4-configure-the-payment-modes-which-can-avail-the-offer)
-5. [Review the offer](#review-the-offer)
+1. [Add the basic details](#step-1-add-the-basic-details)
+2. [Configure payment modes](#step-2-configure-payment-modes)
+3. [Include the Offer rules](#step-3-include-the-offer-rules)
+4. [Configure Offer Subvention Details](#step-4-configure-offer-subvention-details)
+5. [Review of the Offer](#step-5-review-of-the-offer)
 
-## Step 1: Select the discount type
+## Step 1: Add the basic details
 
 1. Navigate to [.Offers Dashboard](doc:offers-dashboard).
 2. Click **Create an Offer** at the top-right corner.
@@ -43,10 +43,6 @@ Create a No-Cost EMI offer as described in this section and then you can collect
  The *Basic Offer Details* page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/bb329721a61f129bdf8cd8376b722d5d9608b22c87f214b9b3d61cc70983f3e1-Screenshot_2025-06-03_at_5.04.39_PM.png" />
-
-***
-
-## Step 2: Add basic details
 
 1. Add the basic details. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
 2. After you complete the above details and click **Save & Process**.
