@@ -46,7 +46,7 @@ Method: **POST**
 | Test Environment       | [https://test.payu.in/merchant/](https://test.payu.in/_payment)  |
 | Production Environment | [https://info.payu.in/merchant/](https://info.payu.in/merchant/) |
 
-##Request parameters
+## Request parameters
 
 ```html
 <table>
@@ -82,7 +82,7 @@ Method: **POST**
 </table>
 ```
 
-##var1 JSON Fields Description
+### var1 JSON Fields Description
 
 ```html
 <table>
@@ -105,7 +105,7 @@ Method: **POST**
 </table>
 ```
 
-##Response parameters
+## Response parameters
 
 ```html
 <table>
