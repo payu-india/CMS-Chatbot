@@ -63,11 +63,7 @@ Create a No-Cost EMI offer as described in this section and then you can collect
 >
 > The **Downpayment Eligible** label in green colour is displayed next to the **Credit Card Name** column similar to the following screenshot as it is applicable only. This is not applicable for Debit Card or Cardless, so they are displayed in yellow colour.
 >
->
->
 > <Image align="center" className="border" border={true} src="https://files.readme.io/061a6f12abbddf3a51e7faad601caf7e84dd38bb0ada0defaed90ed5b41974e7-dashboard_emi_downpayment_enabled.png" />
->
->
 
 1. For each of the following sub tabs, select the desired item on first column and **Tenures** column on which you wish to enable the offer. You can select all tenures of a specific bank and choose specific tenures for each bank.
    * Credit Card
@@ -83,63 +79,31 @@ Create a No-Cost EMI offer as described in this section and then you can collect
 1. Select **Yes** in the **Subvent GST** if you wish to collect GST for the subvention amount.
 2. Click **Next**.
 
+The *Enter details of your Offer* page is displayed
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/8e8036030bd73b52addefb493b5ad800c10cc446b32fa2ddc194879dd8148c5a-dashboard_emi_offer_details.png" />
+
 ## Step 3: Include the Offer rules
 
 1. Enter the offer rules and limitations on the *Set Offer Rules* page. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-3-include-the-offer-rules).
-2. After you complete the above details and click **Save & Process**.
+2. After you complete the above details and click **Next**.
 
-> **Note**: You can choose either to specify the count or amount based on the **Counter** or **Budget amount** option.
+   The *Subvention Details* page is displayed.
 
-3. After you complete the above details and click **Save & Proceed**.
+## Step 4: Configure Offer Subvention Details
 
-   The *Setup Payment options of your offer* page is displayed.
+1. Enter the subvention details in the *Subvention Details* page. For more information, refer to refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-4-configure-offer-subvention-details).
+2. After you complete the above details and click **Next**.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/Screenshot-2022-03-21-at-8.17.22-PM-1024x826.png)
-
-***
-
-## Step 4: Set up EMI options
-
-To complete the offer details for No Cost EMI:
-
-1. Select any of the following options from the **Select EMI Type** drop-down list:
-   * Cards (Credit/Debit) EMI
-   * Cardless EMI
-
-> **Note**: Currently, only the **Cards (Credit/Debit) EMI** option is enabled and Cardless EMI will be made available by PayU soon.
-
-The *Setup Payment options of your offer* page is updated to display the options for Cards EMI.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/Screenshot-2022-03-21-at-7.41.49-PM-1-1024x877.png)
-
-2. Click **Add Payment Option**.
-
-   The offer for the debit card payment option gets added to the Setup *Payment options of your offer* page.
-
-3. Select **EMI** to add the cards supporting No-Cost EMI.
-
-4. Enter the details as described in the *Setup EMI Options* page. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
-
-5. Select **Yes** in the **Subvent GST** field to subvent the GST for the customers.
-
-> **Notes**: The following must be taken care if you select the **Subvent GST** check box:
->
-> * Create these types of offers if there is an agreement with the bank/brand. Reach out to KAM for any queries
-> * Bank share, brand share, and merchant share should all add up to 100%
-> * You will receive your reconciliation reports in this email
-> * Reconciliation will be possible only after the refund window
-
-6. Click **Save & Proceed**.
-
-***
+The *Preview Details* page is displayed
 
 ## Step 5: Review of the Offer
 
-The *Preview of Cashback Offer page summarizes the details you* provided in Step 2 to Step 4.
+The *Preview Details* page summarizes the details you provided in Step 2 to Step 4.
 
 1. Review all the configurations added before you make the offer available to your customers.
 2. Click the **Edit** button to return back to the corresponding page and update the configuration.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/Screenshot-2023-04-18-at-8.08.24-AM-1-1024x794.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/0b82b32bea63aec925e5a31d7918397f489b0e59f19f187ba4e52790539de677-Screenshot_2025-06-03_at_6.04.05_PM.png" />
 
-3. Click **Publish Offer** to make it available to customers.
+3. Click **Publish** to make it available to customers.
