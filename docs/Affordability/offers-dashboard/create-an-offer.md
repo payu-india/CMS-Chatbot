@@ -108,7 +108,7 @@ Select any of the following payment modes to configure offer details that is exp
 
 ### Debit Cards
 
-1. Select the **Debit Cards** tile.
+1. Click the **Edit** button on the **Debit Cards** tile.
 
 The *Debit Card Details* page is displayed.
 
@@ -196,7 +196,7 @@ The *Debit Card Details* page is displayed.
 
 ### Credit Cards
 
-1. Select the Edit button for  **Credit Cards**.
+1. Click the **Edit** button on the **Credit Cards**.
 
 The *Credit Card Details* page is displayed.
 
@@ -274,11 +274,11 @@ The *Credit Card Details* page is displayed.
   </tbody>
 </Table>
 
-3. Click the **Back** button to go back to the payment options list.
+3. Click the **Back** button to go back to the *Payment Options* page.
 
 ### UPI
 
-1. Select the **UPIs** option on the *Payment options of your offer* page.
+1. Click the **Edit** button on the **UPIs** tile.
 
    The *UPI Details* page is displayed.
 
@@ -289,50 +289,34 @@ The *Credit Card Details* page is displayed.
 
 ### Wallets
 
-1. Select the **Wallets** option on the *Setup Payment options of your offer* page.
+1. Click the **Edit** button on the the **Wallets** option.
 
    The *Select Wallets* page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.30.25-PM-1024x746.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/a33d1d65b26720c45c414770c1adb2f0f7284fce6f0b1278b64d240eb79aa5de-dashboard_payment_options_wallets.png" />
 
 2. Select the check boxes for the wallets you wish to enable the offer.
-3. Select any of the following options in the **Set budget for credit card** field (optional):
-
-**Note**: You can choose either enter count or amount based on the **Counter** or **Budget amount** option.
-
-| **Budget Type** | **Description**                                                                                                                                                                                |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Counter         | Select this option and then specify the count in the **Counter Value** field. This offer will be enabled only for the transactions count specified in the **Counter Value** field.             |
-| Budget amount   | Select this option and then specify the amount in the **Budget Amount** field. This offer will be enabled to customers until this budget amount is reached for your transactions cumulatively. |
-
-4. Click **Add Payment Option**.
+3. Click the **Back** button to return to the *Payment Options* page.
 
 ### EMI
 
-1. Select the **EMI** option on the *Setup Payment options of your offer* page.
+1. Click the **Edit** button on the the **EMI** option.
 
    The *EMI* Offer page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/Screenshot-2022-03-21-at-7.41.49-PM-1024x877.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/bdfb661ae9732fc1c7293a8bd54935d378efb781a8903804fbc19ef14ab1506b-dashboard_payment_options_emi.png" />
 
-2. Select Banks and Tenures on which you wish to enable the offer. You can select all tenures of a specific bank and choose specific tenures for each bank. 
-3. Restrict the offer on a select list of BINs on the banks that were selected in Step 4 if required using the following steps:
+2. For each of the following sub tabs, select the desired item on first column and **Tenures** column on which you wish to enable the offer. You can select all tenures of a specific bank and choose specific tenures for each bank.
+   *  Credit Card
+   * Debit Card
+   * Cardless
+3. Select the **Set an exclusion/inclusion bin for the offer** check box to include/exclude the offer on a select list of BINs on the banks that were selected in Step 2 using the following steps in each **Exclusion Bin** and **Inclusion Bin** sub tabs:
 
-* Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.  
+<Image align="center" className="border" border={true} src="https://files.readme.io/ffcb358c53def42d01a66edd5348191f536fd70af20a216e8e8c262b094a706d-dashboard_payment_options_emi_exclusion_list.png" />
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/Screenshot-2022-01-12-at-10.07.22-PM.png)
-
+* Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
 * Update the CSV or text file to include the BIN details. For updating the CSV file, you can use Microsoft Excel or any other Spreadsheet tool. 
-* Click **Select .csv or .txt from your library** and select the CSV or text file. 
-
-5. Select any of the following options in the **Set budget for EMI** field (optional):
-
-**Note**: You can choose either enter count or amount based on the **Counter** or **Budget amount** option.
-
-| **Budget Type** | **Description**                                                                                                                                                                                 |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Counter         | Select this option and then specify the count in the **Counter Value** field. This offer will only be enabled for the transactions count specified in the **Counter Value** field.              |
-| Budget amount   | Select this option and then specify the amount in the **Budget Amount** field. This offer will be enabled for customers until this budget amount is reached for your transactions cumulatively. |
+* Click the browse button in the **Add a list of bins that you want to include or exclude on offer** to upload the updated CSV file.
 
 6. Click **Add Payment Option**.
 
@@ -342,7 +326,7 @@ Select the **BNPL** option on the *Setup Payment options of your offer* page.
 
 The *Select BNPL Options* page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/BNPL_Offer_Options-1024x651.png)
+<Image align="center" src="https://files.readme.io/d5a47d52dd4c1b7f1eeae0b3c8e37fd2dff576352ae578b5108b2528042f4795-dashboard_payment_options_bnpl.png" />
 
 After you complete adding any one or combination of the offers involving various payment options, click **Save & Proceed**.
 
@@ -365,7 +349,7 @@ The *Offer Rules* page is displayed.
 
 ***
 
-## Step 3: Include the Offer rules or limitations
+## Step 3: Include the Offer rules
 
 1. Select the **Flat Discount** or **Percentage** tab to specify the discount is in terms of a flat discount or percentage of the transaction amount.
 2. Enter the following details on the *Set Offer Rules* page.
@@ -444,11 +428,17 @@ The *Offer Rules* page is displayed.
 
 2. After you complete the above details and click **Next**.
 
-<br />
+The *Set Offer Subvention Details* page is displayed.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/a74a7875c37e0a2924fedb73fe7b047068bfb8fe6c7d2ca2aa1a755eabad1c65-dashboard_offers_subvention_step.png" />
 
 ***
 
-## **Step 5: Review of the Offer**
+## Step 4: Configure Offer Subvention Details
+
+Set Offer Subvention Details
+
+## Step 5: Review of the Offer
 
 The *Preview of Cashback Offer* page summarizes the details you provided in Step 2 to Step 4.
 
