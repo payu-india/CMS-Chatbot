@@ -86,7 +86,7 @@ Method: **POST**
 
 ### var1 JSON Fields Description
 
-```html
+<HTMLBlock>{`
 <table>
   <thead>
     <tr>
@@ -105,11 +105,13 @@ Method: **POST**
     </tr>
   </tbody>
 </table>
-```
+`}</HTMLBlock>
+
+<br />
 
 ## Response parameters
 
-```html
+<HTMLBlock>{`
 <table>
   <thead>
     <tr>
@@ -132,9 +134,9 @@ Method: **POST**
     </tr>
   </tbody>
 </table>
-```
+`}</HTMLBlock>
 
-These HTML tables maintain the same structure and alignment as the original markdown tables while properly formatting all the content including links, code blocks, and formatting.
+<br />
 
 ## Sample response
 
