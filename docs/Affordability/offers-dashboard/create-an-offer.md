@@ -180,18 +180,7 @@ Select any of the following payment modes to configure offer details that is exp
   </tbody>
 </Table>
 
-3. Select any of the following options in the **Set budget for credit card** field (optional):
-
-**Note**: You can choose either specify count or amount based on the **Counter** or **Budget amount** option.
-
-| Budget Type   | Description                                                                                                                                                                                    |
-| :------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Counter       | Select this option and then specify the count in the **Counter Value** field. This offer will be enabled only for the transactions count as defined in the **Counter Value** field.            |
-| Budget amount | Select this option and then specify the amount in the **Budget Amount** field. This offer will be enabled to customers until this budget amount is reached for your transactions cumulatively. |
-
-4. Click **Add Payment Option**.
-
-   The offer for the debit or credit card payment option gets added to the Setup *Payment options of your offer* page.
+3. Click the **Back** button to go back to the payment options list.
 
 ### UPI
 
