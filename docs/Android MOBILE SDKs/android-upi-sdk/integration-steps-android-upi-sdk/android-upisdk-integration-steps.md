@@ -319,6 +319,7 @@ upiConfig.setMerchantKey("merchant key");
 upiConfig.setPayuPostData("postdata");// that we generate above
 //In order to set CustomProgress View use below settings
 upiConfig.setProgressDialogCustomView();
+upiconfig.setIsproduction() //For Production set as "true" and For test set as "false"
 ```
 
 ### Make Intent Payment by Specific App
