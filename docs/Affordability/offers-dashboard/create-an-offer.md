@@ -108,7 +108,7 @@ Select any of the following payment modes to configure offer details that is exp
 
 1. Perform any of the following based on the method you want to select the bank and network:
 
-<Image align="center" src="https://files.readme.io/76e11ce918eea78d776d4e1e58d725ede254db76915876b06c3da6c666aae885-dashboard_payment_options_credit_card.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/76e11ce918eea78d776d4e1e58d725ede254db76915876b06c3da6c666aae885-dashboard_payment_options_credit_card.png" />
 
 <Table>
   <thead>
@@ -130,7 +130,24 @@ Select any of the following payment modes to configure offer details that is exp
       </td>
 
       <td>
-        ![](https://files.readme.io/65cb252484dff210154d0f5579241199c00fa65abcb2c51c8481c8cb929256c4-dashboard_payment_options_upload_card_bin.png)
+        Click the **Upload Bins** button upload the bins to be included.
+
+        ![](https://files.readme.io/c955da31efdc6b4d2503d9a2ad5da6a86aa2285f8a0e754397c30c20c37bc880-dashboard_payment_options_upload_card_bin.png)
+
+        **Note**: For the sample file, click **Download** .
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Bank
+      </td>
+
+      <td>
+        Click the **Upload Bins** button upload the bins to be included.\
+        ![](https://files.readme.io/fc566b263b8296ca383f15ff3db5b34ec4f27be6d9b10ccb6876b53b7fc92747-dashboard_payment_options_select_bank.png)
+
+        **Note**: For the sample file, click **Download** .
       </td>
     </tr>
 
