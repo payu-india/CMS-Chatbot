@@ -2,7 +2,7 @@
 title: Create a Personalized Coupon
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Create a Personalized Coupon Offer
   description: >-
