@@ -57,7 +57,7 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
 
   The *Basic Offer Details* page is displayed.
 
-<Image align="center" src="https://files.readme.io/5002858696d93c6edf465cf830ca8b20c69c06231342acce95fbcf8add81e0d2-Screenshot_2025-06-03_at_10.16.41_AM.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/5002858696d93c6edf465cf830ca8b20c69c06231342acce95fbcf8add81e0d2-Screenshot_2025-06-03_at_10.16.41_AM.png" />
 
 ***
 
@@ -85,187 +85,11 @@ The fields to collect coupon code details are displayed.
 
 The *Payment Options* page is displayed.
 
-2. Select the applicable payment options and click **Next.**
-
-The *Offer Rules* page is displayed.
-
-<Image align="center" className="border" border={true} src="https://files.readme.io/a169ac96a97658d1884f8047cd73ace82b112223eb6b67aae45e495c83288e23-Screenshot_2025-06-03_at_10.27.01_AM.png" />
-
-> 📘 Note:
->
-> When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
+<Image align="center" className="border" border={true} src="https://files.readme.io/db5bf09d5216d77a25b7e3b81af9dc0de8974d6b0640404b069ab69f5986e04e-Screenshot_2025-06-03_at_10.41.42_AM.png" />
 
 ***
 
-## Step 3: Include the Offer rules or limitations
-
-1. Enter the following details on the *Set Offer Rules* page.
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Field**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        Type of Cashback/Instant Discount
-      </td>
-
-      <td>
-        Specify whether the discount is in in terms of a percentage of the transaction amount or in terms of a flat discount.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Offer Percentage/Discount per transaction
-      </td>
-
-      <td>
-        Specify the discount value that has to applied in in terms of percentage or rupees in flat.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Maximum times an offer can be used
-      </td>
-
-      <td>
-        Specify how many times a customer can avail the offer.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Minimum transaction amount & Maximum transaction amount
-      </td>
-
-      <td>
-        Specify the threshold or range for a transaction to be applicable for the offer.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        User Limits
-      </td>
-
-      <td>
-         
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Max time an offer can be used by a user?
-      </td>
-
-      <td>
-        Select any of the following options from the drop-down list to specify the maximum number of transactions the user can avail this offer:
-         - **Unlimited**: Users can avail the offer for unlimited transactions.
-
-        * **Custom**: Specify the custom limit up to which the users can avail the offer.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Budget per user
-      </td>
-
-      <td>
-         Enter the budget amount per user.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Reset User Limits
-      </td>
-
-      <td>
-        Select any of the following options from the drop-down list to reset the user limit for specified frequency:  
-
-        * **Every Day**: Reset the user limit everyday
-        * **Every Week**: Reset the user limit every week
-        * **Every Month**: Reset the user limit every month
-        * **Custom**: Specify the custom frequency after which the user limit is reset
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-#### Additional Options
-
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Select for Offer – Counter or Budget Amount
-      </th>
-
-      <th>
-        Specify a limit on the number of times an offer can be availed or a budget for the discount volume.
-
-        For example, if you select Budget amount to provide the offer to customers until you reach the budget of Rs. 3 Lakhs, specify 3,00,000.
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        Don’t allow transaction, if offer is not applicable
-      </td>
-
-      <td>
-        Select this check box if you do not want to allow the transaction if the offer is not applicable for the user. 
-
-        * *Note*\*: The option will work only if you post the offer key and the offer is live.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Do you wish to apply offers on certain products?
-      </td>
-
-      <td>
-        Select **Yes** if you wish to apply product-based or SKU-based offer. For more information, refer to [SKU-Based Offer using Merchant Hosted Checkout](doc:collect-payments-with-sku-based-offer-using-merchant-hosted-checkout-offers-integration).
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        In case of multiple quantity of same product?
-      </td>
-
-      <td>
-        Select **Yes** if you wish to apply the product-based or SKU-based offer to apply for multiple quantity. This field is enabled if **Yes** is selected in the Do you wish to apply offers on certain products? field.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-2. After you complete the above details and click **Save & Process**.
-
-The *Setup Payment options of your offer* page is displayed.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.17.28-PM-1024x573.png)
-
-***
-
-## Step 4: Configure payment modes
+## Step 3: Configure payment modes
 
 Select any of the following payment modes to configure offer details that is explained in the corresponding tabs:
 
@@ -273,29 +97,24 @@ Select any of the following payment modes to configure offer details that is exp
 >
 > You can configure one or multiple payment options for an offer. For example, the “HDFC Diwali Offer” can contain 10% discount for HDFC debit or credit cards, HDFC UPI, and a 3-month interest-free EMI for HDFC cards.
 
-* [Cards](#cards)
+* [Credit Card](credit-card)
 * [Net Banking](#net-banking)
 * [UPI](#upi)
 * [Wallets](#wallets)
 * [EMI](#emi)
 * [BNPL](#bnpl)
 
-### Cards
+### Credit Cards
 
-1. Select any of the following options on the *Setup Payment options of your offer* page:
+1. Perform any of the following based on the method you want to select the bank and network:
 
-* Credit Card
-* Debit Card
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-24-at-9.21.48-PM-1024x865.png)
-
-2. Perform any of the following based on the method you want to select the bank and network:
+<Image align="center" src="https://files.readme.io/76e11ce918eea78d776d4e1e58d725ede254db76915876b06c3da6c666aae885-dashboard_payment_options_credit_card.png" />
 
 <Table>
   <thead>
     <tr>
       <th>
-        **Method**
+        **Channel**
       </th>
 
       <th>
@@ -307,7 +126,17 @@ Select any of the following payment modes to configure offer details that is exp
   <tbody>
     <tr>
       <td>
-        Select Bank and Networks
+        Upload Bins to be include
+      </td>
+
+      <td>
+        ![](https://files.readme.io/65cb252484dff210154d0f5579241199c00fa65abcb2c51c8481c8cb929256c4-dashboard_payment_options_upload_card_bin.png)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Bank + Network
       </td>
 
       <td>
@@ -429,6 +258,99 @@ After you complete adding any one or combination of the offers involving various
 > * Low-Cost EMI offers can create on Credit and Debit Card EMIs. For more information, refer to Create a Low-Cost EMI Offer.
 
 The offer for the payment options you configured gets added to the Setup *Payment options of your offer* page.
+
+2. Select the applicable payment options and click **Next.**
+
+The *Offer Rules* page is displayed.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/a169ac96a97658d1884f8047cd73ace82b112223eb6b67aae45e495c83288e23-Screenshot_2025-06-03_at_10.27.01_AM.png" />
+
+> 📘 Note:
+>
+> When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
+
+***
+
+## Step 3: Include the Offer rules or limitations
+
+1. Select the **Flat Discount** or **Percentage** tab to specify the discount is in terms of a flat discount or percentage of the transaction amount.
+2. Enter the following details on the *Set Offer Rules* page.
+
+| **Field**                                               | **Description**                                                                    |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Discount per transaction/Offer Percentage               | Specify the value that has to applied in in terms of discount or discount in flat. |
+| Minimum transaction amount & Maximum transaction amount | Specify the threshold or range for a transaction to be applicable for the offer.   |
+
+#### Offer Usage Guidelines
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Field**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        User Limits
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Set the frequency for your customers to use this offer
+      </td>
+
+      <td>
+        Select any of the following options from the drop-down list to specify the maximum number of transactions the user can avail this offer:
+
+        * **Set unlimited**: Users can avail the offer for unlimited transactions.
+
+        - **Custom**: Specify the custom limit up to which the users can avail the offer.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Set Budget per user
+      </td>
+
+      <td>
+        Click this toggle button (if required) and then enter the budget amount per user.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Reset User Limits
+      </td>
+
+      <td>
+        Select any of the following options from the drop-down list to reset the user limit for specified frequency:
+
+        * **Every Day**: Reset the user limit everyday
+        * **Every Week**: Reset the user limit every week
+        * **Every Month**: Reset the user limit every month
+        * **Custom**: Specify the custom frequency after which the user limit is reset
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+2. After you complete the above details and click **Next**.
+
+<br />
 
 ***
 
