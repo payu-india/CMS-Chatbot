@@ -168,8 +168,10 @@ The *Debit Card Details* page is displayed.
         <br />
 
         * Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
-        * Search and select a network from the **Select Networks** drop-down list.\
-          ![](https://files.readme.io/5f46cc00126b4bb750577aaa70755da76171c5dbc5494a50babc0c70a90afbb3-dashboard_payment_options_select_bank_and_upload_bin.png)
+        * Search and select a network from the **Select Networks** drop-down list.
+
+          ![](https://files.readme.io/dbca7324d592ee3371239fb619e4517792135100fede381c8576b23a47be6e76-dashboard_payment_options_debit_card_bank_and_bin_options.png)
+
           **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
       </td>
     </tr>
@@ -182,7 +184,7 @@ The *Debit Card Details* page is displayed.
       <td>
         Search and select a network from the **Select Networks** drop-down list.
 
-        ![](https://files.readme.io/86ce097797b4a7e3292feaec58a9ddc661a0b32dd9e528d4e61f9ff8cd2335b3-dashboard_payment_options_select_network.png)
+        ![](https://files.readme.io/2463947de43fb77bec7c51b88e6073b7ab01af6ad74c1aa2b03775d4eb27db22-dashboard_payment_options_debit_card_network_options.png)
 
         **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
       </td>
