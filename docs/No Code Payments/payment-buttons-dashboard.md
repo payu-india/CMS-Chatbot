@@ -21,8 +21,6 @@ After you specify the button color according to your website or blog theme, butt
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/button-banner-bg-1.png)
 
-The following video explains how to use payment buttons for your business:
-
 To create a new Payment Button:
 
 1. [Open the Create New Payment page](#step-1-open-the-create-new-payment-page)
