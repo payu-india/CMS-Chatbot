@@ -513,8 +513,6 @@ curl 'https://test.payu.in/_payment' \
  "paymentStartDate": "2022-02-04","paymentEndDate": "2022-12-12","action": "modify","authPayuId": "123"}&hash=3b0eec9b39c5866af2d6b1346df434efe800ea3ad7ea1d59ce22bf935178434383aa3316a0151ea9a6248c5785996d19a25f9aa819b8097af612c9ac76d55689'
 ```
 
-I've removed all parameters except those in your specified example, keeping the original values from your first request. The `hash` parameter remains at the end as requested.
-
 ## Sample response
 
 ```
