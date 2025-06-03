@@ -59,7 +59,7 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/5002858696d93c6edf465cf830ca8b20c69c06231342acce95fbcf8add81e0d2-Screenshot_2025-06-03_at_10.16.41_AM.png" />
 
-1. Include the basic details as described in the following table and then click **Save & Process**:
+4. Include the basic details as described in the following table and then click **Save & Process**:
 
 | **Field**          | **Description**                                                                                                                                                                       |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -68,7 +68,7 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
 | Offer Period       | Enter the offer validity date and time range. Your offer will be valid and visible to the customer between this time period. You can specify the time range up to the seconds detail. |
 | Terms & Conditions | Enter the text content that should appear under the “Terms and Conditions” on the Checkout page for customers.                                                                        |
 
-2. Select the **Create Generic Coupon Code** check box to create a coupon code.
+5. Select the **Create Generic Coupon Code** check box to create a coupon code.
 
 The fields to collect coupon code details are displayed.
 
@@ -77,7 +77,7 @@ The fields to collect coupon code details are displayed.
 * Enter the coupon code in the **Set Coupon Code** field.
 * Click the **Display coupon to customer on checkout** toggle button to display the coupon code on the PayU Checkout page.
 
-2. After you complete the above details and click **Next**.
+6. After you complete the above details and click **Next**.
 
 The *Payment Options* page is displayed.
 
@@ -188,7 +188,7 @@ The *Debit Card Details* page is displayed.
   </tbody>
 </Table>
 
-3. Click the **Back** button to go back to the payment options list.
+2. Click the **Back** button to go back to the payment options list.
 
 ### Credit Cards
 
@@ -198,7 +198,7 @@ The *Credit Card Details* page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/76e11ce918eea78d776d4e1e58d725ede254db76915876b06c3da6c666aae885-dashboard_payment_options_credit_card.png" />
 
-1. Perform any of the following based on the method you want to select the bank and network:
+2. Perform any of the following based on the method you want to select the bank and network:
 
 <Table>
   <thead>
@@ -314,7 +314,7 @@ The *Credit Card Details* page is displayed.
 * Update the CSV or text file to include the BIN details. For updating the CSV file, you can use Microsoft Excel or any other Spreadsheet tool. 
 * Click the browse button in the **Add a list of bins that you want to include or exclude on offer** to upload the updated CSV file.
 
-6. Click **Add Payment Option**.
+4. Click the **Back** button to go to _Payment Options_ page.
 
 ### BNPL
 
@@ -324,7 +324,7 @@ The *Select BNPL Options* page is displayed.
 
 <Image align="center" src="https://files.readme.io/d5a47d52dd4c1b7f1eeae0b3c8e37fd2dff576352ae578b5108b2528042f4795-dashboard_payment_options_bnpl.png" />
 
-After you complete adding any one or combination of the offers involving various payment options, click **Save & Proceed**.
+After you complete adding any one or combination of the offers involving various payment options, click **Next**.
 
 > 📘 **References:**
 >
@@ -420,7 +420,7 @@ The *Offer Rules* page is displayed.
   </tbody>
 </Table>
 
-2. After you complete the above details and click **Next**.
+3. After you complete the above details and click **Next**.
 
 The *Set Offer Subvention Details* page is displayed.
 
