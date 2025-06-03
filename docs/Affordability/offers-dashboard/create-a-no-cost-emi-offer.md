@@ -57,9 +57,35 @@ Create a No-Cost EMI offer as described in this section and then you can collect
 
 ## Step 2: Configure payment modes
 
-## Step 3: Include the Offer rules or limitations
+1. Click the **Allow Downpayment with No Cost EMI** toggle button to show the EMI options which are eligible for downpayment in the next two steps.
 
-1. Enter the offer rules and limitations on the *Set Offer Rules* page. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
+> 📘 Note:
+>
+> The **Downpayment Eligible** label in green colour is displayed next to the **Credit Card Name** column similar to the following screenshot as it is applicable only. This is not applicable for Debit Card or Cardless, so they are displayed in yellow colour.
+>
+>
+>
+> <Image align="center" className="border" border={true} src="https://files.readme.io/061a6f12abbddf3a51e7faad601caf7e84dd38bb0ada0defaed90ed5b41974e7-dashboard_emi_downpayment_enabled.png" />
+>
+>
+
+1. For each of the following sub tabs, select the desired item on first column and **Tenures** column on which you wish to enable the offer. You can select all tenures of a specific bank and choose specific tenures for each bank.
+   * Credit Card
+   * Debit Card
+   * Cardless
+2. Select the **Set an exclusion/inclusion bin for the offer** check box to include/exclude the offer on a select list of BINs on the banks that were selected in Step 1 (of Configure payment modes) using the following steps in each **Exclusion Bin** and **Inclusion Bin** sub tabs:
+   * Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
+   * Update the CSV or text file to include the BIN details. For updating the CSV file, you can use Microsoft Excel or any other Spreadsheet tool. 
+   * Click the browse button in the **Add a list of bins that you want to include or exclude on offer** to upload the updated CSV file.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/ffcb358c53def42d01a66edd5348191f536fd70af20a216e8e8c262b094a706d-dashboard_payment_options_emi_exclusion_list.png" />
+
+1. Select **Yes** in the **Subvent GST** if you wish to collect GST for the subvention amount.
+2. Click **Next**.
+
+## Step 3: Include the Offer rules
+
+1. Enter the offer rules and limitations on the *Set Offer Rules* page. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-3-include-the-offer-rules).
 2. After you complete the above details and click **Save & Process**.
 
 > **Note**: You can choose either to specify the count or amount based on the **Counter** or **Budget amount** option.
