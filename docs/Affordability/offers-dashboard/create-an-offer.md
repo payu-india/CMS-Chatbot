@@ -26,8 +26,8 @@ The procedure to create an Instant Discount or Cashback Offer on PayU Dashboard 
 
 ### Steps to Create an Offer
 
-1. [Select the discount type](#step-1-select-the-discount-type)
-2. [Add basic details of the offer](#step-2-add-basic-details)
+1. [Add the basic details](#step-1-add-the-basic-details)
+2. Include Payment options
 3. [Include the offer rules or limitations](#step-3-include-the-offer-rules-or-limitations)
 4. [Configure the payment modes which can avail the offer](#step-4-configure-the-payment-modes-which-can-avail-the-offer)
 5. [Review the offer](#review-the-offer)
@@ -44,7 +44,7 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
 
 ***
 
-## Step 1: Select the discount type
+## Step 1: Add the basic details
 
 1. Navigate to [Offers Dashboard](doc:offers-dashboard).
 2. Click **Create an Offer** at the top-right corner.
@@ -58,10 +58,6 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
   The *Basic Offer Details* page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/5002858696d93c6edf465cf830ca8b20c69c06231342acce95fbcf8add81e0d2-Screenshot_2025-06-03_at_10.16.41_AM.png" />
-
-***
-
-## Step 2: Add basic details
 
 1. Include the basic details as described in the following table and then click **Save & Process**:
 
@@ -89,7 +85,7 @@ The *Payment Options* page is displayed.
 
 ***
 
-## Step 3: Configure payment modes
+## Step 2: Configure payment modes
 
 Select any of the following payment modes to configure offer details that is explained in the corresponding tabs:
 
@@ -346,8 +342,6 @@ The *Offer Rules* page is displayed.
 > 📘 Note:
 >
 > When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
-
-***
 
 ## Step 3: Include the Offer rules
 
