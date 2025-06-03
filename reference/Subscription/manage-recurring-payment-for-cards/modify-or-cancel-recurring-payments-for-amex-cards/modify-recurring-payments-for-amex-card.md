@@ -509,7 +509,8 @@ For a yearly plan starting from 1st January 2019, having a monthly billing amoun
 
 ```bash
 curl 'https://test.payu.in/_payment' \
- --data-raw 'key=JP***g&txnid=d5e7e5e6324a7860fbc6&amount=1&firstname=Payu-Admin&email=test%40example.com&phone=1234567890&productinfo=Product+Info&api_version=1&si=3&pg=CC&bankcode=AMEX&surl=https%3A%2F%2Fpp58admin.payu.in%2Ftest_response&furl=https%3A%2F%2Fpp58admin.payu.in%2Ftest_response&ccnum=&ccname=Test+User&ccexpmon=05&ccexpyr=2025&ccvv=123&si_details=%7B%22action%22%3A%22modify%22%2C%22authPayuId%22%3A%2223624263948%22%2C%22paymentEndDate%22%3A%222025-07-23%22%7D&hash=3b0eec9b39c5866af2d6b1346df434efe800ea3ad7ea1d59ce22bf935178434383aa3316a0151ea9a6248c5785996d19a25f9aa819b8097af612c9ac76d55689'
+ --data-raw 'key=JP***g&txnid=d5e7e5e6324a7860fbc6&amount=1&firstname=Payu-Admin&email=test%40example.com&phone=1234567890&productinfo=Product+Info&api_version=1&si=3&pg=CC&bankcode=AMEX&surl=https%3A%2F%2Fpp58admin.payu.in%2Ftest_response&furl=https%3A%2F%2Fpp58admin.payu.in%2Ftest_response&ccnum=&ccname=Test+User&ccexpmon=05&ccexpyr=2025&ccvv=123&si_details={"billingAmount":"10.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,
+ "paymentStartDate": "2022-02-04","paymentEndDate": "2022-12-12","action": "modify","authPayuId": "123"}&hash=3b0eec9b39c5866af2d6b1346df434efe800ea3ad7ea1d59ce22bf935178434383aa3316a0151ea9a6248c5785996d19a25f9aa819b8097af612c9ac76d55689'
 ```
 
 I've removed all parameters except those in your specified example, keeping the original values from your first request. The `hash` parameter remains at the end as requested.
