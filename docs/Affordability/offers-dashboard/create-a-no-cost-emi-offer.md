@@ -37,13 +37,12 @@ Create a No-Cost EMI offer as described in this section and then you can collect
 
    The *Create New Offer* page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.10.38-PM-1024x573.png)
+   <Image align="center" className="border" border={true} src="https://files.readme.io/94d041dbfbfc5faa76260a76e736cdbb4030553dddcde8c5ef3efeb9ca5d0f95-Screenshot_2025-06-03_at_10.16.03_AM.png" />
+3. Select **No Cost EMI** as the discount type.
 
-3. Select **No Cost EMI**.
+ The *Basic Offer Details* page is displayed.
 
-   The *Basic Offer Details* page is displayed.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/Screenshot-2023-04-18-at-7.54.30-AM-1024x623.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/bb329721a61f129bdf8cd8376b722d5d9608b22c87f214b9b3d61cc70983f3e1-Screenshot_2025-06-03_at_5.04.39_PM.png" />
 
 ***
 
@@ -52,13 +51,13 @@ Create a No-Cost EMI offer as described in this section and then you can collect
 1. Add the basic details. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
 2. After you complete the above details and click **Save & Process**.
 
-   The *Set Offer Rules* page is displayed.
+   The *Payment Options* page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/Screenshot-2023-04-18-at-7.55.20-AM-1024x938.png)
+<Image align="center" src="https://files.readme.io/2eb257440a7bc87f172cfb2e617bdde10d3a2792eb87bd3d442e860689565c00-Screenshot_2025-06-03_at_5.06.06_PM.png" />
 
-When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
-
-***
+> 📘 Note
+>
+> When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
 
 ## Step 3: Include the Offer rules or limitations
 
