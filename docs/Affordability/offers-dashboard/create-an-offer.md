@@ -27,10 +27,10 @@ The procedure to create an Instant Discount or Cashback Offer on PayU Dashboard 
 ### Steps to Create an Offer
 
 1. [Add the basic details](#step-1-add-the-basic-details)
-2. Include Payment options
-3. [Include the offer rules or limitations](#step-3-include-the-offer-rules-or-limitations)
-4. [Configure the payment modes which can avail the offer](#step-4-configure-the-payment-modes-which-can-avail-the-offer)
-5. [Review the offer](#review-the-offer)
+2. [Configure payment modes](#step-2-configure-payment-modes)
+3. [Include the Offer rules](#step-3-include-the-offer-rules)
+4. [Configure Offer Subvention Details](#step-4-configure-offer-subvention-details)
+5. [Review of the Offer](#step-5-review-of-the-offer)
 
 ***
 
