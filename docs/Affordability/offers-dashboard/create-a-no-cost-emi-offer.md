@@ -49,11 +49,13 @@ Create a No-Cost EMI offer as described in this section and then you can collect
 
    The *Payment Options* page is displayed.
 
-<Image align="center" src="https://files.readme.io/2eb257440a7bc87f172cfb2e617bdde10d3a2792eb87bd3d442e860689565c00-Screenshot_2025-06-03_at_5.06.06_PM.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/2eb257440a7bc87f172cfb2e617bdde10d3a2792eb87bd3d442e860689565c00-Screenshot_2025-06-03_at_5.06.06_PM.png" />
 
 > 📘 Note
 >
 > When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
+
+## Step 2: Configure payment modes
 
 ## Step 3: Include the Offer rules or limitations
 
@@ -78,7 +80,7 @@ To complete the offer details for No Cost EMI:
    * Cards (Credit/Debit) EMI
    * Cardless EMI
 
-**Note**: Currently, only the **Cards (Credit/Debit) EMI** option is enabled and Cardless EMI will be made available by PayU soon.
+> **Note**: Currently, only the **Cards (Credit/Debit) EMI** option is enabled and Cardless EMI will be made available by PayU soon.
 
 The *Setup Payment options of your offer* page is updated to display the options for Cards EMI.
 
