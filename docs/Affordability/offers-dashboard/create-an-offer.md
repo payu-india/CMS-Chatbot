@@ -51,13 +51,13 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
 
    The *Create New Offer* page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.10.38-PM-1024x573.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/94d041dbfbfc5faa76260a76e736cdbb4030553dddcde8c5ef3efeb9ca5d0f95-Screenshot_2025-06-03_at_10.16.03_AM.png" />
 
 3. Select the discount type.
 
   The *Basic Offer Details* page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.11.36-PM-1024x573.png)
+<Image align="center" src="https://files.readme.io/5002858696d93c6edf465cf830ca8b20c69c06231342acce95fbcf8add81e0d2-Screenshot_2025-06-03_at_10.16.41_AM.png" />
 
 ***
 
@@ -65,88 +65,35 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
 
 1. Include the basic details as described in the following table and then click **Save & Process**:
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Field**
-      </th>
+| **Field**          | **Description**                                                                                                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Offer Title        | Enter a unique title for the offer. This would be displayed as the offer title on your Checkout page.                                                                                 |
+| Offer Description  | Enter the offer text that would be shown to your customer at checkout (for PayU Hosted Checkout Integration transactions).                                                            |
+| Offer Period       | Enter the offer validity date and time range. Your offer will be valid and visible to the customer between this time period. You can specify the time range up to the seconds detail. |
+| Terms & Conditions | Enter the text content that should appear under the “Terms and Conditions” on the Checkout page for customers.                                                                        |
 
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
+2. Select the **Create Generic Coupon Code** check box to create a coupon code.
 
-  <tbody>
-    <tr>
-      <td>
-        Title
-      </td>
+The fields to collect coupon code details are displayed.
 
-      <td>
-        Enter a unique title for the offer. This would be displayed as the offer title on your Checkout page.
-      </td>
-    </tr>
+<Image align="center" className="border" border={true} src="https://files.readme.io/c35975feb22ef487cd1e4491153280ee8decae1fb092c2d66af7774becbaf267-dashboard_instant_disc_coupon_code_details.png" />
 
-    <tr>
-      <td>
-        Description
-      </td>
+* Enter the coupon code in the **Set Coupon Code** field.
+* Click the **Display coupon to customer on checkout** toggle button to display the coupon code on the PayU Checkout page.
 
-      <td>
-        Enter the offer text that would be shown to your customer at checkout (for PayU Hosted Checkout Integration transactions).
-      </td>
-    </tr>
+2. After you complete the above details and click **Next**.
 
-    <tr>
-      <td>
-        From Date, From Time, To Date, To Time
-      </td>
+The *Payment Options* page is displayed.
 
-      <td>
-        Enter the offer validity date and time range. Your offer will be valid and visible to the customer between this time period. You can specify the time range up to the seconds detail.
-      </td>
-    </tr>
+2. Select the applicable payment options and click **Next.**
 
-    <tr>
-      <td>
-        Terms & Conditions
-      </td>
+The *Offer Rules* page is displayed.
 
-      <td>
-        Enter the text content that should appear under the “Terms and Conditions” on the Checkout page for customers.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Terms & Conditions Links
-      </td>
-
-      <td>
-        Enter the hyperlinks for independent hosted pages.
-        **Note**: It is recommended to be used only If it is absolutely necessary to avoid redirections outside your customer purchase journey).
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-2. After you complete the above details and click **Save & Process**,
-
-   The *Set Offer Rules* page is displayed.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/05/Screenshot-2022-05-26-at-11.39.03-AM-1-1024x665.png)
-
-3. Scroll down *Set Offer Rules* page for the **Additional Options** section.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Offers_Details_Additional_Options-875x1024.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/a169ac96a97658d1884f8047cd73ace82b112223eb6b67aae45e495c83288e23-Screenshot_2025-06-03_at_10.27.01_AM.png" />
 
 > 📘 Note:
 >
 > When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.15.59-PM-1024x573.png)
 
 ***
 
