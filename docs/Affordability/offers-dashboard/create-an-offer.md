@@ -112,7 +112,7 @@ Select any of the following payment modes to configure offer details that is exp
 
 The *Debit Card Details* page is displayed.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/76e11ce918eea78d776d4e1e58d725ede254db76915876b06c3da6c666aae885-dashboard_payment_options_credit_card.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/f4debd9c82f8c3454c0956ecb20e30df6d4166551c291d521ea1abc13b88dee9-dashboard_payment_options_debit_card.png" />
 
 1. Perform any of the following based on the method you want to select the bank and network:
 
@@ -138,7 +138,11 @@ The *Debit Card Details* page is displayed.
       <td>
         * Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
         * Update the CSV file to include the BINs to be included.
-        * Click the **Upload Bins** button upload the bins to be included.![](https://files.readme.io/c955da31efdc6b4d2503d9a2ad5da6a86aa2285f8a0e754397c30c20c37bc880-dashboard_payment_options_upload_card_bin.png)**Note**: For the sample file, click **Download** .
+        * Click the **Upload Bins** button upload the bins to be included.
+
+          ![](https://files.readme.io/eb89a85f7a1920608e9f00e451d11cb8c92ce606734891c80383ad1a015c93e5-dashboard_payment_options_debit_card_upload_card_bin.png)
+
+          **Note**: For the sample file, click **Download** .
       </td>
     </tr>
 
@@ -149,7 +153,7 @@ The *Debit Card Details* page is displayed.
 
       <td>
         Select the banks for which the offer is applicable from  **Select Banks** drop-down list.\
-        ![](https://files.readme.io/fc566b263b8296ca383f15ff3db5b34ec4f27be6d9b10ccb6876b53b7fc92747-dashboard_payment_options_select_bank.png)
+        ![](https://files.readme.io/f963378804c89d83e901c6876e88d1cccc166fe077f22b06e2f6a62764291acc-dashboard_payment_options_debit_card_bank_options.png)
 
         **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
       </td>
