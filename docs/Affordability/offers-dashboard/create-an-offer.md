@@ -125,9 +125,8 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
       </td>
 
       <td>
-        Enter the hyperlinks for independent hosted pages.  
-
-        * \*Note\*\*: It is recommended to be used only If it is absolutely necessary to avoid redirections outside your customer purchase journey).
+        Enter the hyperlinks for independent hosted pages.
+        **Note**: It is recommended to be used only If it is absolutely necessary to avoid redirections outside your customer purchase journey).
       </td>
     </tr>
   </tbody>
@@ -225,8 +224,8 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
       </td>
 
       <td>
-        Select any of the following options from the drop-down list to specify the maximum number of transactions the user can avail this offer:\
-         - **Unlimited**: Users can avail the offer for unlimited transactions.  
+        Select any of the following options from the drop-down list to specify the maximum number of transactions the user can avail this offer:
+         - **Unlimited**: Users can avail the offer for unlimited transactions.
 
         * **Custom**: Specify the custom limit up to which the users can avail the offer.
       </td>
@@ -234,7 +233,7 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
 
     <tr>
       <td>
-        Budget per user 
+        Budget per user
       </td>
 
       <td>
@@ -248,7 +247,7 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
       </td>
 
       <td>
-        Select any of the following options from the drop-down list to reset the user limit for specified frequency:    
+        Select any of the following options from the drop-down list to reset the user limit for specified frequency:  
 
         * **Every Day**: Reset the user limit everyday
         * **Every Week**: Reset the user limit every week
@@ -269,10 +268,7 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
       </th>
 
       <th>
-         Specify a limit on the number of times an offer can be availed or a budget for the discount volume.
-
-
-
+        Specify a limit on the number of times an offer can be availed or a budget for the discount volume.
 
         For example, if you select Budget amount to provide the offer to customers until you reach the budget of Rs. 3 Lakhs, specify 3,00,000.
       </th>
@@ -286,9 +282,9 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
       </td>
 
       <td>
-        Select this check box if you do not want to allow the transaction if the offer is not applicable for the user.   
+        Select this check box if you do not want to allow the transaction if the offer is not applicable for the user. 
 
-        * \*Note\*\*: The option will work only if you post the offer key and the offer is live.
+        * *Note*\*: The option will work only if you post the offer key and the offer is live.
       </td>
     </tr>
 
@@ -308,7 +304,7 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
       </td>
 
       <td>
-         Select **Yes** if you wish to apply the product-based or SKU-based offer to apply for multiple quantity. This field is enabled if **Yes** is selected in the Do you wish to apply offers on certain products? field.
+        Select **Yes** if you wish to apply the product-based or SKU-based offer to apply for multiple quantity. This field is enabled if **Yes** is selected in the Do you wish to apply offers on certain products? field.
       </td>
     </tr>
   </tbody>
@@ -368,7 +364,7 @@ Select any of the following payment modes to configure offer details that is exp
       </td>
 
       <td>
-         - Search and select the bank from the Select Banks and Select Networks drop-down list.  
+         - Search and select the bank from the Select Banks and Select Networks drop-down list.
 
         * Search and select a network from the **Select Networks** drop-down list.
       </td>
