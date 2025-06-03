@@ -31,35 +31,35 @@ next:
 The following table provides details of some of the test cards that you can use to test your integration in the sandbox (Test environment). As Sandbox is a replica of the production environment, you can push the code in production by just replacing account credentials and URLs.
 
 > 📘 Note:
-> 
+>
 > The character “X” in the card numbers are placeholders that can be substituted with any number (1-9).
 
 ## Web Checkout
 
 > 📘 Note:
-> 
+>
 > Any value can be used for the **name** parameter in Test environment.
 
 ### Credit Card
 
 | **Payment Flow**              | **Card Number**  | **Network** | **Expiry** | **CVV** | **OTP** |
 | ----------------------------- | ---------------- | ----------- | ---------- | ------- | ------- |
-| PayU/Merchant Hosted Checkout | 5123456789012346 | Mastercard  | 05/25      | 123     | 123456  |
-| PayU/Merchant Hosted Checkout | 4012001037141112 | VISA        | 05/25      | 123     | 123456  |
-| Server-to-Server              | 5497774415170603 | Mastercard  | 05/25      | 412     | 123456  |
-| PayU/Merchant Hosted Checkout | 6082015309577308 | RUPAY       | 05/25      | 123     | 123456  |
+| PayU/Merchant Hosted Checkout | 5123456789012346 | Mastercard  | 05/30      | 123     | 123456  |
+| PayU/Merchant Hosted Checkout | 4012001037141112 | VISA        | 05/30      | 123     | 123456  |
+| Server-to-Server              | 5497774415170603 | Mastercard  | 05/30      | 412     | 123456  |
+| PayU/Merchant Hosted Checkout | 6082015309577308 | RUPAY       | 05/30      | 123     | 123456  |
 
 ### Debit Card
 
 | Card Number         | Network    | Expiry | CVV | OTP    |
 | :------------------ | :--------- | :----- | :-- | :----- |
-| 5118-7000-0000-0003 | Mastercard | 05/25  | 123 | 123456 |
-| 4594-5380-5063-9999 | VISA       | 05/25  | 123 | 123456 |
+| 5118-7000-0000-0003 | Mastercard | 05/30  | 123 | 123456 |
+| 4594-5380-5063-9999 | VISA       | 05/30  | 123 | 123456 |
 
 ## EMI test cards
 
 > 📘 Note:
-> 
+>
 > Any value can be used for the **name** parameter in Test environment.
 
 <HTMLBlock>{`
@@ -80,7 +80,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4706137805099594<br><strong>Note</strong>: Amount range is : 5000.00 to 10000.00</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
 </td>
@@ -94,7 +94,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4011510000000007</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
 </td>
@@ -108,7 +108,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4453341065876437</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
 </td>
@@ -122,7 +122,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4808557848741463</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
 </td>
@@ -136,7 +136,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4010636236612108</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
 </td>
@@ -150,7 +150,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>5241784703665106</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>123</p>
 </td>
@@ -164,7 +164,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>5404608014083225</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
 </td>
@@ -178,7 +178,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4862696278807023</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
 </td>
@@ -192,7 +192,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4363888155006621</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
 </td>
@@ -206,7 +206,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4029706572777150</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
 </td>
@@ -220,7 +220,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4550387246273400</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
 </td>
@@ -234,7 +234,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>5264686823451576</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
 </td>
@@ -248,7 +248,7 @@ The following table provides details of some of the test cards that you can use 
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4862696278807023</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/25</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>05/30</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>any random three-digit number</p>
 </td>
@@ -265,52 +265,52 @@ The following table provides details of some of the test cards that you can use 
 
 #### Axio
 
-- Mob:   9999999999
-- OTP =   123456
-- PAN = XYZPA1234A (for eKYC)
-- DOB = 21-07-1980
-- Aadhaar = 9999 9999 1234
-- Aadhaar OTP = 123456
-- UPI ID - test@upi
+* Mob:   9999999999
+* OTP =   123456
+* PAN = XYZPA1234A (for eKYC)
+* DOB = 21-07-1980
+* Aadhaar = 9999 9999 1234
+* Aadhaar OTP = 123456
+* UPI ID - test\@upi
 
 ## International Payments or DCC
 
 > 📘 Note:
-> 
+>
 > Any name can be used for the **name** parameter in Test environment.
 
 | Currency | **Card Number**  | **Expiry** | **CVV** | **OTP** |
 | -------- | ---------------- | ---------- | ------- | ------- |
-| USD $    | 4755964453587236 | 12/2024    | 596     | 111111  |
-| Euro €   | 4020419926566936 | 12/2024    | 041     | 111111  |
+| USD $    | 4755964453587236 | 12/2030    | 596     | 111111  |
+| Euro €   | 4020419926566936 | 12/2030    | 041     | 111111  |
 
 ## Save cards
 
 > 📘 Note:
-> 
+>
 > Any value can be used for the **name** parameter in Test environment.
 
 | **Card Number**  | Network     | **Expiry** | **CVV** |
 | ---------------- | :---------- | ---------- | ------- |
-| 5506900480000008 | Master Card | 05/2025    | 123     |
-| 4895370077346937 | VISA        | 05/2025    | 123     |
+| 5506900480000008 | Master Card | 05/2030    | 123     |
+| 4895370077346937 | VISA        | 05/2030    | 123     |
 
 ## Test UPI ID
 
-You can use **anything@payu** or **[9999999999@payu](mailto:9999999999@payu)** as VPA to test your UPI-related integration in the [sandbox](https://en.wikipedia.org/wiki/Sandbox_(software_development)#:) (Test environment) only for the payment flows involving **_payment** AP.
+You can use **anything\@payu** or **[9999999999@payu](mailto:9999999999@payu)** as VPA to test your UPI-related integration in the [sandbox](https://en.wikipedia.org/wiki/Sandbox_\(software_development\)#:) (Test environment) only for the payment flows involving **\_payment** AP.
 
 > 📘 Notes:
-> 
-> - The **anything@payu** VPA can be used in the sandbox or [API Playground](https://api-playground.payu.in/) and any other VPA will not work for the**_payment** only.
-> - For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
+>
+> * The **anything\@payu** VPA can be used in the sandbox or [API Playground](https://api-playground.payu.in/) and any other VPA will not work for th&#x65;**\_payment** only.
+> * For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
 
 ## Test Net Banking credentials
 
 Use the following credentials for Net Banking in the sandbox:
 
-- **user name**: payu
-- **password**: payu
-- **OTP**: 123456
+* **user name**: payu
+* **password**: payu
+* **OTP**: 123456
 
 The above Net Banking credentials must be used in [API Playground](https://api-playground.payu.in/).
 
