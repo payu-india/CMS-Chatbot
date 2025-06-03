@@ -104,11 +104,95 @@ Select any of the following payment modes to configure offer details that is exp
 * [EMI](#emi)
 * [BNPL](#bnpl)
 
+<br />
+
+### Debit Cards
+
+1. Select the **Debit Cards** tile.
+
+The *Debit Card Details* page is displayed.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/76e11ce918eea78d776d4e1e58d725ede254db76915876b06c3da6c666aae885-dashboard_payment_options_credit_card.png" />
+
+1. Perform any of the following based on the method you want to select the bank and network:
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Channel**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Upload Bins to be include
+      </td>
+
+      <td>
+        * Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
+        * Update the CSV file to include the BINs to be included.
+        * Click the **Upload Bins** button upload the bins to be included.![](https://files.readme.io/c955da31efdc6b4d2503d9a2ad5da6a86aa2285f8a0e754397c30c20c37bc880-dashboard_payment_options_upload_card_bin.png)**Note**: For the sample file, click **Download** .
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Bank
+      </td>
+
+      <td>
+        Select the banks for which the offer is applicable from  **Select Banks** drop-down list.\
+        ![](https://files.readme.io/fc566b263b8296ca383f15ff3db5b34ec4f27be6d9b10ccb6876b53b7fc92747-dashboard_payment_options_select_bank.png)
+
+        **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Bank + Network
+      </td>
+
+      <td>
+        <br />
+
+        * Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
+        * Search and select a network from the **Select Networks** drop-down list.\
+          ![](https://files.readme.io/5f46cc00126b4bb750577aaa70755da76171c5dbc5494a50babc0c70a90afbb3-dashboard_payment_options_select_bank_and_upload_bin.png)
+          **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Network
+      </td>
+
+      <td>
+        Search and select a network from the **Select Networks** drop-down list.
+
+        ![](https://files.readme.io/86ce097797b4a7e3292feaec58a9ddc661a0b32dd9e528d4e61f9ff8cd2335b3-dashboard_payment_options_select_network.png)
+
+        **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+3. Click the **Back** button to go back to the payment options list.
+
 ### Credit Cards
 
-1. Select the **Credit Cards Details** tile.
+1. Select the Edit button for  **Credit Cards**.
 
-The Credit Card page is displayed.
+The *Credit Card Details* page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/76e11ce918eea78d776d4e1e58d725ede254db76915876b06c3da6c666aae885-dashboard_payment_options_credit_card.png" />
 
