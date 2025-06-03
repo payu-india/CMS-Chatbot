@@ -432,19 +432,22 @@ The *Set Offer Subvention Details* page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/a74a7875c37e0a2924fedb73fe7b047068bfb8fe6c7d2ca2aa1a755eabad1c65-dashboard_offers_subvention_step.png" />
 
-***
-
 ## Step 4: Configure Offer Subvention Details
 
-Set Offer Subvention Details
+1. Select any of the following options from the **Set Offer Subvention Details** drop-down list.
+   * **All offer settlements will be borne by me**: Choose this option if you want to make the cashback settlements by yourself to the customer.
+   * I will share offer settlements with bank and brand:  Choose this option if you want to make the cashback settlements to bank or brand.
+2. After you complete the above details and click **Next**.
+
+   The *Preview Details* page is displayed.
 
 ## Step 5: Review of the Offer
 
 The *Preview of Cashback Offer* page summarizes the details you provided in Step 2 to Step 4.
 
 1. Review all the configurations added before you make the offer available to your customers.
-2. Click the **Edit** button to return back to the corresponding page and update the configuration.
+2. Click the **Edit** button in the relevant areas return back to the corresponding page and update the configuration.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.32.06-PM-1024x573.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/cc600ba18551a10ed4f013bce1e8ff67038cbd4f545d88f69216ae58f25ede19-dashboard_offers_preview_offer_step.png" />
 
-3. Click **Publish Offer** to make it available to customers.
+3. Click **Publish** to make it available to customers.
