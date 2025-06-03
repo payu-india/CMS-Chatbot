@@ -53,7 +53,7 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/94d041dbfbfc5faa76260a76e736cdbb4030553dddcde8c5ef3efeb9ca5d0f95-Screenshot_2025-06-03_at_10.16.03_AM.png" />
 
-3. Select the discount type.
+3. Select the **Instant Discont** as the discount type.
 
   The *Basic Offer Details* page is displayed.
 
