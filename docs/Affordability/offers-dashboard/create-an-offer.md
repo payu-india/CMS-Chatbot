@@ -106,9 +106,13 @@ Select any of the following payment modes to configure offer details that is exp
 
 ### Credit Cards
 
-1. Perform any of the following based on the method you want to select the bank and network:
+1. Select the **Credit Cards Details** tile.
+
+The Credit Card page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/76e11ce918eea78d776d4e1e58d725ede254db76915876b06c3da6c666aae885-dashboard_payment_options_credit_card.png" />
+
+1. Perform any of the following based on the method you want to select the bank and network:
 
 <Table>
   <thead>
@@ -184,23 +188,14 @@ Select any of the following payment modes to configure offer details that is exp
 
 ### UPI
 
-1. Select the **UPIs** option on the *Setup Payment options of your offer* page.
+1. Select the **UPIs** option on the *Payment options of your offer* page.
 
-   The *Select UPIs* page is displayed.
+   The *UPI Details* page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.28.25-PM-1024x556.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/ed2bf68ddd113d64d0b18c364319deca799bc85451af4e74c4a99388c8a2e057-dashboard_payment_options_upi.png" />
 
-2. Select the check boxes for the UPIs you wish to enable the offer.
-3. Select any of the following options in the **Set budget for credit card** field (optional):
-
-**Note**: You can choose either enter count or amount based on the **Counter** or **Budget amount** option.
-
-| **Budget Type** | **Description**                                                                                                                                                                                |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Counter         | Select this option and then specify the count in the **Counter Value** field. This offer will be enabled only for the transactions count as specified in the **Counter Value** field.          |
-| Budget amount   | Select this option and then specify the amount in the **Budget Amount** field. This offer will be enabled to customers until this budget amount is reached for your transactions cumulatively. |
-
-4. Click **Add Payment Option**.
+2. Select the check boxes for the UPIs you wish to enable the offer from the \*\*Select UPI Channel \*\*drop-down list.
+3. Click the **Back** button to go back to the payment options list.
 
 ### Wallets
 
