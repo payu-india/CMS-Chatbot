@@ -39,17 +39,17 @@ next:
 This section provides the request parameters, sample request and response for a Net Banking Recurring Payment consent transaction or \<\<glossary:Consent transaction>>.
 
 > 📘 Note:
-> 
+>
 > During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                   |
-| :--------------------- | :-------------------------------- |
-| Test Environment       | \<https://test.payu.in/_payment>   |
-| Production Environment | \<https://secure.payu.in/_payment> |
+|                        |                                                                         |
+| :--------------------- | :---------------------------------------------------------------------- |
+| Test Environment       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| Production Environment | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 ## Request parameters
 
@@ -252,10 +252,22 @@ HTTP Method: **POST**
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
+  <tr>
+      <td>
+        free\_trial \`optional\`
+      </td>
+
+      <td>
+        This is mandatory only if the merchant wants to support free trial use case with card and net banking together that too on PayU Hosted Checkout integration. In this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request. This parameter has no significance in the case of seamless flow.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>  
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### beneficiarydetail fields description
 
@@ -306,7 +318,6 @@ HTTP Method: **POST**
 </table>
 `}</HTMLBlock>
 
-
 ## Sample request
 
 If the merchant sends any other special characters, then they will be automatically removed. The address parameter will consider only the first 100 characters.
@@ -315,16 +326,16 @@ When the transaction POST REQUEST hits the PayU server, a new transaction entry 
 
 The Net Banking recurring payment registration is also known as e-Mandate. The request for Net Banking involves the following extra parameters posted compared to Cards or UPI:
 
-- billingCycle
-- billingInterval
-- paymentStartDate
-- paymentEndDate
-- billingAmount
-- beneficiaryName
-- beneficiaryAccountNumber
-- beneficiaryAccountType
-- ifscCode
-- verificationMode (optional)
+* billingCycle
+* billingInterval
+* paymentStartDate
+* paymentEndDate
+* billingAmount
+* beneficiaryName
+* beneficiaryAccountNumber
+* beneficiaryAccountType
+* ifscCode
+* verificationMode (optional)
 
 ### Sample request with Debit Card as Verification mode
 
