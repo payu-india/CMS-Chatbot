@@ -34,11 +34,11 @@ The following offers can be created using PayU Dashboard:
 
 The following video explains how to create an offer:
 
-<Embed url="https://www.youtube.com/watch?v=WvHrgeVMpf4" title="PayU Offers Engine: How to create offers using PayU Offers Engine?" favicon="https://www.google.com/favicon.ico" image="https://i.ytimg.com/vi/WvHrgeVMpf4/hqdefault.jpg" provider="youtube.com" href="https://www.youtube.com/watch?v=WvHrgeVMpf4" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FWvHrgeVMpf4%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DWvHrgeVMpf4%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FWvHrgeVMpf4%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
+<Embed url="https://www.youtube.com/watch?v=WvHrgeVMpf4" href="https://www.youtube.com/watch?v=WvHrgeVMpf4" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FWvHrgeVMpf4%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DWvHrgeVMpf4%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FWvHrgeVMpf4%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
 
 ## Enable Offers on Dashboard
 
-By default, the Offers feature is not enabled on PayU Dashboard. 
+By default, the Offers feature is not enabled on PayU Dashboard.
 
 > 📘 Enable Offers & Promotion:
 >
@@ -49,9 +49,9 @@ To enable Offers:
 1. Select **Offers & Promotions**.
 2. Click **Activate Now**.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/7fac27f-Screenshot_2023-09-28_at_1.35.36_PM.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/fb28ab08a65467c0f0091833def79fc2c2e9c2609f645b0544e76d32c8c29d27-Screenshot_2025-06-03_at_9.56.40_AM.png" />
 
-   The following pop-up page is displayed.
+The following pop-up page is displayed.
 
 <Image align="center" src="https://files.readme.io/9f4dddb-Screenshot_2023-09-28_at_2.12.29_PM.png" />
 
@@ -61,7 +61,7 @@ To enable Offers:
 
 After logging in to PayU Dashboard, select Offers & Promotions from the main menu (on the left side), the Offers Overview page similar to the following is displayed to begin setting up an offer.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/0caf651-Screenshot_2023-09-28_at_2.19.42_PM.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/fa61f2023a607a59049b2036ba980d7ea4c3b3cdc6a58505081d13f6c64de053-Screenshot_2025-06-03_at_10.14.21_AM.png" />
 
 ## Understanding User Limits and Velocity
 
