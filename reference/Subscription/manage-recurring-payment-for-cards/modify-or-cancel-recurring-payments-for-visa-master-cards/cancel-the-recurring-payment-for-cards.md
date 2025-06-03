@@ -48,7 +48,7 @@ Method: **POST**
 
 ## Request parameters
 
-```html
+<HTMLBlock>{`
 <table>
   <thead>
     <tr>
@@ -80,7 +80,9 @@ Method: **POST**
     </tr>
   </tbody>
 </table>
-```
+`}</HTMLBlock>
+
+<br />
 
 ### var1 JSON Fields Description
 
