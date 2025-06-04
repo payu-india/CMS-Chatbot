@@ -2,7 +2,7 @@
 title: Launch a Loyalty Program using Dashboard
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
