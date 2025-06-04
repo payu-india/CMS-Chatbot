@@ -29,12 +29,7 @@ A confirmation message similar to the following screenshot is displayed.
 
 The *Payment options* page is displayed.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/48f751bbf782cde763866903276068d63790f3579851307492da807c92b30fd5-dashboard-loyaty-create-campaign-step2.png" />
-
 6. Select the relevant payment modes to configure offer details that is explained in the corresponding tabs and then click **Save & Next** after you have selected payment options.
-
-<Image align="center" className="border" border={true} src="https://files.readme.io/32dc30af2b03c890f39f4b3bfb5a1e36cf25a84630f62b8f4e6e6180ddd0cb63-dashboard-loyaty-create-campaign-step3.png" />
-
 7. Configure the campaign settings as described in the following table:
 
 <Table>
@@ -107,8 +102,6 @@ The *Payment options* page is displayed.
 </Table>
 
 8. Click **Show Advanced Options** at bottom and configure the following advance options (if required):
-
-<Image align="center" className="border" border={true} src="https://files.readme.io/b3e011e5c462e0c97cf51d17d010f24e6c82791f9739765281ae9789576d54c5-dashboard-loyaty-create-campaign-step3-adv_options.png" />
 
 <Table>
   <thead>
