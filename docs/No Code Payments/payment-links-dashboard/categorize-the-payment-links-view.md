@@ -1,5 +1,5 @@
 ---
-title: Categorize the Payment Links View
+title: Filter the Payment Links
 excerpt: >-
   The **Filter** menu enables you to filter the link results using the status of
   the payment link.
