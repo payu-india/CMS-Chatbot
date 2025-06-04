@@ -12,11 +12,12 @@ To update the campaign details:
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/44cdca009b290ef1ec73a78c6a5307a25adc32223ee80bb83c5064c18edc494c-Screenshot_2025-06-04_at_12.42.45_PM.png" />
 
-A confirmation message is displayed.
+A confirmation message similar to the following screenshot is displayed.
 
-<Image align="left" className="border" border={true} src="https://files.readme.io/efba71bb89db0a1cd7535408e0ba4c6da8d8cd275d2faacb8c18867b1e7377ae-dashboard_edit_campaign_confirmation.png" />
+<Image align="left" className="border" border={true} src="https://files.readme.io/21a4ba9613de94672c18888a09bd69d19a58ce3c1195e5265355e216031ed86d-dashboard_edit_campaign_confirmation.png" />
 
-1. Enter the basic campaign details as described in the following table:
+1. Click **Confirm**.
+2. Enter the basic campaign details as described in the following table:
 
 | Field             | Description                                                                                                 |
 | ----------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -181,5 +182,4 @@ The *Payment options* page is displayed.
   </tbody>
 </Table>
 
-9. Click **Save & Next**.
-10. Click **Publish** to go live with the campaign.
+9. Click **Save & Publish**.
