@@ -1,5 +1,5 @@
 ---
-title: Set up Loyalty
+title: Set up a Loyalty
 excerpt: ''
 deprecated: false
 hidden: true
