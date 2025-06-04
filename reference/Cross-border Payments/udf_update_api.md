@@ -15,44 +15,11 @@ next:
 ---
 The **UDF Update** API is used to update the UDF1-UDF5 values of a transaction. UDFs are the user-defined fields which are posted from the merchant to PayU. This API is specifically used to update the values in these fields in the PayU database. The return parameters are the updated UDF values of the transaction.
 
-<GENERALAPIsEnvironment />
+<GENERALAPIsEnvironment/>
 
 ## Reference info for request parameters
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-      <th>
-        **Reference**
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        key
-      </td>
-      <td>
-        The merchant key provided by PayU while onboarding.\
-        For more information on how to generate the Key and Salt, refer to any of the following:\
-        \- **Production**: [Generate Merchant Key and Salt](https://payu-hosted-checkout.readme.io/docs/generate-merchant-key-and-salt-on-payu-dashboard)\
-        \- **Test**: [Generate Test Merchant Key and Salt](https://payu-hosted-checkout.readme.io/docs/generate-test-merchant-key-and-salt)
-      </td>
-    </tr>
-    <tr>
-      <td>
-        hash
-      </td>
-      <td>
-        Hash logic for \_payment API is:\
-        `sha512(key\|command\|var1\|salt)`
-      </td>
-    </tr>
-  </tbody>
-</Table>
+
 
 <details>
   <summary>Sample request for Cards </summary>
