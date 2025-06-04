@@ -18,6 +18,11 @@ The campaign details are displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/e4e1943690eab75eb01ade9c1897624a64e8a7705016be81c6d41a86232034cc-dashboard_campaign_details_view.png" />
 
-1. Select the **Transactions** tab.
+3. Select the **Transactions** tab.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/3a753fbed6ed886f02246fb26657c851bd1a54a15d0eb7b7eafd850bd4efb877-dashboard_campaign_transactions.png" />
+
+4. Perform any of the following:
+   * Use the **Filter** drop-down menu to filter the transactions.
+   * Use the **Calendar** drop-down menu to view the transactions for a period.
+   * Search using the transaction ID or phone number in the **Search** field.
