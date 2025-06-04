@@ -2,7 +2,7 @@
 title: Loyalty Edge Introduction
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
