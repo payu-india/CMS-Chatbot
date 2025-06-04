@@ -38,8 +38,8 @@ This API allows partners to check refund status for any refund transaction. All 
   <tbody>
     <tr>
       <td>
-        merchant\_id
-        **mandatory**
+        merchant\_id`  
+        mandatory`
       </td>
 
       <td>
@@ -53,8 +53,8 @@ This API allows partners to check refund status for any refund transaction. All 
 
     <tr>
       <td>
-        payu\_id\
-        **mandatory**
+        payu\_id
+        `mandatory`
       </td>
 
       <td>
@@ -62,14 +62,14 @@ This API allows partners to check refund status for any refund transaction. All 
       </td>
 
       <td>
-        403\*\*371553\*\*93059
+        403**371553**93059
       </td>
     </tr>
 
     <tr>
       <td>
-        reseller\_id\
-        **mandatory**
+        reseller\_id
+        `mandatory`
       </td>
 
       <td>
@@ -83,12 +83,12 @@ This API allows partners to check refund status for any refund transaction. All 
 
     <tr>
       <td>
-        hash\
-        **mandatory**
+        hash
+        `mandatory`
       </td>
 
       <td>
-        `String` The hash should be calculated with the following logic:\
+        `String` The hash should be calculated with the following logic:
         `sha512(merchant_id\|payu_id\|client_secret)`
       </td>
 
@@ -103,19 +103,19 @@ This API allows partners to check refund status for any refund transaction. All 
 
 ## Response parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
-        **JSON Parameter**
+        JSON Parameter
       </th>
 
       <th>
-        **Description**
+        Description
       </th>
 
       <th>
-        **Example**
+        Example
       </th>
     </tr>
   </thead>
@@ -225,7 +225,7 @@ This API allows partners to check refund status for any refund transaction. All 
       </td>
 
       <td>
-        `String` This parameter contains any of the following status to show whether the API command was successful or failed to get response:  
+        `String` This parameter contains any of the following status to show whether the API command was successful or failed to get response:
 
         * **failure** - If the API command call failed.
         * **success** - If the API command call succeeded.
@@ -246,7 +246,7 @@ This API allows partners to check refund status for any refund transaction. All 
       </td>
 
       <td>
-        74799877\*\*2005071\*\*8062
+        74799877**2005071**8062
       </td>
     </tr>
 
