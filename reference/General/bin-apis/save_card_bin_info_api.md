@@ -180,13 +180,44 @@ public class HmacAuth {
 
 In addition to the [Request Headers](#request-headers) listed above, the **data** parameter is posted with the following fields are posted in an array:
 
-| **Field**        | **Description**                                                                                        |
-| :--------------- | :----------------------------------------------------------------------------------------------------- |
-| bin              | `String` The Network Token BIN or the first 9-digits of the network token is posted in this parameter. |
-| checkCVVRequired | `Boolean` This parameter may contain any of the following:                                             |
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        **Field**
+      </th>
 
-* **True**: Request the API to check if card CVV must be checked for the saved card transaction so that merchant need to validate the CVV accordingly.
-* **False**: Request the API not to check if card CVV need to be checked for the saved card transaction |
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        bin
+      </td>
+
+      <td>
+        `String` The Network Token BIN or the first 9-digits of the network token is posted in this parameter.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        checkCVVRequired
+      </td>
+
+      <td>
+        `Boolean` This parameter may contain any of the following:
+
+        * **True**: Request the API to check if card CVV must be checked for the saved card transaction so that merchant need to validate the CVV accordingly.
+        * **False**: Request the API not to check if card CVV need to be checked for the saved card transaction
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
