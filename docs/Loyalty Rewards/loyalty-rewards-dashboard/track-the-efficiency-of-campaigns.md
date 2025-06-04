@@ -25,4 +25,4 @@ The campaign details are displayed.
 4. Perform any of the following:
    * Use the **Filter** drop-down menu to filter the transactions.
    * Use the **Calendar** drop-down menu to view the transactions for a period.
-   * Search using the transaction ID or phone number in the **Search** field.
+   * Search using the transaction ID, order ID or phone number in the **Search** field.
