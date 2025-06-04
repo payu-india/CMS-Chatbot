@@ -17,7 +17,7 @@ To capture a pre-authorized payment, use the following command. After the API co
 
 HTTP Method: **POST**
 
-<GENERALAPIsEnvironment />
+<GENERALAPIsEnvironment/>
 
 <details>
   <summary>Sample request</summary>
@@ -91,43 +91,9 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 <details>
   <summary>Response parameters</summary>
 
-<Table>
-  <thead>
-    <tr>
-      <th>**Parameter**</th>
-      <th>**Description**</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>status</td>
-      <td>This parameter returns the status of web service call. The status can be any of the following:</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>* 0 - If web service call failed</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>* 1 - If web service call succeeded</td>
-    </tr>
-    <tr>
-      <td>msg</td>
-      <td>This parameter returns the following message if the pre-auth transaction was successful: Capture Request Queued</td>
-    </tr>
-    <tr>
-      <td>request_id</td>
-      <td>This parameter returns the request ID for the transaction.</td>
-    </tr>
-    <tr>
-      <td>bank_ref_num</td>
-      <td>This parameter returns the bank reference number for the transaction.</td>
-    </tr>
-  </tbody>
-</Table>
 
 </details>
 
 ## Request parameters
 
-<KeyHashForGeneralParametersDescription />
+<KeyHashForGeneralParametersDescription/>
