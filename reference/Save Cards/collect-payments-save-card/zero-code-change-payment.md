@@ -34,15 +34,15 @@ This scenario is applicable if any merchant sends the plain card request to PayU
   <thead>
     <tr>
       <th>
-        **Parameter**
+        Parameter
       </th>
 
       <th>
-        **Description**
+        Description
       </th>
 
       <th>
-        **Example**
+        Example
       </th>
     </tr>
   </thead>
@@ -116,9 +116,7 @@ This scenario is applicable if any merchant sends the plain card request to PayU
 
       <td>
         <code>String</code> It should be a string containing a brief description of the product.\`\`\`
-
         Character Limit-100
-        \`\`\`
       </td>
 
       <td>
