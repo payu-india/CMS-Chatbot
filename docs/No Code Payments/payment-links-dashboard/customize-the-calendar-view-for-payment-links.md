@@ -25,4 +25,4 @@ To customize the calendar view:
 3. Click to select the desired date range for the selected month.
 4. Click **Apply** to view the results.
 
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-35.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/ee050997f17cdc2030467be8855624d90886bb2d8296f698dc594d24713effcb-Screenshot_2025-06-04_at_12.22.39_PM.png" />
