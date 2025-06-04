@@ -1,7 +1,7 @@
 ---
 title: Loyalty Edge Wokflow
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
