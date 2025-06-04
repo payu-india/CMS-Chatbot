@@ -27,61 +27,78 @@ Signature = SHA512("merchantId:" + merchantId + "|subscriptionId:" + subscriptio
 <Table>
   <thead>
     <tr>
-      <th>Parameter</th>
-      <th>Description</th>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
     </tr>
   </thead>
+
   <tbody>
     <tr>
       <td>
         merchantId
-        **mandatory**
+        `mandatory`
       </td>
+
       <td>
         Merchant Key received during onboarding Sample Value - YQeVda
       </td>
     </tr>
+
     <tr>
       <td>
-        skip\
-        **mandatory**
+        skip`  
+        mandatory`
       </td>
+
       <td>
-        Skip is the number of subscriptions to be skip from the data-set fetched from database for given merchantId before applying the limit on it.<br/><br/>  <br/> <br/><br/>It should be greater than or equal to zero.
+        Skip is the number of subscriptions to be skip from the data-set fetched from database for given merchantId before applying the limit on it.<br /><br />  <br /> <br /><br />It should be greater than or equal to zero.
       </td>
     </tr>
+
     <tr>
       <td>
-        limit\
-        **mandatory**
+        limit
+        `mandatory`
       </td>
+
       <td>
         Number of subscriptions to be fetch. It should be greater than zero. Max value of limit is 20
       </td>
     </tr>
+
     <tr>
       <td>
-        status\
-        **optional**
+        status
+        `optional`
       </td>
+
       <td>
-        Subscription status having possible values as<br/><br/>*Defined<br/>* Enabled<br/>*Completed<br/>* Cancelled
+        Subscription status having possible values as<br /><br />*Defined<br />* Enabled<br />*Completed<br />* Cancelled
       </td>
     </tr>
+
     <tr>
       <td>
-        subscriberEmail\
-        **optional**
+        subscriberEmail
+        `optional`
       </td>
+
       <td>
         Email id of the customer
       </td>
     </tr>
+
     <tr>
       <td>
-        subscriberMobile\
-        **optional**
+        subscriberMobile
+        `optional`
       </td>
+
       <td>
         Mobile number of the customer
       </td>
