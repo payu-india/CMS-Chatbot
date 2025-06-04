@@ -56,15 +56,15 @@ function getAuthHeader(date) {
   <thead>
     <tr>
       <th>
-        **Parameter**
+        Parameter
       </th>
 
       <th>
-        **Description**
+        Description
       </th>
 
       <th>
-        **Example**
+        Example
       </th>
     </tr>
   </thead>
@@ -73,7 +73,7 @@ function getAuthHeader(date) {
     <tr>
       <td>
         dateFrom
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -87,14 +87,14 @@ function getAuthHeader(date) {
 
     <tr>
       <td>
-        dateTo\
-        **optional**
+        dateTo
+        `optional`
       </td>
 
       <td>
-        This parameter must contain date for the settlement range is required is in YYYY-MM-DD format.   
+        This parameter must contain date for the settlement range is required is in YYYY-MM-DD format. 
 
-        * \*Not&#x65;**: Date range is cannot be more tha. 3 days, so**dateTo\*\* value must be posted accordingly.
+        * *Note*\*: Date range is cannot be more tha. 3 days, so**dateTo** value must be posted accordingly.
       </td>
 
       <td>
@@ -105,11 +105,11 @@ function getAuthHeader(date) {
     <tr>
       <td>
         pageSize\
-        **optional**
+        `optional`
       </td>
 
       <td>
-        This parameter must contain the number of records to be paginated on each page is specified in this parameter. By default, the value is 100. 
+        This parameter must contain the number of records to be paginated on each page is specified in this parameter. By default, the value is 100.
       </td>
 
       <td>
@@ -120,7 +120,7 @@ function getAuthHeader(date) {
     <tr>
       <td>
         page\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -341,7 +341,7 @@ The description of fields in the **data** JSON of the response:
 
 The description of fields in the **transaction** JSON of the response:
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -365,13 +365,13 @@ The description of fields in the **transaction** JSON of the response:
       </td>
 
       <td>
-        This parameter contains the action taken on the transaction. The action can be any of the following:  
+        This parameter contains the action taken on the transaction. The action can be any of the following:
 
-        * capture   
-        * refund   
-        * cancel  
-        * chargeback  
-        * chargeback reversal  
+        * capture 
+        * refund 
+        * cancel
+        * chargeback
+        * chargeback reversal
         * refundreversal
       </td>
 
