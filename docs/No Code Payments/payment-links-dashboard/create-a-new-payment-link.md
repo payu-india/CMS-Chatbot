@@ -57,7 +57,6 @@ Scroll down to the \*\*Customer Details \*\*pane.
    * Customer Address
    * Customer Email
    * Customer Mobile
-   The
 
 > 📘 Note:
 >
