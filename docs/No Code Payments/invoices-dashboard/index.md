@@ -14,9 +14,11 @@ Create professional invoices and email them to your customers. This helps your c
 
 Select **Payment Tools** > **Invoices** from the left pane of the Dashboard.
 
-> 📘
->
-> *
+This part of the document covers how to use the payment invoices-related tasks:
+
+* [Create an Invoice](doc:create-an-invoice)
+* [Manage Invoice Items](doc:manage-invoice-items)
+* [Create a New Customer](doc:create-a-new-customer)
 
 ## Search invoices
 
