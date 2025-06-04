@@ -22,7 +22,7 @@ You can create a payment link using **Create Payment Link** API. You need to pro
 
 * **Can I customize the payment link according to my business requirements?**
 
-Yes, you can customize the payment link by providing additional parameters such as product code, product price, product description, shipping address, and tax amount. You can also add your logo and branding to the payment page.
+Yes, you can customize the payment link by providing additional parameters such as product code, product price, product description, shipping address, and tax amount. You can also add your logo and branding to the payment page. For more information, refer to [Create a Payment Link](doc:create-a-new-payment-link).
 
 * **Which payment methods are supported by PayU’s payment links?**
 
