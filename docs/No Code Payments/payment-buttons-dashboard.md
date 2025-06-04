@@ -64,19 +64,17 @@ To customize the Payment Button:
 
 ## Step 3: Customize the Checkout page
 
-1. Expand the **Custom Details** tile.
+1. Navigate to the **Custom Details** tile.
 
    The fields on the **Custom Details** tile are displayed.
 
-<Image align="center" width="412px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-1.19.59-PM-1024x529.png" />
+<Image align="center" className="border" border={true} width="412px" src="https://files.readme.io/b3a27b5d2959197102e56442a3f0fa6054486c1db2caba39ba45c7bbab504f4f-Screenshot_2025-06-04_at_12.32.20_PM.png" />
 
-2. Add each fields on the **Custom Details** tile to your Check Out page as follows:
-   * Select the check box against the field.
-   * Click the pencil button next to the field to launch the pop-up page similar to the following and then provide the details as described in the following table and click **Add Field**:
+2. Clic the toggle button to enable each field on the **Custom Details** tile and then Click the pencil button next to the field to launch the pop-up page similar to the following and then provide the details as described in the following table and click **Add Field**:
 
 > **Note**: Use the **Add Fields** option at the bottom to add more fields on your Check Out page if required.
 
-<Image align="center" width="312px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-27-at-1.22.13-PM.png" />
+<Image align="center" className="border" border={true} width="312px" src="https://files.readme.io/1eb6333ecf79f41c3bb978bd2c289d2af3822688df83f22b10edda2199e93a21-Screenshot_2025-06-04_at_12.33.44_PM.png" />
 
 <Table>
   <thead>
@@ -127,6 +125,10 @@ To customize the Payment Button:
     </tr>
   </tbody>
 </Table>
+
+After the fields are enabled, they are displayed on the PayU Checkout page when the customer clicks the payment button similar to the following screenshot (Customer Name and Customer Address in this example):
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/865616d7519cf08e3ca37a1583db494fb638d457de658d32e0a157f9309388ac-Screenshot_2025-06-04_at_12.37.53_PM.png" />
 
 ## Step 4: Configure the advanced options
 
