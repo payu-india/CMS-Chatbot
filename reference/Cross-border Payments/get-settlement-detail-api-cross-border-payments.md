@@ -14,21 +14,21 @@ Settlement Details APIs are build on top of settlement data that provides transa
 
 ## Endpoint
 
-| Environment | URL |
-|:------------|:----|
-| Production | https://info.payu.intreasury/int/payu/settlement/settlementDetails |
+| Environment | URL                                                                                                                                      |
+| :---------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| Production  | [https://info.payu.intreasury/int/payu/settlement/settlementDetails](https://info.payu.intreasury/int/payu/settlement/settlementDetails) |
 
 ## Request parameters
 
 ### Authorization header
 
-- Date: date time when request was triggerd (`Wed, 28 Jun 2023 11:25:19 GMT`)
+* Date: date time when request was triggerd (`Wed, 28 Jun 2023 11:25:19 GMT`)
 
 ```javascript
 var date = new Date().toUTCString()
 ```
 
-- Authorisation: a `SHA512` token generated from the current date time, key and salt for the MID. Below is JS function to get the same.
+* Authorisation: a `SHA512` token generated from the current date time, key and salt for the MID. Below is JS function to get the same.
 
 ```javascript
 var merchant_key = '<key>';
@@ -52,13 +52,96 @@ function getAuthHeader(date) {
 
 ### Query parameters
 
-| Parameter | Reference | Example |
-|:----------|:----------|:--------|
-| settledOn `mandatory` | This parameter must either contain either date for the settlement or UTR (Unique Transaction Reference number). | 2023-09-26 |
-| isVersion `optional` | This parameter must contain the version of the API that can be either 1 or 2. | 1 |
-| pageSize `mandatory` | This parameter must contain the number of records to be paginated on each page is specified in this parameter. If not specified, 2000 records will be fetched. | 1000 |
-| page `mandatory` | This parameter must contain the page number to be fetched. | 5 |
-| type `optional` | This parameter must contain either G to get a detailed output or leave it blank. | G |
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Reference
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        settledOn `mandatory`
+      </td>
+
+      <td>
+        This parameter must either contain either date for the settlement or UTR (Unique Transaction Reference number).
+      </td>
+
+      <td>
+        2023-09-26
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        isVersion `optional`
+      </td>
+
+      <td>
+        This parameter must contain the version of the API that can be either 1 or 2.
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pageSize `mandatory`
+      </td>
+
+      <td>
+        This parameter must contain the number of records to be paginated on each page is specified in this parameter. If not specified, 2000 records will be fetched.
+      </td>
+
+      <td>
+        1000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        page `mandatory`
+      </td>
+
+      <td>
+        This parameter must contain the page number to be fetched.
+      </td>
+
+      <td>
+        5
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        type
+        `optional`
+      </td>
+
+      <td>
+        This parameter must contain either G to get a detailed output or leave it blank.
+      </td>
+
+      <td>
+        G
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request/response
 
@@ -394,7 +477,7 @@ curl --location 'http://127.0.0.1:8090/treasury/int/payu/settlement/settlementDe
 
 ### Failure scenarios
 
-- Invalid Response (Bad Request): HTTP status 401
+* Invalid Response (Bad Request): HTTP status 401
 
 ```json
 {
@@ -409,47 +492,47 @@ curl --location 'http://127.0.0.1:8090/treasury/int/payu/settlement/settlementDe
 
 ### result JSON fields description
 
-| **Field** | **Description** | **Example** |
-|:----------|:----------------|:------------|
-| txn_addedon | This parameter contains the transaction added date. | 2024-04-05 23:59:49 |
-| settlement_addedon | This parameter contains the settlement added date. | 2024-04-06 00:11:12 |
-| settledon | This parameter contains the date when the settled on. | 2024-04-08 12:45:07 |
-| settlementId | This parameter contains the settlement ID. | 202404071115 |
-| time_zone | This parameter contains the time zone in which the transaction was perform. | UTC + 05:30 |
-| merchant_id | This parameter contains the merchant ID. | JP***g |
-| merchantName | This parameter contains the merchant name. | ABC company |
-| PSP | This parameter contains the payment service provider. | PayU |
-| action | This parameter contains the action taken on the transaction. The action can be any of the following:  
-capture  
-refund  
-cancel  
-chargeback  
-chargeback reversal  
-refundreversal | capture |
-| txnid | This parameter contains the transaction ID. | PZT24040523596DQOT01 |
-| payu_id | This parameter contains a unique reference number created for each transaction at PayU's end. You must note this transaction ID as this will be used as a reference for all the future actions on this transaction like Inquiry or Refund. | 403993715521937565 |
-| request_id | This parameter contains the request ID value posted by the merchant during the transaction request. | 131278418 |
-| settlementUTR | This parameter contains the unique number generated by the bank to identify a settlement and track the amounts settled. A UTR is a 12-digit alphanumeric code that is assigned to each electronic transaction. | UTIBR72024040800086935 |
-| pg_label | This parameter contains the payment gateway used. | AxisCYBER |
-| card_bin | This parameter contains the card BIN. |  |
-| Scheme | This parameter contains the card scheme. | VISA |
-| mode | This parameter contains the payment mode used. | CC |
-| ibibo_code | This parameter contains the bank code. | CC |
-| auth_code | This parameter contains the authorization code. | 7123418019786142605964 |
-| bank_ref_no | This parameter contains the bank reference number. | 7123418019786142605964 |
-| transaction_amount | This parameter contains the original amount which was sent in the transaction request by the merchant. | 100 |
-| transfer_currency | This parameter contain the currency to which conversion was done. | INR |
-| transaction_currency | This parameter contain the currency with which transaction was performed. | USD |
-| forexRate | This parameter contain the foreign exchange rate for currency in the **transactionCurrency** to **transactionCurrency** parameter. | 80.45 |
-| finalSettlement | This parameter contain the final settlement done to merchant. | 20000.45 |
-| payu_fee | This parameter contains the PayU fee for this transaction. | -3.16 |
-| payu_fee_tax | This parameter contains the tax incurred for PayU fee. | -0.57 |
-| net_amount | This parameter contains the net amount paid to merchant. | 214.27 |
-| ib_title | This parameter contains the bank code. | SBI |
-| token | This parameter contains the saved card token (if any). |  |
-| bank_arn | This parameter contains the unique number assigned to a credit or debit card transaction that helps banks and other parties track the transaction. |  |
-| legal_entity | This parameter contains the legal entity number. | 202437 |
-| company_name | This parameter contains the company name of the merchant. |  |
-| merchant_key | This parameter contains the merchant key. |  |
-| PG_TYPE | This parameter contains the PG type. | AxisCYBER |
-| Card Type | This parameter contains whether card type is domestic or international. | domestic |
+| **Field**             | **Description**                                                                                                                                                                                                                            | **Example**            |
+| :-------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------- |
+| txn\_addedon          | This parameter contains the transaction added date.                                                                                                                                                                                        | 2024-04-05 23:59:49    |
+| settlement\_addedon   | This parameter contains the settlement added date.                                                                                                                                                                                         | 2024-04-06 00:11:12    |
+| settledon             | This parameter contains the date when the settled on.                                                                                                                                                                                      | 2024-04-08 12:45:07    |
+| settlementId          | This parameter contains the settlement ID.                                                                                                                                                                                                 | 202404071115           |
+| time\_zone            | This parameter contains the time zone in which the transaction was perform.                                                                                                                                                                | UTC + 05:30            |
+| merchant\_id          | This parameter contains the merchant ID.                                                                                                                                                                                                   | JP\*\*\*g              |
+| merchantName          | This parameter contains the merchant name.                                                                                                                                                                                                 | ABC company            |
+| PSP                   | This parameter contains the payment service provider.                                                                                                                                                                                      | PayU                   |
+| action                | This parameter contains the action taken on the transaction. The action can be any of the following:                                                                                                                                       |                        |
+| capture               |                                                                                                                                                                                                                                            |                        |
+| refund                |                                                                                                                                                                                                                                            |                        |
+| cancel                |                                                                                                                                                                                                                                            |                        |
+| chargeback            |                                                                                                                                                                                                                                            |                        |
+| chargeback reversal   |                                                                                                                                                                                                                                            |                        |
+| refundreversal        | capture                                                                                                                                                                                                                                    |                        |
+| txnid                 | This parameter contains the transaction ID.                                                                                                                                                                                                | PZT24040523596DQOT01   |
+| payu\_id              | This parameter contains a unique reference number created for each transaction at PayU's end. You must note this transaction ID as this will be used as a reference for all the future actions on this transaction like Inquiry or Refund. | 403993715521937565     |
+| request\_id           | This parameter contains the request ID value posted by the merchant during the transaction request.                                                                                                                                        | 131278418              |
+| settlementUTR         | This parameter contains the unique number generated by the bank to identify a settlement and track the amounts settled. A UTR is a 12-digit alphanumeric code that is assigned to each electronic transaction.                             | UTIBR72024040800086935 |
+| pg\_label             | This parameter contains the payment gateway used.                                                                                                                                                                                          | AxisCYBER              |
+| card\_bin             | This parameter contains the card BIN.                                                                                                                                                                                                      |                        |
+| Scheme                | This parameter contains the card scheme.                                                                                                                                                                                                   | VISA                   |
+| mode                  | This parameter contains the payment mode used.                                                                                                                                                                                             | CC                     |
+| ibibo\_code           | This parameter contains the bank code.                                                                                                                                                                                                     | CC                     |
+| auth\_code            | This parameter contains the authorization code.                                                                                                                                                                                            | 7123418019786142605964 |
+| bank\_ref\_no         | This parameter contains the bank reference number.                                                                                                                                                                                         | 7123418019786142605964 |
+| transaction\_amount   | This parameter contains the original amount which was sent in the transaction request by the merchant.                                                                                                                                     | 100                    |
+| transfer\_currency    | This parameter contain the currency to which conversion was done.                                                                                                                                                                          | INR                    |
+| transaction\_currency | This parameter contain the currency with which transaction was performed.                                                                                                                                                                  | USD                    |
+| forexRate             | This parameter contain the foreign exchange rate for currency in the **transactionCurrency** to **transactionCurrency** parameter.                                                                                                         | 80.45                  |
+| finalSettlement       | This parameter contain the final settlement done to merchant.                                                                                                                                                                              | 20000.45               |
+| payu\_fee             | This parameter contains the PayU fee for this transaction.                                                                                                                                                                                 | -3.16                  |
+| payu\_fee\_tax        | This parameter contains the tax incurred for PayU fee.                                                                                                                                                                                     | -0.57                  |
+| net\_amount           | This parameter contains the net amount paid to merchant.                                                                                                                                                                                   | 214.27                 |
+| ib\_title             | This parameter contains the bank code.                                                                                                                                                                                                     | SBI                    |
+| token                 | This parameter contains the saved card token (if any).                                                                                                                                                                                     |                        |
+| bank\_arn             | This parameter contains the unique number assigned to a credit or debit card transaction that helps banks and other parties track the transaction.                                                                                         |                        |
+| legal\_entity         | This parameter contains the legal entity number.                                                                                                                                                                                           | 202437                 |
+| company\_name         | This parameter contains the company name of the merchant.                                                                                                                                                                                  |                        |
+| merchant\_key         | This parameter contains the merchant key.                                                                                                                                                                                                  |                        |
+| PG\_TYPE              | This parameter contains the PG type.                                                                                                                                                                                                       | AxisCYBER              |
+| Card Type             | This parameter contains whether card type is domestic or international.                                                                                                                                                                    | domestic               |
