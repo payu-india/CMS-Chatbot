@@ -28,22 +28,69 @@ With the following additional parameters, make the transaction request with the 
 
 **Environment**
 
-| | |
-| -------------------------- | ---------------------------------------------------------------- |
+|                            |                                                                                                                                  |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | **Test Environment**       | [https://test-partnerapilayer.payu.in/apilayer/partner/payments](https://test-partnerapilayer.payu.in/apilayer/partner/payments) |
-| **Production Environment** | [https://api.payu.in/partner/payments](https://api.payu.in/partner/payments) |
+| **Production Environment** | [https://api.payu.in/partner/payments](https://api.payu.in/partner/payments)                                                     |
 
 ### Request Parameters
 
-| **Parameter** | **Description** | **Example** |
-| :--------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| bankcode(optional) | It defines the bank with which you wish to perform TPV using the bank code. The values can be any one of the following values: **INTTPV**: Used for UPI Intent | **INTTPV** |
-| beneficiarydetail(mandatory) | This is a JSON format text and there should be key named **beneficiaryAccountNumber** with the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter. | ```{"beneficiaryAccountNumber":"002001600674\|00000031957292212\|00000035955239352\|00000035955239352","ifscCode":"KTKB0000046\|KTKB0000023\|KTKB0000035\|KTKB0000035"}``` |
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        bankcode(optional)
+      </td>
+
+      <td>
+        It defines the bank with which you wish to perform TPV using the bank code. The values can be any one of the following values: **INTTPV**: Used for UPI Intent
+      </td>
+
+      <td>
+        **INTTPV**
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        beneficiarydetail
+        **mandatory**
+      </td>
+
+      <td>
+        This is a JSON format text and there should be key named **beneficiaryAccountNumber** with the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter.
+      </td>
+
+      <td>
+        \{  
+        "beneficiaryAccountNumber":"002001600674|00000031957292212|00000035955239352|00000035955239352",
+        "ifscCode":"KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"
+        }
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Response Codes
 
-| Status Code | Description | Response |
-| --- | ------------------------------------------------- | ------------------------------------------------ |
-| 400 | When beneficiarydetail is not a valid json string | ```{ "message": "beneficiarydetail is invalid" }``` |
+| Status Code | Description                                       | Response                                        |
+| ----------- | ------------------------------------------------- | ----------------------------------------------- |
+| 400         | When beneficiarydetail is not a valid json string | `{ "message": "beneficiarydetail is invalid" }` |
 
 Follow step 2 and step 3 of [UPI S2S Integration API - WhatsApp](ref:upi-s2s-integration-api) to invoke UPI intent on customer's device and verify the transaction details.
