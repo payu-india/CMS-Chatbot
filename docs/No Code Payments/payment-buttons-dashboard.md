@@ -126,7 +126,7 @@ To customize the Payment Button:
   </tbody>
 </Table>
 
-After the fields are enabled, they are displayed on the PayU Checkout page when the customer clicks the payment button similar to the following screenshot (Customer Name and Customer Address in this example):
+After the fields are enabled, they are displayed on the PayU Checkout page when the customer clicks the payment button similar to the following sample screenshot (Customer Name and Customer Address in this sample screeshot):
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/865616d7519cf08e3ca37a1583db494fb638d457de658d32e0a157f9309388ac-Screenshot_2025-06-04_at_12.37.53_PM.png" />
 
