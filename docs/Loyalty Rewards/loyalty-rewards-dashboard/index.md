@@ -1,5 +1,5 @@
 ---
-title: Launching a Loyalty Program using Dashboard
+title: Launch a Loyalty Program using Dashboard
 excerpt: ''
 deprecated: false
 hidden: true
