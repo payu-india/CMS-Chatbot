@@ -14,7 +14,7 @@ The **Invoice Upload** API is used to collect Invoices or AWB from Cross-Border 
 
 > 📘 Reference:
 >
-> For Cross Border Payments using the **_payment** API, You can use the **Try It** experience with the following integrations:
+> For Cross Border Payments using the **\_payment** API, You can use the **Try It** experience with the following integrations:
 >
 > * [PayU Hosted Checkout](https://docs.payu.in/reference/_payment_cross-border_payu_hosted_checkout)
 > * [Merchant Hosted Integration](https://docs.payu.in/reference/merchant-hosted-integration-cb)
@@ -50,10 +50,101 @@ To include multiple AWB details using the **Invoice Upload** API:
 >
 > You need to ensure that the Invoice ID and Invoice file are posted only once in the above procedure.
 
-<GENERALAPIsEnvironment/>
+<GENERALAPIsEnvironment />
 
 ## Request Parameters
 
+<HTMLBlock>{`
+<table>
+  <thead>
+    <tr>
+      <th><strong>Parameter</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Example</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>key</td>
+      <td>
+        Merchant key provided by PayU. For more information on checking your key and Salt, refer to <a href="https://devguide.payu.in/merchant-integration/getting-started-with-web-checkout/generate-key-and-salt-payubiz/">Generate Merchant Key and Salt on PayUBiz Dashboard</a>.
+      </td>
+      <td>Your Test Key</td>
+    </tr>
+    <tr>
+      <td>command</td>
+      <td>
+        The API command for this API, that is, <strong>opgsp_upload_invoice_awb</strong> must be specified for this parameter.
+      </td>
+      <td>opgsp_upload_invoice_awb</td>
+    </tr>
+    <tr>
+      <td>
+        var1<br>
+        (primaryKey)<br>
+        <strong>mandatory</strong>
+      </td>
+      <td>
+        The PayU ID (mihpayuid) of the transaction must be specified in this field. The Invoice or AWB will be uploaded basis of the PayU ID.
+      </td>
+      <td><code>403993715521937565</code></td>
+    </tr>
+    <tr>
+      <td>
+        var2<br>
+        (uniqueNumber)<br>
+        <strong>mandatory</strong>
+      </td>
+      <td>
+        The invoice ID or AWB ID is specified in this parameter. Alphanumeric with special characters is allowed.
+      </td>
+      <td><code>9eec02ac9e2efc335bdda2d7486121ce03de24c2fa7d32d17462ad5a6a9058db</code></td>
+    </tr>
+    <tr>
+      <td>
+        var3<br>
+        (uploadType)<br>
+        <strong>mandatory</strong>
+      </td>
+      <td>
+        The type of document to be uploaded is specified in this field, and it can be any of the following:
+        <ul>
+          <li>Invoice</li>
+          <li>AWB</li>
+        </ul>
+      </td>
+      <td>AWB</td>
+    </tr>
+    <tr>
+      <td>
+        file<br>
+        (attachment)<br>
+        <strong>mandatory</strong>
+      </td>
+      <td>
+        The absolute path of the file to be uploaded is specified in this parameter. The maximum size supported is 2 MB and the following formats are supported:
+        <ul>
+          <li>PDF (.pdf)</li>
+          <li>Document (.doc or .docx)</li>
+          <li>Image (.jpg, .jpeg)</li>
+        </ul>
+        <strong>Note</strong>: The Merchant Dashboard supports only the .pdf and .docx formats.
+      </td>
+      <td>C:\invoice.docx</td>
+    </tr>
+    <tr>
+      <td>hash</td>
+      <td>
+        The hash is generated in the following format:<br>
+        sha512(key|command|var1|salt) sha512
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
 
 ## Sample request
 
