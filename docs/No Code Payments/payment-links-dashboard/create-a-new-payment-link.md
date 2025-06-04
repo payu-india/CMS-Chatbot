@@ -51,12 +51,13 @@ Scroll down to the \*\*Customer Details \*\*pane.
    * Email
    * Phone Number
    * Notify via SMS/Email
-   * Link Expiry
-9. Scroll down to configure additional details to capture while making payments using the link in the **Additional Customer Details** pane.
+   * Link Expiry (by default, it is 1 year)
+9. Scroll down to configure additional details to capture while making payments using the link on Checkout page in the **Additional Customer Details** pane.
    * Customer Name
    * Customer Address
    * Customer Email
    * Customer Mobile
+   The
 
 > 📘 Note:
 >
@@ -67,9 +68,7 @@ Scroll down to the \*\*Customer Details \*\*pane.
 > * Field Name
 >
 > ![Custom Field Screenshot](https://files.readme.io/8eca3400c847299b4e879cf737dee9b719af66bf2a384e7a3054c62572b0dcac-dashboard_create_new_payment_link_custom_field.png)
->
->
 
 10. Click **Create and Send Payment Link** (at the top-right corner).
 
-   The link can be sent to the customer via SMS or email.
+The link can be sent to the customer via SMS or email.
