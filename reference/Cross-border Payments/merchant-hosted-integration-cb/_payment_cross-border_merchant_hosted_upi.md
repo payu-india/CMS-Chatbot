@@ -100,7 +100,6 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
 
 <details>
   <summary>Response parameters</summary>
-
 </details>
 
 ## Request parameters
@@ -116,7 +115,7 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
   * **bankcode**: Set to "UPI" for UPI transactions
   * **vpa**: The Virtual Payment Address (UPI ID) of the customer
 
-  For a comprehensive list of all parameters and their descriptions, please refer to the API documentation.
+  For a comprehensive list of all parameters and their descriptions,  refer to the following:
 </details>
 
 > 📘 **Reference**
