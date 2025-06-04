@@ -68,7 +68,7 @@ Scroll down to the \*\*Customer Details \*\*pane.
 >
 > ![Custom Field Screenshot](https://files.readme.io/8eca3400c847299b4e879cf737dee9b719af66bf2a384e7a3054c62572b0dcac-dashboard_create_new_payment_link_custom_field.png)
 
-After you create a payment link with these additional fields, the PayU Check Out page will be similar to the following sample screenshot (Customer Phone and Customer Email are the additional fields enabled in this sample):
+After you create a payment link with these additional customer details fields, the PayU Check Out page will be similar to the following sample screenshot (**Customer Phone** and **Customer Email** are the additional customer details enabled in this sample):
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/d322acc2c2795a82b620e501380e4366576307f7a1c17ff79b89c6f0cfda5e66-dashboard_payment_link_with_additional_details.png" />
 
