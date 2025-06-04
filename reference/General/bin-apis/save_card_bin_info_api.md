@@ -239,12 +239,56 @@ curl --location 'https://info.payu.in/issuing-bank/v1/bin' \
 
 The response involves the following parameters and the **result** parameter contains the offer results:
 
-| **Parameter**                      | **Description**                                                                                                                                                                                                      | **Example**                                                                          |
-| :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------- |
-| code                               | This parameter returns the status of web service call. The status can be any of the following:                                                                                                                       |                                                                                      |
-| 0: If web service call failed.     |                                                                                                                                                                                                                      |                                                                                      |
-| 1 : If web service call succeeded. | 200                                                                                                                                                                                                                  |                                                                                      |
-| result                             | `JSON Object` This parameter gives the information about the result of the API response in a JSON format. For more information, refer to the [result Field JSON Details](#result-parameter-json-details) subsection. | Refer to the [result Field JSON Details](#result-parameter-json-details) subsection. |
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        code
+      </td>
+
+      <td>
+        This parameter returns the status of web service call. The status can be any of the following:
+
+        * **0**: If web service call failed.
+        * **1** : If web service call succeeded.
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        result
+      </td>
+
+      <td>
+        `JSON Object` This parameter gives the information about the result of the API response in a JSON format. For more information, refer to the [result Field JSON Details](#result-parameter-json-details) subsection.
+      </td>
+
+      <td>
+        Refer to the [result Field JSON Details](#result-parameter-json-details) subsection.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### result parameter JSON details
 
