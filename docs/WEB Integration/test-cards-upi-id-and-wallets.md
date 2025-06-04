@@ -24,7 +24,7 @@ metadata:
 next:
   description: ''
 ---
-`<TestCardsCallout />`
+<TestCardsCallout />
 
 ## Test Cards
 
