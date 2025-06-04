@@ -14,14 +14,9 @@ Create professional invoices and email them to your customers. This helps your c
 
 Select **Payment Tools** > **Invoices** from the left pane of the Dashboard.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/b9ed6135e3053eb874d8bcd7e80ec64bcd98584a29d9503e4d93000e94b43da9-Screenshot_2025-06-04_at_2.58.54_PM.png" />
-
-> 📘 Reference:
+> 📘
 >
-> You can create invoices using APIs. For more information, refer to the following sections under API reference:
->
-> * [Create Invoice API](ref:create_invoice_api)
-> * [Expire Invoice API](ref:expire_invoice_api)
+> *
 
 ## Search invoices
 
