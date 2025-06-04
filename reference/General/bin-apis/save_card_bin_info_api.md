@@ -294,26 +294,6 @@ The response involves the following parameters and the **result** parameter cont
 
 The **result** parameter contains the result in a JSON format and the fields in the JSON are described in the following table:
 
-| **Field**        | **Description**                                                                    | **Example** |
-| :--------------- | :--------------------------------------------------------------------------------- | :---------- |
-| status           | This parameter returns the status of card. The status can be any of the following: | 1           |
-| category         | This field contains the card category of the card.                                 | debitcard   |
-| bin              | `Integer` This field contains the first 9-digits of the card or Network Token.     | 512345789   |
-| cvvLessSupported | This field contains any of the following values:                                   |             |
-
-* **true**: The card does not require CVV validation
-* **false** : The card requires CVV validation. | true |\
-  \| is\_domestic | `Boolean` This field contains any of the following values:
-* **true**: The card is domestic card
-* **false** : The card is an international card or issued outside India | true |\
-  \| card\_type | This field contains the card type or the card network. | VISA |
-  \| issuing\_bank | This field contains the card issuing bank. | HDFC |
-  \| otp\_on\_fly | This field contains any of the following values:
-* **true**: The OTP needs to be entered by the customer when redirected
-* **false** : The customer need not enter the OTP to validate the card | false |\
-  \| is\_atmpin\_card | This field contains any of the following values:
-* **0**: The card is not an ATM card
-* **1**: The card is an ATM card | 0 |
 
 ## Sample response
 
