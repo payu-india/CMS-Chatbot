@@ -18,66 +18,80 @@ HTTP Method: **POST**
 
 ## Request parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
         **Parameter**
       </th>
+
       <th>
         **Description**
       </th>
+
       <th>
         **Example**
       </th>
     </tr>
   </thead>
+
   <tbody>
     <tr>
       <td>
         key
-        **mandatory**
+        `mandatory`
       </td>
+
       <td>
         This parameter must contain your merchant key shared by PayU during onboarding.
       </td>
+
       <td>
         Your Test Key
       </td>
     </tr>
+
     <tr>
       <td>
-        command\
-        **mandatory**
+        command
+        `mandatory`
       </td>
+
       <td>
         This parameters must contain the API command as **check\_balance**.
       </td>
+
       <td>
         check\_balance
       </td>
     </tr>
+
     <tr>
       <td>
-        hash\
-        **mandatory**
+        hash
+        `mandatory`
       </td>
+
       <td>
-        This parameter contains the hash. Use the following hash generation format:\
-        sha512(key|command|var1|salt) sha512
+        This parameter contains the hash. Use the following hash generation format:
+        `sha512(key\|command\|var1\|salt) sha512`
       </td>
+
       <td>
          
       </td>
     </tr>
+
     <tr>
       <td>
-        var1\
-        **mandatory**
+        var1
+        `mandatory`
       </td>
+
       <td>
         This parameter must contain the Sodexo Source ID in JSON format as provided in the example.
       </td>
+
       <td>
         `{"sodexoSourceId":"src_81e2c860-631b-4b01-aefa-19cfa9c63415"}`
       </td>
@@ -102,6 +116,52 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2
 
 ## Response parameters
 
+<HTMLBlock>{`
+<table>
+  <thead>
+    <tr>
+      <th><strong>Parameter</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Example</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>status</td>
+      <td>
+        This parameter returns the status of web service call. The status can be any of the following:
+        <ul>
+          <li>0 - If web service call failed.</li>
+          <li>1 - If web service call succeeded.</li>
+        </ul>
+      </td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>cardNo</td>
+      <td>This parameter contains the Sodexo card number.</td>
+      <td>637513XXXXXX9318</td>
+    </tr>
+    <tr>
+      <td>cardBalance</td>
+      <td>This parameter returns the card balance (in rupees).</td>
+      <td>3000.00</td>
+    </tr>
+    <tr>
+      <td>cardName</td>
+      <td>This parameter contains name of the customer as on the Sodexo card.</td>
+      <td>test</td>
+    </tr>
+    <tr>
+      <td>msg</td>
+      <td>This parameter contains the message, that is successful or failure.</td>
+      <td>success</td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
 
 ## Sample response
 
