@@ -458,10 +458,11 @@ curl --location --request POST 'https://secure.payu.in/_payment' \
 
 ### Sample Responses
 
-> 📘 Note:
+> 📘 Notes:
 >
-> To validate the response from PayU, calculate the following hash and compare it with the hash received in the response:\
-> sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+> * **Reverse hashing**: To validate the response from PayU, calculate the following hash and compare it with the hash received in the response:\
+>   sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+> * For handling errors, refer to [Error Codes](ref:error-codes).
 
 #### Response When Native Submit OTP is Supported
 
@@ -556,7 +557,7 @@ When collecting the OTP on your page, you must provide the following functionali
 After completing the payment flow, verify the transaction status using the Verify Payment API:
 
 ```
-curl --location --request POST 'https://api.payumoney.com/payment/verify' \ --header 'Content-Type: application/json' \ --data-raw '{"merchantKey": "YOUR_MERCHANT_KEY",   "paymentId": "PAYMENT_ID_FROM_RESPONSE" }'
+curl --location --request POST 'https://api.payumoney.com/payment/verify' \ --header 'Content-Type: application/json' \ --data-raw '{"merchantKey": "YOUR_MERCHANT_KEY", "paymentId": "PAYMENT_ID_FROM_RESPONSE" }'
 ```
 
 Alternatively, implement PayU’s webhooks to receive real-time payment status updates. For more information, refer to [Payment Webhooks](doc:create-and-manage-webhooks-1).
