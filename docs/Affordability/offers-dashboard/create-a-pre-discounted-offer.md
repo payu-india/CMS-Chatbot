@@ -62,7 +62,7 @@ The Choose an Offer Type to get started.
 <Image align="center" className="border" border={true} src="https://files.readme.io/09dec7da3915af1371413ad8eb9195dbaebacd7934c5ba93e97f54d311c001eb-Screenshot_2025-06-05_at_10.16.18_AM.png" />
 
 5. Add the basic details. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
-6. After you complete the above details and click **Save & Process**.
+6. After you complete the above details and click **Next**.
 
    The *Payment Options* page is displayed.
 
