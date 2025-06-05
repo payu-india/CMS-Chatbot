@@ -546,6 +546,39 @@ This parameter must be passed with the value as **REDIRECT** for classic S2S int
 
 </td>
 </tr>
+   <tr>
+            <td>
+                <strong>Param_name</strong>
+            </td>
+            <td>
+                <strong>Description</strong>
+            </td>
+            <td>
+                <strong>SampleValue</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                partner_webhook_success
+            </td>
+            <td>
+                Parameter to pass the Webhook URL for Success transaction response, Multiple URLs can be passed by separating the URLs using (,) Comma. Use HTTP secure URLs. Pass the non URL encoded URL Only
+            </td>
+            <td>
+                <a href="https://test.payu.in/admin/test_response">https://test.payu.in/admin/test_response</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                partner_webhook_failure
+            </td>
+            <td>
+                Parameter to pass the Webhook URL for failure transaction response,&nbsp; Multiple URLs can be passed by separating the URLs using (,) Comma. Use HTTP secure URLs. Pass the non URL encoded URL Only
+            </td>
+            <td>
+                <a href="https://test.payu.in/admin/test_response">https://test.payu.in/admin/test_response</a>
+            </td>
+        </tr>
 </tbody>
 </Table>
 `}</HTMLBlock>
