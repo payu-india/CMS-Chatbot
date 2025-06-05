@@ -15,6 +15,11 @@ next:
 <HTMLBlock>{`
 <Table align={["left","left","left"]}>
 <thead>
+Here's the updated HTML table with \`<code>\` tags for the mandatory/optional text instead of backticks:
+
+\`\`\`html
+<Table align={["left","left","left"]}>
+<thead>
 <tr>
 <th style={{ textAlign: "left" }}>
 Parameter
@@ -35,7 +40,7 @@ Example
 <td style={{ textAlign: "left" }}>
 key
 <br/>
-\`mandatory\`
+<code>mandatory</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -51,7 +56,7 @@ Your Test Key
 <td style={{ textAlign: "left" }}>
 txnid
 <br/>
-\`mandatory\`
+<code>mandatory</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -70,7 +75,7 @@ fd3e847h2
 <td style={{ textAlign: "left" }}>
 amount
 <br/>
-\`mandatory\`
+<code>mandatory</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -92,7 +97,7 @@ Depending upon the merchant use case, this value will vary.\
 <td style={{ textAlign: "left" }}>
 productinfo
 <br/>
-\`mandatory\`
+<code>mandatory</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -109,7 +114,7 @@ Time Magazine Subscription
 <td style={{ textAlign: "left" }}>
 firstname
 <br/>
-\`mandatory\`
+<code>mandatory</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -126,7 +131,7 @@ Ashish
 <td style={{ textAlign: "left" }}>
 email
 <br/>
-\`mandatory\`
+<code>mandatory</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -145,7 +150,7 @@ Character limit: 50
 <td style={{ textAlign: "left" }}>
 phone
 <br/>
-\`mandatory\`
+<code>mandatory</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -164,7 +169,7 @@ Character limit: 50
 <td style={{ textAlign: "left" }}>
 surl
 <br/>
-\`mandatory\`
+<code>mandatory</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -180,7 +185,7 @@ surL is the acronym for Success URL. This parameter must contain the URL on whic
 <td style={{ textAlign: "left" }}>
 furl
 <br/>
-\`mandatory\`
+<code>mandatory</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -196,7 +201,7 @@ furl is the acronym for for Failure URL. This parameter must contain the URL on 
 <td style={{ textAlign: "left" }}>
 api_version
 <br/>
-\`mandatory\`
+<code>mandatory</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -212,7 +217,7 @@ This parameter must always needs to be passed as 7.
 <td style={{ textAlign: "left" }}>
 hash
 <br/>
-\`mandatory\`
+<code>mandatory</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -251,7 +256,7 @@ The following hash logic must be used for \_payment API with** api\_version=19\*
 <td style={{ textAlign: "left" }}>
 pg
 <br/>
-\`mandatory for seamless flow\`
+<code>mandatory for seamless flow</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -278,7 +283,7 @@ pg
 <td style={{ textAlign: "left" }}>
 bankcode
 <br/>
-\`mandatory for seamless flow\`
+<code>mandatory for seamless flow</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -301,7 +306,7 @@ Each payment option is identified with a unique bank code at PayU. The merchant 
 <td style={{ textAlign: "left" }}>
 udf1
 <br/>
-\`optional for seamless flow\`
+<code>optional for seamless flow</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -318,7 +323,7 @@ User-defined fields (udf) are used to store any information corresponding to a p
 <td style={{ textAlign: "left" }}>
 udf2
 <br/>
-\`optional for seamless flow\`
+<code>optional for seamless flow</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -335,7 +340,7 @@ User-defined fields (udf) are used to store any information corresponding to a p
 <td style={{ textAlign: "left" }}>
 udf3
 <br/>
-\`optional for seamless flow\`
+<code>optional for seamless flow</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -352,7 +357,7 @@ User-defined fields (udf) are used to store any information corresponding to a p
 <td style={{ textAlign: "left" }}>
 udf4
 <br/>
-\`optional for seamless flow\`
+<code>optional for seamless flow</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -369,7 +374,7 @@ User-defined fields (udf) are used to store any information corresponding to a p
 <td style={{ textAlign: "left" }}>
 ud1f5
 <br/>
-\`optional for seamless flow\`
+<code>optional for seamless flow</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -386,7 +391,7 @@ User-defined fields (udf) are used to store any information corresponding to a p
 <td style={{ textAlign: "left" }}>
 ccnum
 <br/>
-\`mandatory for cards in seamless flow\`
+<code>mandatory for cards in seamless flow</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -402,7 +407,7 @@ ccnum
 <td style={{ textAlign: "left" }}>
 ccvv
 <br/>
-\`mandatory for cards in seamless flow\`
+<code>mandatory for cards in seamless flow</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -418,7 +423,7 @@ ccvv
 <td style={{ textAlign: "left" }}>
 ccexpmon
 <br/>
-\`mandatory for cards in seamless flow\`
+<code>mandatory for cards in seamless flow</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -435,7 +440,7 @@ For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For
 <td style={{ textAlign: "left" }}>
 ccexpyr
 <br/>
-\`mandatory for cards in seamless flow\`
+<code>mandatory for cards in seamless flow</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -451,7 +456,7 @@ ccexpyr
 <td style={{ textAlign: "left" }}>
 threeDS2RequestData
 <br/>
-\`mandatory for cards in seamless flow\`
+<code>mandatory for cards in seamless flow</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -481,7 +486,7 @@ threeDS2RequestData
 <td style={{ textAlign: "left" }}>
 s2s_client_ip
 <br/>
-\`mandatory for S2S\`
+<code>mandatory for S2S</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -499,7 +504,7 @@ s2s_client_ip
 <td style={{ textAlign: "left" }}>
 s2s_device_info
 <br/>
-\`mandatory for S2S\`
+<code>mandatory for S2S</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -516,7 +521,7 @@ Note: This information is helpful when it comes to issues related to fraud detec
 <td style={{ textAlign: "left" }}>
 txn_s2s_flow
 <br/>
-\`mandatory for S2S\`
+<code>mandatory for S2S</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -535,7 +540,7 @@ txn_s2s_flow
 <td style={{ textAlign: "left" }}>
 authentication_flow
 <br/>
-\`mandatory for S2S\`
+<code>mandatory for S2S</code>
 </td>
 
 <td style={{ textAlign: "left" }}>
@@ -579,7 +584,7 @@ This parameter must be passed with the value as **REDIRECT** for classic S2S int
                 <a href="https://test.payu.in/admin/test_response">https://test.payu.in/admin/test_response</a>
             </td>
         </tr>
-</tbody>
+ </tbody>
 </Table>
 `}</HTMLBlock>
 
