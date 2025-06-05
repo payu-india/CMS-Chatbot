@@ -5,6 +5,18 @@ hidden: true
 metadata:
   robots: index
 ---
+Milestone offer enables you to reward your customers when they reach a spending milestone on your eCommerce website or app.
+
+> 📘 Notes
+>
+> * **Customer Login Requirement**: Customers must be signed into their accounts to view and monitor their progress toward milestone offers.
+>
+> * **Offer Compatibility**: Milestone offers are designed to work alongside other payment offers and discounts during the checkout process.
+>
+> * **Calculation Method**: Milestone offers are calculated based on the final payable amount—this means the total is determined after all applicable offers have been applied, accurately reflecting the actual amount customers pay.
+>
+> * **Post-Publication Restrictions**: After publishing a milestone offer, the core conditions in step 3 (Offer Rules) cannot be modified, including both the required number of transactions and the total spending amount.
+
 ### Steps to Create a No-Cost EMI Offer
 
 1. [Add the basic details](#step-1-add-the-basic-details)
@@ -35,7 +47,7 @@ The *Basic Offer Details* page is displayed.
 
    The *Payment Options* page is displayed.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/20face5ca921ac455c7dd74ba8fb532e274b2ac4dd69b581d64b52b3072af1a7-dashboard-prediscounted-payment-options.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/aa1809a52ebd6df2165e992c2a16037d6b4e6ca160393f5519db9e25dca8421f-dashboard-milestone-offer-rules.png" />
 
 > 📘 Note
 >
@@ -44,7 +56,12 @@ The *Basic Offer Details* page is displayed.
 ## Step 2: Configure payment modes
 
 1. Configure the payment modes. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#configure-payment-modes).
-2. Click **Next**.
+
+> 📘 Note:
+>
+> For this offer, ensure that the customer's phone number is included in the **Collect Payment** (\_payment) API request for this offer.
+
+1. Click **Next**.
 
 The *Offer Rules* page is displayed.
 
