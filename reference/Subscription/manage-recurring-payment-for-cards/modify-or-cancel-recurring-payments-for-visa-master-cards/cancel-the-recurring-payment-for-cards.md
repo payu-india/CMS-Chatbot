@@ -33,10 +33,6 @@ next:
 ---
 The **Cancel Recurring Payments** API allows the merchants to cancel their Cards registration from their website. After the registration is canceled for a customer, the merchant cannot restore it, and the customer must register a fresh mandate with the merchant.
 
-> 📘 Note:
->
-> This API is mandatory for merchants to go live with all cards.
-
 Method: **POST**
 
 ## Environment
