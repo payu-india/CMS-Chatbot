@@ -473,15 +473,17 @@ curl --location --request POST 'https://secure.payu.in/_payment' \
 
 <HTMLBlock>{`
 <table>
-    <tbody>
+    <thead>
         <tr>
-            <td style="height:14.0px;padding:4.0px;vertical-align:top;width:190.0px;">
-               **Parameter**
-            </td>
-            <td style="height:14.0px;padding:4.0px;vertical-align:top;width:190.0px;">
-                **Description**
-            </td>
+            <th style="height:14.0px;padding:4.0px;vertical-align:top;width:190.0px;font-weight:bold;">
+                Parameter
+            </th>
+            <th style="height:14.0px;padding:4.0px;vertical-align:top;width:190.0px;font-weight:bold;">
+                Description
+            </th>
         </tr>
+    </thead>
+    <tbody>
         <tr>
             <td style="height:28.0px;padding:4.0px;vertical-align:top;width:190.0px;">
                 mihpayid
@@ -503,7 +505,7 @@ curl --location --request POST 'https://secure.payu.in/_payment' \
                 txnid
             </td>
             <td style="height:14.0px;padding:4.0px;vertical-align:top;width:190.0px;">
-                Merchant’s transaction ID
+                Merchant's transaction ID
             </td>
         </tr>
         <tr>
