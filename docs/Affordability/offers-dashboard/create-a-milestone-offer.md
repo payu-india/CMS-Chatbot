@@ -69,9 +69,88 @@ The *Offer Rules* page is displayed.
 
 ## Step 3: Include the Offer rules
 
-1. <br />
-2. <br />
-3. After you complete the above details and click **Next**.
+1. Click **or** button or **and** button and accordingly enter the following details to configure the milestone conditions in the **Set Milestone Conditions** section:
+
+   * Enter the number of transactions required from the customer in the **Number of Transactions Required** field.
+   * Configure the total amount to spent by a customer in the **Set Total Amount to be Spent** field
+2. Select the **Flat Discount** or **Percentage** tab in the **Offer Type** section to specify the discount is in terms of a flat discount or percentage of the transaction amount.
+3. Enter the following details on the *Set Offer Rules* page.
+
+   | **Field**                                               | **Description**                                                                    |
+   | ------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+   | Discount per transaction/Offer Percentage               | Specify the value that has to applied in in terms of discount or discount in flat. |
+   | Minimum transaction amount & Maximum transaction amount | Specify the threshold or range for a transaction to be applicable for the offer.   |
+
+   #### Offer Usage Guidelines
+
+   <Table>
+     <thead>
+       <tr>
+         <th>
+           **Field**
+         </th>
+
+         <th>
+           **Description**
+         </th>
+       </tr>
+     </thead>
+
+     <tbody>
+       <tr>
+         <td>
+           User Limits
+         </td>
+
+         <td>
+
+         </td>
+       </tr>
+
+       <tr>
+         <td>
+           Set the frequency for your customers to use this offer
+         </td>
+
+         <td>
+           Select any of the following options from the drop-down list to specify the maximum number of transactions the user can avail this offer:
+
+           * **Set unlimited**: Users can avail the offer for unlimited transactions.
+
+           - **Custom**: Specify the custom limit up to which the users can avail the offer.
+         </td>
+       </tr>
+
+       <tr>
+         <td>
+           Set Budget per user
+         </td>
+
+         <td>
+           Click this toggle button (if required) and then enter the budget amount per user.
+         </td>
+       </tr>
+
+       <tr>
+         <td>
+           Reset User Limits
+         </td>
+
+         <td>
+           Select any of the following options from the drop-down list to reset the user limit for specified frequency:
+
+           * **Every Day**: Reset the user limit everyday
+           * **Every Week**: Reset the user limit every week
+           * **Every Month**: Reset the user limit every month
+           * **Custom**: Specify the custom frequency after which the user limit is reset
+         </td>
+       </tr>
+     </tbody>
+   </Table>
+4. After you complete the above details and click **Next**.
+
+   The *Set Offer Subvention Details* page is displayed.
+5. After you complete the above details and click **Next**.
 
    The *Subvention Details* page is displayed.
 
