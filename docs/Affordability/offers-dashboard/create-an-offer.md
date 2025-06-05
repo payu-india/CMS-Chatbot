@@ -100,8 +100,6 @@ Select any of the following payment modes to configure offer details that is exp
 * [EMI](#emi)
 * [BNPL](#bnpl)
 
-<br />
-
 ### Debit Cards
 
 1. Click the **Edit** button on the **Debit Cards** tile.
@@ -110,17 +108,17 @@ The *Debit Card Details* page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/f4debd9c82f8c3454c0956ecb20e30df6d4166551c291d521ea1abc13b88dee9-dashboard_payment_options_debit_card.png" />
 
-1. Perform any of the following based on the method you want to select the bank and network:
+2. Perform any of the following based on the method you want to select the bank and network:
 
 <Table>
   <thead>
     <tr>
       <th>
-        **Channel**
+        Channel
       </th>
 
       <th>
-        **Description**
+        Description
       </th>
     </tr>
   </thead>
@@ -188,7 +186,7 @@ The *Debit Card Details* page is displayed.
   </tbody>
 </Table>
 
-2. Click the **Back** button to go back to the payment options list.
+3. Click the **Back** button to go back to the payment options list.
 
 ### Credit Cards
 
@@ -314,7 +312,7 @@ The *Credit Card Details* page is displayed.
 * Update the CSV or text file to include the BIN details. For updating the CSV file, you can use Microsoft Excel or any other Spreadsheet tool. 
 * Click the browse button in the **Add a list of bins that you want to include or exclude on offer** to upload the updated CSV file.
 
-4. Click the **Back** button to go to _Payment Options_ page.
+4. Click the **Back** button to go to *Payment Options* page.
 
 ### BNPL
 
