@@ -417,7 +417,20 @@ sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||
 Generate a payment form with all the required parameters. This can be an HTML form or a server-side request. Here’s an example of an HTML form:
 
 ```html
-<form action="https://test.payu.in/_payment" method="post">   <input type="hidden" name="key" value="your_merchant_key" />   <input type="hidden" name="txnid" value="unique_transaction_id" />   <input type="hidden" name="amount" value="100.00" />   <input type="hidden" name="productinfo" value="Product Description" />   <input type="hidden" name="firstname" value="Customer Name" />   <input type="hidden" name="email" value="customer@example.com" />   <input type="hidden" name="phone" value="9999999999" />   <input type="hidden" name="surl" value="https://your-website.com/success" />   <input type="hidden" name="furl" value="https://your-website.com/failure" />   <input type="hidden" name="hash" value="calculated_hash_value" />   <input type="hidden" name="txn_s2s_flow" value="3" />   <input type="submit" value="Pay Now" /> </form>
+<form action="https://test.payu.in/_payment" method="post">
+    <input type="hidden" name="key" value="your_merchant_key" />
+    <input type="hidden" name="txnid" value="unique_transaction_id" />
+    <input type="hidden" name="amount" value="100.00" />
+    <input type="hidden" name="productinfo" value="Product Description" />
+    <input type="hidden" name="firstname" value="Customer Name" />
+    <input type="hidden" name="email" value="customer@example.com" />
+    <input type="hidden" name="phone" value="9999999999" />
+    <input type="hidden" name="surl" value="https://your-website.com/success" />
+    <input type="hidden" name="furl" value="https://your-website.com/failure" />
+    <input type="hidden" name="hash" value="calculated_hash_value" />
+    <input type="hidden" name="txn_s2s_flow" value="3" />
+    <input type="submit" value="Pay Now" />
+</form>
 
 ```
 
@@ -517,7 +530,12 @@ curl --location --request POST 'https://secure.payu.in/_payment' \
 If the response from Step 1 contains the parameters: - metaData.unmappedStatus = pending - binData.pureS2SSupported = true
 
 ```
-curl --location --request POST 'https://api.payumoney.com/payment/submit-otp' \ --header 'Content-Type: application/json' \ --data-raw '{"txnToken": "TRANSACTION_TOKEN_FROM_RESPONSE",  "otp": "OTP_ENTERED_BY_CUSTOMER"}'
+curl --location --request POST 'https://api.payumoney.com/payment/submit-otp' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "txnToken": "TRANSACTION_TOKEN_FROM_RESPONSE",
+    "otp": "OTP_ENTERED_BY_CUSTOMER"
+}'
 
 ```
 
@@ -557,7 +575,13 @@ When collecting the OTP on your page, you must provide the following functionali
 After completing the payment flow, verify the transaction status using the Verify Payment API:
 
 ```
-curl --location --request POST 'https://api.payumoney.com/payment/verify' \ --header 'Content-Type: application/json' \ --data-raw '{"merchantKey": "YOUR_MERCHANT_KEY", "paymentId": "PAYMENT_ID_FROM_RESPONSE" }'
+curl --location --request POST 'https://api.payumoney.com/payment/verify' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "merchantKey": "YOUR_MERCHANT_KEY",
+    "paymentId": "PAYMENT_ID_FROM_RESPONSE"
+}'
+
 ```
 
 Alternatively, implement PayU’s webhooks to receive real-time payment status updates. For more information, refer to [Payment Webhooks](doc:create-and-manage-webhooks-1).
