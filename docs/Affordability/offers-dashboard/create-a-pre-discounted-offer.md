@@ -81,25 +81,28 @@ The *Offer Rules* page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/2e7610844659ed93bfa6380b4023a90f4ff3c2b5743acdbe9ed3a2eeb39c385c-dashboard-prediscounted-offer-rules.png" />
 
-> # **Step 3: Include the Offer Rules or Limitations**
+<br />
 
-The procedure to include the rules and limitations is similar to creating an Instant Discount or Cashback Offer. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-3-include-the-offer-rules-or-limitations).
+## Step 3: Include the Offer rules
 
-## **Step 4: Configure Payment Modes**
+1. Enter the offer rules and limitations on the *Set Offer Rules* page. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-3-include-the-offer-rules).
+2. After you complete the above details and click **Next**.
 
-The procedure to configure the payment mode is similar to creating an Instant Discount or Cashback Offer. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-4-configure-payment-modes).
+   The *Subvention Details* page is displayed.
 
-The offer for the payment options you configured gets added to the Setup *Payment options of your offer* page.
+## Step 4: Configure Offer Subvention Details
 
-***
+1. Enter the subvention details in the *Subvention Details* page. For more information, refer to refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-4-configure-offer-subvention-details).
+2. After you complete the above details and click **Next**.
 
-## **Step 5: Review of the Offer**
+The *Preview Details* page is displayed.
 
-The *Preview of Cashback Offer* page summarizes the details you provided in [Step 2](#step-2-add-basic-details) to [Step 4](#step-4-configure-payment-modes).
+<Image align="center" className="border" border={true} src="https://files.readme.io/a87a0559ec1e51c8daed008b50a26c33c186b877accfc72a3a4bc72b15eb3aa5-dashboard-prediscounted-preview_page.png" />
 
-1. Review all the configuration added before you make the offer available to your customers.
+## Step 5: Review of the Offer
+
+The *Preview Details* page summarizes the details you provided in Step 2 to Step 4.
+
+1. Review all the configurations added before you make the offer available to your customers.
 2. Click the **Edit** button to return back to the corresponding page and update the configuration.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.32.06-PM-1024x573.png)
-
-3. Click **Publish Offer** to make it available to customers.
+3. Click **Publish** to make it available to customers.
