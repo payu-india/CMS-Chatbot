@@ -1,7 +1,7 @@
 ---
 title: Create a Personalized Coupons Offer
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
