@@ -15,14 +15,10 @@ The Server-to-Server (S2S) integration for cards allows merchants to securely pr
 >
 > This integration is supported for Cards, Network Tokens, Payu token based integrations. For more details how to pass the network token and payu token, refer to [Collect Payments using a Saved Card](doc:collect-payments-using-a-saved-card).
 
-1. Handle the OTP Flow or Redirect the Customer
+2. Handle the OTP Flow or Redirect the Customer
    * After receiving PayU’s response to the initiate payment request (Step 1), merchants can choose one of the below paths based on the response conditions:
    * Collect and submit the OTP using the **Native Submit OTP API**.
    * Redirect the customer to the Bank Page for OTP entry if required.
-2. Check Response from PayU
-
-* After the transaction process (either through OTP submission or bank redirection), PayU will send the final response to the URLs (surl/furl) provided in Step 1.
-* The merchant should validate the response to confirm whether the transaction was successful.
 
 ## Step 1: Initiate Payment request with PayU
 
@@ -521,7 +517,7 @@ curl --location --request POST 'https://secure.payu.in/_payment' \
 If the response from Step 1 contains the parameters: - metaData.unmappedStatus = pending - binData.pureS2SSupported = true
 
 ```
-curl --location --request POST 'https://api.payumoney.com/payment/submit-otp' \ --header 'Content-Type: application/json' \ --data-raw '{   "txnToken": "TRANSACTION_TOKEN_FROM_RESPONSE",   "otp": "OTP_ENTERED_BY_CUSTOMER" }'
+curl --location --request POST 'https://api.payumoney.com/payment/submit-otp' \ --header 'Content-Type: application/json' \ --data-raw '{"txnToken": "TRANSACTION_TOKEN_FROM_RESPONSE",  "otp": "OTP_ENTERED_BY_CUSTOMER"}'
 
 ```
 
@@ -543,7 +539,7 @@ Example code to decode and display the ACS template:
 ```
 // Decode base64 encoded acsTemplate
 const decodedTemplate = atob(acsTemplate);
-  // Create a container for the template
+// Create a container for the template
 document.getElementById('acs-container').innerHTML = decodedTemplate;
 ```
 
@@ -561,143 +557,7 @@ When collecting the OTP on your page, you must provide the following functionali
 After completing the payment flow, verify the transaction status using the Verify Payment API:
 
 ```
-curl --location --request POST 'https://api.payumoney.com/payment/verify' \ --header 'Content-Type: application/json' \ --data-raw '{   "merchantKey": "YOUR_MERCHANT_KEY",   "paymentId": "PAYMENT_ID_FROM_RESPONSE" }'
+curl --location --request POST 'https://api.payumoney.com/payment/verify' \ --header 'Content-Type: application/json' \ --data-raw '{"merchantKey": "YOUR_MERCHANT_KEY",   "paymentId": "PAYMENT_ID_FROM_RESPONSE" }'
 ```
 
 Alternatively, implement PayU’s webhooks to receive real-time payment status updates. For more information, refer to [Payment Webhooks](doc:create-and-manage-webhooks-1).
-
-### Step 3: Check response from Payu and Do Verify Payment.
-
-This will be a call back on the URL provided by you.
-
-**Hash validation logic for payment response (Reverse Hashing)**
-
-While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
-
-The order of the parameters is similar to the following code block:
-
-sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-
-**Response parameters**
-
-The parameters in the response for similar for all the S2S flows. For more information, refer to for response and  for response parameter description.
-
-**Sample response**
-
-**For native Submit OTP response will be provided on the API call itself.**
-
-**For redirection to bank response will be returned on the SURL/FURL basis on the payment response.**
-
-```
-"mihpayid" :  "403993715524046125" 
-
-"mode" :  "DC" 
-
-"status" :  "success" 
-
-"unmappedstatus" :  "captured" 
-
-"key" :  "smsplus" 
-
-"txnid" :  "payuTestTransaction5700849" 
-
-"amount" :  "1.00" 
-
-"cardCategory" :  "domestic" 
-
-"discount" :  "0.00" 
-
-"net_amount_debit" :  "1.00" 
-
-"addedon" :  "2022-12-03 15:03:08" 
-
-"productinfo" :  "Product Info" 
-
-"firstname" :  "Ashish" 
-
-"lastname" :  "" 
-
-"address1" :  "" 
-
-"address2" :  "" 
-
-"city" :  "" 
-
-"state" :  "" 
-
-"country" : ""  
-
-"zipcode" :  "" 
-
-"email" :  "test@payu.in" 
-
-"phone" :  "9876543210" 
-
-"udf1" :  "" 
-
-"udf2" :  "" 
-
-"udf3" :  "" 
-
-"udf4" :  "" 
-
-"udf5" :  "" 
-
-"udf6" :  "" 
-
-"udf7" :  "" 
-
-"udf8" :  "" 
-
-"udf9" :  "" 
-
-"udf10" :  "" 
-
-"hash" :  "6586bb33ed936d07f866cfeb42b9af99e9408270bd31c722ab3a11e61f6b6581cee3cd4f1b8b4aec3a6695c764e5cd76597832735e1e924f2ac0defbd6b3b68f" 
-
-"field1" :  "" 
-
-"field2" :  "" 
-
-"field3" :  "" 
-
-"field4" :  "" 
-
-"field5" :  "" 
-
-"field6" :  "" 
-
-"field7" :  "AUTHPOSITIVE" 
-
-"field8" :  "" 
-
-"field9" :  "Success Transaction" 
-
-"payment_source" :  "payuS2S" 
-
-"PG_TYPE" :  "DC-PG" 
-
-"bank_ref_num" :   
-
-"bankcode" :  "VISA" 
-
-"error" :  "E000" 
-
-"error_Message" : "success"  
-
-"cardnum" :  XXXXXXXXXXXX8811 
-
-"cardhash" :  "This field is no longer supported in postback params." 
-
-"issuing_bank" :  "UBI" 
-
-"card_type" :  "VISA" 
-```
-
-Verify the payment and do webhook verification:
-
-Call Verify\_payment API to check the transaction status.
-
-Integrate with webhooks here.
-
-[https://docs.payu.in/docs/webhooks](https://docs.payu.in/docs/webhooks)
