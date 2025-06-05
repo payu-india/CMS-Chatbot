@@ -150,9 +150,6 @@ The *Offer Rules* page is displayed.
 4. After you complete the above details and click **Next**.
 
    The *Set Offer Subvention Details* page is displayed.
-5. After you complete the above details and click **Next**.
-
-   The *Subvention Details* page is displayed.
 
 ## Step 4: Configure Offer Subvention Details
 
@@ -161,7 +158,7 @@ The *Offer Rules* page is displayed.
 
 The *Preview Details* page is displayed.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/a87a0559ec1e51c8daed008b50a26c33c186b877accfc72a3a4bc72b15eb3aa5-dashboard-prediscounted-preview_page.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/10f77e255c1847f3cca70a9b3fbc38a89648d9750a6557daef7baae4aad55018-dashboard-milestone-offer-preview.png" />
 
 ## Step 5: Review of the Offer
 
