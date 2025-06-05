@@ -1,7 +1,7 @@
 ---
 title: Classic Integration for Cards - OTP Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
