@@ -49,7 +49,7 @@ This procedure describes how to create a Prebuilt offer on PayU Dashboard and it
 
 The Choose an Offer Type to get started.
 
-![]()
+<Image align="center" className="border" border={true} src="https://files.readme.io/02fa936e855901b9f6faf8bae897cf7ad501390a4e565567315abee82f0b5020-dashboard_prediscounted_offer_types.png" />
 
 1. Select any of the following offer sub-types:
    * **Instant Discount**: The instant discount is applied and discounted amount is displayed on the PayU Payment page and other offers are not shown.
@@ -57,7 +57,7 @@ The Choose an Offer Type to get started.
 
  The *Basic Offer Details* page is displayed.
 
-<Image align="center" src="https://files.readme.io/09dec7da3915af1371413ad8eb9195dbaebacd7934c5ba93e97f54d311c001eb-Screenshot_2025-06-05_at_10.16.18_AM.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/09dec7da3915af1371413ad8eb9195dbaebacd7934c5ba93e97f54d311c001eb-Screenshot_2025-06-05_at_10.16.18_AM.png" />
 
 ***
 
