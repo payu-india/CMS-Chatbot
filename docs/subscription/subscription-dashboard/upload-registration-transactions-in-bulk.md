@@ -63,6 +63,7 @@ This section describes the procedure to upload the registration transactions in 
 
       <td>
         No Limit
+        **Note**: In case the FreeTrial value = 1, the amount needs to be Rs 2
       </td>
     </tr>
 
@@ -90,7 +91,7 @@ This section describes the procedure to upload the registration transactions in 
       </td>
 
       <td>
-        50 (should be unique and to support - "^\[A-Za-z0-9@#().+\_;\\\\-\\\\\[\\\\\]\]\*$" )
+        50 (should be unique and to support - "^\[A-Za-z0-9@#().+\_;\\-\\\[\\]]\*$" )
       </td>
     </tr>
 
@@ -188,9 +189,9 @@ This section describes the procedure to upload the registration transactions in 
       </td>
 
       <td>
-        Supported value = 0, 1 or empty   
+        Supported value = 0, 1 or empty 
 
-        * \*Note\*\*: To send a SMS, the following is required:  
+        * *Note*\*: To send a SMS, the following is required:
         * Phone number must be specified
         * **Sendsms**column = 1
         * **Notify via SMS** check box specified in Step 7  is selected
@@ -207,9 +208,9 @@ This section describes the procedure to upload the registration transactions in 
       </td>
 
       <td>
-        Supported value = 0, 1 or empty  
+        Supported value = 0, 1 or empty
 
-        * \*Note\*\*: To send an email, the following is required:  
+        * *Note*\*: To send an email, the following is required:
         * Email ID must be specified
         * **Sendemail** column = 1
         * **Notify via Email** check box specified in Step 7  is selected
@@ -453,6 +454,21 @@ This section describes the procedure to upload the registration transactions in 
         `creditcard\|debitcard\|upi\|enach`
       </td>
     </tr>
+
+    <tr>
+      <td>
+        FreeTrial
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Acceptable Values: 0 or 1.\
+        **Note**: In case the FreeTrial value = 1, the amount needs to be Rs 2
+      </td>
+    </tr>
   </tbody>
 </Table>
 
@@ -497,7 +513,7 @@ The **Bulk Upload Registration** screen is displayed. 
 
 > **Note:** After you submit a batch file, it will be picked up for processing within 60 minutes. 
 
-After uploading the file, the system will automatically check for discrepancies. If there’s an issue, an error message is displayed on the screen. 
+After uploading the file, the system will automatically check for discrepancies. If there’s an issue, an error message is displayed on the screen.
 
 ![](https://files.readme.io/51ee71e5b3f7b708604844bef0215f970da88238ae368f8da1af089ead9becdf-bulk_upload_popup-page_errors.png) 
 
