@@ -462,7 +462,7 @@ curl --location --request POST 'https://secure.payu.in/_payment' \
 >
 > * **Reverse hashing**: To validate the response from PayU, calculate the following hash and compare it with the hash received in the response:\
 >   sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-> * For handling errors, refer to [Error Codes](ref:error-codes).
+> * **Handling errors**: For handling errors, refer to [Error Codes](ref:error-codes).
 
 #### Response When Native Submit OTP is Supported
 
