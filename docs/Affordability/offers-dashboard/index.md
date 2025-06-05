@@ -25,7 +25,6 @@ The following offers can be created using PayU Dashboard:
 * [Instant Discount ](doc:create-an-offer)
 * [Cashback](doc:create-an-offer)
 * [No Cost EMI](doc:create-a-no-cost-emi-offer)
-* [Personalized Coupon](doc:create-personalized-coupon)
 * [Pre-Discounted Offer](doc:create-a-pre-discounted-offer)
 * [Product/SKU based Offer](doc:create-a-sku-based-offer)
 
