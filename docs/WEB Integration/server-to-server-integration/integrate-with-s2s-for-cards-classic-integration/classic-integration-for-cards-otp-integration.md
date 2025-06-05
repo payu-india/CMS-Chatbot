@@ -7,192 +7,38 @@ metadata:
 ---
 The Server-to-Server (S2S) integration for cards allows merchants to securely process card transactions using PayU’s classic integration method. This document describes the step-by-step process to integrate and handle card submissions, OTP verification, and transaction responses.
 
-<br />
+1. Initiate Payment Request with PayU
+   * The merchant sends a payment request to PayU with necessary parameters such as transaction details, customer information, and surl/furl URLs for redirection after processing.
+   * The transaction parameters must comply with the PayU Classic Integration. For more information, refer to [Cards Classic Integration](ref:_payment_s2s_classic_integration).
 
-**Step 1**: **Initiate Payment Request with PayU**
+> 📘 Reference:
+>
+> This integration is supported for Cards, Network Tokens, Payu token based integrations. For more details how to pass the network token and payu token, refer to [Collect Payments using a Saved Card](doc:collect-payments-using-a-saved-card).
 
-* The merchant sends a payment request to PayU with necessary parameters such as transaction details, customer information, and surl/furl URLs for redirection after processing.
-  * The transaction parameters must comply with the PayU Classic Integration API.
-    <br />
-    This integration is supported for Cards, Network Tokens, Payu token based integrations. For more details how to pass the network token and payu token, refer the link here:\
-    [https://docs.payu.in/reference/collect-payments-save-card](https://docs.payu.in/reference/collect-payments-save-card)
-    <br />
-    **Step 2**: **Handle the OTP Flow or Redirect the Customer**
-    * After receiving PayU’s response to the initiate payment request (Step 1), merchants can choose one of the below paths based on the response conditions:
-      * Collect and submit the OTP using the **Native Submit OTP API**.
-        * Redirect the customer to the Bank Page for OTP entry if required.
-          <br />
-          Detailed explanation for handling Step 2 is provided below.
-          <br />
-          **Step 3**: **Check Response from PayU**
-          * After the transaction process (either through OTP submission or bank redirection), PayU will send the final response to the URLs (surl/furl) provided in Step 1.
-            * The merchant should validate the response to confirm whether the transaction was successful.
+1. Handle the OTP Flow or Redirect the Customer
+   * After receiving PayU’s response to the initiate payment request (Step 1), merchants can choose one of the below paths based on the response conditions:
+   * Collect and submit the OTP using the **Native Submit OTP API**.
+   * Redirect the customer to the Bank Page for OTP entry if required.
+2. Check Response from PayU
+
+* After the transaction process (either through OTP submission or bank redirection), PayU will send the final response to the URLs (surl/furl) provided in Step 1.
+* The merchant should validate the response to confirm whether the transaction was successful.
 
 ### Step 1: Initiate Payment request with PayU
 
-<br />
-
-The merchant initiates PayU with the required transaction mandatory or optional parameters. This needs to be a server-to-server cURL call request. URL, parameters, and descriptions. For more information, refer to . Collect the response in the  under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to .
-
-<br />
+The merchant initiates PayU with the required transaction mandatory or optional parameters. This needs to be a server-to-server cURL call request. URL, parameters, and descriptions. For more information, refer to . Collect the response in the  under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
 **Environment**
 
-<br />
-
 **Hashing**
-
-<br />
 
 You must hash the request parameters using the following hash logic:
 
-<br />
-
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
-
-<br />
 
 For more information, refer to .
 
-<br />
-
-**Request parameters**
-
-<br />
-
-**Sample request**
-
-<br />
-
-cURL
-
-<br />
-
-curl --location \\
-
-<br />
-
-\--request \\
-
-<br />
-
-POST '[https://secure.payu.in/\_payment](https://secure.payu.in/_payment)' --header 'Content-Type: application/x-www-form-urlencoded' \\
-
-<br />
-
-\--header 'Cookie: PHPSESSID=mj185cifujktpv1igu9tmuoaal; PAYUID=eac5648ac59712238883a78e71f35717; PHPSESSID=638b1b5173542' \\
-
-<br />
-
-\--data \\
-
-<br />
-
--urlencode 'hash=d89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42' --data \\
-
-<br />
-
--urlencode 'key=s\*\*\*\*\*s' --data \\
-
-<br />
-
--urlencode 'txnid=payuTestTransaction3818940' --data \\
-
-<br />
-
--urlencode 'amount=1.0' --data \\
-
-<br />
-
--urlencode 'firstname=Ashish' --data \\
-
-<br />
-
--urlencode 'email=[test@payu.in](mailto:test@payu.in)' --data \\
-
-<br />
-
--urlencode 'phone=9988776655' --data \\
-
-<br />
-
--urlencode 'productinfo=Product Info' --data \\
-
-<br />
-
--urlencode 'surl=[https://admin.payu.in/test\_response](https://admin.payu.in/test_response)' --data \\
-
-<br />
-
--urlencode 'furl=[https://admin.payu.in/test\_response](https://admin.payu.in/test_response)' --data \\
-
-<br />
-
--urlencode 'notifyurl=[https://admin.payu.in/test\_response](https://admin.payu.in/test_response)' --data \\
-
-<br />
-
--urlencode 'codurl=[https://admin.payu.in/test\_response](https://admin.payu.in/test_response)' --data \\
-
-<br />
-
--urlencode 'ipurl=[https://admin.payu.in/test\_response](https://admin.payu.in/test_response)' --data \\
-
-<br />
-
--urlencode 'lastname=' --data \\
-
-<br />
-
--urlencode 'udf1=' --data \\
-
-<br />
-
--urlencode 'udf2=' --data \\
-
-<br />
-
--urlencode 'udf3=' --data \\
-
-<br />
-
--urlencode 'udf4=' --data \\
-
-<br />
-
--urlencode 'udf5=' --data \\
-
-<br />
-
--urlencode 'pg=CC' --data \\
-
-<br />
-
--urlencode 'bankcode=DC' --data \\
-
-<br />
-
--urlencode 'ccnum=XXXXXXXXXXX8811' --data \\
-
-<br />
-
--urlencode 'ccname=Ashish' --data \\
-
-<br />
-
--urlencode 'ccvv=XXX' --data \\
-
-<br />
-
--urlencode 'ccexpmon=12' --data \\
-
-<br />
-
--urlencode 'ccexpyr=2023' --data \\
-
-<br />
-
--urlencode 'txn\_s2s\_flow=4' --data \\
+### Sample request
 
 <br />
 
@@ -206,26 +52,26 @@ POST '[https://secure.payu.in/\_payment](https://secure.payu.in/_payment)' --hea
 
 <br />
 
-\{ &#x20;
-&#x20;  "metaData": \{
-&#x20;     "txnId": "payuTestTransaction3818940",
-&#x20;     "txnStatus": "Enrolled",
-&#x20;     "unmappedStatus": "pending",
-&#x20;     ...
-&#x20;  },
+\{\
+"metaData": \{\
+"txnId": "payuTestTransaction3818940",
+"txnStatus": "Enrolled",
+"unmappedStatus": "pending",
+...
+},
 
 <br />
 
-&#x20;  "result": \{ &#x20;
-&#x20;     "acsTemplate": "Base64\_encoded\_HTML\_form\_string"
-&#x20;  },
-&#x20;  "binData": \{
-&#x20;     "pureS2SSupported": true,
-&#x20;     "issuingBank": "UBI",
-&#x20;     "category": "debitcard",
-&#x20;     "cardType": "VISA",
-&#x20;     "isDomestic": true
-&#x20;  }
+"result": \{\
+"acsTemplate": "Base64\_encoded\_HTML\_form\_string"\
+},
+"binData": \{
+"pureS2SSupported": true,
+"issuingBank": "UBI",
+"category": "debitcard",
+"cardType": "VISA",
+"isDomestic": true
+}
 }
 
 <br />
@@ -234,23 +80,23 @@ POST '[https://secure.payu.in/\_payment](https://secure.payu.in/_payment)' --hea
 
 <br />
 
-\{ &#x20;
-&#x20;  "metaData": \{
-&#x20;     "txnId": "payuTestTransaction3818940",
-&#x20;     "txnStatus": "Enrolled",
-&#x20;     "unmappedStatus": "pending",
-&#x20;     ...
-&#x20;  },
-&#x20;  "result": \{
-&#x20;     "acsTemplate": "Base64\_encoded\_HTML\_form\_string"
-&#x20;  },
-&#x20;  "binData": \{
-&#x20;     "pureS2SSupported": false,
-&#x20;     "issuingBank": "UBI",
-&#x20;     "category": "debitcard",
-&#x20;     "cardType": "VISA",
-&#x20;     "isDomestic": true
-&#x20;  }
+\{\
+"metaData": \{\
+"txnId": "payuTestTransaction3818940",
+"txnStatus": "Enrolled",
+"unmappedStatus": "pending",
+...
+},
+"result": \{
+"acsTemplate": "Base64\_encoded\_HTML\_form\_string"
+},
+"binData": \{
+"pureS2SSupported": false,
+"issuingBank": "UBI",
+"category": "debitcard",
+"cardType": "VISA",
+"isDomestic": true
+}
 }
 
 <br />
