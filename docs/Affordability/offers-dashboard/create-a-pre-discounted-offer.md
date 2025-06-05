@@ -53,7 +53,7 @@ The Choose an Offer Type to get started.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/02fa936e855901b9f6faf8bae897cf7ad501390a4e565567315abee82f0b5020-dashboard_prediscounted_offer_types.png" />
 
-1. Select any of the following offer sub-types:
+4. Select any of the following offer sub-types:
    * **Instant Discount**: The instant discount is applied and discounted amount is displayed on the PayU Payment page and other offers are not shown.
    * **Low-Cost EMI**: The low-cost EMI is applied and the EMI amount is displayed on the PayU Payment page and other offers are not shown.
 
@@ -61,8 +61,8 @@ The Choose an Offer Type to get started.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/09dec7da3915af1371413ad8eb9195dbaebacd7934c5ba93e97f54d311c001eb-Screenshot_2025-06-05_at_10.16.18_AM.png" />
 
-4. Add the basic details. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
-5. After you complete the above details and click **Save & Process**.
+5. Add the basic details. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
+6. After you complete the above details and click **Save & Process**.
 
    The *Payment Options* page is displayed.
 
@@ -80,8 +80,6 @@ The Choose an Offer Type to get started.
 The *Offer Rules* page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/2e7610844659ed93bfa6380b4023a90f4ff3c2b5743acdbe9ed3a2eeb39c385c-dashboard-prediscounted-offer-rules.png" />
-
-<br />
 
 ## Step 3: Include the Offer rules
 
