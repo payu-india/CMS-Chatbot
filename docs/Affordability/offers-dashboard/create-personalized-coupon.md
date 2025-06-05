@@ -36,16 +36,17 @@ This procedure describes how to create a Personalized coupon.
 
 ***
 
-## Step 1: Select the discount type
+<br />
 
-1. Navigate to [Offers Dashboard](doc:offers-dashboard).
+## Step 1: Add the basic details
+
+1. Navigate to [.Offers Dashboard](doc:offers-dashboard).
 2. Click **Create an Offer** at the top-right corner.
 
-   The *Create New Offers* page is displayed. 
+   The *Create New Offer* page is displayed.
 
-![A screenshot of a computerAI-generated content may be incorrect.](https://files.readme.io/0919005ba5c24643a0db4f15c0ea491db08dce9778b6ee5e47fde8666f25e97c-offers-dashboard-coupon-step1.png) 
-
-1. Select **Personalised Coupons** as the offer type.  
+   <Image align="center" className="border" border={true} src="https://files.readme.io/94d041dbfbfc5faa76260a76e736cdbb4030553dddcde8c5ef3efeb9ca5d0f95-Screenshot_2025-06-03_at_10.16.03_AM.png" />
+3. Select **Personalised Coupons** as the offer type.  
 
 ![Personalised Coupons Offer Step1](https://files.readme.io/30ed57e78d5f6d50dc129247e00df255cea989015879d9b9440e5e8a88494dc8-Screenshot_2025-06-05_at_11.31.13_AM.png) 
 
