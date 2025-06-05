@@ -429,6 +429,36 @@ Generate a payment form with all the required parameters. This can be an HTML fo
 #### cURL
 
 ```
+curl --location --request POST 'https://secure.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data 'key=JP***g' \
+--data 'txnid=payuTestTransaction3818940' \
+--data 'amount=1.0' \
+--data 'firstname=Ashish' \
+--data 'email=test@payu.in' \
+--data 'phone=9988776655' \
+--data 'productinfo=Product Info' \
+--data 'surl=https://admin.payu.in/test_response' \
+--data 'furl=https://admin.payu.in/test_response' \
+--data 'notifyurl=https://admin.payu.in/test_response' \
+--data 'codurl=https://admin.payu.in/test_response' \
+--data 'ipurl=https://admin.payu.in/test_response' \
+--data 'lastname=' \
+--data 'udf1=' \
+--data 'udf2=' \
+--data 'udf3=' \
+--data 'udf4=' \
+--data 'udf5=' \
+--data 'pg=CC' \
+--data 'bankcode=DC' \
+--data 'ccnum=XXXXXXXXXXX8811' \
+--data 'ccname=Ashish' \
+--data 'ccvv=XXX' \
+--data 'ccexpmon=12' \
+--data 'ccexpyr=2023' \
+--data 'authorization_flow=REDIRECT' \
+ --data 'hash=d89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42' \
+--data 'txn_s2s_flow=4'
 ```
 
 ### Sample Responses
