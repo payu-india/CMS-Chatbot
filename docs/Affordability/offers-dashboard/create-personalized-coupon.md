@@ -43,12 +43,11 @@ This procedure describes how to create a Personalized coupon.
 
    The *Create New Offers* page is displayed. 
 
-![A screenshot of a computer
-AI-generated content may be incorrect.](https://files.readme.io/0919005ba5c24643a0db4f15c0ea491db08dce9778b6ee5e47fde8666f25e97c-offers-dashboard-coupon-step1.png) 
+![A screenshot of a computerAI-generated content may be incorrect.](https://files.readme.io/0919005ba5c24643a0db4f15c0ea491db08dce9778b6ee5e47fde8666f25e97c-offers-dashboard-coupon-step1.png) 
 
 1. Select **Personalised Coupons** as the offer type.  
 
-![Personalised Coupons Offer Step1](https://files.readme.io/bafce64b610808d8b4ff9255331557956c624f391601e124e890f758de9e0392-Screenshot_2025-03-10_at_11.51.15_AM.png)   
+![Personalised Coupons Offer Step1](https://files.readme.io/30ed57e78d5f6d50dc129247e00df255cea989015879d9b9440e5e8a88494dc8-Screenshot_2025-06-05_at_11.31.13_AM.png) 
 
 ## Step 2: Add basic details
 
@@ -100,13 +99,13 @@ AI-generated content may be incorrect.](https://files.readme.io/0919005ba5c24643
 
     <tr>
       <td>
-        Authenticate coupon at checkout
+        Show coupon at checkout
       </td>
 
       <td>
-        Select **Yes** to show the coupon code on the checkout page after authentication.  
+        Select **Yes** to show the coupon code on the checkout page after authentication.
 
-        * \*Not&#x65;**: This option is enabled or visible only if**Yes**is selected in**Authenticate coupon at checkout\*\*.
+        * *Note*\*: This option is enabled or visible only if**Yes**is selected in**Authenticate coupon at checkout**.
       </td>
     </tr>
   </tbody>
@@ -190,8 +189,8 @@ AI-generated content may be incorrect.](https://files.readme.io/0919005ba5c24643
       </td>
 
       <td>
-        Select any of the following options from the drop-down list to specify the maximum number of transactions the user can avail this offer:\
-         - **Unlimited**: Users can avail the offer for unlimited transactions.  
+        Select any of the following options from the drop-down list to specify the maximum number of transactions the user can avail this offer:
+         - **Unlimited**: Users can avail the offer for unlimited transactions.
 
         * **Custom**: Specify the custom limit up to which the users can avail the offer.
       </td>
@@ -199,7 +198,7 @@ AI-generated content may be incorrect.](https://files.readme.io/0919005ba5c24643
 
     <tr>
       <td>
-        Budget per user 
+        Budget per user
       </td>
 
       <td>
@@ -213,7 +212,7 @@ AI-generated content may be incorrect.](https://files.readme.io/0919005ba5c24643
       </td>
 
       <td>
-        Select any of the following options from the drop-down list to reset the user limit for specified frequency:    
+        Select any of the following options from the drop-down list to reset the user limit for specified frequency:  
 
         * **Every Day**: Reset the user limit everyday
         * **Every Week**: Reset the user limit every week
@@ -234,10 +233,7 @@ AI-generated content may be incorrect.](https://files.readme.io/0919005ba5c24643
       </th>
 
       <th>
-         Specify a limit on the number of times an offer can be availed or a budget for the discount volume.
-
-
-
+        Specify a limit on the number of times an offer can be availed or a budget for the discount volume.
 
         For example, if you select Budget amount to provide the offer to customers until you reach the budget of Rs. 3 Lakhs, specify 3,00,000.
       </th>
@@ -251,9 +247,9 @@ AI-generated content may be incorrect.](https://files.readme.io/0919005ba5c24643
       </td>
 
       <td>
-        Select this check box if you do not want to allow the transaction if the offer is not applicable for the user.   
+        Select this check box if you do not want to allow the transaction if the offer is not applicable for the user. 
 
-        * \*Note\*\*: The option will work only if you post the offer key and the offer is live.
+        * *Note*\*: The option will work only if you post the offer key and the offer is live.
       </td>
     </tr>
 
@@ -273,7 +269,7 @@ AI-generated content may be incorrect.](https://files.readme.io/0919005ba5c24643
       </td>
 
       <td>
-         Select **Yes** if you wish to apply the product-based or SKU-based offer to apply for multiple quantity. This field is enabled if **Yes** is selected in the Do you wish to apply offers on certain products? field.
+        Select **Yes** if you wish to apply the product-based or SKU-based offer to apply for multiple quantity. This field is enabled if **Yes** is selected in the Do you wish to apply offers on certain products? field.
       </td>
     </tr>
   </tbody>
@@ -310,11 +306,11 @@ After you complete the above details and click **Next**.
 
 1. Select the customer base from the **Customer Base** field.
 
-<Image align="center" className="border" width="350px" border={true} src="https://files.readme.io/32326ce0ac00bf43784bf5184705f1c555e80986a21413895836426c9c640453-offers-dashboard-coupon-step5-customer-base.png" />
+<Image align="center" className="border" border={true} width="350px" src="https://files.readme.io/32326ce0ac00bf43784bf5184705f1c555e80986a21413895836426c9c640453-offers-dashboard-coupon-step5-customer-base.png" />
 
 2. If you wish to configure a new customer base, click **New Customer Base** and follow these steps:
 
-<Image align="center" className="border" width="400px" border={true} src="https://files.readme.io/cf9dec12ce2b0b95420f20ade7d570ab6d6b68f71efcdd86fe5fafc8de3072d0-dashboard-offers-upload-new-customer-base-for-coupon.png" />
+<Image align="center" className="border" border={true} width="400px" src="https://files.readme.io/cf9dec12ce2b0b95420f20ade7d570ab6d6b68f71efcdd86fe5fafc8de3072d0-dashboard-offers-upload-new-customer-base-for-coupon.png" />
 
 * Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample customer details, which you need to update according to your requirements.  
 * Update the CSV or text file to include the customer details with a unique user token. For updating the CSV file, you can use Microsoft Excel or any other Spreadsheet tool. 
@@ -361,7 +357,7 @@ This section is used to launch after coupon delivery. You need select template a
 
 ## Step 6: Subvention details
 
-You can specify the subvention details, that is whether offer settlements will be managed by you or it will be borne by bank or corresponding brand. 
+You can specify the subvention details, that is whether offer settlements will be managed by you or it will be borne by bank or corresponding brand.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/d938828899f591a083b321bd056d8817b2576d74b30292f62027f5c56b887d4c-dashboard-offer-subvention-details.png" />
 
