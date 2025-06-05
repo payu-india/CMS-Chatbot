@@ -37,6 +37,8 @@ This procedure describes how to create a Prebuilt offer on PayU Dashboard and it
 4. [Configure Offer Subvention Details](#step-4-configure-offer-subvention-details)
 5. [Review of the Offer](#step-5-review-of-the-offer)
 
+<br />
+
 ## Step 1: Add the basic details
 
 1. Navigate to [.Offers Dashboard](doc:offers-dashboard).
@@ -72,17 +74,9 @@ The Choose an Offer Type to get started.
 
 ## Step 2: Configure payment modes
 
-1. Click the **Allow Downpayment with No Cost EMI** toggle button to show the EMI options which are eligible for downpayment in the next two steps.
+1. Configure the payment modes. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#configure-payment-modes).
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Offers_Details_Additional_Options-875x1024.png)
-
-> **Note**: When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Pre-discounted_offer_step2-988x1024.png)
-
-***
-
-## **Step 3: Include the Offer Rules or Limitations**
+> # **Step 3: Include the Offer Rules or Limitations**
 
 The procedure to include the rules and limitations is similar to creating an Instant Discount or Cashback Offer. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-3-include-the-offer-rules-or-limitations).
 
