@@ -1,7 +1,7 @@
 ---
 title: Create a Milestone Offer
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
