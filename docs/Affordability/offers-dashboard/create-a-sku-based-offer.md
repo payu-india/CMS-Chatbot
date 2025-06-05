@@ -70,3 +70,6 @@ The **SKU** and **Category** tabs are displayed.
 * **Apply many times**: Select this option to apply the offer many times for multiple quantity of the same product.
 
 7. Click **Next**.
+8. Enter the subvention details in the *Subvention Details* page. For more information, refer to refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-4-configure-offer-subvention-details).
+9. After you complete the above details in the *Subvention Details* page and click **Next**.
+10. Check the preview page and click **Publish**.
