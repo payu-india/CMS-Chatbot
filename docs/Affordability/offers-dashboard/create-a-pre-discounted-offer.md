@@ -37,7 +37,7 @@ This procedure describes how to create a Prebuilt offer on PayU Dashboard and it
 4. [Configure Offer Subvention Details](#step-4-configure-offer-subvention-details)
 5. [Review of the Offer](#step-5-review-of-the-offer)
 
-<br />
+***
 
 ## Step 1: Add the basic details
 
