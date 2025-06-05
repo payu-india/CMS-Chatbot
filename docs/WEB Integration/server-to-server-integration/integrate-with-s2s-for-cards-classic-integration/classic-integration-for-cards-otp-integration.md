@@ -7,16 +7,15 @@ metadata:
 ---
 The Server-to-Server (S2S) integration for cards allows merchants to securely process card transactions using PayU’s classic integration method. This document describes the step-by-step process to integrate and handle card submissions, OTP verification, and transaction responses.
 
-1. Initiate Payment Request with PayU
+1. [Initiate Payment Request with PayU](#step-1-initiate-payment-request-with-payu)
    * The merchant sends a payment request to PayU with necessary parameters such as transaction details, customer information, and surl/furl URLs for redirection after processing.
    * The transaction parameters must comply with the PayU Classic Integration. For more information, refer to [Cards Classic Integration](ref:_payment_s2s_classic_integration).
 
 > 📘 Reference:
 >
-> This integration is supported for Cards, Network Tokens, Payu token based integrations. For more details how to pass the network token and payu token, refer to [Collect Payments using a Saved Card](doc:collect-payments-using-a-saved-card).
+> This integration is supported for Cards, Network Tokens, Payu token based integrations. For more details how to pass the network token and payu token, refer to [Collect Payments using a Saved Card](doc:collect-payments-using-a-saved-card).[Handle the OTP Flow or Redirect the Customer](#step-2-handle-otp-or-redirect-customer)
 
-2. Handle the OTP Flow or Redirect the Customer
-   * After receiving PayU’s response to the initiate payment request (Step 1), merchants can choose one of the below paths based on the response conditions:
+2. * After receiving PayU’s response to the initiate payment request (Step 1), merchants can choose one of the below paths based on the response conditions:
    * Collect and submit the OTP using the **Native Submit OTP API**.
    * Redirect the customer to the Bank Page for OTP entry if required.
 
@@ -510,7 +509,7 @@ curl --location --request POST 'https://secure.payu.in/_payment' \
 }
 ```
 
-## Step 2: Handle OTP or Redirect
+## Step 2: Handle OTP or Redirect customer
 
 ### When Native Submit OTP is Supported
 
