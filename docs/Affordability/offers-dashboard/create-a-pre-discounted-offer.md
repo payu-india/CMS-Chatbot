@@ -66,7 +66,7 @@ The Choose an Offer Type to get started.
 
    The *Payment Options* page is displayed.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/2eb257440a7bc87f172cfb2e617bdde10d3a2792eb87bd3d442e860689565c00-Screenshot_2025-06-03_at_5.06.06_PM.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/20face5ca921ac455c7dd74ba8fb532e274b2ac4dd69b581d64b52b3072af1a7-dashboard-prediscounted-payment-options.png" />
 
 > 📘 Note
 >
@@ -75,6 +75,11 @@ The Choose an Offer Type to get started.
 ## Step 2: Configure payment modes
 
 1. Configure the payment modes. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#configure-payment-modes).
+2. Click **Next**.
+
+The *Offer Rules* page is displayed.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/2e7610844659ed93bfa6380b4023a90f4ff3c2b5743acdbe9ed3a2eeb39c385c-dashboard-prediscounted-offer-rules.png" />
 
 > # **Step 3: Include the Offer Rules or Limitations**
 
