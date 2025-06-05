@@ -65,12 +65,13 @@ The *Basic Offer Details* page is displayed.
 
 The *Offer Rules* page is displayed.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/2e7610844659ed93bfa6380b4023a90f4ff3c2b5743acdbe9ed3a2eeb39c385c-dashboard-prediscounted-offer-rules.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/fdf77020936a86f2f3050ab3acac1265a7a9670ada69c04fc324d10fbfbcc386-dashboard-milestone-offer-rules-page.png" />
 
 ## Step 3: Include the Offer rules
 
-1. Enter the offer rules and limitations on the *Set Offer Rules* page. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-3-include-the-offer-rules).
-2. After you complete the above details and click **Next**.
+1. <br />
+2. <br />
+3. After you complete the above details and click **Next**.
 
    The *Subvention Details* page is displayed.
 
