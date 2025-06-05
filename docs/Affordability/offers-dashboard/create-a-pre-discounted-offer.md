@@ -59,28 +59,20 @@ The Choose an Offer Type to get started.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/09dec7da3915af1371413ad8eb9195dbaebacd7934c5ba93e97f54d311c001eb-Screenshot_2025-06-05_at_10.16.18_AM.png" />
 
-***
+4. Add the basic details. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
+5. After you complete the above details and click **Save & Process**.
 
-## **Step 2: Add Basic Details**
+   The *Payment Options* page is displayed.
 
-1. Include the basic details as described in the following table and then click **Save & Process**:
+<Image align="center" className="border" border={true} src="https://files.readme.io/2eb257440a7bc87f172cfb2e617bdde10d3a2792eb87bd3d442e860689565c00-Screenshot_2025-06-03_at_5.06.06_PM.png" />
 
-| **Field**                                                                                                                                | **Description**                                                                                                                                                                       |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Title                                                                                                                                    | Enter a unique title for the offer. This would be displayed as the offer title on your Checkout page.                                                                                 |
-| Description                                                                                                                              | Enter the offer text that would be shown to your customer at checkout (for PayU Hosted Checkout Integration transactions).                                                            |
-| From Date, From Time, To Date, To Time                                                                                                   | Enter the offer validity date and time range. Your offer will be valid and visible to the customer between this time period. You can specify the time range up to the seconds detail. |
-| Terms & Conditions                                                                                                                       | Enter the text content that should appear under the “Terms and Conditions” on the Checkout page for customers.                                                                        |
-| Terms & Conditions Links                                                                                                                 | Enter the hyperlinks for independent hosted pages.                                                                                                                                    |
-| **Note**: It is recommended to be used only If it is absolutely necessary to avoid redirections outside your customer purchase journey). |                                                                                                                                                                                       |
+> 📘 Note
+>
+> When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
 
-1. After you complete the above details and click **Save & Process**,
+## Step 2: Configure payment modes
 
-The *Set Offer Rules* page is displayed.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/05/Screenshot-2022-05-26-at-11.39.03-AM-1-1024x665.png)
-
-Scroll down the *Set Offer Rules* page for the **Additional Options** section.
+1. Click the **Allow Downpayment with No Cost EMI** toggle button to show the EMI options which are eligible for downpayment in the next two steps.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Offers_Details_Additional_Options-875x1024.png)
 
