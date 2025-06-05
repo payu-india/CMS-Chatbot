@@ -476,10 +476,10 @@ curl --location --request POST 'https://secure.payu.in/_payment' \
     <tbody>
         <tr>
             <td style="height:14.0px;padding:4.0px;vertical-align:top;width:190.0px;">
-               </b>Parameter</b>
+               **Parameter**
             </td>
             <td style="height:14.0px;padding:4.0px;vertical-align:top;width:190.0px;">
-                </b>Description</b>
+                **Description**
             </td>
         </tr>
         <tr>
