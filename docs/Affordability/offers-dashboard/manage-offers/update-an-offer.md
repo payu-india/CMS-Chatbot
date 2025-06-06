@@ -26,6 +26,8 @@ To update an existing offer:
 
    The *Offers List* page is displayed.
 
+<Image align="center" className="border" border={true} src="https://files.readme.io/42dba0d373fadd714abfb9b058ce4d52f41de6958dc83c5bbd678e51be20d567-dashboard-offers-published-edit-selection.png" />
+
 2. Click the **Actions** (**…**) menu and select **Edit**.
 
    The *Preview of Instant Offer* page is displayed.
