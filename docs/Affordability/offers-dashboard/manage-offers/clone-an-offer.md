@@ -29,9 +29,9 @@ To clone an existing offer:
 
    A confirmation message is displayed.
 
-<Image align="center" width="412px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/offers_dash_clone_confirm.png" />
+<Image align="center" width="412px" src="https://files.readme.io/262998c5f0c8b972b05c352692e3896114c63b114fb967dbc2e8da506783929e-Screenshot_2025-06-06_at_9.58.47_AM.png" />
 
-3. Click **Confirm** to pause the selected offer.
+3. Click **Clone Offer** to pause the selected offer.
 
    The cloned offer is listed in the **Drafts** section.
 
