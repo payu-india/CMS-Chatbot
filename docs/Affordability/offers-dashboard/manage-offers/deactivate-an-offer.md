@@ -35,6 +35,6 @@ To deactivate an existing offer:
 
    A confirmation message is displayed.
 
-<Image align="center" width="422px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/deactivate_offer_confirmation.png" />
+<Image align="center" width="422px" src="https://files.readme.io/28a6790c5c0cb71c1326e48e5fc6650385675c0cea6d3598daaf9c63fdfa6fc6-Screenshot_2025-06-06_at_9.59.48_AM.png" />
 
-3. Click **Yes**, **Deactivate** to close the selected offer.
+3. Click **Deactivate Offer** to close or deactivate the selected offer.
