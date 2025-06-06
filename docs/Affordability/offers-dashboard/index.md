@@ -32,10 +32,6 @@ The following offers can be created using PayU Dashboard:
 >
 > Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
-The following video explains how to create an offer:
-
-<Embed url="https://www.youtube.com/watch?v=WvHrgeVMpf4" href="https://www.youtube.com/watch?v=WvHrgeVMpf4" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FWvHrgeVMpf4%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DWvHrgeVMpf4%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FWvHrgeVMpf4%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
-
 ## Enable Offers on Dashboard
 
 By default, the Offers feature is not enabled on PayU Dashboard.
@@ -69,9 +65,7 @@ User limit helps in restricting the number of offers/budgets availed by a custom
 
 Here the velocity has been set to 2, which means during the whole offer period, your customer can avail the offer only twice.
 
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/userlimits1-1024x401.png" />
-
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/userlimits2-1024x458.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/67e894e5c8b00ecd3d918f680d4b4797f833695e1aed1160e5396a3622202e51-Screenshot_2025-06-06_at_10.05.59_AM.png" />
 
 Along with restricting the number of offers, we have added a budget limit of Rs 800 per user. Now, the user can avail two offers, but to a maximum budget of Rs 800. Lets the user avail an offer of ₹600 in the first transaction, during the second transaction, the customer will only be able to avail a discount of ₹200. If the second transaction has an eligible discount of more than ₹200, the customer will not be able to get any discount here
 
