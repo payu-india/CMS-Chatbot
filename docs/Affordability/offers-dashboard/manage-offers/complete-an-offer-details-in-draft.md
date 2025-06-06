@@ -24,13 +24,13 @@ To complete an offer details that was saved in draft earlier:
 
    The *Offers Overview* page is displayed. In the **Offers List** pane, if any offers details are saved in draft, the **Drafted Offers** tab is displayed next to the **Published Offers** tab.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/Drafted_Offers_option_encircled-1024x870.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/46b435d2e9694ca360e845773e9100a9a50a733f87734c7b133724c73384d076-Screenshot_2025-06-06_at_9.47.20_AM.png" />
 
 2. Select the **Drafted Offers** tab.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/Drafted_Offers_List-1024x692.png)
-
 3. Click the **Edit** button (pencil) in the **Actions** column for the offer that you wish to complete the details.
-4. Follow these subsections of [Create an Instant Discount or Cashback Offer](doc:create-an-offer) to complete the details.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/dae949079031f8a25fb12c2de7cf44d4b7f2182165f3d84dbd7d3f8677d40e41-dashboard-offers-draft-edit-selection.png" />
+
+2. Follow these subsections of [Create an Instant Discount or Cashback Offer](doc:create-an-offer) to complete the details.
 
    The offer is published and can be found in the **Published Offers** tab.
