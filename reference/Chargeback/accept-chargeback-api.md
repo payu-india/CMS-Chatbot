@@ -1,5 +1,5 @@
 ---
-title: Accept Chargeback API
+title: Accept/Reject Chargeback API
 excerpt: ''
 deprecated: false
 hidden: false
@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The **Accept Chargeback** API allows the merchant user to accept the chargeback by providing the appropriate reasons in the request body against the chargeback and merchant ID.
+The **Accept/Reject Chargeback** API allows the merchant user to accept the chargeback by providing the appropriate reasons in the request body against the chargeback and merchant ID. The API supports file uploads through base64 encoding directly in the JSON payload.
 
 HTTP Method: **PATCH**
 
@@ -18,51 +18,277 @@ HTTP Method: **PATCH**
 
 ## Request parameters
 
+### Request header
+
+| Parameter           | Description                     |
+| ------------------- | ------------------------------- |
+| `X-Optimus-API-Key` | Merchant authentication key     |
+| `Content-Type`      | Must be set to application/json |
+
 This must contain the header with token you get using the Get Token API in the following format:
 
 ```
 \--header 'X-Optimus-API-Key: <Bearer token>'
 ```
 
-**Form data**
+### Request body
 
-| Parameter  | Description                                                                                                                                                   | Example                              |
-| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------- |
-| identifier | The identifier that was received in response when you used the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api). | 6f92dad0-4446-4465-bfea-17f587e973d4 |
-| value      | The value that was received in response when you used the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api) .     | 1                                    |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Type
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        chargeback\_id
+        `mandatory`
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+        `String` The ID of the chargeback to respond to
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchant\_key
+        `mandatory`
+      </td>
+
+      <td>
+        String
+      </td>
+
+      <td>
+        `String`Key of merchant
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        dispute\_type
+        `mandatory`
+      </td>
+
+      <td>
+        String
+      </td>
+
+      <td>
+        `String`Types of response: `accept`, `partially_accept`, `contest`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        reason\_code
+        `mandatory`
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+        `Array` An array of reason codes with form data. For more information, refer to[ Reason code structure](#reason-code-structure).
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+#### Reason Code Structure
+
+The parameter must be an array of objects with the following structure:
+
+```json
+[
+  {
+    "uuid": "reason-uuid",
+    "form_data": [
+      {
+        "identifier": "form-field-uuid",
+        "value": "field-value"
+      }
+      // Additional form fields...
+    ]
+  }
+  // Additional reasons if applicable...
+]
+```
+
+#### File Upload Fields
+
+For file upload fields (identified by `tag_type: "file_tag"` in the system):
+
+```json
+{
+  "identifier": "file-field-uuid",
+  "value": "BASE64_ENCODED_FILE_CONTENT",
+  "filename": "evidence.pdf",
+  "content_type": "application/pdf"
+}
+```
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        identifier
+        `mandatory`
+      </td>
+
+      <td>
+        UUID of the file field
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        value
+        `mandatory`
+      </td>
+
+      <td>
+        Base64 encoded file content.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        filename
+        `mandatory`
+      </td>
+
+      <td>
+        Original filename with extension.
+        **Note**: The file size limit is 5MB per file.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        content\_type
+        `mandatory`
+      </td>
+
+      <td>
+        MIME type of the file
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
-```
-curl --location --request PATCH 'https://bankportal.payu.in//api/v1/chargebacks/accept' \
+### Accept a Chargeback
+
+```bash
+curl --location --request PATCH 'https://bankportal.payu.in/api/v1/chargebacks/dispute' \
 --header 'X-Optimus-API-Key: MERCHANT KEY' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---form 'reason_code[0][uuid]="bb10e1bb-f128-4ace-ab0f-59881f11fa4d"' \
---form 'reason_code[0][form_data][0][identifier]="6f92dad0-4446-4465-bfea-17f587e973d4"' \
---form 'reason_code[0][form_data][0][value]="1"' \
---form 'reason_code[0][form_data][1][identifier]="bb10e1bb-f128-4ace-ab0f-59881f11fa4d-comments"' \
---form 'reason_code[0][form_data][1][value]="Test Comment"' \
---form 'reason_code[0][form_data][2][identifier]="200edfd3-84b6-4311-8486-23887f167772"' \
---form 'reason_code[0][form_data][2][value]=@"/Users/ankit.dagar/Pictures/Screenshots/Screenshot 2022-11-04 at 11.07.06 AM.png"' \
---form 'chargeback_id="1128897"' \
---form 'merchant_id="2"'
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "reason_code": [
+    {
+      "uuid": "bb10e1bb-f128-4ace-ab0f-59881f11fa4d",
+      "form_data": [
+        {
+          "identifier": "bb10e1bb-f128-4ace-ab0f-59881f11fa4d",
+          "value": "We accept this chargeback due to service issue."
+        }
+      ]
+    }
+  ],
+  "chargeback_id": "1128897",
+  "merchant_key": "2WEDS",
+  "dispute_type": "accept"
+}'
 ```
 
-### Partially accept chargeback
+### Contest a Chargeback with file evidence
 
-```
-curl --location --request PATCH 'https://bankportal.payu.in//api/v1/chargebacks/partially_accept' \
+```bash
+curl --location --request PATCH 'https://bankportal.payu.in/api/v1/chargebacks/dispute' \
 --header 'X-Optimus-API-Key: MERCHANT KEY' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---form 'reason_code[0][uuid]="bb10e1bb-f128-4ace-ab0f-59881f11fa4d"' \
---form 'reason_code[0][form_data][0][identifier]="6f92dad0-4446-4465-bfea-17f587e973d4"' \
---form 'reason_code[0][form_data][0][value]="1"' \
---form 'reason_code[0][form_data][1][identifier]="bb10e1bb-f128-4ace-ab0f-59881f11fa4d-comments"' \
---form 'reason_code[0][form_data][1][value]="Test Comment"' \
---form 'reason_code[0][form_data][2][identifier]="200edfd3-84b6-4311-8486-23887f167772"' \
---form 'reason_code[0][form_data][2][value]=@"/Users/ankit.dagar/Pictures/Screenshots/Screenshot 2022-11-04 at 11.07.06 AM.png"' \
---form 'chargeback_id="1128897"' \
---form 'merchant_id="2"'
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "reason_code": [
+    {
+      "uuid": "cc20e2cc-f238-5bdf-ab0f-59881f11fa4e",
+      "form_data": [
+        {
+          "identifier": "cc20e2cc-f238-5bdf-ab0f-59881f11fa4e",
+          "value": "We are contesting this chargeback. Please see attached proof of delivery."
+        },
+        {
+          "identifier": "200edfd3-84b6-4311-8486-23887f167772",
+          "value": "BASE64_ENCODED_FILE_CONTENT_HERE",
+          "filename": "delivery_proof.pdf",
+          "content_type": "application/pdf"
+        }
+      ]
+    }
+  ],
+  "chargeback_id": "1128897",
+  "merchant_key": "2WEDS",
+  "dispute_type": "contest"
+}'
+```
+
+### Partially accept a Chargeback
+
+```bash
+curl --location --request PATCH 'https://bankportal.payu.in/api/v1/chargebacks/dispute' \
+--header 'X-Optimus-API-Key: MERCHANT KEY' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "reason_code": [
+    {
+      "uuid": "dd30e3dd-f348-6ceg-ab0f-59881f11fa4f",
+      "form_data": [
+        {
+          "identifier": "6f92dad0-4446-4465-bfea-17f587e973d4",
+          "value": "500.00"
+        },
+        {
+          "identifier": "dd30e3dd-f348-6ceg-ab0f-59881f11fa4f-comments",
+          "value": "We can partially refund as customer was charged for premium service but received standard service."
+        }
+      ]
+    }
+  ],
+  "chargeback_id": "1128897",
+  "merchant_key": "2WEDS",
+  "dispute_type": "partially_accept"
+}'
 ```
 
 ## Response parameters
@@ -83,16 +309,18 @@ curl --location --request PATCH 'https://bankportal.payu.in//api/v1/chargebacks/
 
 ## Sample response
 
-```
+### Success scenario
+
+```json
 {
-    "data": {
-        "id": "1035881",
-        "type": "chargeback-details",
-        "attributes": {
-            "id": 1035881,
-            "payu-id": "15420278029",
-            "status": "Pending Doc Review"
-        }
+  "data": {
+    "id": "1035881",
+    "type": "chargeback-details",
+    "attributes": {
+      "id": 1035881,
+      "payu-id": "15420278029",
+      "status": "Pending Doc Review"
     }
+  }
 }
 ```
