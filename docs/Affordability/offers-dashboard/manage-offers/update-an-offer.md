@@ -30,9 +30,9 @@ To update an existing offer:
 
 2. Click the **Actions** (**…**) menu and select **Edit**.
 
-   The *Preview of Instant Offer* page is displayed.
+   The *Create New \<Offer Type> Offer* page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/Screenshot-2023-04-08-at-1.41.34-PM-1024x775.png)
+<Image align="center" src="https://files.readme.io/3b26103582ce85f37d5cc31b5f00526c0f977918cf18e21e1ac8eaf02f11d153-Screenshot_2025-06-06_at_9.54.13_AM.png" />
 
 3. Click the **Edit** button (pencil) on the **Basic Details** pane.
 
