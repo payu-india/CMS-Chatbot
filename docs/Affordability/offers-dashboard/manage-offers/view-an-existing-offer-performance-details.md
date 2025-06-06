@@ -22,11 +22,11 @@ To view the performance details of an existing offer:
 
 The *Offers* Overview page is displayed and the **Offers List** pane at the bottom.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Offer-Engine_Overview_Default-State-2-825x1024.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/d9c27255e1d6a33676f450c93f7e68bdbf4975d62c9eb5c615a934261029a44d-Screenshot_2025-06-06_at_9.45.01_AM_1.png" />
 
 2. Click the drop-down list for the calendar view.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/offers_calendard_drop-down-1024x755.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/1b937c168a143d9cbeecc8fda294fa345ee7e4ce17b9797897e0c522b93f6876-Screenshot_2025-06-06_at_9.46.10_AM.png" />
 
 3. Perform any of the following to view the summary of transactions:
    * Select **Today** to view the summary of transactions triggered for the day.
@@ -35,5 +35,3 @@ The *Offers* Overview page is displayed and the **Offers List** pane at the bott
    * Select **Past 30 days** to view the summary of transactions for the past 30 days.
    * Click the **Custom Range** filter to choose the desired time frame. Select a particular date range, month and year from the drop-down list or you can use the next and previous buttons given on the top of the calendar view to navigate through the months.
 4. Click **Apply**.
-
-##
