@@ -32,7 +32,7 @@ To update an existing offer:
 
    The *Create New \<Offer Type> Offer* page is displayed.
 
-<Image align="center" src="https://files.readme.io/3b26103582ce85f37d5cc31b5f00526c0f977918cf18e21e1ac8eaf02f11d153-Screenshot_2025-06-06_at_9.54.13_AM.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/3b26103582ce85f37d5cc31b5f00526c0f977918cf18e21e1ac8eaf02f11d153-Screenshot_2025-06-06_at_9.54.13_AM.png" />
 
 3. Click the **Edit** button (pencil) on the **Basic Details** pane.
 
