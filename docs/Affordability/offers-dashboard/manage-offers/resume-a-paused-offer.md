@@ -27,6 +27,6 @@ To resume a paused offer:
 
    A confirmation message is displayed.
 
-<Image align="center" width="412px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/resume_an_offer_confirmation.png" />
+<Image align="center" className="border" border={true} width="412px" src="https://files.readme.io/19c3289de3d7cb0716a87bb69cd8fb2a42f0e88741a8a40adb1eedc1593c3a7e-Screenshot_2025-06-06_at_9.57.53_AM.png" />
 
 3. Click **Confirm** to pause the selected offer.
