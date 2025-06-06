@@ -31,6 +31,6 @@ To complete an offer details that was saved in draft earlier:
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/dae949079031f8a25fb12c2de7cf44d4b7f2182165f3d84dbd7d3f8677d40e41-dashboard-offers-draft-edit-selection.png" />
 
-2. Follow these subsections of [Create an Instant Discount or Cashback Offer](doc:create-an-offer) to complete the details.
+4. Follow these subsections of [Create an Instant Discount or Cashback Offer](doc:create-an-offer) to complete the details.
 
    The offer is published and can be found in the **Published Offers** tab.
