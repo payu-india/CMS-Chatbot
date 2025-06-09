@@ -33,15 +33,11 @@ This must contain the header with token you get using the Get Token API in the f
 
 ### Request body
 
-<Table>
+<Table align={["left","left"]}>
   <thead>
     <tr>
       <th>
         Parameter
-      </th>
-
-      <th>
-        Type
       </th>
 
       <th>
@@ -58,10 +54,6 @@ This must contain the header with token you get using the Get Token API in the f
       </td>
 
       <td>
-
-      </td>
-
-      <td>
         `String` The ID of the chargeback to respond to
       </td>
     </tr>
@@ -70,10 +62,6 @@ This must contain the header with token you get using the Get Token API in the f
       <td>
         merchant\_key
         `mandatory`
-      </td>
-
-      <td>
-        String
       </td>
 
       <td>
@@ -88,10 +76,6 @@ This must contain the header with token you get using the Get Token API in the f
       </td>
 
       <td>
-        String
-      </td>
-
-      <td>
         `String`Types of response: `accept`, `partially_accept`, `contest`
       </td>
     </tr>
@@ -100,10 +84,6 @@ This must contain the header with token you get using the Get Token API in the f
       <td>
         reason\_code
         `mandatory`
-      </td>
-
-      <td>
-
       </td>
 
       <td>
