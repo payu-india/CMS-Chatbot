@@ -447,7 +447,7 @@ Basis a successful response of the authentication API, you need to redirect the 
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>cres<br><strong>mandatory</strong></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>cres<br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field contains the Base64 encoded value received from ACS as part of the authentication response.</p>
 </td>
@@ -455,39 +455,39 @@ Basis a successful response of the authentication API, you need to redirect the 
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><strong>mandatory</strong></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the reference id for the transaction</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>messageDigest<br><strong>mandatory</strong></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>messageDigest<br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the MD value being returned by the bank.</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>pares<br><strong>mandatory</strong></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pares<br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the pares being returned by the bank</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br><strong>mandatory</strong></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the data that is being used for the gateways that do not return pares.</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>authorizationUrl<br><strong>mandatory</strong></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>authorizationUrl<br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This integration document assumes that you have opt-ed out for the particular configuration.<br>The authorization URL in legacy integrations are present basis the config at PayU. Please reach out to <a href="mailto:integration@payu.in">integration@payu.in</a> to know more about.</p>
 </td>
