@@ -73,21 +73,21 @@ The merchant initiates PayU with the required transaction mandatory or optional 
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount  <code>mandatory</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The payment amount for the transaction.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>productinfo  <code>mandatory</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>productinfo<br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>A brief description of the product.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>firstname  <code>mandatory</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>firstname<br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The first name of the customer.</p>
 </td>
@@ -133,7 +133,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>ccname  <code>mandatory</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>ccname<br> <code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the name on card – as entered by the customer for the transaction.</p>
 </td>
@@ -149,7 +149,7 @@ The merchant initiates PayU with the required transaction mandatory or optional 
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>ccexpmon  <code>mandatory</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>ccexpmon<br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the card’s expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.</p>
 </td>
