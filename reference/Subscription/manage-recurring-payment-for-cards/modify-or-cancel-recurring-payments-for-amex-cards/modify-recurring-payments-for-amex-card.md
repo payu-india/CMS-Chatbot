@@ -41,6 +41,18 @@ HTTP Method: **POST**
 The following table describes the parameters for modifying the recurring payment details for an AMEX card.
 
 <HTMLBlock>{`
+<style>
+/* Target only the second column in the table */
+.markdown-body table td:nth-child(2) {
+  word-break: break-word !important;
+}
+
+/* Keep the first column from breaking unnecessarily */
+.markdown-body table td:nth-child(1) {
+  word-break: normal;
+  white-space: nowrap;
+}
+</style>
 <table>
   <thead>
     <tr>
