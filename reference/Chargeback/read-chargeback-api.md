@@ -47,7 +47,7 @@ This must contain the header with token you get using the Get Token API in the f
     <tr>
       <td>
         merchant\_Id
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -92,7 +92,7 @@ This must contain the header with token you get using the Get Token API in the f
     <tr>
       <td>
         merchant\_Id
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -107,7 +107,7 @@ This must contain the header with token you get using the Get Token API in the f
     <tr>
       <td>
         from\_date
-        **optional**
+        `mandatory`
       </td>
 
       <td>
@@ -122,7 +122,7 @@ This must contain the header with token you get using the Get Token API in the f
     <tr>
       <td>
         to\_date
-        **optional**
+        `optional`
       </td>
 
       <td>
