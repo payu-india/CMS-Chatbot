@@ -399,6 +399,18 @@ Basis a successful response of the authentication API, you need to redirect the 
 ### Request parameters
 
 <HTMLBlock>{`
+<style>
+/* Target only the second column in the table */
+.markdown-body table td:nth-child(2) {
+  word-break: break-word !important;
+}
+
+/* Keep the first column from breaking unnecessarily */
+.markdown-body table td:nth-child(1) {
+  word-break: normal;
+  white-space: nowrap;
+}
+</style>
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
@@ -548,6 +560,18 @@ The authorization request is the final step of transaction processing. This agai
 | Production | [https://secure.payu.in/AuthorizeTransaction.php](https://secure.payu.in/AuthorizeTransaction.php) |
 
 <HTMLBlock>{`
+<style>
+/* Target only the second column in the table */
+.markdown-body table td:nth-child(2) {
+  word-break: break-word !important;
+}
+
+/* Keep the first column from breaking unnecessarily */
+.markdown-body table td:nth-child(1) {
+  word-break: normal;
+  white-space: nowrap;
+}
+</style>
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
