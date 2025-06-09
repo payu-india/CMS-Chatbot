@@ -174,17 +174,9 @@ For file upload fields (identified by `tag_type: "file_tag"` in the system):
 
         * The file size limit is 5MB per file.
         * File uploads are processed as base64 encoded strings directly in the JSON payload. Do not use multipart/form-data.
-        * When using `partially_accept` as the dispute type, you must include a form field with  the value (amount) that is
-          <br />
-          Less than the total chargeback amount
-
-          Greater than 0
-          <br />
-          Less than the total chargeback amount
-          <br />
-          Each form field has a specific UUID that must be used correctly for the system to process your response.
-          <br />
-          Don’t upload files for accepting chargeback.
+        * When using `partially_accept` as the dispute type, you must include a form field with  the value (amount) that is less than the total chargeback amount and greater than 0.
+        * Each form field has a specific UUID that must be used correctly for the system to process your response.
+        * Do not upload file for when using `accept` as the dispute type.
       </td>
     </tr>
 
