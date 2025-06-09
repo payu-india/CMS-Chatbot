@@ -62,7 +62,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         key
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -77,7 +77,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         txnid
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -95,7 +95,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         amount\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -117,7 +117,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         productinfo\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -133,7 +133,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         firstname\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -149,7 +149,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         email\
-        **mandatory**
+        mandatory
       </td>
 
       <td>
@@ -167,7 +167,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         phone\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -185,7 +185,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         api\_version\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -200,7 +200,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         si\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -215,7 +215,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         pg\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -230,7 +230,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         bankcode\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -245,7 +245,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         user\_credentials\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -275,7 +275,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         free\_trial\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -293,7 +293,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         si\_details\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -312,7 +312,7 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>
         hash\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -365,7 +365,7 @@ This is applicable for the following scenarios:
     <tr>
       <td>
         store\_card\_token
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -380,7 +380,7 @@ This is applicable for the following scenarios:
     <tr>
       <td>
         storecard\_token\_type
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -395,7 +395,7 @@ This is applicable for the following scenarios:
     <tr>
       <td>
         additional\_info
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -455,7 +455,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         billingCycle
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -470,7 +470,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         billingInterval
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -494,7 +494,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         billingAmount\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -510,7 +510,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         billingCurrency\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -525,7 +525,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         paymentStartDate\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -542,7 +542,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         paymentEndDate\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -559,7 +559,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         siTokenRequestor\
-        **mandatory for saved cards**
+        `mandatory for saved cards`
       </td>
 
       <td>
@@ -577,7 +577,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         remarks\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -594,7 +594,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         billingLimit\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -618,7 +618,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         billingRule\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -641,7 +641,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         billingDate\
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -655,8 +655,9 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        authpayuid\
-        **mandatory for modifying subscription with cards**
+        authpayuid
+
+        `mandatory for modifying subscription with cards`
       </td>
 
       <td>
@@ -671,7 +672,7 @@ The description for the **si\_details** parameter (JSON format):
     <tr>
       <td>
         action\
-        **mandatory for cards**
+        `mandatory for cards`
       </td>
 
       <td>
