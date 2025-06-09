@@ -27,12 +27,12 @@ metadata:
 next:
   description: ''
   pages:
-    - type: basic
-      slug: customer-experience-and-workflow-recurring-payments
+    - slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
-    - type: basic
-      slug: introduction-recurring-payments-integration
+      type: basic
+    - slug: introduction-recurring-payments-integration
       title: Introduction
+      type: basic
 ---
 This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration.
 
@@ -49,11 +49,6 @@ HTTP Method: **POST**
 
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
-<HTMLBlock>{`
-
-`}</HTMLBlock>
-
-<br />
 
 ## Sample request
 
