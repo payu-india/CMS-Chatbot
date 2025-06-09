@@ -17,9 +17,9 @@ The **Bank Verification** API is used to verify bank account using penny drop/pe
 
 ## Environment
 
-| Environment            | URL                                                          |
-| ---------------------- | ------------------------------------------------------------ |
-| Production Environment | \[[https://onboarding.payu.in/](https://onboarding.payu.in/) |
+| Environment            | URL                                                                                                                                |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Production Environment | \[[https://onboarding.payu.in/dvs/bank\_accounts/acc\_verification](https://onboarding.payu.in/dvs/bank_accounts/acc_verification) |
 
 > 📘 **Note:**
 >
