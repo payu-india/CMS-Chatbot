@@ -76,7 +76,7 @@ This must contain the header with token you get using the Get Token API in the f
       </td>
 
       <td>
-        `String`Types of response: `accept`, `partially_accept`, `contest`
+        `String`Types of response: `accept`, `partially_accept`, `contest`. For the dispute\_type as  `partially_accept` or `contest`, refer to the notes in the [File upload fields](#file-upload-fields) table
       </td>
     </tr>
 
@@ -93,7 +93,7 @@ This must contain the header with token you get using the Get Token API in the f
   </tbody>
 </Table>
 
-#### Reason Code Structure
+#### Reason code structure
 
 The parameter must be an array of objects with the following structure:
 
@@ -113,7 +113,7 @@ The parameter must be an array of objects with the following structure:
 ]
 ```
 
-#### File Upload Fields
+#### File upload fields
 
 For file upload fields (identified by `tag_type: "file_tag"` in the system):
 
