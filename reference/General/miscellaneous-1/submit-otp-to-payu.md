@@ -16,15 +16,13 @@ next:
 
 After collecting the OTP from your customer on the payment page, submit the OTP to PayU by using this API.
 
-<br />
-
 You must pass the **reference id** of the corresponding transaction along with other parameters (see request parameters) in the request body of the Submit OTP API.
 
-<br />
-
-> 📘 **Note:**> To find the reference id, see the response of the initiate transaction request of the corresponding transaction.
+> 📘 Note:
 >
-> HTTP Method: **POST**
+> To find the reference id, see the response of the initiate transaction request of the corresponding transaction.
+
+HTTP Method: **POST**
 
 ## Environment
 
