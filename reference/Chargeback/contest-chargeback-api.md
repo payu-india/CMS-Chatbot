@@ -26,12 +26,85 @@ This must contain the header with token you get using the Get Token API in the f
 
 **Form data**
 
-| Parameter      | Description                                                                                                                                                                                          | Example                              |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------- |
-| chargeback\_id | This parameter must contain the chargeback ID that customer received from PayU.                                                                                                                      | 1035881                              |
-| merchant\_id   | The merchant ID provided to merchant while onboarding.                                                                                                                                               | 2                                    |
-| identifier     | The identifier that was received in response when you used the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api).                                        | 6f92dad0-4446-4465-bfea-17f587e973d4 |
-| value          | The response that you wish to send (to the frontend). The value can be any of the responses from the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api) . | 1                                    |
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        chargeback\_id
+        `mandatory`
+      </td>
+
+      <td>
+        This parameter must contain the chargeback ID that customer received from PayU.
+      </td>
+
+      <td>
+        1035881
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchant\_id
+        `mandatory`
+      </td>
+
+      <td>
+        The merchant ID provided to merchant while onboarding.
+      </td>
+
+      <td>
+        2
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        identifier
+        `mandatory`
+      </td>
+
+      <td>
+        The identifier that was received in response when you used the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api).
+      </td>
+
+      <td>
+        6f92dad0-4446-4465-bfea-17f587e973d4
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        value
+        `mandatory`
+      </td>
+
+      <td>
+        The response that you wish to send (to the frontend). The value can be any of the responses from the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api) .
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
@@ -50,8 +123,6 @@ curl --location --globoff --request PATCH 'https://chbuat.payu.in/api/v1/chargeb
 --form 'reason_code[1][form_data][1][identifier]="c9820d99-f515-4e16-93d2-e5032b454286"' \
 --form 'reason_code[1][form_data][1][value]=@"/home/work/Pictures/Screenshot from 2022-06-29 17-33-41.png"'
 ```
-
-<br />
 
 ## Response parameters
 
