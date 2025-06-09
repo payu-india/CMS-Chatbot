@@ -16,10 +16,9 @@ This **Get Token API** returns the authentication token generated using the clie
 
 ## Environment
 
-| Environment | URL                                                      |
-| ----------- | -------------------------------------------------------- |
-| Production  | [https://accounts.payu.in](https://accounts.payu.in)     |
-| Test        | [https://onboarding.payu.in](https://onboarding.payu.in) |
+| Environment | URL                                                  |
+| ----------- | ---------------------------------------------------- |
+| Production  | [https://accounts.payu.in](https://accounts.payu.in) |
 
 ## Request parameters
 
