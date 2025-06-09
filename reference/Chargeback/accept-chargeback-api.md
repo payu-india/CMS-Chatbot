@@ -170,13 +170,27 @@ For file upload fields (identified by `tag_type: "file_tag"` in the system):
 
       <td>
         Original filename with extension.
-        **Note**: The file size limit is 5MB per file.
+        **Notes**:
+
+        * The file size limit is 5MB per file.
+        * File uploads are processed as base64 encoded strings directly in the JSON payload. Do not use multipart/form-data.
+        * When using `partially_accept` as the dispute type, you must include a form field with  the value (amount) that is
+          <br />
+          Less than the total chargeback amount
+
+          Greater than 0
+          <br />
+          Less than the total chargeback amount
+          <br />
+          Each form field has a specific UUID that must be used correctly for the system to process your response.
+          <br />
+          Don’t upload files for accepting chargeback.
       </td>
     </tr>
 
     <tr>
       <td>
-        content\_type
+        content\_type\
         `mandatory`
       </td>
 
@@ -293,14 +307,14 @@ curl --location --request PATCH 'https://bankportal.payu.in/api/v1/chargebacks/d
 
 ```json
 {
-  "data": {
-    "id": "1035881",
-    "type": "chargeback-details",
-    "attributes": {
-      "id": 1035881,
-      "payu-id": "15420278029",
-      "status": "Pending Doc Review"
+    "data": {
+        "id": "1035881",
+        "type": "chargeback-details",
+        "attributes": {
+            "id": 1035881,
+            "payu-id": "15420278029",
+            "status": "Pending Doc Review"
+        }
     }
-  }
 }
 ```
