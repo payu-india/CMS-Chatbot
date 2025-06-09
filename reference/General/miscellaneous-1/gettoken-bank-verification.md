@@ -18,17 +18,66 @@ This **Get Token API** returns the authentication token generated using the clie
 
 | Environment | URL                                                      |
 | ----------- | -------------------------------------------------------- |
-| Production  | [https://accounts.payu.in](https://accounts.payu.in)     |
-| Test        | [https://onboarding.payu.in](https://onboarding.payu.in) |
+| Production  | [https://onboarding.payu.in](https://onboarding.payu.in) |
 
 ## Request parameters
 
-| Parameter                                  | Details                                                                                                                                           |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| client\_id<br /><code>mandatory</code>     | String: This field is the Client ID that was provided by PayU while onboarding.                                                                   |
-| client\_secret<br /><code>mandatory</code> | String: This field is the Client secret that was provided by PayU while onboarding.                                                               |
-| grant\_type<br /><code>mandatory</code>    | String: This parameter contains a constant value used to get the access token. For Bank Verification API, it is <code>client\_credentials</code>. |
-| scope<br /><code>mandatory</code>          | String: This parameter will vary based on the use case. For Bank Verification API, it is <code>verify\_bank\_account</code>.                      |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Details
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        client\_id\<
+        <code>mandatory</code>
+      </td>
+
+      <td>
+        String: This field is the Client ID that was provided by PayU while onboarding.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        client\_secret<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        String: This field is the Client secret that was provided by PayU while onboarding.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        grant\_type<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        String: This parameter contains a constant value used to get the access token. For Bank Verification API, it is <code>client\_credentials</code>.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        scope<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        String: This parameter will vary based on the use case. For Bank Verification API, it is <code>verify\_bank\_account</code>.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Sample request
 
