@@ -48,6 +48,226 @@ HTTP Method: **POST**
 ## Request parameters
 
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
+<Table align={["left","left","left"]}>
+<thead>
+<tr>
+<th>
+Parameter
+</th>
+
+<th>
+Description
+</th>
+
+<th>
+Example
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+key `mandatory`
+</td>
+
+<td>
+`varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account.
+</td>
+
+<td>
+Your Test Key
+</td>
+</tr>
+
+<tr>
+<td>
+txnid `mandatory`
+</td>
+
+<td>
+`varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction. `Character limit`: 25 **Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
+</td>
+
+<td>
+fd3e847h2
+</td>
+</tr>
+
+<tr>
+<td>
+amount `mandatory`
+</td>
+
+<td>
+`float` This parameter should contain the payment amount of the particular transaction.
+**Note**: Type-cast the amount to float type Depending upon the merchant use case, this value will vary. - It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case. - In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
+</td>
+
+<td>
+1000
+</td>
+</tr>
+
+<tr>
+<td>
+productinfo `mandatory`
+</td>
+
+<td>
+`varchar` This parameter should contain a brief product description. It should be a string describing the product. `Character limit`: 100
+</td>
+
+<td>
+Time Magazine Subscription
+</td>
+</tr>
+
+<tr>
+<td>
+firstname `mandatory`
+</td>
+
+<td>
+`varchar` Must contain the first name of the customer. `Character limit`: 60
+</td>
+
+<td>
+Ashish
+</td>
+</tr>
+
+<tr>
+<td>
+email `mandatory`
+</td>
+
+<td>
+`varchar` Must contain the email of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50
+</td>
+
+<td>
+[Ashish@test.com](mailto:Ashish@test.com)
+</td>
+</tr>
+
+<tr>
+<td>
+phone `mandatory`
+</td>
+
+<td>
+`varchar` Must contain the phone number of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50
+</td>
+
+<td>
+9843176540
+</td>
+</tr>
+
+<tr>
+<td>
+surl `mandatory`
+</td>
+
+<td>
+surL is the acronym for Success URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is successful.
+</td>
+
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td>
+furl `mandatory`
+</td>
+
+<td>
+furl is the acronym for for Failure URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is failed.
+</td>
+
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td>
+api\_version `mandatory`
+</td>
+
+<td>
+This parameter must always needs to be passed as 7.
+</td>
+
+<td>
+7
+</td>
+</tr>
+
+<tr>
+<td>
+si `mandatory`
+</td>
+
+<td>
+This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.
+**Notes**: You can modify or cancel existing recurring payment registration as described in the following sections: \_. [Manage Recurring Payment for Cards](ref:manage-recurring-payment-for-cards) \_. [Manage UPI Recurring Transaction](ref:api-commands-to-manage-upi-recurring-transaction)
+</td>
+
+<td>
+1
+</td>
+</tr>
+
+<tr>
+<td>
+free\_trial `optional`
+</td>
+
+<td>
+This is mandatory only if the merchant wants to support free trial use case with card and net banking together that too on PayU Hosted Checkout integration. In this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request. This parameter has no significance in the case of seamless flow.
+</td>
+
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td>
+si\_details `mandatory`
+</td>
+
+<td>
+This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.
+**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) ) This is a JSON object and it includes a set of fields. For more information, refer to [SI Parameter JSON Details](ref:si-parameter-json-details)
+</td>
+
+<td>
+\{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"}
+</td>
+</tr>
+
+<tr>
+<td>
+hash
+`mandatory`
+</td>
+
+<td>
+Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions. It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt. In the case of registration transaction. The formula is used to calculate this hash is similar to the following:`
+HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|si_details\|SALT)`
+</td>
+
+<td>
+txnid
+</td>
+</tr>
+</tbody>
+</Table>
 
 
 ## Sample request
