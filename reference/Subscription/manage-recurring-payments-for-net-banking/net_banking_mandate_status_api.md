@@ -33,18 +33,30 @@ next:
       slug: cancel-the-recurring-payment-for-net-banking
       title: Cancel the Recurring Payment for Net Banking
 ---
-The **NB_mandate_status** API enables you to understand the current state of the mandate with Enach at any time.
+The **NB\_mandate\_status** API enables you to understand the current state of the mandate with Enach at any time.
 
 **Environment**
 
-|                        |                                                        |
-| :--------------------- | :----------------------------------------------------- |
-| Test Environment       | \<https://test.payu.in/merchant/postservice.php?form=2> |
-| Production Environment | \<https://info.payu.in/merchant/postservice.php?form=2> |
+|                        |                                                                                                                  |
+| :--------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| Test Environment       | \<[https://test.payu.in/merchant/postservice.php?form=2>](https://test.payu.in/merchant/postservice.php?form=2>) |
+| Production Environment | \<[https://info.payu.in/merchant/postservice.php?form=2>](https://info.payu.in/merchant/postservice.php?form=2>) |
 
 ## Request parameters
 
 <HTMLBlock>{`
+<style>
+/* Target only the second column in the table */
+.markdown-body table td:nth-child(2) {
+  word-break: break-word !important;
+}
+
+/* Keep the first column from breaking unnecessarily */
+.markdown-body table td:nth-child(1) {
+  word-break: normal;
+  white-space: nowrap;
+}
+</style>
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
@@ -119,7 +131,7 @@ curl -X \
 
 ### Success scenario
 
-- Mandate is active
+* Mandate is active
 
 ```
 {
@@ -132,7 +144,7 @@ curl -X \
 }
 ```
 
-- Cancel is successful
+* Cancel is successful
 
 ```
 {
