@@ -37,6 +37,11 @@ The merchant initiates PayU with the required transaction mandatory or optional 
 ### Request parameters
 
 <HTMLBlock>{`
+<style>
+.markdown-body table{
+  word-break: break-word !important;
+}
+</style>
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
