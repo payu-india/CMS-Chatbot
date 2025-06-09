@@ -49,6 +49,10 @@ HTTP Method: **POST**
 
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
+<HTMLBlock>{`
+
+`}</HTMLBlock>
+
 <br />
 
 ## Sample request
