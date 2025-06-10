@@ -20,3 +20,13 @@ The PayU Loyalty Edge integrates loyalty points into transaction processes, enab
 * **Higher Purchase Frequency**: Motivate customers to shop more often with milestone rewards
 * **Personalized Experiences**: Deliver tailored rewards based on customer preferences
 * **Emotional Connection**: Foster deeper brand attachment through recognition and rewards
+
+## How to launch a loyalty campaign
+
+To launch a loyalty campaign using PayU Dashboard:
+
+1. [Set up Loyalty](doc:set-up-loyalty)
+2. [Create a New Campaign](doc:create-a-new-campaign)
+3. [Track the Efficiency of Campaigns](doc:track-the-efficiency-of-campaigns)
+
+After you create a campaign, you can update the campaign details. For more information, refer to [Update Campaign Details](doc:update-campaign-details)
