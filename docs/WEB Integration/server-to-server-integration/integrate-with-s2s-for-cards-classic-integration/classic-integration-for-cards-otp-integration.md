@@ -628,7 +628,12 @@ Then, the following actions should be taken:
 
 ### When Native Submit OTP is NOT Supported
 
-If the response contains: - metaData.unmappedStatus = pending - binData.pureS2SSupported = false. The following actions should be performed:
+If the **metaData** object of the response contains:
+
+* **mappedStatus** = pending
+* **pureS2SSupported** = false.
+
+The following actions should be performed:
 
 1. Decode result.acsTemplate from the response using Base64 decoding.
 2. Generate the HTML form from the decoded template.
