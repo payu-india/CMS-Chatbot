@@ -11,7 +11,7 @@ You can check or update the details of an existing campaign and customer transac
 
 To view the transactions due to campaign:
 
-1. Navigate to the Loyalty Campaigns page.
+1. Navigate to the Loyalty Edge page.
 2. Select the campaign for which you wish to view the transactions
 
 The campaign details are displayed.
