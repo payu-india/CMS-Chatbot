@@ -1,7 +1,7 @@
 ---
 title: Issue Decline Error Codes
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
