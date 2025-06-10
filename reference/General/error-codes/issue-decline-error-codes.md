@@ -174,7 +174,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        PARTIAL\_AMOUNT\_APPROVED
+        PARTIAL\_AMOUNT\_
+        APPROVED
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -330,7 +331,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        CUSTOMER\_CANCELLATION
+        CUSTOMER\_
+        CANCELLATION
       </td>
 
       <td style={{ textAlign: "left" }}>
