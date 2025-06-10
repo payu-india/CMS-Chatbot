@@ -1,5 +1,5 @@
 ---
-title: Issue Decline Error Codes
+title: Issuer Decline Error Codes
 deprecated: false
 hidden: false
 metadata:
