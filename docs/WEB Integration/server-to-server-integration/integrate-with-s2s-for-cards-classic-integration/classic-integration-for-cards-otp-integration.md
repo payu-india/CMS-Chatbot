@@ -659,16 +659,15 @@ When collecting the OTP on your page, you must provide the following functionali
 
 ### Verify the Transaction
 
-After completing the payment flow, verify the transaction status using the Verify Payment API:
+After completing the payment flow, verify the transaction status using the Verify Payment API. For more information, refer to [Verify Payment API](ref:verify_payment_api).
 
 ```
-curl --location --request POST 'https://api.payumoney.com/payment/verify' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "merchantKey": "YOUR_MERCHANT_KEY",
-    "paymentId": "PAYMENT_ID_FROM_RESPONSE"
-}'
-
+curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=JP***g' \
+--data-urlencode 'command=verify_payment' \
+--data-urlencode 'var1=IhfgcZnXR4o4nB' \
+--data-urlencode 'hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
 ```
 
 Alternatively, implement PayU’s webhooks to receive real-time payment status updates. For more information, refer to [Payment Webhooks](doc:create-and-manage-webhooks-1).
