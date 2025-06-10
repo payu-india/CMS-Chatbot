@@ -648,7 +648,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        COMPLETED\_PARTIALLY
+        COMPLETED\_
+        PARTIALLY
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -693,7 +694,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        RESTRICTED\_CARD
+        RESTRICTED\_
+        CARD
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -830,7 +832,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        INSUFFICIENT\_FUNDS
+        INSUFFICIENT\_
+        FUNDS
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -941,7 +944,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        CARD\_NOT\_PERMITTED
+        CARD\_NOT\_
+        PERMITTED
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -1144,7 +1148,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        BANK\_TECHNICAL\_FAILURE
+        BANK\_TECHNICAL\_
+        FAILURE
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -1188,7 +1193,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        APPROVED\_ANZ\_ONLY
+        APPROVED\_ANZ\_
+        ONLY
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -1369,7 +1375,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        CUTOFF\_IN\_PROGRESS
+        CUTOFF\_IN\_
+        PROGRESS
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -1392,7 +1399,8 @@ metadata:
 
       <td style={{ textAlign: "left" }}>
         BANK\_NOT\_
-        SUPPORTED\_BY\_SWITCH
+        SUPPORTED\_BY\_
+        SWITCH
       </td>
 
       <td style={{ textAlign: "left" }}>
