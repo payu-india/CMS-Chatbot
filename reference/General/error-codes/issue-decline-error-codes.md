@@ -151,7 +151,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        AUTHORIZATION\_FAILED\_BY\_BANK
+        AUTHORIZATION\_FAILED\_
+        BY\_BANK
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -261,7 +262,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        CARD\_VALIDATION\_FAILED
+        CARD\_VALIDATION\_
+        FAILED
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -283,7 +285,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        CARD\_NUMBER\_INVALID
+        CARD\_NUMBER\_
+        INVALID
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -506,7 +509,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        UNABLE\_TO\_LOCATE\_RECORD\_ON\_FILE
+        UNABLE\_TO\_LOCATE\_
+        RECORD\_ON\_FILE
       </td>
 
       <td style={{ textAlign: "left" }}>
