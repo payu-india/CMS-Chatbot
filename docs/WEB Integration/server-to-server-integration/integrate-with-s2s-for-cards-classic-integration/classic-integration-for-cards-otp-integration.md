@@ -613,19 +613,18 @@ curl --location --request POST 'https://secure.payu.in/_payment' \
 If the response from Step 1 contains the parameters: - metaData.unmappedStatus = pending - binData.pureS2SSupported = true
 
 ```
-curl --location --request POST 'https://api.payumoney.com/payment/submit-otp' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "txnToken": "TRANSACTION_TOKEN_FROM_RESPONSE",
-    "otp": "OTP_ENTERED_BY_CUSTOMER"
-}'
-
+curl --location --request POST 'https://test.payu.in/ResponseHandler.php' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=ef4510abes5uo7ephv7o20ossc; PHPSESSID=63fefa045789a' \
+--data-urlencode 'referenceId=42df570fa8c4d9de6209a71970acb661' \
+--data-urlencode 'otp=725356' \
+--data-urlencode 'consent=0'
 ```
 
 Then, the following actions should be taken:
 
 1. Collect the OTP from the customer.
-2. Submit the OTP to PayU using the .
+2. Submit the OTP to PayU using the [Submit OTP API](ref:submit-otp-to-payu).
 
 ### When Native Submit OTP is NOT Supported
 
