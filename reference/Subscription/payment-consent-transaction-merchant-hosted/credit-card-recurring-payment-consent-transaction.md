@@ -298,20 +298,7 @@ HTTP Method: **POST**
 <p>In this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request.<br>This parameter has no significance in the case of seamless flow.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-  <tr>
-      <td>
-        free\_trial \`optional\`
-      </td>
-
-      <td>
-        This is mandatory only if the merchant wants to support free trial use case with card and net banking together. In this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request. 
-      </td>
-
-      <td>
-
-      </td>
-    </tr>    
+</tr>   
 </tbody>
 </table>
 `}</HTMLBlock>
