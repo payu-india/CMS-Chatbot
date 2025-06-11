@@ -180,34 +180,20 @@ The **Get Merchant** API is used to get the merchant details. You require the ac
           This parameter contains any of the following statuses:\\
 
           ```
-          •	documents_pending
-          •	bank_verified
-          •	document_upload_in_progress
-          •	account_created
-          •	document_verification_in_progress
-          •	website_verification_in_progress
-          •	documents_rejected
-          •	live
-          •	settlement_on_hold
-          •	agreement_pending
-          •	agreement_rejected
-          •	not_available
-          •	website_error
-          •	profile_rejected
-          •	documents_pending
-          •	bank_verified
-          •	document_upload_in_progress
-          •	account_created
-          •	document_verification_in_progress
-          •	website_verification_in_progress
-          •	documents_rejected
-          •	live
-          •	settlement_on_hold
-          •	agreement_pending
-          •	agreement_rejected
-          •	not_available
-          •	website_error
-          •	profile_rejected
+          * account_created
+          * profile_completed
+          * bank_verified
+          * documents_pending
+          * document_upload_in_progress
+          * document_verification_in_progress
+          * documents_rejected
+          * website_verification_in_progress
+          * website_error
+          * agreement_pending
+          * agreement_rejected
+          * profile_rejected
+          * live
+          * settlement_on_hold
           ```
         </td>
       </tr>
