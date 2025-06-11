@@ -37,7 +37,7 @@ The steps involved in a registration transaction (e-Mandate) are:
 > 📘 Notes:
 >
 > * Upfront payment can be collected only through direct integration – HDFC Bank and ICICI Bank. For all the 40+ banks supported through NPCI, you cannot collect the upfront amount and perform only the INR 0.00 authentication.
-> * Upfront payment can be collected only through direct integration – HDFC Ban&#x6B;**(₹1 Lakh)** and ICICI Bank.
+> * Upfront payment can be collected only through direct integration – HDFC Bank\*\*(₹1 Lakh)\*\* and ICICI Bank.
 
 2. Merchant presents an option to sign up for a recurring platform where the customer needs to provide his/her consent.
 3. Billing details like amount, frequency, start date, and end date of the subscription need to be presented to the customer and passed to PayU during payment request.
@@ -45,17 +45,17 @@ The steps involved in a registration transaction (e-Mandate) are:
    * **Non-Seamless Integration**: The customer selects preferred bank and enters account details like account number, name of the account, and account type: Savings or Current.
    * **Seamless Integration**: Merchant has to send all the parameters, that is, preferred bank, account number, name of the account, and account type.
 
-<Image align="center" className="border" width="512px" border={true} src="https://files.readme.io/6cccafc-recurring_payment_netbanking_workflow_step4.png" />
+<Image align="center" className="border" border={true} width="512px" src="https://files.readme.io/6cccafc-recurring_payment_netbanking_workflow_step4.png" />
 
 <br />
 
-<Image align="center" className="border" width="512px" border={true} src="https://files.readme.io/6ba7e05-recurring_payment_aadhaar_step1.png" />
+<Image align="center" className="border" border={true} width="512px" src="https://files.readme.io/6ba7e05-recurring_payment_aadhaar_step1.png" />
 
 5. The customer is redirected to the any of the following based on authentication selected:
    1. Bank’s login page and authenticates himself with either net banking username and password or debit card number and ATM PIN depending upon the preferred bank.
    2. NPCI page for the Aadhaar authentication. For more information, refer to [eNACH Aadhaar Authentication](#enach-aadhaar-authentication).
 6. On successful authentication, the customer sees registration details like billing amount, billing frequency, start date, and end date of the subscription plan.
-7. The customer approves the subscription details from the bank page and gets redirected back to PayU. At this stage, the bank can approve the registration request by returning the “Success” response to PayU or reject the same with the “Failed” response.
+7. The customer approves the subscription details from the bank page using standard 2FA flow and gets redirected back to PayU'
 8. On receiving either of the response from the bank, the same is communicated back to the merchant on a real-time basis.
 
 ### eNACH Aadhaar Authentication
