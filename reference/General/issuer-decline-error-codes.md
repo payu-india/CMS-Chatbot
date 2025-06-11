@@ -797,7 +797,7 @@ The following helps you identify specific reasons for payment failures and provi
       </td>
 
       <td style={{ textAlign: "left" }}>
-        The customer\&#039s card issuer has declined the transaction as the account type selected is not valid for this credit card number.
+        The customer's card issuer has declined the transaction as the account type selected is not valid for this credit card number
       </td>
     </tr>
 
