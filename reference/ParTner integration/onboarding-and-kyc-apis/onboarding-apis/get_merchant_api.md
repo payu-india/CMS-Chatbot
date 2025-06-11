@@ -177,7 +177,7 @@ The **Get Merchant** API is used to get the merchant details. You require the ac
         </td>
 
         <td>
-          This parameter contains any of the following statuses:\\
+          This parameter contains any of the following statuses:
 
           ```
           * account_created
