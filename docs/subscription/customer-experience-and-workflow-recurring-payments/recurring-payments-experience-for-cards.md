@@ -29,14 +29,19 @@ Since Recurring Payments do not have 2FA, the following are the strict guideline
 3. Billing details like amount, frequency, start date and end date of the subscription are presented to the customer and passed to the PayU during payment request.
 4. After the customer validates the subscription plan and enters the preferred card details, the customer is redirected to the 3D Security (3DS) flow where the authentication and authorization process place.
 5. There are multiple ways to process the First transaction/Consent transaction to obtain the customer’s consent:\
-   a. A consent transaction can be an actual subscription for the First billing cycle so that the customer will be charged for the whole amount through 3DS (2FA) flow and subsequent transactions will be processed through the recurring payment.\
+   a. A consent transaction can be an actual subscription for the First billing cycle so that the customer will be charged for the whole amount through 3DS (2FA) flow and subsequent transactions will be processed through the recurring payment.
    b. A consent transaction can be a small transaction (like 5 INR) where the customer’s card is taken on file along with consent and the amount is refunded back by the merchant on calling the Refund API. This method is popular where the merchant offers their free services for the first billing cycle and then charges subsequent bills through the recurring payments.
 6. After the customer’s consent is taken, the card details are saved in the PayU’s secure vault and a card token is generated.
 7. The card token is returned to the merchant in the payment response along with PayU’s ID. Merchant is supposed to map this PayU ID it against customer’s profile so that henceforth it can be used charging customer through the recurring platform.
 
-> 📘 Note:
+> 📘 Notes:
 >
-> The card token is not an actual card number, and hence merchant is not having any PCI DSS hassles in storing the same at his end.
+> * The card token is not an actual card number, and hence merchant is not having any PCI DSS hassles in storing the same at his end.
+> * The recurring limit without the requirement of 2FA is increased to ₹15,000. For more information, refer to [Reserve Bank of India - Notifications](https://www.rbi.org.in/scripts/FS_Notification.aspx?Id=12341\&fn=9\&Mode=0) )
+> * In addition, the recurring limit for certain merchant categories has been increased from ₹15,000/- to ₹1,00,000/- per transaction for the following categories (RBI document. For more information, refer to  [Reserve Bank of India - Notifications](https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12570\&Mode=0)):
+>   1. subscription to mutual funds
+>   2. payment of insurance premiums
+>   3. credit card bill payments
 
 At present, Standing Instruction is supported for the following payment instruments:
 
@@ -70,59 +75,19 @@ At present, Standing Instruction is supported for the following payment instrume
   <tbody>
     <tr>
       <td>
-        \- American Express Banking Corporation  
-
-        * Andhra Bank
-        * AU Small Finance Bank Limited\  
-        * Australia and New Zealand Banking Group Limited
-        * Axis Bank Ltd.
-        * Bank of Baroda
-        * Bank of India
-        * Bank of Maharashtra
-        * Canara Bank
-        * Central Bank of India
-        * Citibank
-        * Corporation Bank
+        * American Express Banking Corporation
       </td>
 
       <td>
-        \- City Union Bank Ltd.Dhanlaxmi Bank Ltd.  
-
-        * DBS Bank Ltd.
-        * DCB Bank Ltd.
-        * DCB Bank Business Banking
-        * Equitas Small Finance Bank Limited or Equitas Bank (same bank)
-        * ESAF Small Finance Bank Limited
-        * Federal Bank Ltd.
-        * HDFC Bank Ltd.
-        * HSBC Bank
-        * ICICI Bank Ltd.
-        * IDBI Bank Ltd.
+        * City Union Bank Ltd.Dhanlaxmi Bank Ltd.
       </td>
 
       <td>
-        \- IDFC First Bank Ltd.  
-
-        * IDFC Bank Ltd. (merged with IDFB)
-        * IndusInd Bank (same bank)
-        * Indian Overseas Bank
-        * Jammu & Kashmir Bank Ltd.
-        * Karur Vysya Bank Ltd.
-        * Kotak Mahindra Bank Ltd.
+        * IDFC First Bank Ltd.
       </td>
 
       <td>
-        \- Punjab National Bank  
-
-        * Paytm Bank 
-        * RBL Bank Ltd.
-        * State Bank of India
-        * State bank of Mysore 
-        * Standard Chartered Bank
-        * South Indian Bank Ltd. 
-        * State Trading Corporation of Bhutan Limited
-        * Union Bank of India
-        * YES Bank
+        * Punjab National Bank
       </td>
     </tr>
   </tbody>
@@ -159,7 +124,7 @@ The workflow for the Recurring payment involves:
 1. Merchants must call the Pre-Debit Notification API before the recurring payment transaction is done. For more information, refer to [Pre-Debit Notification API](ref:pre_debit_notification_api).
 2. Merchants can call recurring payment API (**si\_transaction**) for subsequent debits. For more information, refer to [Recurring Payment Transaction API](ref:recurring_payment_api).
 
-     OR
+   OR
 
    Merchants can use bulk upload recurring feature by uploading the records in an excel file. For more information, refer to [Recurring Payments Using PayUBiz Dashboard](doc:recurring-payments-using-payubiz-dashboard)
 
