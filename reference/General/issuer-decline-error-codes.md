@@ -5,6 +5,8 @@ hidden: false
 metadata:
   robots: index
 ---
+The following helps you identify specific reasons for payment failures and provides standardized error codes and messages. This will facilitate troubleshooting and communicate your customers when transactions are declined.
+
 <Table align={["right","left","left","left","left"]}>
   <thead>
     <tr>
