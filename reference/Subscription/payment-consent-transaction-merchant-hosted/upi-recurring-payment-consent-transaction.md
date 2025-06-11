@@ -30,7 +30,7 @@ next:
       slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
 ---
-This section provides the request parameters, sample request and response for a UPI Recurring Payment \<\<glossary:Consent transaction>>.
+This section provides the request parameters, sample request and response for a UPI Recurring Payment  \<\<glossary:Consent transaction>>.
 
 > 📘 Note:
 >
