@@ -38,7 +38,7 @@ Since Recurring Payments do not have 2FA, the following are the strict guideline
 >
 > * The card token is not an actual card number, and hence merchant is not having any PCI DSS hassles in storing the same at his end.
 > * The recurring limit without the requirement of 2FA is increased to ₹15,000. For more information, refer to [Reserve Bank of India - Notifications](https://www.rbi.org.in/scripts/FS_Notification.aspx?Id=12341\&fn=9\&Mode=0) )
-> * In addition, the recurring limit for certain merchant categories has been increased from ₹15,000/- to ₹1,00,000/- per transaction for the following categories (RBI document. For more information, refer to  [Reserve Bank of India - Notifications](https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12570\&Mode=0)):
+> * In addition, the recurring limit for certain merchant categories has been increased from ₹15,000/- to ₹1,00,000/- per transaction for the following categories. For more information, refer to  [Reserve Bank of India - Notifications](https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12570\&Mode=0)):
 >   1. subscription to mutual funds
 >   2. payment of insurance premiums
 >   3. credit card bill payments
