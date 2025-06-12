@@ -36,7 +36,7 @@ next:
       slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
 ---
-This section provides the request parameters, sample request and response for a Net Banking Recurring Payment consent transaction or \<\<glossary:Consent transaction>>.
+This section provides the request parameters, sample request and response for a Net Banking Recurring Payment consent transaction or Consent transaction.
 
 > 📘 Note:
 >
@@ -54,7 +54,19 @@ HTTP Method: **POST**
 ## Request parameters
 
 <HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
+<style>
+/* Target only the second column in the table */
+.markdown-body table td:nth-child(2) {
+  word-break: break-word !important;
+}
+
+/* Keep the first column from breaking unnecessarily */
+.markdown-body table td:nth-child(1) {
+  word-break: normal;
+  white-space: nowrap;
+}
+</style>
+<table>
 <thead>
 <tr>
   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
