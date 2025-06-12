@@ -1,7 +1,7 @@
 ---
 title: CB LRS API Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
