@@ -23,16 +23,44 @@ The **buyer\_type\_business** parameter is used in \_payment for Cross Border pa
   <summary>Sample request</summary>
 
   ```bash
-  curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00 \
-  &firstname=PayU User&email=test@gmail.com&phone=9876543210 \
-  &productinfo=iPhone&surl= \
-  https://apiplayground-response.herokuapp.com/ \
-  &furl=https://apiplayground-response.herokuapp.com/ \
-  &buyer_type_business=Travels \
-  &hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
+  curl --location 'https://test.payu.in/_payment' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'key=PRiQvJ' \
+  --data-urlencode 'txnid=my_order_64240' \
+  --data-urlencode 'amount=5' \
+  --data-urlencode 'productinfo=asfas' \
+  --data-urlencode 'email=test@test.com' \
+  --data-urlencode 'phone=8688359250' \
+  --data-urlencode 'txn_s2s_flow=4' \
+  --data-urlencode 'hash={{hash}}' \
+  --data-urlencode 'pg=CC' \
+  --data-urlencode 'bankcode=CC' \
+  --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'udf1=' \
+  --data-urlencode 'udf2=' \
+  --data-urlencode 'udf3=' \
+  --data-urlencode 'udf4=' \
+  --data-urlencode 'udf5=' \
+  --data-urlencode 'ccnum=5506900480000008' \
+  --data-urlencode 'ccexpyr=2025' \
+  --data-urlencode 'ccexpmon=09' \
+  --data-urlencode 'ccvv=123' \
+  --data-urlencode 'ccname=test' \
+  --data-urlencode 'si_details={"billingAmount":"10.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval": 1,"paymentStartDate":"2024-11-19","paymentEndDate":"2025-12-01"}' \
+  --data-urlencode 'api_version=7' \
+  --data-urlencode 'si=1' \
+  --data-urlencode 'firstname=sudhanshu' \
+  --data-urlencode 'user_credentials=T58CQx:sudhanshu' \
+  --data-urlencode 'lastname=kr' \
+  --data-urlencode 'address1=308,third floor' \
+  --data-urlencode 'address2=testing' \
+  --data-urlencode 'city=ggn' \
+  --data-urlencode 'state=UP' \
+  --data-urlencode 'country=IND' \
+  --data-urlencode 'zipcode=122018' \
+  --data-urlencode 'buyer_type_business=1' \
+
   ```
 </details>
 
