@@ -12,24 +12,6 @@ PayU’s **\_payment** API supports LRS implementation using the following param
 * lrs\_tnc
 * lrs\_tcs\_declaration\_under\_limit
 
-## Integration Flow
-
-* **Identify Transaction Type**:
-  * Determine if the transaction falls under LRS (cross-border, individual buyer)
-  * Set **buyer\_type\_business** appropriately
-* **Collect Buyer PAN Information**:
-  * For individual buyers, capture and validate PAN details
-  * Ensure PAN is linked to Aadhaar for successful transaction processing
-* **Present LRS Declarations**:
-  * Display and capture acceptance of lrs\_mandatory\_limit\_declaration
-  * Display and capture acceptance of lrs\_tnc
-  * If applicable, capture lrs\_tcs\_declaration\_under\_limit
-* **Proceed with Payment**:
-  * Include all required LRS parameters in the payment API call
-  * Process transaction through PayU gateway
-
-The cross-border payment integration for PayUBiz involves the following significant steps:
-
 <br />
 
 ## Step 1: Request Payment with PayU
@@ -477,11 +459,43 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
+        lrs\_mandatory\_limit\_declaration
 
+        `mandatory for LRS `
+      </td>
+
+      <td>
+        `String`Mandatory declaration for Liberalised Remittance Scheme limit
       </td>
 
       <td>
 
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        lrs\_tnc\
+        `mandatory for LRS `
+      </td>
+
+      <td>
+        `String`Terms and conditions for Liberalised Remittance Scheme
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        lrs\_tcs\_declaration\_under\_limit\
+        `mandatory for LRS `
+      </td>
+
+      <td>
+        `String`Declaration for Tax Collected at Source under LRS limit
       </td>
 
       <td>
@@ -529,13 +543,12 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'city=ggn' \
 --data-urlencode 'state=UP' \
 --data-urlencode 'country=IND' \
---data-urlencode 'zipcode=122018'
+--data-urlencode 'zipcode=122018' \
+--data-urlencode 'buyer_type_business=1' \
+--data-urlencode 'lrs_mandatory_limit_declaration=I declare that the remittance is within my annual LRS limit' \
+--data-urlencode 'lrs_tnc=I agree to the terms and conditions for LRS transactions' \
+--data-urlencode 'lrs_tcs_declaration_under_limit=I declare that this transaction is under the specified limit'
+
 ```
 
-## Step 2: Update Invoice ID \[Conditional]
-
-**Case**: If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter. For more information, refer to [UDF Update API](ref:udf_update_api).
-
-## Step 3: Upload the Invoices
-
-According to the RBI guidelines, the invoice file must be shared with PayU within 10 days of the transaction. The invoices can be uploaded using the **Invoice Upload** API. For more information, refer to [Invoice Upload API](ref:invoice_upload_api).
+## Step 2: Check PayU response
