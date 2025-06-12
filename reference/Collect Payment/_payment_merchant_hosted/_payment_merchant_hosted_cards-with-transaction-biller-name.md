@@ -17,6 +17,18 @@ The **txnBillerName** parameter is used to include the transaction biller name f
 ## Request parameters
 
 <HTMLBlock>{`
+<style>
+/* Target only the second column in the table */
+.markdown-body table td:nth-child(2) {
+  word-break: break-word !important;
+}
+
+/* Keep the first column from breaking unnecessarily */
+.markdown-body table td:nth-child(1) {
+  word-break: normal;
+  white-space: nowrap;
+}
+</style>
 <Table align={["left", "left", "left"]}>
   <thead>
     <tr>
@@ -27,24 +39,24 @@ The **txnBillerName** parameter is used to include the transaction biller name f
   </thead>
   <tbody>
     <tr>
-      <td>key<br/>\`mandatory\`</td>
-      <td>\`varchar\` This parameter is the unique Merchant Key provided by PayU for your merchant account.</td>
+      <td>key<br/><code>mandatory</code></td>
+      <td><code>varchar</code> This parameter is the unique Merchant Key provided by PayU for your merchant account.</td>
       <td>Your Test Key</td>
     </tr>
     <tr>
-      <td>txnid<br/>\`mandatory\`</td>
+      <td>txnid<br/><code>mandatory</code></td>
       <td>
-        \`varchar\` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.<br/>
-        \`Character limit\`: 25  
+        <code>varchar</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.<br/>
+        <code>Character limit</code>: 25  
 
         **Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
       </td>
       <td>fd3e847h2</td>
     </tr>
     <tr>
-      <td>amount<br/>\`mandatory\`</td>
+      <td>amount<br/><code>mandatory</code></td>
       <td>
-        \`float\` This parameter should contain the payment amount of the particular transaction.  
+        <code>float</code> This parameter should contain the payment amount of the particular transaction.  
 
         **Note**: Type-cast the amount to float type<br/>
         Depending upon the merchant use case, this value will vary.
@@ -55,71 +67,71 @@ The **txnBillerName** parameter is used to include the transaction biller name f
       <td>1000</td>
     </tr>
     <tr>
-      <td>productinfo<br/>\`mandatory\`</td>
+      <td>productinfo<br/><code>mandatory</code></td>
       <td>
-        \`varchar\` This parameter should contain a brief product description. It should be a string describing the product.<br/>
-        \`Character limit\`: 100
+        <code>varchar</code> This parameter should contain a brief product description. It should be a string describing the product.<br/>
+        <code>Character limit</code>: 100
       </td>
       <td>Time Magazine Subscription</td>
     </tr>
     <tr>
-      <td>firstname<br/>\`mandatory\`</td>
+      <td>firstname<br/><code>mandatory</code></td>
       <td>
-        \`varchar\` Must contain the first name of the customer.<br/>
-        \`Character limit\`: 60
+        <code>varchar</code> Must contain the first name of the customer.<br/>
+        <code>Character limit</code>: 60
       </td>
       <td>Ashish</td>
     </tr>
     <tr>
-      <td>email<br/>\`mandatory\`</td>
+      <td>email<br/><code>mandatory</code></td>
       <td>
-        \`varchar\` Must contain the email of the customer.<br/>
+        <code>varchar</code> Must contain the email of the customer.<br/>
         This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.<br/>
         Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br/>
-        \`Character limit\`: 50
+        <code>Character limit</code>: 50
       </td>
       <td>Ashish@test.com</td>
     </tr>
     <tr>
-      <td>phone<br/>\`mandatory\`</td>
+      <td>phone<br/><code>mandatory</code></td>
       <td>
-        \`varchar\` Must contain the phone number of the customer.  
+        <code>varchar</code> Must contain the phone number of the customer.  
 
         This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br/>
-        \`Character limit\`: 50
+        <code>Character limit</code>: 50
       </td>
       <td>9843176540</td>
     </tr>
     <tr>
-      <td>surl<br/>\`mandatory\`</td>
+      <td>surl<br/><code>mandatory</code></td>
       <td>surl is the acronym for Success URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is successful.</td>
       <td></td>
     </tr>
     <tr>
-      <td>furl<br/>\`mandatory\`</td>
+      <td>furl<br/><code>mandatory</code></td>
       <td>furl is the acronym for Failure URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is failed.</td>
       <td></td>
     </tr>
     <tr>
-      <td>hash<br/>\`mandatory\`</td>
+      <td>hash<br/><code>mandatory</code></td>
       <td>
         Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions.  
 
         It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.  
 
         In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br/>
-        \`HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||si_details|SALT)\`  
+        <code>HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||si_details|SALT)</code>  
 
         **Note**: Hash logic for _payment API version 19:<br/>
         The following hash logic must be used for _payment API with **api_version=19**:<br/>
-        \`key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone\`
+        <code>key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone</code>
       </td>
       <td></td>
     </tr>
     <tr>
-      <td>pg<br/>\`mandatory\`</td>
+      <td>pg<br/><code>mandatory</code></td>
       <td>
-        \`String\` The pg parameter must contain the payment method and must contain any of the following. If no value is specified for this parameter 'CC' will be takes as default value.  
+        <code>String</code> The pg parameter must contain the payment method and must contain any of the following. If no value is specified for this parameter 'CC' will be takes as default value.  
 
         * **DC** for Debit Card
         * **CC** for Credit Card
@@ -127,75 +139,75 @@ The **txnBillerName** parameter is used to include the transaction biller name f
       <td></td>
     </tr>
     <tr>
-      <td>bankcode<br/>\`mandatory\`</td>
+      <td>bankcode<br/><code>mandatory</code></td>
       <td>Each payment option is identified with a unique bank code at PayU. For more information, refer to [Card Number Formats](doc:card-number-formats) and [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).</td>
       <td></td>
     </tr>
     <tr>
-      <td>udf1<br/>\`optional\`</td>
+      <td>udf1<br/><code>optional</code></td>
       <td>
         User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.<br/>
-        \`Character Limit-255\`
+        <code>Character Limit-255</code>
       </td>
       <td></td>
     </tr>
     <tr>
-      <td>udf2<br/>\`optional\`</td>
+      <td>udf2<br/><code>optional</code></td>
       <td>
         User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.<br/>
-        \`Character Limit-255\`
+        <code>Character Limit-255</code>
       </td>
       <td></td>
     </tr>
     <tr>
-      <td>udf3<br/>\`optional\`</td>
+      <td>udf3<br/><code>optional</code></td>
       <td>
         User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.<br/>
-        \`Character Limit-255\`
+        <code>Character Limit-255</code>
       </td>
       <td></td>
     </tr>
     <tr>
-      <td>udf4<br/>\`optional\`</td>
+      <td>udf4<br/><code>optional</code></td>
       <td>
         User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.<br/>
-        \`Character Limit-255\`
+        <code>Character Limit-255</code>
       </td>
       <td></td>
     </tr>
     <tr>
-      <td>udf5<br/>\`optional\`</td>
+      <td>udf5<br/><code>optional</code></td>
       <td>
         User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.<br/>
-        \`Character Limit-255\`
+        <code>Character Limit-255</code>
       </td>
       <td></td>
     </tr>
     <tr>
-      <td>ccnum<br/>\`mandatory\`</td>
-      <td>\`String\` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to [Card Number Formats](doc:card-number-formats) and display error message for an invalid input.</td>
+      <td>ccnum<br/><code>mandatory</code></td>
+      <td><code>String</code> Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to [Card Number Formats](doc:card-number-formats) and display error message for an invalid input.</td>
       <td></td>
     </tr>
     <tr>
-      <td>ccvv<br/>\`mandatory\`</td>
-      <td>\`String\` This parameter must contain the name on card – as entered by the customer for the transaction.</td>
+      <td>ccvv<br/><code>mandatory</code></td>
+      <td><code>String</code> This parameter must contain the name on card – as entered by the customer for the transaction.</td>
       <td></td>
     </tr>
     <tr>
-      <td>ccexpmon<br/>\`mandatory\`</td>
+      <td>ccexpmon<br/><code>mandatory</code></td>
       <td>
-        \`String\` This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format.<br/>
+        <code>String</code> This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format.<br/>
         For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
       </td>
       <td></td>
     </tr>
     <tr>
-      <td>ccexpyr<br/>\`mandatory\`</td>
-      <td>\`String\` This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.</td>
+      <td>ccexpyr<br/><code>mandatory</code></td>
+      <td><code>String</code> This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.</td>
       <td></td>
     </tr>
     <tr>
-      <td>additional_info<br/>\`optional\`</td>
+      <td>additional_info<br/><code>optional</code></td>
       <td>This parameter contains the additional information of the transaction. For more information, refer to [additional_info JSON object field descriptions.](#additional_info-json-object-field-descriptions)</td>
       <td></td>
     </tr>
