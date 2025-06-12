@@ -47,9 +47,7 @@ The **buyer\_type\_business** parameter is used in \_payment for Cross Border pa
   --data-urlencode 'ccexpmon=09' \
   --data-urlencode 'ccvv=123' \
   --data-urlencode 'ccname=test' \
-  --data-urlencode 'si_details={"billingAmount":"10.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval": 1,"paymentStartDate":"2024-11-19","paymentEndDate":"2025-12-01"}' \
   --data-urlencode 'api_version=7' \
-  --data-urlencode 'si=1' \
   --data-urlencode 'firstname=sudhanshu' \
   --data-urlencode 'user_credentials=T58CQx:sudhanshu' \
   --data-urlencode 'lastname=kr' \
