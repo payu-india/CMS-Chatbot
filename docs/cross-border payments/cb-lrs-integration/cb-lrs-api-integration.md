@@ -12,8 +12,6 @@ PayU’s **\_payment** API supports LRS implementation using the following param
 * lrs\_tnc
 * lrs\_tcs\_declaration\_under\_limit
 
-<br />
-
 ## Step 1: Request Payment with PayU
 
 The following parameters (mandatory) must be posted using any of the following seamless integration and refer to the corresponding section of [Web Checkout Integration](doc:introduction-web) documentation for the complete list of parameters to be posted:
@@ -551,4 +549,134 @@ curl --location 'https://test.payu.in/_payment' \
 
 ```
 
-## Step 2: Check PayU response
+## Step 2: Check response from PayU
+
+<ReverseHashing />
+
+### Sample response (parsed)
+
+* Success scenario
+
+```
+Array
+(
+    [mihpayid] => 403993715524069222
+    [mode] => CC
+    [status] => success
+    [unmappedstatus] => captured
+    [key] => JF***g
+    [txnid] => EaE4ZO3vU4iPsp
+    [amount] => 10.00
+    [cardCategory] => domestic
+    [discount] => 0.00
+    [net_amount_debit] => 10
+    [addedon] => 2021-09-08 19:37:19
+    [productinfo] => iPhone
+    [firstname] => Ashish
+    [lastname] => 
+    [address1] => 
+    [address2] => 
+    [city] => 
+    [state] => 
+    [country] => 
+    [zipcode] => 
+    [email] => test@gmail.com
+    [phone] => 9876543210
+    [udf1] => 
+    [udf2] => 
+    [udf3] => 
+    [udf4] => 
+    [udf5] => 
+    [udf6] => 
+    [udf7] => 
+    [udf8] => 
+    [udf9] => 
+    [udf10] => 
+    [hash] => ed99957adb08fea56c907b88e8d158a79c3562c67f96c298461509826f77a7ae9e88b2a176b3234c25f50bcd451271728719656f3bb59c13a52bebabc468615a
+    [field1] => 0608273386032718000015
+    [field2] => 986987
+    [field3] => 10.00
+    [field4] => 403993715524069222
+    [field5] => 100
+    [field6] => 02
+    [field7] => AUTHPOSITIVE
+    [field8] => 
+    [field9] => Transaction is Successful
+    [payment_source] => payu
+    [PG_TYPE] => CC-PG
+    [bank_ref_num] => 0608273386032718000015
+    [bankcode] => CC
+    [error] => E000
+    [error_Message] => No Error
+    [name_on_card] => payu
+    [cardnum] => 512345XXXXXX2346
+)
+```
+
+* Failure scenario
+
+```
+Array
+(
+    [mihpayid] => 20869277619
+    [mode] => CC
+    [status] => failure
+    [unmappedstatus] => failed
+    [key] => L43t1c
+    [txnid] => 26ba7cd6a67b0a010542
+    [amount] => 1.00
+    [cardCategory] => domestic
+    [discount] => 0.00
+    [net_amount_debit] => 0.00
+    [addedon] => 2024-09-05 17:46:10
+    [productinfo] => Product Info
+    [firstname] => Payu-Admin
+    [lastname] => 
+    [address1] => 
+    [address2] => 
+    [city] => 
+    [state] => 
+    [country] => 
+    [zipcode] => 
+    [email] => test@example.com
+    [phone] => 1234567890
+    [udf1] => 
+    [udf2] => 
+    [udf3] => 
+    [udf4] => 
+    [udf5] => 
+    [udf6] => 
+    [udf7] => 
+    [udf8] => 
+    [udf9] => 
+    [udf10] => 
+    [hash] => ac7720e4bc33e5494bec6d37302e522171175a987f9d47286bfd29e8a7fc794f56433fcacf0bc120db781c4dc1d05a4857d71e83f00f6ed6aa9c97a1938b9467
+    [field1] => 
+    [field2] => 
+    [field3] => 
+    [field4] => 
+    [field5] => 05
+    [field6] => 
+    [field7] => AUTHNEGATIVE
+    [field8] => 
+    [field9] => Authorization failed at Bank
+    [payment_source] => payu
+    [pa_name] => PayU
+    [PG_TYPE] => CC-PG
+    [bank_ref_num] => 2409052690
+    [bankcode] => AMEX
+    [error] => E1903
+    [error_Message] => Authorization failed at Bank
+    [cardnum] => XXXXXXXXXXXX2003
+    [cardhash] => This field is no longer supported in postback params.
+)
+```
+
+## Step 4: Verify the Payment
+
+Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](doc:verify_payment_api) under API Reference.
+
+> 📘 Note:
+
+```
+```
