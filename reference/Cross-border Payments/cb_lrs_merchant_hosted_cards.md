@@ -5,6 +5,13 @@ api:
   operationId: MerchantHostedCheckout-Cards
 hidden: true
 ---
+PayU’s **\_payment** API supports LRS implementation using the following parameters:
+
+* buyer\_type\_business
+* lrs\_mandatory\_limit\_declaration
+* lrs\_tnc
+* lrs\_tcs\_declaration\_under\_limit
+
 ## Sample Request
 
 <details>
