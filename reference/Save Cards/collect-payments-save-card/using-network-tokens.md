@@ -482,11 +482,11 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>integer</code> This parameter is used to specify the store card token type. For this scenario, you must include 0.
+        <code>integer</code> This parameter is used to specify the store card token type. For this scenario, you must include 1.
       </td>
 
       <td>
-        0
+        1
       </td>
     </tr>
 
