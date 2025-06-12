@@ -35,15 +35,15 @@ HTTP Method: **POST**
   <thead>
     <tr>
       <th>
-        **Parameter**
+        Parameter
       </th>
 
       <th>
-        **Description**
+        Description
       </th>
 
       <th>
-        **Example**
+        Example
       </th>
     </tr>
   </thead>
