@@ -1,5 +1,5 @@
 ---
-title: CB LRS Integration
+title: Liberalised Remittance Scheme Integration
 deprecated: false
 hidden: true
 metadata:
