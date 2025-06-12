@@ -672,11 +672,6 @@ Array
 )
 ```
 
-## Step 4: Verify the Payment
+## Step 3: Verify the Payment
 
 Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](doc:verify_payment_api) under API Reference.
-
-> 📘 Note:
-
-```
-```
