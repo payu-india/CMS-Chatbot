@@ -52,7 +52,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         <Glossary>key</Glossary>
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -67,7 +67,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         api_version
-        <code>optional</code>
+        <br/><code>optional</code>
       </td>
 
       <td>
@@ -82,7 +82,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         txnid
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -97,7 +97,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         amount
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -112,7 +112,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         productinfo
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -130,7 +130,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         firstname
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -148,7 +148,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         email
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -166,7 +166,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         phone
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -183,7 +183,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         lastname
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -201,7 +201,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         address1
-        <code>optional</code>
+        <br/><code>optional</code>
       </td>
 
       <td>
@@ -219,7 +219,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         address2
-        <code>optional</code>
+        <br/><code>optional</code>
       </td>
 
       <td>
@@ -234,7 +234,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         city
-        <code>optional</code>
+        <br/><code>optional</code>
       </td>
 
       <td>
@@ -249,7 +249,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         state
-        <code>optional</code>
+        <br/><code>optional</code>
       </td>
 
       <td>
@@ -264,7 +264,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         country
-        <code>optional</code>
+        <br/><code>optional</code>
       </td>
 
       <td>
@@ -279,7 +279,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         zipcode
-        <code>optional</code>
+        <br/><code>optional</code>
       </td>
 
       <td>
@@ -297,7 +297,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         surl
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -312,7 +312,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         furl
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -327,7 +327,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         hash
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -342,7 +342,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         <Glossary>pg</Glossary>
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -357,7 +357,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         <Glossary>bankcode</Glossary>
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -372,7 +372,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         udf1 - udf5
-        <code>optional</code>
+        <br/><code>optional</code>
       </td>
 
       <td>
@@ -388,7 +388,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         ccnum
-        <code>optional</code>
+        <br/><code>optional</code>
       </td>
 
       <td>
@@ -403,7 +403,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         ccname
-        <code>optional</code>
+        <br/><code>optional</code>
       </td>
 
       <td>
@@ -418,7 +418,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         ccvv
-        <code>optional</code>
+        <br/><code>optional</code>
       </td>
 
       <td>
@@ -433,7 +433,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         ccexpmon
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -448,7 +448,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         ccexpyr
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -463,7 +463,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         store_card_token
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -478,7 +478,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         storecard_token_type
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
@@ -493,7 +493,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         additional_info
-        <code>mandatory</code>
+        <br/><code>mandatory</code>
       </td>
 
       <td>
