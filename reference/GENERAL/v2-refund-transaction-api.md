@@ -108,9 +108,71 @@ The request header contains the following fields:
   </tbody>
 </Table>
 
+The following sample Java code contains the logic used to encrypt as described in the above table:
+
+```java
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import org.apache.commons.codec.binary.Base64;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.InvalidKeyException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class HmacAuth {
+
+    public static String getSha256(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] digest = md.digest(input.getBytes());
+            return Base64.encodeBase64String(digest);
+        } catch (NoSuchAlgorithmException ignored) {}
+        return null;
+    }
+
+    public static JsonObject getRequestBody(){
+        JsonObject requestJson = new JsonObject();
+        requestJson.addProperty("firstname","John");
+        requestJson.addProperty("lastname","Doe");
+        return requestJson;
+    }
+
+    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException {
+        String key = "smsplus";
+        String secret = "admin";
+        Gson gson = new Gson();
+        String date = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'").withZoneUTC().print(new DateTime());
+        System.out.println(date);
+        JsonObject requestJson = getRequestBody();
+        String digest = getSha256(gson.toJson(requestJson));
+        System.out.println(digest);
+        String signingString = new StringBuilder()
+            .append("date: " + date)
+            .append("\ndigest: " + digest).toString();
+        Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+        SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+        sha256_HMAC.init(secret_key);
+        String signature = Base64.encodeBase64String(sha256_HMAC.doFinal(signingString.getBytes()));
+        String authorization = new StringBuilder()
+            .append("hmac username=\"")
+            .append(key)
+            .append("\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"")
+            .append(signature)
+            .append("\"").toString();
+        System.out.println(authorization);
+    }
+}
+```
+
+##
+
 ### Request Parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
