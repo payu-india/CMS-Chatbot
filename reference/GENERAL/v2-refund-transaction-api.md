@@ -235,10 +235,6 @@ public class HmacAuth {
   </tbody>
 </Table>
 
-> 📘 Note:
->
-> At least one of the following parameters must be provided: `requestId`, `payuId`, or `tokenId`.
-
 ### JSON Fields in the `request` Parameter:
 
 | Parameter                          | Description                                                 | Example           |
