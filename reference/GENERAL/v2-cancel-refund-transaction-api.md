@@ -168,8 +168,6 @@ public class HmacAuth {
 }
 ```
 
-##
-
 ## Request Parameters
 
 | Parameter   | Description                                  | Example               |
