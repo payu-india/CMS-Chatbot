@@ -9,34 +9,189 @@ The **Cancel Refund Transaction** API allows merchants to initiate and process r
 
 The Cancel Refund Transaction API allows merchants to initiate and process refund cancellations for transactions. It is part of PayU's modernized API suite and differs from the v1 API by providing enhanced functionality, improved response formats, and better support for complex use cases such as split payments. This API is exposed to both new and existing merchants as a core API for processing refunds.
 
-
 ### Endpoint
 
 ```
 POST /v1/transaction
 ```
 
-### Request Parameters
+## Request headers
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| key
-`mandatory` | Merchant key for authentication | `iDJYfd` |
-| mihpayid
-`mandatory` | PayU transaction ID (also called PayU ID) | `999091000003794` |
-| request
-`mandatory` | JSON string containing additional parameters | See JSON Fields below |
+The request header contains the following fields:
+
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Date
+        `mandatory`
+      </td>
+
+      <td>
+        The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.
+      </td>
+
+      <td>
+        Thu, 17 Feb 2022 08:17:59 GMT
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Digest
+        `mandatory`
+      </td>
+
+      <td>
+        Base 64 encode of (sha256 hash of the JSON data (post to server).
+      </td>
+
+      <td>
+        `vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Authorization
+        **mandatory**
+      </td>
+
+      <td>
+        This field is in the following format:
+        `hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="`
+        Where the above format includes the following:
+
+        * **username**: The merchant key of the merchant.
+        * **algorithm**: This must have the value as **hmac-sha256** that is used for this API
+        * **headers**: This must have the value as **date digest**
+        * **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:
+          * **signing\_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“
+          * **merchant\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](https://docs.payu.in/v1/docs/generate-merchant-key-and-salt-on-payu-dashboard)
+      </td>
+
+      <td>
+         hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI="
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        platformId\
+        `mandatory`
+      </td>
+
+      <td>
+        This field contains the platform ID and include the value as **1**.
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+The following sample Java code contains the logic used to encrypt as described in the above table:
+
+```java
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import org.apache.commons.codec.binary.Base64;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.InvalidKeyException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class HmacAuth {
+
+    public static String getSha256(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] digest = md.digest(input.getBytes());
+            return Base64.encodeBase64String(digest);
+        } catch (NoSuchAlgorithmException ignored) {}
+        return null;
+    }
+
+    public static JsonObject getRequestBody(){
+        JsonObject requestJson = new JsonObject();
+        requestJson.addProperty("firstname","John");
+        requestJson.addProperty("lastname","Doe");
+        return requestJson;
+    }
+
+    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException {
+        String key = "smsplus";
+        String secret = "admin";
+        Gson gson = new Gson();
+        String date = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'").withZoneUTC().print(new DateTime());
+        System.out.println(date);
+        JsonObject requestJson = getRequestBody();
+        String digest = getSha256(gson.toJson(requestJson));
+        System.out.println(digest);
+        String signingString = new StringBuilder()
+            .append("date: " + date)
+            .append("\ndigest: " + digest).toString();
+        Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+        SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+        sha256_HMAC.init(secret_key);
+        String signature = Base64.encodeBase64String(sha256_HMAC.doFinal(signingString.getBytes()));
+        String authorization = new StringBuilder()
+            .append("hmac username=\"")
+            .append(key)
+            .append("\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"")
+            .append(signature)
+            .append("\"").toString();
+        System.out.println(authorization);
+    }
+}
+```
+
+##
+
+## Request Parameters
+
+| Parameter   | Description                                  | Example               |
+| ----------- | -------------------------------------------- | --------------------- |
+| key         |                                              |                       |
+| `mandatory` | Merchant key for authentication              | `iDJYfd`              |
+| mihpayid    |                                              |                       |
+| `mandatory` | PayU transaction ID (also called PayU ID)    | `999091000003794`     |
+| request     |                                              |                       |
+| `mandatory` | JSON string containing additional parameters | See JSON Fields below |
 
 #### JSON Fields in the `request` Parameter:
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| txn_mode
-`mandatory` | Transaction refund mode (must be 1 for Source) | `1` |
-| token
-`mandatory` | Unique token for the refund transaction | `abbv98vqw` |
+| Parameter   | Description                                    | Example     |
+| ----------- | ---------------------------------------------- | ----------- |
+| txn\_mode   |                                                |             |
+| `mandatory` | Transaction refund mode (must be 1 for Source) | `1`         |
+| token       |                                                |             |
+| `mandatory` | Unique token for the refund transaction        | `abbv98vqw` |
 
 ### Sample Request
+
 ```bash
 curl --location 'http://localhost:8085/apilayer/v2/refund/secure' \
 --header 'Content-Type: application/json' \
@@ -60,19 +215,20 @@ curl --location 'http://localhost:8085/apilayer/v2/refund/secure' \
 
 ### Response Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| status | Indicates success (1) or failure (0) of the API call | `1` |
-| statusCode | Specific code for the status of the request | `102` |
-| message | Describes the outcome of the API call | `"Refund request accepted"` |
-| refundId | Unique identifier for the refund request (present only if successful) | `123456789` |
-| payuId | PayU transaction ID associated with the refund request | `999091000003794` |
-| refundToken | Unique token used to identify the refund request | `11358934598` |
-| splitInfo | Contains details of refunds for each split transaction (if applicable) | See JSON example |
+| Parameter   | Description                                                            | Example                     |
+| ----------- | ---------------------------------------------------------------------- | --------------------------- |
+| status      | Indicates success (1) or failure (0) of the API call                   | `1`                         |
+| statusCode  | Specific code for the status of the request                            | `102`                       |
+| message     | Describes the outcome of the API call                                  | `"Refund request accepted"` |
+| refundId    | Unique identifier for the refund request (present only if successful)  | `123456789`                 |
+| payuId      | PayU transaction ID associated with the refund request                 | `999091000003794`           |
+| refundToken | Unique token used to identify the refund request                       | `11358934598`               |
+| splitInfo   | Contains details of refunds for each split transaction (if applicable) | See JSON example            |
 
 ### Sample Response
 
 #### Success Response
+
 ```json
 {
   "status": 1,
@@ -83,6 +239,7 @@ curl --location 'http://localhost:8085/apilayer/v2/refund/secure' \
 ```
 
 #### Failure Response
+
 ```json
 {
   "status": 0,
