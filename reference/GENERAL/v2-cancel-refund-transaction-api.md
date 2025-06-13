@@ -1,5 +1,5 @@
 ---
-title: V2 Cancel Refund Transaction API
+title: v2 Cancel Refund Transaction API
 deprecated: false
 hidden: true
 metadata:
