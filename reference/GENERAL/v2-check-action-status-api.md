@@ -110,7 +110,7 @@ The request header contains the following fields:
 
 ### Request Parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -205,7 +205,9 @@ The request header contains the following fields:
   </tbody>
 </Table>
 
-<br />
+> 📘 Note:
+>
+> At least one of the following parameters must be provided: `requestId`, `payuId`, or `tokenId`.
 
 ### Sample Request
 
