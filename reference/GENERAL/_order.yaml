@@ -1,5 +1,5 @@
 - eligible-bin-for-emi-api-v2
 - v2_verify_payment_api
-- v2-cancel-refund-transaction-api
 - v2-refund-transaction-api
+- v2-cancel-refund-transaction-api
 - v2-check-action-status-api
