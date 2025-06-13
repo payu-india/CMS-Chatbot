@@ -170,7 +170,7 @@ public class HmacAuth {
 
 ## Request Parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -235,9 +235,13 @@ public class HmacAuth {
   </tbody>
 </Table>
 
-#### request JSON fields description
+> 📘 Note:
+>
+> At least one of the following parameters must be provided: `requestId`, `payuId`, or `tokenId`.
 
-<Table>
+### request JSON fields description
+
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
