@@ -110,11 +110,70 @@ The request header contains the following fields:
 
 ### Request Parameters
 
-| Parameter                 | Description                                  | Example               |
-| ------------------------- | -------------------------------------------- | --------------------- |
-| key<br />`mandatory`      | Merchant key for authentication              | `iDJYfd`              |
-| mihpayid<br />`mandatory` | PayU transaction ID (also called PayU ID)    | `999091000003794`     |
-| request<br />`mandatory`  | JSON string containing additional parameters | See JSON Fields below |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        Merchant key for authentication
+      </td>
+
+      <td>
+        `iDJYfd`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        mihpayid
+        `mandatory`
+      </td>
+
+      <td>
+        PayU transaction ID (also called PayU ID)
+      </td>
+
+      <td>
+        `999091000003794`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        request
+        `mandatory`
+      </td>
+
+      <td>
+        JSON string containing additional parameters
+      </td>
+
+      <td>
+        See JSON Fields below
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### JSON Fields in the `request` Parameter:
 
