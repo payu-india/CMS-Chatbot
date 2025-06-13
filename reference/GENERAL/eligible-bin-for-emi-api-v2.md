@@ -14,6 +14,7 @@ The Eligible Bin for EMI API v2 is used only when the merchant needs the EMI fea
 
 <Image align="center" src="https://files.readme.io/2eaac64-emi_eligible_bins_flow.png" />
 
+
 HTTP Method: **POST**
 
 You can post a request using any of the following methods:
@@ -25,7 +26,7 @@ You can post a request using any of the following methods:
 
 The request header contains the following fields:
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -60,7 +61,7 @@ The request header contains the following fields:
 
     <tr>
       <td>
-        Digest\
+        Digest
         **mandatory**
       </td>
 
@@ -75,20 +76,20 @@ The request header contains the following fields:
 
     <tr>
       <td>
-        Authorization\
+        Authorization
         **mandatory**
       </td>
 
       <td>
-        This field is in the following format:\
-        `hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="`\
-        Where the above format includes the following:  
+        This field is in the following format:
+        `hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="`
+        Where the above format includes the following:
 
         * **username**: The merchant key of the merchant.
         * **algorithm**: This must have the value as **hmac-sha256** that is used for this API
         * **headers**: This must have the value as **date digest**
         * **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:
-          * **signing\_string**: This is in the "**Date**"+"\\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\\n"+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“
+          * **signing\_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“
           * **merchant\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](https://docs.payu.in/v1/docs/generate-merchant-key-and-salt-on-payu-dashboard)
       </td>
 
@@ -178,7 +179,7 @@ public class HmacAuth {
 
 ### Request parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -203,7 +204,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        This parameter needs can include any of the following the values:  
+        This parameter needs can include any of the following the values:
 
         * **bin**: If you want to check on the basis of the first 6/8/9 digits of card number or network token.
         * **NET**: If you want to check on the basis of network token.
@@ -221,7 +222,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        This parameter can contain any of the following:  
+        This parameter can contain any of the following:
 
         * If **bin** used in var1 parameter, the first 6/8/9 digits of card number or network token.
         * If **NET** used in the var1 parameter, the entire network token must be passed.
@@ -239,9 +240,9 @@ public class HmacAuth {
       </td>
 
       <td>
-        This parameter needs to include the transaction amount.  
+        This parameter needs to include the transaction amount.
 
-        * \*Note\*\*: Amount is a non-mandatory field, but is mandatory if bank code is ONEC or BAJFIN .
+        * *Note*\*: Amount is a non-mandatory field, but is mandatory if bank code is ONEC or BAJFIN .
       </td>
 
       <td>
@@ -253,7 +254,7 @@ public class HmacAuth {
 
 ### Response parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -277,10 +278,11 @@ public class HmacAuth {
       </td>
 
       <td>
-        This parameter returns the status of web service call.\
-        The status can be any of the following:\
-            \- 0 - If web service call failed.\
-             \- 1 - If web service call succeeded
+        This parameter returns the status of web service call.
+        The status can be any of the following:
+
+        * 0 - If web service call failed.
+          * 1 - If web service call succeeded
       </td>
 
       <td>
@@ -369,7 +371,7 @@ If not found:
 
 ### Request parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -394,7 +396,7 @@ If not found:
       </td>
 
       <td>
-        This parameter needs can include any of the following the values:  
+        This parameter needs can include any of the following the values:
 
         * **bin**: If you want to check on the basis of the first 6/8/9 digits of card number or network token.
         * **NET**: If you want to check on the basis of network token.
@@ -412,7 +414,7 @@ If not found:
       </td>
 
       <td>
-        This parameter can contain any of the following:  
+        This parameter can contain any of the following:
 
         * If **bin** used in var1 parameter, the first 6/8/9 digits of card number or network token.
         * If **NET** used in the var1 parameter, the entire network token must be passed.
@@ -457,7 +459,7 @@ If not found:
 
 ### Response parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -481,10 +483,11 @@ If not found:
       </td>
 
       <td>
-        This parameter returns the status of web service call.\
-        The status can be any of the following:\
-            \- 0 - If web service call failed.\
-             \- 1 - If web service call succeeded
+        This parameter returns the status of web service call.
+        The status can be any of the following:
+
+        * 0 - If web service call failed.
+          * 1 - If web service call succeeded
       </td>
 
       <td>
@@ -512,13 +515,7 @@ If not found:
       </td>
 
       <td>
-        The details of the EMI offer is displayed in a JSON format and it contains the following fields:\
-            \- **isEligible** - This paraAny of the following values are:\
-                 \- .0 - If EMI offers are not available for the given card BIN.\
-                 \- 1 - If EMI offers are available for the given card BIN.  
-
-        * **bank** - The name of bank that corresponds to the given card BIN
-        * **minAmount** - The minimum amount for which the EMI offer is available
+        The details of the EMI offer is displayed in a JSON format and it contains the following fields:
       </td>
 
       <td>
