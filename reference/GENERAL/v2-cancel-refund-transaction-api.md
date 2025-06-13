@@ -170,23 +170,122 @@ public class HmacAuth {
 
 ## Request Parameters
 
-| Parameter   | Description                                  | Example               |
-| ----------- | -------------------------------------------- | --------------------- |
-| key         |                                              |                       |
-| `mandatory` | Merchant key for authentication              | `iDJYfd`              |
-| mihpayid    |                                              |                       |
-| `mandatory` | PayU transaction ID (also called PayU ID)    | `999091000003794`     |
-| request     |                                              |                       |
-| `mandatory` | JSON string containing additional parameters | See JSON Fields below |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
-#### JSON Fields in the `request` Parameter:
+      <th>
+        Description
+      </th>
 
-| Parameter   | Description                                    | Example     |
-| ----------- | ---------------------------------------------- | ----------- |
-| txn\_mode   |                                                |             |
-| `mandatory` | Transaction refund mode (must be 1 for Source) | `1`         |
-| token       |                                                |             |
-| `mandatory` | Unique token for the refund transaction        | `abbv98vqw` |
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        Merchant key for authentication
+      </td>
+
+      <td>
+        `iDJYfd`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        mihpayid
+        `mandatory`
+      </td>
+
+      <td>
+        PayU transaction ID (also called PayU ID)
+      </td>
+
+      <td>
+        `999091000003794`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        request
+        `mandatory`
+      </td>
+
+      <td>
+        `JSON` The JSON object contains the transaction mode and token. For more information, refer to [request JSON fields description](#request-json-fields-description) .
+      </td>
+
+      <td>
+        [request JSON fields description](#request-json-fields-description)
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+#### request JSON fields description
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        txn\_mode
+        `mandatory`
+      </td>
+
+      <td>
+        Transaction refund mode (must be 1 for Source)
+      </td>
+
+      <td>
+        `1`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        token
+        `mandatory`
+      </td>
+
+      <td>
+        Unique token for the refund transaction
+      </td>
+
+      <td>
+        `abbv98vqw`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Sample Request
 
