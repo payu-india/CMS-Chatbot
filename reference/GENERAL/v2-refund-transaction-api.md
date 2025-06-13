@@ -1,7 +1,7 @@
 ---
 title: 'v2 Refund Transaction API '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
