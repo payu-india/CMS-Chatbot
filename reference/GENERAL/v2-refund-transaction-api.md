@@ -38,7 +38,7 @@ The request header contains the following fields:
     <tr>
       <td>
         Date
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -53,7 +53,7 @@ The request header contains the following fields:
     <tr>
       <td>
         Digest
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -94,7 +94,7 @@ The request header contains the following fields:
     <tr>
       <td>
         platformId\
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -168,9 +168,7 @@ public class HmacAuth {
 }
 ```
 
-##
-
-### Request Parameters
+## Request Parameters
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -237,7 +235,9 @@ public class HmacAuth {
   </tbody>
 </Table>
 
-#### JSON Fields in the `request` Parameter:
+<br />
+
+### JSON Fields in the `request` Parameter:
 
 | Parameter                          | Description                                                 | Example           |
 | ---------------------------------- | ----------------------------------------------------------- | ----------------- |
