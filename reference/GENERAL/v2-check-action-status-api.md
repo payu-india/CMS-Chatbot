@@ -180,7 +180,7 @@ The request header contains the following fields:
       </td>
 
       <td>
-        `String`Merchant key that was provide by PayU while onboarding.
+        `String` This parameter must contain the merchant key provided by PayU.
       </td>
 
       <td>
