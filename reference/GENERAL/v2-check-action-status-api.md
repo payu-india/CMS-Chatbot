@@ -195,7 +195,7 @@ The request header contains the following fields:
       </td>
 
       <td>
-        `JSON` String containing additional parameters
+        `JSON String` String containing additional parameters
       </td>
 
       <td>
