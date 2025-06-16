@@ -130,12 +130,27 @@ The request header contains the following fields:
   <tbody>
     <tr>
       <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must contain the merchant key provided by PayU.
+      </td>
+
+      <td>
+        `iDJYfd`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
         requestId
         `optional`
       </td>
 
       <td>
-        `String Array` Array of request IDs to query
+        `String Array` This parameter includes array of child merchant request IDs to query.
       </td>
 
       <td>
@@ -150,7 +165,7 @@ The request header contains the following fields:
       </td>
 
       <td>
-        `String Array`Contains the Payu ID (mihpayuid) that you receive in the response for a successful payment transaction.
+        `String Array`This parameter must contain the PayU ID (mihpayuid) that you receive in the response for a successful payment transaction.
       </td>
 
       <td>
@@ -170,21 +185,6 @@ The request header contains the following fields:
 
       <td>
         `["TOKEN12345"]`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        key
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Contains the merchant key provided by PayU.
-      </td>
-
-      <td>
-        `iDJYfd`
       </td>
     </tr>
 
