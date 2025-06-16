@@ -165,7 +165,7 @@ The request header contains the following fields:
       </td>
 
       <td>
-        `String`Token ID to query
+        `String` Token ID (unique token from the merchant) for the refund request. Token ID has to be generated at your end for each new refund request. It is an identifier for each new refund request which can be used for tracking it. It must be unique for every new refund request generated – otherwise the refund request would not be generated successfully. Token ID length should not be greater than 23 characters
       </td>
 
       <td>
