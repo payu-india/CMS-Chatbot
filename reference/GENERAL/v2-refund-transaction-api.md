@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-The Refund Transaction API allows merchants to initiate refunds for transactions. It is functionally similar to the Cancel Refund Transaction API, but is maintained only for backward compatibility with existing integrations. This API is not exposed to new merchants, who are directed to use the Refund Initiate API instead. The v2 API offers enhanced functionality and improved response formats compared to the v1 API.
+The \*\*Refund Transaction \*\*API allows merchants to initiate refunds for transactions. It is functionally similar to the Cancel Refund Transaction API, but is maintained only for backward compatibility with existing integrations. This API is not exposed to new merchants, who are directed to use the Refund Initiate API instead. The v2 API offers enhanced functionality and improved response formats compared to the v1 API.
 
 ### Endpoint
 
@@ -210,7 +210,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        This parameter must contains the Payu ID (mihpayuid) that you receive in the response for a successful payment transation.
+        This parameter must contains the Payu ID (mihpayuid) that you receive in the response for a successful payment transaction.
       </td>
 
       <td>
