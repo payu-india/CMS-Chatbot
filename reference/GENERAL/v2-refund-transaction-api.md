@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-The \*\*Refund Transaction \*\*API allows merchants to initiate refunds for transactions. It is functionally similar to the Cancel Refund Transaction API, but is maintained only for backward compatibility with existing integrations. This API is not exposed to new merchants, who are directed to use the Refund Initiate API instead. The v2 API offers enhanced functionality and improved response formats compared to the v1 API.
+The **Refund Transaction** API allows merchants to initiate refunds for transactions. Its functionally similar to the **Cancel Refund Transaction** API (under v1), but is maintained only for backward compatibility with existing integrations. The v2 API offers enhanced functionality and improved response formats compared to the v1 API.
 
 ### Endpoint
 
