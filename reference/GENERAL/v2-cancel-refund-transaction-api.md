@@ -195,7 +195,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        Merchant key for authentication
+        This parameter must contain the merchant key provided by PayU.
       </td>
 
       <td>
@@ -210,7 +210,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        PayU transaction ID (also called PayU ID)
+        This parameter must contains the Payu ID (mihpayuid) that you receive in the response for a successful payment transaction.
       </td>
 
       <td>
