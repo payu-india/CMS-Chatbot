@@ -324,7 +324,7 @@ curl --location 'http://localhost:8085/apilayer/v2/refund/secure' \
 | refundId    | Unique identifier for the refund request (present only if successful)  | `123456789`                 |
 | payuId      | PayU transaction ID associated with the refund request                 | `999091000003794`           |
 | refundToken | Unique token used to identify the refund request                       | `11358934598`               |
-| splitInfo   | Contains details of refunds for each split transaction (if applicable) | See JSON example            |
+| splitInfo   | Contains details of refunds for each split transaction (if applicable) |                             |
 
 ### Sample Response
 
