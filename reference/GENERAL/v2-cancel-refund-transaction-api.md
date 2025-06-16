@@ -195,7 +195,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        This parameter must contain the merchant key provided by PayU.
+        `String `This parameter must contain the merchant key provided by PayU.
       </td>
 
       <td>
@@ -210,7 +210,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        This parameter must contains the Payu ID (mihpayuid) that you receive in the response for a successful payment transaction.
+        `String `This parameter must contains the PayU ID (mihpayuid) that you receive in the response for a successful payment transaction.
       </td>
 
       <td>
@@ -225,7 +225,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        `JSON` The JSON object contains the transaction mode and token. For more information, refer to [request JSON fields description](#request-json-fields-description) .
+        `JSON String` The JSON object contains the transaction mode and token. For more information, refer to [request JSON fields description](#request-json-fields-description) .
       </td>
 
       <td>
