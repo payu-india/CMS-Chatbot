@@ -210,7 +210,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        `String `This parameter must contains the Payu ID (mihpayuid) that you receive in the response for a successful payment transaction.
+        `String `This parameter must contains the PayU ID (mihpayuid) that you receive in the response for a successful payment transaction.
       </td>
 
       <td>
