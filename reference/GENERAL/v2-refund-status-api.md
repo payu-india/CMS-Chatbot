@@ -212,7 +212,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        `Sting Array `Array of PayU transaction IDs or PayU ID for which the refund information is required.
+        `Sting Array `Array of PayU transaction IDs or PayU ID for which the refund information is required. Payu ID (mihpayuid) that you receive in the response for a successful payment transaction.
       </td>
 
       <td>
@@ -227,7 +227,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        Token ID to query
+        This parameter must contain the Token ID (unique token from the merchant) for the refund request. Token ID has to be generated at your end for each new refund request. It is an identifier for each new refund request which can be used for tracking it. It must be unique for every new refund request generated – otherwise the refund request would not be generated successfully. Token ID length should not be greater than 23 characters
       </td>
 
       <td>
