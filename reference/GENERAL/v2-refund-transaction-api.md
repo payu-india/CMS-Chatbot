@@ -195,7 +195,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        Merchant key for authentication
+        This parameter must contain the merchant key provided by PayU.
       </td>
 
       <td>
@@ -210,7 +210,7 @@ public class HmacAuth {
       </td>
 
       <td>
-        PayU transaction ID (also called PayU ID)
+        This parameter must contains the Payu ID (mihpayuid) that you receive in the response for a successful payment transation.
       </td>
 
       <td>
@@ -225,17 +225,17 @@ public class HmacAuth {
       </td>
 
       <td>
-        JSON string containing additional parameters
+        JSON string containing additional parameters. For more information, refer to [request JSON fields description](#request-json-fields-description).
       </td>
 
       <td>
-        See JSON Fields below
+        Refer to [request JSON fields description](#request-json-fields-description) .
       </td>
     </tr>
   </tbody>
 </Table>
 
-### JSON Fields in the `request` Parameter:
+### request JSON fields description
 
 | Parameter                          | Description                                                 | Example           |
 | ---------------------------------- | ----------------------------------------------------------- | ----------------- |
