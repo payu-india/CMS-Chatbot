@@ -150,7 +150,7 @@ The request header contains the following fields:
       </td>
 
       <td>
-        `String Array` This parameter must contains the Payu ID (mihpayuid) that you receive in the response for a successful payment transation.
+        `String Array`Contains the Payu ID (mihpayuid) that you receive in the response for a successful payment transaction.
       </td>
 
       <td>
@@ -180,7 +180,7 @@ The request header contains the following fields:
       </td>
 
       <td>
-        `String` This parameter must contain the merchant key provided by PayU.
+        `String` Contains the merchant key provided by PayU.
       </td>
 
       <td>
