@@ -150,7 +150,7 @@ The request header contains the following fields:
       </td>
 
       <td>
-        `String Array`PayU transaction ID to query
+        `String Array` This parameter must contains the Payu ID (mihpayuid) that you receive in the response for a successful payment transation.
       </td>
 
       <td>
@@ -199,7 +199,7 @@ The request header contains the following fields:
       </td>
 
       <td>
-        See JSON example
+
       </td>
     </tr>
   </tbody>
