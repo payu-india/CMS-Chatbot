@@ -7,7 +7,7 @@ metadata:
 ---
 The **Cancel Refund Transaction** API allows merchants to initiate and process refund cancellations for transactions. It is part of PayU's modernized API suite and differs from the v1 API by providing enhanced functionality, improved response formats, and better support for complex use cases.
 
-The Cancel Refund Transaction API allows merchants to initiate and process refund cancellations for transactions. It is part of PayU's modernized API suite and differs from the v1 API by providing enhanced functionality, improved response formats, and better support for complex use cases such as split payments. This API is exposed to both new and existing merchants as a core API for processing refunds.
+The **Cancel Refund Transaction** API allows merchants to initiate and process refund cancellations for transactions. It is part of PayU's modernized API suite and differs from the v1 API by providing enhanced functionality, improved response formats, and better support for complex use cases such as split payments. This API is exposed to both new and existing merchants as a core API for processing refunds.
 
 ### Endpoint
 
