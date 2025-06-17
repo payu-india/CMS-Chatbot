@@ -11,14 +11,20 @@ http method; GET
 
 endpoint
 
+## Header Parameters
+
+<br />
+
+| parameter  | description                                                                                                    |    |
+| :--------- | :------------------------------------------------------------------------------------------------------------- | :- |
+| merchantID | Merchant ID that was provided while onboarding. For more information, refer to View Merchant Key on Dashboard. |    |
+|            |                                                                                                                |    |
+
 ## Query Parameters
 
-<Tabs>
-  <Tab title="Parameter">
-    Welcome to the content that you can only see inside the first Tab.
-  </Tab>
+| parameter | description                                        |
+| :-------- | :------------------------------------------------- |
+| ifscCode  | Post the IFSC code for which details are required. |
+|           |                                                    |
 
-  <Tab title="Description">
-    Here's content that's only inside the second Tab.
-  </Tab>
-</Tabs>
+##
