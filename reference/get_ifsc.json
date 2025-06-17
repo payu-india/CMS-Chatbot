@@ -1,0 +1,118 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Payout For Merchants",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://uatoneapi.payu.in/payout/merchant/",
+      "variables": {}
+    },
+    {
+      "url": "https://uatoneapi.payu.in/payout/",
+      "variables": {}
+    },
+    {
+      "url": "https://test.payumoney.com/payout/merchant",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/getIfscDetails": {
+      "get": {
+        "tags": [
+          "VnvV"
+        ],
+        "summary": "GetIFSCDetailsAPI",
+        "description": "",
+        "operationId": "GetIFSCDetailsAPI",
+        "parameters": [
+          {
+            "name": "ifsc",
+            "in": "query",
+            "description": "Indicates the IFSC Code of the bank to fetch the associated beneficiary details",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "HDFC0004392"
+              ]
+            }
+          },
+          {
+            "name": "payoutMerchantId",
+            "in": "header",
+            "description": "Specify the merchant ID provided while onboarding for Payouts in this parameter.",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "contentEncoding": "int32"
+            }
+
+
+          }
+        ],
+        
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://uatoneapi.payu.in/payout/merchant/",
+            "variables": {}
+          },
+          {
+            "url": "https://uatoneapi.payu.in/payout/",
+            "variables": {}
+          },
+          {
+            "url": "https://test.payumoney.com/payout/merchant",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "SmartPay"
+    },
+    {
+      "name": "PayoutCancel"
+    },
+    {
+      "name": "webhook v2"
+    },
+    {
+      "name": "Misc",
+      "description": ""
+    },
+    {
+      "name": "InitiateTransfer",
+      "description": ""
+    },
+    {
+      "name": "VnvV",
+      "description": ""
+    }
+  ]
+}
