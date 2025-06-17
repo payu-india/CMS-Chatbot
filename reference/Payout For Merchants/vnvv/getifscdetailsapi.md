@@ -27,4 +27,7 @@ endpoint
 | ifscCode  | Post the IFSC code for which details are required. |
 |           |                                                    |
 
-##
+## Sample response
+
+```
+```
