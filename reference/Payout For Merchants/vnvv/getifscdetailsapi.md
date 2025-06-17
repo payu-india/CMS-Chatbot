@@ -11,4 +11,14 @@ http method; GET
 
 endpoint
 
-Request paramets
+## Query Parameters
+
+<Tabs>
+  <Tab title="Parameter">
+    Welcome to the content that you can only see inside the first Tab.
+  </Tab>
+
+  <Tab title="Description">
+    Here's content that's only inside the second Tab.
+  </Tab>
+</Tabs>
