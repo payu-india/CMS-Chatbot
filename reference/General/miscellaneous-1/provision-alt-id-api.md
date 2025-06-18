@@ -517,6 +517,18 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 }
 ```
 
+* Mastercard DPA creation in progress
+
+```json
+{
+    "statusCode": "EA082",
+    "errorDesc": "Mastercard DPA creation in progress. Please retry after 15 mins.",
+    "status": 0,
+    "clientReferenceId": "befd87386aebf388206",
+    "errorMsgFromNetwork": "DPA entity data not found for the given clientId or dpaId in getDpaEntityData request."
+}
+```
+
 * Invalid Acquired Merchant ID Code configuration
 
 ```json
@@ -530,7 +542,7 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 
 * Invalid expiry month
 
-```
+```json
  
 {
     "statusCode": "EA025",
