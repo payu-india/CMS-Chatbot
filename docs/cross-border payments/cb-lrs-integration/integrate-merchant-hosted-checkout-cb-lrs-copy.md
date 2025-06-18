@@ -1,5 +1,5 @@
 ---
-title: Integrate Merchant Hosted Checkout - CB LRS (COPY)
+title: 'Integrate PayU Hosted Checkout - CB LRS '
 deprecated: false
 hidden: true
 metadata:
@@ -11,6 +11,10 @@ PayU’s **\_payment** API supports LRS implementation using the following param
 * lrs\_mandatory\_limit\_declaration
 * lrs\_tnc
 * lrs\_tcs\_declaration\_under\_limit
+
+## Workflow
+
+<br />
 
 ## Step 1: Validate the PAN card
 
@@ -188,11 +192,11 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"79c0d918a  
-                                                4f4661cb9cb  
-                                                17d96d24ac1  
-                                                cf04b6013d50  
-                                                4cc766ac5235  
-                                                380bfc0d5"`
+                                                        4f4661cb9cb  
+                                                        17d96d24ac1  
+                                                        cf04b6013d50  
+                                                        4cc766ac5235  
+                                                        380bfc0d5"`
       </td>
     </tr>
 
@@ -249,12 +253,12 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"195ab95fa  
-                                                4700eeaaf38  
-                                                b7f5b538d29  
-                                                79f0f281e0  
-                                                a4eaedca1a  
-                                                a675b79b3  
-                                                31a2"`
+                                                        4700eeaaf38  
+                                                        b7f5b538d29  
+                                                        79f0f281e0  
+                                                        a4eaedca1a  
+                                                        a675b79b3  
+                                                        31a2"`
       </td>
     </tr>
 
