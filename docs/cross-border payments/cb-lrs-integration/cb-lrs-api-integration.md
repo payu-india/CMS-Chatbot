@@ -1,5 +1,5 @@
 ---
-title: CB LRS API Integration
+title: Integrate Merchant Hosted Checkout - CB LRS
 deprecated: false
 hidden: true
 metadata:
