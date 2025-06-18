@@ -5,7 +5,22 @@ api:
   operationId: MerchantHostedCheckout-Cards
 hidden: true
 ---
-## Step 1: Validate the PAN Card
+PayU’s \_payment API supports LRS implementation using the following parameters of **\_payment** API:
+
+* buyer\_type\_business
+* lrs\_mandatory\_limit\_declaration
+* lrs\_tnc
+* lrs\_tcs\_declaration\_under\_limit
+
+**Steps to integrate**
+
+<br />
+
+## Customer workflow
+
+<br />
+
+## Step 1: Validate the PAN card
 
 The PAN Card Status Check API allows merchants to verify PAN (Permanent Account Number) card details. It validates whether a given PAN number is active, confirms if the provided name and date of birth match the official PAN records, and checks the seeding status of the PAN. This API is essential for KYC (Know Your Customer) processes, identity verification, and regulatory compliance.
 
@@ -181,11 +196,11 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"79c0d918a  
-                        4f4661cb9cb  
-                        17d96d24ac1  
-                        cf04b6013d50
-                        4cc766ac5235
-                        380bfc0d5"`
+                                4f4661cb9cb  
+                                17d96d24ac1  
+                                cf04b6013d50  
+                                4cc766ac5235
+                                380bfc0d5"`
       </td>
     </tr>
 
@@ -242,12 +257,12 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"195ab95fa  
-                        4700eeaaf38  
-                        b7f5b538d29  
-                        79f0f281e0
-                        a4eaedca1a
-                        a675b79b3
-                        31a2"`
+                                4700eeaaf38  
+                                b7f5b538d29  
+                                79f0f281e0  
+                                a4eaedca1a
+                                a675b79b3
+                                31a2"`
       </td>
     </tr>
 
