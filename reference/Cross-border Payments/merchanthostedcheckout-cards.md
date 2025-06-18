@@ -9,15 +9,15 @@ hidden: true
 
 The PAN Card Status Check API allows merchants to verify PAN (Permanent Account Number) card details. It validates whether a given PAN number is active, confirms if the provided name and date of birth match the official PAN records, and checks the seeding status of the PAN. This API is essential for KYC (Know Your Customer) processes, identity verification, and regulatory compliance.
 
-## Endpoint
+**Endpoint**
 
 ```
 https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 ```
 
-## Request Parameters
+## Request parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -82,9 +82,49 @@ https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
   </tbody>
 </Table>
 
-## Response Parameters
+# Sample request
 
-<Table>
+```bash
+curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status' \
+--header 'Content-Type: application/json' \
+--header 'Date: Thu, 17 Jun 2025 08:17:59 GMT' \
+--header 'Digest: DFXmqI0rFnXlmHLlsRwdDMw9vUSVzyYQzGP+MKLo8f8=' \
+--header 'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="7qjgpH9B4QALxDR0nVlHdEKEYMZ0XeJ0QpnvveSyqMo="' \
+--header 'platformId: 1' \
+--data '{
+    "pan_number": "CYCPD2784G",
+    "name": "AKASH DEEP",
+    "dob": "15/09/1993"
+}'
+```
+
+## Sample response
+
+```json
+{
+    "id": 86235,
+    "api_name": "pan_status_check",
+    "identifier": "79c0d918a4f4661cb9cb17d96d24ac1cf04b6013d504cc766ac5235380bfc0d5",
+    "response": {
+        "result": {
+            "status": "Active",
+            "nameMatch": "Y",
+            "dobMatch": "Y",
+            "seedingStatus": "Y"
+        }
+    },
+    "status": "success",
+    "http_status": 200,
+    "client_id": "195ab95fa4700eeaaf38b7f5b538d2979f0f281e0a4eaedca1aa675b79b331a2",
+    "created_at": "2025-04-30T05:51:40.000Z",
+    "updated_at": "2025-04-30T05:51:40.000Z",
+    "client_name": "SignzyClient"
+}
+```
+
+### Response parameters
+
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -141,11 +181,11 @@ https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"79c0d918a  
-        4f4661cb9cb
-        17d96d24ac1
-        cf04b6013d50
-        4cc766ac5235
-        380bfc0d5"`
+                        4f4661cb9cb  
+                        17d96d24ac1  
+                        cf04b6013d50
+                        4cc766ac5235
+                        380bfc0d5"`
       </td>
     </tr>
 
@@ -202,12 +242,12 @@ https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"195ab95fa  
-        4700eeaaf38
-        b7f5b538d29
-        79f0f281e0
-        a4eaedca1a
-        a675b79b3
-        31a2"`
+                        4700eeaaf38  
+                        b7f5b538d29  
+                        79f0f281e0
+                        a4eaedca1a
+                        a675b79b3
+                        31a2"`
       </td>
     </tr>
 
@@ -264,42 +304,4 @@ https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 | dobMatch      | Indicates if the provided DOB matches with PAN records (Y/N)       | `"Y"`      |
 | seedingStatus | Indicates if the PAN is seeded with additional verifications (Y/N) | `"Y"`      |
 
-## Sample Request
-
-```bash
-curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status' \
---header 'Content-Type: application/json' \
---header 'Date: Thu, 17 Jun 2025 08:17:59 GMT' \
---header 'Digest: DFXmqI0rFnXlmHLlsRwdDMw9vUSVzyYQzGP+MKLo8f8=' \
---header 'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="7qjgpH9B4QALxDR0nVlHdEKEYMZ0XeJ0QpnvveSyqMo="' \
---header 'platformId: 1' \
---data '{
-    "pan_number": "CYCPD2784G",
-    "name": "AKASH DEEP",
-    "dob": "15/09/1993"
-}'
-```
-
-## Sample Response
-
-```json
-{
-    "id": 86235,
-    "api_name": "pan_status_check",
-    "identifier": "79c0d918a4f4661cb9cb17d96d24ac1cf04b6013d504cc766ac5235380bfc0d5",
-    "response": {
-        "result": {
-            "status": "Active",
-            "nameMatch": "Y",
-            "dobMatch": "Y",
-            "seedingStatus": "Y"
-        }
-    },
-    "status": "success",
-    "http_status": 200,
-    "client_id": "195ab95fa4700eeaaf38b7f5b538d2979f0f281e0a4eaedca1aa675b79b331a2",
-    "created_at": "2025-04-30T05:51:40.000Z",
-    "updated_at": "2025-04-30T05:51:40.000Z",
-    "client_name": "SignzyClient"
-}
-```
+##
