@@ -12,16 +12,6 @@ PayU’s \_payment API supports LRS implementation using the following parameter
 * lrs\_tnc
 * lrs\_tcs\_declaration\_under\_limit
 
-> 📘 Notes:
->
-> * The following LRS-related parameter values used in PayU Checkout page before customer selects the payment mode:
->   * The value in `lrs_mandatory_limit_declaration` or `lrs_tnc` is displayed as a checkbox at bottom of the PayU Checkout page while collecting the nature of purchase.
->   * The value in `lrs_tcs_declaration_under_limit`is is displayed as a checkbox at bottom of thePayU Checkout page before customer while providing their tax details.\
->     For more information, refer to [Customer Journey - PayU Hosted Checkout with LRS Integration](doc:customer-journey-payu-hosted-checkout-with-lrs-integration).
-> * For the detailed steps to integrate PayU Hosted Checkout with LRS, refer to [Integrate PayU Hosted Checkout - CB LRS ](doc:integrate-payu-hosted-checkout-cb-lrs).
-
-<br />
-
 <details>
   <summary>Sample request</summary>
 
@@ -182,6 +172,14 @@ PayU’s \_payment API supports LRS implementation using the following parameter
 </details>
 
 ## Request Parameters
+
+> 📘 Notes:
+>
+> * The following LRS-related parameter values used in PayU Checkout page before customer selects the payment mode:
+>   * The value in `lrs_mandatory_limit_declaration` or `lrs_tnc` is displayed as a checkbox at bottom of the PayU Checkout page while collecting the nature of purchase.
+>   * The value in `lrs_tcs_declaration_under_limit`is is displayed as a checkbox at bottom of thePayU Checkout page before customer while providing their tax details.\
+>     For more information, refer to [Customer Journey - PayU Hosted Checkout with LRS Integration](doc:customer-journey-payu-hosted-checkout-with-lrs-integration).
+> * For the detailed steps to integrate PayU Hosted Checkout with LRS, refer to [Integrate PayU Hosted Checkout - CB LRS ](doc:integrate-payu-hosted-checkout-cb-lrs).
 
 <details>
   <summary>Additional information for request parameters</summary>
