@@ -185,7 +185,7 @@ public class HmacAuth {
 }
 ```
 
-## Request Parameters
+## Request parameters
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -387,9 +387,9 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 | errorDesc           | Error description                                |
 | errorMsgFromNetwork | Message received from the network                |
 
-## Sample Response
+## Sample response
 
-### Success Scenario
+### Success scenario
 
 ```json
 {
@@ -409,7 +409,7 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 }
 ```
 
-### Failure Scenarios
+### Failure Ssenarios
 
 * Invalid card number
 
@@ -513,6 +513,28 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 {
     "statusCode": "EA10",
     "errorDesc": "The MID is not active. Please raise this to PayU support team",
+    "status": 0
+}
+```
+
+* Invalid Acquired Merchant ID Code configuration
+
+```json
+{
+    "statusCode": "EA07",
+    "errorDesc": "Invalid Acq ID Code configuration. Please raise this to PayU support team",
+    "status": 0,
+    "clientReferenceId": "bf117fe66fa5148e4e5d"
+}
+```
+
+* Invalid expiry month
+
+```
+ 
+{
+    "statusCode": "EA025",
+    "errorDesc": "Expiry month is Invalid. Please check and initiate again..",
     "status": 0
 }
 ```
