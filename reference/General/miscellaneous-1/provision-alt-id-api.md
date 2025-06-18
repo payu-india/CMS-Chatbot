@@ -372,7 +372,7 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 
 ## Response Parameters
 
-| **Parameter**       | **Value**                                        |
+| Parameter           | Value                                            |
 | ------------------- | ------------------------------------------------ |
 | statusCode          | TK0000, INV001, ONB001, TK0002                   |
 | status              | 0(failure), 1(success)                           |
