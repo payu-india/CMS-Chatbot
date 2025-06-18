@@ -12,8 +12,6 @@ PayU’s **\_payment** API supports LRS implementation using the following param
 * lrs\_tnc
 * lrs\_tcs\_declaration\_under\_limit
 
-## Workflow
-
 <br />
 
 ## Step 1: Validate the PAN card
@@ -192,11 +190,11 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"79c0d918a  
-                                                        4f4661cb9cb  
-                                                        17d96d24ac1  
-                                                        cf04b6013d50  
-                                                        4cc766ac5235  
-                                                        380bfc0d5"`
+                                                                4f4661cb9cb  
+                                                                17d96d24ac1  
+                                                                cf04b6013d50  
+                                                                4cc766ac5235  
+                                                                380bfc0d5"`
       </td>
     </tr>
 
@@ -253,12 +251,12 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"195ab95fa  
-                                                        4700eeaaf38  
-                                                        b7f5b538d29  
-                                                        79f0f281e0  
-                                                        a4eaedca1a  
-                                                        a675b79b3  
-                                                        31a2"`
+                                                                4700eeaaf38  
+                                                                b7f5b538d29  
+                                                                79f0f281e0  
+                                                                a4eaedca1a  
+                                                                a675b79b3  
+                                                                31a2"`
       </td>
     </tr>
 
@@ -565,111 +563,6 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        pg\
-        `mandatory for seamless/s2s flow`
-      </td>
-
-      <td>
-        `String` It defines the payment category that the merchant wants the customer to see by default on the PayU’s payment page. If this field is empty, the system assumes the credit card payment option by default.
-      </td>
-
-      <td>
-        CC, NB or UPI
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankcode\
-        `mandatory for seamless/s2s flow`
-      </td>
-
-      <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it.
-      </td>
-
-      <td>
-        AMEX
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccnum\
-        `mandatory for cards`
-      </td>
-
-      <td>
-        `String` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to Card Number Formats and display error message on invalid input.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccname\
-        `mandatory for cards`
-      </td>
-
-      <td>
-        `String` This parameter must contain the name on card – as entered by the customer for the transaction.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccvv\
-        `mandatory for cards`
-      </td>
-
-      <td>
-        `String` Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpmon\
-        `mandatory for cards`
-      </td>
-
-      <td>
-        `String` This parameter must contain the card’s expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpyr\
-        `mandatory for cards`
-      </td>
-
-      <td>
-        `String` This parameter must contain the card’s expiry year – as entered by the customer for the transaction. It must be of four digits.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
         surl\
         `mandatory`
       </td>
@@ -762,22 +655,23 @@ The following parameters (mandatory) must be posted using any of the following s
       <td>
         lrs\_mandatory\_limit\_declaration
 
-        `mandatory for LRS `
+        `mandatory for PayU Hosted with LRS `
       </td>
 
       <td>
-        `String`Mandatory declaration for Liberalised Remittance Scheme limit
+        `String`Mandatory declaration for Liberalised Remittance Scheme limit.\
+        **Note**: PayU recommends you to include the $250,000 USD limit as per RBI regulations.
       </td>
 
       <td>
-
+        I declare I have not remitted more than $250,000 USD in current financial year as limited by RBI’s Liberalised Remittance Scheme
       </td>
     </tr>
 
     <tr>
       <td>
         lrs\_tnc\
-        `mandatory for LRS `
+        `mandatory for PayU Hosted with LRS `
       </td>
 
       <td>
@@ -792,15 +686,16 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         lrs\_tcs\_declaration\_under\_limit\
-        `mandatory for LRS `
+        `optional for PayU Hosted with LRS `
       </td>
 
       <td>
-        `String`Declaration for Tax Collected at Source under LRS limit
+        `String`Declaration for Tax Collected at Source under LRS limit.\
+        **Note**: PayU recommends you to include the INR 100,000 as tax collected limit as per RBI regulations.
       </td>
 
       <td>
-
+        I declare I have not remitted more than INR 10L in current financial year
       </td>
     </tr>
   </tbody>
