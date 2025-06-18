@@ -16,72 +16,114 @@ metadata:
 next:
   description: ''
 ---
-
 The **Provision Alt ID API** is used to provision Alt ID from PayU, but process transaction outside PayU. This section describes the request parameters with sample request and response.
 
 HTTP Method: **POST**
 
 ## Environment
 
-<Table>
-  <thead>
-    <tr>
-      <th>Environment</th>
-      <th>URL</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Production</td>
-      <td>https://apitest.payu.in/card/altid</td>
-    </tr>
-  </tbody>
-</Table>
+| Environment | URL                                                                      |
+| ----------- | ------------------------------------------------------------------------ |
+| Production  | [https://apitest.payu.in/card/altid](https://apitest.payu.in/card/altid) |
 
 ## Request Headers
 
 The request header contains the following fields:
 
-<Table>
+<br />
+
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
-      <th>**Field**</th>
-      <th>**Description**</th>
-      <th>**Example**</th>
+      <th>
+        **Field**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
     </tr>
   </thead>
+
   <tbody>
     <tr>
-      <td>Date<br/><code>mandatory</code></td>
-      <td>The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.</td>
-      <td>Thu, 17 Feb 2022 08:17:59 GMT</td>
+      <td>
+        Date<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.
+      </td>
+
+      <td>
+        Thu, 17 Feb 2022 08:17:59 GMT
+      </td>
     </tr>
+
     <tr>
-      <td>Digest<br/><code>mandatory</code></td>
-      <td>Base 64 encode of (sha256 hash of the JSON data (post to server).</td>
-      <td><code>vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=</code></td>
+      <td>
+        Digest<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        Base 64 encode of (sha256 hash of the JSON data (post to server).
+      </td>
+
+      <td>
+        <code>vpGay5D/dmfoDupA
+        LPplYGucJAln9gS2
+        9g5Orn+8TC0=</code>
+      </td>
     </tr>
+
     <tr>
-      <td>Authorization<br/><code>mandatory</code></td>
-      <td>This field is in the format described in [Authorization format](#Authorization-format).</td>
-      <td>hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI="</td>
+      <td>
+        Authorization<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        This field is in the format described in [Authorization format](#Authorization-format).
+      </td>
+
+      <td>
+        hmac username="smsplus",
+        algorithm="hmac-sha256",
+        headers="date digest", signature="zGmP5Zeqm1pxNa
+        +d68DWfQFXhxoqf3st353SkYvX8HI="
+      </td>
     </tr>
+
     <tr>
-      <td>platformId<br/><code>mandatory</code></td>
-      <td>This field contains the platform ID and include the value as **1**.</td>
-      <td>1</td>
+      <td>
+        platformId<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        This field contains the platform ID and include the value as **1**.
+      </td>
+
+      <td>
+        1
+      </td>
     </tr>
   </tbody>
 </Table>
-#####Authorization format
+
+##### Authorization format
+
 <code>hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="</code>
 Where the above format includes the following:
-- **username**: The merchant key of the merchant.
-- **algorithm**: This must have the value as **hmac-sha256** that is used for this API
-- **headers**: This must have the value as **date digest**
-- **signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:
-  - **signing_string**: This is in the "**Date**"+"\\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
-  - **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+
+* **username**: The merchant key of the merchant.
+* **algorithm**: This must have the value as **hmac-sha256** that is used for this API
+* **headers**: This must have the value as **date digest**
+* **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:
+  * **signing\_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
+  * **merchant\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)
 
 The following sample Java code contains the logic used to encrypt as described in the above table:
 
@@ -145,65 +187,163 @@ public class HmacAuth {
 
 ## Request Parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
-      <th>**Parameter**</th>
-      <th>**Description**</th>
-      <th>**Example**</th>
+      <th>
+        **Parameter**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
     </tr>
   </thead>
+
   <tbody>
     <tr>
-      <td>clientReferenceId<br/><code>optional</code></td>
-      <td>The alphanumeric value to track the request.</td>
-      <td>DKSAI80033U2BRRE90FD0SDJAOSA</td>
+      <td>
+        clientReferenceId<br /><code>optional</code>
+      </td>
+
+      <td>
+        The alphanumeric value to track the request.
+      </td>
+
+      <td>
+        DKSAI80033U2BRRE90FD0SDJAOSA
+      </td>
     </tr>
+
     <tr>
-      <td>cardNumber<br/><code>mandatory</code></td>
-      <td>The card number entered by the customer.</td>
-      <td>XXXXXXXXXXXX3669</td>
+      <td>
+        cardNumber<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        The card number entered by the customer.
+      </td>
+
+      <td>
+        XXXXXXXXXXXX3669
+      </td>
     </tr>
+
     <tr>
-      <td>nameOnCard<br/><code>optional</code></td>
-      <td>The name on card entered by the customer.</td>
-      <td>Ashish K</td>
+      <td>
+        nameOnCard<br /><code>optional</code>
+      </td>
+
+      <td>
+        The name on card entered by the customer.
+      </td>
+
+      <td>
+        Ashish K
+      </td>
     </tr>
+
     <tr>
-      <td>cardType<br/><code>optional</code></td>
-      <td>The type card used by the customer.</td>
-      <td>AMEX</td>
+      <td>
+        cardType<br /><code>optional</code>
+      </td>
+
+      <td>
+        The type card used by the customer.
+      </td>
+
+      <td>
+        AMEX
+      </td>
     </tr>
+
     <tr>
-      <td>expiryMonth<br/><code>mandatory</code></td>
-      <td>The expiry date of card entered by the customer.</td>
-      <td>12</td>
+      <td>
+        expiryMonth<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        The expiry date of card entered by the customer.
+      </td>
+
+      <td>
+        12
+      </td>
     </tr>
+
     <tr>
-      <td>expiryYear<br/><code>mandatory</code></td>
-      <td>The expiry year of the card entered by the customer.</td>
-      <td>26</td>
+      <td>
+        expiryYear<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        The expiry year of the card entered by the customer.
+      </td>
+
+      <td>
+        26
+      </td>
     </tr>
+
     <tr>
-      <td>cvv<br/><code>mandatory</code></td>
-      <td>The CVV or secret code found behind the cardentered by the customer.</td>
-      <td>000</td>
+      <td>
+        cvv<br /> <code>mandatory</code>
+      </td>
+
+      <td>
+        The CVV or secret code found behind the cardentered by the customer.
+      </td>
+
+      <td>
+        000
+      </td>
     </tr>
+
     <tr>
-      <td>mail<br/><code>optional</code></td>
-      <td>The mail ID of the customer.</td>
-      <td>testmail@test.com</td>
+      <td>
+        mail<br /> <code>optional</code>
+      </td>
+
+      <td>
+        The mail ID of the customer.
+      </td>
+
+      <td>
+        [testmail@test.com](mailto:testmail@test.com)
+      </td>
     </tr>
+
     <tr>
-      <td>amount<br/><code>mandatory</code></td>
-      <td>The amount of the transaction.</td>
-      <td>100</td>
+      <td>
+        amount<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        The amount of the transaction.
+      </td>
+
+      <td>
+        100
+      </td>
     </tr>
+
     <tr>
-      <td>authenticationCode<br/><code>conditional</code></td>
-      <td>The authentication code for the transaction.
-**Note**: This parameter is required for RUPAY cards.</td>
-      <td></td>
+      <td>
+        authenticationCode<br /><code>conditional</code>
+      </td>
+
+      <td>
+        The authentication code for the transaction.
+        **Note**: This parameter is required for RUPAY cards.
+      </td>
+
+      <td>
+
+      </td>
     </tr>
   </tbody>
 </Table>
@@ -232,64 +372,20 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 
 ## Response Parameters
 
-<Table>
-  <thead>
-    <tr>
-      <th>**Parameter**</th>
-      <th>**Value**</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>statusCode</td>
-      <td>TK0000, INV001, ONB001, TK0002</td>
-    </tr>
-    <tr>
-      <td>status</td>
-      <td>0(failure), 1(success)</td>
-    </tr>
-    <tr>
-      <td>clientReferenceId</td>
-      <td>Same id sent in request</td>
-    </tr>
-    <tr>
-      <td>cryptogram</td>
-      <td>Cryptogram details</td>
-    </tr>
-    <tr>
-      <td>altIdToken</td>
-      <td>ALT ID</td>
-    </tr>
-    <tr>
-      <td>expiryMonth</td>
-      <td>Expiry month of AltId Token</td>
-    </tr>
-    <tr>
-      <td>expiryYear</td>
-      <td>Expiry year of AltId Token</td>
-    </tr>
-    <tr>
-      <td>las4</td>
-      <td>Last 4 digits of the card</td>
-    </tr>
-    <tr>
-      <td>par</td>
-      <td>Payment Account Reference(Unique Id of the card)</td>
-    </tr>
-    <tr>
-      <td>msg</td>
-      <td>Success or failure message</td>
-    </tr>
-    <tr>
-      <td>errorDesc</td>
-      <td>Error description</td>
-    </tr>
-    <tr>
-      <td>errorMsgFromNetwork</td>
-      <td>Message received from the network</td>
-    </tr>
-  </tbody>
-</Table>
+| **Parameter**       | **Value**                                        |
+| ------------------- | ------------------------------------------------ |
+| statusCode          | TK0000, INV001, ONB001, TK0002                   |
+| status              | 0(failure), 1(success)                           |
+| clientReferenceId   | Same id sent in request                          |
+| cryptogram          | Cryptogram details                               |
+| altIdToken          | ALT ID                                           |
+| expiryMonth         | Expiry month of AltId Token                      |
+| expiryYear          | Expiry year of AltId Token                       |
+| las4                | Last 4 digits of the card                        |
+| par                 | Payment Account Reference(Unique Id of the card) |
+| msg                 | Success or failure message                       |
+| errorDesc           | Error description                                |
+| errorMsgFromNetwork | Message received from the network                |
 
 ## Sample Response
 
@@ -315,7 +411,7 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 
 ### Failure Scenarios
 
-- Invalid card number
+* Invalid card number
 
 ```json
 {
@@ -325,7 +421,7 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 }
 ```
 
-- Invalid expiry month of card
+* Invalid expiry month of card
 
 ```json
 {
@@ -335,7 +431,7 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 }
 ```
 
-- Invalid CVV specified for card
+* Invalid CVV specified for card
 
 ```json
 {
@@ -345,7 +441,7 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 }
 ```
 
-- Internal error
+* Internal error
 
 ```json
 {
@@ -356,7 +452,7 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 }
 ```
 
-- Invalid Acquired Merchant ID
+* Invalid Acquired Merchant ID
 
 ```json
 {
@@ -367,7 +463,8 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 }
 ```
 
-- Card Network Failure
+* Card Network Failure
+
 ```json
 {
     "statusCode": "EA05",
@@ -377,7 +474,8 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 }
 ```
 
-- Invalid Authentication Code (RUPAY)
+* Invalid Authentication Code (RUPAY)
+
 ```json
 {
     "statusCode": "EA06",
@@ -387,7 +485,8 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 }
 ```
 
-- Invalid AcquirerInstance id Code (MASTER)
+* Invalid AcquirerInstance id Code (MASTER)
+
 ```json
 {
     "statusCode": "EA07",
@@ -397,7 +496,8 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 }
 ```
 
-- Merchant Not Onboarded(AMEX)
+* Merchant Not Onboarded(AMEX)
+
 ```json
 {
     "statusCode": "EA09",
@@ -407,7 +507,8 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
 }
 ```
 
-- Merchant Invalid Or Merchant AltId is InActive
+* Merchant Invalid Or Merchant AltId is InActive
+
 ```json
 {
     "statusCode": "EA10",
