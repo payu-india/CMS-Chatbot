@@ -12,6 +12,10 @@ PayU’s **\_payment** API supports LRS implementation using the following param
 * lrs\_tnc
 * lrs\_tcs\_declaration\_under\_limit
 
+> 📘 Reference:
+>
+> For the customer journey for PayU Hosted Integration with Cross-Border payments with LRS, refer to [Customer Journey - PayU Hosted Checkout with LRS Integration](doc:customer-journey-payu-hosted-checkout-with-lrs-integration).
+
 The steps to integrate involves:
 
 1. [Validate the PAN card](#step-1-validate-the-pan-card)
@@ -197,11 +201,11 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"79c0d918a  
-                                                                                                        4f4661cb9cb  
-                                                                                                        17d96d24ac1  
-                                                                                                        cf04b6013d50  
-                                                                                                        4cc766ac5235  
-                                                                                                        380bfc0d5"`
+                                                                                                                4f4661cb9cb  
+                                                                                                                17d96d24ac1  
+                                                                                                                cf04b6013d50  
+                                                                                                                4cc766ac5235  
+                                                                                                                380bfc0d5"`
       </td>
     </tr>
 
@@ -258,12 +262,12 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"195ab95fa  
-                                                                                                        4700eeaaf38  
-                                                                                                        b7f5b538d29  
-                                                                                                        79f0f281e0  
-                                                                                                        a4eaedca1a  
-                                                                                                        a675b79b3  
-                                                                                                        31a2"`
+                                                                                                                4700eeaaf38  
+                                                                                                                b7f5b538d29  
+                                                                                                                79f0f281e0  
+                                                                                                                a4eaedca1a  
+                                                                                                                a675b79b3  
+                                                                                                                31a2"`
       </td>
     </tr>
 
