@@ -10,88 +10,24 @@ metadata:
 next:
   description: ''
 ---
-To know the status of the payment, you need to integrate the** Verify Payment** API as below. You need post the **referenceId** sent by the **v2/payments** API in the **txnId** parameter.
+To know the status of the payment, you need to integrate the\*\* Verify Payment\*\* API as below. You need post the **referenceId** sent by the **v2/payments** API in the **txnId** parameter.
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                       |
-| :--------------------- | :------------------------------------ |
-| Test Environment       | \<https://test.payu.in/v1/transaction> |
-| Production Environment | \<https://info.payu.in/v1/transaction> |
+|                        |                                                                                |
+| :--------------------- | :----------------------------------------------------------------------------- |
+| Test Environment       | \<[https://test.payu.in/v1/transaction>](https://test.payu.in/v1/transaction>) |
+| Production Environment | \<[https://info.payu.in/v1/transaction>](https://info.payu.in/v1/transaction>) |
 
 ## Request parameters
 
-### Request header
+<HeaderAuthentication />
 
-| Parameter     | Description                                                                                                                                                                                                    |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| date          | The current date and time. For example,  format of the date is Wed, 28 Jun 2023 11:25:19 GMT.                                                                                                                  |
-| authorization | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to[ authorization fields description](#authorization-fields-description). |
+<br />
 
-#### authorization fields description
-
-| Parameter | Description                                                                                                                                                                      |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| username  | Represents the username or identifier for the client or merchant, in this case, it's "smsplus".                                                                                  |
-| algorithm | Indicates the hashing algorithm used for the HMAC signature. Here, it is set to "sha512".                                                                                        |
-| headers   | Specifies which headers have been used in generating the hash. In this case, only the "date" header is used.                                                                     |
-| signature | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to [hashing algorithm](#hashing-algorithm). |
-
-#### hashing algorithm
-
-You must hash the request parameters using the following hash logic:
-
-```
-sha512(<Body data> + '|' + date + '|' + merchant_secret}
-```
-
-Where, \<Body data\> contains the request Body posted with the request.
-
-<details>
-<summary>Sample header code</summary>
-
-```
-var merchant_key = 'smsplus';
-var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
-
-// date
-var date = new Date();
-// var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-date = date.toUTCString();
-
-// authorization
-var authorization = getAuthHeader(date);
-console.log(authorization);
-
-function getAuthHeader(date) {
-var AUTH_TYPE = 'sha512';
-var data = isEmpty(request['data'])?"":request['data'];
-var hash_string = data + '|' + date + '|' + merchant_secret;
-console.log("Hash String is ", hash_string);
-var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-return authHeader;
-}
-
-pm.environment.set('date', date);
-pm.environment.set('authorization', authorization);
-pm.environment.set('merchant_key',merchant_key);
-pm.environment.set('merchant_secret',merchant_secret);
-
-function isEmpty(obj) {
-for(var key in obj) {
-if(obj.hasOwnProperty(key))
-return false;
-}
-return true;
-}
-```
-
-</details>
-
-## Body parameters
+### Body parameters
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -118,7 +54,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ## Sample request
 
@@ -148,7 +83,7 @@ The fields in the result parameter JSON are described in the following table:
 | additionalCharges   | Additional charges, if any, applied to the transaction amount.                                                                       | 0.00                         |
 | discount            | Any discount amount applied to the transaction.                                                                                      | 0.00                         |
 | netDebitAmount      | Total amount debited from the payer's account after additional charges and discounts.                                                | 100.00                       |
-| productInfo         | A brief description of the product or service for which the payment was being made.                                                  | cred_product                 |
+| productInfo         | A brief description of the product or service for which the payment was being made.                                                  | cred\_product                |
 | firstName           | The payer’s first name involved in the transaction.                                                                                  | CRED                         |
 | bankcode            | The code of the bank used for the transaction.                                                                                       | AMEX                         |
 | nameOnCard          | Cardholder's name (null if the value is not captured).                                                                               | (null)                       |
@@ -237,7 +172,7 @@ If successfully fetched:
 
 #### Failure scenarios
 
-- If **var3** (input bank name) does not match with the bank name in the PayU Database, the bin given in the input is of a different bank name:
+* If **var3** (input bank name) does not match with the bank name in the PayU Database, the bin given in the input is of a different bank name:
 
 ```plaintext
 Array (
