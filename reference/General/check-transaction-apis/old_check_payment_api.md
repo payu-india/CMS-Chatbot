@@ -1,5 +1,5 @@
 ---
-title: Check Payment API
+title: '[OLD]Check Payment API'
 excerpt: ''
 api:
   file: general-30.json
