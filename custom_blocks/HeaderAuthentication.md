@@ -1,8 +1,6 @@
 ---
 name: HeaderAuthentication
 ---
-### Request header
-
 | Parameter     | Description                                                                                                                                                                                                    |
 | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | date          | The current date and time. For example,  format of the date is Wed, 28 Jun 2023 11:25:19 GMT.                                                                                                                  |
