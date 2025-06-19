@@ -23,6 +23,8 @@ HTTP Method: **POST**
 
 ## Request parameters
 
+### Request header
+
 <HeaderAuthentication />
 
 <br />
