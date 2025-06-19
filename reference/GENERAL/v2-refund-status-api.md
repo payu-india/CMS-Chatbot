@@ -19,7 +19,7 @@ POST /v1/transaction
 
 <HeaderAuthentication />
 
-### Request parameters
+### Body parameters
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -90,7 +90,7 @@ POST /v1/transaction
 >
 > At least one of the following parameters must be provided: `requestId`, `payuId`, or `tokenId`.
 
-### Sample Request
+### Sample request
 
 ```bash
 curl --location 'http://localhost:8080/v1/transaction' \
