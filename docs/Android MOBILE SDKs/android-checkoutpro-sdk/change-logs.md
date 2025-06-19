@@ -4,7 +4,7 @@ excerpt: >-
   Track the evolution of CheckoutPro SDK with key features and fixes introduced
   in each version.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
