@@ -13,102 +13,13 @@ The **Check Action Status** API is a new information service designed to allow m
 POST /v1/transaction
 ```
 
-### Request Headers
+## Request parameters
 
-The request header contains the following fields:
+### Request header
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
+<HeaderAuthentication />
 
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        Date
-        `mandatory`
-      </td>
-
-      <td>
-        The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.
-      </td>
-
-      <td>
-        Thu, 17 Feb 2022 08:17:59 GMT
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Digest
-        `mandatory`
-      </td>
-
-      <td>
-        Base 64 encode of (sha256 hash of the JSON data (post to server).
-      </td>
-
-      <td>
-        `vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Authorization
-        **mandatory**
-      </td>
-
-      <td>
-        This field is in the following format:
-        `hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="`
-        Where the above format includes the following:
-
-        * **username**: The merchant key of the merchant.
-        * **algorithm**: This must have the value as **hmac-sha256** that is used for this API
-        * **headers**: This must have the value as **date digest**
-        * **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:
-          * **signing\_string**: This is in the "**Date**"+"
-            "+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""
-            "+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
-          * **merchant\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](https://docs.payu.in/v1/docs/generate-merchant-key-and-salt-on-payu-dashboard)
-      </td>
-
-      <td>
-        hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI="
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        platformId\
-        `mandatory`
-      </td>
-
-      <td>
-        This field contains the platform ID and include the value as **1**.
-      </td>
-
-      <td>
-        1
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-### Request Parameters
+### Body parameters
 
 <Table align={["left","left","left"]}>
   <thead>
