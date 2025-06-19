@@ -1,8 +1,8 @@
 ---
 title: Version History
 excerpt: >-
-  Below is the list of released versions along with the key features,
-  enhancements, and fixes introduced in each:
+  Track the evolution of CheckoutPro SDK with key features and fixes introduced
+  in each version.
 deprecated: false
 hidden: true
 metadata:
