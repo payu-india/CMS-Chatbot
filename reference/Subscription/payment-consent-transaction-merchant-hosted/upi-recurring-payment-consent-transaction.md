@@ -262,7 +262,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 </tr>
   <tr>
       <td>
-        free\_trial \`optional\`
+        free\_trial <br><code>optional</code>
       </td>
 
       <td>
