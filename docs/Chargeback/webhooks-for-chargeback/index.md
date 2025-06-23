@@ -58,18 +58,18 @@ When a chargeback event occurs, PayU will send a POST request to your configured
 
 The `cb_status` or chargeback status field can have the following values:
 
-| Chargeback Status            | Description                                                                                                                                                                                                                                                                                                                |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| New                          | This chargeback status shows that a new chargeback has been initiated by the customer basis the chargeback reason.                                                                                                                                                                                                         |
-| Pending Response             | This chargeback status shows that the chargeback is awaiting merchant response, that is, to accept, partially accept or decline with evidence.                                                                                                                                                                             |
-| Pending Doc Review           | This chargeback status shows that merchant has submitted their response, and the response are being reviewed by the PayU Chargeback team.                                                                                                                                                                                  |
-| Submitted to Bank            | This chargeback status indicates that the PayU Chargeback team has completed their review and forwarded the evidence to the bank for representment.                                                                                                                                                                        |
-| Insufficient Document        | This chargeback status shows that the PayU Chargeback team has reviewed the evidence documents and is requesting the merchant for additional documents for representment or the correct document based on the chargeback team's comment.                                                                                   |
-| Closed Customer Favour       | This chargeback status shows that the chargeback has been closed in the customer's favour. The merchant will lose the chargeback amount to the customer.                                                                                                                                                                   |
-| Closed in Merchant Favour    | This chargeback status shows that the chargeback has been closed in the merchant's favour. The chargeback amount will be reversed back to the merchant account.                                                                                                                                                            |
-| Closed under Fraud Liability | This chargeback status shows the chargeback has been closed since the transaction has been identified as fraudulent. Moreover, PayU will cover the chargeback amount under the fraud liability program so the chargeback amount will be reversed back to the merchant account/will not debited from the merchants account. |
+| Chargeback Status            | Description                                                                                                                                                                                                                                                                                                            |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| New                          | It indicates that a new chargeback has been initiated by the customer basis the chargeback reason.                                                                                                                                                                                                                     |
+| Pending Response             | It indicates that the chargeback is awaiting merchant response, that is, to accept, partially accept or decline with evidence.                                                                                                                                                                                         |
+| Pending Doc Review           | It indicates that merchant has submitted their response, and the response are being reviewed by the PayU Chargeback team.                                                                                                                                                                                              |
+| Submitted to Bank            | It indicates that the PayU Chargeback team has completed their review and forwarded the evidence to the bank for representment.                                                                                                                                                                                        |
+| Insufficient Document        | It indicates that the PayU Chargeback team has reviewed the evidence documents and is requesting the merchant for additional documents for representment or the correct document based on the Chargeback team's comment.                                                                                               |
+| Closed Customer Favour       | It indicates that that the chargeback has been closed in the customer's favour. The merchant will lose the chargeback amount to the customer.                                                                                                                                                                          |
+| Closed in Merchant Favour    | It indicates that the chargeback has been closed in the merchant's favour. The chargeback amount will be reversed back to the merchant account.                                                                                                                                                                        |
+| Closed under Fraud Liability | It indicates that the chargeback has been closed since the transaction has been identified as fraudulent. Moreover, PayU will cover the chargeback amount under the fraud liability program so the chargeback amount will be reversed back to the merchant account or will not be debited from the merchant's account. |
 
-## Reason Codes for Chargebacks
+## Reason codes for chargebacks
 
 Chargeback reason codes in the payload are descriptive text values, such as:
 
@@ -78,9 +78,9 @@ Chargeback reason codes in the payload are descriptive text values, such as:
 * Fraud - Card Present Environment
 * Fraud - Card Not Present Environment
 * Product or Services not as described
-* Damaged or Defective Product Received
+* Damaged or Defective Product received
 * Customer charged more than once
-* Credit not processed
+* Credit not Processed
 * Incorrect amount charged
 * Customer paid by other means
 * Customer request copy
