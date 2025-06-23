@@ -266,8 +266,8 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
       </td>
 
       <td>
-       <p>This is mandatory only if the merchant wants to support free trial use case with card and net banking together that too on PayU Hosted Checkout integration.  </p>
-<p>In this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request.<br>This parameter has no significance in the case of seamless flow.</p>
+      This is mandatory only if the merchant wants to support free trial use cases.
+In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.
       </td>
 
       <td>
