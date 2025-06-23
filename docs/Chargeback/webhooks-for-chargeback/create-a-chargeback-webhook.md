@@ -7,6 +7,9 @@ metadata:
 ---
 Configure chargeback webhooks to automatically receive instant notifications when chargeback events occur, helping you stay informed and respond quickly to minimize financial impact. section describes how to create and configure chargeback webhooks using either the PayU Dashboard or Chargeback portal to receive automated notifications for chargeback-related events.
 
+* [Using Dashboard](#using-dashboard)
+* [Using Chargeback portal](#using-chargeback-portal)
+
 ## Prerequisites
 
 Before configuring a chargeback webhook, ensure that:
