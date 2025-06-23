@@ -49,7 +49,7 @@ When a chargeback event occurs, PayU will send a POST request to your configured
 | mid          | Merchant ID                                                                                                                                                      |
 | cb\_id       | Chargeback ID                                                                                                                                                    |
 | txn\_id      | Transaction ID associated with the chargeback. This is merchant transaction ID or PayU transaction ID.                                                           |
-| cb\_type     | Type of chargeback (e.g., "RBI/BO")                                                                                                                              |
+| cb\_type     | Type of chargeback (e.g., "RBI/BO", that is, Reserve Bank of India/Banking Operations)                                                                           |
 | due\_date    | Due date for the chargeback resolution                                                                                                                           |
 | cb\_amount   | Amount involved in the chargeback                                                                                                                                |
 | cb\_status   | Current status of the chargeback. For the possible chargeback status values, refer to [cb\_status field values description](#cb_status-field-values-description) |
