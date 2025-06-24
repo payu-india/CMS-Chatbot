@@ -31,7 +31,7 @@ allprojects {
 Add the following dependency in your application’s build.gradle:
 
 ```Text build.gradle
-implementation 'in.payu:phonepe-intent:1.8.4'
+implementation 'in.payu:phonepe-intent:1.8.6'
 ```
 
 ## Step 3: Create Callbacks Instance
