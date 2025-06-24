@@ -37,7 +37,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 Add the PayU UPI SDK (available at Maven Central) to `<<glossary:build.gradle>>`:
 
 ```Text build.gradle
-implementation 'in.payu:upisdk:1.8.2'
+implementation 'in.payu:upisdk:1.8.4'
 ```
 
 > 🚧 Watch Out
