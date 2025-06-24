@@ -58,8 +58,6 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 --data-urlencode 'merchant%5Bsigning_authority_details%5D%5Bpancard_number%5D=FANPS6362D'
 ```
 
-<br />
-
 ## Sample response
 
 ### Success scenario
@@ -94,8 +92,6 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
   }
 }
 ```
-
-<br />
 
 ## Response parameters
 
