@@ -43,7 +43,7 @@ PayU offers various Android SDKs that each serve a unique use case. Here is a br
 
 * **Native OTP Assist SDK**: The Native OTP Assist SDK allows you to capture OTP (One-Time Password) directly from your Android app without redirecting the user to the bank's 3D secure page. This can help to improve the checkout experience and reduce the chances of abandonment.
 
-* **3DS 2.0 SDK**: The 3DS 2.0 SDK probides you the ability to collect additional transaction data such as device location, user's location, and merchant's transaction history. It allows you to protect you and your customers from the threat of payment fraud. 
+* **3DS 2.0 SDK**: The 3DS 2.0 SDK probides you the ability to collect additional transaction data such as device location, user's location, and merchant's transaction history. It allows you to protect you and your customers from the threat of payment fraud.
 
 ## Choose your integration
 
@@ -81,7 +81,7 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        \| **Low Effort Integration**, | **Non-Seamless Checkout** \| **Limited Tech** \| **Resource** \|
+        \| **Low Effort Integration**, | **Non-Seamless Checkout** | **Limited Tech** | **Resource** |
       </td>
     </tr>
 
@@ -95,7 +95,7 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        \| **Seamless Checkout** \| **Medium Effort** \|  **Enterprise Businesses** \|
+        \| **Seamless Checkout** | **Medium Effort** |  **Enterprise Businesses** |
       </td>
     </tr>
 
@@ -109,7 +109,8 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        * \*Low Effort Integratio&#x6E;**\|\&#xA;**&#x55;PI Checkout\*\*
+        * *Low Effort Integration*\*|
+          **UPI Checkout**
       </td>
     </tr>
 
@@ -123,7 +124,7 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        **Low Effort Integration** \| **PhonePe InApp Support**
+        **Low Effort Integration** | **PhonePe InApp Support**
       </td>
     </tr>
 
@@ -137,7 +138,7 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        **Low Effort Integration** \| **Gpay InApp Support**
+        **Low Effort Integration** | **Gpay InApp Support**
       </td>
     </tr>
 
@@ -151,7 +152,7 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        **Low Effort Integration**\|**OlaMoney Checkout**
+        **Low Effort Integration**|**OlaMoney Checkout**
       </td>
     </tr>
 
@@ -165,7 +166,7 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        **Native OTP Support**\| **Low Effort Integration**
+        **Native OTP Support**| **Low Effort Integration**
       </td>
     </tr>
 
@@ -179,7 +180,7 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        **3DS 2.0 Support**\| **Low Effort Integration**
+        **3DS 2.0 Support**| **Low Effort Integration**
       </td>
     </tr>
   </tbody>
@@ -189,12 +190,12 @@ Here is a comparison table that summarizes the key features of the different SDK
 
 | SDK Name                                                             | Latest SDK Version | SDK Size |
 | :------------------------------------------------------------------- | :----------------- | :------- |
-| [CheckoutPro SDK](https://docs.payu.in/docs/android-checkoutpro-sdk) | 2.7.1              | 293KB    |
-| [Core PG SDK](https://docs.payu.in/docs/android-core-sdk)            | 7.7.0              | 163KB    |
-| [CustomBrowser SDK](https://docs.payu.in/docs/custom-browser-sdk)    | 7.15.1             | 386KB    |
-| [UPI SDK](doc:android-upi-sdk)                                       | 1.8.1              | 163KB    |
-| [PhonePe SDK](https://docs.payu.in/docs/android-phonepe-sdk)         | 1.8.3              | 68KB     |
-| [Google Pay SDK](doc:android-google-pay-sdk)                         | 3.1.4              | 94KB     |
-| [OlaMoney SDK](https://docs.payu.in/docs/ola-money-sdk)              | 1.3.3              | 47KB     |
-| [Native OTP SDK](https://docs.payu.in/docs/native-otp-assist-sdk)    | 1.6.0              | 194Kb    |
-| [3DS 2.0 SDK](https://docs.payu.in/docs/android-3ds20-sdk)           | 1.0.27             | 80KB     |
+| [CheckoutPro SDK](https://docs.payu.in/docs/android-checkoutpro-sdk) | 2.9.0              | 293KB    |
+| [Core PG SDK](https://docs.payu.in/docs/android-core-sdk)            | 7.8.2              | 163KB    |
+| [CustomBrowser SDK](https://docs.payu.in/docs/custom-browser-sdk)    | 7.15.3             | 386KB    |
+| [UPI SDK](doc:android-upi-sdk)                                       | 1.8.4              | 163KB    |
+| [PhonePe SDK](https://docs.payu.in/docs/android-phonepe-sdk)         | 1.8.5              | 68KB     |
+| [Google Pay SDK](doc:android-google-pay-sdk)                         | 3.1.6              | 94KB     |
+| [OlaMoney SDK](https://docs.payu.in/docs/ola-money-sdk)              | 1.3.6              | 47KB     |
+| [Native OTP SDK](https://docs.payu.in/docs/native-otp-assist-sdk)    | 1.6.1              | 194Kb    |
+| [3DS 2.0 SDK](https://docs.payu.in/docs/android-3ds20-sdk)           | 1.1.0              | 80KB     |
