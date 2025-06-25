@@ -1,5 +1,5 @@
 ---
-title: Accept/Reject Chargeback API
+title: Accept/Contest Chargeback API
 excerpt: ''
 deprecated: false
 hidden: false
