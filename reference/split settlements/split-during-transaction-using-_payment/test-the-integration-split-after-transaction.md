@@ -5,6 +5,10 @@ hidden: true
 metadata:
   robots: index
 ---
+> 📘 Note:
+>
+> Always test thoroughly in the Test environment with various split scenarios before implementing in production. Ensure proper error handling and validation for all edge cases.
+
 ## Step 1: Prepare Split Configuration
 
 * Define absolute split amounts for each sub-merchant
