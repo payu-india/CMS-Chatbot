@@ -37,7 +37,7 @@ Multi-Currency Conversion (MCC) is a payment solution that enables merchants to 
 * **Simplified Global Expansion**: Display prices and accept payments in multiple currencies without complex operational changes
 * **Convenient Settlements:** Get settlements in INR or non-INR currencies as per your business needs. 
 
-MCC helps businesses expand internationally while providing customers with the clarity and convenience of seeing prices in their familiar currency throughout their shopping journey. The following steps describes the workflow involved in DCC with sample checkout page screenshots.
+MCC helps businesses expand internationally while providing customers with the clarity and convenience of seeing prices in their familiar currency throughout their shopping journey. The following steps describes the workflow involved in MCC with sample checkout page screenshots.
 
 1. Customer browses products on merchant’s website and sees prices on website in their local currency.
 
@@ -58,3 +58,41 @@ MCC helps businesses expand internationally while providing customers with the c
 5. Customer is redirected back to merchant’s website and order is confirmed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/3f40f34f39a7916e4f37abb8877655ad84e1a2bb9a47d3d2e37b861306774652-dcc-order-confirmation.png" />
+
+## Dynamic Currency Conversion (DCC)
+
+Dynamic Currency Conversion (DCC) is a payment service that allows international customers to pay in their own local currency at the time of checkout, while merchants receive settlement in their base currency. This real-time currency conversion happens at the point of transaction, giving customers transparency about the exact amount they will be charged in their familiar currency. In DCC, merchants enjoy hassle free payments, as currency conversion is managed by PayU.
+
+ **Key Benefits:**
+
+* **Extensive Currency Support**: Offer your customers the option to pay in their preferred currency from 135+ available currencies
+* **No FX Rate Management**: Enjoy hassle-free currency conversion fully managed by PayU without needing to monitor or update exchange rates
+* **Certified with Card Networks**: Ensure compliance with international standards through certified DCC card processing
+* **Simplified Settlement**: Receive all funds in your base currency (e.g., INR) regardless of the customer's payment currency
+* **Enhanced Customer Experience**: Customers can understand and transact in their local currency, making international purchases transparent and convenient
+
+DCC helps businesses expand globally by removing currency barriers at checkout while maintaining operational simplicity with single-currency settlements and reporting. The following steps describes the workflow involved in DCC with sample checkout page screenshots.
+
+1. Customer browses and selects a product on merchant’s website.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/74b29279f8f7da7267d670502d8a25e36e9fbc98ea64e7a388b0601fd661d00b-dcc-workflow-step1.png" />
+
+2. Customer chooses to pay via card and enters card details on merchant’s checkout. These card details are shared by the merchant with PayU during payment initiation.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/c63cf942c1b83b2190c1911948f3bbfe420f9752dc3a23d204658439e227cc93-dcc-workflow-step2.png" />
+
+3. PayU detects an that an international card is entered by the customer and gives a choice to the customer to proceed with payment either in their local currency or in merchant’s order currency. 
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/9a761ee30f121be27112eb6ac1c48038290ef9130313754b750ef577db944615-dcc-workflow-step3.png" />
+
+4. Customer can choose their preferred currency and proceed with payment
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/0554fc2f548da8a81411516f90633f77e85a6ba8e779c6317a40aacb3784f8e2-dcc-workflow-step4.png" />
+
+5. Payment gets processed in customer’s chose currency.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/4550de7a67b24304474c1ea6506c0120421cc5f9620dfad8fc02691fa53fae2e-dcc-workflow-step5.png" />
+
+6. Customer is redirected back to merchant website and order gets confirmed.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/a2ade3e4ed48dedcadb1a83520bb772b2c08074b8d44a126dcf754baf498ab7a-dcc-workflow-step6.png" />
