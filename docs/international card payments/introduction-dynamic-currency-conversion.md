@@ -31,34 +31,34 @@ With PayU’s international card payment solution, businesses can accept payment
 
 PayU offers a comprehensive solution for businesses looking to accept payments from customers around the world. Our international payment platform combines global reach with localized expertise to help you expand your business beyond borders.
 
-### Key Benefits of PayU’s International Payment Solution
+## Key Benefits of PayU’s International Payment Solution
 
-#### *1. International Card Acceptance*
+### 1. International Card Acceptance
 
 * Accept all major international cards including Visa, Mastercard, and American Express
 * Process payments from over 150 countries worldwide
 
-#### *2. Convenient Settlement Options*
+### 2. Convenient Settlement Options
 
 * Flexibility to receive settlements in INR or non-INR currencies based on your business needs
 * Consolidated reporting across all international transactions
 
-#### *3. Compliant with Global Security Standards*
+### 3. Compliant with Global Security Standards
 
 * 3DS2.0 compliant solution to prevent fraud and secure transactions
 * Eliminate risk exposure during refunds with advanced security protocols
 * Adhere to international compliance requirements for cross-border transactions
 
-#### *4. Real-time Transaction Analytics*
+### 4. Real-time Transaction Analytics
 
 * Track, filter, and analyze your international transactions from the PayU dashboard
 
-#### *5. Real-time Fraud Detection*
+### 5. Real-time Fraud Detection
 
 * Evaluate and prevent risk in real-time to protect your business
 * Customize fraud detection with your own rules as per your business needs
 
-#### *6. Additional Value-Added Features*
+### 6. Additional Value-Added Features
 
 * **Dynamic Currency Conversion (DCC)**: Allow customers to pay in their preferred currency
 * **Multi-Currency Conversion (MCC)**: Display prices in multiple currencies
