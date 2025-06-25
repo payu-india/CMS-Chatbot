@@ -1,6 +1,6 @@
 - get_token_chargeback_api-1
 - read-chargeback-api
 - read-reasons-api
-- accept-chargeback-api
+- accept-contest-chargeback-api
 - contest-chargeback-api
 - accept-chargeback-api-1
