@@ -37,12 +37,24 @@ Multi-Currency Conversion (MCC) is a payment solution that enables merchants to 
 * **Simplified Global Expansion**: Display prices and accept payments in multiple currencies without complex operational changes
 * **Convenient Settlements:** Get settlements in INR or non-INR currencies as per your business needs. 
 
-MCC helps businesses expand internationally while providing customers with the clarity and convenience of seeing prices in their familiar currency throughout their shopping journey. The following workflow provides steps involved in DCC with sample checkout page:
+MCC helps businesses expand internationally while providing customers with the clarity and convenience of seeing prices in their familiar currency throughout their shopping journey. The following steps describes the workflow involved in DCC with sample checkout page screenshots.
+
+1. Customer browses products on merchant’s website and sees prices on website in their local currency.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/c48884f6a01962d61d33c46466cb387103a3e08b78a45b385a529f62991d81e5-dcc_demo_page.png" />
 
-1. Customer browses products on merchant’s website and sees prices on website in their local currency.
-2. Merchant initiates payment with PayU for products selected by the customer
-3. Customer enters their international card details on checkout
-4. Payment gets captured successfully in merchant initiated currency 
-5. Customer is redirected back to merchant’s website and order is confirmed
+2. Merchant initiates payment with PayU for products selected by the customer.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/7ab35f606b877e9d46d1faace2845b4c464aeb01a240576e790ba5ecfc04c2c7-dcc_local_currency.png" />
+
+3. Customer enters their international card details on checkout.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/6690d72af4a2537cfeffdfa30d71b966b83e65e058592c71c1d6262f3f0ba6a1-dcc-enter-card-details.png" />
+
+4. Payment gets captured successfully in merchant initiated currency.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/8846f3766b3bb77655a8cf850aae5ef54eaedafc7e2cc05b8abb7a8f30749118-dcc-payment-successful.png" />
+
+5. Customer is redirected back to merchant’s website and order is confirmed.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/3f40f34f39a7916e4f37abb8877655ad84e1a2bb9a47d3d2e37b861306774652-dcc-order-confirmation.png" />
