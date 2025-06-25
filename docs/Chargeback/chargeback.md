@@ -1,5 +1,5 @@
 ---
-title: Introduction - Chargeback
+title: Introduction
 excerpt: ''
 deprecated: false
 hidden: false
