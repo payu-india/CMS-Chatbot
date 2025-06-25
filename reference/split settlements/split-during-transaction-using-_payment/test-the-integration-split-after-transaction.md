@@ -1,7 +1,7 @@
 ---
 title: Test the Integration - Split After Transaction
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
