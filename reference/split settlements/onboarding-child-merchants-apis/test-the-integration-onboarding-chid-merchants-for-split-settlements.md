@@ -1,7 +1,7 @@
 ---
 title: Test the Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Test the Integration - Onboarding Chid Merchants for Split Settlements
   robots: index
