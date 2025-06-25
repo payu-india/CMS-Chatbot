@@ -4,8 +4,11 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Chargeback APIs
+  description: >-
+    Integrate PayU's Chargeback APIs to automate dispute management. Access
+    endpoints to read, accept, or contest chargebacks programmatically with
+    comprehensive API documentation.
   robots: index
 next:
   description: ''
