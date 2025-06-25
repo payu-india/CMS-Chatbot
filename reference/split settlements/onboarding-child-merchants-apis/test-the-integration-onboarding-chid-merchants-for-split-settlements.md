@@ -1,11 +1,12 @@
 ---
-title: Test the Integration - Onboarding Chid Merchants for Split Settlements
+title: Test the Integration
 deprecated: false
 hidden: false
 metadata:
+  title: Test the Integration - Onboarding Chid Merchants for Split Settlements
   robots: index
 ---
-This section describes
+This section describes how to test the test the API integration for onboarding chid merchants for Split Settlements.
 
 > 📘 Note:
 >
