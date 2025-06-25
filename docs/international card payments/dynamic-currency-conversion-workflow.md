@@ -81,11 +81,11 @@ DCC helps businesses expand globally by removing currency barriers at checkout w
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/c63cf942c1b83b2190c1911948f3bbfe420f9752dc3a23d204658439e227cc93-dcc-workflow-step2.png" />
 
-3. PayU detects an that an international card is entered by the customer and gives a choice to the customer to proceed with payment either in their local currency or in merchant’s order currency. 
+3. PayU detects that an international card is entered by the customer and gives a choice to the customer to proceed with payment either in their local currency or in merchant’s order currency. 
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/9a761ee30f121be27112eb6ac1c48038290ef9130313754b750ef577db944615-dcc-workflow-step3.png" />
 
-4. Customer can choose their preferred currency and proceed with payment
+4. Customer can choose their preferred currency and proceed with payment.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/0554fc2f548da8a81411516f90633f77e85a6ba8e779c6317a40aacb3784f8e2-dcc-workflow-step4.png" />
 
