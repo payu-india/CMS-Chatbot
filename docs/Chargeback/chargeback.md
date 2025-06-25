@@ -4,8 +4,19 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Chargeback Introduction
+  description: >-
+    Learn about chargeback management with PayU. Understand the chargeback
+    process, dispute handling, and best practices for reducing chargebacks in
+    your payment transactions
+  keywords:
+    - chargeback
+    - dispute management
+    - payment chargeback
+    - chargeback process
+    - PayU chargeback
+    - chargeback handling
+    - payment dispute
   robots: index
 next:
   description: ''
