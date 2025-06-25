@@ -3,6 +3,19 @@ title: Webhooks for Chargeback
 deprecated: false
 hidden: false
 metadata:
+  title: Webhooks for Chargeback
+  description: >-
+    Set up PayU chargeback webhooks for real-time notifications. Receive instant
+    updates on chargeback events, status changes, and dispute modifications via
+    webhook integration
+  keywords:
+    - chargeback webhooks
+    - PayU webhooks
+    - real-time chargeback notifications
+    - chargeback status updates
+    - webhook integration
+    - dispute notifications
+    - payment webhook
   robots: index
 ---
 Chargeback webhooks provide real-time notifications about important chargeback events, allowing merchants to stay updated and take necessary actions promptly. Webhooks are sent for the following events:
