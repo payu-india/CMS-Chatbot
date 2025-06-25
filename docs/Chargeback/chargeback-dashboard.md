@@ -4,13 +4,24 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Chargeback Dashboard
+  description: >-
+    Access PayU's Chargeback Dashboard to monitor, filter, and manage chargeback
+    cases. Track transaction disputes, export data, and analyze chargeback
+    details in one interface.
+  keywords:
+    - chargeback dashboard
+    - chargeback management interface
+    - PayU dashboard
+    - chargeback tracking
+    - dispute monitoring
+    - chargeback analytics
+    - payment dispute dashboard
   robots: index
 next:
   description: ''
 ---
-To find the chargeback details: 
+To find the chargeback details:
 
 1. Log on to PayU Dashboard.
 2. Select **Chargeback** from the left pane.
