@@ -25,7 +25,7 @@ The chargeback involves the following steps:
 
 This part of the document includes the following:
 
-* [Chargeback Dashboard](doc:chargeback)
+* [Chargeback Dashboard](doc:chargeback-dashboard)
 * [Chargeback APIs](doc:chargeback-apis)
   * [Read Chargeback API](https://docs.payu.in/reference/read-chargeback-api)
   * [Read Reasons API](ref:read-reasons-api)
