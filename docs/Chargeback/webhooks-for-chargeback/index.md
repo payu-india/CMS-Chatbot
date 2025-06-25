@@ -43,7 +43,7 @@ When a chargeback event occurs, PayU will send a POST request to your configured
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | type         | Type of transaction (e.g., "payments")                                                                                                                           |
 | event        | Event type (e.g., "dispute")                                                                                                                                     |
-| reason\_code | Reason for the chargeback                                                                                                                                        |
+| reason\_code | Reason for the chargeback. For the list of reason codes, refer to [Reason codes for chargebacks](reason-codes-for-chargebacks).                                  |
 | created\_at  | Timestamp when the chargeback was created                                                                                                                        |
 | updated\_at  | Timestamp when the chargeback was last updated                                                                                                                   |
 | mid          | Merchant ID                                                                                                                                                      |
