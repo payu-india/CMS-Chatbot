@@ -238,15 +238,15 @@ This is applicable for the following scenarios:
   <thead>
     <tr>
       <th>
-        **Parameter**
+        Parameter
       </th>
 
       <th>
-        **Description**
+        Description
       </th>
 
       <th>
-        **Value**
+        Value
       </th>
     </tr>
   </thead>
@@ -255,7 +255,7 @@ This is applicable for the following scenarios:
     <tr>
       <td>
         store\_card\_token
-        **mandatory for store card transactions**
+        `mandatory for store card transactions`
       </td>
 
       <td>
@@ -270,7 +270,7 @@ This is applicable for the following scenarios:
     <tr>
       <td>
         storecard\_token\_type
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -285,7 +285,7 @@ This is applicable for the following scenarios:
     <tr>
       <td>
         additional\_info
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
