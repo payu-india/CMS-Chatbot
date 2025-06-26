@@ -76,7 +76,7 @@ This must contain the header with token you get using the Get Token API in the f
       </td>
 
       <td>
-        `String`Types of response: `accept`, `partially_accept`, `contest`. For the dispute\_type as  `partially_accept` or `contest`, refer to the notes in the [File upload fields](#file-upload-fields) table
+        `String`Types of response: `accept`, `contest`. For the dispute\_type as  `partially_accept` or `contest`, refer to the notes in the [File upload fields](#file-upload-fields) table
       </td>
     </tr>
 
