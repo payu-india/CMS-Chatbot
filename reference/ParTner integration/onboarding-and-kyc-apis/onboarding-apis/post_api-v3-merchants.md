@@ -75,7 +75,7 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 ### Failure scenario
 
 <HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+<table>
   <thead>
     <tr>
       <th style="text-align: left; padding: 8px; border-bottom: 2px solid #ddd;">Error</th>
