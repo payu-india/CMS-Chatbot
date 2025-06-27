@@ -62,14 +62,69 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 ```
 {
   "merchant": {
-    "mid": "8390925",
-    "kyc_document_name": "PAN Card of Signing Authority",
-    "kyc_document_uuid": "11ef-587e-43837330-95b0-021ec077a271",
-    "kyc_document_status": "DOCUMENT_SUBMITTED",
-    "error_message": null,
-    "created_at": "2024-08-12T07:41:19.000Z"
+    "name": "DIVY HARESHKUMAR SHAH",
+    "email": "boro15@yomail.com",
+    "registered_mobile": "9916965913",
+    "mid": 8791796,
+    "product": "PayUbiz",
+    "business_type": "LongTail",
+    "business_name": null,
+    "pancard_name": null,
+    "pancard_number": null,
+    "website_url": null,
+    "android_url": null,
+    "ios_url": null,
+    "gst_number": null,
+    "created_at": "2025-06-26T07:16:25.000Z",
+    "mobile": "9916965913",
+    "blocked": false,
+    "first_name": "DIVY",
+    "last_name": "HARESHKUMAR SHAH",
+    "bank_detail": {
+      "bank_account_number": null,
+      "ifsc_code": null,
+      "holder_name": null,
+      "nodal_code": null,
+      "nodal_status": null
+    },
+    "operating_address": {
+      "address_line": null,
+      "city": null,
+      "state": null,
+      "pincode": null
+    },
+    "registration_address": {
+      "address_line": null,
+      "city": null,
+      "state": null,
+      "pincode": null
+    },
+    "business_entity": "Sole Proprietorship",
+    "status": "account_created",
+    "partner_source": "Create Merchant API",
+    "pan_verification_status": "Pending",
+    "website_approval_status": null,
+    "notification_email": "boro15@yomail.com",
+    "settlement_status": "Active",
+    "is_service_agreement_accepted": false,
+    "is_authorisation_letter_required": false,
+    "monthly_expected_volume": null,
+    "business_category": null,
+    "business_sub_category": null,
+    "bank_verification_status": null,
+    "uuid": "11f0-525d-76182ba4-954a-021ec077a271",
+    "penny_deposit_status": null,
+    "document_status": "Docs Approved",
+    "kyc_status": {
+      "status": "LOCKED",
+      "kyc_status": "LOCKED"
+    },
+    "agreement_status": "Approved",
+    "integration_type": "Not Selected",
+    "service_intent": "default"
   }
 }
+
 ```
 
 ### Failure scenario
@@ -131,16 +186,66 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 
 ## Response parameters
 
-### Fields in the merchant object
+### merchant JSON object descriptions
 
-| Parameter             | Description                                                                        | Example                              |
-| :-------------------- | :--------------------------------------------------------------------------------- | :----------------------------------- |
-| mid                   | Unique merchant identifier                                                         | 8390925                              |
-| kyc\_document\_name   | Name of the KYC document category                                                  | PAN Card of Signing Authority        |
-| kyc\_document\_uuid   | Unique identifier for the KYC document submission                                  | 11ef-587e-43837330-95b0-021ec077a271 |
-| kyc\_document\_status | Current status of the KYC document (e.g., DOCUMENT\_SUBMITTED, VERIFIED, REJECTED) | DOCUMENT\_SUBMITTED                  |
-| error\_message        | Error message if document verification failed, null otherwise                      | null                                 |
-| created\_at           | Timestamp when the KYC document was created/submitted.                             | 2024-08-12T07:41:19.000Z             |
+| Field                               | Description                                | Example                                         |
+| ----------------------------------- | ------------------------------------------ | ----------------------------------------------- |
+| name                                | Full name of the merchant                  | "DIVY HARESHKUMAR SHAH"                         |
+| email                               | Email address associated with the merchant | "[boro15@yomail.com](mailto:boro15@yomail.com)" |
+| registered\_mobile                  | Registered mobile number of the merchant   | "9916965913"                                    |
+| mid                                 | Unique merchant identifier                 | 8791796                                         |
+| product                             | Payment product assigned to the merchant   | "PayUbiz"                                       |
+| business\_type                      | Type of business                           | "LongTail"                                      |
+| business\_name                      | Name of the business                       | null                                            |
+| pancard\_name                       | Name as shown on the PAN card              | null                                            |
+| pancard\_number                     | PAN card number                            | null                                            |
+| website\_url                        | Website URL of the merchant                | null                                            |
+| android\_url                        | Android app URL (if applicable)            | null                                            |
+| ios\_url                            | iOS app URL (if applicable)                | null                                            |
+| gst\_number                         | GST registration number                    | null                                            |
+| created\_at                         | Timestamp when the merchant was created    | "2025-06-26T07:16:25.000Z"                      |
+| mobile                              | Contact mobile number                      | "9916965913"                                    |
+| blocked                             | Indicates if the merchant is blocked       | false                                           |
+| first\_name                         | First name of the merchant                 | "DIVY"                                          |
+| last\_name                          | Last name of the merchant                  | "HARESHKUMAR SHAH"                              |
+| business\_entity                    | Type of business entity                    | "Sole Proprietorship"                           |
+| status                              | Current status of the merchant account     | "account\_created"                              |
+| partner\_source                     | Source channel of the merchant creation    | "Create Merchant API"                           |
+| pan\_verification\_status           | Status of PAN verification                 | "Pending"                                       |
+| website\_approval\_status           | Status of website approval                 | null                                            |
+| notification\_email                 | Email address for notifications            | "[boro15@yomail.com](mailto:boro15@yomail.com)" |
+| settlement\_status                  | Status of payment settlements              | "Active"                                        |
+| is\_service\_agreement\_accepted    | Whether service agreement is accepted      | false                                           |
+| is\_authorisation\_letter\_required | Whether authorization letter is required   | false                                           |
+| monthly\_expected\_volume           | Expected monthly transaction volume        | null                                            |
+| business\_category                  | Category of the business                   | null                                            |
+| business\_sub\_category             | Sub-category of the business               | null                                            |
+| bank\_verification\_status          | Status of bank account verification        | null                                            |
+| uuid                                | Universally unique identifier              | "11f0-525d-76182ba4-954a-021ec077a271"          |
+| penny\_deposit\_status              | Status of penny deposit verification       | null                                            |
+| document\_status                    | Status of document verification            | "Docs Approved"                                 |
+| agreement\_status                   | Status of merchant agreement               | "Approved"                                      |
+| integration\_type                   | Type of integration                        | "Not Selected"                                  |
+| service\_intent                     | Service intent for the merchant            | "default"                                       |
+
+### registration\_address or operating\_address JSON object description
+
+| Parameter     | Description                  | Example |
+| ------------- | ---------------------------- | ------- |
+| address\_line | Registration address line    | null    |
+| city          | Registration address city    | null    |
+| state         | Registration address state   | null    |
+| pincode       | Registration address pincode | null    |
+
+### bank\_detail JSON object description
+
+| Parameter             | Description                 | Example |
+| --------------------- | --------------------------- | ------- |
+| bank\_account\_number | Bank account number         | null    |
+| ifsc\_code            | IFSC code of the bank       | null    |
+| holder\_name          | Account holder name         | null    |
+| nodal\_code           | Nodal account code          | null    |
+| nodal\_status         | Status of the nodal account | null    |
 
 > 📘 Notes:
 >
