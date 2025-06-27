@@ -1,5 +1,5 @@
 ---
-title: Update Merchant Details
+title: Update Merchant Details API
 api:
   file: payu_update_merchant_api_updated.json
   operationId: updateMerchant
