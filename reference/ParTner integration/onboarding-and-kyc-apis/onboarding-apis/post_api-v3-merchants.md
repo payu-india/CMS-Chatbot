@@ -21,10 +21,7 @@ This API is authorised through a client token generated using the client ID and 
 > 1. The mobile, Pan number, GSTIN passed in the request has to be valid as checks are performed in real time.
 > 2. If Business Entity type is passed in the create merchant API, ensure that the PAN also belong to the same entity.
 
-{/* Replace the custom component with regular markdown content */}
-## Environment
-- **Test Environment**: https://uat-partner.payu.in/api/v3/merchants
-- **Production Environment**: https://partner.payu.in/api/v3/merchants
+<PARTNEROnboardingEnvironment />
 
 ## Sample Request
 
@@ -55,105 +52,82 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 --data-urlencode 'merchant[gst_number]=24FANPS6362D1ZE' \
 --data-urlencode 'merchant[udyam_number]=UDYAM-UP-19-0002053' \
 --data-urlencode 'merchant[gst_consent]=false'
+
 ```
 
 ## Sample response
 
 ### Success scenario
 
-* With all the parameters posted in request
-
-```json
-{
-  "merchant": {
-    "name": "DIVY HARESHKUMAR SHAH",
-    "email": "merchant@example.com",
-    "registered_mobile": "9916965913",
-    "mid": 8791789,
-    "product": "PayUbiz",
-    "business_type": "LongTail",
-    "business_name": "DIVY HARESHKUMAR SHAH",
-    "pancard_name": "DIVY HARESHKUMAR SHAH",
-    "pancard_number": "FANPS6362D",
-    "website_url": "https://www.example.com",
-    "android_url": null,
-    "ios_url": null,
-    "gst_number": "24FANPS6362D1ZE",
-    "created_at": "2025-06-26T07:13:35.000Z",
-    "mobile": "9916965913",
-    "blocked": false,
-    "first_name": "DIVY",
-    "last_name": "HARESHKUMAR SHAH",
-    "bank_detail": {
-      "bank_account_number": "919010067278549",
-      "ifsc_code": "UTIB0003557",
-      "holder_name": "DIVY HARESHKUMAR SHAH",
-      "nodal_code": null,
-      "nodal_status": "Not Activated"
-    },
-    "operating_address": {
-      "address_line": null,
-      "city": null,
-      "state": null,
-      "pincode": null
-    },
-    "registration_address": {
-      "address_line": null,
-      "city": null,
-      "state": null,
-      "pincode": null
-    },
-    "business_entity": "Sole Proprietorship",
-    "status": "live",
-    "partner_source": "Create Merchant API",
-    "pan_verification_status": "Success",
-    "website_approval_status": "Pending",
-    "notification_email": "merchant@example.com",
-    "settlement_status": "Active",
-    "is_service_agreement_accepted": false,
-    "is_authorisation_letter_required": false,
-    "monthly_expected_volume": 12000,
-    "business_category": "Arts, Gifts & Stationery",
-    "business_sub_category": "Art Dealers and Galleries",
-    "bank_verification_status": "Pending",
-    "uuid": "11f0-525d-1033b9d4-a277-021ec077a271",
-    "penny_deposit_status": "Not Initiated",
-    "document_status": "Docs Approved",
-    "kyc_status": {
-      "kyc_status": "PENDING",
-      "adhaar_kyc_status": "PENDING",
-      "ckyc_status": "PENDING"
-    },
-    "agreement_status": "Approved",
-    "integration_type": "ThirdParty",
-    "service_intent": "default"
-  }
-}
 ```
-
-* With only the mandatory parameters
-
-```json
 {
   "merchant": {
-    "name": "DIVY HARESHKUMAR SHAH",
-    "email": "boro15@yomail.com",
-    "registered_mobile": "9916965913",
-    "mid": 8791796,
-    "product": "PayUbiz",
-    "business_entity": "Sole Proprietorship",
-    "status": "account_created",
-    "partner_source": "Create Merchant API",
-    "uuid": "11f0-525d-76182ba4-954a-021ec077a271",
-    "document_status": "Docs Approved",
-    "agreement_status": "Approved",
-    "integration_type": "Not Selected",
-    "service_intent": "default"
+    "mid": "8390925",
+    "kyc_document_name": "PAN Card of Signing Authority",
+    "kyc_document_uuid": "11ef-587e-43837330-95b0-021ec077a271",
+    "kyc_document_status": "DOCUMENT_SUBMITTED",
+    "error_message": null,
+    "created_at": "2024-08-12T07:41:19.000Z"
   }
 }
 ```
 
 ### Failure scenario
+
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+  <thead>
+    <tr>
+      <th style="text-align: left; padding: 8px; border-bottom: 2px solid #ddd;">Error</th>
+      <th style="text-align: left; padding: 8px; border-bottom: 2px solid #ddd;">Sample response</th>
+      <th style="text-align: left; padding: 8px; border-bottom: 2px solid #ddd;">Action to be taken</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">422</td>
+      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">
+        <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 5px; overflow: auto;"><code>{  
+  "errors": {
+    "error": [
+      "Account already exists for given user"
+    ]
+  },
+  "product_account": {
+    "identifier": 8791789,
+    "product": "PayUbiz"
+  }
+}</code></pre>
+      </td>
+      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">
+        Merchant already exists. Use the <a href="ref:update_merchant_details_api">Update Merchant Details API</a> to update.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">422</td>
+      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">
+        <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 5px; overflow: auto;"><code>{   
+  "error": "business_entity_id is not present" 
+}</code></pre>
+      </td>
+      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">
+        Check the business entity ID. For more information, refer to <a href="ref:business-category-sub-category-uuids-for-split-settlements">Business Category & Sub-category UUIDs List</a>.
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">401</td>
+      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">
+        <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 5px; overflow: auto;"><code>{   
+  "status": "Unauthorized" 
+}</code></pre>
+      </td>
+      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">
+        Check the bearer token used with the scope and grant type for creating a merchant. For more information, refer to <a href="ref:get_token_api">Get Token API - Partner Integration</a>.
+      </td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 
 ## Response parameters
 
@@ -162,11 +136,11 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 | Parameter             | Description                                                                        | Example                              |
 | :-------------------- | :--------------------------------------------------------------------------------- | :----------------------------------- |
 | mid                   | Unique merchant identifier                                                         | 8390925                              |
-| kyc_document_name     | Name of the KYC document category                                                  | PAN Card of Signing Authority        |
-| kyc_document_uuid     | Unique identifier for the KYC document submission                                  | 11ef-587e-43837330-95b0-021ec077a271 |
-| kyc_document_status   | Current status of the KYC document (e.g., DOCUMENT_SUBMITTED, VERIFIED, REJECTED) | DOCUMENT_SUBMITTED                  |
-| error_message        | Error message if document verification failed, null otherwise                      | null                                 |
-| created_at           | Timestamp when the KYC document was created/submitted.                             | 2024-08-12T07:41:19.000Z             |
+| kyc\_document\_name   | Name of the KYC document category                                                  | PAN Card of Signing Authority        |
+| kyc\_document\_uuid   | Unique identifier for the KYC document submission                                  | 11ef-587e-43837330-95b0-021ec077a271 |
+| kyc\_document\_status | Current status of the KYC document (e.g., DOCUMENT\_SUBMITTED, VERIFIED, REJECTED) | DOCUMENT\_SUBMITTED                  |
+| error\_message        | Error message if document verification failed, null otherwise                      | null                                 |
+| created\_at           | Timestamp when the KYC document was created/submitted.                             | 2024-08-12T07:41:19.000Z             |
 
 > 📘 Notes:
 >
@@ -184,10 +158,12 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 >
 > The merchant display name, email, mobile and business entity type parameters are mandatory. If the if the Pan No is posted, Pan Name also need to be posted along with it, otherwise will result in error. When posting bank account details, all the bank account details should be sent, which is, account no, IFSC, account holder name.
 
-### Additional info
+<details>
+  <summary>Reference information for request parameters</summary>
 
-| Parameter | Reference |
-|:--------------------------|:----------------------------------------------------------|
-| merchant[business_category] | For the list of business categories, refer to [Business Category List](ref:partner-category-list). |
-| merchant[business_entity_type] | For the list of business entity type, refer to [Business Entity Type](ref:partner-category-list#business-entity-type). |
-| merchant[business_sub_category] | For the list of business subcategories, refer to [Business Sub-Category](ref:partner-category-list#business-sub-category). |
+  | Parameter                          | Reference                                                                                                                  |
+  | :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+  | merchant\[business\_category]      | For the list of business categories, refer to [Business. Category List](ref:partner-category-list).                        |
+  | merchant\[business\_entity\_type]  | For the list of business entity type, refer to [Business Entity Type](ref:partner-category-list#business-entity-type).     |
+  | merchant\[business\_sub\_category] | For the list of business subcategories, refer to [Business Sub-Category](ref:partner-category-list#business-sub-category). |
+</details>
