@@ -236,10 +236,8 @@ This API is authorised through a client token generated using the client ID and 
   | holder\_name          | Name of the account holder          |
   | nodal\_code           | Nodal code (if applicable)          |
   | nodal\_status         | Status of nodal account             |
-</details>
 
-<details>
-  <summary>KYC and Document Status</summary>
+  #### KYC and Document Status
 
   The following statuses can be returned for KYC and document verification:
 
