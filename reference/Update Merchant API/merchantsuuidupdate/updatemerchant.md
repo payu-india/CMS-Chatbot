@@ -6,5 +6,5 @@ excerpt: >-
 api:
   file: payu_update_merchant_api.json
   operationId: updateMerchant
-hidden: false
+hidden: true
 ---
