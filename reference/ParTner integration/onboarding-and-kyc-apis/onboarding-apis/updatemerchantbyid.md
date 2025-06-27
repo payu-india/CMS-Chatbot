@@ -17,7 +17,7 @@ This API allows you to update or add information about a merchant, including PAN
 
 > 📘 Notes:
 >
-> * The Update Merchant API uses the uuid value as the path parameter. Use the uuid value that is in the \*\*Create Merchant \*\* API  response for the corresponding merchant. For more information, refer to [Create Merchant API](ref:create_merchant_api).
+> * The **Update Merchant** API uses the uuid value as the path parameter. Use the uuid value that is in the \*\*Create Merchant \*\* API  response for the corresponding merchant. For more information, refer to [Create Merchant API](ref:create_merchant_api).
 > * All the fields in this API are not mandatory, but when you are using this API, you must update atleast one merchant's detail using a parameter.
 > * The PAN verification will happen asynchronously, and the status will be made available in the Get Merchant API.
 > * PAN name has to be the same as the business name for successful verification
