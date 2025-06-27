@@ -6,24 +6,26 @@ api:
   operationId: post_api-v3-merchants
 hidden: true
 ---
-The **Create Merchant** API creates a new merchant account on PayU and posts all KYC details. This API returns the Merchant ID (MID) in the response.
+# Create Merchant API Overview
 
-> 📘 Note:
->
+
+The **Create Merchant** API creates a new merchant account on PayU and posts all KYC details. This API returns the Merchant ID (MID) in the response.  
+
+> 📘 Note:  
 > After using this API to create merchants, you can use the Update Merchant API to update the merchant details. For more information, refer to [Update Merchant Details API](ref:update_merchant_details_api).
 
-## Authentication
+###Authentication
 
-This API is authorised through a client token generated using the client ID and secret. To create a token, call the get token API with `refer merchant` as a scope.  Refer to the  [Get Token API](ref:get_token_api) doc for more information.
+This API is authorised through a client token generated using the client ID and secret. To create a token, call the get token API with `refer merchant` as a scope. Refer to the [Get Token API](ref:get_token_api) doc for more information.
 
-> ❗️ Important considerations for using this API
->
-> 1. The mobile, Pan number, GSTIN passed in the request has to be valid as checks are performed in real time.
-> 2. If Business Entity type is passed in the create merchant API, ensure that the PAN also belong to the same entity.
 
-<PARTNEROnboardingEnvironment />
+> ❗️ Important considerations for using this API  
+> 1. The mobile, PAN number, GSTIN passed in the request has to be valid as checks are performed in real-time.  
+> 2. If Business Entity type is passed in the create merchant API, ensure that the PAN also belongs to the same entity.
 
-## Sample Request
+
+<details>
+<summary>Sample Request</summary>
 
 ```curl
 curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
@@ -52,14 +54,16 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 --data-urlencode 'merchant[gst_number]=24FANPS6362D1ZE' \
 --data-urlencode 'merchant[udyam_number]=UDYAM-UP-19-0002053' \
 --data-urlencode 'merchant[gst_consent]=false'
-
 ```
 
-## Sample response
+</details>
 
-### Success scenario
+<details>
+<summary>Sample Response</summary>
 
-```
+### Success Scenario
+
+```json
 {
   "merchant": {
     "name": "DIVY HARESHKUMAR SHAH",
@@ -124,155 +128,155 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
     "service_intent": "default"
   }
 }
-
 ```
 
-### Failure scenario
+### Failure Scenario
 
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left; padding: 8px; border-bottom: 2px solid #ddd;">Error</th>
-      <th style="text-align: left; padding: 8px; border-bottom: 2px solid #ddd;">Sample response</th>
-      <th style="text-align: left; padding: 8px; border-bottom: 2px solid #ddd;">Action to be taken</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">422</td>
-      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">
-        <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 5px; overflow: auto;"><code>{  
+Various error responses can be received when the API fails. Here are some common examples:
+
+**401 Unauthorized**
+```json
+{
+  "error": "invalid_token",
+  "error_description": "The access token provided is invalid"
+}
+```
+**Action**: Regenerate the token using the Get Token API.
+
+**422 Unprocessable Entity**
+```json
+{
   "errors": {
-    "error": [
-      "Account already exists for given user"
+    "detail": [
+      "Merchant already exists with given PAN details or email id"
     ]
-  },
-  "product_account": {
-    "identifier": 8791789,
-    "product": "PayUbiz"
   }
-}</code></pre>
-      </td>
-      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">
-        Merchant already exists. Use the <a href="ref:update_merchant_details_api">Update Merchant Details API</a> to update.
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">422</td>
-      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">
-        <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 5px; overflow: auto;"><code>{   
-  "error": "business_entity_id is not present" 
-}</code></pre>
-      </td>
-      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">
-        Check the business entity ID. For more information, refer to <a href="ref:business-category-sub-category-uuids-for-split-settlements">Business Category & Sub-category UUIDs List</a>.
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">401</td>
-      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">
-        <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 5px; overflow: auto;"><code>{   
-  "status": "Unauthorized" 
-}</code></pre>
-      </td>
-      <td style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;">
-        Check the bearer token used with the scope and grant type for creating a merchant. For more information, refer to <a href="ref:get_token_api">Get Token API - Partner Integration</a>.
-      </td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+}
+```
+**Action**: Use a different PAN or email ID.
 
-## Response parameters
+**422 Unprocessable Entity**
+```json
+{
+  "errors": {
+    "detail": [
+      "Missing param: business_entity_id"
+    ]
+  }
+}
+```
+**Action**: Include the missing parameter in your request.
+
+</details>
+
+<details>
+<summary>Response Parameters</summary>
 
 ### merchant JSON object descriptions
 
-| Field                               | Description                                                                                                                                                                                                             | Example                                         |
-| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| name                                | Full name of the merchant                                                                                                                                                                                               | "DIVY HARESHKUMAR SHAH"                         |
-| email                               | Email address associated with the merchant                                                                                                                                                                              | "[boro15@yomail.com](mailto:boro15@yomail.com)" |
-| registered\_mobile                  | Registered mobile number of the merchant                                                                                                                                                                                | "9916965913"                                    |
-| mid                                 | Unique merchant identifier                                                                                                                                                                                              | 8791796                                         |
-| product                             | Payment product assigned to the merchant                                                                                                                                                                                | "PayUbiz"                                       |
-| business\_type                      | Type of business                                                                                                                                                                                                        | "LongTail"                                      |
-| business\_name                      | Name of the business                                                                                                                                                                                                    | null                                            |
-| pancard\_name                       | Name as shown on the PAN card                                                                                                                                                                                           | null                                            |
-| pancard\_number                     | PAN card number                                                                                                                                                                                                         | null                                            |
-| website\_url                        | Website URL of the merchant                                                                                                                                                                                             | null                                            |
-| android\_url                        | Android app URL (if applicable)                                                                                                                                                                                         | null                                            |
-| ios\_url                            | iOS app URL (if applicable)                                                                                                                                                                                             | null                                            |
-| gst\_number                         | GST registration number                                                                                                                                                                                                 | null                                            |
-| created\_at                         | Timestamp when the merchant was created                                                                                                                                                                                 | "2025-06-26T07:16:25.000Z"                      |
-| mobile                              | Contact mobile number                                                                                                                                                                                                   | "9916965913"                                    |
-| blocked                             | Indicates if the merchant is blocked                                                                                                                                                                                    | false                                           |
-| first\_name                         | First name of the merchant                                                                                                                                                                                              | "DIVY"                                          |
-| last\_name                          | Last name of the merchant                                                                                                                                                                                               | "HARESHKUMAR SHAH"                              |
-| bank\_details                       | For more information, refer to [bank\_detail JSON object description](#bank_detail-json-object-description)                                                                                                             |                                                 |
-| registration\_address               | Registration address in JSON format. For more information, refer to[ registration\_address or operating\_address JSON object description](#registration_address-or-operating_address-json-object-description).          |                                                 |
-| operating\_address                  | Operating or current address in JSON format. For more information, refer to[ registration\_address or operating\_address JSON object description](#registration_address-or-operating_address-json-object-description) . |                                                 |
-| business\_entity                    | Type of business entity                                                                                                                                                                                                 | "Sole Proprietorship"                           |
-| status                              | Current status of the merchant account                                                                                                                                                                                  | "account\_created"                              |
-| partner\_source                     | Source channel of the merchant creation                                                                                                                                                                                 | "Create Merchant API"                           |
-| pan\_verification\_status           | Status of PAN verification                                                                                                                                                                                              | "Pending"                                       |
-| website\_approval\_status           | Status of website approval                                                                                                                                                                                              | null                                            |
-| notification\_email                 | Email address for notifications                                                                                                                                                                                         | "[boro15@yomail.com](mailto:boro15@yomail.com)" |
-| settlement\_status                  | Status of payment settlements                                                                                                                                                                                           | "Active"                                        |
-| is\_service\_agreement\_accepted    | Whether service agreement is accepted                                                                                                                                                                                   | false                                           |
-| is\_authorisation\_letter\_required | Whether authorization letter is required                                                                                                                                                                                | false                                           |
-| monthly\_expected\_volume           | Expected monthly transaction volume                                                                                                                                                                                     | null                                            |
-| business\_category                  | Category of the business                                                                                                                                                                                                | null                                            |
-| business\_sub\_category             | Sub-category of the business                                                                                                                                                                                            | null                                            |
-| bank\_verification\_status          | Status of bank account verification                                                                                                                                                                                     | null                                            |
-| uuid                                | Universally unique identifier                                                                                                                                                                                           | "11f0-525d-76182ba4-954a-021ec077a271"          |
-| penny\_deposit\_status              | Status of penny deposit verification                                                                                                                                                                                    | null                                            |
-| document\_status                    | Status of document verification                                                                                                                                                                                         | "Docs Approved"                                 |
-| agreement\_status                   | Status of merchant agreement                                                                                                                                                                                            | "Approved"                                      |
-| integration\_type                   | Type of integration                                                                                                                                                                                                     | "Not Selected"                                  |
-| service\_intent                     | Service intent for the merchant                                                                                                                                                                                         | "default"                                       |
+| Field | Description |
+|-------|-------------|
+| name | Name of the merchant |
+| email | Email address of the merchant |
+| registered_mobile | Registered mobile number of the merchant |
+| mid | Merchant ID generated by PayU |
+| product | Product type (e.g., PayUbiz) |
+| business_type | Type of business (e.g., LongTail) |
+| business_name | Name of the business |
+| pancard_name | Name as on PAN card |
+| pancard_number | PAN card number |
+| website_url | URL of the merchant's website |
+| android_url | URL of Android app |
+| ios_url | URL of iOS app |
+| gst_number | GST registration number |
+| created_at | Timestamp of merchant creation (ISO 8601 format) |
+| mobile | Contact mobile number |
+| blocked | Whether the merchant is blocked (true/false) |
+| first_name | First name of the merchant |
+| last_name | Last name of the merchant |
+| business_entity | Business entity type |
+| status | Current account status |
+| partner_source | Source of merchant creation |
+| pan_verification_status | Status of PAN verification |
+| website_approval_status | Status of website approval |
+| notification_email | Email for notifications |
+| settlement_status | Status of settlement account |
+| is_service_agreement_accepted | Whether service agreement is accepted |
+| is_authorisation_letter_required | Whether authorization letter is required |
+| monthly_expected_volume | Expected monthly transaction volume |
+| business_category | Category of business |
+| business_sub_category | Sub-category of business |
+| bank_verification_status | Status of bank verification |
+| uuid | Unique identifier |
+| penny_deposit_status | Status of penny deposit verification |
+| document_status | Status of document verification |
+| kyc_status | KYC verification status |
+| agreement_status | Status of agreement |
+| integration_type | Type of integration |
+| service_intent | Service intent type |
 
-### registration\_address or operating\_address JSON object description
+### registration_address or operating_address JSON object description
 
-| Parameter     | Description                  | Example |
-| ------------- | ---------------------------- | ------- |
-| address\_line | Registration address line    | null    |
-| city          | Registration address city    | null    |
-| state         | Registration address state   | null    |
-| pincode       | Registration address pincode | null    |
+| Field | Description |
+|-------|-------------|
+| address_line | Street address of the merchant |
+| city | City of the merchant |
+| state | State of the merchant |
+| pincode | Postal code of the merchant |
 
-### bank\_detail JSON object description
+### bank_detail JSON object description
 
-| Parameter             | Description                 | Example |
-| --------------------- | --------------------------- | ------- |
-| bank\_account\_number | Bank account number         | null    |
-| ifsc\_code            | IFSC code of the bank       | null    |
-| holder\_name          | Account holder name         | null    |
-| nodal\_code           | Nodal account code          | null    |
-| nodal\_status         | Status of the nodal account | null    |
+| Field | Description |
+|-------|-------------|
+| bank_account_number | Bank account number of the merchant |
+| ifsc_code | IFSC code of the bank branch |
+| holder_name | Name of the account holder |
+| nodal_code | Nodal code (if applicable) |
+| nodal_status | Status of nodal account |
 
-> 📘 Notes:
->
-> * The `kyc_document_status` field can have the following values:
->   * `DOCUMENT_SUBMITTED`: Document has been submitted but not yet verified
->   * `VERIFIED`: Document has been verified and approved
->   * `REJECTED`: Document was rejected during verification
->   * `PENDING`: Document is pending verification
-> * The `error_message` field will only contain a value if the document was rejected or there was an issue with the submission.
-> * All timestamps are in ISO 8601 format with UTC timezone.
-
-## Request parameters
-
-> 📘 Mandatory and interdependent parameters:
->
-> * The merchant display name, email, mobile and business entity type parameters are mandatory.For the list of sample errors, refer to  [Failure scenario](#failure-scenario) table.
-> * If the PAN number is posted, PAN name musto be posted along with it. When posting bank account details, all the bank account details should be sent, which is, account no, IFSC, account holder name.
+</details>
 
 <details>
-  <summary>Reference information for request parameters</summary>
+<summary>KYC and Document Status</summary>
 
-  | Parameter                          | Reference                                                                                                                  |
-  | :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
-  | merchant\[business\_category]      | For the list of business categories, refer to [Business. Category List](ref:partner-category-list).                        |
-  | merchant\[business\_entity\_type]  | For the list of business entity type, refer to [Business Entity Type](ref:partner-category-list#business-entity-type).     |
-  | merchant\[business\_sub\_category] | For the list of business subcategories, refer to [Business Sub-Category](ref:partner-category-list#business-sub-category). |
+The following statuses can be returned for KYC and document verification:
+
+| Status | Description |
+|--------|-------------|
+| DOCUMENT_SUBMITTED | Documents have been submitted for verification |
+| VERIFIED | Documents have been verified successfully |
+| REJECTED | Documents have been rejected |
+| LOCKED | KYC process is locked (cannot be modified) |
+| PENDING | Documents are pending verification |
+
+If a document is rejected, the `error_message` field will contain the reason for rejection.
+
+> 📘 Note:  
+> All timestamps are provided in ISO 8601 format (YYYY-MM-DDThh:mm:ss.sssZ).
+
+</details>
+
+##Request Parameter
+
+> 📘 Mandatory and interdependent parameters:  
+> * The merchant display name, email, mobile, and business entity type parameters are mandatory. For the list of sample errors, refer to the [Failure scenario](#failure-scenario) table.  
+> * If the PAN number is posted, PAN name must also be posted along with it. When posting bank account details, all the bank account details should be sent, i.e., account no, IFSC, account holder name.
+
+<details>
+<summary>Parameters Reference</summary>
+
+| Parameter | Reference |
+|-----------|-----------|
+| merchant[business_category] | For the list of business categories, refer to [Business Category List](ref:partner-category-list) |
+| merchant[business_entity_type] | For the list of business entity types, refer to [Business Entity Type](ref:partner-category-list#business-entity-type) |
+| merchant[business_details][business_sub_category] | For the list of business sub-categories, refer to [Business Sub-Category List](ref:partner-category-list#business-sub-category) |
+
+Use the following references to get additional information:
+
+- [Business Entity Types](ref:partner-category-list#business-entity-type)
+- [Business Categories](ref:partner-category-list)
+- [Business Sub-Category List](ref:partner-category-list#business-sub-category)
+- [Get Token API](ref:get_token_api)
+- [Update Merchant Details API](ref:update_merchant_details_api)
+
 </details>
