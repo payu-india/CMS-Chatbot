@@ -130,7 +130,7 @@ This API is authorised through a client token generated using the client ID and 
 
   Various error responses can be received when the API fails. Here are some common examples:
 
-  **401 Unauthorized**
+  #### 401 Unauthorized
 
   ```json
   {
@@ -141,7 +141,7 @@ This API is authorised through a client token generated using the client ID and 
 
   **Action**: Regenerate the token using the Get Token API.
 
-  **422 Unprocessable Entity**
+  \####422 Unprocessable Entity
 
   ```json
   {
@@ -155,7 +155,7 @@ This API is authorised through a client token generated using the client ID and 
 
   **Action**: Use a different PAN or email ID.
 
-  **422 Unprocessable Entity**
+  \####422 Unprocessable Entity
 
   ```json
   {
