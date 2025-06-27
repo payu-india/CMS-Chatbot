@@ -1,0 +1,255 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PayU Create Merchant API",
+    "version": "1.0.0",
+    "description": "\nAPI to create a new merchant in PayU system.\n\n## Endpoints\n- Test Environment: https://uat-partner.payu.in/api/v3/merchants\n- Production Environment: https://partner.payu.in/api/v3/merchants\n"
+  },
+  "paths": {
+    "/api/v3/merchants": {
+      "post": {
+        "summary": "Create Merchant",
+        "description": "Creates a new merchant in the PayU system",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant": {
+                    "type": "object",
+                    "properties": {
+                      "mid": {
+                        "type": "string",
+                        "description": "Unique merchant identifier"
+                      },
+                      "kyc_document_name": {
+                        "type": "string",
+                        "description": "Name of the KYC document category"
+                      },
+                      "kyc_document_uuid": {
+                        "type": "string",
+                        "description": "Unique identifier for the KYC document submission"
+                      },
+                      "kyc_document_status": {
+                        "type": "string",
+                        "description": "Current status of the KYC document (e.g., DOCUMENT_SUBMITTED, VERIFIED, REJECTED)"
+                      },
+                      "error_message": {
+                        "type": "string",
+                        "description": "Error message if document verification failed, null otherwise"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "description": "Timestamp when the KYC document was created/submitted."
+                      },
+                      "businessName": {
+                        "type": "string",
+                        "description": "Name of the merchant's business"
+                      },
+                      "businessCategory": {
+                        "type": "string",
+                        "description": "Category of the merchant's business. Refer to Business Category List."
+                      },
+                      "businessSubCategory": {
+                        "type": "string",
+                        "description": "Sub-category of the merchant's business. Refer to Business Sub-Category List."
+                      },
+                      "businessEntityType": {
+                        "type": "string",
+                        "description": "Type of business entity (e.g., Proprietorship, Partnership, etc.). Refer to Business Entity Type."
+                      },
+                      "websiteURL": {
+                        "type": "string",
+                        "description": "URL of the merchant's website"
+                      },
+                      "businessDescription": {
+                        "type": "string",
+                        "description": "Brief description of the merchant's business"
+                      },
+                      "mcc": {
+                        "type": "string",
+                        "description": "Merchant Category Code as per industry standards"
+                      },
+                      "expectedMonthlyAmount": {
+                        "type": "string",
+                        "description": "Expected monthly transaction amount in INR"
+                      },
+                      "panNumber": {
+                        "type": "string",
+                        "description": "PAN (Permanent Account Number) of the business or individual"
+                      },
+                      "gstNumber": {
+                        "type": "string",
+                        "description": "GST (Goods and Services Tax) registration number if applicable"
+                      }
+                    },
+                    "description": "Merchant account details"
+                  },
+                  "user": {
+                    "type": "object",
+                    "description": "User details for the merchant account",
+                    "properties": {
+                      "email": {
+                        "type": "string",
+                        "description": "Email address of the merchant user"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "description": "Phone number of the merchant user"
+                      },
+                      "firstName": {
+                        "type": "string",
+                        "description": "First name of the merchant user"
+                      },
+                      "lastName": {
+                        "type": "string",
+                        "description": "Last name of the merchant user"
+                      }
+                    }
+                  },
+                  "address": {
+                    "type": "object",
+                    "description": "Address information for the merchant",
+                    "properties": {
+                      "addressLine1": {
+                        "type": "string",
+                        "description": "First line of the merchant's address"
+                      },
+                      "addressLine2": {
+                        "type": "string",
+                        "description": "Second line of the merchant's address"
+                      },
+                      "city": {
+                        "type": "string",
+                        "description": "City where the merchant is located"
+                      },
+                      "state": {
+                        "type": "string",
+                        "description": "State where the merchant is located"
+                      },
+                      "country": {
+                        "type": "string",
+                        "description": "Country where the merchant is located"
+                      },
+                      "pincode": {
+                        "type": "string",
+                        "description": "Postal code or ZIP code of the merchant's address"
+                      }
+                    }
+                  },
+                  "bankAccount": {
+                    "type": "object",
+                    "description": "Bank account information for the merchant",
+                    "properties": {
+                      "accountNumber": {
+                        "type": "string",
+                        "description": "Bank account number of the merchant"
+                      },
+                      "ifscCode": {
+                        "type": "string",
+                        "description": "IFSC code of the bank branch"
+                      },
+                      "accountType": {
+                        "type": "string",
+                        "description": "Type of bank account (e.g., Savings, Current)"
+                      },
+                      "beneficiaryName": {
+                        "type": "string",
+                        "description": "Name of the account holder"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "example1": {
+                  "summary": "Example merchant creation request",
+                  "value": {
+                    "user": {
+                      "email": "merchant@example.com",
+                      "phone": "9876543210",
+                      "firstName": "John",
+                      "lastName": "Doe"
+                    },
+                    "merchant": {
+                      "businessName": "Example Business",
+                      "businessCategory": "RETAIL",
+                      "businessSubCategory": "GENERAL_RETAIL",
+                      "businessEntityType": "PROPRIETORSHIP",
+                      "websiteURL": "https://www.examplebusiness.com",
+                      "businessDescription": "Online retail store for clothing",
+                      "mcc": "5691",
+                      "expectedMonthlyAmount": "500000",
+                      "panNumber": "ABCDE1234F",
+                      "gstNumber": "22AABCU9603R1ZX"
+                    },
+                    "address": {
+                      "addressLine1": "123 Main Street",
+                      "addressLine2": "Building A",
+                      "city": "Mumbai",
+                      "state": "Maharashtra",
+                      "country": "India",
+                      "pincode": "400001"
+                    },
+                    "bankAccount": {
+                      "accountNumber": "1234567890",
+                      "ifscCode": "SBIN0001234",
+                      "accountType": "CURRENT",
+                      "beneficiaryName": "Example Business"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful_response": {
+                    "summary": "Successful merchant creation",
+                    "value": {
+                      "status": "success",
+                      "merchant": {
+                        "mid": "8390925",
+                        "status": "ACTIVE"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request or validation error",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "error_response": {
+                    "summary": "Error response for existing account",
+                    "value": {
+                      "errors": {
+                        "error": [
+                          "Account already exists for given user"
+                        ]
+                      },
+                      "product_account": {
+                        "identifier": 8245177,
+                        "product": "PayUbiz"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
