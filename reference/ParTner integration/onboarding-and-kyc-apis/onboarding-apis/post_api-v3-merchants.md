@@ -156,7 +156,8 @@ curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
 
 > 📘 Mandatory and interdependent parameters:
 >
-> The merchant display name, email, mobile and business entity type parameters are mandatory. If the if the Pan No is posted, Pan Name also need to be posted along with it, otherwise will result in error. When posting bank account details, all the bank account details should be sent, which is, account no, IFSC, account holder name.
+> * The merchant display name, email, mobile and business entity type parameters are mandatory.For the list of sample errors, refer to  [Failure scenario](#failure-scenario) table.
+> * If the PAN number is posted, PAN name musto be posted along with it. When posting bank account details, all the bank account details should be sent, which is, account no, IFSC, account holder name.
 
 <details>
   <summary>Reference information for request parameters</summary>
