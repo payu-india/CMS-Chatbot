@@ -1,0 +1,178 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Update Merchant API",
+    "description": "API to update or add information about a merchant, including PAN details, operating information, and more.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://uat-partner.payu.in",
+      "description": "PayU UAT Partner environment"
+    }
+  ],
+  "paths": {
+    "/api/v3/merchants": {
+      "put": {
+        "summary": "Update Merchant Details",
+        "description": "This API allows you to update or add information about a merchant, including PAN details, operating information, and more.",
+        "operationId": "updateMerchant",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant[pancard_number]": {
+                    "type": "string",
+                    "description": "The PAN card number of the merchant.",
+                    "example": null
+                  },
+                  "merchant[pancard_name]": {
+                    "type": "string",
+                    "description": "The name associated with the PAN card.",
+                    "example": null
+                  },
+                  "merchant[business_entity]": {
+                    "type": "string",
+                    "description": "The type of business entity (e.g., 'Sole Proprietorship', 'Partnership').",
+                    "example": "Public Limited"
+                  },
+                  "merchant[business_category]": {
+                    "type": "string",
+                    "description": "The primary business category of the merchant (e.g., 'Ecommerce').",
+                    "example": "Arts, Gifts & Stationery"
+                  },
+                  "merchant[business_sub_category]": {
+                    "type": "string",
+                    "description": "A more specific subcategory related to the business (e.g., 'Flowers and Gifts').",
+                    "example": "Art Dealers and Galleries"
+                  },
+                  "merchant[business_name]": {
+                    "type": "string",
+                    "description": "The registered business name of the merchant.",
+                    "example": "PAYU PAYMENTS PRIVATE LIMITED"
+                  },
+                  "merchant[monthly_expected_volume]": {
+                    "type": "integer",
+                    "description": "The monthly expected transaction volume in monetary terms.",
+                    "example": "78658"
+                  },
+                  "merchant[registration_address][address_line]": {
+                    "type": "string",
+                    "description": "Address line of the business's registered address.",
+                    "example": "M1703, banashankari"
+                  },
+                  "merchant[registration_address][state]": {
+                    "type": "string",
+                    "description": "State of the business's registered address.",
+                    "example": "Karnataka"
+                  },
+                  "merchant[registration_address][city]": {
+                    "type": "string",
+                    "description": "City of the business's registered address.",
+                    "example": "Haryana"
+                  },
+                  "merchant[registration_address][pincode]": {
+                    "type": "integer",
+                    "description": "Pincode of the business's registered address.",
+                    "example": "122018"
+                  },
+                  "merchant[operating_address][city]": {
+                    "type": "string",
+                    "description": "City of the business's operating address.",
+                    "example": "Bangalore"
+                  },
+                  "merchant[operating_address][state]": {
+                    "type": "string",
+                    "description": "State of the business's operating address.",
+                    "example": "Haryana"
+                  },
+                  "merchant[operating_address][address_line]": {
+                    "type": "string",
+                    "description": "Address line of the business's operating address.",
+                    "example": "M1703, Banashankari"
+                  },
+                  "merchant[operating_address][pincode]": {
+                    "type": "integer",
+                    "description": "Pincode of the business's operating address.",
+                    "example": "122018"
+                  },
+                  "merchant[gst_number]": {
+                    "type": "string",
+                    "description": "The GST number of the merchant.",
+                    "example": null
+                  },
+                  "merchant[integration_type]": {
+                    "type": "string",
+                    "description": "Specifies the type of integration for the merchant's account.",
+                    "example": "ThirdParty"
+                  },
+                  "merchant[signing_authority_details][name]": {
+                    "type": "string",
+                    "description": "Name of the authorized representative or signing authority for the merchant's business.",
+                    "example": "Spoorthi Naik"
+                  },
+                  "merchant[signing_authority_details][email]": {
+                    "type": "string",
+                    "description": "Email of the authorized representative or signing authority.",
+                    "example": "boro@yopmail.com"
+                  },
+                  "merchant[signing_authority_details][pancard_number]": {
+                    "type": "string",
+                    "description": "PAN card number of the signing authority.",
+                    "example": null
+                  },
+                  "merchant[signing_authority_details][cin_number]": {
+                    "type": "string",
+                    "description": "The Corporate Identification Number (CIN) of the business (if applicable).",
+                    "example": null
+                  },
+                  "merchant[website_details][website_url]": {
+                    "type": "string",
+                    "description": "The business's website URL.",
+                    "example": "www.borosil.com"
+                  },
+                  "merchant[website_details][android_url]": {
+                    "type": "string",
+                    "description": "The URL of the business's Android app (if applicable).",
+                    "example": "www.borosil.com"
+                  },
+                  "merchant[website_details][ios_url]": {
+                    "type": "string",
+                    "description": "The URL of the business's iOS app (if applicable).",
+                    "example": "www.borosil.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
