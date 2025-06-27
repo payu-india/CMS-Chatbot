@@ -251,7 +251,7 @@ This API is authorised through a client token generated using the client ID and 
 
   If a document is rejected, the `error_message` field will contain the reason for rejection.
 
-  > 📘 Note:\
+  > 📘 Note:
   > All timestamps are provided in ISO 8601 format (YYYY-MM-DDThh:mm:ss.sssZ).
 </details>
 
