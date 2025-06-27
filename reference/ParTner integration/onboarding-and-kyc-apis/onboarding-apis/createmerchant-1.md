@@ -1,5 +1,5 @@
 ---
-title: Create Merchant
+title: Create Merchant API
 api:
   file: payu_create_merchant_api_updated.json
   operationId: createMerchant
