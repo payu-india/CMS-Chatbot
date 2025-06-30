@@ -201,11 +201,11 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"79c0d918a  
-                                                                                                                                        4f4661cb9cb  
-                                                                                                                                        17d96d24ac1  
-                                                                                                                                        cf04b6013d50  
-                                                                                                                                        4cc766ac5235  
-                                                                                                                                        380bfc0d5"`
+                                                                                                                                                4f4661cb9cb  
+                                                                                                                                                17d96d24ac1  
+                                                                                                                                                cf04b6013d50  
+                                                                                                                                                4cc766ac5235  
+                                                                                                                                                380bfc0d5"`
       </td>
     </tr>
 
@@ -262,12 +262,12 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"195ab95fa  
-                                                                                                                                        4700eeaaf38  
-                                                                                                                                        b7f5b538d29  
-                                                                                                                                        79f0f281e0  
-                                                                                                                                        a4eaedca1a  
-                                                                                                                                        a675b79b3  
-                                                                                                                                        31a2"`
+                                                                                                                                                4700eeaaf38  
+                                                                                                                                                b7f5b538d29  
+                                                                                                                                                79f0f281e0  
+                                                                                                                                                a4eaedca1a  
+                                                                                                                                                a675b79b3  
+                                                                                                                                                31a2"`
       </td>
     </tr>
 
@@ -849,8 +849,8 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'buyer_type_business=1' \
 --data-urlencode 'lrs_mandatory_limit_declaration=I declare that the remittance is within my annual LRS limit' \
 --data-urlencode 'lrs_tnc=I agree to the terms and conditions for LRS transactions' \
---data-urlencode 'lrs_tcs_declaration_under_limit=I declare that this transaction is under the specified limit'
-
+--data-urlencode 'lrs_tcs_declaration_under_limit=I declare that this transaction is under the specified limit' \
+--data-urlencode 'lrs_service_type=0'
 ```
 
 ## Step 3: Check response from PayU
