@@ -11,6 +11,7 @@ PayU’s \_payment API supports LRS implementation using the following parameter
 * lrs\_mandatory\_limit\_declaration
 * lrs\_tnc
 * lrs\_tcs\_declaration\_under\_limit
+* lrs\_service\_type
 
 <details>
   <summary>Sample request</summary>
@@ -43,7 +44,8 @@ PayU’s \_payment API supports LRS implementation using the following parameter
   --data-urlencode 'buyer_type_business=1' \
   --data-urlencode 'lrs_mandatory_limit_declaration=I declare that the remittance is within my annual LRS limit' \
   --data-urlencode 'lrs_tnc=I agree to the terms and conditions for LRS transactions' \
-  --data-urlencode 'lrs_tcs_declaration_under_limit=I declare that this transaction is under the specified limit'
+  --data-urlencode 'lrs_tcs_declaration_under_limit=I declare that this transaction is under the specified limit' \
+  --data-urlencode 'lrs_service_type=0'
 
 
   ```
@@ -182,79 +184,79 @@ PayU’s \_payment API supports LRS implementation using the following parameter
 > * For the detailed steps to integrate PayU Hosted Checkout with LRS, refer to [Integrate PayU Hosted Checkout - CB LRS ](doc:integrate-payu-hosted-checkout-cb-lrs).
 
 <details>
-  <summary>Additional information for request parameters</summary>
+  <summary>Additional info for request parameters</summary>
 
   <HTMLBlock>{`
-  <table>
-      <tbody>
-          <tr>
-              <td>
-                  <strong>lrs_service_type</strong>&nbsp;
-              </td>
-              <td>
-                  <strong>Txn Amount &lt;= INR 10 lacs</strong>&nbsp;
-              </td>
-              <td>
-                  <strong>Txn Amount &gt; INR 10 lacs</strong>&nbsp;
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  education_loan&nbsp;
-              </td>
-              <td>
-                  0&nbsp;
-              </td>
-              <td>
-                  0&nbsp;
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  education_non_loan&nbsp;
-              </td>
-              <td>
-                  0&nbsp;
-              </td>
-              <td>
-                  5%&nbsp;
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  medical&nbsp;
-              </td>
-              <td>
-                  0&nbsp;
-              </td>
-              <td>
-                  5%&nbsp;
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  travel&nbsp;
-              </td>
-              <td>
-                  0&nbsp;
-              </td>
-              <td>
-                  20%&nbsp;
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  others&nbsp;
-              </td>
-              <td>
-                  0&nbsp;
-              </td>
-              <td>
-                  20%&nbsp;
-              </td>
-          </tr>
-      </tbody>
-  </table>
+      <table>
+          <tbody>
+              <tr>
+                  <td>
+                      <strong>lrs_service_type</strong>&nbsp;
+                  </td>
+                  <td>
+                      <strong>Txn Amount &lt;= INR 10 lacs</strong>&nbsp;
+                  </td>
+                  <td>
+                      <strong>Txn Amount &gt; INR 10 lacs</strong>&nbsp;
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      education_loan&nbsp;
+                  </td>
+                  <td>
+                      0&nbsp;
+                  </td>
+                  <td>
+                      0&nbsp;
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      education_non_loan&nbsp;
+                  </td>
+                  <td>
+                      0&nbsp;
+                  </td>
+                  <td>
+                      5%&nbsp;
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      medical&nbsp;
+                  </td>
+                  <td>
+                      0&nbsp;
+                  </td>
+                  <td>
+                      5%&nbsp;
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      travel&nbsp;
+                  </td>
+                  <td>
+                      0&nbsp;
+                  </td>
+                  <td>
+                      20%&nbsp;
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      others&nbsp;
+                  </td>
+                  <td>
+                      0&nbsp;
+                  </td>
+                  <td>
+                      20%&nbsp;
+                  </td>
+              </tr>
+          </tbody>
+      </table>
   `}</HTMLBlock>
 </details>
 
