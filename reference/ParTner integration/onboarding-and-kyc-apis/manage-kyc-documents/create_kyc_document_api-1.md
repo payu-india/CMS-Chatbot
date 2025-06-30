@@ -74,7 +74,7 @@ The merchant ID in the request header must be included as a query parameter in t
 >
 > When passing the KYC documents, make sure that the file name does not contain any spaces or special characters to avoid errors.
 >
-> **For example**, a correct format would be AadharCard.png. Passing Aadhar Card.png or Aadhar-Card.png will result in error.
+> **For example**, a correct format of the file name would be AadharCard.png for passing aadhar card. File name such as Aadhar Card.png or Aadhar-Card.png will result in `internal server error`.
 
 <Table>
   <thead>
