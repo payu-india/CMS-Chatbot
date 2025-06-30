@@ -184,9 +184,78 @@ PayU’s \_payment API supports LRS implementation using the following parameter
 <details>
   <summary>Additional information for request parameters</summary>
 
-  ### Payment Request Parameters Information
-
-  The payment request parameters contain important information for processing payments securely and efficiently. Please refer to the API documentation for the full list of required and optional parameters.
+  <HTMLBlock>{`
+  <table>
+      <tbody>
+          <tr>
+              <td>
+                  <strong>lrs_service_type</strong>&nbsp;
+              </td>
+              <td>
+                  <strong>Txn Amount &lt;= INR 10 lacs</strong>&nbsp;
+              </td>
+              <td>
+                  <strong>Txn Amount &gt; INR 10 lacs</strong>&nbsp;
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  education_loan&nbsp;
+              </td>
+              <td>
+                  0&nbsp;
+              </td>
+              <td>
+                  0&nbsp;
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  education_non_loan&nbsp;
+              </td>
+              <td>
+                  0&nbsp;
+              </td>
+              <td>
+                  5%&nbsp;
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  medical&nbsp;
+              </td>
+              <td>
+                  0&nbsp;
+              </td>
+              <td>
+                  5%&nbsp;
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  travel&nbsp;
+              </td>
+              <td>
+                  0&nbsp;
+              </td>
+              <td>
+                  20%&nbsp;
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  others&nbsp;
+              </td>
+              <td>
+                  0&nbsp;
+              </td>
+              <td>
+                  20%&nbsp;
+              </td>
+          </tr>
+      </tbody>
+  </table>
+  `}</HTMLBlock>
 </details>
 
 > 📘 **Reference:**
