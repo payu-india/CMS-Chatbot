@@ -1,9 +1,9 @@
 ---
-title: Create Merchant API
+title: '[OLD]Create Merchant API'
 api:
   file: create_merchant.json
   operationId: CreateMerchant
-hidden: false
+hidden: true
 metadata:
   title: Create Merchant API
   description: >-
