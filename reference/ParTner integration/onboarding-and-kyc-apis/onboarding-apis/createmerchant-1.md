@@ -3,7 +3,21 @@ title: Create Merchant API
 api:
   file: payu_create_merchant_api_updated.json
   operationId: createMerchant
-hidden: true
+hidden: false
+metadata:
+  title: Create Merchant API
+  description: >-
+    Learn how to use the PayU Create Merchant API to create new merchant
+    accounts. This API reference page provides detailed instructions, request
+    parameters, and sample responses for efficient merchant onboarding
+  keywords:
+    - Create Merchant API
+    - merchant onboarding
+    - KYC details
+    - secure merchant creation
+    - tokenization
+    - manage merchants
+    - create merchant accounts
 ---
 The **Create Merchant** API creates a new merchant account on PayU and posts all KYC details. This API returns the Merchant ID (MID) in the response.
 
