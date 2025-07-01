@@ -1,9 +1,9 @@
 ---
-title: Update Merchant Details API
+title: '[OLD] Update Merchant Details API'
 api:
   file: UpdateMerchant_API_3.1_Collection.json
   operationId: UpdateMerchant
-hidden: false
+hidden: true
 metadata:
   title: Update Merchant Details API
   description: >
