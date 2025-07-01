@@ -54,14 +54,16 @@ To use Webhooks during integration with PayU:
 3. PayU will whitelist the webhook URL provided by the merchant in its systems. For more information, contact the PayU Integration Team by email: [integration@payu.in](mailto:integration@payu.in).
 4. Whitelist the following IP address in your Firewall to receive a response from the PayU servers:
 
-| **52.140.8.88**     | **3.7.89.1**    |
-| ------------------- | --------------- |
-| **180.179.174.1**   | **3.7.89.2**    |
-| **180.179.174.2**   | **3.7.89.3**    |
-| **180.179.165.250** | **3.7.89.8**    |
-| **52.140.8.64**     | **3.7.89.9**    |
-| **10.251.7.118**    | **3.7.89.10**   |
-| **52.140.8.65**     | **52.140.8.89** |
+|                 |           |
+| --------------- | --------- |
+| 52.140.8.88     | 3.7.89.1  |
+| 52.140.8.89     | 3.7.89.2  |
+| 180.179.174.2   | 3.7.89.3  |
+| 180.179.165.250 | 3.7.89.8  |
+| 52.140.8.64     | 3.7.89.9  |
+| 10.251.7.118    | 3.7.89.10 |
+| 52.140.8.65     | 3.6.83.44 |
+| 3.6.73.183      |           |
 
 5. PayU will send an S2S response to the merchant’s server URL. The merchant’s server URL should be capable of handling the following content types:
    * FormData
