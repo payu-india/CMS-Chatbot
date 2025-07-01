@@ -10,11 +10,18 @@ This API is used to submit the Aadhaar details in an XML file. The access token 
 
 ## Steps to get Aadhar XML
 
-1. Go to URL [https://myaadhaar.uidai.gov.in/en\_IN](https://myaadhaar.uidai.gov.in/en_IN).
-2. Click on login. Enter Aadhaar Number or VID and mentioned Security Code in the screen, then click on Send OTP.
-3. Enter the OTP received by registered mobile number for the given Aadhaar Number
-4. Click on Offline Ekyc Option & enter a share code which will be the password for the ZIP file and click on the Download button.
-5. The Zip file containing the digitally signed XML will be downloaded.
+1. Navigate to the following URL for My Aadhaar website:
+   * [https://myaadhaar.uidai.gov.in/en\_IN](https://myaadhaar.uidai.gov.in/en_IN).
+2. Enter the child merchant Aadhaar number or VID and Security Code mentioned in the screen.
+3. Click **Send OTP**.
+4. Enter the OTP received by registered mobile number for the given Aadhaar Number.
+5. Click **Login**.
+6. Click the **Offline Ekyc Option** & enter a share code which will be the password for the ZIP file and click on the Download button.
+7. The Zip file containing the digitally signed XML will be downloaded.
+
+## Authentication
+
+The access token with the scope as **refer\_merchant** from is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
 ## Endpoints
 
