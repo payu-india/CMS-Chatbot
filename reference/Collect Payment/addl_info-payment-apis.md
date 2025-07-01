@@ -13,7 +13,8 @@ next:
 ## Request parameters for \_payment API
 
 <HTMLBlock>{`
-<Table>
+<div style={{ maxWidth: "85%", overflowX: "auto" }}>
+<Table align={["left","left","left"]}>
 <thead>
 <tr>
 <th style={{ textAlign: "left" }}>
@@ -581,6 +582,9 @@ This parameter must be passed with the value as **REDIRECT** for classic S2S int
         </tr>
  </tbody>
 </Table>
+
+
+</div>
 `}</HTMLBlock>
 
 <br />
@@ -608,7 +612,7 @@ This parameter must be passed with the value as **REDIRECT** for classic S2S int
     <tr>
       <td>
         alt\_id
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -623,7 +627,7 @@ This parameter must be passed with the value as **REDIRECT** for classic S2S int
     <tr>
       <td>
         ccexpmon
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -639,7 +643,7 @@ This parameter must be passed with the value as **REDIRECT** for classic S2S int
     <tr>
       <td>
         ccexpyr
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -655,7 +659,7 @@ This parameter must be passed with the value as **REDIRECT** for classic S2S int
     <tr>
       <td>
         additional\_info
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
