@@ -2,7 +2,7 @@
 - create_merchant_api
 - createmerchant-1
 - old_update_merchant_details_api
-- update_merchant_details_api
+- old_update_merchant_details_api2
 - get_merchant_api
 - updatemerchantbyid
 - old_get_merchant_api
