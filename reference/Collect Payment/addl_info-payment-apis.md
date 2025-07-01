@@ -585,99 +585,19 @@ This parameter must be passed with the value as **REDIRECT** for classic S2S int
 
 <br />
 
-### Additional parameters for Guest Checkout
-
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        alt_id
-        **mandatory**
-      </td>
-
-      <td>
-        \`String\` This parameter must contain Alt ID for the guest checkout.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpmon
-        **mandatory**
-      </td>
-
-      <td>
-        \`String\` This parameter must contain the Alt ID expiry month.
-        For VISA cards, Plain card's expiry month need to be posted this parameter.
-      </td>
-
-      <td>
-        10
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpyr
-        **mandatory**
-      </td>
-
-      <td>
-        \`String\` This parameter must contain the Alt ID expiry year.
-        For VISA cards, Plain card's expiry year need to be posted this parameter.
-      </td>
-
-      <td>
-        2021
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        additional_info
-        **mandatory**
-      </td>
-
-      <td>
-        \`JSON\`The fields which are included in this JSON are described in the next table.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-  </tbody>
-</Table>
 
 The description of the fields in the additional_info JSON.
 
-| Field            | Description                                                                                                                                                                   |
+
+| Field | Description |
 | :--------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| trid             | trid is the acronym for Token Requestor ID and it is the identity given by the networks for creating the tokens. You should be able to get the same from your token provider. |
-| tokenReferenceID | The Token Reference ID is generated along with the network token. You should be able to get the same from your token provider.                                                |
-| TAVV             | It is a token authentication verification value given by schemes or interchange. Also, known as cryptogram.                                                                   |
+| trid | trid is the acronym for Token Requestor ID and it is the identity given by the networks for creating the tokens. You should be able to get the same from your token provider. |
+| tokenReferenceID | The Token Reference ID is generated along with the network token. You should be able to get the same from your token provider. |
+| TAVV | It is a token authentication verification value given by schemes or interchange. Also, known as cryptogram. |
 
 ### Additional parameters for Saved Card
+
+
 
 #### Using Network tokens
 
