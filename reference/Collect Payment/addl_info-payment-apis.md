@@ -13,9 +13,6 @@ next:
 ## Request parameters for \_payment API
 
 <HTMLBlock>{`
-## Request parameters for _payment API
-
-
 <Table align={["left","left","left"]}>
 <thead>
 <tr>
