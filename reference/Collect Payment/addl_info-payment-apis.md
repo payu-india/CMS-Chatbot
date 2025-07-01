@@ -685,19 +685,21 @@ The description of the fields in the additional\_info JSON.
 
 #### Using Network tokens
 
-<Table align={["left","left","left"]}>
+<HTMLBlock>{`
+<div style={{ maxWidth: "85%", overflowX: "auto" }}>
+<Table>
   <thead>
     <tr>
       <th>
-        **Parameter**
+        <strong>Parameter</strong>
       </th>
 
       <th>
-        **Description**
+        <strong>Description</strong>
       </th>
 
       <th>
-        **Example**
+        <strong>Example</strong>
       </th>
     </tr>
   </thead>
@@ -706,26 +708,28 @@ The description of the fields in the additional\_info JSON.
     <tr>
       <td>
         ccnum
-        **optional**
+        <br/>
+        <code>optional</code>
       </td>
 
       <td>
-        `varchar` This parameter must contain the 13 to 19-digit card number for credit or debit cards in general.
+        <code>varchar</code> This parameter must contain the 13 to 19-digit card number for credit or debit cards in general.
       </td>
 
       <td>
-        512\*\*\*6789012346
+        512***6789012346
       </td>
     </tr>
 
     <tr>
       <td>
         ccname
-        **optional**
+        <br/>
+        <code>optional</code>
       </td>
 
       <td>
-        `varchar` It is the customer's name on card.
+        <code>varchar</code> It is the customer's name on card.
       </td>
 
       <td>
@@ -736,11 +740,12 @@ The description of the fields in the additional\_info JSON.
     <tr>
       <td>
         ccvv
-        **optional**
+        <br/>
+        <code>optional</code>
       </td>
 
       <td>
-        `varchar` This parameter must contain the CVV number of the card – as entered by the customer for the transaction.
+        <code>varchar</code> This parameter must contain the CVV number of the card – as entered by the customer for the transaction.
       </td>
 
       <td>
@@ -751,11 +756,12 @@ The description of the fields in the additional\_info JSON.
     <tr>
       <td>
         ccexpmon
-        **mandatory**
+        <br/>
+        <code>mandatory</code>
       </td>
 
       <td>
-        `integer` This parameter must contain the Expiry month that is mentioned under card validity.
+        <code>integer</code> This parameter must contain the Expiry month that is mentioned under card validity.
       </td>
 
       <td>
@@ -766,11 +772,12 @@ The description of the fields in the additional\_info JSON.
     <tr>
       <td>
         ccexpyr
-        **mandatory**
+        <br/>
+        <code>mandatory</code>
       </td>
 
       <td>
-        `integer` This parameter must contain the Expiry year that is mentioned under card validity.
+        <code>integer</code> This parameter must contain the Expiry year that is mentioned under card validity.
       </td>
 
       <td>
@@ -780,12 +787,13 @@ The description of the fields in the additional\_info JSON.
 
     <tr>
       <td>
-        store\_card\_token
-        **mandatory**
+        store_card_token
+        <br/>
+        <code>mandatory</code>
       </td>
 
       <td>
-        `varchar` This must include the Network token generated at your end.
+        <code>varchar</code> This must include the Network token generated at your end.
       </td>
 
       <td>
@@ -795,12 +803,13 @@ The description of the fields in the additional\_info JSON.
 
     <tr>
       <td>
-        storecard\_token\_type
-        **mandatory**
+        storecard_token_type
+        <br/>
+        <code>mandatory</code>
       </td>
 
       <td>
-        `integer` This parameter is used to specify the store card token type. For this scenario, you must include 1.
+        <code>integer</code> This parameter is used to specify the store card token type. For this scenario, you must include 1.
       </td>
 
       <td>
@@ -810,21 +819,26 @@ The description of the fields in the additional\_info JSON.
 
     <tr>
       <td>
-        additional\_info
-        **mandatory**
+        additional_info
+        <br/>
+        <code>mandatory</code>
       </td>
 
       <td>
-        `varchar` This parameter will contain the additional information in the following JSON format:
-        \{"last4Digits": “1234", "\`<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}
+        <code>varchar</code> This parameter will contain the additional information in the following JSON format:
+        {"last4Digits": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}
       </td>
 
       <td>
-        \{“last4Digits": “1234", “tavv": “ABCDEFGH","trid":"1234567890", “tokenRefNo":"abcde123456"}
+        {"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}
       </td>
     </tr>
   </tbody>
 </Table>
+</div>
+`}</HTMLBlock>
+
+<br />
 
 #### Using Issuer tokens
 
