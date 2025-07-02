@@ -1,7 +1,7 @@
 ---
 title: Fetch All Transactions API - Loyalty Rewards
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
