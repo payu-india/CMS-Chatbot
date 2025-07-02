@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-The  API fetches loyalty points transactions for payments, refunds, and adjustments. It supports filters to retrieve specific transaction types (e.g., earn, burn, refund, etc.).
+The \*\*Fetch All Transactions \*\*API gets the list of loyalty points transactions for payments, refunds, and adjustments. It supports filters to retrieve specific transaction types (e.g., earn, burn, refund, etc.).
 
 ### Endpint
 
@@ -61,8 +61,6 @@ Sure! Here's an overview of the **Request Parameters** and **Response Parameters
   </tbody>
 </Table>
 
-
-
 ***
 
 ## Sample Request
@@ -93,7 +91,7 @@ Sure! Here's an overview of the **Request Parameters** and **Response Parameters
 
 ## Sample Response
 
-* **Success:**
+### Success scenario
 
 ```json
 {
@@ -113,7 +111,9 @@ Sure! Here's an overview of the **Request Parameters** and **Response Parameters
 }
 ```
 
-* **Failure:**
+### Failure scenarios
+
+* No transaction found
 
 ```json
 {
@@ -122,7 +122,7 @@ Sure! Here's an overview of the **Request Parameters** and **Response Parameters
 }
 ```
 
-* **Error:**
+* Bad requeest
 
 ```json
 {
