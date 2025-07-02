@@ -100,6 +100,16 @@ Create a transaction by including a JSON object with beneficiary details (accoun
 </table>
 `}</HTMLBlock>
 
+> 📘 Hash calculation
+>
+> The hash is calculated using the following formula:
+>
+> ```
+> sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)
+> ```
+>
+> Replace `SALT` with the salt value provided during onboarding.
+
 ### beneficiarydetail JSON Object Fields
 
 The `beneficiarydetail` parameter should be a JSON object with the following structure:
