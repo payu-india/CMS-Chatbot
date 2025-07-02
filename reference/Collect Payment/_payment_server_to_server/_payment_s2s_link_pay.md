@@ -15,7 +15,7 @@ next:
 ---
 You can collection payments with BNPL using Link and Pay. This section provides the request and response parameters and you can get the sample request and response when use the "Try It" experience. For more information on integration, refer to [Collect Payments with BNPL using Link and Pay](doc:collect-payments-with-bnpl-using-link-and-pay)
 
-<PaymentAPIEnvironment />
+
 
 <details>
   <summary>Reference information for request parameters</summary>
