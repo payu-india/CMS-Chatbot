@@ -20,7 +20,7 @@ metadata:
 next:
   description: ''
 ---
-Integrate \<\<glossary:TPV>> through UPI using the procedure described in this section.
+Integrate TPV through UPI using the procedure described in this section.
 
 ## Prerequisites
 
@@ -44,8 +44,6 @@ With the following parameters, make the transaction request with the customer’
 | **Production Environment** | [https://secure.payu.in/\_payment>](https://secure.payu.in/_payment%3E) |
 
 ### Request parameters
-
-
 
 #### beneficiarydetail JSON Object Fields
 
