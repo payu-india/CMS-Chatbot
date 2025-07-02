@@ -7,10 +7,15 @@ metadata:
 ---
 Fetch refund-related loyalty points transactions using this API.
 
-* **Endpoint**: `https://apitest.payu.in/loyalty-points/points/refund/details/v1`
-* **HTTP Method**: `POST`
+**Endpoint**
 
-## Request parameters:
+**HTTP Method**: `POST`
+
+|            |                                                                                                                                    |
+| :--------- | :--------------------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://apitest.payu.in/loyalty-points/points/refund/details/v1](https://apitest.payu.in/loyalty-points/points/refund/details/v1) |
+
+## Request parameters
 
 <Table>
   <thead>
@@ -50,7 +55,7 @@ Fetch refund-related loyalty points transactions using this API.
   </tbody>
 </Table>
 
-### Sample request
+## Sample request
 
 ```json
 {
@@ -59,9 +64,27 @@ Fetch refund-related loyalty points transactions using this API.
 }
 ```
 
-### Responses:
+## Response parameters
 
-* **Success:**
+| Parameter       | Description                                                |
+| --------------- | ---------------------------------------------------------- |
+| status          | Indicates whether API call was success (1) or failure (0). |
+| message         | Message describing the API response.                       |
+| result          | Contains the refund details.                               |
+| id              | Refund transaction ID.                                     |
+| points          | Number of loyalty points refunded.                         |
+| transactionType | Type of transaction (`Credit`, etc.).                      |
+| status          | Status of the refund (e.g., success).                      |
+| referenceId     | Merchant reference ID.                                     |
+| flowType        | Flow indicating the refund process.                        |
+| amount          | Value of the refund in monetary terms.                     |
+| expiryDate      | Time duration before refunded points expire.               |
+| createdOn       | Timestamp of refund creation.                              |
+| adjustmentInfo  | Contains details of any adjustments, if applicable.        |
+
+### Sample response
+
+### Success
 
 ```json
 {
@@ -81,7 +104,9 @@ Fetch refund-related loyalty points transactions using this API.
 }
 ```
 
-* **Failure:**
+### Failure scenarios
+
+* No transactions found
 
 ```json
 {
@@ -90,7 +115,7 @@ Fetch refund-related loyalty points transactions using this API.
 }
 ```
 
-* **Error:**
+* Bad request
 
 ```json
 {
@@ -99,21 +124,3 @@ Fetch refund-related loyalty points transactions using this API.
     "issueCode": "LS500_508"
 }
 ```
-
-#### Response Parameters:
-
-| Parameter       | Type       | Description                                         |
-| --------------- | ---------- | --------------------------------------------------- |
-| status          | `integer`  | Indicates success (1) or failure (0).               |
-| message         | `string`   | Message describing the API response.                |
-| result          | `array`    | Contains the refund details.                        |
-| id              | `integer`  | Refund transaction ID.                              |
-| points          | `float`    | Number of loyalty points refunded.                  |
-| transactionType | `string`   | Type of transaction (`Credit`, etc.).               |
-| status          | `string`   | Status of the refund (e.g., success).               |
-| referenceId     | `string`   | Merchant reference ID.                              |
-| flowType        | `string`   | Flow indicating the refund process.                 |
-| amount          | `string`   | Value of the refund in monetary terms.              |
-| expiryDate      | `string`   | Time duration before refunded points expire.        |
-| createdOn       | `datetime` | Timestamp of refund creation.                       |
-| adjustmentInfo  | `object`   | Contains details of any adjustments, if applicable. |
