@@ -35,62 +35,62 @@ Create a transaction by including a JSON object with beneficiary details (accoun
   </thead>
   <tbody>
     <tr>
-      <td>key<code>mandatory</code></td>
+      <td>key<br/><code>mandatory</code></td>
       <td>String<br/>Merchant key provided by PayU during onboarding</td>
       <td>JPg***r</td>
     </tr>
     <tr>
-      <td>txnid<code>mandatory</code></td>
+      <td>txnid<br/><code>mandatory</code></td>
       <td>String<br/>The transaction ID is a unique reference for each order. Duplicate transaction IDs are not allowed.</td>
       <td>ypl938459435</td>
     </tr>
     <tr>
-      <td>amount<code>mandatory</code></td>
+      <td>amount<br/><code>mandatory</code></td>
       <td>String<br/>Transaction amount</td>
       <td>100</td>
     </tr>
     <tr>
-      <td>productinfo<code>mandatory</code></td>
+      <td>productinfo<br/><code>mandatory</code></td>
       <td>String<br/>Product description</td>
       <td>Test Product</td>
     </tr>
     <tr>
-      <td>firstname<code>mandatory</code></td>
+      <td>firstname<br/><code>mandatory</code></td>
       <td>String<br/>Customer's first name</td>
       <td>John</td>
     </tr>
     <tr>
-      <td>email<code>mandatory</code></td>
+      <td>email<br/><code>mandatory</code></td>
       <td>String<br/>Customer's email address</td>
       <td>john@example.com</td>
     </tr>
     <tr>
-      <td>phone<code>mandatory</code></td>
+      <td>phone<br/><code>mandatory</code></td>
       <td>String<br/>Customer's phone number</td>
       <td>9999999999</td>
     </tr>
     <tr>
-      <td>beneficiarydetail<code>mandatory</code></td>
+      <td>beneficiarydetail<br/><code>mandatory</code></td>
       <td>String<br/>JSON object that contains account numbers and corresponding IFSC codes (max 4 accounts) in the same order</td>
       <td>{"beneficiaryAccountNumber":"002001600674\</td>
     </tr>
     <tr>
-      <td>surl<code>mandatory</code></td>
+      <td>surl<br/><code>mandatory</code></td>
       <td>String<br/>Success URL - PayU will make a POST request with transaction response to this URL if the transaction is successful</td>
       <td>https://www.yoursurl.com</td>
     </tr>
     <tr>
-      <td>furl<code>mandatory</code></td>
+      <td>furl<br/><code>mandatory</code></td>
       <td>String<br/>Failure URL - PayU will make a POST request with transaction response to this URL if the transaction fails</td>
       <td>https://www.yourfurl.com</td>
     </tr>
     <tr>
-      <td>api_version<code>mandatory</code></td>
+      <td>api_version<br/><code>mandatory</code></td>
       <td>String<br/>Version of the API</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>hash<code>mandatory</code></td>
+      <td>hash<br/><code>mandatory</code></td>
       <td>String<br/>SHA512 hash calculated using the formula:<br/>sha512(key\</td>
       <td>txnid\</td>
     </tr>
