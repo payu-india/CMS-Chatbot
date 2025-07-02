@@ -227,7 +227,7 @@ With the following parameters, make the transaction request with the customer’
       </td>
 
       <td>
-        Refer to [beneficiarydetail JSON Object Fields](https://docs.payu.in/docs/net-banking-integration-for-tpv#beneficiarydetail-json-object-fields)
+        Refer to <a href="https://docs.payu.in/docs/net-banking-integration-for-tpv#beneficiarydetail-json-object-fields">beneficiarydetail JSON object fields</a>
       </td>
     </tr>
 
@@ -462,9 +462,7 @@ With the following parameters, make the transaction request with the customer’
 </Table>
 `}</HTMLBlock>
 
-<br />
-
-#### beneficiarydetail JSON Object Fields
+#### beneficiarydetail JSON object fields
 
 It must contain the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter. For example:
 
