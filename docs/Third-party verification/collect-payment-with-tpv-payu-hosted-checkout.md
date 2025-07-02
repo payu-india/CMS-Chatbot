@@ -5,6 +5,8 @@ hidden: true
 metadata:
   robots: index
 ---
+For Net-Banking integration, you need to post transaction details to PayU with bank account details for validation.
+
 ### Environment
 
 The following environments are available for TPV integration:
@@ -14,17 +16,13 @@ The following environments are available for TPV integration:
 | **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-<br />
-
-For Net-Banking integration, you need to post transaction details to PayU with bank account details for validation.
-
-### Step 1: Create transaction with beneficiary details
+## Step 1: Create transaction with beneficiary details
 
 Create a transaction by including a JSON object with beneficiary details (account numbers and IFSC codes). You can include up to 4 accounts for validation.
 
-### Step 2: Post the parameters to PayU
+## Step 2: Post the parameters to PayU
 
-##### Request parameters
+### Request parameters
 
 <HTMLBlock>{`
 <table class="request-parameters-table">
@@ -100,11 +98,11 @@ Create a transaction by including a JSON object with beneficiary details (accoun
 </table>
 `}</HTMLBlock>
 
-#### beneficiarydetail JSON Object Fields
+### beneficiarydetail JSON Object Fields
 
 The `beneficiarydetail` parameter should be a JSON object with the following structure:
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -167,17 +165,17 @@ The `beneficiarydetail` parameter should be a JSON object with the following str
 }
 ```
 
-#### 📘beneficiarydetail parameter in hashing:
+> 📘 beneficiarydetail parameter in hashing:
+>
+> * The `beneficiarydetail` parameter must be included in the hash calculation.
+> * The format should be exactly as shown in the hash formula above.
+> * Replace SALT with the salt value provided to you during onboarding.
 
-* The `beneficiarydetail` parameter must be included in the hash calculation.
-* The format should be exactly as shown in the hash formula above.
-* Replace SALT with the salt value provided to you during onboarding.
-
-### Step 3: Check the response from PayU
+## Step 3: Check the response from PayU
 
 After posting the parameters, PayU will return a response with transaction details.
 
-##### Hash Validation Logic for Payment Response (Reverse Hashing)
+### Hash Validation Logic for payment response (Reverse Hashing)
 
 To validate the authenticity of the response, you can calculate the reverse hash using:
 
@@ -185,11 +183,11 @@ To validate the authenticity of the response, you can calculate the reverse hash
 sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
 ```
 
-##### 📘beneficiarydetail parameter not required in reverse hashing:
+> 📘 beneficiarydetail parameter not required in reverse hashing:
+>
+> The `beneficiarydetail` parameter is not required when calculating the reverse hash.
 
-The `beneficiarydetail` parameter is not required when calculating the reverse hash.
-
-##### Response Parameters
+### Response parameters
 
 | Param Name       | Description                                                                                                                    |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -208,11 +206,11 @@ The `beneficiarydetail` parameter is not required when calculating the reverse h
 | error            | Error code (e.g., "E000" indicates no error).                                                                                  |
 | error\_Message   | Description of any errors encountered.                                                                                         |
 
-##### 📘Store the mihpayid and txnid parameter values in response:
+> 📘 Store the mihpayid and txnid parameter values in response:
+>
+> Make sure to store the `mihpayid` and `txnid` parameter values from the response for future reference and reconciliation.
 
-Make sure to store the `mihpayid` and `txnid` parameter values from the response for future reference and reconciliation.
-
-##### Sample response
+### Sample response
 
 ```
 Array
