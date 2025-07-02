@@ -1,5 +1,5 @@
 ---
-title: Collect Payment with TPV - PayU Hosted Checkout
+title: Net Banking TPV Integration - PayU Hosted Checkout
 deprecated: false
 hidden: true
 metadata:
