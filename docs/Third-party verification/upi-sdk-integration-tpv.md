@@ -5,12 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
-For UPI integration, you need to post transaction details to PayU with beneficiary details for validation, similar to Net-Banking integration.
-
-The request parameters for UPI integration are the same as Net-Banking integration. The `beneficiarydetail` parameter should include the UPI beneficiary details.
-
-## Steps for Integration Changes
-
 ### SDK for Android
 
 To integrate TPV in an Android app:
