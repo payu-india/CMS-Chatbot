@@ -4,7 +4,7 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: Net Banking TPV Integration
+  title: Net Banking TPV Integration - Merchant Hosted Checkout
   description: >-
     Learn how to integrate Net Banking with Third Party Validation (TPV) using
     PayU's comprehensive guide. This documentation provides step-by-step
