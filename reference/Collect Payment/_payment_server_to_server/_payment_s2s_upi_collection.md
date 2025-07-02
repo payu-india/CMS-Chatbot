@@ -23,23 +23,9 @@ This section provides the request and response parameters used in Step 1 of [UPI
 >
 > For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
-
-
 <Additional_paymentRequestParams />
 
-<br />
-
-
-
-> 📘 Note:
->
-> Collecting the information for the following parameters from customers is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information:
->
-> * email
-> * phone
-> * address1
-> * s2s\_client\_ip
-> * s2s\_device\_info
+<Accordion_Collect_Fraud_Detection />
 
 ## Response parameters
 
