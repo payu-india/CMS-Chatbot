@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-For Net-Banking integration, you need to post transaction details to PayU with bank account details for validation.
+For Net Banking integration, you need to post transaction details to PayU with bank account details for validation.
 
 ### Environment
 
