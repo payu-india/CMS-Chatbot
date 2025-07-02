@@ -21,23 +21,22 @@ You can collection payments with BNPL using Link and Pay. This section provides 
 
 <br />
 
-## Response parameters
+<Accordion title="Response parameters" icon="fa-list">
 
-<details>
-  <summary>Response parameters</summary>
-
-  | **Parameter**            | **Description**                                                                                                                                                                                                                                                                             |
-  | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | metaData                 | `JSON` It is a JSON object containing more information about the response.                                                                                                                                                                                                                  |
-  | metaData.referenceId     | `String` This is the PayU reference ID which we will be sending to merchant so that they can send us this back in second call.                                                                                                                                                              |
-  | binData                  | `JSON` This is a JSON object containing information about card number or token number.                                                                                                                                                                                                      |
-  | binData.pureS2SSupported | `Boolean` The value for this parameter will be returned **false** for REDIRECT.                                                                                                                                                                                                             |
-  | result                   | `JSON` This is a JSON object containing response of the request and to be used in subsequent steps.                                                                                                                                                                                         |
-  | result.otpPostUrl        | `String` The parameter will have null value in case of REDIRECT.                                                                                                                                                                                                                            |
-  | resutl.acsTemplate       | `String` acsTemplate is a **base64 encoded** string. The merchant needs to decode acsTemplate, which is an HTML format with auto submit, which then needs to be shown on the customer’s browser. The HTML being auto submit, it will take the customer to the bank page for authentication. |
-</details>
+| **Parameter**            | **Description**                                                                                                                                                                                                                                                                             |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| metaData                 | `JSON` It is a JSON object containing more information about the response.                                                                                                                                                                                                                  |
+| metaData.referenceId     | `String` This is the PayU reference ID which we will be sending to merchant so that they can send us this back in second call.                                                                                                                                                              |
+| binData                  | `JSON` This is a JSON object containing information about card number or token number.                                                                                                                                                                                                      |
+| binData.pureS2SSupported | `Boolean` The value for this parameter will be returned **false** for REDIRECT.                                                                                                                                                                                                             |
+| result                   | `JSON` This is a JSON object containing response of the request and to be used in subsequent steps.                                                                                                                                                                                         |
+| result.otpPostUrl        | `String` The parameter will have null value in case of REDIRECT.                                                                                                                                                                                                                            |
+| result.acsTemplate       | `String` acsTemplate is a **base64 encoded** string. The merchant needs to decode acsTemplate, which is an HTML format with auto submit, which then needs to be shown on the customer's browser. The HTML being auto submit, it will take the customer to the bank page for authentication. |
 
 For the response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+
+</Accordion>
+
 
 ## Request parameters
 
