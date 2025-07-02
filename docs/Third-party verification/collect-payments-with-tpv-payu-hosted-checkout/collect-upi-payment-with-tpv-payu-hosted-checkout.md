@@ -37,63 +37,63 @@ Create a transaction by including a JSON object with beneficiary details (accoun
   </thead>
   <tbody>
     <tr>
-      <td>key<span style="color:red; font-weight: bold;">mandatory</span></td>
-      <td>String<br/>Merchant key provided by PayU during onboarding</td>
+      <td>key<br/><code>mandatory</code></td>
+      <td><code>String</code> Merchant key provided by PayU during onboarding</td>
       <td>JPg***r</td>
     </tr>
     <tr>
-      <td>txnid<span style="color:red; font-weight: bold;">mandatory</span></td>
-      <td>String<br/>The transaction ID is a unique reference for each order. Duplicate transaction IDs are not allowed.</td>
+      <td>txnid<br/><code>mandatory</code></td>
+      <td><code>String</code> The transaction ID is a unique reference for each order. Duplicate transaction IDs are not allowed.</td>
       <td>ypl938459435</td>
     </tr>
     <tr>
-      <td>amount<span style="color:red; font-weight: bold;">mandatory</span></td>
-      <td>String<br/>Transaction amount</td>
+      <td>amount<br/><code>mandatory</code></td>
+      <td><code>String</code> Transaction amount</td>
       <td>100</td>
     </tr>
     <tr>
-      <td>productinfo<span style="color:red; font-weight: bold;">mandatory</span></td>
-      <td>String<br/>Product description</td>
+      <td>productinfo<br/><code>mandatory</code></td>
+      <td><code>String</code> Product description</td>
       <td>Test Product</td>
     </tr>
     <tr>
-      <td>firstname<span style="color:red; font-weight: bold;">mandatory</span></td>
-      <td>String<br/>Customer's first name</td>
+      <td>firstname<br/><code>mandatory</code></td>
+      <td><code>String</code> Customer's first name</td>
       <td>John</td>
     </tr>
     <tr>
-      <td>email<span style="color:red; font-weight: bold;">mandatory</span></td>
-      <td>String<br/>Customer's email address</td>
+      <td>email<br/><code>mandatory</code></td>
+      <td><code>String</code> Customer's email address</td>
       <td>john@example.com</td>
     </tr>
     <tr>
-      <td>phone<span style="color:red; font-weight: bold;">mandatory</span></td>
-      <td>String<br/>Customer's phone number</td>
+      <td>phone<br/><code>mandatory</code></td>
+      <td><code>String</code> Customer's phone number</td>
       <td>9999999999</td>
     </tr>
     <tr>
-      <td>beneficiarydetail<span style="color:red; font-weight: bold;">mandatory</span></td>
-      <td>String<br/>JSON object that contains account numbers and corresponding IFSC codes (max 4 accounts) in the same order</td>
+      <td>beneficiarydetail<br/><code>mandatory</code></td>
+      <td><code>String</code> JSON object that contains account numbers and corresponding IFSC codes (max 4 accounts) in the same order</td>
       <td>{"beneficiaryAccountNumber":"002001600674\</td>
     </tr>
     <tr>
-      <td>surl<span style="color:red; font-weight: bold;">mandatory</span></td>
-      <td>String<br/>Success URL - PayU will make a POST request with transaction response to this URL if the transaction is successful</td>
+      <td>surl<br/><code>mandatory</code></td>
+      <td><code>String</code> Success URL - PayU will make a POST request with transaction response to this URL if the transaction is successful</td>
       <td>https://www.yoursurl.com</td>
     </tr>
     <tr>
-      <td>furl<span style="color:red; font-weight: bold;">mandatory</span></td>
-      <td>String<br/>Failure URL - PayU will make a POST request with transaction response to this URL if the transaction fails</td>
+      <td>furl<br/><code>mandatory</code></td>
+      <td><code>String</code> Failure URL - PayU will make a POST request with transaction response to this URL if the transaction fails</td>
       <td>https://www.yourfurl.com</td>
     </tr>
     <tr>
-      <td>api_version<span style="color:red; font-weight: bold;">mandatory</span></td>
-      <td>String<br/>Version of the API</td>
+      <td>api_version<br/><code>mandatory</code></td>
+      <td><code>String</code> Version of the API</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>hash<span style="color:red; font-weight: bold;">mandatory</span></td>
-      <td>String<br/>SHA512 hash calculated using the formula:<br/>sha512(key\</td>
+      <td>hash<br/><code>mandatory</code></td>
+      <td><code>String</code> SHA512 hash calculated using the formula:<br/>sha512(key\</td>
       <td>txnid\</td>
     </tr>
   </tbody>
