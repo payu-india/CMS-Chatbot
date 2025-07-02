@@ -1,12 +1,6 @@
 ---
 name: Additional_paymentRequestParams
 ---
-> 📘 Reference
->
-> For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
-
-<br />
-
 <Accordion title="Additional info for Request parameters" icon="fa-info-circle">
   <Table align={["left","left"]}>
     <thead>
@@ -56,3 +50,9 @@ name: Additional_paymentRequestParams
     </tbody>
   </Table>
 </Accordion>
+
+<br />
+
+> 📘 Reference
+>
+> For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
