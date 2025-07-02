@@ -1,7 +1,7 @@
 ---
 title: UPI SDK Integration - TPV
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
