@@ -1,5 +1,5 @@
 ---
-title: Collect Payment with TPV - PayU Hosted Checkout (COPY)
+title: Collect UPI Payment with TPV - PayU Hosted Checkout
 deprecated: false
 hidden: true
 metadata:
