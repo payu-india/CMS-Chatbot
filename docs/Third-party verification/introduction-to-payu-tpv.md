@@ -40,6 +40,8 @@ metadata:
 next:
   description: ''
 ---
+The global financial industry is coming up with a new paradigm for risk management. If you are a merchant in the BFSI sector, your business is subject to strict guidelines, where various regulatory bodies regulate your day-to-day operations.
+
 Third-Party Verification (TPV) is a mandatory requirement as per Stock Exchange Bureau India (SEBI) mandate for merchants such as stockbrokers and mutual funds operating in the BFSI sector. TPV is a prerequisite that ensures credibility, and it reduces the risk for customers.
 
 ## TPV Workflow
@@ -69,9 +71,11 @@ Meet your compliance requirements and start transacting online with your custome
 
 ## TPV integration support
 
-* [Net Banking](/docs/net-banking-integration-for-tpv) and [UPI](/docs/upi-integration-for-tpv) is supported
-* Merchant Hosted Checkout (Seamless) and PayU Server-to-Server Integration are supported on this flow.
+PayU supports the PayU Hosted Checkout (non-seamless), Merchant Hosted Checkout (Seamless) and PayU Server-to-Server Integration are supported
 
-> 🚧 TPV Not Support for PayU Hosted Checkout
->
-> Currently, PayU does not support Non-Seamless or PayU Hosted Checkout integration for TPV.
+* [PayU Hosted or non-seamless integration](payu-hosted-checkout-tpv-workflow)
+* [Seamless Integration](https://docs.payu.in/docs/collect-payments-with-tpv-merchant-hosted-checkout)
+  * [Net Banking](/docs/net-banking-integration-for-tpv)
+  * [UPI](/docs/upi-integration-for-tpv)
+    * [UPI Intent Autopay](https://docs.payu.in/docs/upi-intent-autopay-tpv-integration)
+    * [UPI Collect Autopay](https://docs.payu.in/docs/upi-collect-autopay-tpv-integration)\ <br />
