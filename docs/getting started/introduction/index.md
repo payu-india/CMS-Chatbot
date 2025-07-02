@@ -52,9 +52,3 @@ A payment gateway is a technology used by merchants to accept debit or credit ca
 # Get support
 
 Our dedicated support team is here to assist you if you encounter any issues or have questions during your integration process. Visit [https://help.payu.in](https://help.payu.in) and raise a ticket.
-
-<Accordion title="My Accordion Title" icon="fa-info-circle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
-</Accordion>
