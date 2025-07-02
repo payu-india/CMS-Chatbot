@@ -18,7 +18,7 @@ The following environments are available for TPV integration:
 
 ## Step 1: Create transaction with beneficiary details
 
-Create a transaction by including a JSON object with beneficiary details (account numbers and IFSC codes). You can include up to 4 accounts for validation.
+Create a transaction by including a JSON object with beneficiary details (account numbers and IFSC codes). You can include up to four accounts for validation.
 
 ## Step 2: Post the parameters to PayU
 
@@ -97,6 +97,16 @@ Create a transaction by including a JSON object with beneficiary details (accoun
   </tbody>
 </table>
 `}</HTMLBlock>
+
+> 📘 Hash calculation
+>
+> The hash is calculated using the following formula:
+>
+> ```
+> sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)
+> ```
+>
+> Replace `SALT` with the salt value provided during onboarding.
 
 ### beneficiarydetail JSON Object Fields
 
