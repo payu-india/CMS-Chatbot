@@ -23,15 +23,9 @@ You can collect card payments without redirection to bank page for entering OTP 
 >
 > For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
-> 📘 Note:
->
-> Collecting the information for the following parameters from customers is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information:
->
-> * email
-> * phone
-> * address1
-> * s2s\_client\_ip
-> * s2s\_device\_info
+<Accordion_Collect_Fraud_Detection />
+
+<br />
 
 **Environment**
 
