@@ -46,7 +46,7 @@ With the following parameters, make the transaction request with the customer’
 ### Request parameters
 
 <HTMLBlock>{`
-<Table align={["left","left","left"]}>
+<Table>
   <thead>
     <tr>
       <th>
@@ -60,14 +60,11 @@ With the following parameters, make the transaction request with the customer’
       <th>
         Example
       </th>
-    </tr>
-    
-    <tr>
   </thead>
 
   <tbody>
       <td>
-        key \`mandatory\`
+        key <code>mandatory</code>
       </td>
 
       <td>
@@ -81,7 +78,7 @@ With the following parameters, make the transaction request with the customer’
     
     <tr>
       <td>
-        txnid \`mandatory\`
+        txnid <code>mandatory</code>
       </td>
 
       <td>
@@ -94,7 +91,7 @@ With the following parameters, make the transaction request with the customer’
     </tr>
     <tr>
       <td>
-        amount  \`mandatory\`
+        amount <code>mandatory</code>
       </td>
 
       <td>
@@ -108,7 +105,7 @@ With the following parameters, make the transaction request with the customer’
 
     <tr>
       <td>
-        productinfo  \`mandatory\`
+        productinfo <code>mandatory</code>
       </td>
 
       <td>
@@ -122,7 +119,7 @@ With the following parameters, make the transaction request with the customer’
 
     <tr>
       <td>
-        firstname  \`mandatory\`
+        firstname <code>mandatory</code>
       </td>
 
       <td>
@@ -137,7 +134,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         email
-        \`mandatory\`
+        <code>mandatory</code>
       </td>
 
       <td>
@@ -152,7 +149,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         phone
-        \`mandatory\`
+        <code>mandatory</code>
       </td>
 
       <td>
@@ -166,7 +163,7 @@ With the following parameters, make the transaction request with the customer’
 
     <tr>
       <td>
-        <Glossary>pg</Glossary> \`mandatory\`
+        <Glossary>pg</Glossary> <code>mandatory</code>
       </td>
 
       <td>
@@ -180,7 +177,7 @@ With the following parameters, make the transaction request with the customer’
 
     <tr>
       <td>
-        <Glossary>bankcode</Glossary> \`mandatory\`
+        <Glossary>bankcode</Glossary> <code>mandatory</code>
       </td>
 
       <td>
@@ -199,7 +196,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         vpa\
-        \`mandatory\`
+        <code>mandatory</code>
       </td>
 
       <td>
@@ -214,7 +211,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         beneficiarydetail\
-        \`mandatory\`
+        <code>mandatory</code>
       </td>
 
       <td>
@@ -243,7 +240,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         furl\
-        \`mandatory\`
+        <code>mandatory</code>
       </td>
 
       <td>
@@ -258,7 +255,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         surl\
-        \`mandatory\`
+        <code>mandatory</code>
       </td>
 
       <td>
@@ -273,7 +270,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         hash\
-        \`mandatory\`
+        <code>mandatory</code>
       </td>
 
       <td>
@@ -289,7 +286,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         address1\
-        \`optional\`
+        <code>optional</code>
       </td>
 
       <td>
@@ -306,7 +303,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         address2\
-        \`optional\`
+        <code>optional</code>
       </td>
 
       <td>
@@ -321,7 +318,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         city\
-        \`optional\`
+        <code>optional</code>
       </td>
 
       <td>
@@ -336,7 +333,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         state\
-        \`optional\`
+        <code>optional</code>
       </td>
 
       <td>
@@ -351,7 +348,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         country\
-        \`optional\`
+        <code>optional</code>
       </td>
 
       <td>
@@ -366,7 +363,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         zipcode\
-        \`optional\`
+        <code>optional</code>
       </td>
 
       <td>
@@ -382,7 +379,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         udf1\
-        \`optional\`
+        <code>optional</code>
       </td>
 
       <td>
@@ -397,7 +394,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         udf2\
-        \`optional\`
+        <code>optional</code>
       </td>
 
       <td>
@@ -412,7 +409,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         udf3\
-        \`optional\`
+        <code>optional</code>
       </td>
 
       <td>
@@ -427,7 +424,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         udf4\
-        \`optional\`
+        <code>optional</code>
       </td>
 
       <td>
@@ -442,7 +439,7 @@ With the following parameters, make the transaction request with the customer’
     <tr>
       <td>
         udf5\
-        \`optional\`
+        <code>optional</code>
       </td>
 
       <td>
