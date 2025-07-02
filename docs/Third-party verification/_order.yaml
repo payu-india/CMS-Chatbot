@@ -1,5 +1,6 @@
 - introduction-to-payu-tpv
 - collect-payments-with-tpv-merchant-hosted-checkout
+- collect-payments-with-tpv-merchant-hosted-checkout-copy
 - neftrtgs-integration-for-tpv
 - bank-codes-for-tpv
 - introduction-copy
@@ -9,4 +10,3 @@
 - collect-netbanking-payment-with-tpv-payu-hosted-checkout
 - collect-upi-payment-with-tpv-payu-hosted-checkout
 - upi-sdk-integration-tpv
-- collect-payments-with-tpv-merchant-hosted-checkout-copy
