@@ -188,11 +188,12 @@ With the following parameters, make the transaction request with the customer’
       </td>
 
       <td>
-        <code>String</code> It defines the bank with which you wish to perform TPV using the bank code.The values can be any one of the following values:
-
-        * **UPITPV**: Used for UPI Collect
-        * **INTTPV**: : Used for UPI Intent
-        * **TEJTPV**: Used for Google Pay in app transactions only
+       <code>String</code> It defines the bank with which you wish to perform TPV using the bank code. The values can be any one of the following values:
+  <ul>
+    <li><strong>UPITPV</strong>: Used for UPI Collect</li>
+    <li><strong>INTTPV</strong>: Used for UPI Intent</li>
+    <li><strong>TEJTPV</strong>: Used for Google Pay in app transactions only</li>
+        </ul>
       </td>
 
       <td>
@@ -222,12 +223,7 @@ With the following parameters, make the transaction request with the customer’
       </td>
 
       <td>
-         <code>String</code> It defines the bank with which you wish to perform TPV using the bank code. The values can be any one of the following values:
-  <ul>
-    <li><strong>UPITPV</strong>: Used for UPI Collect</li>
-    <li><strong>INTTPV</strong>: Used for UPI Intent</li>
-    <li><strong>TEJTPV</strong>: Used for Google Pay in app transactions only</li>
-  </ul>
+<code>JSON</code> This is a JSON format text and there should be key named **beneficiaryAccountNumber** with the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter.
       </td>
 
       <td>
