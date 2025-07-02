@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-Fetch refund-related loyalty points transactions using this API.
+The **Fetch Refund Transactions** API is used to fetch a list of refund-related loyalty points transactions using this API.
 
 **Endpoint**
 
