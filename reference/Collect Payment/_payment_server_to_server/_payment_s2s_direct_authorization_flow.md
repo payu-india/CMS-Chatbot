@@ -23,27 +23,25 @@ PayU enables merchants to process direct authorization for pre-authenticated tra
 >
 > This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
 
-<details>
-  <summary>Reference information for request parameters</summary>
+<Accordion title="Reference information for request parameters" icon="fa-book">
 
-  > 📘 Reference
-  >
-  > For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+> 📘 Reference
+>
+> For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
-  <AddionalCards_paymentRequestParametersInformation />
+<AddionalCards_paymentRequestParametersInformation />
 
-  > 📘 Note:
-  >
-  > Collecting the information for the following parameters from customers is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information:
-  >
-  > * email
-  > * phone
-  > * address1
-  > * s2s\_client\_ip
-  > * s2s\_device\_info
+> 📘 Note:
+>
+> Collecting the information for the following parameters from customers is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information:
+>
+> * email
+> * phone
+> * address1
+> * s2s\_client\_ip
+> * s2s\_device\_info
 
-</details>
-
+</Accordion>
 ## Response parameters
 
 For the response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
