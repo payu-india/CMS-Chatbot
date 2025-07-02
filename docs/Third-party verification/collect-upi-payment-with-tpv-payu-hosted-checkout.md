@@ -1,11 +1,13 @@
 ---
-title: Collect UPI Payment with TPV - PayU Hosted Checkout
+title: UPI TPV Integration - PayU Hosted Checkout
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-For Net-Banking integration, you need to post transaction details to PayU with bank account details for validation.
+For UPI integration, you need to post transaction details to PayU with beneficiary details for validation, similar to Net-Banking integration.
+
+The request parameters for UPI integration are the same as Net-Banking integration. The `beneficiarydetail` parameter should include the UPI beneficiary details.
 
 ### Environment
 
