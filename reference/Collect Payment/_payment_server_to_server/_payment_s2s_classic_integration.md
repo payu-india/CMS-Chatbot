@@ -29,15 +29,7 @@ You can collect card payments using Server-to-Server integration. This section p
 >
 > For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
-> 📘 Note:
->
-> Collecting the information for the following parameters from customers is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information:
->
-> * email
-> * phone
-> * address1
-> * s2s\_client\_ip
-> * s2s\_device\_info
+
 
 **Environment**
 
@@ -46,15 +38,17 @@ You can collect card payments using Server-to-Server integration. This section p
 | **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-## Sample request
+<Accordion title="Sample request" icon="fa-code">
 
 ```curl
 curl --location --request POST 'https://secure.payu.in/_payment' --header 'Content-Type: application/x-www-form-urlencoded' --header 'Cookie: PHPSESSID=mj185cifujktpv1igu9tmuoaal; PAYUID=eac5648ac59712238883a78e71f35717; PHPSESSID=638b1b5173542' --data-urlencode 'hash=d89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42' --data-urlencode 'key=s*****s' --data-urlencode 'txnid=payuTestTransaction3818940' --data-urlencode 'amount=1.0' --data-urlencode 'firstname=Ashish' --data-urlencode 'email=test@payu.in' --data-urlencode 'phone=9988776655' --data-urlencode 'productinfo=Product Info' --data-urlencode 'surl=https://admin.payu.in/test_response' --data-urlencode 'furl=https://admin.payu.in/test_response' --data-urlencode 'notifyurl=https://admin.payu.in/test_response' --data-urlencode 'codurl=https://admin.payu.in/test_response' --data-urlencode 'ipurl=https://admin.payu.in/test_response' --data-urlencode 'lastname=' --data-urlencode 'udf1=' --data-urlencode 'udf2=' --data-urlencode 'udf3=' --data-urlencode 'udf4=' --data-urlencode 'udf5=' --data-urlencode 'pg=CC' --data-urlencode 'bankcode=DC' --data-urlencode 'ccnum=XXXXXXXXXXX8811' --data-urlencode 'ccname=Ashish' --data-urlencode 'ccvv=XXX' --data-urlencode 'ccexpmon=12' --data-urlencode 'ccexpyr=2023' --data-urlencode 'txn_s2s_flow=4' --data-urlencode 'authentication_flow=REDIRECT' 
 ```
 
-## Sample response
+</Accordion>
 
-```
+<Accordion title="Sample response" icon="fa-reply">
+
+```json
 {
    "metaData":{
       "message":null,
@@ -66,7 +60,7 @@ curl --location --request POST 'https://secure.payu.in/_payment' --header 'Conte
    },
    "result":{
       "otpPostUrl":"",
-      "acsTemplate":"PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vYWNzLmZzc25ldC5jby5pbi9hY3NhdXRoc2VydmVyL1VCSS9WL3BhcmVxLmh0bSIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJQYVJlcSIgdmFsdWU9ImVKeFVVdUZ1c2pBVWZSWGpBOUNXaWdaemJjTEViR1JEaVp2NWZuZHdveVFDV3NwRW4zNnRnTzRqSWJubjlIQTRQUzE4SFJSaStJbHBvMUJBakhVdDl6aktzOFdZY3NyWnpQVTVHd3RJZ2kyZUJmeWdxdk9xRk15aGpndGtnT1k3bFI1a3FRWEk5UHdTcmNXRVRiazdCZEpES0ZCRm9lQitzcVBkWTh3NWtJNkdVaFlvRW5uZGpWNGJ0WmRWQ2VST1FWbzFwVlpYd1Qzak5RQm8xRkVjdEQ3TkNibGNMbzdHV2hkOUFDZXRDZ0xFS29BOFV5V05uV3JqMk9hWmlKYkIvdkdHd1MwTzQzWjlpN3o0dGxvQXNRcklwRWJoVXRkbEx1VWo2czhuc3ptblFPNDh5TUpHRWR2YVlRNHpiSS9oWkg4VGRJRFpoYjhFbUlvVmx1bXdtd0VCdHFlcVJLTXdqVDVtSU0vTXl6ZmJhNnBOVlZQNTdudmZiWVBOZXZZdnE0cGp2ZHA4S085cnRiSFJlNUYxekUxUkxtZWRwUVZBckEzcEQ5SjBjejlwTS8xM0EzNEJBQUQvL3dYQWdRQUFBQUFBa1A5ckFHTkhyZkk9Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJUZXJtVXJsIiB2YWx1ZT0iaHR0cHM6Ly9zZWN1cmUucGF5dS5pbi83OGIxN2YyZWJkYmUyNjgwNjMzNDY3NzA0MjAzMzgyYS9Db21tb25QZ1Jlc3BvbnNlSGFuZGxlci5waHAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Ik1EIiB2YWx1ZT0iMDMwMzE3MzA1NSI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+"
+      "acsTemplate":"PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vYWNzLmZzc25ldC5jby5pbi9hY3NhdXRoc2VydmVyL1VCSS9WL3BhcmVxLmh0bSIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJQYVJlcSIgdmFsdWU9ImVKeFVVdUZ1c2pBVWZSWGpBOUNXaWdaemJjTEViR1JEaVp2NWZuZHdveVFDV3NwRW4zNnRnTzRqSWJubjlIQTRQUzE4SFJSaStJbHBvMUJBakhVdDl6aktzOFdZY3NyWnpQVTVHd3RJZ2kyZUJmeWdxdk9xRk15aGpndGtnT1k3bFI1a3FRWEk5UHdTcmNXRVRiazdCZEpES0ZCRm9lQitzcVBkWTh3NWtJNkdVaFlvRW5uZGpWNGJ0WmRWQ2VST1FWbzFwVlpYd1Qzak5RQm8xRkVjdEQ3TkNibGNMbzdHV2hkOUFDZXRDZ0xFK29BOFV5V05uV3JqMk9hWmlKYkIvdkdHd1MwTzQzWjlpN3o0dGxvQXNRcklwRWJoVXRkbEx1VWo2czhuc3ptblFPNDh5TUpHRWR2YVlRNHpiSS9oWkg4VGRJRFpoYjhFbUlvVmx1bXdtd0VCdHFlcVJLTXdqVDVtSU0vTXl6ZmJhNnBOVlZQNTdudmZiWVBOZXZZdnE0cGp2ZHA4S085cnRiSFJlNUYxekUxUkxtZWRwUVZBckEzcEQ5SjBjejlwTS8xM0EzNEJBQUQvL3dYQWdRQUFBQUFBa1A5ckFHTkhyZkk9Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJUZXJtVXJsIiB2YWx1ZT0iaHR0cHM6Ly9zZWN1cmUucGF5dS5pbi83OGIxN2YyZWJkYmUyNjgwNjMzNDY3NzA0MjAzMzgyYS9Db21tb25QZ1Jlc3BvbnNlSGFuZGxlci5waHAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Ik1EIiB2YWx1ZT0iMDMwMzE3MzA1NSI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+"
    },
    "binData":{
       "pureS2SSupported":false,
@@ -78,7 +72,9 @@ curl --location --request POST 'https://secure.payu.in/_payment' --header 'Conte
 }
 ```
 
-## Response parameters
+</Accordion>
+
+<Accordion title="Response parameters" icon="fa-list">
 
 | **Parameter**            | **Description**                                                                                                                                                                                                                                                                             |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -92,12 +88,16 @@ curl --location --request POST 'https://secure.payu.in/_payment' --header 'Conte
 
 For the response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
+</Accordion>
+
 ## Request parameters
 
 > 🚧 Error Handling:
 >
 > A list of error message with corresponding error code and reason for the error is listed in . PayU recommends you to handle these errors when you process the transactions. For more information, refer to [Error Codes](ref:error-codes)
 
-> 🚧 Values to be used in Test environment
->
-> For values to be used in Test environment, refer to <a href="test-cards-upi-id-and-wallets#web-checkout" target="_blank">Test Cards</a>.
+<Accordion title="Values to be used in Test environment" icon="fa-flask">
+
+For values to be used in Test environment, refer to <a href="test-cards-upi-id-and-wallets#web-checkout" target="_blank">Test Cards</a>.
+
+</Accordion>
