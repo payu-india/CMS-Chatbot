@@ -5,8 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
-### SDK for Android
-
 To integrate TPV in an Android app:
 
 1. **Include the SDK**:\
@@ -40,44 +38,3 @@ To integrate TPV in an Android app:
        .setBeneficiaryDetailsList(beneficiaryDetailsList)
        .build()
    ```
-
-### SDK for iOS
-
-To integrate TPV in an iOS app:
-
-1. **Create Beneficiary Details**:\
-   Use the following Swift code for passing beneficiary details:
-   ```swift
-   var payuBeneficieryDetailsList = [PayUBeneficiaryParams]()
-   let beneficiaryDetails1 = PayUBeneficiaryParams(beneficiaryAccountNumber: <String>, beneficiaryIFSC: <String>)
-   let beneficiaryDetails2 = PayUBeneficiaryParams(beneficiaryAccountNumber: <String>, beneficiaryIFSC: <String>)
-   payuBeneficieryDetailsList.append(beneficiaryDetails1)
-   payuBeneficieryDetailsList.append(beneficiaryDetails2)
-
-   let paymentParam = PayUPaymentParam(
-       key: <String>,
-       transactionId: <String>,
-       amount: <String>,
-       productInfo: <String>,
-       firstName: <String>,
-       email: <String>,
-       phone: <String>,
-       surl: <String>, // Success URL
-       furl: <String>, // Failure URL
-       environment: <Environment> /* .production or .test */
-   )
-   paymentParam.payuBeneficieryDetails = payuBeneficieryDetailsList
-   ```
-
-2. **Set Beneficiary Details Priority**:\
-   If `beneficiaryDetails` are passed in both `PayUPaymentParams` and `SiParams`, priority is given to `PayUPaymentParams`.
-
-## Hash Calculation
-
-The hash is calculated using the following formula:
-
-```
-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)
-```
-
-Replace `SALT` with the salt value provided during onboarding.
