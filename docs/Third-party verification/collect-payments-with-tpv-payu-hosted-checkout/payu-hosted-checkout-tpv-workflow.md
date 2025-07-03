@@ -34,6 +34,6 @@ Here the customer chooses the payment mode they want to proceed. For example, **
 
 ## Step 3
 
-Customer enters the Phone number/UPI ID and clicks Verify. Payment gets completed successfully.
+Customer enters the Phone number/UPI ID and clicks **Verify** or customer transaction through Net Banking with the account already registered, and then payment gets completed successfully.
 
 <Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/02/word-image-4.png" />
