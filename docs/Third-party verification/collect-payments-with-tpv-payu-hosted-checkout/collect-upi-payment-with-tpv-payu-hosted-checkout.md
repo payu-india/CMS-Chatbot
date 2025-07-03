@@ -93,7 +93,9 @@ Create a transaction by including a JSON object with beneficiary details (accoun
     </tr>
     <tr>
       <td>hash<br/><code>mandatory</code></td>
-      <td><code>String</code> SHA512 hash calculated using the formula:<br/>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)</td>
+      <td><code>String</code> SHA512 hash calculated using the formula:<br/>sha512(key|txnid|amount|productinfo|<br/>
+        firstname|email|udf1|udf2|udf3|udf4|udf5||||||<br/>
+beneficiarydetail|SALT)</td>
       <td></td>
     </tr>
   </tbody>
