@@ -2,10 +2,12 @@
 title: 'Customer Journey '
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Customer Journey - TPV with PayU Hosted Checkout
+  description: >-
+    This section describes the customer journey for TPV integration with PayU
+    Hosted Checkout.
   robots: index
 next:
   description: ''
