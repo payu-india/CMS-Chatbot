@@ -237,7 +237,7 @@ Where, \<Body data> contains the request Body posted with the request.
 </table>
 `}</HTMLBlock>
 
-<br />
+<V2_Error_Handling />
 
 #### order object fields description
 
