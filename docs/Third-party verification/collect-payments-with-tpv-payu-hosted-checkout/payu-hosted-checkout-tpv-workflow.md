@@ -1,5 +1,5 @@
 ---
-title: 'TPV Customer Journey - PayU Hosted Checkout '
+title: 'Customer Journey '
 excerpt: ''
 deprecated: false
 hidden: true
