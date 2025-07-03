@@ -22,16 +22,16 @@ metadata:
 next:
   description: ''
 ---
-The Verify Payment (**verify\_payment**) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU’s database after you receive the response, where var1 is your transaction ID.
+The Verify Payment (**verify\_payment**) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU's database after you receive the response, where var1 is your transaction ID.
 
 **Environment**
 
-|                        |                                                                                                              |
+|                        |                                                                                                              |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------ |
 | Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
 | Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
-## Sample request
+<Accordion title="Sample request" icon="fa-code">
 
 ```curl
 curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
@@ -42,7 +42,9 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 --data-urlencode 'hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
 ```
 
-## Sample response
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
 
 * If credit card payment is made, the response is similar to the following:
 
@@ -92,16 +94,6 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
         }
     }
 }
-Is there anything else you need help with?
-
-
-Edit in Pages
-
-3 of 30 responses
-AI-generated content may be incorrect
-
-
-
 ```
 
 * Offer availed on cart level
@@ -242,7 +234,7 @@ AI-generated content may be incorrect
             "field4": null,
             "offerApplied": "LoadTest1@m3phN7YptAA6",
             "offerAvailed": "LoadTest1@m3phN7YptAA6",
-            "transactionOffer": "{\"offer_data\":[{\"offer_key\":\"LoadTest1@m3phN7YptAA6\",\"discount\":100,\"offer_type\":\"INSTANT\",\"isNoCost\":false,\"flag_to_fail\":false,\"status\":\"SUCCESS\",\"failure_code\":null,\"failure_reason\":\"Offer Applied Successfully\",\"offer_description\":\"Load Test 1\",\"offer_title\":\"Load Test 1\",\"record_type\":\"OFFER\",\"parent_offer_key\":null,\"offer_category\":null,\"isDpEmi\":false}],\"discount_data\":{\"total_discount\":100,\"cashback_discount\":0,\"instant_discount\":100,\"total_nce_discount\":0,\"instant_nce_discount\":0,\"cashback_nce_discount\":0,\"gstSubventedViaOffer\":false,\"downPaymentAmount\":0}}",
+            "transactionOffer": "{"offer_data":[{"offer_key":"LoadTest1@m3phN7YptAA6","discount":100,"offer_type":"INSTANT","isNoCost":false,"flag_to_fail":false,"status":"SUCCESS","failure_code":null,"failure_reason":"Offer Applied Successfully","offer_description":"Load Test 1","offer_title":"Load Test 1","record_type":"OFFER","parent_offer_key":null,"offer_category":null,"isDpEmi":false}],"discount_data":{"total_discount":100,"cashback_discount":0,"instant_discount":100,"total_nce_discount":0,"instant_nce_discount":0,"cashback_nce_discount":0,"gstSubventedViaOffer":false,"downPaymentAmount":0}}",
             "offerType": "instant",
             "offerLevel": "TRANSACTION_LEVEL"
         }
@@ -262,7 +254,9 @@ Successfully","transaction_details":{"IhfgcZnXR4o4nB":{"mihpayid":"Not Found","s
 }
 ```
 
-## Response parameters
+</Accordion>
+
+<Accordion title="Response parameters" icon="fa-list">
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -312,7 +306,7 @@ Successfully","transaction_details":{"IhfgcZnXR4o4nB":{"mihpayid":"Not Found","s
         For example, any of the following messages are displayed:
 
         * Parameter missing
-        * Token is empty 
+        * Token is empty 
         * Amount is empty
         * Transaction not exists
       </td>
@@ -364,12 +358,16 @@ Successfully","transaction_details":{"IhfgcZnXR4o4nB":{"mihpayid":"Not Found","s
 
 To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 
-<TutorialTile backgroundColor="#018FF4" emoji="🦉" id="65afb6e90a4e0500389d3886" link="https://docs.payu.in/v1/recipes/parse-the-verify-payment-api-response" slug="parse-the-verify-payment-api-response" title="Parse the Verify Payment API response" />
+</Accordion>
 
 ## Request parameters
 
-**Sample values**
+<Accordion title="Sample values" icon="fa-flask">
 
 Use the following sample values while trying out the API:
 
 * `var1` (your transaction ID/order ID): 7fa6c4783a363b3da573
+
+</Accordion>
+
+<TutorialTile backgroundColor="#018FF4" emoji="🦉" id="65afb6e90a4e0500389d3886" link="https://docs.payu.in/v1/recipes/parse-the-verify-payment-api-response" slug="parse-the-verify-payment-api-response" title="Parse the Verify Payment API response" />
