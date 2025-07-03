@@ -1,8 +1,9 @@
 ---
-title: Net Banking TPV Integration - PayU Hosted Checkout
+title: Net Banking TPV Integration
 deprecated: false
 hidden: false
 metadata:
+  title: Net Banking TPV Integration - PayU Hosted Checkout
   robots: index
 ---
 For Net Banking integration, you need to post transaction details to PayU with bank account details for validation.
