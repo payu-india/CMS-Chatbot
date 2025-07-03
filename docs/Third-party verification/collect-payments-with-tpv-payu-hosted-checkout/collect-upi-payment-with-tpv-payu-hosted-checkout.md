@@ -89,7 +89,7 @@ Create a transaction by including a JSON object with beneficiary details (accoun
     <tr>
       <td>api_version<br/><code>mandatory</code></td>
       <td><code>String</code> Version of the API</td>
-      <td>7</td>
+      <td>6</td>
     </tr>
     <tr>
       <td>hash<br/><code>mandatory</code></td>
