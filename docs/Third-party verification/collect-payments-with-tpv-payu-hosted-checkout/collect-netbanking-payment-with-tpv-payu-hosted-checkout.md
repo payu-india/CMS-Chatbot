@@ -72,7 +72,7 @@ Create a transaction by including a JSON object with beneficiary details (accoun
     <tr>
       <td>beneficiarydetail<br/><code>mandatory</code></td>
       <td><code>String</code> JSON object that contains account numbers and corresponding IFSC codes (max 4 accounts) in the same order</td>
-      <td>{"beneficiaryAccountNumber":"002001600674\</td>
+      <td>Refer to <a href="#beneficiarydetail-json-object-fields">beneficiarydetail JSON Object Fields</a></td>
     </tr>
     <tr>
       <td>surl<br/><code>mandatory</code></td>
@@ -87,7 +87,7 @@ Create a transaction by including a JSON object with beneficiary details (accoun
     <tr>
       <td>api_version<br/><code>mandatory</code></td>
       <td><code>String</code> Version of the API</td>
-      <td>1</td>
+      <td>7</td>
     </tr>
     <tr>
       <td>hash<br/><code>mandatory</code></td>
