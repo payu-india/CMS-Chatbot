@@ -35,7 +35,7 @@ To process payments with credit/debit card, UPI, wallet, etc. on your website us
 >
 > To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](https://docs.payu.in/v1/docs/handling-the-redirect-urls).
 
-<PaymentAPIEnvironment />
+
 
 You can get the **Try It** experience for the following payment modes:
 
