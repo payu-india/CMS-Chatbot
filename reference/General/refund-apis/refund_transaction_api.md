@@ -36,12 +36,12 @@ In this API:
 
 **Environment**
 
-|                        |                                                                                                              |
+|                        |                                                                                                              |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------ |
 | Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
 | Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
-## Sample request
+<Accordion title="Sample request" icon="fa-code">
 
 ### Simple sample request
 
@@ -58,12 +58,12 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 -H "accept: application/json" \
 -H "Content-Type: application/x-www-form-urlencoded" \
--d "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10&var9=child_merchant_key_1:{\"amount\": 100,\"aggregatorRefundAmount\": 40 }"
+-d "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10&var9=child_merchant_key_1:{"amount": 100,"aggregatorRefundAmount": 40 }"
 ```
 
-***
+</Accordion>
 
-## Sample Responses
+<Accordion title="Sample response" icon="fa-reply">
 
 ### Success Scenarios
 
@@ -210,9 +210,9 @@ Array
 >
 > **Important:** The error\_code value 102 should be treated as success; the rest are failures. For the list of error codes, refer to [Error Codes for Refund Initiation](ref:error-codes-for-refund-initiation).
 
-***
+</Accordion>
 
-## Response Parameters
+<Accordion title="Response parameters" icon="fa-list">
 
 | Parameter          | Description                                                                                                                 | Sample Value          |
 | :----------------- | :-------------------------------------------------------------------------------------------------------------------------- | :-------------------- |
@@ -227,7 +227,9 @@ Array
 >
 > The error\_code value **102** should be treated as success; the rest are failures. To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 
-## Request Parameters Reference
+</Accordion>
+
+<Accordion title="Request Parameters Reference" icon="fa-book">
 
 ### Key Request Parameters
 
@@ -266,9 +268,13 @@ The **var8** parameter is in JSON format that contains the following fields:
 >
 > var5 and var8 are optional parameters and not included in the following **Try It** experience. For more information on description with examples, refer to the [Other request parameters](#key-request-parameters) subsection.
 
-## Example Values for Testing
+</Accordion>
+
+<Accordion title="Example Values for Testing" icon="fa-flask">
 
 Use the following sample values while trying out the API:
 
 * `var1` (mihpayid): **403993715521937565**
 * `var2` (reference number for a refund provided by merchant): **20201105secrettokenaturend**
+
+</Accordion>
