@@ -1,5 +1,5 @@
 ---
-title: Cards - CB
+title: Cross Border Payments with Cards
 excerpt: ''
 api:
   file: merchant-hosted-41.json
@@ -13,8 +13,6 @@ metadata:
 next:
   description: ''
 ---
-# Cross Border Payments with Cards
-
 You can collect payments from customers with leading cards using the Merchant Hosted integration for Cross Border Payments. The **buyer\_type\_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
 
 After the payment is complete, you must use the [Invoice Upload API](ref:invoice_upload_api) to upload the invoices for banks processing.
