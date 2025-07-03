@@ -34,16 +34,6 @@ Here the customer chooses the payment mode they want to proceed. For example, **
 
 ## Step 3
 
-A pop-up page is displauyed. Here, the customer needs to enter their UPI ID or registered mobile number.
-
-<Image align="center" src="https://files.readme.io/83e8762fb57dd7ed53ee1b585c56aeb0376fd8b5a74e39a3d4baae721e7f33c2-payu_hopsted_tpv_step3.png" />
-
-## Step 4
-
 Customer enters the Phone number/UPI ID and clicks Verify. Payment gets completed successfully.
 
 <Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/02/word-image-4.png" />
-
-<br />
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/02/word-image-4.png)
