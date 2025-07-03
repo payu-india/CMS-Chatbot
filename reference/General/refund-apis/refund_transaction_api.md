@@ -42,239 +42,231 @@ In this API:
 | Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
 <Accordion title="Sample request" icon="fa-code">
+  ### Simple sample request
 
-### Simple sample request
+  ```bash
+  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10"
+  ```
 
-```bash
-curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
--H "accept: application/json" \
--H "Content-Type: application/x-www-form-urlencoded" \
--d "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10"
-```
+  ### Sample request with split information JSON
 
-### Sample request with split information JSON
-
-```bash
-curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
--H "accept: application/json" \
--H "Content-Type: application/x-www-form-urlencoded" \
--d "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10&var9=child_merchant_key_1:{"amount": 100,"aggregatorRefundAmount": 40 }"
-```
-
+  ```bash
+  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10&var9=child_merchant_key_1:{"amount": 100,"aggregatorRefundAmount": 40 }"
+  ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
+  ### Success Scenarios
 
-### Success Scenarios
+  **1. On successful processing from PayU:**
 
-**1. On successful processing from PayU:**
+  ```plaintext
+  Array 
+  (
+        [status] => 1
+        [msg] => Cancel Request Queued 
+        [txn_update_id] => <Request ID> 
+        [bank_ref_num] => <Bank Reference Number> 
+        [mihpayid] => <PayU Transaction ID>
+  )
+  ```
 
-```plaintext
-Array 
-(
+  **2. On successful processing for captured transactions:**
+
+  ```plaintext
+  Array 
+  (
+       [status] => 1
+       [msg] => Refund Request Queued 
+       [request_id] => Request ID 
+       [bank_ref_num] => <Bank Reference Number> 
+       [mihpayid] => <PayU Transaction ID>
+  )
+  ```
+
+  **3. On successful processing for auth transactions:**
+
+  ```plaintext
+  Array 
+  (
       [status] => 1
       [msg] => Cancel Request Queued 
       [txn_update_id] => <Request ID> 
-      [bank_ref_num] => <Bank Reference Number> 
-      [mihpayid] => <PayU Transaction ID>
-)
-```
+      [bank_ref_num] => <Bank Reference Number>
+  )
+  ```
 
-**2. On successful processing for captured transactions:**
+  ### Failure Scenarios
 
-```plaintext
-Array 
-(
-     [status] => 1
-     [msg] => Refund Request Queued 
-     [request_id] => Request ID 
-     [bank_ref_num] => <Bank Reference Number> 
-     [mihpayid] => <PayU Transaction ID>
-)
-```
+  **1. If token is missing:**
 
-**3. On successful processing for auth transactions:**
+  ```json
+  {
+        "status": 0,
+        "msg": "token is empty",
+        "mihpayid": "403993715521937565"
+  }
+  ```
 
-```plaintext
-Array 
-(
-    [status] => 1
-    [msg] => Cancel Request Queued 
-    [txn_update_id] => <Request ID> 
-    [bank_ref_num] => <Bank Reference Number>
-)
-```
+  **2. If amount is missing:**
 
-### Failure Scenarios
+  ```plaintext
+  Array 
+  (
+      [status] => 0
+      [msg] => amount is empty 
+  )
+  ```
 
-**1. If token is missing:**
+  **3. If the transaction is not found:**
 
-```json
-{
-      "status": 0,
-      "msg": "token is empty",
-      "mihpayid": "403993715521937565"
-}
-```
+  ```plaintext
+  Array 
+  (
+      [status] => 0
+      [msg] => transaction not exists 
+  )
+  ```
 
-**2. If amount is missing:**
+  **4. If failed to refund:**
 
-```plaintext
-Array 
-(
-    [status] => 0
-    [msg] => amount is empty 
-)
-```
+  ```plaintext
+  Array 
+  (
+      [status] => 0
+      [msg] => Refund request failed
+  )
+  ```
 
-**3. If the transaction is not found:**
+  **5. If capture is done on the same day:**
 
-```plaintext
-Array 
-(
-    [status] => 0
-    [msg] => transaction not exists 
-)
-```
+  ```plaintext
+  Array 
+  (
+      [status] => 1
+      [msg] => Capture is done today, please check for refund status tomorrow 
+      [request_id] => Request ID
+      [bank_ref_num] => Bank Reference Number
+      [mihpayid] => PayU ID
+  )
+  ```
 
-**4. If failed to refund:**
+  **6. If the token is invalid:**
 
-```plaintext
-Array 
-(
-    [status] => 0
-    [msg] => Refund request failed
-)
-```
+  ```plaintext
+  Array
+  (
+      [status] => 0
+      [msg] => token already used or request pending 
+  )
+  ```
 
-**5. If capture is done on the same day:**
+  **7. If failed to cancel a transaction:**
 
-```plaintext
-Array 
-(
-    [status] => 1
-    [msg] => Capture is done today, please check for refund status tomorrow 
-    [request_id] => Request ID
-    [bank_ref_num] => Bank Reference Number
-    [mihpayid] => PayU ID
-)
-```
+  ```plaintext
+  Array 
+  (
+      [status] => 0
+      [msg] => Cancel request failed
+  )
+  ```
 
-**6. If the token is invalid:**
-
-```plaintext
-Array
-(
-    [status] => 0
-    [msg] => token already used or request pending 
-)
-```
-
-**7. If failed to cancel a transaction:**
-
-```plaintext
-Array 
-(
-    [status] => 0
-    [msg] => Cancel request failed
-)
-```
-
-> 📘 **Test Environment Responses**
->
-> The response for Refund Transaction API in Test Environment has specific limitations:
->
-> **1. For Regular Merchants:**
->
-> ```plaintext
-> Array
-> (
->     [status] => 1
->     [msg] => Refund Request Queued
->     [request_id] => 136409872
->     [bank_ref_num] => 
->     [mihpayid] => 403993715530925893
->     [error_code] => 102
-> )
-> ```
->
-> **2. For Merchants with Split transaction enabled:**
->
-> ```json
-> {
->   "status": 236,
->   "msg": "Refund Split Info must be of JSON format",
->   "mihpayid": "403993715521937565"
-> }
-> ```
->
-> **Important:** The error\_code value 102 should be treated as success; the rest are failures. For the list of error codes, refer to [Error Codes for Refund Initiation](ref:error-codes-for-refund-initiation).
-
+  > 📘 **Test Environment Responses**
+  >
+  > The response for Refund Transaction API in Test Environment has specific limitations:
+  >
+  > **1. For Regular Merchants:**
+  >
+  > ```plaintext
+  > Array
+  > (
+  >     [status] => 1
+  >     [msg] => Refund Request Queued
+  >     [request_id] => 136409872
+  >     [bank_ref_num] => 
+  >     [mihpayid] => 403993715530925893
+  >     [error_code] => 102
+  > )
+  > ```
+  >
+  > **2. For Merchants with Split transaction enabled:**
+  >
+  > ```json
+  > {
+  >   "status": 236,
+  >   "msg": "Refund Split Info must be of JSON format",
+  >   "mihpayid": "403993715521937565"
+  > }
+  > ```
+  >
+  > **Important:** The error\_code value 102 should be treated as success; the rest are failures. For the list of error codes, refer to [Error Codes for Refund Initiation](ref:error-codes-for-refund-initiation).
 </Accordion>
 
 <Accordion title="Response parameters" icon="fa-list">
+  | Parameter          | Description                                                                                                                 | Sample Value          |
+  | :----------------- | :-------------------------------------------------------------------------------------------------------------------------- | :-------------------- |
+  | **status**         | The status can be any of the following:• **1** if API call is a success • **0** if the API has failed                       | 1                     |
+  | **msg**            | This parameter contains a response message description                                                                      | Refund Request Queued |
+  | **request\_id**    | This parameter contains a unique refund ID generated by PayU                                                                | 6582898821            |
+  | **bank\_ref\_num** | This parameter contains a bank reference number returned from bank                                                          | IRN6601148            |
+  | **mihpayid**       | This parameter contains a unique transaction ID generated by PayU during sale                                               | 7043873219            |
+  | **error\_code**    | This parameter contains the code for response. For a list of error codes and their description, refer to Refund Error Codes | 102                   |
 
-| Parameter          | Description                                                                                                                 | Sample Value          |
-| :----------------- | :-------------------------------------------------------------------------------------------------------------------------- | :-------------------- |
-| **status**         | The status can be any of the following:• **1** if API call is a success • **0** if the API has failed                       | 1                     |
-| **msg**            | This parameter contains a response message description                                                                      | Refund Request Queued |
-| **request\_id**    | This parameter contains a unique refund ID generated by PayU                                                                | 6582898821            |
-| **bank\_ref\_num** | This parameter contains a bank reference number returned from bank                                                          | IRN6601148            |
-| **mihpayid**       | This parameter contains a unique transaction ID generated by PayU during sale                                               | 7043873219            |
-| **error\_code**    | This parameter contains the code for response. For a list of error codes and their description, refer to Refund Error Codes | 102                   |
-
-> 📘 **Note on Error Codes**
->
-> The error\_code value **102** should be treated as success; the rest are failures. To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
-
+  > 📘 **Note on Error Codes**
+  >
+  > The error\_code value **102** should be treated as success; the rest are failures. To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 </Accordion>
 
+## Request Parameters
+
 <Accordion title="Request Parameters Reference" icon="fa-book">
+  ### Key Request Parameters
 
-### Key Request Parameters
+  | Parameter                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | :----------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **var2**                       | This parameter must contain the Token ID (unique token from the merchant) for the refund request.• Token ID has to be generated at your end for each new refund request • It is an identifier for each new refund request which can be used for tracking it • It must be unique for every new refund request generated – otherwise the refund request would not be generated successfully • Token ID length should not be greater than 23 characters                                                                                                                          |
+  | **var3**                       | **For captured transaction:** This parameter must contain the amount which needs to be refunded. Both partial and full refunds are allowed. • **For a full refund:** The var3 value would be equal to the amount with which the transaction was made • **For a partial refund:** This var3 value would be less than the amount with which the transaction was made **For pre-auth transaction:** If the transaction is in a pre-auth state currently, the full cancellation is allowed. The amount must be the same as the auth amount. A partial amount would not be allowed |
+  | **var5**                       | If a refund callback for a transaction is required on a specific URL, the URL must be specified in this parameter                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+  | **var8** *mandatory for split* | Refund split information provided by merchant in a JSON format. This is applicable only with the Split transactions. The JSON format is described in the table below                                                                                                                                                                                                                                                                                                                                                                                                          |
 
-| Parameter                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| :----------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **var2**                       | This parameter must contain the Token ID (unique token from the merchant) for the refund request.• Token ID has to be generated at your end for each new refund request • It is an identifier for each new refund request which can be used for tracking it • It must be unique for every new refund request generated – otherwise the refund request would not be generated successfully • Token ID length should not be greater than 23 characters                                                                                                                          |
-| **var3**                       | **For captured transaction:** This parameter must contain the amount which needs to be refunded. Both partial and full refunds are allowed. • **For a full refund:** The var3 value would be equal to the amount with which the transaction was made • **For a partial refund:** This var3 value would be less than the amount with which the transaction was made **For pre-auth transaction:** If the transaction is in a pre-auth state currently, the full cancellation is allowed. The amount must be the same as the auth amount. A partial amount would not be allowed |
-| **var5**                       | If a refund callback for a transaction is required on a specific URL, the URL must be specified in this parameter                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **var8** *mandatory for split* | Refund split information provided by merchant in a JSON format. This is applicable only with the Split transactions. The JSON format is described in the table below                                                                                                                                                                                                                                                                                                                                                                                                          |
+  ### Split Transaction Parameters (var8)
 
-### Split Transaction Parameters (var8)
+  The **var8** parameter is in JSON format that contains the following fields:
 
-The **var8** parameter is in JSON format that contains the following fields:
+  | Field               | Description                                                                                                                                                                                                                                | Example                                                                  |
+  | :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------- |
+  | **Split 1 Details** | The child merchant key, amount and aggregator refund amount is specified in the following format: `child_merchant_key_1": { "amount": 100, "aggregatorRefundAmount": 40 }`**Note:** The aggregator refund amount is optional in this field | `child_merchant_key_1": { "amount": 100, "aggregatorRefundAmount": 40 }` |
+  | **Split 2 Details** | The child merchant key, amount and aggregator refund amount is specified similar to Split 1 details                                                                                                                                        | `child_merchant_key_2": {"amount": 20, "aggregatorRefundAmount": 0 }`    |
 
-| Field               | Description                                                                                                                                                                                                                                | Example                                                                  |
-| :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------- |
-| **Split 1 Details** | The child merchant key, amount and aggregator refund amount is specified in the following format: `child_merchant_key_1": { "amount": 100, "aggregatorRefundAmount": 40 }`**Note:** The aggregator refund amount is optional in this field | `child_merchant_key_1": { "amount": 100, "aggregatorRefundAmount": 40 }` |
-| **Split 2 Details** | The child merchant key, amount and aggregator refund amount is specified similar to Split 1 details                                                                                                                                        | `child_merchant_key_2": {"amount": 20, "aggregatorRefundAmount": 0 }`    |
+  #### Sample JSON for var8
 
-#### Sample JSON for var8
-
-```json
-{
-  "child_merchant_key_1": { 
-    "amount": 100, 
-    "aggregatorRefundAmount": 40 
-  }, 
-  "child_merchant_key_2": {
-    "amount": 20, 
-    "aggregatorRefundAmount": 0 
+  ```json
+  {
+    "child_merchant_key_1": { 
+      "amount": 100, 
+      "aggregatorRefundAmount": 40 
+    }, 
+    "child_merchant_key_2": {
+      "amount": 20, 
+      "aggregatorRefundAmount": 0 
+    }
   }
-}
-```
+  ```
 
-> 📘 **Reference**
->
-> var5 and var8 are optional parameters and not included in the following **Try It** experience. For more information on description with examples, refer to the [Other request parameters](#key-request-parameters) subsection.
-
+  > 📘 **Reference**
+  >
+  > var5 and var8 are optional parameters and not included in the following **Try It** experience. For more information on description with examples, refer to the [Other request parameters](#key-request-parameters) subsection.
 </Accordion>
 
 <Accordion title="Example Values for Testing" icon="fa-flask">
+  Use the following sample values while trying out the API:
 
-Use the following sample values while trying out the API:
-
-* `var1` (mihpayid): **403993715521937565**
-* `var2` (reference number for a refund provided by merchant): **20201105secrettokenaturend**
-
+  * `var1` (mihpayid): **403993715521937565**
+  * `var2` (reference number for a refund provided by merchant): **20201105secrettokenaturend**
 </Accordion>
