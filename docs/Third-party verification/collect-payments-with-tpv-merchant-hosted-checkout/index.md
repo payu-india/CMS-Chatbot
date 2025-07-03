@@ -1,10 +1,10 @@
 ---
-title: Collect Payments with TPV - Merchant Hosted Checkout
+title: Collect Payments - Merchant Hosted Checkout
 excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
+  title: Collect Payments with TPV - Merchant Hosted Checkout
   description: ''
   robots: index
 next:
