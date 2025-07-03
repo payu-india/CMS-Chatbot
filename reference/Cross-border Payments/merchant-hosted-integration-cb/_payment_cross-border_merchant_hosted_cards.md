@@ -1,5 +1,5 @@
 ---
-title: Cross Border Payments with Cards
+title: Cards -  CB
 excerpt: ''
 api:
   file: merchant-hosted-41.json
