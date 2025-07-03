@@ -10,484 +10,109 @@ metadata:
 next:
   description: ''
 ---
-To integrate with PayU Hosted Checkout, you need to send a request and check the response. This will redirect the customer from the merchant’s website to PayU’s payment page to complete the payment. You can use the sample request and response in the provided documentation to get started.
+This document describes how to integrate your website with **PayU Hosted Checkout** v2 using the `v2/payments` API. The integration allows you to redirect customers to PayU's payment page, where they can complete the payment securely.
 
-> 👍 Before you begin:
-> 
-> PayU recommends you to integrate with Test environment initially. For more information, contact you PayU Key Account Manager (KAM) or PayU Support.
+> 📘 Before You Begin:
+>
+> PayU recommends you to first test the integration in the PayU test environment.
 
-The steps involved in PayU Hosted Checkout integration are:
+**Steps to Integrate**
 
-1. [Make the transaction request to PayU](#step-1-make-the-transaction-request-to-payu)
-2. [Redirect the URL for Payment on customer browser](#step-2-redirect-the-url-for-payment-on-customer-browser)
-3. [Handle the redirection on surl/furl](#step-3-handle-the-redirection-on-surlfurl)
-4. [Verify the payment](#step-4-verify-the-payment)
+Integration requires two main steps:
 
-## Step 1: Make the transaction request to PayU
+1. **Make the transaction request to PayU** - Send payment details to PayU and redirect customers to PayU checkout page
+2. **Verify the payment** - After payment, verify the transaction details using PayU's verification API
 
-Make the transaction request to the PayU Test server.
+## Step 1: Make the Transaction Request to PayU
 
-The Collect Payment (**v2/payments**) API is used for collecting payments in Web Checkout integration. For request and response, refer to <a href="https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment" target="_blank">Collect Payments API</a> under API Reference.
+### Environment URLs
 
-|                            |                                       |
-| :------------------------- | :------------------------------------ |
-| **Test Environment**       | [https://apitest.payu.in/v2/payments](https://apitest.payu.in/v2/payments) |
-| **Production Environment** | [https://api.payu.in/v2/payments](https://api.payu.in/v2/payments)     |
+| Environment            | URL                                                                        |
+| ---------------------- | -------------------------------------------------------------------------- |
+| Test Environment       | [https://apitest.payu.in/v2/payments](https://apitest.payu.in/v2/payments) |
+| Production Environment | [https://api.payu.in/v2/payments](https://api.payu.in/v2/payments)         |
 
-### Request Header
+### Request Format
 
-| Parameter     | Description                                                                                                                                                                                                    |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| date          | The current date and time. For example,  format of the date is Wed, 28 Jun 2023 11:25:19 GMT.                                                                                                                  |
-| authorization | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to[ authorization fields description](#authorization-fields-description). |
+A request to the v2 Payment API requires specific headers and a JSON body.
 
-#### authorization fields description
-
-| Parameter | Description                                                                                                                                                                      |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| username  | Represents the username or identifier for the client or merchant, in this case, it's "smsplus".                                                                                  |
-| algorithm | Indicates the hashing algorithm used for the HMAC signature. Here, it is set to "sha512".                                                                                        |
-| headers   | Specifies which headers have been used in generating the hash. In this case, only the "date" header is used.                                                                     |
-| signature | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to [hashing algorithm](#hashing-algorithm). |
-
-#### hashing algorithm
-
-You must hash the request parameters using the following hash logic:
+#### Request Headers
 
 ```
-sha512(<Body data> + '|' + date + '|' + merchant_secret}
+Content-Type: application/json
+date: Wed, 28 Jun 2023 11:25:19 GMT
+authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="42a54cc7450fe1e7a3cf35ebfaed1b828e37062964266fd33186c7b2526e85e3ea2d46946a728ca50e46423ea9a6b2edb8c1315b58fa69297e1e91d3d34804a1"
 ```
 
-Where, \<Body data\> contains the request Body posted with the request.
+> 📘 **Note:**\
+> The HMAC signature in the authorization header is calculated using the sha512 algorithm based on the specified headers (date in this example) and your merchant secret key.
 
-<details>
-<summary>Sample header code</summary>
+#### Sample Request Body
 
-```
-var merchant_key = 'smsplus';
-var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
-
-// date
-var date = new Date();
-// var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-date = date.toUTCString();
-
-// authorization
-var authorization = getAuthHeader(date);
-console.log(authorization);
-
-function getAuthHeader(date) {
-var AUTH_TYPE = 'sha512';
-var data = isEmpty(request['data'])?"":request['data'];
-var hash_string = data + '|' + date + '|' + merchant_secret;
-console.log("Hash String is ", hash_string);
-var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-return authHeader;
-}
-
-pm.environment.set('date', date);
-pm.environment.set('authorization', authorization);
-pm.environment.set('merchant_key',merchant_key);
-pm.environment.set('merchant_secret',merchant_secret);
-
-function isEmpty(obj) {
-for(var key in obj) {
-if(obj.hasOwnProperty(key))
-return false;
-}
-return true;
-}
-```
-
-</details>
-
-### Request body
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The merchant key provided by PayU during onboarding.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Reference ID for transaction tracking. This must be unique for each transaction.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the <code> order.paymentChargeSpecification.price</code> field will be considered.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Currency of the transaction. For example, INR.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentSource<code> optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Contains the payment source. For example, WEB.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code>Details about the transaction order including product information, ordered items, user defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a>        </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code>Additional information including enforced payment methods and various options for user preferences during the transaction. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo object fields description</a>        .<br><strong>Note</strong>: The <code>txnFlow</code> field in this JSON object must be set to <strong>nonseamless</strong>.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code>Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc.  For more information, refer to<a href="#callbackactions-object-fields-description"> callbackActions object fields description</a>        </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code>Billing details of the customer including name, address, phone number, email, etc.  For more information, refer to<a href="#billingdetails-object-fields-descriptions"> billingDetails object fields descriptions</a>        .</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>enforced_payment<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String </code>This parameter is to customize the payment options for each transaction. You can enforce specific payment modes, cards scheme, and specific banks under Net Banking using this method. For more information, refer to <a href="https://docs.payu.in/v2/docs/enforce-pay-method-or-remove-category">Enforce Pay Method or Remove Category.</a>    </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>drop_category<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String </code>This parameter is used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment. For more information, refer to <a href="https://docs.payu.in/v2/docs/enforce-pay-method-or-remove-category">Enforce Pay Method or Remove Category.</a>    </p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-
-#### additionalInfo object fields description
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>enforcePaymethod<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Methods of payment that are enforced in the payment process. For more information, refer to <a href="https://docs.payu.in/v1/docs/enforce-pay-method-or-remove-category">Enforce Pay Method or Remove Category</a>        .</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-#### callbackActions object fields description
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>successAction<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to redirect to upon successful payment.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>failureAction<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to redirect to if the payment is failed.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>cancelAction<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to redirect to if the transaction is cancelled.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>codAction<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to handle Cash on Delivery actions.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>termAction<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL for completing terms and conditions actions.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>returnAction<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to return to after successful payment action is completed.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-> ❗️ Error Handling
-> 
-> If any error message is displayed with an error code, refer to the [Error Codes](https://docs.payu.in/v1/reference/error-codes) section to understand the reason for these error codes.
-
-#### order object fields description
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>productInfo<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Details about the product being purchased. For more information, refer to<a href="#userdefinedfields-object-fields-description"> userDefinedFields object fields description</a>.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>userDefinedFields<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code>Custom fields defined by the user for additional information.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentChargeSpecification<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Payment details including amount, additional charges and PayU offers to be applied. For more information, refer to <a href="#paymentchargespecification-object-fields-description">paymentChargeSpecification object fields description</a>.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-##### userDefinedFields object fields description
-
-| Field | Description         |
-| ----- | ------------------- |
-| udf1  | User defined field. |
-| udf2  | User defined field. |
-| udf3  | User defined field. |
-| udf4  | User defined field. |
-| udf5  | User defined field. |
-| udf6  | User defined field. |
-| udf7  | User defined field. |
-| udf8  | User defined field. |
-| udf9  | User defined field. |
-| udf10 | User defined field. |
-
-##### paymentChargeSpecification object fields description
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>price<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field must contain the price or transaction amount to be posted.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>10.00</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-
-#### billingDetails object field descriptions
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>firstName<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>First name of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Ashish</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>lastName<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Last name of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Kumar</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Phone number of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123456789</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Email address of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="mailto:ashish@abc.com">ashish@abc.com</a></p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>city<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>City of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bengaluru</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>state<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>State of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Karnatka</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>country<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Country of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Indiia</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>zipCode<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Postal/Zip code of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>560071</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-### Sample request
-
-```curl
-curl --location 'https://apitest.payu.in/v2/payments' \
---header 'date: Tue, 05 Nov 2024 06:12:57 GMT' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="d583ff8069c7dfa8340464a24bdd01cbebf4432b4dfe4de862065cc9c9dc622c24c77cb1ac1142bf581ec07eca8d0ec78a66db93f6cd557d0da552f05c0825e3"' \
---header 'Content-Type: application/json' \
---header 'mid: 8390470' \
---header 'X-CREDENTIAL-USERNAME: UMXDPA' \
+```json
 {
-  "accountId": "smsplus",
-  "referenceId": "b5f2d8785768087678fm9",
-  "paymentStatus": "SUCCESS",
-  "amount": 10,
-  "currency": "INR",
-  "paymentSource": "WEB",
-  },
-  "order": {
-    "productInfo": "string",
-    "orderedItem": [
-      {
-        "itemId": null,
-        "description": "AAA",
-        "quantity": null
+   "accountId": "smsplus",
+   "referenceId": "b5f2d8785768087678fm9",
+   "paymentStatus": "SUCCESS",
+   "amount": 10,
+   "currency": "INR",
+   "paymentSource": "WEB",
+   "order": {
+      "productInfo": "string",
+      "orderedItem": [
+         {
+            "itemId": null,
+            "description": "AAA",
+            "quantity": null
+         }
+      ],
+      "paymentChargeSpecification": {
+         "price": 10
       }
-    ],
-    "userDefinedFields": {
-      "udf1": "",
-      "udf2": "",
-      "udf3": "",
-      "udf4": "",
-      "udf5": "",
-      "udf6": "",
-      "udf7": "",
-      "udf8": "",
-      "udf9": "",
-      "udf10": ""
-    },
-    "paymentChargeSpecification": {
-      "price": 10
-  },
-  "additionalInfo": {
-    "txnFlow": "nonseamless",
-    "createOrder" : "false"
-  },
-  "callBackActions": {
-    "successAction": "https://pp78admin.payu.in/test_response",
-    "failureAction": "https://pp78admin.payu.in/test_response",
-    "cancelAction": "https://testapi.payu.in/admin/testresponsev2?action=cancelAction"
-  },
-  "billingDetails": {
-    "firstName": "sartaj",
-    "lastName": "",
-    "address1": "Test Payu Gurgaon",
-    "address2": "",
-    "city": "Bharatpur",
-    "state": "Rajasthan",
-    "country": "India",
-    "zipCode": "321028",
-    "phone": "9876543210",
-    "email": "testv2@example.in"
-  }
+   },
+   "additionalInfo": {
+      "txnFlow": "nonseamless"
+   },
+   "callBackActions": {
+      "successAction": "https://example.com/success",
+      "failureAction": "https://example.com/failure",
+      "cancelAction": "https://example.com/cancel"
+   },
+   "billingDetails": {
+      "firstName": "sartaj",
+      "phone": "9876543210",
+      "email": "test@example.in",
+      "city": "Bharatpur",
+      "state": "Rajasthan",
+      "country": "India",
+      "zipCode": "321028"
+   }
 }
 ```
 
-## Step 2: Redirect the URL for Payment on customer browser
+### Request Parameters
 
-### Sample response
+| Parameter                              | Description                                                 | Required |
+| -------------------------------------- | ----------------------------------------------------------- | -------- |
+| accountId                              | Merchant key provided by PayU during onboarding             | Yes      |
+| referenceId                            | A unique transaction reference ID generated by the merchant | Yes      |
+| currency                               | Transaction currency (e.g., INR)                            | Yes      |
+| order.productInfo                      | Description of the product being purchased                  | Yes      |
+| order.paymentChargeSpecification.price | Transaction amount                                          | Yes      |
+| additionalInfo.txnFlow                 | Must be set to "nonseamless" for hosted checkout            | Yes      |
+| callBackActions.successAction          | URL to redirect after successful payment                    | Yes      |
+| callBackActions.failureAction          | URL to redirect after failed payment                        | Yes      |
+| callBackActions.cancelAction           | URL to redirect after cancelled payment                     | Yes      |
+| billingDetails                         | Customer details (name, phone, email, address, etc.)        | Yes      |
+| paymentSource                          | Payment source (e.g., WEB)                                  | No       |
+| userDefinedFields                      | Custom fields (udf1 to udf10) for merchant use              | No       |
 
-The response is similar to the following when parsed:
+> ⚠️ **Important:**\
+> For v2 API, the additionalInfo.txnFlow parameter MUST be set to "nonseamless" for PayU hosted checkout.
 
-> 📘 Note:
-> 
-> Reverse hashing of the response is not required with that of v2/payment API.
+### Sample Response
 
-```
+```json
 {
   "result": {
     "checkoutUrl": "https://pp78secure.payu.in/_payment_options?mihpayid=<mihpayuid>&userToken="
@@ -496,29 +121,146 @@ The response is similar to the following when parsed:
 }
 ```
 
-You must get the URL in **checkoutUrl** parameter of response and redirect this URL in customer browser so that they make the payment.
+### Response Parameters
 
-## Step 3: Handle the redirection on surl/furl
+| Parameter          | Description                                      |
+| ------------------ | ------------------------------------------------ |
+| result.checkoutUrl | URL to redirect the customer to complete payment |
+| status             | Status of the request (e.g., PENDING)            |
 
-After the payment is complete, you need redirect to surl (on success) or furl (on failure) based on the  response
+After receiving the response, redirect the customer to the URL specified in `result.checkoutUrl` to complete the payment on PayU's payment page.
 
-## Step 4: Verify the payment
+## Step 2: Verify the Payment
 
-PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the Verification APIs. For API reference, refer to <a href="https://docs.payu.in/v2/reference/v2_verify_payment_api" target="_blank">Verify Payment API</a> under API Reference.
+After payment completion, the customer will be redirected to your success, failure, or cancel URL. To verify the payment status securely, use the v2 Verify Payment API.
 
-> 📘 Tip
-> 
-> The Transaction ID (txnid) value that you passed in request of Step 1 with PayU must be used here.
+### Environment URLs
 
-<TutorialTile 
-  backgroundColor="#018FF4" 
-  emoji="🦉" 
-  id="6799e9a9831cd5000f2328f1" 
-  link="https://docs.payu.in/v1/recipes/parse-the-verify-payment-api-response" 
-  slug="parse-the-verify-payment-api-response" 
-  title="Parse the Verify Payment API response" 
-/>
+| Environment            | URL                                                                        |
+| ---------------------- | -------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/v1/transaction](https://test.payu.in/v1/transaction) |
+| Production Environment | [https://info.payu.in/v1/transaction](https://info.payu.in/v1/transaction) |
 
-### Webhooks
+### Request Format
 
-For configuring webhooks, refer to [Webhooks for Payments](doc:webhooks).
+#### Request Headers
+
+```
+Content-Type: application/json
+date: Thu, 27 Mar 2025 06:35:21 GMT
+authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="42a54cc7450fe1e7a3cf35ebfaed1b828e37062964266fd33186c7b2526e85e3ea2d46946a728ca50e46423ea9a6b2edb8c1315b58fa69297e1e91d3d34804a1"
+Info-Command: verify_payment
+```
+
+#### Sample Request Body
+
+```json
+{
+  "txnId": ["512345678901234"]
+}
+```
+
+### Request Parameters
+
+| Parameter | Description                                      | Required |
+| --------- | ------------------------------------------------ | -------- |
+| txnId     | Array of transaction IDs (referenceId) to verify | Yes      |
+
+### Sample Success Response
+
+```json
+{
+  "message": "Success",
+  "status": 1,
+  "result": [
+    {
+      "mihpayId": 21612493009,
+      "bankReferenceNumber": "2411194544",
+      "amount": 0.00,
+      "mode": "CC",
+      "requestId": "",
+      "originalAmount": 100.00,
+      "additionalCharges": 0.00,
+      "discount": 0.00,
+      "netDebitAmount": 100.00,
+      "productInfo": "cred_product",
+      "firstName": "CRED",
+      "bankcode": "AMEX",
+      "nameOnCard": null,
+      "cardNo": "XXXXXXXXXXXX2001",
+      "cardType": "AMEX",
+      "udf1": null,
+      "udf2": null,
+      "udf3": null,
+      "udf4": null,
+      "udf5": null,
+      "field2": "140455",
+      "field9": "Transaction is Successful",
+      "errorCode": "E000",
+      "errorMessage": "No Error",
+      "addedOn": "2024-11-19 21:17:55",
+      "settledAt": "0000-00-00 00:00:00",
+      "paymentSource": "payuS2S",
+      "pgType": "CC-PG",
+      "status": "success",
+      "unmappedStatus": "captured",
+      "merchantUTR": null,
+      "rupayAuthRefNo": "AAACAVJIggICQyRYdUiCEAAAAAA=",
+      "authRefNo": "AAACAVJIggICQyRYdUiCEAAAAAA=",
+      "originalCurrency": "INR",
+      "threeDSVersion": "2.2.0",
+      "message": "Found TxnId",
+      "txnId": "54dzPX68BZzE46Q2VYWw"
+    }
+  ]
+}
+```
+
+### Sample Failure Response
+
+```json
+{
+  "status": 0,
+  "msg": "Invalid Bin"
+}
+```
+
+### Response Parameters
+
+| Parameter                     | Description                                      |
+| ----------------------------- | ------------------------------------------------ |
+| message                       | Success message if transaction is found          |
+| status                        | 1 for success, 0 for failure                     |
+| result                        | Array of transaction details                     |
+| result\[].mihpayId            | Unique PayU ID for the transaction               |
+| result\[].bankReferenceNumber | Reference number from the bank                   |
+| result\[].status              | Transaction status (success, failure, pending)   |
+| result\[].unmappedStatus      | Internal PayU status (captured, auth, etc.)      |
+| result\[].txnId               | The original referenceId sent in payment request |
+| result\[].errorCode           | Error code (E000 means no error)                 |
+| result\[].errorMessage        | Error message if any                             |
+
+## Integration Security
+
+To ensure secure integration:
+
+1. **Verify all transaction details** using the Verify Payment API
+2. **Implement proper HMAC signature generation** for authorization headers
+3. **Keep your merchant key and salt secure** and never expose them to clients
+4. **Validate the transaction status** by checking both status and errorCode fields
+
+## Testing the Integration
+
+For testing in the PayU test environment, you can use the following test credentials:
+
+| Parameter   | Value                      |
+| ----------- | -------------------------- |
+| accountId   | PRiQvJ (test merchant key) |
+| Card Number | 5123456789012346           |
+| Expiry      | 05/2025                    |
+| CVV         | 123                        |
+
+> 📘 **References:**
+>
+> * For more test cards and payment methods, refer to [Test Cards and Payment Methods](https://docs.payu.in/v2/reference/test-cards-upi-id-and-wallets)
+> * For detailed information on generating HMAC signatures, refer to [Authentication](https://docs.payu.in/v2/reference/authentication)
