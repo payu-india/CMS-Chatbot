@@ -3,6 +3,7 @@ title: PayU Hosted v2 Integration
 deprecated: false
 hidden: true
 metadata:
+  title: v2 PreAuth Integration with PayU Hosted Checkout
   robots: index
 ---
 The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDetails** object included in **additionalInfo** JSON object.
