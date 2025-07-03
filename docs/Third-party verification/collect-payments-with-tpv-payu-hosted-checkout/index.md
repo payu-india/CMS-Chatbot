@@ -1,8 +1,9 @@
 ---
-title: Collect Payments with TPV - PayU Hosted Checkout
+title: Collect Payments - PayU Hosted Checkout
 deprecated: false
 hidden: false
 metadata:
+  title: Collect Payments with TPV - PayU Hosted Checkout
   robots: index
 ---
 You can collect payments from customers with Third-Party Verification (<Glossary>TPV</Glossary>) integration using the PayU Hosted Checkout integration.
