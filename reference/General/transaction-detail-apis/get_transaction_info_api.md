@@ -22,16 +22,16 @@ metadata:
 next:
   description: ''
 ---
-The **Get Transaction Info** API (get_transaction_info) can take input as the exact time in terms of minutes and seconds the output would be in the same format as [get_Transaction_Details](ref:get_transaction_details_api) API output.
+The **Get Transaction Info** API (get\_transaction\_info) can take input as the exact time in terms of minutes and seconds the output would be in the same format as [get\_Transaction\_Details](ref:get_transaction_details_api) API output.
 
 **Environment**
 
-|  | | 
-| :--------------------- | :-------------------------------------------------------- |
+|                        |                                                                                                                    |
+| :--------------------- | :----------------------------------------------------------------------------------------------------------------- |
 | Test Environment       | [https://apitest.payu.in/merchant/postservice.php?form=2](https://apitest.payu.in/merchant/postservice.php?form=2) |
-| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2)        |
+| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2)               |
 
-## Sample request
+<Accordion title="Sample request" icon="fa-code">
 
 ```curl
 curl --location 'https://test.payu.in/merchant/postservice?form=2' \
@@ -43,9 +43,11 @@ curl --location 'https://test.payu.in/merchant/postservice?form=2' \
 --data-urlencode 'var2=2024-10-11 14:00:00'
 ```
 
-## Sample response
+</Accordion>
 
-- Success scenario
+<Accordion title="Sample response" icon="fa-reply">
+
+* Success scenario
 
 ```json
 {
@@ -128,7 +130,7 @@ curl --location 'https://test.payu.in/merchant/postservice?form=2' \
 }
 ```
 
-- Failure scenario
+* Failure scenario
 
 If transaction is not found, the response is similar to the following:
 
@@ -149,17 +151,23 @@ If invalid date is posted, the response is similar to the following:
 }
 ```
 
-## Response parameters
+</Accordion>
+
+<Accordion title="Response parameters" icon="fa-list">
 
 For the details of fields in the JSON, refer to [Additional Info for General APIs](ref:addl-info-general-apis).
 
 To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 
+</Accordion>
+
 ## Request parameters
 
-**Sample values**
+<Accordion title="Sample values" icon="fa-flask">
 
 Use the following sample values while trying out the API:
 
-- `var1`: 2020-10-20 16:00:00
-- `var2`: 2020-10-26 18:00:00
+* `var1`: 2020-10-20 16:00:00
+* `var2`: 2020-10-26 18:00:00
+
+</Accordion>
