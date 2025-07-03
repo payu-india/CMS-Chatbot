@@ -22,17 +22,16 @@ metadata:
 next:
   description: ''
 ---
-The Check Payment (**check\_payment**) API functions similar to the [Verify Payment API](ref:verify_payment_api). However, the input parameter in this API is the PayUID or mihpayuID generated at PayU’s Server unlike **verify\_payment** API where the input parameter is the TxnID (Transaction ID generated at merchant’s server). It returns all the parameters for a given transaction.
+The Check Payment (**check\_payment**) API functions similar to the [Verify Payment API](ref:verify_payment_api). However, the input parameter in this API is the PayUID or mihpayuID generated at PayU's Server unlike **verify\_payment** API where the input parameter is the TxnID (Transaction ID generated at merchant's server). It returns all the parameters for a given transaction.
 
 **Environment**
 
-|                        |                                                                                                              |
+|                        |                                                                                                              |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------ |
 | Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
 | Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
-<details>
-  <summary>Sample request</summary>
+<Accordion title="Sample request" icon="fa-code">
 
 ```curl
 curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
@@ -43,10 +42,9 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 --data-urlencode 'hash=d03c7c49929fd9a07fe7f70c3609a8e245c64b2d7959c01193b4a4f85b6e138b468af8debb44fdb6fbb57d0bd5d96bf881cd88e494f8ce273172297faf5da9db'
 ```
 
-</details>
+</Accordion>
 
-<details>
-  <summary>Sample response</summary>
+<Accordion title="Sample response" icon="fa-reply">
 
 ### Success scenario
 
@@ -108,33 +106,54 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 }
 ```
 
-</details>
+</Accordion>
 
-<details>
-  <summary>Response parameters</summary>
+<Accordion title="Response parameters" icon="fa-list">
 
 <Table>
   <thead>
     <tr>
-      <th>**Parameter**</th>
-      <th>**Description**</th>
-      <th>**Example**</th>
+      <th>
+        **Parameter**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
     </tr>
   </thead>
+
   <tbody>
     <tr>
-      <td>status</td>
+      <td>
+        status
+      </td>
+
       <td>
         This parameter returns the status of web service call. The status can be any of the following:
 
         * 0 - If web service call failed.
         * 1 - If web service call succeeded
       </td>
-      <td>0</td>
+
+      <td>
+        0
+      </td>
     </tr>
+
     <tr>
-      <td>msg</td>
-      <td>This parameter returns the reason string.</td>
+      <td>
+        msg
+      </td>
+
+      <td>
+        This parameter returns the reason string.
+      </td>
+
       <td>
         For example, any of the following messages are displayed:
 
@@ -144,26 +163,30 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
         * Transaction not exists
       </td>
     </tr>
+
     <tr>
-      <td>transaction\_details</td>
+      <td>
+        transaction\_details
+      </td>
+
       <td>
         This parameter contains the response in a JSON format. For more information refer to [JSON fields description for transaction\_details parameter ](#json-field-description-for-transaction_details-parameter).
       </td>
-      <td></td>
+
+      <td />
     </tr>
   </tbody>
 </Table>
 
-</details>
+</Accordion>
 
 ## Request parameters
 
-<details>
-  <summary>Reference information for request parameters</summary>
+<Accordion title="Reference information for request parameters" icon="fa-book">
 
 <KeyHashForGeneralParametersDescription />
 
-</details>
+</Accordion>
 
 **Sample values**
 
