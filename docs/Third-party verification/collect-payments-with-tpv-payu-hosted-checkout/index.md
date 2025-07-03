@@ -12,3 +12,5 @@ This part of the documentation includes the steps to integrate using the followi
 
 * [Net Banking Integration](doc:collect-netbanking-payment-with-tpv-payu-hosted-checkout)
 * [UPI TPV Integration](doc:collect-upi-payment-with-tpv-payu-hosted-checkout)
+
+For customer journey for the above integrations, refer to [Customer Journey](doc:payu-hosted-checkout-tpv-workflow).
