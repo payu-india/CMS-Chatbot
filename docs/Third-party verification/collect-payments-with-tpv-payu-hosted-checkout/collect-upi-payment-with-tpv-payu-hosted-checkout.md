@@ -112,7 +112,7 @@ beneficiarydetail|SALT)</td>
 >
 > Replace `SALT` with the salt value provided during onboarding.
 
-### beneficiarydetail JSON Object Fields
+### beneficiarydetail JSON object fields
 
 The `beneficiarydetail` parameter should be a JSON object with the following structure:
 
