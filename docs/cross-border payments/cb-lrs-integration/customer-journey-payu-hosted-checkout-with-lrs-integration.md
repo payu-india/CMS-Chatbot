@@ -24,6 +24,82 @@ The typical customer journey for PayU Hosted Checkout with LRS checks involves t
 
    * Shows TCS (Tax Collected at Source) options. As per the <Anchor label="latest tax rules" target="_blank" href="https://www.hdfcbank.com/personal/useful-links/important-messages/revision-in-tcs-on-lrs-transactions">latest tax rules</Anchor> (effective April '25), an additional tax needs to be collected for individuals who have remitted more than INR 10 lacs 1 million in current financial year.
    * The applicable tax rate is based on the **LRS Service Type** passed in the payment request.
+     <HTMLBlock>{`
+     <HTMLBlock>{\`
+     <table>
+         <tbody>
+             <tr>
+                 <td>
+                     <strong>lrs_service_type</strong>&nbsp;
+                 </td>
+                 <td>
+                     <strong>Txn Amount &lt;= INR 10 lacs</strong>&nbsp;
+                 </td>
+                 <td>
+                     <strong>Txn Amount &gt; INR 10 lacs</strong>&nbsp;
+                 </td>
+             </tr>
+             <tr>
+                 <td>
+                     education_loan&nbsp;
+                 </td>
+                 <td>
+                     0&nbsp;
+                 </td>
+                 <td>
+                     0&nbsp;
+                 </td>
+             </tr>
+             <tr>
+                 <td>
+                     education_non_loan&nbsp;
+                 </td>
+                 <td>
+                     0&nbsp;
+                 </td>
+                 <td>
+                     5%&nbsp;
+                 </td>
+             </tr>
+             <tr>
+                 <td>
+                     medical&nbsp;
+                 </td>
+                 <td>
+                     0&nbsp;
+                 </td>
+                 <td>
+                     5%&nbsp;
+                 </td>
+             </tr>
+             <tr>
+                 <td>
+                     travel&nbsp;
+                 </td>
+                 <td>
+                     0&nbsp;
+                 </td>
+                 <td>
+                     20%&nbsp;
+                 </td>
+             </tr>
+             <tr>
+                 <td>
+                     others&nbsp;
+                 </td>
+                 <td>
+                     0&nbsp;
+                 </td>
+                 <td>
+                     20%&nbsp;
+                 </td>
+             </tr>
+         </tbody>
+     </table>
+     \`}</HTMLBlock>
+     `}</HTMLBlock>
+     <br />
+     <br />
    * Selects the **Tax Declaration** check box at the bottom of the page to acknowledge the LRS tax declaration. This check box label is from the `lrs_tcs_declaration_under_limit` parameter value.
 
    <Image align="center" src="https://files.readme.io/db14893cec45b3b796b2a6932703001c95b2caec1a63f4889485a8553bc79e8c-cb-lrs-payu-hosted-tax-declaration.png" />
