@@ -1,11 +1,144 @@
 ---
-title: Process a payment
-excerpt: >-
-  Process a payment using PayU Hosted Checkout. For Liberalised Remittance
-  Scheme (LRS) transactions, use the UDF fields and lrs_service_type as
-  described in parameter descriptions.
+title: CB LRS - PayU Hosted
 api:
   file: PayU_Hosted_Checkout_API_with_LRS_Service_Type.json
   operationId: post_payment
 hidden: false
 ---
+PayU’s \_payment API supports LRS transactions using **lrs\_service\_type** parameter.
+
+<Accordion title="Sample Request">
+  Below is a sample request format for initiating a payment request in PayU Hosted Checkout with LRS Integration:
+
+  ## Sample cURL Request
+
+  ```curl
+  curl --location 'https://test.payu.in/_payment' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'key=PRiQvJ' \
+  --data-urlencode 'txnid=my_order_64240' \
+  --data-urlencode 'amount=5' \
+  --data-urlencode 'productinfo=Product Information' \
+  --data-urlencode 'email=test@test.com' \
+  --data-urlencode 'phone=8688359250' \
+  --data-urlencode 'firstname=John' \
+  --data-urlencode 'lastname=Doe' \
+  --data-urlencode 'address1=34 Saikripa Estate' \
+  --data-urlencode 'city=Mumbai' \
+  --data-urlencode 'state=Maharashtra' \
+  --data-urlencode 'country=India' \
+  --data-urlencode 'zipcode=400009' \
+  --data-urlencode 'surl=https://example.com/success' \
+  --data-urlencode 'furl=https://example.com/failure' \
+  --data-urlencode 'udf1=AELPR1234EX' \
+  --data-urlencode 'udf3=12-05-1985' \
+  --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+  --data-urlencode 'udf5=INV123456' \
+  --data-urlencode 'lrs_service_type=travel' \
+  --data-urlencode 'hash={{hash}}' \
+  --data-urlencode 'lrs_tnc=I agree to the terms and conditions for LRS transactions' \
+  --data-urlencode 'lrs_limit_declaration=I confirm remittance is within my annual LRS limit'
+  ```
+
+  ## Request Parameters
+
+  | Parameter          | Type      | Description                                                                          | Example                                                    |
+  | ------------------ | --------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+  | `key`              | mandatory | Merchant key provided by PayU during onboarding                                      | PRiQvJ                                                     |
+  | `txnid`            | mandatory | Unique transaction ID assigned by the merchant                                       | my\_order\_64240                                           |
+  | `amount`           | mandatory | Transaction amount                                                                   | 5.00                                                       |
+  | `productinfo`      | mandatory | Brief description of the product/service                                             | Product Information                                        |
+  | `firstname`        | mandatory | Customer's first name                                                                | John                                                       |
+  | `lastname`         | optional  | Customer's last name                                                                 | Doe                                                        |
+  | `email`            | mandatory | Customer's email address                                                             | [test@test.com](mailto:test@test.com)                      |
+  | `phone`            | mandatory | Customer's phone number                                                              | 8688359250                                                 |
+  | `address1`         | mandatory | First line of customer's billing address                                             | 34 Saikripa Estate                                         |
+  | `city`             | mandatory | Customer's billing city                                                              | Mumbai                                                     |
+  | `state`            | mandatory | Customer's billing state                                                             | Maharashtra                                                |
+  | `country`          | mandatory | Customer's billing country                                                           | India                                                      |
+  | `zipcode`          | mandatory | Postal code of the billing address                                                   | 400009                                                     |
+  | `surl`             | mandatory | Success URL for redirection after successful payment                                 | [https://example.com/success](https://example.com/success) |
+  | `furl`             | mandatory | Failure URL for redirection after failed payment                                     | [https://example.com/failure](https://example.com/failure) |
+  | `udf1`             | mandatory | Buyer's PAN (Permanent Account Number)                                               | AELPR1234EX                                                |
+  | `udf3`             | mandatory | Buyer's date of birth in DD-MM-YYYY format                                           | 12-05-1985                                                 |
+  | `udf4`             | optional  | End merchant's legal entity name                                                     | XYZ Pvt. Ltd.                                              |
+  | `udf5`             | optional  | Invoice ID or invoice number for the transaction                                     | INV123456                                                  |
+  | `lrs_service_type` | mandatory | Specifies the nature of transaction for LRS compliance (e.g., travel, medical, etc.) | travel                                                     |
+  | `hash`             | mandatory | Hash value generated using PayU's hash algorithm                                     |                                                            |
+</Accordion>
+
+<Accordion title="Sample Response">
+  ## Success Response
+
+  ```json
+  {
+    "mihpayid": "403993715524069222",
+    "status": "success",
+    "unmappedstatus": "captured",
+    "key": "PRiQvJ",
+    "txnid": "my_order_64240",
+    "amount": "5.00",
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "test@test.com",
+    "productinfo": "Product Information",
+    "cardCategory": "domestic",
+    "payment_source": "payu",
+    "PG_TYPE": "CC-PG",
+    "bank_ref_num": "0608273386032718000015",
+    "hash": "ad18e8fa57e5b5423bb9fbba93e64b83f04b05b9065351ecf43f83073afb4994"
+  }
+  ```
+
+  ## Failure Response
+
+  ```json
+  {
+    "mihpayid": "20869277619",
+    "status": "failure",
+    "unmappedstatus": "failed",
+    "key": "PRiQvJ",
+    "txnid": "my_order_64240",
+    "amount": "5.00",
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "test@test.com",
+    "productinfo": "Product Information",
+    "error": "E1903",
+    "error_Message": "Authorization failed at Bank",
+    "payment_source": "payu",
+    "PG_TYPE": "CC-PG",
+    "bank_ref_num": null,
+    "hash": "de66b49826ae6835bfc1d7117fff896f99a03e0023be8b64734e7a7df29e1d18"
+  }
+  ```
+</Accordion>
+
+<Accordion title="Response Parameters">
+  | Parameter        | Description                                                                           |
+  | ---------------- | ------------------------------------------------------------------------------------- |
+  | `mihpayid`       | Unique Payment ID generated by PayU                                                   |
+  | `status`         | Status of the transaction: `success`, `failure`, `pending`                            |
+  | `unmappedstatus` | Detailed status of the transaction (e.g., captured, failed)                           |
+  | `key`            | Merchant key used in the request                                                      |
+  | `txnid`          | Unique transaction ID provided in the request                                         |
+  | `amount`         | Amount paid by the user                                                               |
+  | `firstname`      | Customer's first name as captured in the request                                      |
+  | `lastname`       | Customer's last name as captured in the request                                       |
+  | `email`          | Customer's email address                                                              |
+  | `productinfo`    | Product information as provided in the request                                        |
+  | `cardCategory`   | Category of the card used (e.g., domestic, international)                             |
+  | `payment_source` | Source of payment (e.g., PayU)                                                        |
+  | `PG_TYPE`        | Payment Gateway type (e.g., CC-PG for credit card, DC-PG for debit card)              |
+  | `bank_ref_num`   | Reference number returned by the bank                                                 |
+  | `hash`           | Hash returned by PayU for verifying the response                                      |
+  | `error`          | Error code if the transaction fails (optional, only present in failure cases)         |
+  | `error_Message`  | Description corresponding to the error code (optional, only present in failure cases) |
+
+  ### Important Notes
+
+  * The response hash should be verified using the same algorithm used for request hash generation
+  * In case of failure, additional error parameters (`error` and `error_Message`) are included
+  * The `bank_ref_num` may be null in case of transaction failures
+  * Status values can be `success`, `failure`, or `pending`
+</Accordion>
