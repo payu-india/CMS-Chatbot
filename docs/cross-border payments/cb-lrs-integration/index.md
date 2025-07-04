@@ -1,19 +1,18 @@
 ---
-title: Liberalised Remittance Scheme Integration
+title: Liberalised Remittance Scheme (LRS) for Travel & Education
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-The Liberalised Remittance Scheme (LRS) is a framework established by the Reserve Bank of India (RBI) that enables Indian residents, including minors, to send money internationally up to USD 250,000 per financial year. These remittances can cover various purposes like education fees, travel expenses, investments, and more.
+The Liberalised Remittance Scheme (LRS) is a framework established by the Reserve Bank of India (RBI) that enables Indian residents, to send money internationally up to USD 250,000 per financial year. These remittances can cover various purposes like education fees, travel expenses, investments, and more.
 
 Key features of LRS:
 
 * Annual limit of USD 250,000 per person per financial year
 * Available only to individual residents (not businesses, HUFs, or trusts)
 * Requires PAN verification and declaration of compliance
-* Involves Tax Collected at Source (TCS) as per government regulations
-* Can be used for both current and capital account transactions
+* Involves Tax Collected at Source (TCS) as per applicable government regulations
 
 > 📘 Note:
 >
