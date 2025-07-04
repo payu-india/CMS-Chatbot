@@ -11,6 +11,7 @@ The typical customer journey for PayU Hosted Checkout with LRS involves:
 
 1. Customer selects products/services on the merchant website and proceeds to checkout
 2. Merchant prepares the payment request including the LRS parameters:
+   * `lrs_service_type`
    * `lrs_mandatory_limit_declaration`
    * `lrs_tnc`
    * `lrs_tcs_declaration_under_limit` (optional)
