@@ -1,5 +1,5 @@
 ---
-title: PayU Hosted Checkout - CB LRS
+title: Merchant Hosted Checkout - CB LRS
 api:
   file: PayU_Hosted_Checkout_API_Corrected.json
   operationId: MerchantHostedCheckout-Cards
