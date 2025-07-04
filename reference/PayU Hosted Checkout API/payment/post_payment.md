@@ -8,10 +8,6 @@ hidden: false
 PayU’s \_payment API supports LRS transactions using **lrs\_service\_type** parameter.
 
 <Accordion title="Sample Request">
-  Below is a sample request format for initiating a payment request in PayU Hosted Checkout with LRS Integration:
-
-  ## Sample cURL Request
-
   ```curl
   curl --location 'https://test.payu.in/_payment' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -35,9 +31,7 @@ PayU’s \_payment API supports LRS transactions using **lrs\_service\_type** pa
   --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
   --data-urlencode 'udf5=INV123456' \
   --data-urlencode 'lrs_service_type=travel' \
-  --data-urlencode 'hash={{hash}}' \
-  --data-urlencode 'lrs_tnc=I agree to the terms and conditions for LRS transactions' \
-  --data-urlencode 'lrs_limit_declaration=I confirm remittance is within my annual LRS limit'
+  --data-urlencode 'hash=sdfdsafadsfkjsdhfkjdshfksdf' 
   ```
 </Accordion>
 
