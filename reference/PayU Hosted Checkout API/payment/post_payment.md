@@ -3,7 +3,7 @@ title: CB LRS - PayU Hosted
 api:
   file: PayU_Hosted_Checkout_API_with_LRS_Service_Type.json
   operationId: post_payment
-hidden: false
+hidden: true
 ---
 PayU’s \_payment API supports LRS transactions using **lrs\_service\_type** parameter.
 
@@ -26,6 +26,7 @@ PayU’s \_payment API supports LRS transactions using **lrs\_service\_type** pa
   --data-urlencode 'zipcode=400009' \
   --data-urlencode 'surl=https://example.com/success' \
   --data-urlencode 'furl=https://example.com/failure' \
+  --data-urlencode 'buyer_type_business=travel' \
   --data-urlencode 'udf1=AELPR1234EX' \
   --data-urlencode 'udf3=12-05-1985' \
   --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
