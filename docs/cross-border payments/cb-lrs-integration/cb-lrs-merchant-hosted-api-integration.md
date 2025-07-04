@@ -7,10 +7,11 @@ metadata:
 ---
 PayU’s **\_payment** API supports LRS implementation using the following parameters:
 
-* buyer\_type\_business
+* lrs\_service\_type
 * lrs\_mandatory\_limit\_declaration
 * lrs\_tnc
 * lrs\_tcs\_declaration\_under\_limit
+* buyer\_type\_business (optional)
 
 The steps to integrate involves:
 
@@ -195,11 +196,11 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"79c0d918a  
-                                                                                                        4f4661cb9cb  
-                                                                                                        17d96d24ac1  
-                                                                                                        cf04b6013d50  
-                                                                                                        4cc766ac5235  
-                                                                                                        380bfc0d5"`
+                                                                                                                4f4661cb9cb  
+                                                                                                                17d96d24ac1  
+                                                                                                                cf04b6013d50  
+                                                                                                                4cc766ac5235  
+                                                                                                                380bfc0d5"`
       </td>
     </tr>
 
@@ -256,12 +257,12 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"195ab95fa  
-                                                                                                        4700eeaaf38  
-                                                                                                        b7f5b538d29  
-                                                                                                        79f0f281e0  
-                                                                                                        a4eaedca1a  
-                                                                                                        a675b79b3  
-                                                                                                        31a2"`
+                                                                                                                4700eeaaf38  
+                                                                                                                b7f5b538d29  
+                                                                                                                79f0f281e0  
+                                                                                                                a4eaedca1a  
+                                                                                                                a675b79b3  
+                                                                                                                31a2"`
       </td>
     </tr>
 
@@ -765,63 +766,72 @@ The following parameters (mandatory) must be posted using any of the following s
       <td>
         lrs\_mandatory\_limit\_declaration
 
-        `mandatory for LRS `
+        `mandatory for LRS transactions `
       </td>
 
       <td>
-        `String`Mandatory declaration for Liberalised Remittance Scheme limit.\
-        **Note**: PayU recommends you to include the $250,000 USD limit as per RBI regulations.
+        `String`Mandatory declaration from buyer that they have remitted less than $250,000 USD under Liberalised Remittance Scheme.
+
+        <br />
+
+        **Note**: The limit is as per RBI regulation and needs to be mandatorily collected on the checkout page.
+
+        <br />
       </td>
 
       <td>
-        I declare I have not remitted more than $250,000 USD in current financial year as limited by RBI’s Liberalised Remittance Scheme
+        1
       </td>
     </tr>
 
     <tr>
       <td>
         lrs\_tnc\
-        `mandatory for LRS `
+        `mandatory for LRS transaxctions`
       </td>
 
       <td>
-        `String`Terms and conditions for Liberalised Remittance Scheme. This value can be same as in `lrs_mandatory_limit_declaration`parameter.\
-        **Note**: PayU recommends you to include the $250,000 USD limit as per RBI regulations.
+        `String`Mandatory declaration from buyer that they agree to PayU's terms & conditions.
+
+        <br />
+
+        **Note**: The declaration needs to be taken mandatorily from the buyer on the checkout page.
       </td>
 
       <td>
-        I declare I have not remitted more than $250,000 USD in current financial year as limited by RBI’s Liberalised Remittance Scheme
+        1
       </td>
     </tr>
 
     <tr>
       <td>
         lrs\_tcs\_declaration\_under\_limit\
-        `mandatory for LRS `
+        `mandatory for LRS transactions `
       </td>
 
       <td>
-        `String`Declaration for Tax Collected at Source under LRS limit\
-        **Note**: PayU recommends you to include the INR 100,000 as tax collected limit as per RBI regulations.
+        `String`Declaration from buyer that they have remitted less than INR 10 lacs / 1 million in current financial year.
+
+        **Note**: Declaration to be taken on the checkout page. If this declaration is not taken, "0" can be sent, however PayU will automatically add applicable TCS amount.
       </td>
 
       <td>
-        I declare I have not remitted more than INR 10L in current financial year
+        1  or 0
       </td>
     </tr>
 
     <tr>
       <td>
         lrs\_service\_type\
-        `optional for LRS`
+        `mandatory for LRS transactions`
       </td>
 
       <td>
-        `String` The LRS service type decides the tax amount based on the nature of business. For more information, refer to the [lrs\_service\_type parameter values](#lrs_service_type-parameter-values)  table
+        `String` The LRS service type describes the nature of service & decides the tax amount based on it. For more information, refer to the [lrs\_service\_type parameter values](#lrs_service_type-parameter-values)  table
       </td>
 
       <td>
-        0
+        travel
       </td>
     </tr>
   </tbody>
