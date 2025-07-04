@@ -111,3 +111,7 @@ PayU’s \_payment API supports LRS transactions using **lrs\_service\_type** pa
   * The `bank_ref_num` may be null in case of transaction failures
   * Status values can be `success`, `failure`, or `pending`
 </Accordion>
+
+<br />
+
+## Request parameters
