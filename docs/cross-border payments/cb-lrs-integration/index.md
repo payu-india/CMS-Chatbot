@@ -64,9 +64,10 @@ For merchants belonging to the following categories, a view of applicable regula
 | :------------------------------------------------------------------------- | :-------------------------------------------- | :------------------------------------- |
 | Travel                                                                     | International Flight (all legs outside India) | Both PACB - Import & LRS               |
 | Hospitality                                                                | Indian Hotel                                  | Only PACB-Import                       |
-|                                                                            | International Hotel                           | Only PACB-Import                       |
 | Others Services (Cabs, Airport transfers, Tours & Attraction Tickets etc.) | Located in India                              | Only PACB-Import                       |
-|                                                                            | Located Outside in India                      | Both PACB - Import & LRS               |
+| **Outside India**                                                          |                                               |                                        |
+| Hospitality                                                                | International Hotel                           | Only PACB-Import                       |
+| Others Services (Cabs, Airport transfers, Tours & Attraction Tickets etc.) | Located Outside in India                      | Both PACB - Import & LRS               |
 
 <br />
 
