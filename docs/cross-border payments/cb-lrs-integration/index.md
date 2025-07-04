@@ -77,13 +77,13 @@ For merchants belonging to the following categories, a view of applicable regula
 
 Indian students pursuing education abroad can pay their application fees, tuition, and accommodation costs directly to foreign universities through your platform.
 
-**Example:** A student gains admission to a university in the UK and needs to pay the first semester fees. Through your platform integrated with PayU's LRS solution, they can make the payment using their preferred method while meeting all regulatory requirements.
+> **Example:** A student gains admission to a university in the UK and needs to pay the first semester fees. Through your platform integrated with PayU's LRS solution, they can make the payment using their preferred method while meeting all regulatory requirements.
 
 #### Education Consultancy Services
 
 Consultants helping students with international education can streamline fee payments for application processing, visa services, and university deposits.
 
-**Example:** Your education consultancy helps students apply to multiple universities abroad. PayU's LRS solution enables you to collect consultation fees, application fees, and university deposits in a compliant manner while providing students with flexible payment options.
+> **Example:** Your education consultancy helps students apply to multiple universities abroad. PayU's LRS solution enables you to collect consultation fees, application fees, and university deposits in a compliant manner while providing students with flexible payment options.
 
 <br />
 
