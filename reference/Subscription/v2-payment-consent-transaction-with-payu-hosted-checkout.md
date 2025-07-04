@@ -185,22 +185,11 @@ Where, \<Body data> contains the request Body posted with the request.
 </tr><tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>si_details<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code> This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers (for more details refer <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0</a>). This is a JSON object and it includes a set of fields. For more information, refer to SI Parameter JSON Details.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code> This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers (for more details refer <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0</a>). This is a JSON object and it includes a set of fields. For more information, refer to <a href="ref:https://docs.payu.in/v2/reference/si-parameter-json-details/">SI Parameter JSON Details</a>.</p>
 </td>
 </tr></tbody>
 </table>
 `}</HTMLBlock>
-
-#### siDetails object fields description
-
-| Field            | Description                                                                                                                                                                                                                         | Example      |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| billingAmount    | The amount to be charged in each recurring payment cycle. Must be specified with 2 decimal places.                                                                                                                                  | "100.00"     |
-| billingCurrency  | The three-letter currency code in which the recurring payment is processed.                                                                                                                                                         | "INR"        |
-| billingCycle     | The frequency at which the recurring payments will be processed. Possible values include: DAILY, WEEKLY, MONTHLY, YEARLY.                                                                                                           | "MONTHLY"    |
-| billingInterval  | An integer value specifying how many units of the billingCycle should elapse between charges. For example, a value of 1 with MONTHLY cycle means charge every month; a value of 3 means charge every 3 months.                      | 1            |
-| paymentStartDate | The date from which the recurring payments should begin, in YYYY-MM-DD format.                                                                                                                                                      | "2019-09-01" |
-| paymentEndDate   | The date on which the recurring payments should end, in YYYY-MM-DD format. This field is optional if you want an ongoing subscription with no end date. This date must be any later date that is specified in **paymentStartDate**. | "2019-12-01" |
 
 ### callbackActions object fields description
 
