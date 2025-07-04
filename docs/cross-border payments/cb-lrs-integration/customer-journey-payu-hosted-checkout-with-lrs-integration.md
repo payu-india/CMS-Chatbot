@@ -104,9 +104,11 @@ The typical customer journey for PayU Hosted Checkout with LRS checks involves t
    * For transactions lower than INR 10 lacs, the buyer can declare that they are under the spend limit and pay no TCS.
    * Alternatively, they can declare that they are over the INR 10 lacs limit and a TCS rate will be applied on the transaction amount
 
-> 📘 PayU will collect the tax amount and get it deposited to local tax authorities via our partner AD-1 bank. This amount cannot be refunded, A receipt or proof of payment (challan) can also be shared on request basis.
+> 📘 Tax remittance:
 >
-> Note: This payment does not increase the tax liability of the buyer, it is only an advance tax payment and can be adjusted against the actual tax liability of the payer at the end of the financial year.
+> PayU will collect the tax amount and get it deposited to local tax authorities via our partner AD-1 bank. This amount cannot be refunded, A receipt or proof of payment (challan) can also be shared on request basis.
+>
+> This payment does not increase the tax liability of the buyer, it is only an advance tax payment and can be adjusted against the actual tax liability of the payer at the end of the financial year.
 
-1. <Image align="center" src="https://files.readme.io/db14893cec45b3b796b2a6932703001c95b2caec1a63f4889485a8553bc79e8c-cb-lrs-payu-hosted-tax-declaration.png" />
-2. The rest of workflow involves the collecting payment details. For more information, refer to[ PayU Hosted Checkout > Customer Journey](doc:prebuilt-checkout-payu-hosted#customer-journey).
+7. <Image align="center" src="https://files.readme.io/db14893cec45b3b796b2a6932703001c95b2caec1a63f4889485a8553bc79e8c-cb-lrs-payu-hosted-tax-declaration.png" />
+8. The rest of workflow involves the collecting payment details. For more information, refer to[ PayU Hosted Checkout > Customer Journey](doc:prebuilt-checkout-payu-hosted#customer-journey).
