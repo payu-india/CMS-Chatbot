@@ -1,5 +1,5 @@
 ---
-title: CB LRS - PayU Hosted
+title: PayU Hosted Checkout - CB LRS
 api:
   file: PayU_Hosted_Checkout_API_with_LRS_Service_Type.json
   operationId: post_payment
