@@ -22,8 +22,6 @@ The steps to integrate involves:
 2. [Check response from PayU](#step-3-check-response-from-payu)
 3. [Verify the Payment](#step-4-verify-the-payment)
 
-<br />
-
 ## Step 1: Request Payment with PayU
 
 The following parameters (mandatory) must be posted using any of the following seamless integration and refer to the corresponding section of [Web Checkout Integration](doc:introduction-web) documentation for the complete list of parameters to be posted:
