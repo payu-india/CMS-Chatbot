@@ -384,7 +384,7 @@ The following parameters (mandatory) must be posted using any of the following s
 #### lrs\_service\_type parameter values
 
 <HTMLBlock>{`
-<HTMLBlock>{
+<HTMLBlock>
 <table>
     <tbody>
         <tr>
@@ -455,7 +455,7 @@ The following parameters (mandatory) must be posted using any of the following s
         </tr>
     </tbody>
 </table>
-}</HTMLBlock>
+</HTMLBlock>
 `}</HTMLBlock>
 
 <br />
