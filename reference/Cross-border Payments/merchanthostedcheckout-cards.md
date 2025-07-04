@@ -3,7 +3,7 @@ title: 'Merchant Hosted Checkout - CB LRS '
 api:
   file: Updated_Merchant_Hosted_Card_Checkout_API_with_LRS_Final.json
   operationId: MerchantHostedCheckout-Cards
-hidden: false
+hidden: true
 ---
 PayU’s \_payment API supports LRS implementation using the following parameters of **\_payment** API:
 
