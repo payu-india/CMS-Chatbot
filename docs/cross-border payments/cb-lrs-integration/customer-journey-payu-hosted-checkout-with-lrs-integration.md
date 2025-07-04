@@ -19,6 +19,8 @@ The typical customer journey for PayU Hosted Checkout with LRS checks involves t
    * Fills their personal details (Name as on PAN, PAN, DOB, pin-code) (required only for Individuals)
    * Selects the mandatory **LRS Declaration** check box (at the bottom of the page) declaring that they are under the LRS limit of $250K USD in current financial year & agree to the buyer T\&Cs.
 
+   <br />
+
    <Image align="center" src="https://files.readme.io/df74b10d4fb401c9658c26ff593905ee625cc2bde4720d127293d8786ec9a74c-cb-lrs-payu-hosted-amt-declaration.png" />
 6. Customer provides the tax details and tax limit declaration for LRS:
 
