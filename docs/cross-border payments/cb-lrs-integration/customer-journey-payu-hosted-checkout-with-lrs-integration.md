@@ -110,5 +110,5 @@ The typical customer journey for PayU Hosted Checkout with LRS checks involves t
 >
 > This payment does not increase the tax liability of the buyer, it is only an advance tax payment and can be adjusted against the actual tax liability of the payer at the end of the financial year.
 
-7. <Image align="center" className="border" border={true} src="https://files.readme.io/db14893cec45b3b796b2a6932703001c95b2caec1a63f4889485a8553bc79e8c-cb-lrs-payu-hosted-tax-declaration.png" />
-8. The rest of workflow involves the collecting payment details. For more information, refer to[ PayU Hosted Checkout > Customer Journey](doc:prebuilt-checkout-payu-hosted#customer-journey).
+<Image align="center" className="border" border={true} src="https://files.readme.io/db14893cec45b3b796b2a6932703001c95b2caec1a63f4889485a8553bc79e8c-cb-lrs-payu-hosted-tax-declaration.png" />
+7. The rest of workflow involves the collecting payment details. For more information, refer to[ PayU Hosted Checkout > Customer Journey](doc:prebuilt-checkout-payu-hosted#customer-journey).
