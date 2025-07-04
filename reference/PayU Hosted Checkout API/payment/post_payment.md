@@ -39,32 +39,6 @@ PayU’s \_payment API supports LRS transactions using **lrs\_service\_type** pa
   --data-urlencode 'lrs_tnc=I agree to the terms and conditions for LRS transactions' \
   --data-urlencode 'lrs_limit_declaration=I confirm remittance is within my annual LRS limit'
   ```
-
-  ## Request Parameters
-
-  | Parameter          | Type      | Description                                                                          | Example                                                    |
-  | ------------------ | --------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
-  | `key`              | mandatory | Merchant key provided by PayU during onboarding                                      | PRiQvJ                                                     |
-  | `txnid`            | mandatory | Unique transaction ID assigned by the merchant                                       | my\_order\_64240                                           |
-  | `amount`           | mandatory | Transaction amount                                                                   | 5.00                                                       |
-  | `productinfo`      | mandatory | Brief description of the product/service                                             | Product Information                                        |
-  | `firstname`        | mandatory | Customer's first name                                                                | John                                                       |
-  | `lastname`         | optional  | Customer's last name                                                                 | Doe                                                        |
-  | `email`            | mandatory | Customer's email address                                                             | [test@test.com](mailto:test@test.com)                      |
-  | `phone`            | mandatory | Customer's phone number                                                              | 8688359250                                                 |
-  | `address1`         | mandatory | First line of customer's billing address                                             | 34 Saikripa Estate                                         |
-  | `city`             | mandatory | Customer's billing city                                                              | Mumbai                                                     |
-  | `state`            | mandatory | Customer's billing state                                                             | Maharashtra                                                |
-  | `country`          | mandatory | Customer's billing country                                                           | India                                                      |
-  | `zipcode`          | mandatory | Postal code of the billing address                                                   | 400009                                                     |
-  | `surl`             | mandatory | Success URL for redirection after successful payment                                 | [https://example.com/success](https://example.com/success) |
-  | `furl`             | mandatory | Failure URL for redirection after failed payment                                     | [https://example.com/failure](https://example.com/failure) |
-  | `udf1`             | mandatory | Buyer's PAN (Permanent Account Number)                                               | AELPR1234EX                                                |
-  | `udf3`             | mandatory | Buyer's date of birth in DD-MM-YYYY format                                           | 12-05-1985                                                 |
-  | `udf4`             | optional  | End merchant's legal entity name                                                     | XYZ Pvt. Ltd.                                              |
-  | `udf5`             | optional  | Invoice ID or invoice number for the transaction                                     | INV123456                                                  |
-  | `lrs_service_type` | mandatory | Specifies the nature of transaction for LRS compliance (e.g., travel, medical, etc.) | travel                                                     |
-  | `hash`             | mandatory | Hash value generated using PayU's hash algorithm                                     |                                                            |
 </Accordion>
 
 <Accordion title="Sample Response">
