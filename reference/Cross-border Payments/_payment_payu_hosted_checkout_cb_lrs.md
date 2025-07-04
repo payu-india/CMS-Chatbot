@@ -32,7 +32,7 @@ PayU’s \_payment API supports LRS transactions using **lrs\_service\_type** pa
   --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
   --data-urlencode 'udf5=INV123456' \
   --data-urlencode 'lrs_service_type=travel' \
-  --data-urlencode 'hash=sdfdsafadsfkjsdhfkjdshfksdf' 
+  --data-urlencode 'hash=sdfdsafadsfkjsdhfkjsfsdfdfdffdsfsadfsdfdsfdsafdsfasefasdfdsafdfdsfgdsfdshfksdf' 
   ```
 </Accordion>
 
