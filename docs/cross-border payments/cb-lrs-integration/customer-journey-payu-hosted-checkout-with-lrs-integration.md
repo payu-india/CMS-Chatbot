@@ -25,7 +25,7 @@ The typical customer journey for PayU Hosted Checkout with LRS checks involves t
    * Shows TCS (Tax Collected at Source) options. As per the <Anchor label="latest tax rules" target="_blank" href="https://www.hdfcbank.com/personal/useful-links/important-messages/revision-in-tcs-on-lrs-transactions">latest tax rules</Anchor> (effective April '25), an additional tax needs to be collected for individuals who have remitted more than INR 10 lacs 1 million in current financial year.
    * The applicable tax rate is based on the **LRS Service Type** passed in the payment request.
      <HTMLBlock>{`
-     <HTMLBlock>{\`
+     <HTMLBlock>{
      <table>
          <tbody>
              <tr>
@@ -96,7 +96,7 @@ The typical customer journey for PayU Hosted Checkout with LRS checks involves t
              </tr>
          </tbody>
      </table>
-     \`}</HTMLBlock>
+     }</HTMLBlock>
      `}</HTMLBlock>
      <br />
      <br />
