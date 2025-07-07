@@ -366,6 +366,21 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
+        buyer\_type\_business\
+        `mandatory for CB payments`
+      </td>
+
+      <td>
+        This parameter is used to identify whether it is a business-to-business transaction.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
         lrs\_service\_type\
         `mandatory for LRS transactions`
       </td>
