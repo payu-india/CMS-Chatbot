@@ -371,11 +371,11 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        This parameter is used to identify whether it is a business-to-business transaction.
+        This parameter is used to identify whether it is a business-to-business transaction.  If 1 is posted, it is a B2B transaction.
       </td>
 
       <td>
-
+        1
       </td>
     </tr>
 
