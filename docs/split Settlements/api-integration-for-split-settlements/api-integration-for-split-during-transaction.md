@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-\_payment API allows you to split a payment among multiple merchants or entities during the transaction process that is split during transaction. This is ideal for marketplace platforms where payment distribution needs to happen at the time of transaction with fixed, predetermined amounts.
+**\_payment** API allows you to split a payment among multiple merchants or entities during the transaction process that is split during transaction. This is ideal for marketplace platforms where payment distribution needs to happen at the time of transaction with fixed, predetermined amounts.
 
 ## Prerequisites
 
