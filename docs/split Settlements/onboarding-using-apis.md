@@ -1,7 +1,7 @@
 ---
 title: Onboarding Using APIs
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
