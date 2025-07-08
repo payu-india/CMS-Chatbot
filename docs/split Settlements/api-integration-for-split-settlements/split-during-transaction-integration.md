@@ -61,25 +61,6 @@ Create a JSON structure that defines how the transaction amount should be split 
 
 Create a payment request that includes the split information:
 
-**HTML Form Example**:
-
-```html
-<form action="https://test.payu.in/_payment" method="post">
-    <input type="hidden" name="key" value="YOUR_MERCHANT_KEY" />
-    <input type="hidden" name="txnid" value="TXN_123456789" />
-    <input type="hidden" name="amount" value="1000" />
-    <input type="hidden" name="productinfo" value="Product Description" />
-    <input type="hidden" name="firstname" value="Customer Name" />
-    <input type="hidden" name="email" value="customer@example.com" />
-    <input type="hidden" name="phone" value="9999999999" />
-    <input type="hidden" name="surl" value="https://yourwebsite.com/success" />
-    <input type="hidden" name="furl" value="https://yourwebsite.com/failure" />
-    <input type="hidden" name="splitRequest" value='{"type":"absolute","splitInfo":{"MERCHANT_KEY_1":{"aggregatorSubTxnId":"SUB_TXN_ID_1","aggregatorSubAmt":"600","aggregatorCharges":"50"},"MERCHANT_KEY_2":{"aggregatorSubTxnId":"SUB_TXN_ID_2","aggregatorSubAmt":"400"}}}' />
-    <input type="hidden" name="hash" value="GENERATED_HASH_VALUE" />
-    <input type="submit" value="Pay Now" />
-</form>
-```
-
 **Sample request**
 
 ```curl
@@ -590,8 +571,6 @@ public class PayUAbsoluteSplitRequest {
 
 ```
 
-<br />
-
 ## Step 3: Handle the Response
 
 After payment completion, PayU redirects to your success or failure URL with transaction details:
@@ -612,433 +591,34 @@ After payment completion, PayU redirects to your success or failure URL with tra
 ```json
 {
   "status": "success",
-  "txnid": "TXN_123456789",
-  "amount": "1000.00",
+  "txnid": "payment-txnid-1",
+  "amount": "10.00",
   "mihpayid": "403993715519672950",
   "error_code": "E000",
   "splitInfo": {
     "splitStatus": "success",
     "splitSegments": [
       {
-        "merchantKey": "MERCHANT_KEY_1",
-        "amount": 600,
-        "txnId": "SUB_TXN_ID_1"
+        "merchantKey": "P41sCY",
+        "amount": 3,
+        "txnId": "0e7411799c9f0e96620c11"
       },
       {
-        "merchantKey": "MERCHANT_KEY_2",
-        "amount": 400,
-        "txnId": "SUB_TXN_ID_2"
+        "merchantKey": "P41sCK",
+        "amount": 5,
+        "txnId": "0e7411799c9f0e96620c22"
       }
     ]
   }
 }
+
 ```
 
 ## Step 4: Verify the Transaction
 
 Always verify the transaction status using the Verify Payment API to ensure data integrity:
 
-**Python Example**:
-
-```python
-import requests
-import hashlib
-
-def verify_payment(txnid, mihpayid):
-    # API endpoint
-    url = "https://info.payu.in/merchant/postservice.php?form=2"
-    
-    # Required parameters
-    key = "YOUR_MERCHANT_KEY"
-    command = "verify_payment"
-    
-    # Generate hash
-    hash_string = key + '|' + command + '|' + txnid + '|' + "YOUR_SALT"
-    hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
-    
-    # Create payload
-    payload = {
-        "key": key,
-        "command": command,
-        "hash": hash_value,
-        "var1": txnid,
-        "var2": mihpayid
-    }
-    
-    # Make the API call
-    response = requests.post(url, data=payload)
-    return response.json()
-
-# Usage
-result = verify_payment("TXN_123456789", "403993715519672950")
-print(result)
-```
-
-## Code Examples
-
-### Java
-
-```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.security.MessageDigest;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Base64;
-
-public class PayUAbsoluteSplit {
-    public static void main(String[] args) throws Exception {
-        // Merchant details
-        String key = "YOUR_MERCHANT_KEY";
-        String salt = "YOUR_MERCHANT_SALT";
-        String txnid = "TXN_" + System.currentTimeMillis();
-        String amount = "1000";
-        String productinfo = "Product Description";
-        String firstname = "Customer Name";
-        String email = "customer@example.com";
-        String phone = "9999999999";
-        String surl = "https://yourwebsite.com/success";
-        String furl = "https://yourwebsite.com/failure";
-        
-        // Split information
-        String splitRequest = "{\"type\":\"absolute\",\"splitInfo\":{\"MERCHANT_KEY_1\":{\"aggregatorSubTxnId\":\"SUB_TXN_ID_1\",\"aggregatorSubAmt\":\"600\",\"aggregatorCharges\":\"50\"},\"MERCHANT_KEY_2\":{\"aggregatorSubTxnId\":\"SUB_TXN_ID_2\",\"aggregatorSubAmt\":\"400\"}}}";
-        
-        // Generate hash
-        String hashString = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" +
-                          firstname + "|" + email + "|||||||" + salt + "|" + splitRequest;
-        
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
-        byte[] digest = md.digest(hashString.getBytes());
-        String hash = Base64.getEncoder().encodeToString(digest);
-        
-        // Create request parameters
-        Map<String, String> params = new HashMap<>();
-        params.put("key", key);
-        params.put("txnid", txnid);
-        params.put("amount", amount);
-        params.put("productinfo", productinfo);
-        params.put("firstname", firstname);
-        params.put("email", email);
-        params.put("phone", phone);
-        params.put("surl", surl);
-        params.put("furl", furl);
-        params.put("splitRequest", splitRequest);
-        params.put("hash", hash);
-        
-        // Convert to form data
-        StringBuilder formData = new StringBuilder();
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            if (formData.length() > 0) formData.append("&");
-            formData.append(entry.getKey()).append("=").append(entry.getValue());
-        }
-        
-        // Create HTTP request
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://test.payu.in/_payment"))
-            .header("Content-Type", "application/x-www-form-urlencoded")
-            .POST(HttpRequest.BodyPublishers.ofString(formData.toString()))
-            .build();
-        
-        // Send request
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
-    }
-}
-```
-
-### PHP
-
-```php
-<?php
-// Merchant details
-$key = "YOUR_MERCHANT_KEY";
-$salt = "YOUR_MERCHANT_SALT";
-$txnid = "TXN_" . time();
-$amount = "1000";
-$productinfo = "Product Description";
-$firstname = "Customer Name";
-$email = "customer@example.com";
-$phone = "9999999999";
-$surl = "https://yourwebsite.com/success";
-$furl = "https://yourwebsite.com/failure";
-
-// Split information
-$splitRequest = '{"type":"absolute","splitInfo":{' .
-    '"MERCHANT_KEY_1":{"aggregatorSubTxnId":"SUB_TXN_ID_1","aggregatorSubAmt":"600","aggregatorCharges":"50"},' .
-    '"MERCHANT_KEY_2":{"aggregatorSubTxnId":"SUB_TXN_ID_2","aggregatorSubAmt":"400"}' .
-    '}}';
-
-// Generate hash
-$hashString = "$key|$txnid|$amount|$productinfo|$firstname|$email|||||||$salt|$splitRequest";
-$hash = hash("sha512", $hashString);
-
-// Create form data
-$data = array(
-    'key' => $key,
-    'txnid' => $txnid,
-    'amount' => $amount,
-    'productinfo' => $productinfo,
-    'firstname' => $firstname,
-    'email' => $email,
-    'phone' => $phone,
-    'surl' => $surl,
-    'furl' => $furl,
-    'splitRequest' => $splitRequest,
-    'hash' => $hash
-);
-
-// Send request using cURL
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://test.payu.in/_payment");
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$response = curl_exec($ch);
-curl_close($ch);
-
-echo $response;
-?>
-```
-
-### cURL
-
-```bash
-#!/bin/bash
-KEY="YOUR_MERCHANT_KEY"
-TXNID="TXN_$(date +%s)"
-AMOUNT="1000"
-PRODUCTINFO="Product Description"
-FIRSTNAME="Customer Name"
-EMAIL="customer@example.com"
-PHONE="9999999999"
-SURL="https://yourwebsite.com/success"
-FURL="https://yourwebsite.com/failure"
-SALT="YOUR_MERCHANT_SALT"
-
-# Split request
-SPLIT_REQUEST='{"type":"absolute","splitInfo":{"MERCHANT_KEY_1":{"aggregatorSubTxnId":"SUB_TXN_ID_1","aggregatorSubAmt":"600","aggregatorCharges":"50"},"MERCHANT_KEY_2":{"aggregatorSubTxnId":"SUB_TXN_ID_2","aggregatorSubAmt":"400"}}}'
-
-# Generate hash
-HASH_STRING="$KEY|$TXNID|$AMOUNT|$PRODUCTINFO|$FIRSTNAME|$EMAIL|||||||$SALT|$SPLIT_REQUEST"
-HASH=$(echo -n "$HASH_STRING" | sha512sum | awk '{print $1}')
-
-# Send request
-curl -X POST https://test.payu.in/_payment \
-  -d "key=$KEY" \
-  -d "txnid=$TXNID" \
-  -d "amount=$AMOUNT" \
-  -d "productinfo=$PRODUCTINFO" \
-  -d "firstname=$FIRSTNAME" \
-  -d "email=$EMAIL" \
-  -d "phone=$PHONE" \
-  -d "surl=$SURL" \
-  -d "furl=$FURL" \
-  -d "splitRequest=$SPLIT_REQUEST" \
-  -d "hash=$HASH"
-```
-
-### Python
-
-```python
-import requests
-import hashlib
-import time
-import json
-
-# Merchant details
-key = "YOUR_MERCHANT_KEY"
-salt = "YOUR_MERCHANT_SALT"
-txnid = f"TXN_{int(time.time())}"
-amount = "1000"
-productinfo = "Product Description"
-firstname = "Customer Name"
-email = "customer@example.com"
-phone = "9999999999"
-surl = "https://yourwebsite.com/success"
-furl = "https://yourwebsite.com/failure"
-
-# Split information
-split_request = {
-    "type": "absolute",
-    "splitInfo": {
-        "MERCHANT_KEY_1": {
-            "aggregatorSubTxnId": "SUB_TXN_ID_1",
-            "aggregatorSubAmt": "600",
-            "aggregatorCharges": "50"
-        },
-        "MERCHANT_KEY_2": {
-            "aggregatorSubTxnId": "SUB_TXN_ID_2",
-            "aggregatorSubAmt": "400"
-        }
-    }
-}
-
-# Convert split request to JSON string
-split_request_str = json.dumps(split_request, separators=(',', ':'))
-
-# Generate hash
-hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|||||||{salt}|{split_request_str}"
-hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
-
-# Create request data
-data = {
-    'key': key,
-    'txnid': txnid,
-    'amount': amount,
-    'productinfo': productinfo,
-    'firstname': firstname,
-    'email': email,
-    'phone': phone,
-    'surl': surl,
-    'furl': furl,
-    'splitRequest': split_request_str,
-    'hash': hash_value
-}
-
-# Send request
-response = requests.post("https://test.payu.in/_payment", data=data)
-print(response.text)
-```
-
-### C\#
-
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        // Merchant details
-        string key = "YOUR_MERCHANT_KEY";
-        string salt = "YOUR_MERCHANT_SALT";
-        string txnid = "TXN_" + DateTimeOffset.Now.ToUnixTimeSeconds();
-        string amount = "1000";
-        string productinfo = "Product Description";
-        string firstname = "Customer Name";
-        string email = "customer@example.com";
-        string phone = "9999999999";
-        string surl = "https://yourwebsite.com/success";
-        string furl = "https://yourwebsite.com/failure";
-
-        // Split information
-        string splitRequest = "{\"type\":\"absolute\",\"splitInfo\":{\"MERCHANT_KEY_1\":{\"aggregatorSubTxnId\":\"SUB_TXN_ID_1\",\"aggregatorSubAmt\":\"600\",\"aggregatorCharges\":\"50\"},\"MERCHANT_KEY_2\":{\"aggregatorSubTxnId\":\"SUB_TXN_ID_2\",\"aggregatorSubAmt\":\"400\"}}}";
-
-        // Generate hash
-        string hashString = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" +
-                          firstname + "|" + email + "|||||||" + salt + "|" + splitRequest;
-
-        string hash;
-        using (SHA512 sha512 = SHA512.Create())
-        {
-            byte[] hashBytes = sha512.ComputeHash(Encoding.UTF8.GetBytes(hashString));
-            hash = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
-        }
-
-        // Create form data
-        var formData = new Dictionary<string, string>
-        {
-            { "key", key },
-            { "txnid", txnid },
-            { "amount", amount },
-            { "productinfo", productinfo },
-            { "firstname", firstname },
-            { "email", email },
-            { "phone", phone },
-            { "surl", surl },
-            { "furl", furl },
-            { "splitRequest", splitRequest },
-            { "hash", hash }
-        };
-
-        // Send request
-        using (var httpClient = new HttpClient())
-        {
-            using (var content = new FormUrlEncodedContent(formData))
-            {
-                HttpResponseMessage response = await httpClient.PostAsync("https://test.payu.in/_payment", content);
-                string responseContent = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(responseContent);
-            }
-        }
-    }
-}
-```
-
-### JavaScript (Node.js)
-
-```javascript
-const crypto = require('crypto');
-const axios = require('axios');
-
-// Merchant details
-const key = "YOUR_MERCHANT_KEY";
-const salt = "YOUR_MERCHANT_SALT";
-const txnid = `TXN_${Date.now()}`;
-const amount = "1000";
-const productinfo = "Product Description";
-const firstname = "Customer Name";
-const email = "customer@example.com";
-const phone = "9999999999";
-const surl = "https://yourwebsite.com/success";
-const furl = "https://yourwebsite.com/failure";
-
-// Split information
-const splitRequest = JSON.stringify({
-    type: "absolute",
-    splitInfo: {
-        MERCHANT_KEY_1: {
-            aggregatorSubTxnId: "SUB_TXN_ID_1",
-            aggregatorSubAmt: "600",
-            aggregatorCharges: "50"
-        },
-        MERCHANT_KEY_2: {
-            aggregatorSubTxnId: "SUB_TXN_ID_2",
-            aggregatorSubAmt: "400"
-        }
-    }
-});
-
-// Generate hash
-const hashString = `${key}|${txnid}|${amount}|${productinfo}|${firstname}|${email}|||||||${salt}|${splitRequest}`;
-const hash = crypto.createHash('sha512').update(hashString).digest('hex');
-
-// Create form data
-const formData = {
-    key,
-    txnid,
-    amount,
-    productinfo,
-    firstname,
-    email,
-    phone,
-    surl,
-    furl,
-    splitRequest,
-    hash
-};
-
-// Send request
-axios.post('https://test.payu.in/_payment', formData, {
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-})
-.then(response => {
-    console.log(response.data);
-})
-.catch(error => {
-    console.error('Error:', error);
-});
-```
+<br />
 
 ## Security Considerations
 
