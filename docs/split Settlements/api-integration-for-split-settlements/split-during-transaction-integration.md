@@ -618,7 +618,7 @@ After payment completion, PayU redirects to your success or failure URL with tra
 
 Always verify the transaction status using the Verify Payment API to ensure data integrity:
 
-<br />
+
 
 ## Security Considerations
 
