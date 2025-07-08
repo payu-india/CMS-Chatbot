@@ -1,7 +1,7 @@
 ---
 title: v2 Validate VPA API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
