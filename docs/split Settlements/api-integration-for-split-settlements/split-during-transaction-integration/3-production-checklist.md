@@ -1,7 +1,7 @@
 ---
 title: 3. Production Checklist
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
