@@ -1,7 +1,7 @@
 ---
 title: Onboarding Child Merchants Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
