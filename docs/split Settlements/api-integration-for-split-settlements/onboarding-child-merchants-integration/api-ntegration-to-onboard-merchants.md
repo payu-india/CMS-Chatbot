@@ -18,10 +18,13 @@ Before integrating Split Settlements, ensure you have:
 
 ### Getting Your API Credentials
 
-1. Log into your [PayU Dashboard](https://test.payu.in/merchant/dashboard)
-2. Navigate to **Account & Settings** → **API Configuration**
-3. Copy your `Key` and `Salt` values
-4. Note your Merchant ID for reference
+1. Log into your [PayU Dashboard](https://test.payu.in/merchant/dashboard).
+2. Navigate to **Developer** → **API Keys**.
+3. Copy your **Client ID** and **Client Secret** values.
+
+<Image align="center" src="https://files.readme.io/fc8b247a9e9f78bcc264b51513c313989d6f11742c46ad32ac9a5d9792d04fb9-dashboard_developer_copy_client_id_secret.png" />
+
+1. Note your Merchant ID for reference.
 
 ## Step 1: Onboard Child Merchants
 
