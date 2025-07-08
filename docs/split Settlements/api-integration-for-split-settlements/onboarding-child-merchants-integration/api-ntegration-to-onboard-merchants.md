@@ -22,7 +22,7 @@ Before integrating Split Settlements, ensure you have:
 2. Navigate to **Developer** → **API Keys**.
 3. Copy your **Client ID** and **Client Secret** values.
 
-<Image align="center" src="https://files.readme.io/fc8b247a9e9f78bcc264b51513c313989d6f11742c46ad32ac9a5d9792d04fb9-dashboard_developer_copy_client_id_secret.png" />
+<Image align="center" src="https://files.readme.io/b62366ef47b8fed510c8bbc95fa3cfeab71daf64b303ca07693a24e73a27fc0f-dashboard_developer_copy_client_id_secret.png" />
 
 1. Note your Merchant ID for reference.
 
