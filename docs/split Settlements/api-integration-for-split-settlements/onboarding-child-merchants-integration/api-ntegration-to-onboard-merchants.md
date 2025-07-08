@@ -1,5 +1,5 @@
 ---
-title: API Integration to Onboard Merchants
+title: 1. API Integration to Onboard Merchants
 deprecated: false
 hidden: true
 metadata:
