@@ -1,5 +1,5 @@
 ---
-title: API Integration for Split During Transaction
+title: 1. API Integration for Split During Transaction
 deprecated: false
 hidden: true
 metadata:
