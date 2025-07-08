@@ -24,7 +24,7 @@ Before integrating Split Settlements, ensure you have:
 
 <Image align="center" src="https://files.readme.io/b62366ef47b8fed510c8bbc95fa3cfeab71daf64b303ca07693a24e73a27fc0f-dashboard_developer_copy_client_id_secret.png" />
 
-1. Note your Merchant ID for reference.
+4. Note your Merchant ID for reference.
 
 ## Step 1: Onboard Child Merchants
 
