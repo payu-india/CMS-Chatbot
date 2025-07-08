@@ -9,7 +9,7 @@ This API allows merchants to validate a UPI (Unified Payment Interface) Virtual 
 
 HTTP Request Method: GET
 
-## Endpoint
+**Endpoint**
 
 * **Production Environment**: `https://info.payu.in/payment-mode/v1/upi/vpa`
 
