@@ -22,9 +22,7 @@ Before integrating Absolute Split During Transaction, ensure you have:
 2. Navigate to **Settings** → **API Keys**
 3. Copy your `Key` and `Salt` values for integration
 
-## Integration Steps
-
-### Step 1: Prepare the Split Request
+## Step 1: Prepare the Split Request
 
 Create a JSON structure that defines how the transaction amount should be split among different merchants:
 
@@ -54,9 +52,11 @@ Create a JSON structure that defines how the transaction amount should be split 
   * `aggregatorSubAmt`: The exact amount to be settled to this merchant
   * `aggregatorCharges`: (Optional) Platform fees or service charges
 
-**Important**: The sum of all `aggregatorSubAmt` values plus any `aggregatorCharges` must equal the total transaction amount.
+> 📘 Split calculation:
+>
+> The sum of all `aggregatorSubAmt` values plus any `aggregatorCharges` must equal the total transaction amount.
 
-### Step 2: Generate the Payment Request
+## Step 2: Generate the Payment Request
 
 Create a payment request that includes the split information:
 
@@ -79,38 +79,7 @@ Create a payment request that includes the split information:
 </form>
 ```
 
-### Step 3: Calculate the Hash
-
-Generate a secure hash including the split request to maintain data integrity:
-
-**Hash Calculation**:
-
-```
-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||SALT|splitRequest)
-```
-
-**Example in PHP**:
-
-```php
-<?php
-$key = "YOUR_MERCHANT_KEY";
-$txnid = "TXN_123456789";
-$amount = "1000";
-$productinfo = "Product Description";
-$firstname = "Customer Name";
-$email = "customer@example.com";
-$salt = "YOUR_MERCHANT_SALT";
-
-$splitRequest = '{"type":"absolute","splitInfo":{"MERCHANT_KEY_1":{"aggregatorSubTxnId":"SUB_TXN_ID_1","aggregatorSubAmt":"600","aggregatorCharges":"50"},"MERCHANT_KEY_2":{"aggregatorSubTxnId":"SUB_TXN_ID_2","aggregatorSubAmt":"400"}}}';
-
-$hashString = "$key|$txnid|$amount|$productinfo|$firstname|$email|||||||$salt|$splitRequest";
-$hash = hash("sha512", $hashString);
-
-echo $hash;
-?>
-```
-
-### Step 4: Handle the Response
+## Step 3: Handle the Response
 
 After payment completion, PayU redirects to your success or failure URL with transaction details:
 
@@ -152,7 +121,7 @@ After payment completion, PayU redirects to your success or failure URL with tra
 }
 ```
 
-### Step 5: Verify the Transaction
+## Step 4: Verify the Transaction
 
 Always verify the transaction status using the Verify Payment API to ensure data integrity:
 
