@@ -1,5 +1,5 @@
 ---
-title: Test the Split During Transaction Integration
+title: 2. Test the Split During Transaction Integration
 deprecated: false
 hidden: true
 metadata:
