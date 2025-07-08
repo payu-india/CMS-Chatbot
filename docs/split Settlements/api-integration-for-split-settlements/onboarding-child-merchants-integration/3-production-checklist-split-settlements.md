@@ -1,7 +1,7 @@
 ---
 title: 3. Production Checklist - Split Settlements
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
