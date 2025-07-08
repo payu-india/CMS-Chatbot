@@ -173,7 +173,7 @@ After registration, the child merchant must activate their account:
 3. **Account Activation**: Click "Activate Account" in the dashboard
 4. **Password Setup**: Create a secure password for the account
 
-#### 1.3 Complete KYC Verification
+#### Complete KYC Verification
 
 Child merchants must complete Know Your Customer (KYC) verification:
 
@@ -193,7 +193,9 @@ Child merchants must complete Know Your Customer (KYC) verification:
 4. Submit for verification
 5. Wait for PayU approval (typically 1-3 business days)
 
-**Important**: Trade name must exactly match the bank account holder name.
+> 📘 Note:
+>
+> Trade name must exactly match the bank account holder name.
 
 ## Step 2: Implement Split Settlements
 
