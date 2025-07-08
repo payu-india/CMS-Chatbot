@@ -1,5 +1,5 @@
 ---
-title: Test the Onboarding Integration - Split Settlements
+title: 2. Test the Onboarding Integration - Split Settlements
 deprecated: false
 hidden: true
 metadata:
