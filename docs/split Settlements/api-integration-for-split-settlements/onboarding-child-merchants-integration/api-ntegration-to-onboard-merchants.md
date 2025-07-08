@@ -35,15 +35,98 @@ Use the Child Merchant Registration API to create new sub-merchant accounts:
 
 **Request Parameters**:
 
-| Parameter      | Type   | Required | Description                                           |
-| -------------- | ------ | -------- | ----------------------------------------------------- |
-| `merchantName` | String | Yes      | Legal name of the child merchant                      |
-| `email`        | String | Yes      | Valid email address for login                         |
-| `mobile`       | String | Yes      | 10-digit mobile number                                |
-| `businessType` | String | Yes      | Type of business (Individual/Partnership/LLP/Pvt Ltd) |
-| `tradeName`    | String | Yes      | Business trade name (must match bank account)         |
-| `category`     | String | Yes      | Business category code                                |
-| `subcategory`  | String | Yes      | Business subcategory code                             |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        merchantName
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Legal name of the child merchant
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Valid email address for login
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        mobile
+        `mandatory`
+      </td>
+
+      <td>
+        `String`10-digit mobile number
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        businessType
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Type of business (Individual/Partnership/LLP/Pvt Ltd)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        tradeName
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Business trade name (must match bank account)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        category
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Business category code
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        subcategory
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Business subcategory code
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 **Sample Request (cURL)**:
 
@@ -121,15 +204,116 @@ Use the Payment Splits API to define how transaction amounts should be distribut
 
 **Request Parameters**:
 
-| Parameter                     | Type    | Required | Description                    |
-| ----------------------------- | ------- | -------- | ------------------------------ |
-| `txnid`                       | String  | Yes      | Unique transaction ID          |
-| `amount`                      | Decimal | Yes      | Total transaction amount       |
-| `splits`                      | Array   | Yes      | Array of split details         |
-| `splits.childMerchantId`      | String  | Yes      | Child merchant identifier      |
-| `splits.amountToBeSettled`    | Decimal | Yes      | Amount for this child merchant |
-| `splits.aggregatorCommission` | Decimal | No       | Platform commission amount     |
-| `splits.suborderId`           | String  | Yes      | Unique sub-order identifier    |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        txnid
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Unique transaction ID
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Total transaction amount
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        splits
+        `mandatory`
+      </td>
+
+      <td>
+        `Array` JSON object array of split details
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+#### splits JSON object fields
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        childMerchantId
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Child merchant identifier
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amountToBeSettled
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Amount for this child merchant
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        aggregatorCommission
+        `optional`
+      </td>
+
+      <td>
+        `String`Platform commission amount
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        suborderId
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Unique sub-order identifier
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 **Sample Request (Python)**:
 
@@ -232,7 +416,7 @@ Integrate split settlements with your existing payment process:
 </form>
 ```
 
-### Handle Settlement and Reconciliation
+## Step 3: Handle Settlement and Reconciliation
 
 ### Settlement Reconciliation API
 
