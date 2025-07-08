@@ -1122,44 +1122,7 @@ function handleResponse(response) {
 }
 ```
 
-## Testing
-
-### Test Environment
-
-Use the test environment for development and testing:
-
-* **API URL**: `https://test.payu.in/_payment`
-* **Test Cards**:
-  * Visa: 4012001037141112
-  * MasterCard: 5123456789012346
-  * Test CVV: 123
-  * Test Expiry: Any future date
-
-### Test Child Merchants
-
-In the test environment, you can use test merchant keys for child merchants:
-
-* **Test Merchant Key 1**: `TEST_MERCHANT_KEY_1`
-* **Test Merchant Key 2**: `TEST_MERCHANT_KEY_2`
-
-## Going Live
-
-### Production Environment
-
-Switch to production when testing is complete:
-
-* **API URL**: `https://secure.payu.in/_payment`
-
-### Final Checklist
-
-Before going live, ensure:
-
-1. All child merchants are properly onboarded and verified
-2. Split amount calculations are accurate and equal to the total transaction amount
-3. Transaction verification is implemented
-4. Error handling is in place for both payment and split failures
-5. Security measures like hash validation are implemented
-6. Production credentials are updated in all code
+<br />
 
 ## Additional Resources
 
