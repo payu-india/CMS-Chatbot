@@ -1,7 +1,7 @@
 ---
 title: Test the Split During Transaction Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
