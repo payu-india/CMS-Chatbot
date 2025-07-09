@@ -1,7 +1,7 @@
 ---
 title: v2 Get BIN Info API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
