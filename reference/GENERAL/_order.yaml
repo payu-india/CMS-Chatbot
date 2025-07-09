@@ -5,6 +5,5 @@
 - v2-get-payment-details-api
 - v2-generate-upi-intent-api
 - v2-capture-transaction-api
-- v2-check-is-domestic-api
 - v2-get-bin-info-api
 - v2-get-net-banking-status-api
