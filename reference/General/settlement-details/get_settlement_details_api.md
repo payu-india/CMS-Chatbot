@@ -44,7 +44,8 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
   <tbody>
     <tr>
       <td>
-        **key** `mandatory`
+        key
+        `mandatory`
       </td>
 
       <td>
@@ -58,7 +59,8 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
     <tr>
       <td>
-        **command** `mandatory`
+        command
+        `mandatory`
       </td>
 
       <td>
@@ -72,7 +74,7 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
     <tr>
       <td>
-        **var1** `mandatory`
+        var1 `mandatory`
       </td>
 
       <td>
@@ -86,7 +88,7 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
     <tr>
       <td>
-        **var2** `mandatory`
+        var2 `mandatory`
       </td>
 
       <td>
@@ -100,7 +102,7 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
     <tr>
       <td>
-        **var3** `mandatory`
+        var3 `mandatory`
       </td>
 
       <td>
@@ -114,7 +116,8 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
     <tr>
       <td>
-        **var4** `optional`
+        var4
+        `optional`
       </td>
 
       <td>
@@ -128,7 +131,8 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
     <tr>
       <td>
-        **var5** `optional`
+        var5
+        `optional`
       </td>
 
       <td>
@@ -142,7 +146,7 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
     <tr>
       <td>
-        **hash** `mandatory`
+        hash `mandatory`
       </td>
 
       <td>
