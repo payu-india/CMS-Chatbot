@@ -6,3 +6,4 @@
 - v2-generate-upi-intent-api
 - v2-capture-transaction-api
 - v2-check-is-domestic-api
+- v2-get-bin-info-api
