@@ -1848,7 +1848,7 @@ The Get Checkout Details (**get\_checkout\_details**) API is a generic API using
   | checkCustomerEligibility   **optional**  | `Boolean` This flag is posted as **true** to return the customer eligibility. For a sample request or response using this field, refer to [Check Customer Eligibility](#check-customer-eligibility)  field.                                                                                                                                                                                                                                        |
 </Accordion>
 
-\##Request parameters
+## Request parameters
 
 <Accordion title="Additional information for request parameters" icon="fa-book">
   | Parameter | Reference                                                                                                                                                                                                                                                                                        |
