@@ -1,7 +1,7 @@
 ---
 title: v2 Get Net Banking Status API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
