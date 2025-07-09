@@ -15,15 +15,9 @@ HTTP Request Method: GET
 
 ## Request Headers
 
-The request header contains the following fields:
+<HeaderAuthentication />
 
-| Field                     | Description                           | Example                                                                                                                                                                                                   |
-| ------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Content-Type `mandatory`  | The content type for the API request. | application/json                                                                                                                                                                                          |
-| Date `mandatory`          | The date and time in GMT format.      | Tue, 17 Jun 2025 06:48:55 GMT                                                                                                                                                                             |
-| Authorization `mandatory` | Authentication signature for the API. | hmac username="smsplus", algorithm="sha512", headers="date", signature="b4db4b20d1d9146edfd846fc11c2145ab1ac99c001df5923e3a412672f577b73f3b2cee4dc492f18ea55a0be8a4ec9f0df4475ad6eb03bedc0c6ef46235f0ed7" |
-
-## Request Parameters
+## Request parameters
 
 <Table>
   <thead>
@@ -63,7 +57,7 @@ The request header contains the following fields:
   </tbody>
 </Table>
 
-## Sample Request (cURL)
+## Sample request
 
 ```bash
 curl --location 'https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=true&vpa=ridhigarg95@okicici' \
@@ -72,7 +66,7 @@ curl --location 'https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=tru
 --header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="b4db4b20d1d9146edfd846fc11c2145ab1ac99c001df5923e3a412672f577b73f3b2cee4dc492f18ea55a0be8a4ec9f0df4475ad6eb03bedc0c6ef46235f0ed7"'
 ```
 
-## Sample Response
+## Sample response
 
 ```json
 {
@@ -87,13 +81,78 @@ curl --location 'https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=tru
 }
 ```
 
-## Response Parameters
+## Response parameters
 
-| Parameter                  | Description                                                      | Example               |
-| -------------------------- | ---------------------------------------------------------------- | --------------------- |
-| `message`                  | Response message indicating the operation result.                | `Success`             |
-| `status`                   | Status code for the operation. `1` for success, `0` for failure. | `1`                   |
-| `result.isValidVpa`        | Indicates whether the provided VPA is valid.                     | `true`                |
-| `result.payerAccountName`  | Name associated with the VPA.                                    | `RIDHI GARG`          |
-| `result.vpa`               | The validated VPA.                                               | `ridhigarg95@okicici` |
-| `result.isAutoPayVPAValid` | Indicates whether the VPA is valid for auto-pay.                 | `true`                |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        message
+      </td>
+
+      <td>
+        Response message indicating the operation result.
+      </td>
+
+      <td>
+        Success
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        Status code for the operation. It can be any of the following:
+
+        * `1` for success
+        * `0` for failure.
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        result
+      </td>
+
+      <td>
+        The result of the response in a JSON format. For more information, refer [result JSON fields description](#result-json-fields-description)
+      </td>
+
+      <td>
+        true
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### result JSON fields description
+
+| Parameter         | Description                                      | Example              |
+| ----------------- | ------------------------------------------------ | -------------------- |
+| isValidVpa        | Indicates whether the provided VPA is valid.     | true                 |
+| payerAccountName  | Name associated with the VPA.                    | RIDHI GARG           |
+| vpa               | The validated VPA.                               | ridhigarg95\@okicici |
+| isAutoPayVPAValid | Indicates whether the VPA is valid for auto-pay. | true                 |
