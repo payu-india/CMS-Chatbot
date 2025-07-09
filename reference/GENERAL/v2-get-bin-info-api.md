@@ -61,8 +61,6 @@ HTTP Method: **POST**
 </table>
 `}</HTMLBlock>
 
-<br />
-
 ## Sample request
 
 ```bash
@@ -73,6 +71,72 @@ curl --location 'https://info.payu.in/issuing-bank/v1/bin' \
 --data '{
     "bin": "512345"
   }'
+```
+
+## Sample response
+
+### For single card
+
+```json
+{
+  "status": 1,
+  "data": {
+    "bins_data": {
+      "issuing_bank": "HDFC",
+      "bin": "512345",
+      "category": "creditcard",
+      "card_type": "MAST",
+      "is_domestic": 1,
+      "is_atmpin_card": 1,
+      "is_otp_on_the_fly": 1,
+      "is_zero_redirect_supported": 1,
+      "is_si_supported": 0
+    }
+  }
+}
+```
+
+### For multiple cards
+
+```json
+{
+  "status": 1,
+  "data": {
+    "total_count": 2580,
+    "last": 0,
+    "bins_data": {
+      "37100": {
+        "issuing_bank": "AMEX",
+        "bin": "37100",
+        "category": "UNKNOWN",
+        "card_type": "AMEX",
+        "is_domestic": 1,
+        "is_atmpin_card": 1,
+        "is_otp_on_the_fly": 1
+      },
+      "37101": {
+        "issuing_bank": "AMEX",
+        "bin": "37101",
+        "category": "UNKNOWN",
+        "card_type": "AMEX",
+        "is_domestic": 1,
+        "is_atmpin_card": 1,
+        "is_otp_on_the_fly": 1
+      }
+      // More BINs...
+    },
+    "nextStart": 6
+  }
+}
+```
+
+### Failure response
+
+```json
+{
+  "status": 0,
+  "data": "Invalid bin passed in var2"
+}
 ```
 
 ## Response parameters
