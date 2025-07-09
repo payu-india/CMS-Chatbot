@@ -21,6 +21,8 @@ metadata:
 next:
   description: ''
 ---
+# Eligible BINs for EMI API
+
 The Eligible BINs for EMI API (**eligibleBinsForEMI**) version 1.0 is used only when the merchant needs the EMI feature of PayU. If you are managing card details on your website, this API can tell the issuing bank of the card bin. It also provides the minimum eligible amount for a particular bank.
 
 ![EMI Eligible BINs Flow](https://files.readme.io/2eaac64-emi_eligible_bins_flow.png)
@@ -32,13 +34,12 @@ You can post a request using any of the following methods:
 
 ## Environment
 
-| Environment            | URL                                                                                                  |
-| :--------------------- | :--------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/merchant/postservice?form=2](https://test.payu.in/merchant/postservice?form=2) |
+| Environment | URL |
+|:------------|:----|
+| Test Environment | [https://test.payu.in/merchant/postservice?form=2](https://test.payu.in/merchant/postservice?form=2) |
 | Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2) |
 
-## Sample request
-
+<Accordion title="Sample request" icon="fa-code">
 ```bash
 curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 -H "accept: application/json" \
@@ -46,49 +47,94 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 -d "key=JP***g&command=eligibleBinsForEMI&var1=Bin&var2=512345&hash=3c923a16606d07f12aa984487626abbc0981f540131f8bb0d24b6322c362089bbd4114d710129ce54128691956775352ac53e7d7943392959d37275c934245f2"
 ```
 
-## Sample response
+**Example Request Types:**
 
-**Success Scenario**
+1. **Request without Bank Selection**:
+   ```
+   var1=Bin&var2=512345
+   ```
+
+2. **Request with Bank Selection**:
+   ```
+   var1=Bin&var2=512345&var3=AXIS
+   ```
+
+**Example Values:**
+* `var1`: Bin or NET
+* `var2` (first 6/8/9 digits of the card):
+  * **AXIS EMI**: 4453-3410-6587-6437
+  * **ICICI EMI**: 4808-5578-4874-1463
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
+## Success Scenario
 
 On successful processing from PayU, the response is similar to the following:
 
 ```json
 {
-      "status": 1,
-      "msg": "Details fetched successfully",
-      "details": {
-            "isEligible": 1,
-            "bank": "AXIS",
-            "minAmount": 2500
-      }
+  "status": 1,
+  "msg": "Details fetched successfully",
+  "details": {
+    "isEligible": 1,
+    "bank": "AXIS",
+    "minAmount": 2500
+  }
 }
 ```
 
-**Failure scenario**
+## Failure Scenario
 
 If eligibility is not found:
 
 ```json
 {
-    "status": 1,
-    "msg": "Details fetched successfully",
-    "details": {
-        "isEligible": 0
-    } 
+  "status": 1,
+  "msg": "Details fetched successfully",
+  "details": {
+    "isEligible": 0
+  } 
 }
 ```
+</Accordion>
 
-## Response parameters
+<Accordion title="Response parameters" icon="fa-list">
+| **Parameter** | **Description** | **Example** |
+|:--------------|:----------------|:------------|
+| status | This parameter returns the status of web service call. The status can be any of the following: • **0** - If web service call failed. • **1** - If web service call succeeded | 1 |
+| msg | This parameter returns whether the EMI details were fetched successfully or not found. | "Details fetched successfully" |
+| details | The details of the EMI offer is displayed in a JSON format and it contains the following fields: • **isEligible** - This parameter can be any of the following values: - **0** - If EMI offers are not available for the given card BIN. - **1** - If EMI offers are available for the given card BIN. • **bank** - The name of bank that corresponds to the given card BIN • **minAmount** - The minimum amount for which the EMI offer is available | `{"isEligible": 1, "bank": "AXIS", "minAmount": 2500}` |
 
-| **Parameter** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | **Example**                                            |
-| :------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------- |
-| status        | This parameter returns the status of web service call. The status can be any of the following:<ul><li>0 - If web service call failed.</li><li>1 - If web service call succeeded</li></ul>                                                                                                                                                                                                                                                                                                     |                                                        |
-| msg           | This parameter returns whether the EMI details were fetched successfully or not found.                                                                                                                                                                                                                                                                                                                                                                                                        | Details fetched successfully                           |
-| details       | The details of the EMI offer is displayed in a JSON format and it contains the following fields:<ul><li>**isEligible** - This parameter can be any of the following values:<ul><li>0 - If EMI offers are not available for the given card BIN.</li><li>1 - If EMI offers are available for the given card BIN.</li></ul></li><li>**bank** - The name of bank that corresponds to the given card BIN</li><li>**minAmount** - The minimum amount for which the EMI offer is available</li></ul> | `{"isEligible": 1, "bank": "AXIS", "minAmount": 2500}` |
+**Response Fields in Details Object:**
 
-## Request parameters
+| **Field** | **Description** | **Example** |
+|:----------|:----------------|:------------|
+| isEligible | Indicates if EMI is available for the card BIN (0=No, 1=Yes) | 1 |
+| bank | The bank name associated with the card BIN | "AXIS" |
+| minAmount | Minimum transaction amount eligible for EMI conversion | 2500 |
+</Accordion>
 
-### Example values
+## Request Parameters
+
+<Accordion title="Additional information for request parameters" icon="fa-book">
+
+| Parameter | Description |
+|:----------|:------------|
+| key | Merchant key provided by PayU |
+| command | Must be set to "eligibleBinsForEMI" for this API |
+| var1 | Parameter type - should be "Bin" for card BIN check or "NET" for Netbanking |
+| var2 | The first 6/8/9 digits of the card when var1=Bin |
+| var3 | Optional - Bank name to check eligibility for a specific bank |
+| hash | Security hash calculated using merchant key, salt and command |
+
+## Hash Calculation
+
+Hash for this API is calculated using:
+```
+sha512(key|command|var1|salt) sha512
+```
+
+## Example Values
 
 Use the following sample values while trying out the API:
 
@@ -96,3 +142,22 @@ Use the following sample values while trying out the API:
 * `var2` (first 6/8/9 digits of the card):
   * **AXIS EMI**: 4453-3410-6587-6437
   * **ICICI EMI**: 4808-5578-4874-1463
+
+## Important Notes:
+
+1. **BIN Length**: For most cards, use the first 6 digits. Some banks may require 8 or 9 digits for accurate identification.
+
+2. **Bank Selection**: 
+   - Without bank selection (var3 empty): Get eligibility for any bank matching the BIN
+   - With bank selection (var3 populated): Verify if the specific bank offers EMI for the BIN
+
+3. **Minimum Amount**: The response includes the minimum transaction amount that qualifies for EMI with the identified bank.
+
+4. **EMI Implementation Flow**:
+   - Check BIN eligibility using this API
+   - If eligible (isEligible=1), offer EMI option to customer
+   - Use bank and minAmount to show appropriate EMI options
+   - Ensure transaction amount is ≥ minAmount
+
+5. **Integration with Payment Flow**: This API is typically called before initiating the payment to determine if EMI should be presented as an option to the customer.
+</Accordion>
