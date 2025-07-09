@@ -40,9 +40,9 @@ The Get Checkout Details (**get\_checkout\_details**) API is a generic API using
 | Production Environment | [https://info.payu.in-merchant/postservice?form=2](https://info.payu.in-merchant/postservice?form=2) |
 
 <details>
-  <summary>Sample request and response </summary>
+<summary><strong>Sample request and response</strong></summary>
 
-  ### Get extended payment details
+### Get extended payment details
 
   ```cUrl
   curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
@@ -1792,12 +1792,13 @@ The Get Checkout Details (**get\_checkout\_details**) API is a generic API using
   }
   has context menu
   ```
+
 </details>
 
 <details>
-  <summary>Response parameters </summary>
+<summary><strong>Response parameters</strong></summary>
 
-  ### JSON Format
+### JSON Format
 
   ```bash
   {
@@ -1850,14 +1851,13 @@ The Get Checkout Details (**get\_checkout\_details**) API is a generic API using
   | getTaxSpecification` `**optional**       | `Boolean` This flag is posted as **true** to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option. For a sample request or response using this field, refer to the [Get Tax Specification](#get-tax-specification) section.                                                                                                                         |
   | checkDownStatus` `**optional**           | `Boolean` This flag is posted as **true** to return the downtime of the payment options. For a sample request or response using this field, refer to [Check Down Status](#check-down-status) field.                                                                                                                                                                                                                                                |
   | checkCustomerEligibility   **optional**  | `Boolean` This flag is posted as **true** to return the customer eligibility. For a sample request or response using this field, refer to [Check Customer Eligibility](#check-customer-eligibility)  field.                                                                                                                                                                                                                                        |
+
 </details>
 
-## Request parameters
-
 <details>
-  <summary>Additional information for request parameters</summary>
+<summary><strong>Additional information for request parameters</strong></summary>
 
-  | Parameter | Reference                                                                                                                                                                                                                                                                                        |
+| Parameter | Reference                                                                                                                                                                                                                                                                                        |
   | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
   | **key**   | For more information on how to generate the Key and Salt, refer to any of the following:      - **Production**: [Generate Merchant Key and Salt](#generate-merchant-key-and-salt-on-payu-dashboard)      - **Test**: [Generate Test Merchant Key and Salt](#generate-test-merchant-key-and-salt) |
   | **hash**  | Hash logic for this API is:   `sha512(key\|command\|var1\|salt) sha512 `                                                                                                                                                                                                                         |
@@ -1880,4 +1880,6 @@ The Get Checkout Details (**get\_checkout\_details**) API is a generic API using
   | getAdditionalCharges`optional`      | `Boolean` This flag is posted as **true** to return the additional charges configured for all payment options. For a sample request or response using this field, refer to the [Get Additional Charges](https://devguide.vercel.app-api/get-checkout-details/#getAdditionalCharges) section. **Note**: You need to use the **getTaxSpecification** field if you want to calculate the tax split of additional charges on their end.                                                                 |
   | getTaxSpecification`optional`       | `Boolean` This flag is posted as **true** to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option. For a sample request or response using this field, refer to the [Get Tax Specification](https://devguide.vercel.app-api/get-checkout-details/#getTaxSpecification) section.                                                                                                                       |
   | checkDownStatus`optional`           | `Boolean` This flag is posted as **true** to return the downtime of the payment options. For a sample request or response using this field, refer to [Check Down Status](https://devguide.vercel.app-api/get-checkout-details/#checkDownStatus) field.                                                                                                                                                                                                                                              |
+
 </details>
+
