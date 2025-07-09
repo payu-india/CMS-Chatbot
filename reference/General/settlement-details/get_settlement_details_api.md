@@ -24,17 +24,138 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
 ## Request parameters
 
-| Parameter               | Reference                                                                                                                                                                                                        | Example    |
-| :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------- |
-| **key** `mandatory`     | This parameter must contain the key provided by PayU. For more information on how to generate the Key and Salt, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard). |            |
-| **command** `mandatory` | This parameter must contain the API command as **get\_settlement\_details**.                                                                                                                                     |            |
-| **var1** `mandatory`    | This parameter must either contain either date for the settlement or UTR (Unique Transaction Reference number).                                                                                                  | 2023-09-26 |
-| **var2** `mandatory`    | This parameter must contain the page number to be fetched.                                                                                                                                                       | 5          |
-| **var3** `mandatory`    | This parameter must contain the number of records to be paginated on each page is specified in this parameter. If not specified, 2000 records will be fetched.                                                   | 1000       |
-| **var4** `optional`     | This parameter must contain either L or leave it blank.                                                                                                                                                          | L          |
-| **var5** `optional`     | This parameter must contain the version of the API that can be either 1 or 2.                                                                                                                                    | 1          |
-| **hash** `mandatory`    | Hash logic for this API is:                                                                                                                                                                                      |            |
-| \`sha512(key            | command                                                                                                                                                                                                          | var1       |
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Reference
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **key** `mandatory`
+      </td>
+
+      <td>
+        This parameter must contain the key provided by PayU. For more information on how to generate the Key and Salt, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **command** `mandatory`
+      </td>
+
+      <td>
+        This parameter must contain the API command as **get\_settlement\_details**.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **var1** `mandatory`
+      </td>
+
+      <td>
+        This parameter must either contain either date for the settlement or UTR (Unique Transaction Reference number).
+      </td>
+
+      <td>
+        2023-09-26
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **var2** `mandatory`
+      </td>
+
+      <td>
+        This parameter must contain the page number to be fetched.
+      </td>
+
+      <td>
+        5
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **var3** `mandatory`
+      </td>
+
+      <td>
+        This parameter must contain the number of records to be paginated on each page is specified in this parameter. If not specified, 2000 records will be fetched.
+      </td>
+
+      <td>
+        1000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **var4** `optional`
+      </td>
+
+      <td>
+        This parameter must contain either L or leave it blank.
+      </td>
+
+      <td>
+        L
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **var5** `optional`
+      </td>
+
+      <td>
+        This parameter must contain the version of the API that can be either 1 or 2.
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **hash** `mandatory`
+      </td>
+
+      <td>
+        Hash logic for this API is:
+        sha512(key|command|var1|salt) sha512
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Example values
 
