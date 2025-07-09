@@ -46,7 +46,7 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
 | Production Environment | \<[https://info.payu.in/merchant/>](https://info.payu.in/merchant/>) |
 | Test Environment       | \<[https://test.payu.in/merchant/>](https://test.payu.in/merchant/>) |
 
-<Accordion title="Sample request" icon="upload">
+<Accordion title="Sample request" icon="fa-upload">
 ```curl
   curl --location --request POST 'https://test.info.payu.in/merchant/postservice.php?form=2' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -57,7 +57,7 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
   ```
 </Accordion>
 
-<Accordion title="Sample response" icon="download">
+<Accordion title="Sample response" icon="fa-download">
 **Successful sceanario**
 
   ```plaintext
@@ -96,7 +96,7 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
   Where, the **message** parameter in the response will display according to the scenario.
 </Accordion>
 
-<Accordion title="Response parameters" icon="download">
+<Accordion title="Response parameters" icon="fa-download">
 <HTMLBlock>{`
     <table style="width: 100%; border-collapse: collapse;">
     <thead>
@@ -160,11 +160,11 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
 
 ## Request parameters
 
-<Accordion title="Reference information" icon="book">
+<Accordion title="Reference information" icon="fa-book">
 <KeyHashForGeneralParametersDescription />
 </Accordion>
 
-<Accordion title="Response Parameters var1 JSON fields description" icon="download">
+<Accordion title="Response Parameters var1 JSON fields description" icon="fa-download">
 **Additional information**
 
   <HTMLBlock>{`
