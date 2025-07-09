@@ -26,7 +26,7 @@ HTTP Method: POST
 | `key`<br /><code>mandatory</code> | <code>String</code> The merchant key provided by PayU.                      | JPM7Fg  |
 | `bin`<br /><code>mandatory</code> | <code>String</code> The first six digits (BIN) of the credit or debit card. | 462273  |
 
-## Sample Request (cURL)
+## Sample request
 
 ```bash
 curl --location 'https://info.payu.in/issuing-bank/v1/bin' \
@@ -39,7 +39,7 @@ curl --location 'https://info.payu.in/issuing-bank/v1/bin' \
 --data-urlencode 'bin=462273'
 ```
 
-## Sample Response
+## Sample response
 
 ### If the card is domestic
 
