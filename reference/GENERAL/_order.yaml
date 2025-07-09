@@ -8,3 +8,4 @@
 - v2-check-is-domestic-api
 - v2-get-bin-info-api
 - v2-get-issuing-bank-status-api
+- v2-get-net-banking-status-api
