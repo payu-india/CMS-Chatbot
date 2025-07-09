@@ -1,7 +1,7 @@
 ---
 title: v2 Check is Domestic API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
