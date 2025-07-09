@@ -1882,4 +1882,3 @@ The Get Checkout Details (**get\_checkout\_details**) API is a generic API using
   | checkDownStatus`optional`           | `Boolean` This flag is posted as **true** to return the downtime of the payment options. For a sample request or response using this field, refer to [Check Down Status](https://devguide.vercel.app-api/get-checkout-details/#checkDownStatus) field.                                                                                                                                                                                                                                              |
 
 </details>
-
