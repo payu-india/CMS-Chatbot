@@ -17,7 +17,7 @@ HTTP Method:  **GET**
 
 <HeaderAuthentication />
 
-## Request Parameters
+## Request parameters
 
 <Table>
   <thead>
@@ -135,24 +135,15 @@ curl --location '<info.storecard.service.url>/storecard/card/v1/cryptogram' \
 
 ## Response parameters
 
-| Parameter                              | Description                                                      | Example                         |
-| -------------------------------------- | ---------------------------------------------------------------- | ------------------------------- |
-| message                                | Response message indicating the operation result.                | `Instrument details`            |
-| status                                 | Status code for the operation. `1` for success, `0` for failure. | `1`                             |
-| result                                 |                                                                  |                                 |
-| `result.cardType`                      | Card type.                                                       | `AMEX`                          |
-| `result.trid`                          | Transaction ID.                                                  | `400000340055`                  |
-| `result.networkToken.tokenValue`       | The actual card/network token.                                   | `3711110000000001`              |
-| `result.networkToken.tokenExpiryMonth` | Token expiry month.                                              | `10`                            |
-| `result.networkToken.tokenExpiryYear`  | Token expiry year.                                               | `2026`                          |
-| `result.par`                           | Payment Account Reference.                                       | `LI0K7PL4VJNHJZ6LVQ7LWXHGD3LPS` |
-| `result.cardNo`                        | Masked card number.                                              | `XXXXXXXXXXXX1114`              |
-| `result.cardToken`                     | Card token.                                                      | `1817ca29b7cdd28a0e406`         |
-| `result.cryptogram`                    | Generated encrypted string for payment security.                 | `AgAAAGQBdCZtW8sAmbHTg0UAAAA=`  |
+| Parameter | Description                                                                                                                         | Example              |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| message   | Response message indicating the operation result.                                                                                   | `Instrument details` |
+| status    | Status code for the operation. `1` for success, `0` for failure.                                                                    | `1`                  |
+| result    | Result of response in JSON format. For more information, refer to [result JSON fields description](#result-josn-fields-description) |                      |
 
 ### result JSON fields description
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -204,6 +195,7 @@ curl --location '<info.storecard.service.url>/storecard/card/v1/cryptogram' \
       </td>
 
       <td>
+        The field contains the following fields:
         * **tokenValue**: The actual card/network token.
         * **tokenExpiryMonth**: Token expiry month.
         * **tokenExpiryYear**: Token expiry year.
