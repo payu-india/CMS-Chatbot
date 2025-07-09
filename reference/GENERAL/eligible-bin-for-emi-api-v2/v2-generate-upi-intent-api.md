@@ -14,16 +14,11 @@ HTTP Method: **POST**
 * **Test Environment**: `http://localhost:8082/info/v1/intent`
 * **Production Environment**: `https://info.payu.in/v1/intent`
 
-## Request Headers
+## Request headers
 
-The request header contains the following fields:
+<HeaderAuthentication />
 
-| Field                    | Description                           | Example          |
-| ------------------------ | ------------------------------------- | ---------------- |
-| Content-Type `mandatory` | The content type for the API request. | application/json |
-| mid `mandatory`          | Merchant ID.                          | 2                |
-
-## Request Parameters
+## Request parameters
 
 | Parameter                                     | Description                                                                                                                        | Example                                  |
 | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
@@ -33,7 +28,7 @@ The request header contains the following fields:
 | refUrl<br /><code>optional</code>             | <code>String</code> Reference URL for the transaction. This can be your website URL or any reference page.                         | [http://www.payu.in](http://www.payu.in) |
 | category<br /><code>optional</code>           | <code>String</code> Category code for the transaction. This helps in categorizing the payment for reporting purposes.              | 01                                       |
 
-## Sample Request (cURL)
+## Sample request
 
 ```bash
 curl --location 'https://info.payu.in/v1/intent' \
@@ -48,7 +43,7 @@ curl --location 'https://info.payu.in/v1/intent' \
 }'
 ```
 
-## Sample Response
+## Sample response
 
 ```json
 {
