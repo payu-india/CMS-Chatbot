@@ -11,8 +11,7 @@ HTTP Method: POST
 
 **Endpoint**
 
-* **Test Environment**: `https://test.payu.in/merchant/postservice.php?form=2`
-* **Production Environment**: `https://info.payu.in/merchant/postservice?form=2`
+* **Production Environment**: `https://info.payu.in/issuing-bank/v1/bin`
 
 ## Request headers
 
