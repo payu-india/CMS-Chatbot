@@ -39,20 +39,7 @@ The Get Checkout Details (**get\_checkout\_details**) API is a generic API using
 | Test Environment       | [https://test.payu.in-merchant/postservice?form=2](https://test.payu.in-merchant/postservice?form=2) |
 | Production Environment | [https://info.payu.in-merchant/postservice?form=2](https://info.payu.in-merchant/postservice?form=2) |
 
-<Accordion title="📋 Sample Requests & Responses Overview" icon="fa-info-circle">
-This section demonstrates various request examples and their responses for the Get Checkout Details API. Expand each sub-section to see specific use cases.
-
-**Available Examples:**
-• **Get Extended Payment Details** - Retrieve detailed payment option information
-• **Get Additional Charges** - Fetch additional charges for payment methods  
-• **Get Tax Specification** - Obtain tax-related details for transactions
-• **Check Down Status** - Verify payment method downtime status
-• **Check Customer Eligibility** - Validate customer eligibility for payment options
-• **EMI Field with Filters** - Get EMI options with filtering parameters
-
-</Accordion>
-
-<Accordion title="💳 Get extended payment details" icon="fa-credit-card">
+<Accordion title="Sample request and response" icon="fa-reply">
 ### Get extended payment details
 
   ```cUrl
@@ -234,10 +221,8 @@ This section demonstrates various request examples and their responses for the G
     }
   }
   ```
-</Accordion>
 
-<Accordion title="💰 Get additional charges" icon="fa-money">
-### Get additional charges
+  ### Get additional charges
 
   ```bash
   {
@@ -342,10 +327,8 @@ This section demonstrates various request examples and their responses for the G
     }
   }
   ```
-</Accordion>
 
-<Accordion title="🧮 Get tax specification" icon="fa-calculator">
-### Get tax specification
+  ### Get tax specification
 
   ```bash
   {
@@ -387,10 +370,8 @@ This section demonstrates various request examples and their responses for the G
     }
   }
   ```
-</Accordion>
 
-<Accordion title="⚠️ Check down status" icon="fa-exclamation-triangle">
-### Check down status
+  ### Check down status
 
   ```bash
   {
@@ -438,10 +419,8 @@ This section demonstrates various request examples and their responses for the G
     }
   }
   ```
-</Accordion>
 
-<Accordion title="✅ Check customer eligibility" icon="fa-user-check">
-### Check customer eligibility
+  ### Check customer eligibility
 
   This field is used to check the customer eligibility.
 
@@ -1633,11 +1612,7 @@ This section demonstrates various request examples and their responses for the G
   }
   ```
 
-  #
-</Accordion>
-
-<Accordion title="💳 emi field in the \\paymentOptions \\field with filters parameter" icon="fa-credit-card">
-### emi field in the \*\*paymentOptions \*\*field with filters parameter
+  #### emi field in the \*\*paymentOptions \*\*field with filters parameter
 
   In this example, SBI, Kotak Mahindra and ICICI Bank EMI options are filtered. For list of EMI options, refer to [EMI Options for Get Checkout Details API](#emi-options-for-get-checkout-details-api).
 
@@ -1817,8 +1792,6 @@ This section demonstrates various request examples and their responses for the G
   ```
 </Accordion>
 
-
-
 <Accordion title="Response parameters" icon="fa-book">
 ### JSON Format
 
@@ -1900,3 +1873,4 @@ This section demonstrates various request examples and their responses for the G
   | getTaxSpecification`optional`       | `Boolean` This flag is posted as **true** to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option. For a sample request or response using this field, refer to the [Get Tax Specification](https://devguide.vercel.app-api/get-checkout-details/#getTaxSpecification) section.                                                                                                                       |
   | checkDownStatus`optional`           | `Boolean` This flag is posted as **true** to return the downtime of the payment options. For a sample request or response using this field, refer to [Check Down Status](https://devguide.vercel.app-api/get-checkout-details/#checkDownStatus) field.                                                                                                                                                                                                                                              |
 </Accordion>
+
