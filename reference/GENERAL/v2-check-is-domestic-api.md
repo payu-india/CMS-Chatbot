@@ -16,6 +16,8 @@ HTTP Method: POST
 
 ## Request headers
 
+<HeaderAuthentication />
+
 <br />
 
 ## Request parameters
