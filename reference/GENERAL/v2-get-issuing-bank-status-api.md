@@ -1,7 +1,7 @@
 ---
 title: v2 Get Issuing Bank Status API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
