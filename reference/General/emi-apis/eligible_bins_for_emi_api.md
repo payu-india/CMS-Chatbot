@@ -114,7 +114,7 @@ If eligibility is not found:
 | minAmount | Minimum transaction amount eligible for EMI conversion | 2500 |
 </Accordion>
 
-## Request Parameters
+## Request parameters
 
 <Accordion title="Additional information for request parameters" icon="fa-book">
 
