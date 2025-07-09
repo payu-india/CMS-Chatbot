@@ -7,27 +7,28 @@ metadata:
 ---
 This API allows merchants to check whether a card BIN (first 6 digits of a card) is domestic or international, along with details like card type, issuing bank, and card category.
 
-HYYP Method: POST
+HTTP Method: POST
 
-## URL
-- **Test Environment**: `https://test.payu.in/merchant/postservice.php?form=2`
-- **Production Environment**: `https://info.payu.in/merchant/postservice?form=2`
+**Endpoint**
 
-## Request Headers
+* **Test Environment**: `https://test.payu.in/merchant/postservice.php?form=2`
+* **Production Environment**: `https://info.payu.in/merchant/postservice?form=2`
 
-# check_isDomestic API (API Command: check_isDomestic)
+## Request headers
 
-## Request Parameters
+<br />
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| `key`<br/><code>mandatory</code> | <code>String</code> The merchant key provided by PayU. | JPM7Fg |
-| `bin`<br/><code>mandatory</code> | <code>String</code> The first six digits (BIN) of the credit or debit card. | 462273 |
+## Request parameters
+
+| Parameter                         | Description                                                                 | Example |
+| --------------------------------- | --------------------------------------------------------------------------- | ------- |
+| `key`<br /><code>mandatory</code> | <code>String</code> The merchant key provided by PayU.                      | JPM7Fg  |
+| `bin`<br /><code>mandatory</code> | <code>String</code> The first six digits (BIN) of the credit or debit card. | 462273  |
 
 ## Sample Request (cURL)
 
 ```bash
-curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
+curl --location 'https://info.payu.in/issuing-bank/v1/bin' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --header 'Date: Thu, 17 Feb 2022 08:17:59 GMT' \
 --header 'Digest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=' \
@@ -36,7 +37,6 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 --data-urlencode 'key=JPM7Fg' \
 --data-urlencode 'bin=462273'
 ```
-
 
 ## Sample Response
 
@@ -64,9 +64,9 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 
 ## Response Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| `isDomestic` | Indicates if the card is domestic or international. `Y` for domestic, `N` for international. | `Y` |
-| `issuingBank` | The name of the card's issuing bank. | `SCB` |
-| `cardType` | Type of card: `MAST`, `VISA`, `MAES`, `AMEX`, `DINER`, or `Unknown`. | `VISA` |
-| `cardCategory` | Indicates card category: `CC` for Credit Card, `DC` for Debit Card. | `CC` |
+| Parameter      | Description                                                                                  | Example |
+| -------------- | -------------------------------------------------------------------------------------------- | ------- |
+| `isDomestic`   | Indicates if the card is domestic or international. `Y` for domestic, `N` for international. | `Y`     |
+| `issuingBank`  | The name of the card's issuing bank.                                                         | `SCB`   |
+| `cardType`     | Type of card: `MAST`, `VISA`, `MAES`, `AMEX`, `DINER`, or `Unknown`.                         | `VISA`  |
+| `cardCategory` | Indicates card category: `CC` for Credit Card, `DC` for Debit Card.                          | `CC`    |
