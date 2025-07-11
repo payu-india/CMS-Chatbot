@@ -148,7 +148,7 @@ Hash is required to authenticate the request and to make sure MiTM has not happe
 
 `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)`
 
-> 📘 Note
+> 📘 TPV Hash
 >
 > For TPV transactions, use the following format to generate the hash:
 >
