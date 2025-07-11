@@ -49,8 +49,7 @@ This API is used to share the payment link in the given list of email IDs.
   ```
 </Accordion>
 
-## Request headers
-
+<Accordion title="Request headers" icon="fa-flask">
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -75,9 +74,9 @@ This API is used to share the payment link in the given list of email IDs.
 </tbody>
 </table>
 `}</HTMLBlock>
+</Accordion>
 
-## Path parameters
-
+<Accordion title="Path parameters" icon="fa-flask">
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -99,11 +98,12 @@ This API is used to share the payment link in the given list of email IDs.
 </tbody>
 </table>
 `}</HTMLBlock>
+</Accordion>
 
 ## Query parameters
 
 <Accordion title="Reference info for request parameters" icon="fa-flask">
 | Parameter   | Reference                                                                                                         |
-  | :---------- | :---------------------------------------------------------------------------------------------------------------- |
-  | channelList | `String` This parameter must contain all the emails & phone numbers to which the payment link needs to be shared. |
+| :---------- | :---------------------------------------------------------------------------------------------------------------- |
+| channelList | `String` This parameter must contain all the emails & phone numbers to which the payment link needs to be shared. |
 </Accordion>
