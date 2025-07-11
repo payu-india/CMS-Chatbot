@@ -160,6 +160,14 @@ Here is a sample hash value for your reference:
 
 `smsplus|1695662774012|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||  {"beneficiaryAccountNumber":"1234567890","ifscCode":"IFSC0000024"}|1b1b0`
 
+For SI Trasnaction, use the following format to generate the hash :-
+
+SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si\_details|SALT)
+
+Here is sample hash value for reference :-
+
+> 3TnMpV|PayU\_1752232075823|1|Info|Abc|test\@gmail.com|udf1|udf2|udf3|udf4|udf5||||||\{"paymentStartDate":"2025-07-28","paymentEndDate":"2028-08-28","billingAmount":"100.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"billingRule":"MAX"}|g0nGFe03
+
 ## Step 5: Generate Payment Parameters
 
 Set up the payment parameters for the SDK to initiate a transaction request. Use the following sample code for a quick integration:
