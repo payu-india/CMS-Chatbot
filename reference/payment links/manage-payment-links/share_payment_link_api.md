@@ -17,43 +17,37 @@ This API is used to share the payment link in the given list of email IDs.
 
 **Environment**
 
-|                        |                                                      |
-| :--------------------- | :--------------------------------------------------- |
-| Test Environment       | &lt;https://uatoneapi.payu.in/payment-links/`{id}`/share&gt; |
-| Production Environment | &lt;https://oneapi.payu.in/payment-links/`{id}`/share&gt;    |
+|                        |                                                                                                                   |
+| :--------------------- | :---------------------------------------------------------------------------------------------------------------- |
+| Test Environment       | \<[https://uatoneapi.payu.in/payment-links/`\{id}`/share](https://uatoneapi.payu.in/payment-links/`\{id}`/share)> |
+| Production Environment | \<[https://oneapi.payu.in/payment-links/`\{id}`/share](https://oneapi.payu.in/payment-links/`\{id}`/share)>       |
 
 > 📘 Note:
-> 
-> The access token with the scope as **read_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
+>
+> The access token with the scope as **read\_payment\_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
 
-<details>
-  <summary>Sample request</summary>
-
+<Accordion title="Sample request" icon="fa-code">
 ```curl
-		curl --request POST \
-     --url https://uatoneapi.payu.in/payment-links/ \
-     --header 'authorization: Bearer fjsdkglfd09845084395' \
-     --header 'content-type: text/plain' \
-     --header 'merchantId: 5016764' \
-     --data ashish@gmail.com							
+  		curl --request POST \
+       --url https://uatoneapi.payu.in/payment-links/ \
+       --header 'authorization: Bearer fjsdkglfd09845084395' \
+       --header 'content-type: text/plain' \
+       --header 'merchantId: 5016764' \
+       --data ashish@gmail.com							
+  ```
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
 ```
-
-</details>
-
-<details>
-  <summary>Sample response</summary>
-
-```
-{
-  "status": 0,
-  "message": "string",
-  "result": {},
-  "errorCode": 170,
-  "guid": "f529e375-739f-4c8a-b5f5-0e67fa3f533f"
-}
-```
-
-</details>
+  {
+    "status": 0,
+    "message": "string",
+    "result": {},
+    "errorCode": 170,
+    "guid": "f529e375-739f-4c8a-b5f5-0e67fa3f533f"
+  }
+  ```
+</Accordion>
 
 ## Request headers
 
@@ -108,11 +102,8 @@ This API is used to share the payment link in the given list of email IDs.
 
 ## Query parameters
 
-<details>
-  <summary>Reference info for request parameters</summary>
-
+<Accordion title="Reference info for request parameters" icon="fa-flask">
 | Parameter   | Reference                                                                                                         |
-| :---------- | :---------------------------------------------------------------------------------------------------------------- |
-| channelList | `String` This parameter must contain all the emails & phone numbers to which the payment link needs to be shared. |
-
-</details>
+  | :---------- | :---------------------------------------------------------------------------------------------------------------- |
+  | channelList | `String` This parameter must contain all the emails & phone numbers to which the payment link needs to be shared. |
+</Accordion>
