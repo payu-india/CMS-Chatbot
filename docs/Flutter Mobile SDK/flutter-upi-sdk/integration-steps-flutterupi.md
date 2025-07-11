@@ -164,15 +164,9 @@ Here is a sample hash value for your reference:
 >
 > For SI Trasnaction, use the following format to generate the hash :-
 >
->
->
 > SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si\_details|SALT)
 >
->
->
 > Here is sample hash value for reference :-
->
->
 >
 > `3TnMpV|PayU_1752232075823|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||\{"paymentStartDate":"2025-07-28","paymentEndDate":"2028-08-28","billingAmount":"100.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"billingRule":"MAX"}|g0nGFe03`
 
@@ -208,8 +202,10 @@ var payUPaymentParams = {
   beneficiary_ifsc: <ifsc code>,
   payment_mode:<String> // for Intent flow use "INTENT", for collect flow use "upi",
   disable_intent_seamless_failure:  <String>, // -1 | 0 ,
-  package_name: <String>, //package name for the specific UPI intent (i.e. 				'net.one97.paytm') // package_name parameter used for Android only
-  intent_app : <String>, //scheme name for the specific UPI intent (i.e. 'phonepe') // intent_app parameter used for IOS only
+	// package_name parameter used for Android only
+  package_name: <String>, //package name for the specific UPI intent (i.e. 				'net.one97.paytm') // 
+	// intent_app parameter used for IOS only
+  intent_app : <String>, //scheme name for the specific UPI intent (i.e. 'phonepe') // 
 };
 
 var si_params = {
