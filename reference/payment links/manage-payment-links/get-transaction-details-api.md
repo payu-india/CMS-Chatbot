@@ -24,7 +24,7 @@ The **Get Transaction Details** API is used to get the details of transactions f
 | **Test Environment**       | \<[https://uatoneapi.payu.in/payment-links](https://uatoneapi.payu.in/payment-links)> |
 | **Production Environment** | \<[https://oneapi.payu.in/payment-links](https://oneapi.payu.in/payment-links)>       |
 
-<Accordion title="Sample request" icon="fa-upload">
+<Accordion title="Sample request" icon="fa-arrow-up">
 ```
   curl --location '
   https://uatoneapi.payu.in/payment-links/INV2669646610062/txns?pageSize=10&dateFrom=2024-10-16&dateTo=2024-10-17'
@@ -34,7 +34,7 @@ The **Get Transaction Details** API is used to get the details of transactions f
   ```
 </Accordion>
 
-<Accordion title="Sample response" icon="fa-download">
+<Accordion title="Sample response" icon="fa-arrow-down">
 ```
   {
       "status": 0,
