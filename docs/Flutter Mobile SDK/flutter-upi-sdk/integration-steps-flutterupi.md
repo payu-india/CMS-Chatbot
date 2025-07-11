@@ -187,6 +187,7 @@ var payUPaymentParams = {
   user_credentials: <unique user identifier>
   transaction_id:<Transaction ID>,
   additional_param: additionalParam,
+	hash: <Pass Hash Value>,
   beneficiary_account_number: <Beneficiary Account Number>,
   beneficiary_ifsc: <ifsc code>,
   payment_mode:<String> // for Intent flow use "INTENT", for collect flow use "upi",
