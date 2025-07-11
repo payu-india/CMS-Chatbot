@@ -37,10 +37,8 @@ The **Create a Payment Link** API is used to create a regular payment link, recu
 > * The access token with the scope as **create\_payment\_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
 > * To create a seamless eNACH payment link, the **enforcePayMethod** parameter must be passed with "enach" as the only method.
 
-<details>
-  <summary>Sample request</summary>
-
-  ```curl
+<Accordion title="Sample request" icon="fa-upload">
+```curl
   curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
   --header 'merchantId: {{merchantId}}' \
   --header 'Content-Type: application/json' \
@@ -87,12 +85,10 @@ The **Create a Payment Link** API is used to create a regular payment link, recu
     .build();
   Response response = client.newCall(request).execute();
   ```
-</details>
+</Accordion>
 
-<details>
-  <summary>Sample response</summary>
-
-  **Success scenario**
+<Accordion title="Sample response" icon="fa-download">
+**Success scenario**
 
   ```
   {
@@ -143,6 +139,6 @@ The **Create a Payment Link** API is used to create a regular payment link, recu
     "guid": null
   }
   ```
-</details>
+</Accordion>
 
 ## Request parameters
