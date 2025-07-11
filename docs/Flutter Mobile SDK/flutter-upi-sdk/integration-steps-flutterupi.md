@@ -64,13 +64,13 @@ class _MyAppState extends State<MyApp> implements PayUUPIProtocol {
 
 ## Step 3: Implement the Callback protocol
 
-1. Implement PayUPIProtocol to receive hash and transaction callback. 
+1. Implement PayUPIProtocol to receive hash and transaction callback.
 
 ```Text dart
 class _MyAppState extends State<MyApp> implements PayUUPIProtocol 
 ```
 
-2. Implement the following methods in your class to receive the callbacks. 
+2. Implement the following methods in your class to receive the callbacks.
 
 ```Text dart
 @override
@@ -158,7 +158,7 @@ Hash is required to authenticate the request and to make sure MiTM has not happe
 
 Here is a sample hash value for your reference:
 
- `smsplus|1695662774012|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||  {"beneficiaryAccountNumber":"1234567890","ifscCode":"IFSC0000024"}|1b1b0`
+`smsplus|1695662774012|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||  {"beneficiaryAccountNumber":"1234567890","ifscCode":"IFSC0000024"}|1b1b0`
 
 ## Step 5: Generate Payment Parameters
 
@@ -195,21 +195,20 @@ var payUPaymentParams = {
   intent_app : <String>, //scheme name for the specific UPI intent (i.e. 'phonepe') // intent_app parameter used for IOS only
 };
 
-var si_details = {
-    is_free_trial: "0", // 1 | 0 (true | false)
-    si: '1',
-    si_params: {
-      is_free_trial: "0", // 1 | 0 (true | false)
-      billing_amount: '1.00', //Required
-      billing_interval: 1, //Required
-      payment_start_date: '2022-12-24', //Required Ex: yyyy-mm-dd
-      payment_end_date: '2023-12-24', //Required Ex: yyyy-mm-dd
-      billing_cycle: //Required
-      'ONCE', // YEARLY | MONTHLY | WEEKLY | DAILY | ONCE | ADHOC
-      billing_currency: 'INR',  //Currency Code
-      billing_limit: 'ON', //ON, BEFORE, AFTER
-      billing_rule: 'MAX', //MAX, EXACT
-      si: '1', //MAX, EXACT
+var si_params = {
+    "is_free_trial": "0",
+    "si": '1',
+    "si_details": {
+      "is_free_trial": "0",
+      "billing_amount": '100.00', //Required
+      "billing_currency": 'INR',
+      "billing_cycle": //Required
+      'MONTHLY', // YEARLY | MONTHLY | WEEKLY | DAILY | ONCE | ADHOC
+      "billing_interval": 1, //Required
+      "payment_start_date": '2025-07-28', //Required
+      "payment_end_date": '2028-08-28', //Required
+      "billing_limit": 'ON', //ON, BEFORE, AFTER
+      "billing_rule": 'MAX', //MAX, EXACT
     }
   };
 ```
@@ -251,7 +250,7 @@ var si_details = {
 
     <tr>
       <td>
-        transaction\_id\
+        transaction\_id
         `mandatory`
       </td>
 
@@ -266,7 +265,7 @@ var si_details = {
 
     <tr>
       <td>
-        amount\
+        amount
         `mandatory`
       </td>
 
@@ -281,7 +280,7 @@ var si_details = {
 
     <tr>
       <td>
-        product\_info\
+        product\_info
         `mandatory`
       </td>
 
@@ -296,7 +295,7 @@ var si_details = {
 
     <tr>
       <td>
-        first\_name\
+        first\_name
         `mandatory`
       </td>
 
@@ -305,13 +304,13 @@ var si_details = {
       </td>
 
       <td>
-         Cannot be null or empty
+        Cannot be null or empty
       </td>
     </tr>
 
     <tr>
       <td>
-        email\
+        email
         `mandatory`
       </td>
 
@@ -326,12 +325,12 @@ var si_details = {
 
     <tr>
       <td>
-        phone\
+        phone
         `mandatory`
       </td>
 
       <td>
-         `String` Customer’s phone number.
+        `String` Customer’s phone number.
       </td>
 
       <td>
@@ -341,14 +340,14 @@ var si_details = {
 
     <tr>
       <td>
-        ios\_surl\
+        ios\_surl
         `mandatory`
       </td>
 
       <td>
-        `String` When the transaction is successful, PayU will load this URL and pass the transaction response.  
+        `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
 
-        * \*Note\*\*: This field is applicable for iOS integration
+        * *Note*\*: This field is applicable for iOS integration
       </td>
 
       <td>
@@ -368,7 +367,7 @@ var si_details = {
       </td>
 
       <td>
-         Should be a valid URL
+        Should be a valid URL
       </td>
     </tr>
 
@@ -379,9 +378,9 @@ var si_details = {
       </td>
 
       <td>
-         `String` When the transaction is successful, PayU will load this URL and pass the transaction response.  
+        `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
 
-        * \*Note\*\*: This field is applicable for Android integration
+        * *Note*\*: This field is applicable for Android integration
       </td>
 
       <td>
@@ -397,9 +396,9 @@ var si_details = {
 
       <td>
         `String` When the transaction fails, PayU will load this URL and pass the transaction response.\
-        When the transaction is a success, PayU will load this URL and pass the transaction response.  
+        When the transaction is a success, PayU will load this URL and pass the transaction response.
 
-        * \*Note\*\*: This field is applicable for Android integration
+        * *Note*\*: This field is applicable for Android integration
       </td>
 
       <td>
@@ -418,7 +417,7 @@ var si_details = {
       </td>
 
       <td>
-         "0" for Production and "1" for Test
+        "0" for Production and "1" for Test
       </td>
     </tr>
 
@@ -454,7 +453,7 @@ var si_details = {
 
     <tr>
       <td>
-        beneficiary\_account\_number 
+        beneficiary\_account\_number
       </td>
 
       <td>
