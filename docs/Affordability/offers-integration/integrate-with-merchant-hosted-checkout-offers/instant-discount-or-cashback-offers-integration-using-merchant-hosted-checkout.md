@@ -72,9 +72,9 @@ To integrate offers using Merchant Hosted Checkout integration:
 
 1. On the checkout page (or earlier on PDP, Cart, Offers) use the **Fetch Offers** API to get the offers and display all the offers. For more information, refer to [Fetch Offers API](ref:fetch-offers-api).
 2. Use the **Validate Offer** API to validate if the offer will be applied on this transaction or not. For more information, refer to [Validate Offer API](ref:validate-offer-api).
-3. Make the payment request using the **\_payment** API using the following additional parameters for Offers. For more information on the complete list of parameters to be posted, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment-merchant-hosted)
+3. Make the payment request using the **\_payment** API using the following additional parameters for Offers. For more information on the complete list of parameters to be posted, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted)
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -109,12 +109,12 @@ To integrate offers using Merchant Hosted Checkout integration:
 
     <tr>
       <td>
-        user\_token\
+        user\_token
         **mandatory for UPI, NB, Wallet**
       </td>
 
       <td>
-        The use for this param is to allow the offer engine to apply velocity rules at a user level.  
+        The use for this param is to allow the offer engine to apply velocity rules at a user level.
 
         * **Card Based Offers (CC, DC, EMI)**: In case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied on the card number.
         * **UPI, NB, Wallet**: It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
@@ -132,10 +132,10 @@ To integrate offers using Merchant Hosted Checkout integration:
       </td>
 
       <td>
-        It is used to avoid the possibility of transaction tampering.  
+        It is used to avoid the possibility of transaction tampering.
 
-        * \*Note\*\*: The following order must be used for hashing:\
-          `key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|offer_auto_apply\|SALT`\
+        * *Note*\*: The following order must be used for hashing:\
+          `key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|offer_auto_apply\|SALT`
           For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted) .
       </td>
 
@@ -149,7 +149,7 @@ To integrate offers using Merchant Hosted Checkout integration:
 > **Notes**:  
 >
 > * The following order must be used for hashing:\
->   `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`\
+>   `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
 >   For more information on hash generation process, refer to [Hashing Request and Response](ref:generate-hash-merchant-hosted).
 > * If any of the keys is null/not configured, "|" character must be concatenated.
 > * The above hash logic is for \_payment API version 10 or later
@@ -844,7 +844,7 @@ namespace PayUCardIntegration
 
 4. Check the following response parameters (for Offers) from PayU to handle the payment response, as the net amount debit may be different from the amount sent by you in the request.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -910,8 +910,8 @@ namespace PayUCardIntegration
       </td>
 
       <td>
-        This parameter is used to post any of the following offer\_type:\
-         - instant  
+        This parameter is used to post any of the following offer\_type:
+         - instant
 
         * cashback
       </td>
