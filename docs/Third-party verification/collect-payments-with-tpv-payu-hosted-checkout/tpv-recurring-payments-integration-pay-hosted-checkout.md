@@ -13,8 +13,16 @@ PayU Hosted Checkout integration for **TPV (Third Party Verification) Payment Mo
 The customer journey involves three key steps:
 
 1. **Checkout Initiation**: Customer begins the payment process on the merchant's checkout page
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/8ba8dec2112adc3f7050be48a91a43cec39eb6256de01c1a4c1cca3c1d36f5e5-tpv_si_step1.png" />
+
 2. **PayU Redirect**: Customer is redirected to PayU's hosted checkout page for payment completion
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/d2ac062dd599380f3d3a78e0158436c08750f4c13ea7be50326eba3d6e5a1994-tpv_si_step2.png" />
+
 3. **Payment Processing**: Customer completes the payment using their preferred payment method (Net Banking or UPI)
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/a3c1a3190a1aff209b493e606bef503a5f71f58d7647e77aa9ca9cbb429996e8-tpv_si_step3.png" />
 
 ## Environment
 
@@ -166,8 +174,6 @@ Process the response from PayU and perform reverse hash validation to ensure tra
 > ```
 > sha512(SALT|status|||||||||||email|firstname|productinfo|amount|txnid|key)
 > ```
->
->
 
 ### Response parameters
 
