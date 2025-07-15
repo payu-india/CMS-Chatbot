@@ -27,84 +27,83 @@ This API is used to delete an existing card stored on PayU Vault.
 
 HTTP Method: **POST**
 
-<GENERALAPIsEnvironment/>
+<GENERALAPIsEnvironment />
 
-<details>
-  <summary>Sample Response</summary>
-
+<Accordion title="Sample Response" icon="fa-reply">
 * On successful deletion
 
-```plaintext
-{
-        status: 1,
-        msg: "My_card card deleted successfully",
-}
-```
+  ```plaintext
+  {
+          status: 1,
+          msg: "My_card card deleted successfully",
+  }
+  ```
 
-* On failure of deletion
+  * On failure of deletion
 
-```plaintext
-{
-"status": 0,
-"msg": card not found
-}
-```
+  ```plaintext
+  {
+  "status": 0,
+  "msg": card not found
+  }
+  ```
+</Accordion>
 
-</details>
-
-<details>
-  <summary>Response parameters</summary>
-
+<Accordion title="Response parameters" icon="fa-list">
 <Table>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-      <th>
-        **Description**
-      </th>
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        status
-      </td>
-      <td>
-        The status of the response can be any of the following:\
-           -**1**: Success  
+    <thead>
+      <tr>
+        <th>
+          **Parameter**
+        </th>
 
-        * **0**: Failure
-      </td>
-      <td>
-        1
-      </td>
-    </tr>
-    <tr>
-      <td>
-        msg
-      </td>
-      <td>
-        The description of the response whether the card details were deleted successfully or not deleted.
-      </td>
-      <td>
-        My\_card deleted successfully
-      </td>
-    </tr>
-  </tbody>
-</Table>
+        <th>
+          **Description**
+        </th>
 
-</details>
+        <th>
+          **Example**
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>
+          status
+        </td>
+
+        <td>
+          The status of the response can be any of the following:
+          -**1**: Success
+
+          * **0**: Failure
+        </td>
+
+        <td>
+          1
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          msg
+        </td>
+
+        <td>
+          The description of the response whether the card details were deleted successfully or not deleted.
+        </td>
+
+        <td>
+          My\_card deleted successfully
+        </td>
+      </tr>
+    </tbody>
+  </Table>
+</Accordion>
 
 ## Request Parameters
 
-<details>
-  <summary>Reference info for request parameters</summary>
-
+<Accordion title="Reference info for request parameters" icon="fa-flask">
 <KeyHashForGeneralParametersDescription />
-
-</details>
+</Accordion>
