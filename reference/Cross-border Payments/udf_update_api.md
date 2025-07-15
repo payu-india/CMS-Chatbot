@@ -17,69 +17,36 @@ The **UDF Update** API is used to update the UDF1-UDF5 values of a transaction. 
 
 <GENERALAPIsEnvironment />
 
-<Accordion title="Reference info for request parameters" icon="fa-flask">
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th><strong>Parameter</strong></th>
-      <th><strong>Reference</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>key</td>
-      <td>
-        The merchant key provided by PayU while onboarding.<br>
-        For more information on how to generate the Key and Salt, refer to any of the following:<br>
-        - <strong>Production</strong>: <a href="https://payu-hosted-checkout.readme.io/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a><br>
-        - <strong>Test</strong>: <a href="https://payu-hosted-checkout.readme.io/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a>
-      </td>
-    </tr>
-    <tr>
-      <td>hash</td>
-      <td>
-        Hash logic for payment API is:<br>
-        <code>sha512(key|command|var1|salt)</code>
-      </td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
-</Accordion>
-
 <br />
 
-
-
 <Accordion title="Sample request for Cards" icon="fa-code">
-```
-  curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
-  --form 'key="PRiQvJ"' \
-  --form 'command="udf_update"' \
-  --form 'var1="my_order_642"' \
-  --form 'var2="AAAPZ1234C"' \
-  --form 'var4="22/08/1972"' \
-  --form 'var5="SellerName"' \
-  --form 'var6="INV000000005"' \
-  --form 'hash="{{hash}}"'
+  ```
+    curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
+    --form 'key="PRiQvJ"' \
+    --form 'command="udf_update"' \
+    --form 'var1="my_order_642"' \
+    --form 'var2="AAAPZ1234C"' \
+    --form 'var4="22/08/1972"' \
+    --form 'var5="SellerName"' \
+    --form 'var6="INV000000005"' \
+    --form 'hash="{{hash}}"'
   ```
 </Accordion>
 
 <Accordion title="Sample request for UPI autopay" icon="fa-code">
-```
-  curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
-  --form 'key="PRiQvJ"' \
-  --form 'command="udf_update"' \
-  --form 'var1="my_order_64240"' \
-  --form 'var2="AAAPZ1234C||22/08/1972"' \
-  --form 'var4="INV-123_1231||MerchantName"' \
-  --form 'hash="{{hash}}"'
+  ```
+    curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
+    --form 'key="PRiQvJ"' \
+    --form 'command="udf_update"' \
+    --form 'var1="my_order_64240"' \
+    --form 'var2="AAAPZ1234C||22/08/1972"' \
+    --form 'var4="INV-123_1231||MerchantName"' \
+    --form 'hash="{{hash}}"'
   ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
-### Success Scenario
+  ### Success Scenario
 
   * If successfully updated for cards
 
@@ -140,3 +107,36 @@ The **UDF Update** API is used to update the UDF1-UDF5 values of a transaction. 
 </Accordion>
 
 ## Request parameters
+
+<br />
+
+<Accordion title="Reference info for request parameters" icon="fa-flask">
+  <HTMLBlock>{`
+        <table>
+          <thead>
+            <tr>
+              <th><strong>Parameter</strong></th>
+              <th><strong>Reference</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>key</td>
+              <td>
+                The merchant key provided by PayU while onboarding.<br>
+                For more information on how to generate the Key and Salt, refer to any of the following:<br>
+                - <strong>Production</strong>: <a href="https://payu-hosted-checkout.readme.io/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a><br>
+                - <strong>Test</strong>: <a href="https://payu-hosted-checkout.readme.io/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a>
+              </td>
+            </tr>
+            <tr>
+              <td>hash</td>
+              <td>
+                Hash logic for payment API is:<br>
+                <code>sha512(key|command|var1|salt)</code>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  `}</HTMLBlock>
+</Accordion>
