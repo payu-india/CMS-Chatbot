@@ -37,10 +37,8 @@ HTTP Method: **POST**
 
 <br />
 
-<details>
-  <summary>Sample request</summary>
-
-  ```curl
+<Accordion title="Sample request" icon="fa-code">
+```curl
   curl --request POST \
        --url 'https://test.payu.in/merchant/postservice.php?form=2' \
        --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -50,12 +48,10 @@ HTTP Method: **POST**
        --data var1=JPM7Fg:abc \
        --data hash=3cba79d881a4f82daed99241d60142b1c6816b3c16c96f5a2d1cf2a09910a2e1eb440a5d70ffd232ef80cf9207f9e90378db43ad76f9f545e9dd3a3692c2de18
   ```
-</details>
+</Accordion>
 
-<details>
-  <summary>Sample response</summary>
-
-  * Cards are found in the vault for PCI Compliant Merchants
+<Accordion title="Sample response" icon="fa-reply">
+* Cards are found in the vault for PCI Compliant Merchants
 
   ```plaintext
   {
@@ -126,12 +122,10 @@ HTTP Method: **POST**
   "msg": Card not found.
   }
   ```
-</details>
+</Accordion>
 
-<details>
-  <summary> Response parameters</summary>
-
-  <Table>
+<Accordion title="Response parameters" icon="fa-list">
+<Table>
     <thead>
       <tr>
         <th>
@@ -464,12 +458,10 @@ HTTP Method: **POST**
       </tr>
     </tbody>
   </Table>
-</details>
+</Accordion>
 
 ## Request parameters
 
-<details>
-  <summary>Reference info for request parameters</summary>
-
-  `<KeyHashForGeneralParametersDescription />`
-</details>
+<Accordion title="Reference info for request parameters" icon="fa-flask">
+`<KeyHashForGeneralParametersDescription />`
+</Accordion>
