@@ -1,7 +1,7 @@
 ---
 title: TPV Recurring Payments Integration - Pay Hosted Checkout
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
