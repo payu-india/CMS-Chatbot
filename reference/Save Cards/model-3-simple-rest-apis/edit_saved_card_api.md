@@ -29,90 +29,90 @@ HTTP Method: **POST**
 <GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
-```curl
-  curl --request POST \
-       --url 'https://test.payu.in/merchant/postservice.php?form=2' \
-       --header 'Content-Type: application/x-www-form-urlencoded' \
-       --header 'accept: text/html; charset=UTF-8' \
-       --data key=JPM7Fg \
-       --data command=edit_payment_instrument \
-       --data 'var1=key;JPM7Fg ' \
-       --data var2=12345 \
-       --data var3=ashishAMEX \
-       --data var4=CC \
-       --data var5=AMEX \
-       --data 'var6=Ashish Kumar' \
-       --data var7=5506900480000008 \
-       --data var8=9 \
-       --data var9=2025 \
-       --data hash=a3e9a52f62dbb53cd0ff87a613502bbf9b82091fe8c8f785254c2039e1803ddcd8b1646e365b235948ddae5e4d3a7e80a20ca9fa8f0fef6e7a75b73d5020f253
+  ```curl
+    curl --request POST \
+         --url 'https://test.payu.in/merchant/postservice.php?form=2' \
+         --header 'Content-Type: application/x-www-form-urlencoded' \
+         --header 'accept: text/html; charset=UTF-8' \
+         --data key=JPM7Fg \
+         --data command=edit_payment_instrument \
+         --data 'var1=key;JPM7Fg ' \
+         --data var2=12345 \
+         --data var3=ashishAMEX \
+         --data var4=CC \
+         --data var5=AMEX \
+         --data 'var6=Ashish Kumar' \
+         --data var7=5506900480000008 \
+         --data var8=9 \
+         --data var9=2025 \
+         --data hash=a3e9a52f62dbb53cd0ff87a613502bbf9b82091fe8c8f785254c2039e1803ddcd8b1646e365b235948ddae5e4d3a7e80a20ca9fa8f0fef6e7a75b73d5020f253
   ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
-* On successful update of card details
+  * On successful update of card details
 
-  ```plaintext
-  {
-      "status": 1,
-      "msg": " edited Successfully.",
-      "cardToken": "9175XXX60be0bXXX20dd8",
-      "network_token": "40XXX010371XXX12",
-      "issuer_token": "LQ3XXXgEOnEXXX8",
-      "card_number": "XXXXXXXXXXXXX2346",
-      "card_label": "testAll"
-  }
-  ```
+    ```plaintext
+    {
+        "status": 1,
+        "msg": " edited Successfully.",
+        "cardToken": "9175XXX60be0bXXX20dd8",
+        "network_token": "40XXX010371XXX12",
+        "issuer_token": "LQ3XXXgEOnEXXX8",
+        "card_number": "XXXXXXXXXXXXX2346",
+        "card_label": "testAll"
+    }
+    ```
 
-  * If the wrong card token is provided to edit
+    * If the wrong card token is provided to edit
 
-  ```plaintext
-  {
-  "status": 0,
-  "msg": "Card not found to edit"
-  }
-  ```
+    ```plaintext
+    {
+    "status": 0,
+    "msg": "Card not found to edit"
+    }
+    ```
 
-  ```plaintext
-  {
-      "msg": "Cards fetched Succesfully",
-      "status": 1,
-      "user_cards": {
-          "9e299603hd4g7201b9cf6": {
-              "one_click_status": "",
-              "one_click_flow": "",
-              "card_type": "MAST",
-              "expiry_year": "2024",
-              "isDomestic": "Y",
-              "issuer_name": null,
-              "expiry_month": "02",
-              "card_mode": "DC",
-              "is_expired": "0",
-              "card_cvv": 1,
-              "card_no": "XXXXXXXXXXXX81",
-              "one_click_card_alias": "",
-              "card_token": "9e299603hd4g7201b9cf6",
-              "card_name": "MASTERCARD****7781",
-              "card_brand": "MAST",
-              "name_on_card": "TEST",
-              "card_bin": "519950"
-          }
-      }
-  }
-  ```
+    ```plaintext
+    {
+        "msg": "Cards fetched Succesfully",
+        "status": 1,
+        "user_cards": {
+            "9e299603hd4g7201b9cf6": {
+                "one_click_status": "",
+                "one_click_flow": "",
+                "card_type": "MAST",
+                "expiry_year": "2024",
+                "isDomestic": "Y",
+                "issuer_name": null,
+                "expiry_month": "02",
+                "card_mode": "DC",
+                "is_expired": "0",
+                "card_cvv": 1,
+                "card_no": "XXXXXXXXXXXX81",
+                "one_click_card_alias": "",
+                "card_token": "9e299603hd4g7201b9cf6",
+                "card_name": "MASTERCARD****7781",
+                "card_brand": "MAST",
+                "name_on_card": "TEST",
+                "card_bin": "519950"
+            }
+        }
+    }
+    ```
 
-  * No cards are found for the user
+    * No cards are found for the user
 
-  ```plaintext
-  {
-  "status": 0,
-  "msg": "Card not found."
-  }
-  ```
+    ```plaintext
+    {
+    "status": 0,
+    "msg": "Card not found."
+    }
+    ```
 </Accordion>
 
-<Accordion title="Rrsponse parameters" icon="fa-list">
-<Table>
+<Accordion title="Response parameters" icon="fa-list">
+  <Table>
     <thead>
       <tr>
         <th>
@@ -209,5 +209,5 @@ HTTP Method: **POST**
 ## Request Parameters
 
 <Accordion title="Reference Info for Request Parameters" icon="fa-flask">
-<KeyHashForGeneralParametersDescription />
+  <KeyHashForGeneralParametersDescription />
 </Accordion>
