@@ -2,7 +2,7 @@
 title: APIs for Recharge Integration
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
