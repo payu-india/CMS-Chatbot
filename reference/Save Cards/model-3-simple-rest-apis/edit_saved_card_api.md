@@ -28,10 +28,8 @@ HTTP Method: **POST**
 
 <GENERALAPIsEnvironment />
 
-<details>
-  <summary>Sample request</summary>
-
-  ```curl
+<Accordion title="Sample request" icon="fa-code">
+```curl
   curl --request POST \
        --url 'https://test.payu.in/merchant/postservice.php?form=2' \
        --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -49,12 +47,10 @@ HTTP Method: **POST**
        --data var9=2025 \
        --data hash=a3e9a52f62dbb53cd0ff87a613502bbf9b82091fe8c8f785254c2039e1803ddcd8b1646e365b235948ddae5e4d3a7e80a20ca9fa8f0fef6e7a75b73d5020f253
   ```
-</details>
+</Accordion>
 
-<details>
-  <summary>Sample response</summary>
-
-  * On successful update of card details
+<Accordion title="Sample response" icon="fa-reply">
+* On successful update of card details
 
   ```plaintext
   {
@@ -113,12 +109,10 @@ HTTP Method: **POST**
   "msg": "Card not found."
   }
   ```
-</details>
+</Accordion>
 
-<details>
-  <summary>Rrsponse parameters</summary>
-
-  <Table>
+<Accordion title="Rrsponse parameters" icon="fa-list">
+<Table>
     <thead>
       <tr>
         <th>
@@ -210,12 +204,10 @@ HTTP Method: **POST**
       </tr>
     </tbody>
   </Table>
-</details>
+</Accordion>
 
 ## Request Parameters
 
-<details>
-  <summary>Reference Info for Request Parameters</summary>
-
-  <KeyHashForGeneralParametersDescription />
-</details>
+<Accordion title="Reference Info for Request Parameters" icon="fa-flask">
+<KeyHashForGeneralParametersDescription />
+</Accordion>
