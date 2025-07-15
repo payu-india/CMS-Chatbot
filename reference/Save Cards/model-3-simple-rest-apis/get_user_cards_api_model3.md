@@ -26,69 +26,60 @@ The **Get User Cards** API is used to fetch all the cards corresponding to the u
 
 HTTP Method: **POST**
 
-<GENERALAPIsEnvironment/>
+<GENERALAPIsEnvironment />
 
-<details>
-  <summary>Sample request</summary>
-
+<Accordion title="Sample request" icon="fa-code">
 ```curl
-curl --request POST \
-     --url 'https://test.payu.in/merchant/postservice.php?form=2' \
-     --header 'Content-Type: application/x-www-form-urlencoded' \
-     --header 'accept: text/html; charset=UTF-8' \
-     --data key=JPM7Fg \
-     --data command=get_payment_instrument \
-     --data var1=JPM7Fg:abc \
-     --data hash=750351ed44241b9739d2e374de45dd0be3c2f6d68305ceb81084960387b71722b0f8d224900f57202488a557ecfa6f2e22895f27585a413388684a142bb8e41e
+  curl --request POST \
+       --url 'https://test.payu.in/merchant/postservice.php?form=2' \
+       --header 'Content-Type: application/x-www-form-urlencoded' \
+       --header 'accept: text/html; charset=UTF-8' \
+       --data key=JPM7Fg \
+       --data command=get_payment_instrument \
+       --data var1=JPM7Fg:abc \
+       --data hash=750351ed44241b9739d2e374de45dd0be3c2f6d68305ceb81084960387b71722b0f8d224900f57202488a557ecfa6f2e22895f27585a413388684a142bb8e41e
+  ```
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
 ```
-
-</details>
-
-<details>
-  <summary>Sample response</summary>
-
-```
-{
-  "status": 1,
-  "msg": "Cards fetched Succesfully",
-  "user_cards": {
-    "a52aa1c09e11ac56926005": {
-      "one_click_status": "",
-      "one_click_flow": "",
-      "card_type": "CC",
-      "expiry_year": "2030",
-      "network_token": {
-        "token_bin": "439040",
+  {
+    "status": 1,
+    "msg": "Cards fetched Succesfully",
+    "user_cards": {
+      "a52aa1c09e11ac56926005": {
+        "one_click_status": "",
+        "one_click_flow": "",
+        "card_type": "CC",
+        "expiry_year": "2030",
+        "network_token": {
+          "token_bin": "439040",
+          "is_expired": "0",
+          "token_exp_yr": "2030",
+          "token_exp_mon": "11",
+          "token_value": "4390406210204342"
+        },
+        "expiry_month": "11",
         "is_expired": "0",
-        "token_exp_yr": "2030",
-        "token_exp_mon": "11",
-        "token_value": "4390406210204342"
-      },
-      "expiry_month": "11",
-      "is_expired": "0",
-      "card_mode": "CC",
-      "card_no": "XXXXXXXXXXXX6937",
-      "one_click_card_alias": "",
-      "card_token": "a52aa1c09e11ac56926005",
-      "card_name": "raghu_visa",
-      "name_on_card": "DUMMY",
-      "card_brand": "VISA",
-      "card_bin": "439040621",
-      "isDomestic": "Y",
-      "card_cvv": 0,
-      "PAR": "V0010013022320257414953977387"
+        "card_mode": "CC",
+        "card_no": "XXXXXXXXXXXX6937",
+        "one_click_card_alias": "",
+        "card_token": "a52aa1c09e11ac56926005",
+        "card_name": "raghu_visa",
+        "name_on_card": "DUMMY",
+        "card_brand": "VISA",
+        "card_bin": "439040621",
+        "isDomestic": "Y",
+        "card_cvv": 0,
+        "PAR": "V0010013022320257414953977387"
+      }
     }
   }
-}
-```
-
-</details>
+  ```
+</Accordion>
 
 ## Request parameters
 
-<details>
-  <summary>Reference info for request parameters</summary>
-
+<Accordion title="Reference info for request parameters" icon="fa-flask">
 <KeyHashForGeneralParametersDescription />
-
-</details>
+</Accordion>
