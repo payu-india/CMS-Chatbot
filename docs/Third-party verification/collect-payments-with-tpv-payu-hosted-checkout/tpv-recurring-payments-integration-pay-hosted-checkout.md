@@ -1,8 +1,9 @@
 ---
-title: TPV Recurring Payments Integration - Pay Hosted Checkout
+title: Recurring Payments Integration
 deprecated: false
 hidden: true
 metadata:
+  title: TPV Recurring Payments Integration - PayU Hosted Checkout
   robots: index
 ---
 PayU Hosted Checkout integration for **TPV (Third Party Verification) Payment Mode** supports both **Net Banking (NB)** and **Unified Payment Interface (UPI)** payment methods for subscription-based or autopay payments.
