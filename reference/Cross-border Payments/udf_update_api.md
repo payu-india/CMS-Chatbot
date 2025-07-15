@@ -17,8 +17,7 @@ The **UDF Update** API is used to update the UDF1-UDF5 values of a transaction. 
 
 <GENERALAPIsEnvironment />
 
-## Reference info for request parameters
-
+<Accordion title="Reference info for request parameters" icon="fa-flask">
 <HTMLBlock>{`
 <table>
   <thead>
@@ -47,13 +46,14 @@ The **UDF Update** API is used to update the UDF1-UDF5 values of a transaction. 
   </tbody>
 </table>
 `}</HTMLBlock>
+</Accordion>
 
 <br />
 
-<details>
-  <summary>Sample request for Cards </summary>
 
-  ```
+
+<Accordion title="Sample request for Cards" icon="fa-code">
+```
   curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
   --form 'key="PRiQvJ"' \
   --form 'command="udf_update"' \
@@ -64,12 +64,10 @@ The **UDF Update** API is used to update the UDF1-UDF5 values of a transaction. 
   --form 'var6="INV000000005"' \
   --form 'hash="{{hash}}"'
   ```
-</details>
+</Accordion>
 
-<details>
-  <summary>Sample request for UPI autopay </summary>
-
-  ```
+<Accordion title="Sample request for UPI autopay" icon="fa-code">
+```
   curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
   --form 'key="PRiQvJ"' \
   --form 'command="udf_update"' \
@@ -78,12 +76,10 @@ The **UDF Update** API is used to update the UDF1-UDF5 values of a transaction. 
   --form 'var4="INV-123_1231||MerchantName"' \
   --form 'hash="{{hash}}"'
   ```
-</details>
+</Accordion>
 
-<details>
-  <summary>Sample response</summary>
-
-  ### Success Scenario
+<Accordion title="Sample response" icon="fa-reply">
+### Success Scenario
 
   * If successfully updated for cards
 
@@ -141,6 +137,6 @@ The **UDF Update** API is used to update the UDF1-UDF5 values of a transaction. 
       "msg": "Invalid Hash."
   }
   ```
-</details>
+</Accordion>
 
 ## Request parameters
