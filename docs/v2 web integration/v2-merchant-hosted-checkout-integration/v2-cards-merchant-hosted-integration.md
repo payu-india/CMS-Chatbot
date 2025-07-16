@@ -68,55 +68,54 @@ You must hash the request parameters using the following hash logic:
 sha512(<Body data> + '|' + date + '|' + merchant_secret}
 ```
 
-Where, \<Body data\> contains the request Body posted with the request.
+Where, \<Body data> contains the request Body posted with the request.
 
 <details>
-<summary>Sample header code</summary>
+  <summary>Sample header code</summary>
 
-```
-var merchant_key = 'smsplus';
-var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
+  ```
+  var merchant_key = 'smsplus';
+  var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
 
-// date
-var date = new Date();
-// var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-date = date.toUTCString();
+  // date
+  var date = new Date();
+  // var date = "Wed, 28 Jun 2023 11:25:19 GMT";
+  date = date.toUTCString();
 
-// authorization
-var authorization = getAuthHeader(date);
-console.log(authorization);
+  // authorization
+  var authorization = getAuthHeader(date);
+  console.log(authorization);
 
-function getAuthHeader(date) {
-var AUTH_TYPE = 'sha512';
-var data = isEmpty(request['data'])?"":request['data'];
-var hash_string = data + '|' + date + '|' + merchant_secret;
-console.log("Hash String is ", hash_string);
-var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-return authHeader;
-}
+  function getAuthHeader(date) {
+  var AUTH_TYPE = 'sha512';
+  var data = isEmpty(request['data'])?"":request['data'];
+  var hash_string = data + '|' + date + '|' + merchant_secret;
+  console.log("Hash String is ", hash_string);
+  var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
+  var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
+  return authHeader;
+  }
 
-pm.environment.set('date', date);
-pm.environment.set('authorization', authorization);
-pm.environment.set('merchant_key',merchant_key);
-pm.environment.set('merchant_secret',merchant_secret);
+  pm.environment.set('date', date);
+  pm.environment.set('authorization', authorization);
+  pm.environment.set('merchant_key',merchant_key);
+  pm.environment.set('merchant_secret',merchant_secret);
 
-function isEmpty(obj) {
-for(var key in obj) {
-if(obj.hasOwnProperty(key))
-return false;
-}
-return true;
-}
-```
-
+  function isEmpty(obj) {
+  for(var key in obj) {
+  if(obj.hasOwnProperty(key))
+  return false;
+  }
+  return true;
+  }
+  ```
 </details>
 
 <br />
 
 ### Request Body
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -137,7 +136,7 @@ return true;
     <tr>
       <td>
         accountId
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -151,8 +150,8 @@ return true;
 
     <tr>
       <td>
-        referenceId\
-         `mandatory`
+        referenceId
+        `mandatory`
       </td>
 
       <td>
@@ -166,14 +165,14 @@ return true;
 
     <tr>
       <td>
-        amount\
-         `optional`
+        amount
+        `optional`
       </td>
 
       <td>
-        `String` Amount of the transaction.  
+        `String` Amount of the transaction.
 
-        * \*Note\*\*: This value will not be considered as the transaction. Only the details in the `order.paymentChargeSpecificationparameter.price`field will be considered.
+        * *Note*\*: This value will not be considered as the transaction. Only the details in the `order.paymentChargeSpecificationparameter.price`field will be considered.
       </td>
 
       <td>
@@ -184,7 +183,7 @@ return true;
     <tr>
       <td>
         currency\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -199,9 +198,10 @@ return true;
     <tr>
       <td>
         paymentSource
-```
 
-        optional
+        ```
+
+                optional
         ```
       </td>
 
@@ -217,7 +217,7 @@ return true;
     <tr>
       <td>
         paymentMethod\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -225,17 +225,17 @@ return true;
       </td>
 
       <td>
-         \{\
-                "name": "NetBanking",	\
-                "bankCode": "TESTNB"\
-            }
+        \{\
+        "name": "NetBanking",
+        "bankCode": "TESTNB"
+        }
       </td>
     </tr>
 
     <tr>
       <td>
         order\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -250,7 +250,7 @@ return true;
     <tr>
       <td>
         additionalInfo\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -265,7 +265,7 @@ return true;
     <tr>
       <td>
         callBackActions\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -315,11 +315,11 @@ return true;
     <tr>
       <td>
         name
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
-        `String` This field must contain the payment mode code. For cards, this must contain any of the following:  
+        `String` This field must contain the payment mode code. For cards, this must contain any of the following:
 
         * creditcard for credit card
         * debitcard for debit card
@@ -329,7 +329,7 @@ return true;
     <tr>
       <td>
         bankCode\
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -368,7 +368,7 @@ return true;
     <tr>
       <td>
         cardNumber
-         `mandatory for physical card`
+        `mandatory for physical card`
       </td>
 
       <td>
@@ -378,8 +378,8 @@ return true;
 
     <tr>
       <td>
-        validThrough\
-         `mandatory for physical card`
+        validThrough
+        `mandatory for physical card`
       </td>
 
       <td>
@@ -389,8 +389,8 @@ return true;
 
     <tr>
       <td>
-        ownerName\
-         `mandatory for physical card`
+        ownerName
+        `mandatory for physical card`
       </td>
 
       <td>
@@ -400,19 +400,19 @@ return true;
 
     <tr>
       <td>
-        cvv\
-         `mandatory for physical card`
+        cvv
+        `mandatory for physical card`
       </td>
 
       <td>
-        `String`This field must contain the CVV printed on the back of the card.  
+        `String`This field must contain the CVV printed on the back of the card.
       </td>
     </tr>
 
     <tr>
       <td>
-        tavv\
-         `mandatory for saved card`
+        tavv
+        `mandatory for saved card`
       </td>
 
       <td>
@@ -422,8 +422,8 @@ return true;
 
     <tr>
       <td>
-        last4Digits\
-         `mandatory for saved card`
+        last4Digits
+        `mandatory for saved card`
       </td>
 
       <td>
@@ -433,12 +433,12 @@ return true;
 
     <tr>
       <td>
-        cardTokenType\
-         `mandatory for saved card`
+        cardTokenType
+        `mandatory for saved card`
       </td>
 
       <td>
-        `String`This field must contain the any of the following based on the:  
+        `String`This field must contain the any of the following based on the:
 
         * PAYU
         * NETWORK
@@ -449,7 +449,7 @@ return true;
     <tr>
       <td>
         cardToken\
-         `mandatory for saved card`
+        `mandatory for saved card`
       </td>
 
       <td>
@@ -478,7 +478,7 @@ return true;
     <tr>
       <td>
         productInfo
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -488,8 +488,8 @@ return true;
 
     <tr>
       <td>
-        userDefinedFields\
-         `optional`
+        userDefinedFields
+        `optional`
       </td>
 
       <td>
@@ -499,8 +499,8 @@ return true;
 
     <tr>
       <td>
-        paymentChargeSpecification\
-         `mandatory`
+        paymentChargeSpecification
+        `mandatory`
       </td>
 
       <td>
@@ -581,7 +581,7 @@ return true;
     <tr>
       <td>
         successAction
-         `mandatory`
+        `mandatory`
       </td>
 
       <td>
@@ -591,8 +591,8 @@ return true;
 
     <tr>
       <td>
-        failureAction\
-         `mandatory`
+        failureAction
+        `mandatory`
       </td>
 
       <td>
@@ -602,8 +602,8 @@ return true;
 
     <tr>
       <td>
-        cancelAction\
-         `mandatory`
+        cancelAction
+        `mandatory`
       </td>
 
       <td>
@@ -613,8 +613,8 @@ return true;
 
     <tr>
       <td>
-        codAction\
-         `optional`
+        codAction
+        `optional`
       </td>
 
       <td>
@@ -624,8 +624,8 @@ return true;
 
     <tr>
       <td>
-        termAction\
-         `optional`
+        termAction
+        `optional`
       </td>
 
       <td>
@@ -635,8 +635,8 @@ return true;
 
     <tr>
       <td>
-        returnAction\
-         `optional`
+        returnAction
+        `optional`
       </td>
 
       <td>
@@ -687,7 +687,7 @@ return true;
 
 ### billingDetails object field descriptions
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -722,7 +722,7 @@ return true;
 
     <tr>
       <td>
-        lastName\
+        lastName
         `optional`
       </td>
 
@@ -737,7 +737,7 @@ return true;
 
     <tr>
       <td>
-        phone\
+        phone
         `mandatory`
       </td>
 
@@ -752,7 +752,7 @@ return true;
 
     <tr>
       <td>
-        email\
+        email
         `mandatory`
       </td>
 
@@ -767,7 +767,7 @@ return true;
 
     <tr>
       <td>
-        city\
+        city
         `optional`
       </td>
 
@@ -782,7 +782,7 @@ return true;
 
     <tr>
       <td>
-        state\
+        state
         `optional`
       </td>
 
@@ -797,7 +797,7 @@ return true;
 
     <tr>
       <td>
-        country\
+        country
         `optional`
       </td>
 
@@ -812,7 +812,7 @@ return true;
 
     <tr>
       <td>
-        zipCode\
+        zipCode
         `optional`
       </td>
 
@@ -830,7 +830,7 @@ return true;
 ## Sample request
 
 ```curl
-curl --location 'https://pp78api.payu.in/v2/payments' \
+curl --location 'https://apitest.payu.in/v2/payments' \
 --header 'date: Thu, 27 Mar 2025 10:12:27 GMT' \
 --header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="ec84843a663143bb89391f6fa2d4b9404bab1543a3eee81263b4a507ebf5d289d8fad1fbcdd59da820951e3e0f9b0b0b3d1bad9b41338804e7c42a8a6197c6e9"' \
 --header 'Content-Type: application/json' \
@@ -932,7 +932,7 @@ Array
 )
 ```
 
-## Step 3: Verify the Payment
+## Step 3: Verify the payment
 
 Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api) under API Reference.
 
