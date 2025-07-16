@@ -13,15 +13,15 @@ next:
 You can split during the transaction by amount, where you must ensure that the sum of all splits is equal to the parent transaction amount.
 
 > 📘 Note:
-> 
+>
 > You must specify two decimal places for each split, but ensure that the sum of split amounts equals the transaction amount.
 
 **Environment**
 
-|                            |                                       |
-| :------------------------- | :------------------------------------ |
-| **Test Environment**       | \<https://apitest.payu.in/v2/payments> |
-| **Production Environment** | \<https://api.payu.in/v2/payments>     |
+|                            |                                                                            |
+| :------------------------- | :------------------------------------------------------------------------- |
+| **Test Environment**       | [https://apitest.payu.in/v2/payments](https://apitest.payu.in/v2/payments) |
+| **Production Environment** | [https://api.payu.in/v2/payments>](https://api.payu.in/v2/payments>)       |
 
 ## Request parameters
 
@@ -49,48 +49,47 @@ You must hash the request parameters using the following hash logic:
 sha512(<Body data> + '|' + date + '|' + merchant_secret}
 ```
 
-Where, \<Body data\> contains the request Body posted with the request.
+Where, \<Body data> contains the request Body posted with the request.
 
 <details>
-<summary>Sample header code</summary>
+  <summary>Sample header code</summary>
 
-```
-var merchant_key = 'smsplus';
-var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
+  ```
+  var merchant_key = 'smsplus';
+  var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
 
-// date
-var date = new Date();
-// var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-date = date.toUTCString();
+  // date
+  var date = new Date();
+  // var date = "Wed, 28 Jun 2023 11:25:19 GMT";
+  date = date.toUTCString();
 
-// authorization
-var authorization = getAuthHeader(date);
-console.log(authorization);
+  // authorization
+  var authorization = getAuthHeader(date);
+  console.log(authorization);
 
-function getAuthHeader(date) {
-var AUTH_TYPE = 'sha512';
-var data = isEmpty(request['data'])?"":request['data'];
-var hash_string = data + '|' + date + '|' + merchant_secret;
-console.log("Hash String is ", hash_string);
-var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-return authHeader;
-}
+  function getAuthHeader(date) {
+  var AUTH_TYPE = 'sha512';
+  var data = isEmpty(request['data'])?"":request['data'];
+  var hash_string = data + '|' + date + '|' + merchant_secret;
+  console.log("Hash String is ", hash_string);
+  var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
+  var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
+  return authHeader;
+  }
 
-pm.environment.set('date', date);
-pm.environment.set('authorization', authorization);
-pm.environment.set('merchant_key',merchant_key);
-pm.environment.set('merchant_secret',merchant_secret);
+  pm.environment.set('date', date);
+  pm.environment.set('authorization', authorization);
+  pm.environment.set('merchant_key',merchant_key);
+  pm.environment.set('merchant_secret',merchant_secret);
 
-function isEmpty(obj) {
-for(var key in obj) {
-if(obj.hasOwnProperty(key))
-return false;
-}
-return true;
-}
-```
-
+  function isEmpty(obj) {
+  for(var key in obj) {
+  if(obj.hasOwnProperty(key))
+  return false;
+  }
+  return true;
+  }
+  ```
 </details>
 
 ### Request body
@@ -186,7 +185,6 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 ### paymentMethod object fields description
 
 <HTMLBlock>{`
@@ -213,7 +211,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### order object fields description
 
@@ -247,7 +244,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 #### userDefinedFields object fields description
 
@@ -287,7 +283,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 <br />
 
@@ -371,7 +366,6 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 ### splitRequest object fields description
 
 The following fields are included in the **splitRequest** parameter in a JSON format to specify the absolute split details. The fields in the JSON format are described in the following table:
@@ -411,14 +405,13 @@ The following fields are included in the **splitRequest** parameter in a JSON f
 </table>
 `}</HTMLBlock>
 
-
 #### JSON request structure of splitInfo
 
 The sample JSON structure for the **splitInfo** field:
 
 > 📘 Notes:
-> 
-> - Before peruse the following sample code, remove the white spaces as some editors may introduce junk characters.
+>
+> * Before peruse the following sample code, remove the white spaces as some editors may introduce junk characters.
 
 ```plaintext
 {
@@ -440,7 +433,7 @@ The sample JSON structure for the **splitInfo** field:
 ## Sample request
 
 ```
-curl --location 'http://localhost:8080/apilayer/v2/payments' \
+curl --location 'http://apitest.payu.in/v2/payments' \
 --header 'date: Tue, 05 Nov 2024 06:12:57 GMT' \
 --header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="d583ff8069c7dfa8340464a24bdd01cbebf4432b4dfe4de862065cc9c9dc622c24c77cb1ac1142bf581ec07eca8d0ec78a66db93f6cd557d0da552f05c0825e3"' \
 --header 'Content-Type: application/json' \
@@ -536,7 +529,7 @@ Array
 ```
 
 > 📘 Reference:
-> 
+>
 > To check the transaction status, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
 
 ### Sample response with Verify Payment API for Split payments
@@ -604,7 +597,7 @@ Array
 ```
 
 > 📘 Note:
-> 
+>
 > In the response, the amount shown in the **amount** field includes the amount shown in the **subvention\_amount** field.
 
 #### Convenience model
