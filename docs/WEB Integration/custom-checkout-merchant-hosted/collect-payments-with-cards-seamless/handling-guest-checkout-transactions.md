@@ -2,7 +2,7 @@
 title: Handling Guest Checkout Transactions
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Handling Guest Checkout Transaction
   description: >-
