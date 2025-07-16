@@ -75,7 +75,7 @@ All the credit card, Net Banking, and cash card options are displayed (as the wh
 
 For an example procedure on how to enforce payment with a credit card, refer to Enforce Payment with Credit Card.
 
-## Hide Specific Payment Modes
+## Hide specific payment modes
 
 **Parameter name : drop\_category**
 
@@ -96,7 +96,7 @@ To drop the whole category, use the following values:
 | BNPL        | BNPL           |
 | Sodexo      | SODEXO         |
 
-To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration). 
+To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration).
 
 ## Checkout customization examples
 
