@@ -1,5 +1,5 @@
 ---
-title: v2 S2S Direct Authentication Integration
+title: S2S Direct Authentication Integration
 excerpt: ''
 deprecated: false
 hidden: true
