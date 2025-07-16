@@ -1,5 +1,5 @@
 ---
-title: v2 PayU Hosted Checkout
+title: PayU Hosted Checkout
 excerpt: ''
 deprecated: false
 hidden: true
