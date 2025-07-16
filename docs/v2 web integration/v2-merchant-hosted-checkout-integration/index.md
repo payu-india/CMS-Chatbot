@@ -1,5 +1,5 @@
 ---
-title: v2 Merchant Hosted Checkout
+title: Merchant Hosted Checkout
 excerpt: ''
 deprecated: false
 hidden: true
