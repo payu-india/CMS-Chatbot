@@ -18,21 +18,21 @@ Collect payments using Net Banking with Merchant Hosted Checkout integration usi
 2. [Verify Payment](#step-3-verify-the-payment)
 
 > 👍 Before you begin:
-> 
+>
 > PayU recommends you to integrate with Test environment initially. For more information, contact you PayU Key Account Manager (KAM) or PayU Support.
 
 ## Step 1: Initiate the payment to PayU
 
 The following parameters vary for the NetBanking payment mode in the **Collect Payment** API (**v2/payments** API). For the API reference. refer to [Collect Payment - Net Banking](https://docs.payu.in/v2/reference/_payment_v2_merchant_hosted_netbanking).
 
-|                            |                                       |
-| :------------------------- | :------------------------------------ |
-| **Test Environment**       | \<https://apitest.payu.in/v2/payments> |
-| **Production Environment** | \<https://api.payu.in/v2/payments>     |
+|                            |                                                                                |
+| :------------------------- | :----------------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://apitest.payu.in/v2/payments>](https://apitest.payu.in/v2/payments>) |
+| **Production Environment** | \<[https://api.payu.in/v2/payments>](https://api.payu.in/v2/payments>)         |
 
 ## Request parameters
 
-### Request Header
+### Request header
 
 | Parameter     | Description                                                                                                                                                                                                    |
 | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -56,48 +56,47 @@ You must hash the request parameters using the following hash logic:
 sha512(<Body data> + '|' + date + '|' + merchant_secret}
 ```
 
-Where, \<Body data\> contains the request Body posted with the request.
+Where, \<Body data> contains the request Body posted with the request.
 
 <details>
-<summary>Sample header code</summary>
+  <summary>Sample header code</summary>
 
-```
-var merchant_key = 'smsplus';
-var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
+  ```
+  var merchant_key = 'smsplus';
+  var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
 
-// date
-var date = new Date();
-// var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-date = date.toUTCString();
+  // date
+  var date = new Date();
+  // var date = "Wed, 28 Jun 2023 11:25:19 GMT";
+  date = date.toUTCString();
 
-// authorization
-var authorization = getAuthHeader(date);
-console.log(authorization);
+  // authorization
+  var authorization = getAuthHeader(date);
+  console.log(authorization);
 
-function getAuthHeader(date) {
-var AUTH_TYPE = 'sha512';
-var data = isEmpty(request['data'])?"":request['data'];
-var hash_string = data + '|' + date + '|' + merchant_secret;
-console.log("Hash String is ", hash_string);
-var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-return authHeader;
-}
+  function getAuthHeader(date) {
+  var AUTH_TYPE = 'sha512';
+  var data = isEmpty(request['data'])?"":request['data'];
+  var hash_string = data + '|' + date + '|' + merchant_secret;
+  console.log("Hash String is ", hash_string);
+  var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
+  var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
+  return authHeader;
+  }
 
-pm.environment.set('date', date);
-pm.environment.set('authorization', authorization);
-pm.environment.set('merchant_key',merchant_key);
-pm.environment.set('merchant_secret',merchant_secret);
+  pm.environment.set('date', date);
+  pm.environment.set('authorization', authorization);
+  pm.environment.set('merchant_key',merchant_key);
+  pm.environment.set('merchant_secret',merchant_secret);
 
-function isEmpty(obj) {
-for(var key in obj) {
-if(obj.hasOwnProperty(key))
-return false;
-}
-return true;
-}
-```
-
+  function isEmpty(obj) {
+  for(var key in obj) {
+  if(obj.hasOwnProperty(key))
+  return false;
+  }
+  return true;
+  }
+  ```
 </details>
 
 <br />
@@ -209,7 +208,6 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 ### paymentMethod object fields description
 
 <HTMLBlock>{`
@@ -236,7 +234,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### order object fields description
 
@@ -270,7 +267,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 #### userDefinedFields object fields description
 
@@ -310,7 +306,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### callbackActions object fields description
 
@@ -363,8 +358,7 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
-## beneficiaryDetaIl object fields description
+### beneficiaryDetail object fields description
 
 | Field                               | Description                                                        | Example      |
 | ----------------------------------- | ------------------------------------------------------------------ | ------------ |
@@ -373,7 +367,7 @@ return true;
 | beneficiaryAccountType (required)   | The type of the beneficiary's bank account.                        | SAVINGS      |
 
 > ❗️ Error Handling
-> 
+>
 > If any error message is displayed with an error code, refer to the <a href="error-codes" target="_blank">Error Codes</a> section to understand the reason for these error codes.
 
 ### siDetails object fields description
@@ -462,7 +456,6 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 ### billingDetails object field descriptions
 
 <HTMLBlock>{`
@@ -542,7 +535,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### Sample request
 
@@ -626,7 +618,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 ### Sample response
 
 > 📘 Note:
-> 
+>
 > Reverse hashing of the response is not required with that of v2/payment API.
 
 ```
@@ -643,9 +635,5 @@ Array
 Verify the transaction details using the Verification APIs. For more information, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api) under API Reference.
 
 > 📘 Tip
-> 
+>
 > The transaction ID that you posted in Step 1 with PayU must be used here.
-
-## Check Net Banking health
-
-You can check whether the Net Banking server is up and running using the **getNetBankingStatus** API. If the Net Banking server is down for a bank, you can inform your customers that the Net Banking server is down. For more information on the **getNetBankingStatus** API, refer to [Get Net Banking Status API](https://docs.payu.in/v1/reference/get_net_banking_status_api).
