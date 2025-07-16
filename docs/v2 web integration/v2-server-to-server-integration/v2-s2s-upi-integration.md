@@ -1,5 +1,5 @@
 ---
-title: v2 S2S UPI Integration
+title: S2S UPI Integration
 excerpt: ''
 deprecated: false
 hidden: true
