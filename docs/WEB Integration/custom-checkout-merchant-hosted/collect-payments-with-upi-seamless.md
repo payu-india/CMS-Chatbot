@@ -2,7 +2,7 @@
 title: UPI Integration
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Collect Payments with UPI - Merchant Hosted Checkout
   description: >-
