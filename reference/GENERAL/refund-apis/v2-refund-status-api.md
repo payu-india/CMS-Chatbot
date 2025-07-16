@@ -11,8 +11,8 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 
 |                        |                                                                              |
 | :--------------------- | :--------------------------------------------------------------------------- |
-| Production Environment | [https://test.payu.in/v2/refundstatus](https://test.payu.in/v2/refundstatus) |
-| Test Environment       | [https://info.payu.in/v2/refundstatus](https://info.payu.in/v2/refundstatus) |
+| Test Environment       | [https://test.payu.in/v2/refundstatus](https://test.payu.in/v2/refundstatus) |
+| Production Environment | [https://info.payu.in/v2/refundstatus](https://info.payu.in/v2/refundstatus) |
 
 ## Request parameters
 
@@ -94,7 +94,7 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 ### Sample request
 
 ```bash
-curl --location 'http://localhost:8080/v1/transaction' \
+curl --location 'https://test.payu.in/v2/refundstatus)' \
 --header 'mid: 8759546' \
 --header 'Content-Type: application/json' \
 --header 'Info-Command: aggregator_check_action_status_txnid' \
