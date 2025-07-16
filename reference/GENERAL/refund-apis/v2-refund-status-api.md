@@ -7,11 +7,12 @@ metadata:
 ---
 The **Refund Status** API for Split Payments provides a specialized mechanism for tracking refund statuses in split payment scenarios. It's designed for aggregator merchants who process payments divided among multiple recipients. Unlike the v1 API, this enhanced version provides complete visibility into parent-child transaction relationships, refund actions, and settlement details.
 
-### Endpoint
+**Endpoint**
 
-```
-POST /v1/transaction
-```
+|                        |                                                                              |
+| :--------------------- | :--------------------------------------------------------------------------- |
+| Production Environment | [https://test.payu.in/v2/refundstatus](https://test.payu.in/v2/refundstatus) |
+| Test Environment       | [https://info.payu.in/v2/refundstatus](https://info.payu.in/v2/refundstatus) |
 
 ## Request parameters
 
