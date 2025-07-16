@@ -2,7 +2,7 @@
 title: Handling 3DS Secure 2.0 Transaction
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Handling 3DS Secure 2.0 Transaction
   description: >-
