@@ -25,7 +25,7 @@ Integration requires two main steps:
 
 ## Step 1: Make the transaction request to PayU
 
-### Environment URLs
+**Environment**
 
 | Environment            | URL                                                                        |
 | ---------------------- | -------------------------------------------------------------------------- |
