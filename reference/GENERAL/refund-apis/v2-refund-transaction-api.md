@@ -100,7 +100,7 @@ The **Refund Transaction** API allows merchants to initiate refunds for transact
 ### Sample Request
 
 ```bash
-curl --location 'http://localhost:8085/apilayer/v2/refund/secure' \
+curl --location 'https://test.payu.in/v2/refund' \
 --header 'Content-Type: application/json' \
 --header 'mid: 8006653' \
 --header 'Date: Thu, 17 Feb 2022 08:17:59 GMT' \
