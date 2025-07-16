@@ -1,5 +1,5 @@
 ---
-title: v2 Payment Consent Transaction with PayU Hosted Checkout
+title: Payment Consent Transaction with PayU Hosted Checkout
 deprecated: false
 hidden: true
 metadata:
