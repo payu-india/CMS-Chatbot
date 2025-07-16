@@ -9,9 +9,10 @@ The **Refund Transaction** API allows merchants to initiate refunds for transact
 
 ### Endpoint
 
-```
-POST /v1/transaction
-```
+|                        |                                                                  |
+| :--------------------- | :--------------------------------------------------------------- |
+| Production Environment | [https://test.payu.in/v2/refund](https://test.payu.in/v2/refund) |
+| Test Environment       | [https://info.payu.in/v2/refund](https://info.payu.in/v2/refund) |
 
 ## Request parameters
 
