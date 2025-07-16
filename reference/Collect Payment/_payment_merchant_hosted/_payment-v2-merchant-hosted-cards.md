@@ -13,15 +13,15 @@ next:
 You can collect payments from customers with leading wallets using the Merchant Hosted integration. You need to ensure that **CreditCard** or **DebitCard** for the **paymentMethod.name** parameter and  card code based on the desired card provider for the **paymentMethod.bankcode** parameter is posted.
 
 > 📘 Note:
-> 
+>
 > PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team ([integration@pay.in](mailto:integration@pay.in)).
 
 **Environment**
 
-|                            |                                       |
-| :------------------------- | :------------------------------------ |
-| **Test Environment**       | \<https://apitest.payu.in/v2/payments> |
-| **Production Environment** | \<https://api.payu.in/v2/payments>     |
+|                            |                                                                                |
+| :------------------------- | :----------------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://apitest.payu.in/v2/payments>](https://apitest.payu.in/v2/payments>) |
+| **Production Environment** | \<[https://api.payu.in/v2/payments>](https://api.payu.in/v2/payments>)         |
 
 ## Request parameters
 
@@ -49,48 +49,47 @@ You must hash the request parameters using the following hash logic:
 sha512(<Body data> + '|' + date + '|' + merchant_secret}
 ```
 
-Where, \<Body data\> contains the request Body posted with the request.
+Where, \<Body data> contains the request Body posted with the request.
 
 <details>
-<summary>Sample header code</summary>
+  <summary>Sample header code</summary>
 
-```
-var merchant_key = 'smsplus';
-var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
+  ```
+  var merchant_key = 'smsplus';
+  var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
 
-// date
-var date = new Date();
-// var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-date = date.toUTCString();
+  // date
+  var date = new Date();
+  // var date = "Wed, 28 Jun 2023 11:25:19 GMT";
+  date = date.toUTCString();
 
-// authorization
-var authorization = getAuthHeader(date);
-console.log(authorization);
+  // authorization
+  var authorization = getAuthHeader(date);
+  console.log(authorization);
 
-function getAuthHeader(date) {
-var AUTH_TYPE = 'sha512';
-var data = isEmpty(request['data'])?"":request['data'];
-var hash_string = data + '|' + date + '|' + merchant_secret;
-console.log("Hash String is ", hash_string);
-var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-return authHeader;
-}
+  function getAuthHeader(date) {
+  var AUTH_TYPE = 'sha512';
+  var data = isEmpty(request['data'])?"":request['data'];
+  var hash_string = data + '|' + date + '|' + merchant_secret;
+  console.log("Hash String is ", hash_string);
+  var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
+  var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
+  return authHeader;
+  }
 
-pm.environment.set('date', date);
-pm.environment.set('authorization', authorization);
-pm.environment.set('merchant_key',merchant_key);
-pm.environment.set('merchant_secret',merchant_secret);
+  pm.environment.set('date', date);
+  pm.environment.set('authorization', authorization);
+  pm.environment.set('merchant_key',merchant_key);
+  pm.environment.set('merchant_secret',merchant_secret);
 
-function isEmpty(obj) {
-for(var key in obj) {
-if(obj.hasOwnProperty(key))
-return false;
-}
-return true;
-}
-```
-
+  function isEmpty(obj) {
+  for(var key in obj) {
+  if(obj.hasOwnProperty(key))
+  return false;
+  }
+  return true;
+  }
+  ```
 </details>
 
 ### Request body
@@ -185,7 +184,6 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 ### paymentMethod object fields description
 
 <HTMLBlock>{`
@@ -222,7 +220,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 #### paymentCard object fields description
 
@@ -292,7 +289,6 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 ### additionalInfo object fields description
 
 <HTMLBlock>{`
@@ -332,7 +328,6 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 ### order object fields description
 
 <HTMLBlock>{`
@@ -365,7 +360,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 #### userDefinedFields object fields description
 
@@ -405,7 +399,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### callbackActions object fields description
 
@@ -458,9 +451,8 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 > ❗️ Error Handling
-> 
+>
 > If any error message is displayed with an error code, refer to the [Error Codes](https://docs.payu.in/v1/reference/error-codes) section to understand the reason for these error codes.
 
 #### paymentChargeSpecification object fields description
@@ -486,7 +478,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### billingDetails object field descriptions
 
@@ -568,11 +559,10 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 ## Sample request
 
 ```curl
-curl --location 'https://pp78api.payu.in/v2/payments' \
+curl --location 'https://apitest.payu.in/v2/payments' \
 --header 'date: Thu, 27 Mar 2025 10:12:27 GMT' \
 --header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="ec84843a663143bb89391f6fa2d4b9404bab1543a3eee81263b4a507ebf5d289d8fad1fbcdd59da820951e3e0f9b0b0b3d1bad9b41338804e7c42a8a6197c6e9"' \
 --header 'Content-Type: application/json' \
@@ -692,7 +682,6 @@ curl --location 'https://pp78api.payu.in/v2/payments' \
 </table>
 `}</HTMLBlock>
 
-
 ## Sample response
 
 ```
@@ -705,5 +694,5 @@ Array
 ```
 
 > 📘 Reference:
-> 
+>
 > To check the transaction status, refer to[Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
