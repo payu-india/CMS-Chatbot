@@ -1,3 +1,4 @@
+- integration-steps
 - collect-payments-with-net-banking-seamless
 - collect-payments-with-cards-seamless
 - collect-payments-with-emi-seamless
@@ -10,4 +11,3 @@
 - test-integration
 - integration-checklist-merchant-hosted-checkout
 - generate-hash-merchant-hosted
-- integration-steps
