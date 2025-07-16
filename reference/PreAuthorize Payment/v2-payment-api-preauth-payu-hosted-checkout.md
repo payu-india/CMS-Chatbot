@@ -1,5 +1,5 @@
 ---
-title: v2 Payment API Preauth PayU Hosted Checkout
+title: Payment API Preauth PayU Hosted Checkout
 deprecated: false
 hidden: true
 metadata:
