@@ -1,5 +1,5 @@
 ---
-title: Cards Classic Integration - v2 Payment API
+title: Cards Classic Integration S2S - v2 Payment API
 excerpt: ''
 deprecated: false
 hidden: true
