@@ -66,15 +66,27 @@ The following process diagram illustrates the Merchant Hosted Checkout workflow:
 
 Merchant Hosted Checkout supports a wide range of payment methods: 
 
-* **Credit Cards and Debit Cards**: Visa, Mastercard, American Express, etc. 
-* **Net Banking**: Collect payments through EFTNET (NEFT/RTGS) transactions using PayU’s Merchant Hosted Checkout integration. Merchants should always send both customer account no and customer IFSC Code in Request. For NEFT/RTGS TPV, the flow will work for txn\_s2s\_flow = 1 or txn\_s2s\_flow = 4 as is. EFTAXTPV must be used as bankcode for NEFT/RTGS. The api\_version “6” must be passed for this parameter for NEFT/RTGS. 
-* **Wallets**: Integrate with popular wallets like Paytm, PhonePe, and others. 
-* **UPI**: Collect payments via UPI using the customer’s UPI ID. 
-* **EMI (Equated Monthly Installments)**: Offer customers the option to pay in installments. 
-* **BNPL (Buy Now, Pay Later)**: Integrate with BNPL providers to allow customers to spread payments over time. 
+<br />
+
+* <br />
+* <br />
+* <br />
+* <br />
+* <br />
+* <br />
+* <br />
+* [EFTNET (NEFT/RTGS) Integration](https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless)
+* <br />
+* **Credit Cards and Debit Cards**: Visa, Mastercard, American Express, etc. For more information, refer to [Cards Integration](https://docs.payu.in/docs/collect-payments-with-cards-seamless).
+* **Net Banking**: Collect payments through Net Banking using PayU’s Merchant Hosted Checkout integration. Merchants should always send both customer account no and customer IFSC Code in Request. For more information, refer to [Net Banking Integration](https://docs.payu.in/docs/collect-payments-with-net-banking-seamless).
+* **Wallets**: Integrate with popular wallets like Paytm, PhonePe, and others.   For more information, refer to [Wallets Integration](doc:collect-payments-with-wallets-seamless).
+* **UPI**: Collect payments via UPI using the customer’s UPI ID.  For more information, [UPI Integration](https://docs.payu.in/docs/collect-payments-with-upi-seamless).
+* **EMI (Equated Monthly Installments)**: Offer customers the option to pay in instalments. For more information, refer to [EMI Integration](https://docs.payu.in/docs/collect-payments-with-emi-seamless).
+* **BNPL (Buy Now, Pay Later)**: Integrate with BNPL providers to allow customers to spread payments over time. For more information, refer to
 * **PayPal**: Facilitate international payments through PayPal. If you’re using the PayU Hosted Checkout or Merchant Hosted integration, you need to activate PayPal from PayU Dashboard. 
-* **Pluxee Card**: Integrate with Pluxee (formerly Sodexo) meal cards. For Sodexo payment option mode or PG is MC and Ibibo\_code or bankcodeis SODEXO. In case customer provides the consent to save the card details with merchant on their check-out page: Merchant should pass save\_sodexo\_card parameter value as 1 when initiating the transaction using \_payment API. Merchants are recommended to use the check\_balance API for checking the Sodexo card balance. 
-* **QR Code**: Enable payments via QR codes. 
+* **Pluxee Card**: Integrate with Pluxee (formerly Sodexo) meal cards. For Sodexo payment option mode or PG is MC and Ibibo\_code or bankcodeis SODEXO. In case customer provides the consent to save the card details with merchant on their check-out page: Merchant should pass save\_sodexo\_card parameter value as 1 when initiating the transaction using \_payment API. Merchants are recommended to use the check\_balance API for checking the Sodexo card balance. For more information, refer to [Pluxee Card Integration](https://docs.payu.in/docs/integrate-with-merchant-hosted-checkout-for-pluxee-card)/
+* **EFT/NEFT**: Integrate with EFT/NEFT (National Electronics Fund Transfer), where **pg=NEFTRTGS** and bankcode parameter is based on the bank or institution. For more information, refer to [EFTNET (NEFT/RTGS) Integration](doc:collect-payments-with-eftnet-neftrtgs-seamless)
+* **QR Code**: Enable payments via QR codes. For more information, refer to [QR Integration](https://docs.payu.in/docs/merchant-hosted-qr-integration).
 
 > 📘 Note:
 >
