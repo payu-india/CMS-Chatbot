@@ -23,7 +23,7 @@ Integration requires two main steps:
 1. **Make the transaction request to PayU** - Send payment details to PayU and redirect customers to PayU checkout page
 2. **Verify the payment** - After payment, verify the transaction details using PayU's verification API
 
-## Step 1: Make the Transaction Request to PayU
+## Step 1: Make the transaction request to PayU
 
 ### Environment URLs
 
@@ -32,11 +32,11 @@ Integration requires two main steps:
 | Test Environment       | [https://apitest.payu.in/v2/payments](https://apitest.payu.in/v2/payments) |
 | Production Environment | [https://api.payu.in/v2/payments](https://api.payu.in/v2/payments)         |
 
-### Request Format
+### Request format
 
 A request to the v2 Payment API requires specific headers and a JSON body.
 
-#### Request Headers
+#### Request headers
 
 ```
 Content-Type: application/json
@@ -44,10 +44,11 @@ date: Wed, 28 Jun 2023 11:25:19 GMT
 authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="42a54cc7450fe1e7a3cf35ebfaed1b828e37062964266fd33186c7b2526e85e3ea2d46946a728ca50e46423ea9a6b2edb8c1315b58fa69297e1e91d3d34804a1"
 ```
 
-> 📘 **Note:**\
+> 📘 Note:
+>
 > The HMAC signature in the authorization header is calculated using the sha512 algorithm based on the specified headers (date in this example) and your merchant secret key.
 
-#### Sample Request Body
+#### Sample request body
 
 ```json
 {
@@ -90,7 +91,7 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
 }
 ```
 
-### Request Parameters
+### Request parameters
 
 | Parameter                              | Description                                                 | Required |
 | -------------------------------------- | ----------------------------------------------------------- | -------- |
@@ -107,10 +108,11 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
 | paymentSource                          | Payment source (e.g., WEB)                                  | No       |
 | userDefinedFields                      | Custom fields (udf1 to udf10) for merchant use              | No       |
 
-> ⚠️ **Important:**\
+> ⚠️ Important:
+>
 > For v2 API, the additionalInfo.txnFlow parameter MUST be set to "nonseamless" for PayU hosted checkout.
 
-### Sample Response
+### Sample response
 
 ```json
 {
@@ -121,7 +123,7 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
 }
 ```
 
-### Response Parameters
+### Response parameters
 
 | Parameter          | Description                                      |
 | ------------------ | ------------------------------------------------ |
@@ -141,9 +143,9 @@ After payment completion, the customer will be redirected to your success, failu
 | Test Environment       | [https://test.payu.in/v1/transaction](https://test.payu.in/v1/transaction) |
 | Production Environment | [https://info.payu.in/v1/transaction](https://info.payu.in/v1/transaction) |
 
-### Request Format
+### Request format
 
-#### Request Headers
+#### Request headers
 
 ```
 Content-Type: application/json
@@ -152,7 +154,7 @@ authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signa
 Info-Command: verify_payment
 ```
 
-#### Sample Request Body
+#### Sample request body
 
 ```json
 {
@@ -160,13 +162,13 @@ Info-Command: verify_payment
 }
 ```
 
-### Request Parameters
+### Request parameters
 
 | Parameter | Description                                      | Required |
 | --------- | ------------------------------------------------ | -------- |
 | txnId     | Array of transaction IDs (referenceId) to verify | Yes      |
 
-### Sample Success Response
+### Sample success response
 
 ```json
 {
@@ -216,7 +218,7 @@ Info-Command: verify_payment
 }
 ```
 
-### Sample Failure Response
+### Sample failure response
 
 ```json
 {
@@ -225,7 +227,7 @@ Info-Command: verify_payment
 }
 ```
 
-### Response Parameters
+### Response parameters
 
 | Parameter                     | Description                                      |
 | ----------------------------- | ------------------------------------------------ |
@@ -240,7 +242,7 @@ Info-Command: verify_payment
 | result\[].errorCode           | Error code (E000 means no error)                 |
 | result\[].errorMessage        | Error message if any                             |
 
-## Integration Security
+## Integration security
 
 To ensure secure integration:
 
@@ -249,7 +251,7 @@ To ensure secure integration:
 3. **Keep your merchant key and salt secure** and never expose them to clients
 4. **Validate the transaction status** by checking both status and errorCode fields
 
-## Testing the Integration
+## Testing the integration
 
 For testing in the PayU test environment, you can use the following test credentials:
 
