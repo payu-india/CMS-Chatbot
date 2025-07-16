@@ -2,7 +2,7 @@
 title: Generate Hash
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Generate Hash for Merchant Hosted Checkout
   description: >-
@@ -15,7 +15,7 @@ metadata:
 next:
   description: ''
 ---
-A hash is an encrypted value (checksum) that is sent by you in a payment request and reverted by PayU in the payment response. The hash is used to protect transactions against a “man-in-the-middle-attack.” ##
+A hash is an encrypted value (checksum) that is sent by you in a payment request and reverted by PayU in the payment response. The hash is used to protect transactions against a “man-in-the-middle-attack.”
 
 > 📘 Hashing logic for Web Integration and SDK is different
 >
@@ -29,7 +29,7 @@ To generate hash for a payment request in general:
 
 1. **Collect Transaction Data**: Gather the required transaction details, including: 
 
-* <Glossary>key</Glossary>: Your merchant key (Test or Production key). 
+* <Glossary>key</Glossary>: Your merchant key (Test or Production key).
 * txnid: Unique transaction ID 
 * amount: Transaction amount 
 * productinfo: Product information 
@@ -60,7 +60,7 @@ Suppose the transaction data is: 
 * productinfo: Test Product 
 * firstname: John 
 * email: [john@example.com](mailto:john@example.com) 
-* Salt: &lt;Salt&gt;
+* Salt: \<Salt>
 
 The concatenated string would be: 
 
@@ -121,23 +121,22 @@ sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|\|\|\|\|\|\|\|\|\|\|SA
 
 > 📘 Delimiters when UDF parameters are not passed:
 >
-> Ensure that you include the delimiters (pipe symbol: **\|**) if you don't pass the UDF parameters, so you need to ensure that 5 delimiters are included if UDF parameters are not passed. There are 15 delimiters in total.
+> Ensure that you include the delimiters (pipe symbol: **|**) if you don't pass the UDF parameters, so you need to ensure that 5 delimiters are included if UDF parameters are not passed. There are 15 delimiters in total.
 
 <details>
   <summary>Tips for Hashing</summary>
 
-* In the **test environment** (payu.test.in), PayU displays the error message and the correct action required to resolve the error.
-* However, in the **live environment**, to retain the confidentiality of the business information, PayU displays only an error message and drops the transaction.
-* It has been observed that a majority of the hash mismatch errors result from an incorrect key insert by the merchant’s developers while generating the hash value. For instance:
+  * In the **test environment** (payu.test.in), PayU displays the error message and the correct action required to resolve the error.
+  * However, in the **live environment**, to retain the confidentiality of the business information, PayU displays only an error message and drops the transaction.
+  * It has been observed that a majority of the hash mismatch errors result from an incorrect key insert by the merchant’s developers while generating the hash value. For instance:
 
-| Inserting Merchant ID (MID) instead of Merchant Key                   | sha512(4**1**1112345110001 Shopping I Vinay I [vinay@test.com](mailto:vinay@test.com) I &#x33;**\*\*\*\***&#x73;**\***&#x6B;**\*\*\*\***&#x68;**\***&#x6A;)                   |
-| --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Inserting SALT instead of Merchant Key & Merchant ID in place of SALT | sha512(&#x33;**\*\*\*\***&#x73;**\***&#x6B;**\*\*\*\***&#x68;**\***[j112345110001Shopping1Vinaylvinay@test.com](mailto:j112345110001Shopping1Vinaylvinay@test.com) \|4**1**1) |
+  | Inserting Merchant ID (MID) instead of Merchant Key                   | sha512(4**1**1112345110001 Shopping I Vinay I [vinay@test.com](mailto:vinay@test.com) I &#x33;**\*\*\*\***&#x73;**\***&#x6B;**\*\*\*\***&#x68;**\***&#x6A;)                   |
+  | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Inserting SALT instead of Merchant Key & Merchant ID in place of SALT | sha512(&#x33;**\*\*\*\***&#x73;**\***&#x6B;**\*\*\*\***&#x68;**\***[j112345110001Shopping1Vinaylvinay@test.com](mailto:j112345110001Shopping1Vinaylvinay@test.com) \|4**1**1) |
 
-   In these cases, while PayU will compile the hash value with the right positioning of the merchant key and salt in the string, it will be different from the one posted by the merchant for apparent reasons, leading to a mismatch.
+  In these cases, while PayU will compile the hash value with the right positioning of the merchant key and salt in the string, it will be different from the one posted by the merchant for apparent reasons, leading to a mismatch.
 
-* PayU advises **against sending the salt value as part of the payment request package**, as it severely compromises the security of the transaction. Because, with access to the salt, a malicious actor executing a *man-in-the-middle* (MITM) attack can easily alter the details, regenerate the hash value, and can pass the same through the authentication filters in the PayU’s servers.
-
+  * PayU advises **against sending the salt value as part of the payment request package**, as it severely compromises the security of the transaction. Because, with access to the salt, a malicious actor executing a *man-in-the-middle* (MITM) attack can easily alter the details, regenerate the hash value, and can pass the same through the authentication filters in the PayU’s servers.
 </details>
 
 ## Hash Validation Logic for Payment Response (Reverse Hashing)
