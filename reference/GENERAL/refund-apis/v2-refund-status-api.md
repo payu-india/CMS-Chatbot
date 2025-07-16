@@ -94,7 +94,7 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 ### Sample request
 
 ```bash
-curl --location 'https://test.payu.in/v2/refundstatus)' \
+curl --location 'https://test.payu.in/v2/refundstatus' \
 --header 'mid: 8759546' \
 --header 'Content-Type: application/json' \
 --header 'Info-Command: aggregator_check_action_status_txnid' \
