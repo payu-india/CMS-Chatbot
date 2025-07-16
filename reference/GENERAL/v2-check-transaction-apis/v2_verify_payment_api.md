@@ -16,10 +16,10 @@ HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                                                                |
-| :--------------------- | :----------------------------------------------------------------------------- |
-| Test Environment       | \<[https://test.payu.in/v1/transaction>](https://test.payu.in/v1/transaction>) |
-| Production Environment | \<[https://info.payu.in/v1/transaction>](https://info.payu.in/v1/transaction>) |
+|                        |                                                                            |
+| :--------------------- | :------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/v3/transaction](https://test.payu.in/v3/transaction) |
+| Production Environment | [https://info.payu.in/v3/transaction](https://info.payu.in/v3/transaction) |
 
 ## Request parameters
 
@@ -58,7 +58,7 @@ HTTP Method: **POST**
 ## Sample request
 
 ```
-curl --location 'https://test.payu.in/v1/transaction' \
+curl --location 'https://test.payu.in/v3/transaction' \
 --header 'Content-Type: application/json' \
 --header 'date: Thu, 27 Mar 2025 06:35:21 GMT' \
 --header 'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="42a54cc7450fe1e7a3cf35ebfaed1b828e37062964266fd33186c7b2526e85e3ea2d46946a728ca50e46423ea9a6b2edb8c1315b58fa69297e1e91d3d34804a1"' \
