@@ -20,9 +20,11 @@ next:
 ---
 You can find the following implementation using **v2/payments** API for collecting payments.
 
+## Web integration
+
 ### PayU Hosted Checkout
 
-* [PayU Hosted Checkout](https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment) 
+* [PayU Hosted Checkout](https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment)
 
 ### Merchant Hosted Checkout
 
@@ -33,17 +35,33 @@ You can find the following implementation using **v2/payments** API for collecti
 * [EMI](https://docs.payu.in/v2/reference/collect-payments-with-emi-v2_payment)
 * [BNPL](https://docs.payu.in/v2/reference/bnpl-v2_payment-merchant-hosted)
 
-### S2S
+## Recurring Payments
+
+* [Payment Consent Transaction with PayU Hosted Checkout](https://docs.payu.in/v2/reference/v2-payment-consent-transaction-with-payu-hosted-checkout)
+* [Payment Consent Transaction with Merchant Hosted Checkout](https://docs.payu.in/v2/reference/v2-payment-consent-transaction-merchant-hosted)
+  * [Net Banking Consent Transaction](https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction)
+  * [Cards Consent Transaction](https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction)
+  * [UPI Consent Transaction](https://docs.payu.in/v2/reference/v2-upi-recurring-payment-consent-transaction)
+
+## S2S
 
 * [Cards Classic Integration](https://docs.payu.in/v2/reference/cards-classic-integration)
 * [Cards Decoupled Flow](https://docs.payu.in/v2/reference/cards-decoupled-flow-s2s-v2-_payment)
 * [Cards Direct Authorization Flow](https://docs.payu.in/v2/reference/cards-direct-authorization-flow-s2s-v2-_payment)
 * [UPI](https://docs.payu.in/v2/reference/upi-s2s-_payment-v2)
 
-### Split Settlements
+## Split Settlements
 
 * [Absolute Split During Transaction](https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment)
 * [Split by Percentage During Transaction](https://docs.payu.in/v2/reference/split-by-percentage-during-transaction-v2_payment)
+
+## Third-Party Verification
+
+* [PayU Hosted v2 Integration](https://docs.payu.in/v2/reference/v2_payment_preauth_payu_hosted_v2_integration)
+
+## PreAuthorize Payment
+
+* [Payment API Preauth PayU Hosted Checkout](https://docs.payu.in/v2/reference/v2-payment-api-preauth-payu-hosted-checkout)
 
 ## Get support
 
