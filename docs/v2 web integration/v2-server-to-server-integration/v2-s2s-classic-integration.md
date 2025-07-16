@@ -1,5 +1,5 @@
 ---
-title: v2 S2S Classic Integration
+title: S2S Classic Integration
 excerpt: ''
 deprecated: false
 hidden: true
