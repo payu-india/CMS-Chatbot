@@ -18,20 +18,20 @@ You can collect payments from customers with leading wallets using the Merchant 
 2. [Verify Payment](#step-3-verify-the-payment)
 
 > 👍 Before you begin:
-> 
+>
 > Register for an account with PayU before you start integration. For more information, refer to <a href="https://docs.payu.in/v1/docs/register-for-a-merchant-account-on-dashboard" target="_blank"> Register for a Merchant Account</a>.
 
 ## Step 1: Initiate the payment with PayU
 
-The following parameters vary for the Wallet payment mode in the **Collect Payment **API (**v2/payments** API). 
+The following parameters vary for the Wallet payment mode in the \*\*Collect Payment \*\*API (**v2/payments** API).
 
-|                            |                                       |
-| :------------------------- | :------------------------------------ |
-| **Test Environment**       | \<https://apitest.payu.in/v2/payments> |
-| **Production Environment** | \<https://api.payu.in/v2/payments>     |
+|                            |                                                                                |
+| :------------------------- | :----------------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://apitest.payu.in/v2/payments>](https://apitest.payu.in/v2/payments>) |
+| **Production Environment** | \<[https://api.payu.in/v2/payments>](https://api.payu.in/v2/payments>)         |
 
 > 📘 Reference:
-> 
+>
 > For the API reference, refer to <a href="https://docs.payu.in/v2/reference/collect_v2_payment_wallet" target="_blank">Collect Payments API</a> under API Reference.
 
 ### Request header
@@ -58,48 +58,47 @@ You must hash the request parameters using the following hash logic:
 sha512(<Body data> + '|' + date + '|' + merchant_secret}
 ```
 
-Where, \<Body data\> contains the request Body posted with the request.
+Where, \<Body data> contains the request Body posted with the request.
 
 <details>
-<summary>Sample header code</summary>
+  <summary>Sample header code</summary>
 
-```
-var merchant_key = 'smsplus';
-var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
+  ```
+  var merchant_key = 'smsplus';
+  var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
 
-// date
-var date = new Date();
-// var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-date = date.toUTCString();
+  // date
+  var date = new Date();
+  // var date = "Wed, 28 Jun 2023 11:25:19 GMT";
+  date = date.toUTCString();
 
-// authorization
-var authorization = getAuthHeader(date);
-console.log(authorization);
+  // authorization
+  var authorization = getAuthHeader(date);
+  console.log(authorization);
 
-function getAuthHeader(date) {
-var AUTH_TYPE = 'sha512';
-var data = isEmpty(request['data'])?"":request['data'];
-var hash_string = data + '|' + date + '|' + merchant_secret;
-console.log("Hash String is ", hash_string);
-var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-return authHeader;
-}
+  function getAuthHeader(date) {
+  var AUTH_TYPE = 'sha512';
+  var data = isEmpty(request['data'])?"":request['data'];
+  var hash_string = data + '|' + date + '|' + merchant_secret;
+  console.log("Hash String is ", hash_string);
+  var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
+  var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
+  return authHeader;
+  }
 
-pm.environment.set('date', date);
-pm.environment.set('authorization', authorization);
-pm.environment.set('merchant_key',merchant_key);
-pm.environment.set('merchant_secret',merchant_secret);
+  pm.environment.set('date', date);
+  pm.environment.set('authorization', authorization);
+  pm.environment.set('merchant_key',merchant_key);
+  pm.environment.set('merchant_secret',merchant_secret);
 
-function isEmpty(obj) {
-for(var key in obj) {
-if(obj.hasOwnProperty(key))
-return false;
-}
-return true;
-}
-```
-
+  function isEmpty(obj) {
+  for(var key in obj) {
+  if(obj.hasOwnProperty(key))
+  return false;
+  }
+  return true;
+  }
+  ```
 </details>
 
 ### Request Body
@@ -194,7 +193,6 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 #### paymentMethod object fields description
 
 <HTMLBlock>{`
@@ -221,7 +219,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 #### order object fields description
 
@@ -255,7 +252,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ##### userDefinedFields object fields description
 
@@ -295,7 +291,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 #### callbackActions object fields description
 
@@ -347,7 +342,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 `<ErrorHandling />`
 
@@ -431,11 +425,10 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 ## Sample request
 
 ```curl
-curl --location 'https://pp78api.payu.in/v2/payments' \
+curl --location 'https://apitest.payu.in/v2/payments' \
 --header 'date: Thu, 27 Mar 2025 10:12:27 GMT' \
 --header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="ec84843a663143bb89391f6fa2d4b9404bab1543a3eee81263b4a507ebf5d289d8fad1fbcdd59da820951e3e0f9b0b0b3d1bad9b41338804e7c42a8a6197c6e9"' \
 --header 'Content-Type: application/json' \
@@ -498,7 +491,7 @@ curl --location 'https://pp78api.payu.in/v2/payments' \
 ## Sample response
 
 > 📘 Note:
-> 
+>
 > Reverse hashing of the response is not required with that of v2/payment API.
 
 ```
@@ -515,5 +508,5 @@ Array
 Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api) under API Reference.
 
 > 📘 Tip
-> 
+>
 > The transaction ID that you posted in Step 1 with PayU must be used here.
