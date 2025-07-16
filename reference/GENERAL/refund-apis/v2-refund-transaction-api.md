@@ -7,7 +7,7 @@ metadata:
 ---
 The **Refund Transaction** API allows merchants to initiate refunds for transactions. Its functionally similar to the **Cancel Refund Transaction** API, but is maintained only for backward compatibility with existing integrations. The v2 API offers enhanced functionality and improved response formats compared to the v1 API.
 
-### Endpoint
+**Endpoint**
 
 |                        |                                                                  |
 | :--------------------- | :--------------------------------------------------------------- |
