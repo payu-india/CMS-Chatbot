@@ -42,6 +42,13 @@ After the customer enters the card number, you can validate the first six digits
 
 ## Step 2: Initiate the payment to PayU
 
+**Environment**
+
+| Environment            | URL                                                                        |
+| ---------------------- | -------------------------------------------------------------------------- |
+| Test Environment       | [https://apitest.payu.in/v2/payments](https://apitest.payu.in/v2/payments) |
+| Production Environment | [https://api.payu.in/v2/payments](https://api.payu.in/v2/payments)         |
+
 Post the following parameters for the card payment to PayU using the Merchant Hosted integration.
 
 ### Request header
