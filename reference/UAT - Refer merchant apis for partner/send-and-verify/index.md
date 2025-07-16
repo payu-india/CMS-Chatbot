@@ -1,4 +1,4 @@
 ---
 title: Send and verify
-hidden: false
+hidden: true
 ---
