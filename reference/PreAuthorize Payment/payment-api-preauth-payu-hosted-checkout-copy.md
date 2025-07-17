@@ -3,6 +3,7 @@ title: Payment API Preauth PayU Hosted Checkout (COPY)
 deprecated: false
 hidden: true
 metadata:
+  title: Preauthorize Payment for Merchant Hosted Checkout
   robots: index
 ---
 The Collect Payment API (**v2 Payment** API) with the **preAuthorize=1** in the **additionalInfo** object.
