@@ -2,7 +2,7 @@
 title: PayU India API Reference - v2 APIs
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: PayU API Documentation
   description: >-
