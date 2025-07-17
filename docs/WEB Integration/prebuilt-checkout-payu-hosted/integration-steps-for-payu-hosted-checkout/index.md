@@ -1,6 +1,6 @@
 ---
 title: Integration Steps
-excerpt: ''
+excerpt: PayU recommends you to integrate v2 (latest) version for faster integration.
 deprecated: false
 hidden: false
 metadata:
