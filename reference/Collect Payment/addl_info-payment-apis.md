@@ -313,6 +313,8 @@ paymentCard
 }
 `}</HTMLBlock>
 
+<br />
+
 ### order JSON object fields
 
 <HTMLBlock>{`
