@@ -96,13 +96,35 @@ const config = {
 ## Troubleshooting
 
 ### Plugin Not Visible
-- **Solution**: Restart your IDE after installation
-- **Alternative**: Check if plugin is enabled in settings
+
+* **Solution**: Restart your IDE after installation
+* **Alternative**: Check if plugin is enabled in settings
 
 ### Code Snippets Not Working
-- **Solution**: Ensure you're in the correct file type (.js, .java, .html)
-- **Alternative**: Check snippet trigger keywords
+
+* **Solution**: Ensure you're in the correct file type (.js, .java, .html)
+* **Alternative**: Check snippet trigger keywords
 
 ### Template Generation Fails
-- **Solution**: Verify project structure and dependencies
-- **Alternative**: Check IDE logs for error details
+
+* **Solution**: Verify project structure and dependencies
+* **Alternative**: Check IDE logs for error details
+
+## Troubleshooting
+
+### Common Issues
+
+#### Plugin Not Visible
+
+* **Solution**: Restart your IDE after installation
+* **Alternative**: Check if plugin is enabled in settings
+
+#### Code Snippets Not Working
+
+* **Solution**: Ensure you're in the correct file type (.js, .java, .html)
+* **Alternative**: Check snippet trigger keywords
+
+#### Template Generation Fails
+
+* **Solution**: Verify project structure and dependencies
+* **Alternative**: Check IDE logs for error details
