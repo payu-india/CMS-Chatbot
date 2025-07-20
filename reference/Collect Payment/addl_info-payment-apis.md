@@ -75,8 +75,6 @@ username="smsplus",algorithm="sha512",headers="date",signature="abcd1234..."
 }
 `}</HTMLBlock>
 
-##
-
 ## Request parameters
 
 <HTMLBlock>{`
@@ -318,8 +316,7 @@ paymentCard
 ### order JSON object fields
 
 <HTMLBlock>{`
-<h3>order Object Fields</h3>
-<table style="border-collapse: collapse; width: 100%; max-width: 85%; margin-bottom: 30px;">
+<table>
 <thead>
 <tr style="background-color: #f2f2f2;">
 <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Field</th>
@@ -467,8 +464,7 @@ value5
 ### billingDetails JSON object fields
 
 <HTMLBlock>{`
-<h3>billingDetails Object Fields</h3>
-<table style="border-collapse: collapse; width: 100%; max-width: 85%; margin-bottom: 30px;">
+<table>
 <thead>
 <tr style="background-color: #f2f2f2;">
 <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Field</th>
@@ -624,8 +620,7 @@ zipCode<br/>
 ## callBackActions JSON object fields
 
 <HTMLBlock>{`
-<h3>callBackActions Object Fields</h3>
-<table style="border-collapse: collapse; width: 100%; max-width: 85%; margin-bottom: 30px;">
+<table>
 <thead>
 <tr style="background-color: #f2f2f2;">
 <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Field</th>
@@ -728,8 +723,7 @@ https://example.com/cancel
 ## paymentMethod JSON object Fields (only for Seamless Integration)
 
 <HTMLBlock>{`
-<h3>paymentMethod Object Fields (Seamless Integration)</h3>
-<table style="border-collapse: collapse; width: 100%; max-width: 85%; margin-bottom: 30px;">
+<table>
 <thead>
 <tr style="background-color: #f2f2f2;">
 <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Field</th>
@@ -785,8 +779,7 @@ CC
 ## paymentCard JSON object fields (only for Seamless Card Payments)
 
 <HTMLBlock>{`
-<h3>paymentCard Object Fields (Seamless Card Payments)</h3>
-<table style="border-collapse: collapse; width: 100%; max-width: 85%; margin-bottom: 30px;">
+<table>
 <thead>
 <tr style="background-color: #f2f2f2;">
 <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Field</th>
