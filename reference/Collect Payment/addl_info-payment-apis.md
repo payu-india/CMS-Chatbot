@@ -171,11 +171,11 @@ order
 </td>
 
 <td>
-<code>object</code> Contains order-related information including product details, payment charge specification, and user defined fields.   Refer to <a href="#order-json-object-fields">order JSON object fields</a>.
+<code>object</code> Contains order-related information including product details, payment charge specification, and user defined fields. See detailed fields in the order Object Fields section below.
 </td>
 
 <td>
-  Refer to <a href="#order-json-object-fields">order JSON object fields</a>.
+Refer to <a href="#order-object-fields">order JSON object field description</a> for detailed field specifications
 </td>
 </tr>
 
@@ -187,11 +187,16 @@ billingDetails
 </td>
 
 <td>
-<code>object</code> Customer billing information. This object combines and replaces individual v1 parameters like 'firstname', 'email', 'phone'. For more information, refer to <a href="#billingdetails-json-object-fields">billingDetails JSON object fields</a>.
+<code>object</code> Customer billing information. This object combines and replaces individual v1 parameters like 'firstname', 'email', 'phone'. See detailed fields in the billingDetails Object Fields section below.
 </td>
-Refer to <a href="#billingdetails-json-object-fields">billingDetails JSON object fields</a>
+
 <td>
-  
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john@example.com",
+  "phone": "9876543210"
+}
 </td>
 </tr>
 
@@ -203,11 +208,18 @@ callBackActions
 </td>
 
 <td>
-<code>object</code> Callback URLs for different payment outcomes. This object replaces the individual 'surl' and 'furl' parameters from v1. For more information, refer to <a href="#callbackactions-json-object-fields">callBackActions JSON object fields</a>.
+<code>object</code> Callback URLs for different payment outcomes. This object replaces the individual 'surl' and 'furl' parameters from v1. See detailed fields in the callBackActions Object Fields section below.
 </td>
 
 <td>
-Refer to <a href="#callbackactions-json-object-fields">callBackActions JSON object fields</a>.  
+{
+  "successAction": {
+    "redirectUrl": "https://example.com/success"
+  },
+  "failureAction": {
+    "redirectUrl": "https://example.com/failure"
+  }
+}
 </td>
 </tr>
 
@@ -253,14 +265,11 @@ paymentMethod
 </td>
 
 <td>
-<code>object</code> Payment method details required for seamless integration. This object replaces the 'pg' and 'bankcode' parameters from v1. See detailed fields in the paymentMethod Object Fields section below.
+<code>object</code> Payment method details required for seamless integration. This object replaces the 'pg' and 'bankcode' parameters from v1. For more information, refer to <a href="#paymentmethod-json-object-fields-only-for-seamless-integration">paymentMethod JSON object fields</a>.
 </td>
 
 <td>
-{
-  "name": "CreditCard",
-  "bankCode": "CC"
-}
+Refer to <a href="#paymentmethod-json-object-fields-only-for-seamless-integration">paymentMethod JSON object fields</a>.
 </td>
 </tr>
 
@@ -272,16 +281,10 @@ paymentCard
 </td>
 
 <td>
-<code>object</code> Card details for seamless card payments. This object combines v1 parameters like 'ccnum', 'ccvv', 'ccexpmon', 'ccexpyr'. See detailed fields in the paymentCard Object Fields section below.
+<code>object</code> Card details for seamless card payments. This object combines v1 parameters like 'ccnum', 'ccvv', 'ccexpmon', 'ccexpyr'. For more information, refer to <a href="#paymentcard-json-object-fields-only-for-seamless-card-payments"paymentCard JSON object fields</a>.
 </td>
-
 <td>
-{
-  "cardNumber": "4111111111111111",
-  "validThrough": "12/25",
-  "ownerName": "John Doe",
-  "cvv": "123"
-}
+Refer to <a href="#paymentcard-json-object-fields-only-for-seamless-card-payments"paymentCard JSON object fields</a>.  
 </td>
 </tr>
 
