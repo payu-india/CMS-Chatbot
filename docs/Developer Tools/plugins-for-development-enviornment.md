@@ -5,15 +5,13 @@ hidden: false
 metadata:
   robots: index
 ---
-## Common Development Workflow
-
 ## 1. Initial Setup
 
-* Clone or create your project
-* Install the appropriate plugin
-* Configure your IDE settings
+1. Clone or create your project
+2. Install the appropriate plugin
+3. Configure your IDE settings
 
-## 2. Development Process
+## 2) Development Process
 
 1. **Generate Base Code**
    * Use plugin commands to create boilerplate
@@ -32,8 +30,8 @@ metadata:
 
 ## 3) Deployment Preparation
 
-* Switch to production endpoint: `https://api.payu.in/v2/payments`
-* Update with production credentials
-* Perform final testing
+1. Switch to production endpoint: `https://api.payu.in/v2/payments`
+2. Update with production credentials
+3. Perform final testing
 
 ***
