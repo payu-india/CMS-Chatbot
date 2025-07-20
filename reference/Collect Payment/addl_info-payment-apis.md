@@ -13,7 +13,6 @@ next:
 ## Request headers
 
 <HTMLBlock>{`
-<div style={{ maxWidth: "85%", overflowX: "auto" }}>
 <Table>
 <thead>
 <tr>
