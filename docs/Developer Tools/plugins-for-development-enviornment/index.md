@@ -10,13 +10,13 @@ PayU offers plugins for Visual Studio Code and IntelliJ Idea development environ
 * [Visual Studio Code Plugin](https://docs.payu.in/v2/docs/visual-studio-code-plugin)
 * [IntelliJ IDEA Plugin](https://docs.payu.in/v2/docs/intellij-idea-plugin)
 
-## 1. Initial Setup
+## Step 1: Initial Setup
 
 1. Clone or create your project
 2. Install the appropriate plugin
 3. Configure your IDE settings
 
-## 2) Development Process
+## Step 2: Development Process
 
 1. **Generate Base Code**
    * Use plugin commands to create boilerplate
@@ -33,7 +33,7 @@ PayU offers plugins for Visual Studio Code and IntelliJ Idea development environ
    * Test with sample credentials
    * Validate payment flows
 
-## 3) Deployment Preparation
+## Step 3: Deployment Preparation
 
 1. Switch to production endpoint: `https://api.payu.in/v2/payments`
 2. Update with production credentials
