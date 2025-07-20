@@ -93,4 +93,16 @@ const config = {
   * `payu-api-call`
   * `payu-webhook-handler`
 
-***
+## Troubleshooting
+
+### Plugin Not Visible
+- **Solution**: Restart your IDE after installation
+- **Alternative**: Check if plugin is enabled in settings
+
+### Code Snippets Not Working
+- **Solution**: Ensure you're in the correct file type (.js, .java, .html)
+- **Alternative**: Check snippet trigger keywords
+
+### Template Generation Fails
+- **Solution**: Verify project structure and dependencies
+- **Alternative**: Check IDE logs for error details
