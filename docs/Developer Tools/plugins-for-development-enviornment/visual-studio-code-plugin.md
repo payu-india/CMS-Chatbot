@@ -5,6 +5,14 @@ hidden: true
 metadata:
   robots: index
 ---
+This section describes how to install the PayU plugin for Visual Studio IDE.
+
+## Plugin Features
+
+* Code snippets for common PayU integration patterns
+* Boilerplate generation for different payment methods
+* Syntax highlighting for PayU-specific configurations
+
 ## Installation Steps
 
 ### Method 1: VS Code Marketplace (Recommended)
@@ -35,35 +43,32 @@ metadata:
 
 ## Using the VS Code Plugin
 
-### 1. Create New Project
+### 1. Create new project
+
+Create a new directory for your project using the following MS DOS shell commands:
 
 ```bash
-# Create a new directory for your project
 mkdir payu-integration-project
 cd payu-integration-project
 ```
 
-### 2. Open Project in VS Code
+### 2. Open project in VS Code
 
-```bash
-code .
-```
+### 3. Generate boilerplate code
 
-### 3. Generate Boilerplate Code
-
-1. **Open Command Palette**
+1. Open Command Palette
    * Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac)
 
-2. **Search for PayU Commands**
+2. Search for PayU Commands
    * Type "PayU" to see available commands
    * Select appropriate command based on your integration type
 
-3. **Available Commands** (typical examples):
+3. Available Commands (typical examples):
    * `PayU: Generate Payment Form`
    * `PayU: Generate API Integration`
    * `PayU: Create Sample Application`
 
-### 4) Configure Environment
+### 4) Configure environment
 
 Update the configuration file similar to the following:
 
@@ -80,7 +85,7 @@ const config = {
 };
 ```
 
-### 5. Code Snippets Usage
+### 5. Code snippets usage
 
 * Type `payu-` in any JavaScript/HTML file to see available snippets
 * Common snippets include:
