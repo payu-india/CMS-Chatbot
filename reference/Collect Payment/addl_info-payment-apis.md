@@ -22,566 +22,7 @@ next:
 ## Request body
 
 <HTMLBlock>{`
-<table>
-<thead>
-<tr style="background-color: #f2f2f2;">
-<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Parameter</th>
-<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Description</th>
-<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-accountId<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> This parameter is the unique Merchant Key provided by PayU for your merchant account. In v2, this replaces the 'key' parameter from v1.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-smsplus
-</td>
-</tr>
 
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-referenceId<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. In v2, this replaces the 'txnid' parameter from v1. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular reference ID has already been successful at PayU, the usage of the same Reference ID again would fail. Hence, you must post us a unique reference ID for every new transaction.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 25<br/>
-<strong>Note</strong>: Ensure that the reference ID sent in every transaction request is unique.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-order_12345
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-currency<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Currency for the transaction. Default value is INR.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-INR
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-paymentSource<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Source of the payment (e.g., WEB, MOBILE).
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-WEB
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-order<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Contains order-related information including product details, payment charge specification, and user defined fields.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-{<br/>
-&nbsp;&nbsp;"productInfo": "iPhone",<br/>
-&nbsp;&nbsp;"paymentChargeSpecification": {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"price": "1000.00"<br/>
-&nbsp;&nbsp;},<br/>
-&nbsp;&nbsp;"userDefinedFields": {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"udf1": "value1"<br/>
-&nbsp;&nbsp;}<br/>
-}
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-order.productInfo<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Brief description of the product(s). This parameter replaces the 'productinfo' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 100
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-iPhone
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-order.paymentChargeSpecification.price<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">float</code> The payment amount for the transaction. In v2, this is nested within the order object instead of being a top-level parameter like 'amount' in v1.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-1000.00
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-order.userDefinedFields<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> User-defined parameters that can be used for various purposes. These replace the individual udf1-udf5 parameters from v1. Available fields: udf1, udf2, udf3, udf4, udf5<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255 for each field
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-{<br/>
-&nbsp;&nbsp;"udf1": "value1",<br/>
-&nbsp;&nbsp;"udf2": "value2"<br/>
-}
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-billingDetails<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Customer billing information. This object combines and replaces individual v1 parameters like 'firstname', 'email', 'phone'.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-{<br/>
-&nbsp;&nbsp;"firstName": "John",<br/>
-&nbsp;&nbsp;"lastName": "Doe",<br/>
-&nbsp;&nbsp;"email": "john@example.com",<br/>
-&nbsp;&nbsp;"phone": "9876543210"<br/>
-}
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-billingDetails.firstName<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's first name. This replaces the 'firstname' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 60 (Production), 20 (Test)
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-John
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-billingDetails.lastName<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's last name. This replaces the 'lastname' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 20
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-Doe
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-billingDetails.email<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's email address. This replaces the 'email' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-john@example.com
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-billingDetails.phone<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's phone number. This replaces the 'phone' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-9876543210
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-billingDetails.address1<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing address line 1. This replaces the 'address1' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 100
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-123 Main Street
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-billingDetails.address2<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing address line 2. This replaces the 'address2' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 100
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-Apartment 4B
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-billingDetails.city<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing city. This replaces the 'city' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-Mumbai
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-billingDetails.state<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing state. This replaces the 'state' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-Maharashtra
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-billingDetails.country<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing country. This replaces the 'country' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-India
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-billingDetails.zipCode<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing postal code. This replaces the 'zipcode' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 20
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-400001
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-callBackActions<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Callback URLs for different payment outcomes. This object replaces the individual 'surl' and 'furl' parameters from v1.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-{<br/>
-&nbsp;&nbsp;"successAction": {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"redirectUrl": "https://example.com/success"<br/>
-&nbsp;&nbsp;},<br/>
-&nbsp;&nbsp;"failureAction": {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"redirectUrl": "https://example.com/failure"<br/>
-&nbsp;&nbsp;}<br/>
-}
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-callBackActions.successAction.redirectUrl<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> URL to redirect after successful payment. This replaces the 'surl' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-https://example.com/success
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-callBackActions.failureAction.redirectUrl<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> URL to redirect after failed payment. This replaces the 'furl' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-https://example.com/failure
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-callBackActions.cancelAction.redirectUrl<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> URL to redirect when payment is cancelled. This replaces the 'curl' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-https://example.com/cancel
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-additionalInfo<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Additional information required for payment processing.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-{<br/>
-&nbsp;&nbsp;"txnFlow": "nonseamless"<br/>
-}
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-additionalInfo.txnFlow<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for non-seamless</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Specifies the transaction flow type. Must be set to "nonseamless" for PayU-hosted integration. Not required for seamless integration.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-nonseamless
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-paymentMethod<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Payment method details required for seamless integration. This object replaces the 'pg' and 'bankcode' parameters from v1.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-{<br/>
-&nbsp;&nbsp;"name": "CreditCard",<br/>
-&nbsp;&nbsp;"bankCode": "CC"<br/>
-}
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-paymentMethod.name<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Payment method name (e.g., CreditCard, DebitCard, NetBanking, UPI). This replaces the 'pg' parameter from v1.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-CreditCard
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-paymentMethod.bankCode<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Bank code or payment gateway code. This replaces the 'bankcode' parameter from v1.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-CC
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-paymentCard<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless card payments</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Card details for seamless card payments. This object combines v1 parameters like 'ccnum', 'ccvv', 'ccexpmon', 'ccexpyr'.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-{<br/>
-&nbsp;&nbsp;"cardNumber": "4111111111111111",<br/>
-&nbsp;&nbsp;"validThrough": "12/25",<br/>
-&nbsp;&nbsp;"ownerName": "John Doe",<br/>
-&nbsp;&nbsp;"cvv": "123"<br/>
-}
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-paymentCard.cardNumber<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless card payments</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Credit/Debit card number. This replaces the 'ccnum' parameter from v1. Must be between 13-19 digits (15 digits for AMEX, 13-19 digits for Maestro) and must be validated using the LUHN algorithm.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-4111111111111111
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-paymentCard.validThrough<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless card payments</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Card expiry date in MM/YY format. This replaces the separate 'ccexpmon' and 'ccexpyr' parameters from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Format</code>: MM/YY where MM is two-digit month (01-12) and YY is two-digit year
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-12/25
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-paymentCard.ownerName<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless card payments</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Cardholder name as printed on the card. This replaces the 'ccname' parameter from v1.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-John Doe
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-paymentCard.cvv<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless card payments</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Card verification value. This replaces the 'ccvv' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Format</code>: 3-4 digit number (3 digits for most cards, 4 digits for AMEX)
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-123
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-paymentCard.cardToken<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for saved card payments</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Saved card token for repeat transactions. This replaces the 'store_card_token' parameter from v1.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-token_12345
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-paymentCard.tokenType<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for saved card payments</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Type of token being used. This replaces the 'storecard_token_type' parameter from v1.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-NETWORK_TOKEN
-</td>
-</tr>
-
-</tbody>
-</table>
-
-<!-- Request Headers Table for v2 _payment API -->
-<table style="border-collapse: collapse; width: 100%; max-width: 85%; margin-top: 30px;">
-<thead>
-<tr style="background-color: #f2f2f2;">
-<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Header</th>
-<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Description</th>
-<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-date<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Current date and time in GMT/UTC format. This header is required for generating the authorization signature.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-Wed, 28 Jun 2023 11:25:19 GMT
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-authorization<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> HMAC signature generated using SHA512 algorithm. Format: 
-username="[accountId]",algorithm="sha512",headers="date",signature="[calculated_signature]"<br/><br/>
-The signature is calculated as: sha512(request_body + '|' + date + '|' + merchant_secret)<br/><br/>
-This replaces the 'hash' parameter from v1 API.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-username="smsplus",algorithm="sha512",headers="date",signature="abcd1234..."
-</td>
-</tr>
-
-</tbody>
-</table>
 `}</HTMLBlock>
 
 #### Order JSON object fields description
@@ -731,6 +172,164 @@ value5
 </tbody>
 </table>
 `}</HTMLBlock>
+
+#### billingDetails JSON object fields
+
+<HTMLBlock>{`
+<table>
+<thead>
+<tr style="background-color: #f2f2f2;">
+<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Field</th>
+<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Description</th>
+<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+firstName<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's first name. This replaces the 'firstname' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 60 (Production), 20 (Test)
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+John
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+lastName<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's last name. This replaces the 'lastname' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 20
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+Doe
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+email<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's email address. This replaces the 'email' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+john@example.com
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+phone<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's phone number. This replaces the 'phone' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+9876543210
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+address1<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing address line 1. This replaces the 'address1' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 100
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+123 Main Street
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+address2<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing address line 2. This replaces the 'address2' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 100
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+Apartment 4B
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+city<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing city. This replaces the 'city' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+Mumbai
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+state<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing state. This replaces the 'state' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+Maharashtra
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+country<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing country. This replaces the 'country' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+India
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+zipCode<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing postal code. This replaces the 'zipcode' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 20
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+400001
+</td>
+</tr>
+
+</tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
 
 <br />
 
