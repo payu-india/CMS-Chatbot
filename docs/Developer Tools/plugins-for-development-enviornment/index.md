@@ -1,10 +1,14 @@
 ---
 title: Plugins for Development Enviornment
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
+PayU offers plugins for Visual Studio Code and IntelliJ Idea development environments. This part of the documentation includes the following sections, which includes plugin installation and troublshooting procedures:
+
+* <br />
+
 ## 1. Initial Setup
 
 1. Clone or create your project
