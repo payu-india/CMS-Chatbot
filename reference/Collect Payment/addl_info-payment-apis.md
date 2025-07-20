@@ -175,15 +175,7 @@ order
 </td>
 
 <td>
-{
-  "productInfo": "iPhone",
-  "paymentChargeSpecification": {
-    "price": "1000.00"
-  },
-  "userDefinedFields": {
-    "udf1": "value1"
-  }
-}
+Refer to <a href="#order-object-fields">order JSON object field description</a> for detailed field specifications
 </td>
 </tr>
 
