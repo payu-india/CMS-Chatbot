@@ -171,11 +171,11 @@ order
 </td>
 
 <td>
-<code>object</code> Contains order-related information including product details, payment charge specification, and user defined fields. See detailed fields in the order Object Fields section below.
+<code>object</code> Contains order-related information including product details, payment charge specification, and user defined fields.   Refer to <a href="#order-json-object-fields">order JSON object fields</a>.
 </td>
 
 <td>
-Refer to <a href="#order-object-fields">order JSON object field description</a> for detailed field specifications
+  Refer to <a href="#order-json-object-fields">order JSON object fields</a>.
 </td>
 </tr>
 
@@ -187,16 +187,11 @@ billingDetails
 </td>
 
 <td>
-<code>object</code> Customer billing information. This object combines and replaces individual v1 parameters like 'firstname', 'email', 'phone'. See detailed fields in the billingDetails Object Fields section below.
+<code>object</code> Customer billing information. This object combines and replaces individual v1 parameters like 'firstname', 'email', 'phone'. For more information, refer to <a href="#billingdetails-json-object-fields">billingDetails JSON object fields</a>.
 </td>
-
+Refer to <a href="#billingdetails-json-object-fields">billingDetails JSON object fields</a>
 <td>
-{
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "john@example.com",
-  "phone": "9876543210"
-}
+  
 </td>
 </tr>
 
@@ -208,18 +203,11 @@ callBackActions
 </td>
 
 <td>
-<code>object</code> Callback URLs for different payment outcomes. This object replaces the individual 'surl' and 'furl' parameters from v1. See detailed fields in the callBackActions Object Fields section below.
+<code>object</code> Callback URLs for different payment outcomes. This object replaces the individual 'surl' and 'furl' parameters from v1. For more information, refer to <a href="#callbackactions-json-object-fields">callBackActions JSON object fields</a>.
 </td>
 
 <td>
-{
-  "successAction": {
-    "redirectUrl": "https://example.com/success"
-  },
-  "failureAction": {
-    "redirectUrl": "https://example.com/failure"
-  }
-}
+Refer to <a href="#callbackactions-json-object-fields">callBackActions JSON object fields</a>.  
 </td>
 </tr>
 
