@@ -71,8 +71,6 @@ username="smsplus",algorithm="sha512",headers="date",signature="abcd1234..."
 
 </tbody>
 </Table>
-</div>
-}
 `}</HTMLBlock>
 
 ## Request parameters
