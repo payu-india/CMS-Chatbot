@@ -7,7 +7,8 @@ metadata:
 ---
 PayU offers plugins for Visual Studio Code and IntelliJ Idea development environments. This part of the documentation includes the following sections, which includes plugin installation and troublshooting procedures:
 
-* <br />
+* [Visual Studio Code Plugin](https://docs.payu.in/v2/docs/visual-studio-code-plugin)
+* [IntelliJ IDEA Plugin](https://docs.payu.in/v2/docs/intellij-idea-plugin)
 
 ## 1. Initial Setup
 
