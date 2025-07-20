@@ -1,5 +1,5 @@
 ---
-title: Collect Payment API - PayU Hosted v2 Payment
+title: Collect Payment API - Non-Seamless v2 Payment
 excerpt: ''
 deprecated: false
 hidden: true
@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The Collect Payment API (**v2 Payment** API) is used to collect payments for all the Web Checkout integration. This section provides the API Reference for PayU Hosted Checkout or Pre-Built Checkout.
+The Collect Payment API (**v2 Payment** API) is used to collect payments for all the Web Checkout integration. This section provides the API Reference for Non-Seamless or PayU Hosted Checkout integration. Also, commonly known as  Pre-Built Checkout.
 
 > 📘 Note:
 >
