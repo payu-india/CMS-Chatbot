@@ -584,6 +584,154 @@ username="smsplus",algorithm="sha512",headers="date",signature="abcd1234..."
 </table>
 `}</HTMLBlock>
 
+#### Order JSON object fields description
+
+<HTMLBlock>{`
+<table>
+<thead>
+<tr style="background-color: #f2f2f2;">
+<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Field</th>
+<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Description</th>
+<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+productInfo<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Brief description of the product(s). This parameter replaces the 'productinfo' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 100
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+iPhone
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+paymentChargeSpecification<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Contains payment charge information including the transaction amount.
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+{<br/>
+&nbsp;&nbsp;"price": "1000.00"<br/>
+}
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+paymentChargeSpecification.price<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">float</code> The payment amount for the transaction. In v2, this is nested within the order object instead of being a top-level parameter like 'amount' in v1.
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+1000.00
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+userDefinedFields<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> User-defined parameters that can be used for various purposes. These replace the individual udf1-udf5 parameters from v1. Available fields: udf1, udf2, udf3, udf4, udf5<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255 for each field
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+{<br/>
+&nbsp;&nbsp;"udf1": "value1",<br/>
+&nbsp;&nbsp;"udf2": "value2",<br/>
+&nbsp;&nbsp;"udf3": "value3",<br/>
+&nbsp;&nbsp;"udf4": "value4",<br/>
+&nbsp;&nbsp;"udf5": "value5"<br/>
+}
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+userDefinedFields.udf1<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> User defined field 1. This replaces the 'udf1' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+value1
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+userDefinedFields.udf2<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> User defined field 2. This replaces the 'udf2' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+value2
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+userDefinedFields.udf3<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> User defined field 3. This replaces the 'udf3' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+value3
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+userDefinedFields.udf4<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> User defined field 4. This replaces the 'udf4' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+value4
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+userDefinedFields.udf5<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> User defined field 5. This replaces the 'udf5' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+value5
+</td>
+</tr>
+
+</tbody>
+</table>
+`}</HTMLBlock>
+
 <br />
 
 ## Character Limits Summary
