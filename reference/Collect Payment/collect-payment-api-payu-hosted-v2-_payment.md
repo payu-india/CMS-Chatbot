@@ -25,7 +25,7 @@ The Collect Payment API (**v2 Payment** API) is used to collect payments for all
 |                            |                                                                            |
 | :------------------------- | :------------------------------------------------------------------------- |
 | **Test Environment**       | [https://apitest.payu.in/v2/payments](https://apitest.payu.in/v2/payments) |
-| **Production Environment** | [https://api.payu.in/v2/payments>](https://api.payu.in/v2/payments>)       |
+| **Production Environment** | [https://api.payu.in/v2/payments](https://api.payu.in/v2/payments)         |
 
 ## Request parameters
 
