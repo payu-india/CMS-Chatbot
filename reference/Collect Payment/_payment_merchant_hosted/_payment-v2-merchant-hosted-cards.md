@@ -184,7 +184,7 @@ Where, \<Body data> contains the request Body posted with the request.
 </table>
 `}</HTMLBlock>
 
-### paymentMethod object fields description
+#### paymentMethod object fields description
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -221,7 +221,7 @@ Where, \<Body data> contains the request Body posted with the request.
 </table>
 `}</HTMLBlock>
 
-#### paymentCard object fields description
+##### paymentCard object fields description
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -289,7 +289,7 @@ Where, \<Body data> contains the request Body posted with the request.
 </table>
 `}</HTMLBlock>
 
-### additionalInfo object fields description
+#### additionalInfo object fields description
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -328,7 +328,7 @@ Where, \<Body data> contains the request Body posted with the request.
 </table>
 `}</HTMLBlock>
 
-### order object fields description
+#### order object fields description
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -400,7 +400,7 @@ Where, \<Body data> contains the request Body posted with the request.
 </table>
 `}</HTMLBlock>
 
-### callbackActions object fields description
+#### callbackActions object fields description
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -453,31 +453,7 @@ Where, \<Body data> contains the request Body posted with the request.
 
 <V2_Error_Handling />
 
-#### paymentChargeSpecification object fields description
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>price<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field must contain the price or transaction amount to be posted.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>10.00</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-### billingDetails object field descriptions
+##### billingDetails object field descriptions
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
