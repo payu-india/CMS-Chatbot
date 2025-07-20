@@ -144,38 +144,3 @@ payu.environment=test
 
 * **Solution**: Verify project structure and dependencies
 * **Alternative**: Check IDE logs for error details
-
-### Getting Help
-
-1. **Plugin Documentation**
-   * VS Code: Check extension details in marketplace
-   * IntelliJ: Visit plugin page on JetBrains marketplace
-
-2. **PayU Developer Resources**
-   * API Documentation: [https://docs.payu.in/](https://docs.payu.in/)
-   * Support: Contact PayU developer support
-
-***
-
-## 🎯 Next Steps
-
-After installing and configuring the plugins:
-
-1. **Explore Generated Code**: Review the boilerplate to understand the structure
-2. **Customize Integration**: Modify code according to your business requirements
-3. **Test Integration**: Use test environment for initial testing
-4. **Implement Security**: Add proper validation and security measures
-5. **Deploy**: Move to production environment when ready
-
-***
-
-## 📚 Additional Resources
-
-* **PayU API Documentation**: [https://docs.payu.in/](https://docs.payu.in/)
-* **VS Code Plugin**: [https://marketplace.visualstudio.com/items?itemName=PayuPayments.Payu-Payments](https://marketplace.visualstudio.com/items?itemName=PayuPayments.Payu-Payments)
-* **IntelliJ Plugin**: [https://plugins.jetbrains.com/plugin/27588-payu-payments-code-snippets](https://plugins.jetbrains.com/plugin/27588-payu-payments-code-snippets)
-* **PayU Developer Portal**: [https://developer.payu.in/](https://developer.payu.in/)
-
-***
-
-*This guide provides a comprehensive overview of installing and using PayU payment plugins. For specific integration requirements, refer to the PayU API documentation and plugin-specific help resources.*
