@@ -2,7 +2,7 @@
 title: Collect Payment API - Non-Seamless v2 Payment
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
