@@ -75,7 +75,6 @@ username="smsplus",algorithm="sha512",headers="date",signature="abcd1234..."
 ## Request body
 
 <HTMLBlock>{`
-<div style={{ maxWidth: "85%", overflowX: "auto" }}>
 <Table>
 <thead>
 <tr>
@@ -271,14 +270,12 @@ paymentCard
 <code>object</code> Card details for seamless card payments. This object combines v1 parameters like 'ccnum', 'ccvv', 'ccexpmon', 'ccexpyr'. For more information, refer to <a href="#paymentcard-json-object-fields-only-for-seamless-card-payments"paymentCard JSON object fields</a>.
 </td>
 <td>
-Refer to <a href="#paymentcard-json-object-fields-only-for-seamless-card-payments"paymentCard JSON object fields</a>.  
+Refer to <a href="#paymentcard-json-object-fields-only-for-seamless-card-payments">paymentCard JSON object fields</a>.  
 </td>
 </tr>
 
 </tbody>
 </Table>
-</div>
-}
 `}</HTMLBlock>
 
 <br />
