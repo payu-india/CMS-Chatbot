@@ -664,57 +664,75 @@ https://example.com/cancel
 ### paymentMethod JSON object Fields (only for Seamless Integration)
 
 <HTMLBlock>{`
-<table>
+<table style="width: 100%; border-collapse: collapse;">
 <thead>
-<tr style="background-color: #f2f2f2;">
-<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Field</th>
-<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Description</th>
-<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Example</th>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-name<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless</code>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br> <code>mandatory</code></p>
 </td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Payment method name (e.g., CreditCard, DebitCard, NetBanking, UPI). This replaces the 'pg' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 10<br/><br/>
-<strong>Possible values:</strong><br/>
-• CreditCard<br/>
-• DebitCard<br/>
-• NetBanking<br/>
-• UPI<br/>
-• Wallet<br/>
-• EMI<br/>
-• BNPL
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p>
 </td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-CreditCard
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p>
 </td>
 </tr>
-
 <tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-bankCode<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless</code>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br> <code>mandatory</code></p>
 </td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Bank code or payment gateway code. This replaces the 'bankcode' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 10<br/><br/>
-<strong>Common values:</strong><br/>
-• CC (Credit Card)<br/>
-• DC (Debit Card)<br/>
-• NB (Net Banking)<br/>
-• UPI (UPI payments)<br/>
-• WALLET (Wallet payments)
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Reference ID for transaction tracking and this must be unique for every transaction.</p>
 </td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-CC
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p>
 </td>
 </tr>
-
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br> <code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the <code>order.paymentChargeSpecificationparameter.price</code>field will be considered.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For more information, refer to <a href="#paymentmethod-object-fields-description">paymentMethod object fields description</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> {<br>        &quot;name&quot;: &quot;NetBanking&quot;,	<br>        &quot;bankCode&quot;: &quot;TESTNB&quot;<br>    }</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo object fields description</a></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to <a href="#callbackactions-object-fields-description">callbackActions object fields description</a></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="#billingdetails-object-field-descriptions">billingDetails object field descriptions</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
 </tbody>
 </table>
 `}</HTMLBlock>
