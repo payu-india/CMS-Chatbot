@@ -734,7 +734,8 @@ cardNumber<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for new card payments</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Credit/Debit card number. This replaces the 'ccnum' parameter from v1. Must be between 13-19 digits (15 digits for AMEX, 13-19 digits for Maestro) and must be validated using the LUHN algorithm.<br/><br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Credit/Debit card number. This replaces the 'ccnum' parameter from v1. Must be between 13-19 digits (15 digits for AMEX, 13-19 digits for Maestro) and must be validated using the LUHN algorithm.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 13-19 digits<br/><br/>
 <strong>Note:</strong> Not required when using saved card tokens.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -749,6 +750,7 @@ validThrough<br/>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Card expiry date in MM/YY format. This replaces the separate 'ccexpmon' and 'ccexpyr' parameters from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 5 characters (MM/YY)<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Format</code>: MM/YY where MM is two-digit month (01-12) and YY is two-digit year
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -762,7 +764,8 @@ ownerName<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for new card payments</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Cardholder name as printed on the card. This replaces the 'ccname' parameter from v1.<br/><br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Cardholder name as printed on the card. This replaces the 'ccname' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50<br/><br/>
 <strong>Note:</strong> Not required when using saved card tokens.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -777,6 +780,7 @@ cvv<br/>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Card verification value. This replaces the 'ccvv' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 3-4 digits<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Format</code>: 3-4 digit number (3 digits for most cards, 4 digits for AMEX)
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -790,7 +794,8 @@ cardToken<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for saved card payments</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Saved card token for repeat transactions. This replaces the 'store_card_token' parameter from v1.<br/><br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Saved card token for repeat transactions. This replaces the 'store_card_token' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: Variable length<br/><br/>
 <strong>Usage:</strong> When using saved cards, provide this token instead of cardNumber and ownerName.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -804,7 +809,8 @@ tokenType<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for saved card payments</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Type of token being used. This replaces the 'storecard_token_type' parameter from v1.<br/><br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Type of token being used. This replaces the 'storecard_token_type' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: Variable length<br/><br/>
 <strong>Possible values:</strong><br/>
 • NETWORK_TOKEN (Network tokenization)<br/>
 • ISSUER_TOKEN (Bank issued tokens)<br/>
