@@ -126,18 +126,6 @@ Where, \<Body data> contains the request Body posted with the request.
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Currency of the transaction. For example, INR.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentSource<code> optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Contains the payment source. For example, WEB.</p>
-</td>
-</tr>
-<tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br> <code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code>Details about the transaction order including product information, ordered items, user defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a></p>
