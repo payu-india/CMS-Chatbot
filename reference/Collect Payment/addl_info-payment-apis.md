@@ -56,7 +56,7 @@ authorization
 
 <td>
 <code>string</code> HMAC signature generated using SHA512 algorithm. Format: 
-username="[accountId]",algorithm="sha512",headers="date",signature="[calculated_signature]"
+username="[accountId]",<br/>algorithm="sha512",<br/>headers="date",signature="[calculated_signature]"
 
 The signature is calculated as: sha512(request_body + '|' + date + '|' + merchant_secret)
 
@@ -64,7 +64,7 @@ This replaces the 'hash' parameter from v1 API.
 </td>
 
 <td>
-username="smsplus",algorithm="sha512",headers="date",signature="abcd1234..."
+username="smsplus",<br/>algorithm="sha512",headers="date",<br/>signature="abcd1234..."
 </td>
 </tr>
 
