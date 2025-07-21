@@ -9,61 +9,61 @@ metadata:
 
 ## Method 1: JetBrains Marketplace (Recommended)
 
-1. **Open IntelliJ IDEA**
+1. Open IntelliJ IDEA
 
-2. **Navigate to Plugins**
-   * Go to `File` → `Settings` (Windows/Linux) or `IntelliJ IDEA` → `Preferences` (Mac)
-   * Select `Plugins` from the left sidebar
+2. Navigate to Plugins
+   * Go to `File` → `Settings` (Windows/Linux) or `IntelliJ IDEA` → `Preferences` (Mac).
+   * Select `Plugins` from the left sidebar.
 
-3. **Search and Install**
-   * Click on `Marketplace` tab
+3. Search and Install:
+   * Select the **Marketplace** tab.
    * Search for "PayU Payments Code Snippets"
-   * Click `Install` button
+   * Click **Install**.
    * Restart IntelliJ IDEA when prompted
 
 #### Method 2: Direct Installation
 
-1. **Download Plugin**
-   * Visit: [https://plugins.jetbrains.com/plugin/27588-payu-payments-code-snippets](https://plugins.jetbrains.com/plugin/27588-payu-payments-code-snippets)
-   * Click "Get" or "Install to IntelliJ IDEA"
+1. Download Plugin:
+   * Navigate to the marketplace page:
+   [https://plugins.jetbrains.com/plugin/27588-payu-payments-code-snippets](https://plugins.jetbrains.com/plugin/27588-payu-payments-code-snippets)
+   * Click **Get** or **Install to IntelliJ IDEA**.
 
-2. **Manual Installation** (if needed)
-   * Download the plugin file (.jar)
-   * Go to `File` → `Settings` → `Plugins`
-   * Click gear icon ⚙️ → `Install Plugin from Disk`
-   * Select the downloaded file
+2. Manual Installation\*\* (if needed):
+   * Download the plugin file (.jar).
+   * Select the **File** > **Settings** > **Plugins** menu.
+   * Click the **Configure** button ⚙️ > **Install Plugin from Disk**
+   * Double-click the downloaded file to install.
 
 ## Using the IntelliJ IDEA Plugin
 
-### 1. Create New Project
+### Step 1: Create a new project
 
-1. **Start New Project**
-   * `File` → `New` → `Project`
-   * Choose your preferred project type (Java, Spring Boot, etc.)
+1. Select the **File > New > Project** menu.
 
-2. **Configure Project Settings**
+2. Choose your preferred project type (Java, Spring Boot, etc.)
+
+3. Configure the project settings:
    * Set project name and location
    * Configure SDK and dependencies
 
-### 2) Access PayU Templates
+### Step 2: Access PayU templates
 
-1. **File Templates**
-   * Right-click on project folder
-   * Select `New` → look for PayU templates
-   * Choose appropriate template
+1. Right-click the project folder.
 
-2. **Live Templates**
-   * Start typing in your code editor
-   * Type `payu` and press `Tab` to see available templates
+2. Select **New** and look for PayU templates.
 
-### 3) Code Generation
+3. Choose the appropriate template
 
-1. **Payment Integration Templates**
+4. Type `payu` and press the `Tab` key to see available templates.
+
+### Step 3: Code generation
+
+1. Payment Integration templates:
    * `payu-payment-request`: Generates payment request code
    * `payu-payment-response`: Generates response handling code
    * `payu-webhook`: Generates webhook endpoint code
 
-2. **Configuration Templates**
+2. Configuration templates:
 
 ```java
 // Example generated configuration
@@ -84,9 +84,9 @@ public class PayUConfig {
 }
 ```
 
-#### 4. **Environment Configuration**
+#### Step 4: Environment Configuration
 
-1. **Application Properties**
+* Configure the **application.properties** file.
 
 ```properties
 # application.properties for Test Environment
