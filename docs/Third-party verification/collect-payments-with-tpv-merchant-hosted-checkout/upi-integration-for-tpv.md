@@ -283,7 +283,7 @@ With the following parameters, make the transaction request with the customer’
 
       <td>
         <code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br/>
-        <code>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||||SALT)</code>
+        <code>sha512(key|txnid|amount|productinfo|<br/>firstname|email|udf1|udf2|udf3|udf4|<br/>udf5|||||SALT)</code>
       </td>
 
       <td>
