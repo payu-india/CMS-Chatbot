@@ -5,7 +5,7 @@ api:
   file: payuhosted-3.json
   operationId: PayUHostedCheckout
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Collect Payment API or _payment API
   description: >-
