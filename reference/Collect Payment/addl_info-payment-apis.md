@@ -104,6 +104,8 @@ accountId
 
 <td>
 <code>string</code> This parameter is the unique Merchant Key provided by PayU for your merchant account. In v2, this replaces the 'key' parameter from v1.
+<br/>
+<code>Character limit</code>: 10
 </td>
 
 <td>
@@ -128,38 +130,6 @@ referenceId
 
 <td>
 order_12345
-</td>
-</tr>
-
-<tr>
-<td>
-currency
-<br/>
-<code>mandatory</code>
-</td>
-
-<td>
-<code>string</code> Currency for the transaction. Default value is INR.
-</td>
-
-<td>
-INR
-</td>
-</tr>
-
-<tr>
-<td>
-paymentSource
-<br/>
-<code>optional</code>
-</td>
-
-<td>
-<code>string</code> Source of the payment (e.g., WEB, MOBILE).
-</td>
-
-<td>
-WEB
 </td>
 </tr>
 
@@ -205,9 +175,8 @@ callBackActions
 <td>
 <code>object</code> Callback URLs for different payment outcomes. This object replaces the individual 'surl' and 'furl' parameters from v1. For more information, refer to <a href="#callBackActions-json-object-fields"> callBackActions JSON object field description</a>.
 </td>
-  Refer to <a href="#callBackActions-json-object-fields"> callBackActions JSON object field description</a>.
 <td>
-  
+  Refer to <a href="#callBackActions-json-object-fields"> callBackActions JSON object field description</a>.
 </td>
 </tr>
 
@@ -269,7 +238,7 @@ paymentCard
 </td>
 
 <td>
-<code>object</code> Card details for seamless card payments. This object combines v1 parameters like 'ccnum', 'ccvv', 'ccexpmon', 'ccexpyr'. For more information, refer to <a href="#paymentcard-json-object-fields-only-for-seamless-card-payments"paymentCard JSON object fields</a>.
+<code>object</code> Card details for seamless card payments. This object combines v1 parameters like 'ccnum', 'ccvv', 'ccexpmon', 'ccexpyr'. For more information, refer to <a href="#paymentcard-json-object-fields-only-for-seamless-card-payments">paymentCard JSON object fields</a>.
 </td>
 <td>
 Refer to <a href="#paymentcard-json-object-fields-only-for-seamless-card-payments">paymentCard JSON object fields</a>.  
