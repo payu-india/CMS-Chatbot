@@ -196,7 +196,6 @@ Where, \<Body data> contains the request Body posted with the request.
 </table>
 `}</HTMLBlock>
 
-
 ##### paymentCard object fields description
 
 <HTMLBlock>{`
