@@ -573,7 +573,7 @@ successAction<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Action to be taken upon successful payment completion.
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Action to be taken upon successful payment completion. This replaces the 'surl' parameter from v1.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 {<br/>
@@ -589,7 +589,8 @@ successAction.redirectUrl<br/>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> URL to redirect after successful payment. This replaces the 'surl' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50<br/><br/>
+<strong>Requirements:</strong> Must use HTTP/HTTPS protocol and be accessible for handling PayU responses.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 https://example.com/success
@@ -602,7 +603,7 @@ failureAction<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Action to be taken upon payment failure.
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Action to be taken upon payment failure. This replaces the 'furl' parameter from v1.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 {<br/>
@@ -618,7 +619,8 @@ failureAction.redirectUrl<br/>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> URL to redirect after failed payment. This replaces the 'furl' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50<br/><br/>
+<strong>Requirements:</strong> Must use HTTP/HTTPS protocol and be accessible for handling PayU responses.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 https://example.com/failure
@@ -631,7 +633,7 @@ cancelAction<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Action to be taken when payment is cancelled by the user.
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Action to be taken when payment is cancelled by the user. This replaces the 'curl' parameter from v1.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 {<br/>
@@ -647,7 +649,8 @@ cancelAction.redirectUrl<br/>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> URL to redirect when payment is cancelled. This replaces the 'curl' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50<br/><br/>
+<strong>Requirements:</strong> Must use HTTP/HTTPS protocol and be accessible for handling PayU responses.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 https://example.com/cancel
