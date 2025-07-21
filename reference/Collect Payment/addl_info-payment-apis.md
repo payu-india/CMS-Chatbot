@@ -676,7 +676,8 @@ name<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Payment method name (e.g., CreditCard, DebitCard, NetBanking, UPI). This replaces the 'pg' parameter from v1.<br/><br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Payment method name (e.g., CreditCard, DebitCard, NetBanking, UPI). This replaces the 'pg' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 10<br/><br/>
 <strong>Possible values:</strong><br/>
 • CreditCard<br/>
 • DebitCard<br/>
@@ -697,7 +698,8 @@ bankCode<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Bank code or payment gateway code. This replaces the 'bankcode' parameter from v1.<br/><br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Bank code or payment gateway code. This replaces the 'bankcode' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 10<br/><br/>
 <strong>Common values:</strong><br/>
 • CC (Credit Card)<br/>
 • DC (Debit Card)<br/>
