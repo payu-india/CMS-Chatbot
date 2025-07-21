@@ -555,7 +555,7 @@ zipCode<br/>
 </table>
 `}</HTMLBlock>
 
-## callBackActions JSON object fields
+### callBackActions JSON object fields
 
 <HTMLBlock>{`
 <table>
@@ -658,7 +658,7 @@ https://example.com/cancel
 </table>
 `}</HTMLBlock>
 
-## paymentMethod JSON object Fields (only for Seamless Integration)
+### paymentMethod JSON object Fields (only for Seamless Integration)
 
 <HTMLBlock>{`
 <table>
@@ -714,7 +714,7 @@ CC
 </table>
 `}</HTMLBlock>
 
-## paymentCard JSON object fields (only for Seamless Card Payments)
+### paymentCard JSON object fields (only for Seamless Card Payments)
 
 <HTMLBlock>{`
 <table>
