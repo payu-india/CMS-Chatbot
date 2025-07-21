@@ -16,10 +16,10 @@ You can collect payments from customers in EMI using the Merchant Hosted integra
 
 **Environment**
 
-|                            |                                       |
-| :------------------------- | :------------------------------------ |
-| **Test Environment**       | \<https://apitest.payu.in/v2/payments> |
-| **Production Environment** | \<https://api.payu.in/v2/payments>     |
+|                            |                                                                                |
+| :------------------------- | :----------------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://apitest.payu.in/v2/payments>](https://apitest.payu.in/v2/payments>) |
+| **Production Environment** | \<[https://api.payu.in/v2/payments>](https://api.payu.in/v2/payments>)         |
 
 ## Request parameters
 
@@ -47,48 +47,47 @@ You must hash the request parameters using the following hash logic:
 sha512(<Body data> + '|' + date + '|' + merchant_secret}
 ```
 
-Where, \<Body data\> contains the request Body posted with the request.
+Where, \<Body data> contains the request Body posted with the request.
 
 <details>
-<summary>Sample header code</summary>
+  <summary>Sample header code</summary>
 
-```
-var merchant_key = 'smsplus';
-var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
+  ```
+  var merchant_key = 'smsplus';
+  var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
 
-// date
-var date = new Date();
-// var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-date = date.toUTCString();
+  // date
+  var date = new Date();
+  // var date = "Wed, 28 Jun 2023 11:25:19 GMT";
+  date = date.toUTCString();
 
-// authorization
-var authorization = getAuthHeader(date);
-console.log(authorization);
+  // authorization
+  var authorization = getAuthHeader(date);
+  console.log(authorization);
 
-function getAuthHeader(date) {
-var AUTH_TYPE = 'sha512';
-var data = isEmpty(request['data'])?"":request['data'];
-var hash_string = data + '|' + date + '|' + merchant_secret;
-console.log("Hash String is ", hash_string);
-var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-return authHeader;
-}
+  function getAuthHeader(date) {
+  var AUTH_TYPE = 'sha512';
+  var data = isEmpty(request['data'])?"":request['data'];
+  var hash_string = data + '|' + date + '|' + merchant_secret;
+  console.log("Hash String is ", hash_string);
+  var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
+  var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
+  return authHeader;
+  }
 
-pm.environment.set('date', date);
-pm.environment.set('authorization', authorization);
-pm.environment.set('merchant_key',merchant_key);
-pm.environment.set('merchant_secret',merchant_secret);
+  pm.environment.set('date', date);
+  pm.environment.set('authorization', authorization);
+  pm.environment.set('merchant_key',merchant_key);
+  pm.environment.set('merchant_secret',merchant_secret);
 
-function isEmpty(obj) {
-for(var key in obj) {
-if(obj.hasOwnProperty(key))
-return false;
-}
-return true;
-}
-```
-
+  function isEmpty(obj) {
+  for(var key in obj) {
+  if(obj.hasOwnProperty(key))
+  return false;
+  }
+  return true;
+  }
+  ```
 </details>
 
 <br />
@@ -127,22 +126,6 @@ return true;
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the <code>order.paymentChargeSpecificationparameter.price</code>field will be considered.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Currency of the transaction. By default, <code>INR</code> is posted.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>INR</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentSource<code> optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Contains the payment source.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>WEB</p>
 </td>
 </tr>
 <tr>
@@ -185,7 +168,6 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 ### paymentMethod object fields description
 
 <HTMLBlock>{`
@@ -212,7 +194,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### order object fields description
 
@@ -246,7 +227,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 #### userDefinedFields object fields description
 
@@ -286,7 +266,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### callbackActions object fields description
 
@@ -339,9 +318,8 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 > ❗️ Error Handling
-> 
+>
 > If any error message is displayed with an error code, refer to the [Error Codes](https://docs.payu.in/v1/reference/error-codes) section to understand the reason for these error codes.
 
 ### billingDetails object field descriptions
@@ -423,7 +401,6 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ## Sample request
 
@@ -516,7 +493,6 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 </table>
 `}</HTMLBlock>
 
-
 ## Sample response
 
 ```
@@ -529,5 +505,5 @@ Array
 ```
 
 > 📘 Reference:
-> 
+>
 > To check the transaction status, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
