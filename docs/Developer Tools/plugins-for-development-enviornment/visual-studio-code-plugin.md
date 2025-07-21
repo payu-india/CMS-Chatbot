@@ -21,7 +21,7 @@ This section describes how to install the PayU plugin for Visual Studio IDE.
 
 2. Navigate to extensions:
    * Select **Extensions**  under **Activity** from the menu on left pane.
-   OR
+     OR
    * Use the keyboard shortcut: `Ctrl+Shift+X` (Windows/Linux) or `Cmd+Shift+X` (Mac)
 
 3. Search for PayU Plugin:
@@ -53,8 +53,8 @@ mkdir payu-integration-project
 cd payu-integration-project
 ```
 
-1. Open project in VS Code
-2. Generate boilerplate code:
+2. Open project in VS Code
+3. Generate boilerplate code:
    * Open command palette using the`Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac) key combination.
    * Type "PayU" to see available commands.
    * Select appropriate command based on your integration type.
@@ -76,7 +76,7 @@ const config = {
 };
 ```
 
-1. Code snippets usage
+4. Code snippets usage
    * Type `payu-` in any JavaScript/HTML file to see available snippets
 
 ```
@@ -84,8 +84,6 @@ payu-payment-form
 payu-api-call
 payu-webhook-handler
 ```
-
-<br />
 
 ## Troubleshooting
 
