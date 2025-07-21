@@ -88,7 +88,7 @@ Where, \<Body data> contains the request Body posted with the request.
   ```
 </details>
 
-### Body
+### Request body
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -122,14 +122,6 @@ Where, \<Body data> contains the request Body posted with the request.
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the <code>order.paymentChargeSpecificationparameter.price</code>field will be considered.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Currency of the transaction (e.g., INR).</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>INR</p>
 </td>
 </tr>
 <tr>
