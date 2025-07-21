@@ -12,8 +12,8 @@ metadata:
 1. Open IntelliJ IDEA
 
 2. Navigate to Plugins
-   * Go to `File` → `Settings` (Windows/Linux) or `IntelliJ IDEA` → `Preferences` (Mac).
-   * Select `Plugins` from the left sidebar.
+   * Select the **File** > **Settings** (Windows/Linux) or **IntelliJ IDEA** > **Preferences** (Mac) from menu.
+   * Select **Plugins** from the menu on left pane.
 
 3. Search and Install:
    * Select the **Marketplace** tab.
@@ -24,8 +24,8 @@ metadata:
 #### Method 2: Direct Installation
 
 1. Download Plugin:
-   * Navigate to the marketplace page:
-   [https://plugins.jetbrains.com/plugin/27588-payu-payments-code-snippets](https://plugins.jetbrains.com/plugin/27588-payu-payments-code-snippets)
+   * Navigate to the marketplace page:\
+     [https://plugins.jetbrains.com/plugin/27588-payu-payments-code-snippets](https://plugins.jetbrains.com/plugin/27588-payu-payments-code-snippets)
    * Click **Get** or **Install to IntelliJ IDEA**.
 
 2. Manual Installation\*\* (if needed):
@@ -59,9 +59,9 @@ metadata:
 ### Step 3: Code generation
 
 1. Payment Integration templates:
-   * `payu-payment-request`: Generates payment request code
-   * `payu-payment-response`: Generates response handling code
-   * `payu-webhook`: Generates webhook endpoint code
+   * **payu-payment-request**: Generates payment request code
+   * **payu-payment-response**: Generates response handling code
+   * **payu-webhook**: Generates webhook endpoint code
 
 2. Configuration templates:
 
@@ -84,7 +84,7 @@ public class PayUConfig {
 }
 ```
 
-#### Step 4: Environment Configuration
+### Step 4: Environment configuration
 
 * Configure the **application.properties** file.
 
