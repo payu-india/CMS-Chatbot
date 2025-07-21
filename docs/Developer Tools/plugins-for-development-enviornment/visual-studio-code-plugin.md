@@ -25,25 +25,27 @@ This section describes how to install the PayU plugin for Visual Studio IDE.
 
 3. **Search for PayU Plugin**
    * Type "PayU Payments" in the search box
-   * Look for "PayU Payments" by PayuPayments publisher
+   * Look for "PayU Payments" by PayuPayments publisher.
 
 4. **Install the Plugin**
-   * Click the "Install" button
+   * Click  **Install**.
    * Wait for the installation to complete
 
 ### Method 2: Direct Installation via URL
 
 1. **Open Command Palette**
-   * Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac)
+   * Press the `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac) key combinations.
 
 2. **Run Install Command**
-   * Type "Extensions: Install from VSIX"
-   * Or visit: [https://marketplace.visualstudio.com/items?itemName=PayuPayments.Payu-Payments](https://marketplace.visualstudio.com/items?itemName=PayuPayments.Payu-Payments)
-   * Click "Install" button on the marketplace page
+   * Type "Extensions: Install from VSIX."
+   OR
+   * Navigate to the following URL and Click **Install** on the marketplace page:
+
+[https://marketplace.visualstudio.com/items?itemName=PayuPayments.Payu-Payments](https://marketplace.visualstudio.com/items?itemName=PayuPayments.Payu-Payments)
 
 ## Using the VS Code Plugin
 
-### 1. Create new project
+### Step 1: Create new project
 
 Create a new directory for your project using the following MS DOS shell commands:
 
@@ -52,23 +54,23 @@ mkdir payu-integration-project
 cd payu-integration-project
 ```
 
-### 2. Open project in VS Code
+### Step 2: Open project in VS Code
 
-### 3. Generate boilerplate code
+### Step 3: Generate boilerplate code
 
 1. Open Command Palette
-   * Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac)
+   * Press the`Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac) key combination.
 
-2. Search for PayU Commands
-   * Type "PayU" to see available commands
-   * Select appropriate command based on your integration type
+2. Search for PayU Commands:
+   * Type "PayU" to see available commands.
+   * Select appropriate command based on your integration type.
 
 3. Available Commands (typical examples):
    * `PayU: Generate Payment Form`
    * `PayU: Generate API Integration`
    * `PayU: Create Sample Application`
 
-### 4) Configure environment
+### Step 4: Configure environment
 
 Update the configuration file similar to the following:
 
@@ -85,7 +87,7 @@ const config = {
 };
 ```
 
-### 5. Code snippets usage
+### Step 5: Code snippets usage
 
 * Type `payu-` in any JavaScript/HTML file to see available snippets
 * Common snippets include:
@@ -106,25 +108,6 @@ const config = {
 * **Alternative**: Check snippet trigger keywords
 
 ### Template Generation Fails
-
-* **Solution**: Verify project structure and dependencies
-* **Alternative**: Check IDE logs for error details
-
-## Troubleshooting
-
-### Common Issues
-
-#### Plugin Not Visible
-
-* **Solution**: Restart your IDE after installation
-* **Alternative**: Check if plugin is enabled in settings
-
-#### Code Snippets Not Working
-
-* **Solution**: Ensure you're in the correct file type (.js, .java, .html)
-* **Alternative**: Check snippet trigger keywords
-
-#### Template Generation Fails
 
 * **Solution**: Verify project structure and dependencies
 * **Alternative**: Check IDE logs for error details
