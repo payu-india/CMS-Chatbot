@@ -72,7 +72,7 @@ username="smsplus",algorithm="sha512",headers="date",signature="abcd1234..."
 </Table>
 `}</HTMLBlock>
 
-## Request parameters
+## Request body
 
 <HTMLBlock>{`
 <div style={{ maxWidth: "85%", overflowX: "auto" }}>
