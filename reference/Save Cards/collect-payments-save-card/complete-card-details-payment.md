@@ -133,6 +133,66 @@ For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_i
 </table>
 `}</HTMLBlock>
 
+### paymentMethod JSON object Fields
+
+<HTMLBlock>{`
+<table>
+<thead>
+<tr style="background-color: #f2f2f2;">
+<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Field</th>
+<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Description</th>
+<th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+name<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Payment method name (e.g., CreditCard, DebitCard, NetBanking, UPI). This replaces the 'pg' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 10<br/><br/>
+<strong>Possible values:</strong><br/>
+• CreditCard<br/>
+• DebitCard<br/>
+• NetBanking<br/>
+• UPI<br/>
+• Wallet<br/>
+• EMI<br/>
+• BNPL
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+CreditCard
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+bankCode<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for seamless</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Bank code or payment gateway code. This replaces the 'bankcode' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 10<br/><br/>
+<strong>Common values:</strong><br/>
+• CC (Credit Card)<br/>
+• DC (Debit Card)<br/>
+• NB (Net Banking)<br/>
+• UPI (UPI payments)<br/>
+• WALLET (Wallet payments)
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+CC
+</td>
+</tr>
+
+</tbody>
+</table>
+`}</HTMLBlock>
+
+###
+
 ##### paymentCard object fields description
 
 <HTMLBlock>{`
@@ -201,9 +261,7 @@ For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_i
 </table>
 `}</HTMLBlock>
 
-
 <V2_Error_Handling />
-
 
 ## Sample request
 
