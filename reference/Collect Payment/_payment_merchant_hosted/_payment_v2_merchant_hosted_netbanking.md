@@ -30,535 +30,198 @@ next:
       slug: collect-payments-with-net-banking-seamless
       title: Net Banking Integration
 ---
-Collect payments using Net Banking with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
+The PayU v2 seamless Net Banking integration allows merchants to collect Net Banking payments directly without redirecting customers to PayU's hosted checkout page.
 
-## Check Net Banking health
+> 📘 **Note**
+> 
+> This documentation covers **seamless Net Banking** integration. For hosted checkout flows, refer to the [v2 Payment API (Non-Seamless)](doc:v2-payment-api-non-seamless) documentation.
 
-You can check whether the Net Banking server is up and running using the **getNetBankingStatus** API. If the Net Banking server is down for a bank, you can inform your customers that the Net Banking server is down. For more information on the **getNetBankingStatus** API, refer to [Get Net Banking Status API](https://docs.payu.in/v1/reference/get_net_banking_status_api).
+## Environment Details
 
-**Environment**
+| Environment | Base URL |
+|-------------|----------|
+| Test | `https://apitest.payu.in/v2/payments` |
+| Production | `https://api.payu.in/v2/payments` |
 
-|                            |                                                                                |
-| :------------------------- | :----------------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://apitest.payu.in/v2/payments>](https://apitest.payu.in/v2/payments>) |
-| **Production Environment** | \<[https://api.payu.in/v2/payments>](https://api.payu.in/v2/payments>)         |
+## Server Health Check
 
-## Request parameters
+Before processing Net Banking payments, you can check if the Net Banking server for a specific bank is operational using the [Get Net Banking Status API](https://docs.payu.in/v1/reference/get_net_banking_status_api).
 
-### Request Header
+## Request
 
-| Parameter     | Description                                                                                                                                                                                                    |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| date          | The current date and time. For example,  format of the date is Wed, 28 Jun 2023 11:25:19 GMT.                                                                                                                  |
-| authorization | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to[ authorization fields description](#authorization-fields-description). |
+### Request Headers
 
-#### authorization fields description
+<V2_payment_header_params />
 
-| Field     | Description                                                                                                                                                                      |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| username  | Represents the username or identifier for the client or merchant, in this case, it's "smsplus".                                                                                  |
-| algorithm | Indicates the hashing algorithm used for the HMAC signature. Here, it is set to "sha512".                                                                                        |
-| headers   | Specifies which headers have been used in generating the hash. In this case, only the "date" header is used.                                                                     |
-| signature | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to [hashing algorithm](#hashing-algorithm). |
+### Request Parameters
 
-#### hashing algorithm
+| Parameter | Data Type | Required | Description |
+|-----------|-----------|----------|-------------|
+| `accountId` | String | Yes | Merchant key provided by PayU. Character limit: 50 |
+| `referenceId` | String | Yes | Unique reference ID for the transaction. Character limit: 50 |
+| `paymentMethod` | Object | Yes | Net Banking payment method details. [See paymentMethod object](#paymentmethod-object) |
+| `order` | Object | Yes | Order details containing product information and pricing. [See order object](#order-object) |
+| `billingDetails` | Object | Yes | Customer billing information. [See billingDetails object](#billingdetails-object) |
+| `callBackActions` | Object | No | Callback URLs for different payment outcomes. [See callBackActions object](#callbackactions-object) |
+| `additionalInfo` | Object | Yes | Additional transaction parameters including flow type. [See additionalInfo object](#additionalinfo-object) |
+| `beneficiaryDetail` | Object | Yes | Beneficiary account details for Net Banking transfer. [See beneficiaryDetail object](#beneficiarydetail-object) |
 
-You must hash the request parameters using the following hash logic:
+## Object Specifications
 
-```
-sha512(<Body data> + '|' + date + '|' + merchant_secret}
-```
+### paymentMethod Object
 
-Where, \<Body data> contains the request Body posted with the request.
+| Parameter | Data Type | Required | Description |
+|-----------|-----------|----------|-------------|
+| `name` | String | Yes | Payment method type. Must be set to `"NetBanking"`. Character limit: 10 |
+| `bankCode` | String | Yes | Bank code for the selected bank. Character limit: 10. [See Net Banking codes](https://docs.payu.in/v1/docs/net-banking-codes) |
 
-<details>
-  <summary>Sample header code</summary>
+### order Object
 
-  ```
-  var merchant_key = 'smsplus';
-  var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
+<V2_order_object />
 
-  // date
-  var date = new Date();
-  // var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-  date = date.toUTCString();
+### paymentChargeSpecification Object
 
-  // authorization
-  var authorization = getAuthHeader(date);
-  console.log(authorization);
+<V2_paymentChargeSpecification_object />
 
-  function getAuthHeader(date) {
-  var AUTH_TYPE = 'sha512';
-  var data = isEmpty(request['data'])?"":request['data'];
-  var hash_string = data + '|' + date + '|' + merchant_secret;
-  console.log("Hash String is ", hash_string);
-  var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-  var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-  return authHeader;
-  }
+### billingDetails Object
 
-  pm.environment.set('date', date);
-  pm.environment.set('authorization', authorization);
-  pm.environment.set('merchant_key',merchant_key);
-  pm.environment.set('merchant_secret',merchant_secret);
+<BillingDetails_object />
 
-  function isEmpty(obj) {
-  for(var key in obj) {
-  if(obj.hasOwnProperty(key))
-  return false;
-  }
-  return true;
-  }
-  ```
-</details>
+### callBackActions Object
 
-### Request body
+<CallbackActions_object />
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Reference ID for transaction tracking and this must be unique for every transaction.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the<code> order.paymentChargeSpecification.price</code> field will be considered.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For more information, refer to <a href="#paymentmethod-object-fields-description">paymentMethod object fields description</a>.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> {<br>        &quot;name&quot;: &quot;NetBanking&quot;,	<br>        &quot;bankCode&quot;: &quot;TESTNB&quot;<br>    }</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo object fields description</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to <a href="#callbackactions-object-fields-description">callbackActions object fields description</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="#billingdetails-object-field-descriptions">billingDetails object field descriptions</a>.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryDetaIl <code>mandatory for NetBanking</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the beneficiary for NetBanking. For more information, refer to <a href="#beneficiarydetaIl-object-fields-description">beneficiaryDetaIl object fields description.</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>{&quot;beneficiaryName&quot;: &quot;Ram&quot;, &quot;beneficiaryAccountNumber&quot;: &quot;115501029190&quot;}</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+### additionalInfo Object
 
-### paymentMethod object fields description
+<AdditionalI_Info_object />
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For more information, refer to <a href="https://docs.payu.in/v1/docs/payment-mode-codes">Payment Mode Codes</a>. For NetBanking, this must contain <strong>NetBanking</strong>.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the bank code. For more information, refer to <a href="https://docs.payu.in/v1/docs/net-banking-codes">Net Banking Codes</a>.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+### beneficiaryDetail Object
 
-#### order object fields description
+| Parameter | Data Type | Required | Description |
+|-----------|-----------|----------|-------------|
+| `beneficiaryName` | String | Yes | Name of the beneficiary account holder. Character limit: 100 |
+| `beneficiaryAccountNumber` | String | Yes | Bank account number of the beneficiary. Character limit: 50 |
+| `beneficiaryAccountType` | String | Yes | Type of beneficiary account (e.g., "SAVINGS", "CURRENT"). Character limit: 20 |
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>productInfo<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Details about the product being purchased. For more information, refer to<a href="#userdefinedfields-object-fields-description"> userDefinedFields object fields description</a>.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>userDefinedFields<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code>Custom fields defined by the user for additional information.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentChargeSpecification<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Payment details including amount, additional charges and PayU offers to be applied. For more information, refer to <a href="#paymentchargespecification-object-fields-description">paymentChargeSpecification object fields description</a>.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+## Sample Request
 
-#### userDefinedFields object fields description
-
-| Field | Description         |
-| ----- | ------------------- |
-| udf1  | User defined field. |
-| udf2  | User defined field. |
-| udf3  | User defined field. |
-| udf4  | User defined field. |
-| udf5  | User defined field. |
-| udf6  | User defined field. |
-| udf7  | User defined field. |
-| udf8  | User defined field. |
-| udf9  | User defined field. |
-| udf10 | User defined field. |
-
-#### paymentChargeSpecification object fields description
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>price<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field must contain the price or transaction amount to be posted.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>10.00</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-### callbackActions object fields description
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>successAction<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to redirect to upon successful payment.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>failureAction<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to redirect to if the payment is failed.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>cancelAction<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to redirect to if the transaction is cancelled.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>codAction<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to handle Cash on Delivery actions.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>termAction<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL for completing terms and conditions actions.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>returnAction<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to return to after successful payment action is completed.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-### beneficiaryDetaIl object fields description
-
-| Field                               | Description                                                        | Example      |
-| ----------------------------------- | ------------------------------------------------------------------ | ------------ |
-| beneficiaryName (required)          | The name of the beneficiary to whom the funds will be transferred. | Ram          |
-| beneficiaryAccountNumber (required) | The account number of the beneficiary's bank account.              | 115501029190 |
-| beneficiaryAccountType (required)   | The type of the beneficiary's bank account.                        | SAVINGS      |
-
-<V2_Error_Handling />
-
-### billingDetails object field descriptions
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>firstName<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>First name of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Ashish</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>lastName<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Last name of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Kumar</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Phone number of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123456789</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Email address of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="mailto:ashish@abc.com">ashish@abc.com</a></p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>city<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>City of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bengaluru</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>state<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>State of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Karnatka</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>country<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Country of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Indiia</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>zipCode<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Postal/Zip code of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>560071</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-## Sample request
-
-```curl
-curl --location 'https://apitest.payu.in/v2/payments' \
---header 'date: Thu, 27 Mar 2025 10:12:27 GMT' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="ec84843a663143bb89391f6fa2d4b9404bab1543a3eee81263b4a507ebf5d289d8fad1fbcdd59da820951e3e0f9b0b0b3d1bad9b41338804e7c42a8a6197c6e9"' \
---header 'Content-Type: application/json' \
---header 'Cookie: PHPSESSID=sclorpmpb4ngion5e996os22ao' \
---data-raw '{
-    "accountId": "smsplus",
-    "referenceId": "b5f2d8785768087678fn4",
-    "amount": 10,
-    "currency": "INR",
-    "paymentSource": "WEB",
-    "paymentMethod": {
-        "name": "NetBanking",	
-        "bankCode": "TESTNB"
+```bash
+curl -X POST \
+  https://apitest.payu.in/v2/payments \
+  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
+  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
+  -H 'content-type: application/json' \
+  -d '{
+  "accountId": "smsplus",
+  "referenceId": "REF_" + Math.random().toString(36).substring(7),
+  "paymentMethod": {
+    "name": "NetBanking",
+    "bankCode": "EFTAXIS"
+  },
+  "order": {
+    "productInfo": "Net Banking Payment",
+    "paymentChargeSpecification": {
+      "price": 10000.00,
+      "convenienceFee": "NB:15"
     },
-    "order": {
-        "productInfo": "qwertyuiopasdfghjkl",
-        "orderedItem": [
-            {
-                "itemId": "1",
-                "description": "string",
-                "quantity": 1
-            }
-        ],
-        "userDefinedFields": {
-            "udf1": "",
-            "udf2": "",
-            "udf3": "",
-            "udf4": "",
-            "udf5": "",
-            "udf6": "",
-            "udf7": "",
-            "udf8": "",
-            "udf9": "",
-            "udf10": ""
-        },
-        "paymentChargeSpecification": {
-            "price": 10,
-            "convenienceFee": "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55",
-            "offers": {
-                "applied": [
-                    {
-                        "offerId": "no_offer",
-                        "amount": null
-                    }
-                ]
-            }
-        }
-    },
-    "additionalInfo": {
-        "txnS2sFlow": "4",
-        "createOrder": "false"
-    },
-    "callBackActions": {
-        "successAction": "https://apitest.payu.in/test_response",
-        "failureAction": "https://apitest.payu.in/test_response",
-        "cancelAction": "https://apitest.payu.in/test_response"
-    },
-    "billingDetails": {
-        "firstName": "sartaj",
-        "lastName": "",
-        "phone": "9876543210",
-        "email": "testv2@example.in",
-        "city": "Bharatpur",
-        "state": "Rajasthan",
-        "country": "India",
-        "zipCode": "321028"
-    },
-     "beneficiaryDetail": {
-                  "beneficiaryName": "Ram",
-                  "beneficiaryAccountNumber": "115501029190",
-                  "beneficiaryAccountType": "SAVINGS"
+    "userDefinedFields": {
+      "udf1": "Net Banking Transaction",
+      "udf2": "Seamless Payment"
     }
+  },
+  "billingDetails": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "9876543210",
+    "address": "123 Main Street",
+    "city": "New Delhi",
+    "state": "Delhi",
+    "country": "India",
+    "zipCode": "110001"
+  },
+  "callBackActions": {
+    "successAction": "https://merchant.com/success",
+    "failureAction": "https://merchant.com/failure",
+    "cancelAction": "https://merchant.com/cancel"
+  },
+  "additionalInfo": {
+    "txnFlow": "seamless",
+    "createOrder": true,
+    "enforcePaymethod": "NB",
+    "txnS2sFlow": "2"
+  },
+  "beneficiaryDetail": {
+    "beneficiaryName": "Merchant Account",
+    "beneficiaryAccountNumber": "1234567890",
+    "beneficiaryAccountType": "SAVINGS"
+  }
 }'
 ```
 
-## Response parameters
+## Response
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the reference ID of the transaction.<br>statusCode</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentId</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the payment ID of the transaction.<br>statusCode</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>message</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the status message of the transaction.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+### Response Parameters
 
-## Sample response
+| Parameter | Data Type | Description |
+|-----------|-----------|-------------|
+| `referenceId` | String | The reference ID sent in the request |
+| `paymentId` | String | Unique payment ID generated by PayU |
+| `status` | String | Payment status (SUCCESS, FAILED, PENDING) |
+| `message` | String | Status message describing the payment state |
+| `redirectUrl` | String | URL for customer redirection (if required by bank) |
+| `orderId` | String | Order ID (returned when createOrder is enabled) |
 
-```
-Array
-(
-    [referenceId] => b5f2d8785768087678fm9
-    [paymentId] => 1999110000001769
-    [message] => Please call verify api to get the transaction status
-)
+### Sample Response
+
+```json
+{
+  "referenceId": "REF_abc123",
+  "paymentId": "10012345678",
+  "status": "PENDING",
+  "message": "Transaction initiated successfully. Please verify the payment status.",
+  "redirectUrl": "https://bankportal.com/authenticate?txnid=abc123",
+  "orderId": "order_789012"
+}
 ```
 
-> 📘 Reference:
->
-> To check the transaction status, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+## Verify Payment
+
+> ⚠️ **Important**
+> 
+> After creating a payment, you **must** call the [Verify Payment API](doc:verify-payment-api) to get the final transaction status. Net Banking transactions may require additional verification steps.
+
+## Error Responses
+
+### Error Response Format
+
+```json
+{
+  "status": "FAILED",
+  "message": "Invalid bank code provided",
+  "errorCode": "E001",
+  "details": [
+    {
+      "field": "paymentMethod.bankCode",
+      "message": "Bank code TESTNB is not supported"
+    }
+  ]
+}
+```
+
+**Common Error Codes:**
+- `E001`: Invalid request parameters
+- `E002`: Authentication failed
+- `E003`: Merchant not found
+- `E004`: Transaction limit exceeded
+- `E005`: Bank service unavailable
+- `E006`: Invalid beneficiary details
+
+
+## Related APIs
+
+- [Get Net Banking Status API](https://docs.payu.in/v1/reference/get_net_banking_status_api)
+- [Verify Payment API](doc:verify-payment-api)
+- [Refund API](doc:refund-api)
+- [Get Transaction Details API](doc:get-transaction-details-api)
+- [Create Order API](doc:create-order-api)
