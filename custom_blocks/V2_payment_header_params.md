@@ -19,7 +19,7 @@ name: V2_payment_header_params
 
 #### hashing algorithm
 
-Yo must hash the request parameters using the following hash logic:
+You must hash the request parameters using the following hash logic:
 
 **Hash logic**: sha512(`<Body data>` + '|' + date + '|' + merchant\_secret)
 
