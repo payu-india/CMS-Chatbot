@@ -67,13 +67,7 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 <td>Unique transaction ID for the transaction. Character limit: 50</td>
 <td><code>"REF_123456789"</code></td>
 </tr>
-<tr>
-<tr>
-<td>amount<br/><code>mandatory</code></td>
-<td>Transaction amount in INR.</td>
-<td><code>"REF_123456789"</code></td>
-</tr>
-  
+<tr>  
 <td>paymentMethod<br/><code>mandatory</code></td>
 <td>Net Banking payment method details. <a href="#paymentmethod-object">See paymentMethod object</a></td>
 <td><code>{"name": "NetBanking", "bankCode": "EFTAXIS"}</code></td>
