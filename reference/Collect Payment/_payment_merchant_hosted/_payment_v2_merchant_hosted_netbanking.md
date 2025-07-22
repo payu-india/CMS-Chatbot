@@ -103,6 +103,10 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 
 ### paymentMethod Object
 
+| Parameter  | Data Type | Required | Description                                                                                                                   |
+| ---------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `name`     | String    | Yes      | Payment method type. Must be set to `"NetBanking"`. Character limit: 10                                                       |
+| `bankCode` | String    | Yes      | Bank code for the selected bank. Character limit: 10. [See Net Banking codes](https://docs.payu.in/v1/docs/net-banking-codes) |
 
 ### order Object
 
@@ -126,13 +130,36 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 
 ### beneficiaryDetail Object
 
-| Parameter                  | Data Type | Required | Description                                                                   |
-| -------------------------- | --------- | -------- | ----------------------------------------------------------------------------- |
-| `beneficiaryName`          | String    | Yes      | Name of the beneficiary account holder. Character limit: 100                  |
-| `beneficiaryAccountNumber` | String    | Yes      | Bank account number of the beneficiary. Character limit: 50                   |
-| `beneficiaryAccountType`   | String    | Yes      | Type of beneficiary account (e.g., "SAVINGS", "CURRENT"). Character limit: 20 |
+<HTMLBlock>{`
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beneficiaryName<br/><code>mandatory</code></td>
+<td><code>String</code> Name of the beneficiary account holder. Character limit: 100</td>
+<td><code>"Merchant Account"</code></td>
+</tr>
+<tr>
+<td>beneficiaryAccountNumber<br/><code>mandatory</code></td>
+<td><code>String</code> Bank account number of the beneficiary. Character limit: 50</td>
+<td><code>"1234567890"</code></td>
+</tr>
+<tr>
+<td>beneficiaryAccountType<br/><code>mandatory</code></td>
+<td><code>String</code> Type of beneficiary account (e.g., <code>"SAVINGS"</code>, <code>"CURRENT"</code>). Character limit: 20</td>
+<td><code>"SAVINGS"</code></td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
-## Sample Request
+## Sample request
 
 ```bash
 curl -X POST \
@@ -201,7 +228,9 @@ curl -X POST \
 | `redirectUrl` | String    | URL for customer redirection (if required by bank) |
 | `orderId`     | String    | Order ID (returned when createOrder is enabled)    |
 
-### Sample Response
+## Sample Response
+
+### Success scenario
 
 ```json
 {
@@ -214,15 +243,9 @@ curl -X POST \
 }
 ```
 
-## Verify Payment
+### Failure scenario
 
-> ⚠️ **Important**
->
-> After creating a payment, you **must** call the [Verify Payment API](doc:verify-payment-api) to get the final transaction status. Net Banking transactions may require additional verification steps.
-
-## Error Responses
-
-### Error Response Format
+* Invalid bank code
 
 ```json
 {
@@ -238,7 +261,7 @@ curl -X POST \
 }
 ```
 
-**Common Error Codes:**
+#### Other common error codes
 
 * `E001`: Invalid request parameters
 * `E002`: Authentication failed
@@ -246,6 +269,12 @@ curl -X POST \
 * `E004`: Transaction limit exceeded
 * `E005`: Bank service unavailable
 * `E006`: Invalid beneficiary details
+
+## Verify Payment
+
+> ⚠️ **Important**
+>
+> After creating a payment, you **must** call the [Verify Payment API](doc:verify-payment-api) to get the final transaction status. Net Banking transactions may require additional verification steps.
 
 ## Related APIs
 
