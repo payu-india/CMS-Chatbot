@@ -40,7 +40,6 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 | `callBackActions` | Object    | Yes      | Callback URLs for different payment outcomes. [See callBackActions object](#callbackactions-object)        |
 | `additionalInfo`  | Object    | Yes      | Additional transaction parameters including flow type. [See additionalInfo object](#additionalinfo-object) |
 
-## Object Specifications
 
 ### order Object
 
