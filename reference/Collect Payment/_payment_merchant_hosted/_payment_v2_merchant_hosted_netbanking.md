@@ -33,47 +33,41 @@ next:
 The PayU v2 seamless Net Banking integration allows merchants to collect Net Banking payments directly without redirecting customers to PayU's hosted checkout page.
 
 > 📘 **Note**
-> 
+>
 > This documentation covers **seamless Net Banking** integration. For hosted checkout flows, refer to the [v2 Payment API (Non-Seamless)](doc:v2-payment-api-non-seamless) documentation.
 
 ## Environment Details
 
-| Environment | Base URL |
-|-------------|----------|
-| Test | `https://apitest.payu.in/v2/payments` |
-| Production | `https://api.payu.in/v2/payments` |
+| Environment | Base URL                              |
+| ----------- | ------------------------------------- |
+| Test        | `https://apitest.payu.in/v2/payments` |
+| Production  | `https://api.payu.in/v2/payments`     |
 
-## Server Health Check
-
-Before processing Net Banking payments, you can check if the Net Banking server for a specific bank is operational using the [Get Net Banking Status API](https://docs.payu.in/v1/reference/get_net_banking_status_api).
-
-## Request
-
-### Request Headers
+<br />
 
 <V2_payment_header_params />
 
-### Request Parameters
+## Request body
 
-| Parameter | Data Type | Required | Description |
-|-----------|-----------|----------|-------------|
-| `accountId` | String | Yes | Merchant key provided by PayU. Character limit: 50 |
-| `referenceId` | String | Yes | Unique reference ID for the transaction. Character limit: 50 |
-| `paymentMethod` | Object | Yes | Net Banking payment method details. [See paymentMethod object](#paymentmethod-object) |
-| `order` | Object | Yes | Order details containing product information and pricing. [See order object](#order-object) |
-| `billingDetails` | Object | Yes | Customer billing information. [See billingDetails object](#billingdetails-object) |
-| `callBackActions` | Object | No | Callback URLs for different payment outcomes. [See callBackActions object](#callbackactions-object) |
-| `additionalInfo` | Object | Yes | Additional transaction parameters including flow type. [See additionalInfo object](#additionalinfo-object) |
-| `beneficiaryDetail` | Object | Yes | Beneficiary account details for Net Banking transfer. [See beneficiaryDetail object](#beneficiarydetail-object) |
+| Parameter           | Data Type | Required | Description                                                                                                     |
+| ------------------- | --------- | -------- | --------------------------------------------------------------------------------------------------------------- |
+| `accountId`         | String    | Yes      | Merchant key provided by PayU. Character limit: 50                                                              |
+| `referenceId`       | String    | Yes      | Unique reference ID for the transaction. Character limit: 50                                                    |
+| `paymentMethod`     | Object    | Yes      | Net Banking payment method details. [See paymentMethod object](#paymentmethod-object)                           |
+| `order`             | Object    | Yes      | Order details containing product information and pricing. [See order object](#order-object)                     |
+| `billingDetails`    | Object    | Yes      | Customer billing information. [See billingDetails object](#billingdetails-object)                               |
+| `callBackActions`   | Object    | No       | Callback URLs for different payment outcomes. [See callBackActions object](#callbackactions-object)             |
+| `additionalInfo`    | Object    | Yes      | Additional transaction parameters including flow type. [See additionalInfo object](#additionalinfo-object)      |
+| `beneficiaryDetail` | Object    | Yes      | Beneficiary account details for Net Banking transfer. [See beneficiaryDetail object](#beneficiarydetail-object) |
 
 ## Object Specifications
 
 ### paymentMethod Object
 
-| Parameter | Data Type | Required | Description |
-|-----------|-----------|----------|-------------|
-| `name` | String | Yes | Payment method type. Must be set to `"NetBanking"`. Character limit: 10 |
-| `bankCode` | String | Yes | Bank code for the selected bank. Character limit: 10. [See Net Banking codes](https://docs.payu.in/v1/docs/net-banking-codes) |
+| Parameter  | Data Type | Required | Description                                                                                                                   |
+| ---------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `name`     | String    | Yes      | Payment method type. Must be set to `"NetBanking"`. Character limit: 10                                                       |
+| `bankCode` | String    | Yes      | Bank code for the selected bank. Character limit: 10. [See Net Banking codes](https://docs.payu.in/v1/docs/net-banking-codes) |
 
 ### order Object
 
@@ -97,11 +91,11 @@ Before processing Net Banking payments, you can check if the Net Banking server 
 
 ### beneficiaryDetail Object
 
-| Parameter | Data Type | Required | Description |
-|-----------|-----------|----------|-------------|
-| `beneficiaryName` | String | Yes | Name of the beneficiary account holder. Character limit: 100 |
-| `beneficiaryAccountNumber` | String | Yes | Bank account number of the beneficiary. Character limit: 50 |
-| `beneficiaryAccountType` | String | Yes | Type of beneficiary account (e.g., "SAVINGS", "CURRENT"). Character limit: 20 |
+| Parameter                  | Data Type | Required | Description                                                                   |
+| -------------------------- | --------- | -------- | ----------------------------------------------------------------------------- |
+| `beneficiaryName`          | String    | Yes      | Name of the beneficiary account holder. Character limit: 100                  |
+| `beneficiaryAccountNumber` | String    | Yes      | Bank account number of the beneficiary. Character limit: 50                   |
+| `beneficiaryAccountType`   | String    | Yes      | Type of beneficiary account (e.g., "SAVINGS", "CURRENT"). Character limit: 20 |
 
 ## Sample Request
 
@@ -163,14 +157,14 @@ curl -X POST \
 
 ### Response Parameters
 
-| Parameter | Data Type | Description |
-|-----------|-----------|-------------|
-| `referenceId` | String | The reference ID sent in the request |
-| `paymentId` | String | Unique payment ID generated by PayU |
-| `status` | String | Payment status (SUCCESS, FAILED, PENDING) |
-| `message` | String | Status message describing the payment state |
-| `redirectUrl` | String | URL for customer redirection (if required by bank) |
-| `orderId` | String | Order ID (returned when createOrder is enabled) |
+| Parameter     | Data Type | Description                                        |
+| ------------- | --------- | -------------------------------------------------- |
+| `referenceId` | String    | The reference ID sent in the request               |
+| `paymentId`   | String    | Unique payment ID generated by PayU                |
+| `status`      | String    | Payment status (SUCCESS, FAILED, PENDING)          |
+| `message`     | String    | Status message describing the payment state        |
+| `redirectUrl` | String    | URL for customer redirection (if required by bank) |
+| `orderId`     | String    | Order ID (returned when createOrder is enabled)    |
 
 ### Sample Response
 
@@ -188,7 +182,7 @@ curl -X POST \
 ## Verify Payment
 
 > ⚠️ **Important**
-> 
+>
 > After creating a payment, you **must** call the [Verify Payment API](doc:verify-payment-api) to get the final transaction status. Net Banking transactions may require additional verification steps.
 
 ## Error Responses
@@ -210,18 +204,18 @@ curl -X POST \
 ```
 
 **Common Error Codes:**
-- `E001`: Invalid request parameters
-- `E002`: Authentication failed
-- `E003`: Merchant not found
-- `E004`: Transaction limit exceeded
-- `E005`: Bank service unavailable
-- `E006`: Invalid beneficiary details
 
+* `E001`: Invalid request parameters
+* `E002`: Authentication failed
+* `E003`: Merchant not found
+* `E004`: Transaction limit exceeded
+* `E005`: Bank service unavailable
+* `E006`: Invalid beneficiary details
 
 ## Related APIs
 
-- [Get Net Banking Status API](https://docs.payu.in/v1/reference/get_net_banking_status_api)
-- [Verify Payment API](doc:verify-payment-api)
-- [Refund API](doc:refund-api)
-- [Get Transaction Details API](doc:get-transaction-details-api)
-- [Create Order API](doc:create-order-api)
+* [Get Net Banking Status API](https://docs.payu.in/v1/reference/get_net_banking_status_api)
+* [Verify Payment API](doc:verify-payment-api)
+* [Refund API](doc:refund-api)
+* [Get Transaction Details API](doc:get-transaction-details-api)
+* [Create Order API](doc:create-order-api)
