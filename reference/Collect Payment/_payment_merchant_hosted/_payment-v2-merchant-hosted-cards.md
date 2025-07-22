@@ -82,11 +82,6 @@ You can collect payments from customers with leading wallets using the Merchant 
   <td style="border: 1px solid #ddd; padding: 8px;">Authorization details for the payment process, including 3DS metadata.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>threeDS2RequestData</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">3DS Version and device details for advanced authentication flows.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
-</tr>
 </tbody>
 </table>
 `}</HTMLBlock>
