@@ -23,6 +23,8 @@ You can collect payments from customers with leading wallets using the Merchant 
 | **Test Environment**       | \<[https://apitest.payu.in/v2/payments>](https://apitest.payu.in/v2/payments>) |
 | **Production Environment** | \<[https://api.payu.in/v2/payments>](https://api.payu.in/v2/payments>)         |
 
+<V2_payment_header_params />
+
 ## Request body
 
 <HTMLBlock>{`
