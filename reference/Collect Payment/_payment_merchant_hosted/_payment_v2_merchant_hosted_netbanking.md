@@ -43,8 +43,6 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 | Test        | `https://apitest.payu.in/v2/payments` |
 | Production  | `https://api.payu.in/v2/payments`     |
 
-<br />
-
 <V2_payment_header_params />
 
 ## Request body
