@@ -1,5 +1,5 @@
 ---
-title: API Integration - PayU Hosted
+title: API Integration - Non-Seamless
 excerpt: ''
 deprecated: false
 hidden: true
