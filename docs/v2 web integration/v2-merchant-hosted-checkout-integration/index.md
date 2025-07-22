@@ -1,5 +1,5 @@
 ---
-title: Merchant Hosted Checkout
+title: Seamless Integration
 excerpt: ''
 deprecated: false
 hidden: true
@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-Custom Checkout or Merchant Hosted Checkout integration is used to process credit/debit card payments on your website using PayU, collect card details on your website and submit them to PayU via API. This eliminates the need for redirection to PayU’s payment page, resulting in a more secure and efficient transaction.
+Seamless integration is used to process credit/debit card payments on your website using PayU, collect card details on your website and submit them to PayU via API. This eliminates the need for redirection to PayU’s payment page, resulting in a more secure and efficient transaction.
 
 > 👍 Before you begin:
 >
@@ -18,9 +18,9 @@ Custom Checkout or Merchant Hosted Checkout integration is used to process credi
 
 > 📘 v2/payment Recommended for new integrations:
 >
-> PayU recommends v2/payment API for your new integration or if you are new merchant onboarded to PayU from March 2025. 
+> PayU recommends v2/payment API for your new integration or if you are new merchant onboarded to PayU from March 2025.
 >
-> If you have already integrated with **\_payment** (v1) API, refer to\[Merchant Hosted Checkout Integration v1\]\([https://docs.payu.in/v1/docs/custom-checkout-merchant-hosted](https://docs.payu.in/v1/docs/custom-checkout-merchant-hosted)).
+> If you have already integrated with **\_payment** (v1) API, refer to[Merchant Hosted Checkout Integration v1](\[https://docs.payu.in/v1/docs/custom-checkout-merchant-hosted]\(https://docs.payu.in/v1/docs/custom-checkout-merchant-hosted\)).
 
 ## Workflow
 
@@ -38,13 +38,13 @@ The following process diagram illustrates the Merchant Hosted Checkout workflow:
 
 **Step 2:** The customer enters the CVV and proceeds to complete the payment.
 
-<Image align="center" className="border" width="300px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/05/MicrosoftTeams-image-1.png" />
+<Image align="center" className="border" border={true} width="300px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/05/MicrosoftTeams-image-1.png" />
 
 **Step 3:** After the credentials are entered, and the payment flow is launched, the user is navigated through a secured PayU environment that reflects the transaction ID.
 
 **Step 4:** The flow takes the user to the login ACS page of the bank, where the user needs to complete the transaction by using the OTP sent by the bank to the registered mobile number.
 
-<Image align="center" className="border" width="300px" border={true} src="https://files.readme.io/1764f1a919d1e2a65ea7af0227bbb1b649c85cfde4cdbc4b435be8e6fb722fd3-merchant_hosted_acs_page.png" />
+<Image align="center" className="border" border={true} width="300px" src="https://files.readme.io/1764f1a919d1e2a65ea7af0227bbb1b649c85cfde4cdbc4b435be8e6fb722fd3-merchant_hosted_acs_page.png" />
 
 **Step 5:** Customer is shown the status (failed/successful) on your website based on the transaction status from PayU.
 
