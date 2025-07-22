@@ -22,6 +22,36 @@ name: V2_authorization_cards
   <td style="border: 1px solid #ddd; padding: 8px;">AAABAWFlmQAAAABjRWWZEEFgFz</td>
 </tr>
 <tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>pares</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Payer Authentication Response for 3D Secure 1.0.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">eJzVWFmTokoWfrMABXXOtgSL...</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>bankData</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Additional bank data for processing the payment.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">fGpDiuSMy8FjxQHDla5kFwVr</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>messageDigest</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Security hash value for message verification.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">3a4df2b5c8e7f9a1d6b0c3e9</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>xid</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Transaction identifier for 3D Secure authentication.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">MDAwMDAwMDAwMDAwMDAwMDEyMzQ=</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>threeDSenrolled</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Indicates if the card is enrolled in 3D Secure.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Y</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>threeDSstatus</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Status of the 3D Secure authentication.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">SUCCESS</td>
+</tr>
+<tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>flowType</strong><br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Flow type for 3D Secure.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Frictionless</td>
@@ -53,8 +83,73 @@ name: V2_authorization_cards
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Object containing authUdf1 and authUdf2.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object containing additional authorization information including payment gateway identifier, authentication flow, 3DS2 request data, and user-defined fields.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.paymentGatewayIdentifier</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Identifier for the payment gateway.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">gateway_123</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.authenticationFlow</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Type of authentication flow used.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">3DS2</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.threeDS2RequestData</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object containing 3DS2 request data.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">{}</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.authUdf1</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">User-defined field 1 for additional authorization data.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">custom_value_1</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.authUdf2</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">User-defined field 2 for additional authorization data.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">custom_value_2</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.authUdf3</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">User-defined field 3 for additional authorization data.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">custom_value_3</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.authUdf4</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">User-defined field 4 for additional authorization data.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">custom_value_4</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.authUdf5</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">User-defined field 5 for additional authorization data.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">custom_value_5</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.authUdf6</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">User-defined field 6 for additional authorization data.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">custom_value_6</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.authUdf7</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">User-defined field 7 for additional authorization data.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">custom_value_7</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.authUdf8</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">User-defined field 8 for additional authorization data.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">custom_value_8</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.authUdf9</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">User-defined field 9 for additional authorization data.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">custom_value_9</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo.authUdf10</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">User-defined field 10 for additional authorization data.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">custom_value_10</td>
 </tr>
 </tbody>
 </table>
