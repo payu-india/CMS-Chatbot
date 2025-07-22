@@ -215,43 +215,24 @@ curl -X POST \
 }'
 ```
 
-## Response Parameters
+## Response parameters
 
-<V2_payment_response />
+<V2_payment_response_params />
 
-## Sample Response
+## Sample response
 
 ### Success scenario
 
 ```json
-{
-  "referenceId": "REF_abc123",
-  "paymentId": "10012345678",
-  "status": "PENDING",
-  "message": "Transaction initiated successfully. Please verify the payment status.",
-  "orderId": "order_789012"
-}
+Array
+(
+    [txnId] => b5f2d8785768087678fm9
+    [paymentId] => 1999110000001769
+    [message] => Please call verify api to get the transaction status
+)
 ```
 
-### Failure scenario
-
-* Invalid bank code
-
-```json
-{
-  "status": "FAILED",
-  "message": "Invalid bank code provided",
-  "errorCode": "E001",
-  "details": [
-    {
-      "field": "paymentMethod.bankCode",
-      "message": "Bank code TESTNB is not supported"
-    }
-  ]
-}
-```
-
-#### Other common error codes
+### Other common error codes
 
 * `E001`: Invalid request parameters
 * `E002`: Authentication failed
@@ -264,7 +245,7 @@ curl -X POST \
 
 > ⚠️ **Important**
 >
-> After creating a payment, you **must** call the [Verify Payment API](doc:verify-payment-api) to get the final transaction status. Net Banking transactions may require additional verification steps.
+> After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="ref:v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
 
 ## Related APIs
 
