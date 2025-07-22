@@ -1,5 +1,5 @@
 ---
-title: PayU Hosted Checkout
+title: Non-Seamless Integration
 excerpt: ''
 deprecated: false
 hidden: true
