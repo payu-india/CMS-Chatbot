@@ -1,5 +1,5 @@
 ---
-title: Server-to-Server Integration
+title: Integration for various Workflows
 excerpt: ''
 deprecated: false
 hidden: true
