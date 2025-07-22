@@ -87,16 +87,6 @@ You can collect payments from customers with leading wallets using the Merchant 
   <td style="border: 1px solid #ddd; padding: 8px;">3DS Version and device details for advanced authentication flows.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>siDetails</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Standing Instructions details for recurring payments.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>splitDetails</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Split payment details for multi-recipient transactions.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
-</tr>
 </tbody>
 </table>
 `}</HTMLBlock>
