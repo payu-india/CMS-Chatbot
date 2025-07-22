@@ -1,0 +1,41 @@
+---
+name: V2_paymentChargeSpecification_object
+---
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>price</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">The transaction amount.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">1000</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>netAmountDebit</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Net amount to be debited.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">1000</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>taxSpecification</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Tax details of the product/order.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>convenienceFee</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Fees format (e.g., CC:12).</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">CC:12</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>offers</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Offers applied or available for the payment.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
