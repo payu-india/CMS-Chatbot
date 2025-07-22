@@ -128,7 +128,7 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 
 <AdditionalI_Info_object />
 
-### beneficiaryDetail Object
+### beneficiaryDetail object
 
 <HTMLBlock>{`
 <table>
