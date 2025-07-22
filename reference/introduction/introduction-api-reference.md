@@ -70,42 +70,42 @@ PayU v2 APIs represent a significant evolution in payment integration, offering 
   **Developer Experience Improvements:**
 
   <HTMLBlock>{`
-        <table>
-          <thead>
-            <tr>
-              <th>Feature</th>
-              <th>v1 APIs</th>
-              <th>v2 APIs</th>
-              <th>Impact</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Learning Curve</strong></td>
-              <td>Steeper due to hashing complexity</td>
-              <td>Gentler with standard practices</td>
-              <td>🟢 Faster onboarding</td>
-            </tr>
-            <tr>
-              <td><strong>Code Readability</strong></td>
-              <td>Complex parameter lists</td>
-              <td>Structured JSON objects</td>
-              <td>🟢 Better maintainability</td>
-            </tr>
-            <tr>
-              <td><strong>Error Debugging</strong></td>
-              <td>Hash validation issues</td>
-              <td>Clear parameter validation</td>
-              <td>🟢 Easier troubleshooting</td>
-            </tr>
-            <tr>
-              <td><strong>Integration Time</strong></td>
-              <td>Longer due to complexity</td>
-              <td>Faster with modern patterns</td>
-              <td>🟢 Reduced development time</td>
-            </tr>
-          </tbody>
-        </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>v1 APIs</th>
+                  <th>v2 APIs</th>
+                  <th>Impact</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Learning Curve</strong></td>
+                  <td>Steeper due to hashing complexity</td>
+                  <td>Gentler with standard practices</td>
+                  <td>🟢 Faster onboarding</td>
+                </tr>
+                <tr>
+                  <td><strong>Code Readability</strong></td>
+                  <td>Complex parameter lists</td>
+                  <td>Structured JSON objects</td>
+                  <td>🟢 Better maintainability</td>
+                </tr>
+                <tr>
+                  <td><strong>Error Debugging</strong></td>
+                  <td>Hash validation issues</td>
+                  <td>Clear parameter validation</td>
+                  <td>🟢 Easier troubleshooting</td>
+                </tr>
+                <tr>
+                  <td><strong>Integration Time</strong></td>
+                  <td>Longer due to complexity</td>
+                  <td>Faster with modern patterns</td>
+                  <td>🟢 Reduced development time</td>
+                </tr>
+              </tbody>
+            </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -195,47 +195,47 @@ PayU v2 APIs represent a significant evolution in payment integration, offering 
   **Key JSON Objects in v2 APIs:**
 
   <HTMLBlock>{`
-        <table>
-          <thead>
-            <tr>
-              <th>JSON Object</th>
-              <th>Purpose</th>
-              <th>Key Benefits</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>paymentMethod</code></td>
-              <td>Payment method configuration</td>
-              <td>Centralized payment type management</td>
-            </tr>
-            <tr>
-              <td><code>paymentCard</code></td>
-              <td>Card-specific details</td>
-              <td>Secure card data handling</td>
-            </tr>
-            <tr>
-              <td><code>order</code></td>
-              <td>Order and product information</td>
-              <td>Complete transaction context</td>
-            </tr>
-            <tr>
-              <td><code>billingDetails</code></td>
-              <td>Customer billing information</td>
-              <td>Organized customer data</td>
-            </tr>
-            <tr>
-              <td><code>callBackActions</code></td>
-              <td>Success/failure URLs</td>
-              <td>Clear flow management</td>
-            </tr>
-            <tr>
-              <td><code>authorization</code></td>
-              <td>3DS authentication data</td>
-              <td>Enhanced security handling</td>
-            </tr>
-          </tbody>
-        </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>JSON Object</th>
+                  <th>Purpose</th>
+                  <th>Key Benefits</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>paymentMethod</code></td>
+                  <td>Payment method configuration</td>
+                  <td>Centralized payment type management</td>
+                </tr>
+                <tr>
+                  <td><code>paymentCard</code></td>
+                  <td>Card-specific details</td>
+                  <td>Secure card data handling</td>
+                </tr>
+                <tr>
+                  <td><code>order</code></td>
+                  <td>Order and product information</td>
+                  <td>Complete transaction context</td>
+                </tr>
+                <tr>
+                  <td><code>billingDetails</code></td>
+                  <td>Customer billing information</td>
+                  <td>Organized customer data</td>
+                </tr>
+                <tr>
+                  <td><code>callBackActions</code></td>
+                  <td>Success/failure URLs</td>
+                  <td>Clear flow management</td>
+                </tr>
+                <tr>
+                  <td><code>authorization</code></td>
+                  <td>3DS authentication data</td>
+                  <td>Enhanced security handling</td>
+                </tr>
+              </tbody>
+            </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -273,78 +273,42 @@ PayU v2 APIs represent a significant evolution in payment integration, offering 
   * Future-ready integration
 </Accordion>
 
-<Accordion title="🔗 API Availability & Compatibility" icon="fa-link">
+<Accordion title="API Availability & Compatibility" icon="fa-link">
   **Current API Landscape:**
 
   <HTMLBlock>{`
-        <table>
-          <thead>
-            <tr>
-              <th>Aspect</th>
-              <th>Status</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>v2 API Coverage</strong></td>
-              <td>🟢 Comprehensive</td>
-              <td>Covers most common payment use cases</td>
-            </tr>
-            <tr>
-              <td><strong>Duplicate API Elimination</strong></td>
-              <td>🟡 In Progress</td>
-              <td>v1 APIs with duplicate functionality being phased out</td>
-            </tr>
-            <tr>
-              <td><strong>v1 Documentation</strong></td>
-              <td>🔄 Being Updated</td>
-              <td>Adding disclaimers and v2 alternative links</td>
-            </tr>
-            <tr>
-              <td><strong>Compatibility</strong></td>
-              <td>✅ Full Support</td>
-              <td>Both versions work together seamlessly</td>
-            </tr>
-          </tbody>
-        </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Aspect</th>
+                  <th>Status</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>v2 API Coverage</strong></td>
+                  <td>🟢 Comprehensive</td>
+                  <td>Covers most common payment use cases</td>
+                </tr>
+                <tr>
+                  <td><strong>Duplicate API Elimination</strong></td>
+                  <td>🟡 In Progress</td>
+                  <td>v1 APIs with duplicate functionality being phased out</td>
+                </tr>
+                <tr>
+                  <td><strong>v1 Documentation</strong></td>
+                  <td>🔄 Being Updated</td>
+                  <td>Adding disclaimers and v2 alternative links</td>
+                </tr>
+                <tr>
+                  <td><strong>Compatibility</strong></td>
+                  <td>✅ Full Support</td>
+                  <td>Both versions work together seamlessly</td>
+                </tr>
+              </tbody>
+            </table>
   `}</HTMLBlock>
-</Accordion>
-
-<Accordion title="🏗️ Modern Architecture" icon="fa-building">
-  **Built for Today's Standards:**
-
-  1. **Modern API Design**: Following current REST API best practices
-  2. **JSON-First Approach**: Native JSON structure for better integration
-  3. **Stateless Design**: Improved scalability and reliability
-  4. **Standard HTTP Methods**: Conventional HTTP verb usage
-</Accordion>
-
-<Accordion title="🔒 Enhanced Security" icon="fa-shield-alt">
-  **Security Improvements:**
-
-  1. **Header-Based Authentication**: Eliminates complex hashing requirements
-  2. **Standard Security Practices**: Industry-standard authentication methods
-  3. **Reduced Attack Surface**: Simplified authentication reduces vulnerabilities
-  4. **Better Debugging**: Easier to troubleshoot security issues
-</Accordion>
-
-<Accordion title="🛠️ Developer Experience" icon="fa-tools">
-  **Development Advantages:**
-
-  1. **Clear Structure**: Logical parameter grouping for better understanding
-  2. **Reduced Complexity**: No need for reverse hashing or complex calculations
-  3. **Better Documentation**: Structured approach enables clearer documentation
-  4. **Faster Integration**: Modern patterns reduce development time
-</Accordion>
-
-<Accordion title="🔮 Future-Proof Design" icon="fa-rocket">
-  **Long-Term Benefits:**
-
-  1. **New Feature Priority**: All new features developed for v2 first
-  2. **Enhanced Support**: Priority support and maintenance for v2 APIs
-  3. **Technology Evolution**: Aligned with modern payment industry standards
-  4. **Scalability**: Better prepared for future growth and requirements
 </Accordion>
 
 # Web integration
