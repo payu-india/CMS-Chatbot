@@ -1,5 +1,5 @@
 ---
-name: 3DSRequestData_object
+name: ThreeDSRequestData_object
 ---
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
