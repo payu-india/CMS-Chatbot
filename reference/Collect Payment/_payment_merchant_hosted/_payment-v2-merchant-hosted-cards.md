@@ -34,43 +34,42 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 #### authorization fields description
 
-| Field     | Description                                                                      |
-| :-------- | :------------------------------------------------------------------------------- |
-| username  | Represents the username or identifier for the client or merchant, for example smsplus. |
-| algorithm | Indicates the hashing algorithm used for the HMAC signature, for example sha512.       |
-| headers   | Specifies which headers have been used in generating the hash, for example date.       |
+| Field     | Description                                                                                                                         |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| username  | Represents the username or identifier for the client or merchant, for example smsplus.                                              |
+| algorithm | Indicates the hashing algorithm used for the HMAC signature, for example sha512.                                                    |
+| headers   | Specifies which headers have been used in generating the hash, for example date.                                                    |
 | signature | The HMAC signature generated using the specified algorithm. For more information, refer to [hashing algorithm](#hashing-algorithm). |
 
 #### hashing algorithm
 
 Yo must hash the request parameters using the following hash logic:
 
-**Hash logic**: sha512(`<Body data>` + '|' + date + '|' + merchant_secret)
+**Hash logic**: sha512(`<Body data>` + '|' + date + '|' + merchant\_secret)
 
 Where `<Body data>` contains the request body posted with the request.
 
 <details>
-<summary>Sample header code</summary>
+  <summary>Sample header code</summary>
 
-```javascript
-var merchant_key = 'smsplus';
-var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
-// date
-var date = new Date();
-date = date.toUTCString();
+  ```javascript
+  var merchant_key = 'smsplus';
+  var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
+  // date
+  var date = new Date();
+  date = date.toUTCString();
 
-// authorization
-var authorization = getAuthHeader(date);
+  // authorization
+  var authorization = getAuthHeader(date);
 
-function getAuthHeader(date) {
-    var AUTH_TYPE = 'sha512';
-    var data = isEmpty(request['data']) ? "" : request['data'];
-    var hash_string = data + '|' + date + '|' + merchant_secret;
-    var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-    return `hmac username="${merchant_key}", algorithm="${AUTH_TYPE}", headers="date", signature="${hash}"`;
-}
-```
-
+  function getAuthHeader(date) {
+      var AUTH_TYPE = 'sha512';
+      var data = isEmpty(request['data']) ? "" : request['data'];
+      var hash_string = data + '|' + date + '|' + merchant_secret;
+      var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
+      return `hmac username="${merchant_key}", algorithm="${AUTH_TYPE}", headers="date", signature="${hash}"`;
+  }
+  ```
 </details>
 
 ## Request body
@@ -594,78 +593,6 @@ function getAuthHeader(date) {
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>deviceChannel</strong><br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">The device used for the transaction channel.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">APP</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-### siDetails
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>billingAmount</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Billing amount for subscription-type payments.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">1000</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>billingCycle</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Billing cycle for recurring payments.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">MONTHLY</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>billingInterval</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Billing interval for recurring payments.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">1</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentStartDate</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Start date for recurring payments.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">2023-01-01</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentEndDate</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">End date for recurring payments.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">2024-01-01</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-### splitDetails
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>merchantId</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Merchant ID for split payment recipient.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">MERCHANT456</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>amount</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Amount to be split to this recipient.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">500</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>referenceId</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Reference ID for this split transaction.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">SPLIT_REF_123</td>
 </tr>
 </tbody>
 </table>
