@@ -47,18 +47,59 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 
 ## Request body
 
-| Parameter           | Data Type | Required | Description                                                                                                     |
-| ------------------- | --------- | -------- | --------------------------------------------------------------------------------------------------------------- |
-| `accountId`         | String    | Yes      | Merchant key provided by PayU. Character limit: 50                                                              |
-| `referenceId`       | String    | Yes      | Unique reference ID for the transaction. Character limit: 50                                                    |
-| `paymentMethod`     | Object    | Yes      | Net Banking payment method details. [See paymentMethod object](#paymentmethod-object)                           |
-| `order`             | Object    | Yes      | Order details containing product information and pricing. [See order object](#order-object)                     |
-| `billingDetails`    | Object    | Yes      | Customer billing information. [See billingDetails object](#billingdetails-object)                               |
-| `callBackActions`   | Object    | No       | Callback URLs for different payment outcomes. [See callBackActions object](#callbackactions-object)             |
-| `additionalInfo`    | Object    | Yes      | Additional transaction parameters including flow type. [See additionalInfo object](#additionalinfo-object)      |
-| `beneficiaryDetail` | Object    | Yes      | Beneficiary account details for Net Banking transfer. [See beneficiaryDetail object](#beneficiarydetail-object) |
-
-## Object Specifications
+<HTMLBlock>{`
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accountId</code><br/><code>mandatory</code></td>
+<td>Merchant key provided by PayU. Character limit: 50</td>
+<td><code>"smsplus"</code></td>
+</tr>
+<tr>
+<td><code>referenceId</code><br/><code>mandatory</code></td>
+<td>Unique reference ID for the transaction. Character limit: 50</td>
+<td><code>"REF_123456789"</code></td>
+</tr>
+<tr>
+<td><code>paymentMethod</code><br/><code>mandatory</code></td>
+<td>Net Banking payment method details. <a href="#paymentmethod-object">See paymentMethod object</a></td>
+<td><code>{"name": "NetBanking", "bankCode": "EFTAXIS"}</code></td>
+</tr>
+<tr>
+<td><code>order</code><br/><code>mandatory</code></td>
+<td>Order details containing product information and pricing. <a href="#order-object">See order object</a></td>
+<td><code>{"productInfo": "Net Banking Payment", "paymentChargeSpecification": {"price": 10000.00}}</code></td>
+</tr>
+<tr>
+<td><code>billingDetails</code><br/><code>mandatory</code></td>
+<td>Customer billing information. <a href="#billingdetails-object">See billingDetails object</a></td>
+<td><code>{"firstName": "John", "email": "john@example.com", "phone": "9876543210"}</code></td>
+</tr>
+<tr>
+<td><code>callBackActions</code><br/><code>optional</code></td>
+<td>Callback URLs for different payment outcomes. <a href="#callbackactions-object">See callBackActions object</a></td>
+<td><code>{"successAction": "https://merchant.com/success", "failureAction": "https://merchant.com/failure"}</code></td>
+</tr>
+<tr>
+<td><code>additionalInfo</code><br/><code>mandatory</code></td>
+<td>Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
+<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
+</tr>
+<tr>
+<td><code>beneficiaryDetail</code><br/><code>mandatory</code></td>
+<td>Beneficiary account details for Net Banking transfer. <a href="#beneficiarydetail-object">See beneficiaryDetail object</a></td>
+<td><code>{"beneficiaryName": "Merchant Account", "beneficiaryAccountNumber": "1234567890", "beneficiaryAccountType": "SAVINGS"}</code></td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ### paymentMethod Object
 
