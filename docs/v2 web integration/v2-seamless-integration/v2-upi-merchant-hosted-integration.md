@@ -73,7 +73,7 @@ The following table describes the request body parameters:
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Contains the payment method details. For UPI, includes name and bankCode.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Contains the payment method details. For UPI, includes name and bankCode. For more information, refer to <a href="#paymentmethod-object" additonalInfo object</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>{ "name": "UPI", "bankCode": "UPI" }</p>
 </td>
@@ -81,62 +81,107 @@ The following table describes the request body parameters:
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Contains UPI-specific information including the customer's VPA (UPI handle).</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Contains UPI-specific information including the customer's VPA (UPI handle). For more information, refer to <a href="#additonalinfo-object" additonalInfo object</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>{ "vpa": "test@payu" }</p>
 </td>
 </tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For more information, refer to <a href="#callbackactions-object-fields-description">callBackActions object fields description</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="#billingdetails-object-fields-description">billingDetails object fields description</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+
 </tbody>
 </table>
 `}</HTMLBlock>
 
+#### paymentMethod object
+<Accordion title="paymentMethod object" icon="fa-code">
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>name</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Represents the payment method used. For UPI, use UPI</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">UPI</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>bankCode</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains the bank code.For UPI, use UPI</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">UPI</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
+</Accordion>
 <br />
 
 #### order object
+
 <Accordion title="order object" icon="fa-code">
-<V2_order_object />
+  <V2_order_object />
 </Accordion>
 
 #### callBackActions object
+
 <Accordion title="callBackActions object" icon="fa-code">
-<CallbackActions_object />
+  <CallbackActions_object />
 </Accordion>
 
 #### billingDetails object
+
 <Accordion title="billingDetails object" icon="fa-code">
-<BillingDetails_object />
+  <BillingDetails_object />
 </Accordion>
 
-#### Additional Info Object
+#### additionalInfo object
 
 <Accordion title="Additional Info Object" icon="fa-code">
   <HTMLBlock>{`
-                      <table style="width: 100%; border-collapse: collapse;">
-                      <thead>
-                      <tr>
-                        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-                        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-                        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">60</td>
-                      </tr>
-                      <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-                      </tr>
-                      <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
-                      </tr>
-                      </tbody>
-                      </table>
+                          <table style="width: 100%; border-collapse: collapse;">
+                          <thead>
+                          <tr>
+                            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">60</td>
+                          </tr>
+                          <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+                          </tr>
+                          <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+                          </tr>
+                          </tbody>
+                          </table>
   `}</HTMLBlock>
 </Accordion>
 
