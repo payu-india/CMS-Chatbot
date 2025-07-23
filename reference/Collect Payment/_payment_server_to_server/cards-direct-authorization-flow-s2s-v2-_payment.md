@@ -22,13 +22,9 @@ The Cards Redirect Flow provides structured redirection handling for card authen
 
 <V2_payment_envrionment />
 
-## Request parameters
-
-### Request headers
-
 <V2_payment_header_params />
 
-### Request body
+## Request body
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -93,8 +89,6 @@ The Cards Redirect Flow provides structured redirection handling for card authen
 </tbody>
 </table>
 `}</HTMLBlock>
-
-## Object field descriptions
 
 ### paymentMethod object fields description
 
