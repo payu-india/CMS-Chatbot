@@ -26,7 +26,7 @@ This is server-to-server integration over the Redirect experience for cards usin
 
 The merchant initiates PayU with the required transaction mandatory or optional parameters. This needs to be a server-to-server cURL call request. URL, parameters, and descriptions. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout.
 
-You can collect card payments using Server-to-Server integration using classic integration. For S2S Classic integration, the **additionalInfo.txnS2sFlow** field is set to **4**.
+You can collect card payments using Server-to-Server integration using classic integration. For S2S Classic integration, the **additionalInfo.txnFlow** field is set to **4**.
 
 ### Environment
 
@@ -104,13 +104,6 @@ The following table describes the request body parameters:
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>deviceInfo<br><code>mandatory for S2S</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code>Device info of the customer.  For more information, refer to<a href="#deviceinfo-object-field-descriptions"> deviceInfo object field descriptions</a>  .</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
 </tbody>
 </table>
 `}</HTMLBlock>
@@ -172,7 +165,7 @@ The following table describes the request body parameters:
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnS2sFlow<br><code>mandatory for S2S</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnFlow<br><code>mandatory for S2S</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Indicates the transaction S2S flow type and must be set to "4" for Classic Integration.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4</p></td>
 </tr>
