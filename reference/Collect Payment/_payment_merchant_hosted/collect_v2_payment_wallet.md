@@ -113,13 +113,6 @@ For the list of supported wallet codes, refer to [Wallet Codes](https://docs.pay
   <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
   </tr>
 <tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>enforcePaymethod<br><code>optional</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Methods of payment that are enforced in the payment process. For wallet payments, set to "Wallet".</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>Wallet</p></td>
