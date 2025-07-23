@@ -27,19 +27,16 @@ The v2 Net Banking seamless integration consists of two main steps:
 
 <V2_payment_envrionment />
 
-
-
 #### Request Headers
 
 <Accordion title="Request Headers" icon="fa-code">
-
-<V2_payment_header_params />
-
+  <V2_payment_header_params />
 </Accordion>
 
 ### Request Parameters
 
 The v2/payments API request for Net Banking seamless integration contains the following main parameters:
+
 <HTMLBlock>{`
 <table>
 <thead>
@@ -94,72 +91,87 @@ The v2/payments API request for Net Banking seamless integration contains the fo
 </table>
 `}</HTMLBlock>
 
-
-
 #### Payment Method Object
 
 <Accordion title="Payment Method Object" icon="fa-code">
+  For Net Banking seamless integration, the payment method object should contain:
 
-For Net Banking seamless integration, the payment method object should contain:
+  | Parameter  | Type   | Description                                                               | Required |
+  | ---------- | ------ | ------------------------------------------------------------------------- | -------- |
+  | `name`     | String | Must be "NetBanking" for Net Banking payments                             | Yes      |
+  | `bankCode` | String | Specific bank code for the selected bank (e.g., "TESTNB", "SBIN", "HDFC") | Yes      |
 
-| Parameter | Type | Description | Required |
-|-----------|------|-------------|----------|
-| `name` | String | Must be "NetBanking" for Net Banking payments | Yes |
-| `bankCode` | String | Specific bank code for the selected bank (e.g., "TESTNB", "SBIN", "HDFC") | Yes |
+  **Example:**
 
-**Example:**
-```json
-{
-  "name": "NetBanking",
-  "bankCode": "TESTNB"
-}
-```
-
+  ```json
+  {
+    "name": "NetBanking",
+    "bankCode": "TESTNB"
+  }
+  ```
 </Accordion>
 
 #### Order Object
 
 <Accordion title="Order Object" icon="fa-code">
-
-<V2_order_object />
-
+  <V2_order_object />
 </Accordion>
 
 #### Payment Charge Specification Object
 
 <Accordion title="Payment Charge Specification Object" icon="fa-code">
-
-<V2_paymentChargeSpecification_object />
-
+  <V2_paymentChargeSpecification_object />
 </Accordion>
 
 #### Additional Info Object
 
 <Accordion title="Additional Info Object" icon="fa-code">
-
-<AdditionalI_Info_object />
-
+  <HTMLBlock>{`
+  <table style="width: 100%; border-collapse: collapse;">
+  <thead>
+  <tr>
+    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
+    <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
+    <td style="border: 1px solid #ddd; padding: 8px;">60</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+    <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+    <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+    <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+    <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+  </tr>
+  </tbody>
+  </table>
+  `}</HTMLBlock>
 </Accordion>
 
 #### Callback Actions Object
 
 <Accordion title="Callback Actions Object" icon="fa-code">
-
-<CallbackActions_object />
-
+  <CallbackActions_object />
 </Accordion>
 
 #### Billing Details Object
 
 <Accordion title="Billing Details Object" icon="fa-code">
-
-<BillingDetails_object />
-
+  <BillingDetails_object />
 </Accordion>
 
 ### Sample Request
 
 **Request Headers:**
+
 ```
 Content-Type: application/json
 date: Wed, 28 Jun 2023 11:25:19 GMT
@@ -167,6 +179,7 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
 ```
 
 **Request Body:**
+
 ```json
 {
   "accountId": "smsplus",
@@ -235,39 +248,38 @@ After the payment is processed, you must verify the payment status using the ver
 
 ### Environment
 
-| Environment | URL |
-|-------------|-----|
-| Test | `https://test.payu.in/v3/transaction` |
-| Production | `https://api.payu.in/v3/transaction` |
+| Environment | URL                                   |
+| ----------- | ------------------------------------- |
+| Test        | `https://test.payu.in/v3/transaction` |
+| Production  | `https://api.payu.in/v3/transaction`  |
 
 ### Request Headers
 
 The verification API requires the following headers:
 
-| Header | Description | Required |
-|--------|-------------|----------|
-| `Content-Type` | Must be `application/json` | Yes |
-| `date` | Current date in GMT format | Yes |
-| `authorization` | HMAC signature for authentication | Yes |
-| `Info-Command` | Must be `verify_payment` | Yes |
+| Header          | Description                       | Required |
+| --------------- | --------------------------------- | -------- |
+| `Content-Type`  | Must be `application/json`        | Yes      |
+| `date`          | Current date in GMT format        | Yes      |
+| `authorization` | HMAC signature for authentication | Yes      |
+| `Info-Command`  | Must be `verify_payment`          | Yes      |
 
 ### Request Parameters
 
-| Parameter | Type | Description | Required |
-|-----------|------|-------------|----------|
-| `txnId` | Array | Array of transaction reference IDs to verify | Yes |
+| Parameter | Type  | Description                                  | Required |
+| --------- | ----- | -------------------------------------------- | -------- |
+| `txnId`   | Array | Array of transaction reference IDs to verify | Yes      |
 
 #### Response Parameters
 
 <Accordion title="Response Parameters" icon="fa-code">
-
-<V2_payment_response_params />
-
+  <V2_payment_response_params />
 </Accordion>
 
 ### Sample Verification Request
 
 **Request Headers:**
+
 ```
 Content-Type: application/json
 date: Thu, 27 Mar 2025 06:35:21 GMT
@@ -276,6 +288,7 @@ Info-Command: verify_payment
 ```
 
 **Request Body:**
+
 ```json
 {
   "txnId": ["b5f2d8785768087678fn4"]
