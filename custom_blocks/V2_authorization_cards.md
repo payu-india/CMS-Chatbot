@@ -12,72 +12,72 @@ name: V2_authorization_cards
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>eci</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">eci<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Electronic Commerce Indicator.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">05</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>cavv</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">cavv<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Cardholder Authentication Verification Value.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">AAABAWFlmQAAAABjRWWZEEFgFz</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>pares</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">pares<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Payer Authentication Response for 3D Secure 1.0.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">eJzVWFmTokoWfrMABXXOtgSL...</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>bankData</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">bankData<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Additional bank data for processing the payment.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">fGpDiuSMy8FjxQHDla5kFwVr</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>messageDigest</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">messageDigest<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Security hash value for message verification.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">3a4df2b5c8e7f9a1d6b0c3e9</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>xid</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">xid<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Transaction identifier for 3D Secure authentication.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">MDAwMDAwMDAwMDAwMDAwMDEyMzQ=</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>threeDSenrolled</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">threeDSenrolled<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Indicates if the card is enrolled in 3D Secure.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Y</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>threeDSstatus</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">threeDSstatus<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Status of the 3D Secure authentication.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">SUCCESS</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>flowType</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">flowType<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Flow type for 3D Secure.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Frictionless</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>threeDSTransID</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">threeDSTransID<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">3DS Transaction ID.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">67b4c71f-19bf-4d97-bd09-4e3687dc9e42</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>threeDSServerTransID</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">threeDSServerTransID<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">3DS Server Transaction ID.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">eea30d14-71cf-41af-b961-f95b7d67dc93</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>threeDSTransStatus</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">threeDSTransStatus<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">3DS transaction status.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Y</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>threeDSTransStatusReason</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">threeDSTransStatusReason<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Reason for 3DS transaction status.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">01</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>aquirer_bin</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">aquirer_bin<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Bank Identification Number of the acquirer.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">401200</td>
 </tr>
