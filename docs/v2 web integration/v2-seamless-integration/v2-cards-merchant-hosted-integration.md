@@ -38,7 +38,7 @@ The v2 Cards seamless integration consists of three main steps:
 
 Before processing the payment, you can validate the card type using PayU's BIN API to check if the card is domestic or international.
 
-## Step 2: Create the Payment Request
+## Step 2: Create the payment request
 
 #### Environment
 
@@ -232,20 +232,15 @@ The v2/payments API request for Cards seamless integration contains the followin
   <ThreeDSRequestData_object />
 </Accordion>
 
-### Sample Request
-
-**Request Headers:**
-
-```
-Content-Type: application/json
-date: Thu, 27 Mar 2025 10:12:27 GMT
-authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="<calculated_hmac_signature>"
-```
-
-**Request Body (New Card):**
+### Sample request
 
 ```json
-{
+curl -X POST \
+  https://apitest.payu.in/v2/payments \
+  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
+  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
+  -H 'content-type: application/json' \
+  -d {
   "accountId": "smsplus",
   "referenceId": "b5f2d8785768087678fn4",
   "currency": "INR",
@@ -316,12 +311,18 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
     "threeDSVersion": "2.2.0",
     "deviceChannel": "APP"
   }
-}
+  }'
 ```
 
 **Request Body (Saved Card):**
 
 ```json
+curl -X POST \
+  https://apitest.payu.in/v2/payments \
+  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
+  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
+  -H 'content-type: application/json' \
+  -d 
 {
   "accountId": "smsplus",
   "referenceId": "b5f2d8785768087678fn5",
@@ -358,7 +359,7 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
     "phone": "9876543210",
     "email": "john.doe@example.com"
   }
-}
+}'
 ```
 
 ### Sample Response
