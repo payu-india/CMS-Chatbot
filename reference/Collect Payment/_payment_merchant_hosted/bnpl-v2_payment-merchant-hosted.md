@@ -16,7 +16,7 @@ You need to ensure that **BNPL** for the **paymentMethod.name** parameter and BN
 
 For the list of supported BNPL codes, refer to [BNPL Codes](https://docs.payu.in/v1/docs/bnpl-codes).
 
-## Environment
+### Environment
 
 <V2_payment_envrionment />
 
