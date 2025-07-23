@@ -20,7 +20,7 @@ For the list of supported wallet codes, refer to [Wallet Codes](https://docs.pay
 
 <V2_payment_header_params />
 
-### Request body
+## Request body
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -86,7 +86,7 @@ For the list of supported wallet codes, refer to [Wallet Codes](https://docs.pay
 </table>
 `}</HTMLBlock>
 
-## order object fields description
+### order object fields description
 
 <V2_order_object />
 
@@ -121,9 +121,7 @@ For the list of supported wallet codes, refer to [Wallet Codes](https://docs.pay
 </table>
 `}</HTMLBlock>
 
-<br />
-
-## callBackActions object fields description
+### callBackActions object fields description
 
 <CallbackActions_object />
 
