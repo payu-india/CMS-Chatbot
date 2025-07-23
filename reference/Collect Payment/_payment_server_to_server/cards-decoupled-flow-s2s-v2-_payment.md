@@ -14,9 +14,11 @@ You can collect card payments without redirection to bank page for entering OTP 
 
 The Seamless Decoupled Flow uses **txnS2sFlow** set to **2** for Pure S2S transactions, eliminating user interface redirections during the authentication process.
 
-## Environment
+### Environment
 
 <V2_payment_envrionment />
+
+## Request header
 
 <V2_payment_header_params />
 
