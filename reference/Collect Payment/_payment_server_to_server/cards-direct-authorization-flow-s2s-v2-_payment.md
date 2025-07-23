@@ -18,9 +18,11 @@ The Cards Redirect Flow provides structured redirection handling for card authen
 >
 > This API is backward compatible and you can continue to use the existing integration parameters to process the 3DS 1.0.2 transactions.
 
-## Environment
+### Environment
 
 <V2_payment_envrionment />
+
+## Request header
 
 <V2_payment_header_params />
 
