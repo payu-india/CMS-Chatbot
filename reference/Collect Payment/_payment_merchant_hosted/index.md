@@ -1,5 +1,5 @@
 ---
-title: Collect Payment API - Merchant Hosted Checkout v2 Payment
+title: Collect Payment API - Seamless v2 Payment
 excerpt: ''
 deprecated: false
 hidden: true
