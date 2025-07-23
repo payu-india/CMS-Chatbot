@@ -20,10 +20,6 @@ For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v
 
 <V2_payment_envrionment />
 
-## Request parameters
-
-### Request headers
-
 <V2_payment_header_params />
 
 ### Request body
@@ -92,8 +88,6 @@ For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v
 </table>
 `}</HTMLBlock>
 
-## Object field descriptions
-
 ### paymentMethod object fields description
 
 <HTMLBlock>{`
@@ -135,20 +129,22 @@ For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v
 
 ### additionalInfo object fields description
 
-<AdditionalI_Info_object />
-
-**EMI-specific parameters:**
+<br />
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>enforcePaymethod</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Use **EMI** for EMI. </td>
+</tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>txnS2sFlow<br><code>optional</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction server-to-server flow configuration for EMI payments.</p></td>
@@ -159,9 +155,18 @@ For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Whether to create an order during the payment process.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>false</p></td>
 </tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+</tr>
 </tbody>
 </table>
 `}</HTMLBlock>
+
+<br />
+
+
 
 ### callBackActions object fields description
 
