@@ -12,12 +12,12 @@ name: ThreeDSRequestData_object
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>threeDSVersion</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">threeDSVersion<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">The version of 3D Secure used.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">2.2.0</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>deviceChannel</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">deviceChannel<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">The device used for the transaction channel.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">APP</td>
 </tr>
