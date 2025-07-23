@@ -22,7 +22,7 @@ For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v
 
 <V2_payment_header_params />
 
-### Request body
+## Request body
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -165,8 +165,6 @@ For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v
 `}</HTMLBlock>
 
 <br />
-
-
 
 ### callBackActions object fields description
 
