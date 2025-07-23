@@ -78,9 +78,7 @@ Use this integration when:
 </table>
 `}</HTMLBlock>
 
-## Object field descriptions
-
-### paymentMethod object fields description
+## paymentMethod object fields description
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -112,37 +110,15 @@ Use this integration when:
 
 ### additionalInfo object fields description
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>vpa</strong><br/><code>mandatory for UPI</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Payment handle of the customer</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">xyz@payu</td>
-</tr>
+<AdditionalI_Info_object />
 
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+### callbackActions object fields description
 
-<br />
+<CallbackActions_object />
+
+### billingDetails object fields description
+
+<BillingDetails_object />
 
 ## Sample request
 
@@ -171,7 +147,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
   },
   "additionalInfo": {
     "vpa": "xyz@axis", 
-    "txnS2sFlow": "seamless",
+    "txnFlow": "seamless",
     "createOrder": "true"
   },
   "callBackActions": {
@@ -222,6 +198,38 @@ For UPI payments, the response includes additional UPI-specific fields:
 | **upi.intentURIData** | UPI intent data for payment apps          |
 | **upi.merchantName**  | Merchant name displayed in UPI apps       |
 | **orderId**           | Generated order ID if createOrder is true |
+
+## Implementation Steps
+
+### Step 1: Collect Customer VPA
+
+Obtain the customer's Virtual Payment Address (VPA) through your application interface. The VPA format is typically `username@bankname` (e.g., `customer@paytm`, `user@googlepay`).
+
+### Step 2: Create Payment Request
+
+Submit the payment request with the customer's VPA and all required parameters as shown in the sample request above.
+
+### Step 3: Handle UPI Response
+
+Process the response which contains:
+
+* **UPI Intent Data**: Use for triggering UPI apps on mobile devices
+* **Payment ID**: For tracking and verification
+* **Merchant VPA**: For displaying payment details
+
+### Step 4: Verify Payment Status
+
+Always call the Verify Payment API to confirm the final transaction status:
+
+```bash
+curl --location 'https://apitest.payu.in/v2/payments/verify' \
+--header 'date: Thu, 27 Mar 2025 10:12:27 GMT' \
+--header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="your_signature_here"' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "txnId": ["Test123UPI"]
+}'
+```
 
 ## UPI Integration Flow Types
 
