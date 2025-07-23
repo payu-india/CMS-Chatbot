@@ -86,6 +86,37 @@ For the list of supported wallet codes, refer to [Wallet Codes](https://docs.pay
 </table>
 `}</HTMLBlock>
 
+### paymentMethod object
+
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>name</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Represents the payment method used. Use CASH for Wallet</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">CASH</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>bankCode</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains the bank code. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For all the supported wallets, refer to <a href="https://docs.payu.in/docs/wallet-codes/" target="_blank" Wallet Codes </td>
+  <td style="border: 1px solid #ddd; padding: 8px;">PAYTM</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentCard</strong><br/><code>mandatory for cards</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains physical card or saved card details.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
+
 ### order object fields description
 
 <V2_order_object />
