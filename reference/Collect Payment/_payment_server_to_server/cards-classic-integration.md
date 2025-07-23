@@ -18,13 +18,11 @@ The Classic Seamless Integration supports both physical card details and saved c
 
 <V2_payment_envrionment />
 
-## Request parameters
-
-### Request headers
+## Request header
 
 <V2_payment_header_params />
 
-### Request body
+## Request body
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
