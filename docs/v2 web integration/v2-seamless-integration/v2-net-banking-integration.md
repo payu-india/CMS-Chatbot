@@ -127,32 +127,32 @@ The v2/payments API request for Net Banking seamless integration contains the fo
 
 <Accordion title="Additional Info Object" icon="fa-code">
   <HTMLBlock>{`
-  <table style="width: 100%; border-collapse: collapse;">
-  <thead>
-  <tr>
-    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
-    <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
-    <td style="border: 1px solid #ddd; padding: 8px;">60</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-    <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-    <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
-    <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-    <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
-  </tr>
-  </tbody>
-  </table>
+      <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+      <tr>
+        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">60</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+      </tr>
+      </tbody>
+      </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -168,68 +168,63 @@ The v2/payments API request for Net Banking seamless integration contains the fo
   <BillingDetails_object />
 </Accordion>
 
-### Sample Request
-
-**Request Headers:**
-
-```
-Content-Type: application/json
-date: Wed, 28 Jun 2023 11:25:19 GMT
-authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="<calculated_hmac_signature>"
-```
-
-**Request Body:**
+### Sample request
 
 ```json
-{
+curl -X POST \
+  https://apitest.payu.in/v2/payments \
+  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
+  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
+  -H 'content-type: application/json' \
+  -d '{
   "accountId": "smsplus",
-  "referenceId": "b5f2d8785768087678fn4",
-  "currency": "INR",
-  "paymentSource": "WEB",
+  "referenceId": "REF_" + Math.random().toString(36).substring(7),
   "paymentMethod": {
     "name": "NetBanking",
-    "bankCode": "TESTNB"
+    "bankCode": "EFTAXIS"
   },
   "order": {
-    "productInfo": "Net Banking Test Product",
-    "orderedItem": [
-      {
-        "itemId": "ITEM001",
-        "description": "Test Product for Net Banking",
-        "quantity": 1
-      }
-    ],
+    "productInfo": "Net Banking Payment",
     "paymentChargeSpecification": {
-      "price": 100.00
+      "price": 10000.00,
+      "convenienceFee": "NB:15"
+    },
+    "userDefinedFields": {
+      "udf1": "Net Banking Transaction",
+      "udf2": "Seamless Payment"
     }
-  },
-  "additionalInfo": {
-    "txnS2sFlow": "2",
-    "createOrder": false,
-    "enforcePaymethod": "1"
-  },
-  "callBackActions": {
-    "successAction": "https://example.com/success",
-    "failureAction": "https://example.com/failure",
-    "cancelAction": "https://example.com/cancel"
   },
   "billingDetails": {
     "firstName": "John",
     "lastName": "Doe",
-    "phone": "9876543210",
     "email": "john.doe@example.com",
-    "address": {
-      "address1": "123 Main Street",
-      "city": "Mumbai",
-      "state": "Maharashtra",
-      "country": "India",
-      "zipCode": "400001"
-    }
+    "phone": "9876543210",
+    "address": "123 Main Street",
+    "city": "New Delhi",
+    "state": "Delhi",
+    "country": "India",
+    "zipCode": "110001"
+  },
+  "callBackActions": {
+    "successAction": "https://merchant.com/success",
+    "failureAction": "https://merchant.com/failure",
+    "cancelAction": "https://merchant.com/cancel"
+  },
+  "additionalInfo": {
+    "txnFlow": "seamless",
+    "createOrder": true,
+    "enforcePaymethod": "NB",
+    "txnS2sFlow": "2"
+  },
+  "beneficiaryDetail": {
+    "beneficiaryName": "Merchant Account",
+    "beneficiaryAccountNumber": "1234567890",
+    "beneficiaryAccountType": "SAVINGS"
   }
-}
+}'
 ```
 
-### Sample Response
+### Sample response
 
 ```json
 {
@@ -246,56 +241,27 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
 
 After the payment is processed, you must verify the payment status using the verification API to get the final transaction status.
 
-### Environment
+**Environment**
 
 | Environment | URL                                   |
 | ----------- | ------------------------------------- |
 | Test        | `https://test.payu.in/v3/transaction` |
 | Production  | `https://api.payu.in/v3/transaction`  |
 
-### Request Headers
-
-The verification API requires the following headers:
-
-| Header          | Description                       | Required |
-| --------------- | --------------------------------- | -------- |
-| `Content-Type`  | Must be `application/json`        | Yes      |
-| `date`          | Current date in GMT format        | Yes      |
-| `authorization` | HMAC signature for authentication | Yes      |
-| `Info-Command`  | Must be `verify_payment`          | Yes      |
-
-### Request Parameters
-
-| Parameter | Type  | Description                                  | Required |
-| --------- | ----- | -------------------------------------------- | -------- |
-| `txnId`   | Array | Array of transaction reference IDs to verify | Yes      |
-
-#### Response Parameters
-
-<Accordion title="Response Parameters" icon="fa-code">
-  <V2_payment_response_params />
-</Accordion>
-
-### Sample Verification Request
-
-**Request Headers:**
+### Sample request
 
 ```
-Content-Type: application/json
-date: Thu, 27 Mar 2025 06:35:21 GMT
-authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="<calculated_hmac_signature>"
-Info-Command: verify_payment
+curl --location 'https://test.payu.in/v3/transaction' \
+--header 'Content-Type: application/json' \
+--header 'date: Thu, 27 Mar 2025 06:35:21 GMT' \
+--header 'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="42a54cc7450fe1e7a3cf35ebfaed1b828e37062964266fd33186c7b2526e85e3ea2d46946a728ca50e46423ea9a6b2edb8c1315b58fa69297e1e91d3d34804a1"' \
+--header 'Info-Command: verify_payment' \
+--data '{
+    "txnId":["512345678901234"]
+}'
 ```
 
-**Request Body:**
-
-```json
-{
-  "txnId": ["b5f2d8785768087678fn4"]
-}
-```
-
-### Sample Verification Success Response
+### Sample response
 
 ```json
 {
@@ -336,14 +302,5 @@ Info-Command: verify_payment
       "txnId": "b5f2d8785768087678fn4"
     }
   ]
-}
-```
-
-### Sample Verification Failure Response
-
-```json
-{
-  "status": 0,
-  "msg": "Invalid Transaction ID"
 }
 ```
