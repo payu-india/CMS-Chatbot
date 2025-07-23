@@ -38,24 +38,9 @@ For the list of supported wallet codes, refer to [Wallet Codes](https://docs.pay
   <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Reference ID for transaction tracking and this must be unique for every transaction.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction ID for transaction tracking and this must be unique for every transaction.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br><code>optional</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the <code>order.paymentChargeSpecification.price</code> field will be considered.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br><code>optional</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Currency code for the transaction. Default is INR.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>INR</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentSource<br><code>optional</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Source of the payment (e.g., website or app).</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>WEB</p></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br><code>mandatory</code></p></td>
