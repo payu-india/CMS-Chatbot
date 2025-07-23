@@ -17,11 +17,12 @@ We recommend testing your integration in the PayU test environment before going 
 ## Supported Card Types
 
 PayU v2 Cards integration supports the following card types:
-- **American Express (AMEX)**
-- **Visa** 
-- **Mastercard**
-- **Diners Club**
-- **RuPay**
+
+* **American Express (AMEX)**
+* **Visa**
+* **Mastercard**
+* **Diners Club**
+* **RuPay**
 
 Both domestic and international transactions are supported (international transactions require special enablement).
 
@@ -29,7 +30,7 @@ Both domestic and international transactions are supported (international transa
 
 The v2 Cards seamless integration consists of three main steps:
 
-1. **Validate card type** using the BIN API (check_isDomestic)
+1. **Validate card type** using the BIN API (check\_isDomestic)
 2. **Create the payment request** to PayU's v2/payments API with card payment method
 3. **Verify the payment** status using the verification API
 
@@ -42,158 +43,199 @@ Before processing the payment, you can validate the card type using PayU's BIN A
 #### Environment
 
 <Accordion title="Environment" icon="fa-code">
-
-<V2_payment_envrionment />
-
+  <V2_payment_envrionment />
 </Accordion>
 
 #### Request Headers
 
 <Accordion title="Request Headers" icon="fa-code">
-
-<V2_payment_header_params />
-
+  <V2_payment_header_params />
 </Accordion>
 
 ### Request body
 
 The v2/payments API request for Cards seamless integration contains the following main parameters:
 
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>accountId</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Represents the merchant key provided by PayU during onboarding.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">MERCHANT123</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnId</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Transaction ID for transaction tracking. Must be unique for every transaction.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">TXN123456</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>amount</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Amount of the transaction. This will not be considered as the transaction amount, only the order.paymentChargeSpecification.price field will be considered.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">1000</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentMethod</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains details of the payment method. For more information, refer to <a href="https://docs.payu.in/v2/docs/v2-cards-merchant-hosted-integration/#payment-method-object">Payment Method Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>order</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains transaction order details such as product info, ordered items, user-defined fields, and payment charge details. For more information, refer to <a href="https://docs.payu.in/v2/docs/v2-cards-merchant-hosted-integration/#order-object">Order Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Additional metadata for the transaction. For more information, refer to <a href="https://docs.payu.in/v2/docs/v2-cards-merchant-hosted-integration/#additional-info-object">Additional Info Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>callBackActions</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">URL actions for payments (e.g., success, failure, cancel). For more information, refer to <a href="https://docs.payu.in/v2/docs/v2-cards-merchant-hosted-integration/#callback-actions-object">Callback Actions Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>billingDetails</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Customer billing details including name, phone, and address. For more information, refer to <a href="https://docs.payu.in/v2/docs/v2-cards-merchant-hosted-integration/#billing-details-object">Billing Details Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>authorization</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Authorization details for the payment process, including 3DS metadata. For more information, refer to <a href="https://docs.payu.in/v2/docs/v2-cards-merchant-hosted-integration/#authorization-object">Authorization Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
+<br />
 
 #### Payment method object
 
 <Accordion title="Payment Method Object" icon="fa-code">
+  For Cards seamless integration, the payment method object should contain:
 
-For Cards seamless integration, the payment method object should contain:
+  | Parameter     | Type   | Description                                                                     | Required |
+  | ------------- | ------ | ------------------------------------------------------------------------------- | -------- |
+  | `name`        | String | Must be "CreditCard" for credit cards or "DebitCard" for debit cards            | Yes      |
+  | `bankCode`    | String | Bank code for the card type (e.g., "CC" for credit cards, "DC" for debit cards) | Yes      |
+  | `paymentCard` | Object | Card details including card number, CVV, expiry, etc.                           | Yes      |
 
-| Parameter | Type | Description | Required |
-|-----------|------|-------------|----------|
-| `name` | String | Must be "CreditCard" for credit cards or "DebitCard" for debit cards | Yes |
-| `bankCode` | String | Bank code for the card type (e.g., "CC" for credit cards, "DC" for debit cards) | Yes |
-| `paymentCard` | Object | Card details including card number, CVV, expiry, etc. | Yes |
+  **Example:**
 
-**Example:**
-```json
-{
-  "name": "CreditCard",
-  "bankCode": "CC",
-  "paymentCard": {
-    "cardNumber": "5004461234560000",
-    "validThrough": "04/2025",
-    "ownerName": "John Doe",
-    "cvv": "123"
+  ```json
+  {
+    "name": "CreditCard",
+    "bankCode": "CC",
+    "paymentCard": {
+      "cardNumber": "5004461234560000",
+      "validThrough": "04/2025",
+      "ownerName": "John Doe",
+      "cvv": "123"
+    }
   }
-}
-```
-
+  ```
 </Accordion>
 
 #### Payment Card Object
 
 <Accordion title="Payment Card Object" icon="fa-code">
+  For new card payments:
 
-For new card payments:
+  | Parameter      | Type   | Description                        | Required |
+  | -------------- | ------ | ---------------------------------- | -------- |
+  | `cardNumber`   | String | Full card number                   | Yes      |
+  | `validThrough` | String | Card expiry date in MM/YYYY format | Yes      |
+  | `ownerName`    | String | Cardholder name as on card         | No       |
+  | `cvv`          | String | Card Verification Value            | Yes      |
 
-| Parameter | Type | Description | Required |
-|-----------|------|-------------|----------|
-| `cardNumber` | String | Full card number | Yes |
-| `validThrough` | String | Card expiry date in MM/YYYY format | Yes |
-| `ownerName` | String | Cardholder name as on card | No |
-| `cvv` | String | Card Verification Value | Yes |
+  For saved card payments:
 
-For saved card payments:
+  | Parameter       | Type   | Description                        | Required |
+  | --------------- | ------ | ---------------------------------- | -------- |
+  | `cardToken`     | String | Saved card token                   | Yes      |
+  | `cardTokenType` | String | Token type (PAYU, NETWORK, ISSUER) | Yes      |
+  | `tavv`          | String | Cryptogram for saved cards         | Yes      |
+  | `last4Digits`   | String | Last 4 digits of saved card        | Yes      |
+  | `cvv`           | String | Card Verification Value            | Yes      |
 
-| Parameter | Type | Description | Required |
-|-----------|------|-------------|----------|
-| `cardToken` | String | Saved card token | Yes |
-| `cardTokenType` | String | Token type (PAYU, NETWORK, ISSUER) | Yes |
-| `tavv` | String | Cryptogram for saved cards | Yes |
-| `last4Digits` | String | Last 4 digits of saved card | Yes |
-| `cvv` | String | Card Verification Value | Yes |
+  **Example - New Card:**
 
-**Example - New Card:**
-```json
-{
-  "cardNumber": "5004461234560000",
-  "validThrough": "04/2025",
-  "ownerName": "John Doe",
-  "cvv": "123"
-}
-```
+  ```json
+  {
+    "cardNumber": "5004461234560000",
+    "validThrough": "04/2025",
+    "ownerName": "John Doe",
+    "cvv": "123"
+  }
+  ```
 
-**Example - Saved Card:**
-```json
-{
-  "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
-  "cardTokenType": "NETWORK",
-  "tavv": "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
-  "last4Digits": "0000",
-  "cvv": "123"
-}
-```
+  **Example - Saved Card:**
 
+  ```json
+  {
+    "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+    "cardTokenType": "NETWORK",
+    "tavv": "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
+    "last4Digits": "0000",
+    "cvv": "123"
+  }
+  ```
 </Accordion>
 
 #### Order object
 
 <Accordion title="Order Object" icon="fa-code">
-
-<V2_order_object />
-
+  <V2_order_object />
 </Accordion>
 
 #### Payment charge specification object
 
 <Accordion title="Payment Charge Specification Object" icon="fa-code">
-
-<V2_paymentChargeSpecification_object />
-
+  <V2_paymentChargeSpecification_object />
 </Accordion>
 
 #### Additional Info Object
 
 <Accordion title="Additional Info Object" icon="fa-code">
-
-<AdditionalI_Info_object />
-
+  <AdditionalI_Info_object />
 </Accordion>
 
 #### Callback Actions Object
 
 <Accordion title="Callback Actions Object" icon="fa-code">
-
-<CallbackActions_object />
-
+  <CallbackActions_object />
 </Accordion>
 
 #### Billing Details Object
 
 <Accordion title="Billing Details Object" icon="fa-code">
-
-<BillingDetails_object />
-
+  <BillingDetails_object />
 </Accordion>
 
 #### Authorization Object
 
 <Accordion title="Authorization Object" icon="fa-code">
-
-<V2_authorization_cards />
-
+  <V2_authorization_cards />
 </Accordion>
 
 #### ThreeDS2 Request Data Object
 
 <Accordion title="ThreeDS2 Request Data Object" icon="fa-code">
-
-<ThreeDSRequestData_object />
-
+  <ThreeDSRequestData_object />
 </Accordion>
 
 ### Sample Request
 
 **Request Headers:**
+
 ```
 Content-Type: application/json
 date: Thu, 27 Mar 2025 10:12:27 GMT
@@ -201,6 +243,7 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
 ```
 
 **Request Body (New Card):**
+
 ```json
 {
   "accountId": "smsplus",
@@ -277,6 +320,7 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
 ```
 
 **Request Body (Saved Card):**
+
 ```json
 {
   "accountId": "smsplus",
@@ -347,39 +391,38 @@ After the payment is processed, you must verify the payment status using the ver
 
 ### Environment
 
-| Environment | URL |
-|-------------|-----|
-| Test | `https://test.payu.in/v3/transaction` |
-| Production | `https://api.payu.in/v3/transaction` |
+| Environment | URL                                   |
+| ----------- | ------------------------------------- |
+| Test        | `https://test.payu.in/v3/transaction` |
+| Production  | `https://api.payu.in/v3/transaction`  |
 
 ### Request Headers
 
 The verification API requires the following headers:
 
-| Header | Description | Required |
-|--------|-------------|----------|
-| `Content-Type` | Must be `application/json` | Yes |
-| `date` | Current date in GMT format | Yes |
-| `authorization` | HMAC signature for authentication | Yes |
-| `Info-Command` | Must be `verify_payment` | Yes |
+| Header          | Description                       | Required |
+| --------------- | --------------------------------- | -------- |
+| `Content-Type`  | Must be `application/json`        | Yes      |
+| `date`          | Current date in GMT format        | Yes      |
+| `authorization` | HMAC signature for authentication | Yes      |
+| `Info-Command`  | Must be `verify_payment`          | Yes      |
 
 ### Request Parameters
 
-| Parameter | Type | Description | Required |
-|-----------|------|-------------|----------|
-| `txnId` | Array | Array of transaction reference IDs to verify | Yes |
+| Parameter | Type  | Description                                  | Required |
+| --------- | ----- | -------------------------------------------- | -------- |
+| `txnId`   | Array | Array of transaction reference IDs to verify | Yes      |
 
 #### Response Parameters
 
 <Accordion title="Response Parameters" icon="fa-code">
-
-<V2_payment_response_params />
-
+  <V2_payment_response_params />
 </Accordion>
 
 ### Sample Verification Request
 
 **Request Headers:**
+
 ```
 Content-Type: application/json
 date: Thu, 27 Mar 2025 06:35:21 GMT
@@ -388,6 +431,7 @@ Info-Command: verify_payment
 ```
 
 **Request Body:**
+
 ```json
 {
   "txnId": ["b5f2d8785768087678fn4"]
@@ -452,40 +496,41 @@ Info-Command: verify_payment
 }
 ```
 
-
 ## Card-Specific Features
 
 ### Card Storage and Tokenization
 
 You can store cards for future use by setting `storeCard: "1"` in the `additionalInfo` object. This enables:
-- Card tokenization for PCI compliance
-- One-click checkout for returning customers
-- Secure card storage without storing sensitive data
+
+* Card tokenization for PCI compliance
+* One-click checkout for returning customers
+* Secure card storage without storing sensitive data
 
 ### 3D Secure Authentication
 
 PayU supports 3D Secure 1.0 and 2.0 for enhanced security:
 
-- **3D Secure 1.0**: Traditional authentication with ACS redirect
-- **3D Secure 2.0**: Enhanced authentication with device fingerprinting
+* **3D Secure 1.0**: Traditional authentication with ACS redirect
+* **3D Secure 2.0**: Enhanced authentication with device fingerprinting
 
 ### Pre-Authorization
 
 Enable pre-authorization mode by setting `preAuthorize: "1"` to:
-- Authorize payments without immediate capture
-- Capture authorized payments later using capture API
-- Handle partial captures and refunds
+
+* Authorize payments without immediate capture
+* Capture authorized payments later using capture API
+* Handle partial captures and refunds
 
 ### EMI Support
 
 PayU supports EMI (Equated Monthly Installments) for eligible cards:
-- Check EMI eligibility using bank-specific parameters
-- Configure subvention amounts for merchant-funded EMI
-- Support for both bank EMI and cardless EMI
 
+* Check EMI eligibility using bank-specific parameters
+* Configure subvention amounts for merchant-funded EMI
+* Support for both bank EMI and cardless EMI
 
 ### 3D Secure Implementation
 
-- Implement proper 3D Secure flows for enhanced security
-- Handle authentication failures gracefully
-- Store 3D Secure transaction data for compliance
+* Implement proper 3D Secure flows for enhanced security
+* Handle authentication failures gracefully
+* Store 3D Secure transaction data for compliance
