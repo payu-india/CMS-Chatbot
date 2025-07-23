@@ -12,27 +12,27 @@ name: V2_paymentChargeSpecification_object
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>price</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">price<br/><code>mandatory</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">The transaction amount.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">1000</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>netAmountDebit</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">netAmountDebit<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Net amount to be debited.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">1000</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>taxSpecification</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">taxSpecification<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Tax details of the product/order.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>convenienceFee</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">convenienceFee<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Fees format (e.g., CC:12).</td>
   <td style="border: 1px solid #ddd; padding: 8px;">CC:12</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>offers</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">offers<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Offers applied or available for the payment.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
