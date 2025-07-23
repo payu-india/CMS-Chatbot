@@ -39,7 +39,61 @@ The following parameters vary for the Wallet payment mode in the **Collect Payme
 
 The following table describes the request body parameters:
 
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Reference ID for transaction tracking and this must be unique for every transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Currency of the transaction. By default, <code>INR</code> is posted.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>INR</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentSource<br> <code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Web or mobile as payment source.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>WEB</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Contains the payment method details. For wallet payments, includes name and bankCode for the specific wallet.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{ "name": "Wallet", "bankCode": "PAYTM" }</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
+<br />
 
 #### order object
 
@@ -117,7 +171,7 @@ The customer will be redirected to the wallet provider (e.g., Paytm) to complete
 
 > 📘 Note:
 >
-> - The wallet transaction may take some time to complete
-> - Always verify the payment status before providing the service to the customer
-> - Use the referenceId from the initial request to track the transaction
-> - For supported wallet codes, refer to [Wallet Codes](https://docs.payu.in/v1/docs/wallet-codes)
+> * The wallet transaction may take some time to complete
+> * Always verify the payment status before providing the service to the customer
+> * Use the referenceId from the initial request to track the transaction
+> * For supported wallet codes, refer to [Wallet Codes](https://docs.payu.in/v1/docs/wallet-codes)
