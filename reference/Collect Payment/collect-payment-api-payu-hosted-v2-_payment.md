@@ -23,11 +23,11 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 | Test        | `https://apitest.payu.in/v2/payments` |
 | Production  | `https://api.payu.in/v2/payments`     |
 
-### Request Headers
+<br />
 
 <V2_payment_header_params />
 
-### Request Parameters
+## Request parameters
 
 <HTMLBlock>{`
 <table>
@@ -72,8 +72,6 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 </tbody>
 </table>
 `}</HTMLBlock>
-
-<br />
 
 ### order Object
 
