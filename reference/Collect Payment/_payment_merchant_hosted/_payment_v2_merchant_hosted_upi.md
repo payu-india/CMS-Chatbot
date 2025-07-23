@@ -16,19 +16,17 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
 
 When your customer makes payment through UPI, you can validate the customer's Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle.
 
-Validate the VPA (UPI handle) using the **validateVpa** API. For more information, refer to [Validate VPA Handle API](https://docs.payu.in/v1/reference/validate_vpa_api).
+Validate the VPA (UPI handle) using the **validateVpa** API. For more information, refer to <Anchor label="Validate VPA Handle API" target="_blank" href="https://docs.payu.in/v2/reference/v2_validate_vpa_api">Validate VPA Handle API</Anchor>.
 
 ## Environment
 
 <V2_payment_envrionment />
 
-## Request parameters
-
-### Request headers
+## Request headers
 
 <V2_payment_header_params />
 
-### Request body
+## Request body
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -94,21 +92,31 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
 </table>
 `}</HTMLBlock>
 
-## Object field descriptions
-
 ### order object fields description
 
 <V2_order_object />
 
 ### additionalInfo object fields description
 
-<AdditionalI_Info_object />
-
-**UPI-specific parameters:**
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+</tr>
+</thead>
+<tbody>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+</tr>
 <tr>
   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
