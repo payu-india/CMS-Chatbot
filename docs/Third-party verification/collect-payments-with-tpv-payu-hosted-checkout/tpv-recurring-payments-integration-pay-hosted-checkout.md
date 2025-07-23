@@ -120,7 +120,7 @@ Submit the transaction parameters to PayU's payment gateway using the appropriat
 </table>
 `}</HTMLBlock>
 
-### Hash calculation
+#### Hash calculation
 
 If UDF parameters are defined in the hash calculation, the same UDF fields must be included in the request sent to PayU.  
 
@@ -139,111 +139,43 @@ Replace SALT with the salt value provided during onboarding.
 ```
 
 <HTMLBlock>{`
-<table style="background-color:transparent;">
+<table>
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+    </thead>
     <tbody>
         <tr>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:157px;">
-                Field&nbsp;&nbsp;
-            </td>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:267px;">
-                Description&nbsp;&nbsp;
-            </td>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:197px;">
-                Example&nbsp;&nbsp;
-            </td>
+            <td>beneficiaryName</td>
+            <td>String List of Beneficiary name separated by pipe symbol (|).<br>Maximum 4 names.</td>
+            <td>"Sachin Tendulkar|Nitin Jaisingh|Somya|Nikita"</td>
         </tr>
         <tr>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:157px;">
-                beneficiaryName&nbsp;
-            </td>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:267px;">
-                <p>
-                    String List of Beneficiary name separated by pipe symbol (|).&nbsp;&nbsp;
-                </p>
-                <p>
-                    Maximum 4 names.&nbsp;
-                </p>
-            </td>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:197px;">
-                "Sachin Tendulkar|Nitin Jaisingh|Somya|Nikita”&nbsp;
-            </td>
+            <td>beneficiaryAccountNumber</td>
+            <td>String List of account numbers separated by pipe symbol (|).<br>Maximum 4 accounts.</td>
+            <td>"002001600674|00000031957292212|00000035955239352|00000035955239352"</td>
         </tr>
         <tr>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:157px;">
-                beneficiaryAccount Number&nbsp;&nbsp;
-            </td>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:267px;">
-                <p>
-                    String List of account numbers separated by pipe symbol (|).&nbsp;&nbsp;
-                </p>
-                <p>
-                    Maximum 4 accounts.&nbsp;&nbsp;
-                </p>
-            </td>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:197px;">
-                <p>
-                    “002001600674|&nbsp;&nbsp;
-                </p>
-                <p>
-                    00000031957292212|&nbsp;&nbsp;
-                </p>
-                <p>
-                    00000035955239352|&nbsp;&nbsp;
-                </p>
-                <p>
-                    00000035955239352”&nbsp;&nbsp;
-                </p>
-            </td>
+            <td>beneficiaryAccountType</td>
+            <td>String List of corresponding account type separated by pipe symbol (|). Maximum 4 types in the same order as account numbers.</td>
+            <td>"SAVINGS|SAVINGS|CURRENT|CURRENT"</td>
         </tr>
         <tr>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:157px;">
-                beneficiaryAccountType&nbsp;
-            </td>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:267px;">
-                String List of corresponding account type separated by pipe symbol (|). Maximum 4 types in the same order as account numbers.&nbsp;
-            </td>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:197px;">
-                "SAVINGS|&nbsp;<br>
-                SAVINGS|&nbsp;<br>
-                CURRENT|&nbsp;<br>
-                CURRENT"&nbsp;
-            </td>
+            <td>ifscCode</td>
+            <td>String List of corresponding IFSC codes separated by pipe symbol (|). Maximum 4 IFSC codes in the same order as account numbers.</td>
+            <td>"ICIC0000046|HDFC0000726|ICIC0000046|SBIN0098292"</td>
         </tr>
         <tr>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:157px;">
-                ifscCode&nbsp;&nbsp;
-            </td>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:267px;">
-                String List of corresponding IFSC codes separated by pipe symbol (|). Maximum 4 IFSC codes in the same order as account numbers.&nbsp;&nbsp;
-            </td>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:197px;">
-                <p>
-                    “ICIC0000046|&nbsp;<br>
-                    HDFC0000726|&nbsp;<br>
-                    ICIC0000046|&nbsp;<br>
-                    SBIN0098292”&nbsp;
-                </p>
-                <p>
-                    &nbsp;&nbsp;
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:157px;">
-                verificationMode&nbsp;
-            </td>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:267px;">
-                String List of verification mode separated by pipe symbol (|). Maximum 4 modes in the same order as account numbers.&nbsp;
-            </td>
-            <td style="background-color:transparent;border-color:rgb(0, 0, 0);border-width:2px;padding:0px;vertical-align:top;width:197px;">
-                “DEBIT_CARD|NET_BANKING| |AADHAR”&nbsp;
-            </td>
+            <td>verificationMode</td>
+            <td>String List of verification mode separated by pipe symbol (|). Maximum 4 modes in the same order as account numbers.</td>
+            <td>"DEBIT_CARD|NET_BANKING| |AADHAR"</td>
         </tr>
     </tbody>
 </table>
 `}</HTMLBlock>
-
-<br />
 
 ### Standing Instruction (SI) Details JSON Structure
 
@@ -257,11 +189,6 @@ Replace SALT with the salt value provided during onboarding.
     "billingInterval": "1"
 }
 ```
-
-> 📘 Hash Calculation:
->
-> Use the following hash logic for Recurring Payments integration and your must note that **beneficiarydetail**parameter value is included here:\
-> sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||||||beneficiarydetail|SALT)
 
 ### Sample request
 
