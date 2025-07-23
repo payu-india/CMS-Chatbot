@@ -124,7 +124,7 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 <V2_order_object />
 
-### paymentChargeSpecification
+#### paymentChargeSpecification
 
 <V2_paymentChargeSpecification_object />
 
