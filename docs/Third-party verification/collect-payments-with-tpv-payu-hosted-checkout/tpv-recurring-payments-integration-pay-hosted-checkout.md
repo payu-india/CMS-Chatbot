@@ -1,9 +1,15 @@
 ---
-title: Subscription TPV Integration - PayU Hosted
+title: Subscription TPV Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
-  title: TPV Recurring Payments Integration - PayU Hosted Checkout
+  title: Subscription TPV Integration - PayU Hosted
+  description: This section describes how to integrate the subscription request with TPV.
+  keywords:
+    - Subscription TPV Integration
+    - TPV Subscription Integration
+    - TPV Recurring Payments Integration
+    - Recurring Payments TPV Integration
   robots: index
 ---
 PayU Hosted Checkout integration for **TPV (Third Party Verification) Payment Mode** supports both **Net Banking (NB)** and **Unified Payment Interface (UPI)** payment methods for subscription-based or autopay payments.
