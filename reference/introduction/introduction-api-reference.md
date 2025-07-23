@@ -22,11 +22,11 @@ You can find the following implementation using **v2/payments** API for collecti
 
 ## Web integration
 
-### PayU Hosted Checkout
+### Non-seamless integration
 
 * [PayU Hosted Checkout](https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment)
 
-### Merchant Hosted Checkout
+### Seamless integration
 
 * [Net Banking ](https://docs.payu.in/v2/reference/_payment_v2_merchant_hosted_netbanking)
 * [Cards](https://docs.payu.in/v2/reference/_payment-v2-merchant-hosted-cards)
@@ -35,15 +35,7 @@ You can find the following implementation using **v2/payments** API for collecti
 * [EMI](https://docs.payu.in/v2/reference/collect-payments-with-emi-v2_payment)
 * [BNPL](https://docs.payu.in/v2/reference/bnpl-v2_payment-merchant-hosted)
 
-## Recurring Payments
-
-* [Payment Consent Transaction with PayU Hosted Checkout](https://docs.payu.in/v2/reference/v2-payment-consent-transaction-with-payu-hosted-checkout)
-* [Payment Consent Transaction with Merchant Hosted Checkout](https://docs.payu.in/v2/reference/v2-payment-consent-transaction-merchant-hosted)
-  * [Net Banking Consent Transaction](https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction)
-  * [Cards Consent Transaction](https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction)
-  * [UPI Consent Transaction](https://docs.payu.in/v2/reference/v2-upi-recurring-payment-consent-transaction)
-
-## S2S
+#### Flows
 
 * [Cards Classic Integration](https://docs.payu.in/v2/reference/cards-classic-integration)
 * [Cards Decoupled Flow](https://docs.payu.in/v2/reference/cards-decoupled-flow-s2s-v2-_payment)
