@@ -23,7 +23,7 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 | Test        | `https://apitest.payu.in/v2/payments` |
 | Production  | `https://api.payu.in/v2/payments`     |
 
-<br />
+## Request header
 
 <V2_payment_header_params />
 
