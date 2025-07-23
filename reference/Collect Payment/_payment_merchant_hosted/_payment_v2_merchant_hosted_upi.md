@@ -18,9 +18,11 @@ When your customer makes payment through UPI, you can validate the customer's Vi
 
 Validate the VPA (UPI handle) using the **validateVpa** API. For more information, refer to <Anchor label="Validate VPA Handle API" target="_blank" href="https://docs.payu.in/v2/reference/v2_validate_vpa_api">Validate VPA Handle API</Anchor>.
 
-## Environment
+### Environment
 
 <V2_payment_envrionment />
+
+## Request header
 
 <V2_payment_header_params />
 
