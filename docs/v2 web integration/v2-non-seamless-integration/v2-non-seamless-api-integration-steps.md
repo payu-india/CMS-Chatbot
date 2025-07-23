@@ -10,109 +10,175 @@ metadata:
 next:
   description: ''
 ---
-This document describes how to integrate your website with **PayU Hosted Checkout** v2 using the `v2/payments` API. The integration allows you to redirect customers to PayU's payment page, where they can complete the payment securely.
+This document provides a comprehensive guide for integrating with **PayU Hosted Checkout v2** using the `v2/payments` API. The hosted checkout integration allows you to redirect customers to PayU's secure payment page, minimizing PCI compliance requirements while providing a seamless payment experience.
 
-> 📘 Before You Begin:
->
-> PayU recommends you to first test the integration in the PayU test environment.
+We recommend testing your integration in the PayU test environment before going live.
 
-**Steps to Integrate**
+## Integration Overview
 
-Integration requires two main steps:
+The v2 non-seamless integration consists of two main steps:
 
-1. **Make the transaction request to PayU** - Send payment details to PayU and redirect customers to PayU checkout page
-2. **Verify the payment** - After payment, verify the transaction details using PayU's verification API
+1. **Make the transaction request** to PayU's v2/payments API
+2. **Verify the payment** status using the verification API
 
-## Step 1: Make the transaction request to PayU
+## Step 1: Make the Transaction Request to PayU
 
-**Environment**
+#### Environment
 
-| Environment            | URL                                                                        |
-| ---------------------- | -------------------------------------------------------------------------- |
-| Test Environment       | [https://apitest.payu.in/v2/payments](https://apitest.payu.in/v2/payments) |
-| Production Environment | [https://api.payu.in/v2/payments](https://api.payu.in/v2/payments)         |
+<V2_payment_envrionment />
 
-### Request format
 
-A request to the v2 Payment API requires specific headers and a JSON body.
+#### Request Headers
 
-#### Request headers
+<Accordion title="Request Headers" icon="fa-code">
 
+<V2_payment_header_params />
+
+</Accordion>
+
+### Request Parameters
+
+The v2/payments API request contains the following main parameters:
+
+<HTMLBlock>{`
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accountId<br/><code>mandatory</code></td>
+<td><code>String</code> Merchant key provided by PayU. Character limit: 50</td>
+<td><code>"smsplus"</code></td>
+</tr>
+<tr>
+<td>txnId<br/><code>mandatory</code></td>
+<td><code>String</code> Unique transaction ID for the transaction. Character limit: 50</td>
+<td><code>"REF_123456789"</code></td>
+</tr>
+<tr>
+<td>order<br/><code>mandatory</code></td>
+<td><code>Object</code> Order details containing product information and pricing. <a href="#order-object">See order object</a></td>
+<td><code>{"productInfo": "Product Name", "paymentChargeSpecification": {"price": 1000.00}}</code></td>
+</tr>
+<tr>
+<td>billingDetails<br/><code>mandatory</code></td>
+<td><code>Object</code> Customer billing information. <a href="#billingdetails-object">See billingDetails object</a></td>
+<td><code>{"firstName": "John", "email": "john@example.com", "phone": "9876543210"}</code></td>
+</tr>
+<tr>
+<td>callBackActions<br/><code>mandatory</code></td>
+<td><code>Object</code> Callback URLs for different payment outcomes. <a href="#callbackactions-object">See callBackActions object</a></td>
+<td><code>{"successAction": "https://merchant.com/success", "failureAction": "https://merchant.com/failure"}</code></td>
+</tr>
+<tr>
+<td>additionalInfo<br/><code>mandatory</code></td>
+<td><code>Object</code> Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
+<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
+
+
+#### Order Object
+
+<Accordion title="Order Object" icon="fa-code">
+
+<V2_order_object />
+
+</Accordion>
+
+#### Payment Charge Specification Object
+
+<Accordion title="Payment Charge Specification Object" icon="fa-code">
+
+<V2_paymentChargeSpecification_object />
+
+</Accordion>
+
+#### Additional Info Object 
+
+<Accordion title="Additional Info Object" icon="fa-code">
+
+<AdditionalI_Info_object />
+
+</Accordion>
+
+#### Callback Actions Object
+
+<Accordion title="Callback Actions Object" icon="fa-code">
+
+<CallbackActions_object />
+
+</Accordion>
+
+#### Billing Details Object 
+
+<Accordion title="Billing Details Object" icon="fa-code">
+
+<BillingDetails_object />
+
+</Accordion>
+
+### Sample Request
+
+**Request Headers:**
 ```
 Content-Type: application/json
 date: Wed, 28 Jun 2023 11:25:19 GMT
-authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="42a54cc7450fe1e7a3cf35ebfaed1b828e37062964266fd33186c7b2526e85e3ea2d46946a728ca50e46423ea9a6b2edb8c1315b58fa69297e1e91d3d34804a1"
+authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="<calculated_hmac_signature>"
 ```
 
-> 📘 Note:
->
-> The HMAC signature in the authorization header is calculated using the sha512 algorithm based on the specified headers (date in this example) and your merchant secret key.
-
-#### Sample request body
-
+**Request Body:**
 ```json
 {
-   "accountId": "smsplus",
-   "referenceId": "b5f2d8785768087678fm9",
-   "paymentStatus": "SUCCESS",
-   "amount": 10,
-   "currency": "INR",
-   "paymentSource": "WEB",
-   "order": {
-      "productInfo": "string",
-      "orderedItem": [
-         {
-            "itemId": null,
-            "description": "AAA",
-            "quantity": null
-         }
-      ],
-      "paymentChargeSpecification": {
-         "price": 10
+  "accountId": "smsplus",
+  "referenceId": "b5f2d8785768087678fm9",
+  "currency": "INR",
+  "paymentSource": "WEB",
+  "order": {
+    "productInfo": "Test Product",
+    "orderedItem": [
+      {
+        "itemId": "ITEM001",
+        "description": "Test Product Description",
+        "quantity": 1
       }
-   },
-   "additionalInfo": {
-      "txnFlow": "nonseamless"
-   },
-   "callBackActions": {
-      "successAction": "https://example.com/success",
-      "failureAction": "https://example.com/failure",
-      "cancelAction": "https://example.com/cancel"
-   },
-   "billingDetails": {
-      "firstName": "sartaj",
-      "phone": "9876543210",
-      "email": "test@example.in",
-      "city": "Bharatpur",
-      "state": "Rajasthan",
+    ],
+    "paymentChargeSpecification": {
+      "price": 10.00
+    }
+  },
+  "additionalInfo": {
+    "txnFlow": "nonseamless"
+  },
+  "callBackActions": {
+    "successAction": "https://example.com/success",
+    "failureAction": "https://example.com/failure",
+    "cancelAction": "https://example.com/cancel"
+  },
+  "billingDetails": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "phone": "9876543210",
+    "email": "john.doe@example.com",
+    "address": {
+      "address1": "123 Main Street",
+      "city": "Mumbai",
+      "state": "Maharashtra",
       "country": "India",
-      "zipCode": "321028"
-   }
+      "zipCode": "400001"
+    }
+  }
 }
 ```
 
-### Request parameters
-
-| Parameter                              | Description                                                 | Required |
-| -------------------------------------- | ----------------------------------------------------------- | -------- |
-| accountId                              | Merchant key provided by PayU during onboarding             | Yes      |
-| referenceId                            | A unique transaction reference ID generated by the merchant | Yes      |
-| currency                               | Transaction currency (e.g., INR)                            | Yes      |
-| order.productInfo                      | Description of the product being purchased                  | Yes      |
-| order.paymentChargeSpecification.price | Transaction amount                                          | Yes      |
-| additionalInfo.txnFlow                 | Must be set to "nonseamless" for hosted checkout            | Yes      |
-| callBackActions.successAction          | URL to redirect after successful payment                    | Yes      |
-| callBackActions.failureAction          | URL to redirect after failed payment                        | Yes      |
-| callBackActions.cancelAction           | URL to redirect after cancelled payment                     | Yes      |
-| billingDetails                         | Customer details (name, phone, email, address, etc.)        | Yes      |
-| paymentSource                          | Payment source (e.g., WEB)                                  | No       |
-| userDefinedFields                      | Custom fields (udf1 to udf10) for merchant use              | No       |
-
-> ⚠️ Important:
->
-> For v2 API, the additionalInfo.txnFlow parameter MUST be set to "nonseamless" for PayU hosted checkout.
-
-### Sample response
+### Sample Response
 
 ```json
 {
@@ -123,52 +189,60 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
 }
 ```
 
-### Response parameters
-
-| Parameter          | Description                                      |
-| ------------------ | ------------------------------------------------ |
-| result.checkoutUrl | URL to redirect the customer to complete payment |
-| status             | Status of the request (e.g., PENDING)            |
-
-After receiving the response, redirect the customer to the URL specified in `result.checkoutUrl` to complete the payment on PayU's payment page.
-
 ## Step 2: Verify the Payment
 
-After payment completion, the customer will be redirected to your success, failure, or cancel URL. To verify the payment status securely, use the v2 Verify Payment API.
+After the customer completes the payment on the PayU checkout page, you must verify the payment status using the verification API.
 
-### Environment URLs
+### Environment
 
-| Environment            | URL                                                                        |
-| ---------------------- | -------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/v1/transaction](https://test.payu.in/v1/transaction) |
-| Production Environment | [https://info.payu.in/v1/transaction](https://info.payu.in/v1/transaction) |
+| Environment | URL |
+|-------------|-----|
+| Test | `https://test.payu.in/v3/transaction` |
+| Production | `https://api.payu.in/v3/transaction` |
 
-### Request format
+### Request Headers
 
-#### Request headers
+The verification API requires the following headers:
 
+| Header | Description | Required |
+|--------|-------------|----------|
+| `Content-Type` | Must be `application/json` | Yes |
+| `date` | Current date in GMT format | Yes |
+| `authorization` | HMAC signature for authentication | Yes |
+| `Info-Command` | Must be `verify_payment` | Yes |
+
+### Request Parameters
+
+| Parameter | Type | Description | Required |
+|-----------|------|-------------|----------|
+| `txnId` | Array | Array of transaction reference IDs to verify | Yes |
+
+#### Response Parameters
+
+<Accordion title="Response Parameters" icon="fa-code">
+
+<V2_payment_response_params />
+
+</Accordion>
+
+### Sample Verification Request
+
+**Request Headers:**
 ```
 Content-Type: application/json
 date: Thu, 27 Mar 2025 06:35:21 GMT
-authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="42a54cc7450fe1e7a3cf35ebfaed1b828e37062964266fd33186c7b2526e85e3ea2d46946a728ca50e46423ea9a6b2edb8c1315b58fa69297e1e91d3d34804a1"
+authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="<calculated_hmac_signature>"
 Info-Command: verify_payment
 ```
 
-#### Sample request body
-
+**Request Body:**
 ```json
 {
-  "txnId": ["512345678901234"]
+  "txnId": ["b5f2d8785768087678fm9"]
 }
 ```
 
-### Request parameters
-
-| Parameter | Description                                      | Required |
-| --------- | ------------------------------------------------ | -------- |
-| txnId     | Array of transaction IDs (referenceId) to verify | Yes      |
-
-### Sample success response
+### Sample Verification Success Response
 
 ```json
 {
@@ -178,19 +252,19 @@ Info-Command: verify_payment
     {
       "mihpayId": 21612493009,
       "bankReferenceNumber": "2411194544",
-      "amount": 0.00,
+      "amount": 10.00,
       "mode": "CC",
       "requestId": "",
-      "originalAmount": 100.00,
+      "originalAmount": 10.00,
       "additionalCharges": 0.00,
       "discount": 0.00,
-      "netDebitAmount": 100.00,
-      "productInfo": "cred_product",
-      "firstName": "CRED",
-      "bankcode": "AMEX",
-      "nameOnCard": null,
-      "cardNo": "XXXXXXXXXXXX2001",
-      "cardType": "AMEX",
+      "netDebitAmount": 10.00,
+      "productInfo": "Test Product",
+      "firstName": "John",
+      "bankcode": "VISA",
+      "nameOnCard": "JOHN DOE",
+      "cardNo": "XXXXXXXXXXXX1234",
+      "cardType": "VISA",
       "udf1": null,
       "udf2": null,
       "udf3": null,
@@ -202,67 +276,28 @@ Info-Command: verify_payment
       "errorMessage": "No Error",
       "addedOn": "2024-11-19 21:17:55",
       "settledAt": "0000-00-00 00:00:00",
-      "paymentSource": "payuS2S",
+      "paymentSource": "WEB",
       "pgType": "CC-PG",
       "status": "success",
       "unmappedStatus": "captured",
       "merchantUTR": null,
-      "rupayAuthRefNo": "AAACAVJIggICQyRYdUiCEAAAAAA=",
-      "authRefNo": "AAACAVJIggICQyRYdUiCEAAAAAA=",
+      "rupayAuthRefNo": null,
+      "authRefNo": "123456789",
       "originalCurrency": "INR",
       "threeDSVersion": "2.2.0",
       "message": "Found TxnId",
-      "txnId": "54dzPX68BZzE46Q2VYWw"
+      "txnId": "b5f2d8785768087678fm9"
     }
   ]
 }
 ```
 
-### Sample failure response
+### Sample Verification Failure Response
 
 ```json
 {
   "status": 0,
-  "msg": "Invalid Bin"
+  "msg": "Invalid Transaction ID"
 }
 ```
 
-### Response parameters
-
-| Parameter                     | Description                                      |
-| ----------------------------- | ------------------------------------------------ |
-| message                       | Success message if transaction is found          |
-| status                        | 1 for success, 0 for failure                     |
-| result                        | Array of transaction details                     |
-| result\[].mihpayId            | Unique PayU ID for the transaction               |
-| result\[].bankReferenceNumber | Reference number from the bank                   |
-| result\[].status              | Transaction status (success, failure, pending)   |
-| result\[].unmappedStatus      | Internal PayU status (captured, auth, etc.)      |
-| result\[].txnId               | The original referenceId sent in payment request |
-| result\[].errorCode           | Error code (E000 means no error)                 |
-| result\[].errorMessage        | Error message if any                             |
-
-## Integration security
-
-To ensure secure integration:
-
-1. **Verify all transaction details** using the Verify Payment API
-2. **Implement proper HMAC signature generation** for authorization headers
-3. **Keep your merchant key and salt secure** and never expose them to clients
-4. **Validate the transaction status** by checking both status and errorCode fields
-
-## Testing the integration
-
-For testing in the PayU test environment, you can use the following test credentials:
-
-| Parameter   | Value                      |
-| ----------- | -------------------------- |
-| accountId   | PRiQvJ (test merchant key) |
-| Card Number | 5123456789012346           |
-| Expiry      | 05/2025                    |
-| CVV         | 123                        |
-
-> 📘 **References:**
->
-> * For more test cards and payment methods, refer to [Test Cards and Payment Methods](https://docs.payu.in/v2/reference/test-cards-upi-id-and-wallets)
-> * For detailed information on generating HMAC signatures, refer to [Authentication](https://docs.payu.in/v2/reference/authentication)
