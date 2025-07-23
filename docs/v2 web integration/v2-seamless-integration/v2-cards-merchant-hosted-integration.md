@@ -389,56 +389,29 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
 
 After the payment is processed, you must verify the payment status using the verification API to get the final transaction status.
 
-### Environment
+### Sample request
+
+**Environment**
 
 | Environment | URL                                   |
 | ----------- | ------------------------------------- |
 | Test        | `https://test.payu.in/v3/transaction` |
 | Production  | `https://api.payu.in/v3/transaction`  |
 
-### Request Headers
-
-The verification API requires the following headers:
-
-| Header          | Description                       | Required |
-| --------------- | --------------------------------- | -------- |
-| `Content-Type`  | Must be `application/json`        | Yes      |
-| `date`          | Current date in GMT format        | Yes      |
-| `authorization` | HMAC signature for authentication | Yes      |
-| `Info-Command`  | Must be `verify_payment`          | Yes      |
-
-### Request Parameters
-
-| Parameter | Type  | Description                                  | Required |
-| --------- | ----- | -------------------------------------------- | -------- |
-| `txnId`   | Array | Array of transaction reference IDs to verify | Yes      |
-
-#### Response Parameters
-
-<Accordion title="Response Parameters" icon="fa-code">
-  <V2_payment_response_params />
-</Accordion>
-
-### Sample Verification Request
-
-**Request Headers:**
-
-```
-Content-Type: application/json
-date: Thu, 27 Mar 2025 06:35:21 GMT
-authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="<calculated_hmac_signature>"
-Info-Command: verify_payment
-```
-
-**Request Body:**
+<br />
 
 ```json
-{
-  "txnId": ["b5f2d8785768087678fn4"]
-}
+curl --location 'https://test.payu.in/v3/transaction' \
+--header 'Content-Type: application/json' \
+--header 'date: Thu, 27 Mar 2025 06:35:21 GMT' \
+--header 'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="42a54cc7450fe1e7a3cf35ebfaed1b828e37062964266fd33186c7b2526e85e3ea2d46946a728ca50e46423ea9a6b2edb8c1315b58fa69297e1e91d3d34804a1"' \
+--header 'Info-Command: verify_payment' \
+--data '{
+    "txnId":["512345678901234"]
+}'
 ```
 
-### Sample Verification Success Response
+### Sample response
 
 ```json
 {
@@ -487,18 +460,9 @@ Info-Command: verify_payment
 }
 ```
 
-### Sample Verification Failure Response
+## Card-specific features
 
-```json
-{
-  "status": 0,
-  "msg": "Invalid Transaction ID"
-}
-```
-
-## Card-Specific Features
-
-### Card Storage and Tokenization
+### Card storage and tokenization
 
 You can store cards for future use by setting `storeCard: "1"` in the `additionalInfo` object. This enables:
 
@@ -506,14 +470,14 @@ You can store cards for future use by setting `storeCard: "1"` in the `additiona
 * One-click checkout for returning customers
 * Secure card storage without storing sensitive data
 
-### 3D Secure Authentication
+### 3D Secure authentication
 
 PayU supports 3D Secure 1.0 and 2.0 for enhanced security:
 
 * **3D Secure 1.0**: Traditional authentication with ACS redirect
 * **3D Secure 2.0**: Enhanced authentication with device fingerprinting
 
-### Pre-Authorization
+### Pre-authorization
 
 Enable pre-authorization mode by setting `preAuthorize: "1"` to:
 
@@ -521,16 +485,10 @@ Enable pre-authorization mode by setting `preAuthorize: "1"` to:
 * Capture authorized payments later using capture API
 * Handle partial captures and refunds
 
-### EMI Support
+### EMI support
 
 PayU supports EMI (Equated Monthly Installments) for eligible cards:
 
 * Check EMI eligibility using bank-specific parameters
 * Configure subvention amounts for merchant-funded EMI
 * Support for both bank EMI and cardless EMI
-
-### 3D Secure Implementation
-
-* Implement proper 3D Secure flows for enhanced security
-* Handle authentication failures gracefully
-* Store 3D Secure transaction data for compliance
