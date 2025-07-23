@@ -151,12 +151,12 @@ Replace SALT with the salt value provided during onboarding.
         <tr>
             <td>beneficiaryName</td>
             <td>String List of Beneficiary name separated by pipe symbol (|).<br>Maximum 4 names.</td>
-            <td>"Sachin Tendulkar|Nitin Jaisingh|Somya|Nikita"</td>
+            <td>"Sachin Tendulkar|Nitin Jaisingh|<br/>Somya|Nikita"</td>
         </tr>
         <tr>
             <td>beneficiaryAccountNumber</td>
             <td>String List of account numbers separated by pipe symbol (|).<br>Maximum 4 accounts.</td>
-            <td>"002001600674|00000031957292212|<br/>00000035955239352|00000035955239352"</td>
+            <td>"002001600674|<br/>00000031957292212|<br/>00000035955239352|<br/>00000035955239352"</td>
         </tr>
         <tr>
             <td>beneficiaryAccountType</td>
@@ -166,7 +166,7 @@ Replace SALT with the salt value provided during onboarding.
         <tr>
             <td>ifscCode</td>
             <td>String List of corresponding IFSC codes separated by pipe symbol (|). Maximum 4 IFSC codes in the same order as account numbers.</td>
-            <td>"ICIC0000046|HDFC0000726|<br/>ICIC0000046|SBIN0098292"</td>
+            <td>"ICIC0000046|<br/>HDFC0000726|<br/>ICIC0000046|<br/>SBIN0098292"</td>
         </tr>
         <tr>
             <td>verificationMode</td>
