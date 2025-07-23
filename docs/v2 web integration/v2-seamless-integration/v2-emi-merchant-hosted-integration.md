@@ -81,7 +81,7 @@ You can collect payments from customers with leading wallets using the **v2/paym
 </table>
 `}</HTMLBlock>
 
-### paymentMethod object fields description
+#### paymentMethod object fields description
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -112,7 +112,7 @@ You can collect payments from customers with leading wallets using the **v2/paym
 </table>
 `}</HTMLBlock>
 
-### paymentCard object fields description
+#### paymentCard object fields description
 <Accordion title="paymentCard object fields" icon="fa-code">
 <V2_paymentCard />
 </Accordion>
@@ -158,11 +158,12 @@ You can collect payments from customers with leading wallets using the **v2/paym
 `}</HTMLBlock>
 </Accordion>
 
-### callBackActions object fields description
+#### callBackActions object fields description
 <Accordion title="callBackActions object fields" icon="fa-code">
 <CallbackActions_object />
 </Accordion>
-### billingDetails object fields description
+
+#### billingDetails object fields description
 <Accordion title="billingDetails object fields" icon="fa-code">
 <BillingDetails_object />
 </Accordion>
