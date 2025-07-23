@@ -36,11 +36,11 @@ You can collect card payments using Server-to-Server integration using classic i
 >
 > For the **Try It** experience and response, refer to <a href="https://docs.payu.in/v2/reference/_payment_v2_merchant_hosted_upi" target="_blank">Collect Payments API</a> under API Reference.
 
-### Request Header
+### Request header
 
 <V2_payment_header_params />
 
-### Request Body
+### Request body
 
 The following table describes the request body parameters:
 <HTMLBlock>{`
@@ -108,7 +108,7 @@ The following table describes the request body parameters:
 </table>
 `}</HTMLBlock>
 
-#### paymentMethod object fields description
+##### paymentMethod object fields description
 <Accordion title="paymentMethod object" icon="fa-code">
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -140,17 +140,17 @@ The following table describes the request body parameters:
 `}</HTMLBlock>
 </Accordion>
 
-### paymentCard object fields description
+#### paymentCard object fields description
 <Accordion title="paymentCard object" icon="fa-code">
 <V2_paymentCard />
 </Accordion>
 
-### order object fields description
+#### order object fields description
 <Accordion title="order object" icon="fa-code">
 <V2_order_object />
 </Accordion>
 
-### additionalInfo object fields description
+#### additionalInfo object fields description
 
 <AdditionalI_Info_object />
 <Accordion title="AdditionalInfo object" icon="fa-code">
@@ -189,10 +189,10 @@ The following table describes the request body parameters:
 `}</HTMLBlock>
 </Accordion>
 
-### callBackActions object fields description
+#### callBackActions object fields description
 <CallbackActions_object />
 
-### billingDetails object fields description
+#### billingDetails object fields description
 <Accordion title="callBackActions object" icon="fa-code">
 <BillingDetails_object />
 </Accordion>
