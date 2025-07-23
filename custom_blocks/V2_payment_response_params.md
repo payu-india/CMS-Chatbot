@@ -11,15 +11,15 @@ name: V2_payment_response_params
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnId</strong></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">txnId</td>
   <td style="border: 1px solid #ddd; padding: 8px;">This parameter contains the transaction ID of the transaction.</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentId</strong></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">paymentId</td>
   <td style="border: 1px solid #ddd; padding: 8px;">This parameter contains the payment ID of the transaction.</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>message</strong></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">message</td>
   <td style="border: 1px solid #ddd; padding: 8px;">This parameter contains the status message of the transaction.</td>
 </tr>
 </tbody>
