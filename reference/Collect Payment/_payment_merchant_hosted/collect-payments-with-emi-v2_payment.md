@@ -116,8 +116,6 @@ For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v
 
 ### additionalInfo object fields description
 
-<br />
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -129,11 +127,11 @@ For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>enforcePaymethod</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Use **EMI** for EMI. </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnS2sFlow<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnFlow<br><code>optional</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction server-to-server flow configuration for EMI payments.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4</p></td>
 </tr>
