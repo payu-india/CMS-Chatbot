@@ -77,10 +77,6 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 
 <V2_order_object />
 
-### paymentChargeSpecification Object
-
-<V2_paymentChargeSpecification_object />
-
 ### billingDetails Object
 
 <BillingDetails_object />
