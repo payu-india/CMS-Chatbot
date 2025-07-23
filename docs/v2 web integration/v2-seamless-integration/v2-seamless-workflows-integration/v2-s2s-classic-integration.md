@@ -34,7 +34,7 @@ You can collect card payments using Server-to-Server integration using classic i
 
 > 📘 Reference:
 >
-> For the **Try It** experience and response, refer to <a href="https://docs.payu.in/v2/reference/_payment_v2_merchant_hosted_upi" target="_blank">Collect Payments API</a> under API Reference.
+> For the **Try It** experience and response, refer to <a href="https://docs.payu.in/v2/reference/cards-classic-integration" target="_blank">Cards Classic Integration</a> under API Reference.
 
 ### Request header
 
