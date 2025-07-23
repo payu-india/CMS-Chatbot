@@ -92,6 +92,34 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
 </table>
 `}</HTMLBlock>
 
+### paymentMethod object
+
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>name</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Represents the payment method used. For UPI, use UPI</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">UPI</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>bankCode</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains the bank code.For UPI, use UPI</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">UPI</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
+
+###
+
 ### order object fields description
 
 <V2_order_object />
