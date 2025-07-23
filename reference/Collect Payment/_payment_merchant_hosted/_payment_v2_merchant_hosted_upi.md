@@ -118,8 +118,6 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
 </table>
 `}</HTMLBlock>
 
-###
-
 ### order object fields description
 
 <V2_order_object />
