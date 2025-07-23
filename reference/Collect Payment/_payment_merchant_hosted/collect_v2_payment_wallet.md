@@ -14,9 +14,11 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 For the list of supported wallet codes, refer to [Wallet Codes](https://docs.payu.in/v1/docs/wallet-codes).
 
-## Environment
+### Environment
 
 <V2_payment_envrionment />
+
+## Request header
 
 <V2_payment_header_params />
 
