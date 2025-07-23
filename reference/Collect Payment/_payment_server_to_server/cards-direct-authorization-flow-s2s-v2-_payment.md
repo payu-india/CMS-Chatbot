@@ -47,11 +47,6 @@ The Cards Redirect Flow provides structured redirection handling for card authen
   <td style="border: 1px solid #ddd; padding: 8px;"><p>ZP6267f0d2996ce</p></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Number</code> Amount of the transaction.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>10</p></td>
-</tr>
-<tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br><code>mandatory</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For Cards Redirect Flow:<br>• name: "CreditCard" or "DebitCard"<br>• bankCode: Card type code<br>• paymentCard: Card details object</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>{"name": "CreditCard", "bankCode": "CC"}</p></td>
