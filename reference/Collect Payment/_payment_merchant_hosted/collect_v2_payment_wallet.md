@@ -18,10 +18,6 @@ For the list of supported wallet codes, refer to [Wallet Codes](https://docs.pay
 
 <V2_payment_envrionment />
 
-## Request parameters
-
-### Request headers
-
 <V2_payment_header_params />
 
 ### Request body
@@ -90,21 +86,32 @@ For the list of supported wallet codes, refer to [Wallet Codes](https://docs.pay
 </table>
 `}</HTMLBlock>
 
-## Object field descriptions
-
-### order object fields description
+## order object fields description
 
 <V2_order_object />
 
 ### additionalInfo object fields description
 
-<AdditionalI_Info_object />
-
-**Wallet-specific parameters:**
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+  </tr>
 <tr>
   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
@@ -121,7 +128,9 @@ For the list of supported wallet codes, refer to [Wallet Codes](https://docs.pay
 </table>
 `}</HTMLBlock>
 
-### callBackActions object fields description
+<br />
+
+## callBackActions object fields description
 
 <CallbackActions_object />
 
