@@ -76,7 +76,7 @@ The following table describes the request body parameters:
 <tr>
 <td>order<br/><code>mandatory</code></td>
 <td>Order details containing product information and pricing. <a href="#order-object">See order object</a></td>
-<td><code>{"productInfo": "Net Banking Payment", "paymentChargeSpecification": {"price": 10000.00}}</code></td>
+<td><code>{"productInfo": "Wallets Integration", "paymentChargeSpecification": {"price": 10000.00}}</code></td>
 </tr>
 <tr>
 <td>billingDetails<br/><code>mandatory</code></td>
@@ -91,7 +91,7 @@ The following table describes the request body parameters:
 <tr>
 <td>additionalInfo<br/><code>mandatory</code></td>
 <td>Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
-<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
+<td><code>{"txnFlow": "seamless"}</code></td>
 </tr>
 <tr>
 
