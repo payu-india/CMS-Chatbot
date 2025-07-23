@@ -23,6 +23,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | AU Small Finance Bank - Corporate          | AUSFCNB  |
 | AXIS Bank                                  | AXIB     |
 | Axis Corporate Netbanking                  | AXISCNB  |
+| Bandhan Bank                               | BANDNB   |
 | Bank of Baroda                             | BBRB     |
 | Bank of India                              | BOIB     |
 | Bank of Maharashtra                        | BOMB     |
