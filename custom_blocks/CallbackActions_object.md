@@ -12,22 +12,22 @@ name: CallbackActions_object
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>successAction</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">successAction<br/><code>mandatory</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">URL to be called on payment success.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">https://example.com/success</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>failureAction</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">failureAction<br/><code>mandatory</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">URL to be called on payment failure.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">https://example.com/failure</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>cancelAction</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">cancelAction<br/><code>mandatory</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">URL to be called if user cancels the payment.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">https://example.com/cancel</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>codAction</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">codAction<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">URL for Cash on Delivery (COD) action.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">https://example.com/cod</td>
 </tr>
