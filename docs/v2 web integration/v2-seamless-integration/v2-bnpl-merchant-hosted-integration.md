@@ -10,95 +10,21 @@ metadata:
 next:
   description: ''
 ---
-Buy Now Pay Later (\<\<glossary:BNPL>>) allows your customers to spread their payments over a relatively short period instead of paying upfront. You can collect payments from customers with BNPL using the Merchant Hosted Checkout integration. 
+Buy Now Pay Later (\<\<glossary:BNPL>>) allows your customers to spread their payments over a relatively short period instead of paying upfront. You can collect payments from customers with BNPL using the Merchant Hosted Checkout integration.
 
 You need to ensure that **BNPL** for the **paymentMethod.name** parameter and BNPL code based on the provider and tenure for the **paymentMethod.bankcode** parameter is posted.
 
 > 👍 Before you begin:
-> 
+>
 > PayU recommends you to integrate with Test environment initially. For more information, contact you PayU Key Account Manager (KAM) or PayU Support.
+## Environment
 
-**Environment**
+<V2_payment_envrionment />
 
-|                            |                                       |
-| :------------------------- | :------------------------------------ |
-| **Test Environment**       | \<https://apitest.payu.in/v2/payments> |
-| **Production Environment** | \<https://api.payu.in/v2/payments>     |
+## Request header
 
-**Steps to Integrate**
+<V2_payment_header_params />
 
-1. [Initiate the payment with PayU](#step-1-initiate-the-payment-with-payu)
-2. [Verify Payment](#step-3-verify-the-payment)
-
-## Step 1: Initiate the payment with PayU
-
-### Request header
-
-| Parameter     | Description                                                                                                                                                                                                    |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| date          | The current date and time. For example,  format of the date is Wed, 28 Jun 2023 11:25:19 GMT.                                                                                                                  |
-| authorization | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to[ authorization fields description](#authorization-fields-description). |
-
-#### authorization fields description
-
-| Parameter | Description                                                                                                                                                                      |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| username  | Represents the username or identifier for the client or merchant, in this case, it's "smsplus".                                                                                  |
-| algorithm | Indicates the hashing algorithm used for the HMAC signature. Here, it is set to "sha512".                                                                                        |
-| headers   | Specifies which headers have been used in generating the hash. In this case, only the "date" header is used.                                                                     |
-| signature | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to [hashing algorithm](#hashing-algorithm). |
-
-#### hashing algorithm
-
-You must hash the request parameters using the following hash logic:
-
-```
-sha512(<Body data> + '|' + date + '|' + merchant_secret}
-```
-
-Where, \<Body data\> contains the request Body posted with the request.
-
-<details>
-<summary>Sample header code</summary>
-
-```
-var merchant_key = 'smsplus';
-var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
-
-// date
-var date = new Date();
-// var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-date = date.toUTCString();
-
-// authorization
-var authorization = getAuthHeader(date);
-console.log(authorization);
-
-function getAuthHeader(date) {
-var AUTH_TYPE = 'sha512';
-var data = isEmpty(request['data'])?"":request['data'];
-var hash_string = data + '|' + date + '|' + merchant_secret;
-console.log("Hash String is ", hash_string);
-var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-return authHeader;
-}
-
-pm.environment.set('date', date);
-pm.environment.set('authorization', authorization);
-pm.environment.set('merchant_key',merchant_key);
-pm.environment.set('merchant_secret',merchant_secret);
-
-function isEmpty(obj) {
-for(var key in obj) {
-if(obj.hasOwnProperty(key))
-return false;
-}
-return true;
-}
-```
-
-</details>
 
 ### Request body
 
@@ -121,35 +47,11 @@ return true;
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br> <code>mandatory</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Reference ID for transaction tracking and this must be unique for every transaction.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction ID for transaction tracking and this must be unique for every transaction.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the <code>order.paymentChargeSpecificationparameter.price</code>field will be considered.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Currency of the transaction. By default, <code>INR</code> is posted.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>INR</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentSource<code> optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Contains the payment source.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>WEB</p>
 </td>
 </tr>
 <tr>
@@ -192,9 +94,8 @@ return true;
 </table>
 `}</HTMLBlock>
 
-
 #### paymentMethod object fields description
-
+<Accordion title="paymentMethod object" icon="fa-code">
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -207,7 +108,7 @@ return true;
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For more information, refer to <a href="https://docs.payu.in/v1/docs/payment-mode-codes">Payment Mode Codes</a>. For UPI, this must contain <strong>BNPL</strong>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For more information, refer to <a href="https://docs.payu.in/v1/docs/payment-mode-codes">Payment Mode Codes</a>. For BNPL, this must contain <strong>BNPL</strong>.</p>
 </td>
 </tr>
 <tr>
@@ -219,215 +120,58 @@ return true;
 </tbody>
 </table>
 `}</HTMLBlock>
+</Accordion>
 
+#### order object
 
-#### order object fields description
+<Accordion title="order object" icon="fa-code">
+  <V2_order_object />
+</Accordion>
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>productInfo<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Details about the product being purchased. For more information, refer to<a href="#userdefineddields-object-fields-description"> userDefinedFields object fields description</a>.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>userDefinedFields<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code>Custom fields defined by the user for additional information.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentChargeSpecification<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Payment details including amount, additional charges and PayU offers to be applied. For more information, refer to <a href="#paymentChargeSpecification-object-fields-description">paymentChargeSpecification object fields description</a>.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+#### callBackActions object
 
+<Accordion title="callBackActions object" icon="fa-code">
+  <CallbackActions_object />
+</Accordion>
 
-##### userDefinedFields object fields description
+#### billingDetails object
 
-| Field | Description         |
-| ----- | ------------------- |
-| udf1  | User defined field. |
-| udf2  | User defined field. |
-| udf3  | User defined field. |
-| udf4  | User defined field. |
-| udf5  | User defined field. |
-| udf6  | User defined field. |
-| udf7  | User defined field. |
-| udf8  | User defined field. |
-| udf9  | User defined field. |
-| udf10 | User defined field. |
+<Accordion title="billingDetails object" icon="fa-code">
+  <BillingDetails_object />
+</Accordion>
 
-#### paymentChargeSpecification object fields description
+#### additionalInfo object
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>price<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field must contain the price or transaction amount to be posted.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>10.00</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-
-#### callbackActions object fields description
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>successAction<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to redirect to upon successful payment.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>failureAction<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to redirect to if the payment is failed.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>cancelAction<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to redirect to if the transaction is cancelled.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>codAction<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to handle Cash on Delivery actions.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>termAction<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL for completing terms and conditions actions.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>returnAction<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>URL to return to after successful payment action is completed.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-
-`<ErrorHandling />`
-
-#### billingDetails object field descriptions
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>firstName<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>First name of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Ashish</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>lastName<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Last name of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Kumar</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Phone number of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123456789</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Email address of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="mailto:ashish@abc.com">ashish@abc.com</a></p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>city<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>City of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bengaluru</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>state<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>State of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Karnatka</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>country<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Country of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Indiia</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>zipCode<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Postal/Zip code of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>560071</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+<Accordion title="Additional Info Object" icon="fa-code">
+  <HTMLBlock>{`
+                              <table style="width: 100%; border-collapse: collapse;">
+                              <thead>
+                              <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">60</td>
+                              </tr>
+                              <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+                              </tr>
+                              <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+                              </tr>
+                              </tbody>
+                              </table>
+  `}</HTMLBlock>
+</Accordion>
 
 ### Sample request
 
@@ -520,11 +264,10 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 </table>
 `}</HTMLBlock>
 
-
 ### Sample response
 
 > 📘 Note:
-> 
+>
 > Reverse hashing of the response is not required with that of v2/payment API.
 
 ```
@@ -541,5 +284,5 @@ Array
 Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api) under API Reference.
 
 > 📘 Tip
-> 
+>
 > The transaction ID that you posted in Step 1 with PayU must be used here.
