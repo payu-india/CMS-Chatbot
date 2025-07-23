@@ -113,7 +113,7 @@ Submit the transaction parameters to PayU's payment gateway using the appropriat
 </tr>
 <tr>
 <td>hash<br/><code>mandatory</code></td>
-<td>String - SHA512 Hash for securing the transaction request</td>
+<td>String - SHA512 Hash for securing the transaction request. For more information, refer to <a href="#hash-calcuation" Hash calculation </a></td>
 <td>Generated using hash formula</td>
 </tr>
 </tbody>
