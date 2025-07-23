@@ -20,6 +20,8 @@ For the list of supported BNPL codes, refer to [BNPL Codes](https://docs.payu.in
 
 <V2_payment_envrionment />
 
+## Request header
+
 <V2_payment_header_params />
 
 ### Request body
