@@ -26,8 +26,6 @@ PayU v2 Cards integration supports the following card types:
 
 Both domestic and international transactions are supported (international transactions require special enablement).
 
-## Integration Overview
-
 The v2 Cards seamless integration consists of three main steps:
 
 1. **Validate card type** using the BIN API (check\_isDomestic)
