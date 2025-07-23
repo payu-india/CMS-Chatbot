@@ -62,22 +62,22 @@ The v2/payments API request contains the following main parameters:
 </tr>
 <tr>
 <td>order<br/><code>mandatory</code></td>
-<td><code>Object</code> Order details containing product information and pricing. <a href="#order-object">See order object</a></td>
+<td><code>Object</code> Order details containing product information and pricing. For more information, refer to<a href="#order-object"> order object</a></td>
 <td><code>{"productInfo": "Product Name", "paymentChargeSpecification": {"price": 1000.00}}</code></td>
 </tr>
 <tr>
 <td>billingDetails<br/><code>mandatory</code></td>
-<td><code>Object</code> Customer billing information. <a href="#billingdetails-object">See billingDetails object</a></td>
+<td><code>Object</code> Customer billing information. For more information, refer to<a href="#billingdetails-object">billingDetails object</a></td>
 <td><code>{"firstName": "John", "email": "john@example.com", "phone": "9876543210"}</code></td>
 </tr>
 <tr>
 <td>callBackActions<br/><code>mandatory</code></td>
-<td><code>Object</code> Callback URLs for different payment outcomes. <a href="#callbackactions-object">See callBackActions object</a></td>
+<td><code>Object</code> Callback URLs for different payment outcomes. For more information, refer to<a href="#callbackactions-object"> callBackActions object</a></td>
 <td><code>{"successAction": "https://merchant.com/success", "failureAction": "https://merchant.com/failure"}</code></td>
 </tr>
 <tr>
 <td>additionalInfo<br/><code>mandatory</code></td>
-<td><code>Object</code> Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
+<td><code>Object</code> Additional transaction parameters including flow type. For more information, refer to<a href="#additionalinfo-object">additionalInfo object</a></td>
 <td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
 </tr>
 </tbody>
@@ -300,4 +300,3 @@ Info-Command: verify_payment
   "msg": "Invalid Transaction ID"
 }
 ```
-
