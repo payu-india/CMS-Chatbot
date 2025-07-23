@@ -12,32 +12,32 @@ name: AdditionalI_Info_object
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>enforcePaymethod</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method (e.g., CC, DC).</td>
   <td style="border: 1px solid #ddd; padding: 8px;">CC</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>forcePgid</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">forcePgid<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Forces identification for payment gateway.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">PG123</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">partnerHoldTime<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">60</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>userCredentials</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">userCredentials<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Credentials for user authentication.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">string</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>userToken</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">userToken<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Token for the customer.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">user_token_123</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>subventionAmount</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">subventionAmount<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Amount paid through EMI subvention payments.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">100</td>
 </tr>
