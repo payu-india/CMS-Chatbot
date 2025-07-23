@@ -144,7 +144,7 @@ The Cards Redirect Flow provides structured redirection handling for card authen
 <tbody>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>txnS2sFlow<br><code>optional</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Indicates the transaction S2S flow type. Set to "1" for partial S2S or "2" for pure S2S-like flow.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Indicates the transaction S2S flow type. Set to "4" for Direct Authorization flow.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p></td>
 </tr>
 <tr>
