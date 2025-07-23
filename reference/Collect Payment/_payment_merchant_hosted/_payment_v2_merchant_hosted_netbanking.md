@@ -257,14 +257,6 @@ Array
 )
 ```
 
-### Other common error codes
-
-* `E001`: Invalid request parameters
-* `E002`: Authentication failed
-* `E003`: Merchant not found
-* `E004`: Transaction limit exceeded
-* `E005`: Bank service unavailable
-* `E006`: Invalid beneficiary details
 
 ## Verify Payment
 
@@ -272,10 +264,3 @@ Array
 >
 > After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="ref:v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
 
-## Related APIs
-
-* [Get Net Banking Status API](https://docs.payu.in/v1/reference/get_net_banking_status_api)
-* [Verify Payment API](doc:verify-payment-api)
-* [Refund API](doc:refund-api)
-* [Get Transaction Details API](doc:get-transaction-details-api)
-* [Create Order API](doc:create-order-api)
