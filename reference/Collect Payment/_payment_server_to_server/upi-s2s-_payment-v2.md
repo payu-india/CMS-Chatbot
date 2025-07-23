@@ -69,11 +69,6 @@ Use this integration when:
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="#billingdetails-object-fields-description">billingDetails object fields description</a>.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>authorization<br/><code>mandatory for S2S Direct Auth</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> 3DS authorization information for direct authentication. For more information, refer to <a href="#authorization-object-fields-description">authorization object fields description</a>.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
 </tbody>
 </table>
 `}</HTMLBlock>
