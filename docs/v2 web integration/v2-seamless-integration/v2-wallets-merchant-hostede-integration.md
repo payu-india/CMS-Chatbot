@@ -107,11 +107,66 @@ The following table describes the request body parameters:
 
 #### callBackActions object
 
+\<Accordion title="callBackActions Object" icon="fa-code">
+
 <CallbackActions_object />
+
+\</Accordion>
 
 #### billingDetails object
 
+\<Accordion title="billingDetails Object" icon="fa-code">
+
 <BillingDetails_object />
+
+\</Accordion>
+
+#### Additional Info Object
+
+<Accordion title="Additional Info Object" icon="fa-code">
+  <HTMLBlock>{`
+              <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+              <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">60</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+                <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+                <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+              </tr>
+              </tbody>
+              </table>
+  `}</HTMLBlock>
+</Accordion>
+
+#### Callback Actions Object
+
+<Accordion title="Callback Actions Object" icon="fa-code">
+  <CallbackActions_object />
+</Accordion>
+
+#### Billing Details Object
+
+<Accordion title="Billing Details Object" icon="fa-code">
+  <BillingDetails_object />
+</Accordion>
+
+###
 
 ### Sample request
 
