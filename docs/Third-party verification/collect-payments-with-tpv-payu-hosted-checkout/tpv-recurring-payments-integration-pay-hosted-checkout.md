@@ -156,22 +156,22 @@ Replace SALT with the salt value provided during onboarding.
         <tr>
             <td>beneficiaryAccountNumber</td>
             <td>String List of account numbers separated by pipe symbol (|).<br>Maximum 4 accounts.</td>
-            <td>"002001600674|00000031957292212|00000035955239352|00000035955239352"</td>
+            <td>"002001600674|00000031957292212|<br/>00000035955239352|00000035955239352"</td>
         </tr>
         <tr>
             <td>beneficiaryAccountType</td>
             <td>String List of corresponding account type separated by pipe symbol (|). Maximum 4 types in the same order as account numbers.</td>
-            <td>"SAVINGS|SAVINGS|CURRENT|CURRENT"</td>
+            <td>"SAVINGS|SAVINGS|<br/>CURRENT|CURRENT"</td>
         </tr>
         <tr>
             <td>ifscCode</td>
             <td>String List of corresponding IFSC codes separated by pipe symbol (|). Maximum 4 IFSC codes in the same order as account numbers.</td>
-            <td>"ICIC0000046|HDFC0000726|ICIC0000046|SBIN0098292"</td>
+            <td>"ICIC0000046|HDFC0000726|<br/>ICIC0000046|SBIN0098292"</td>
         </tr>
         <tr>
             <td>verificationMode</td>
             <td>String List of verification mode separated by pipe symbol (|). Maximum 4 modes in the same order as account numbers.</td>
-            <td>"DEBIT_CARD|NET_BANKING| |AADHAR"</td>
+            <td>"DEBIT_CARD|NET_BANKING<br/>| |AADHAR"</td>
         </tr>
     </tbody>
 </table>
