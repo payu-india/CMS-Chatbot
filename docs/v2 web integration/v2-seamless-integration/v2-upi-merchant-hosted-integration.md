@@ -44,6 +44,53 @@ The following parameters vary for the UPI payment mode in the **Collect Payment*
 
 The following table describes the request body parameters:
 
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction ID for transaction tracking and this must be unique for every transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Contains the payment method details. For UPI, includes name and bankCode.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{ "name": "UPI", "bankCode": "UPI" }</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Contains UPI-specific information including the customer's VPA (UPI handle).</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{ "vpa": "test@payu" }</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
 
 #### order object
 
@@ -124,6 +171,6 @@ The customer can complete the UPI payment through their UPI app, and you can ver
 
 > 📘 Note:
 >
-> - The UPI transaction may take some time to complete
-> - Always verify the payment status before providing the service to the customer
-> - Use the referenceId from the initial request to track the transaction
+> * The UPI transaction may take some time to complete
+> * Always verify the payment status before providing the service to the customer
+> * Use the referenceId from the initial request to track the transaction
