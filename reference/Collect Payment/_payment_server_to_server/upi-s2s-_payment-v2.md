@@ -21,9 +21,11 @@ Use this integration when:
 * You need to integrate UPI payments into mobile apps or web applications seamlessly
 * You want to provide a faster checkout experience for UPI users
 
-## Environment URLs
+### Environment
 
 <V2_payment_envrionment />
+
+## Request header
 
 <V2_payment_header_params />
 
