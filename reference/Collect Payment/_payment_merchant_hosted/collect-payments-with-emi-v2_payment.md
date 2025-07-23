@@ -20,6 +20,8 @@ For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v
 
 <V2_payment_envrionment />
 
+## Request header
+
 <V2_payment_header_params />
 
 ## Request body
