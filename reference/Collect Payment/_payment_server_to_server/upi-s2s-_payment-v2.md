@@ -15,20 +15,19 @@ The UPI Seamless Integration allows merchants to process UPI payments directly t
 ## When to Use UPI Seamless Integration
 
 Use this integration when:
-- You want to accept UPI payments without redirecting customers away from your platform
-- Your customers prefer to stay on your application during the payment process
-- You need to integrate UPI payments into mobile apps or web applications seamlessly
-- You want to provide a faster checkout experience for UPI users
+
+* You want to accept UPI payments without redirecting customers away from your platform
+* Your customers prefer to stay on your application during the payment process
+* You need to integrate UPI payments into mobile apps or web applications seamlessly
+* You want to provide a faster checkout experience for UPI users
 
 ## Environment URLs
 
 <V2_payment_envrionment />
 
-## Request Headers
-
 <V2_payment_header_params />
 
-## Request Parameters
+## Request parameters
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -49,16 +48,6 @@ Use this integration when:
   <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br/><code>mandatory</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction ID provided by the merchant and this must be unique for every transaction.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>ZP6267f0d2996ce</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br/><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Number</code> Amount of the transaction.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>10</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br/><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For Cards Redirect Flow:<br/>• name: "CreditCard" or "DebitCard"<br/>• bankCode: Card type code<br/>• paymentCard: Card details object</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>{"name": "CreditCard", "bankCode": "CC"}</p></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br/><code>mandatory</code></p></td>
@@ -83,11 +72,6 @@ Use this integration when:
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>authorization<br/><code>mandatory for S2S Direct Auth</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> 3DS authorization information for direct authentication. For more information, refer to <a href="#authorization-object-fields-description">authorization object fields description</a>.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>threeDS2RequestData<br/><code>mandatory for S2S</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> 3DS2 request data for enhanced authentication. For more information, refer to <a href="#threeds2requestdata-object-fields-description">threeDS2RequestData object fields description</a>.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 </tbody>
@@ -130,8 +114,8 @@ Use this integration when:
 
 <AdditionalI_Info_object />
 
-
 ## Sample request
+
 ```bash
 curl --location 'https://apitest.payu.in/v2/payments' \
 --header 'date: Thu, 27 Mar 2025 10:12:27 GMT' \
@@ -171,7 +155,9 @@ curl --location 'https://apitest.payu.in/v2/payments' \
   }
 }'
 ```
+
 ## Sample response
+
 ```json
 {
   "result": {
@@ -191,7 +177,6 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 }
 ```
 
-
 ## Response Parameters
 
 <V2_payment_response_params />
@@ -200,29 +185,34 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 
 For UPI payments, the response includes additional UPI-specific fields:
 
-| Parameter | Description |
-|-----------|-------------|
-| **upi.amount** | Transaction amount for UPI payment |
-| **upi.merchantVpa** | Merchant's VPA for receiving payment |
-| **upi.intentURIData** | UPI intent data for payment apps |
-| **upi.merchantName** | Merchant name displayed in UPI apps |
-| **orderId** | Generated order ID if createOrder is true |
+| Parameter             | Description                               |
+| --------------------- | ----------------------------------------- |
+| **upi.amount**        | Transaction amount for UPI payment        |
+| **upi.merchantVpa**   | Merchant's VPA for receiving payment      |
+| **upi.intentURIData** | UPI intent data for payment apps          |
+| **upi.merchantName**  | Merchant name displayed in UPI apps       |
+| **orderId**           | Generated order ID if createOrder is true |
 
 ## Implementation Steps
 
 ### Step 1: Collect Customer VPA
+
 Obtain the customer's Virtual Payment Address (VPA) through your application interface. The VPA format is typically `username@bankname` (e.g., `customer@paytm`, `user@googlepay`).
 
 ### Step 2: Create Payment Request
+
 Submit the payment request with the customer's VPA and all required parameters as shown in the sample request above.
 
 ### Step 3: Handle UPI Response
+
 Process the response which contains:
-- **UPI Intent Data**: Use for triggering UPI apps on mobile devices
-- **Payment ID**: For tracking and verification
-- **Merchant VPA**: For displaying payment details
+
+* **UPI Intent Data**: Use for triggering UPI apps on mobile devices
+* **Payment ID**: For tracking and verification
+* **Merchant VPA**: For displaying payment details
 
 ### Step 4: Verify Payment Status
+
 Always call the Verify Payment API to confirm the final transaction status:
 
 ```bash
@@ -238,19 +228,25 @@ curl --location 'https://apitest.payu.in/v2/payments/verify' \
 ## UPI Integration Flow Types
 
 ### 1. Intent-Based Flow
+
 For mobile applications, use the UPI intent data to launch UPI-enabled apps:
-- Extract `intentURIData` from the response
-- Trigger UPI app with the intent data
-- Handle the callback from UPI apps
+
+* Extract `intentURIData` from the response
+* Trigger UPI app with the intent data
+* Handle the callback from UPI apps
 
 ### 2. Collect Request Flow
+
 For web applications or when customer needs to enter UPI PIN:
-- Present QR code or payment details
-- Allow customer to complete payment in their UPI app
-- Poll for payment status updates
+
+* Present QR code or payment details
+* Allow customer to complete payment in their UPI app
+* Poll for payment status updates
 
 ### 3. Direct VPA Flow
+
 When customer provides VPA directly:
-- Validate VPA format
-- Submit payment request with VPA
-- Handle authentication if required
+
+* Validate VPA format
+* Submit payment request with VPA
+* Handle authentication if required
