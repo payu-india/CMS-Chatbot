@@ -20,6 +20,8 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 <V2_payment_envrionment />
 
+## Request header
+
 <V2_payment_header_params />
 
 ## Request body
