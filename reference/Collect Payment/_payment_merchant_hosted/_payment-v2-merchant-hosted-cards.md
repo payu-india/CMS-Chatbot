@@ -43,49 +43,44 @@ You can collect payments from customers with leading wallets using the Merchant 
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnId</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Transaction ID for transaction tracking. Must be unique for every transaction.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Transaction ID for transaction tracking. Must be unique for every transaction. </td>
   <td style="border: 1px solid #ddd; padding: 8px;">TXN123456</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>amount</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Amount of the transaction. This will not be considered as the transaction amount, only the order.paymentChargeSpecification.price field will be considered.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">1000</td>
-</tr>
-<tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentMethod</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Contains details of the payment method.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains details of the payment method. For more information, refer to <a href="#paymentmethod">paymentMethod object fields description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>order</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Contains transaction order details such as product info, ordered items, user-defined fields, and payment charge details.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains transaction order details such as product info, ordered items, user-defined fields, and payment charge details. For more information, refer to <a href="#order-object-fields-description">order Object</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Additional metadata for the transaction.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Additional metadata for the transaction. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo Object</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>callBackActions</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">URL actions for payments (e.g., success, failure, cancel).</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">URL actions for payments (e.g., success, failure, cancel). For more information, refer to <a href="#callbackactions-object-fields-description">callBackActions Object</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>billingDetails</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Customer billing details including name, phone, and address.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Customer billing details including name, phone, and address. For more information, refer to <a href="#billingdetails-object-fields-description">billingDetails Object</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>authorization</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Authorization details for the payment process, including 3DS metadata.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Authorization details for the payment process, including 3DS metadata. For more information, refer to <a href="#authorization-object-fields-description">authorization Object</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 </tbody>
 </table>
 `}</HTMLBlock>
 
-### paymentMethod
+### paymentMethod object fields description
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -99,7 +94,7 @@ You can collect payments from customers with leading wallets using the Merchant 
 <tbody>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>name</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Represents the payment method used. Valid values: CreditCard, DebitCard, NetBanking, UPI, EMI, Wallet, CashCard, COD, Challan, LazyPay, PayPal, Sodexo, Payout, CLEMI, ENACH, qr, neftrtgs.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Represents the payment method used. For credit card, include CreditCard.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">CreditCard</td>
 </tr>
 <tr>
@@ -109,38 +104,34 @@ You can collect payments from customers with leading wallets using the Merchant 
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentCard</strong><br/><code>mandatory for cards</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Contains physical card or saved card details.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains physical card or saved card details. For more information, refer to </td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 </tbody>
 </table>
 `}</HTMLBlock>
 
-### paymentCard
+### paymentCard object fields description
 
 <V2_paymentCard />
 
-### order
+### order object fields description
 
 <V2_order_object />
 
-#### paymentChargeSpecification
-
-<V2_paymentChargeSpecification_object />
-
-### additionalInfo
+### additionalInfo object fields description
 
 <AdditionalI_Info_object />
 
-### callBackActions
+### callBackActions object fields description
 
 <CallbackActions_object />
 
-### billingDetails
+### billingDetails object fields description
 
 <BillingDetails_object />
 
-### authorization
+### authorization object fields description
 
 <V2_authorization_cards />
 
