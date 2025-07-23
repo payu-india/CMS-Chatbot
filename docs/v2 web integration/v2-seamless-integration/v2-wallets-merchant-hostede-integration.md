@@ -66,22 +66,6 @@ The following table describes the request body parameters:
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Currency of the transaction. By default, <code>INR</code> is posted.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>INR</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentSource<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Web or mobile as payment source.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>WEB</p>
-</td>
-</tr>
-<tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br> <code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Contains the payment method details. For wallet payments, includes name and bankCode for the specific wallet.</p>
@@ -89,6 +73,28 @@ The following table describes the request body parameters:
   <td style="border: 1px solid #ddd; padding: 8px;"><p>{ "name": "Wallet", "bankCode": "PAYTM" }</p>
 </td>
 </tr>
+<tr>
+<td>order<br/><code>mandatory</code></td>
+<td>Order details containing product information and pricing. <a href="#order-object">See order object</a></td>
+<td><code>{"productInfo": "Net Banking Payment", "paymentChargeSpecification": {"price": 10000.00}}</code></td>
+</tr>
+<tr>
+<td>billingDetails<br/><code>mandatory</code></td>
+<td>Customer billing information. <a href="#billingdetails-object">See billingDetails object</a></td>
+<td><code>{"firstName": "John", "email": "john@example.com", "phone": "9876543210"}</code></td>
+</tr>
+<tr>
+<td>callBackActions<br/><code>optional</code></td>
+<td>Callback URLs for different payment outcomes. <a href="#callbackactions-object">See callBackActions object</a></td>
+<td><code>{"successAction": "https://merchant.com/success", "failureAction": "https://merchant.com/failure"}</code></td>
+</tr>
+<tr>
+<td>additionalInfo<br/><code>mandatory</code></td>
+<td>Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
+<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
+</tr>
+<tr>
+
 </tbody>
 </table>
 `}</HTMLBlock>
