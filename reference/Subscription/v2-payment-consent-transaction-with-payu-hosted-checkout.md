@@ -7,15 +7,16 @@ metadata:
 ---
 The Collect Payment API (**v2 Payment** API) is used to collect payments for all the Web Checkout integration. This section provides the API Reference for PayU Hosted Checkout or Pre-Built Checkout.
 
+<V2_Prerequisite_Payment_Integration />
+
 > 📘 Note:
 >
-> You must use the **additionalInfo.txnFlow** must be set to **nonseamless** for PayU Hosted Checkout.
-
-> 📘 Reference:
->
-> To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](https://docs.payu.in/v1/docs/handling-the-redirect-urls).
+> * You must use the **additionalInfo.txnFlow** must be set to **nonseamless** for PayU Hosted Checkout.
+> * To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](https://docs.payu.in/v1/docs/handling-the-redirect-urls).
 
 **Environment**
+
+<V2_payment_envrionment />
 
 ### Request Header
 
