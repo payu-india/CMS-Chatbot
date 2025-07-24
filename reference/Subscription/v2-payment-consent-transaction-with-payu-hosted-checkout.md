@@ -133,7 +133,7 @@ The Collect Payment API (**v2 Payment** API) is used to collect payments for all
 
 <CallbackActions_object />
 
-## Sample request
+### Sample request
 
 ```curl
 curl --location 'https://apitest.payu.in/v2/payments' \
