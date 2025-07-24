@@ -17,9 +17,10 @@ The Collect Payment API (**v2 Payment** API) is used to collect payments for all
 
 **Environment**
 
-
 ### Request Header
+
 <V2_payment_header_params />
+
 ### Request body
 
 <HTMLBlock>{`
@@ -132,11 +133,7 @@ The Collect Payment API (**v2 Payment** API) is used to collect payments for all
 
 <CallbackActions_object />
 
-### additionalInfo Object
-
-<AdditionalI_Info_object />
-
-### Sample request
+## Sample request
 
 ```curl
 curl --location 'https://apitest.payu.in/v2/payments' \
