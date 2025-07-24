@@ -12,7 +12,7 @@ next:
 ---
 This document provides a comprehensive guide for integrating with **PayU Net Banking Seamless Integration v2** using the `v2/payments` API. The seamless integration allows you to process Net Banking payments directly through server-to-server communication, providing a streamlined payment experience while maintaining control over the user interface.
 
-PayU recommends testing your integration in the PayU test environment before going live.
+<v2_Prerequisite_Payment_Integration />
 
 ## Integration Overview
 
@@ -127,32 +127,32 @@ The v2/payments API request for Net Banking seamless integration contains the fo
 
 <Accordion title="Additional Info Object" icon="fa-code">
   <HTMLBlock>{`
-      <table style="width: 100%; border-collapse: collapse;">
-      <thead>
-      <tr>
-        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
-        <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
-        <td style="border: 1px solid #ddd; padding: 8px;">60</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-        <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-        <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
-        <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-        <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
-      </tr>
-      </tbody>
-      </table>
+          <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+          <tr>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">60</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+          </tr>
+          </tbody>
+          </table>
   `}</HTMLBlock>
 </Accordion>
 
