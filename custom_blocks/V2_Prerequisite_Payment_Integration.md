@@ -1,0 +1,7 @@
+---
+name: V2_Prerequisite_Payment_Integration
+---
+> 👍 Before you begin:
+>
+> * Register for an account with PayU before you start integration. For more information, refer to <a href="https://docs.payu.in/v1/docs/register-for-a-merchant-account-on-dashboard" target="_blank"> Register for a Merchant Account</a>.
+> * PayU recommends you integrate with Test environment for testing and then move to the Production environment.
