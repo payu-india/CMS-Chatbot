@@ -126,7 +126,7 @@ The workflow for the Recurring payment involves:
 
    OR
 
-   Merchants can use bulk upload recurring feature by uploading the records in an excel file. For more information, refer to [Recurring Payments Using PayUBiz Dashboard](doc:recurring-payments-using-payubiz-dashboard)
+   Merchants can use bulk upload recurring feature by uploading the records in an excel file. For more information, refer to [Upload Recurring Transactions in Bulk](doc:upload-recurring-transactions-in-bulk).
 
 Merchants can use Zion Platform where Payu will trigger recurring basis the billing details sent at the time of subscription setup. For more information, refer to [Using Zion Subscription Automation](doc:using-zion-subscription-automation-platform)
 
