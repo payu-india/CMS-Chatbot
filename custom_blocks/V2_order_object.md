@@ -23,7 +23,7 @@ name: V2_order_object
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>userDefinedFields</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Custom fields for additional information. Fields: udf1, udf2, udf3, udf4, udf5, udf6, udf7, udf8, udf9, udf10.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Custom fields for additional information. Fields: udf1, udf2, udf3, udf4, udf5, udf6, udf7, udf8, udf9, udf10. For more information, refer to </td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
@@ -75,3 +75,18 @@ name: V2_order_object
 </tbody>
 </table>
 `}</HTMLBlock>
+
+##### userDefinedFields object fields description
+
+| Field | Description         |
+| ----- | ------------------- |
+| udf1  | User defined field. |
+| udf2  | User defined field. |
+| udf3  | User defined field. |
+| udf4  | User defined field. |
+| udf5  | User defined field. |
+| udf6  | User defined field. |
+| udf7  | User defined field. |
+| udf8  | User defined field. |
+| udf9  | User defined field. |
+| udf10 | User defined field. |
