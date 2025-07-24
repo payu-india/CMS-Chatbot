@@ -17,9 +17,7 @@ You can collect payments from customers with leading wallets using the Merchant 
 1. [Initiate the payment with PayU](#step-1-initiate-the-payment-with-payu)
 2. [Verify Payment](#step-2-verify-the-payment)
 
-> 👍 Before you begin:
->
-> Register for an account with PayU before you start integration. For more information, refer to <a href="https://docs.payu.in/v1/docs/register-for-a-merchant-account-on-dashboard" target="_blank"> Register for a Merchant Account</a>.
+<V2_Prerequisite_Payment_Integration />
 
 ## Step 1: Initiate the payment with PayU
 
@@ -123,32 +121,32 @@ The following table describes the request body parameters:
 
 <Accordion title="Additional Info Object" icon="fa-code">
   <HTMLBlock>{`
-                          <table style="width: 100%; border-collapse: collapse;">
-                          <thead>
-                          <tr>
-                            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">60</td>
-                          </tr>
-                          <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-                          </tr>
-                          <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
-                          </tr>
-                          </tbody>
-                          </table>
+                              <table style="width: 100%; border-collapse: collapse;">
+                              <thead>
+                              <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">60</td>
+                              </tr>
+                              <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+                              </tr>
+                              <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+                              </tr>
+                              </tbody>
+                              </table>
   `}</HTMLBlock>
 </Accordion>
 
