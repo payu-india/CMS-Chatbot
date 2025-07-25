@@ -38,48 +38,48 @@ You can split during the transaction by amount, where you must ensure that the s
 <tbody>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>accountId</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Represents the merchant key provided by PayU during onboarding.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Represents the merchant key provided by PayU during onboarding. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#request-body">Request Body Parameters</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">MERCHANT123</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnId</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Transaction ID for transaction tracking. Must be unique for every transaction. </td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Transaction ID for transaction tracking. Must be unique for every transaction. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#request-body">Request Body Parameters</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">TXN123456</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentMethod</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Contains details of the payment method. For more information, refer to <a href="#paymentmethod-object-fields-description">paymentMethod object fields description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains details of the payment method. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#paymentmethod-object-fields-description">paymentMethod Object Fields Description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>order</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Contains transaction order details such as product info, ordered items, user-defined fields, and payment charge details. For more information, refer to <a href="#order-object-fields-description">order Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains transaction order details such as product info, ordered items, user-defined fields, and payment charge details. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#order-object-fields-description">order Object Fields Description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Additional metadata for the transaction. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Additional metadata for the transaction. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#additionalinfo-object-fields-description">additionalInfo Object Fields Description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>callBackActions</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">URL actions for payments (e.g., success, failure, cancel). For more information, refer to <a href="#callbackactions-object-fields-description">callBackActions Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">URL actions for payments (e.g., success, failure, cancel). For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#callbackactions-object-fields-description">callBackActions Object Fields Description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>billingDetails</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Customer billing details including name, phone, and address. For more information, refer to <a href="#billingdetails-object-fields-description">billingDetails Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Customer billing details including name, phone, and address. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#billingdetails-object-fields-description">billingDetails Object Fields Description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>authorization</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Authorization details for the payment process, including 3DS metadata. For more information, refer to <a href="#authorization-object-fields-description">authorization Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Authorization details for the payment process, including 3DS metadata. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#authorization-object-fields-description">authorization Object Fields Description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>splitRequest </br> <code>mandatory for Split Settlement</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the split payment. For more information, refer to <a href="#splitrequest-object-fields-description">splitRequest object fields description.</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the split payment. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#splitrequest-object-fields-description">splitRequest Object Fields Description</a>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p> {<br>                  &quot;type&quot;: &quot;absolute&quot;,<br>                  &quot;splitInfo&quot;: {<br>                    &quot;123412&quot;: {<br>                      &quot;aggregatorSubTxnId&quot;: &quot;12312941&quot;,<br>                      &quot;aggregatorSubAmt&quot;: &quot;2000.55&quot;<br>                    },<br>                    &quot;2300019&quot;: {<br>                      &quot;aggregatorSubTxnId&quot;: &quot;12312941&quot;,<br>                      &quot;aggregatorSubAmt&quot;: &quot;134.23&quot;<br>                    }<br>                  }</p>
 </td>
