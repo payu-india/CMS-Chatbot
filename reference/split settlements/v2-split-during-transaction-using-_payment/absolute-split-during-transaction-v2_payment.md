@@ -77,7 +77,7 @@ You can split during the transaction by amount, where you must ensure that the s
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>splitRequest <code>mandatory for Split Settlement</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>splitRequest </br> <code>mandatory for Split Settlement</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the split payment. For more information, refer to <a href="#splitrequest-object-fields-description">splitRequest object fields description.</a></p>
 </td>
@@ -210,6 +210,7 @@ The sample JSON structure for the **splitInfo** field:
    }
 }
 ```
+
 ## Sample request
 
 ```
