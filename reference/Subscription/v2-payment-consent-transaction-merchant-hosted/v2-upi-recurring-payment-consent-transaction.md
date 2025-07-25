@@ -60,37 +60,37 @@ HTTP Method: **POST**
 <tbody>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-upi-recurring-payment-consent-transaction/#request-body">Request Body Parameters</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction ID for transaction tracking and this must be unique for every transaction. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-upi-recurring-payment-consent-transaction/#request-body">Request Body Parameters</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction ID for transaction tracking and this must be unique for every transaction.</td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For UPI payments:<br>• name: Must be "UPI"<br>• bankCode: Must be "UPI". For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-upi-recurring-payment-consent-transaction/#paymentmethod-object-fields-description">paymentMethod Object Fields Description</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code>Details about the payment method used. For UPI payments:<br>• name: Must be "UPI"<br>• bankCode: Must be "UPI". For more information, refer to <a href="#paymentmethod-object-fields-description">paymentMethod Object Fields Description</a>.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>{"name": "UPI", "bankCode": "UPI"}</p></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-upi-recurring-payment-consent-transaction/#order-object-fields-description">order Object Fields Description</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order Object Fields Description</a>.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including UPI-specific parameters like VPA. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-upi-recurring-payment-consent-transaction/#additionalinfo-object-fields-description">additionalInfo Object Fields Description</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including UPI-specific parameters like VPA. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo Object Fields Description</a>.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-upi-recurring-payment-consent-transaction/#callbackactions-object-fields-description">callBackActions Object Fields Description</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For more information, refer to <a href="callbackactions-object-fields-description">callBackActions Object Fields Description</a>.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-upi-recurring-payment-consent-transaction/#billingdetails-object-fields-description">billingDetails Object Fields Description</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="#billingdetails-object-fields-description">billingDetails Object Fields Description</a>.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 </tbody>
