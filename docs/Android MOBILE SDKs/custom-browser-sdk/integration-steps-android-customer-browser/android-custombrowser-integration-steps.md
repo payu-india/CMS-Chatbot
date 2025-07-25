@@ -42,7 +42,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 Add the following dependency in your application’s build.gradle:
 
 ```
-implementation 'in.payu:payu-custom-browser:7.15.3'
+implementation 'in.payu:payu-custom-browser:7.15.4'
 ```
 
 > 🚧 Watch Out!
