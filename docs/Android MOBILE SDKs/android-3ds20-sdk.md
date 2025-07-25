@@ -53,7 +53,7 @@ PayU SDK offers the following methods to integrate with 3DS 2.0:
   Use the following code snippet in your app’s build.gradle file:
 
 ```
-implementation 'in.payu:threeds-sdk:1.1.0'
+implementation 'in.payu:threeds-sdk:1.1.2'
 ```
 
 * Use our SDK for a complete transaction:
