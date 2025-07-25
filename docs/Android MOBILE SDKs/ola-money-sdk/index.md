@@ -35,7 +35,7 @@ next:
 Add the below dependency in the application’s build.gradle:
 
 ```Text build.gradle
-implementation 'in.payu:olamoney:1.3.6'
+implementation 'in.payu:olamoney:1.3.7'
 ```
 
 ## SDK Callbacks
