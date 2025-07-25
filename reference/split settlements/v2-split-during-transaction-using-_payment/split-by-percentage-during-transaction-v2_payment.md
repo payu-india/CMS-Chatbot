@@ -81,7 +81,7 @@ You can split during a transaction made using **\_payment** API by percentage, w
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the split payment. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#splitrequest-object-fields-description">splitRequest Object Fields Description</a>.</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"> Refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#splitrequest-object-fields-description">splitRequest Object Fields Description</a>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> {<br>                  &quot;type&quot;: &quot;absolute&quot;,<br>                  &quot;splitInfo&quot;: {<br>                    &quot;123412&quot;: {<br>                      &quot;aggregatorSubTxnId&quot;: &quot;12312941&quot;,<br>                      &quot;aggregatorSubAmt&quot;: &quot;2000.55&quot;<br>                    },<br>                    &quot;2300019&quot;: {<br>                      &quot;aggregatorSubTxnId&quot;: &quot;12312941&quot;,<br>                      &quot;aggregatorSubAmt&quot;: &quot;134.23&quot;<br>                    }<br>                  }</p>
 </td>
 </tr>
 </tbody>
