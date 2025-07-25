@@ -26,7 +26,7 @@ Configure the following in the payment post data:
 Add the following dependency in the application’s build.gradle.
 
 ```
-implementation 'in.payu:payu-gpay:3.1.6'
+implementation 'in.payu:payu-gpay:4.0.0'
 ```
 
 ## PhonePe
@@ -55,5 +55,5 @@ allprojects {
 Add the following dependency in your application’s build.gradle:
 
 ```
-implementation 'in.payu:phonepe-intent:1.8.5'
+implementation 'in.payu:phonepe-intent:1.8.7'
 ```
