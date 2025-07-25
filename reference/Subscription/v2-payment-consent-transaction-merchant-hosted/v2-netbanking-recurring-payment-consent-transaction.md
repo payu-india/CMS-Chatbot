@@ -66,42 +66,42 @@ HTTP Method: **POST**
 <tbody>
 <tr>
 <td>accountId<br/><code>mandatory</code></td>
-<td>Merchant key provided by PayU. Character limit: 50</td>
+<td>Merchant key provided by PayU. Character limit: 50. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction/#request-body">Request Body Parameters</a>.</td>
 <td><code>"smsplus"</code></td>
 </tr>
 <tr>
 <td>txnId<br/><code>mandatory</code></td>
-<td>Unique transaction ID for the transaction. Character limit: 50</td>
+<td>Unique transaction ID for the transaction. Character limit: 50. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction/#request-body">Request Body Parameters</a>.</td>
 <td><code>"REF_123456789"</code></td>
 </tr>
 <tr>  
 <td>paymentMethod<br/><code>mandatory</code></td>
-<td>Net Banking payment method details. <a href="#paymentmethod-object">See paymentMethod object</a></td>
+<td>Net Banking payment method details. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction/#paymentmethod-object">paymentMethod Object</a>.</td>
 <td><code>{"name": "NetBanking", "bankCode": "EFTAXIS"}</code></td>
 </tr>
 <tr>
 <td>order<br/><code>mandatory</code></td>
-<td>Order details containing product information and pricing. <a href="#order-object">See order object</a></td>
+<td>Order details containing product information and pricing. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction/#order-object">order Object</a>.</td>
 <td><code>{"productInfo": "Net Banking Payment", "paymentChargeSpecification": {"price": 10000.00}}</code></td>
 </tr>
 <tr>
 <td>billingDetails<br/><code>mandatory</code></td>
-<td>Customer billing information. <a href="#billingdetails-object">See billingDetails object</a></td>
+<td>Customer billing information. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction/#billingdetails-object">billingDetails Object</a>.</td>
 <td><code>{"firstName": "John", "email": "john@example.com", "phone": "9876543210"}</code></td>
 </tr>
 <tr>
 <td>callBackActions<br/><code>optional</code></td>
-<td>Callback URLs for different payment outcomes. <a href="#callbackactions-object">See callBackActions object</a></td>
+<td>Callback URLs for different payment outcomes. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction/#callbackactions-object">callBackActions Object</a>.</td>
 <td><code>{"successAction": "https://merchant.com/success", "failureAction": "https://merchant.com/failure"}</code></td>
 </tr>
 <tr>
 <td>additionalInfo<br/><code>mandatory</code></td>
-<td>Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
+<td>Additional transaction parameters including flow type. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction/#additionalinfo-object">additionalInfo Object</a>.</td>
 <td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
 </tr>
 <tr>
 <td>beneficiaryDetail<br/><code>mandatory</code></td>
-<td>Beneficiary account details for Net Banking transfer. <a href="#beneficiarydetail-object">See beneficiaryDetail object</a></td>
+<td>Beneficiary account details for Net Banking transfer. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction/#beneficiarydetail-object">beneficiaryDetail Object</a>.</td>
 <td><code>{"beneficiaryName": "Merchant Account", "beneficiaryAccountNumber": "1234567890", "beneficiaryAccountType": "SAVINGS"}</code></td>
 </tr>
 </tbody>
