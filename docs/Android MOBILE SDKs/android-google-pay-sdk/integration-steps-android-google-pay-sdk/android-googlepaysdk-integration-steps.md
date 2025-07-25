@@ -41,7 +41,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 Add the following dependency in the application’s build.gradle.
 
 ```
-implementation 'in.payu:payu-gpay:3.1.6'
+implementation 'in.payu:payu-gpay:4.0.0'
 ```
 
 ## Step 3: Create Callbacks Instance
