@@ -54,7 +54,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 > PayU has moved to Maven Central, update your existing dependency with the following configuration:
 >
 > ```Text build.gradle
-> implementation 'in.payu:payu-checkout-pro:2.9.0' 
+> implementation 'in.payu:payu-checkout-pro:3.0.0' 
 > ```
 
 To include the CheckoutPro SDK in your project, add the following code snippet to your app’s <Glossary>build.gradle</Glossary> file inside the `android{}` block:
