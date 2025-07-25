@@ -101,17 +101,17 @@ You can split during the transaction by amount, where you must ensure that the s
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>name</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">name<br/><code>mandatory</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Represents the payment method used. For credit card, include CreditCard.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">CreditCard</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>bankCode</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">bankCode<br/><code>mandatory</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Contains the bank code. Valid values: CC, MAST, VISA.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">CC</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentCard</strong><br/><code>mandatory for cards</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">paymentCard<br/><code>mandatory for cards</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Contains physical card or saved card details. For more information, refer to </td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
