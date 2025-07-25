@@ -16,495 +16,154 @@ You can split during a transaction made using **\_payment** API by percentage, w
 >
 > You must specify two decimal places for each split, but ensure the sum of percentage of all splits is equal to 100.
 
-## Request parameters
+**Environment**
 
-### Request header
+<V2_payment_envrionment />
 
-| Parameter     | Description                                                                                                                                                                                                    |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| date          | The current date and time. For example,  format of the date is Wed, 28 Jun 2023 11:25:19 GMT.                                                                                                                  |
-| authorization | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to[ authorization fields description](#authorization-fields-description). |
+## Request header
 
-#### authorization fields description
+<V2_payment_header_params />
 
-| Field     | Description                                                                                                                                                                      |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| username  | Represents the username or identifier for the client or merchant, in this case, it's "smsplus".                                                                                  |
-| algorithm | Indicates the hashing algorithm used for the HMAC signature. Here, it is set to "sha512".                                                                                        |
-| headers   | Specifies which headers have been used in generating the hash. In this case, only the "date" header is used.                                                                     |
-| signature | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to [hashing algorithm](#hashing-algorithm). |
+## Request body
 
-#### hashing algorithm
-
-You must hash the request parameters using the following hash logic:
-
-```
-sha512(<Body data> + '|' + date + '|' + merchant_secret}
-```
-
-Where, \<Body data> contains the request Body posted with the request.
-
-<details>
-  <summary>Sample header code</summary>
-
-  ```
-  var merchant_key = 'smsplus';
-  var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
-
-  // date
-  var date = new Date();
-  // var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-  date = date.toUTCString();
-
-  // authorization
-  var authorization = getAuthHeader(date);
-  console.log(authorization);
-
-  function getAuthHeader(date) {
-  var AUTH_TYPE = 'sha512';
-  var data = isEmpty(request['data'])?"":request['data'];
-  var hash_string = data + '|' + date + '|' + merchant_secret;
-  console.log("Hash String is ", hash_string);
-  var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-  var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-  return authHeader;
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>accountId</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Represents the merchant key provided by PayU during onboarding. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#request-body">Request Body Parameters</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">MERCHANT123</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnId</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Transaction ID for transaction tracking. Must be unique for every transaction. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#request-body">Request Body Parameters</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">TXN123456</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentMethod</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains details of the payment method. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#paymentmethod-object-fields-description">paymentMethod Object Fields Description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>order</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains transaction order details such as product info, ordered items, user-defined fields, and payment charge details. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#order-object-fields-description">order Object Fields Description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Additional metadata for the transaction. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#additionalinfo-object-fields-description">additionalInfo Object Fields Description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>callBackActions</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">URL actions for payments (e.g., success, failure, cancel). For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#callbackactions-object-fields-description">callBackActions Object Fields Description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>billingDetails</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Customer billing details including name, phone, and address. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#billingdetails-object-fields-description">billingDetails Object Fields Description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>authorization</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Authorization details for the payment process, including 3DS metadata. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#authorization-object-fields-description">authorization Object Fields Description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>splitRequest </br> <code>mandatory for Split Settlement</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the split payment. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#splitrequest-object-fields-description">splitRequest Object Fields Description</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{
+  "type": "percentage",
+  "splitInfo": {
+    "merchantKey1": {
+      "aggregatorSubTxnId": "30nknyhkhib",
+      "aggregatorSubAmt": "53.33", // %age wrt to total payable amount
+      "aggregatorCharges": "13.33" // parent merchant commission (Optional) | %age wrt to total payable amount
+    },
+    "merchantKey2": {
+      "aggregatorSubTxnId": "13u0nknou0", //%age wrt to total payable amount
+      "aggregatorSubAmt": "13.33" // %age wrt to total payable amount
+    },
+    "merchantKey3": {
+      "aggregatorSubTxnId": "13u0nknou0",
+      "aggregatorSubAmt": "13.33", // %age wrt to total payable amount
+      "aggregatorCharges": "6.68" // parent merchant commission (Optional) | %age wrt to total payable amount
+    }
   }
-
-  pm.environment.set('date', date);
-  pm.environment.set('authorization', authorization);
-  pm.environment.set('merchant_key',merchant_key);
-  pm.environment.set('merchant_secret',merchant_secret);
-
-  function isEmpty(obj) {
-  for(var key in obj) {
-  if(obj.hasOwnProperty(key))
-  return false;
-  }
-  return true;
-  }
-  ```
-</details>
-
-### Request body
-
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        accountId
-        `mandatory`
-      </td>
-
-      <td>
-        `String` The merchant key provided by PayU during onboarding.
-      </td>
-
-      <td>
-        MERCHANT123
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        referenceId
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Reference ID for transaction tracking.
-      </td>
-
-      <td>
-        REF123456
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount
-        `optional`
-      </td>
-
-      <td>
-        `String` Amount of the transaction.
-      </td>
-
-      <td>
-        1000
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        currency
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Currency of the transaction. By default, **INR** is posted.
-      </td>
-
-      <td>
-        INR
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        paymentMethod
-        `mandatory`
-      </td>
-
-      <td>
-        `Object` Details about the payment method used. For more information, refer to [paymentMethod object fields description](#paymentMethod-object-fields-description).
-      </td>
-
-      <td>
-        \{
-        "name": "NetBanking",
-        "bankCode": "TESTNB"
-        }
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        order
-        `mandatory`
-      </td>
-
-      <td>
-        `Object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to [order object fields description](#order-object-fields-description)
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        additionalInfo
-        `mandatory`
-      </td>
-
-      <td>
-        `Object` Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to [additionalInfo object fields description](#additionalinfo-object-fields-description)
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        callBackActions
-        `mandatory`
-      </td>
-
-      <td>
-        `Object` Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to [callbackActions object fields description](#callbackactions-object-fields-description)
-      </td>
-
-      <td>
-        \{
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        billingDetails `mandatory`
-      </td>
-
-      <td>
-        `Object` Billing details of the customer including name, address, phone number, email, etc. For more information, refer to [billingDetails object field descriptions](#billingdetails-object-field-descriptions).
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        splitRequest `mandatory for Split Settlement`
-      </td>
-
-      <td>
-        `Object` Details about the split payment. For more information, refer to [splitRequest object fields description.](#splitrequest-object-fields-description)
-      </td>
-
-      <td>
-        \{
-        "type": "absolute",
-        "splitInfo": \{
-        "123412": \{
-        "aggregatorSubTxnId": "12312941",
-        "aggregatorSubAmt": "2000.55"
-        },
-        "2300019": \{
-        "aggregatorSubTxnId": "12312941",
-        "aggregatorSubAmt": "134.23"
-        }
-        }
-      </td>
-    </tr>
-  </tbody>
-</Table>
+}</code> </p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 ### paymentMethod object fields description
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;">name<br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Represents the payment method used. For credit card, include CreditCard.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">CreditCard</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;">bankCode<br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains the bank code. Valid values: CC, MAST, VISA.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">CC</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;">paymentCard<br/><code>mandatory for cards</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains physical card or saved card details. For more information, refer to </td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
+### paymentCard object fields description
 
-  <tbody>
-    <tr>
-      <td>
-        name
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This field must contain the payment mode code. For more information, refer to [Payment Mode Codes](https://docs.payu.in/v1/docs/payment-mode-codes). For example, for credit card, this must contain **CreditCard**.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankCode
-        `mandatory`
-      </td>
-
-      <td>
-        `String`This field must contain the bank code. For more information, refer to [Bank and Card Codes for Integration](https://docs.payu.in/v1/docs/bank-and-card-codes-for-integration) based on payment mode code in the **name** filed.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+<V2_paymentCard />
 
 ### order object fields description
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
+<V2_order_object />
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
+### additionalInfo object fields description
 
-  <tbody>
-    <tr>
-      <td>
-        productInfo
-        `mandatory`
-      </td>
+<AdditionalI_Info_object />
 
-      <td>
-        `String`Details about the product being purchased.
-      </td>
-    </tr>
+### callBackActions object fields description
 
-    <tr>
-      <td>
-        userDefinedFields
-        `optional`
-      </td>
+<CallbackActions_object />
 
-      <td>
-        `Object`Custom fields defined by the user for additional information.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+### billingDetails object fields description
 
-#### userDefinedFields object fields description
+<BillingDetails_object />
 
-| Field | Description         |
-| ----- | ------------------- |
-| udf1  | User defined field. |
-| udf2  | User defined field. |
-| udf3  | User defined field. |
-| udf4  | User defined field. |
-| udf5  | User defined field. |
-| udf6  | User defined field. |
-| udf7  | User defined field. |
-| udf8  | User defined field. |
-| udf9  | User defined field. |
-| udf10 | User defined field. |
+### authorization object fields description
 
-### billingDetails object field descriptions
+<V2_authorization_cards />
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
+### threeDS2RequestData
 
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        firstName
-        `mandatory`
-      </td>
-
-      <td>
-        First name of the billing contact
-      </td>
-
-      <td>
-        Ashish
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        lastName
-        `optional`
-      </td>
-
-      <td>
-        Last name of the billing contact
-      </td>
-
-      <td>
-        Kumar
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone
-        `mandatory`
-      </td>
-
-      <td>
-        Phone number of the billing contact
-      </td>
-
-      <td>
-        9123456789
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email
-        `mandatory`
-      </td>
-
-      <td>
-        Email address of the billing contact
-      </td>
-
-      <td>
-        [ashish@abc.com](mailto:ashish@abc.com)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        city
-        `optional`
-      </td>
-
-      <td>
-        City of the billing address
-      </td>
-
-      <td>
-        Bengaluru
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        state
-        `optional`
-      </td>
-
-      <td>
-        State of the billing address
-      </td>
-
-      <td>
-        Karnatka
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        country
-        `optional`
-      </td>
-
-      <td>
-        Country of the billing address
-      </td>
-
-      <td>
-        Indiia
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        zipCode
-        `optional`
-      </td>
-
-      <td>
-        Postal/Zip code of the billing address
-      </td>
-
-      <td>
-        560071
-      </td>
-    </tr>
-  </tbody>
-</Table>
+<ThreeDSRequestData_object />
 
 ### splitRequest object fields description
 
@@ -579,18 +238,23 @@ The sample JSON structure for the **splitInfo** field:
 
 ```plaintext
 {
-   "type":"precentage",
-   "splitInfo":{
-      "P****Y":{
-         "aggregatorSubTxnId":"9a70ea0155268**1001ba",
-         "aggregatorSubAmt":"50",
-         "aggregatorCharges":"20"
-      },
-      "P***K":{
-         "aggregatorSubTxnId":"9a70ea0155268**1001bb",
-         "aggregatorSubAmt":"30"
-      }
-   }
+  "type": "percentage",
+  "splitInfo": {
+    "merchantKey1": {
+      "aggregatorSubTxnId": "30nknyhkhib",
+      "aggregatorSubAmt": "53.33", // %age wrt to total payable amount
+      "aggregatorCharges": "13.33" // parent merchant commission (Optional) | %age wrt to total payable amount
+    },
+    "merchantKey2": {
+      "aggregatorSubTxnId": "13u0nknou0", //%age wrt to total payable amount
+      "aggregatorSubAmt": "13.33" // %age wrt to total payable amount
+    },
+    "merchantKey3": {
+      "aggregatorSubTxnId": "13u0nknou0",
+      "aggregatorSubAmt": "13.33", // %age wrt to total payable amount
+      "aggregatorCharges": "6.68" // parent merchant commission (Optional) | %age wrt to total payable amount
+    }
+  }
 }
 ```
 
