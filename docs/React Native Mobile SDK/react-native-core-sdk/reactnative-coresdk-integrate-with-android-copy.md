@@ -138,7 +138,7 @@ var params={
         expiry_year: <String>,
         expiry_month: <String>,
         name_on_card: <String>,
-        shouldSaveCard: <String>, // 0,1 (true | false)
+        shouldSaveCard: <boolean>, //(true | false)
         user_credentials: <String>, // "user:password"
   }
 ```
