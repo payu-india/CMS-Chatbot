@@ -63,12 +63,12 @@ HTTP Method: **POST**
 <tbody>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>accountId</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Represents the merchant key provided by PayU during onboarding. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction/#request-body">Request Body Parameters</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Represents the merchant key provided by PayU during onboarding.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">MERCHANT123</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnId</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Transaction ID for transaction tracking. Must be unique for every transaction. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction/#request-body">Request Body Parameters</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Transaction ID for transaction tracking. Must be unique for every transaction.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">TXN123456</td>
 </tr>
 <tr>
