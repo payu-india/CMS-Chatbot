@@ -118,7 +118,14 @@ The Collect Payment API (**v2 Payment** API) is used to collect payments for all
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code> This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers (for more details refer <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0</a>). This is a JSON object and it includes a set of fields. For more information, refer to <a href="ref:https://docs.payu.in/v2/reference/si-parameter-json-details/">SI Parameter JSON Details</a>.</p>
 </td>
-</tr></tbody>
+</tr>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+</tr>
+</tbody>
 </table>
 `}</HTMLBlock>
 
