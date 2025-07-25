@@ -38,7 +38,7 @@ To integrate with Google Pay InApp flow, the merchant can add the below gradle d
 > For any further queries or help with onboarding, send a mail to PayU Mobile Integration Team.
 
 ```Text build.gradle
-implementation 'in.payu:payu-gpay:3.1.6'
+implementation 'in.payu:payu-gpay:4.0.0'
 ```
 
 The merchant needs to pass Google Pay as described in [Additional payment options in the Checkout screen](https://docs.payu.in/docs/android-checkoutpro-custom-integrations#additional-payment-options-in-the-checkout-screen).
@@ -60,7 +60,7 @@ maven { url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsd
 and add the below dependency to the app's build.gradle file
 
 ```Text build.gradle
-implementation 'in.payu:phonepe-intent:1.8.5'
+implementation 'in.payu:phonepe-intent:1.8.7'
 ```
 
 The merchant needs to pass PhonePe. For more information, refer to [Additional payment options in the Checkout screen](doc:android-checkoutpro-custom-integrations#additional-payment-options-in-the-checkout-screen).
@@ -78,7 +78,7 @@ To integrate this, please enable the`txn_s2s_flow` flag on your merchant key fro
 To see the Native OTP Assist experience, refer to [Android Native OTP SDK](doc:native-otp-assist-sdk).
 
 ```Text build.gradle
-implementation 'in.payu:native-otp-assist:1.6.1'
+implementation 'in.payu:native-otp-assist:1.6.2'
 ```
 
 > ❗️ Callout
