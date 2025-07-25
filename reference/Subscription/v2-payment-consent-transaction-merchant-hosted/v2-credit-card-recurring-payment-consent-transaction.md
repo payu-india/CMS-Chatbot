@@ -73,32 +73,32 @@ HTTP Method: **POST**
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentMethod</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Contains details of the payment method. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction/#paymentmethod-object-fields-description">paymentMethod Object Fields Description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains details of the payment method. For more information, refer to <a href="#paymentmethod-object-fields-description">paymentMethod Object Fields Description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>order</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Contains transaction order details such as product info, ordered items, user-defined fields, and payment charge details. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction/#order-object-fields-description">order Object Fields Description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains transaction order details such as product info, ordered items, user-defined fields, and payment charge details. For more information, refer to <a href="#order-object-fields-description">order Object Fields Description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Additional metadata for the transaction. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction/#additionalinfo-object-fields-description">additionalInfo Object Fields Description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Additional metadata for the transaction. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo Object Fields Description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>callBackActions</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">URL actions for payments (e.g., success, failure, cancel). For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction/#callbackactions-object-fields-description">callBackActions Object Fields Description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">URL actions for payments (e.g., success, failure, cancel). For more information, refer to <a href="#callbackactions-object-fields-description">callBackActions Object Fields Description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>billingDetails</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Customer billing details including name, phone, and address. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction/#billingdetails-object-fields-description">billingDetails Object Fields Description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Customer billing details including name, phone, and address. For more information, refer to <a href="#billingdetails-object-fields-description">billingDetails Object Fields Description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>authorization</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Authorization details for the payment process, including 3DS metadata. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction/#authorization-object-fields-description">authorization Object Fields Description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Authorization details for the payment process, including 3DS metadata. For more information, refer to <a href="#authorization-object-fields-description">authorization Object Fields Description</a>.</td>
   <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 </tbody>
