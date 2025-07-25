@@ -55,62 +55,55 @@ HTTP Method: **POST**
 ### Request body
 
 <HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
+<table>
 <thead>
 <tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+<th>Parameter</th>
+<th>Description</th>
+<th>Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The merchant key provided by PayU during onboarding.</p>
-</td>
+<td>accountId<br/><code>mandatory</code></td>
+<td>Merchant key provided by PayU. Character limit: 50</td>
+<td><code>"smsplus"</code></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Transaction ID for transaction tracking. This must be unique for each transaction.</p>
-</td>
+<td>txnId<br/><code>mandatory</code></td>
+<td>Unique transaction ID for the transaction. Character limit: 50</td>
+<td><code>"REF_123456789"</code></td>
+</tr>
+<tr>  
+<td>paymentMethod<br/><code>mandatory</code></td>
+<td>Net Banking payment method details. <a href="#paymentmethod-object">See paymentMethod object</a></td>
+<td><code>{"name": "NetBanking", "bankCode": "EFTAXIS"}</code></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For more information, refer to <a href="#paymentmethod-object-fields-description">paymentMethod object fields description</a>.</p>
-</td>
+<td>order<br/><code>mandatory</code></td>
+<td>Order details containing product information and pricing. <a href="#order-object">See order object</a></td>
+<td><code>{"productInfo": "Net Banking Payment", "paymentChargeSpecification": {"price": 10000.00}}</code></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code>Details about the transaction order including product information, ordered items, user defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a></p>
-</td>
+<td>billingDetails<br/><code>mandatory</code></td>
+<td>Customer billing information. <a href="#billingdetails-object">See billingDetails object</a></td>
+<td><code>{"firstName": "John", "email": "john@example.com", "phone": "9876543210"}</code></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code>Additional information including enforced payment methods and various options for user preferences during the transaction. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo object fields description</a>.<br><strong>Note</strong>: The <code>txnFlow</code> field in this JSON object must be set to <strong>nonseamless</strong>.</p>
-</td>
+<td>callBackActions<br/><code>optional</code></td>
+<td>Callback URLs for different payment outcomes. <a href="#callbackactions-object">See callBackActions object</a></td>
+<td><code>{"successAction": "https://merchant.com/success", "failureAction": "https://merchant.com/failure"}</code></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code>Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc.  For more information, refer to<a href="#callbackactions-object-fields-description"> callbackActions object fields description</a></p>
-</td>
+<td>additionalInfo<br/><code>mandatory</code></td>
+<td>Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
+<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON Object</code>Billing details of the customer including name, address, phone number, email, etc.  For more information, refer to<a href="#billingdetails-object-fields-descriptions"> billingDetails object fields descriptions</a>.</p>
-</td>
+<td>beneficiaryDetail<br/><code>mandatory</code></td>
+<td>Beneficiary account details for Net Banking transfer. <a href="#beneficiarydetail-object">See beneficiaryDetail object</a></td>
+<td><code>{"beneficiaryName": "Merchant Account", "beneficiaryAccountNumber": "1234567890", "beneficiaryAccountType": "SAVINGS"}</code></td>
 </tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryDetaIl <code>mandatory for NetBanking</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the beneficiary for NetBanking. For more information, refer to <a href="#beneficiarydetaIl-object-fields-description">beneficiaryDetaIl object fields description.</a></p>
-</tr>
-
 </tbody>
 </table>
 `}</HTMLBlock>
