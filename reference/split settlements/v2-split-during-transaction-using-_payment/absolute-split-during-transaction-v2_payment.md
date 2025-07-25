@@ -18,160 +18,63 @@ You can split during the transaction by amount, where you must ensure that the s
 
 **Environment**
 
-|                            |                                                                            |
-| :------------------------- | :------------------------------------------------------------------------- |
-| **Test Environment**       | [https://apitest.payu.in/v2/payments](https://apitest.payu.in/v2/payments) |
-| **Production Environment** | [https://api.payu.in/v2/payments>](https://api.payu.in/v2/payments>)       |
+<V2_payment_envrionment />
 
-## Request parameters
+## Request header
 
-### Request header
+<V2_payment_header_params />
 
-| Parameter     | Description                                                                                                                                                                                                    |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| date          | The current date and time. For example,  format of the date is Wed, 28 Jun 2023 11:25:19 GMT.                                                                                                                  |
-| authorization | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to[ authorization fields description](#authorization-fields-description). |
-
-#### authorization fields description
-
-| Field     | Description                                                                                                                                                                      |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| username  | Represents the username or identifier for the client or merchant, in this case, it's "smsplus".                                                                                  |
-| algorithm | Indicates the hashing algorithm used for the HMAC signature. Here, it is set to "sha512".                                                                                        |
-| headers   | Specifies which headers have been used in generating the hash. In this case, only the "date" header is used.                                                                     |
-| signature | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to [hashing algorithm](#hashing-algorithm). |
-
-#### hashing algorithm
-
-You must hash the request parameters using the following hash logic:
-
-```
-sha512(<Body data> + '|' + date + '|' + merchant_secret}
-```
-
-Where, \<Body data> contains the request Body posted with the request.
-
-<details>
-  <summary>Sample header code</summary>
-
-  ```
-  var merchant_key = 'smsplus';
-  var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
-
-  // date
-  var date = new Date();
-  // var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-  date = date.toUTCString();
-
-  // authorization
-  var authorization = getAuthHeader(date);
-  console.log(authorization);
-
-  function getAuthHeader(date) {
-  var AUTH_TYPE = 'sha512';
-  var data = isEmpty(request['data'])?"":request['data'];
-  var hash_string = data + '|' + date + '|' + merchant_secret;
-  console.log("Hash String is ", hash_string);
-  var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-  var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-  return authHeader;
-  }
-
-  pm.environment.set('date', date);
-  pm.environment.set('authorization', authorization);
-  pm.environment.set('merchant_key',merchant_key);
-  pm.environment.set('merchant_secret',merchant_secret);
-
-  function isEmpty(obj) {
-  for(var key in obj) {
-  if(obj.hasOwnProperty(key))
-  return false;
-  }
-  return true;
-  }
-  ```
-</details>
-
-### Request body
+## Request body
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p>
-</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>accountId</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Represents the merchant key provided by PayU during onboarding.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">MERCHANT123</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Reference ID for transaction tracking and this must be unique for every transaction.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p>
-</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnId</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Transaction ID for transaction tracking. Must be unique for every transaction. </td>
+  <td style="border: 1px solid #ddd; padding: 8px;">TXN123456</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Long</code> Amount of the transaction.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
-</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentMethod</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains details of the payment method. For more information, refer to <a href="#paymentmethod-object-fields-description">paymentMethod object fields description</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Currency of the transaction (e.g., INR). By default, <strong>INR</strong> is posted.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>INR</p>
-</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>order</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains transaction order details such as product info, ordered items, user-defined fields, and payment charge details. For more information, refer to <a href="#order-object-fields-description">order Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For more information, refer to <a href="#paymentmethod-object-fields-description">paymentMethod object fields description</a>.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> {<br>        &quot;name&quot;: &quot;NetBanking&quot;,	<br>        &quot;bankCode&quot;: &quot;TESTNB&quot;<br>    }</p>
-</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>additionalInfo</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Additional metadata for the transaction. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>callBackActions</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">URL actions for payments (e.g., success, failure, cancel). For more information, refer to <a href="#callbackactions-object-fields-description">callBackActions Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to <a href="#additionaiInfo-object-fields-description">additionalInfo object fields description</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>billingDetails</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Customer billing details including name, phone, and address. For more information, refer to <a href="#billingdetails-object-fields-description">billingDetails Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to <a href="#callbackactions-object-fields-description">callbackActions object fields description</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> {</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="#billingdetails-object-field-descriptions">billingDetails object field descriptions</a>.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>authorization</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Authorization details for the payment process, including 3DS metadata. For more information, refer to <a href="#authorization-object-fields-description">authorization Object</a>.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>splitRequest <code>mandatory for Split Settlement</code></p>
@@ -191,180 +94,58 @@ Where, \<Body data> contains the request Body posted with the request.
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For more information, refer to <a href="https://docs.payu.in/v1/docs/payment-mode-codes">Payment Mode Codes</a>. For example, for credit card, this must contain <strong>CreditCard</strong>.</p>
-</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>name</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Represents the payment method used. For credit card, include CreditCard.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">CreditCard</td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the bank code. For more information, refer to <a href="https://docs.payu.in/v1/docs/bank-and-card-codes-for-integration">Bank and Card Codes for Integration</a> based on payment mode code in the <strong>name</strong> filed.</p>
-</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>bankCode</strong><br/><code>mandatory</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains the bank code. Valid values: CC, MAST, VISA.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">CC</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>paymentCard</strong><br/><code>mandatory for cards</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Contains physical card or saved card details. For more information, refer to </td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Object</td>
 </tr>
 </tbody>
 </table>
 `}</HTMLBlock>
+
+### paymentCard object fields description
+
+<V2_paymentCard />
 
 ### order object fields description
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>productInfo<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Details about the product being purchased. For more information, refer to<a href="#userdefinedfields-object-fields-description"> userDefinedFields object fields description</a>.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>userDefinedFields<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code>Custom fields defined by the user for additional information.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentChargeSpecification<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Payment details including amount, additional charges and PayU offers to be applied. For more information, refer to <a href="#paymentchargespecification-object-fields-description">paymentChargeSpecification object fields description</a>.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+<V2_order_object />
 
-#### userDefinedFields object fields description
+### additionalInfo object fields description
 
-| Field | Description         |
-| ----- | ------------------- |
-| udf1  | User defined field. |
-| udf2  | User defined field. |
-| udf3  | User defined field. |
-| udf4  | User defined field. |
-| udf5  | User defined field. |
-| udf6  | User defined field. |
-| udf7  | User defined field. |
-| udf8  | User defined field. |
-| udf9  | User defined field. |
-| udf10 | User defined field. |
+<AdditionalI_Info_object />
 
-#### paymentChargeSpecification object fields description
+### callBackActions object fields description
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>price<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field must contain the price or transaction amount to be posted.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>10.00</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+<CallbackActions_object />
 
-<br />
+### billingDetails object fields description
 
-### billingDetails object field descriptions
+<BillingDetails_object />
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>firstName<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>First name of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Ashish</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>lastName<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Last name of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Kumar</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Phone number of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>9123456789</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Email address of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="mailto:ashish@abc.com">ashish@abc.com</a></p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>city<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>City of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bengaluru</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>state<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>State of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Karnatka</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>country<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Country of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Indiia</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>zipCode<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Postal/Zip code of the billing address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>560071</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+### authorization object fields description
+
+<V2_authorization_cards />
+
+### threeDS2RequestData
+
+<ThreeDSRequestData_object />
 
 ### splitRequest object fields description
 
@@ -429,7 +210,6 @@ The sample JSON structure for the **splitInfo** field:
    }
 }
 ```
-
 ## Sample request
 
 ```
