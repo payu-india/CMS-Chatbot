@@ -109,9 +109,6 @@ HTTP Method: **POST**
   <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryDetaIl <code>mandatory for NetBanking</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the beneficiary for NetBanking. For more information, refer to <a href="#beneficiarydetaIl-object-fields-description">beneficiaryDetaIl object fields description.</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>{&quot;beneficiaryName&quot;: &quot;Ram&quot;, &quot;beneficiaryAccountNumber&quot;: &quot;115501029190&quot;}</p>
-</td>
 </tr>
 
 </tbody>
