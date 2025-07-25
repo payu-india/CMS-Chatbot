@@ -70,27 +70,9 @@ HTTP Method: **POST**
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br> <code>mandatory</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Reference ID for transaction tracking. This must be unique for each transaction.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the <code> order.paymentChargeSpecification.price</code> field will be considered.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Currency of the transaction. For example, INR.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentSource<code> optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Contains the payment source. For example, WEB.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Transction ID for transaction tracking. This must be unique for each transaction.</p>
 </td>
 </tr>
 <tr>
@@ -121,8 +103,6 @@ HTTP Method: **POST**
   <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryDetaIl <code>mandatory for NetBanking</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the beneficiary for NetBanking. For more information, refer to <a href="#beneficiarydetaIl-object-fields-description">beneficiaryDetaIl object fields description.</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>{&quot;beneficiaryName&quot;: &quot;Ram&quot;, &quot;beneficiaryAccountNumber&quot;: &quot;115501029190&quot;}</p>
 </td>
 </tr>
 
@@ -196,7 +176,6 @@ HTTP Method: **POST**
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### order Object
 
