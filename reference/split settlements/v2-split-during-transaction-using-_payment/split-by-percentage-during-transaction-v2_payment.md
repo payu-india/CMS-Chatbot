@@ -81,25 +81,7 @@ You can split during a transaction made using **\_payment** API by percentage, w
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the split payment. For more information, refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#splitrequest-object-fields-description">splitRequest Object Fields Description</a>.</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{
-  "type": "percentage",
-  "splitInfo": {
-    "merchantKey1": {
-      "aggregatorSubTxnId": "30nknyhkhib",
-      "aggregatorSubAmt": "53.33", // %age wrt to total payable amount
-      "aggregatorCharges": "13.33" // parent merchant commission (Optional) | %age wrt to total payable amount
-    },
-    "merchantKey2": {
-      "aggregatorSubTxnId": "13u0nknou0", //%age wrt to total payable amount
-      "aggregatorSubAmt": "13.33" // %age wrt to total payable amount
-    },
-    "merchantKey3": {
-      "aggregatorSubTxnId": "13u0nknou0",
-      "aggregatorSubAmt": "13.33", // %age wrt to total payable amount
-      "aggregatorCharges": "6.68" // parent merchant commission (Optional) | %age wrt to total payable amount
-    }
-  }
-}</code> </p>
+  <td style="border: 1px solid #ddd; padding: 8px;"> Refer to <a href="https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment/#splitrequest-object-fields-description">splitRequest Object Fields Description</a>
 </td>
 </tr>
 </tbody>
