@@ -66,12 +66,12 @@ HTTP Method: **POST**
 <tbody>
 <tr>
 <td>accountId<br/><code>mandatory</code></td>
-<td>Merchant key provided by PayU. Character limit: 50. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction/#request-body">Request Body Parameters</a>.</td>
+<td>Merchant key provided by PayU. Character limit: 50.</td>
 <td><code>"smsplus"</code></td>
 </tr>
 <tr>
 <td>txnId<br/><code>mandatory</code></td>
-<td>Unique transaction ID for the transaction. Character limit: 50. For more information, refer to <a href="https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction/#request-body">Request Body Parameters</a>.</td>
+<td>Unique transaction ID for the transaction. Character limit: 50.</td>
 <td><code>"REF_123456789"</code></td>
 </tr>
 <tr>  
