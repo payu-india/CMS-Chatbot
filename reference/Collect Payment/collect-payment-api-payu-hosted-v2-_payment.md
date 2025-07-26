@@ -64,7 +64,7 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 <tr>
 <td>additionalInfo<br/><code>mandatory</code></td>
 <td><code>Object</code> Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
-<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
+<td><code>{"txnFlow": "nonseamless", "enforcePaymethod": "NB"}</code></td>
 </tr>
 </tbody>
 </table>
