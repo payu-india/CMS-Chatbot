@@ -16,6 +16,15 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
 >
 > To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](https://docs.payu.in/v1/docs/handling-the-redirect-urls).
 
+**Environment**
+
+<V2_payment_envrionment />
+
+## Request header
+
+<V2_payment_header_params />
+
+## Request parameters
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -110,61 +119,6 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
 </table>
 `}</HTMLBlock>
 
-
-**Environment**
-
-<V2_payment_envrionment />
-
-## Request header
-
-<V2_payment_header_params />
-
-## Request parameters
-
-<HTMLBlock>{`
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>accountId<br/><code>mandatory</code></td>
-<td><code>String</code> Merchant key provided by PayU. Character limit: 50</td>
-<td><code>"smsplus"</code></td>
-</tr>
-<tr>
-<td>txnId<br/><code>mandatory</code></td>
-<td><code>String</code> Unique transaction ID for the transaction. Character limit: 50</td>
-<td><code>"REF_123456789"</code></td>
-</tr>
-<tr>
-<td>order<br/><code>mandatory</code></td>
-<td><code>Object</code> Order details containing product information and pricing. <a href="#order-object">See order object</a></td>
-<td><code>{"productInfo": "Product Name", "paymentChargeSpecification": {"price": 1000.00}}</code></td>
-</tr>
-<tr>
-<td>billingDetails<br/><code>mandatory</code></td>
-<td><code>Object</code> Customer billing information. <a href="#billingdetails-object">See billingDetails object</a></td>
-<td><code>{"firstName": "John", "email": "john@example.com", "phone": "9876543210"}</code></td>
-</tr>
-<tr>
-<td>callBackActions<br/><code>mandatory</code></td>
-<td><code>Object</code> Callback URLs for different payment outcomes. <a href="#callbackactions-object">See callBackActions object</a></td>
-<td><code>{"successAction": "https://merchant.com/success", "failureAction": "https://merchant.com/failure"}</code></td>
-</tr>
-<tr>
-<td>additionalInfo<br/><code>mandatory</code></td>
-<td><code>Object</code> Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
-<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
 ### order Object
 
 <V2_order_object />
@@ -177,12 +131,7 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
 
 <CallbackActions_object />
 
-### additionalInfo Object
-
-<AdditionalI_Info_object />
-
 <V2_Error_Handling />
-
 
 ### Sample request
 
