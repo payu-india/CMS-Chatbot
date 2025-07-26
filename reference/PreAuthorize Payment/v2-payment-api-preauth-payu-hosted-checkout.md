@@ -178,7 +178,7 @@ Where, \<Body data> contains the request Body posted with the request.
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>preAuthorize<br> <code>optional</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>preAuthorize<br> <code>mandatory for Pre</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When set to "1", the transaction will be in pre-authorized state and funds will be captured later.</p>
 </td>
