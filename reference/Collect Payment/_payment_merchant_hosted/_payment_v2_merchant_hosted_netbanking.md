@@ -36,12 +36,9 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 >
 > This documentation covers **seamless Net Banking** integration. For hosted checkout flows, refer to the [v2 Payment API (Non-Seamless)](doc:v2-payment-api-non-seamless) documentation.
 
-### Environment Details
+**Environment**
 
-| Environment | Base URL                              |
-| ----------- | ------------------------------------- |
-| Test        | `https://apitest.payu.in/v2/payments` |
-| Production  | `https://api.payu.in/v2/payments`     |
+<V2_payment_envrionment />
 
 ## Request header
 
@@ -257,10 +254,8 @@ Array
 )
 ```
 
-
 ## Verify Payment
 
 > ⚠️ **Important**
 >
 > After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="ref:v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
-
