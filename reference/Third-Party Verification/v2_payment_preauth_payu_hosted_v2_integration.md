@@ -68,7 +68,7 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
 </tr>
 <tr>
 <td>additionalInfo<br/><code>mandatory</code></td>
-<td>Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
+<td>Additional transaction parameters including flow type. <a href="#additionalinfo-object">Refer to additionalInfo object</a></td>
 <td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
 </tr>
 <tr>
@@ -82,10 +82,10 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
 
 ### paymentMethod Object
 
-| Parameter  | Data Type | Required | Description                                                                                                                                                                                      |
-| ---------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `name`     | String    | Yes      | Payment method type. Must be set to `"NetBanking"`. Character limit: 10                                                                                                                          |
-| `bankCode` | String    | Yes      | Bank code for the selected bank. Character limit: 10. <Anchor label="See Net Banking codes" target="_blank" href="https://docs.payu.in/docs/bank-codes-for-tpv/">Refer to Bank codes for TPV</Anchor> |
+| Parameter  | Data Type | Required | Description                                                                                                                                                                                                 |
+| ---------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`     | String    | Yes      | Payment method type. Must be set to `"NetBanking"`. Character limit: 10                                                                                                                                     |
+| `bankCode` | String    | Yes      | Bank code for the selected bank. Character limit: 10. <Anchor label="Refer to Bank codes for TPV" target="_blank" href="https://docs.payu.in/docs/bank-codes-for-tpv/">Refer to Bank codes for TPV</Anchor> |
 
 ### order Object
 
@@ -112,8 +112,8 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
         </thead>
         <tbody>
         <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
-          <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><strong> enforcePaymethod </strong><br/><code>optional</code></td>
+          <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method. For TPV, it is NetBanking.</td>
           <td style="border: 1px solid #ddd; padding: 8px;">60</td>
         </tr>
         <tr>
@@ -124,7 +124,7 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
         <tr>
           <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
           <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">nonseamless</td>
         </tr>
         </tbody>
         </table>
