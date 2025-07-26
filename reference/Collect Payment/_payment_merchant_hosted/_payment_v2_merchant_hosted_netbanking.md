@@ -91,11 +91,6 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 <td>Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
 <td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
 </tr>
-<tr>
-<td>beneficiaryDetail<br/><code>mandatory</code></td>
-<td>Beneficiary account details for Net Banking transfer. <a href="#beneficiarydetail-object">See beneficiaryDetail object</a></td>
-<td><code>{"beneficiaryName": "Merchant Account", "beneficiaryAccountNumber": "1234567890", "beneficiaryAccountType": "SAVINGS"}</code></td>
-</tr>
 </tbody>
 </table>
 `}</HTMLBlock>
@@ -146,6 +141,12 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
           <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
           <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
         </tr>
+<tr>
+<td>beneficiaryDetail<br/><code>mandatory</code></td>
+<td>Beneficiary account details for Net Banking transfer. <a href="#beneficiarydetail-object">Refer to beneficiaryDetail object</a></td>
+<td><code>{"beneficiaryName": "Merchant Account", "beneficiaryAccountNumber": "1234567890", "beneficiaryAccountType": "SAVINGS"}</code></td>
+</tr>
+
         </tbody>
         </table>
 `}</HTMLBlock>
