@@ -64,7 +64,7 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 <tr>
 <td>additionalInfo<br/><code>mandatory</code></td>
 <td><code>Object</code> Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
-<td><code>{"txnFlow": "nonseamless", "enforcePaymethod": "NB"}</code></td>
+<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
 </tr>
 </tbody>
 </table>
@@ -84,7 +84,36 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 
 ### additionalInfo Object
 
-<AdditionalI_Info_object />
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method (e.g., CC, DC).</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">CC</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">nonseamless</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
 
 ## Sample Request
 
