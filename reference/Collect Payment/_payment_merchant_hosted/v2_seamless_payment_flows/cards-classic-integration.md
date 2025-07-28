@@ -2,7 +2,7 @@
 title: Cards Classic Integration - v2 Payment API
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
