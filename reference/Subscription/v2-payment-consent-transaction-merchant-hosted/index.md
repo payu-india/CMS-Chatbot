@@ -1,5 +1,5 @@
 ---
-title: Payment Consent Transaction with Merchant Hosted Checkout
+title: Payment Consent Transaction - Seamless
 excerpt: ''
 deprecated: false
 hidden: true
@@ -17,7 +17,7 @@ next:
       slug: using-api-integration-recurring-payments
       title: Using API Integration
 ---
-Set up the recurring payment or subscription service with Merchant Hosted Checkout using **v2/payments** API for the following Payment modes:
+Set up the recurring payment or subscription service with Seamless integration using **v2/payments** API for the following payment method:
 
 * [Net Banking Recurring Payment Consent Transaction](ref:v2-netbanking-recurring-payment-consent-transaction)
 * [Cards Recurring Payment Consent Transaction](ref:v2-credit-card-recurring-payment-consent-transaction)
