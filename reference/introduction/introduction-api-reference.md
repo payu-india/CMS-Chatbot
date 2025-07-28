@@ -65,7 +65,7 @@ You can find the following implementation using **v2/payments** API for collecti
 
 ## Third-Party Verification
 
-* [PayU Hosted v2 Integration](https://docs.payu.in/v2/reference/v2_payment_preauth_payu_hosted_v2_integration)
+* <br />
 
 ## PreAuthorize Payment
 
