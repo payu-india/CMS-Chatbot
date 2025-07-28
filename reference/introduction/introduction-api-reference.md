@@ -55,11 +55,13 @@ You can find the following implementation using **v2/payments** API for collecti
 * [Cards Direct Authorization Flow](https://docs.payu.in/v2/reference/cards-direct-authorization-flow-s2s-v2-_payment)
 * [UPI](https://docs.payu.in/v2/reference/upi-s2s-_payment-v2)
 
-## Split Settlements
+## Subscription
 
-* [Absolute Split During Transaction](https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment)
-* [Split by Percentage During Transaction](https://docs.payu.in/v2/reference/split-by-percentage-during-transaction-v2_payment)
-* [Refund Status API for Split Settlements](ref:v2-refund-status-for-split-settlements-api)
+* [Payment Consent Transaction - Non-seamless](https://docs.payu.in/v2/reference/v2-payment-consent-transaction-with-payu-hosted-checkout)
+* [Payment Consent Transaction - Seamless](https://docs.payu.in/v2/reference/v2-payment-consent-transaction-merchant-hosted)
+  * [Net Banking Consent Transaction](https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction)
+  * [Cards Consent Transaction](https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction)
+  * [UPI Consent Transaction](https://docs.payu.in/v2/reference/v2-upi-recurring-payment-consent-transaction)
 
 ## Third-Party Verification
 
