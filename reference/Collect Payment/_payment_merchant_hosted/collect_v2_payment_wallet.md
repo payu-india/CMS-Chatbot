@@ -183,7 +183,9 @@ curl --location 'https://apitest.payu.in/v2/payments' \
         }
     },
     "additionalInfo": {
-        "txnFlow": "seamless"
+       "txnFlow": "seamless",
+       "createOrder": true,
+       "txnS2sFlow": "2"
     },
     "callBackActions": {
         "successAction": "https://yoursite.com/success",
