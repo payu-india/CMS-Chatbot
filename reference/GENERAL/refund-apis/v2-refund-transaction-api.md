@@ -20,12 +20,6 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 ## Request body
 
-| Parameter          | Description | Example |
-| :----------------- | :---------- | :------ |
-| mihpayId           |             |         |
-| refundToken        |             |         |
-| refundDetails      |             |         |
-| refundSplitRequest |             |         |
 
 ## Sample request
 
