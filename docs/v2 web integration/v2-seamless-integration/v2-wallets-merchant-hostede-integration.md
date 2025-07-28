@@ -121,32 +121,32 @@ The following table describes the request body parameters:
 
 <Accordion title="Additional Info Object" icon="fa-code">
   <HTMLBlock>{`
-                              <table style="width: 100%; border-collapse: collapse;">
-                              <thead>
-                              <tr>
-                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-                              </tr>
-                              </thead>
-                              <tbody>
-                              <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">60</td>
-                              </tr>
-                              <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-                              </tr>
-                              <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
-                              </tr>
-                              </tbody>
-                              </table>
+                                  <table style="width: 100%; border-collapse: collapse;">
+                                  <thead>
+                                  <tr>
+                                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">60</td>
+                                  </tr>
+                                  <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+                                  </tr>
+                                  <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+                                  </tr>
+                                  </tbody>
+                                  </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -208,7 +208,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \\
 
 ## Step 2: Verify the payment
 
-After initiating the payment, you must verify the payment status using the **Verify Payment** API. For more information, refer to [Verify Payment API](https://docs.payu.in/v2/reference/verify_payment_api).
+After initiating the payment, you must verify the payment status using the **Verify Payment** API. For more information, refer to <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/verify_payment_api">Verify Payment API</Anchor>.
 
 The customer will be redirected to the wallet provider (e.g., Paytm) to complete the payment, and you can verify the transaction status to confirm the payment.
 
@@ -217,4 +217,4 @@ The customer will be redirected to the wallet provider (e.g., Paytm) to complete
 > * The wallet transaction may take some time to complete
 > * Always verify the payment status before providing the service to the customer
 > * Use the referenceId from the initial request to track the transaction
-> * For supported wallet codes, refer to [Wallet Codes](https://docs.payu.in/v1/docs/wallet-codes)
+> * For supported wallet codes, refer to <Anchor label="Wallet Codes" target="_blank" href="https://docs.payu.in/v1/docs/wallet-codes">Wallet Codes</Anchor>
