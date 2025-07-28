@@ -16,11 +16,9 @@ Seamless integration is used to process credit/debit card payments on your websi
 >
 > PayU recommends you to integrate with Test environment initially. For more information, contact you PayU Key Account Manager (KAM) or PayU Support.
 
-> 📘 v2/payment Recommended for new integrations:
->
-> PayU recommends v2/payment API for your new integration or if you are new merchant onboarded to PayU from March 2025.
->
-> If you have already integrated with **v2/payment** (v1) API, refer to<Anchor label="Merchant Hosted Checkout Integration v1" target="_blank" href="https://docs.payu.in/v2/update/reference/v2_payment_seamless_integration/">Merchant Hosted Checkout Integration v1</Anchor>.
+<V2_recommended />
+
+<V2_Dev_Plugin />
 
 ## Workflow
 
