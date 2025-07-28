@@ -12,7 +12,7 @@ next:
 ---
 You can collect payments from customers with leading wallets using the Merchant Hosted integration. You need to ensure that **Wallet** for the **paymentMethod.name** field and wallet code based on the desired wallet for the **paymentMethod.bankcode** field is posted.
 
-For the list of supported wallet codes, refer to [Wallet Codes](https://docs.payu.in/v1/docs/wallet-codes).
+For the list of supported wallet codes, refer to <Anchor label="Wallet Codes" target="_blank" href="https://docs.payu.in/v1/docs/wallet-codes">Wallet Codes</Anchor>.
 
 ### Environment
 
@@ -183,7 +183,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
         }
     },
     "additionalInfo": {
-        "enforcePaymethod": "Wallet"
+        "txnFlow": "seamless"
     },
     "callBackActions": {
         "successAction": "https://yoursite.com/success",
