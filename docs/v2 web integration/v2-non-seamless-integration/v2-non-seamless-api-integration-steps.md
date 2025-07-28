@@ -75,7 +75,7 @@ The v2/payments API request contains the following main parameters:
 <tr>
 <td>additionalInfo<br/><code>mandatory</code></td>
 <td><code>Object</code> Additional transaction parameters including flow type. For more information, refer to<a href="#additionalinfo-object">additionalInfo object</a></td>
-<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
+<td><code>{"txnFlow": "non-seamless", "enforcePaymethod": "NB"}</code></td>
 </tr>
 </tbody>
 </table>
