@@ -1,8 +1,8 @@
 ---
-title: Cards Decoupled Flow S2S - v2 Payment API
+title: Cards Decoupled Flow - v2 Payment API
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
