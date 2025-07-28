@@ -14,16 +14,13 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 | Production Environment | [https://test.payu.in/v2/refund](https://test.payu.in/v2/refund) |
 | Test Environment       | [https://info.payu.in/v2/refund](https://info.payu.in/v2/refund) |
 
-## Request parameters
-
-### Request header
+## Request header
 
 <V2_payment_header_params />
 
-### Request body
+## Request body
 
-
-### Sample Request
+## Sample request
 
 ```bash
 curl --location 'https://test.payu.in/v2/refund' \
@@ -46,7 +43,7 @@ curl --location 'https://test.payu.in/v2/refund' \
 }'
 ```
 
-### Response Parameters
+## Response parameters
 
 | Parameter   | Description                                                        | Example                     |
 | ----------- | ------------------------------------------------------------------ | --------------------------- |
