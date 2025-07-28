@@ -1,5 +1,5 @@
 ---
-title: v2 Generate UPI Intent API
+title: Generate UPI Intent API
 deprecated: false
 hidden: true
 metadata:
@@ -9,10 +9,12 @@ This API allows merchants to generate a UPI payment intent for accepting UPI pay
 
 HTTP Method: **POST**
 
-**End point**
+**Environment**
 
-* **Test Environment**: `http://localhost:8082/info/v1/intent`
-* **Production Environment**: `https://info.payu.in/v1/intent`
+|                  |    | 
+| :--------------- | :- | 
+| Test Environment |  [http://test.payu.in/info/v1/intent\`](http://test.payu.in/info/v1/intent`)  | 
+|    Production Environment              |   https://info.payu.in/v1/intent | 
 
 ## Request headers
 
