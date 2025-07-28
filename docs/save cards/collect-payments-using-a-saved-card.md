@@ -31,39 +31,32 @@ This section explains the procedure for getting a customer’s card details and 
 
 ***
 
-For all the scenarios mentioned in this section you must follow the 
+For all the scenarios mentioned in this section you must follow the
 
 1. **Get the saved card details**:  Get the customer’s card details your merchant key and customer’s registered mail ID to PayU using the **get\_user\_details** API. For more information, refer to [Get User Cards API - Model 3](ref:get_user_cards_api_model3) API  under API Reference.
 
 2. **Post Payment to PayU and check response**: Make the transaction request with the payment details along with the card nickname to PayU based on the following scenarios of tokenization:
 
    * [Using zero code change approach](#using-zero-code-change-approach)
+
    * [Using complete card details](#using-complete-card-details)
+
    * [Using network tokens](#using-network-tokens)
+
    * [Using issuer tokens](#using-issuer-tokens)
+
    * [Using card tokenized with PayU](#using-card-tokenized-with-payu)
+
    * [Using card on a decoupled flow with network token or other partner tokenization](#using-card-on-a-decoupled-flow-with-network-token-or-other-partner-tokenization)
+
    * [Using card on a decoupled flow with PayU tokenization](#using-card-on-a-decoupled-flow-with-payu-tokenization)
 
    > 📘 Notes:
    >
    > * In addition to the request parameters used for Merchant Hosted Checkout (Seamless integration) payment request, you need to ensure the additional parameters as specified in each scenario specified in this step. For more information on the complete list of parameters, refer to Integrate with Merchant Hosted Checkout.
-   > * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted)
+   > * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to [Collect Payment API - Merchant Hosted Checkout](ref:/v2/reference/_payment_merchant_hosted/)
 
-3. **Verify the Payment**: Verify the transaction details using the Verification APIs. Post the transaction ID using the **verify\_payment** API to verify the payment. For more information, refer to [Verify Payment API](ref:verify_payment_api)
-
-## Using zero code change approach
-
-If the merchant wants PayU to tokenize the card using a zero code change approach (Model 2), use the request parameters as described in this section.
-
-### Applicable Scenarios
-
-* Merchant wants to create tokens without making any integration changes at their end
-* Merchant is using PayU as a partner for tokenization
-
-This scenario is applicable if any merchant sends the plain card request to PayU and shares the consent for saving the card details.
-
-For the sample request and response, refer to [Zero Code Change - Model 2](doc:zero-code-change-for-vault-integration-model-2).
+3. **Verify the Payment**: Verify the transaction details using the Verification APIs. Post the transaction ID using the **verify\_payment** API to verify the payment. For more information, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:v2/reference/v2_verify_payment_api/">Verify Payment API</Anchor>
 
 ## Using complete card details
 
