@@ -65,11 +65,11 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
 <tr>
 <td>additionalInfo<br/><code>mandatory</code></td>
 <td>Additional transaction parameters including flow type. <a href="#additionalinfo-object">Refer to additionalInfo object</a></td>
-<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
+<td><code>{"txnFlow": "seamless"}</code></td>
 </tr>
 <tr>
 <td>beneficiaryDetail<br/><code>mandatory</code></td>
-<td>Beneficiary account details for Net Banking transfer. <a href="#beneficiarydetail-object">See beneficiaryDetail object</a></td>
+<td>Beneficiary account details for Net Banking transfer. For more information, refer to <a href="#beneficiarydetail-object"> beneficiaryDetail object</a></td>
 <td><code>{"beneficiaryName": "Merchant Account", "beneficiaryAccountNumber": "1234567890", "beneficiaryAccountType": "SAVINGS"}</code></td>
 </tr>
 </tbody>
