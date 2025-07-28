@@ -67,8 +67,8 @@ Make the transaction request with the payment details along with the card nickna
 
 > 📘 Notes
 >
-> * In addition to the request parameters used for Merchant Hosted Checkout (Seamless integration) payment request, you need to ensure the additional parameters as specified in each scenario specified in this step. For more information on the complete list of parameters, refer to [Merchant Hosted Checkout](doc:v2/docs/v2-seamless-integration).
-> * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to [Cards Integration](doc:v2/docs/v2-cards-merchant-hosted-integration/).
+> * In addition to the request parameters used for Merchant Hosted Checkout (Seamless integration) payment request, you need to ensure the additional parameters as specified in each scenario specified in this step. For more information on the complete list of parameters, refer to [Merchant Hosted Checkout](https://docs/payu.in/v2/docs/v2-seamless-integration).
+> * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to [Cards Integration](https://docs.payu.in/v2/docs/v2-cards-merchant-hosted-integration/).
 
 ***
 
