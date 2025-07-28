@@ -2,7 +2,7 @@
 title: Wallet - v2 _payment
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
