@@ -11,7 +11,7 @@ name: V2_payment_header_params
 | Field     | Description                                                                                                                         |
 | :-------- | :---------------------------------------------------------------------------------------------------------------------------------- |
 | username  | Represents the username or identifier for the client or merchant, for example smsplus.                                              |
-| algorithm | Indicates the hashing algorithm used for the HMAC signature, for example sha512.                                                    |
+| algorithm | Use Sha512 algorithm for hashing and send this as header value                                                                      |
 | headers   | Specifies which headers have been used in generating the hash, for example date.                                                    |
 | signature | The HMAC signature generated using the specified algorithm. For more information, refer to [hashing algorithm](#hashing-algorithm). |
 
