@@ -5,11 +5,11 @@ hidden: true
 metadata:
   robots: index
 ---
-The **aggregator\_check\_action\_status\_txnid** API helps you to fetch the refund status of transactions where the refunds are for split payments.
+The *** API helps you to fetch the refund status of transactions where the refunds are for split payments.
 
 > 📘 Note:
 >
-> The **aggregator\_check\_action\_status\_txnid** must be used only to check the split transactions’ refund status.
+> The **aggregator\_check\_action\_status\_txnid** must be used only to check the split transactions’ refund status
 
 **Endpoint**
 
