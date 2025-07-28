@@ -1,5 +1,5 @@
 ---
-title: v2 Save Card API
+title: Save Card API
 deprecated: false
 hidden: false
 metadata:
