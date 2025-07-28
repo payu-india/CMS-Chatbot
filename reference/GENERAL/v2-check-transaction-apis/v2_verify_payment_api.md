@@ -25,7 +25,7 @@ HTTP Method: **POST**
 
 ### Request header
 
-<HeaderAuthentication />
+<V2_payment_header_params />
 
 ### Body parameters
 
