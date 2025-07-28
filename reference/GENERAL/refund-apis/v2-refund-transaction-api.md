@@ -20,6 +20,12 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 ## Request body
 
+<HTMLBlock>{`
+
+`}</HTMLBlock>
+
+<br />
+
 ## Sample request
 
 ```bash
