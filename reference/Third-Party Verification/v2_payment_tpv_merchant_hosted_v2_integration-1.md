@@ -14,17 +14,21 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
 
 > 📘 Reference:
 >
-> To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](https://docs.payu.in/v1/docs/handling-the-redirect-urls).
+> To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](https://docs.payu.in/v1/docs/handling-the-redirect-urls).
 
-**Environment**
+<Accordion title="Environment" icon="fa-server">
 
 <V2_payment_envrionment />
 
-## Request header
+</Accordion>
+
+<Accordion title="Request header" icon="fa-key">
 
 <V2_payment_header_params />
 
-## Request body
+</Accordion>
+
+<Accordion title="Request body" icon="fa-code">
 
 <HTMLBlock>{`
 <table>
@@ -80,26 +84,36 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
 </table>
 `}</HTMLBlock>
 
-### paymentMethod Object
+</Accordion>
+
+<Accordion title="paymentMethod Object" icon="fa-cube">
 
 | Parameter  | Data Type | Required | Description                                                                                                                                                                                                 |
 | ---------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `name`     | String    | Yes      | Payment method type. Must be set to `"UPI"`. Character limit: 10                                                                                                                                            |
 | `bankCode` | String    | Yes      | Bank code for the selected bank. Character limit: 10. <Anchor label="Refer to Bank codes for TPV" target="_blank" href="https://docs.payu.in/docs/bank-codes-for-tpv/">Refer to Bank codes for TPV</Anchor> |
 
-### order Object
+</Accordion>
+
+<Accordion title="order Object" icon="fa-cube">
 
 <V2_order_object />
 
-### billingDetails Object
+</Accordion>
+
+<Accordion title="billingDetails Object" icon="fa-cube">
 
 <BillingDetails_object />
 
-### callBackActions Object
+</Accordion>
+
+<Accordion title="callBackActions Object" icon="fa-cube">
 
 <CallbackActions_object />
 
-### additionalInfo Object
+</Accordion>
+
+<Accordion title="additionalInfo Object" icon="fa-cube">
 
 <HTMLBlock>{`
         <table style="width: 100%; border-collapse: collapse;">
@@ -135,7 +149,9 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
         </table>
 `}</HTMLBlock>
 
-### beneficiaryDetail object
+</Accordion>
+
+<Accordion title="beneficiaryDetail object" icon="fa-cube">
 
 <HTMLBlock>{`
 <table>
@@ -166,7 +182,9 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
 </table>
 `}</HTMLBlock>
 
-### Sample request
+</Accordion>
+
+<Accordion title="Sample request" icon="fa-code">
 
 ```curl
 curl --location 'https://apitest.payu.in/v2/payments' \
@@ -226,7 +244,9 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 }'
 ```
 
-### Response parameters
+</Accordion>
+
+<Accordion title="Response parameters" icon="fa-list">
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -259,7 +279,9 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 </table>
 `}</HTMLBlock>
 
-## Sample response
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
 
 ```
 {
@@ -274,3 +296,5 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 > 📘 Reference:
 >
 > To check the transaction status, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+
+</Accordion>
