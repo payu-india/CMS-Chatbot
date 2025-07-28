@@ -6,7 +6,7 @@ excerpt: >-
   to strict guidelines, where various regulatory bodies regulate your day-to-day
   operations.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Third-Party Verification or TPV Integration Introduction
   description: >-
