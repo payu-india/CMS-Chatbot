@@ -17,7 +17,7 @@ next:
 This part of the document includes the API Reference for the following with "Try It" using various flows:
 
 * [Classic Integration](https://docs.payu.in/v2/reference/cards-classic-integration)
-* [Cards Direct Authorization Flow](https://docs.payu.in/v2/reference/cards-direct-authorization-flow-s2s-v2-_payment)
+* [Cards Direct Authorisation Flow](https://docs.payu.in/v2/reference/cards-direct-authorization-flow-s2s-v2-_payment)
 * [Cards Decoupled Flow](https://docs.payu.in/v2/reference/cards-decoupled-flow-s2s-v2-_payment)
 * [UPI](https://docs.payu.in/v2/reference/upi-s2s-_payment-v2)
 
