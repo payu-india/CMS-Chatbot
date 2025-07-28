@@ -58,12 +58,51 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 </tr>
 <tr>
 <td>additionalInfo<br/><code>mandatory</code></td>
-<td><code>Object</code> Additional transaction parameters including flow type. <a href="#additionalinfo-object">See additionalInfo object</a></td>
-<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
+<td><code>Object</code> Additional transaction parameters including flow type. <a href="#additionalinfo-object">For more information, refer to additionalInfo object</a></td>
+<td><code>{"txnFlow": "non-seamless", "enforcePaymethod": "NB"}</code></td>
+  </tr>
+<tr>
+<td>beneficiaryDetail<br/><code>mandatory</code></td>
+<td><code>Object</code> JSON object to include TPV beneficiary details. <a href="#beneficiaryDetail-object">For more information, refer to beneficiaryDetail object</a></td>
+<td><a href="#beneficiaryDetail-object">For more information, refer to beneficiaryDetail object</a></td>
+</tr>
+
+</tbody>
+</table>
+`}</HTMLBlock>
+
+### beneficiaryDetail object
+
+<HTMLBlock>{`
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beneficiaryName<br/><code>mandatory</code></td>
+<td><code>String</code> Name of the beneficiary account holder. Character limit: 100</td>
+<td><code>"Merchant Account"</code></td>
+</tr>
+<tr>
+<td>beneficiaryAccountNumber<br/><code>mandatory</code></td>
+<td><code>String</code> Bank account number of the beneficiary. Character limit: 50</td>
+<td><code>"1234567890"</code></td>
+</tr>
+<tr>
+<td>beneficiaryAccountType<br/><code>mandatory</code></td>
+<td><code>String</code> Type of beneficiary account (e.g., <code>"SAVINGS"</code>, <code>"CURRENT"</code>). Character limit: 20</td>
+<td><code>"SAVINGS"</code></td>
 </tr>
 </tbody>
 </table>
 `}</HTMLBlock>
+
+###
 
 ### order Object
 
