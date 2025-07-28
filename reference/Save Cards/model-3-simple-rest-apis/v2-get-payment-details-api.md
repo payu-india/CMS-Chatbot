@@ -13,11 +13,36 @@ HTTP Method:  **GET**
 
 * **Production Environment**: `<info.storecard.service.url>/storecard/card/v1/cryptogram`
 
-## Request Headers
+## Request headers
 
-<V2_payment_header_params />
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
-## Request parameters
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        mid
+        `mandatory`
+      </td>
+
+      <td>
+        Merchant ID provided by PayU. Use the value provided in your PayU dashboard.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+## Request body
 
 <Table>
   <thead>
