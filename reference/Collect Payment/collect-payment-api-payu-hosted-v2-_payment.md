@@ -198,15 +198,11 @@ Array
 )
 ```
 
-<br />
+## Verify Payment
 
 > ⚠️ **Important**
 >
 > After creating a payment, you **must** call the [Verify Payment API](doc:verify-payment-api) to get the final transaction status. The initial payment creation response will typically show "PENDING" status.
-
-<br />
-
-## Verify Payment
 
 <br />
 
