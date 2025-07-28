@@ -1,5 +1,5 @@
 ---
-title: v2 Capture Transaction API
+title: Capture Transaction API
 deprecated: false
 hidden: false
 metadata:
