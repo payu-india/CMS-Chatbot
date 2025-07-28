@@ -66,12 +66,3 @@ TPV integration on the payment gateway resembles a Net Banking transaction with 
 Brokers and other online businesses can now sign up for our services and take advantage of our TPV solution to transact online with their customers securely and conveniently in real-time.
 
 Meet your compliance requirements and start transacting online with your customers by availing the TPV integration of leading banks on PayU’s advanced payment platform.
-
-## TPV integration support
-
-* [Net Banking](/docs/net-banking-integration-for-tpv) and [UPI](/docs/upi-integration-for-tpv) is supported
-* Merchant Hosted Checkout (Seamless) and PayU Server-to-Server Integration are supported on this flow.
-
-> 🚧 TPV Not Support for PayU Hosted Checkout
->
-> Currently, PayU does not support Non-Seamless or PayU Hosted Checkout integration for TPV.
