@@ -1,5 +1,5 @@
 ---
-title: v2 Get Payment Instrument API
+title: Get Payment Instrument API
 deprecated: false
 hidden: false
 metadata:
