@@ -2,7 +2,7 @@
 title: Additional Info for Payment APIs
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
