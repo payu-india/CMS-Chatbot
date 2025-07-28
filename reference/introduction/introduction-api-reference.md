@@ -20,6 +20,19 @@ next:
 ---
 You can find the following implementation using **v2/payments** API for collecting payments.
 
+## General APIs
+
+* [Check Transaction APIs](https://docs.payu.in/v2/reference/v2-check-transaction-apis)
+  * [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api)
+* [Refund APIs](https://docs.payu.in/v2/reference/refund-apis)
+  * [Refund Transaction API](https://docs.payu.in/v2/reference/v2-refund-transaction-api)
+  * [Refund Status API](https://docs.payu.in/v2/reference/v2-refund-status-api)
+* [Validate VPA API](https://docs.payu.in/v2/reference/v2-validate-vpa-api)
+* [Get Payment Details API](https://docs.payu.in/v2/reference/v2-get-payment-details-api)
+* [Generate UPI Intent API](https://docs.payu.in/v2/reference/v2-generate-upi-intent-api)
+* [Capture Transaction API](https://docs.payu.in/v2/reference/v2-capture-transaction-api)
+* [Get Checkout Details](https://docs.payu.in/v2/reference/v2-get-checkout-details)
+
 ## Web integration
 
 ### Non-seamless integration
