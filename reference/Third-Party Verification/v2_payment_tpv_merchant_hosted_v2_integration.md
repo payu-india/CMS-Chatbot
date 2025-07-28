@@ -78,10 +78,43 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
 
 ### paymentMethod Object
 
-| Parameter  | Data Type | Required | Description                                                                                                                                                                                                 |
-| ---------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`     | String    | Yes      | Payment method type. Must be set to `"NetBanking"`. Character limit: 10                                                                                                                                     |
-| `bankCode` | String    | Yes      | Bank code for the selected bank. Character limit: 10. <Anchor label="Refer to Bank codes for TPV" target="_blank" href="https://docs.payu.in/docs/bank-codes-for-tpv/">Refer to Bank codes for TPV</Anchor> |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        name
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Payment method type. Must be set to `"NetBanking"`. Character limit: 10
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankCode
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Bank code for the selected bank. Character limit: 10. <Anchor label="Refer to Bank codes for TPV" target="_blank" href="https://docs.payu.in/docs/bank-codes-for-tpv/">Refer to Bank codes for TPV</Anchor>
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### order Object
 
