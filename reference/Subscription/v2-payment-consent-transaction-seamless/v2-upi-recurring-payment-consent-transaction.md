@@ -2,7 +2,7 @@
 title: UPI Consent Transaction
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: UPI Recurring Payment Consent Transaction
   description: >-
