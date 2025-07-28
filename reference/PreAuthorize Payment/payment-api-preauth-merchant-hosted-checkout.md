@@ -1,5 +1,5 @@
 ---
-title: Preauthorize Transaction with Merchant Hosted Checkout
+title: Preauthorize Transaction - Seamless
 deprecated: false
 hidden: true
 metadata:
