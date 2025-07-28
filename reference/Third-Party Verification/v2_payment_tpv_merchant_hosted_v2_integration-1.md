@@ -170,69 +170,60 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
 
 ```curl
 curl --location 'https://apitest.payu.in/v2/payments' \
---header 'date: Tue, 05 Nov 2024 06:12:57 GMT' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="d583ff8069c7dfa8340464a24bdd01cbebf4432b4dfe4de862065cc9c9dc622c24c77cb1ac1142bf581ec07eca8d0ec78a66db93f6cd557d0da552f05c0825e3"' \
+--header 'date: Thu, 27 Mar 2025 10:12:27 GMT' \
+--header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="ec84843a663143bb89391f6fa2d4b9404bab1543a3eee81263b4a507ebf5d289d8fad1fbcdd59da820951e3e0f9b0b0b3d1bad9b41338804e7c42a8a6197c6e9"' \
 --header 'Content-Type: application/json' \
---header 'mid: 8390470' \
---header 'X-CREDENTIAL-USERNAME: UMXDPA' \
-{
-  "accountId": "smsplus",
-  "referenceId": "b5f2d8785768087678fm9",
-  "paymentStatus": "SUCCESS",
-  "amount": 10,
-  "currency": "INR",
-  "paymentSource": "WEB",
-  },
-  "order": {
-    "productInfo": "string",
-    "orderedItem": [
-      {
-        "itemId": null,
-        "description": "AAA",
-        "quantity": null
-      }
-    ],
-    "userDefinedFields": {
-      "udf1": "",
-      "udf2": "",
-      "udf3": "",
-      "udf4": "",
-      "udf5": "",
-      "udf6": "",
-      "udf7": "",
-      "udf8": "",
-      "udf9": "",
-      "udf10": ""
+--data-raw '{
+    "accountId": "smsplus",
+    "referenceId": "b5f2d8785768087678fn4",
+    "amount": 10,
+    "currency": "INR",
+    "paymentSource": "WEB",
+    "paymentMethod": {
+        "name": "UPI",
+        "bankCode": "UPI"
     },
-    "paymentChargeSpecification": {
-      "price": 10
-  },
+    "order": {
+        "productInfo": "UPI Payment for Order",
+        "userDefinedFields": {
+            "udf1": "",
+            "udf2": "",
+            "udf3": "",
+            "udf4": "",
+            "udf5": "",
+            "udf6": "",
+            "udf7": "",
+            "udf8": "",
+            "udf9": "",
+            "udf10": ""
+        },
+        "paymentChargeSpecification": {
+            "price": "10.00"
+        }
+    },
     "additionalInfo": {
-    "txnFlow": "nonseamless",
-    "createOrder" : "false",
-    "beneficiarydetail": {
-      "beneficiaryAccountNumber": "002001600674|00000031957292212|00000035955239352|00000035955239352",
-      "ifscCode": "KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"
+          "txnFlow": "seamless",
+       "createOrder": true,
+       "txnS2sFlow": "2",
+        "vpa": "test@payu"
+
+    },
+    "callBackActions": {
+        "successAction": "https://yoursite.com/success",
+        "failureAction": "https://yoursite.com/failure",
+        "cancelAction": "https://yoursite.com/cancel"
+    },
+    "billingDetails": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "phone": "9876543210",
+        "email": "john.doe@example.com",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "country": "India",
+        "zipCode": "400001"
     }
-  },
-  "callBackActions": {
-    "successAction": "https://pp78admin.payu.in/test_response",
-    "failureAction": "https://pp78admin.payu.in/test_response",
-    "cancelAction": "https://testapi.payu.in/admin/testresponsev2?action=cancelAction"
-  },
-  "billingDetails": {
-    "firstName": "sartaj",
-    "lastName": "",
-    "address1": "Test Payu Gurgaon",
-    "address2": "",
-    "city": "Bharatpur",
-    "state": "Rajasthan",
-    "country": "India",
-    "zipCode": "321028",
-    "phone": "9876543210",
-    "email": "testv2@example.in"
-  }
-}
+}'
 ```
 
 ### Response parameters
