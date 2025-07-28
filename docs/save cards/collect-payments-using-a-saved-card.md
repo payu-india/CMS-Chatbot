@@ -61,7 +61,7 @@ This scenario is applicable where a customer is providing the complete card numb
 >
 > Plain card details coming from the merchant, so no changes are applicable in the request & response.
 
-For the sample request and response, refer to [Using Complete Card Details](ref:complete-card-details-payment)
+For the sample request and response, refer to <Anchor label="Using Complete Card Details" target="_blank" href="ref:/v2/reference/complete-card-details-payment/">Using Complete Card Details</Anchor>
 
 ## Using network tokens
 
@@ -76,49 +76,4 @@ This scenario is applicable if you wanted to collect payments using network toke
 >
 > This scenario is applicable if you are PCI compliant and got the network token and `TAVV` from any other aggregator or schemes and then sending the card transaction request in the form of authentication.
 
-For the sample request and response, refer to [Using Network Tokens](ref:using-network-tokens)
-
-## Using issuer tokens
-
-This scenario is applicable if you wanted to collect payments using issuer tokens.
-
-### Applicable scenarios
-
-* Merchant has the `card token`, `trMerchantId`, `tokenReferenceId`, and the last four digits of the card 
-* The token could be created by the issuer
-
-> 📘 Note:
->
-> This scenario is applicable if you are PCI compliant and got the `issuer token`, `trMerchantId`, and `tokenReferenceId` and then sending the card transaction request in the form of authentication.
-
-For the sample request and response, refer to [Using Issuer Tokens](ref:using-issuer-tokens).
-
-## Using card tokenized with PayU
-
-If the merchant has tokenized the card with PayU and needs to process the transaction using PayU token only. 
-
-### Applicable scenarios
-
-* Merchant has created the token using PayU  as the partner 
-
-> 📘 Note:
->
-> This scenario is applicable if any PCI or Non-PCI complied merchant sends the PayU token in a request for fulfilment purposes.
-
-For the sample request and response, refer to [Using Card Tokenized with PayU](ref:using-card-tokenized-with-payu).
-
-## Using card on a decoupled flow with network token or other partner tokenization
-
-This scenario is applicable where you are on a decoupled flow. This is where you are using the PayU for either authentication or authorization only while using tokens created by the network or some other partner. 
-
-**Decoupled flow**: You are sending the authentication request to PayU and if the merchant wishes to send the authorization request eventually or to other aggregators.
-
-For the sample request and response, refer to [Using Card on a Decoupled Flow with Network Token or Other Partner Tokenization](ref:using-card-tokenized-with-payu-1).
-
-## Using card on a decoupled flow with PayU tokenization
-
-This scenario is the application on a decoupled flow using the PayU for either authentication or authorization only with tokens created in partnership with PayU.
-
-**Direct Authorisation Flow**: When you have done the authentication from some other aggregator and authorization request is coming to PayU.
-
-For the sample request and response, refer to [Using Card on a Decoupled Flow with PayU Tokenization](ref:using-card-on-a-decoupled-flow-with-payu-tokenization).
+For the sample request and response, refer to <Anchor label="Using Network Tokens" target="_blank" href="ref:/v2/reference/using-network-tokens/">Using Network Tokens</Anchor>
