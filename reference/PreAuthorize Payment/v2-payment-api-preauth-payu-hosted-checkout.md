@@ -1,5 +1,5 @@
 ---
-title: Preauth Transaction with PayU Hosted Checkout
+title: Preauth Transaction - Non-seamless
 deprecated: false
 hidden: true
 metadata:
