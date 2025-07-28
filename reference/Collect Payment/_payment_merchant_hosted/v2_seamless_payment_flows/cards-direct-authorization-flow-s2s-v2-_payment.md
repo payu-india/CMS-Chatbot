@@ -1,5 +1,5 @@
 ---
-title: Cards Direct Authorization Flow S2S - v2 Payment API
+title: Cards Direct Authorization Flow - v2 Payment API
 excerpt: ''
 deprecated: false
 hidden: false
