@@ -1,5 +1,5 @@
 ---
-title: v2 Net Banking Integration
+title: Net Banking Integration
 excerpt: ''
 deprecated: false
 hidden: false
