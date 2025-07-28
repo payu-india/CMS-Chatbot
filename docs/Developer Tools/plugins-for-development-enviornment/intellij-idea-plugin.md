@@ -100,10 +100,6 @@ payu.environment=test
 # payu.environment=prod
 ```
 
-***
-
-<br />
-
 * Perform final testing
 
 ***
