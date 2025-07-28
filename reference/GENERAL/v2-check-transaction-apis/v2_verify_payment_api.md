@@ -1,8 +1,8 @@
 ---
-title: Verify Payment API v2
+title: Verify Payment API
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
