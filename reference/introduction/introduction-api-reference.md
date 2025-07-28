@@ -37,7 +37,7 @@ You can find the following implementation using **v2/payments** API for collecti
 
 ### Non-seamless integration
 
-* [PayU Hosted Checkout](https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment)
+* [Non-Seamless Integration](https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment)
 
 ### Seamless integration
 
