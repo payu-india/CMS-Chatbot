@@ -4,7 +4,7 @@ excerpt: >-
   When your customer has an account on your shopping website, they may store
   their card details to use when they revisit your website (repeat payment).
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Collect Payments using a Saved Card
   description: >-
