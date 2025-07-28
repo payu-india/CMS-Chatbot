@@ -1,5 +1,5 @@
 ---
-title: Model 3 – Simple REST APIs
+title: Simple REST APIs
 excerpt: ''
 deprecated: false
 hidden: true
@@ -22,13 +22,8 @@ You can choose this model integration for better flexibility and control. You ca
 
 The Simple Rest APIs to store the cards and manage the tokens:
 
-* [Save a Card API](ref:save_card_api)
-* [Edit a Saved Card API](ref:edit_saved_card_api)
-* [Get User Cards API](ref:get_user_cards_api_model3)
-* [Delete a Saved Card API](ref:delete_saved_card_api)
-* [Get Payment Details (Cryptogram)](ref:get_payment_details_cryptogram)
-
-To understand workflows with the Simple REST APIs, refer to [Simple REST APIs - Model 3](doc:simple-rest-apis-for-vault-integration-model-3).
+* [Get Payment Details API](https://docs.payu.in/v2/reference/v2-get-payment-details-api)
+* [Get Payment Instrument API](https://docs.payu.in/v2/reference/v2-get-payment-instrument-api)
 
 > 📘 Reference:
 >
