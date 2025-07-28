@@ -3,6 +3,7 @@ title: v2 Non-Seamless - TPV
 deprecated: false
 hidden: true
 metadata:
+  title: Non-seamless - TPV
   robots: index
 ---
 The PayU v2 Payment API enables merchants to process payments through a hosted checkout flow for TPV integration.
