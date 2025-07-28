@@ -103,8 +103,6 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 </table>
 `}</HTMLBlock>
 
-###
-
 ### order Object
 
 <V2_order_object />
