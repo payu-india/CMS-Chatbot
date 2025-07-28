@@ -1,5 +1,5 @@
 ---
-title: v2 UPI Integration
+title: ' UPI Integration'
 excerpt: ''
 deprecated: false
 hidden: false
