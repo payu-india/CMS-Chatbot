@@ -129,13 +129,6 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
   <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
 </tr>
 <tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>vpa<br><code>mandatory for UPI</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> UPI handle of the customer.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>test@payu</p></td>
