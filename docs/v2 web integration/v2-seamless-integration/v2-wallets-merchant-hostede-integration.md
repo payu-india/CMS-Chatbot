@@ -1,5 +1,5 @@
 ---
-title: v2 Wallets Integration
+title: Wallets Integration
 excerpt: ''
 deprecated: false
 hidden: true
