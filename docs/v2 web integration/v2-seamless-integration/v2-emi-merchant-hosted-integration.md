@@ -1,12 +1,12 @@
 ---
-title: v2 EMI Integration
+title: EMI Integration
 excerpt: >-
   When your customer wants to opt for the EMI option with cards, you can use EMI
   APIs to check the customer’s eligibility and get the EMI amount, interest,
   processing fee, or No-Cost EMI and tenure. If the customer is eligible, you
   can post the transaction with EMI conversion.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
