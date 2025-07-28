@@ -8,6 +8,11 @@ metadata:
 This API allows merchants to capture an authorized transaction.
 
 HTTP Method: **POST**
+**Environment**
+|                        |                                                                  |
+| :--------------------- | :--------------------------------------------------------------- |
+| Production Environment | [https://test.payu.in/v2/refund](https://test.payu.in/v2/refund) |
+| Test Environment       | [https://info.payu.in/v2/refund](https://info.payu.in/v2/refund) |
 
 ## Request headers
 
