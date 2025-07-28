@@ -18,7 +18,7 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 ### Request header
 
-<HeaderAuthentication />
+<V2_payment_header_params />
 
 ### Body Parameters
 
