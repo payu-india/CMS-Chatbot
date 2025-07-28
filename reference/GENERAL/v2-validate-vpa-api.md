@@ -15,7 +15,7 @@ HTTP Request Method: GET
 
 ## Request Headers
 
-<HeaderAuthentication />
+<V2_payment_header_params />
 
 ## Request parameters
 
@@ -83,7 +83,7 @@ curl --location 'https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=tru
 
 ## Response parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
