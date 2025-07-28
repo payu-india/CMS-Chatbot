@@ -4,4 +4,4 @@
 - collect_v2_payment_wallet
 - collect-payments-with-emi-v2_payment
 - bnpl-v2_payment-merchant-hosted
-- _payment_server_to_server
+- v2_seamless_payment_flows
