@@ -1,5 +1,5 @@
 ---
-title: NEFT TPV  v2 Integration
+title: UPI TPV  v2 Integration
 deprecated: false
 hidden: true
 metadata:
