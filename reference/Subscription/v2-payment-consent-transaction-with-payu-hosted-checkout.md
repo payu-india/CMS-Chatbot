@@ -1,11 +1,11 @@
 ---
-title: Payment Consent Transaction with PayU Hosted Checkout
+title: Payment Consent Transaction - Nonseamless Integration
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-The Collect Payment API (**v2 Payment** API) is used to collect payments for all the Web Checkout integration. This section provides the API Reference for PayU Hosted Checkout or Pre-Built Checkout.
+The Collect Payment API (**v2 Payment** API) is used to collect payments for all the Web Checkout integration. This section provides the API Reference for Non-seamless integration or Pre-Built Checkout.
 
 <V2_Prerequisite_Payment_Integration />
 
