@@ -63,12 +63,12 @@ This section explains the procedure for getting a customer’s card details and 
 Make the transaction request with the payment details along with the card nickname to PayU based on the following scenarios of tokenization:
 
 * [Using Complete Card Details](ref:/v2/reference/complete-card-details-payment)
-* [Using Network Tokens](ref:using-network-tokens)
+* [Using Network Tokens](ref:/v2/reference/using-network-tokens)
 
 > 📘 Notes
 >
-> * In addition to the request parameters used for Merchant Hosted Checkout (Seamless integration) payment request, you need to ensure the additional parameters as specified in each scenario specified in this step. For more information on the complete list of parameters, refer to [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted).
-> * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to [Cards Integration](doc:collect-payments-with-cards-seamless).
+> * In addition to the request parameters used for Merchant Hosted Checkout (Seamless integration) payment request, you need to ensure the additional parameters as specified in each scenario specified in this step. For more information on the complete list of parameters, refer to [Merchant Hosted Checkout](doc:/v2/docs/v2-seamless-integration).
+> * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to [Cards Integration](doc:/v2/docs/v2-cards-merchant-hosted-integration/).
 
 ***
 
