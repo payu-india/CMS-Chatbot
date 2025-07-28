@@ -59,6 +59,7 @@ You can find the following implementation using **v2/payments** API for collecti
 
 * [Absolute Split During Transaction](https://docs.payu.in/v2/reference/absolute-split-during-transaction-v2_payment)
 * [Split by Percentage During Transaction](https://docs.payu.in/v2/reference/split-by-percentage-during-transaction-v2_payment)
+* [Refund Status API for Split Settlements](ref:v2-refund-status-for-split-settlements-api)
 
 ## Third-Party Verification
 
