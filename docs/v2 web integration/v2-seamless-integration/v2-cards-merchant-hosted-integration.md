@@ -413,50 +413,6 @@ curl --location 'https://test.payu.in/v3/transaction' \
 ### Sample response
 
 ```json
-{
-  "message": "Success",
-  "status": 1,
-  "result": [
-    {
-      "mihpayId": 1999110000001769,
-      "bankReferenceNumber": "CC12345678",
-      "amount": 100.00,
-      "mode": "CC",
-      "requestId": "",
-      "originalAmount": 100.00,
-      "additionalCharges": 0.00,
-      "discount": 0.00,
-      "netDebitAmount": 100.00,
-      "productInfo": "Credit Card Test Product",
-      "firstName": "John",
-      "bankcode": "CC",
-      "nameOnCard": "JOHN DOE",
-      "cardNo": "XXXXXXXXXXXX0000",
-      "cardType": "VISA",
-      "udf1": null,
-      "udf2": null,
-      "udf3": null,
-      "udf4": null,
-      "udf5": null,
-      "field2": "140455",
-      "field9": "Transaction is Successful",
-      "errorCode": "E000",
-      "errorMessage": "No Error",
-      "addedOn": "2024-11-19 21:17:55",
-      "settledAt": "0000-00-00 00:00:00",
-      "paymentSource": "WEB",
-      "pgType": "CC-PG",
-      "status": "success",
-      "unmappedStatus": "captured",
-      "merchantUTR": null,
-      "authRefNo": "123456789",
-      "originalCurrency": "INR",
-      "threeDSVersion": "2.2.0",
-      "message": "Found TxnId",
-      "txnId": "b5f2d8785768087678fn4"
-    }
-  ]
-}
 ```
 
 ## Card-specific features
