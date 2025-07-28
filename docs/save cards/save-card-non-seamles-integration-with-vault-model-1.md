@@ -1,5 +1,5 @@
 ---
-title: Model 1 - Non-Seamless Integration
+title: Non-Seamless Integration
 excerpt: ''
 deprecated: false
 hidden: true
