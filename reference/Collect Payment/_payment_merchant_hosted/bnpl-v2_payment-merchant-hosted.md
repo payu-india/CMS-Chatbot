@@ -2,7 +2,7 @@
 title: BNPL - v2 Payment API
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
@@ -14,7 +14,7 @@ Buy Now Pay Later (BNPL) allows your customers to spread their payments over a r
 
 You need to ensure that **BNPL** for the **paymentMethod.name** parameter and BNPL code based on the provider and tenure for the **paymentMethod.bankcode** parameter is posted.
 
-For the list of supported BNPL codes, refer to [BNPL Codes](https://docs.payu.in/v1/docs/bnpl-codes).
+For the list of supported BNPL codes, refer to <Anchor label="BNPL Codes" target="_blank" href="https://docs.payu.in/v1/docs/bnpl-codes">BNPL Codes</Anchor>.
 
 ### Environment
 
@@ -216,4 +216,4 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 
 > 📘 **Reference:**
 >
-> To check the transaction status, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+> To check the transaction status, refer to <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api">Verify Payment API</Anchor>.
