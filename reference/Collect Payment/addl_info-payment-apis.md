@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-This section describes the additional information on v2 **\_payment** API such as character limit and data type of each parameter or fields of various JSON objects.
+This section describes the additional information on **v2/payment** API such as character limit and data type of each parameter or fields of various JSON objects.
 
 ## Request headers
 
