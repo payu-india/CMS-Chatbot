@@ -2,7 +2,7 @@
 title: Cards Direct Authorization Flow S2S - v2 Payment API
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
