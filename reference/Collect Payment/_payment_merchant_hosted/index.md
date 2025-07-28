@@ -2,7 +2,7 @@
 title: Collect Payment API - Seamless v2 Payment
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Collect Payment API for Merchant Hosted Checkout or Custom Checkout
   description: >-
