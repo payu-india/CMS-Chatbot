@@ -1,5 +1,5 @@
 ---
-title: Using Network Tokens - MOTO
+title: MOTO - Using Network Tokens
 deprecated: false
 hidden: true
 metadata:
