@@ -34,7 +34,7 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 
 > 📘 **Note**
 >
-> This documentation covers **seamless Net Banking** integration. For hosted checkout flows, refer to the [v2 Payment API (Non-Seamless)](doc:v2-payment-api-non-seamless) documentation.
+> This documentation covers **seamless Net Banking** integration. For hosted checkout flows, refer to the [v2 Payment API (Non-Seamless)](https://docs.payu.in/v2/docs/v2-non-seamless-integration#/) documentation.
 
 **Environment**
 
