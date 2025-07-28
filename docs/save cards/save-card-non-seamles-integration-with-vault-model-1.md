@@ -2,7 +2,7 @@
 title: Non-Seamless Integration
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: PayU Hosted Checkout Integration with Vault - Model 1
   description: >-
