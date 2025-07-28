@@ -1,8 +1,9 @@
 ---
-title: v2 Refund Status API
+title: Refund Status API
 deprecated: false
 hidden: true
 metadata:
+  title: Refund Status API
   robots: index
 ---
 The **Refund Status** API for Split Payments provides a specialized mechanism for tracking refund statuses in split payment scenarios. It's designed for aggregator merchants who process payments divided among multiple recipients. Unlike the v1 API, this enhanced version provides complete visibility into parent-child transaction relationships, refund actions, and settlement details.
