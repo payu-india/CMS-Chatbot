@@ -1,5 +1,5 @@
 ---
-title: 'v2 Refund Transaction API '
+title: 'v2 Refund Initiation API '
 deprecated: false
 hidden: true
 metadata:
