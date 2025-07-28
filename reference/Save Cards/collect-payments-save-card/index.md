@@ -2,7 +2,7 @@
 title: Collect Payments - Save Card
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
@@ -26,21 +26,7 @@ This section explains the procedure for getting a customer’s card details and 
 
 ## Step 1: Get the Saved Card Details
 
-1. Get the customer’s card details your merchant key and customer’s registered mail ID to PayU using the **get\_user\_details** API:
-
-```curl
-curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d"key=J****g&command=get_user_cards&var1=yourkey:email@domain.com&hash=22744b991e9719a9823ee71832e37b022a77fce4d53188245114226d0d0d3a01ec0b6adce4aae9b9bd97baf97e3ef76912e29ca0726a57b16c1110dc66ffc653"
-```
-```python
-import requestsurl = "https://test.payu.in/merchant/postservice?form=2"payload = "key=J****g&command=get_user_cards&var1=yourkey:email@domain.com&hash=22744b991e9719a9823ee71832e37b022a77fce4d53188245114226d0d0d3a01ec0b6adce4aae9b9bd97baf97e3ef76912e29ca0726a57b16c1110dc66ffc653"headers = { "Accept": "application/json", "Content-Type": "application/x-www-form-urlencoded" }response = requests.request("POST", url, data=payload, headers=headers, params=querystring)print(response.text)
-```
-```php
-import requestsurl = "https://test.payu.in/merchant/postservice?form=2"payload = "key=JP***g&command=get_user_cards&var1=yourkey:email@domain.com&hash=22744b991e9719a9823ee71832e37b022a77fce4d53188245114226d0d0d3a01ec0b6adce4aae9b9bd97baf97e3ef76912e29ca0726a57b16c1110dc66ffc653"headers = { "Accept": "application/json", "Content-Type": "application/x-www-form-urlencoded" }response = requests.request("POST", url, data=payload, headers=headers, params=querystring)print(response.text)
-```
-```java
-Request request = Request.Post("https://test.payu.in/merchant/postservice?form=2 -H");String body = "key=J****g&command=get_user_cards&var1=yourkey:email@domain.com&var2=&var3=&var4=&var5=&var6=&var7=&var8=&var9=&hash=22744b991e9719a9823ee71832e37b022a77fce4d53188245114226d0d0d3a01ec0b6adce4aae9b9bd97baf97e3ef76912e29ca0726a57b16c1110dc66ffc653"request.bodyString(body,ContentType.APPLICATION_FORM_URLENCODED);request.setHeader("Content-Type", "application/x-www-form-urlencoded");HttpResponse httpResponse = request.execute().returnResponse();System.out.println(httpResponse.getStatusLine());if (httpResponse.getEntity() != null) {String html = EntityUtils.toString(httpResponse.getEntity());System.out.println(html);}
-```
-
+1. Get the customer’s card details your merchant key and customer’s registered mail ID to PayU using the **Get User Details** API. For more information, refer to [Get User Cards API](ref:v2_get_user_cards_api).
 2. Check the response for the last four digits of the card number:
 
 ```plaintext
@@ -76,12 +62,8 @@ Request request = Request.Post("https://test.payu.in/merchant/postservice?form=2
 
 Make the transaction request with the payment details along with the card nickname to PayU based on the following scenarios of tokenization:
 
-* [Using Complete Card Details](ref:complete-card-details-payment)
+* [Using Complete Card Details](ref:/v2/reference/complete-card-details-payment)
 * [Using Network Tokens](ref:using-network-tokens)
-* [Using Issuer Tokens](ref:using-issuer-tokens)
-* [Using Card Tokenized with PayU](ref:using-card-tokenized-with-payu)
-* [Using Card on a Decoupled Flow with Network Token or Other Partner Tokenization](ref:using-card-a-decoupled-flow-with-network-token-or-other-partner-tokenization)
-* [Using Card on a Decoupled Flow with PayU Tokenization](ref:using-card-on-a-decoupled-flow-with-payu-tokenization)
 
 > 📘 Notes
 >
