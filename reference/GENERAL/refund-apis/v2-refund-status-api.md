@@ -1,7 +1,7 @@
 ---
 title: Refund Status API
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Refund Status API
   robots: index
