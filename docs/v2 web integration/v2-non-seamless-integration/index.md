@@ -14,6 +14,10 @@ Prebuilt Web Checkout or non-seamless integration is a payment integration metho
 
 <V2_recommended />
 
+<br />
+
+<V2_Dev_Plugin />
+
 ## How it works?
 
 To use non-seamless integration,  merchants need to integrate the PayU payment gateway into their website. Once integrated, customers can select the payment method they want to use and enter their payment details on the payment form. When they click the **Pay** button, they will be redirected to a PayU-hosted payment page where they will complete the payment process.
