@@ -17,7 +17,6 @@ This scenario is applicable if you wanted to collect payments using network toke
 
 HTTP Method: **POST**
 
-
 ## Applicable scenarios
 
 * Merchant has the card token, TAVV(Cryptogram), and the last four digits of the card 
@@ -29,13 +28,17 @@ HTTP Method: **POST**
 
 ## Request Parameters
 
-
-
 > 📘 Notes for additional\_info:
 >
 > * The last 4 digits of cards is mandatory for all transactions.
 > * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
 > * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
+
+<HTMLBlock>{`
+
+`}</HTMLBlock>
+
+<br />
 
 ## Response
 
