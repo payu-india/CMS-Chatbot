@@ -1,5 +1,5 @@
 ---
-title: Using Network Tokens - Motorola
+title: Using Network Tokens - MOTO
 deprecated: false
 hidden: true
 metadata:
