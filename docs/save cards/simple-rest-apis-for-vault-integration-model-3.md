@@ -4,7 +4,7 @@ excerpt: >-
   You can choose this model integration for better flexibility and control. You
   can choose to keep only the PayU token with them and/or network/issuer tokens.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Simple REST APIs for Vault Integration - Model 3
   description: >-
