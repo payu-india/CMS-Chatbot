@@ -16,13 +16,11 @@ HTTP Request Method: GET
 | Test       | [https://info.payu.inpayment-mode/v1/upi/vpa](https://info.payu.inpayment-mode/v1/upi/vpa) |
 | Production | [https://test.payu.in/payment-mode/v1/upi/vpa](https://test.payu.in/v1/upi/vpa)            |
 
-<br />
-
-## Request Headers
+## Request headers
 
 <V2_payment_header_params />
 
-## Request parameters
+## Request body
 
 <Table>
   <thead>
