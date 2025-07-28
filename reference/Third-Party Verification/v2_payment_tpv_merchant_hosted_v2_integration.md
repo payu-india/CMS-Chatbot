@@ -170,16 +170,16 @@ curl -X POST \
   "referenceId": "REF_" + Math.random().toString(36).substring(7),
   "paymentMethod": {
     "name": "NetBanking",
-    "bankCode": "AXNBTPV"
+    "bankCode": "KTKNBTPV"
   },
   "order": {
-    "productInfo": "Net Banking Payment",
+    "productInfo": "TPV Payment",
     "paymentChargeSpecification": {
       "price": 10000.00,
       "convenienceFee": "NB:15"
     },
     "userDefinedFields": {
-      "udf1": "Net Banking Transaction",
+      "udf1": "TPV Transaction",
       "udf2": "Seamless Payment"
     }
   },
@@ -202,7 +202,6 @@ curl -X POST \
   "additionalInfo": {
     "txnFlow": "seamless",
     "createOrder": true,
-    "enforcePaymethod": "NB",
     "txnS2sFlow": "2"
   },
   "beneficiaryDetail": {
@@ -216,57 +215,34 @@ curl -X POST \
 ### Response parameters
 
 <HTMLBlock>{`
-curl -X POST \
-  https://apitest.payu.in/v2/payments \
-  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
-  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
-  -H 'content-type: application/json' \
-  -d '{
-  "accountId": "smsplus",
-  "referenceId": "REF_" + Math.random().toString(36).substring(7),
-  "paymentMethod": {
-    "name": "NetBanking",
-    "bankCode": "EFTAXIS"
-  },
-  "order": {
-    "productInfo": "Net Banking Payment",
-    "paymentChargeSpecification": {
-      "price": 10000.00,
-      "convenienceFee": "NB:15"
-    },
-    "userDefinedFields": {
-      "udf1": "Net Banking Transaction",
-      "udf2": "Seamless Payment"
-    }
-  },
-  "billingDetails": {
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john.doe@example.com",
-    "phone": "9876543210",
-    "address": "123 Main Street",
-    "city": "New Delhi",
-    "state": "Delhi",
-    "country": "India",
-    "zipCode": "110001"
-  },
-  "callBackActions": {
-    "successAction": "https://merchant.com/success",
-    "failureAction": "https://merchant.com/failure",
-    "cancelAction": "https://merchant.com/cancel"
-  },
-  "additionalInfo": {
-    "txnFlow": "seamless",
-    "createOrder": true,
-    "enforcePaymethod": "NB",
-    "txnS2sFlow": "2"
-  },
-  "beneficiaryDetail": {
-    "beneficiaryName": "Merchant Account",
-    "beneficiaryAccountNumber": "1234567890",
-    "beneficiaryAccountType": "SAVINGS"
-  }
-}'
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the reference ID of the transaction.<br>statusCode</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the payment ID of the transaction.<br>statusCode</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>message</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the status message of the transaction.</p>
+</td>
+</tr>
+</tbody>
+</table>
 `}</HTMLBlock>
 
 ## Sample response
