@@ -1,7 +1,7 @@
 ---
 title: Plugins for Development Enviornment
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
