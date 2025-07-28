@@ -14,7 +14,7 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 
 > 📘 **Note**
 >
-> This documentation covers the **non-seamless (hosted checkout)** integration. For seamless payment flows, refer to the [v2 Payment API (Seamless)](doc:v2-payment-api-seamless) documentation.
+> This documentation covers the **non-seamless (hosted checkout)** integration. For seamless payment flows, refer to the <Anchor label="v2 Payment API (Seamless)" target="_blank" href="doc:v2-payment-api-seamless">v2 Payment API (Seamless)</Anchor> documentation.
 
 **Environment**
 
