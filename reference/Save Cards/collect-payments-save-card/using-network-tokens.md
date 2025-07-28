@@ -2,7 +2,7 @@
 title: Using Network Tokens
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Collecting Payments from Saved card using Tokens
   description: >-
