@@ -219,7 +219,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        d18c71adca9d58b9db6b3c3c4b05433cf2a6b24dfc26bbeb0ddc5ff6c86a8914c5d72c2b09c21c5a3e3d47bfe31ba5aaea8b9f7e1b8a6c8e2f5b4d0a7c3e9f8b2
+        d18c71adca9d58b9db6b3c3c4</br>b05433cf2a6b24dfc26bbeb0dd</br>c5ff6c86a8914c5d72c2b09c21c5a</br>3e3d47bfe31ba5aaea8b9f7e1b8</br>a6c8e2f5b4d0a7c3e9f8b2
       </td>
     </tr>
 
@@ -286,7 +286,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         store_card_token
-        <br/><code>mandatory</code>
+        <br/><code>optional</code>
       </td>
 
       <td>
@@ -312,22 +312,6 @@ HTTP Method: **POST**
         1
       </td>
     </tr>
-
-    <tr>
-      <td>
-        pre_authorize
-        <br/><code>optional</code>
-      </td>
-
-      <td>
-        <code>String</code> Set to 0 for immediate transaction processing or 1 for pre-authorization. For MOTO transactions, typically set to 0.
-      </td>
-
-      <td>
-        0
-      </td>
-    </tr>
-
     <tr>
       <td>
         additional_info
@@ -339,7 +323,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        {"last4Digits": "0001", "tavv": "/wAAAAABaDazwwMAma6+gqUAAAA=", "trid": "1234567890", "tokenRefNo": "abcde123456"}
+        {"last4Digits": "0001", </br> "tavv": "/wAAAAABaDazwwMAma6+gqUAAAA=", </br> "trid": "1234567890", </br> "tokenRefNo": "abcde123456"}
       </td>
     </tr>
 
@@ -511,12 +495,12 @@ HTTP Method: **POST**
 </Table>
 `}</HTMLBlock>
 
-> 📘 Notes for additional_info
+> 📘 Notes for additional\_info
 >
-> - **last4Digits**: The last 4 digits of the card. This parameter is mandatory for MOTO transactions to ensure proper card identification.
-> - **<Glossary>TAVV</Glossary>**: Token Authentication Verification Value (also known as cryptogram). This is mandatory for MOTO transactions to ensure the authenticity of the tokenized card.
-> - **<Glossary>trid</Glossary>**: Token Requester ID. This parameter is mandatory for MOTO transactions to identify the entity that requested the token.
-> - **tokenRefNo**: Token Reference Number. This parameter is mandatory for MOTO transactions to reference the specific token used.
+> * **last4Digits**: The last 4 digits of the card. This parameter is mandatory for MOTO transactions to ensure proper card identification.
+> * **<Glossary>TAVV</Glossary>**: Token Authentication Verification Value (also known as cryptogram). This is mandatory for MOTO transactions to ensure the authenticity of the tokenized card.
+> * **<Glossary>trid</Glossary>**: Token Requester ID. This parameter is mandatory for MOTO transactions to identify the entity that requested the token.
+> * **tokenRefNo**: Token Reference Number. This parameter is mandatory for MOTO transactions to reference the specific token used.
 
 ## Sample Request
 
@@ -612,9 +596,9 @@ curl --location --request POST 'https://test.payu.in/_payment' \
 
 > 📘 Important Notes for MOTO Transactions
 >
-> - MOTO transactions are restricted to corporate cards in the Hotel and Travel Industry as per RBI guidelines
-> - All MOTO transactions must be tokenized and comply with PCI DSS standards
-> - The merchant must be pre-approved and KYC compliant to process MOTO transactions
-> - RMS (Risk Management Service) will validate MOTO eligibility during transaction processing
-> - MOTO transactions are exempt from 2FA but maintain other security measures like cryptogram validation
-> - A separate Payment Gateway ID is used for MOTO transactions for reconciliation purposes
+> * MOTO transactions are restricted to corporate cards in the Hotel and Travel Industry as per RBI guidelines
+> * All MOTO transactions must be tokenized and comply with PCI DSS standards
+> * The merchant must be pre-approved and KYC compliant to process MOTO transactions
+> * RMS (Risk Management Service) will validate MOTO eligibility during transaction processing
+> * MOTO transactions are exempt from 2FA but maintain other security measures like cryptogram validation
+> * A separate Payment Gateway ID is used for MOTO transactions for reconciliation purposes
