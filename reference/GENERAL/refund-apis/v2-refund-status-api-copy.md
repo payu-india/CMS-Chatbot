@@ -1,11 +1,15 @@
 ---
-title: v2 Refund Status API (COPY)
+title: Refund Status API for Split Settlements
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-The **Refund Status** API for Split Payments provides a specialized mechanism for tracking refund statuses in split payment scenarios. It's designed for aggregator merchants who process payments divided among multiple recipients. Unlike the v1 API, this enhanced version provides complete visibility into parent-child transaction relationships, refund actions, and settlement details.
+The **aggregator\_check\_action\_status\_txnid** API helps you to fetch the refund status of transactions where the refunds are for split payments.
+
+> 📘 Note:
+>
+> The **aggregator\_check\_action\_status\_txnid** must be used only to check the split transactions’ refund status.
 
 **Endpoint**
 
@@ -109,123 +113,94 @@ curl --location 'https://test.payu.in/v2/refundstatus' \
 }'
 ```
 
-### Response parameters
+## Response parameters
 
-| Parameter                            | Description                                               | Example                                    |
-| ------------------------------------ | --------------------------------------------------------- | ------------------------------------------ |
-| message                              | Indicates the result of the API call                      | `"Success"`                                |
-| status                               | Status of the API call (1 for success, 0 for failure)     | `1`                                        |
-| result                               | Array containing the parent and split transaction details | See JSON example                           |
-| payuId                               | The PayU ID of the parent transaction                     | `17253043342`                              |
-| transactionDetails                   | Basic details of the parent transaction                   | Contains ID, status, amount, etc.          |
-| transactionActionDetails             | Actions performed on the parent transaction               | Contains action type, status, amount, etc. |
-| splitTransactionDetails              | Array of split transaction details                        | Contains payuId, transactionDetails, etc.  |
-| transactionActionDetails (in splits) | Actions performed on each split transaction               | Contains refund actions and their details  |
+| Parameter        | Description                                                                                                                                                                                    | Example                                             |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| status           | This parameter returns the status of web service call. The status can be any of the following:<br /><br />\_ **0** - If web service call failed.<br />\_ **1** - If web service call succeeded | 1                                                   |
+| msg              | Displays the response message.                                                                                                                                                                 |                                                     |
+| payuid           | Displays the PayU ID that was submitted in the request.                                                                                                                                        | 14370578416                                         |
+| transactionItems | A JSON returning the details of transaction before the split.                                                                                                                                  | Refer to [transactionItems](#transactionitems-json) |
+| splitItems       | A JSON returning the details of transaction and refunds against each merchant key (including child key)                                                                                        | Refer to [splititems JSON](#splititems-json)        |
 
-### Sample response
+### transactionItems JSON
 
-#### Success response
+The **transactionItems** JSON that is part of the response for a successful transaction is similar to the following:
 
-```json
-{
-    "message": "Success",
-    "status": 1,
-    "result": [
-        {
-            "payuId": 17253043342,
-            "transactionDetails": {
-                "id": 17253043342,
-                "transactionId": "PB35163007S",
-                "status": "autoRefund",
-                "discount": 0.0,
-                "amount": 0.0,
-                "transactionFee": 2259.0,
-                "additionalCharges": 0.0,
-                "mode": "CASH",
-                "baseTxnId": 0,
-                "firstName": "Masood",
-                "lastName": "Masood Ahmed Wani",
-                "addedOn": "2023-04-27 16:18:16",
-                "phone": "8448480680",
-                "email": "example@example.com",
-                "productInfo": "PBProduct",
-                "errorCode": "E000",
-                "ibiboCode": "FREC",
-                "merchantKey": "iDJYfd",
-                "errorMessage": "No Error",
-                "paymentSource": "payuS2S"
-            },
-            "transactionActionDetails": [
-                {
-                    "id": 12031063143,
-                    "bankRefNo": "5jeF8wMyZ9jnZ9_17253043342_1",
-                    "token": null,
-                    "actionType": "capture",
-                    "prevStatus": "failed",
-                    "amount": 2259.0,
-                    "status": "SUCCESS",
-                    "bankArn": "5jeF8wMyZ9jnZ9_17253043342_1",
-                    "updatedAt": "2023-04-28 10:09:04",
-                    "createdAt": "2023-04-28 10:01:14",
-                    "settlementId": null,
-                    "amountSettled": null,
-                    "refundMode": "-",
-                    "settledOn": null,
-                    "merchantUTR": null
-                }
-            ],
-            "splitTransactionDetails": [
-                {
-                    "payuId": 12071315088,
-                    "transactionDetails": {
-                        "id": 12071315088,
-                        "transactionId": "PB35163007S_1",
-                        "status": "success",
-                        "discount": 0.0,
-                        "amount": 2259.0,
-                        "transactionFee": 0.0,
-                        "additionalCharges": 0.0,
-                        "mode": "CASH",
-                        "baseTxnId": 17253043342,
-                        "firstName": "Masood",
-                        "lastName": "Masood Ahmed Wani",
-                        "addedOn": "2023-05-06 16:07:40",
-                        "phone": "8448480680",
-                        "email": "example@example.com",
-                        "productInfo": "PBProduct",
-                        "errorCode": "E000",
-                        "ibiboCode": "FREC",
-                        "merchantKey": "iDJYfd",
-                        "errorMessage": "No Error",
-                        "paymentSource": "payuS2S"
-                    },
-                    "transactionActionDetails": [
-                        {
-                            "id": 12071315088,
-                            "bankRefNo": "5jeF8wMyZ9jnZ9_12031097474recon__1",
-                            "token": "recon_17253043342",
-                            "actionType": "refund",
-                            "prevStatus": "requested",
-                            "amount": 2259.0,
-                            "status": "success",
-                            "bankArn": "5jeF8wMyZ9jnZ9_12031097474recon__1",
-                            "updatedAt": "2023-05-11 11:49:04",
-                            "createdAt": "2023-05-06 16:07:40",
-                            "settlementId": null,
-                            "amountSettled": null,
-                            "refundMode": "Back to Source",
-                            "settledOn": null,
-                            "merchantUTR": null
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-}
+```
+  "transactionItems": {
+    "iDJYfd": {
+      "capture": {
+        "txnid": "PB21524761S",
+        "merKey": "iDJYfd",
+        "mihpayid": "14706907828",
+        "bank_ref_num": "220448967168",
+        "request_id": "10208412464",
+        "amt": "2445.00",
+        "payu_code": "NB",
+        "action": "capture",
+        "token": "",
+        "status": "SUCCESS",
+        "bank_arn": null,
+        "settlement_id": null,
+        "isSubvention": "0",
+        "amount_settled": "0.0000",
+        "UTR_no": null,
+        "value_date": null,
+        "prev_status": null,
+        "refund_mode": "-"
+      }
+    }
 ```
 
-#### Failure response
+### splitItems JSON
+
+The **splitItems** JSON that is part of the response for a successful transaction is similar to the following:
+
+```
+"splitItems": {
+    "Slcv2Q": {
+      "capture": {
+        "mihpayid": "14707170968",
+        "bank_ref_num": "220448967168",
+        "request_id": "10208598167",
+        "amt": "2445.00",
+        "payu_code": "NB",
+        "action": "capture",
+        "token": null,
+        "status": "SUCCESS",
+        "bank_arn": null,
+        "settlement_id": "202202151245",
+        "isSubvention": "0",
+        "amount_settled": "2445.0000",
+        "UTR_no": "202150832553",
+        "value_date": "2022-02-15",
+        "refund_mode": "-"
+      },
+      "refund": {
+        "969750": {
+          "mihpayid": "14707170968",
+          "bank_ref_num": null,
+          "request_id": "10241480197",
+          "amt": "2445.00",
+          "payu_code": "NB",
+          "action": "refund",
+          "token": "969750",
+          "status": "SUCCESS",
+          "bank_arn": "220448967168",
+          "settlement_id": "202202251245",
+          "isSubvention": "0",
+          "amount_settled": "-2445.0000",
+          "UTR_no": "202254321504",
+          "value_date": "2022-02-25",
+          "refund_mode": "Back to Source"
+        }
+      }
+    }
+  }
+```
+
+### Failure response
 
 ```json
 {
