@@ -1,5 +1,5 @@
 ---
-title: Collect Payment API - S2S
+title: Payment Flows
 excerpt: ''
 deprecated: false
 hidden: true
@@ -14,7 +14,7 @@ next:
       slug: server-to-server-integration
       title: Server-to-Server
 ---
-This part of the document includes the API Reference for the following with "Try It" using S2S Integration:
+This part of the document includes the API Reference for the following with "Try It" using various flows:
 
 * [Classic Integration](https://docs.payu.in/v2/reference/cards-classic-integration)
 * [Cards Direct Authorization Flow](https://docs.payu.in/v2/reference/cards-direct-authorization-flow-s2s-v2-_payment)
