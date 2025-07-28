@@ -1,7 +1,7 @@
 ---
 title: Preauthorize Transaction - Seamless
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Preauthorize Transaction with Merchant Hosted Checkout
   robots: index
@@ -458,50 +458,24 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 }
 ```
 
-### Response parameters
+## Response parameters
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the reference ID of the transaction.<br>statusCode</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentId</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the payment ID of the transaction.<br>statusCode</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>message</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the status message of the transaction.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+<V2_payment_response_params />
 
 ## Sample response
 
 ```
 {
   "result": {
-    "checkoutUrl": "https://pp78secure.payu.in/_payment_options?mihpayid=<mihpayuid>&userToken="
+    "paymentId": "1999110000001769",
+    "redirectUrl": "https://secure.payu.in/ResponseHandler.php",
+    "authAction": "https://apitest.payu.in/v2/payments/1999110000001769/auth"
   },
   "status": "PENDING"
 }
-
 ```
+
+<br />
 
 > 📘 Reference:
 >
