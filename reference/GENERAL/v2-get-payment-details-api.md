@@ -1,5 +1,5 @@
 ---
-title: v2 Get Payment Details API
+title: Get Payment Details API
 deprecated: false
 hidden: true
 metadata:
@@ -9,7 +9,7 @@ This API allows merchants to retrieve payment details for a stored card token.
 
 HTTP Method:  **GET**
 
-**Endpoint**
+**Environment**
 
 * **Production Environment**: `<info.storecard.service.url>/storecard/card/v1/cryptogram`
 
