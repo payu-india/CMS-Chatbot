@@ -65,7 +65,7 @@ The following flow diagram illustrates the workflow for first-time payment workf
 
 ### Sample request and response
 
-For sample request and response, refer to [Model 2-Zero Code Change](ref:model-2-zero-code-change-for-vault-integration).
+For sample request and response, refer to <Anchor label="Model 2-Zero Code Change" target="_blank" href="ref:/v2/reference/model-2-zero-code-change-for-vault-integration/">Model 2-Zero Code Change</Anchor>.
 
 ## Repeat transaction workflow
 
