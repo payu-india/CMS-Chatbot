@@ -1,5 +1,5 @@
 ---
-title: v2 Cards Integration
+title: Cards Integration
 excerpt: ''
 deprecated: false
 hidden: false
