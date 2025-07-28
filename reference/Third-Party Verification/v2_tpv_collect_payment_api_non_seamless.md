@@ -1,5 +1,5 @@
 ---
-title: v2 Non-Seamless - TPV
+title: Non-Seamless - TPV
 deprecated: false
 hidden: true
 metadata:
@@ -22,55 +22,6 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 
 ## Request parameters
 
-<HTMLBlock>{`
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>accountId<br/><code>mandatory</code></td>
-<td><code>String</code> Merchant key provided by PayU. Character limit: 50</td>
-<td><code>"smsplus"</code></td>
-</tr>
-<tr>
-<td>txnId<br/><code>mandatory</code></td>
-<td><code>String</code> Unique transaction ID for the transaction. Character limit: 50</td>
-<td><code>"REF_123456789"</code></td>
-</tr>
-<tr>
-<td>order<br/><code>mandatory</code></td>
-<td><code>Object</code> Order details containing product information and pricing. <a href="#order-object">See order object</a></td>
-<td><code>{"productInfo": "Product Name", "paymentChargeSpecification": {"price": 1000.00}}</code></td>
-</tr>
-<tr>
-<td>billingDetails<br/><code>mandatory</code></td>
-<td><code>Object</code> Customer billing information. <a href="#billingdetails-object">See billingDetails object</a></td>
-<td><code>{"firstName": "John", "email": "john@example.com", "phone": "9876543210"}</code></td>
-</tr>
-<tr>
-<td>callBackActions<br/><code>mandatory</code></td>
-<td><code>Object</code> Callback URLs for different payment outcomes. <a href="#callbackactions-object">See callBackActions object</a></td>
-<td><code>{"successAction": "https://merchant.com/success", "failureAction": "https://merchant.com/failure"}</code></td>
-</tr>
-<tr>
-<td>additionalInfo<br/><code>mandatory</code></td>
-<td><code>Object</code> Additional transaction parameters including flow type. <a href="#additionalinfo-object">For more information, refer to additionalInfo object</a></td>
-<td><code>{"txnFlow": "non-seamless", "enforcePaymethod": "NB"}</code></td>
-  </tr>
-<tr>
-<td>beneficiaryDetail<br/><code>mandatory</code></td>
-<td><code>Object</code> JSON object to include TPV beneficiary details. <a href="#beneficiaryDetail-object">For more information, refer to beneficiaryDetail object</a></td>
-<td><a href="#beneficiaryDetail-object">For more information, refer to beneficiaryDetail object</a></td>
-</tr>
-
-</tbody>
-</table>
-`}</HTMLBlock>
 
 ### beneficiaryDetail object
 
