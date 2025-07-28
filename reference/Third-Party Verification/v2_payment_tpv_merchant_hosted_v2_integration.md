@@ -8,10 +8,6 @@ metadata:
 ---
 The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDetails** object included in **additionalInfo** JSON object.
 
-> 📘 Note:
->
-> You must use the **additionalInfo.txnFlow** must be set to **nonseamless** for PayU Hosted Checkout.
-
 > 📘 Reference:
 >
 > To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](https://docs.payu.in/v1/docs/handling-the-redirect-urls).
