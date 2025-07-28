@@ -2,7 +2,7 @@
 title: v2 UPI Integration
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
