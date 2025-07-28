@@ -18,7 +18,7 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 
 ### Request headers
 
-<HeaderAuthentication />
+<V2_payment_header_params />
 
 ### Body parameters
 
