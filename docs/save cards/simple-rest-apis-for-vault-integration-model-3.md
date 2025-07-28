@@ -37,18 +37,13 @@ To integrate vault with the Simple REST APIs, this section describes the followi
 > **Note**: This 2FA is done as per RBI guidelines and you need to be PCI-DSS compliant to store your customer’s card details.
 
 2. Initiate the payment call to process the transaction with the card details.
-3. After the payment response is received as successful, you will trigger the **save\_user\_card** API to get **save\_card\_token**. For more information, refer to [Save a Card API](ref:save_card_api)
+3. After the payment response is received as successful, you will trigger the **save\_user\_card** API to get **save\_card\_token**. For more information, refer to <Anchor label="Save a Card API" target="_blank" href="ref:/v2/reference/v2_save_card_api/">Save a Card API</Anchor>
 4. The response received will provide the PayU reference ID and the network/issuer tokens, if the merchant is PCI-DSS compliant.
 
 ## Repeat transaction with token
 
 1. If the transaction is to be processed through PayU:
-   * Send the card token, network token, or issuer token and other details in the **\_payment** API. For more information, refer to [Collect Payments - Save Card](ref:collect-payments-save-card)
+   * Send the card token, network token, or issuer token and other details in the **v2/payment** API. For more information, refer to <Anchor label="Collect Payments - Save Card" target="_blank" href="ref:/v2/reference/collect-payments-save-card/">Collect Payments - Save Card</Anchor>
 2. If the transaction is to be processed outside PayU:
-   * Call the **get\_payment\_details** API with the PayU/Network token and get the TAVV/cryptogram. For more information, refer to [Get User Cards API](ref:get_user_cards_api)
+   * Call the **get\_payment\_details** API with the PayU/Network token and get the TAVV/cryptogram. For more information, refer to <Anchor label="Get User Cards API" target="_blank" href="ref:/v2/reference/v2_get_user_cards_api/">Get User Cards API</Anchor>
    * After the token and cryptogram is available, you will be able to do transaction with the preferred PA/PG.
-
-## Manage the tokens
-
-1. To make any changes in the card token already created, you need to call the **edit\_user\_card** API. For more information, refer to [Edit a Saved Card API](ref:edit_saved_card_api).
-2. To delete any token to comply with customer consent management, you need to call **delete\_user\_card**. For more information, refer to [Delete a Saved Card API](ref:delete_saved_card_api)
