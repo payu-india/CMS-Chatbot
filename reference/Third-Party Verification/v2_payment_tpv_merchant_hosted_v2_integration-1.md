@@ -125,7 +125,12 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
           <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
           <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
           <td style="border: 1px solid #ddd; padding: 8px;">nonseamless</td>
-        </tr>
+         </tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>vpa<br><code>mandatory for UPI</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> UPI handle of the customer.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>test@payu</p></td>
+</tr>
         </tbody>
         </table>
 `}</HTMLBlock>
