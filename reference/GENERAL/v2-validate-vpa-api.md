@@ -1,5 +1,5 @@
 ---
-title: v2 Validate VPA API
+title: Validate VPA API
 deprecated: false
 hidden: true
 metadata:
