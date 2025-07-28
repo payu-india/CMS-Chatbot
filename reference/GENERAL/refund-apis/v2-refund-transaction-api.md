@@ -1,11 +1,11 @@
 ---
-title: 'v2 Refund Initiation API '
+title: 'Refund Initiation API '
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-The **Refund Initiation** API allows merchants to initiate refunds for transactions. Its functionally similar to the **Cancel Refund Transaction** API, but is maintained only for backward compatibility with existing integrations. The v2 API offers enhanced functionality and improved response formats compared to the v1 API.
+The **Refund Initiation** API allows merchants to initiate refunds for transactions. Its functionally similar to the v1 **Cancel Refund Transaction** API, but is maintained only for backward compatibility with existing integrations. The v2 API offers enhanced functionality and improved response formats compared to the v1 API.
 
 **Endpoint**
 
@@ -20,82 +20,8 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 <V2_payment_header_params />
 
-### Body Parameters
+### Request body
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        key
-        `mandatory`
-      </td>
-
-      <td>
-        `String `This parameter must contain the merchant key provided by PayU.
-      </td>
-
-      <td>
-        `iDJYfd`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        mihpayid
-        `mandatory`
-      </td>
-
-      <td>
-        `String `This parameter must contains the PayU ID (mihpayuid) that you receive in the response for a successful payment transaction.
-      </td>
-
-      <td>
-        `999091000003794`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        request
-        `mandatory`
-      </td>
-
-      <td>
-        `JSON String `JSON string containing additional parameters. For more information, refer to [request JSON fields description](#request-json-fields-description).
-      </td>
-
-      <td>
-        Refer to [request JSON fields description](#request-json-fields-description) .
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-#### request JSON fields description
-
-| Parameter                          | Description                                                                                                                                                                                                                                                                                                                                                                                                      | Example           |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| txn\_mode<br />`mandatory`         | Transaction refund mode (must be 1 for source)                                                                                                                                                                                                                                                                                                                                                                   | `1`               |
-| token<br />`mandatory`             | Token ID (unique token from the merchant) for the refund request. Token ID has to be generated at your end for each new refund request. It is an identifier for each new refund request which can be used for tracking it. It must be unique for every new refund request generated – otherwise the refund request would not be generated successfully, Token ID length should not be greater than 23 characters | `11358998`        |
-| amount<br />`mandatory`            | The specific amount that needs to be refunded                                                                                                                                                                                                                                                                                                                                                                    | `0.21`            |
-| refundDetails<br />`optional`      | Additional details for the refund                                                                                                                                                                                                                                                                                                                                                                                | \`\`              |
-| refundSplitRequest<br />`optional` | JSON object containing refund split details (if applicable)                                                                                                                                                                                                                                                                                                                                                      | See example below |
 
 ### Sample Request
 
