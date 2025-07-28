@@ -22,7 +22,6 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 
 ## Request parameters
 
-
 ### beneficiaryDetail object
 
 <HTMLBlock>{`
@@ -97,9 +96,7 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 </table>
 `}</HTMLBlock>
 
-<br />
-
-## Sample Request
+## Sample request
 
 ```bash
 curl -X POST \
