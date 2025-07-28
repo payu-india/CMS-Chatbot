@@ -1,16 +1,11 @@
 ---
-title: Using Network Tokens (COPY)
+title: Using Network Tokens - Motorola
 deprecated: false
-hidden: false
+hidden: true
 metadata:
-  title: Collecting Payments from Saved card using Tokens
-  description: >-
-    Discover how to use the _payment API to process payments with saved card
-    tokens. This guide provides detailed instructions, request parameters, and
-    sample responses for collecting payment with saved card tokens.
   robots: index
 ---
-This scenario is applicable if you wanted to collect payments using network tokens.
+This scenario is applicable if you want to collect payments using MOTO (Mail Order Telephone Order) transactions with network tokens.
 
 HTTP Method: **POST**
 
@@ -18,12 +13,14 @@ HTTP Method: **POST**
 
 ## Applicable scenarios
 
-* Merchant has the card token, TAVV(Cryptogram), and the last four digits of the card 
-* The token could be created by the merchant or through another partner 
+* Processing MOTO payments for corporate cards in the Hotel and Travel Industry
+* Merchant has the card token, TAVV (Cryptogram), and the last four digits of the card
+* The token could be created by the merchant or through another partner
+* Transactions that are exempt from 2FA as per RBI guidelines for MOTO payments
 
 > 📘 Note
 >
-> This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sending the card transaction request in the form of authentication.
+> This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sending the card transaction request in the form of authentication. MOTO transactions must comply with RBI and PCI DSS guidelines and are restricted to corporate cards in specific industries.
 
 ## Request Parameters
 
@@ -57,7 +54,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        Your Test Key
+        ZYOSqk
       </td>
     </tr>
 
@@ -87,7 +84,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        s7hhDQVWvbhBdN
+        969317320FDIRj89uFPa
       </td>
     </tr>
 
@@ -98,11 +95,11 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> This field should contain the payment amount for the transaction. If you want to use the cardless EMI option, the amount must be at least Rs. 8000
+        <code>String</code> This field should contain the payment amount for the transaction. For MOTO transactions, this represents the authorization amount for the corporate card transaction.
       </td>
 
       <td>
-        10.00
+        1227.00
       </td>
     </tr>
 
@@ -113,14 +110,11 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> It should be a string containing a brief description of the product.\`\`\`
-
-        Character Limit-100
-        \`\`\`
+        <code>String</code> A brief description of the product. Character limit: 100.
       </td>
 
       <td>
-        iPhone
+        Hotel Booking
       </td>
     </tr>
 
@@ -131,14 +125,11 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> The first name of the customer.\`\`\`
-
-        Character Limit-60
-        \`\`\`
+        <code>String</code> The customer's first name. Character limit: 60.
       </td>
 
       <td>
-        Ashish
+        John
       </td>
     </tr>
 
@@ -149,14 +140,11 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> The email of the customer.\`\`\`
-
-        Character Limit-50
-        \`\`\`
+        <code>String</code> The customer's email address. Character limit: 50.
       </td>
 
       <td>
-        [test@gmail.com](mailto:test@gmail.com)
+        john.doe@example.com
       </td>
     </tr>
 
@@ -167,9 +155,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> The phone number of the customer.  
-
-        * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        <code>String</code> The customer's phone number.
       </td>
 
       <td>
@@ -184,14 +170,176 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> The last name of the customer.\`\`\`
-
-        Character Limit-60
-        \`\`\`
+        <code>String</code> The customer's last name. Character limit: 60.
       </td>
 
       <td>
-        Verma
+        Doe
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        surl
+        <br/><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> The success URL for redirection on successful payment.
+      </td>
+
+      <td>
+        https://apiplayground-response.herokuapp.com/
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        furl
+        <br/><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> The failure URL for redirection on failed payment.
+      </td>
+
+      <td>
+        https://apiplayground-response.herokuapp.com/
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash
+        <br/><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> Used for transaction tamper-proofing. For more information, refer to <a href="doc:generate-hash-merchant-hosted">generate hash</a>.
+      </td>
+
+      <td>
+        d18c71adca9d58b9db6b3c3c4b05433cf2a6b24dfc26bbeb0ddc5ff6c86a8914c5d72c2b09c21c5a3e3d47bfe31ba5aaea8b9f7e1b8a6c8e2f5b4d0a7c3e9f8b2
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pg
+        <br/><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> For MOTO transactions, the value should be 'MOTO', denoting the payment gateway acronym for Mail Order Telephone Order payments.
+      </td>
+
+      <td>
+        MOTO
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankcode
+        <br/><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> For MOTO transactions, the value should be 'MOTO' to identify the payment option type.
+      </td>
+
+      <td>
+        MOTO
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccexpmon
+        <br/><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> The expiry month of the tokenized card.
+      </td>
+
+      <td>
+        11
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccexpyr
+        <br/><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> The expiry year of the tokenized card.
+      </td>
+
+      <td>
+        27
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        store_card_token
+        <br/><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> The network token generated at the merchant's end or received from the payment processor for MOTO transactions.
+      </td>
+
+      <td>
+        4VISAVISAVISAVI0
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        storecard_token_type
+        <br/><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> Indicates the type of store card token. Value: 1 for network tokens used in MOTO transactions.
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pre_authorize
+        <br/><code>optional</code>
+      </td>
+
+      <td>
+        <code>String</code> Set to 0 for immediate transaction processing or 1 for pre-authorization. For MOTO transactions, typically set to 0.
+      </td>
+
+      <td>
+        0
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        additional_info
+        <br/><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>JSON</code> Additional information in JSON format containing MOTO-specific transaction details including last 4 digits, TAVV, Token Requester ID, and Token Reference Number.
+      </td>
+
+      <td>
+        {"last4Digits": "0001", "tavv": "/wAAAAABaDazwwMAma6+gqUAAAA=", "trid": "1234567890", "tokenRefNo": "abcde123456"}
       </td>
     </tr>
 
@@ -202,14 +350,11 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> The first line of the billing address.\`\`\`
-
-        Character Limit-100
-        \`\`\`
+        <code>String</code> The billing address line 1. Character limit: 100.
       </td>
 
       <td>
-        H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai
+        123 Main Street
       </td>
     </tr>
 
@@ -220,11 +365,11 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> The second line of the billing address.<code>Character Limit-100</code>
+        <code>String</code> The billing address line 2. Character limit: 100.
       </td>
 
       <td>
-        34 Saikripa-Estate, Tilak Nagar
+        Apt 456
       </td>
     </tr>
 
@@ -235,7 +380,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> The city where your customer resides as part of the billing address.
+        <code>String</code> The billing city.
       </td>
 
       <td>
@@ -250,7 +395,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> The state where your customer resides as part of the billing address,
+        <code>String</code> The billing state.
       </td>
 
       <td>
@@ -265,7 +410,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> The country where your customer resides.<code>Character Limit-50</code>
+        <code>String</code> The billing country. Character limit: 50.
       </td>
 
       <td>
@@ -280,240 +425,196 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> Billing address zip code is mandatory for the cardless EMI option.\`\`\`
-
-        Character Limit-20
-        \`\`\`
+        <code>String</code> The billing address ZIP code. Character limit: 20.
       </td>
 
       <td>
-        400004
+        400001
       </td>
     </tr>
 
     <tr>
       <td>
-        surl
-        <br/><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>String</code> The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.
-      </td>
-
-      <td>
-        [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        furl
-        <br/><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>String</code> The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.
-      </td>
-
-      <td>
-        [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        hash
-        <br/><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
-      </td>
-
-      <td>
-        <code>eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972</code>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <Glossary>pg</Glossary>
-        <br/><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>String</code> The pg parameter determines which payment tabs will be displayed. Here, use 'CC' as the value.
-      </td>
-
-      <td>
-        CC
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <Glossary>bankcode</Glossary>
-        <br/><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. 
-      </td>
-
-      <td>
-        AMEX
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf1 - udf5
+        udf1
         <br/><code>optional</code>
       </td>
 
       <td>
-        <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
-        <code>Character Limit-255</code>
+        <code>String</code> User-defined field 1 for additional transaction metadata.
       </td>
 
       <td>
-        Payment Preference, Shipping Method, Shipping Address1, Shipping City, Shipping Zip Code, etc.
+        MOTO_HOTEL_BOOKING
       </td>
     </tr>
 
     <tr>
       <td>
-        ccnum
+        udf2
         <br/><code>optional</code>
       </td>
 
       <td>
-        <code>varchar</code> This parameter must contain the 13 to 19-digit card number for credit or debit cards in general. 
+        <code>String</code> User-defined field 2 for additional transaction metadata.
       </td>
 
       <td>
-        512***6789012346
+        CORPORATE_CARD
       </td>
     </tr>
 
     <tr>
       <td>
-        ccname
+        udf3
         <br/><code>optional</code>
       </td>
 
       <td>
-        <code>varchar</code> It is the customer's name on card.
+        <code>String</code> User-defined field 3 for additional transaction metadata.
       </td>
 
       <td>
-        Ashish
+        Travel_Industry
       </td>
     </tr>
 
     <tr>
       <td>
-        ccvv
+        udf4
         <br/><code>optional</code>
       </td>
 
       <td>
-        <code>varchar</code> This parameter must contain the CVV number of the card – as entered by the customer for the transaction.
+        <code>String</code> User-defined field 4 for additional transaction metadata.
       </td>
 
       <td>
-        123
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpmon
-        <br/><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>integer</code> This parameter must contain the network token expiry month.
-      </td>
-
-      <td>
-        10
+        Customer_Reference
       </td>
     </tr>
 
     <tr>
       <td>
-        ccexpyr
-        <br/><code>mandatory</code>
+        udf5
+        <br/><code>optional</code>
       </td>
 
       <td>
-        <code>integer</code> This parameter must contain the network token expiry year.
+        <code>String</code> User-defined field 5 for additional transaction metadata.
       </td>
 
       <td>
-        2022
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        store_card_token
-        <br/><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This must include the Network token generated at your end.
-      </td>
-
-      <td>
-        1234 4567 2456 3566
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        storecard_token_type
-        <br/><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>integer</code> This parameter is used to specify the store card token type. For this scenario, you must include 1.
-      </td>
-
-      <td>
-        1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        additional_info
-        <br/><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This parameter will contain the additional information in the following JSON format:
-        {"last4Digits": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}  
-      </td>
-
-      <td>
-        {"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}
+        Booking_ID_12345
       </td>
     </tr>
   </tbody>
 </Table>
 `}</HTMLBlock>
 
-<br />
-
-> 📘 Notes for additional\_info:
+> 📘 Notes for additional_info
 >
-> * The last 4 digits of cards is mandatory for all transactions.
-> * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
-> * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
+> - **last4Digits**: The last 4 digits of the card. This parameter is mandatory for MOTO transactions to ensure proper card identification.
+> - **<Glossary>TAVV</Glossary>**: Token Authentication Verification Value (also known as cryptogram). This is mandatory for MOTO transactions to ensure the authenticity of the tokenized card.
+> - **<Glossary>trid</Glossary>**: Token Requester ID. This parameter is mandatory for MOTO transactions to identify the entity that requested the token.
+> - **tokenRefNo**: Token Reference Number. This parameter is mandatory for MOTO transactions to reference the specific token used.
 
-## Response
+## Sample Request
 
-There are no changes in the response, it will remain as it is like the existing plain card number.
+```bash
+curl --location --request POST 'https://test.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=ZYOSqk' \
+--data-urlencode 'txnid=969317320FDIRj89uFPa' \
+--data-urlencode 'amount=1227.00' \
+--data-urlencode 'productinfo=Hotel Booking' \
+--data-urlencode 'firstname=John' \
+--data-urlencode 'email=john.doe@example.com' \
+--data-urlencode 'phone=9876543210' \
+--data-urlencode 'lastname=Doe' \
+--data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
+--data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
+--data-urlencode 'hash=d18c71adca9d58b9db6b3c3c4b05433cf2a6b24dfc26bbeb0ddc5ff6c86a8914c5d72c2b09c21c5a3e3d47bfe31ba5aaea8b9f7e1b8a6c8e2f5b4d0a7c3e9f8b2' \
+--data-urlencode 'pg=MOTO' \
+--data-urlencode 'bankcode=MOTO' \
+--data-urlencode 'ccexpmon=11' \
+--data-urlencode 'ccexpyr=27' \
+--data-urlencode 'store_card_token=4VISAVISAVISAVI0' \
+--data-urlencode 'storecard_token_type=1' \
+--data-urlencode 'pre_authorize=0' \
+--data-urlencode 'additional_info={"last4Digits": "0001", "tavv": "/wAAAAABaDazwwMAma6+gqUAAAA=", "trid": "1234567890", "tokenRefNo": "abcde123456"}' \
+--data-urlencode 'address1=123 Main Street' \
+--data-urlencode 'city=Mumbai' \
+--data-urlencode 'state=Maharashtra' \
+--data-urlencode 'country=India' \
+--data-urlencode 'zipcode=400001' \
+--data-urlencode 'udf1=MOTO_HOTEL_BOOKING' \
+--data-urlencode 'udf2=CORPORATE_CARD'
+```
+
+## Sample Response
+
+```json
+{
+  "mihpayid": "403993715533983091",
+  "mode": "MOTO",
+  "status": "success",
+  "unmappedstatus": "captured",
+  "key": "ZYOSqk",
+  "txnid": "969317320FDIRj89uFPa", 
+  "amount": "1227.00",
+  "cardCategory": "domestic",
+  "discount": "0.00",
+  "net_amount_debit": "1227.00",
+  "addedon": "2023-09-18 14:35:28",
+  "productinfo": "Hotel Booking",
+  "firstname": "John",
+  "lastname": "Doe",
+  "address1": "123 Main Street",
+  "address2": "",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "country": "India",
+  "zipcode": "400001",
+  "email": "john.doe@example.com",
+  "phone": "9876543210",
+  "udf1": "MOTO_HOTEL_BOOKING",
+  "udf2": "CORPORATE_CARD",
+  "udf3": "",
+  "udf4": "",
+  "udf5": "",
+  "field2": "999999",
+  "field3": "1227.00",
+  "field4": "",
+  "field5": "",
+  "field6": "",
+  "field7": "",
+  "field8": "",
+  "field9": "SUCCESS",
+  "payment_source": "payu",
+  "PG_TYPE": "MOTO",
+  "bank_ref_num": "AUTHPOSITIVE",
+  "bankcode": "MOTO",
+  "error": "E000",
+  "error_Message": "No Error",
+  "name_on_card": "",
+  "cardnum": "XXXXXXXXXXXX0001",
+  "cardhash": "",
+  "authCode": "AUTHPOSITIVE",
+  "txnAmount": "1227.00",
+  "transactionType": "SALE",
+  "transactionStatus": "APPROVED",
+  "paymentToken": {
+    "reusable": true,
+    "tokenType": "NETWORK_TOKEN"
+  }
+}
+```
+
+> 📘 Important Notes for MOTO Transactions
+>
+> - MOTO transactions are restricted to corporate cards in the Hotel and Travel Industry as per RBI guidelines
+> - All MOTO transactions must be tokenized and comply with PCI DSS standards
+> - The merchant must be pre-approved and KYC compliant to process MOTO transactions
+> - RMS (Risk Management Service) will validate MOTO eligibility during transaction processing
+> - MOTO transactions are exempt from 2FA but maintain other security measures like cryptogram validation
+> - A separate Payment Gateway ID is used for MOTO transactions for reconciliation purposes
