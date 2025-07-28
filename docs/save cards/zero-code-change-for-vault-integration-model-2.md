@@ -2,7 +2,7 @@
 title: Model 2 - Zero Code Change Integration
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Zero Code Change for Vault Integration - Model 2
   description: >-
