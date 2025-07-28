@@ -20,13 +20,11 @@ Seamless integration is used to process credit/debit card payments on your websi
 >
 > PayU recommends v2/payment API for your new integration or if you are new merchant onboarded to PayU from March 2025.
 >
-> If you have already integrated with **\_payment** (v1) API, refer to[Merchant Hosted Checkout Integration v1](\[https://docs.payu.in/v1/docs/custom-checkout-merchant-hosted]\(https://docs.payu.in/v1/docs/custom-checkout-merchant-hosted\)).
+> If you have already integrated with **v2/payment** (v1) API, refer to<Anchor label="Merchant Hosted Checkout Integration v1" target="_blank" href="https://docs.payu.in/v2/update/reference/v2_payment_seamless_integration/">Merchant Hosted Checkout Integration v1</Anchor>.
 
 ## Workflow
 
 The following process diagram illustrates the Merchant Hosted Checkout workflow:
-
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/08/Merchant_Hosted_Flow-2048x989.png" />
 
 1. It operates through a form post-call directly from the customer’s browser, sending their payment data into the PayU’s systems.
 2. A payment process initiated from your e-commerce website travels through the PayU’s secured environment before reaching the card ACS or a bank’s Net Banking page.
@@ -78,9 +76,9 @@ The prerequisites for integrating with Merchant Hosted Checkout are:
 
 The Merchant Hosted Checkout integration supports following payment method:
 
-* [v2 Net Banking Integration](https://docs.payu.in/v2/docs/v2-net-banking-integration)
-* [v2 Cards Integration](https://docs.payu.in/v2/docs/v2-cards-merchant-hosted-integration)
-* [v2 UPI Integration](https://docs.payu.in/v2/docs/v2-upi-merchant-hosted-integration)
-* [v2 Wallets Integration](https://docs.payu.in/v2/docs/v2-wallets-merchant-hostede-integration)
-* [v2 EMI Integration](https://docs.payu.in/v2/docs/v2-emi-merchant-hosted-integration)
-* [v2 BNPL Integration](https://docs.payu.in/v2/docs/v2-bnpl-merchant-hosted-integration)
+* [Net Banking Integration](https://docs.payu.in/v2/docs/v2-net-banking-integration)
+* [Cards Integration](https://docs.payu.in/v2/docs/v2-cards-merchant-hosted-integration)
+* [UPI Integration](https://docs.payu.in/v2/docs/v2-upi-merchant-hosted-integration)
+* [Wallets Integration](https://docs.payu.in/v2/docs/v2-wallets-merchant-hostede-integration)
+* [EMI Integration](https://docs.payu.in/v2/docs/v2-emi-merchant-hosted-integration)
+* [BNPL Integration](https://docs.payu.in/v2/docs/v2-bnpl-merchant-hosted-integration)
