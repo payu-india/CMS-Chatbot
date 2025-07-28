@@ -17,6 +17,7 @@ You need to ensure that **BNPL** for the **paymentMethod.name** parameter and BN
 > 👍 Before you begin:
 >
 > PayU recommends you to integrate with Test environment initially. For more information, contact you PayU Key Account Manager (KAM) or PayU Support.
+
 ## Environment
 
 <V2_payment_envrionment />
@@ -24,7 +25,6 @@ You need to ensure that **BNPL** for the **paymentMethod.name** parameter and BN
 ## Request header
 
 <V2_payment_header_params />
-
 
 ### Request body
 
@@ -95,31 +95,32 @@ You need to ensure that **BNPL** for the **paymentMethod.name** parameter and BN
 `}</HTMLBlock>
 
 #### paymentMethod object fields description
+
 <Accordion title="paymentMethod object" icon="fa-code">
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For more information, refer to <a href="https://docs.payu.in/v1/docs/payment-mode-codes">Payment Mode Codes</a>. For BNPL, this must contain <strong>BNPL</strong>.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the bank code. For BNPL bank codes, refer to <a href="https://docs.payu.in/v1/docs/bnpl-codes">BNPL Codes</a>.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+  <HTMLBlock>{`
+    <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br> <code>mandatory</code></p>
+    </td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For more information, refer to <a href="https://docs.payu.in/v1/docs/payment-mode-codes">Payment Mode Codes</a>. For BNPL, this must contain <strong>BNPL</strong>.</p>
+    </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode<br><code>mandatory</code></p>
+    </td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the bank code. For BNPL bank codes, refer to <a href="https://docs.payu.in/v1/docs/bnpl-codes">BNPL Codes</a>.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+  `}</HTMLBlock>
 </Accordion>
 
 #### order object
@@ -144,32 +145,32 @@ You need to ensure that **BNPL** for the **paymentMethod.name** parameter and BN
 
 <Accordion title="Additional Info Object" icon="fa-code">
   <HTMLBlock>{`
-                              <table style="width: 100%; border-collapse: collapse;">
-                              <thead>
-                              <tr>
-                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-                              </tr>
-                              </thead>
-                              <tbody>
-                              <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">60</td>
-                              </tr>
-                              <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-                              </tr>
-                              <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
-                              </tr>
-                              </tbody>
-                              </table>
+                                  <table style="width: 100%; border-collapse: collapse;">
+                                  <thead>
+                                  <tr>
+                                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">60</td>
+                                  </tr>
+                                  <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+                                  </tr>
+                                  <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+                                  </tr>
+                                  </tbody>
+                                  </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -281,7 +282,7 @@ Array
 
 ## Step 2: Verify the payment
 
-Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api) under API Reference.
+Verify the transaction details using the Verification APIs. For API reference, refer to <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> under API Reference.
 
 > 📘 Tip
 >
