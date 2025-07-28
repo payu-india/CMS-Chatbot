@@ -1,7 +1,7 @@
 ---
 title: 'Refund Initiation API '
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
@@ -20,11 +20,12 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 ## Request body
 
-<HTMLBlock>{`
-
-`}</HTMLBlock>
-
-<br />
+| Parameter          | Description | Example |
+| :----------------- | :---------- | :------ |
+| mihpayId           |             |         |
+| refundToken        |             |         |
+| refundDetails      |             |         |
+| refundSplitRequest |             |         |
 
 ## Sample request
 
