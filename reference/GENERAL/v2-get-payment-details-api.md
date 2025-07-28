@@ -15,7 +15,7 @@ HTTP Method:  **GET**
 
 ## Request Headers
 
-<HeaderAuthentication />
+<V2_payment_header_params />
 
 ## Request parameters
 
@@ -196,6 +196,7 @@ curl --location '<info.storecard.service.url>/storecard/card/v1/cryptogram' \
 
       <td>
         The field contains the following fields:
+
         * **tokenValue**: The actual card/network token.
         * **tokenExpiryMonth**: Token expiry month.
         * **tokenExpiryYear**: Token expiry year.
