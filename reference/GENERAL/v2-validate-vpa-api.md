@@ -11,10 +11,10 @@ HTTP Request Method: GET
 
 **Environment**
 
-|            |                                                                                              |
-| :--------- | :------------------------------------------------------------------------------------------- |
-| Test       | [https://info.payu.in/v3/transaction](https://info.payu.in/v3/transaction)                   |
-| Production | [https://test.payu.in/payment-mode/v1/upi/vpa](https://test.payu.in/payment-mode/v1/upi/vpa) |
+|            |                                                                                            |
+| :--------- | :----------------------------------------------------------------------------------------- |
+| Test       | [https://info.payu.inpayment-mode/v1/upi/vpa](https://info.payu.inpayment-mode/v1/upi/vpa) |
+| Production | [https://test.payu.in/payment-mode/v1/upi/vpa](https://test.payu.in/v1/upi/vpa)            |
 
 <br />
 
