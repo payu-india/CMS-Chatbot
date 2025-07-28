@@ -1,7 +1,7 @@
 ---
 title: Generate UPI Intent API
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
