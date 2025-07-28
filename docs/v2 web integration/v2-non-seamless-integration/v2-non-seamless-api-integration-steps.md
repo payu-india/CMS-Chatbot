@@ -2,7 +2,7 @@
 title: API Integration - Non-Seamless
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
@@ -10,9 +10,9 @@ metadata:
 next:
   description: ''
 ---
-This document provides a comprehensive guide for integrating with **PayU Hosted Checkout v2** using the `v2/payments` API. The hosted checkout integration allows you to redirect customers to PayU's secure payment page, minimizing PCI compliance requirements while providing a seamless payment experience.
+This document provides a comprehensive guide for integrating with **v2 Non-Seamless** using the `v2/payments` API. The hosted checkout integration allows you to redirect customers to PayU's secure payment page, minimising PCI compliance requirements while providing a seamless payment experience.
 
-We recommend testing your integration in the PayU test environment before going live.
+<V2_Prerequisite_Payment_Integration />
 
 ## Integration Overview
 
@@ -27,13 +27,10 @@ The v2 non-seamless integration consists of two main steps:
 
 <V2_payment_envrionment />
 
-
 #### Request Headers
 
 <Accordion title="Request Headers" icon="fa-code">
-
-<V2_payment_header_params />
-
+  <V2_payment_header_params />
 </Accordion>
 
 ### Request Parameters
@@ -84,50 +81,40 @@ The v2/payments API request contains the following main parameters:
 </table>
 `}</HTMLBlock>
 
-
 #### Order Object
 
 <Accordion title="Order Object" icon="fa-code">
-
-<V2_order_object />
-
+  <V2_order_object />
 </Accordion>
 
 #### Payment Charge Specification Object
 
 <Accordion title="Payment Charge Specification Object" icon="fa-code">
-
-<V2_paymentChargeSpecification_object />
-
+  <V2_paymentChargeSpecification_object />
 </Accordion>
 
-#### Additional Info Object 
+#### Additional Info Object
 
 <Accordion title="Additional Info Object" icon="fa-code">
-
-<AdditionalI_Info_object />
-
+  <AdditionalI_Info_object />
 </Accordion>
 
 #### Callback Actions Object
 
 <Accordion title="Callback Actions Object" icon="fa-code">
-
-<CallbackActions_object />
-
+  <CallbackActions_object />
 </Accordion>
 
-#### Billing Details Object 
+#### Billing Details Object
 
 <Accordion title="Billing Details Object" icon="fa-code">
-
-<BillingDetails_object />
-
+  <BillingDetails_object />
 </Accordion>
 
 ### Sample Request
 
 **Request Headers:**
+
 ```
 Content-Type: application/json
 date: Wed, 28 Jun 2023 11:25:19 GMT
@@ -135,6 +122,7 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
 ```
 
 **Request Body:**
+
 ```json
 {
   "accountId": "smsplus",
@@ -195,39 +183,38 @@ After the customer completes the payment on the PayU checkout page, you must ver
 
 ### Environment
 
-| Environment | URL |
-|-------------|-----|
-| Test | `https://test.payu.in/v3/transaction` |
-| Production | `https://api.payu.in/v3/transaction` |
+| Environment | URL                                   |
+| ----------- | ------------------------------------- |
+| Test        | `https://test.payu.in/v3/transaction` |
+| Production  | `https://api.payu.in/v3/transaction`  |
 
 ### Request Headers
 
 The verification API requires the following headers:
 
-| Header | Description | Required |
-|--------|-------------|----------|
-| `Content-Type` | Must be `application/json` | Yes |
-| `date` | Current date in GMT format | Yes |
-| `authorization` | HMAC signature for authentication | Yes |
-| `Info-Command` | Must be `verify_payment` | Yes |
+| Header          | Description                       | Required |
+| --------------- | --------------------------------- | -------- |
+| `Content-Type`  | Must be `application/json`        | Yes      |
+| `date`          | Current date in GMT format        | Yes      |
+| `authorization` | HMAC signature for authentication | Yes      |
+| `Info-Command`  | Must be `verify_payment`          | Yes      |
 
 ### Request Parameters
 
-| Parameter | Type | Description | Required |
-|-----------|------|-------------|----------|
-| `txnId` | Array | Array of transaction reference IDs to verify | Yes |
+| Parameter | Type  | Description                                  | Required |
+| --------- | ----- | -------------------------------------------- | -------- |
+| `txnId`   | Array | Array of transaction reference IDs to verify | Yes      |
 
 #### Response Parameters
 
 <Accordion title="Response Parameters" icon="fa-code">
-
-<V2_payment_response_params />
-
+  <V2_payment_response_params />
 </Accordion>
 
 ### Sample Verification Request
 
 **Request Headers:**
+
 ```
 Content-Type: application/json
 date: Thu, 27 Mar 2025 06:35:21 GMT
@@ -236,6 +223,7 @@ Info-Command: verify_payment
 ```
 
 **Request Body:**
+
 ```json
 {
   "txnId": ["b5f2d8785768087678fm9"]
