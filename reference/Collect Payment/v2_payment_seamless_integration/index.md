@@ -33,9 +33,7 @@ To process payments with credit/debit card, UPI, wallet, etc. on your website us
 
 > 📘 Reference:
 >
-> To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](https://docs.payu.in/v1/docs/handling-the-redirect-urls).
-
-
+> To handle redirect URLs (surl and furl), refer to <Anchor label="Handling the Redirect URLs" target="_blank" href="https://docs.payu.in/v1/docs/handling-the-redirect-urls">Handling the Redirect URLs</Anchor>.
 
 You can get the **Try It** experience for the following payment modes:
 
