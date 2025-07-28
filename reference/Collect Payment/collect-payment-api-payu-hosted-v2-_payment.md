@@ -113,9 +113,9 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 </table>
 `}</HTMLBlock>
 
-<br />
-
 ## Sample Request
+
+<V2_Dev_Plugin />
 
 ```bash
 curl -X POST \
