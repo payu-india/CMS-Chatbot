@@ -125,7 +125,7 @@ curl -X POST \
   -H 'content-type: application/json' \
   -d '{
   "accountId": "test",
-  "referenceId": "ref_" + Math.random().toString(36).substring(7),
+  "txnId": "ref_" + Math.random().toString(36).substring(7),
   "order": {
     "productInfo": "iPhone 13",
     "paymentChargeSpecification": {
@@ -173,59 +173,45 @@ curl -X POST \
 
 ## Sample response
 
+### Without order
+
 It returns a URL similar to the following:
 
 ```
 {"result":{"checkoutUrl":"https://pp78secure.payu.in/_payment_options?mihpayid=ff2bd7a285ea39d90d31e8d916ce1305&userToken="},"status":"PENDING"}
 ```
 
+### With order
+
+```
+{"result":{"checkoutUrl":"https://pp78secure.payu.in/_payment_options?mihpayid=ff2bd7a285ea39d90d31e8d916ce1305&userToken="},"orderId":"b5f2d8785768087678f5","status":"PENDING"}
+```
+
 The parsed response is similar the following:
 
 ```json
-{
-  "referenceId": "ref_abc123",
-  "paymentId": "10012345678",
-  "status": "PENDING",
-  "message": "Payment request created successfully",
-  "paymentUrl": "https://secure.payu.in/checkout?hash=abc123def456",
-  "orderId": "order_789012"
-}
+Array
+(
+    [txnId] => b5f2d8785768087678fm9
+    [mihpayId] => 1999110000001769
+    [message] => Please call verify api to get the transaction status
+)
 ```
 
-## Verify Payment
+<br />
 
 > ⚠️ **Important**
 >
 > After creating a payment, you **must** call the [Verify Payment API](doc:verify-payment-api) to get the final transaction status. The initial payment creation response will typically show "PENDING" status.
 
-## Error Responses
+<br />
 
-### Error Response Format
+## Verify Payment
 
-```json
-{
-  "status": "FAILED",
-  "message": "Invalid request parameters",
-  "errorCode": "E001",
-  "details": [
-    {
-      "field": "email",
-      "message": "Invalid email format"
-    }
-  ]
-}
-```
-
-**Common Error Codes:**
-
-* `E001`: Invalid request parameters
-* `E002`: Authentication failed
-* `E003`: Merchant not found
-* `E004`: Transaction limit exceeded
+<br />
 
 ## Related APIs
 
-* [Verify Payment API](doc:verify-payment-api)
 * [Refund API](doc:refund-api)
 * [Get Transaction Details API](doc:get-transaction-details-api)
 * [Create Order API](doc:create-order-api)
