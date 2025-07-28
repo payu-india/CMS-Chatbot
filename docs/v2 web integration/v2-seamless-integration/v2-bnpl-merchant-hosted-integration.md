@@ -1,8 +1,8 @@
 ---
-title: v2 BNPL Integration
+title: BNPL Integration
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
