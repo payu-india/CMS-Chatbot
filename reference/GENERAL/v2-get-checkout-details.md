@@ -12,11 +12,16 @@ The **Get Checkout Details** (get\_checkout\_details) API is a generic API using
   eligibility details
 * **Downtime details**: The downtime status of the payment options.
 
-## Request header
+**Environment**
 
-<HeaderAuthentication />
+|                        |                                                                  |
+| :--------------------- | :--------------------------------------------------------------- |
+| Production Environment | [https://test.payu.in/v2/refund](https://test.payu.in/v2/refund) |
+| Test Environment       | [https://info.payu.in/v2/refund](https://info.payu.in/v2/refund) |
 
-<br />
+## Request headers
+
+<V2_payment_header_params />
 
 ## Request parameters
 
