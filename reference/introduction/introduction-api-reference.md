@@ -63,6 +63,17 @@ You can find the following implementation using **v2/payments** API for collecti
   * [Cards Consent Transaction](https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction)
   * [UPI Consent Transaction](https://docs.payu.in/v2/reference/v2-upi-recurring-payment-consent-transaction)
 
+## Save Cards
+
+* [Simple REST APIs](https://docs.payu.in/v2/reference/model-3-simple-rest-apis)
+  * [Get Payment Details API](https://docs.payu.in/v2/reference/v2-get-payment-details-api)
+  * [Get Payment Instrument API](https://docs.payu.in/v2/reference/v2-get-payment-instrument-api)
+  * [Save Card API](https://docs.payu.in/v2/reference/v2_save_card_api)
+* [Collect Payments - Save Card](https://docs.payu.in/v2/reference/collect-payments-save-card)
+  * [Payment with Zero Code Change](https://docs.payu.in/v2/reference/zero-code-change-payment)
+  * [Complete Card Details](https://docs.payu.in/v2/reference/complete-card-details-payment)
+  * [Using Network Tokens](https://docs.payu.in/v2/reference/using-network-tokens)
+
 ## Third-Party Verification
 
 * [Non-Seamless](https://docs.payu.in/v2/reference/v2_tpv_collect_payment_api_non_seamless)
