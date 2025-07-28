@@ -22,8 +22,11 @@ You can collect payments from customers with leading wallets using the **v2/paym
 2. [Verify Payment](#step-3-verify-the-payment)
 
 ## Step 1: Initiate the payment with PayU
-####Environment
-  <V2_payment_envrionment />
+
+#### Environment
+
+<V2_payment_envrionment />
+
 ### Request header
 
 <Accordion title="Request Headers" icon="fa-code">
@@ -113,59 +116,64 @@ You can collect payments from customers with leading wallets using the **v2/paym
 `}</HTMLBlock>
 
 #### paymentCard object fields description
+
 <Accordion title="paymentCard object fields" icon="fa-code">
-<V2_paymentCard />
+  <V2_paymentCard />
 </Accordion>
 
 ### order object fields description
+
 <Accordion title="order object fields" icon="fa-code">
-<V2_order_object />
+  <V2_order_object />
 </Accordion>
 
 ### additionalInfo object fields description
+
 <Accordion title="additionalInfo object fields" icon="fa-code">
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>enforcePaymethod</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Use **EMI** for EMI. </td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnS2sFlow<br><code>optional</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction server-to-server flow configuration for EMI payments.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>4</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>createOrder<br><code>optional</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Whether to create an order during the payment process.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>false</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+  <HTMLBlock>{`
+    <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>enforcePaymethod</strong><br/><code>optional</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Use **EMI** for EMI. </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>txnS2sFlow<br><code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction server-to-server flow configuration for EMI payments.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>4</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>createOrder<br><code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Whether to create an order during the payment process.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>false</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+    </tr>
+    </tbody>
+    </table>
+  `}</HTMLBlock>
 </Accordion>
 
 #### callBackActions object fields description
+
 <Accordion title="callBackActions object fields" icon="fa-code">
-<CallbackActions_object />
+  <CallbackActions_object />
 </Accordion>
 
 #### billingDetails object fields description
+
 <Accordion title="billingDetails object fields" icon="fa-code">
-<BillingDetails_object />
+  <BillingDetails_object />
 </Accordion>
 
 ## Sample request
@@ -243,7 +251,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 
 ## Step 2: Verify the payment
 
-Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api) under API Reference.
+Verify the transaction details using the Verification APIs. For API reference, refer to <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> under API Reference.
 
 > 📘 Tip
 >
