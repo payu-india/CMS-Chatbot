@@ -4,7 +4,7 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: Collect Payment API for Merchant Hosted Checkout or Custom Checkout
+  title: Collect Payment API for Seamless Integration
   description: >-
     Explore PayU's Merchant Hosted Checkout API Reference for seamless payment
     integration. Access comprehensive documentation, including authentication
