@@ -1,11 +1,11 @@
 ---
-title: Collect Payment API - Non-Seamless v2 Payment (COPY)
+title: v2 Non-Seamless - TPV
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-The PayU v2 Payment API enables merchants to process payments through a hosted checkout flow where customers are redirected to PayU's payment page to complete the transaction.
+The PayU v2 Payment API enables merchants to process payments through a hosted checkout flow for TPV integration.
 
 > 📘 **Note**
 >
