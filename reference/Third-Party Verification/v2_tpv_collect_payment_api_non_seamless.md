@@ -1,7 +1,7 @@
 ---
 title: Non-Seamless - TPV
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Non-seamless - TPV
   robots: index
