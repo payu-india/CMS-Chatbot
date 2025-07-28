@@ -169,10 +169,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 {
   "accountId": "smsplus",
   "referenceId": "b5f2d8785768087678fm9",
-  "paymentStatus": "SUCCESS",
-  "amount": 10,
-  "currency": "INR",
-  "paymentSource": "WEB",
+  "paymentMethod": "",
   },
   "order": {
     "productInfo": "string",
