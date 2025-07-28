@@ -1,7 +1,7 @@
 ---
 title: Authentication Header for v2 APIs
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Authentication with PayU APIs
   description: >-
