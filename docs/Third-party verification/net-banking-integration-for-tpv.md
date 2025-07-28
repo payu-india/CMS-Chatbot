@@ -91,12 +91,12 @@ With the following additional parameters, make the transaction request with the 
 <tr>
 <td>additionalInfo<br/><code>mandatory</code></td>
 <td>Additional transaction parameters including flow type. <a href="#additionalinfo-object">Refer to additionalInfo object</a></td>
-<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
+<td><a href="#additionalinfo-object">Refer to additionalInfo object</a></td>
 </tr>
 <tr>
 <td>beneficiaryDetail<br/><code>mandatory</code></td>
-<td>Beneficiary account details for Net Banking transfer. <a href="#beneficiarydetail-object">See beneficiaryDetail object</a></td>
-<td><code>{"beneficiaryName": "Merchant Account", "beneficiaryAccountNumber": "1234567890", "beneficiaryAccountType": "SAVINGS"}</code></td>
+<td>Beneficiary account details for Net Banking transfer. <a href="#beneficiarydetail-object">Refer to beneficiaryDetail object</a></td>
+<td><a href="#beneficiarydetail-object">Refer to beneficiaryDetail object</a><</td>
 </tr>
 </tbody>
 </table>
@@ -104,7 +104,7 @@ With the following additional parameters, make the transaction request with the 
 
 </Accordion>
 
-<Accordion title="paymentMethod Object" icon="fa-code">
+<Accordion title="paymentMethod Object" icon="fa-money">
 
 | Parameter  | Data Type | Required | Description                                                                                                                                                                                                 |
 | ---------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -113,7 +113,7 @@ With the following additional parameters, make the transaction request with the 
 
 </Accordion>
 
-<Accordion title="order Object" icon="fa-code">
+<Accordion title="order Object" icon="fa-box">
 
 <V2_order_object />
 
@@ -125,13 +125,13 @@ With the following additional parameters, make the transaction request with the 
 
 </Accordion>
 
-<Accordion title="callBackActions Object" icon="fa-code">
+<Accordion title="callBackActions Object" icon="fa-globe">
 
 <CallbackActions_object />
 
 </Accordion>
 
-<Accordion title="additionalInfo Object" icon="fa-code">
+<Accordion title="additionalInfo Object" icon="fa-info">
 
 <HTMLBlock>{`
         <table style="width: 100%; border-collapse: collapse;">
@@ -164,7 +164,7 @@ With the following additional parameters, make the transaction request with the 
 
 </Accordion>
 
-<Accordion title="beneficiaryDetail object" icon="fa-code">
+<Accordion title="beneficiaryDetail object" icon="fa-user">
 
 <HTMLBlock>{`
 <table>
@@ -200,88 +200,59 @@ With the following additional parameters, make the transaction request with the 
 
 ## Step 3: Check the response from PayU
 
+<Accordion title="Response parameters" icon="fa-list">
 
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the reference ID of the transaction.<br>statusCode</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the payment ID of the transaction.<br>statusCode</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>message</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the status message of the transaction.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
-### Response Parameters
+</Accordion>
 
-The following table describes the parameters in the response from PayU:
+<Accordion title="Sample response" icon="fa-reply">
 
-| **Param Name**   | **Description**                                                                                                                                                                                                                                                                                                          |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| mihpayid         | It is a unique reference number created for each transaction at PayU’s end. You must note this transaction ID as this will be used as a reference for all the future actions on this transaction like Inquiry or Refund.                                                                                                 |
-| merchantid       | It is the unique ID of the merchant.                                                                                                                                                                                                                                                                                     |
-| txnid            | This parameter would contain the transaction ID value posted by the merchant during the transaction request.                                                                                                                                                                                                             |
-| transaction\_fee | The transaction fee for the TPV transaction. For Net Banking, INR 10 is charged by default.                                                                                                                                                                                                                              |
-| discount         | The discount amount given by bank on the transaction fee (if any).                                                                                                                                                                                                                                                       |
-| amount           | The net amount after discount (if any) is displayed in this parameter. For Net Banking, INR 10 is charged by default.                                                                                                                                                                                                    |
-| paymentgatewayid | The payment gateway identifier for the bank sending the response.                                                                                                                                                                                                                                                        |
-| pg               | The payment gateway used for the transaction. In case of Net Banking, it is “NB.”                                                                                                                                                                                                                                        |
-| status           | This parameter gives the status of the transaction as either success, failed or pending. Possible values: success, failure, pending If the value of the ‘status’ parameter is ’success’, the transaction is successful. If the value of ‘status’ is ‘failure’ or ‘pending’, must be treated as a failed transaction only |
-| PG\_Type         | The bankcode (as in Merchant Hosted Checkout integration) of the bank is returned in the parameter.                                                                                                                                                                                                                      |
-| key              | This parameter contains the merchant key for the merchant’s account at PayU. It would be the same as the key used while the transaction request is being posted from the merchant’s end to PayU.                                                                                                                         |
-| riskactionStr    | This parameter contains risk action (if any) taken on the account holder.                                                                                                                                                                                                                                                |
-| addedon          | The transaction timestamp is returned in this parameter.                                                                                                                                                                                                                                                                 |
+```
+{
+  "result": {
+    "checkoutUrl": "https://pp78secure.payu.in/_payment_options?mihpayid=<mihpayuid>&userToken="
+  },
+  "status": "PENDING"
+}
 
-> 📘 Store the mihpayid and txnid parameter values in response:
+```
+
+> 📘 Reference:
 >
-> PayU recommends you to make provisions to store the **mihpayid** and **txnid** parameter values (in the response) in your server as proof that TPV has been completed for a customer.
+> To check the transaction status, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
 
-### Sample response
+</Accordion>
 
-Formatted response:
-
-```
-Array
-(
-    [mihpayid] => 403993715524308236
-    [mode] => NB
-    [status] => success
-    [unmappedstatus] => captured
-    [key] => JP***g
-    [txnid] => TtEmKjWF2uGliF
-    [amount] => 10.00
-    [discount] => 0.00
-    [net_amount_debit] => 10
-    [addedon] => 2021-10-05 12:44:06
-    [productinfo] => iPhone
-    [firstname] => Ashish
-    [lastname] => 
-    [address1] => 
-    [address2] => 
-    [city] => 
-    [state] => 
-    [country] => 
-    [zipcode] => 
-    [email] => test@gmail.com
-    [phone] => 9876543210
-    [udf1] => 
-    [udf2] => 
-    [udf3] => 
-    [udf4] => 
-    [udf5] => 
-    [udf6] => 
-    [udf7] => 
-    [udf8] => 
-    [udf9] => 
-    [udf10] => 
-    [hash] => 74d1039311528b4a7b699db7ce195d6a219d7442271dedb23e516e29490ec743a89c12448698178907e03d32fa05e8178694db8037bc0be53380099e47c3d63f
-    [field1] => 
-    [field2] => 
-    [field3] => 
-    [field4] => 
-    [field5] => 
-    [field6] => 
-    [field7] => 
-    [field8] => 
-    [field9] => Transaction Completed Successfully
-    [payment_source] => payu
-    [PG_TYPE] => NB-PG
-    [bank_ref_num] => 30646df4-69b7-43f4-acdd-21e6a593c037
-    [bankcode] => TESTPGNB
-    [error] => E000
-    [error_Message] => No Error
-)
-```
 
 > 📘 Verify payment:
 >
