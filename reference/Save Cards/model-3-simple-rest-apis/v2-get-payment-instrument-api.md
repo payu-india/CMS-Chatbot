@@ -7,6 +7,8 @@ metadata:
 ---
 The v2 **Get Payment Instrument** API allows merchants to fetch all saved cards for a specific user. This API returns comprehensive card details including tokenized information, expiry status, and network tokens for secure transactions.
 
+HTTP Method:  **GET**
+
 **Environment**
 
 |            |                                                 |
