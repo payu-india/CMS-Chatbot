@@ -1,7 +1,7 @@
 ---
 title: NEFT TPV  v2 Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: v2 PreAuth Integration with PayU Hosted Checkout
   robots: index
