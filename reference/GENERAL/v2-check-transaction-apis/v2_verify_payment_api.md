@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-To know the status of the payment, you need to integrate the\*\* Verify Payment\*\* API as below. You need post the **referenceId** sent by the **v2/payments** API in the **txnId** parameter.
+To know the status of the payment, you need to integrate the\*\* Verify Payment\*\* API as below. You need post the **txnId** sent by the **v2/payments** API in the **txnId** parameter.
 
 HTTP Method: **POST**
 
