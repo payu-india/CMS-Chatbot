@@ -2,7 +2,6 @@
 - v2-check-transaction-apis
 - refund-apis
 - v2-validate-vpa-api
-- v2-get-payment-details-api
 - v2-generate-upi-intent-api
 - v2-capture-transaction-api
 - v2-get-checkout-details
