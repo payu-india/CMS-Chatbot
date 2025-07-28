@@ -1,7 +1,7 @@
 ---
 title: v2 Get Checkout Details
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
