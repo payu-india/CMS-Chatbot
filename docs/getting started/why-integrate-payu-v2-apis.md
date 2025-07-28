@@ -1,7 +1,7 @@
 ---
 title: Why Integrate PayU v2 APIs?
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
