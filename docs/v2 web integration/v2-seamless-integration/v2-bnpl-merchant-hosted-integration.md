@@ -98,28 +98,28 @@ You need to ensure that **BNPL** for the **paymentMethod.name** parameter and BN
 
 <Accordion title="paymentMethod object" icon="fa-code">
   <HTMLBlock>{`
-    <table style="width: 100%; border-collapse: collapse;">
-    <thead>
-    <tr>
-      <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br> <code>mandatory</code></p>
-    </td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For more information, refer to <a href="https://docs.payu.in/v1/docs/payment-mode-codes">Payment Mode Codes</a>. For BNPL, this must contain <strong>BNPL</strong>.</p>
-    </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode<br><code>mandatory</code></p>
-    </td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the bank code. For BNPL bank codes, refer to <a href="https://docs.payu.in/v1/docs/bnpl-codes">BNPL Codes</a>.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+        <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br> <code>mandatory</code></p>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For more information, refer to <a href="https://docs.payu.in/v1/docs/payment-mode-codes">Payment Mode Codes</a>. For BNPL, this must contain <strong>BNPL</strong>.</p>
+        </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode<br><code>mandatory</code></p>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field must contain the bank code. For BNPL bank codes, refer to <a href="https://docs.payu.in/v1/docs/bnpl-codes" target="_blank">BNPL Codes</a>.</p>
+        </td>
+        </tr>
+        </tbody>
+        </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -145,32 +145,32 @@ You need to ensure that **BNPL** for the **paymentMethod.name** parameter and BN
 
 <Accordion title="Additional Info Object" icon="fa-code">
   <HTMLBlock>{`
-                                  <table style="width: 100%; border-collapse: collapse;">
-                                  <thead>
-                                  <tr>
-                                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-                                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-                                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-                                  </tr>
-                                  </thead>
-                                  <tbody>
-                                  <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">60</td>
-                                  </tr>
-                                  <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-                                  </tr>
-                                  <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
-                                  </tr>
-                                  </tbody>
-                                  </table>
+                                      <table style="width: 100%; border-collapse: collapse;">
+                                      <thead>
+                                      <tr>
+                                        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <tr>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;">60</td>
+                                      </tr>
+                                      <tr>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+                                      </tr>
+                                      <tr>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+                                      </tr>
+                                      </tbody>
+                                      </table>
   `}</HTMLBlock>
 </Accordion>
 
