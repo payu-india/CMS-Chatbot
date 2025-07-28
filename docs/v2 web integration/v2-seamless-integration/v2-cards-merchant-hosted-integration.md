@@ -367,20 +367,9 @@ curl -X POST \
   "result": {
     "paymentId": "1999110000001769",
     "redirectUrl": "https://secure.payu.in/ResponseHandler.php",
-    "authAction": "https://apitest.payu.in/v2/payments/1999110000001769/auth",
-    "redirectTemplate": "<html><body>...</body></html>",
-    "card": {
-      "binData": {
-        "pureS2SSupported": false,
-        "issuingBank": "ICICI",
-        "category": "creditcard",
-        "cardType": "VISA",
-        "isDomestic": true
-      }
-    }
+    "authAction": "https://apitest.payu.in/v2/payments/1999110000001769/auth"
   },
-  "status": "PENDING",
-  "message": "Please call verify API to get the transaction status"
+  "status": "PENDING"
 }
 ```
 
@@ -413,6 +402,51 @@ curl --location 'https://test.payu.in/v3/transaction' \
 ### Sample response
 
 ```json
+{
+  "message": "Success",
+  "status": 1,
+  "result": [
+    {
+      "mihpayId": 21612493009,
+      "bankReferenceNumber": "2411194544",
+      "amount": 10.00,
+      "mode": "CC",
+      "requestId": "",
+      "originalAmount": 10.00,
+      "additionalCharges": 0.00,
+      "discount": 0.00,
+      "netDebitAmount": 10.00,
+      "productInfo": "Test Product",
+      "firstName": "John",
+      "bankcode": "VISA",
+      "nameOnCard": "JOHN DOE",
+      "cardNo": "XXXXXXXXXXXX1234",
+      "cardType": "VISA",
+      "udf1": null,
+      "udf2": null,
+      "udf3": null,
+      "udf4": null,
+      "udf5": null,
+      "field2": "140455",
+      "field9": "Transaction is Successful",
+      "errorCode": "E000",
+      "errorMessage": "No Error",
+      "addedOn": "2024-11-19 21:17:55",
+      "settledAt": "0000-00-00 00:00:00",
+      "paymentSource": "WEB",
+      "pgType": "CC-PG",
+      "status": "success",
+      "unmappedStatus": "captured",
+      "merchantUTR": null,
+      "rupayAuthRefNo": null,
+      "authRefNo": "123456789",
+      "originalCurrency": "INR",
+      "threeDSVersion": "2.2.0",
+      "message": "Found TxnId",
+      "txnId": "b5f2d8785768087678fm9"
+    }
+  ]
+}
 ```
 
 ## Card-specific features
