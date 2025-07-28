@@ -37,8 +37,6 @@ For all the scenarios mentioned in this section you must follow the
 
 2. **Post Payment to PayU and check response**: Make the transaction request with the payment details along with the card nickname to PayU based on the following scenarios of tokenization:
 
-   * [Using zero code change approach](#using-zero-code-change-approach)
-
    * [Using complete card details](#using-complete-card-details)
 
    * [Using network tokens](#using-network-tokens)
