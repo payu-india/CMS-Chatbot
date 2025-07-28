@@ -2,7 +2,7 @@
 title: UPI - v2 Payment API
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to [UPI Handles](https://docs.payu.in/v1/docs/upi-handles).
+PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to <Anchor label="UPI Handles" target="_blank" href="https://docs.payu.in/v1/docs/upi-handles">UPI Handles</Anchor>.
 
 ### Recommended prerequisite before initiating payment
 
