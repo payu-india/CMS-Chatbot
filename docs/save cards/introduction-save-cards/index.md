@@ -40,15 +40,15 @@ Users can update or delete their card details on the PayU vault when required. Y
 
 The workflow for users with PayU Vault are:
 
-1. Customer visit the merchant’s website, adds items to the cart, or utilize the merchant’s services, and then enter the card details.
-2. Customer provides consent to the merchant and the merchant [saves the card details](doc:zero-code-change-for-vault-integration-model-2#first-time-payment-workflow) on PayU Vault
+1. Customer visit the merchant's website, adds items to the cart, or utilize the merchant's services, and then enter the card details.
+2. Customer provides consent to the merchant and the merchant [saves the card details](https://docs.payu.in/v2/update/docs/zero-code-change-for-vault-integration-model-2/#first-time-payment-workflow) on PayU Vault
 3. Customer visits the same merchant and uses the saved card details to proceed with the transaction.
-4. Customer provides his/her user credentials, the merchant [retrieves the card details](ref:get_user_cards_api) and the user enters the CVV or 3DBC number to complete payment.
+4. Customer provides his/her user credentials, the merchant [retrieves the card details](https://docs.payu.in/v2/update/reference/get-user-cards-api/) and the user enters the CVV or 3DBC number to complete payment.
 
 > **Note**: While CVV is not mandatory from the network perspective, some banks may impose the necessity of the same for doing transactions with a saved card. Also, if the bank does not mandate the CVV but the merchant captures the same, CVV will be verified. It is recommended that for the banks where CVV is not required, merchants should not ask for the same
 
-5. User can update or  delete the card details when required.
+5. User can update or delete the card details when required.
 
 > 📘 Note:
 >
-> You need to ensure that you have filled the “[Self-Assessment Questionnaire A-EP and Attestation of Compliance](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf)” form from PCI, which is mandatory for all entities seeking to store, process, and transmit cardholder data.
+> You need to ensure that you have filled the "[Self-Assessment Questionnaire A-EP and Attestation of Compliance](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf)" form from PCI, which is mandatory for all entities seeking to store, process, and transmit cardholder data.
