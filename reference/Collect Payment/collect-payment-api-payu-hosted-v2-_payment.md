@@ -14,7 +14,7 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 
 > 📘 **Note**
 >
-> This documentation covers the **non-seamless (hosted checkout)** integration. For seamless payment flows, refer to the <Anchor label="v2 Payment API (Seamless)" target="_blank" href="doc:v2-payment-api-seamless">v2 Payment API (Seamless)</Anchor> documentation.
+> This documentation covers the **non-seamless (hosted checkout)** integration. For seamless payment flows, refer to the <Anchor label="v2 Payment API (Seamless)" target="_blank" href="https://docs.payu.in/v2/docs/v2-seamless-integration/">v2 Payment API (Seamless)</Anchor> documentation.
 
 **Environment**
 
@@ -196,7 +196,7 @@ Array
 
 > ⚠️ **Important**
 >
-> After creating a payment, you **must** call the [Verify Payment API](doc:verify-payment-api) to get the final transaction status. The initial payment creation response will typically show "PENDING" status.
+> After creating a payment, you **must** call the [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api/) to get the final transaction status. The initial payment creation response will typically show "PENDING" status.
 
 <br />
 
