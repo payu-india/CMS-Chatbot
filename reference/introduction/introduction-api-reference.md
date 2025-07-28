@@ -65,11 +65,15 @@ You can find the following implementation using **v2/payments** API for collecti
 
 ## Third-Party Verification
 
-* <br />
+* [Non-Seamless](https://docs.payu.in/v2/reference/v2_tpv_collect_payment_api_non_seamless)
+* [Seamless Integration](https://docs.payu.in/v2/reference/seamless-integration-tpv)
+  * [NEFT Integration](https://docs.payu.in/v2/reference/v2_payment_tpv_merchant_hosted_v2_integration)
+  * [UPI Integration](https://docs.payu.in/v2/reference/v2_payment_tpv_merchant_hosted_v2_integration-1)
 
 ## PreAuthorize Payment
 
-* [Payment API Preauth PayU Hosted Checkout](https://docs.payu.in/v2/reference/v2-payment-api-preauth-payu-hosted-checkout)
+* [Non-Seamless Integration](https://docs.payu.in/v2/reference/v2-payment-api-preauth-non-seamless)
+* [Seamless Integration](https://docs.payu.in/v2/reference/payment-api-preauth-seamless)
 
 ## Get support
 
