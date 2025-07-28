@@ -118,10 +118,10 @@ curl --location '<info.storecard.service.url>/storecard/card/v1' \
 
 ### Network token object
 
-| Field           | Type    | Description                                                    | Example            |
-| --------------- | ------- | -------------------------------------------------------------- | ------------------ |
-| `token_bin`     | string  | Bank Identification Number for the network token.              | `439040`           |
-| `is_expired`    | integer | Indicates the token's status: `0` for active, `1` for expired. | `0`                |
-| `token_exp_yr`  | string  | Expiry year of the network token.                              | `2030`             |
-| `token_exp_mon` | string  | Expiry month of the network token.                             | `11`               |
-| `token_value`   | string  | The actual token value used for secure transactions.           | `4390406210204342` |
+| Field           | Description                                                    | Example          |
+| --------------- | -------------------------------------------------------------- | ---------------- |
+| token\_bin      | Bank Identification Number for the network token.              | 439040           |
+| is\_expired     | Indicates the token's status: `0` for active, `1` for expired. | 0                |
+| token\_exp\_yr  | Expiry year of the network token.                              | 2030             |
+| token\_exp\_mon | Expiry month of the network token.                             | 11               |
+| token\_value    | The actual token value used for secure transactions.           | 4390406210204342 |
