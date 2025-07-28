@@ -1,5 +1,5 @@
 ---
-title: Plugins for Development Enviornment
+title: Plugins for Development Environment
 deprecated: false
 hidden: false
 metadata:
