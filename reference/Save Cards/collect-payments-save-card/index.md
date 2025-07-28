@@ -16,17 +16,6 @@ next:
 ---
 When your customer has an account on your shopping website, they may store their card details to use when they revisit your website (repeat payment).
 
-***
-
-### **Steps to Integrate:**
-
-1. [Get the saved card details of a customer]
-2. [Post the payment to PayU using \_payment API][Post the payment to PayU using \\_payment API]
-3. [Check the PayU Response]
-4. [Verify the payment]
-
-***
-
 PayU offers you API to save the card details and retrieves them using the Store Card APIs. For example, the stored cards are displayed when your customer performs checkout and lands on the payment page, similar to the following screenshot where they need to enter only the CVV:
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/save_card_checkout-1024x817.jpeg)
@@ -87,7 +76,6 @@ Request request = Request.Post("https://test.payu.in/merchant/postservice?form=2
 
 Make the transaction request with the payment details along with the card nickname to PayU based on the following scenarios of tokenization:
 
-* [Using Zero Code Change](ref:zero-code-change-payment)
 * [Using Complete Card Details](ref:complete-card-details-payment)
 * [Using Network Tokens](ref:using-network-tokens)
 * [Using Issuer Tokens](ref:using-issuer-tokens)
