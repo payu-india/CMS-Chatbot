@@ -2,7 +2,7 @@
 title: Complete Card Details
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Collect Payment from Saved Card with Complete Card Details
   description: >-
