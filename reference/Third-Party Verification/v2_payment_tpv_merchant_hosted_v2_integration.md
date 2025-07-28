@@ -160,100 +160,113 @@ The Collect Payment API (**v2 Payment** API) is used along with **beneficiaryDet
 ### Sample request
 
 ```curl
-curl --location 'https://apitest.payu.in/v2/payments' \
---header 'date: Tue, 05 Nov 2024 06:12:57 GMT' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="d583ff8069c7dfa8340464a24bdd01cbebf4432b4dfe4de862065cc9c9dc622c24c77cb1ac1142bf581ec07eca8d0ec78a66db93f6cd557d0da552f05c0825e3"' \
---header 'Content-Type: application/json' \
---header 'mid: 8390470' \
---header 'X-CREDENTIAL-USERNAME: UMXDPA' \
-{
+curl -X POST \
+  https://apitest.payu.in/v2/payments \
+  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
+  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
+  -H 'content-type: application/json' \
+  -d '{
   "accountId": "smsplus",
-  "referenceId": "b5f2d8785768087678fm9",
-  "paymentMethod": "",
+  "referenceId": "REF_" + Math.random().toString(36).substring(7),
+  "paymentMethod": {
+    "name": "NetBanking",
+    "bankCode": "AXNBTPV"
   },
   "order": {
-    "productInfo": "string",
-    "orderedItem": [
-      {
-        "itemId": null,
-        "description": "AAA",
-        "quantity": null
-      }
-    ],
-    "userDefinedFields": {
-      "udf1": "",
-      "udf2": "",
-      "udf3": "",
-      "udf4": "",
-      "udf5": "",
-      "udf6": "",
-      "udf7": "",
-      "udf8": "",
-      "udf9": "",
-      "udf10": ""
-    },
+    "productInfo": "Net Banking Payment",
     "paymentChargeSpecification": {
-      "price": 10
-  },
-    "additionalInfo": {
-    "txnFlow": "nonseamless",
-    "createOrder" : "false",
-    "beneficiarydetail": {
-      "beneficiaryAccountNumber": "002001600674|00000031957292212|00000035955239352|00000035955239352",
-      "ifscCode": "KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"
+      "price": 10000.00,
+      "convenienceFee": "NB:15"
+    },
+    "userDefinedFields": {
+      "udf1": "Net Banking Transaction",
+      "udf2": "Seamless Payment"
     }
   },
-  "callBackActions": {
-    "successAction": "https://pp78admin.payu.in/test_response",
-    "failureAction": "https://pp78admin.payu.in/test_response",
-    "cancelAction": "https://testapi.payu.in/admin/testresponsev2?action=cancelAction"
-  },
   "billingDetails": {
-    "firstName": "sartaj",
-    "lastName": "",
-    "address1": "Test Payu Gurgaon",
-    "address2": "",
-    "city": "Bharatpur",
-    "state": "Rajasthan",
-    "country": "India",
-    "zipCode": "321028",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
     "phone": "9876543210",
-    "email": "testv2@example.in"
+    "address": "123 Main Street",
+    "city": "New Delhi",
+    "state": "Delhi",
+    "country": "India",
+    "zipCode": "110001"
+  },
+  "callBackActions": {
+    "successAction": "https://merchant.com/success",
+    "failureAction": "https://merchant.com/failure",
+    "cancelAction": "https://merchant.com/cancel"
+  },
+  "additionalInfo": {
+    "txnFlow": "seamless",
+    "createOrder": true,
+    "enforcePaymethod": "NB",
+    "txnS2sFlow": "2"
+  },
+  "beneficiaryDetail": {
+    "beneficiaryName": "Merchant Account",
+    "beneficiaryAccountNumber": "1234567890",
+    "beneficiaryAccountType": "SAVINGS"
   }
-}
+}'
 ```
 
 ### Response parameters
 
 <HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the reference ID of the transaction.<br>statusCode</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentId</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the payment ID of the transaction.<br>statusCode</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>message</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the status message of the transaction.</p>
-</td>
-</tr>
-</tbody>
-</table>
+curl -X POST \
+  https://apitest.payu.in/v2/payments \
+  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
+  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
+  -H 'content-type: application/json' \
+  -d '{
+  "accountId": "smsplus",
+  "referenceId": "REF_" + Math.random().toString(36).substring(7),
+  "paymentMethod": {
+    "name": "NetBanking",
+    "bankCode": "EFTAXIS"
+  },
+  "order": {
+    "productInfo": "Net Banking Payment",
+    "paymentChargeSpecification": {
+      "price": 10000.00,
+      "convenienceFee": "NB:15"
+    },
+    "userDefinedFields": {
+      "udf1": "Net Banking Transaction",
+      "udf2": "Seamless Payment"
+    }
+  },
+  "billingDetails": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "9876543210",
+    "address": "123 Main Street",
+    "city": "New Delhi",
+    "state": "Delhi",
+    "country": "India",
+    "zipCode": "110001"
+  },
+  "callBackActions": {
+    "successAction": "https://merchant.com/success",
+    "failureAction": "https://merchant.com/failure",
+    "cancelAction": "https://merchant.com/cancel"
+  },
+  "additionalInfo": {
+    "txnFlow": "seamless",
+    "createOrder": true,
+    "enforcePaymethod": "NB",
+    "txnS2sFlow": "2"
+  },
+  "beneficiaryDetail": {
+    "beneficiaryName": "Merchant Account",
+    "beneficiaryAccountNumber": "1234567890",
+    "beneficiaryAccountType": "SAVINGS"
+  }
+}'
 `}</HTMLBlock>
 
 ## Sample response
