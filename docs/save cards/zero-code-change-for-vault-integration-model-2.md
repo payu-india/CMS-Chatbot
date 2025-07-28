@@ -22,7 +22,7 @@ next:
 The Model 2 involves only zero code change and this section describes the general workflow.
 
 > 📘 Note:
-> 
+>
 > To use tokenisation, you need to get the Token Requestor onboarding to be done. Contact your PayU Key Account Manager (KAM) to get the onboarding done.
 
 ## General workflow
@@ -30,22 +30,14 @@ The Model 2 involves only zero code change and this section describes the genera
 To create the token, only minor code changes is required in your implementation. However, to process the transactions using the tokens, you need to integrate an extra API.
 
 1. PayU onboards the merchant on the PayU token hub.
-2. Merchant will pass the consent value and user id in the **\_payment** API.
+2. Merchant will pass the consent value and user id in the **v2/payment** API.
 
-   Here, consent is taken from customer on the merchant’s website (similar to the step 2 of [Model 1 - PayU Hosted Checkout Integration](doc:payu-hosted-checkout-integration-with-vault-model-1) before passing the consent value.
+   Here, consent is taken from customer on the merchant’s website (similar to the step 2 of [Model 1 - Non-Seamless Integration](doc:save-card-non-seamles-integration-with-vault-model-1) before passing the consent value.
 
-<Image
-  src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/payu_hosted_consent_crop.png"
-  alt=""
-  caption=""
-  align="center"
-  sizing="512px"
-/>
+<Image align="center" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/payu_hosted_consent_crop.png" />
 
-
-
-- If the merchant is already using the PayU vault, only consent parameter needs to be passed.
-- If the merchant is newly onboarded on the PayU vault, consent and user ID parameters need to be passed.
+* If the merchant is already using the PayU vault, only consent parameter needs to be passed.
+* If the merchant is newly onboarded on the PayU vault, consent and user ID parameters need to be passed.
 
 1. PayU will first process the transaction and then create the network and issuer token.
 2. PayU will store the tokens on its own servers on the merchant’s behalf.
@@ -65,56 +57,11 @@ The following flow diagram illustrates the workflow for first-time payment workf
 5. PayU then creates token with networks and issuers.
 6. PayU passes the token to the merchant.
 
-### Extra request parameters to be posted using \_payment API
+### Extra request parameters to be posted using v2/payment API
 
 **Environment**
 
-|                            |                                 |
-| :------------------------- | :------------------------------ |
-| **Test Environment**       | \<https://test.payu.in/_payment> |
-| **Production Environment** | \<https://info.payu.in/_payment> |
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>user_credentials<br><strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the <strong>save_user_cards</strong> API. The format of the value is <code>&lt;merchant key&gt;:&lt;user ID&gt;</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>a:b</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>store_card<br><strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>integer</code> This is an existing field, where the card token flag is passed by merchant. The values for this field can be:  </p>
-<ul>
-<li><strong>0</strong> – Consent was not provided by customer  </li>
-<li><strong>1</strong> – Consent was provided by customer</li>
-</ul>
-<p>If the consent is provided by the customer, the value is passed as <strong>1</strong>.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-
-> 📘 Notes:
-> 
-> - Only the fields needed for this operation are mentioned here. For the complete API details for the **\_payment** API, refer to [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted).
-> - After taking the consent, merchant will have to call PayU for doing the transaction and creating token. This is needed as PayU will ensure the additional factor authentication (AFA) requirements are taken care of.
-> - The subsequent transactions (using the token) can be done through PayU or any other payment processor.
+<V2_payment_envrionment />
 
 ### Sample request and response
 
@@ -184,9 +131,8 @@ If you have not received a response from PayU with First-Time Payment Workflow, 
 </table>
 `}</HTMLBlock>
 
-
 > 📘 Note:
-> 
+>
 > Only the fields needed for this operation are mentioned here. For the complete API details of the **\_payment** API, refer to [Collect Payments using Merchant Hosted Checkout](/docs/custom-checkout-merchant-hosted).
 
 ### Sample response
