@@ -2,7 +2,7 @@
 title: Net Banking - v2 Payment API
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Collect Payment using Net Banking with Merchant Checkout API Reference
   description: >-
