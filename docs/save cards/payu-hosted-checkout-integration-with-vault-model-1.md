@@ -41,8 +41,6 @@ The first-time transaction workflow for Redirection Flow (PayU Hosted) integrati
 3. The customer gives explicit consent to save the cards.
 4. PayU completes the transaction and saves the card in PayU Vault.
 
-PayU displays the payment confirmation similar to the following screenshot.
-
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/transaction_is_confirmed-3-1024x868.png)
 
 ## Repeat transaction workflow
