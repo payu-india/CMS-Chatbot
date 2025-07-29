@@ -109,7 +109,6 @@ curl -X POST \
 
 #### Payment Card Object
 
-<Accordion title="Payment Card Object" icon="fa-code">
   For new card payments:
 
   | Parameter      | Type   | Description                        | Required |
@@ -151,49 +150,28 @@ curl -X POST \
     "cvv": "123"
   }
   ```
-</Accordion>
+
 
 #### Order object
 
-<Accordion title="Order Object" icon="fa-code">
   <V2_order_object />
-</Accordion>
 
-#### Payment charge specification object
-
-<Accordion title="Payment Charge Specification Object" icon="fa-code">
-  <V2_paymentChargeSpecification_object />
-</Accordion>
 
 #### Additional Info Object
-
-<Accordion title="Additional Info Object" icon="fa-code">
   <AdditionalI_Info_object />
-</Accordion>
 
 #### Callback Actions Object
-
-<Accordion title="Callback Actions Object" icon="fa-code">
   <CallbackActions_object />
-</Accordion>
 
 #### Billing Details Object
-
-<Accordion title="Billing Details Object" icon="fa-code">
   <BillingDetails_object />
-</Accordion>
 
 #### Authorization Object
-
-<Accordion title="Authorization Object" icon="fa-code">
   <V2_authorization_cards />
-</Accordion>
 
 #### ThreeDS2 Request Data Object
-
-<Accordion title="ThreeDS2 Request Data Object" icon="fa-code">
   <ThreeDSRequestData_object />
-</Accordion>
+
 
 ### Sample request
 
@@ -277,53 +255,6 @@ curl -X POST \
   }'
 ```
 
-**Request Body (Saved Card):**
-
-```json
-curl -X POST \
-  https://apitest.payu.in/v2/payments \
-  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
-  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
-  -H 'content-type: application/json' \
-  -d 
-{
-  "accountId": "smsplus",
-  "referenceId": "b5f2d8785768087678fn5",
-  "currency": "INR",
-  "paymentSource": "WEB",
-  "paymentMethod": {
-    "name": "CreditCard",
-    "bankCode": "CC",
-    "paymentCard": {
-      "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
-      "cardTokenType": "NETWORK",
-      "tavv": "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
-      "last4Digits": "0000",
-      "cvv": "123"
-    }
-  },
-  "order": {
-    "productInfo": "Saved Card Test Product",
-    "paymentChargeSpecification": {
-      "price": 100.00
-    }
-  },
-  "additionalInfo": {
-    "txnS2sFlow": "2",
-    "oneClickCheckout": "1"
-  },
-  "callBackActions": {
-    "successAction": "https://example.com/success",
-    "failureAction": "https://example.com/failure"
-  },
-  "billingDetails": {
-    "firstName": "John",
-    "lastName": "Doe",
-    "phone": "9876543210",
-    "email": "john.doe@example.com"
-  }
-}'
-```
 
 ### Sample response
 
