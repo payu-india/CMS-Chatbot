@@ -2,7 +2,7 @@
 title: Net Banking Consent Transaction
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Net Banking Recurring Payment Consent Transaction
   description: >-
