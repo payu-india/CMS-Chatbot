@@ -64,7 +64,6 @@ You must use the L3 fields with **\_payment** API similar to the following JSON:
 ## L3 field descriptions
 
 <HTMLBlock>{`
-<HTMLBlock>{\`
 <table>
   <thead>
     <tr>
@@ -396,5 +395,4 @@ You must use the L3 fields with **\_payment** API similar to the following JSON:
     </tr>
   </tbody>
 </table>
-\`}</HTMLBlock>
 `}</HTMLBlock>
