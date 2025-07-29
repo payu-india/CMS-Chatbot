@@ -31,6 +31,7 @@ You can find the following implementation using **v2/payments** API for collecti
 * **BIN APIs**
   * [Eligible Bin for EMI API v2](https://docs.payu.in/v2/reference/eligible-bin-for-emi-api-v2)
   * [Get BIN Info API](https://docs.payu.in/v2/reference/v2-get-bin-info-api)
+  * [Check is Domestic Card API](https://docs.payu.in/v2/reference/v2-check-is-domestic-card-api)
 * [Get Payment Details API](https://docs.payu.in/v2/reference/v2-get-payment-details-api)
 * [Generate UPI Intent API](https://docs.payu.in/v2/reference/v2-generate-upi-intent-api)
 * [Get Checkout Details](https://docs.payu.in/v2/reference/v2-get-checkout-details)
@@ -75,6 +76,7 @@ You can find the following implementation using **v2/payments** API for collecti
   * [Payment with Zero Code Change](https://docs.payu.in/v2/reference/zero-code-change-payment)
   * [Complete Card Details](https://docs.payu.in/v2/reference/complete-card-details-payment)
   * [Using Network Tokens](https://docs.payu.in/v2/reference/using-network-tokens)
+* [Get User Cards API](https://docs.payu.in/v2/reference/v2_get_user_cards_api)
 
 ## Third-Party Verification
 
