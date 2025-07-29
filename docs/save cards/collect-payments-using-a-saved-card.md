@@ -23,9 +23,7 @@ metadata:
 next:
   description: ''
 ---
-PayU offers you API to save the card details and retrieves them using the Store Card APIs. For example, the stored cards are displayed when your customer performs checkout and lands on the payment page, similar to the following screenshot where they need to enter only the CVV:
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/save_card_checkout-1024x817.jpeg)
+PayU offers you API to save the card details and retrieves them using the Store Card APIs. For example, the stored cards are displayed when your customer performs checkout and lands on the payment page.
 
 This section explains the procedure for getting a customer’s card details and using a saved card to initiate payment.
 
@@ -44,7 +42,7 @@ For all the scenarios mentioned in this section you must follow the
    > 📘 Notes:
    >
    > * In addition to the request parameters used for Merchant Hosted Checkout (Seamless integration) payment request, you need to ensure the additional parameters as specified in each scenario specified in this step. For more information on the complete list of parameters, refer to Integrate with Merchant Hosted Checkout.
-   > * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to [Collect Payment API - Merchant Hosted Checkout](ref:/v2/reference/_payment_merchant_hosted/)
+   > * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="https://docs.payu.in/v2/update/reference/v2_payment_seamless_integration/">Collect Payment API - Merchant Hosted Checkout</Anchor>
 
 3. **Verify the Payment**: Verify the transaction details using the Verification APIs. Post the transaction ID using the **verify\_payment** API to verify the payment. For more information, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:v2/reference/v2_verify_payment_api/">Verify Payment API</Anchor>
 
