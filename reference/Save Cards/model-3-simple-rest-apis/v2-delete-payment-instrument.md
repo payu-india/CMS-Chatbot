@@ -1,7 +1,7 @@
 ---
 title: Delete Payment Instrument
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
