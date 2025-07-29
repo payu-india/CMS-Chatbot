@@ -22,6 +22,52 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 
 ## Request parameters
 
+<HTMLBlock>{`
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accountId<br/><code>mandatory</code></td>
+<td><code>String</code> Merchant key provided by PayU. Character limit: 50</td>
+<td><code>"smsplus"</code></td>
+</tr>
+<tr>
+<td>txnId<br/><code>mandatory</code></td>
+<td><code>String</code> Unique transaction ID for the transaction. Character limit: 50</td>
+<td><code>"REF_123456789"</code></td>
+</tr>
+<tr>
+<td>order<br/><code>mandatory</code></td>
+<td><code>Object</code> Order details containing product information and pricing. For more information, refer to<a href="#order-object"> order object</a></td>
+<td><code>{"productInfo": "Product Name", "paymentChargeSpecification": {"price": 1000.00}}</code></td>
+</tr>
+<tr>
+<td>billingDetails<br/><code>mandatory</code></td>
+<td><code>Object</code> Customer billing information. For more information, refer to<a href="#billingdetails-object"> billingDetails object</a></td>
+<td><code>{"firstName": "John", "email": "john@example.com", "phone": "9876543210"}</code></td>
+</tr>
+<tr>
+<td>callBackActions<br/><code>mandatory</code></td>
+<td><code>Object</code> Callback URLs for different payment outcomes. For more information, refer to<a href="#callbackactions-object"> callBackActions object</a></td>
+<td><code>{"successAction": "https://merchant.com/success", "failureAction": "https://merchant.com/failure"}</code></td>
+</tr>
+<tr>
+<td>additionalInfo<br/><code>mandatory</code></td>
+<td><code>Object</code> Additional transaction parameters including flow type. For more information, refer to<a href="#additionalinfo-object"> additionalInfo object</a></td>
+<td><code>{"txnFlow": "seamless", "enforcePaymethod": "NB"}</code></td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
+
 ### beneficiaryDetail object
 
 <HTMLBlock>{`
