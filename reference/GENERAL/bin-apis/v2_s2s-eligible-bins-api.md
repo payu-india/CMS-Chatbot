@@ -20,7 +20,24 @@ The **S2S Eligible BINs** API is similar to the **Get BIN Info** API, but used i
 
 ## Request body
 
-<br />
+<HTMLBlock>{`
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>bin<br/><code>mandatory</code></td>
+      <td><code>String</code> The first six digits ofcard (card BIN) must be specified here.</td>
+      <td>512345</td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 
 ## Sample request
 
