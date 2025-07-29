@@ -1,7 +1,7 @@
 ---
 title: Using AMEX L3 Fields
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
