@@ -35,7 +35,7 @@ To process payments with credit/debit card, UPI, wallet, etc. on your website us
 >
 > To handle redirect URLs (surl and furl), refer to <Anchor label="Handling the Redirect URLs" target="_blank" href="https://docs.payu.in/v1/docs/handling-the-redirect-urls">Handling the Redirect URLs</Anchor>.
 
-You can get the **Try It** experience for the following payment modes:
+This part of the document includes the API reference for the following payment methods with v2/payment seamless integration:
 
 * [Net Banking](https://docs.payu.in/v2/reference/_payment_v2_merchant_hosted_netbanking)
 * [Cards](https://docs.payu.in/v2/reference/_payment-v2-merchant-hosted-cards)
