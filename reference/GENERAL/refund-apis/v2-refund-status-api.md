@@ -95,18 +95,17 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 ### Sample request
 
 ```bash
-curl --location 'https://test.payu.in/v2/refundstatus' \
---header 'mid: 8759546' \
+curl --location 'http://info.payu.in/v2/refunds/status' \
+--header 'mid: 8006653' \
 --header 'Content-Type: application/json' \
---header 'Info-Command: aggregator_check_action_status_txnid' \
---header 'Date: Thu, 17 Feb 2022 08:17:59 GMT' \
---header 'Digest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=' \
---header 'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI="' \
---header 'platformId: 1' \
+--header 'Authorization: hmac username="KOEfPI", algorithm="sha512", headers="date", signature="33560cfbfe91d98dc4d395de8e212e9f9c8e8d88459c4ac2948962ad5e7ecdd0f23b695d4aacd1ac3a94bf912ece4f61fe9e0a8566b7b016c8a52fc1a0299d3c"' \
 --data '{
-    "requestId": null,
-    "payuId": ["11763053990"],
-    "tokenId": null
+    "payuId": [
+        "999000000000462"
+    ],
+    "requestId": [
+        "999000000000462"
+    ]
 }'
 ```
 
