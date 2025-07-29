@@ -5,7 +5,10 @@ hidden: true
 metadata:
   robots: index
 ---
-The[ L3 field descriptions](#l3-field-descriptions) table provides the list of fields with their length, type and description.
+This section includes the following:
+
+* Using L3 fields in \_payment API section provides JSON object format to include the L3 fields
+* [ L3 field descriptions](#l3-field-descriptions) table provides the list of fields with their length, type and description.
 
 ## Using L3 fields in \_payment API
 
