@@ -33,7 +33,26 @@ When fetching multiple card details, you can limit the number of card details in
 
 ## Request body
 
+<HTMLBlock>{`
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>bin<br/><code>mandatory</code></td>
+      <td><code>Integer</code> Specific output request type:<br/>• <strong>1</strong>: Fetch information for a single BIN level.<br/>• <strong>2</strong>: Fetch specific feature-level BIN list.<br/>• <strong>3</strong>: Fetch all BIN and related information.</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 
+<br />
 
 ## Sample request
 
