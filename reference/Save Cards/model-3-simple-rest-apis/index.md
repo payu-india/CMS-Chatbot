@@ -24,6 +24,8 @@ The Simple Rest APIs to store the cards and manage the tokens:
 
 * [Get Payment Details API](https://docs.payu.in/v2/reference/v2-get-payment-details-api)
 * [Get Payment Instrument API](https://docs.payu.in/v2/reference/v2-get-payment-instrument-api)
+* [Save Card API](https://docs.payu.in/v2/reference/v2_save_card_api)
+* [Delete a Saved Card API](https://docs.payu.in/v2/reference/v2_delete-card-api)
 
 > 📘 Reference:
 >
