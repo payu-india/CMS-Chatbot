@@ -30,7 +30,7 @@ If you are not using the PayU vault, you need to ensure the following:
 * You need to contact your PayU Key Account Manager to get the vault enabled for your merchant ID.
 * After your customer logs on to your website, pass the customer’s user ID to identify and list the user’s saved cards on the PayU Checkout page. This is an extra parameter in the \_payment API with which you already integrated. For more information, refer to [Repeat Transaction Workflow-Model 1](#repeat-transaction-workflow).
 
-For more information on the complete list of parameters for non-seamless flow, refer to the <Anchor label="Collect Payment API - Non-seamless" target="_blank" href="ref:https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment/">Collect Payment API - Non-seamless</Anchor> under API Reference.
+For more information on the complete list of parameters for non-seamless flow, refer to the <Anchor label="Collect Payment API - Non-seamless" target="_blank" href="https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment/">Collect Payment API - Non-seamless</Anchor> under API Reference.
 
 ## First-time transaction workflow
 
