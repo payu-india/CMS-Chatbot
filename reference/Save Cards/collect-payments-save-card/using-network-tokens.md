@@ -26,14 +26,6 @@ HTTP Method: **POST**
 >
 > This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sending the card transaction request in the form of authentication.
 
-## Request Parameters
-
-> 📘 Notes for additional\_info:
->
-> * The last 4 digits of cards is mandatory for all transactions.
-> * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
-> * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
-
 ## Request headers
 
 <V2_payment_header_params />
@@ -130,9 +122,7 @@ HTTP Method: **POST**
 </table>
 `}</HTMLBlock>
 
-###
-
-#### Payment method object
+### Payment method object
 
 <Accordion title="Payment Method Object" icon="fa-code">
   For Cards seamless integration, the payment method object should contain:
@@ -159,7 +149,7 @@ HTTP Method: **POST**
   ```
 </Accordion>
 
-#### Payment Card Object
+### Payment Card Object
 
 For new card payments:
 
@@ -219,7 +209,7 @@ For saved card payments:
 
 <BillingDetails_object />
 
-#### Authorization Object
+### Authorization Object
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -274,9 +264,7 @@ curl -X POST \
   -H 'content-type: application/json' \
   -d {
   "accountId": "smsplus",
-  "referenceId": "b5f2d8785768087678fn4",
-  "currency": "INR",
-  "paymentSource": "WEB",
+  "txnId": "b5f2d8785768087678fn4",
   "paymentMethod": {
     "name": "CreditCard",
     "bankCode": "CC",
