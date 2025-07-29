@@ -10,13 +10,13 @@ metadata:
 next:
   description: ''
 ---
-If you are using PayU Hosted Checkout, you must use [Model 1](#model-1--zero-code-change), where PayU manages everything end-to-end without a single line of code change at your end. For more information on PayU Hosted Checkout integration, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
+If you are using non-seamless integration, you must use [Model 1](#model-1--zero-code-change), where PayU manages everything end-to-end without a single line of code change at your end. For more information on PayU Hosted Checkout integration, refer to [PayU Hosted Checkout](https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment).
 
 For seamless integration, minor changes are expected in the APIs, which is explained in the[ Using Merchant Hosted Checkout Integration](#using-merchant-hosted-checkout-integration) sub-section.
 
-## Processing a Transaction with PayU with Token Created Outside PayU
+## Processing a Transaction with PayU with Token Created Outside PayU
 
-You would need the token, expiry, and TAVV values to be passed using PayU **\_payment** API. Apart from this, no further changes are expected. For more information, refer to [Collect Payments using a Saved Card](doc:collect-payments-using-a-saved-card).
+You would need the token, expiry, and TAVV values to be passed using PayU **v2/payments** API. Apart from this, no further changes are expected. For more information, refer to [Process Transaction with a Saved Card](https://docs.payu.in/v2/reference/process-transaction-with-a-saved-card).
 
 ## Choosing the Tokenzation Model
 
@@ -24,10 +24,10 @@ PayU offers the following models to integrate vault using PayU Hosted Checkout o
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Tokenization_Models-1024x521.png)
 
-* [PayU Hosted Checkout Integration - Model 1](doc:payu-hosted-checkout-integration-with-vault-model-1)
+* [PayU Hosted Checkout Integration - Model 1](https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment)
 * Merchant Hosted Checkout Integration
-  * [Zero Code Change - Model 2](doc:zero-code-change-for-vault-integration-model-2)
-  * [Simple REST APIs - Model 3](doc:simple-rest-apis-for-vault-integration-model-3)
+  * [Zero Code Change - Model 2](https://docs.payu.in/v2/reference/model-2-zero-code-change-for-vault-integration)
+  * [Simple REST APIs - Model 3](#model-3-simple-rest-apis)
 
 ## Using PayU Hosted Checkout Integration
 
@@ -36,7 +36,7 @@ PayU offers the following models to integrate vault using PayU Hosted Checkout o
 If you are using the PayU Hosted Checkout integration and vault, there are no changes required from your side. PayU will manage everything from procuring, managing tokens, consent management, and displaying saved cards on the checkout page end-to-end. To enable vault with PayU Hosted Checkout integration:
 
 * Reach your PayU Key Account Manager to enable vault.
-* If you are not using the PayU vault, the only change required will be passing a user identifie&#x72;*.*
+* If you are not using the PayU vault, the only change required will be passing a user identifier\_.\_
 
 ## Using Merchant Hosted Checkout Integration
 
@@ -44,12 +44,12 @@ PayU offers the following models to use vault with Merchant Hosted Checkout inte
 
 ### Model 2-Zero Code Change
 
-If you are using the Server-to-Server integration, you can choose to have PayU create and manage tokens on your behalf. You need to send an extra parameter in the **\_Payment** API call, and PayU takes care of the vault.
+If you are using the Server-to-Server integration, you can choose to have PayU create and manage tokens on your behalf. You need to send an extra parameter in the **v2/payments** API call, and PayU takes care of the vault. For more information, refer to [Model 2-Zero Code Change for Vault Integration](https://docs.payu.in/v2/reference/model-2-zero-code-change-for-vault-integration).
 
 #### **Pros**
 
 * Zero cost of compliance at your end. PayU will take care of creating, managing, and storing the tokens.
-* Minimal technical changes at you end as you will only need to pass the customer consent to create a token which is one extra parameter in the **\_payment** API.
+* Minimal technical changes at you end as you will only need to pass the customer consent to create a token which is one extra parameter in the **v2/payments** API.
 
 > 📘 Note:
 >
@@ -59,9 +59,12 @@ If you are using the Server-to-Server integration, you can choose to have PayU c
 
 It provides you with complete control and flexibility in creating and managing tokens. The workflow involves:
 
-1. PayU exposes the CRUD APIs which the merchant can call to create and manage the cards
+1. PayU exposes the CRUD APIs which the merchant can call to create and manage the cards:
+   * [Save Card API](https://docs.payu.in/v2/reference/v2_save_card_api)
+   * [Get User Cards API](https://docs.payu.in/v2/reference/v2_get_user_cards_api)
+   * [Delete a Saved Card API](https://docs.payu.in/v2/reference/v2_delete-card-api)
 2. The merchant calls the create token API after payments confirmation to create the token.
-3. The merchant can choose to store the card tokens (including network and issuer token).
+3. The merchant can choose to store the card tokens (including network and issuer token). For more information, refer to [Using Network Tokens](https://docs.payu.in/v2/reference/using-network-tokens).
 
 > 📘 Note:
 >
