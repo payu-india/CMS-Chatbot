@@ -2,7 +2,7 @@
 title: NEFT/RTGS Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
@@ -27,15 +27,81 @@ Integrate <Glossary>TPV</Glossary> through NEFT/RTGS using the procedure describ
 
 Collect or prepare a list of account numbers that must be posted to PayU for TPV at step 2.
 
-## Step 2: Post the parameters to PayU
+This section describes the step-by-step procedure to integrate TPV with non-seamless flow.
 
-With the following additional parameters, make the transaction request with the customer’s bank account number to the PayU using the Collect Payment (**v2/payment**) API. For more information, refer to  <a href="v2_payment_tpv_merchant_hosted_v2_integration" target="_blank">Collect Payments API - TPV</a> under API Reference.
+## Step 2: Post the payment request with PayU
+
+**Environment**
 
 <V2_payment_envrionment />
 
+### Request header
+
+<Accordion title="Request headers" icon="fa-list">
+  <V2_payment_header_params />
+</Accordion>
+
 ### Request parameters
 
-<Table align={["left","left","left"]}>
+<HTMLBlock>{`
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accountId<br/><code>mandatory</code></td>
+<td><code>String</code> Merchant key provided by PayU. Character limit: 50</td>
+<td><code>"smsplus"</code></td>
+</tr>
+<tr>
+<td>txnId<br/><code>mandatory</code></td>
+<td><code>String</code> Unique transaction ID for the transaction. Character limit: 50</td>
+<td><code>"REF_123456789"</code></td>
+</tr>
+<tr>
+<td>order<br/><code>paymentMethod</code></td>
+<td><code>Object</code> JSON object contains payment method details. <a href="#paymentMethod-object">Refer to paymentMethod object</a></td>
+<td><code>{"name": "NetBanking", "bankCode": "AXNBTPV"}</code></td>
+</tr>
+<tr>
+<tr>
+<td>order<br/><code>mandatory</code></td>
+<td><code>Object</code> Order details containing product information and pricing. <a href="#order-object">See order object</a></td>
+<td><code>{"productInfo": "Product Name", "paymentChargeSpecification": {"price": 1000.00}}</code></td>
+</tr>
+<tr>
+<td>billingDetails<br/><code>mandatory</code></td>
+<td><code>Object</code> Customer billing information. <a href="#billingdetails-object">See billingDetails object</a></td>
+<td><code>{"firstName": "John", "email": "john@example.com", "phone": "9876543210"}</code></td>
+</tr>
+<tr>
+<td>callBackActions<br/><code>mandatory</code></td>
+<td><code>Object</code> Callback URLs for different payment outcomes. <a href="#callbackactions-object">See callBackActions object</a></td>
+<td><code>{"successAction": "https://merchant.com/success", "failureAction": "https://merchant.com/failure"}</code></td>
+</tr>
+<tr>
+<td>additionalInfo<br/><code>mandatory</code></td>
+<td><code>Object</code> Additional transaction parameters including flow type. <a href="#additionalinfo-object">For more information, refer to additionalInfo object</a></td>
+<td><code>{"txnFlow": "non-seamless", "enforcePaymethod": "NB"}</code></td>
+  </tr>
+<tr>
+<td>beneficiaryDetail<br/><code>mandatory</code></td>
+<td><code>Object</code> JSON object to include TPV beneficiary details. <a href="#beneficiaryDetail-object">For more information, refer to beneficiaryDetail object</a></td>
+<td><a href="#beneficiaryDetail-object">For more information, refer to beneficiaryDetail object</a></td>
+</tr>
+
+</tbody>
+</table>
+`}</HTMLBlock>
+
+#### paymentMethod Object
+
+<Table>
   <thead>
     <tr>
       <th>
@@ -45,149 +111,199 @@ With the following additional parameters, make the transaction request with the 
       <th>
         Description
       </th>
-
-      <th>
-        Example
-      </th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
       <td>
-        <Glossary>pg</Glossary>
+        name
+        `mandatory`
       </td>
 
       <td>
-        It defines the payment category for which you wish to perform TPV. For Net Banking, pg= ’NEFTRTGS.
-      </td>
-
-      <td>
-        NEFTRTGS
+        `String` Payment method type. Must be set to `"NetBanking"`. Character limit: 10
       </td>
     </tr>
 
     <tr>
       <td>
-        <Glossary>bankcode</Glossary>
+        bankCode
+        `mandatory`
       </td>
 
       <td>
-        The bankcode for the NEFT/RTGS transaction. For more information, refer to [Bank Codes for TPV](doc:bank-codes-for-tpv).
-        This parameter defines the bankcode for NEFT/RTGS. **EFTAXTPV** must be used as bankcode for NEFT/RTGS.
-      </td>
-
-      <td>
-        EFTAXTPV
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        beneficiarydetail
-      </td>
-
-      <td>
-        This is a JSON format text and there should be key named beneficiaryAccountNumber with account number as value and ifscCode with customer IFSC code as value.
-      </td>
-
-      <td>
-        {"{"}`beneficiaryAccountNumber`:`"6612262***5\|323132312***3123"`,`ifscCode`:`"KKBK0006749\|HDFC000231\|SBIN213213213"`}
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        api\_version
-      </td>
-
-      <td>
-        The api\_version “6” must be passed fro this parameter.
-      </td>
-
-      <td>
-        6
+        `String`Bank code for the selected bank. Character limit: 10. For more information, refer to <Anchor label="TPV Codes" target="_blank" href="https://docs.payu.in/docs/bank-codes-for-tp/">TPV Codes</Anchor>
       </td>
     </tr>
   </tbody>
 </Table>
 
-#### Checksum Logic for Hash
+#### beneficiaryDetail Object
 
-The following hash logic must be used for the parameters posted:
+**Sample object**
 
-> 📘 beneficiarydetail parameter in Hashing:
->
-> The **beneficiarydetail** parameter value will be at last or the last value to be appended.
->
-> ```plaintext
-> key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT
-> ```
+```
+{"beneficiaryAccountNumber":"6612262_**5|323132312**_3123", "ifscCode":"KKBK0006749|HDFC000231|SBIN213213213"}
+```
 
-> 📘 Notes:
->
-> * For NEFT/RTGS TPV, merchant should always send both customer account no and customer IFSC Code in Request.
-> * For NEFT/RTGS TPV, the flow will work for **txn\_s2s\_flow = 1** or **txn\_s2s\_flow =** 4 as is. For **txn\_s2s\_flow = 1**, the condition is **payus2s** flag needs to be enabled for that merchant
+<Accordion title="beneficiaryDetail Object" icon="fa-user">
+  <HTMLBlock>{`
+            <table>
+            <thead>
+            <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Example</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>beneficiaryName<br/><code>mandatory</code></td>
+            <td><code>String</code> Name of the beneficiary account holder. Character limit: 100</td>
+            <td><code>"Merchant Account"</code></td>
+            </tr>
+            <tr>
+            <td>beneficiaryAccountNumber<br/><code>mandatory</code></td>
+            <td><code>String</code> Bank account number of the beneficiary. Character limit: 50</td>
+            <td><code>"1234567890"</code></td>
+            </tr>
+            <tr>
+            <td>beneficiaryAccountType<br/><code>mandatory</code></td>
+            <td><code>String</code> Type of beneficiary account (e.g., <code>"SAVINGS"</code>, <code>"CURRENT"</code>). Character limit: 20</td>
+            <td><code>"SAVINGS"</code></td>
+            </tr>
+            </tbody>
+            </table>
+  `}</HTMLBlock>
 
-### Optional configuration
+  #####order object
+</Accordion>
 
-PayU provides an optional **Back to Merchant** button on the payment challan of a NEFT/RTGS payment. This button enables your customer to go back to the merchant portal once the transaction is done.
+<Accordion title="order Object" icon="fa-box">
+  <V2_order_object />
+</Accordion>
 
-*Sample challan of a NEFT/RTGS transaction*
+##### billingDetails object object
 
-<div align="center">
-  <img src="https://files.readme.io/4f959a8-neftrtgs_challan.jpeg" alt="NEFT/RTGS Challan" width="400px" />
-</div>
+<Accordion title="billingDetails Object" icon="fa-code">
+  <BillingDetails_object />
+</Accordion>
+
+##### callBackActions object
+
+<Accordion title="callBackActions Object" icon="fa-globe">
+  <CallbackActions_object />
+</Accordion>
+
+##### additionalInfo object
+
+<Accordion title="additionalInfo Object" icon="fa-info">
+  <HTMLBlock>{`
+            <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+            <tr>
+              <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+              <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+              <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
+              <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method..</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">NB</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+              <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+              <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+            </tr>
+            </tbody>
+            </table>
+  `}</HTMLBlock>
+</Accordion>
 
 ### Sample request
 
-```
-curl -X POST "https://test.payu.in/_payment
--H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d
-
-"key=JP***g&txnid=blMwz0rgz9udtp&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=&productinfo=iPhone&pg=NEFTRTGS&bankcode=EFTAXTPV&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&api_version=6&beneficiarydetail='{\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"KTKB0000046\"}&hash="
+```json
+curl -X POST \
+  https://apitest.payu.in/v2/payments \
+  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
+  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
+  -H 'content-type: application/json' \
+  -d '{
+  "accountId": "smsplus",
+  "referenceId": "REF_" + Math.random().toString(36).substring(7),
+  "paymentMethod": {
+    "name": "NEFTRTGS",
+    "bankCode": "EFTAXTPV"
+  },
+  "order": {
+    "productInfo": "Net Banking Payment",
+    "paymentChargeSpecification": {
+      "price": 10000.00,
+      "convenienceFee": "NB:15"
+    },
+    "userDefinedFields": {
+      "udf1": "NEFT/RTGS Transaction",
+      "udf2": "Seamless Payment"
+    }
+  },
+  "billingDetails": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "9876543210",
+    "address": "123 Main Street",
+    "city": "New Delhi",
+    "state": "Delhi",
+    "country": "India",
+    "zipCode": "110001"
+  },
+  "callBackActions": {
+    "successAction": "https://merchant.com/success",
+    "failureAction": "https://merchant.com/failure",
+    "cancelAction": "https://merchant.com/cancel"
+  },
+  "additionalInfo": {
+    "txnFlow": "seamless",
+    "createOrder": true,
+    "enforcePaymethod": "NB",
+    "txnS2sFlow": "2"
+  },
+  "beneficiaryDetail": {"beneficiaryAccountNumber":"6612262_**5|323132312**_3123", "ifscCode":"KKBK0006749|HDFC000231|SBIN213213213"}
+}'
 ```
 
 ## Step 3: Check the response from PayU
 
-### Hash validation logic for payment response (Reverse Hashing)
-
-While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
-
-The order of the parameters is similar to the following code block:
-
-```
-sha512(SALT|beneficiarydetail|status||||||udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-```
-
 ### Response parameters
 
-The following table describes the parameters in the response from PayU:
+<Accordion title="Response parameters" icon="fa-list">
+  <V2_payment_response_params />
+</Accordion>
 
-| **Param Name**   | **Description**                                                                                                                                                                                                                                                                                                          |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| mihpayid         | It is a unique reference number created for each transaction at PayU’s end. You must note this transaction ID as this will be used as a reference for all the future actions on this transaction like Inquiry or Refund.                                                                                                 |
-| merchantid       | It is the unique ID of the merchant.                                                                                                                                                                                                                                                                                     |
-| txnid            | This parameter would contain the transaction ID value posted by the merchant during the transaction request.                                                                                                                                                                                                             |
-| transaction\_fee | The transaction fee for the TPV transaction. For Net Banking, INR 10 is charged by default.                                                                                                                                                                                                                              |
-| discount         | The discount amount given by bank on the transaction fee (if any).                                                                                                                                                                                                                                                       |
-| amount           | The net amount after discount (if any) is displayed in this parameter. For Net Banking, INR 10 is charged by default.                                                                                                                                                                                                    |
-| paymentgatewayid | The payment gateway identifier for the bank sending the response.                                                                                                                                                                                                                                                        |
-| pg               | The payment gateway used for the transaction. In case of NEFT/RTGS, it is “NEFTRTGS.”                                                                                                                                                                                                                                    |
-| status           | This parameter gives the status of the transaction as either success, failed or pending. Possible values: success, failure, pending If the value of the ‘status’ parameter is ’success’, the transaction is successful. If the value of ‘status’ is ‘failure’ or ‘pending’, must be treated as a failed transaction only |
-| PG\_Type         | The bankcode (as in Merchant Hosted Checkout integration) of the bank is returned in the parameter.                                                                                                                                                                                                                      |
-| key              | This parameter contains the merchant key for the merchant’s account at PayU. It would be the same as the key used while the transaction request is being posted from the merchant’s end to PayU.                                                                                                                         |
-| riskactionStr    | This parameter contains risk action (if any) taken on the account holder.                                                                                                                                                                                                                                                |
-| addedon          | The transaction timestamp is returned in this parameter.                                                                                                                                                                                                                                                                 |
+### Sample response
 
-> 📘 Store **mihpayid** and **txnid** parameter in response:
+<Accordion title="Sample response" icon="fa-code">
+  ```json
+  Array
+  (
+      [txnId] => b5f2d8785768087678fm9
+      [paymentId] => 1999110000001769
+      [message] => Please call verify api to get the transaction status
+  )
+  ```
+</Accordion>
+
+### Verify Payment
+
+> ⚠️ **Important**
 >
-> PayU recommends you to make provisions to store the **mihpayid** and **txnid** parameter values (in the response) in your server as proof that TPV has been completed for a customer.
-
-> 📘 Note on Response:
->
-> For security reasons, the sample response or URL is not included here.
-
-> 📘 Payment verification:
->
-> PayU recommends you. to verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>.
+> After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="ref:v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
