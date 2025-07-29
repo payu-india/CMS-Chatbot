@@ -39,7 +39,7 @@ Request and response elements will remain intact as it is.
 
 ### Request headers
 
-For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-api#request-header">Request headers target="\_blank"</a>
+For more information, refer to <a href="[https://docs.payu.in/v2/reference/](https://docs.payu.in/v2/reference/addl_info-payment-apis#/)">Request headers target="\_blank"</a>
 
 ### Request body
 
