@@ -5,9 +5,9 @@ hidden: false
 metadata:
   robots: index
 ---
-The following table provides the list of fields with their length, type and description.
+The[ L3 field descriptions](#l3-field-descriptions) table provides the list of fields with their length, type and description.
 
-You must use the L3 field similar to the JSON:
+You must use the L3 fields with **\_payment** API similar to the JSON:
 
 ```
 {
@@ -58,8 +58,6 @@ You must use the L3 field similar to the JSON:
   "transactionType": "TICKET_PURCHASE"
 }
 ```
-
-<br />
 
 ## L3 field descriptions
 
