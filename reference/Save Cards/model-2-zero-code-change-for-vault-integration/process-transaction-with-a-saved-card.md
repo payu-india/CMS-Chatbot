@@ -176,6 +176,14 @@ The request body structure for saved card transactions follows the v2 payments A
 
 <BillingDetails_object />
 
+### authorization object fields description
+
+<V2_authorization_cards />
+
+### threeDS2RequestData
+
+<ThreeDSRequestData_object />
+
 ## Sample Request
 
 ```json
@@ -322,4 +330,3 @@ Common error scenarios for saved card transactions:
 ## Reference
 
 After initiating a saved card payment, use the [Verify Payment API](https://docs.payu.in/v2/reference/verify-payment-api/) to check the final transaction status.
-
