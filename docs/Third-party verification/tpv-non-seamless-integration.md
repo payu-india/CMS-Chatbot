@@ -9,15 +9,19 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 
 ## Step 1: Post the payment request with PayU
 
-**Environment**
+<Accordion title="Environment" icon="fa-server">
 
 <V2_payment_envrionment />
 
-## Request header
+</Accordion>
+
+<Accordion title="Request headers" icon="fa-list">
 
 <V2_payment_header_params />
 
-## Request parameters
+</Accordion>
+
+<Accordion title="Request parameters" icon="fa-list">
 
 <HTMLBlock>{`
 <table>
@@ -69,7 +73,9 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 </table>
 `}</HTMLBlock>
 
-### beneficiaryDetail object
+</Accordion>
+
+<Accordion title="beneficiaryDetail Object" icon="fa-user">
 
 <HTMLBlock>{`
 <table>
@@ -100,19 +106,27 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 </table>
 `}</HTMLBlock>
 
-### order Object
+</Accordion>
+
+<Accordion title="order Object" icon="fa-box">
 
 <V2_order_object />
 
-### billingDetails Object
+</Accordion>
+
+<Accordion title="billingDetails Object" icon="fa-code">
 
 <BillingDetails_object />
 
-### callBackActions Object
+</Accordion>
+
+<Accordion title="callBackActions Object" icon="fa-globe">
 
 <CallbackActions_object />
 
-### additionalInfo Object
+</Accordion>
+
+<Accordion title="additionalInfo Object" icon="fa-info">
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -142,5 +156,7 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 </tbody>
 </table>
 `}</HTMLBlock>
+
+</Accordion>
 
 ## Step 2: Check the response from PayU
