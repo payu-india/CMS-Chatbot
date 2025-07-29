@@ -85,7 +85,7 @@ HTTP Method: **POST**
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For more information, refer to <a href="callbackactions-object-fields-description">callBackActions Object Fields Description</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For more information, refer to <a href="#callbackactions-object-fields-description">callBackActions Object Fields Description</a>.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
