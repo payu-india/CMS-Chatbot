@@ -24,8 +24,6 @@ metadata:
 next:
   description: ''
 ---
-# Check is Domestic (Card BIN) API
-
 The **Check is Domestic** or **Card BIN** API is used to detect whether a particular BIN number is international or domestic. It is also useful to determine:
 
 * Card's issuing bank
