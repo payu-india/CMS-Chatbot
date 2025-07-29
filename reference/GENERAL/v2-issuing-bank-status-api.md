@@ -5,6 +5,29 @@ hidden: false
 metadata:
   robots: index
 ---
+**Environment**
+
+<br />
+
+|            |                                                                                      |
+| :--------- | :----------------------------------------------------------------------------------- |
+| Production | [https://info.payu.in/issuing-bank/v1/bin](https://info.payu.in/issuing-bank/v1/bin) |
+| Test       | [https://test.payu.in/issuing-bank/v1/bin](https://test.payu.in/issuing-bank/v1/bin) |
+
+# Request header
+
+<V2_payment_header_params />
+
+<br />
+
+## Request body
+
+<HTMLBlock>{`
+
+`}</HTMLBlock>
+
+<br />
+
 ## Sample request
 
 ```
