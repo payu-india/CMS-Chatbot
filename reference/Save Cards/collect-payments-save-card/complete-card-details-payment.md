@@ -35,13 +35,11 @@ Request and response elements will remain intact as it is.
 | **Test Environment**       | [https://apitest.payu.in/v2/payments](https://apitest.payu.in/v2/payments>) |
 | **Production Environment** | [https://api.payu.in/v2/payments](https://api.payu.in/v2/payments>)         |
 
-## Request parameters
+## Request headers
 
-### Request headers
+<V2_payment_header_params />
 
-For more information, refer to <a href="[https://docs.payu.in/v2/reference/](https://docs.payu.in/v2/reference/addl_info-payment-apis#/)">Request headers target="\_blank"</a>
-
-### Request body
+## Request body
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
