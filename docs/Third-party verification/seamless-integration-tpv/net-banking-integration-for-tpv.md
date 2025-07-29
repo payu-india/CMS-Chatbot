@@ -37,7 +37,7 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 
 </Accordion>
 
-<Accordion title="Request parameters" icon="fa-list">
+##Request parameters
 
 <HTMLBlock>{`
 <table>
@@ -59,6 +59,12 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 <td><code>String</code> Unique transaction ID for the transaction. Character limit: 50</td>
 <td><code>"REF_123456789"</code></td>
 </tr>
+<tr>
+<td>order<br/><code>paymentMethod</code></td>
+<td><code>Object</code> JSON object contains payment method details. <a href="#paymentMethod-object">Refer to paymentMethod object</a></td>
+<td><code>{"name": "NetBanking", "bankCode": "AXNBTPV"}</code></td>
+</tr>
+<tr>
 <tr>
 <td>order<br/><code>mandatory</code></td>
 <td><code>Object</code> Order details containing product information and pricing. <a href="#order-object">See order object</a></td>
@@ -89,8 +95,45 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 </table>
 `}</HTMLBlock>
 
-</Accordion>
+### paymentMethod Object
 
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        name
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Payment method type. Must be set to `"NetBanking"`. Character limit: 10
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankCode
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Bank code for the selected bank. Character limit: 10. For more information, refer to <Anchor label="TPV Codes" target="_blank" href="https://docs.payu.in/docs/bank-codes-for-tp/">TPV Codes</Anchor>
+      </td>
+    </tr>
+  </tbody>
+</Table>
 <Accordion title="beneficiaryDetail Object" icon="fa-user">
 
 <HTMLBlock>{`
@@ -156,8 +199,8 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 <tbody>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method (e.g., CC, DC).</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">CC</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method..</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">NB</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
@@ -175,4 +218,80 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 
 </Accordion>
 
+###Sample request
+```json
+curl -X POST \
+  https://apitest.payu.in/v2/payments \
+  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
+  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
+  -H 'content-type: application/json' \
+  -d '{
+  "accountId": "smsplus",
+  "referenceId": "REF_" + Math.random().toString(36).substring(7),
+  "paymentMethod": {
+    "name": "NetBanking",
+    "bankCode": "AXNBTPV"
+  },
+  "order": {
+    "productInfo": "Net Banking Payment",
+    "paymentChargeSpecification": {
+      "price": 10000.00,
+      "convenienceFee": "NB:15"
+    },
+    "userDefinedFields": {
+      "udf1": "Net Banking Transaction",
+      "udf2": "Seamless Payment"
+    }
+  },
+  "billingDetails": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "9876543210",
+    "address": "123 Main Street",
+    "city": "New Delhi",
+    "state": "Delhi",
+    "country": "India",
+    "zipCode": "110001"
+  },
+  "callBackActions": {
+    "successAction": "https://merchant.com/success",
+    "failureAction": "https://merchant.com/failure",
+    "cancelAction": "https://merchant.com/cancel"
+  },
+  "additionalInfo": {
+    "txnFlow": "seamless",
+    "createOrder": true,
+    "enforcePaymethod": "NB",
+    "txnS2sFlow": "2"
+  },
+  "beneficiaryDetail": {
+    "beneficiaryName": "Merchant Account",
+    "beneficiaryAccountNumber": "1234567890",
+    "beneficiaryAccountType": "SAVINGS"
+  }
+}'
+```
 ## Step 2: Check the response from PayU
+
+### Response parameters
+<Accordion title="Response parameters" icon="fa-list">
+<V2_payment_response_params />
+</Accordion>
+
+### Sample response
+<Accordion title="Sample response" icon="fa-code">
+```json
+Array
+(
+    [txnId] => b5f2d8785768087678fm9
+    [paymentId] => 1999110000001769
+    [message] => Please call verify api to get the transaction status
+)
+```
+</Accordion>
+### Verify Payment
+
+> ⚠️ **Important**
+>
+> After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="ref:v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
