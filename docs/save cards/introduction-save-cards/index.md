@@ -6,7 +6,7 @@ excerpt: >-
   details and provides access to you (merchant) when your customer provides
   his/her user credentials accompanied with or without a card token.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Save Cards Introduction
   description: >-
