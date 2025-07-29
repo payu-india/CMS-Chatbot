@@ -16,7 +16,7 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
 
 When your customer makes payment through UPI, you can validate the customer's Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle.
 
-Validate the VPA (UPI handle) using the **validateVpa** API. For more information, refer to <Anchor label="Validate VPA Handle API" target="_blank" href="https://docs.payu.in/v2/reference/v2_validate_vpa_api">Validate VPA Handle API</Anchor>.
+Validate the VPA (UPI handle) using the **validateVpa** API. For more information, refer to <Anchor label="Validate VPA Handle API" target="_blank" href="https://docs.payu.in/v2/reference/v2-validate-vpa-api/">Validate VPA Handle API</Anchor>.
 
 ### Environment
 
@@ -220,4 +220,4 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 
 > 📘 **Reference:**
 >
-> To check the transaction status, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+> To check the transaction status, refer to <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api">Verify Payment API</Anchor>.
