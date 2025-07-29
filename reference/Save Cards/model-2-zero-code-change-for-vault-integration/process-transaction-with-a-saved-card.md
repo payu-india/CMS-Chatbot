@@ -14,9 +14,9 @@ Process payments using previously saved card tokens through PayU's v2 API. This 
 
 The v2 saved card transaction API enables merchants to process payments using card tokens that were previously stored through PayU's tokenization service. This integration follows the same structure as the standard v2 cards integration but uses a `cardToken` instead of sensitive card details.
 
-> 📘 **Note**
+> 📘 Reference
 >
-> To use saved card transactions, you must first have stored the card using PayU's card tokenization service and obtained a `cardToken`.
+> To use saved card transactions, you must first have stored the card using PayU's card tokenization service and obtained a `cardToken`. You can get the cards stored by a customer using the **Get User Cards** API. For more information on get user cards, refer to [Get User Cards API](ref:v2_get_user_cards_api).
 
 ## Environment
 
