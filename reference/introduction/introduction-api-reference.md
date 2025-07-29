@@ -72,6 +72,7 @@ You can find the following implementation using **v2/payments** API for collecti
   * [Get Payment Details API](https://docs.payu.in/v2/reference/v2-get-payment-details-api)
   * [Get Payment Instrument API](https://docs.payu.in/v2/reference/v2-get-payment-instrument-api)
   * [Save Card API](https://docs.payu.in/v2/reference/v2_save_card_api)
+  * [Delete a Saved Card API](https://docs.payu.in/v2/reference/v2_delete-card-api)
 * [Collect Payments - Save Card](https://docs.payu.in/v2/reference/collect-payments-save-card)
   * [Payment with Zero Code Change](https://docs.payu.in/v2/reference/zero-code-change-payment)
   * [Complete Card Details](https://docs.payu.in/v2/reference/complete-card-details-payment)
