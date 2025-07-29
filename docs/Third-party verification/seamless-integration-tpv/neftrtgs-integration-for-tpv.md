@@ -230,7 +230,7 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 </Accordion>
 
 ### Sample request
-
+<Accordion title="Sample request" icon="fa-code">
 ```json
 curl -X POST \
   https://apitest.payu.in/v2/payments \
@@ -280,7 +280,7 @@ curl -X POST \
   "beneficiaryDetail": {"beneficiaryAccountNumber":"6612262_**5|323132312**_3123", "ifscCode":"KKBK0006749|HDFC000231|SBIN213213213"}
 }'
 ```
-
+</Accordion>
 ## Step 3: Check the response from PayU
 
 ### Response parameters
