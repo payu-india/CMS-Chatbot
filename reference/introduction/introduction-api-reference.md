@@ -60,14 +60,6 @@ You can find the following implementation using **v2/payments** API for collecti
 * [Cards Direct Authorization Flow](https://docs.payu.in/v2/reference/cards-direct-authorization-flow-s2s-v2-_payment)
 * [UPI](https://docs.payu.in/v2/reference/upi-s2s-_payment-v2)
 
-## Subscription
-
-* [Payment Consent Transaction - Non-seamless](https://docs.payu.in/v2/reference/v2-payment-consent-transaction-with-non-seamless-checkout/)
-* [Payment Consent Transaction - Seamless](https://docs.payu.in/v2/reference/v2-payment-consent-transaction-seamless/)
-  * [Net Banking Consent Transaction](https://docs.payu.in/v2/reference/v2-netbanking-recurring-payment-consent-transaction)
-  * [Cards Consent Transaction](https://docs.payu.in/v2/reference/v2-credit-card-recurring-payment-consent-transaction)
-  * [UPI Consent Transaction](https://docs.payu.in/v2/reference/v2-upi-recurring-payment-consent-transaction)
-
 ## Save Cards
 
 * [Simple REST APIs](https://docs.payu.in/v2/reference/model-3-simple-rest-apis)
