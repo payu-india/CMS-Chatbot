@@ -38,16 +38,8 @@ The first-time transaction workflow for Redirection Flow (PayU Hosted) integrati
 
 1. The customer lands on the PayU checkout page.
 2. The customer enters the card details on the PayU Checkout page.
-
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/payu_inititate_transaction-3-1024x986.png" />
-
 3. The customer gives explicit consent to save the cards.
-
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/payu_hosted_model1_customer_gives_consent-3-1024x976.png" />
-
 4. PayU completes the transaction and saves the card in PayU Vault.
-
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/tokenization_payuhosted_model1_customer_enters_otp.png" />
 
 PayU displays the payment confirmation similar to the following screenshot.
 
@@ -58,11 +50,5 @@ PayU displays the payment confirmation similar to the following screenshot.
 The repeat or subsequent transactions workflow for Redirection Flow (PayU Hosted Checkout) integration involves the following steps:
 
 1. The customer lands on the PayU Checkout page.
-
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/payu_model1_repeat_workflow_landing_page-1.png" />
-
 2. The customer is listed with the saved cards on the PayU Checkout page along with the payment options.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/payu_hosted_model1_list_saved_cards_updated.png)
-
 3. The customer only enters the CVV in case of cards and proceeds with the transaction.
