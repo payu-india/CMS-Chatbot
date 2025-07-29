@@ -1,5 +1,5 @@
 ---
-title: v2 Delete Payment Instrument
+title: Delete Payment Instrument
 deprecated: false
 hidden: false
 metadata:
