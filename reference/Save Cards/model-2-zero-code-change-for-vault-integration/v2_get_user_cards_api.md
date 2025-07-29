@@ -15,6 +15,32 @@ The **Get User Cards** API is used to fetch all the cards for a customer which w
 
 HTTP Method: **POST**
 
+## Query parameter
+
+<HTMLBlock>{`
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>userCredential<br/><code>mandatory</code></td>
+      <td><code>String</code> User authentication credential in the format <code>username:userid</code>.</td>
+      <td>testuser:testuser123</td>
+    </tr>
+    <tr>
+      <td>getSoftDeleted<br/><code>optional</code></td>
+      <td><code>Integer</code> Flag to include soft-deleted records in the response. Set to <code>1</code> to include, <code>0</code> to exclude.</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
+
 ## Request header
 
 <Table>
