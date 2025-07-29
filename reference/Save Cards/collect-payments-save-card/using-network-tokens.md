@@ -34,51 +34,103 @@ HTTP Method: **POST**
 > * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
 > * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
 
+## Request headers
+
+<V2_payment_header_params />
+
+## Request body
+
 <HTMLBlock>{`
-curl -X POST \
-  https://apitest.payu.in/v2/payments \
-  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
-  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
-  -H 'content-type: application/json' \
-  -d 
-{
-  "accountId": "smsplus",
-  "referenceId": "b5f2d8785768087678fn5",
-  "currency": "INR",
-  "paymentSource": "WEB",
-  "paymentMethod": {
-    "name": "CreditCard",
-    "bankCode": "CC",
-    "paymentCard": {
-      "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
-      "cardTokenType": "NETWORK",
-      "tavv": "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
-      "last4Digits": "0000",
-      "cvv": "123"
-    }
-  },
-  "order": {
-    "productInfo": "Saved Card Test Product",
-    "paymentChargeSpecification": {
-      "price": 100.00
-    }
-  },
-  "additionalInfo": {
-    "txnS2sFlow": "2",
-    "oneClickCheckout": "1"
-  },
-  "callBackActions": {
-    "successAction": "https://example.com/success",
-    "failureAction": "https://example.com/failure"
-  },
-  "billingDetails": {
-    "firstName": "John",
-    "lastName": "Doe",
-    "phone": "9876543210",
-    "email": "john.doe@example.com"
-  }
-}'
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Reference ID for transaction tracking and this must be unique for every transaction.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br> <code>optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the <code>order.paymentChargeSpecificationparameter.price</code>field will be considered.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Currency of the transaction. By default, <code>INR</code> is posted.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>INR</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentSource<code> optional</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Contains the payment source.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>WEB</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For more information, refer to <a href="#paymentmethod-object-fields-description">paymentMethod object fields description target="_blank" </a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> {<br>        &quot;name&quot;: &quot;NetBanking&quot;,	<br>        &quot;bankCode&quot;: &quot;TESTNB&quot;<br>    }</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-api#order-object-fields-description">order object fields description target="_blank"</a></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-api#additionalinfo-object-fields-description">additionalInfo object fields description target="_blank"</a></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-api#callbackactions-object-fields-description">callbackActions object fields description target="_blank"</a></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="href="https://docs.payu.in/v2/reference/addl_info-payment-api#billingdetails-object-field-descriptions">billingDetails object field descriptions target="_blank"</a>.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+</tbody>
+</table>
 `}</HTMLBlock>
+
+###
 
 #### Payment method object
 
