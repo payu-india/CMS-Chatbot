@@ -1,5 +1,5 @@
 ---
-title: Eligible Bin for EMI API v2
+title: Eligible Bin for EMI API
 excerpt: ''
 deprecated: false
 hidden: false
