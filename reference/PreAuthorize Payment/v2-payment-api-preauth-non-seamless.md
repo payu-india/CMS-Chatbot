@@ -1,5 +1,5 @@
 ---
-title: Preauth Transaction - Non-seamless
+title: Non-seamless - Preauth Transaction
 deprecated: false
 hidden: false
 metadata:
@@ -22,9 +22,7 @@ The Collect Payment API (**v2 Payment** API) with the **preAuthorize=1** in the 
 | **Test Environment**       | \<[https://apitest.payu.in/v2/payments](https://apitest.payu.in/v2/payments) |
 | **Production Environment** | \<[https://api.payu.in/v2/payments>](https://api.payu.in/v2/payments>)       |
 
-## Request parameters
-
-### Request Header
+## Request header
 
 | Parameter     | Description                                                                                                                                                                                                    |
 | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -91,7 +89,7 @@ Where, \<Body data> contains the request Body posted with the request.
   ```
 </details>
 
-### Body
+## Request body
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -176,7 +174,13 @@ Where, \<Body data> contains the request Body posted with the request.
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Methods of payment that are enforced in the payment process. For more information, refer to <a href="https://docs.payu.in/v2/docs/enforce-pay-method-or-remove-category">Enforce Pay Method or Remove Category</a>.</p>
 </td>
+  </tr><tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnFlow<br> <code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Specify "nonseamless" for non-seamless integration.</p>
+</td>
 </tr>
+
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>preAuthorize<br> <code>mandatory for Pre</code></p>
 </td>
