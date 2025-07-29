@@ -78,7 +78,7 @@ Make the transaction request with the payment details along with the card nickna
 
 ## Step 4: Verify the Payment
 
-Verify the transaction details using the Verification APIs. Post the transaction ID using the **verify\_payment** API to verify the payment. For more information, refer to [Verify Payment API](ref:verify_payment_api)/
+Verify the transaction details using the Verification APIs. Post the transaction ID using the **verify\_payment** API to verify the payment. For more information, refer to <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api/">Verify Payment API</Anchor>/
 
 > 📘 Note:
 >
