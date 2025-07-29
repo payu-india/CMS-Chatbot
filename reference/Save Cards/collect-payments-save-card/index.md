@@ -16,9 +16,7 @@ next:
 ---
 When your customer has an account on your shopping website, they may store their card details to use when they revisit your website (repeat payment).
 
-PayU offers you API to save the card details and retrieves them using the Store Card APIs. For example, the stored cards are displayed when your customer performs checkout and lands on the payment page, similar to the following screenshot where they need to enter only the CVV:
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/save_card_checkout-1024x817.jpeg)
+PayU offers you API to save the card details and retrieves them using the Store Card APIs. For example, the stored cards are displayed when your customer performs checkout and lands on the payment page.
 
 This section explains the procedure for getting a customer’s card details and using a saved card to initiate payment.
 
