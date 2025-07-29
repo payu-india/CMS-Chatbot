@@ -13,7 +13,7 @@ metadata:
 next:
   description: ''
 ---
-This scenario is applicable where a customer is providing the complete card number do the transaction (Card number, Expiry, CVV, and name on card) 
+This scenario is applicable where a customer is providing the complete card number do the transaction (card number, card expiry, CVV, and name on card) 
 
 HTTP Method: **POST**
 
