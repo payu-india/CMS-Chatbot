@@ -109,69 +109,108 @@ curl -X POST \
 
 #### Payment Card Object
 
-  For new card payments:
+For new card payments:
 
-  | Parameter      | Type   | Description                        | Required |
-  | -------------- | ------ | ---------------------------------- | -------- |
-  | `cardNumber`   | String | Full card number                   | Yes      |
-  | `validThrough` | String | Card expiry date in MM/YYYY format | Yes      |
-  | `ownerName`    | String | Cardholder name as on card         | No       |
-  | `cvv`          | String | Card Verification Value            | Yes      |
+| Parameter      | Type   | Description                        | Required |
+| -------------- | ------ | ---------------------------------- | -------- |
+| `cardNumber`   | String | Full card number                   | Yes      |
+| `validThrough` | String | Card expiry date in MM/YYYY format | Yes      |
+| `ownerName`    | String | Cardholder name as on card         | No       |
+| `cvv`          | String | Card Verification Value            | Yes      |
 
-  For saved card payments:
+For saved card payments:
 
-  | Parameter       | Type   | Description                        | Required |
-  | --------------- | ------ | ---------------------------------- | -------- |
-  | `cardToken`     | String | Saved card token                   | Yes      |
-  | `cardTokenType` | String | Token type (PAYU, NETWORK, ISSUER) | Yes      |
-  | `tavv`          | String | Cryptogram for saved cards         | Yes      |
-  | `last4Digits`   | String | Last 4 digits of saved card        | Yes      |
-  | `cvv`           | String | Card Verification Value            | Yes      |
+| Parameter       | Type   | Description                        | Required |
+| --------------- | ------ | ---------------------------------- | -------- |
+| `cardToken`     | String | Saved card token                   | Yes      |
+| `cardTokenType` | String | Token type (PAYU, NETWORK, ISSUER) | Yes      |
+| `tavv`          | String | Cryptogram for saved cards         | Yes      |
+| `last4Digits`   | String | Last 4 digits of saved card        | Yes      |
+| `cvv`           | String | Card Verification Value            | Yes      |
 
-  **Example - New Card:**
+**Example - New Card:**
 
-  ```json
-  {
-    "cardNumber": "5004461234560000",
-    "validThrough": "04/2025",
-    "ownerName": "John Doe",
-    "cvv": "123"
-  }
-  ```
+```json
+{
+  "cardNumber": "5004461234560000",
+  "validThrough": "04/2025",
+  "ownerName": "John Doe",
+  "cvv": "123"
+}
+```
 
-  **Example - Saved Card:**
+**Example - Saved Card:**
 
-  ```json
-  {
-    "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
-    "cardTokenType": "NETWORK",
-    "tavv": "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
-    "last4Digits": "0000",
-    "cvv": "123"
-  }
-  ```
-
+```json
+{
+  "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+  "cardTokenType": "NETWORK",
+  "tavv": "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
+  "last4Digits": "0000",
+  "cvv": "123"
+}
+```
 
 #### Order object
 
-  <V2_order_object />
-
+<V2_order_object />
 
 #### Additional Info Object
-  <AdditionalI_Info_object />
+
+<AdditionalI_Info_object />
 
 #### Callback Actions Object
-  <CallbackActions_object />
+
+<CallbackActions_object />
 
 #### Billing Details Object
-  <BillingDetails_object />
+
+<BillingDetails_object />
 
 #### Authorization Object
-  <V2_authorization_cards />
+
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+ <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Field</th>
+ <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+ <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+ <td style="border: 1px solid #ddd; padding: 8px;">eci<br/><code>optional</code></td>
+ <td style="border: 1px solid #ddd; padding: 8px;">Electronic Commerce Indicator.</td>
+ <td style="border: 1px solid #ddd; padding: 8px;">05</td>
+</tr>
+<tr>
+ <td style="border: 1px solid #ddd; padding: 8px;">cavv<br/><code>optional</code></td>
+ <td style="border: 1px solid #ddd; padding: 8px;">Cardholder Authentication Verification Value.</td>
+ <td style="border: 1px solid #ddd; padding: 8px;">AAABAWFlmQAAAABjRWWZEEFgFz</td>
+</tr>
+<tr>
+ <td style="border: 1px solid #ddd; padding: 8px;">threeDSTransID<br/><code>optional</code></td>
+ <td style="border: 1px solid #ddd; padding: 8px;">3DS Transaction ID.</td>
+ <td style="border: 1px solid #ddd; padding: 8px;">67b4c71f-4e6b-4f98-9f2a-1234567890ab</td>
+</tr>
+<tr>
+ <td style="border: 1px solid #ddd; padding: 8px;">threeDSenrolled<br/><code>optional</code></td>
+ <td style="border: 1px solid #ddd; padding: 8px;">Indicates if the card is enrolled in 3D Secure.</td>
+ <td style="border: 1px solid #ddd; padding: 8px;">Y</td>
+</tr>
+<tr>
+ <td style="border: 1px solid #ddd; padding: 8px;">threeDSstatus<br/><code>optional</code></td>
+ <td style="border: 1px solid #ddd; padding: 8px;">Status of the 3D Secure authentication.</td>
+ <td style="border: 1px solid #ddd; padding: 8px;">Success</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
 #### ThreeDS2 Request Data Object
-  <ThreeDSRequestData_object />
 
+<ThreeDSRequestData_object />
 
 ### Sample request
 
@@ -254,7 +293,6 @@ curl -X POST \
   }
   }'
 ```
-
 
 ### Sample response
 
