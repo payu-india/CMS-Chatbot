@@ -2,7 +2,7 @@
 title: Process Transaction with a Saved Card
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
