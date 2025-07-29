@@ -25,19 +25,13 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 
 ## Step 1: Post the payment request with PayU
 
-<Accordion title="Environment" icon="fa-server">
-
 <V2_payment_envrionment />
 
-</Accordion>
-
 <Accordion title="Request headers" icon="fa-list">
-
-<V2_payment_header_params />
-
+  <V2_payment_header_params />
 </Accordion>
 
-##Request parameters
+## Request parameters
 
 <HTMLBlock>{`
 <table>
@@ -134,91 +128,83 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
     </tr>
   </tbody>
 </Table>
+
 <Accordion title="beneficiaryDetail Object" icon="fa-user">
-
-<HTMLBlock>{`
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>beneficiaryName<br/><code>mandatory</code></td>
-<td><code>String</code> Name of the beneficiary account holder. Character limit: 100</td>
-<td><code>"Merchant Account"</code></td>
-</tr>
-<tr>
-<td>beneficiaryAccountNumber<br/><code>mandatory</code></td>
-<td><code>String</code> Bank account number of the beneficiary. Character limit: 50</td>
-<td><code>"1234567890"</code></td>
-</tr>
-<tr>
-<td>beneficiaryAccountType<br/><code>mandatory</code></td>
-<td><code>String</code> Type of beneficiary account (e.g., <code>"SAVINGS"</code>, <code>"CURRENT"</code>). Character limit: 20</td>
-<td><code>"SAVINGS"</code></td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
+  <HTMLBlock>{`
+    <table>
+    <thead>
+    <tr>
+    <th>Parameter</th>
+    <th>Description</th>
+    <th>Example</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>beneficiaryName<br/><code>mandatory</code></td>
+    <td><code>String</code> Name of the beneficiary account holder. Character limit: 100</td>
+    <td><code>"Merchant Account"</code></td>
+    </tr>
+    <tr>
+    <td>beneficiaryAccountNumber<br/><code>mandatory</code></td>
+    <td><code>String</code> Bank account number of the beneficiary. Character limit: 50</td>
+    <td><code>"1234567890"</code></td>
+    </tr>
+    <tr>
+    <td>beneficiaryAccountType<br/><code>mandatory</code></td>
+    <td><code>String</code> Type of beneficiary account (e.g., <code>"SAVINGS"</code>, <code>"CURRENT"</code>). Character limit: 20</td>
+    <td><code>"SAVINGS"</code></td>
+    </tr>
+    </tbody>
+    </table>
+  `}</HTMLBlock>
 </Accordion>
 
 <Accordion title="order Object" icon="fa-box">
-
-<V2_order_object />
-
+  <V2_order_object />
 </Accordion>
 
 <Accordion title="billingDetails Object" icon="fa-code">
-
-<BillingDetails_object />
-
+  <BillingDetails_object />
 </Accordion>
 
 <Accordion title="callBackActions Object" icon="fa-globe">
-
-<CallbackActions_object />
-
+  <CallbackActions_object />
 </Accordion>
 
 <Accordion title="additionalInfo Object" icon="fa-info">
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method..</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">NB</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">nonseamless</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
+  <HTMLBlock>{`
+    <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method..</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">NB</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">nonseamless</td>
+    </tr>
+    </tbody>
+    </table>
+  `}</HTMLBlock>
 </Accordion>
 
-###Sample request
+### Sample request
+
 ```json
 curl -X POST \
   https://apitest.payu.in/v2/payments \
@@ -272,24 +258,28 @@ curl -X POST \
   }
 }'
 ```
+
 ## Step 2: Check the response from PayU
 
 ### Response parameters
+
 <Accordion title="Response parameters" icon="fa-list">
-<V2_payment_response_params />
+  <V2_payment_response_params />
 </Accordion>
 
 ### Sample response
+
 <Accordion title="Sample response" icon="fa-code">
-```json
-Array
-(
-    [txnId] => b5f2d8785768087678fm9
-    [paymentId] => 1999110000001769
-    [message] => Please call verify api to get the transaction status
-)
-```
+  ```json
+  Array
+  (
+      [txnId] => b5f2d8785768087678fm9
+      [paymentId] => 1999110000001769
+      [message] => Please call verify api to get the transaction status
+  )
+  ```
 </Accordion>
+
 ### Verify Payment
 
 > ⚠️ **Important**
