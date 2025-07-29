@@ -22,15 +22,17 @@ You can find the following implementation using **v2/payments** API for collecti
 
 ## General APIs
 
-* [Check Transaction APIs](https://docs.payu.in/v2/reference/v2-check-transaction-apis)
+* **Check Transaction APIs**
   * [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api)
-* [Refund APIs](https://docs.payu.in/v2/reference/refund-apis)
+* **Refund APIs**
   * [Refund Transaction API](https://docs.payu.in/v2/reference/v2-refund-transaction-api)
   * [Refund Status API](https://docs.payu.in/v2/reference/v2-refund-status-api)
 * [Validate VPA API](https://docs.payu.in/v2/reference/v2-validate-vpa-api)
+* **BIN APIs**
+  * [Eligible Bin for EMI API v2](https://docs.payu.in/v2/reference/eligible-bin-for-emi-api-v2)
+  * [Get BIN Info API](https://docs.payu.in/v2/reference/v2-get-bin-info-api)
 * [Get Payment Details API](https://docs.payu.in/v2/reference/v2-get-payment-details-api)
 * [Generate UPI Intent API](https://docs.payu.in/v2/reference/v2-generate-upi-intent-api)
-* [Capture Transaction API](https://docs.payu.in/v2/reference/v2-capture-transaction-api)
 * [Get Checkout Details](https://docs.payu.in/v2/reference/v2-get-checkout-details)
 
 ## Web integration
@@ -85,6 +87,7 @@ You can find the following implementation using **v2/payments** API for collecti
 
 * [Non-Seamless Integration](https://docs.payu.in/v2/reference/v2-payment-api-preauth-non-seamless)
 * [Seamless Integration](https://docs.payu.in/v2/reference/payment-api-preauth-seamless)
+* [Capture Transaction API](https://docs.payu.in/v2/reference/v2-capture-transaction-api)
 
 ## Get support
 
