@@ -18,9 +18,9 @@ For seamless integration, minor changes are expected in the APIs, which is expla
 
 You would need the token, expiry, and TAVV values to be passed using PayU **v2/payments** API. Apart from this, no further changes are expected. For more information, refer to [Process Transaction with a Saved Card](https://docs.payu.in/v2/reference/process-transaction-with-a-saved-card).
 
-## Choosing the Tokenzation Model
+## Choosing the Tokenization Model
 
-PayU offers the following models to integrate vault using PayU Hosted Checkout or Merchant Hosted Checkout integration:
+PayU offers the following models to integrate vault using seamless or non-seamless integration:
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Tokenization_Models-1024x521.png)
 
@@ -36,7 +36,7 @@ PayU offers the following models to integrate vault using PayU Hosted Checkout o
 If you are using the PayU Hosted Checkout integration and vault, there are no changes required from your side. PayU will manage everything from procuring, managing tokens, consent management, and displaying saved cards on the checkout page end-to-end. To enable vault with PayU Hosted Checkout integration:
 
 * Reach your PayU Key Account Manager to enable vault.
-* If you are not using the PayU vault, the only change required will be passing a user identifier\_.\_
+* If you are not using the PayU vault, the only change required will be passing a user identifier,
 
 ## Using Merchant Hosted Checkout Integration
 
