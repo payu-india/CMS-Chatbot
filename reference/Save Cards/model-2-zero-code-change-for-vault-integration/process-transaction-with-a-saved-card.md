@@ -29,6 +29,7 @@ The v2 saved card transaction API enables merchants to process payments using ca
 ## Request Body
 
 The request body structure for saved card transactions follows the v2 payments API format with specific parameters for tokenized cards:
+
 <HTMLBlock>{`
 <table>
   <thead>
@@ -98,6 +99,7 @@ The request body structure for saved card transactions follows the v2 payments A
 `}</HTMLBlock>
 
 ### paymentMethod object fields description
+
 <HTMLBlock>{`
 <table>
   <thead>
@@ -206,15 +208,7 @@ The request body structure for saved card transactions follows the v2 payments A
 
 <BillingDetails_object />
 
-### authorization object fields description
-
-<V2_authorization_cards />
-
-### threeDS2RequestData
-
-<ThreeDSRequestData_object />
-
-## Sample Request
+## Sample request
 
 ```json
 {
@@ -321,6 +315,7 @@ The request body structure for saved card transactions follows the v2 payments A
 
 Common error scenarios for saved card transactions:
 
+<HTMLBlock>{`
 <table>
   <thead>
     <tr>
@@ -356,6 +351,7 @@ Common error scenarios for saved card transactions:
     </tr>
   </tbody>
 </table>
+`}</HTMLBlock>
 
 ## Reference
 
