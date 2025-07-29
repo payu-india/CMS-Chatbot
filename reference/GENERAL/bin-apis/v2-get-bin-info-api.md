@@ -22,7 +22,7 @@ When fetching multiple card details, you can limit the number of card details in
 
 **Environment**
 
-| Environment            | URL                                                                                  |
+|                        |                                                                                      |
 | :--------------------- | :----------------------------------------------------------------------------------- |
 | Test Environment       | [https://test.payu.in/issuing-bank/v1/bin](https://test.payu.in/issuing-bank/v1/bin) |
 | Production Environment | [https://info.payu.in/issuing-bank/v1/bin](https://info.payu.in/issuing-bank/v1/bin) |
