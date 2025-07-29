@@ -114,8 +114,8 @@ curl --location --request DELETE '<info.storecard.service.url>/storecard/card/v1
 
   ```plaintext
   {
-          status: 1,
-          msg: "My_card card deleted successfully",
+      "message": "testAll card deleted successfully",
+      "status": 1
   }
   ```
 
