@@ -18,6 +18,27 @@ The **S2S Eligible BINs** API is similar to the **Get BIN Info** API, but used i
 
 <V2_payment_header_params />
 
+## Query parameters
+
+<HTMLBlock>{`
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>s2s<br/><code>optional</code></td>
+      <td><code>String</code> Flag to indicate server-to-server communication mode.</td>
+      <td>s2s</td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
+
 ## Request body
 
 <HTMLBlock>{`
