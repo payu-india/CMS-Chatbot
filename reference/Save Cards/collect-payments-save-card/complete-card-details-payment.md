@@ -269,10 +269,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 --header 'Cookie: PHPSESSID=sclorpmpb4ngion5e996os22ao' \
 --data-raw '{
     "accountId": "smsplus",
-    "referenceId": "b5f2d8785768087678fn4",
-    "amount": 10,
-    "currency": "INR",
-    "paymentSource": "WEB",
+    "txnId": "b5f2d8785768087678fn4",
     "paymentMethod": {
         "name": "CreditCard",
         "bankCode": "CC",
