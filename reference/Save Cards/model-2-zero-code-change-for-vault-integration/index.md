@@ -2,7 +2,7 @@
 title: Model 2-Zero Code Change
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
