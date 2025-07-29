@@ -95,12 +95,45 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 </table>
 `}</HTMLBlock>
 
-### paymentMethod Object
+### paymentMethod object
 
-| Parameter  | Data Type | Required | Description                                                                                                                                                                                      |
-| ---------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `name`     | String    | Yes      | Payment method type. Must be set to `"NetBanking"`. Character limit: 10                                                                                                                          |
-| `bankCode` | String    | Yes      | Bank code for the selected bank. Character limit: 10. <Anchor label="See Net Banking codes" target="_blank" href="https://docs.payu.in/v1/docs/net-banking-codes">See Net Banking codes</Anchor> |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        name
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Payment method type. Must be set to `"NetBanking"`. Character limit: 10
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankCode
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Bank code for the selected bank. Character limit: 10. <Anchor label="For more information, refer to Net Banking codes" target="_blank" href="https://docs.payu.in/v1/docs/net-banking-codes">For more information, refer to Net Banking codes</Anchor>
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### order Object
 
