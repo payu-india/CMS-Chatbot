@@ -180,7 +180,7 @@ The following table describes the request body parameters:
                                                                 <td style="border: 1px solid #ddd; padding: 8px;">true</td>
                                                               </tr>
                                                               <tr>
-                                                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>txns2sFlow</strong><br/><code>optional</code></td>
+                                                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
                                                                 <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
                                                                 <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
                                                               </tr>
@@ -207,7 +207,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
     },
     "additionalInfo": {
         "vpa": "test@payu",
-         "txnS2sFlow": "seamless"
+         "txnFlow": "seamless"
     },
     "order": {
         "productInfo": "qwertyuiopasdfghjkl",
