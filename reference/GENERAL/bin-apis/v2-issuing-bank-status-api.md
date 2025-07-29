@@ -5,9 +5,9 @@ hidden: false
 metadata:
   robots: index
 ---
-**Environment**
+The **Get Issuing Bank Status** API (**getIssuingBankStatus**) is used to help you handle the credit card or debit card issuing bank downtime.
 
-<br />
+**Environment**
 
 |            |                                                                                      |
 | :--------- | :----------------------------------------------------------------------------------- |
@@ -32,7 +32,7 @@ metadata:
   <tbody>
     <tr>
       <td>bin<br/><code>mandatory</code></td>
-      <td><code>String</code> The first 6 digits of the card number (Bank Identification Number) to get issuing bank information.</td>
+      <td><code>String</code> The first 6 digits of the card number (Bank Identification Number) to get issuing bank status.</td>
       <td>512345</td>
     </tr>
     <tr>
