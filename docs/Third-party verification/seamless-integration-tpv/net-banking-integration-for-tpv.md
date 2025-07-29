@@ -25,13 +25,17 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 
 ## Step 1: Post the payment request with PayU
 
+**Environment**
+
 <V2_payment_envrionment />
+
+### Request header
 
 <Accordion title="Request headers" icon="fa-list">
   <V2_payment_header_params />
 </Accordion>
 
-## Request parameters
+### Request parameters
 
 <HTMLBlock>{`
 <table>
@@ -89,7 +93,7 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 </table>
 `}</HTMLBlock>
 
-### paymentMethod Object
+#### paymentMethod Object
 
 <Table>
   <thead>
@@ -129,77 +133,84 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
   </tbody>
 </Table>
 
+#### beneficiaryDetail Object
+
 <Accordion title="beneficiaryDetail Object" icon="fa-user">
   <HTMLBlock>{`
-    <table>
-    <thead>
-    <tr>
-    <th>Parameter</th>
-    <th>Description</th>
-    <th>Example</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td>beneficiaryName<br/><code>mandatory</code></td>
-    <td><code>String</code> Name of the beneficiary account holder. Character limit: 100</td>
-    <td><code>"Merchant Account"</code></td>
-    </tr>
-    <tr>
-    <td>beneficiaryAccountNumber<br/><code>mandatory</code></td>
-    <td><code>String</code> Bank account number of the beneficiary. Character limit: 50</td>
-    <td><code>"1234567890"</code></td>
-    </tr>
-    <tr>
-    <td>beneficiaryAccountType<br/><code>mandatory</code></td>
-    <td><code>String</code> Type of beneficiary account (e.g., <code>"SAVINGS"</code>, <code>"CURRENT"</code>). Character limit: 20</td>
-    <td><code>"SAVINGS"</code></td>
-    </tr>
-    </tbody>
-    </table>
+        <table>
+        <thead>
+        <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Example</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>beneficiaryName<br/><code>mandatory</code></td>
+        <td><code>String</code> Name of the beneficiary account holder. Character limit: 100</td>
+        <td><code>"Merchant Account"</code></td>
+        </tr>
+        <tr>
+        <td>beneficiaryAccountNumber<br/><code>mandatory</code></td>
+        <td><code>String</code> Bank account number of the beneficiary. Character limit: 50</td>
+        <td><code>"1234567890"</code></td>
+        </tr>
+        <tr>
+        <td>beneficiaryAccountType<br/><code>mandatory</code></td>
+        <td><code>String</code> Type of beneficiary account (e.g., <code>"SAVINGS"</code>, <code>"CURRENT"</code>). Character limit: 20</td>
+        <td><code>"SAVINGS"</code></td>
+        </tr>
+        </tbody>
+        </table>
   `}</HTMLBlock>
+
+#####order object
 </Accordion>
 
 <Accordion title="order Object" icon="fa-box">
   <V2_order_object />
 </Accordion>
 
+#####billingDetails object object
 <Accordion title="billingDetails Object" icon="fa-code">
   <BillingDetails_object />
 </Accordion>
 
+#####callBackActions object
 <Accordion title="callBackActions Object" icon="fa-globe">
   <CallbackActions_object />
 </Accordion>
 
+#####additionalInfo object
 <Accordion title="additionalInfo Object" icon="fa-info">
   <HTMLBlock>{`
-    <table style="width: 100%; border-collapse: collapse;">
-    <thead>
-    <tr>
-      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
-      <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method..</td>
-      <td style="border: 1px solid #ddd; padding: 8px;">NB</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-      <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-      <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
-      <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-      <td style="border: 1px solid #ddd; padding: 8px;">nonseamless</td>
-    </tr>
-    </tbody>
-    </table>
+        <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+          <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+          <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
+          <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method..</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">NB</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+          <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+          <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+        </tr>
+        </tbody>
+        </table>
   `}</HTMLBlock>
 </Accordion>
 
