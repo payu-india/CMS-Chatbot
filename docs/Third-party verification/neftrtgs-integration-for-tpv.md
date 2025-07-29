@@ -31,87 +31,10 @@ Collect or prepare a list of account numbers that must be posted to PayU for TPV
 
 With the following additional parameters, make the transaction request with the customer’s bank account number to the PayU using the Collect Payment (**\_payment**) API. For more information, refer to [Collect Payment API - Merchant Hosted Checkout](doc:_payment_merchant_hosted).
 
-`<PaymentAPIEnvironment />`
+<PaymentAPIEnvironment />
 
 ### Request parameters
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        <Glossary>pg</Glossary>
-      </td>
-
-      <td>
-        It defines the payment category for which you wish to perform TPV. For Net Banking, pg= ’NEFTRTGS.
-      </td>
-
-      <td>
-        NEFTRTGS
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <Glossary>bankcode</Glossary>
-      </td>
-
-      <td>
-        The bankcode for the NEFT/RTGS transaction. For more information, refer to [Bank Codes for TPV](doc:bank-codes-for-tpv).\
-        This parameter defines the bankcode for NEFT/RTGS. **EFTAXTPV** must be used as bankcode for NEFT/RTGS.
-      </td>
-
-      <td>
-        EFTAXTPV
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        beneficiarydetail
-      </td>
-
-      <td>
-        This is a JSON format text and there should be key named beneficiaryAccountNumber with account number as value and ifscCode with customer IFSC code as value.
-      </td>
-
-      <td>
-        \{"beneficiaryAccountNumber":"6612262\_**5|323132312**\_3123",\
-        "ifscCode":"KKBK0006749|HDFC000231|SBIN213213213"}
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        api\_version
-      </td>
-
-      <td>
-        The api\_version “6” must be passed fro this parameter.
-      </td>
-
-      <td>
-        6
-      </td>
-    </tr>
-  </tbody>
-</Table>
 
 #### Checksum Logic for Hash
 
