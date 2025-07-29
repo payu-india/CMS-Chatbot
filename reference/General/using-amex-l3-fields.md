@@ -7,7 +7,9 @@ metadata:
 ---
 The[ L3 field descriptions](#l3-field-descriptions) table provides the list of fields with their length, type and description.
 
-You must use the L3 fields with **\_payment** API similar to the JSON:
+## Using L3 fields in \_payment API
+
+You must use the L3 fields with **\_payment** API similar to the following JSON:
 
 ```
 {
@@ -283,37 +285,37 @@ You must use the L3 fields with **\_payment** API similar to the JSON:
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>DEPARTURE_LOCATION_CODE_SEGMENT_3</td>
+      <td>DEPARTURE_<br/>LOCATION_<br/>CODE_SEGMENT_3</td>
       <td>3</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 3 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>DEPARTURE_DATE_SEGMENT_3</td>
+      <td>DEPARTURE_<br/>DATE_SEGMENT_3</td>
       <td>8</td>
       <td><code>Numeric</code> - Numeric field with maximum length of 8 characters. Can only contain digits.</td>
     </tr>
     <tr>
-      <td>ARRIVAL_LOCATION_CODE_SEGMENT_3</td>
+      <td>ARRIVAL_LOCATION_<br/>CODE_SEGMENT_3</td>
       <td>3</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 3 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>SEGMENT_CARRIER_CODE_3</td>
+      <td>SEGMENT_<br/>CARRIER_CODE_3</td>
       <td>2</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 2 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>SEGMENT_3_FARE_BASIS</td>
+      <td>SEGMENT_3_<br/>FARE_BASIS</td>
       <td>15</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 15 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>CLASS_OF_SERVICE_CODE_SEGMENT_3</td>
+      <td>CLASS_OF_SERVICE_<br/>CODE_SEGMENT_3</td>
       <td>2</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 2 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>FLIGHT_NUMBER_SEGMENT_3</td>
+      <td>FLIGHT_NUMBER_<br/>SEGMENT_3</td>
       <td>4</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 4 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
@@ -323,47 +325,47 @@ You must use the L3 fields with **\_payment** API similar to the JSON:
       <td><code>Numeric</code> - Numeric field with maximum length of 3 characters. Can only contain digits.</td>
     </tr>
     <tr>
-      <td>SEGMENT_3_FARE</td>
+      <td>SEGMENT_3_<br/>FARE</td>
       <td>12</td>
       <td><code>Numeric</code> - Numeric field with maximum length of 12 characters. Can only contain digits.</td>
     </tr>
     <tr>
-      <td>STOPOVER_INDICATOR_4</td>
+      <td>STOPOVER_<br/>INDICATOR_4</td>
       <td>1</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>DEPARTURE_LOCATION_CODE_SEGMENT_4</td>
+      <td>DEPARTURE_LOCATION_<br/>CODE_SEGMENT_4</td>
       <td>3</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 3 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>DEPARTURE_DATE_SEGMENT_4</td>
+      <td>DEPARTURE_DATE_<br/>SEGMENT_4</td>
       <td>8</td>
       <td><code>Numeric</code> - Numeric field with maximum length of 8 characters. Can only contain digits.</td>
     </tr>
     <tr>
-      <td>ARRIVAL_LOCATION_CODE_SEGMENT_4</td>
+      <td>ARRIVAL_<br/>LOCATION_<br/>CODE_SEGMENT_4</td>
       <td>3</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 3 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>SEGMENT_CARRIER_CODE_4</td>
+      <td>SEGMENT_<br/>CARRIER_<br/>CODE_4</td>
       <td>2</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 2 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>SEGMENT_4_FARE_BASIS</td>
+      <td>SEGMENT_4_<br/>FARE_BASIS</td>
       <td>15</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 15 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>CLASS_OF_SERVICE_CODE_SEGMENT_4</td>
+      <td>CLASS_OF_<br/>SERVICE_CODE_<br/>SEGMENT_4</td>
       <td>2</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 2 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>FLIGHT_NUMBER_SEGMENT_4</td>
+      <td>FLIGHT_NUMBER_<br/>SEGMENT_4</td>
       <td>4</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 4 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
@@ -373,17 +375,17 @@ You must use the L3 fields with **\_payment** API similar to the JSON:
       <td><code>Numeric</code> - Numeric field with maximum length of 3 characters. Can only contain digits.</td>
     </tr>
     <tr>
-      <td>SEGMENT_4_FARE</td>
+      <td>SEGMENT_<br/>4_FARE</td>
       <td>12</td>
       <td><code>Numeric</code> - Numeric field with maximum length of 12 characters. Can only contain digits.</td>
     </tr>
     <tr>
-      <td>STOPOVER_INDICATOR_5</td>
+      <td>STOPOVER_<br/>INDICATOR_5</td>
       <td>1</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
-      <td>EXCHANGED/ORIGINAL_TICKET_NUMBER</td>
+      <td>EXCHANGED/ORIGINAL_<br/>TICKET_NUMBER</td>
       <td>14</td>
       <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 14 characters. Can contain letters, numbers, and special characters.</td>
     </tr>
