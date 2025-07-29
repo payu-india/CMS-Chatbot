@@ -85,7 +85,7 @@ The following table describes the request body parameters:
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Contains UPI-specific information including the customer's VPA (UPI handle). For more information, refer to <a href="#additonalinfo-object" additonalInfo object</a></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>{"vpa": "test@payu", "txns2sFlow": "seamless"}</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{"vpa": "test@payu", "txnS2sFlow": "seamless"}</p>
 </td>
 </tr>
 <tr>
@@ -207,7 +207,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
     },
     "additionalInfo": {
         "vpa": "test@payu",
-         "txns2sFlow": "seamless"
+         "txnS2sFlow": "seamless"
     },
     "order": {
         "productInfo": "qwertyuiopasdfghjkl",
