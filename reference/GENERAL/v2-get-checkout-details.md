@@ -1,5 +1,5 @@
 ---
-title: Get Checkout Details
+title: Get Checkout Details API
 deprecated: false
 hidden: false
 metadata:
