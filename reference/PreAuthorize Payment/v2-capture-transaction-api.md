@@ -7,8 +7,9 @@ metadata:
 ---
 This API allows merchants to capture an authorized transaction.
 
-HTTP Method: **POST**
+HTTP Method: **POST**\
 **Environment**
+
 |                        |                                                                  |
 | :--------------------- | :--------------------------------------------------------------- |
 | Production Environment | [https://test.payu.in/v2/refund](https://test.payu.in/v2/refund) |
@@ -20,11 +21,7 @@ HTTP Method: **POST**
 
 ## Request parameters
 
-| Parameter                                | Description                                                                                                                  | Example              |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| amount <br /><code>mandatory</code>      | <code>Number</code> Amount to capture. This should be less than or equal to the authorized amount.                           | 1.0                  |
-| payuId <br /><code>mandatory</code>      | <code>String</code> PayU payment ID. This is the unique identifier assigned by PayU to the transaction during authorization. | 22919645299          |
-| referenceId <br /><code>mandatory</code> | <code>String</code> Reference ID for the transaction. This is the merchant's reference for the transaction.                  | 5ea2ed7ac7756f12a0a1 |
+
 
 ## Sample request
 
