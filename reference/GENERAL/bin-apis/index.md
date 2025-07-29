@@ -9,3 +9,4 @@ This part of the document includes the following BIN APIs used to check the cust
 
 * [Eligible Bin for EMI API ](https://docs.payu.in/v2/reference/eligible-bin-for-emi-api-v2)
 * [Get BIN Info API](https://docs.payu.in/v2/reference/v2-get-bin-info-api)
+* [Check is Domestic Card API](https://docs.payu.in/v2/reference/v2-check-is-domestic-card-api)
