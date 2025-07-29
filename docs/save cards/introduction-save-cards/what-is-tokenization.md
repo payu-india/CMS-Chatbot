@@ -2,7 +2,7 @@
 title: What is Tokenization?
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: What is Tokenization?
   description: >-
