@@ -1,4 +1,5 @@
 - v2-get-payment-details-api
 - v2-get-payment-instrument-api
+- v2-delete-payment-instrument
 - v2_save_card_api
 - v2_delete-card-api
