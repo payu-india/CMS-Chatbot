@@ -4,11 +4,7 @@ deprecated: false
 hidden: false
 metadata:
   title: Authentication with PayU APIs
-  description: >-
-    Learn how to securely authenticate and integrate with PayU India’s APIs.
-    Explore topics such as merchant keys, salt, REST API authentication, hash
-    parameters, and SHA512 encryption. Enhance your payment gateway integration
-    with PayU’s robust security features.
+  description: 'Learn how to securely authenticate and integrate with PayU India’s v2 APIs. '
   keywords:
     - PayU India API authentication
     - Merchant key and salt for PayU APIs
