@@ -1,5 +1,5 @@
 ---
-title: v2 Check is Domestic Card API
+title: Check is Domestic Card API
 deprecated: false
 hidden: false
 metadata:
