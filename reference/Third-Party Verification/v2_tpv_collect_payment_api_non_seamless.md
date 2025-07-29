@@ -61,12 +61,15 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 <td>additionalInfo<br/><code>mandatory</code></td>
 <td><code>Object</code> Additional transaction parameters including flow type. For more information, refer to<a href="#additionalinfo-object"> additionalInfo object</a></td>
 <td><code>{"txnFlow": "non-seamless", "enforcePaymethod": "NB"}</code></td>
+ </tr>
+<tr>
+<td>beneficiaryDetail<br/><code>mandatory</code></td>
+<td>Beneficiary account details for Net Banking transfer. For more information, refer to <a href="#beneficiarydetail-object"> beneficiaryDetail object</a></td>
+<td><code>{"beneficiaryName": "Merchant Account", "beneficiaryAccountNumber": "1234567890", "beneficiaryAccountType": "SAVINGS"}</code></td>
 </tr>
 </tbody>
 </table>
 `}</HTMLBlock>
-
-<br />
 
 ### beneficiaryDetail object
 
