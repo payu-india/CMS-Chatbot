@@ -1,5 +1,5 @@
 ---
-title: v2 Get BIN Info API
+title: Get BIN Info API
 deprecated: false
 hidden: false
 metadata:
