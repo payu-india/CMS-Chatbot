@@ -172,10 +172,17 @@ If successfully fetched:
 
 ### Failure scenarios
 
-* If **var3** (input bank name) does not match with the bank name in the PayU Database, the bin given in the input is of a different bank name:
+* Transaction not found
 
 ```plaintext
-Array (
-[status] => 0
-[msg] => Invalid Bin )
+{
+    "message": "Success",
+    "status": 1,
+    "result": [
+        {
+            "message": "not found",
+            "txnId": "Test1235677235455"
+        }
+    ]
+}
 ```
