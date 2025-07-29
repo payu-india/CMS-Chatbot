@@ -43,8 +43,10 @@ HTTP Method: **POST**
   <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br><strong>mandatory</strong></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>You need post the <strong>txnId</strong> sent by the <strong>v2/payments</strong> API. For more information, refer to any of the following:  </p>
-*   [Collect Payment API - Non-Seamless v2 Payment](https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment)
-*   [Collect Payment API - Seamless v2 Payment](https://docs.payu.in/v2/reference/v2_payment_seamless_integration)
+<ul>
+<li><a href="https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment">Collect Payment API - Non-Seamless v2 Payment</a></li>
+<li><a href="https://docs.payu.in/v2/reference/v2_payment_seamless_integration">Collect Payment API - Seamless v2 Payment</a></li>
+</ul>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>54dzPX68BZzE46Q2VYWw</p>
 </td>
