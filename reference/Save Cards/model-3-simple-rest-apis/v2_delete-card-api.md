@@ -9,7 +9,11 @@ This API is used to delete an existing card stored on PayU Vault.
 
 HTTP Method: **POST**
 
-<br />
+**Environment**
+
+|            |                                                 |
+| :--------- | :---------------------------------------------- |
+| Production | \<info.storecard.service.url>/storecard/card/v1 |
 
 ## Query parameters
 
@@ -88,7 +92,21 @@ HTTP Method: **POST**
 </table>
 `}</HTMLBlock>
 
-##
+## Sample request
+
+```
+curl --location --request DELETE '<info.storecard.service.url>/storecard/card/v1?userCredential=sms%3A123&cardToken=18c7804aafdac732b5e8&networkTokenissuerToken=null&bankType=null' \
+--header 'Content-Type: application/json' \
+--header 'mid: 2' \
+--data '{"userCredential":"sms:123",
+"cardToken" : "1f4463abae4175a70516",
+"networkToken" : "4489682380100740",
+"issuerToken":"src_wqe47hxfjksor89y4",
+"bankType":"SODEXO"
+}'
+```
+
+<br />
 
 ## Sample Response
 
@@ -109,21 +127,3 @@ HTTP Method: **POST**
   "msg": card not found
   }
   ```
-
-## Response parameters
-
-<br />
-
-## Sample request
-
-```
-curl --location --request DELETE '<info.storecard.service.url>/storecard/card/v1?userCredential=sms%3A123&cardToken=18c7804aafdac732b5e8&networkTokenissuerToken=null&bankType=null' \
---header 'Content-Type: application/json' \
---header 'mid: 2' \
---data '{"userCredential":"sms:123",
-"cardToken" : "1f4463abae4175a70516",
-"networkToken" : "4489682380100740",
-"issuerToken":"src_wqe47hxfjksor89y4",
-"bankType":"SODEXO"
-}'
-```
