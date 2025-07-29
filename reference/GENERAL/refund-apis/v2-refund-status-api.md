@@ -15,13 +15,11 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 | Test Environment       | [https://test.payu.in/v2/refundstatus](https://test.payu.in/v2/refundstatus) |
 | Production Environment | [https://info.payu.in/v2/refundstatus](https://info.payu.in/v2/refundstatus) |
 
-## Request parameters
-
-### Request headers
+## Request headers
 
 <V2_payment_header_params />
 
-### Body parameters
+### Request body
 
 > 📘 Note:
 >
@@ -92,7 +90,7 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
   </tbody>
 </Table>
 
-### Sample request
+## Sample request
 
 ```bash
 curl --location 'http://info.payu.in/v2/refunds/status' \
@@ -109,7 +107,7 @@ curl --location 'http://info.payu.in/v2/refunds/status' \
 }'
 ```
 
-### Response parameters
+## Response parameters
 
 | Parameter                            | Description                                               | Example                                    |
 | ------------------------------------ | --------------------------------------------------------- | ------------------------------------------ |
@@ -122,9 +120,9 @@ curl --location 'http://info.payu.in/v2/refunds/status' \
 | splitTransactionDetails              | Array of split transaction details                        | Contains payuId, transactionDetails, etc.  |
 | transactionActionDetails (in splits) | Actions performed on each split transaction               | Contains refund actions and their details  |
 
-### Sample response
+## Sample response
 
-#### Success response
+### Success response
 
 ```json
 {
@@ -225,14 +223,34 @@ curl --location 'http://info.payu.in/v2/refunds/status' \
 }
 ```
 
-#### Failure response
+### Failure scenarios
 
-```json
-{
-  "status": 0,
-  "msg": "0 out of 1 Transactions Fetched Successfully",
-  "transaction_details": {
-    "16988019552": "No action status found value of var1 sent in the request"
-  }
-}
+* Transaction not found for normal merchant
+
+```
+{    "message": "Success",    "status": 1,    "result": []}
+```
+
+* Transaction not found for aggregator merchant
+
+```
+{    "message": "transaction does not exists",    "status": 0,    "traceId": "10.251.120.218-8081-1-24318369-1-1753192554.523"}
+```
+
+* Bad request
+
+```
+{    "timestamp": "2025-07-22T13:56:21.488+00:00",    "status": 400,    "error": "Bad Request",    "path": "/v1/transaction"}
+```
+
+* Invalid merchant
+
+```
+{    "message": "There is no merchant with this mid or key",    "request_id": "9d530d367c3b4e749c8f5c2f693d6e55"}
+```
+
+* Authentication failure
+
+```
+{    "message": "Unauthorized",    "request_id": "44303808ec378607cdf3ab352d7d0845"}
 ```
