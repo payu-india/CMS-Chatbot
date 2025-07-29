@@ -27,7 +27,7 @@ metadata:
 | Field     | Description                                                                                                                                                                      |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | username  | Represents the username or identifier for the client or merchant, in this case, it's "smsplus".                                                                                  |
-| algorithm | Indicates the hashing algorithm used for the HMAC signature. Here, it is set to "sha512".                                                                                        |
+| algorithm | Use Sha512 algorithm for hashing and send this as header value.                                                                                                                  |
 | headers   | Specifies which headers have been used in generating the hash. In this case, only the "date" header is used.                                                                     |
 | signature | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to [hashing algorithm](#hashing-algorithm). |
 
