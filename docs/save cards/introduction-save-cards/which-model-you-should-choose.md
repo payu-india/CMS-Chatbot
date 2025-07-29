@@ -2,7 +2,7 @@
 title: Which Model you Should Choose for Tokenization?
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
