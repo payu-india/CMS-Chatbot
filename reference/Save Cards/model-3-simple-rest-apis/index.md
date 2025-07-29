@@ -1,5 +1,5 @@
 ---
-title: Simple REST APIs
+title: Model 1 - Simple REST APIs
 excerpt: ''
 deprecated: false
 hidden: false
