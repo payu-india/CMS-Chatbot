@@ -32,11 +32,7 @@ The following process diagram illustrates the Merchant Hosted Checkout workflow:
 
 **Step 1:** The customer completes shopping at your website and initiates a transaction with saved card (for example, VISA) credentials.
 
-**Step 2:** The customer enters the CVV and proceeds to complete the payment.
-
-<Image align="center" className="border" border={true} width="300px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/05/MicrosoftTeams-image-1.png" />
-
-**Step 3:** After the credentials are entered, and the payment flow is launched, the user is navigated through a secured PayU environment that reflects the transaction ID.
+**Step 2:** The customer enters the CVV and proceeds to complete the payment.**Step 3:** After the credentials are entered, and the payment flow is launched, the user is navigated through a secured PayU environment that reflects the transaction ID.
 
 **Step 4:** The flow takes the user to the login ACS page of the bank, where the user needs to complete the transaction by using the OTP sent by the bank to the registered mobile number.
 
