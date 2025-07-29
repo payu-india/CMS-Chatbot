@@ -1,10 +1,42 @@
 ---
-title: Delete Card API
+title: Delete a Saved Card API
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
+This API is used to delete an existing card stored on PayU Vault.
+
+HTTP Method: **POST**
+
+## Sample Response
+  * On successful deletion
+
+    ```plaintext
+    {
+            status: 1,
+            msg: "My_card card deleted successfully",
+    }
+    ```
+
+    * On failure of deletion
+
+    ```plaintext
+    {
+    "status": 0,
+    "msg": card not found
+    }
+    ```
+
+
+## Response parameters
+
+
+## Request Parameters
+
+<Accordion title="Reference info for request parameters" icon="fa-flask">
+  <KeyHashForGeneralParametersDescription />
+</Accordion>
 ## Sample request
 
 ```
