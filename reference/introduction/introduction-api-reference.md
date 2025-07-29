@@ -32,6 +32,8 @@ You can find the following implementation using **v2/payments** API for collecti
   * [Eligible Bin for EMI API v2](https://docs.payu.in/v2/reference/eligible-bin-for-emi-api-v2)
   * [Get BIN Info API](https://docs.payu.in/v2/reference/v2-get-bin-info-api)
   * [Check is Domestic Card API](https://docs.payu.in/v2/reference/v2-check-is-domestic-card-api)
+  * [Issuing Bank Status API](https://docs.payu.in/v2/reference/v2-issuing-bank-status-api)
+  * [S2S Eligible BINs API](https://docs.payu.in/v2/reference/v2_s2s-eligible-bins-api)
 * [Get Payment Details API](https://docs.payu.in/v2/reference/v2-get-payment-details-api)
 * [Generate UPI Intent API](https://docs.payu.in/v2/reference/v2-generate-upi-intent-api)
 * [Get Checkout Details](https://docs.payu.in/v2/reference/v2-get-checkout-details)
