@@ -1,7 +1,7 @@
 ---
 title: FlashPay Coupled Flow Android Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
