@@ -18,7 +18,7 @@ metadata:
 next:
   description: ''
 ---
-You can find the following implementation using **v2/payments** API for collecting payments.
+You can find the following API reference pages for **v2** APIs:
 
 ## General APIs
 
