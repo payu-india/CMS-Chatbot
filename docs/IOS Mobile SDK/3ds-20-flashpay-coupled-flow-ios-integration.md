@@ -5,25 +5,42 @@ hidden: true
 metadata:
   robots: index
 ---
-The PayU 3DS 2.0 SDK provides EMVCO-compliant, native cardholder authentication experience for iOS applications. This integration guide covers the complete setup process for implementing secure 3DS 2.0 authentication in your iOS app.
+The PayU 3DS 2.0 SDK with FlashPay provides EMVCo-compliant, native cardholder authentication experience for iOS applications. This comprehensive integration guide covers both decoupled and coupled flow implementations for secure payment processing.
 
-The 3DS 2.0 SDK enables:
+The 3DS 2.0 FlashPay SDK enables:
 
-* **EMVCO Compliance**: Fully compliant with EMVCo 3DS specifications
-* **Native Authentication**: Seamless in-app authentication experience
-* **Biometric Support**: Enhanced security with device biometrics
-* **UI Customization**: Complete control over authentication interface
-* **Challenge Flow Management**: Comprehensive handling of 3DS challenges
+* **EMVCo Compliance**: Fully compliant with EMVCo 3DS 2.0 specifications
+* **Native User Experience**: Seamless in-app authentication with custom UI
+* **Dual Flow Support**: Decoupled device details collection and coupled payment flow
+* **Advanced Security**: Multi-factor authentication with biometric support
+* **Complete Customization**: Full control over UI elements and user experience
+* **Comprehensive Error Handling**: Detailed error codes and handling mechanisms
+
+## Integration Solutions
+
+### Decoupled flow
+
+* Collect device details and render custom UI
+* Handle authentication challenge separately
+* Greater control over user experience
+* Custom UI implementation required
+
+### Coupled flow (Complete Transaction)
+
+* End-to-end payment processing through PayU
+* Simplified integration with minimal custom UI
+* Automatic handling of 3DS challenges
+* Recommended for faster implementation
 
 ## Prerequisites
 
 Before you begin, ensure you have:
 
 * Xcode 12.0 or later
-* iOS 11.0 or later as deployment target
-* Swift 5.0 or later
-* Valid PayU merchant credentials
-* CocoaPods or Swift Package Manager installed
+  * iOS 11.0 or later as deployment target
+    * Swift 5.0 or later
+      * Valid PayU merchant credentials
+        * CocoaPods or Swift Package Manager installed
 
 ## Step 1: Install the SDK
 
@@ -38,7 +55,7 @@ target 'YourApp' do
 end
 ```
 
-Then run:
+Then install using the following command:
 
 ```bash
 pod install
@@ -49,11 +66,13 @@ pod install
 #### Via Xcode
 
 1. Open your project in Xcode
-2. Go to **File > Add Package Dependencies**
-3. Enter the repository URL:
-   ```
-   https://github.com/payu-intrepos/PayU3DS2SDK-iOS
-   ```
+   2. Go to **File > Add Package Dependencies**
+      3. Enter the repository URL:
+
+```
+https://github.com/payu-intrepos/PayU3DS2SDK-iOS
+```
+
 4. Select version `1.3.0` or later
 
 #### Via Package.swift
@@ -76,96 +95,72 @@ dependencies: [
 import PayU3DS2Kit
 ```
 
-## Step 2: Initialize the SDK
+## Step 2: Configure the SDK
 
-Initialize the SDK with your merchant configuration:
+Create a comprehensive SDK configuration:
 
 ```swift
 import PayU3DS2Kit
 
-class ViewController: UIViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initializePayU3DS2SDK()
-    }
-    
-    private func initializePayU3DS2SDK() {
-        let config = PayU3DS2Config()
-        
-        PayU3DS2.initialise(
-            key: "YOUR_MERCHANT_KEY",
-            requestId: "UNIQUE_REQUEST_ID_\(Date().timeIntervalSince1970)",
-            config: config
-        ) { [weak self] response in
-            DispatchQueue.main.async {
-                self?.handleInitializationResponse(response)
-            }
-        }
-    }
-    
-    private func handleInitializationResponse(_ response: PayU3DS2Response) {
-        switch response.status {
-        case .success:
-            print("SDK initialized successfully")
-            // Proceed with device details collection
-            collectDeviceDetails()
-        case .failure:
-            print("SDK initialization failed: \(response.error?.localizedDescription ?? "Unknown error")")
-        }
-    }
-}
-```
-
-### Initialization parameters
-
-| Parameter   | Type           | Description                       | Required |
-| ----------- | -------------- | --------------------------------- | -------- |
-| `key`       | String         | Merchant key provided by PayU     | ✅        |
-| `requestId` | String         | Unique identifier for the request | ✅        |
-| `config`    | PayU3DS2Config | SDK configuration object          | ✅        |
-
-## Step 3: Configure the SDK
-
-Customize the SDK behavior using `PayU3DS2Config`:
-
-```swift
-private func createSDKConfig() -> PayU3DS2Config {
+private func createPayU3DS2Config() -> PayU3DS2Config {
     let config = PayU3DS2Config()
     
     // Environment configuration
     config.isProduction = false // Set to true for production
     
-    // UI customization
-    config.uiCustomisation = createUICustomization()
+    // Fallback and timeout settings
+    config.fallback3DS1 = true
+    config.autoSubmit = false
+    config.initialiseTimeoutTimer = true
     
     // Biometric authentication
     config.enableMFAViaBiometric = true
     
-    // Transaction timeout
-    config.enableTxnTimeoutTimer = true
-    
-    // Progress loader
+    // Progress loader customization
     config.setDefaultProgressLoader(enabled: true, color: "#007BFF")
+    
+    // UI customization
+    config.uiCustomisation = createUICustomization()
+    
+    // Font customization
+    config.fontFamilyCustomisation = createFontCustomization()
     
     return config
 }
+```
 
+### Configuration properties
+
+| Property               | Description                                                                 |
+| ---------------------- | --------------------------------------------------------------------------- |
+| isProduction           | `Boolean` Set environment (true for production). By default, it is "false". |
+| fallback3DS1           | `Boolean`Enable fallback to 3DS 1.0. By default, it is "false".             |
+| autoSubmit             | `Boolean`Automatically submit OTP. By default, it is "false".               |
+| initialiseTimeoutTimer | `Integer`Enable transaction timeout timer. By default, the value is "5".    |
+| enableMFAViaBiometric  | `Boolean`Enable biometric MFA. By default, it is "false".                   |
+
+## Step 3: Customize UI components
+
+### Complete UI customization
+
+```swift
 private func createUICustomization() -> PayU3DS2UICustomisation {
     // Button customization
     let buttonCustomisation = PayU3DS2ButtonCustomisation(
         textFontColor: "#FFFFFF",
         textFontSize: 17,
         backgroundColor: "#007BFF",
-        cornerRadius: 8
+        cornerRadius: 10,
+        resendButtonTextFontColor: "#007BFF",
+        resendButtonBackgroundColor: "#F8F9FA"
     )
     
     // Label customization
     let labelCustomisation = PayU3DS2LabelCustomisation(
-        textFontColor: "#000000",
+        textFontColor: "#333333",
         textFontSize: 16,
-        headingTextFontColor: "#333333",
-        headingTextFontSize: 18
+        headingTextFontColor: "#000000",
+        headingTextFontSize: 20
     )
     
     // TextBox customization
@@ -174,15 +169,18 @@ private func createUICustomization() -> PayU3DS2UICustomisation {
         textFontSize: 16,
         borderColor: "#CCCCCC",
         borderWidth: 1,
-        cornerRadius: 4
+        cornerRadius: 8,
+        backgroundColor: "#FFFFFF",
+        placeholderTextColor: "#999999"
     )
     
     // Toolbar customization
     let toolbarCustomisation = PayU3DS2ToolbarCustomisation(
-        backgroundColor: "#F8F9FA",
+        backgroundColor: "#007BFF",
         buttonText: "Cancel",
-        headerText: "Authentication",
-        textFontColor: "#000000"
+        headerText: "Secure Authentication",
+        textFontColor: "#FFFFFF",
+        textFontSize: 18
     )
     
     return PayU3DS2UICustomisation(
@@ -194,268 +192,383 @@ private func createUICustomization() -> PayU3DS2UICustomisation {
 }
 ```
 
-### Configuration options
-
-| Property                | Type                    | Description                     | Default       |
-| ----------------------- | ----------------------- | ------------------------------- | ------------- |
-| `isProduction`          | Bool                    | Environment setting             | false         |
-| `enableMFAViaBiometric` | Bool                    | Enable biometric authentication | false         |
-| `enableTxnTimeoutTimer` | Bool                    | Enable transaction timeout      | true          |
-| `uiCustomisation`       | PayU3DS2UICustomisation | UI customization settings       | Default theme |
-
-## Step 4: Collect device details
-
-Extract device information required for 3DS authentication:
+### Font family customization
 
 ```swift
-private func collectDeviceDetails() {
-    let cardData = PayU3DS2CardData(
-        scheme: .mastercard, // or .visa, .americanExpress
-        protocolVersion: "2.2.0"
+private func createFontCustomization() -> PayU3DS2FontFamilyCustomisation {
+    return PayU3DS2FontFamilyCustomisation(
+        headerFontFamily: "Roboto-Medium",
+        subTextFontFamily: "Roboto-Regular",
+        buttonFontFamily: "Roboto-Medium",
+        inputFieldFontFamily: "Roboto-Regular"
     )
-    
-    let deviceDetails = PayU3DS2.extractDeviceDetails(cardData: cardData)
-    
-    if let details = deviceDetails {
-        print("Device details collected successfully")
-        // Send device details to your server for ACS URL retrieval
-        sendDeviceDetailsToServer(details)
-    } else {
-        print("Failed to collect device details")
-    }
-}
-
-private func sendDeviceDetailsToServer(_ deviceDetails: PayU3DS2DeviceDetails) {
-    // Implement your server communication logic here
-    // This should include sending device details and receiving challenge parameters
-    
-    // Example server request structure:
-    let requestData = [
-        "deviceDetails": deviceDetails.toDictionary(),
-        "cardNumber": "4111111111111111",
-        "amount": "100.00",
-        "currency": "INR",
-        "merchantId": "YOUR_MERCHANT_ID"
-    ]
-    
-    // After receiving response from server, initiate challenge
-    // initiateChallenge(with: challengeParameters)
 }
 ```
 
-## Step 5: Initiate 3DS challenge
-
-Start the authentication challenge flow:
+### Content customization
 
 ```swift
-private func initiateChallenge(with parameters: PayU3DS2ChallengeParameter) {
-    PayU3DS2.initiateChallenge(
-        challengeParameter: parameters
-    ) { [weak self] response in
-        DispatchQueue.main.async {
-            self?.handleChallengeResponse(response)
-        }
-    }
-}
-
-private func handleChallengeResponse(_ response: PayU3DS2Response) {
-    switch response.status {
-    case .success:
-        print("Challenge completed successfully")
-        handleSuccessfulAuthentication(response)
-    case .failure:
-        print("Challenge failed: \(response.error?.localizedDescription ?? "Unknown error")")
-        handleAuthenticationFailure(response)
-    case .cancelled:
-        print("Challenge cancelled by user")
-        handleAuthenticationCancellation()
-    }
-}
-
-private func handleSuccessfulAuthentication(_ response: PayU3DS2Response) {
-    // Process successful authentication
-    // Extract authentication results and proceed with payment
-    if let authResult = response.authenticationResult {
-        processPayment(with: authResult)
-    }
-}
-
-private func handleAuthenticationFailure(_ response: PayU3DS2Response) {
-    // Handle authentication failure
-    let errorMessage = response.error?.localizedDescription ?? "Authentication failed"
-    showErrorAlert(message: errorMessage)
-}
-
-private func handleAuthenticationCancellation() {
-    // Handle user cancellation
-    showErrorAlert(message: "Authentication was cancelled by user")
-}
-```
-
-### Challenge parameters
-
-```swift
-struct PayU3DS2ChallengeParameter {
-    let acsTransactionId: String
-    let acsReferenceNumber: String
-    let acsSignedContent: String
-    let threeDSServerTransactionId: String
-    // Additional parameters as required
-}
-```
-
-## Step 6: Handle Challenge actions
-
-Manage user interactions during the challenge flow:
-
-```swift
-private func handleChallengeAction(_ action: PayU3DS2ChallengeAction) {
-    switch action.type {
-    case .submit:
-        // Handle OTP submission
-        handleOTPSubmission(action.data)
-    case .resend:
-        // Handle OTP resend request
-        handleOTPResend()
-    case .cancel:
-        // Handle cancellation
-        handleChallengeCancellation()
-    default:
-        print("Unknown challenge action: \(action.type)")
-    }
-}
-
-private func handleOTPSubmission(_ data: [String: Any]) {
-    // Process OTP submission
-    if let otp = data["otp"] as? String {
-        validateOTP(otp)
-    }
-}
-
-private func handleOTPResend() {
-    // Request OTP resend
-    PayU3DS2.resendOTP { response in
-        DispatchQueue.main.async {
-            // Handle resend response
-            print("OTP resend status: \(response.status)")
-        }
-    }
-}
-
-private func validateOTP(_ otp: String) {
-    PayU3DS2.submitOTP(otp) { [weak self] response in
-        DispatchQueue.main.async {
-            self?.handleOTPValidationResponse(response)
-        }
-    }
-}
-```
-
-## Step 7: Complete payment flow
-
-### Using "Everything Through Us" approach
-
-For a fully managed payment experience:
-
-```swift
-private func initiateCompletePayment() {
-    let paymentParams = PayU3DS2PaymentParams(
-        key: "YOUR_MERCHANT_KEY",
-        amount: "100.00",
-        txnId: "TXN_\(Date().timeIntervalSince1970)",
-        productInfo: "Test Product",
-        firstName: "John",
-        email: "john@example.com",
-        phone: "9876543210",
-        surl: "https://example.com/success",
-        furl: "https://example.com/failure"
+private func createContentCustomization() -> PayU3DS2ContentCustomisation {
+    return PayU3DS2ContentCustomisation(
+        merchantName: "Your Store Name",
+        submitButtonTitle: "Verify",
+        resendButtonTitle: "Resend OTP",
+        cancelButtonTitle: "Cancel",
+        otpPlaceholder: "Enter OTP",
+        timerText: "Resend OTP in %d seconds"
     )
+}
+```
+
+## Step 4: Initialize payment
+
+### Basic payment implementation
+
+```swift
+class PaymentViewController: UIViewController {
     
-    // Add card details
-    paymentParams.cardNumber = "4111111111111111"
-    paymentParams.expiryMonth = "12"
-    paymentParams.expiryYear = "2025"
-    paymentParams.cvv = "123"
-    paymentParams.nameOnCard = "JOHN DOE"
+    private let config = createPayU3DS2Config()
     
-    PayU3DS2.initiatePayment(
-        paymentParams: paymentParams,
-        config: createSDKConfig()
-    ) { [weak self] response in
-        DispatchQueue.main.async {
-            self?.handlePaymentResponse(response)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupPaymentFlow()
+    }
+    
+    private func setupPaymentFlow() {
+        let paymentParams = createPaymentParameters()
+        
+        PayU3DS2.initiatePayment(
+            vc: self,
+            config: config,
+            paymentParams: paymentParams,
+            delegate: self
+        )
+    }
+    
+    private func createPaymentParameters() -> PayU3DS2PaymentParam {
+        let paymentParam = PayU3DS2PaymentParam(
+            key: "YOUR_MERCHANT_KEY",
+            transactionId: "TXN_\(Date().timeIntervalSince1970)",
+            amount: "100.00",
+            productInfo: "Test Product",
+            firstName: "John",
+            email: "john@example.com",
+            phone: "9876543210",
+            surl: "https://example.com/success",
+            furl: "https://example.com/failure"
+        )
+        
+        // Add card details
+        paymentParam.cardNumber = "4111111111111111"
+        paymentParam.expiryMonth = "12"
+        paymentParam.expiryYear = "2025"
+        paymentParam.cvv = "123"
+        paymentParam.nameOnCard = "JOHN DOE"
+        
+        // Optional parameters
+        paymentParam.udf1 = "User Defined Field 1"
+        paymentParam.udf2 = "User Defined Field 2"
+        paymentParam.udf3 = "User Defined Field 3"
+        paymentParam.udf4 = "User Defined Field 4"
+        paymentParam.udf5 = "User Defined Field 5"
+        
+        return paymentParam
+    }
+}
+```
+
+### Payment parameters
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Merchant key provided by PayU
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        transactionId
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Unique transaction identifier
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Transaction amount
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productInfo
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Product description
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstName
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Customer first name
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Customer email address
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Customer phone number
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        surl
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Success callback URL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        furl
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Failure callback URL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardNumber
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Card number for payment
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        expiryMonth
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Card expiry month (MM)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        expiryYear
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Card expiry year (YYYY)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cvv
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Card CVV
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        nameOnCard
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Cardholder name
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### Optional Parameters
+
+| Parameter    | Description                     |
+| ------------ | ------------------------------- |
+| udf1 to udf5 | `String`User defined fields     |
+| address1     | `String`Customer address        |
+| address2     | `String`Additional address info |
+| city         | `String`Customer city           |
+| state        | `String`Customer state          |
+| country      | `String`Customer country        |
+| zipcode      | `String`Customer zip code       |
+
+## Step 5: Implement payment delegate
+
+### Complete delegate implementation
+
+```swift
+extension PaymentViewController: PayU3DS2Delegate {
+    
+    func onPaymentSuccess(_ response: [String: Any]) {
+        DispatchQueue.main.async { [weak self] in
+            print("Payment Success: \(response)")
+            self?.handlePaymentSuccess(response)
+        }
+    }
+    
+    func onPaymentFailure(_ response: [String: Any]) {
+        DispatchQueue.main.async { [weak self] in
+            print("Payment Failure: \(response)")
+            self?.handlePaymentFailure(response)
+        }
+    }
+    
+    func onPaymentCancel(_ isTxnInitiated: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            print("Payment Cancelled. Transaction Initiated: \(isTxnInitiated)")
+            self?.handlePaymentCancellation(isTxnInitiated)
+        }
+    }
+    
+    func onError(_ error: [String: Any]) {
+        DispatchQueue.main.async { [weak self] in
+            print("Payment Error: \(error)")
+            self?.handlePaymentError(error)
+        }
+    }
+    
+    func generateHash(
+        _ data: [String: String],
+        onHashGenerated: @escaping ([String: String]) -> Void
+    ) {
+        // Generate hash on your server (recommended) or locally for testing
+        DispatchQueue.global().async {
+            let hashValue = self.generateSHA512Hash(from: data)
+            let hashData = ["payment_hash": hashValue]
+            
+            DispatchQueue.main.async {
+                onHashGenerated(hashData)
+            }
         }
     }
 }
-
-private func handlePaymentResponse(_ response: PayU3DS2PaymentResponse) {
-    switch response.status {
-    case .success:
-        print("Payment successful: \(response.transactionId ?? "")")
-        showSuccessAlert()
-    case .failure:
-        print("Payment failed: \(response.error?.localizedDescription ?? "")")
-        showErrorAlert(message: "Payment failed. Please try again.")
-    case .pending:
-        print("Payment pending verification")
-        showPendingAlert()
-    }
-}
 ```
 
-## Step 8: Check Card Compatibility
-
-Check card compatibility with 3DS versions:
+### Response handling methods
 
 ```swift
-private func checkCardCompatibility(cardNumber: String) {
-    let binInfo = PayU3DS2.cardBinInfo(cardNumber: cardNumber)
+private func handlePaymentSuccess(_ response: [String: Any]) {
+    guard let txnId = response["txnid"] as? String,
+          let amount = response["amount"] as? String else {
+        showAlert(title: "Success", message: "Payment completed successfully")
+        return
+    }
     
-    switch binInfo.threeDSSupport {
-    case .version1:
-        print("Card supports 3DS 1.0")
-        // Handle 3DS 1.0 flow
-    case .version2:
-        print("Card supports 3DS 2.0")
-        // Proceed with 3DS 2.0 flow
-    case .notSupported:
-        print("Card does not support 3DS")
-        // Handle non-3DS flow
-    case .unknown:
-        print("3DS support unknown")
-        // Handle as appropriate
+    let message = "Payment successful!\nTransaction ID: \(txnId)\nAmount: ₹\(amount)"
+    showAlert(title: "Payment Success", message: message) { [weak self] in
+        self?.navigationController?.popViewController(animated: true)
     }
 }
-```
 
-### BIN Info Response
-
-```swift
-struct PayU3DS2BinInfo {
-    let cardScheme: PayU3DS2CardScheme
-    let threeDSSupport: ThreeDSSupport
-    let issuerName: String?
-    let cardType: String?
+private func handlePaymentFailure(_ response: [String: Any]) {
+    let errorMessage = response["error"] as? String ?? "Payment failed"
+    showAlert(title: "Payment Failed", message: errorMessage)
 }
 
-enum ThreeDSSupport {
-    case version1
-    case version2
-    case notSupported
-    case unknown
+private func handlePaymentCancellation(_ isTxnInitiated: Bool) {
+    let message = isTxnInitiated ? 
+        "Payment was cancelled after transaction initiation" : 
+        "Payment was cancelled by user"
+    showAlert(title: "Payment Cancelled", message: message)
+}
+
+private func handlePaymentError(_ error: [String: Any]) {
+    let errorCode = error["code"] as? Int ?? -1
+    let errorMessage = getErrorMessage(for: errorCode)
+    showAlert(title: "Error", message: errorMessage)
 }
 ```
 
-## Step 9: Hash Generation
+## Step 6: Hash Generation
 
-Implement secure hash generation:
+### Secure hash generation
 
 ```swift
 import CryptoKit
 
-private func generateHash(for parameters: [String: String], salt: String) -> String {
-    // Construct hash string based on PayU documentation
-    let hashString = constructHashString(parameters)
+private func generateSHA512Hash(from data: [String: String]) -> String {
+    // Extract required parameters for hash generation
+    let key = data["key"] ?? ""
+    let txnid = data["txnid"] ?? ""
+    let amount = data["amount"] ?? ""
+    let productinfo = data["productinfo"] ?? ""
+    let firstname = data["firstname"] ?? ""
+    let email = data["email"] ?? ""
+    
+    // Construct hash string according to PayU guidelines
+    let hashString = "\(key)|\(txnid)|\(amount)|\(productinfo)|\(firstname)|\(email)|||||||||||"
+    
+    // Add salt (replace with your actual salt)
+    let salt = "YOUR_MERCHANT_SALT"
     let hashInput = hashString + salt
     
     // Generate SHA-512 hash
@@ -464,66 +577,162 @@ private func generateHash(for parameters: [String: String], salt: String) -> Str
     
     return hashed.compactMap { String(format: "%02x", $0) }.joined()
 }
+```
 
-private func constructHashString(_ parameters: [String: String]) -> String {
-    // Construct hash string according to PayU guidelines
-    // Order: key|txnid|amount|productinfo|firstname|email|udf1|udf2|...
-    let orderedKeys = ["key", "txnid", "amount", "productinfo", "firstname", "email"]
+### Server-Side hash generation (recommended)
+
+```swift
+private func generateHashFromServer(
+    _ data: [String: String],
+    completion: @escaping ([String: String]) -> Void
+) {
+    guard let url = URL(string: "https://your-server.com/generate-hash") else {
+        completion(["payment_hash": ""])
+        return
+    }
     
-    return orderedKeys.compactMap { parameters[$0] }.joined(separator: "|")
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+    do {
+        request.httpBody = try JSONSerialization.data(withJSONObject: data)
+    } catch {
+        completion(["payment_hash": ""])
+        return
+    }
+    
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        guard let data = data,
+              let json = try? JSONSerialization.jsonObject(with: data) as? [String: String],
+              let hash = json["hash"] else {
+            completion(["payment_hash": ""])
+            return
+        }
+        
+        completion(["payment_hash": hash])
+    }.resume()
 }
 ```
 
-## Error Handling
+## Error handling
 
-### Common Error Codes
+### Error codes and messages
 
-| Error Code | Description                | Solution                           |
-| ---------- | -------------------------- | ---------------------------------- |
-| `100`      | Transaction timeout        | Check network connection and retry |
-| `101`      | Invalid merchant key       | Verify merchant credentials        |
-| `102`      | Card scheme not supported  | Use supported card types           |
-| `103`      | Device not compatible      | Check device requirements          |
-| `104`      | Invalid card details       | Validate card information          |
-| `105`      | Authentication failed      | Check 3DS configuration            |
-| `106`      | User cancelled transaction | Handle cancellation gracefully     |
-| `107`      | Network error              | Check connectivity and retry       |
+| Error Code | Description                            | Solution                       |
+| ---------- | -------------------------------------- | ------------------------------ |
+| `0`        | Success                                | Payment completed successfully |
+| `1`        | Invalid parameters                     | Check payment parameters       |
+| `2`        | Network error                          | Check internet connection      |
+| `3`        | Invalid merchant key                   | Verify merchant credentials    |
+| `4`        | Invalid card details                   | Validate card information      |
+| `5`        | User cancelled transaction             | Handle cancellation gracefully |
+| `6`        | Hash generation failed                 | Check hash generation logic    |
+| `7`        | 3DS authentication failed              | Retry authentication           |
+| `8`        | Transaction timeout                    | Check network and retry        |
+| `9`        | Card scheme not supported              | Use supported card types       |
+| `10`       | RBA (Risk Based Authentication) failed | Contact PayU support           |
 
-### Error Handling Implementation
+### Error handling implementation
 
 ```swift
-private func handleError(_ error: PayU3DS2Error) {
+private func getErrorMessage(for errorCode: Int) -> String {
+    switch errorCode {
+    case 0:
+        return "Payment completed successfully"
+    case 1:
+        return "Invalid payment parameters. Please check your input."
+    case 2:
+        return "Network error. Please check your internet connection and try again."
+    case 3:
+        return "Invalid merchant configuration. Please contact support."
+    case 4:
+        return "Invalid card details. Please check your card information."
+    case 5:
+        return "Transaction was cancelled by user."
+    case 6:
+        return "Hash generation failed. Please try again."
+    case 7:
+        return "3DS authentication failed. Please retry."
+    case 8:
+        return "Transaction timeout. Please try again."
+    case 9:
+        return "Card scheme not supported. Please use a different card."
+    case 10:
+        return "Risk-based authentication failed. Please contact support."
+    default:
+        return "An unknown error occurred. Please try again."
+    }
+}
+
+private func showAlert(
+    title: String,
+    message: String,
+    completion: (() -> Void)? = nil
+) {
     let alertController = UIAlertController(
-        title: "Error",
-        message: getErrorMessage(for: error.code),
+        title: title,
+        message: message,
         preferredStyle: .alert
     )
     
-    alertController.addAction(UIAlertAction(title: "OK", style: .default))
+    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+        completion?()
+    }
+    
+    alertController.addAction(okAction)
     present(alertController, animated: true)
 }
+```
 
-private func getErrorMessage(for errorCode: Int) -> String {
-    switch errorCode {
-    case 100:
-        return "Transaction timeout. Please try again."
-    case 101:
-        return "Invalid merchant configuration."
-    case 102:
-        return "Card type not supported."
-    case 103:
-        return "Device not compatible with 3DS 2.0."
-    case 104:
-        return "Invalid card details. Please check and try again."
-    case 105:
-        return "Authentication failed. Please retry."
-    case 106:
-        return "Transaction was cancelled."
-    case 107:
-        return "Network error. Please check your connection."
-    default:
-        return "An unknown error occurred."
-    }
+## Advanced features
+
+### Biometric authentication setup
+
+```swift
+private func setupBiometricAuthentication() {
+    let config = PayU3DS2Config()
+    config.enableMFAViaBiometric = true
+    
+    // Configure biometric options
+    config.biometricPromptTitle = "Authenticate Payment"
+    config.biometricPromptSubtitle = "Use your biometric to complete the payment"
+    config.biometricNegativeButtonText = "Use PIN"
+    
+    // Set fallback options
+    config.biometricFallbackToDeviceCredential = true
+}
+```
+
+### Custom progress loader
+
+```swift
+private func setupCustomProgressLoader() {
+    let config = PayU3DS2Config()
+    
+    // Enable custom progress loader
+    config.setDefaultProgressLoader(enabled: true, color: "#007BFF")
+    
+    // Or implement custom loader
+    config.showCustomProgressLoader = false // Disable default
+    
+    // Implement your custom loader in delegate methods
+}
+```
+
+### Environment configuration
+
+```swift
+private func setupEnvironment() {
+    let config = PayU3DS2Config()
+    
+    #if DEBUG
+    config.isProduction = false
+    config.enableDebugMode = true
+    #else
+    config.isProduction = true
+    config.enableDebugMode = false
+    #endif
 }
 ```
 
@@ -533,198 +742,222 @@ private func getErrorMessage(for errorCode: Int) -> String {
 import UIKit
 import PayU3DS2Kit
 
-class PaymentViewController: UIViewController {
+class FlashPayViewController: UIViewController {
     
     @IBOutlet weak var cardNumberTextField: UITextField!
     @IBOutlet weak var expiryTextField: UITextField!
     @IBOutlet weak var cvvTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    private var isSDKInitialized = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        initializePayU3DS2()
     }
     
     private func setupUI() {
+        title = "FlashPay 3DS 2.0"
+        
         payButton.layer.cornerRadius = 8
         payButton.backgroundColor = .systemBlue
+        payButton.setTitle("Pay Now", for: .normal)
+        
         activityIndicator.isHidden = true
+        
+        // Pre-fill with test data in debug mode
+        #if DEBUG
+        setupTestData()
+        #endif
     }
     
-    private func initializePayU3DS2() {
-        showLoading(true)
-        
-        let config = PayU3DS2Config()
-        config.isProduction = false
-        config.uiCustomisation = createUICustomization()
-        config.enableMFAViaBiometric = true
-        
-        PayU3DS2.initialise(
-            key: "YOUR_MERCHANT_KEY",
-            requestId: "REQ_\(Date().timeIntervalSince1970)",
-            config: config
-        ) { [weak self] response in
-            DispatchQueue.main.async {
-                self?.showLoading(false)
-                self?.handleInitializationResponse(response)
-            }
-        }
+    private func setupTestData() {
+        cardNumberTextField.text = "4111111111111111"
+        expiryTextField.text = "12/25"
+        cvvTextField.text = "123"
+        nameTextField.text = "TEST USER"
+        amountTextField.text = "100.00"
     }
     
     @IBAction func payButtonTapped(_ sender: UIButton) {
-        guard isSDKInitialized else {
-            showAlert(message: "SDK not initialized. Please wait.")
-            return
-        }
-        
-        guard validateInputs() else {
-            return
-        }
-        
-        startPaymentFlow()
+        guard validateInputs() else { return }
+        initiatePayment()
     }
     
     private func validateInputs() -> Bool {
         guard let cardNumber = cardNumberTextField.text,
               !cardNumber.isEmpty,
               cardNumber.count >= 13 else {
-            showAlert(message: "Please enter a valid card number")
+            showAlert(title: "Invalid Input", message: "Please enter a valid card number")
             return false
         }
         
         guard let expiry = expiryTextField.text,
               !expiry.isEmpty,
-              expiry.count == 5 else {
-            showAlert(message: "Please enter expiry in MM/YY format")
+              expiry.count >= 5 else {
+            showAlert(title: "Invalid Input", message: "Please enter expiry in MM/YY format")
             return false
         }
         
         guard let cvv = cvvTextField.text,
               !cvv.isEmpty,
               cvv.count >= 3 else {
-            showAlert(message: "Please enter a valid CVV")
+            showAlert(title: "Invalid Input", message: "Please enter a valid CVV")
+            return false
+        }
+        
+        guard let name = nameTextField.text,
+              !name.isEmpty else {
+            showAlert(title: "Invalid Input", message: "Please enter cardholder name")
+            return false
+        }
+        
+        guard let amount = amountTextField.text,
+              !amount.isEmpty,
+              Double(amount) != nil else {
+            showAlert(title: "Invalid Input", message: "Please enter a valid amount")
             return false
         }
         
         return true
     }
     
-    private func startPaymentFlow() {
+    private func initiatePayment() {
         showLoading(true)
         
-        // First check card compatibility
-        let cardNumber = cardNumberTextField.text!
-        let binInfo = PayU3DS2.cardBinInfo(cardNumber: cardNumber)
+        let config = createPayU3DS2Config()
+        let paymentParams = createPaymentParameters()
         
-        if binInfo.threeDSSupport == .version2 {
-            proceed3DS2Flow()
-        } else {
-            showAlert(message: "Card does not support 3DS 2.0")
-            showLoading(false)
-        }
+        PayU3DS2.initiatePayment(
+            vc: self,
+            config: config,
+            paymentParams: paymentParams,
+            delegate: self
+        )
     }
     
-    private func proceed3DS2Flow() {
-        let cardData = PayU3DS2CardData(
-            scheme: .mastercard, // Determine from card number
-            protocolVersion: "2.2.0"
-        )
+    private func createPayU3DS2Config() -> PayU3DS2Config {
+        let config = PayU3DS2Config()
         
-        let deviceDetails = PayU3DS2.extractDeviceDetails(cardData: cardData)
+        // Environment
+        config.isProduction = false
         
-        if let details = deviceDetails {
-            // In a real implementation, send device details to server
-            // and receive challenge parameters
-            initiateChallenge()
-        } else {
-            showAlert(message: "Failed to extract device details")
-            showLoading(false)
-        }
+        // Features
+        config.fallback3DS1 = true
+        config.autoSubmit = false
+        config.enableMFAViaBiometric = true
+        config.initialiseTimeoutTimer = true
+        
+        // UI Customization
+        config.uiCustomisation = createUICustomization()
+        config.fontFamilyCustomisation = createFontCustomization()
+        
+        // Progress loader
+        config.setDefaultProgressLoader(enabled: true, color: "#007BFF")
+        
+        return config
     }
     
-    private func initiateChallenge() {
-        // Create challenge parameters (normally received from server)
-        let challengeParams = PayU3DS2ChallengeParameter(
-            acsTransactionId: "sample_acs_txn_id",
-            acsReferenceNumber: "sample_ref_number",
-            acsSignedContent: "sample_signed_content",
-            threeDSServerTransactionId: "sample_3ds_server_txn_id"
+    private func createPaymentParameters() -> PayU3DS2PaymentParam {
+        let paymentParam = PayU3DS2PaymentParam(
+            key: "YOUR_MERCHANT_KEY",
+            transactionId: "FP_TXN_\(Date().timeIntervalSince1970)",
+            amount: amountTextField.text!,
+            productInfo: "FlashPay Test Product",
+            firstName: "Test",
+            email: "test@example.com",
+            phone: "9876543210",
+            surl: "https://example.com/success",
+            furl: "https://example.com/failure"
         )
         
-        PayU3DS2.initiateChallenge(
-            challengeParameter: challengeParams
-        ) { [weak self] response in
-            DispatchQueue.main.async {
-                self?.showLoading(false)
-                self?.handleChallengeResponse(response)
+        // Card details
+        paymentParam.cardNumber = cardNumberTextField.text!.replacingOccurrences(of: " ", with: "")
+        
+        let expiryComponents = expiryTextField.text!.components(separatedBy: "/")
+        paymentParam.expiryMonth = expiryComponents[0]
+        paymentParam.expiryYear = "20\(expiryComponents[1])"
+        
+        paymentParam.cvv = cvvTextField.text!
+        paymentParam.nameOnCard = nameTextField.text!.uppercased()
+        
+        return paymentParam
+    }
+    
+    private func showLoading(_ show: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            self?.activityIndicator.isHidden = !show
+            self?.payButton.isEnabled = !show
+            
+            if show {
+                self?.activityIndicator.startAnimating()
+            } else {
+                self?.activityIndicator.stopAnimating()
+            }
+        }
+    }
+}
+
+// MARK: - PayU3DS2Delegate
+extension FlashPayViewController: PayU3DS2Delegate {
+    
+    func onPaymentSuccess(_ response: [String: Any]) {
+        showLoading(false)
+        
+        DispatchQueue.main.async { [weak self] in
+            let txnId = response["txnid"] as? String ?? "N/A"
+            let amount = response["amount"] as? String ?? "N/A"
+            let message = "Payment Successful!\n\nTransaction ID: \(txnId)\nAmount: ₹\(amount)"
+            
+            self?.showAlert(title: "Success", message: message) {
+                self?.navigationController?.popViewController(animated: true)
             }
         }
     }
     
-    private func handleInitializationResponse(_ response: PayU3DS2Response) {
-        switch response.status {
-        case .success:
-            isSDKInitialized = true
-            payButton.isEnabled = true
-        case .failure:
-            showAlert(message: "SDK initialization failed")
+    func onPaymentFailure(_ response: [String: Any]) {
+        showLoading(false)
+        
+        DispatchQueue.main.async { [weak self] in
+            let errorMsg = response["error"] as? String ?? "Payment failed"
+            self?.showAlert(title: "Payment Failed", message: errorMsg)
         }
     }
     
-    private func handleChallengeResponse(_ response: PayU3DS2Response) {
-        switch response.status {
-        case .success:
-            showAlert(message: "Authentication successful!")
-        case .failure:
-            showAlert(message: "Authentication failed")
-        case .cancelled:
-            showAlert(message: "Authentication cancelled")
+    func onPaymentCancel(_ isTxnInitiated: Bool) {
+        showLoading(false)
+        
+        DispatchQueue.main.async { [weak self] in
+            let message = isTxnInitiated ? 
+                "Payment cancelled after transaction initiation" : 
+                "Payment cancelled by user"
+            self?.showAlert(title: "Cancelled", message: message)
         }
     }
     
-    private func createUICustomization() -> PayU3DS2UICustomisation {
-        let buttonCustomisation = PayU3DS2ButtonCustomisation(
-            textFontColor: "#FFFFFF",
-            textFontSize: 16,
-            backgroundColor: "#007BFF",
-            cornerRadius: 8
-        )
+    func onError(_ error: [String: Any]) {
+        showLoading(false)
         
-        let labelCustomisation = PayU3DS2LabelCustomisation(
-            textFontColor: "#333333",
-            textFontSize: 14
-        )
-        
-        return PayU3DS2UICustomisation(
-            buttonCustomisation: buttonCustomisation,
-            labelCustomisation: labelCustomisation
-        )
-    }
-    
-    private func showLoading(_ show: Bool) {
-        activityIndicator.isHidden = !show
-        payButton.isEnabled = !show
-        
-        if show {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
+        DispatchQueue.main.async { [weak self] in
+            let errorCode = error["code"] as? Int ?? -1
+            let errorMessage = self?.getErrorMessage(for: errorCode) ?? "Unknown error"
+            self?.showAlert(title: "Error", message: errorMessage)
         }
     }
     
-    private func showAlert(message: String) {
-        let alertController = UIAlertController(
-            title: "3DS Authentication",
-            message: message,
-            preferredStyle: .alert
-        )
-        
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alertController, animated: true)
+    func generateHash(
+        _ data: [String: String],
+        onHashGenerated: @escaping ([String: String]) -> Void
+    ) {
+        // Generate hash (preferably on server)
+        DispatchQueue.global().async { [weak self] in
+            let hash = self?.generateSHA512Hash(from: data) ?? ""
+            
+            DispatchQueue.main.async {
+                onHashGenerated(["payment_hash": hash])
+            }
+        }
     }
 }
 ```
