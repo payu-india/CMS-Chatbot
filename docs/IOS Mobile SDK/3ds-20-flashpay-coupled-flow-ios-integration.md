@@ -1,7 +1,7 @@
 ---
 title: 3DS 2.0 FlashPay Coupled Flow iOS Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
