@@ -59,22 +59,18 @@ config.autoSubmit = false //Set the values as true to submit the OTP automatical
 config.setDefaultProgressLoader(true, "HexColor") //to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode
 
 config.enableMFAViaBiometric = true // if set to true, then during payment via OTP, there will an option to enable biometric authentication. 
-                                    // If selected, the biometric registration process will start after payment success callback is triggered. 
+// If selected, the biometric registration process will start after payment success callback is triggered. 
+```
 
-//To customise UI with your content please pass these configurations
+#### Customise UI with your content
+
+To customise UI with your content,  pass these configurations:
+
+```
 config.enableCustomizedOtpUIFlow = true
 config.enableTxnTimeoutTimer = true //pass as true to show timer for page timeout
 config.merchantName = "merchant name"
 config.amount = "txn amount"
-
-val acsContentConfig = ACSContentConfig()
-acsContentConfig.otpContent = "OTP has been sent to your registered mobile number". //you can set this value to as per your need
-acsContentConfig.resendButtonTitle = //you can set this value to as per your need
-acsContentConfig.submitButtonTitle = //you can set this value to as per your need
-acsContentConfig.resendInfoContent = //you can set this value to as per your need
-acsContentConfig.maxResendInfoContent = //you can set this value to as per your need
-config.acsContentConfig = acsContentConfig
-
 ```
 
 #### ACS content configurations
@@ -83,11 +79,11 @@ Customize OTP and related properties:
 
 ```kotlin
 val acsContentConfig = ACSContentConfig()
-acsContentConfig.otpContent = "OTP has been sent to your registered mobile number"
-acsContentConfig.resendButtonTitle = "Resend OTP"
-acsContentConfig.submitButtonTitle = "Submit"
-acsContentConfig.resendInfoContent = "You can resend OTP after X seconds"
-acsContentConfig.maxResendInfoContent = "Max resend attempts reached"
+acsContentConfig.otpContent = "OTP has been sent to your registered mobile number". //you can set this value to as per your need
+acsContentConfig.resendButtonTitle = //you can set this value to as per your need
+acsContentConfig.submitButtonTitle = //you can set this value to as per your need
+acsContentConfig.resendInfoContent = //you can set this value to as per your need
+acsContentConfig.maxResendInfoContent = //you can set this value to as per your need
 config.acsContentConfig = acsContentConfig
 ```
 
@@ -212,26 +208,32 @@ var uiCustomisation = UICustomisation.Builder()
 Create and configure payment details:
 
 ```kotlin
-var mPaymentParams = PaymentParams()
-mPaymentParams.key = "<Your Key issued by PayU>"
-mPaymentParams.amount = "<Transaction Amount>"
-mPaymentParams.productInfo = "<Product Description>"
-mPaymentParams.firstName = "<Customer First Name>"
-mPaymentParams.email = "<Customer Email>"
-mPaymentParams.txnId = "<Transaction Id>"
-mPaymentParams.surl = "<Success URL>"
-mPaymentParams.furl = "<Failure URL>"
-mPaymentParams.userCredentials = "XXXX:XXXX"
-mPaymentParams.cardNumber = "<Card Number>"
-mPaymentParams.expiryMonth = "<Expiry MM>"
-mPaymentParams.expiryYear = "<Expiry YYYY>"
-mPaymentParams.cvv = "<CVV>"
-mPaymentParams.storeCard = if (true) 1 else 0
+var mPaymentParams =  PaymentParams();
+        mPaymentParams.key = "<Your Key issued by PayU>"
+        mPaymentParams.amount = "<Transaction Amount>"
+        mPaymentParams.productInfo = "<Product Description>"
+        mPaymentParams.firstName = "<Customer First Name>"
+        mPaymentParams.email = "<Customer Email>"
+        mPaymentParams.txnId = "<Transaction Id>"
+        mPaymentParams.surl = "<Success URL>"
+        mPaymentParams.furl = "<Failure URL>"
+        mPaymentParams.termUrl = "<Term URL>"
+        mPaymentParams.udf1 = "<User Defined Fields>"
+        mPaymentParams.udf2 = "<User Defined Fields>"
+        mPaymentParams.udf3 = "<User Defined Fields>"
+        mPaymentParams.udf4 = "<User Defined Fields>"
+        mPaymentParams.udf5 = "<User Defined Fields>"
+        mPaymentParams.cardNumber = "<cardNumber>"
+        mPaymentParams.cardName = "<cardName>"
+        mPaymentParams.nameOnCard = "<cardholderName>"
+        mPaymentParams.expiryMonth = "<expiryMonth>"// MM
+        mPaymentParams.expiryYear = "<expiryYear>"// YYYY
+        mPaymentParams.cvv = "<cvv>"
+        mpaymentParams.storeCard = if (true) 1 else 0
+
 ```
 
-### Payment parameters
-
-> 📘 All parameters mandatory
+### Required payment parameters
 
 | Parameter     | Description             |
 | ------------- | ----------------------- |
@@ -240,7 +242,7 @@ mPaymentParams.storeCard = if (true) 1 else 0
 | `productInfo` | Product Description     |
 | `firstName`   | Customer First Name     |
 | `email`       | Customer Email          |
-| `txnId`       | Transaction Id          |
+| `txnId`       | Transaction ID          |
 | `surl`        | Success URL             |
 | `furl`        | Failure URL             |
 | `cardNumber`  | Card Number             |
@@ -248,23 +250,13 @@ mPaymentParams.storeCard = if (true) 1 else 0
 | `expiryYear`  | Expiry YYYY             |
 | `cvv`         | CVV                     |
 
-<Cards columns={4}>
-  <Card title="First Card" href="https://readme.com" icon="fa-home" target="_blank">
-    Neque porro quisquam est qui dolorem ipsum quia
-  </Card>
+To make payment using saved card, pass both network token and card token:
 
-  <Card title="Second Card" icon="fa-user">
-    *Lorem ipsum dolor sit amet, consectetur adipiscing elit*
-  </Card>
-
-  <Card title="Third Card" icon="fa-star">
-    > Ut enim ad minim veniam, quis nostrud ullamco
-  </Card>
-
-  <Card title="Fourth Card" icon="fa-question">
-    **Excepteur sint occaecat cupidatat non proident**
-  </Card>
-</Cards>
+```
+        mpaymentParams.userCredentials = "XXXX:XXXX"
+        mpaymentParams.networkToken = <Network Token>
+        mpaymentParams.cardToken = <Card Token>
+```
 
 > 📘 Saved Card Payments
 >
@@ -310,14 +302,18 @@ hashGenerationListener.onHashGenerated(hashMap)
 2. Optionally append `postSalt` if provided
 3. Use `SHA-512` on the final string to return the computed hash
 
-### Hash Generation Notes
+> 📘 Hash Generation notes:
+>
+> * Append your `salt` to the `hashString` and use SHA-512 to generate the hash
+> * If `postSalt` is provided, append it to the hashString after adding salt before hashing
 
-* Append your `salt` to the `hashString` and use SHA-512 to generate the hash
-* If `postSalt` is provided, append it to the hashString after adding salt before hashing
+### MFA registration status
 
-### Biometric Registration
+It has a boolean parameter to determine the biometric registration status success/failure.
 
-* **Biometric Registration Status**: Biometric registration (MFA) success/failure can be determined via a callback
+```
+fun mfaRegistrationstatus(status: Boolean)
+```
 
 ## Error codes
 
