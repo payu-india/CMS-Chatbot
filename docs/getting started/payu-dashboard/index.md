@@ -1,5 +1,5 @@
 ---
-title: Explore Dashboard
+title: Dashboard for v2 APIs
 excerpt: ''
 deprecated: false
 hidden: true
@@ -10,13 +10,9 @@ metadata:
 next:
   description: ''
 ---
-The PayU Dashboard allows you to view your account’s recent activity, transaction history, configure offers & promotions, send payment links to your customers, or create payment buttons easily. Also, configure brand settings, profile information, and collate your sales and payments from your businesses on eCommerce platforms or plugin integrations.
+There are no changes in PayU Dashboard for v2 APIs. You can find a drop-down menu similar to the following screenshot for each feature:
 
-To access the Dashboard, you need to register on the PayU website. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
-
-The features grouped by sections on the Dashboard navigation menu (on the left pane):
-
-## Business Summary
+The user guide to access the features is same as in v1, which include the following:
 
 **[Business Summary](doc:business-summary)**: Snapshot of your account’s data points, including Transaction Value, No. of transactions, Success Rate, Transaction Trend, KYC status (if incomplete), etc.
 
