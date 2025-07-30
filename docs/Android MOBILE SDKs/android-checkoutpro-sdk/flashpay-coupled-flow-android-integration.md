@@ -19,6 +19,8 @@ implementation 'in.payu:threeds-sdk:X.X.X'
 
 ### Payment initialization method
 
+Call the following `initiatePayment` method to initiate payment through us and we will return success or failure callback post transaction completion. This method will internally call Authentication request (/\_payment), collect device detail, call binInfo API, present the native OTP screen and do the authorization too.
+
 Use the `initiatePayment` method:
 
 ```kotlin
@@ -43,18 +45,36 @@ fun initiatePayment(
 
 Define and configure details for the SDK:
 
+> 📘 Note:
+>
+> For uiCustomisation object initialisation, refer to [UI customization](#ui-customization).
+
 ```kotlin
+PayU3DS2Config: It contains below properties
 var config = PayU3DS2Config()
-config.uiCustomisation = "set UI customisation object, refer below section of UI Customisation"
-config.isProduction = true // true for production, false for sandbox
-config.autoRead = false // Auto-read OTP, default is false.
-config.autoSubmit = false // Auto-submit OTP, default is false.
-config.setDefaultProgressLoader(true, "HexColor") // Custom or default progress loader
-config.enableMFAViaBiometric = true // Biometric registration after payment success
-config.enableCustomizedOtpUIFlow = true // Customized OTP UI
-config.enableTxnTimeoutTimer = true // Enable timeout timer for pages
-config.merchantName = "<merchant name>"
-config.amount = "<txn amount>"
+config.uiCustomisation = "set UI customisation object, refer below section of UI Customisation" // 
+config.isProduction = "set environment where you want to test, true for production and false for sandbox"
+config.autoRead = false //Set the values as true to allow auto-read OTP and fill in the OTP field. By default, the value is false.
+config.autoSubmit = false //Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
+config.setDefaultProgressLoader(true, "HexColor") //to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode
+
+config.enableMFAViaBiometric = true // if set to true, then during payment via OTP, there will an option to enable biometric authentication. 
+                                    // If selected, the biometric registration process will start after payment success callback is triggered. 
+
+//To customise UI with your content please pass these configurations
+config.enableCustomizedOtpUIFlow = true
+config.enableTxnTimeoutTimer = true //pass as true to show timer for page timeout
+config.merchantName = "merchant name"
+config.amount = "txn amount"
+
+val acsContentConfig = ACSContentConfig()
+acsContentConfig.otpContent = "OTP has been sent to your registered mobile number". //you can set this value to as per your need
+acsContentConfig.resendButtonTitle = //you can set this value to as per your need
+acsContentConfig.submitButtonTitle = //you can set this value to as per your need
+acsContentConfig.resendInfoContent = //you can set this value to as per your need
+acsContentConfig.maxResendInfoContent = //you can set this value to as per your need
+config.acsContentConfig = acsContentConfig
+
 ```
 
 #### ACS content configurations
@@ -73,109 +93,14 @@ config.acsContentConfig = acsContentConfig
 
 #### Configuration properties
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Property
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Default
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `isProduction`
-      </td>
-
-      <td>
-        true for production, false for sandbox
-      </td>
-
-      <td>
-        *
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `autoRead`
-      </td>
-
-      <td>
-        Auto-read OTP
-      </td>
-
-      <td>
-        false
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `autoSubmit`
-      </td>
-
-      <td>
-        Auto-submit OTP
-      </td>
-
-      <td>
-        false
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `enableMFAViaBiometric`
-      </td>
-
-      <td>
-        Biometric registration after payment success
-      </td>
-
-      <td>
-        *
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `enableCustomizedOtpUIFlow`
-      </td>
-
-      <td>
-        Customized OTP UI
-      </td>
-
-      <td>
-        *
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `enableTxnTimeoutTimer`
-      </td>
-
-      <td>
-        Enable timeout timer for pages
-      </td>
-
-      <td>
-        *
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Property                    | Description                                    |
+| :-------------------------- | :--------------------------------------------- |
+| `isProduction`              | true for production, false for sandbox         |
+| `autoRead`                  | Auto-read OTP. The default value is "false".   |
+| `autoSubmit`                | Auto-submit OTP. The default value is "false". |
+| `enableMFAViaBiometric`     | Biometric registration after payment success   |
+| `enableCustomizedOtpUIFlow` | Customized OTP UI                              |
+| `enableTxnTimeoutTimer`     | Enable timeout timer for pages                 |
 
 #### Configuration Notes
 
