@@ -20,9 +20,7 @@ PayU 3DS SDK offers two types of solutions for transaction processing:
 * End-to-end payment processing through PayU
 * Simplified integration with built-in authentication handling
 
-## Details of Integration
-
-### Install the SDK in your app project (mandatory)
+### Step 1. Install the SDK in your app project (mandatory)
 
 #### CocoaPods Integration
 
@@ -65,7 +63,7 @@ Add the following import in the class where you need to initiate a payment:
 import PayU3DS2Kit
 ```
 
-## SDK Configurations
+## Step 2: Configure SDK
 
 Configure the SDK using the `PayU3DS2Config` object with the following properties:
 
@@ -103,7 +101,7 @@ config.acsContentConfig?.maxResendInfoContent = "Max Retry Content"
 | `enableCustomizedOtpUIFlow` | Enable customized OTP UI flow                                                  |
 | `enableTxnTimeoutTimer`     | Enable transaction timeout timer                                               |
 
-## UI customization
+## Step 3: UI customization
 
 ### Button customization
 
@@ -161,7 +159,7 @@ var fontFamilyCustomisation = PayU3DS2FontFamilyCustomisation(
 )
 ```
 
-## SDK Initialisation
+## Step 4: SDK Initialisation
 
 ### Payment Initiation Method
 
@@ -174,7 +172,7 @@ PayU3DS2.initiatePayment(
 )
 ```
 
-### Payment Parameters Setup
+### Payment parameters setup
 
 ```swift
 let paymentParam = PayU3DS2PaymentParam(
@@ -203,7 +201,7 @@ cardDetails.cvv = "123"
 paymentParam.cardinfo = cardDetails
 ```
 
-### Required Parameters
+### Request parameters
 
 > 📘 All the parameters are mandatory
 
