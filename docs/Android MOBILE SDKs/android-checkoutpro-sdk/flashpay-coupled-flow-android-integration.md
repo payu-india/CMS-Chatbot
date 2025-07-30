@@ -346,44 +346,6 @@ private fun showError(message: String) {
 }
 ```
 
-## Testing and Validation
-
-### Test Environment Setup
-
-```kotlin
-val testConfig = PayU3DS2Config().apply {
-    isProduction = false  // Use test environment
-    // ... other configurations
-}
-```
-
-### Test Card Details
-
-Use these test card numbers for integration testing:
-
-| Card Type        | Card Number      | CVV  | Expiry |
-| ---------------- | ---------------- | ---- | ------ |
-| Visa             | 4111111111111111 | 123  | 12/25  |
-| Mastercard       | 5555555555554444 | 123  | 12/25  |
-| American Express | 378282246310005  | 1234 | 12/25  |
-
-## Best Practices
-
-1. **Security**
-   * Always generate hash on server-side
-   * Never store sensitive card data
-   * Use HTTPS for all communications
-
-2. **User Experience**
-   * Implement proper loading states
-   * Provide clear error messages
-   * Handle network interruptions gracefully
-
-3. **Performance**
-   * Initialize SDK only when needed
-   * Implement proper memory management
-   * Use background threads for network calls
-
 ## Complete Integration Example
 
 Here's a complete example of FlashPay integration:
