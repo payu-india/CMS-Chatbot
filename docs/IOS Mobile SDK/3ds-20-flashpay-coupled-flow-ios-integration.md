@@ -188,7 +188,7 @@ var fontFamilyCustomisation = PayU3DS2FontFamilyCustomisation(
 
 > 🚧 3DS Warnings:
 >
-> The result for device security checks like rootedDevice, isDebuggable, isEmulator and is OS Supported will be provided in result of init as given in above code example 2.1.4. It is left with the requestor app to handle the warnings as per the requirement.
+> The result for device security checks like rootedDevice, isDebuggable, isEmulator and is OS Supported will be provided in result of init as given in above sample code. It is upto requestor app to handle the warnings as per the requirement.
 
 ## Step 4: SDK Initialisation
 
@@ -207,9 +207,13 @@ PayU3DS2.initiatePayment(
 
 ### Payment parameters setup
 
-1. vc: Parent ViewController Object
-2. config: It contains multiple properties, please refer 2.1.3
-3. paymentParams: Merhcant to create payment param object and pass it which will contains info like: cardDeatails, SI details etc.
+> 📘 Notes:
+>
+> * **vc**: Parent ViewController Object
+> * **config**: It contains multiple properties. For more information, refer to [Step 3: UI customization](#step-3-ui-customization).
+> * **paymentParams**: You have to create payment parameter object and pass it which will contains info like: cardDeatails, SI details etc.
+
+1. <br />
 
 ```swift
 let paymentParam = PayU3DS2PaymentParam(
