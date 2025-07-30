@@ -33,7 +33,7 @@ A payment gateway is a technology used by merchants to accept debit or credit ca
 * Enables you to accept multiple payment types and cards securely
 * Reduces declined payments with real time transactions.
 
-## Why v2 PayU APIs?
+## Why v2 APIs?
 
 PayU v2 APIs represent a significant evolution in payment integration, offering improved developer experience, enhanced security, and better organization. This guide outlines the key advantages of migrating to v2 APIs.
 
@@ -83,42 +83,42 @@ PayU v2 APIs represent a significant evolution in payment integration, offering 
   **Developer Experience Improvements:**
 
   <HTMLBlock>{`
-                        <table>
-                          <thead>
-                            <tr>
-                              <th>Feature</th>
-                              <th>v1 APIs</th>
-                              <th>v2 APIs</th>
-                              <th>Impact</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td><strong>Learning Curve</strong></td>
-                              <td>Steeper due to hashing complexity</td>
-                              <td>Gentler with standard practices</td>
-                              <td>🟢 Faster onboarding</td>
-                            </tr>
-                            <tr>
-                              <td><strong>Code Readability</strong></td>
-                              <td>Complex parameter lists</td>
-                              <td>Structured JSON objects</td>
-                              <td>🟢 Better maintainability</td>
-                            </tr>
-                            <tr>
-                              <td><strong>Error Debugging</strong></td>
-                              <td>Hash validation issues</td>
-                              <td>Clear parameter validation</td>
-                              <td>🟢 Easier troubleshooting</td>
-                            </tr>
-                            <tr>
-                              <td><strong>Integration Time</strong></td>
-                              <td>Longer due to complexity</td>
-                              <td>Faster with modern patterns</td>
-                              <td>🟢 Reduced development time</td>
-                            </tr>
-                          </tbody>
-                        </table>
+                            <table>
+                              <thead>
+                                <tr>
+                                  <th>Feature</th>
+                                  <th>v1 APIs</th>
+                                  <th>v2 APIs</th>
+                                  <th>Impact</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td><strong>Learning Curve</strong></td>
+                                  <td>Steeper due to hashing complexity</td>
+                                  <td>Gentler with standard practices</td>
+                                  <td>🟢 Faster onboarding</td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Code Readability</strong></td>
+                                  <td>Complex parameter lists</td>
+                                  <td>Structured JSON objects</td>
+                                  <td>🟢 Better maintainability</td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Error Debugging</strong></td>
+                                  <td>Hash validation issues</td>
+                                  <td>Clear parameter validation</td>
+                                  <td>🟢 Easier troubleshooting</td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Integration Time</strong></td>
+                                  <td>Longer due to complexity</td>
+                                  <td>Faster with modern patterns</td>
+                                  <td>🟢 Reduced development time</td>
+                                </tr>
+                              </tbody>
+                            </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -208,47 +208,47 @@ PayU v2 APIs represent a significant evolution in payment integration, offering 
   **Key JSON Objects in v2 APIs:**
 
   <HTMLBlock>{`
-                        <table>
-                          <thead>
-                            <tr>
-                              <th>JSON Object</th>
-                              <th>Purpose</th>
-                              <th>Key Benefits</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td><code>paymentMethod</code></td>
-                              <td>Payment method configuration</td>
-                              <td>Centralized payment type management</td>
-                            </tr>
-                            <tr>
-                              <td><code>paymentCard</code></td>
-                              <td>Card-specific details</td>
-                              <td>Secure card data handling</td>
-                            </tr>
-                            <tr>
-                              <td><code>order</code></td>
-                              <td>Order and product information</td>
-                              <td>Complete transaction context</td>
-                            </tr>
-                            <tr>
-                              <td><code>billingDetails</code></td>
-                              <td>Customer billing information</td>
-                              <td>Organized customer data</td>
-                            </tr>
-                            <tr>
-                              <td><code>callBackActions</code></td>
-                              <td>Success/failure URLs</td>
-                              <td>Clear flow management</td>
-                            </tr>
-                            <tr>
-                              <td><code>authorization</code></td>
-                              <td>3DS authentication data</td>
-                              <td>Enhanced security handling</td>
-                            </tr>
-                          </tbody>
-                        </table>
+                            <table>
+                              <thead>
+                                <tr>
+                                  <th>JSON Object</th>
+                                  <th>Purpose</th>
+                                  <th>Key Benefits</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td><code>paymentMethod</code></td>
+                                  <td>Payment method configuration</td>
+                                  <td>Centralized payment type management</td>
+                                </tr>
+                                <tr>
+                                  <td><code>paymentCard</code></td>
+                                  <td>Card-specific details</td>
+                                  <td>Secure card data handling</td>
+                                </tr>
+                                <tr>
+                                  <td><code>order</code></td>
+                                  <td>Order and product information</td>
+                                  <td>Complete transaction context</td>
+                                </tr>
+                                <tr>
+                                  <td><code>billingDetails</code></td>
+                                  <td>Customer billing information</td>
+                                  <td>Organized customer data</td>
+                                </tr>
+                                <tr>
+                                  <td><code>callBackActions</code></td>
+                                  <td>Success/failure URLs</td>
+                                  <td>Clear flow management</td>
+                                </tr>
+                                <tr>
+                                  <td><code>authorization</code></td>
+                                  <td>3DS authentication data</td>
+                                  <td>Enhanced security handling</td>
+                                </tr>
+                              </tbody>
+                            </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -290,37 +290,37 @@ PayU v2 APIs represent a significant evolution in payment integration, offering 
   **Current API Landscape:**
 
   <HTMLBlock>{`
-                        <table>
-                          <thead>
-                            <tr>
-                              <th>Aspect</th>
-                              <th>Status</th>
-                              <th>Details</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td><strong>v2 API Coverage</strong></td>
-                              <td>🟢 Comprehensive</td>
-                              <td>Covers most common payment use cases</td>
-                            </tr>
-                            <tr>
-                              <td><strong>Duplicate API Elimination</strong></td>
-                              <td>🟡 In Progress</td>
-                              <td>v1 APIs with duplicate functionality being phased out</td>
-                            </tr>
-                            <tr>
-                              <td><strong>v1 Documentation</strong></td>
-                              <td>🔄 Being Updated</td>
-                              <td>Adding disclaimers and v2 alternative links</td>
-                            </tr>
-                            <tr>
-                              <td><strong>Compatibility</strong></td>
-                              <td>✅ Full Support</td>
-                              <td>Both versions work together seamlessly</td>
-                            </tr>
-                          </tbody>
-                        </table>
+                            <table>
+                              <thead>
+                                <tr>
+                                  <th>Aspect</th>
+                                  <th>Status</th>
+                                  <th>Details</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td><strong>v2 API Coverage</strong></td>
+                                  <td>🟢 Comprehensive</td>
+                                  <td>Covers most common payment use cases</td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Duplicate API Elimination</strong></td>
+                                  <td>🟡 In Progress</td>
+                                  <td>v1 APIs with duplicate functionality being phased out</td>
+                                </tr>
+                                <tr>
+                                  <td><strong>v1 Documentation</strong></td>
+                                  <td>🔄 Being Updated</td>
+                                  <td>Adding disclaimers and v2 alternative links</td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Compatibility</strong></td>
+                                  <td>✅ Full Support</td>
+                                  <td>Both versions work together seamlessly</td>
+                                </tr>
+                              </tbody>
+                            </table>
   `}</HTMLBlock>
 </Accordion>
 
