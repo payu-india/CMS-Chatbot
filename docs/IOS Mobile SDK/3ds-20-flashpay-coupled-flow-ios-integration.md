@@ -81,21 +81,25 @@ Configure the SDK using the `PayU3DS2Config` object with the following propertie
 var config = PayU3DS2Config()
 config.uiCustomisation = "set UI customisation object, refer below section of UI Customisation"
 config.isProduction = "set environment where you want to test, true for production and false for sandbox"
-config.fallback3DS1 = true  // default false, true to complete payment on bank page in case of failure
-config.autoSubmit = false   // true to submit OTP automatically. Default: false
-config.initialiseTimeoutTimer = 5  // Timeout in seconds for merchant response
-config.supportedUIMode = ArrayList<String>() // Example value = "01" for using own UI
-config.enableMFAViaBiometric = true  // Enable biometric authentication for OTP flow
-config.setDefaultProgressLoader(showDefaultLoader: true, defaultProgressLoaderColor: "HexColor")  // Set progress loader
+config.fallback3DS1 = true //default value false, send true to complete payment on bank page in case of any failure
+config.autoSubmit = false //Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
+config.initialiseTimeoutTimer = 5 //provide time in seconds, for waiting for merchant response
+config.supportedUIMode = ArrayList<String> //to show own UI, currently accepted value = 01. Pass this if you want to create own UI and follow step 4.1 and 4.2
+config.enableMFAViaBiometric = true // if set to true, then during payment via OTP, there will an option to enable biometric authentication. 
+// If selected, the biometric registration process will start after payment success callback is triggered.
+// Can also set progress indicator
+config.setDefaultProgressLoader(showDefaultLoader: true, defaultProgressLoaderColor: "HexColor") //to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode
+//To customise UI with your content please pass these configurations
 config.enableCustomizedOtpUIFlow = true
-config.enableTxnTimeoutTimer = true
-config.merchantName = "merchant name"
+config.enableTxnTimeoutTimer = true //pass as true to show timer for page timeout
+config.merchantName = "merchant name" 
 config.amount = "txn amount"
+config.enableTxnTimeoutTimer = true
 config.acsContentConfig = PayU3DS2ACSContentConfig()
 config.acsContentConfig?.submitButtonTitle = "Submit Button Title"
 config.acsContentConfig?.resendButtonTitle = "Resend Button Title"
-config.acsContentConfig?.otpContent = "OTP has been sent to your registered mobile number."
-config.acsContentConfig?.resendInfoContent = "Resend Info Content"
+config.acsContentConfig?.otpContent = "OTP has been sent to your registered mobile number". //you can set this value to as per your need
+config.acsContentConfig?.resendInfoContent = "Submit Button Title"
 config.acsContentConfig?.maxResendInfoContent = "Max Retry Content"
 ```
 
@@ -123,6 +127,19 @@ var buttonCustomisation = PayU3DS2ButtonCustomisation(
     cornerRadius: 10,
     resendButtonTextFontColor: "#25272C"
 )
+```
+
+For example:
+
+```swift
+PayU3DS2ButtonCustomisation(
+        textFontColor: "#ffffff",
+        textFontSize: 17,
+        backgroundColor: "#25272C",
+        cornerRadius: 10,
+        resendButtonTextFontColor: "#25272C"
+    )
+
 ```
 
 ### Label customization
@@ -169,7 +186,13 @@ var fontFamilyCustomisation = PayU3DS2FontFamilyCustomisation(
 )
 ```
 
+> 🚧 3DS Warnings:
+>
+> The result for device security checks like rootedDevice, isDebuggable, isEmulator and is OS Supported will be provided in result of init as given in above code example 2.1.4. It is left with the requestor app to handle the warnings as per the requirement.
+
 ## Step 4: SDK Initialisation
+
+Call below method to initiate payment through us and we will return success or failure callback post transaction completion.
 
 ### Payment Initiation Method
 
@@ -183,6 +206,10 @@ PayU3DS2.initiatePayment(
 ```
 
 ### Payment parameters setup
+
+1. vc: Parent ViewController Object
+2. config: It contains multiple properties, please refer 2.1.3
+3. paymentParams: Merhcant to create payment param object and pass it which will contains info like: cardDeatails, SI details etc.
 
 ```swift
 let paymentParam = PayU3DS2PaymentParam(
