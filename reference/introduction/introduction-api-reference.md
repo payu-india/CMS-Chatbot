@@ -18,7 +18,7 @@ metadata:
 next:
   description: ''
 ---
-You can find the following API reference pages for **v2** APIs:
+You can find the following API reference for **v2/payment** APIs:
 
 ## General APIs
 
