@@ -1,7 +1,7 @@
 ---
 title: Net Banking – Quick Checkout
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
