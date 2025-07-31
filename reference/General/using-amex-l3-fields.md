@@ -12,7 +12,7 @@ This section includes the following:
 
 ## Using L3 fields in \_payment API
 
-You must use the L3 fields with **\_payment** API similar to the following JSON:
+You must use the L3 fields in **\_payment** API, where the airline data is collected (JSON only):
 
 ```
 {
