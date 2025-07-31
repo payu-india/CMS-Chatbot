@@ -159,7 +159,7 @@ var textBoxCustomisation = TextBoxCustomisation.Builder()
     .build()
 ```
 
-### Bottom sheet customization
+### Bottom Sheet customization
 
 ```kotlin
 var bottomSheetCustomisation = BottomSheetCustomisation.Builder()
