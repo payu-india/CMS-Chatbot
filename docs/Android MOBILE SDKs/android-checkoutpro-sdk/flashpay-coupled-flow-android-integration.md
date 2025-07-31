@@ -12,7 +12,7 @@ FlashPay solution primarily offers a single comprehensive SDK which is equipped 
 Add the following dependency in your app-level gradle file:
 
 ```gradle
-implementation 'in.payu:threeds-sdk:X.X.X'
+implementation 'in.payu:threeds-sdk:1.1.1-SNAPSHOT'
 ```
 
 ## 2. Installation
