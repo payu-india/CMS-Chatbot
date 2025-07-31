@@ -2,6 +2,6 @@
 - pg-load-api
 - pg-load-enquiry-api
 - collect-payment-api-card-seamless
+- non-seamless-debit-transaction-api
 - seamless-debit-enquiry-api
 - update-profile-api-closed-loop
-- non-seamless-debit-transaction-api
