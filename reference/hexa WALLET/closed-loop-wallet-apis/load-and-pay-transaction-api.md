@@ -1,7 +1,7 @@
 ---
 title: Load and Pay Transaction API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
