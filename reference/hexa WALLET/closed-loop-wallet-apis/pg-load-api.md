@@ -1,7 +1,7 @@
 ---
 title: Load a Wallet API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
