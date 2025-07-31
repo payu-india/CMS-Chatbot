@@ -1,7 +1,7 @@
 ---
 title: Update Profile API - Closed Loop
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
