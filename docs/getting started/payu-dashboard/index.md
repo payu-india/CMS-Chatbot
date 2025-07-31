@@ -59,6 +59,9 @@ The features grouped by sections on the Dashboard navigation menu (on the left p
   * [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer)
   * [Create a Pre-Discounted Offer](doc:create-a-pre-discounted-offer)
   * [Create a SKU-Based Offer](doc:create-a-sku-based-offer)
+* [Recommendation Engine](doc:recommendation-engine): Recommendation Engine to personalize the order of payment instruments on the product checkout page.
+* [Affordability Widget](doc:affordability-suite): Enhances your product listing page by providing information on\
+  various payment options based on affordability, such as EMI, Cardless EMI, and Pay Later.
 
 ## Send Payments
 
