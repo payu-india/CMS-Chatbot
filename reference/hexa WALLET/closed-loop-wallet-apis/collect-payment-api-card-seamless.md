@@ -1,11 +1,11 @@
 ---
-title: Collect Payment API - Card Seamless
+title: Seamless Debit Transaction API
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-The **Debit Transaction - Seamless** API allows you to debit funds from a wallet seamlessly through PayU payment gateway. This API provides a smooth user experience by handling the payment flow without redirecting the customer away from your application.
+The **Seamless Debit Transaction** API allows you to debit funds from a wallet seamlessly through PayU payment gateway. This API provides a smooth user experience by handling the payment flow without redirecting the customer away from your application.
 
 ## Environment
 
