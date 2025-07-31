@@ -5,14 +5,14 @@ hidden: true
 metadata:
   robots: index
 ---
-The Update Profile API allows you to update a customer's profile information including name, email, mobile number, address, and other personal details. This API is useful for maintaining accurate customer information and compliance requirements.
+The **Update Profile** API allows you to update a customer's profile information including name, email, mobile number, address, and other personal details. This API is useful for maintaining accurate customer information and compliance requirements.
 
 ## Environment
 
-| Environment | URL |
-| ----------- | --- |
-| Test | `https://apitest.payu.in/loyalty-points/v1/wallet/onboarding/v3/updateProfile` |
-| Production | `https://api.payu.in/loyalty-points/v1/wallet/onboarding/v3/updateProfile` |
+| Environment | URL                                                                            |
+| ----------- | ------------------------------------------------------------------------------ |
+| Test        | `https://apitest.payu.in/loyalty-points/v1/wallet/onboarding/v3/updateProfile` |
+| Production  | `https://api.payu.in/loyalty-points/v1/wallet/onboarding/v3/updateProfile`     |
 
 **HTTP Method**: POST
 
@@ -21,6 +21,7 @@ The Update Profile API allows you to update a customer's profile information inc
 This API uses HMAC-SHA512 authentication. Refer to the [Authentication Guide](/docs/authentication) for detailed implementation.
 
 ## Request Headers
+
 <HTMLBlock>{`
 <table>
 <thead>
@@ -45,6 +46,7 @@ This API uses HMAC-SHA512 authentication. Refer to the [Authentication Guide](/d
 The request body contains both encrypted and decrypted parameters.
 
 #### Encrypted
+
 <HTMLBlock>{`
 <table>
   <thead>
@@ -63,6 +65,7 @@ The request body contains both encrypted and decrypted parameters.
 `}</HTMLBlock>
 
 #### Decrypted
+
 <HTMLBlock>{`
 <table>
   <thead>
@@ -180,6 +183,7 @@ The request body contains both encrypted and decrypted parameters.
 > **Note**: Either `customerId` or `urn` must be provided.
 
 ## Response Parameters
+
 <HTMLBlock>{`
 <table>
 <thead>
@@ -197,10 +201,10 @@ The request body contains both encrypted and decrypted parameters.
 </table>
 `}</HTMLBlock>
 
-
 ## Sample Request
 
 ### Encrypted Packet
+
 ```bash
 curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet/onboarding/v3/updateProfile' \
 --header 'walletIdentifier: CLW' \
@@ -213,6 +217,7 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
 ```
 
 ### Decrypted Packet
+
 ```json
 {
   "messageCode": 1280,
@@ -241,6 +246,7 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
 ## Sample Response
 
 ### Encrypted Response
+
 ```json
 {
   "result": "h/0YSUd9jKOQ8+2Dc3Phr4s7vxyz789..."
@@ -248,6 +254,7 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
 ```
 
 ### Decrypted Response
+
 ```json
 {
   "responseCode": "00",
@@ -263,21 +270,21 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
 
 ## HTTP Status Codes
 
-| Status Code | Description |
-| ----------- | ----------- |
-| 200 | OK - Request processed successfully |
-| 400 | Bad Request - Invalid request parameters |
-| 401 | Unauthorized - Authentication failed |
-| 404 | Not Found - Customer not found |
-| 500 | Internal Server Error |
+| Status Code | Description                              |
+| ----------- | ---------------------------------------- |
+| 200         | OK - Request processed successfully      |
+| 400         | Bad Request - Invalid request parameters |
+| 401         | Unauthorized - Authentication failed     |
+| 404         | Not Found - Customer not found           |
+| 500         | Internal Server Error                    |
 
 ## Error Codes
 
-| Error Code | Description |
-| ---------- | ----------- |
-| 1281 | Profile updated successfully |
-| 1010 | Invalid message code |
-| 1020 | Missing required parameters |
-| 1040 | Customer not found |
-| 1282 | Invalid update vector |
-| 1283 | Profile update failed |
+| Error Code | Description                  |
+| ---------- | ---------------------------- |
+| 1281       | Profile updated successfully |
+| 1010       | Invalid message code         |
+| 1020       | Missing required parameters  |
+| 1040       | Customer not found           |
+| 1282       | Invalid update vector        |
+| 1283       | Profile update failed        |
