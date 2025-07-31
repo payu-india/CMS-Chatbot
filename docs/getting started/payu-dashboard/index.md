@@ -74,7 +74,7 @@ The features grouped by sections on the Dashboard navigation menu (on the left p
   * [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
   * [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
   * [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard)
-* [Webhooks](doc:webhooks-copy)
+* [Manage Webhooks using Dashboard](doc:manage-webhooks-using-dashboard)
 
 ## Analytics
 
