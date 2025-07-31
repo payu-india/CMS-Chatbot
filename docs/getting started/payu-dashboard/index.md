@@ -68,13 +68,16 @@ The features grouped by sections on the Dashboard navigation menu (on the left p
 * **[Payouts](doc:payouts-dashboard)**: View, create, and check the statuses of the payouts corresponding to the accounts you have.\
   Domestic Money Transfer	Transfer money to any bank account in India in compliance with the DMT guidelines.
 
-### Sales & Earning
+## Developer
 
-Link your accounts with leading eCommerce platforms to collate view of sales and payments. Reconcile accounts, and get notification and alerts for smooth business operations.
+* Merchant key and salt: Used in all the v1 APIs for authentication and hash generation.
+  * [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+  * [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+  * [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard)
+* [Webhooks](doc:webhooks-copy)
 
 ## Analytics
 
 * **[Reports](doc:reports)**: View or schedule reports of various Dashboard modules.
 * **[Settings](doc:configure-user-settings)**: Update your profile, configure your brand settings, configure webhook, and manage users so that employees in your organization can use the Dashboard.
-* **[Refer & Earn](doc:refer-and-earn)**: Refer your partners to earn incentives.
-* **PayU Academy**: Learn PayU products at your convenience and get access to recent webinars and discussions to improve your business.
+* **[Refer & Earn](doc:refer-and-earn)**: Refer your partners to earn incentives.discussions to improve your business.
