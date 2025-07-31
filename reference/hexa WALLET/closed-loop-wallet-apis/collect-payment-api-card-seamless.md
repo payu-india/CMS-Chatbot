@@ -1,7 +1,7 @@
 ---
 title: Collect Payment API - Card Seamless
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
