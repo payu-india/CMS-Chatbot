@@ -1,7 +1,7 @@
 ---
 title: Statement Inquiry API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
