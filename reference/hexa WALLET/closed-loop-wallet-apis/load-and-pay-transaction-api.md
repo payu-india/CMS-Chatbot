@@ -9,10 +9,10 @@ The Load and Pay Transaction API is designed to handle wallet transactions where
 
 ## Environment
 
-| Environment | URL |
-| ----------- | --- |
-| Test | `https://test.payu.in/_payment` |
-| Production | `https://secure.payu.in/_payment` |
+| Environment | URL                               |
+| ----------- | --------------------------------- |
+| Test        | `https://test.payu.in/_payment`   |
+| Production  | `https://secure.payu.in/_payment` |
 
 **HTTP Method**: POST
 
@@ -29,63 +29,64 @@ This API uses hash-based authentication. The hash is calculated using SHA512 alg
 
 ## Request Headers
 
-| Parameter | Description |
-| --------- | ----------- |
-| Content-Type<br/><code>mandatory</code> | <code>String</code> application/x-www-form-urlencoded |
+| Parameter                                | Description                                           |
+| ---------------------------------------- | ----------------------------------------------------- |
+| Content-Type<br /><code>mandatory</code> | <code>String</code> application/x-www-form-urlencoded |
 
 ## Request Parameters
 
 ### Body Parameters
 
-| Parameter | Description | Example |
-| --------- | ----------- | ------- |
-| key<br/><code>mandatory</code> | <code>String</code> Merchant key provided by PayU during onboarding | KOEfPI |
-| txnid<br/><code>mandatory</code> | <code>Alphanumeric</code> Unique transaction ID generated for each load and pay transaction | ram1234 |
-| amount<br/><code>mandatory</code> | <code>Numeric</code> Transaction amount in implied decimals (₹41.00 → 4100) | 4100 |
-| productinfo<br/><code>mandatory</code> | <code>String</code> Description and details about the product being purchased | eCommerce |
-| firstname<br/><code>mandatory</code> | <code>String</code> Customer's first name | John |
-| lastname<br/><code>optional</code> | <code>String</code> Customer's last name | Doe |
-| email<br/><code>mandatory</code> | <code>String</code> Email ID associated with the customer wallet/account | john.doe@gmail.com |
-| phone<br/><code>mandatory</code> | <code>Numeric</code> Customer's phone number with country code | 919988776655 |
-| surl<br/><code>mandatory</code> | <code>String</code> Success URL where customer will be redirected upon successful transaction | https://merchant.com/success |
-| furl<br/><code>mandatory</code> | <code>String</code> Failure URL where customer will be redirected upon failed transaction | https://merchant.com/failure |
-| pg<br/><code>mandatory</code> | <code>String</code> Constant parameter indicating the payment gateway (CLW) | CLW |
-| bankcode<br/><code>mandatory</code> | <code>String</code> Bank code indicating the payment option used for the transaction | PAY |
-| customer_id<br/><code>conditional</code> | <code>Numeric</code> Unique wallet/customer ID for wallet integration | 70000000008 |
-| walleturn<br/><code>conditional</code> | <code>Numeric</code> URN (Unique Reference Number) for wallet transactions | 123456789 |
-| loadmoney<br/><code>mandatory</code> | <code>Numeric</code> Amount to be loaded into the wallet if existing balance is insufficient | 1000 |
-| txn_s2s_flow<br/><code>mandatory</code> | <code>Numeric</code> Identifies the merchant-hosted transaction flow (constant value 4) | 4 |
-| hash<br/><code>mandatory</code> | <code>String</code> SHA512 hash for securing the API request | 84bbbf...f5c9 |
+| Parameter                                  | Description                                                                                                                       | Example                                                      |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| key<br /><code>mandatory</code>            | <code>String</code> Merchant key provided by PayU during onboarding                                                               | KOEfPI                                                       |
+| txnid<br /><code>mandatory</code>          | <code>Alphanumeric</code> Unique transaction ID generated for each load and pay transaction                                       | ram1234                                                      |
+| amount<br /><code>mandatory</code>         | <code>Numeric</code> Transaction amount in implied decimals (₹41.00 → 4100)                                                       | 4100                                                         |
+| productinfo<br /><code>mandatory</code>    | <code>String</code> Description and details about the product being purchased                                                     | eCommerce                                                    |
+| firstname<br /><code>mandatory</code>      | <code>String</code> Customer's first name                                                                                         | John                                                         |
+| lastname<br /><code>optional</code>        | <code>String</code> Customer's last name                                                                                          | Doe                                                          |
+| email<br /><code>mandatory</code>          | <code>String</code> Email ID associated with the customer wallet/account                                                          | [john.doe@gmail.com](mailto:john.doe@gmail.com)              |
+| phone<br /><code>mandatory</code>          | <code>Numeric</code> Customer's phone number with country code                                                                    | 919988776655                                                 |
+| surl<br /><code>mandatory</code>           | <code>String</code> Success URL where customer will be redirected upon successful transaction                                     | [https://merchant.com/success](https://merchant.com/success) |
+| furl<br /><code>mandatory</code>           | <code>String</code> Failure URL where customer will be redirected upon failed transaction                                         | [https://merchant.com/failure](https://merchant.com/failure) |
+| pg<br /><code>mandatory</code>             | <code>String</code> Constant parameter indicating the payment gateway (CLW)                                                       | CLW                                                          |
+| bankcode<br /><code>mandatory</code>       | <code>String</code> Bank code indicating the payment option used for the transaction                                              | PAY                                                          |
+| customer\_id<br /><code>conditional</code> | <code>Numeric</code> Unique wallet/customer ID for wallet integration                                                             | 70000000008                                                  |
+| walleturn<br /><code>conditional</code>    | <code>Numeric</code> URN (Unique Reference Number) for wallet transactions                                                        | 123456789                                                    |
+| loadmoney<br /><code>mandatory</code>      | <code>Numeric</code> Amount to be loaded into the wallet if existing balance is insufficient                                      | 1000                                                         |
+| txn\_s2s\_flow<br /><code>mandatory</code> | <code>Numeric</code> Identifies the merchant-hosted transaction flow (constant value 4)                                           | 4                                                            |
+| hash<br /><code>mandatory</code>           | <code>String</code> SHA512 hash for securing the API request. For more information, refer to [Hash Calculation](#hash-calcuation) | 84bbbf...f5c9                                                |
 
-> **Note**: Either `customer_id` or `walleturn` must be provided to identify the wallet.
+> Note: Either `customer_id` or `walleturn` must be provided to identify the wallet.
 
-### Hash Calculation
+### Hash calculation
 
 The hash is calculated using SHA512 with the following string:
+
 ```
 key|txnid|amount|productinfo|firstname|email|||||||||||||{salt}
 ```
 
 ## Response Parameters
 
-| Parameter | Description | Example |
-| --------- | ----------- | ------- |
-| mihpayid | Unique PayU-generated transaction reference number | 1735903830180094 |
-| status | Transaction final status (success, failure, pending) | success |
-| key | Merchant key (echoed back) | KOEfPI |
-| txnid | Transaction ID (echoed back) | ram1234 |
-| amount | Transaction amount debited from the wallet | 41.00 |
-| addedon | Time and date when the transaction was completed | 2025-01-13 18:24:06 |
-| net_amount_debit | Final successfully paid amount after processing fees | 40.00 |
-| hash | Response hash generated by PayU for verification | 6e640b16...2b2a |
-| bank_ref_num | Unique reference number generated by the bank | 1099 |
-| PG_TYPE | Payment gateway used for the transaction | CLW-PG |
-| error | Error code if the transaction fails | E000 |
-| error_message | Detailed error description | No Error |
-| firstname | Customer's first name | John |
-| lastname | Customer's last name | Doe |
-| email | Customer's email | john.doe@gmail.com |
-| phone | Customer's phone number | 919988776655 |
+| Parameter          | Description                                          | Example                                         |
+| ------------------ | ---------------------------------------------------- | ----------------------------------------------- |
+| mihpayid           | Unique PayU-generated transaction reference number   | 1735903830180094                                |
+| status             | Transaction final status (success, failure, pending) | success                                         |
+| key                | Merchant key (echoed back)                           | KOEfPI                                          |
+| txnid              | Transaction ID (echoed back)                         | ram1234                                         |
+| amount             | Transaction amount debited from the wallet           | 41.00                                           |
+| addedon            | Time and date when the transaction was completed     | 2025-01-13 18:24:06                             |
+| net\_amount\_debit | Final successfully paid amount after processing fees | 40.00                                           |
+| hash               | Response hash generated by PayU for verification     | 6e640b16...2b2a                                 |
+| bank\_ref\_num     | Unique reference number generated by the bank        | 1099                                            |
+| PG\_TYPE           | Payment gateway used for the transaction             | CLW-PG                                          |
+| error              | Error code if the transaction fails                  | E000                                            |
+| error\_message     | Detailed error description                           | No Error                                        |
+| firstname          | Customer's first name                                | John                                            |
+| lastname           | Customer's last name                                 | Doe                                             |
+| email              | Customer's email                                     | [john.doe@gmail.com](mailto:john.doe@gmail.com) |
+| phone              | Customer's phone number                              | 919988776655                                    |
 
 ## Sample Request
 
@@ -113,6 +114,7 @@ curl --location --request POST 'https://test.payu.in/_payment' \
 ## Sample Response
 
 ### Successful Transaction
+
 ```json
 {
   "mihpayid": "1735903830180094",
@@ -135,6 +137,7 @@ curl --location --request POST 'https://test.payu.in/_payment' \
 ```
 
 ### Failed Transaction
+
 ```json
 {
   "mihpayid": "1735903830180095",
@@ -150,57 +153,19 @@ curl --location --request POST 'https://test.payu.in/_payment' \
 
 ## HTTP Status Codes
 
-| Status Code | Description |
-| ----------- | ----------- |
-| 200 | OK - Request processed successfully |
-| 400 | Bad Request - Invalid request parameters |
-| 401 | Unauthorized - Authentication failed |
-| 500 | Internal Server Error |
-
-## Transaction Flow
-
-1. **Initiate Load and Pay**: Send POST request with all required parameters
-2. **Balance Check**: System checks if wallet has sufficient balance
-3. **Load Process**: If insufficient, initiates loading via payment gateway
-4. **Payment Completion**: Customer completes payment on PG interface
-5. **Wallet Credit**: Funds are loaded into the wallet
-6. **Automatic Debit**: Required amount is immediately debited for the transaction
-7. **Callback**: Customer is redirected to success/failure URL
-8. **Final Status**: Transaction completes with success or failure status
-
-## Use Cases
-
-1. **E-commerce Transactions**: Customer shopping with insufficient wallet balance
-2. **Subscription Payments**: Recurring payments requiring dynamic wallet loading
-3. **Utility Bill Payments**: Load and pay for bills in single transaction
-4. **Closed-Loop Wallet Systems**: Seamless transactions for merchant wallets
-
-## Comparison with Regular Debit Transactions
-
-| Feature | Load and Pay API | Regular Debit API |
-| ------- | --------------- | ----------------- |
-| Functionality | Handles wallet top-up and debit in one step | Performs only direct debit |
-| Balance Requirement | Automatically loads if insufficient | Requires sufficient balance beforehand |
-| Integration Complexity | Higher (includes PG integration) | Lower (wallet only) |
-| User Experience | Seamless even with low balance | May fail with insufficient funds |
-| Use Case | Dynamic balance scenarios | Pre-loaded wallet scenarios |
-
-## Best Practices
-
-1. **Hash Security**: Protect your salt key and never expose it in client-side code
-2. **Amount Validation**: Ensure `loadmoney` amount is sufficient to cover the transaction
-3. **Error Handling**: Implement comprehensive error handling for both load and pay failures
-4. **Transaction Verification**: Always verify the response hash for authenticity
-5. **Reconciliation**: Use enquiry APIs to verify final transaction status
-6. **User Communication**: Clearly communicate the load and pay process to customers
+| Status Code | Description                              |
+| ----------- | ---------------------------------------- |
+| 200         | OK - Request processed successfully      |
+| 400         | Bad Request - Invalid request parameters |
+| 401         | Unauthorized - Authentication failed     |
+| 500         | Internal Server Error                    |
 
 ## Error Scenarios
 
-| Error | Description | Solution |
-| ----- | ----------- | -------- |
-| Payment gateway failure | PG load transaction failed | Retry with different payment method |
-| Insufficient load amount | `loadmoney` less than required | Increase load amount |
-| Invalid wallet | Customer ID or wallet URN not found | Verify wallet details |
-| Transaction limit exceeded | Amount exceeds allowed limits | Check transaction limits |
-| Hash mismatch | Invalid hash in request | Verify hash calculation |
-
+| Error                      | Description                         | Solution                            |
+| -------------------------- | ----------------------------------- | ----------------------------------- |
+| Payment gateway failure    | PG load transaction failed          | Retry with different payment method |
+| Insufficient load amount   | `loadmoney` less than required      | Increase load amount                |
+| Invalid wallet             | Customer ID or wallet URN not found | Verify wallet details               |
+| Transaction limit exceeded | Amount exceeds allowed limits       | Check transaction limits            |
+| Hash mismatch              | Invalid hash in request             | Verify hash calculation             |
