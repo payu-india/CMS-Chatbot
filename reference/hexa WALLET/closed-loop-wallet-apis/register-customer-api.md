@@ -5,14 +5,14 @@ hidden: true
 metadata:
   robots: index
 ---
-The **Register Customer** API allows you to register a new customer and facilitates the creation of a digital wallet. This API performs onboarding checks when opted by the issuer.
+The Register Customer API allows you to register a new customer and facilitates the creation of a digital wallet. This API performs onboarding checks when opted by the issuer.
 
 ## Environment
 
-| Environment | URL                                                      |
-| ----------- | -------------------------------------------------------- |
-| Test        | `http://apitest.payu.in/loyalty-points/v1/wallet/enroll` |
-| Production  | `https://api.payu.in/loyalty-points/v1/wallet/enroll`    |
+| Environment | URL |
+| ----------- | --- |
+| Test | `http://apitest.payu.in/loyalty-points/v1/wallet/enroll` |
+| Production | `https://api.payu.in/loyalty-points/v1/wallet/enroll` |
 
 **HTTP Method**: POST
 
@@ -20,441 +20,59 @@ The **Register Customer** API allows you to register a new customer and facilita
 
 This API uses HMAC-SHA512 authentication. Refer to the [Authentication Guide](/docs/authentication) for detailed implementation.
 
-## Request parameters
+## Request Headers
 
-### Header
+| Parameter | Description |
+| --------- | ----------- |
+| walletIdentifier<br/><code>mandatory</code> | <code>String</code> Program Type (e.g., CLW) |
+| date<br/><code>mandatory</code> | <code>String</code> GMT formatted date (e.g., Thu, 17 Feb 2022 08:17:59 GMT) |
+| Authorization<br/><code>mandatory</code> | <code>String</code> HMAC-SHA512-based authentication token |
+| Content-Type<br/><code>mandatory</code> | <code>String</code> application/json |
 
-| Parameter          | Type   | Mandatory | Description                                              |
-| ------------------ | ------ | --------- | -------------------------------------------------------- |
-| `walletIdentifier` | String | Yes       | Program Type (e.g., CLW)                                 |
-| `date`             | String | Yes       | GMT formatted date (e.g., Thu, 17 Feb 2022 08:17:59 GMT) |
-| `Authorization`    | String | Yes       | HMAC-SHA512-based authentication token                   |
-| `Content-Type`     | String | Yes       | application/json                                         |
+## Request Parameters
 
-## Body
+### Body Parameters
 
 The request body contains both encrypted and decrypted parameters.
 
 #### Encrypted
-
-| Parameter | Type   | Description                                                                |
-| --------- | ------ | -------------------------------------------------------------------------- |
-| `token`   | String | AES-192-CBC encrypted request body containing all the decrypted parameters |
+| Parameter | Description |
+| --------- | ----------- |
+| token<br/><code>mandatory</code> | <code>String</code> AES-192-CBC encrypted request body containing all the decrypted parameters |
 
 #### Decrypted
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Type
-      </th>
-
-      <th>
-        Mandatory
-      </th>
-
-      <th>
-        Character Limit
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `messageCode`
-      </td>
-
-      <td>
-        Numeric
-      </td>
-
-      <td>
-        Yes
-      </td>
-
-      <td>
-        4
-      </td>
-
-      <td>
-        API code to identify Register Customer API
-      </td>
-
-      <td>
-        3510
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `clientTxnId`
-      </td>
-
-      <td>
-        Alphanumeric
-      </td>
-
-      <td>
-        Yes
-      </td>
-
-      <td>
-        100
-      </td>
-
-      <td>
-        Unique transaction ID from the calling application
-      </td>
-
-      <td>
-        20150701235959xhstiesqfds
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `requestDateTime`
-      </td>
-
-      <td>
-        Numeric
-      </td>
-
-      <td>
-        Yes
-      </td>
-
-      <td>
-        14
-      </td>
-
-      <td>
-        Local timestamp of transaction initiation (YYYYMMDDHHMMSS format)
-      </td>
-
-      <td>
-        20230620123143
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `customerId`
-      </td>
-
-      <td>
-        String
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        50
-      </td>
-
-      <td>
-        Caller-defined unique customer ID. Auto-generated if not provided
-      </td>
-
-      <td>
-        89342546
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `customerDetails.firstName`
-      </td>
-
-      <td>
-        String
-      </td>
-
-      <td>
-        Yes
-      </td>
-
-      <td>
-        50
-      </td>
-
-      <td>
-        Customer first name. No invalid symbols allowed
-      </td>
-
-      <td>
-        Sourav
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `customerDetails.middleName`
-      </td>
-
-      <td>
-        String
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        50
-      </td>
-
-      <td>
-        Customer middle name
-      </td>
-
-      <td>
-        Kumar
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `customerDetails.lastName`
-      </td>
-
-      <td>
-        String
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        50
-      </td>
-
-      <td>
-        Customer last name
-      </td>
-
-      <td>
-        Mishra
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `customerDetails.mobileNumber`
-      </td>
-
-      <td>
-        Numeric
-      </td>
-
-      <td>
-        Yes
-      </td>
-
-      <td>
-        15
-      </td>
-
-      <td>
-        ISD-coded, valid unique mobile number
-      </td>
-
-      <td>
-        919988776655
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `customerDetails.emailAddress`
-      </td>
-
-      <td>
-        String
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        50
-      </td>
-
-      <td>
-        Valid email address
-      </td>
-
-      <td>
-        [sourav.mishra@gmail.com](mailto:sourav.mishra@gmail.com)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `customerDetails.dateOfBirth`
-      </td>
-
-      <td>
-        String
-      </td>
-
-      <td>
-        Yes
-      </td>
-
-      <td>
-        10
-      </td>
-
-      <td>
-        Date of birth (DD-MM-YYYY format)
-      </td>
-
-      <td>
-        11-07-1993
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `kycProfile`
-      </td>
-
-      <td>
-        Numeric
-      </td>
-
-      <td>
-        Yes
-      </td>
-
-      <td>
-        3
-      </td>
-
-      <td>
-        Type of KYC: Min KYC (30), Shortfall KYC (300), Full KYC (150)
-      </td>
-
-      <td>
-        150
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `riskCategory`
-      </td>
-
-      <td>
-        String
-      </td>
-
-      <td>
-        Yes
-      </td>
-
-      <td>
-        20
-      </td>
-
-      <td>
-        Risk type: Low, Medium, High (Low=100, Medium=500, High=200)
-      </td>
-
-      <td>
-        Low
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `productId`
-      </td>
-
-      <td>
-        Numeric
-      </td>
-
-      <td>
-        Yes
-      </td>
-
-      <td>
-        5
-      </td>
-
-      <td>
-        Program/product ID
-      </td>
-
-      <td>
-        121
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `formFactorRequired`
-      </td>
-
-      <td>
-        Boolean
-      </td>
-
-      <td>
-        Yes
-      </td>
-
-      <td>
-        *
-      </td>
-
-      <td>
-        Indicates whether a form factor is required (True/False)
-      </td>
-
-      <td>
-        true
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameter | Description | Example |
+| --------- | ----------- | ------- |
+| messageCode<br/><code>mandatory</code> | <code>Numeric(4)</code> API code to identify Register Customer API | 3510 |
+| clientTxnId<br/><code>mandatory</code> | <code>Alphanumeric(100)</code> Unique transaction ID from the calling application | 20150701235959xhstiesqfds |
+| requestDateTime<br/><code>mandatory</code> | <code>Numeric(14)</code> Local timestamp of transaction initiation (YYYYMMDDHHMMSS format) | 20230620123143 |
+| customerId<br/><code>optional</code> | <code>String(50)</code> Caller-defined unique customer ID. Auto-generated if not provided | 89342546 |
+| customerDetails.firstName<br/><code>mandatory</code> | <code>String(50)</code> Customer first name. No invalid symbols allowed | Sourav |
+| customerDetails.middleName<br/><code>optional</code> | <code>String(50)</code> Customer middle name | Kumar |
+| customerDetails.lastName<br/><code>optional</code> | <code>String(50)</code> Customer last name | Mishra |
+| customerDetails.mobileNumber<br/><code>mandatory</code> | <code>Numeric(15)</code> ISD-coded, valid unique mobile number | 919988776655 |
+| customerDetails.emailAddress<br/><code>optional</code> | <code>String(50)</code> Valid email address | sourav.mishra@gmail.com |
+| customerDetails.dateOfBirth<br/><code>mandatory</code> | <code>String(10)</code> Date of birth (DD-MM-YYYY format) | 11-07-1993 |
+| kycProfile<br/><code>mandatory</code> | <code>Numeric(3)</code> Type of KYC: Min KYC (30), Shortfall KYC (300), Full KYC (150) | 150 |
+| riskCategory<br/><code>mandatory</code> | <code>String(20)</code> Risk type: Low, Medium, High (Low=100, Medium=500, High=200) | Low |
+| productId<br/><code>mandatory</code> | <code>Numeric(5)</code> Program/product ID | 121 |
+| formFactorRequired<br/><code>mandatory</code> | <code>Boolean</code> Indicates whether a form factor is required (True/False) | true |
 
 ## Response Parameters
 
-| Parameter                  | Type    | Mandatory   | Description                                            | Example                          |
-| -------------------------- | ------- | ----------- | ------------------------------------------------------ | -------------------------------- |
-| `responseCode`             | String  | Yes         | Response status code                                   | 00                               |
-| `messageCode`              | Numeric | Conditional | API response code                                      | 3511                             |
-| `clientTxnId`              | String  | Conditional | Mirrors the request's clientTxnId                      | 20150701235959xhstiesqfds        |
-| `formfactor.accountNumber` | String  | Conditional | Generated account number for form factors              | 72623345                         |
-| `formfactor.uniqueNumber`  | Numeric | Conditional | Unique number generated for form factors               | 8543213624292443                 |
-| `formfactor.urn`           | Numeric | Conditional | Proxy reference number generated for the unique number | 70000000008                      |
-| `responseMessage`          | String  | Yes         | Response message                                       | CUSTOMER REGISTERED SUCCESSFULLY |
+| Parameter | Type | Mandatory | Description | Example |
+| --------- | ---- | --------- | ----------- | ------- |
+| `responseCode` | String | Yes | Response status code | 00 |
+| `messageCode` | Numeric | Conditional | API response code | 3511 |
+| `clientTxnId` | String | Conditional | Mirrors the request's clientTxnId | 20150701235959xhstiesqfds |
+| `formfactor.accountNumber` | String | Conditional | Generated account number for form factors | 72623345 |
+| `formfactor.uniqueNumber` | Numeric | Conditional | Unique number generated for form factors | 8543213624292443 |
+| `formfactor.urn` | Numeric | Conditional | Proxy reference number generated for the unique number | 70000000008 |
+| `responseMessage` | String | Yes | Response message | CUSTOMER REGISTERED SUCCESSFULLY |
 
 ## Sample Request
 
 ### Encrypted Packet
-
 ```bash
 curl --location --request POST 'http://apitest.payu.in/loyalty-points/v1/wallet/enroll' \
 --header 'walletIdentifier: CLW' \
@@ -467,7 +85,6 @@ curl --location --request POST 'http://apitest.payu.in/loyalty-points/v1/wallet/
 ```
 
 ### Decrypted Packet
-
 ```json
 {
   "messageCode": 3510,
@@ -489,7 +106,6 @@ curl --location --request POST 'http://apitest.payu.in/loyalty-points/v1/wallet/
 ## Sample Response
 
 ### Encrypted Response
-
 ```json
 {
   "result": "h/0YSUd9jKOQ8+2Dc3Phr4s7vxyz789..."
@@ -497,7 +113,6 @@ curl --location --request POST 'http://apitest.payu.in/loyalty-points/v1/wallet/
 ```
 
 ### Decrypted Response
-
 ```json
 {
   "responseCode": "00",
@@ -513,18 +128,18 @@ curl --location --request POST 'http://apitest.payu.in/loyalty-points/v1/wallet/
 
 ## HTTP Status Codes
 
-| Status Code | Description                              |
-| ----------- | ---------------------------------------- |
-| 200         | OK - Request processed successfully      |
-| 400         | Bad Request - Invalid request parameters |
-| 401         | Unauthorized - Authentication failed     |
-| 500         | Internal Server Error                    |
+| Status Code | Description |
+| ----------- | ----------- |
+| 200 | OK - Request processed successfully |
+| 400 | Bad Request - Invalid request parameters |
+| 401 | Unauthorized - Authentication failed |
+| 500 | Internal Server Error |
 
 ## Error Codes
 
-| Error Code | Description                      |
-| ---------- | -------------------------------- |
-| 3511       | Customer registered successfully |
-| 1010       | Invalid message code             |
-| 1020       | Missing required parameters      |
-| 1030       | Customer already exists          |
+| Error Code | Description |
+| ---------- | ----------- |
+| 3511 | Customer registered successfully |
+| 1010 | Invalid message code |
+| 1020 | Missing required parameters |
+| 1030 | Customer already exists |
