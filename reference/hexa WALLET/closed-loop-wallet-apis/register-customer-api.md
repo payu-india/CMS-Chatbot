@@ -5,6 +5,13 @@ hidden: true
 metadata:
   robots: index
 ---
+---
+title: "Register Customer API"
+description: "API to register a new customer and create a digital wallet with onboarding checks when opted by the issuer."
+---
+
+# Register Customer API
+
 The Register Customer API allows you to register a new customer and facilitates the creation of a digital wallet. This API performs onboarding checks when opted by the issuer.
 
 ## Environment
@@ -60,15 +67,15 @@ The request body contains both encrypted and decrypted parameters.
 
 ## Response Parameters
 
-| Parameter | Type | Mandatory | Description | Example |
-| --------- | ---- | --------- | ----------- | ------- |
-| `responseCode` | String | Yes | Response status code | 00 |
-| `messageCode` | Numeric | Conditional | API response code | 3511 |
-| `clientTxnId` | String | Conditional | Mirrors the request's clientTxnId | 20150701235959xhstiesqfds |
-| `formfactor.accountNumber` | String | Conditional | Generated account number for form factors | 72623345 |
-| `formfactor.uniqueNumber` | Numeric | Conditional | Unique number generated for form factors | 8543213624292443 |
-| `formfactor.urn` | Numeric | Conditional | Proxy reference number generated for the unique number | 70000000008 |
-| `responseMessage` | String | Yes | Response message | CUSTOMER REGISTERED SUCCESSFULLY |
+| Parameter | Description | Example |
+| --------- | ----------- | ------- |
+| responseCode | Response status code | 00 |
+| messageCode | API response code | 3511 |
+| clientTxnId | Mirrors the request's clientTxnId | 20150701235959xhstiesqfds |
+| formfactor.accountNumber | Generated account number for form factors | 72623345 |
+| formfactor.uniqueNumber | Unique number generated for form factors | 8543213624292443 |
+| formfactor.urn | Proxy reference number generated for the unique number | 70000000008 |
+| responseMessage | Response message | CUSTOMER REGISTERED SUCCESSFULLY |
 
 ## Sample Request
 
