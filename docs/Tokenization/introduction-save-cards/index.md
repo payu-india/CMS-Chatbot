@@ -1,10 +1,5 @@
 ---
 title: Introduction
-excerpt: >-
-  PayU Vault APIs allow users to store multiple credit card or debit card
-  details on PayU Vault (Cloud) easily and safely. PayU Vault stores the card
-  details and provides access to you (merchant) when your customer provides
-  his/her user credentials accompanied with or without a card token.
 deprecated: false
 hidden: false
 metadata:
@@ -34,14 +29,16 @@ next:
       slug: which-model-you-should-choose
       title: Which Model you Should Choose for Tokenization?
 ---
-Your users save invaluable time when they use their cards that are stored on PayU Vault instead of entering the card details when they make payments safely on your website. Customers can use saved cards on all the merchant websites where they support PayU Vault.
+PayU Vault APIs allow users to store multiple credit card or debit card details on PayU Vault (Cloud) easily and safely. PayU Vault stores the card details and provides access to you (merchant) when your customer provides his/her user credentials accompanied with or without a card token.
+
+Your users save invaluable time when they use their cards that are stored on PayU Vault instead of entering the card details when they make payments safely on your website. Customers can use tokeization on all the merchant websites where they support PayU Vault.
 
 Users can update or delete their card details on the PayU vault when required. You may need to enable this on their website.
 
 The workflow for users with PayU Vault are:
 
 1. Customer visit the merchant’s website, adds items to the cart, or utilize the merchant’s services, and then enter the card details.
-2. Customer provides consent to the merchant and the merchant [saves the card details](doc:zero-code-change-for-vault-integration-model-2#first-time-payment-workflow) on PayU Vault
+2. Customer provides consent to the merchant and the merchant [tokenize the card details](doc:zero-code-change-for-vault-integration-model-2#first-time-payment-workflow) on PayU Vault
 3. Customer visits the same merchant and uses the saved card details to proceed with the transaction.
 4. Customer provides his/her user credentials, the merchant [retrieves the card details](ref:get_user_cards_api) and the user enters the CVV or 3DBC number to complete payment.
 
