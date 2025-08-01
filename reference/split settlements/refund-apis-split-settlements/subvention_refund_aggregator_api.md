@@ -2,7 +2,7 @@
 title: Subvention Refund for Aggregators API
 excerpt: 'API Command: **subvention_refund_aggregator**'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
