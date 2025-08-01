@@ -50,5 +50,5 @@ To integrate vault with the Simple REST APIs, this section describes the followi
 
 ## Manage the tokens
 
-1. To make any changes in the card token already created, you need to call the **edit\_user\_card** API. For more information, refer to [Edit a Saved Card API](ref:edit_saved_card_api).
-2. To delete any token to comply with customer consent management, you need to call **delete\_user\_card**. For more information, refer to [Delete a Saved Card API](ref:delete_saved_card_api)
+1. To make any changes in the card token already created, you need to call the **edit\_user\_card** API. For more information, refer to [Edit a Tokenized Card API](ref:edit_saved_card_api).
+2. To delete any token to comply with customer consent management, you need to call **delete\_user\_card**. For more information, refer to [Delete a Tokenized Card API](ref:delete_saved_card_api)
