@@ -1,7 +1,7 @@
 ---
 title: Enable Loyalty Edge
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
