@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This
+The following API reference pages provides specification for Mobikwik integration:
 
 * [Generate OTP API ](https://docs.payu.in/reference/generate-otp-api-mobikwik)
 * [Token Generate API](https://docs.payu.in/reference/token-generate-api-mobikwik)
