@@ -1,5 +1,5 @@
 ---
-title: Collect Payments using a Saved Card
+title: Collect Payments using a Tokenized Card
 excerpt: >-
   When your customer has an account on your shopping website, they may store
   their card details to use when they revisit your website (repeat payment).
