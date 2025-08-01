@@ -10,9 +10,9 @@ metadata:
 next:
   description: ''
 ---
-## What is a Hexa wallet?
+## What is a Merchant wallet?
 
-**Hexa wallet** or **Merchant wallet** is a white-labelled prepaid instrument offered to merchant. Merchant can provide this offering to customers for purchasing goods and services.\
+**Merchant wallet** is a white-labelled prepaid instrument offered to merchant. Merchant can provide this offering to customers for purchasing goods and services.\
 Prepaid Payment Instruments (PPIs) are a category of digital payment instruments that facilitate the day-to-day buying/selling, fund transfers, and other financial transactions against the value already stored in them. This value can be stored by various methods of payments like cards etc.
 
 ## Why prepaid?
