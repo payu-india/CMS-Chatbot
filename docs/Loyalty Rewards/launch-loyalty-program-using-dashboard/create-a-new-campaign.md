@@ -2,7 +2,7 @@
 title: Create a New Campaign
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
