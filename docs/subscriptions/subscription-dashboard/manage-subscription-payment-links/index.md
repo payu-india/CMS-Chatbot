@@ -1,5 +1,5 @@
 ---
-title: Manage Subscription Payment Links
+title: Manage Subscriptions Payment Links
 excerpt: ''
 deprecated: false
 hidden: false
