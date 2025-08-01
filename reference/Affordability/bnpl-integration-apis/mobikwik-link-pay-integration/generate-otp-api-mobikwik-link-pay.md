@@ -152,9 +152,9 @@ https://test.mobikwik.com/otpgenerate?mid=MBK9006&checksum=0750ff303400137018413
 
       <td>
         `8feac7700a4efd1ef0  
-                        8ea0ec5bf5921c3f1fc3  
-                        398944421978794b  
-                        9ada1c2c47`
+                                8ea0ec5bf5921c3f1fc3  
+                                398944421978794b  
+                                9ada1c2c47`
       </td>
     </tr>
   </tbody>
@@ -164,11 +164,126 @@ https://test.mobikwik.com/otpgenerate?mid=MBK9006&checksum=0750ff303400137018413
 
 The response checksum that will be returned to the users will have the following format:
 
-**Checksum Format:** `'messageCode''status''StatusCode''StatusDescription'`\
-**Algorithm:** HMAC SHA256
-**Secret Key:** Same as used for request checksum generation
-
 📘 **Note:** Always validate the response checksum to ensure data integrity and security.
+
+<HTMLBlock>{`
+<table>
+    <tbody>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:98.0px;">
+                <strong>Status &amp; Status Code</strong>
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:61.0px;">
+                <strong>Status Code</strong>
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:278.0px;">
+                <strong>Status description</strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:98.0px;">
+                FAILURE
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:61.0px;">
+                20
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:278.0px;">
+                User Blocked
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:98.0px;">
+                FAILURE
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:61.0px;">
+                21
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:278.0px;">
+                Merchant Blocked
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:98.0px;">
+                FAILURE
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:61.0px;">
+                23
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:278.0px;">
+                Merchant not registered on MobiKwik
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:98.0px;">
+                FAILURE
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:61.0px;">
+                33
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:278.0px;">
+                User does not have sufficient balance in his wallet
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:98.0px;">
+                FAILURE
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:61.0px;">
+                51
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:278.0px;">
+                Length of parameter orderid must be between 8 to 30 characters
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:98.0px;">
+                FAILURE
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:61.0px;">
+                55
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:278.0px;">
+                Parameter cell is invalid. It must be numeric, have 10 digits and start with 7, 8 or 9
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:98.0px;">
+                FAILURE
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:61.0px;">
+                120
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:278.0px;">
+                User does not exist
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:98.0px;">
+                FAILURE
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:61.0px;">
+                422
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:278.0px;">
+                User not allowed to do Transaction. Please fle a support ticket
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:98.0px;">
+                SUCCESS
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:61.0px;">
+                0
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:278.0px;">
+                Message Sent to xxxxxx208
+            </td>
+        </tr>
+    </tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
 
 ## Sample Responses
 
