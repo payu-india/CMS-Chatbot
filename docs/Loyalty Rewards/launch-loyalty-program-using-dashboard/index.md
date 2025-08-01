@@ -20,6 +20,7 @@ To launch a loyalty program using PayU Dashboard:
 
 1. [Set up Loyalty](doc:set-up-loyalty)
 2. [Create a New Campaign](doc:create-a-new-campaign)
+3. [Manage Loyalty Edge Campaigns](doc:manage-loyalty-edge-campaigns)
 
 The Loyalty Rewards on PayU Dashboard provides the following features:
 
