@@ -1,7 +1,7 @@
 ---
 title: View Campaign Transactions
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
