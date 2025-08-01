@@ -16,7 +16,7 @@ For seamless integration, minor changes are expected in the APIs, which is expla
 
 ## Processing a Transaction with PayU with Token Created Outside PayU
 
-You would need the token, expiry, and TAVV values to be passed using PayU **\_payment** API. Apart from this, no further changes are expected. For more information, refer to [Collect Payments using a Saved Card](doc:collect-payments-using-a-saved-card).
+You would need the token, expiry, and TAVV values to be passed using PayU **\_payment** API. Apart from this, no further changes are expected. For more information, refer to [Collect Payments using a Tokenized Card](doc:collect-payments-using-a-saved-card).
 
 ## Choosing the Tokenzation Model
 
@@ -36,7 +36,7 @@ PayU offers the following models to integrate vault using PayU Hosted Checkout o
 If you are using the PayU Hosted Checkout integration and vault, there are no changes required from your side. PayU will manage everything from procuring, managing tokens, consent management, and displaying tokenized cards on the checkout page end-to-end. To enable vault with PayU Hosted Checkout integration:
 
 * Reach your PayU Key Account Manager to enable vault.
-* If you are not using the PayU vault, the only change required will be passing a user identifier\_.\_
+* If you are not using the PayU vault, the only change required will be passing a user identifier.
 
 ## Using Merchant Hosted Checkout Integration
 
