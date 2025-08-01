@@ -31,18 +31,24 @@ This section explains the procedure for getting a customer’s card details and 
 
 ***
 
-For all the scenarios mentioned in this section you must follow the 
+For all the scenarios mentioned in this section you must follow the
 
-1. **Get the saved card details**:  Get the customer’s card details your merchant key and customer’s registered mail ID to PayU using the **get\_user\_details** API. For more information, refer to [Get User Cards API - Model 3](ref:get_user_cards_api_model3) API  under API Reference.
+1. **Get the tokenized card details**:  Get the customer’s card details your merchant key and customer’s registered mail ID to PayU using the **get\_user\_details** API. For more information, refer to [Get User Cards API - Model 3](ref:get_user_cards_api_model3) API  under API Reference.
 
 2. **Post Payment to PayU and check response**: Make the transaction request with the payment details along with the card nickname to PayU based on the following scenarios of tokenization:
 
    * [Using zero code change approach](#using-zero-code-change-approach)
+
    * [Using complete card details](#using-complete-card-details)
+
    * [Using network tokens](#using-network-tokens)
+
    * [Using issuer tokens](#using-issuer-tokens)
+
    * [Using card tokenized with PayU](#using-card-tokenized-with-payu)
+
    * [Using card on a decoupled flow with network token or other partner tokenization](#using-card-on-a-decoupled-flow-with-network-token-or-other-partner-tokenization)
+
    * [Using card on a decoupled flow with PayU tokenization](#using-card-on-a-decoupled-flow-with-payu-tokenization)
 
    > 📘 Notes:
