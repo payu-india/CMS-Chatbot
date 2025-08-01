@@ -31,7 +31,7 @@ next:
 ---
 PayU Vault APIs allow users to store multiple credit card or debit card details on PayU Vault (Cloud) easily and safely. PayU Vault stores the card details and provides access to you (merchant) when your customer provides his/her user credentials accompanied with or without a card token.
 
-Your users save invaluable time when they use their cards that are stored on PayU Vault instead of entering the card details when they make payments safely on your website. Customers can use tokeization on all the merchant websites where they support PayU Vault.
+Your users save invaluable time when they use their cards that are stored on PayU Vault instead of entering the card details when they make payments safely on your website. Customers can use tokenization on all the merchant websites where they support PayU Vault.
 
 Users can update or delete their card details on the PayU vault when required. You may need to enable this on their website.
 
