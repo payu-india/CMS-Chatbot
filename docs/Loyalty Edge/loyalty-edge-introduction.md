@@ -16,10 +16,9 @@ Customer loyalty is a customer's ongoing commitment to repeatedly purchase from 
 
 You have to implement loyalty for your business:
 
-• High Returns\
-• Retention Value
-• Revenue Growth
-• Lower Acquisition Costs
+* Increase Retention Rates
+* Lower Acquisition Costs
+* Revenue Growth
 
 ## PayU  Loyalty Rewards
 
