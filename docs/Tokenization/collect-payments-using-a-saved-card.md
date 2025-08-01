@@ -23,11 +23,11 @@ metadata:
 next:
   description: ''
 ---
-PayU offers you API to save the card details and retrieves them using the Store Card APIs. For example, the stored cards are displayed when your customer performs checkout and lands on the payment page, similar to the following screenshot where they need to enter only the CVV:
+PayU offers you API to tokenize the card details and retrieves them using the Store Card APIs. For example, the stored cards are displayed when your customer performs checkout and lands on the payment page, similar to the following screenshot where they need to enter only the CVV:
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/11/save_card_checkout-1024x817.jpeg)
 
-This section explains the procedure for getting a customer’s card details and using a saved card to initiate payment.
+This section explains the procedure for getting a customer’s card details and using a tokenized card to initiate payment.
 
 ***
 
@@ -78,7 +78,7 @@ This scenario is applicable where a customer is providing the complete card numb
 ### Applicable Scenarios
 
 * It is a guest checkout  
-* It is a standard checkout request where there is no need to save the card 
+* It is a standard checkout request where there is no need to tokenize the card 
 
 > 📘 Note:
 >
