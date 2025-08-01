@@ -1,5 +1,5 @@
 ---
-title: Save a Card API
+title: Tokenize a Card API
 excerpt: ''
 deprecated: false
 hidden: false
@@ -22,20 +22,20 @@ metadata:
 next:
   description: ''
 ---
-The Save Card API is used for saving a card to the vault. After successfully storing a card, it returns the `cardToken`.
+The Tokenize a Card API is used for saving a card to the vault. After successfully storing a card, it returns the `cardToken`.
 
-> 📘 Note
-> 
-> As per RBI guidelines, taking consent from the customer and doing an additional factor of authentication is mandatory to tokenize the card. You must ensure this is done before using this API.
+<Callout icon="📘" theme="info">
+  **Note** As per RBI guidelines, taking consent from the customer and doing an additional factor of authentication is mandatory to tokenize the card. You must ensure this is done before using this API.
+</Callout>
 
-HTTP Method: **POST** 
+HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                                           |
-| :--------------------- | :-------------------------------------------------------- |
-| Test Environment       | \<https://apitest.payu.in/merchant/postservice.php?form=2> |
-| Production Environment | \<https://info.payu.in/merchant/postservice?form=2>        |
+|                        |                                                                                                                        |
+| :--------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| Test Environment       | \<[https://apitest.payu.in/merchant/postservice.php?form=2>](https://apitest.payu.in/merchant/postservice.php?form=2>) |
+| Production Environment | \<[https://info.payu.in/merchant/postservice?form=2>](https://info.payu.in/merchant/postservice?form=2>)               |
 
 ## Request parameters
 
@@ -199,7 +199,7 @@ curl --request POST \
 
 ### Success scenarios
 
-- VISA
+* VISA
 
 ```plaintext
 {
@@ -213,7 +213,7 @@ issuer_token: QQ3LkzgZOnEjY428,
 }
 ```
 
-- Mastercard
+* Mastercard
 
 ```plaintext
 {
@@ -227,7 +227,7 @@ issuer_token: AQ3LkzgBNyEjY213,
 }
 ```
 
-- American Express
+* American Express
 
 ```plaintext
 {
@@ -241,7 +241,7 @@ issuer_token: Va3RaqBNyPnY673,
 }
 ```
 
-- Rupay
+* Rupay
 
 ```plaintext
 {
@@ -255,7 +255,7 @@ issuer_token: Ya4HawKgbLmr312,
 }
 ```
 
-- Diners
+* Diners
 
 ```plaintext
 {
@@ -271,7 +271,7 @@ card_label: "Diner_Card",
 
 ### Failure scenario
 
-- If card Number is invalid
+* If card Number is invalid
 
 ```plaintext
 {
@@ -284,7 +284,9 @@ card_label: "Diner_Card",
 
 The following table describes the parameters in the response:
 
-**Note**: For every successful payment transactions, PayU returns the **mihpayuid** and **cardToken** parameters to the merchants, but networkToken and issuer\_token are returned only if you are PCI-DSS compliant.
+<Callout icon="📘" theme="info">
+  **Note**:  For every successful payment transactions, PayU returns the **mihpayuid** and **cardToken** parameters to the merchants, but networkToken and issuer\_token are returned only if you are PCI-DSS compliant.
+</Callout>
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
