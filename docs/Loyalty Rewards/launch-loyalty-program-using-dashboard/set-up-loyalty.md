@@ -12,6 +12,12 @@ next:
 ---
 The *Set-up Loyalty* page is designed to help you configure their loyalty programs by setting up how points are branded, and redeemed. It includes options for defining point naming, branding visuals, redemption rules, and allowing for a tailored loyalty experience that aligns with the merchant's brand and objectives.
 
+<Callout icon="📘" theme="info">
+  **Reference**:
+
+  After you complete the setting up a loyalty, you can start creating campaigns. For more information, refer to [Create a New Campaign](doc:create-a-new-campaign).
+</Callout>
+
 To set up loyalty:
 
 1. Log In to PayU Dashboard
