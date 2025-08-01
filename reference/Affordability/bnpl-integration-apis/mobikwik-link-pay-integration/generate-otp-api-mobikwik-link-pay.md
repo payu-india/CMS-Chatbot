@@ -19,18 +19,18 @@ This API generates an OTP for linking Mobikwik wallet account during checkout, e
 **Method:** `POST`\
 **Endpoint:** `/otpgenerate`
 
-## Request Parameters
+## Request parameters
 
-| Parameter                                       | Description                                                                   | Example           |
-| ----------------------------------------------- | ----------------------------------------------------------------------------- | ----------------- |
-| mid<br /><code>mandatory</code>                 | <code>String</code> Unique parent merchant ID                                 | `MBK9006`         |
-| cell<br /><code>mandatory</code>                | <code>String</code> Mobile number of the user                                 | `9311032820`      |
-| msgcode<br /><code>mandatory</code>             | <code>String</code> Message code to be sent                                   | `504`             |
-| merchantname<br /><code>optional</code>         | <code>String</code> Alias for the merchant                                    | `TestMerchant`    |
-| amount<br /><code>mandatory</code>              | <code>Integer</code> Maximum cap amount (not transaction amount)              | `200`             |
-| tokentype<br /><code>mandatory</code>           | <code>Integer</code> Token type (1 for token generation)                      | `1`               |
-| checksum<br /><code>mandatory</code>            | <code>String</code> Calculated checksum for validation                        | `calculated_hash` |
-| aggregatedMerchantId<br /><code>optional</code> | <code>String</code> Unique ID for aggregated merchants (For Aggregators Only) | `AGG123`          |
+| Parameter                                       | Description                                                                    | Example           |
+| ----------------------------------------------- | ------------------------------------------------------------------------------ | ----------------- |
+| mid<br /><code>mandatory</code>                 | <code>String</code> Unique parent merchant ID                                  | `MBK9006`         |
+| cell<br /><code>mandatory</code>                | <code>String</code> Mobile number of the user                                  | `9311032820`      |
+| msgcode<br /><code>mandatory</code>             | <code>String</code> Message code to be sent                                    | `504`             |
+| merchantname<br /><code>optional</code>         | <code>String</code> Alias for the merchant                                     | `TestMerchant`    |
+| amount<br /><code>mandatory</code>              | <code>Integer</code> Maximum cap amount (not transaction amount)               | `200`             |
+| tokentype<br /><code>mandatory</code>           | <code>Integer</code> Token type (1 for token generation)                       | `1`               |
+| checksum<br /><code>mandatory</code>            | <code>String</code> Calculated checksum for validation                         | `calculated_hash` |
+| aggregatedMerchantId<br /><code>optional</code> | <code>String</code> Unique ID for aggregateId merchants (For Aggregators Only) | `AGG123`          |
 
 📘 **Important:** The `amount` parameter represents the maximum cap amount, not the actual transaction amount. The debit API will work for amounts less than or equal to this value.
 
@@ -70,7 +70,7 @@ https://test.mobikwik.com/otpgenerate?mid=MBK9006&checksum=0750ff303400137018413
 
 ## Response Parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -155,9 +155,9 @@ https://test.mobikwik.com/otpgenerate?mid=MBK9006&checksum=0750ff303400137018413
 
       <td>
         `8feac7700a4efd1ef0  
-        8ea0ec5bf5921c3f1fc3
-        398944421978794b
-        9ada1c2c47`
+                8ea0ec5bf5921c3f1fc3  
+                398944421978794b
+                9ada1c2c47`
       </td>
     </tr>
   </tbody>
