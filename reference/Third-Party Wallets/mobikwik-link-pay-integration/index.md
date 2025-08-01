@@ -1,5 +1,5 @@
 ---
-title: Mobikwik Link & Pay Integration
+title: Mobikwik Wallet Integration APIs
 deprecated: false
 hidden: true
 metadata:
