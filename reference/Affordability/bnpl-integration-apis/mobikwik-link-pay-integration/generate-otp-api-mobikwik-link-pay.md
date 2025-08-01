@@ -7,17 +7,14 @@ metadata:
 ---
 This API generates an OTP for linking Mobikwik wallet account during checkout, enabling seamless wallet payments.
 
-## Environments
+## Environment
 
 | Environment    | URL                                          |
 | -------------- | -------------------------------------------- |
 | **Test**       | `https://test.mobikwik.com/otpgenerate`      |
 | **Production** | `https://walletapi.mobikwik.com/otpgenerate` |
 
-## Request Details
-
-**Method:** `POST`\
-**Endpoint:** `/otpgenerate`
+HTTP Method: **POST**
 
 ## Request parameters
 
@@ -34,13 +31,13 @@ This API generates an OTP for linking Mobikwik wallet account during checkout, e
 
 📘 **Important:** The `amount` parameter represents the maximum cap amount, not the actual transaction amount. The debit API will work for amounts less than or equal to this value.
 
-## Checksum Generation
+### Checksum Generation
 
-### For Aggregators
+#### For Aggregators
 
 **Format:** `'amount''cell''merchantname''mid''msgcode''tokentype''aggregatedMerchantId'`
 
-### For Direct Merchants
+#### For Direct Merchants
 
 **Format:** `'amount''cell''merchantname''mid''msgcode''tokentype'`
 
@@ -155,9 +152,9 @@ https://test.mobikwik.com/otpgenerate?mid=MBK9006&checksum=0750ff303400137018413
 
       <td>
         `8feac7700a4efd1ef0  
-                8ea0ec5bf5921c3f1fc3  
-                398944421978794b
-                9ada1c2c47`
+                        8ea0ec5bf5921c3f1fc3  
+                        398944421978794b  
+                        9ada1c2c47`
       </td>
     </tr>
   </tbody>
