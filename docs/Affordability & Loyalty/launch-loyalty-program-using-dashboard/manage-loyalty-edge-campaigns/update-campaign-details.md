@@ -1,7 +1,7 @@
 ---
 title: Update Campaign Details
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
