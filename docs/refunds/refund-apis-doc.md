@@ -17,4 +17,3 @@ The following APIs helps you to cancel a refund, check refund status, or get the
   * [Check Refund Status API with PayU ID](ref:check_action_status_api_with_payu_id)
   * [Check Refund Status API with Request ID](ref:check_action_status_api_with_request_id)
 * [Get All Refunds from Transaction IDs](ref:get_all_refunds_from_transaction_ids_api)
-* [Subvention Refund for Aggregators API](ref:subvention_refund_aggregator_api)
