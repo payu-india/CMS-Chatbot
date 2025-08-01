@@ -1,7 +1,7 @@
 ---
 title: Debit Mobikwik Balance API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -158,4 +158,3 @@ amount=100.00&couponcode=SAVE20
 "cashback": "20.00",
 "net_debit": "80.00"
 ```
-
