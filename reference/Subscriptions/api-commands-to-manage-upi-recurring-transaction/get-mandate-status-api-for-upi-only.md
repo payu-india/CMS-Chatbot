@@ -127,7 +127,7 @@ HTTP Method: **POST**
 
 * Success scenario
 
-```plaintext
+```json
 {
   "status": "active",
   "action": "check_mandate_status",
