@@ -1,7 +1,7 @@
 ---
 title: Token Regenerate API - Mobikwik
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
