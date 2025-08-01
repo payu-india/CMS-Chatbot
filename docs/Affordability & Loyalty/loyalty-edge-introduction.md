@@ -1,5 +1,5 @@
 ---
-title: Loyalty Edge Introduction
+title: Loyalty Edge
 excerpt: ''
 deprecated: false
 hidden: false
