@@ -1,5 +1,5 @@
 ---
-title: Generate OTP API - Mobikwik Link & Pay
+title: Generate OTP API - Mobikwik
 deprecated: false
 hidden: true
 metadata:
