@@ -35,6 +35,7 @@ Here's the HTML content converted to markdown format:
     * [Save Cards](https://docs.payu.in/docs/introduction-save-cards/)
     * [Offers](https://docs.payu.in/update/docs/introduction-to-affordability/)
     * [EMI](https://docs.payu.in/update/docs/introduction-to-affordability/)
+    * [Loyalty Edge](doc:loyalty-edge-introduction)
     * [Recommendation Engine](https://docs.payu.in/update/docs/recommendation-engine/)
     * [Affordability Widget](doc:affordability-suite)
 
