@@ -1,0 +1,215 @@
+---
+title: Generate OTP API - Mobikwik Link & Pay
+deprecated: false
+hidden: true
+metadata:
+  robots: index
+---
+This API generates an OTP for linking Mobikwik wallet account during checkout, enabling seamless wallet payments.
+
+## Environments
+
+| Environment    | URL                                          |
+| -------------- | -------------------------------------------- |
+| **Test**       | `https://test.mobikwik.com/otpgenerate`      |
+| **Production** | `https://walletapi.mobikwik.com/otpgenerate` |
+
+## Request Details
+
+**Method:** `POST`\
+**Endpoint:** `/otpgenerate`
+
+## Request Parameters
+
+| Parameter                                       | Description                                                                   | Example           |
+| ----------------------------------------------- | ----------------------------------------------------------------------------- | ----------------- |
+| mid<br /><code>mandatory</code>                 | <code>String</code> Unique parent merchant ID                                 | `MBK9006`         |
+| cell<br /><code>mandatory</code>                | <code>String</code> Mobile number of the user                                 | `9311032820`      |
+| msgcode<br /><code>mandatory</code>             | <code>String</code> Message code to be sent                                   | `504`             |
+| merchantname<br /><code>optional</code>         | <code>String</code> Alias for the merchant                                    | `TestMerchant`    |
+| amount<br /><code>mandatory</code>              | <code>Integer</code> Maximum cap amount (not transaction amount)              | `200`             |
+| tokentype<br /><code>mandatory</code>           | <code>Integer</code> Token type (1 for token generation)                      | `1`               |
+| checksum<br /><code>mandatory</code>            | <code>String</code> Calculated checksum for validation                        | `calculated_hash` |
+| aggregatedMerchantId<br /><code>optional</code> | <code>String</code> Unique ID for aggregated merchants (For Aggregators Only) | `AGG123`          |
+
+📘 **Important:** The `amount` parameter represents the maximum cap amount, not the actual transaction amount. The debit API will work for amounts less than or equal to this value.
+
+## Checksum Generation
+
+### For Aggregators
+
+**Format:** `'amount''cell''merchantname''mid''msgcode''tokentype''aggregatedMerchantId'`
+
+### For Direct Merchants
+
+**Format:** `'amount''cell''merchantname''mid''msgcode''tokentype'`
+
+**Algorithm:** HMAC SHA256\
+**Secret Key:** Provided by Mobikwik during merchant onboarding
+
+<Callout icon="📘" theme="info">
+  **Note**:
+
+  For merchant `MBK9006`, the secret key is `ju6tygh7u7tdg554k098ujd5468o`. Each merchant will receive their unique secret key.
+</Callout>
+
+## Sample Request
+
+```bash
+POST https://test.mobikwik.com/otpgenerate
+Content-Type: application/x-www-form-urlencoded
+
+mid=MBK9006&checksum=0750ff30340013701841399ce85179e90fb186d747d828dbe1d9360d394b9cbc&cell=9311032820&msgcode=504&tokentype=1&amount=200&merchantname=TestMerchant
+```
+
+**URL Format:**
+
+```
+https://test.mobikwik.com/otpgenerate?mid=MBK9006&checksum=0750ff30340013701841399ce85179e90fb186d747d828dbe1d9360d394b9cbc&cell=9311032820&msgcode=504&tokentype=1&amount=200&merchantname=TestMerchant
+```
+
+## Response Parameters
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        messagecode
+      </td>
+
+      <td>
+        <code>String</code> Message code from request
+      </td>
+
+      <td>
+        `504`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        status
+      </td>
+
+      <td>
+        <code>String</code> Transaction status
+      </td>
+
+      <td>
+        `SUCCESS`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        statuscode
+      </td>
+
+      <td>
+        <code>String</code> Numeric status code
+      </td>
+
+      <td>
+        `0`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        statusdescription
+      </td>
+
+      <td>
+        <code>String</code> Description of the status
+      </td>
+
+      <td>
+        `Message Sent to xxxxxx820`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        checksum
+      </td>
+
+      <td>
+        <code>String</code> Response checksum for validation
+      </td>
+
+      <td>
+        `8feac7700a4efd1ef0  
+        8ea0ec5bf5921c3f1fc3
+        398944421978794b
+        9ada1c2c47`
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### Response Attributes
+
+The response checksum that will be returned to the users will have the following format:
+
+**Checksum Format:** `'messageCode''status''StatusCode''StatusDescription'`\
+**Algorithm:** HMAC SHA256
+**Secret Key:** Same as used for request checksum generation
+
+📘 **Note:** Always validate the response checksum to ensure data integrity and security.
+
+## Sample Responses
+
+### Success Response
+
+```json
+{
+  "messagecode": "504",
+  "status": "SUCCESS",
+  "statuscode": "0",
+  "statusdescription": "Message Sent to xxxxxx820",
+  "checksum": "8feac7700a4efd1ef08ea0ec5bf5921c3f1fc3398944421978794b9ada1c2c47"
+}
+```
+
+### Failure Response
+
+```json
+{
+  "messagecode": "504",
+  "status": "FAILURE",
+  "statuscode": "55",
+  "statusdescription": "Parameter cell is invalid. It must be numeric, have 10 digits and start with 7,8 or 9",
+  "checksum": "f25ac916fe4806591e16269fc912771456437b784fa144a77fa9842d154920cc"
+}
+```
+
+## Status Codes
+
+| Status  | Status Code | Description                  |
+| ------- | ----------- | ---------------------------- |
+| SUCCESS | 0           | OTP sent successfully        |
+| FAILURE | 55          | Invalid mobile number format |
+| FAILURE | Various     | Other validation errors      |
+
+📘 **Important Notes:**
+
+* The mobile number must be numeric, have 10 digits, and start with 7, 8, or 9
+* Always validate the response checksum for security
+* Use test environment for integration testing before going live
+* The generated OTP is required for the Token Generate API
