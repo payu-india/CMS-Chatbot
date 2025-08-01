@@ -1,5 +1,5 @@
 ---
-title: Subscription Dashboard
+title: Subscriptions Dashboard
 excerpt: ''
 deprecated: false
 hidden: false
