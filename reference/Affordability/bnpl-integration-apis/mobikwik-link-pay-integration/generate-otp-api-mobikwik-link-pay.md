@@ -29,15 +29,25 @@ HTTP Method: **POST**
 | checksum<br /><code>mandatory</code>            | <code>String</code> Calculated checksum for validation                         | `calculated_hash` |
 | aggregatedMerchantId<br /><code>optional</code> | <code>String</code> Unique ID for aggregateId merchants (For Aggregators Only) | `AGG123`          |
 
-📘 **Important:** The `amount` parameter represents the maximum cap amount, not the actual transaction amount. The debit API will work for amounts less than or equal to this value.
+<Callout icon="📘" theme="info">
+  **Notes**:
 
-### Checksum Generation
+  * The `amount` parameter represents the maximum cap amount, not the actual transaction amount. The debit API will work for amounts less than or equal to this value.
+  * The mobile number must be numeric, have 10 digits, and start with 7, 8, or 9
+  * Always validate the response checksum for security
+  * Use test environment for integration testing before going live
+  * The generated OTP is required for the Token Generate API
 
-#### For Aggregators
+
+</Callout>
+
+### Checksum generation
+
+#### For aggregators
 
 **Format:** `'amount''cell''merchantname''mid''msgcode''tokentype''aggregatedMerchantId'`
 
-#### For Direct Merchants
+#### For direct merchants
 
 **Format:** `'amount''cell''merchantname''mid''msgcode''tokentype'`
 
@@ -50,7 +60,7 @@ HTTP Method: **POST**
   For merchant `MBK9006`, the secret key is `ju6tygh7u7tdg554k098ujd5468o`. Each merchant will receive their unique secret key.
 </Callout>
 
-## Sample Request
+## Sample request
 
 ```bash
 POST https://test.mobikwik.com/otpgenerate
@@ -65,7 +75,7 @@ mid=MBK9006&checksum=0750ff30340013701841399ce85179e90fb186d747d828dbe1d9360d394
 https://test.mobikwik.com/otpgenerate?mid=MBK9006&checksum=0750ff30340013701841399ce85179e90fb186d747d828dbe1d9360d394b9cbc&cell=9311032820&msgcode=504&tokentype=1&amount=200&merchantname=TestMerchant
 ```
 
-## Response Parameters
+## Response parameters
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -152,19 +162,23 @@ https://test.mobikwik.com/otpgenerate?mid=MBK9006&checksum=0750ff303400137018413
 
       <td>
         `8feac7700a4efd1ef0  
-                                8ea0ec5bf5921c3f1fc3  
-                                398944421978794b  
-                                9ada1c2c47`
+                                        8ea0ec5bf5921c3f1fc3  
+                                        398944421978794b  
+                                        9ada1c2c47`
       </td>
     </tr>
   </tbody>
 </Table>
 
-### Response Attributes
+### Response attributes
 
 The response checksum that will be returned to the users will have the following format:
 
-📘 **Note:** Always validate the response checksum to ensure data integrity and security.
+<Callout icon="📘" theme="info">
+  **Note:**
+
+  Always validate the response checksum to ensure data integrity and security.
+</Callout>
 
 <HTMLBlock>{`
 <table>
@@ -283,11 +297,9 @@ The response checksum that will be returned to the users will have the following
 </table>
 `}</HTMLBlock>
 
-<br />
+## Sample response
 
-## Sample Responses
-
-### Success Response
+### Success response
 
 ```json
 {
@@ -299,7 +311,7 @@ The response checksum that will be returned to the users will have the following
 }
 ```
 
-### Failure Response
+### Failure response
 
 ```json
 {
@@ -310,18 +322,3 @@ The response checksum that will be returned to the users will have the following
   "checksum": "f25ac916fe4806591e16269fc912771456437b784fa144a77fa9842d154920cc"
 }
 ```
-
-## Status Codes
-
-| Status  | Status Code | Description                  |
-| ------- | ----------- | ---------------------------- |
-| SUCCESS | 0           | OTP sent successfully        |
-| FAILURE | 55          | Invalid mobile number format |
-| FAILURE | Various     | Other validation errors      |
-
-📘 **Important Notes:**
-
-* The mobile number must be numeric, have 10 digits, and start with 7, 8, or 9
-* Always validate the response checksum for security
-* Use test environment for integration testing before going live
-* The generated OTP is required for the Token Generate API
