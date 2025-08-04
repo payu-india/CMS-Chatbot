@@ -1,7 +1,7 @@
 ---
 title: Steps to Integrate - Mobikwik Link & Pay
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -632,5 +632,3 @@ Follow the standard PayU refund process for Mobikwik Link & Pay transactions.
 ## Token Management
 
 Reference: If a token expires or becomes invalid, regenerate it using the Token Regenerate API. For more information, refer to Regenerate Token API.
-
-
