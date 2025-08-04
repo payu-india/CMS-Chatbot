@@ -20,3 +20,4 @@
 - reset-pin-api
 - impl-mapping-list
 - closed-loop-wallet-apis
+- callback-for-pg-load-api
