@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-Mobikwik Link & Pay is a streamlined one-click payment solution that enhances user experience by eliminating the need for repeated logins and multi-step wallet interactions. This integration guide provides step-by-step instructions for implementing Mobikwik Link & Pay payments on your platform.
+PayU's Mobikwik Link & Pay integration is a streamlined one-click payment solution that enhances user experience by eliminating the need for repeated logins and multi-step wallet interactions. This integration guide provides step-by-step instructions for implementing Mobikwik Link & Pay payments on your platform.
 
 ## Step 1: Check User Balance and Link Status
 
@@ -34,8 +34,7 @@ Before initiating a payment, check if the user's Mobikwik wallet is linked and v
 </table>
 `}</HTMLBlock>
 
-### Request Parameters
-
+<Accordion title="Sample request" icon="fa-table">
 <HTMLBlock>{`
 <table>
   <thead>
@@ -68,6 +67,7 @@ Before initiating a payment, check if the user's Mobikwik wallet is linked and v
   </tbody>
 </table>
 `}</HTMLBlock>
+</Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -104,9 +104,7 @@ Before initiating a payment, check if the user's Mobikwik wallet is linked and v
     "customerLinked": "false"
   }
   ```
-</Accordion>
 
-<Accordion title="Note" icon="fa-info-circle">
   If `customerLinked` is `false`, proceed with the first-time user flow. If `true`, proceed with the repeat user flow.
 </Accordion>
 
@@ -216,9 +214,7 @@ The Payment Initiation API enables merchants to seamlessly initiate payment requ
   --data-urlencode 'bankcode=MOBIKWIK' \
   --data-urlencode 'hash=GENERATED_HASH'
   ```
-</Accordion>
-
-<Accordion title="Hosted Checkout Request" icon="fa-code">
+####Hosted Checkout Request" icon="fa-code"
   ```bash
   curl --location 'https://test.payu.in/_payment' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -236,8 +232,7 @@ The Payment Initiation API enables merchants to seamlessly initiate payment requ
 </Accordion>
 
 ### Sample Response
-
-<Accordion title="Success Response" icon="fa-check">
+* Success scenario
   ```json
   {
     "status": "success",
@@ -251,9 +246,8 @@ The Payment Initiation API enables merchants to seamlessly initiate payment requ
     }
   }
   ```
-</Accordion>
 
-<Accordion title="Error Response" icon="fa-exclamation-triangle">
+* Failure scenario
   ```json
   {
     "status": "error",
@@ -262,7 +256,6 @@ The Payment Initiation API enables merchants to seamlessly initiate payment requ
     "data": null
   }
   ```
-</Accordion>
 
 ### Payment Flow Types
 
@@ -321,8 +314,7 @@ After the user enters the OTP, submit it to generate a wallet token for future t
 </table>
 `}</HTMLBlock>
 
-### Request Parameters
-
+<Accordion title="Request parameters" icon="fa-info-table">
 <HTMLBlock>{`
 <table>
   <thead>
@@ -363,6 +355,7 @@ After the user enters the OTP, submit it to generate a wallet token for future t
   </tbody>
 </table>
 `}</HTMLBlock>
+</Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -458,5 +451,3 @@ After the user enters the OTP, submit it to generate a wallet token for future t
   </tbody>
 </table>
 `}</HTMLBlock>
-
-###
