@@ -1,5 +1,5 @@
 ---
-name: Addional Cards _payment Request Parameters Information
+name: AddionalCards_paymentRequestParametersInformation
 ---
 <Table align={["left","left"]}>
   <thead>
@@ -21,9 +21,9 @@ name: Addional Cards _payment Request Parameters Information
       </td>
 
       <td style={{ textAlign: "left" }}>
-        For more information on how to generate the Key and Salt, refer to any of the following:  
+        For more information on how to generate the Key and Salt, refer to any of the following:
 
-        \- **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  
+        * **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
 
         * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
       </td>
@@ -36,10 +36,10 @@ name: Addional Cards _payment Request Parameters Information
 
       <td style={{ textAlign: "left" }}>
         Hash logic for **\_payment** API is:\
-        sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)\
-        For more information about the hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted).  
+        sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+        For more information about the hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
 
-        * \*Note\*\*: Hash logic for \_payment API version 19:  
+        * *Note*\*: Hash logic for \_payment API version 19:
 
         The following hash logic must be used for \_payment API with**api\_version=19**:\
         `key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|user_token\|offer_key\|offer_auto_apply\|cart_details\|extra_charges\|phone`
@@ -58,6 +58,8 @@ name: Addional Cards _payment Request Parameters Information
   </tbody>
 </Table>
 
-> 📘 Note:
->
-> The following parameters are mandatory for Cross-Border Payments in addition to user-defined parameters specified above:  firstname, lastname, address1, city, state, country and zipcode.
+<Callout icon="📘" theme="info">
+  **Note**:
+
+  The following parameters are mandatory for Cross-Border Payments in addition to user-defined parameters specified above:  firstname, lastname, address1, city, state, country and zipcode.
+</Callout>
