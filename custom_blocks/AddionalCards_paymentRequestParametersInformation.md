@@ -59,7 +59,5 @@ name: AddionalCards_paymentRequestParametersInformation
 </Table>
 
 <Callout icon="📘" theme="info">
-  **Note**:
-
-  The following parameters are mandatory for Cross-Border Payments in addition to user-defined parameters specified above:  firstname, lastname, address1, city, state, country and zipcode.
+  **Note**: The following parameters are mandatory for Cross-Border Payments in addition to user-defined parameters specified above:  firstname, lastname, address1, city, state, country and zipcode.
 </Callout>
