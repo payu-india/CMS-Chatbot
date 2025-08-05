@@ -1,7 +1,7 @@
 ---
 title: Webhooks for Chargeback
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Webhooks for Chargeback
   description: >-
