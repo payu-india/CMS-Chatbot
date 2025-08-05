@@ -7,13 +7,7 @@ metadata:
 ---
 This section describes step-by-step integration procedure for Mobikwik Link & Pay, designed to offer a seamless, one-click payment experience for users and merchants.
 
-Digital wallets have become a highly popular and convenient payment method, with Mobikwik establishing itself as a trusted wallet partner for both enterprise and direct-to-consumer (D2C) merchants. PayU has also integrated Mobikwik as a wallet option on its checkout platform.
-
-Traditionally, the wallet payment experience was cumbersome, involving multiple steps: users had to log into their wallet, load funds if the balance was low, and then debit the wallet to complete a transaction. This multi-step process often led to increased time, complexity, and a higher likelihood of transaction drop-offs. It also presented integration challenges for merchants, requiring additional customisation and system updates.
-
-To address these issues, the wallet industry has transitioned towards a **"Link & Pay: One-click payment model"** at checkout. Mobikwik has already adopted this feature with many leading merchants, providing a seamless experience. The current goal is to **expand this Link & Pay feature to PayU merchants**, thereby tackling the challenges of the traditional wallet payment process and ensuring a frictionless experience for both merchants and end-users.
-
-It provides a **seamless, one-click payment experience** for Mobikwik wallet users on PayU’s S2S and Hosted Checkout platforms. This streamlined flow aims to simplify the checkout process and enhance the overall payment experience for all parties. By introducing Link & Pay, Mobikwik seeks to offer merchants an efficient and scalable solution that improves conversion rates and customer satisfaction, reinforcing PayU's leadership in payment innovation.
+It provides a **seamless, one-click payment experience** for Mobikwik wallet users on PayU’s S2S integration. This streamlined flow aims to simplify the checkout process and enhance the overall payment experience for all parties. By introducing Link & Pay, Mobikwik seeks to offer merchants an efficient and scalable solution that improves conversion rates and customer satisfaction, reinforcing PayU's leadership in payment innovation.
 
 This integration is expected to deliver **measurable value** to merchants by reducing friction at checkout, increasing transaction success, and improving customer retention. For users, it promises a faster, more convenient, and secure payment process, making digital wallet payments more appealing.
 
@@ -36,3 +30,5 @@ This solution aims to drive higher user engagement, improved conversion rates, a
 The development of the Link & Pay wallet feature spans multiple key areas, from Checkout to Core Payments. The entire ecosystem is designed for flexibility and scalability, serving the needs of both **S2S4 merchants** (where the checkout and Wallet link/OTP page are managed by the merchant or PayU) and **PayU hosted merchants** (where these pages are managed by PayU). For Phase 1, implementation is planned for S2S4 merchants like MakeMyTrip and Myntra.
 
 The integration utilizes the existing BNPL Link & Pay Generic API Stack, with customisation for S2S and PayU hosted Checkout merchants.
+
+## Workflow
