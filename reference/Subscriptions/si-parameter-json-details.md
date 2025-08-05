@@ -185,7 +185,11 @@ The description for the **si\_details** parameter (JSON format):
       </td>
 
       <td style={{ textAlign: "left" }}>
-        ON = 2022-02-20
+        ON=2022-02-20\
+        OR
+        BEFORE= 2022-02-20
+        OR
+        AFTER=2022-02-20
       </td>
     </tr>
 
@@ -207,7 +211,9 @@ The description for the **si\_details** parameter (JSON format):
       </td>
 
       <td style={{ textAlign: "left" }}>
-        MAX = 5000
+        MAX=5000\
+        OR
+        EXACT=5000
       </td>
     </tr>
 
@@ -222,7 +228,7 @@ The description for the **si\_details** parameter (JSON format):
       </td>
 
       <td style={{ textAlign: "left" }}>
-        FORTNIGHTLY = 7
+        billingDate=1
       </td>
     </tr>
 
