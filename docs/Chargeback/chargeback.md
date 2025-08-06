@@ -34,13 +34,4 @@ The chargeback involves the following steps:
 3. PayU verifies the documents against the chargeback raised and shares​ the same with the acquiring bank.​
 4. If merchant does not provide response before the **Reply date**, ​ the acquiring bank will close the case in favour of the customer.​
 
-This part of the document includes the following:
-
-* [Chargeback Dashboard](doc:chargeback-dashboard)
-* [Chargeback APIs](doc:chargeback-apis)
-  * [Read Chargeback API](https://docs.payu.in/reference/read-chargeback-api)
-  * [Read Reasons API](ref:read-reasons-api)
-  * [Accept Chargeback API](https://docs.payu.in/reference/accept-chargeback-api)
-  * [Contest Chargeback API](ref:contest-chargeback-api)
-
-Also, for setting up webhooks to get real-time notifications about important chargeback events, refer to [Webhooks for Chargeback](doc:webhooks-for-chargeback).
+This part of the document includes the [Chargeback Dashboard](doc:chargeback-dashboard).
