@@ -36,36 +36,36 @@ Before initiating a payment, check if the user's Mobikwik wallet is linked and v
 
 <Accordion title="Sample request" icon="fa-table">
   <HTMLBlock>{`
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>mid<br/><code>mandatory</code></td>
-          <td>Merchant ID assigned by Mobikwik</td>
-        </tr>
-        <tr>
-          <td>cell<br/><code>mandatory</code></td>
-          <td>User's mobile number</td>
-        </tr>
-        <tr>
-          <td>msgcode<br/><code>mandatory</code></td>
-          <td>Message code for the request</td>
-        </tr>
-        <tr>
-          <td>checksum<br/><code>mandatory</code></td>
-          <td>HMAC SHA256 hash for security</td>
-        </tr>
-        <tr>
-          <td>aggregatedMerchantId<br/><code>optional</code></td>
-          <td>Aggregated merchant identifier</td>
-        </tr>
-      </tbody>
-    </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>mid<br/><code>mandatory</code></td>
+              <td>Merchant ID assigned by Mobikwik</td>
+            </tr>
+            <tr>
+              <td>cell<br/><code>mandatory</code></td>
+              <td>User's mobile number</td>
+            </tr>
+            <tr>
+              <td>msgcode<br/><code>mandatory</code></td>
+              <td>Message code for the request</td>
+            </tr>
+            <tr>
+              <td>checksum<br/><code>mandatory</code></td>
+              <td>HMAC SHA256 hash for security</td>
+            </tr>
+            <tr>
+              <td>aggregatedMerchantId<br/><code>optional</code></td>
+              <td>Aggregated merchant identifier</td>
+            </tr>
+          </tbody>
+        </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -149,7 +149,7 @@ The Payment Initiation API enables merchants to seamlessly initiate payment requ
   </thead>
   <tbody>
     <tr>
-      <td>merchantKey<br/><code>mandatory</code></td>
+      <td>key<br/><code>mandatory</code></td>
       <td>Merchant key from PayU Dashboard</td>
     </tr>
     <tr>
@@ -198,27 +198,32 @@ The Payment Initiation API enables merchants to seamlessly initiate payment requ
 
 ### Sample Request
 
-#####S2S Merchant Request
-  ```bash
-  curl --location 'https://test.payu.in/v2/payments' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=YOUR_MERCHANT_KEY' \
-  --data-urlencode 'txnid=TXN123456789' \
-  --data-urlencode 'amount=1000.00' \
-  --data-urlencode 'productinfo=Mobikwik Payment' \
-  --data-urlencode 'firstname=John' \
-  --data-urlencode 'email=john@example.com' \
-  --data-urlencode 'phone=9560012582' \
-  --data-urlencode 'surl=https://yoursite.com/success' \
-  --data-urlencode 'furl=https://yoursite.com/failure' \
-  --data-urlencode 'bankcode=MOBIKWIK' \
-  --data-urlencode 'hash=GENERATED_HASH'
-  ```
+##### S2S Merchant Request
+
+```bash
+curl --location 'https://test.payu.in/v2/payments' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=YOUR_MERCHANT_KEY' \
+--data-urlencode 'txnid=TXN123456789' \
+--data-urlencode 'amount=1000.00' \
+--data-urlencode 'productinfo=Mobikwik Payment' \
+--data-urlencode 'firstname=John' \
+--data-urlencode 'email=john@example.com' \
+--data-urlencode 'phone=9560012582' \
+--data-urlencode 'surl=https://yoursite.com/success' \
+--data-urlencode 'furl=https://yoursite.com/failure' \
+--data-urlencode 'bankcode=MOBIKWIK' \
+--data-urlencode 'hash=GENERATED_HASH'
+```
 
 ### Sample Response
+
 There will be different scenarios and the response according to different scenarios:
+
 * Repeat User Flow: If the customer’s account is linked and auto-debit is success:
+
 * Repeat User Flow: If the customer’s account is linked and auto debit fails (eg Failed at Payment Option’s end or any othe reason)
+
 * First Time User Flow: If customer is not linked wallet: This is the registration flow, where a first-time user is paying on a merchant with the specific payment option
 
 * Success scenario
@@ -305,44 +310,44 @@ After the user enters the OTP, submit it to generate a wallet token for future t
 
 <Accordion title="Request parameters" icon="fa-info-table">
   <HTMLBlock>{`
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>mid<br/><code>mandatory</code></td>
-          <td>Merchant ID</td>
-        </tr>
-        <tr>
-          <td>cell<br/><code>mandatory</code></td>
-          <td>User's mobile number</td>
-        </tr>
-        <tr>
-          <td>msgcode<br/><code>mandatory</code></td>
-          <td>Message code</td>
-        </tr>
-        <tr>
-          <td>otp<br/><code>mandatory</code></td>
-          <td>OTP entered by user</td>
-        </tr>
-        <tr>
-          <td>amount<br/><code>mandatory</code></td>
-          <td>Transaction amount</td>
-        </tr>
-        <tr>
-          <td>tokentype<br/><code>mandatory</code></td>
-          <td>Token type identifier</td>
-        </tr>
-        <tr>
-          <td>checksum<br/><code>mandatory</code></td>
-          <td>HMAC SHA256 hash</td>
-        </tr>
-      </tbody>
-    </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>mid<br/><code>mandatory</code></td>
+              <td>Merchant ID</td>
+            </tr>
+            <tr>
+              <td>cell<br/><code>mandatory</code></td>
+              <td>User's mobile number</td>
+            </tr>
+            <tr>
+              <td>msgcode<br/><code>mandatory</code></td>
+              <td>Message code</td>
+            </tr>
+            <tr>
+              <td>otp<br/><code>mandatory</code></td>
+              <td>OTP entered by user</td>
+            </tr>
+            <tr>
+              <td>amount<br/><code>mandatory</code></td>
+              <td>Transaction amount</td>
+            </tr>
+            <tr>
+              <td>tokentype<br/><code>mandatory</code></td>
+              <td>Token type identifier</td>
+            </tr>
+            <tr>
+              <td>checksum<br/><code>mandatory</code></td>
+              <td>HMAC SHA256 hash</td>
+            </tr>
+          </tbody>
+        </table>
   `}</HTMLBlock>
 </Accordion>
 
