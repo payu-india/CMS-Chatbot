@@ -27,8 +27,12 @@ This solution aims to drive higher user engagement, improved conversion rates, a
 
 ## Prerequisites
 
-The development of the Link & Pay wallet feature spans multiple key areas, from Checkout to Core Payments. The entire ecosystem is designed for flexibility and scalability, serving the needs of both **S2S4 merchants** (where the checkout and Wallet link/OTP page are managed by the merchant or PayU) and **PayU hosted merchants** (where these pages are managed by PayU). For Phase 1, implementation is planned for S2S4 merchants like MakeMyTrip and Myntra.
+The development of the Link & Pay wallet feature spans multiple key areas, from Checkout to Core Payments. The entire ecosystem is designed for flexibility and scalability, serving the needs of both **S2S** (where the checkout and Wallet link/OTP page are managed by the merchant or PayU) and **PayU Hosted** checkout integration.
 
 The integration utilizes the existing BNPL Link & Pay Generic API Stack, with customisation for S2S and PayU hosted Checkout merchants.
 
 ## Workflow
+
+<Image align="center" src="https://files.readme.io/2e908af4b1340e292d310830a7d84b277916ddf80a49d05c1def1e171f1b427e-mobikwik_workflow_diagram_2.png" />
+
+<Image align="center" src="https://files.readme.io/dfcb2bf925cd3a7dcc62d337dd3b8c9a27a489ac8f460361516999956c2da34b-mobikwik_workflow_diagram_3_1.png" />
