@@ -17,25 +17,25 @@ This section describes how to create and onboard child merchants using the **Cre
 3. [Upload Schedule C document](#step-3-upload-schedule-c-document)
 
 > 📘 Notes:
-> 
-> - After adding the child merchant in[ Step 1: Add a child merchant](#step-1-add-child-merchant), update the bank details of the child merchant using this API again as in [Step 2: Update bank details.](#step-2-update-bank-details).
-> - After completing  [Step 2](#step-2-update-bank-details), you must upload the Schedule C document for the child merchant. For more information on how to upload the Schedule C document of the child merchant, refer to [Add a Sub-Account](doc:add-a-sub-account).
+>
+> * After adding the child merchant in[ Step 1: Add a child merchant](#step-1-add-child-merchant), update the bank details of the child merchant using this API again as in [Step 2: Update bank details.](#step-2-update-bank-details).
+> * After completing  [Step 2](#step-2-update-bank-details), you must upload the Schedule C document for the child merchant. For more information on how to upload the Schedule C document of the child merchant, refer to [Add a Sub-Account](doc:add-a-sub-account).
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                                 |
-| -------------------------- | --------------------------------------------------------------- |
-| **Test Environment**       | \<https://uat-onepayuonboarding.payu.in/api/v3/product_accounts> |
-| **Production Environment** | \<https://onboarding.payu.in/api/v3/product_accounts>            |
+|                            |                                                                                                                                     |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://uat-onepayuonboarding.payu.in/api/v3/product\_accounts>](https://uat-onepayuonboarding.payu.in/api/v3/product_accounts>) |
+| **Production Environment** | \<[https://onboarding.payu.in/api/v3/product\_accounts>](https://onboarding.payu.in/api/v3/product_accounts>)                       |
 
 ## Step 1: Add child merchant
 
 > 📘 Authorization:
-> 
-> Generate token using the [Get Client Token API](ref:get-client-token-api) and pass it in header along with the following request parameters. 
-> 
+>
+> Generate token using the [Get Client Token API](ref:get-client-token-api) and pass it in header along with the following request parameters.
+>
 > For the Postman collection, refer to [Postman Collection](https://documenter.getpostman.com/view/7484238/TVCcZAJC#auth-info-60abdedd-6640-49c8-9497-fe181220c2fd). Merchant access token or client token with scope ‘refer\_child\_merchant’ from Hub.
 
 ### Request Parameters
@@ -166,34 +166,29 @@ HTTP Method: **POST**
 </table>
 `}</HTMLBlock>
 
-
 ### Business Entity Mapping
 
 The business entity ID (**business\_entity\_id**) and corresponding business entity mapping are:
 
-| **Business Entity ID** | **Business Entity**         |
-| ---------------------- | --------------------------- |
-| 1                      | Association of Persons      |
-| 2                      | Sole Proprietorship         |
-| 3                      | Partnership                 |
-| 4                      | Private Limited             |
-| 5                      | Public Limited              |
-| 6                      | LLP                         |
-| 7                      | Trust                       |
-| 8                      | Society                     |
-| 9                      | Government                  |
-| 10                     | Hindu Undivided Family      |
-| 11                     | Local Authority             |
-| 12                     | Non Individual              |
-| 13                     | Education                   |
-| 14                     | Individual                  |
-| 15                     | NGO                         |
-| 16                     | One Person Company          |
-| 17                     | Artificial Juridical Person |
+| Entity Code | Business Entity Type        |
+| :---------- | :-------------------------- |
+| A           | Society                     |
+| P           | Individual                  |
+| P           | Sole Proprietorship         |
+| F           | Partnership                 |
+| F           | LLP                         |
+| C           | Private Limited             |
+| C           | Public Limited              |
+| C           | One Person Company          |
+| T           | Trust                       |
+| G           | Government                  |
+| H           | Hindu Undivided Family      |
+| L           | Local Authority             |
+| J           | Artificial Juridical Person |
 
 ### Sample request
 
-- Success Scenario
+* Success Scenario
 
 ```
 curl --location 'https://uat-onepayuonboarding.payu.in/api/v3/product_accounts'
@@ -215,7 +210,7 @@ curl --location 'https://uat-onepayuonboarding.payu.in/api/v3/product_accounts'
 }'
 ```
 
-- Failure Scenario
+* Failure Scenario
 
 **Token is invalid**
 
@@ -251,7 +246,7 @@ curl --location -g --request POST 'https://uat-onepayuonboarding.payu.in/api/v3/
 
 ### Sample Response
 
-- Success Scenario
+* Success Scenario
 
 Create Child Merchant Success Scenario
 
@@ -475,7 +470,7 @@ www.youtube.com"
 }
 ```
 
-- Failure Scenarios
+* Failure Scenarios
 
 **The token is invalid or expired**
 
@@ -503,7 +498,7 @@ www.youtube.com"
 After adding the child merchant in[ Step 1: Add a child merchant](##step-1-add-child-merchant), update the bank details of the child merchant using the following request parameters.
 
 > 📘 Reference:
-> 
+>
 > Generate token using the [Get Client Token API](ref:get-client-token-api) and pass it in header along with the following request parameters.
 
 ### Request Parameters
@@ -529,9 +524,8 @@ After adding the child merchant in[ Step 1: Add a child merchant](##step-1-add-c
 </table>
 `}</HTMLBlock>
 
-
 > 📘 Authorization:
-> 
+>
 > This request is using Bearer Token from the collection. For more information, refer to [Postman Collection](https://documenter.getpostman.com/view/7484238/TVCcZAJC#auth-info-60abdedd-6640-49c8-9497-fe181220c2fd). Merchant access token or client token with scope ‘refer\_child\_merchant’ from Hub.
 
 The **bank\_detail** parameter is in a JSON parameter, and the fields in this parameter are described in the following table:
