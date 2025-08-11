@@ -63,7 +63,7 @@ HTTP Request Method: GET
 ## Sample request
 
 ```bash
-curl --location 'https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=true&vpa=ridhigarg95@okicici' \
+curl --location 'https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=true&vpa=test@payu' \
 --header 'Content-Type: application/json' \
 --header 'date: Tue, 17 Jun 2025 06:48:55 GMT' \
 --header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="b4db4b20d1d9146edfd846fc11c2145ab1ac99c001df5923e3a412672f577b73f3b2cee4dc492f18ea55a0be8a4ec9f0df4475ad6eb03bedc0c6ef46235f0ed7"'
@@ -77,8 +77,8 @@ curl --location 'https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=tru
     "status": 1,
     "result": {
         "isValidVpa": true,
-        "payerAccountName": "RIDHI GARG",
-        "vpa": "ridhigarg95@okicici",
+        "payerAccountName": "Test",
+        "vpa": "test@payu",
         "isAutoPayVPAValid": true
     }
 }
