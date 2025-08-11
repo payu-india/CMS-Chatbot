@@ -98,7 +98,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        delegate\
+        delegate
         `mandatory`
       </td>
 
@@ -109,7 +109,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        config\
+        config
         `mandatory`
       </td>
 
@@ -120,7 +120,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        merchantName\
+        merchantName
         `mandatory`
       </td>
 
@@ -131,7 +131,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        merchantKey\
+        merchantKey
         `mandatory`
       </td>
 
@@ -142,7 +142,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        phone\
+        phone
         `mandatory`
       </td>
 
@@ -153,7 +153,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        email\
+        email
         `mandatory`
       </td>
 
@@ -164,7 +164,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        pluginTypes\
+        pluginTypes
         `mandatory`
       </td>
 
@@ -175,7 +175,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        isProduction\
+        isProduction
         `mandatory`
       </td>
 
@@ -186,7 +186,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        excludedBanksIINs\
+        excludedBanksIINs
         `mandatory`
       </td>
 
@@ -197,7 +197,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        refId\
+        refId
         `optional`
       </td>
 
@@ -331,7 +331,7 @@ The **PayUPaymentParams API** is used to generate PayU payment parameters.
 
 ```swift
 var paymentParams = PayUUPIBoltPaymentParams(
-    transactionId: "<transactionId>", // Replace with actual transaction ID
+    txnId: "<transactionId>", // Replace with actual transaction ID
     amount: "<amount>", // Replace with actual amount
     productInfo: "<productInfo>", // Replace with actual product info
     firstName: "<firstName>", // Replace with actual first name
@@ -352,7 +352,7 @@ udfs.udf6 = "<udf6>" // Replace with actual value or nil
 paymentParams.udfs = udfs // Optional User defined fields
 ```
 
-The following fields are needed as a request:  
+The following fields are needed as a request:
 
 <Table>
   <thead>
@@ -381,7 +381,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        transactionId\
+        txnId
         `mandatory`
       </td>
 
@@ -392,7 +392,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        productInfo\
+        productInfo
         `mandatory`
       </td>
 
@@ -403,7 +403,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        firstName\
+        firstName
         `mandatory`
       </td>
 
@@ -414,7 +414,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        furl\
+        furl
         `optional`
       </td>
 
@@ -425,7 +425,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        surl\
+        surl
         `optional`
       </td>
 
@@ -436,7 +436,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        udf1\
+        udf1
         `optional`
       </td>
 
@@ -447,7 +447,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        udf2\
+        udf2
         `optional`
       </td>
 
@@ -458,7 +458,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        udf3\
+        udf3
         `optional`
       </td>
 
@@ -469,7 +469,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        udf4\
+        udf4
         `optional`
       </td>
 
@@ -480,23 +480,12 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        udf5\
+        udf5
         `optional`
       </td>
 
       <td>
         `String` User-defined fields 5
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf6\
-        `optional`
-      </td>
-
-      <td>
-        `String` User-defined fields 6
       </td>
     </tr>
   </tbody>
@@ -525,9 +514,9 @@ func generateHash(for param: [String: String],
 }
 ```
 
-The merchant receives a dictionary containing the type of hash and the corresponding hash string as its values. The merchant needs to sign the provided hash string using their salt to create the final hash and pass it back via the completion handler. param: This dictionary contains two keys: 
+The merchant receives a dictionary containing the type of hash and the corresponding hash string as its values. The merchant needs to sign the provided hash string using their salt to create the final hash and pass it back via the completion handler. param: This dictionary contains two keys:
 
-* **hashName** - The name of the command. 
+* **hashName** - The name of the command.
 * **hashString** - The hash string, without the salt. PayUUPIBoltHashGenerationCompletion: This completion handler contains the hashDict parameter.
 * **hashDict**: Provide a dictionary where the hashName is the key, and the generated hash is the value. To generate the hash, you need to combine the hashString with the salt on your server and apply the SHA-512 algorithm and pass it back via the completion handler
 
@@ -535,12 +524,12 @@ The merchant receives a dictionary containing the type of hash and the correspon
 
 The listener/callback contains 4 methods where the merchant app will get the API response and hash-related callbacks.
 
-| Method                                                                                                         | Purpose                                                                        |
-| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| func onPayUSuccess(response: PayUUPIBoltResponse)                                                              | It will contain success response.                                              |
-| func onPayUFailure(response: PayUUPIBoltResponse)                                                              | It will contain failure response                                               |
-| onPayUCancel(isTxnInitiated: Bool)                                                                             | It will tell if payment was cancelled                                          |
-| func generateHash(for param: \[String: String\], onCompletion: @escaping PayUUPIBoltHashGenerationCompletion): | For hash generation, refer to [Hash generation logic](#hash-generation-logic). |
+| Method                                                                                                        | Purpose                                                                        |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| func onPayUSuccess(response: PayUUPIBoltResponse)                                                             | It will contain success response.                                              |
+| func onPayUFailure(response: PayUUPIBoltResponse)                                                             | It will contain failure response                                               |
+| onPayUCancel(isTxnInitiated: Bool)                                                                            | It will tell if payment was cancelled                                          |
+| func generateHash(for param: \[String: String], onCompletion: @escaping PayUUPIBoltHashGenerationCompletion): | For hash generation, refer to [Hash generation logic](#hash-generation-logic). |
 
 ## Error codes and error message list
 
