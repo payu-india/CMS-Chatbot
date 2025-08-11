@@ -1,7 +1,7 @@
 ---
 title: Alt ID Error Page
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
