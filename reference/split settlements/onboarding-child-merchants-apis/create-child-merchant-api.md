@@ -103,7 +103,7 @@ HTTP Method: **POST**
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>The business entity ID of the merchant. The business entity ID and corresponding business entity is listed in the <a href="#business_entity_mapping">Business Entity Mapping</a> table of this section.</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>2</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>P</p>
 </td>
 </tr>
 <tr>
@@ -170,21 +170,17 @@ HTTP Method: **POST**
 
 The business entity ID (**business\_entity\_id**) and corresponding business entity mapping are:
 
-| Entity Code | Business Entity Type        |
-| :---------- | :-------------------------- |
-| A           | Society                     |
-| P           | Individual                  |
-| P           | Sole Proprietorship         |
-| F           | Partnership                 |
-| F           | LLP                         |
-| C           | Private Limited             |
-| C           | Public Limited              |
-| C           | One Person Company          |
-| T           | Trust                       |
-| G           | Government                  |
-| H           | Hindu Undivided Family      |
-| L           | Local Authority             |
-| J           | Artificial Juridical Person |
+| Entity Code | Business Entity Types                               |
+| :---------- | :-------------------------------------------------- |
+| A           | Society                                             |
+| P           | Individual, Sole Proprietorship                     |
+| F           | Partnership, LLP                                    |
+| C           | Private Limited, Public Limited, One Person Company |
+| T           | Trust                                               |
+| G           | Government                                          |
+| H           | Hindu Undivided Family                              |
+| L           | Local Authority                                     |
+| J           | Artificial Juridical Person                         |
 
 ### Sample request
 
