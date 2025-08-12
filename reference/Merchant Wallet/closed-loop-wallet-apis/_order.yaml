@@ -1,3 +1,4 @@
+- registering-customer
 - register-customer-api
 - pg-load-api
 - pg-load-enquiry-api
@@ -10,4 +11,3 @@
 - retrieve-customer-record-api-1
 - statement-inquiry-api-1
 - load-and-pay-transaction-api
-- registering-customer
