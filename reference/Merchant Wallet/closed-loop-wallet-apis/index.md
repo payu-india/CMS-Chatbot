@@ -13,6 +13,7 @@ metadata:
   * [PG Load Enquiry API](https://docs.payu.in/reference/pg-load-enquiry-api)
   * [Load API](ref:l)
   * [Check Status API](ref:check-status-api)
+  * [Load and Pay Transaction API](https://docs.payu.in/reference/load-and-pay-transaction-api)
 * [Retrieve Customer Record API](ref:retrieve-customer-record-api-1)
 * [Statement Inquiry API](ref:statement-inquiry-api-1)
 * Debiting Wallet
@@ -21,9 +22,3 @@ metadata:
   * [Seamless Debit Enquiry API](https://docs.payu.in/reference/seamless-debit-enquiry-api)
 * [Change Wallet Status API](https://docs.payu.in/reference/change-wallet-status-api)
 * [Update Profile API - Closed Loop](https://docs.payu.in/reference/update-profile-api-closed-loop)
-* <br />
-
-<br />
-
-* <br />
-* [Load and Pay Transaction API](https://docs.payu.in/reference/load-and-pay-transaction-api)
