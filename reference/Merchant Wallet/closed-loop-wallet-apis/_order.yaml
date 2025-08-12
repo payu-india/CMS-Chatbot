@@ -1,8 +1,8 @@
 - registering-customer
 - loading-wallet
 - retrieve-customer-record-api-1
+- statement-inquiry-api-1
 - debiting-wallet
 - update-profile-api-closed-loop
 - change-wallet-status-api
-- statement-inquiry-api-1
 - load-and-pay-transaction-api
