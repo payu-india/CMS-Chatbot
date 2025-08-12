@@ -1,6 +1,7 @@
 - register-customer-api
 - pg-load-api
 - pg-load-enquiry-api
+- callback-for-pg-load-api
 - collect-payment-api-card-seamless
 - non-seamless-debit-transaction-api
 - seamless-debit-enquiry-api
@@ -9,4 +10,3 @@
 - retrieve-customer-record-api-1
 - statement-inquiry-api-1
 - load-and-pay-transaction-api
-- callback-for-pg-load-api
