@@ -71,32 +71,9 @@ Here's the table converted to a bulleted list with the Feature column in bold fo
 
 ***
 
-## Step 1: Initiate the payment with PayU
+### Step 1: Initiate the payment with PayU
 
-### Post the parameters to PayU
-
-Create an HTML form that collects payment information and posts it to PayU's payment gateway.
-
-```html
-<form action="https://test.payu.in/_payment" method="post" name="payuForm">
-  <input type="hidden" name="key" value="gtKFFx" />
-  <input type="hidden" name="txnid" value="<?php echo $txnid; ?>" />
-  <input type="hidden" name="amount" value="<?php echo $amount; ?>" />
-  <input type="hidden" name="productinfo" value="<?php echo $productinfo; ?>" />
-  <input type="hidden" name="firstname" value="<?php echo $firstname; ?>" />
-  <input type="hidden" name="email" value="<?php echo $email; ?>" />
-  <input type="hidden" name="phone" value="<?php echo $phone; ?>" />
-  <input type="hidden" name="pg" value="NEFTRTGS" />
-  <input type="hidden" name="bankcode" value="EFTAXIS" />
-  <input type="hidden" name="udf1" value="<?php echo $unique_identifier; ?>" />
-  <input type="hidden" name="surl" value="<?php echo $surl; ?>" />
-  <input type="hidden" name="furl" value="<?php echo $furl; ?>" />
-  <input type="hidden" name="hash" value="<?php echo $hash; ?>" />
-  <input type="submit" value="Submit" />
-</form>
-```
-
-### Request Parameters
+#### Request Parameters
 
 <HTMLBlock>{`
 <table>
@@ -177,9 +154,7 @@ Create an HTML form that collects payment information and posts it to PayU's pay
 </table>
 `}</HTMLBlock>
 
-<br />
-
-### Sample Request
+#### Sample Request
 
 <Accordion title="PHP">
   ```php
@@ -310,13 +285,13 @@ key|txnid|amount|productinfo|firstname|email|||||||||salt
 
 ***
 
-## Step 2: Check response from PayU
+### Step 2: Check response from PayU
 
-### Response Handling
+#### Response Handling
 
 PayU will redirect the customer back to your success or failure URL with the payment response.
 
-### Hash Verification
+#### Hash Verification
 
 Verify the response hash to ensure data integrity:
 
@@ -364,9 +339,9 @@ if (hash_equals($hash, $posted_hash)) {
 
 ***
 
-## Step 3: Verify the payment
+### Step 3: Verify the payment
 
-### Payment Verification API
+#### Payment Verification API
 
 Use the `verify_payment` API to confirm the transaction status:
 
@@ -411,7 +386,7 @@ $verification_result = verifyPayment($txnid, $key, $salt);
 ?>
 ```
 
-### Verification Response
+#### Verification Response
 
 ```json
 {
@@ -518,41 +493,3 @@ Use your test merchant credentials provided by PayU:
 * [ ] **Unique identifier format validated** (prefix + mobile number)
 * [ ] **Payment verification API** integrated and tested
 * [ ] **Error handling** implemented for edge cases
-
-### Security Best Practices
-
-<Callout icon="🔒" theme="default">
-  ### **Security Guidelines**
-
-  * Always use HTTPS for production
-  * Store merchant key and salt securely
-  * Validate all incoming data
-  * Implement proper error handling
-  * Use hash verification for all responses
-  * Log transactions for audit purposes
-</Callout>
-
-***
-
-## Additional Resources
-
-* [Merchant Key & Salt Management](https://docs.payu.in/docs/merchant-key-salt)
-* [Hash Generation Guide](https://docs.payu.in/docs/hash-generation-logic)
-* [Verify Payment API](https://docs.payu.in/reference/verify-payment-api)
-* [NEFT/RTGS Integration](https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless)
-
-***
-
-## Support
-
-For technical support and queries:
-
-* **PayU Support**: Contact your PayU Key Account Manager (KAM)
-* **Developer Support**: [support@payu.in](mailto:support@payu.in)
-* **Documentation**: [PayU Developer Portal](https://docs.payu.in)
-
-<Callout icon="💡" theme="default">
-  ### **Pro Tip**
-
-  The unique identifier in `udf1` enables automatic reconciliation. Ensure the format (company prefix + mobile number) is consistent across all transactions for seamless payment tracking.
-</Callout>
