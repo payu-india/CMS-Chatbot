@@ -1,7 +1,7 @@
 ---
 title: 'Registering Customer '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
