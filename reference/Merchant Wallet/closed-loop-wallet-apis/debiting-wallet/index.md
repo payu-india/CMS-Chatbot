@@ -1,8 +1,9 @@
 ---
-title: Debiting Wallet
+title: Debiting Wallet APIs
 deprecated: false
 hidden: true
 metadata:
+  title: Debiting Wallet APIs - Closed Loop Wallet
   robots: index
 ---
 This part of the API reference includes the APIs to  debit the amount using seamless or non-seamless integration from wallet and check the debit status:
