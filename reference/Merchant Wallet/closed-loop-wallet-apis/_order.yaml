@@ -1,4 +1,5 @@
 - registering-customer
+- loading-wallet
 - pg-load-api
 - pg-load-enquiry-api
 - callback-for-pg-load-api
@@ -10,4 +11,3 @@
 - retrieve-customer-record-api-1
 - statement-inquiry-api-1
 - load-and-pay-transaction-api
-- loading-wallet
