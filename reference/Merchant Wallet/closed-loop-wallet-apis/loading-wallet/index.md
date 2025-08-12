@@ -1,8 +1,9 @@
 ---
-title: 'Loading Wallet '
+title: Loading Wallet APIs
 deprecated: false
 hidden: true
 metadata:
+  title: Loading Wallet APIs - Closed Loop Wallet
   robots: index
 ---
 This part of the API reference includes the following APIs used to load and check the loading status:
