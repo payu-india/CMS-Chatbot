@@ -1,37 +1,75 @@
 ---
 title: Reusable VAN Integration - NEFT
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
-Reusable Virtual Account Number (VAN) for NEFT enables merchants to collect payments through the National Electronic Funds Transfer system using unique customer identifiers. This payment method uses the same _payment API as regular NEFT but includes a unique identifier in the udf1 parameter for automatic reconciliation.
+NEFT is an electronic payment system in India that facilitates secure fund transfers from one bank account to another on a one-to-one basis. A **Reusable Virtual Account Number (VAN)** is a unique virtual account assigned to customers or transactions that can be used multiple times for recurring payments, making it convenient for businesses to manage collections efficiently.
 
-## Table of Contents
-- [Prerequisites](#before-you-start)
-- [Step 1: Initiate the payment with PayU](#step-1-initiate-the-payment-with-payu)
-- [Step 2: Check response from PayU](#step-2-check-response-from-payu)
-- [Step 3: Verify the payment](#step-3-verify-the-payment)
-- [Optional configurations](#optional-configurations)
-- [Testing](#testing)
-- [Go live](#go-live)
+**NEFT (National Electronic Funds Transfer) with Reusable Virtual Account Number** is an advanced payment solution that enables seamless fund transfers through the NEFT system while providing businesses with unique virtual account numbers for easy payment tracking and reconciliation.
 
----
+## Key Features
 
+* Reusable Virtual Accounts
+  * Single virtual account number for multiple transactions
+  * Eliminates need to create new account numbers for every transaction
+  * Customizable virtual account numbers with specific identifiers
+* Seamless Fund Transfers
+  * Easy and efficient fund transfers through NEFT system
+  * Real-time tracking and reconciliation of payments
+  * Integration with existing ERP or accounting systems
+* Enhanced Security
+  * Secure fund transfers with minimal risk of errors or fraud
+  * Actual bank account details are not shared
+  * Compliance with security protocols and standards
+* Simplified Reconciliation
+  * Easy matching of incoming payments with invoices or customers
+  * Unique identification for each transaction
+  * Automated payment processing capabilities
+
+## Benefits
+
+Here's the table converted to a bulleted list with the Feature column in bold formatting:
+
+• **Cost-Effective** - Reduces administrative costs associated with managing multiple accounts\
+• **Improved Efficiency** - Speeds up payment process and reduces delays in fund allocation
+• **Enhanced Customer Experience** - Hassle-free payment experience with reusable account numbers
+• **Scalability** - Suitable for businesses of all sizes
+• **Transparency** - Clear visibility into payment flows for better financial management
+• **Error Reduction** - Minimizes errors in payment processing and reconciliation
+
+***
+
+<br />
+
+## Steps to integrate
+
+* [Prerequisites](#before-you-start)
+
+1. [Step 1: Initiate the payment with PayU](#step-1-initiate-the-payment-with-payu)
+2. [Step 2: Check response from PayU](#step-2-check-response-from-payu)
+3. [Step 3: Verify the payment](#step-3-verify-the-payment)
+
+* [Optional configurations](#optional-configurations)
+* [Testing](#testing)
+* [Go live](#go-live)
+
+***
 
 ### Prerequisites
 
-- **PayU merchant account** with live credentials
-- **Reusable VAN enabled**: Contact your PayU Key Account Manager (KAM) or PayU Support to enable Reusable VAN - NEFT for your merchant account
-- **Company acronym**: Provide a 7-character acronym of your company name to PayU. This will be prefixed to the customer mobile number to create a unique identifier. For example, if the prefix is "BESPOKE" for "BeSpoke Limited", and customer mobile number is 9881234567, the unique ID becomes "BESPOKE9881234567"
-- **Merchant key and salt** for hash generation
-- **HTTPS-enabled website** for secure communication
+* **PayU merchant account** with live credentials
+* **Reusable VAN enabled**: Contact your PayU Key Account Manager (KAM) or PayU Support to enable Reusable VAN - NEFT for your merchant account
+* **Company acronym**: Provide a 7-character acronym of your company name to PayU. This will be prefixed to the customer mobile number to create a unique identifier. For example, if the prefix is "BESPOKE" for "BeSpoke Limited", and customer mobile number is 9881234567, the unique ID becomes "BESPOKE9881234567"
+* **Merchant key and salt** for hash generation
+* **HTTPS-enabled website** for secure communication
 
 > 📘 **Note**
-> 
-> The unique identifier (company prefix + mobile number) must be passed in the `udf1` parameter of the _payment API request.
+>
+> The unique identifier (company prefix + mobile number) must be passed in the `udf1` parameter of the \_payment API request.
 
----
+***
 
 ## Step 1: Initiate the payment with PayU
 
@@ -60,149 +98,141 @@ Create an HTML form that collects payment information and posts it to PayU's pay
 
 ### Request Parameters
 
-| Parameter | Required | Description | Example |
-|-----------|----------|-------------|---------|
-| `key` | Yes | Merchant key provided by PayU | gtKFFx |
-| `txnid` | Yes | Unique transaction ID generated by merchant | TXN123456789 |
-| `amount` | Yes | Transaction amount | 100.00 |
-| `productinfo` | Yes | Product or service information | Reusable VAN Payment |
-| `firstname` | Yes | Customer's first name | John |
-| `email` | Yes | Customer's email address | john@example.com |
-| `phone` | Yes | Customer's mobile number | 9881234567 |
-| `pg` | Yes | Payment gateway (static value) | NEFTRTGS |
-| `bankcode` | Yes | Bank code (static value) | EFTAXIS |
-| `udf1` | Yes | [Unique identifier](#prerequisites) (Company prefix + mobile number) | BESPOKE9881234567 |
-| `surl` | Yes | Success URL | https://merchant.com/success |
-| `furl` | Yes | Failure URL | https://merchant.com/failure |
-| `hash` | Yes | SHA-512 hash for security | 8f83f88... |
+| Parameter     | Required | Description                                                          | Example                                                      |
+| ------------- | -------- | -------------------------------------------------------------------- | ------------------------------------------------------------ |
+| `key`         | Yes      | Merchant key provided by PayU                                        | gtKFFx                                                       |
+| `txnid`       | Yes      | Unique transaction ID generated by merchant                          | TXN123456789                                                 |
+| `amount`      | Yes      | Transaction amount                                                   | 100.00                                                       |
+| `productinfo` | Yes      | Product or service information                                       | Reusable VAN Payment                                         |
+| `firstname`   | Yes      | Customer's first name                                                | John                                                         |
+| `email`       | Yes      | Customer's email address                                             | [john@example.com](mailto:john@example.com)                  |
+| `phone`       | Yes      | Customer's mobile number                                             | 9881234567                                                   |
+| `pg`          | Yes      | Payment gateway (static value)                                       | NEFTRTGS                                                     |
+| `bankcode`    | Yes      | Bank code (static value)                                             | EFTAXIS                                                      |
+| `udf1`        | Yes      | [Unique identifier](#prerequisites) (Company prefix + mobile number) | BESPOKE9881234567                                            |
+| `surl`        | Yes      | Success URL                                                          | [https://merchant.com/success](https://merchant.com/success) |
+| `furl`        | Yes      | Failure URL                                                          | [https://merchant.com/failure](https://merchant.com/failure) |
+| `hash`        | Yes      | SHA-512 hash for security                                            | 8f83f88...                                                   |
 
 ### Sample Request
 
 <Accordion title="PHP">
+  ```php
+  <?php
+  $key = "gtKFFx";
+  $txnid = "TXN" . time();
+  $amount = "100.00";
+  $productinfo = "Reusable VAN Payment";
+  $firstname = "John";
+  $email = "john@example.com";
+  $phone = "9881234567";
+  $pg = "NEFTRTGS";
+  $bankcode = "EFTAXIS";
+  $unique_identifier = "BESPOKE" . $phone; // Company prefix + mobile number
+  $surl = "https://merchant.com/success";
+  $furl = "https://merchant.com/failure";
+  $salt = "your_merchant_salt";
 
-```php
-<?php
-$key = "gtKFFx";
-$txnid = "TXN" . time();
-$amount = "100.00";
-$productinfo = "Reusable VAN Payment";
-$firstname = "John";
-$email = "john@example.com";
-$phone = "9881234567";
-$pg = "NEFTRTGS";
-$bankcode = "EFTAXIS";
-$unique_identifier = "BESPOKE" . $phone; // Company prefix + mobile number
-$surl = "https://merchant.com/success";
-$furl = "https://merchant.com/failure";
-$salt = "your_merchant_salt";
-
-// Hash calculation
-$hashString = $key . "|" . $txnid . "|" . $amount . "|" . $productinfo . "|" . 
-              $firstname . "|" . $email . "|" . $unique_identifier . "||||||||" . $salt;
-$hash = hash('sha512', $hashString);
-?>
-```
-
+  // Hash calculation
+  $hashString = $key . "|" . $txnid . "|" . $amount . "|" . $productinfo . "|" . 
+                $firstname . "|" . $email . "|" . $unique_identifier . "||||||||" . $salt;
+  $hash = hash('sha512', $hashString);
+  ?>
+  ```
 </Accordion>
 
 <Accordion title="Python">
+  ```python
+  import hashlib
+  import time
 
-```python
-import hashlib
-import time
+  key = "gtKFFx"
+  txnid = "TXN" + str(int(time.time()))
+  amount = "100.00"
+  productinfo = "Reusable VAN Payment"
+  firstname = "John"
+  email = "john@example.com"
+  phone = "9881234567"
+  pg = "NEFTRTGS"
+  bankcode = "EFTAXIS"
+  unique_identifier = "BESPOKE" + phone  # Company prefix + mobile number
+  surl = "https://merchant.com/success"
+  furl = "https://merchant.com/failure"
+  salt = "your_merchant_salt"
 
-key = "gtKFFx"
-txnid = "TXN" + str(int(time.time()))
-amount = "100.00"
-productinfo = "Reusable VAN Payment"
-firstname = "John"
-email = "john@example.com"
-phone = "9881234567"
-pg = "NEFTRTGS"
-bankcode = "EFTAXIS"
-unique_identifier = "BESPOKE" + phone  # Company prefix + mobile number
-surl = "https://merchant.com/success"
-furl = "https://merchant.com/failure"
-salt = "your_merchant_salt"
-
-# Hash calculation
-hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{unique_identifier}||||||||{salt}"
-hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
-```
-
+  # Hash calculation
+  hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{unique_identifier}||||||||{salt}"
+  hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
+  ```
 </Accordion>
 
 <Accordion title="Java">
+  ```java
+  import java.security.MessageDigest;
+  import java.security.NoSuchAlgorithmException;
 
-```java
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-public class ReusableVANPayment {
-    public static void main(String[] args) {
-        String key = "gtKFFx";
-        String txnid = "TXN" + System.currentTimeMillis();
-        String amount = "100.00";
-        String productinfo = "Reusable VAN Payment";
-        String firstname = "John";
-        String email = "john@example.com";
-        String phone = "9881234567";
-        String pg = "NEFTRTGS";
-        String bankcode = "EFTAXIS";
-        String uniqueIdentifier = "BESPOKE" + phone; // Company prefix + mobile number
-        String surl = "https://merchant.com/success";
-        String furl = "https://merchant.com/failure";
-        String salt = "your_merchant_salt";
-        
-        // Hash calculation
-        String hashString = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + 
-                           firstname + "|" + email + "|" + uniqueIdentifier + "||||||||" + salt;
-        String hash = getSHA512(hashString);
-    }
-    
-    public static String getSHA512(String input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-512");
-            byte[] messageDigest = md.digest(input.getBytes());
-            
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : messageDigest) {
-                String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) {
-                    hexString.append('0');
-                }
-                hexString.append(hex);
-            }
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
-}
-```
-
+  public class ReusableVANPayment {
+      public static void main(String[] args) {
+          String key = "gtKFFx";
+          String txnid = "TXN" + System.currentTimeMillis();
+          String amount = "100.00";
+          String productinfo = "Reusable VAN Payment";
+          String firstname = "John";
+          String email = "john@example.com";
+          String phone = "9881234567";
+          String pg = "NEFTRTGS";
+          String bankcode = "EFTAXIS";
+          String uniqueIdentifier = "BESPOKE" + phone; // Company prefix + mobile number
+          String surl = "https://merchant.com/success";
+          String furl = "https://merchant.com/failure";
+          String salt = "your_merchant_salt";
+          
+          // Hash calculation
+          String hashString = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + 
+                             firstname + "|" + email + "|" + uniqueIdentifier + "||||||||" + salt;
+          String hash = getSHA512(hashString);
+      }
+      
+      public static String getSHA512(String input) {
+          try {
+              MessageDigest md = MessageDigest.getInstance("SHA-512");
+              byte[] messageDigest = md.digest(input.getBytes());
+              
+              StringBuilder hexString = new StringBuilder();
+              for (byte b : messageDigest) {
+                  String hex = Integer.toHexString(0xff & b);
+                  if (hex.length() == 1) {
+                      hexString.append('0');
+                  }
+                  hexString.append(hex);
+              }
+              return hexString.toString();
+          } catch (NoSuchAlgorithmException e) {
+              throw new RuntimeException(e);
+          }
+      }
+  }
+  ```
 </Accordion>
 
 <Accordion title="cURL">
-
-```bash
-curl -X POST https://test.payu.in/_payment \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=gtKFFx" \
-  -d "txnid=TXN123456789" \
-  -d "amount=100.00" \
-  -d "productinfo=Reusable VAN Payment" \
-  -d "firstname=John" \
-  -d "email=john@example.com" \
-  -d "phone=9881234567" \
-  -d "pg=NEFTRTGS" \
-  -d "bankcode=EFTAXIS" \
-  -d "udf1=BESPOKE9881234567" \
-  -d "surl=https://merchant.com/success" \
-  -d "furl=https://merchant.com/failure" \
-  -d "hash=calculated_hash_value"
-```
-
+  ```bash
+  curl -X POST https://test.payu.in/_payment \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=gtKFFx" \
+    -d "txnid=TXN123456789" \
+    -d "amount=100.00" \
+    -d "productinfo=Reusable VAN Payment" \
+    -d "firstname=John" \
+    -d "email=john@example.com" \
+    -d "phone=9881234567" \
+    -d "pg=NEFTRTGS" \
+    -d "bankcode=EFTAXIS" \
+    -d "udf1=BESPOKE9881234567" \
+    -d "surl=https://merchant.com/success" \
+    -d "furl=https://merchant.com/failure" \
+    -d "hash=calculated_hash_value"
+  ```
 </Accordion>
 
 ### Hash Calculation
@@ -213,7 +243,7 @@ The hash string for Reusable VAN - NEFT follows this format:
 key|txnid|amount|productinfo|firstname|email|||||||||salt
 ```
 
----
+***
 
 ## Step 2: Check response from PayU
 
@@ -267,7 +297,7 @@ if (hash_equals($hash, $posted_hash)) {
 ?>
 ```
 
----
+***
 
 ## Step 3: Verify the payment
 
@@ -351,7 +381,7 @@ $verification_result = verifyPayment($txnid, $key, $salt);
 }
 ```
 
----
+***
 
 ## Optional configurations
 
@@ -378,22 +408,23 @@ Include optional parameters for better customer profiling:
 <input type="hidden" name="zipcode" value="400001" />
 ```
 
----
+***
 
 ## Testing
 
 ### Test Environment
 
-| Environment | URL |
-|-------------|-----|
-| **Test Payment URL** | https://test.payu.in/_payment |
-| **Test Verification URL** | https://test.payu.in/merchant/postservice.php?form=2 |
+| Environment               | URL                                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Test Payment URL**      | [https://test.payu.in/\_payment](https://test.payu.in/_payment)                                              |
+| **Test Verification URL** | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
 
 ### Test Credentials
 
 Use your test merchant credentials provided by PayU:
-- **Test Key**: Provided by PayU
-- **Test Salt**: Provided by PayU
+
+* **Test Key**: Provided by PayU
+* **Test Salt**: Provided by PayU
 
 ### Sample Test Scenario
 
@@ -402,57 +433,61 @@ Use your test merchant credentials provided by PayU:
 3. **Test mobile number**: Use valid 10-digit mobile numbers
 4. **Verify response**: Check that `udf1` contains the correct unique identifier
 
----
+***
 
 ## Go live
 
 ### Production Environment
 
-| Environment | URL |
-|-------------|-----|
-| **Production Payment URL** | https://secure.payu.in/_payment |
-| **Production Verification URL** | https://info.payu.in/merchant/postservice.php?form=2 |
+| Environment                     | URL                                                                                                          |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Production Payment URL**      | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment)                                          |
+| **Production Verification URL** | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
 ### Pre-production Checklist
 
-- [ ] **Reusable VAN enabled** by PayU KAM/Support
-- [ ] **Company prefix confirmed** with PayU (7-character acronym)
-- [ ] **Test all payment scenarios** including success and failure cases
-- [ ] **Hash verification implemented** correctly
-- [ ] **Unique identifier format validated** (prefix + mobile number)
-- [ ] **Payment verification API** integrated and tested
-- [ ] **Error handling** implemented for edge cases
+* [ ] **Reusable VAN enabled** by PayU KAM/Support
+* [ ] **Company prefix confirmed** with PayU (7-character acronym)
+* [ ] **Test all payment scenarios** including success and failure cases
+* [ ] **Hash verification implemented** correctly
+* [ ] **Unique identifier format validated** (prefix + mobile number)
+* [ ] **Payment verification API** integrated and tested
+* [ ] **Error handling** implemented for edge cases
 
 ### Security Best Practices
 
-> 🔒 **Security Guidelines**
-> 
-> - Always use HTTPS for production
-> - Store merchant key and salt securely
-> - Validate all incoming data
-> - Implement proper error handling
-> - Use hash verification for all responses
-> - Log transactions for audit purposes
+<Callout icon="🔒" theme="default">
+  ### **Security Guidelines**
 
----
+  * Always use HTTPS for production
+  * Store merchant key and salt securely
+  * Validate all incoming data
+  * Implement proper error handling
+  * Use hash verification for all responses
+  * Log transactions for audit purposes
+</Callout>
+
+***
 
 ## Additional Resources
 
-- [Merchant Key & Salt Management](https://docs.payu.in/docs/merchant-key-salt)
-- [Hash Generation Guide](https://docs.payu.in/docs/hash-generation-logic)
-- [Verify Payment API](https://docs.payu.in/reference/verify-payment-api)
-- [NEFT/RTGS Integration](https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless)
+* [Merchant Key & Salt Management](https://docs.payu.in/docs/merchant-key-salt)
+* [Hash Generation Guide](https://docs.payu.in/docs/hash-generation-logic)
+* [Verify Payment API](https://docs.payu.in/reference/verify-payment-api)
+* [NEFT/RTGS Integration](https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless)
 
----
+***
 
 ## Support
 
 For technical support and queries:
 
-- **PayU Support**: Contact your PayU Key Account Manager (KAM)
-- **Developer Support**: [support@payu.in](mailto:support@payu.in)
-- **Documentation**: [PayU Developer Portal](https://docs.payu.in)
+* **PayU Support**: Contact your PayU Key Account Manager (KAM)
+* **Developer Support**: [support@payu.in](mailto:support@payu.in)
+* **Documentation**: [PayU Developer Portal](https://docs.payu.in)
 
-> 💡 **Pro Tip**
-> 
-> The unique identifier in `udf1` enables automatic reconciliation. Ensure the format (company prefix + mobile number) is consistent across all transactions for seamless payment tracking.
+<Callout icon="💡" theme="default">
+  ### **Pro Tip**
+
+  The unique identifier in `udf1` enables automatic reconciliation. Ensure the format (company prefix + mobile number) is consistent across all transactions for seamless payment tracking.
+</Callout>
