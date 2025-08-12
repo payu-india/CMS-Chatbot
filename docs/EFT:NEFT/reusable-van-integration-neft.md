@@ -156,126 +156,115 @@ Here's the table converted to a bulleted list with the Feature column in bold fo
 
 #### Sample Request
 
-<Accordion title="PHP">
-  ```php
-  <?php
-  $key = "gtKFFx";
-  $txnid = "TXN" . time();
-  $amount = "100.00";
-  $productinfo = "Reusable VAN Payment";
-  $firstname = "John";
-  $email = "john@example.com";
-  $phone = "9881234567";
-  $pg = "NEFTRTGS";
-  $bankcode = "EFTAXIS";
-  $unique_identifier = "BESPOKE" . $phone; // Company prefix + mobile number
-  $surl = "https://merchant.com/success";
-  $furl = "https://merchant.com/failure";
-  $salt = "your_merchant_salt";
+```curl
+curl -X POST https://test.payu.in/_payment \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=gtKFFx" \
+  -d "txnid=TXN123456789" \
+  -d "amount=100.00" \
+  -d "productinfo=Reusable VAN Payment" \
+  -d "firstname=John" \
+  -d "email=john@example.com" \
+  -d "phone=9881234567" \
+  -d "pg=NEFTRTGS" \
+  -d "bankcode=EFTAXIS" \
+  -d "udf1=BESPOKE9881234567" \
+  -d "surl=https://merchant.com/success" \
+  -d "furl=https://merchant.com/failure" \
+  -d "hash=calculated_hash_value"
+```
+```java
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
-  // Hash calculation
-  $hashString = $key . "|" . $txnid . "|" . $amount . "|" . $productinfo . "|" . 
-                $firstname . "|" . $email . "|" . $unique_identifier . "||||||||" . $salt;
-  $hash = hash('sha512', $hashString);
-  ?>
-  ```
-</Accordion>
+public class ReusableVANPayment {
+    public static void main(String[] args) {
+        String key = "gtKFFx";
+        String txnid = "TXN" + System.currentTimeMillis();
+        String amount = "100.00";
+        String productinfo = "Reusable VAN Payment";
+        String firstname = "John";
+        String email = "john@example.com";
+        String phone = "9881234567";
+        String pg = "NEFTRTGS";
+        String bankcode = "EFTAXIS";
+        String uniqueIdentifier = "BESPOKE" + phone; // Company prefix + mobile number
+        String surl = "https://merchant.com/success";
+        String furl = "https://merchant.com/failure";
+        String salt = "your_merchant_salt";
+        
+        // Hash calculation
+        String hashString = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + 
+                           firstname + "|" + email + "|" + uniqueIdentifier + "||||||||" + salt;
+        String hash = getSHA512(hashString);
+    }
+    
+    public static String getSHA512(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            byte[] messageDigest = md.digest(input.getBytes());
+            
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : messageDigest) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+```php
+<?php
+$key = "gtKFFx";
+$txnid = "TXN" . time();
+$amount = "100.00";
+$productinfo = "Reusable VAN Payment";
+$firstname = "John";
+$email = "john@example.com";
+$phone = "9881234567";
+$pg = "NEFTRTGS";
+$bankcode = "EFTAXIS";
+$unique_identifier = "BESPOKE" . $phone; // Company prefix + mobile number
+$surl = "https://merchant.com/success";
+$furl = "https://merchant.com/failure";
+$salt = "your_merchant_salt";
 
-<Accordion title="Python">
-  ```python
-  import hashlib
-  import time
+// Hash calculation
+$hashString = $key . "|" . $txnid . "|" . $amount . "|" . $productinfo . "|" . 
+              $firstname . "|" . $email . "|" . $unique_identifier . "||||||||" . $salt;
+$hash = hash('sha512', $hashString);
+?>
+```
+```python
+import hashlib
+import time
 
-  key = "gtKFFx"
-  txnid = "TXN" + str(int(time.time()))
-  amount = "100.00"
-  productinfo = "Reusable VAN Payment"
-  firstname = "John"
-  email = "john@example.com"
-  phone = "9881234567"
-  pg = "NEFTRTGS"
-  bankcode = "EFTAXIS"
-  unique_identifier = "BESPOKE" + phone  # Company prefix + mobile number
-  surl = "https://merchant.com/success"
-  furl = "https://merchant.com/failure"
-  salt = "your_merchant_salt"
+key = "gtKFFx"
+txnid = "TXN" + str(int(time.time()))
+amount = "100.00"
+productinfo = "Reusable VAN Payment"
+firstname = "John"
+email = "john@example.com"
+phone = "9881234567"
+pg = "NEFTRTGS"
+bankcode = "EFTAXIS"
+unique_identifier = "BESPOKE" + phone  # Company prefix + mobile number
+surl = "https://merchant.com/success"
+furl = "https://merchant.com/failure"
+salt = "your_merchant_salt"
 
-  # Hash calculation
-  hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{unique_identifier}||||||||{salt}"
-  hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
-  ```
-</Accordion>
+# Hash calculation
+hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{unique_identifier}||||||||{salt}"
+hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
+```
 
-<Accordion title="Java">
-  ```java
-  import java.security.MessageDigest;
-  import java.security.NoSuchAlgorithmException;
-
-  public class ReusableVANPayment {
-      public static void main(String[] args) {
-          String key = "gtKFFx";
-          String txnid = "TXN" + System.currentTimeMillis();
-          String amount = "100.00";
-          String productinfo = "Reusable VAN Payment";
-          String firstname = "John";
-          String email = "john@example.com";
-          String phone = "9881234567";
-          String pg = "NEFTRTGS";
-          String bankcode = "EFTAXIS";
-          String uniqueIdentifier = "BESPOKE" + phone; // Company prefix + mobile number
-          String surl = "https://merchant.com/success";
-          String furl = "https://merchant.com/failure";
-          String salt = "your_merchant_salt";
-          
-          // Hash calculation
-          String hashString = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + 
-                             firstname + "|" + email + "|" + uniqueIdentifier + "||||||||" + salt;
-          String hash = getSHA512(hashString);
-      }
-      
-      public static String getSHA512(String input) {
-          try {
-              MessageDigest md = MessageDigest.getInstance("SHA-512");
-              byte[] messageDigest = md.digest(input.getBytes());
-              
-              StringBuilder hexString = new StringBuilder();
-              for (byte b : messageDigest) {
-                  String hex = Integer.toHexString(0xff & b);
-                  if (hex.length() == 1) {
-                      hexString.append('0');
-                  }
-                  hexString.append(hex);
-              }
-              return hexString.toString();
-          } catch (NoSuchAlgorithmException e) {
-              throw new RuntimeException(e);
-          }
-      }
-  }
-  ```
-</Accordion>
-
-<Accordion title="cURL">
-  ```bash
-  curl -X POST https://test.payu.in/_payment \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    -d "key=gtKFFx" \
-    -d "txnid=TXN123456789" \
-    -d "amount=100.00" \
-    -d "productinfo=Reusable VAN Payment" \
-    -d "firstname=John" \
-    -d "email=john@example.com" \
-    -d "phone=9881234567" \
-    -d "pg=NEFTRTGS" \
-    -d "bankcode=EFTAXIS" \
-    -d "udf1=BESPOKE9881234567" \
-    -d "surl=https://merchant.com/success" \
-    -d "furl=https://merchant.com/failure" \
-    -d "hash=calculated_hash_value"
-  ```
-</Accordion>
-
-### Hash Calculation
+#### Hash Calculation
 
 The hash string for Reusable VAN - NEFT follows this format:
 
