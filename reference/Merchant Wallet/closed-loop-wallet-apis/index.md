@@ -5,9 +5,9 @@ hidden: true
 metadata:
   robots: index
 ---
-* Registering Customer
+* [Registering Customer APIs](ref:registering-customer)
   * [Register Customer API](https://docs.payu.in/reference/register-customer-api)
-* Loading Wallet
+* [Loading Wallet APIs](ref:loading-wallet)
   * [PG Load API](https://docs.payu.in/reference/pg-load-api)
   * [Callback for PG Load API](ref:callback-for-pg-load-api)
   * [PG Load Enquiry API](https://docs.payu.in/reference/pg-load-enquiry-api)
@@ -15,7 +15,7 @@ metadata:
   * [Check Status API](ref:check-status-api)
 * [Retrieve Customer Record API](ref:retrieve-customer-record-api-1)
 * [Statement Inquiry API](ref:statement-inquiry-api-1)
-* Debiting Wallet
+* [Debiting Wallet APIs](ref:debiting-wallet)
   * [Non-Seamless Debit Transaction API](https://docs.payu.in/reference/non-seamless-debit-transaction-api)
   * [Seamless Debit Transaction API](https://docs.payu.in/reference/collect-payment-api-card-seamless)
   * [Seamless Debit Enquiry API](https://docs.payu.in/reference/seamless-debit-enquiry-api)
