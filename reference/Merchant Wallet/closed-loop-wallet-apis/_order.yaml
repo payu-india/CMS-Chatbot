@@ -1,6 +1,5 @@
 - registering-customer
 - loading-wallet
-- pg-load-enquiry-api
 - collect-payment-api-card-seamless
 - non-seamless-debit-transaction-api
 - seamless-debit-enquiry-api
