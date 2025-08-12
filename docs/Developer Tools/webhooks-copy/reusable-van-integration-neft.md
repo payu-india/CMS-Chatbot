@@ -1,7 +1,7 @@
 ---
 title: Reusable VAN Integration - NEFT
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
