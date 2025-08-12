@@ -1,7 +1,6 @@
 - registering-customer
 - loading-wallet
 - collect-payment-api-card-seamless
-- non-seamless-debit-transaction-api
 - seamless-debit-enquiry-api
 - debiting-wallet
 - update-profile-api-closed-loop
