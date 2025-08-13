@@ -5,6 +5,17 @@ hidden: true
 metadata:
   robots: index
 ---
+UPI Bolt UI SDK allows you to manage the checkout options on their checkout screen. You use **PayU UPI Bolt UI SDK** for customer registration, payment, and profile management. This integration involves the following steps:
+
+1. [Add SDK Dependency](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-1-add-sdk-dependency)
+2. [Platform-Specific Setup](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-2-platform-specific-setup)
+3. [Initialize SDK](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-3-initialize-sdk)
+4. [Check UPI Bolt Availability](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-4-check-upi-bolt-availability)
+5. [Implement Payment Flow](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-5-implement-payment-flow)
+6. [Profile Management](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-6-profile-management)
+7. [Implement Callbacks](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-7-implement-callbacks)
+8. [Hash Generation](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-8-hash-generation)
+
 ## Prerequisites
 
 Before integrating PayU UPI Bolt SDK, ensure you have:
@@ -15,9 +26,7 @@ Before integrating PayU UPI Bolt SDK, ensure you have:
 * **PayU merchant account** with valid merchant key
 * **Required permissions** for SMS and device access
 
-## Integration Steps
-
-### Step 1: Add SDK Dependency
+## Step 1: Add SDK Dependency
 
 Add the PayU UPI Bolt Capacitor plugin to your project:
 
@@ -25,9 +34,9 @@ Add the PayU UPI Bolt Capacitor plugin to your project:
 npm add payu-upi-bolt-ui-capacitor@0.0.1-alpha.4
 ```
 
-### Step 2: Platform-Specific Setup
+## Step 2: Platform-Specific Setup
 
-#### iOS Setup
+### iOS Setup
 
 1. **Add Dependencies to Podfile**
 
@@ -56,7 +65,7 @@ npm add payu-upi-bolt-ui-capacitor@0.0.1-alpha.4
 
 <Image align="center" src="https://files.readme.io/0aa44949d3de2f3949cf7b59e353efea8f7997da6ff98b2c0cbfd4a7ab257494-ionic_react_sdk_integration_screen2.png" />
 
-#### Android Setup
+### Android Setup
 
 1. **Add Permissions**
 
@@ -85,7 +94,7 @@ npm add payu-upi-bolt-ui-capacitor@0.0.1-alpha.4
 
    Place the `SecureComponent-release-prod_05062024_9d3904ab.aar` file in the `libs` folder of your Android app module.
 
-### Step 3: Initialize SDK
+## Step 3: Initialize SDK
 
 Initialize the PayU UPI Bolt SDK with your configuration:
 
@@ -226,7 +235,7 @@ PayUUPIBoltUICapacitorPlugin.reset();
 </table>
 `}</HTMLBlock>
 
-### Step 4: Check UPI Bolt Availability
+## Step 4: Check UPI Bolt Availability
 
 Before proceeding with payment flows, verify if UPI Bolt is enabled:
 
@@ -234,9 +243,9 @@ Before proceeding with payment flows, verify if UPI Bolt is enabled:
 PayUUPIBoltUICapacitorPlugin.isUPIBoltEnabled();
 ```
 
-### Step 5: Implement Payment Flow
+## Step 5: Implement Payment Flow
 
-#### Register and Pay
+### Register and Pay
 
 For first-time users or new transactions:
 
@@ -383,9 +392,9 @@ PayUUPIBoltUICapacitorPlugin.registerAndPay({ paymentParams: JSON.stringify(paym
 </table>
 `}</HTMLBlock>
 
-### Step 6: Profile Management
+## Step 6: Profile Management
 
-#### UPI Management Screens
+### UPI Management Screens
 
 Open various UPI management screens:
 
@@ -430,7 +439,7 @@ PayUUPIBoltUICapacitorPlugin.openUPIManagement({
 </table>
 `}</HTMLBlock>
 
-### Step 7: Implement Callbacks
+## Step 7: Implement Callbacks
 
 Implement the required callback methods:
 
@@ -551,7 +560,7 @@ export class PaymentService {
 </table>
 `}</HTMLBlock>
 
-### Step 8: Hash Generation
+## Step 8: Hash Generation
 
 Implement secure hash generation for transaction security:
 
@@ -573,9 +582,9 @@ private async generateSecureHash(input: string): Promise<string> {
 }
 ```
 
-> ⚠️ **Security Note**
->
-> Always generate hashes on your secure server. Never expose your salt values in client-side code.
+<Callout icon="📘">
+  **Note**: Always generate hashes on your secure server. Never expose your salt values in client-side code.
+</Callout>
 
 ## SMS Hash Generation for Android
 
