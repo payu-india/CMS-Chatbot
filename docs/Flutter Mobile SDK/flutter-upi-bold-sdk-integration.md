@@ -1,7 +1,7 @@
 ---
 title: Flutter UPI Bold SDK Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
