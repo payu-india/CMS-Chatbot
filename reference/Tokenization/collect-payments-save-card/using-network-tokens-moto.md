@@ -286,7 +286,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         store_card_token
-        <br/><code>optional</code>
+        <br/><code>conditional</code>
       </td>
 
       <td>
@@ -514,8 +514,6 @@ HTTP Method: **POST**
 >
 > * **last4Digits**: The last 4 digits of the card. This parameter is mandatory for MOTO transactions to ensure proper card identification.
 > * **<Glossary>TAVV</Glossary>**: Token Authentication Verification Value (also known as cryptogram). This is mandatory for MOTO transactions to ensure the authenticity of the tokenized card.
-> * **<Glossary>trid</Glossary>**: Token Requester ID. This parameter is mandatory for MOTO transactions to identify the entity that requested the token.
-> * **tokenRefNo**: Token Reference Number. This parameter is mandatory for MOTO transactions to reference the specific token used.
 
 ## Sample Request
 
@@ -535,8 +533,6 @@ HTTP Method: **POST**
   "furl": "https://admin.payu.in/test_response",
   "pg": "MOTO",
   "bankcode": "MMASTCC",
-  "ccname": "CARDHOLDERXXXXXXXXNAME",
-  "ccvv": "_cvv_",
   "storecard_token_type": "1",
   "additional_info": "{\"tavv\":\"AJw6hJIu5Sl7ABMHaVaWAAADFA==\",\"last4digits\":\"1289\"}",
   "ccexpmon": "_ccexpmon_",
