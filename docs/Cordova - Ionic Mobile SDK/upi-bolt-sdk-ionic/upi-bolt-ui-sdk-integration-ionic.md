@@ -19,22 +19,19 @@ PayU UPI Bolt SDK offers a simpler and more efficient payment experience for mer
 
 ### iOS Integration
 
-**Step 1**: Add the following to your project:
+1. Add the following to your project:
 
 ```bash
 npm add payu-upi-bolt-ui-capacitor@0.0.1-alpha.4
 ```
 
-**Step 2**: Set the minimum development target to **iOS 13 or higher**.
-
-**Step 3**: Include the following `xcframework` files provided by PayU during onboarding:\
-• `NPCI - CommonLibrary.xcframework`
-• `AXIS - OlivePayLibrary.xcframework`
-
-**Step 4**: Modify Build Settings:\
-Add `$(PROJECT_DIR)/Frameworks` under **Framework Search Path** (if Xcode doesn't add it automatically).
-
-**Step 5**: Include additional dependencies in the `podfile`:
+2. Set the minimum development target to **iOS 13 or higher**.
+3. Include the following `xcframework` files provided by PayU during onboarding:\
+   • `NPCI - CommonLibrary.xcframework`
+   • `AXIS - OlivePayLibrary.xcframework`
+4. Modify Build Settings:\
+   Add `$(PROJECT_DIR)/Frameworks` under **Framework Search Path** (if Xcode doesn't add it automatically).
+5. Include additional dependencies in the `podfile`:
 
 ```bash
 pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
@@ -42,7 +39,7 @@ pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
 
 ### Android Integration
 
-**Step 1**: Add the following permissions in the `AndroidManifest.xml`:
+1. Add the following permissions in the `AndroidManifest.xml`:
 
 ```xml
 <uses-permission android:name="android.permission.SEND_SMS"/>
@@ -54,15 +51,15 @@ pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
-**Step 2**: Include the library dependencies in `build.gradle`:
+2. Include the library dependencies in `build.gradle`:
 
 ```gradle
 implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.1-dev4'
 implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
 ```
 
-**Step 3**: Add AAR file:\
-Place `SecureComponent-release-prod_05062024_9d3904ab.aar` under `<your_project>/android/app/libs`.
+3. Add AAR file:\
+   Place `SecureComponent-release-prod_05062024_9d3904ab.aar` under `<your_project>/android/app/libs`.
 
 ## Step 1: Initialize SDK
 
