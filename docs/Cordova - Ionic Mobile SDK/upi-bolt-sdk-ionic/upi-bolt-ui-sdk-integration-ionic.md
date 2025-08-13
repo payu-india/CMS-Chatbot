@@ -12,6 +12,14 @@ next:
 ---
 PayU UPI Bolt SDK offers a simpler and more efficient payment experience for merchants. It eliminates any third-party redirection, enhances the success rate, and improves the overall customer experience by reducing drop-offs.
 
+The integration steps includes:
+
+1. [Initialize SDK](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-1-initialize-sdk)\\
+2. [Clear SDK Cache](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-2-clear-sdk-cache)
+3. [Check Plugin Registration Status](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-3-check-plugin-registration-status)
+4. [Open UPI Management](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-4-open-upi-management)
+5. [Register and Pay](https://docs.payu.in/docs/upi-bolt-capacitor-ionic-angular-sdk-integration?isFramePreview=true#step-5-register-and-pay)
+
 ## Prerequisites
 
 • **iOS Deployment Target**: iOS 17 and above\
@@ -238,13 +246,13 @@ PayUUPIBoltUICapacitorPlugin.clearCache({ pg: "<pg>" });
 </table>
 `}</HTMLBlock>
 
-## Step 3: Plugin Registration Status
+## Step 3: Check Plugin Registration Status
 
 ```javascript
 PayUUPIBoltUICapacitorPlugin.isRegistered({ pg: "<pg>" });
 ```
 
-## Step 4: UPI Management
+## Step 4: Open UPI Management
 
 ```javascript
 PayUUPIBoltUICapacitorPlugin.openUPIManagement({ screenType: "<screenType>" });
