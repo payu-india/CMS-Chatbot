@@ -10,36 +10,42 @@ metadata:
 next:
   description: ''
 ---
-UPI Bolt UI SDK allows you to manage the checkout options on their checkout screen. You use **PayU UPI Bolt UI SDK** for customer registration, payment, and profile management. This integration involves the following steps:
+PayU UPI Bolt SDK offers a simpler and more efficient payment experience for merchants. It eliminates any third-party redirection, enhances the success rate, and improves the overall customer experience by reducing drop-offs.
 
-1. [Add permissions to Manifest file](#step-1-add-permissions-to-manifest-file)
-2. [Include Bolt UI SDK and AAR Files](#step-2-include-bolt-ui-sdk-and-aar-files)
-3. [Initialize the SDK](#step-3-initialize-the-sdk)
-4. [Check for UPI Bolt SDK availability](#step-4-check-for-upi-bolt-sdk-availability)
-5. [Register and pay](#step-5-register-and-pay)
-
-For hash generation logic and Listener/Callback integration, the [Hash generation logic ](#hash-generation-logic)and o [Listener or Callback logic](#listener-or-callback-logic) sub-sections.
 
 ## Prerequisites
 
-* Minimum Android SDK Version - 23 and above.
-* Compile SDK Version - 31 and above.
-* The following .aar (Android archive) files provided by PayU during onboarding:
-  1. NPCI Secure Component
-  2. AXIS Olive
-* For iOS Minimum SDK version is 13 but you can use upi-bolt features on iOS 17 and above only.
-* The following xcframework files will be provided by PayU during onboarding.
-  * NPCI - CommonLibrary.xcframework
-  * AXIS - OlivePayLibrary.xcframework\
-    Add these frameworks to your project. The added framework is similar to the following screenshot:
+• **iOS Deployment Target**: iOS 17 and above
+• **Android**: Minimum supported configurations
 
-<Image align="center" width="600px" src="https://files.readme.io/227250da5bb54c8967c59370aac96e27be792b9224dc4a61b536efe539aa2429-bolt_added_framework.png" />
+## iOS Integration
 
-## Step 1: Add permissions to Manifest file
+**Step 1**: Add the following to your project:
 
-Update the manifest file to include the following so that permissions are provided for SDK:
-
+```bash
+npm add payu-upi-bolt-ui-capacitor@0.0.1-alpha.4
 ```
+
+**Step 2**: Set the minimum development target to **iOS 13 or higher**.
+
+**Step 3**: Include the following `xcframework` files provided by PayU during onboarding:
+• `NPCI - CommonLibrary.xcframework`  
+• `AXIS - OlivePayLibrary.xcframework`
+
+**Step 4**: Modify Build Settings:  
+Add `$(PROJECT_DIR)/Frameworks` under **Framework Search Path** (if Xcode doesn't add it automatically).
+
+**Step 5**: Include additional dependencies in the `podfile`:
+
+```bash
+pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
+```
+
+### Android Integration
+
+**Step 1**: Add the following permissions in the `AndroidManifest.xml`:
+
+```xml
 <uses-permission android:name="android.permission.SEND_SMS"/>
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.INTERNET" />
@@ -49,457 +55,663 @@ Update the manifest file to include the following so that permissions are provid
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
-## Step 2: Include Bolt UI SDK and AAR Files
+**Step 2**: Include the library dependencies in `build.gradle`:
 
-To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your module level `package.json` inside `"dependencies"`.
-
-```
-TODO : dependecy goes here after publishing
-```
-
-Add the .aar files provided by PayU during onboading. in the **libs** directory of your android module and add these in module level **build.gradle**. For the list of files, refer to[ Prerequisites](#prerequisites).
-
-```
-api(files("$projectDir/libs/SecureComponent-release-prod_05062024_9d3904ab.aar")) // NPCI .aar
-api(files("$projectDir/libs/oliveupi-plugin-release_1.0.2_prod_10-09-2024.aar")) // AXIS .aar 
+```gradle
+implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.1-dev4'
+implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
 ```
 
-The screenshot of libs directory is similar to the following:
+**Step 3**: Add AAR file:  
+Place `SecureComponent-release-prod_05062024_9d3904ab.aar` under `<your_project>/android/app/libs`.
 
-<Image align="center" width="350px" src="https://files.readme.io/a02ecf05cde24c29a8a5b4ba992dde13cc092a031a3f0d69c63636db84d14eab-upi-bolt-iconic-libraries_folder.png" />
+## SDK Methods and Configurations
 
-## Step 3: Initialize the SDK
+### Initialize SDK
 
- It is used to initialize the SDK. This should be called before accessing any of the API’s in the SDK
+**Import the Plugin**
 
-```swift
-interface SdkInitParams {
-  merchantName: string;
-  merchantKey: string;phone: string;
-  email: string;
-  requestId: string;
-  pluginTypes: string[];
-  isProduction?: boolean;
-  excludedBanksIINs?: string[];
-}
-
-const config: SdkInitParams = {
-      merchantName: <merchantName>,
-      merchantKey: <merchantKey>,
-      phone: <phone>,
-      email: <email>,
-      requestId: <requestId>,
-      pluginTypes: <pluginTypes>,
-      isProduction: <isProduction>,
-      excludedBanksIINs: <excludedBanksIINs>
-};
-
-PayUUpiPlugin.initSDK({ config: JSON.stringify(config) })
+```javascript
+import { PayUUPIBoltUICapacitorPlugin } from 'payu-upi-bolt-ui-capacitor';
 ```
 
-The following fields are needed as a request for this API:
+**Configuration Parameters**
 
-<Table>
+<HTMLBlock>{`
+<table>
   <thead>
     <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
+      <th>Parameter</th>
+      <th>Description</th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
       <td>
-        config
-        ` mandatory`
+        merchantName<br/>
+        <code>mandatory</code>
       </td>
-
       <td>
-        `String` Config includes the below fields.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        merchantName\
-        ` mandatory`
-      </td>
-
-      <td>
-        `String`Merchant Name
+        <code>String</code><br/>
+        Merchant's name.
       </td>
     </tr>
-
     <tr>
       <td>
-        merchantKey\
-        ` mandatory`
+        merchantKey<br/>
+        <code>mandatory</code>
       </td>
-
       <td>
-        `String`PayU Merchant Key
+        <code>String</code><br/>
+        Merchant key provided by PayU.
       </td>
     </tr>
-
     <tr>
       <td>
-        phone\
-        ` mandatory`
+        phone<br/>
+        <code>mandatory</code>
       </td>
-
       <td>
-        `String`Phone number for registration
+        <code>String</code><br/>
+        Customer's phone number for registration.
       </td>
     </tr>
-
     <tr>
       <td>
-        email\
-        ` mandatory`
+        email<br/>
+        <code>mandatory</code>
       </td>
-
       <td>
-        `String`Customer Email Id
+        <code>String</code><br/>
+        Customer email address.
       </td>
     </tr>
-
     <tr>
       <td>
-        pluginTypes\
-        ` mandatory`
+        refId<br/>
+        <code>mandatory</code>
       </td>
-
       <td>
-        `String Array`List of Supported Banks (“AXIS, HDFC”)
+        <code>String</code><br/>
+        Unique reference ID for tracking the transaction.
       </td>
     </tr>
-
     <tr>
       <td>
-        isProduction\
-        ` optional`
+        pluginTypes<br/>
+        <code>mandatory</code>
       </td>
-
       <td>
-        `Boolean`Prod - ture, staging - false
+        <code>Array&lt;String&gt;</code><br/>
+        Supported plugin types (e.g., AXIS, HDFC, BHIM).
       </td>
     </tr>
-
     <tr>
       <td>
-        excludedBanksIINs\
-        ` optional`
+        clientId<br/>
+        <code>mandatory</code>
       </td>
-
       <td>
-        `String Array`List of Bank’s IIN to exclude
+        <code>String</code><br/>
+        Unique client ID.
       </td>
     </tr>
-
     <tr>
       <td>
-        requestId\
-        ` mandatory`
+        issuingBanks<br/>
+        <code>optional</code>
       </td>
-
       <td>
-        `String`Unique reference ID
+        <code>Array&lt;String&gt;</code><br/>
+        List of issuing banks supported (e.g., AXIS or HDFC).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        excludedBanksIINs<br/>
+        <code>optional</code>
+      </td>
+      <td>
+        <code>Array&lt;String&gt;</code><br/>
+        List of banks to exclude using IIN values.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        isProduction<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>Boolean</code><br/>
+        Environment configuration: true for production, false for staging.
       </td>
     </tr>
   </tbody>
-</Table>
+</table>
+`}</HTMLBlock>
 
-## Step 4: Check for UPI Bolt SDK availability
+**Sample Code**
 
-The **isUPIBoltSDKAvailable** API allows you to manage UPI accounts and transaction history.
-
-```swift ionic
-PayUUpiPlugin.isUPIBoltSDKAvailable();
-```
-
-## Step 5: Register and pay
-
-The **registerAndPay** API allows you to initialize registration and payment flow. It will internally authenticate and register the customer. After successful authentication and registration, the user will follow the payment journey. Once payment is completed, based on the payment status the merchant will get a callback through the listener
-
-```swift ionic
-interface PaymentParams {
-    amount: string;
-    productInfo: string;
-    firstName: string;
-    surl?: string;
-    furl?: string;
-    udf1?: string;
-    udf2?: string;
-    udf3?: string;
-    udf4?: string;
-    udf5?: string;
-    txnId: string;
-    isCCTxnEnabled?: boolean;
-}
-
-const paymentParams: PaymentParams = {
-    amount: <amount>,
-    productInfo: <productInfo>,
-    firstName: <firstName>,
-    surl: <surl>,
-    furl: <furl>,
-    udf1: <udf1>,
-    udf2: <udf2>,
-    udf3: <udf3>,
-    udf4: <udf4>,
-    udf5: <udf5>,
-    txnId: <txnId>,
-    isCCTxnEnabled: <isCCTxnEnabled>
+```javascript
+const config = {
+  merchantName: "<merchantName>",
+  merchantKey: "<merchantKey>",
+  phone: "<phone>",
+  email: "<email>",
+  refId: "<refId>",
+  pluginTypes: ["<pluginType>"],
+  clientId: "<clientId>",
+  issuingBanks: ["<issuingBanks>"],
+  excludedBanksIINs: ["<excludedBanksIIN>"],
+  isProduction: <isProduction>,
 };
 
-PayUUpiPlugin.registerAndPay({
-    paymentParams: JSON.stringify(paymentParams)
-});
+// Initialize the SDK
+PayUUPIBoltUICapacitorPlugin.initSDK({ config: JSON.stringify(config) });
 
+// Clear SDK Instance
+PayUUPIBoltUICapacitorPlugin.reset();
 ```
 
-> 📘 Callback reference:
->
-> For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic) sub-section.
+### Clear SDK Cache
 
-The following fields are needed as a request for this API:
+```javascript
+PayUUPIBoltUICapacitorPlugin.clearCache({ pg: "<pg>" });
+```
 
-<Table>
+**Request Parameters**
+
+<HTMLBlock>{`
+<table>
   <thead>
     <tr>
-      <th>
-        Field
-      </th>
-
-      <th>
-        Definition
-      </th>
+      <th>Parameter</th>
+      <th>Description</th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
       <td>
-        amount
-        `mandatory`
+        pg<br/>
+        <code>mandatory</code>
       </td>
-
       <td>
-        `String` Amount to be paid
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnId\
-        `mandatory`
-      </td>
-
-      <td>
-        `String`Unique transaction ID
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productInfo\
-        `mandatory`
-      </td>
-
-      <td>
-        `String`Product description
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstName\
-        `mandatory`
-      </td>
-
-      <td>
-        `String`First name of the user
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        furl\
-        `optional`
-      </td>
-
-      <td>
-        `String`Failure URL 
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        surl\
-        `optional`
-      </td>
-
-      <td>
-         `String`Success URL
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf1\
-        `optional`
-      </td>
-
-      <td>
-         `String`User defined field
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf2\
-        `optional`
-      </td>
-
-      <td>
-          `String`User defined field
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf3\
-        `optional`
-      </td>
-
-      <td>
-          `String`User defined field
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf4\
-        `optional`
-      </td>
-
-      <td>
-          `String`User defined field
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf5\
-        `optional`
-      </td>
-
-      <td>
-          `String`User defined field
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        isCCTxnEnabled\
-        `optional`
-      </td>
-
-      <td>
-          `Boolean`Specify whether CC transaction is enabled
+        <code>String</code><br/>
+        Payment Gateway.
       </td>
     </tr>
   </tbody>
-</Table>
+</table>
+`}</HTMLBlock>
 
-## Manage UPI accounts
+### Plugin Registration Status
 
-The **openUPIManagement** API allows you to manage UPI accounts and transaction history.
-
-```swift ionic
-PayUUpiPlugin.openUPIManagement({ screenType: <screenType> }) 
+```javascript
+PayUUPIBoltUICapacitorPlugin.isRegistered({ pg: "<pg>" });
 ```
 
-> 📘 Callback reference:
->
-> For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic) sub-section.
+### UPI Management
 
-The following fields are needed as a request for this API:
+```javascript
+PayUUPIBoltUICapacitorPlugin.openUPIManagement({ screenType: "<screenType>" });
+```
 
-| Fields     | Data Type | Optional /Mandatory | Definition                                                                             |
-| ---------- | --------- | ------------------- | -------------------------------------------------------------------------------------- |
-| screenType | string    | M                   | `"ALL" or "TRANSACTIONHISTORY" or "MANAGEUPIACCOUNTS" or "DISPUTE" or "DEREGISTERUPI"` |
+**Request Parameters**
 
-## Listener or Callback logic
+<HTMLBlock>{`
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        screenType<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        Specifies the type of management screen. Valid values:<br/>
+        • ALL<br/>
+        • TRANSACTIONHISTORY<br/>
+        • MANAGEUPIACCOUNTS<br/>
+        • DISPUTE<br/>
+        • DEREGISTERUPI
+      </td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 
-The listener/callback contains 4 methods where the merchant app will get the API response and hash-related callbacks
+### Register and Pay
 
-| S.No. | Listener                                                                                      | Description                                                                               |
-| ----- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| 1     | Plugins\['PayUUpiPlugin'\]\['addListener'\]\('onPayUSuccess', (data: string) => \{});         | It will contain success response. Ref. 5.1                                                |
-| 2     | Plugins\['PayUUpiPlugin'\]\['addListener'\]\('onPayUFailure', (data: string) => \{});         | It will contain failure response. Ref. 5.1                                                |
-| 3     | Plugins\['PayUUpiPlugin'\]\['addListener'\]\('onPayUCancel', (data: string) => \{});          | It will tell if payment was cancelled.                                                    |
-| 4     | Plugins\['PayUUpiPlugin'\]\['addListener'\]\('generateHash', (data: string) => \{});          | For hash generation, refer to [Hash generation logic ](#hash-generation-logic)sub-section |
-| 5     | Plugins\['PayUUpiPlugin'\]\['addListener'\]\('isUPIBoltSDKAvailable', (data: string) => \{}); | It will give response for “PayUUpiPlugin.isUPIBoltSDKAvailable();” method trigger.        |
+**Payment Parameters**
 
-### PayUUPIResponse
+<HTMLBlock>{`
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        amount<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        Transaction amount.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        productInfo<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        Information about the product or service.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        firstName<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        Customer's first name.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        surl<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        Android success URL.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        furl<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        Android failure URL.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ios_surl<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        iOS success URL.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ios_furl<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        iOS failure URL.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        initiationMode<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        Mode of initiation (e.g., "10").
+      </td>
+    </tr>
+    <tr>
+      <td>
+        purpose<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        Purpose code (e.g., "00").
+      </td>
+    </tr>
+    <tr>
+      <td>
+        txnId<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        Unique transaction ID.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        udf1 - udf6<br/>
+        <code>optional</code>
+      </td>
+      <td>
+        <code>Any</code><br/>
+        User-defined fields for additional transaction metadata.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        isCCTxnEnabled<br/>
+        <code>optional</code>
+      </td>
+      <td>
+        <code>Boolean</code><br/>
+        Enables card fallback if supported – true or false.
+      </td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 
-| Fields       | Data Type | Definition               |
-| ------------ | --------- | ------------------------ |
-| responseType | Integer   | Ref. 5.2                 |
-| code         | Integer   | Error or success code    |
-| message      | String?   | Error or success message |
-| result       | Object?   | Response data            |
+**Sample Code**
 
-### ResponseType
+```javascript
+const paymentParams = {
+  amount: "<amount>",
+  productInfo: "<productInfo>",
+  firstName: "<firstName>",
+  surl: "<successUrl>",
+  furl: "<failureUrl>",
+  ios_surl: "<iosSuccessUrl>",
+  ios_furl: "<iosFailureUrl>",
+  initiationMode: "<initiationMode>",
+  purpose: "<purpose>",
+  txnId: "<txnId>",
+  isCCTxnEnabled: <trueOrFalse>,
+};
 
-| Response Type        | Response Code | Definition       |
-| -------------------- | ------------- | ---------------- |
-| REQUEST\_UPI\_BOLT   | 100           | UPI Bolt Status  |
-| REQUEST\_TRANSACTION | 124           | Register And Pay |
-| REQUEST\_MANAGE      | 125           | UPI Management   |
+PayUUPIBoltUICapacitorPlugin.registerAndPay({ paymentParams: JSON.stringify(paymentParams)});
+```
 
-## Hash Generation logic
+### Hash Generation
 
-The PayU SDKs use hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification.
+**Hash Parameters**
 
-For generating and passing dynamic hashes, the merchant will receive a call from the `generateHash()` method of `PayUUPIBoltUiListener`. The `generateHash() `method is called by the SDK each time it needs an individual hash.
+<HTMLBlock>{`
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        hashString<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        String to be signed dynamically.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        hashName<br/>
+        <code>mandatory</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        Indicates the type of hash.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        postSalt<br/>
+        <code>optional</code>
+      </td>
+      <td>
+        <code>String</code><br/>
+        Additional salt that can be appended to the hash if provided.
+      </td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 
-```swift ionic
-Plugins['PayUUpiPlugin']'addListener' => {
-    // Merchant will get JSON as string with type of hash and hash string as values of JSON.
-    // They have to sign that string using salt to create hash value and pass that to "PayUUpiPlugin.hashGenerated({hashData: hashJson});".
-    // In the JSON you have to check for two keys to generate hash:
-    // 1. hashString
-    // 2. hashName
+**Sample Code**
 
-    // Example code:
-    const hashData = data['hashString'];
-    const hashName = data['hashName'];
+```javascript
+const handleHashGeneration = async (map) => {
+  const hashData = map.hashString;
+  const hashName = map.hashName;
+  // Fetch hash from your server
+  const hash = <fetch_hash_from_server>;
+  const hashMap = {
+    hashName: hashName,
+    [hashName]: hash
+  };
+  PayUUPIBoltUICapacitorPlugin.hashGenerated({ hashData: JSON.stringify(hashMap) });
+};
+```
 
-    // Generate hash
-    const hash = // generate hash using SHA-512 algorithm
+### Listener Implementation
 
-    // Create a map to store hash data
-    const hashMap: Map<string, string> = new Map<string, string>();
-    hashMap.set('hashName', hashName);
-    hashMap.set(hashName, hash);
+**Setup Event Listeners**
 
-    // Convert map to JSON object
-    const obj: { [key: string]: string } = {};
-    hashMap.forEach((value, key) => {
-        obj[key] = value;
+```javascript
+import { useEffect } from 'react';
+import { Plugins } from '@capacitor/core';
+
+useEffect(() => {
+  const listeners = [];
+  
+  const addListener = (eventName, handler) => {
+    const listener = Plugins.PayUUPIBoltUICapacitorPlugin.addListener(eventName, handler);
+    listeners.push(listener);
+  };
+
+  // Success handler
+  const handleSuccess = (data) => {
+    console.log('Payment Success:', data);
+    // Handle success logic here
+  };
+
+  // Failure handler
+  const handleFailure = (data) => {
+    console.log('Payment Failure:', data);
+    // Handle failure logic here
+  };
+
+  // Hash generation handler
+  const handleHashGeneration = async (map) => {
+    const hashData = map.hashString;
+    const hashName = map.hashName;
+    const postSalt = map.postSalt || "";
+    
+    // Generate hash on your server
+    const hash = await fetchHashFromServer(hashData, hashName, postSalt);
+    
+    const hashMap = {
+      hashName: hashName,
+      [hashName]: hash
+    };
+    
+    PayUUPIBoltUICapacitorPlugin.hashGenerated({ 
+      hashData: JSON.stringify(hashMap) 
     });
+  };
 
-    // Convert JSON object to string
-    let hashJson: string = JSON.stringify(obj);
+  // Register listeners
+  addListener('onPayUSuccess', handleSuccess);
+  addListener('onPayUFailure', handleFailure);
+  addListener('generateHash', handleHashGeneration);
 
-    // Pass the generated hash to the SDK
-    PayUUpiPlugin.hashGenerated({hashData: hashJson});
-});
+  // Cleanup listeners on component unmount
+  return () => {
+    listeners.forEach(listener => listener.remove());
+  };
+}, []);
 ```
+
+## Error Codes and Messages
+
+**Response Codes**
+
+<HTMLBlock>{`
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Success</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Fail / Invalid Response / Missing params</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>User cancelled the transaction</td>
+    </tr>
+    <tr>
+      <td>100</td>
+      <td>Transaction timeout</td>
+    </tr>
+    <tr>
+      <td>103</td>
+      <td>Handshake failed</td>
+    </tr>
+    <tr>
+      <td>104</td>
+      <td>UPI bolt not supported</td>
+    </tr>
+    <tr>
+      <td>105</td>
+      <td>Device not supported for UPI Bolt</td>
+    </tr>
+    <tr>
+      <td>500</td>
+      <td>Something went wrong</td>
+    </tr>
+    <tr>
+      <td>501</td>
+      <td>No internet connection</td>
+    </tr>
+    <tr>
+      <td>502</td>
+      <td>SDK not found</td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
+
+## SMS Hash Generation for Android OTP Auto-Read
+
+To enable OTP auto-read functionality on Android, you need to generate an SMS hash for your application. Copy the following `AppSignatureHelper` class to your Android project:
+
+```java
+package com.payu.upipluginsampleapp;
+
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
+import android.util.Base64;
+import android.util.Log;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class AppSignatureHelper extends ContextWrapper {
+    public static final String TAG = AppSignatureHelper.class.getSimpleName();
+    
+    private static final String HASH_TYPE = "SHA-256";
+    public static final int NUM_HASHED_BYTES = 9;
+    public static final int NUM_BASE64_CHAR = 11;
+
+    public AppSignatureHelper(Context context) {
+        super(context);
+    }
+
+    /**
+     * Get all the app signatures for the current package
+     * @return ArrayList of app signatures
+     */
+    public ArrayList<String> getAppSignatures() {
+        ArrayList<String> appCodes = new ArrayList<>();
+        
+        try {
+            String packageName = getPackageName();
+            PackageManager packageManager = getPackageManager();
+            Signature[] signatures = packageManager.getPackageInfo(packageName, 
+                    PackageManager.GET_SIGNATURES).signatures;
+            
+            for (Signature signature : signatures) {
+                String hash = hash(packageName, signature.toCharsString());
+                if (hash != null) {
+                    appCodes.add(String.format("%s", hash));
+                }
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Unable to find package to obtain hash.", e);
+        }
+        return appCodes;
+    }
+
+    private static String hash(String packageName, String signature) {
+        String appInfo = packageName + " " + signature;
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance(HASH_TYPE);
+            messageDigest.update(appInfo.getBytes(StandardCharsets.UTF_8));
+            byte[] hashSignature = messageDigest.digest();
+
+            // truncated into NUM_HASHED_BYTES
+            hashSignature = Arrays.copyOfRange(hashSignature, 0, NUM_HASHED_BYTES);
+            // encode into Base64
+            String base64Hash = Base64.encodeToString(hashSignature, Base64.NO_PADDING | Base64.NO_WRAP);
+            base64Hash = base64Hash.substring(0, NUM_BASE64_CHAR);
+
+            Log.d(TAG, String.format("pkg: %s -- hash: %s", packageName, base64Hash));
+            return base64Hash;
+        } catch (NoSuchAlgorithmException e) {
+            Log.e(TAG, "hash:NoSuchAlgorithm", e);
+        }
+        return null;
+    }
+}
+```
+
+**Usage Example**
+
+```java
+// In your Android activity or application class
+AppSignatureHelper appSignatureHelper = new AppSignatureHelper(this);
+ArrayList<String> appSignatures = appSignatureHelper.getAppSignatures();
+
+// Share the generated hash with PayU for configuration
+for (String signature : appSignatures) {
+    Log.d("SMS_HASH", "App Signature: " + signature);
+}
+```
+
+> 📘 **Note**: Share the generated SMS hash with PayU team for configuration to enable OTP auto-read functionality.
