@@ -5,59 +5,63 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU UPI Bolt SDK enables efficient and seamless payment experiences within your Capacitor-Ionic-Angular applications. This SDK eliminates third-party redirection, provides one-click payment capabilities, and includes comprehensive profile management features.
+**PayU UPI Bolt SDK** aims to streamline and enhance the merchants' payment process by:
 
-PayU UPI Bolt SDK simplifies the payment process by:
+1. Providing a seamless in-app payment experience without any third-party redirection.
+2. Achieving a higher success rate, reducing customer drop-offs during payments.
+3. Offering features for profile management, including managing user accounts and balances.
+4. Improving the overall customer experience and supporting merchants in retaining their customers.
 
-* Eliminating third-party redirection for higher success rates
-* Offering profile management for user accounts and balances
-* Reducing customer drop-offs and enhancing overall experience
-* Providing direct bank integration for faster transaction completion
+# Advantages
 
-## Advantages
+The PayU UPI Bolt SDK offers the following benefits:
 
-### Key Benefits
+1. **One-click checkout**: Customers can avoid the hassle of redirection to third-party UPI apps.
+2. **Faster transactions**: With direct bank integrations, transaction speeds improve.
+3. **Improved user experience**: The entire process occurs within the merchant's app.
+4. **Ease of integration**: Quick setup, leveraging existing customer profiles maintained by banks.
+5. **Higher success rate**: A **5-6%** improvement in transaction success fosters better conversion rates.
+6. **Behavior analytics**: Merchants gain insights into customer behavior and a complete user funnel.
 
-* **One-click payments** without third-party UPI app redirection
-* **Faster transaction completion** through direct bank integration
-* **Seamless in-app payment experience** for better user retention
-* **Easy integration** leveraging pre-existing customer profiles with banks
-* **5-6% increase in success rates** with better transaction conversion
-* **Complete user funnel insights** for understanding user behavior
+# User Journeys in PayU UPI Bolt
 
-## User Journeys in PayU UPI Bolt
+### Registration and Pay
 
-### Registration and Pay Journey
-
-For first-time users, the registration process includes:
-
-1. **User consent** for SMS permissions
-2. **Device verification** using SIM and mobile number
-3. **UPI ID creation** and bank selection
-4. **MPIN setup** (if needed) for first-time users
-5. **Transaction completion** using the added bank account
+1. Merchants can perform user registration for new customers during checkout or as a separate flow.
+2. Customers need to provide SMS permissions for SIM card verification (e.g., selecting a SIM on dual-SIM phones).
+3. Following SIM/device verification:
+   * A UPI ID is created.
+   * The user completes a **bank account selection** and addition process with accounts linked to their verified mobile number.
+   * If using an account for the first time, the customer sets an **MPIN**.
+4. Transactions can be initiated once the bank account setup is complete.
 
 <Image align="center" src="https://files.readme.io/c740dd57eb78f4c21a5ef065ec08a5a2575ad41b150e121416283965d3fef62b-ionic_react_sdk_integration_mobile_workflow1.jpeg" />
 
-### Payment Journey
+### Payment
 
-For registered customers:
+1. Already registered users can make **one-click payments**.
+2. Customers select a pre-added bank account, input their MPIN, and complete their transaction.
+3. Optionally, customers can check their account balance before proceeding, avoiding potential low-balance failures.
 
-* **One-click payments** with existing bank accounts
-* **Balance checking** to ensure transaction readiness
-* **MPIN verification** for secure payment processing
+<br />
 
 <Image align="center" src="https://files.readme.io/da1e82d9ee03c1cd3da73c90abb0c399f2282b228a45d22a0a73353259be2803-ionic_react_sdk_integration_mobile_workflow2.jpeg" />
 
-### Profile Management Journey
+<br />
 
-Users can manage their payment profiles by:
+## Profile Management Journey
 
-* **Managing bank accounts** (add, delete, set/change MPIN, balance checks)
-* **Accessing transaction history** and dispute resolution
-* **Deregistering accounts** from PayU UPI Bolt SDK
+1. Customers can:
+   * Add or remove bank accounts.
+   * Manage MPINs (set, change, reset).
+   * Check balances for linked accounts.
+2. View transaction history and raise/query disputes.
+3. Access a **dispute history** for tracking raised disputes.
+4. De-register all their linked accounts from the PayU UPI Bolt SDK.
 
 <Image align="center" src="https://files.readme.io/e635461aee9e9ee406ad9d9a48877a73c4aea51255cab4047e114e5c3081fd1c-ionic_react_sdk_integration_mobile_workflow3.jpeg" />
+
+<br />
 
 ## Prerequisites
 
