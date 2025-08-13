@@ -505,34 +505,30 @@ HTTP Method: **POST**
 ## Sample Request
 
 ```bash
-curl --location --request POST 'https://test.payu.in/_payment' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=ZYOSqk' \
---data-urlencode 'txnid=969317320FDIRj89uFPa' \
---data-urlencode 'amount=1227.00' \
---data-urlencode 'productinfo=Hotel Booking' \
---data-urlencode 'firstname=John' \
---data-urlencode 'email=john.doe@example.com' \
---data-urlencode 'phone=9876543210' \
---data-urlencode 'lastname=Doe' \
---data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
---data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
---data-urlencode 'hash=d18c71adca9d58b9db6b3c3c4b05433cf2a6b24dfc26bbeb0ddc5ff6c86a8914c5d72c2b09c21c5a3e3d47bfe31ba5aaea8b9f7e1b8a6c8e2f5b4d0a7c3e9f8b2' \
---data-urlencode 'pg=MOTO' \
---data-urlencode 'bankcode=MOTO' \
---data-urlencode 'ccexpmon=11' \
---data-urlencode 'ccexpyr=27' \
---data-urlencode 'store_card_token=4VISAVISAVISAVI0' \
---data-urlencode 'storecard_token_type=1' \
---data-urlencode 'pre_authorize=0' \
---data-urlencode 'additional_info={"last4Digits": "0001", "tavv": "/wAAAAABaDazwwMAma6+gqUAAAA=", "trid": "1234567890", "tokenRefNo": "abcde123456"}' \
---data-urlencode 'address1=123 Main Street' \
---data-urlencode 'city=Mumbai' \
---data-urlencode 'state=Maharashtra' \
---data-urlencode 'country=India' \
---data-urlencode 'zipcode=400001' \
---data-urlencode 'udf1=MOTO_HOTEL_BOOKING' \
---data-urlencode 'udf2=CORPORATE_CARD'
+{
+  "hash": "135e38baa5218605f1128342f9057e6c1585a4af7e8c85a2856fa27e8a42bace77c8c5e62aa586594329202dc5dfe762ae5ebdfd66253f2462b42a42995f7063",
+  "key": "L43t1c",
+  "txnid": "133e4fe03c40baac9351",
+  "api_version": "1",
+  "amount": "1",
+  "firstname": "Payu-Admin",
+  "email": "_emailid_",
+  "phone": "_mobilenum_",
+  "productinfo": "Product Info",
+  "surl": "https://admin.payu.in/test_response",
+  "txtid": "afb82b0dc86628a66f7fc4eb5b166786",
+  "furl": "https://admin.payu.in/test_response",
+  "pg": "MOTO",
+  "bankcode": "MMASTCC",
+  "ccname": "CARDHOLDERXXXXXXXXNAME",
+  "ccvv": "_cvv_",
+  "storecard_token_type": "1",
+  "additional_info": "{\"tavv\":\"AJw6hJIu5Sl7ABMHaVaWAAADFA==\",\"last4digits\":\"1289\"}",
+  "ccexpmon": "_ccexpmon_",
+  "ccexpyr": "_expiry_",
+  "store_card_token": "5MASTERCARDMAST1"
+}
+ 
 ```
 
 ## Sample Response
