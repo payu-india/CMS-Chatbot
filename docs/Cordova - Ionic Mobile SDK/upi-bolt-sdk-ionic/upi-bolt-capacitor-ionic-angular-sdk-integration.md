@@ -1,7 +1,7 @@
 ---
 title: UPI Bolt Capacitor-Ionic-Angular SDK Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
