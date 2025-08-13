@@ -17,6 +17,7 @@ HTTP Method: **POST**
 * Merchant has the card token, TAVV (Cryptogram), and the last four digits of the card
 * The token could be created by the merchant or through another partner
 * Transactions that are exempt from 2FA as per RBI guidelines for MOTO payments
+* For now, PayU is only supporting direct token cards in the request from the merchant
 
 > 📘 Note
 >
