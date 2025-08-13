@@ -245,11 +245,11 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> For MOTO transactions, the value should be 'MOTO' to identify the payment option type.
+        <code>String</code> For MOTO transactions, this parameter can have any of the following values: MVISACC, MVISADC, MMASTCC, MMASTDC.
       </td>
 
       <td>
-        MOTO
+        MVISACC
       </td>
     </tr>
 
@@ -300,12 +300,27 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        storecard_token_type
-        <br/><code>mandatory</code>
+        user_credentials
+        <br/><code>conditional</code>
       </td>
 
       <td>
-        <code>String</code> Indicates the type of store card token. Value: 1 for network tokens used in MOTO transactions.
+        <code>String</code> Used for authentication or identifying a specific user's data or account to process a transaction or request when using network tokens.
+      </td>
+
+      <td>
+        user123:password456
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        storecard_token_type
+        <br/><code>conditional</code>
+      </td>
+
+      <td>
+        <code>String</code> Specifies the type of token when processing transactions with a stored card or network token. For network tokens, the value must be set to 1.
       </td>
 
       <td>
@@ -319,7 +334,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>JSON</code> Additional information in JSON format containing MOTO-specific transaction details including last 4 digits, TAVV, Token Requester ID, and Token Reference Number.
+        <code>JSON</code> A mandatory field that carries additional data in JSON format to facilitate the processing of transactions with network tokens. Contains fields such as last4Digits (mandatory), TAVV (Transaction Authorization Verification Value), trid (Token Requester ID), and tokenRefNo (Token Reference Number).
       </td>
 
       <td>
