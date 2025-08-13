@@ -602,21 +602,3 @@ void onErrorReceived(Map response) {
   }
 }
 ```
-
-## Testing
-
-### Test Environment Setup
-
-1. **Use Test Configuration**
-   ```dart
-   "isProduction": false
-   ```
-
-2. **Test Phone Numbers**\
-   Use sandbox phone numbers provided by PayU for testing
-
-3. **Test Scenarios**
-   * First-time registration and payment
-   * Repeat payments for registered users
-   * Error scenarios (network issues, timeouts)
-   * Profile management flows
