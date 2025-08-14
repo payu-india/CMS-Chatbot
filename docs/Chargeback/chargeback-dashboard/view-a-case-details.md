@@ -1,7 +1,7 @@
 ---
 title: View a Case Details
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
