@@ -63,6 +63,8 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 ## Sample request
 
+## Regular Transaction
+
 ```bash
 curl --location 'https://apitest.payu.in/v2/refund/' \
 --header 'Content-Type: application/json' \
@@ -77,6 +79,27 @@ curl --location 'https://apitest.payu.in/v2/refund/' \
     "refundSplitRequest": null
 }'
 ```
+
+### With Split Settlements
+
+```
+curl --location 'https://apitest.payu.in/v2/refund/' \
+--header 'Content-Type: application/json' \
+--header 'mid: 8006653' \
+--data '{
+    "mihpayId": "999000000000478",
+    "refundToken": "a*bv***w",
+    "amount": 0.1,
+    "refundDetails": {},
+    "refundSplitRequest": {
+        "33rOiT": {
+            "amount": 0.21
+        }
+    }
+}'
+```
+
+##
 
 ## Response parameters
 
