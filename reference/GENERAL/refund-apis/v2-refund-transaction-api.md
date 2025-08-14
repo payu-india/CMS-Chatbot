@@ -63,8 +63,6 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 ## Sample request
 
-## Regular Transaction
-
 ```bash
 curl --location 'https://apitest.payu.in/v2/refund/' \
 --header 'Content-Type: application/json' \
