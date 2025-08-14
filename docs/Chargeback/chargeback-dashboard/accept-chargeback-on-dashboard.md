@@ -1,7 +1,7 @@
 ---
 title: Accept Chargeback on Dashboard
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
