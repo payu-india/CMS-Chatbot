@@ -10,10 +10,10 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 
 **Endpoint**
 
-|                        |                                                                              |
-| :--------------------- | :--------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/v2/refundstatus](https://test.payu.in/v2/refundstatus) |
-| Production Environment | [https://info.payu.in/v2/refundstatus](https://info.payu.in/v2/refundstatus) |
+|                        |                                                                               |
+| :--------------------- | :---------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/v2/refund/status](https://test.payu.in/v2/refundstatus) |
+| Production Environment | [https://info.payu.in/v2/refund/status](https://info.payu.in/v2/refundstatus) |
 
 ## Request headers
 
@@ -111,26 +111,7 @@ curl --location 'http://info.payu.in/v2/refunds/status' \
 }'
 ```
 
-### With Split Settlements
-
-```
-curl --location 'http://secure.payu.in/v2/refund/' \
---header 'Content-Type: application/json' \
---header 'mid: 8006653' \
---data '{
-    "mihpayId": "999000000000478",
-    "refundToken": "a*bv***w",
-    "amount": 0.1,
-    "refundDetails": {},
-    "refundSplitRequest": {
-        "33rOiT": {
-            "amount": 0.21
-        }
-    }
-}'
-```
-
-##
+<br />
 
 ## Response parameters
 
