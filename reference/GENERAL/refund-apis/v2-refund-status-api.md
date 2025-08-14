@@ -10,10 +10,10 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 
 **Endpoint**
 
-|                        |                                                  |
-| :--------------------- | :----------------------------------------------- |
-| Production Environment | [http://api.payu.in](http://api.payu.in)         |
-| Test Environment       | [http://apitest.payu.in](http://apitest.payu.in) |
+|                        |                                                                              |
+| :--------------------- | :--------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/v2/refundstatus](https://test.payu.in/v2/refundstatus) |
+| Production Environment | [https://info.payu.in/v2/refundstatus](https://info.payu.in/v2/refundstatus) |
 
 ## Request headers
 
@@ -97,7 +97,7 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 ### General use cases
 
 ```bash
-curl --location 'http://apitest.payu.in/v2/refunds/status' \
+curl --location 'http://info.payu.in/v2/refunds/status' \
 --header 'mid: 8006653' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: hmac username="KOEfPI", algorithm="sha512", headers="date", signature="33560cfbfe91d98dc4d395de8e212e9f9c8e8d88459c4ac2948962ad5e7ecdd0f23b695d4aacd1ac3a94bf912ece4f61fe9e0a8566b7b016c8a52fc1a0299d3c"' \
@@ -114,7 +114,7 @@ curl --location 'http://apitest.payu.in/v2/refunds/status' \
 ### With Split Settlements
 
 ```
-curl --location 'http://apitest.payu.in/v2/refund/' \
+curl --location 'http://secure.payu.in/v2/refund/' \
 --header 'Content-Type: application/json' \
 --header 'mid: 8006653' \
 --data '{
@@ -129,6 +129,8 @@ curl --location 'http://apitest.payu.in/v2/refund/' \
     }
 }'
 ```
+
+##
 
 ## Response parameters
 
