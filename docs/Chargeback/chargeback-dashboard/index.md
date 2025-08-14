@@ -21,22 +21,23 @@ metadata:
 next:
   description: ''
 ---
-To find the chargeback details:
+The PayU Merchant Chargeback Dashboard is an integrated system designed to help merchants view, track, and respond to chargeback cases, net-banking disputes, and fraudulent transactions. This comprehensive dashboard allows you to:
 
-1. Log on to PayU Dashboard.
-2. Select **Chargeback** from the left pane.
+* **View and track** all chargeback cases with their current status
+* **Respond to pending chargebacks** by providing required information and uploading supporting documents
+* **Monitor the complete lifecycle** of chargeback cases with detailed history tracking
+* **Manage net-banking disputes** and fraud alerts from different banks and cybercrime authorities
+* **Update comments and documentation** for Net-Banking dispute cases and fraudulent transaction alerts
 
-   The *Chargeback* page is displayed in a new browser tab.
+**Prerequisites**: To access the Chargeback Dashboard, you need to:
 
-<Image align="center" src="https://files.readme.io/3045e4a-Bank_Portal_3_1.png" />
+* Have an active PayU merchant account
+* Be assigned the 'Chargeback' role or be a super user
+* Log in to the PayU merchant panel
 
-If you click a ID under the **id** column of the chargebacks table at the bottom.
+For more information on getting started, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account).
 
-<Image align="center" src="https://files.readme.io/06e3a15-Bank_Portal_5.png" />
-
-> 📘 **Note:**
->
-> You can enter the variables like PayU ID, Transaction ID, Bank Case, chargeback status, and the date entries to search the results.
+## Filter Chargebacks
 
 To filter the dates using the **To and From** option, use the calendar view. Click to select the desired date range. Use **Previous** and **Next** to select the desired month.
 
