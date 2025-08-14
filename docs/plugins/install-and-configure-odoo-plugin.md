@@ -20,7 +20,7 @@ Before you begin, ensure that:
   **Note**: Developer Mode must be enabled in Odoo to proceed with eCommerce and PayU module setup.
 </Callout>
 
-## Installation Guide for Linux-based Servers
+## Install on Linux OS
 
 To install the PayU custom add-on on Linux-based servers:
 
@@ -65,7 +65,7 @@ Restart the Odoo service to apply the changes:
 sudo systemctl restart odoo
 ```
 
-## Installation Guide for Windows
+## Install on Windows OS
 
 Follow these steps to install the PayU Custom Addon on Windows systems:
 
@@ -125,27 +125,28 @@ After installing the PayU custom add-on, configure Odoo for eCommerce function:
   **Note**: Developer Mode is required to access advanced configuration options.
 </Callout>
 
-### Step 2: Install Required Modules
+### Step 2: Install required modules
 
 Return to the **Apps** section and activate the following modules:
 
 * **Website** module
 * **eCommerce** module
 
-### Step 3: Install PayU Payment Provider
+### Step 3: Install PayU plugin
 
 1. In the **Apps** section, search for "payu" and select it.
-2. Activate the **PayU Payment Provider** module
+2. Activate the **PayU Payment Provider** module.
 
-### Step 4: Configure PayU Payment Provider
+### Step 4: Configure PayU as payment provider
 
 Configure Pay\U as the payment provider:
 
 1. Use the **Home Menu** to navigate to **Configuration > Payment Providers**
-2. Find and activate **PayU** as the Payment Provider
-3. A credential configuration page will appear
+2. Find and activate **PayU** as the payment provider.
 
-### Step 5: Configure Transaction Credentials
+A credential configuration page is displayed.
+
+### Step 5: Configure Key and Salt credentials
 
 Configure credentials for payment transactions:
 
