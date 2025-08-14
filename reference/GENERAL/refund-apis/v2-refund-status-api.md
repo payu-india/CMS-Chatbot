@@ -10,10 +10,10 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 
 **Endpoint**
 
-|                        |                 |
-| :--------------------- | :-------------- |
-| Production Environment | api.payu.in     |
-| Test Environment       | apitest.payu.in |
+|                        |                                                  |
+| :--------------------- | :----------------------------------------------- |
+| Production Environment | [http://api.payu.in](http://api.payu.in)         |
+| Test Environment       | [http://apitest.payu.in](http://apitest.payu.in) |
 
 ## Request headers
 
