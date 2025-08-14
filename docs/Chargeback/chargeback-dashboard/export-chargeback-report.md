@@ -1,7 +1,7 @@
 ---
 title: Export Chargeback Report
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
