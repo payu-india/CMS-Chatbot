@@ -1,7 +1,7 @@
 ---
 title: 'Launch Chargeback Dashboard '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
