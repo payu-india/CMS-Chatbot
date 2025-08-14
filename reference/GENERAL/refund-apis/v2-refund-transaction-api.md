@@ -116,6 +116,8 @@ curl --location 'https://apitest.payu.in/v2/refund/' \
 
 #### Success Response
 
+* General transaction
+
 ```json
 {
   "status": 1,
@@ -124,6 +126,32 @@ curl --location 'https://apitest.payu.in/v2/refund/' \
   "refundId": "123456789"
 }
 ```
+
+* With Split Settlements
+  ```
+  {
+    "message": "Success",
+    "status": 1,
+    "result": [
+      {
+        "payuId": "999000000000478",
+        "refundToken": "abb342vqw",
+        "status": 1,
+        "message": "Success",
+        "splitInfo": {
+          "33rOiT": {
+            "status": 1,
+            "statusCode": "102",
+            "message": "Refund request accepted",
+            "requestId": "4993824108553"
+          }
+        }
+      }
+    ]
+  }
+
+  ```
+  ###
 
 #### Failure Response
 
