@@ -59,42 +59,9 @@ If you click a ID under the **id** column of the chargebacks table at the bottom
 </table>
 `}</HTMLBlock>
 
-<Callout icon="❗️">
+<Callout icon="❗️" theme="error">
   **Note**: Each case displays a "Reply Before" date. Failure to respond before this deadline will result in automatic case closure and transaction reversal in favor of the customer.
 </Callout>
-
-<br />
-
-## Filter & Export
-
-Efficiently manage and export chargeback data using advanced filtering options.
-
-### Advanced Filtering
-
-Use multiple filter criteria to refine your case view:
-
-1. **Single ID Search**: Enter one PayU ID or Transaction ID
-2. **Multiple ID Search**: Use comma-separated values for bulk searches
-3. **Status Filtering**: Select one or multiple status categories
-4. **Date Range**: Specify exact date parameters for targeted searches
-5. **Bank Case Filter**: Search using specific bank case numbers
-
-### Export Functionality
-
-#### Export Current View
-
-* Click **Export** to download visible cases
-* Applies current filter settings to export
-* Downloads as Excel (.xlsx) format
-
-#### Download Management
-
-1. Click **Download Results** to access the downloads page
-2. View file creation status and download links
-3. Files remain available for 7 days post-creation
-4. Download completed files by clicking the file link
-
-***
 
 ## Accept Chargeback
 
