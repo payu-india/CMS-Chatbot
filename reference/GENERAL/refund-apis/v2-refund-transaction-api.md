@@ -9,10 +9,10 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 **Endpoint**
 
-|                        |                 |
-| :--------------------- | :-------------- |
-| Production Environment | api.payu.in     |
-| Test Environment       | apitest.payu.in |
+|                        |                                                  |
+| :--------------------- | :----------------------------------------------- |
+| Production Environment | [http://api.payu.in](http://api.payu.in)         |
+| Test Environment       | [http://apitest.payu.in](http://apitest.payu.in) |
 
 ## Request header
 
@@ -64,7 +64,7 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 ## Sample request
 
 ```bash
-curl --location 'https://secure.payu.in/v2/refund/' \
+curl --location 'http://apitest.payu.in/v2/refund/' \
 --header 'Content-Type: application/json' \
 --header 'date: Tue, 15 Jul 2025 08:47:13 GMT' \
 --header 'Authorization: hmac username="KOEfPI", algorithm="sha512", headers="date", signature="33560cfbfe91d98dc4d395de8e212e9f9c8e8d88459c4ac2948962ad5e7ecdd0f23b695d4aacd1ac3a94bf912ece4f61fe9e0a8566b7b016c8a52fc1a0299d3c"' \
