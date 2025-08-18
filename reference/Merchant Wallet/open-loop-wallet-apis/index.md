@@ -27,4 +27,12 @@ This part of the API documentation includes the API reference for the open-loop 
 * [Verify Cardholder API](https://docs.payu.in/reference/verify-cardholder-api)
 * [Card Inquiry API](https://docs.payu.in/reference/card-inquiry-api)
 * [Reset PIN API](https://docs.payu.in/reference/reset-pin-api)
-* [IMPL Mapping List](https://docs.payu.in/reference/impl-mapping-list)
+
+The IMPL mapping is used in some of the above APIs, which can be found in the IMPL mapping list. For more information, refer to [IMPL Mapping List](https://docs.payu.in/reference/impl-mapping-list)
+
+<Callout icon="📘" theme="info">
+  **Note**: The following APIs in Open-Loop and Closed Loop wallets look similar but the authentication and request parameters differ, so you must not use them interchangeably:
+
+  * Load API
+  * Update Profile API
+</Callout>
