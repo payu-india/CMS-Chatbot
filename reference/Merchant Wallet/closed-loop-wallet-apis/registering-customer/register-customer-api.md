@@ -18,8 +18,6 @@ The Register Customer API allows you to register a new customer and facilitates 
 
 ## Authentication
 
-This API uses HMAC-SHA512 authentication. Refer to the [Authentication Guide](/docs/authentication) for detailed implementation.
-
 <Closed_Loop_HMAC />
 
 ## Request Parameters
