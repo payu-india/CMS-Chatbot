@@ -18,7 +18,7 @@ The \*\*PG Load \*\*API allows you to create a credit transaction entry directly
 
 ## Authentication
 
-This API uses HMAC-SHA512 authentication. Refer to the [Authentication Guide](/docs/authentication) for detailed implementation.
+This API uses HMAC-SHA512 authentication.
 
 ## Request Headers
 
