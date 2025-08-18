@@ -180,16 +180,24 @@ To configure credentials for payment transactions:
 
   * [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
   * [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+
+  If you do not have a PayU account, sign up for a merchant account. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 </Callout>
 
 #### For Test Transactions
+
+To configure the key/Salt for testing the transactions in Test or Sandbox environment:
 
 1. Select state: **"Test Mode"**
 2. Enter your Test merchant key.
 3. Enter your Test merchant Salt.
 4. Click **Save** to enable test payment transactions
 
+<Image align="center" className="border" border={true} src="https://files.readme.io/55cd20c088e5615b7bad9b736d9bb0ef47f30f84f0dab292bd855ab5d21e0649-odoo_setup_image_19_page_12.png" />
+
 #### For Live Transactions
+
+To configure the key/Salt for collecting payments or live transactions or production environment:
 
 1. Select state: **"Enabled"**
 2. Enter your Production merchant key.
