@@ -12,6 +12,7 @@ This part of the API documentation includes the following API reference for Clos
 * [Loading Wallet APIs](ref:loading-wallet)
   * [PG Load API](https://docs.payu.in/reference/pg-load-api)
   * [Callback for PG Load API](ref:callback-for-pg-load-api)
+  * [Load API](ref:load-api-closed-loop-wallet)
   * [PG Load Enquiry API](https://docs.payu.in/reference/pg-load-enquiry-api)
   * [Load and Pay Transaction API](https://docs.payu.in/reference/load-and-pay-transaction-api)
   * [Check Status API](ref:check-status-api)
