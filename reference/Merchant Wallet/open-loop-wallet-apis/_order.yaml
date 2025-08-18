@@ -12,3 +12,4 @@
 - create-beneficiary-api
 - fetch-beneficiary-api
 - update-beneficiary-api
+- delete-beneficiary-api
