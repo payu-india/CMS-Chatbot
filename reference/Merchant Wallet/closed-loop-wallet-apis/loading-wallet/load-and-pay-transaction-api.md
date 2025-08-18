@@ -16,10 +16,6 @@ The Load and Pay Transaction API is designed to handle wallet transactions where
 
 **HTTP Method**: POST
 
-## Authentication
-
-This API uses hash-based authentication. The hash is calculated using SHA512 algorithm with specific parameters.
-
 ## How It Works
 
 1. **Wallet Balance Check**: The API checks the current wallet balance
@@ -37,27 +33,110 @@ This API uses hash-based authentication. The hash is calculated using SHA512 alg
 
 ### Body Parameters
 
-| Parameter                                  | Description                                                                                                                       | Example                                                      |
-| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| key<br /><code>mandatory</code>            | <code>String</code> Merchant key provided by PayU during onboarding                                                               | KOEfPI                                                       |
-| txnid<br /><code>mandatory</code>          | <code>Alphanumeric</code> Unique transaction ID generated for each load and pay transaction                                       | ram1234                                                      |
-| amount<br /><code>mandatory</code>         | <code>Numeric</code> Transaction amount in implied decimals (₹41.00 → 4100)                                                       | 4100                                                         |
-| productinfo<br /><code>mandatory</code>    | <code>String</code> Description and details about the product being purchased                                                     | eCommerce                                                    |
-| firstname<br /><code>mandatory</code>      | <code>String</code> Customer's first name                                                                                         | John                                                         |
-| lastname<br /><code>optional</code>        | <code>String</code> Customer's last name                                                                                          | Doe                                                          |
-| email<br /><code>mandatory</code>          | <code>String</code> Email ID associated with the customer wallet/account                                                          | [john.doe@gmail.com](mailto:john.doe@gmail.com)              |
-| phone<br /><code>mandatory</code>          | <code>Numeric</code> Customer's phone number with country code                                                                    | 919988776655                                                 |
-| surl<br /><code>mandatory</code>           | <code>String</code> Success URL where customer will be redirected upon successful transaction                                     | [https://merchant.com/success](https://merchant.com/success) |
-| furl<br /><code>mandatory</code>           | <code>String</code> Failure URL where customer will be redirected upon failed transaction                                         | [https://merchant.com/failure](https://merchant.com/failure) |
-| pg<br /><code>mandatory</code>             | <code>String</code> Constant parameter indicating the payment gateway (CLW)                                                       | CLW                                                          |
-| bankcode<br /><code>mandatory</code>       | <code>String</code> Bank code indicating the payment option used for the transaction                                              | PAY                                                          |
-| customer\_id<br /><code>conditional</code> | <code>Numeric</code> Unique wallet/customer ID for wallet integration                                                             | 70000000008                                                  |
-| walleturn<br /><code>conditional</code>    | <code>Numeric</code> URN (Unique Reference Number) for wallet transactions                                                        | 123456789                                                    |
-| loadmoney<br /><code>mandatory</code>      | <code>Numeric</code> Amount to be loaded into the wallet if existing balance is insufficient                                      | 1000                                                         |
-| txn\_s2s\_flow<br /><code>mandatory</code> | <code>Numeric</code> Identifies the merchant-hosted transaction flow (constant value 4)                                           | 4                                                            |
-| hash<br /><code>mandatory</code>           | <code>String</code> SHA512 hash for securing the API request. For more information, refer to [Hash Calculation](#hash-calcuation) | 84bbbf...f5c9                                                |
+<HTMLBlock>{`
+<table>
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>key<br><code>mandatory</code></td>
+            <td><code>String</code> Merchant key provided by PayU during onboarding</td>
+            <td>KOEfPI</td>
+        </tr>
+        <tr>
+            <td>txnid<br><code>mandatory</code></td>
+            <td><code>Alphanumeric</code> Unique transaction ID generated for each load and pay transaction</td>
+            <td>ram1234</td>
+        </tr>
+        <tr>
+            <td>amount<br><code>mandatory</code></td>
+            <td><code>Numeric</code> Transaction amount in implied decimals (₹41.00 → 4100)</td>
+            <td>4100</td>
+        </tr>
+        <tr>
+            <td>productinfo<br><code>mandatory</code></td>
+            <td><code>String</code> Description and details about the product being purchased</td>
+            <td>eCommerce</td>
+        </tr>
+        <tr>
+            <td>firstname<br><code>mandatory</code></td>
+            <td><code>String</code> Customer's first name</td>
+            <td>John</td>
+        </tr>
+        <tr>
+            <td>lastname<br><code>optional</code></td>
+            <td><code>String</code> Customer's last name</td>
+            <td>Doe</td>
+        </tr>
+        <tr>
+            <td>email<br><code>mandatory</code></td>
+            <td><code>String</code> Email ID associated with the customer wallet/account</td>
+            <td><a href="mailto:john.doe@gmail.com">john.doe@gmail.com</a></td>
+        </tr>
+        <tr>
+            <td>phone<br><code>mandatory</code></td>
+            <td><code>Numeric</code> Customer's phone number with country code</td>
+            <td>919988776655</td>
+        </tr>
+        <tr>
+            <td>surl<br><code>mandatory</code></td>
+            <td><code>String</code> Success URL where customer will be redirected upon successful transaction</td>
+            <td><a href="https://merchant.com/success">https://merchant.com/success</a></td>
+        </tr>
+        <tr>
+            <td>furl<br><code>mandatory</code></td>
+            <td><code>String</code> Failure URL where customer will be redirected upon failed transaction</td>
+            <td><a href="https://merchant.com/failure">https://merchant.com/failure</a></td>
+        </tr>
+        <tr>
+            <td>pg<br><code>mandatory</code></td>
+            <td><code>String</code> Constant parameter indicating the payment gateway (CLW)</td>
+            <td>CLW</td>
+        </tr>
+        <tr>
+            <td>bankcode<br><code>mandatory</code></td>
+            <td><code>String</code> Bank code indicating the payment option used for the transaction</td>
+            <td>PAY</td>
+        </tr>
+        <tr>
+            <td>customer_id<br><code>conditional</code></td>
+            <td><code>Numeric</code> Unique wallet/customer ID for wallet integration</td>
+            <td>70000000008</td>
+        </tr>
+        <tr>
+            <td>walleturn<br><code>conditional</code></td>
+            <td><code>Numeric</code> URN (Unique Reference Number) for wallet transactions</td>
+            <td>123456789</td>
+        </tr>
+        <tr>
+            <td>loadmoney<br><code>mandatory</code></td>
+            <td><code>Numeric</code> Amount to be loaded into the wallet if existing balance is insufficient</td>
+            <td>1000</td>
+        </tr>
+        <tr>
+            <td>txn_s2s_flow<br><code>mandatory</code></td>
+            <td><code>Numeric</code> Identifies the merchant-hosted transaction flow (constant value 4)</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>hash<br><code>mandatory</code></td>
+            <td><code>String</code> SHA512 hash for securing the API request. For more information, refer to <a href="#hash-calcuation">Hash Calculation</a></td>
+            <td>84bbbf...f5c9</td>
+        </tr>
+    </tbody>
+</table>
+`}</HTMLBlock>
 
-> Note: Either `customer_id` or `walleturn` must be provided to identify the wallet.
+<br />
+
+> <Callout icon="📘" theme="info">
+>   **Note**: Either `customer_id` or `walleturn` must be provided to identify the wallet.
+> </Callout>
 
 ### Hash calculation
 
