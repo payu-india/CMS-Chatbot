@@ -1,3 +1,4 @@
+- open-loop-wallet-apis
 - fetch-balance-api
 - create-walletcard-api
 - retrieve-customer-record-api
@@ -20,4 +21,3 @@
 - reset-pin-api
 - impl-mapping-list
 - closed-loop-wallet-apis
-- open-loop-wallet-apis
