@@ -1,5 +1,4 @@
 - open-loop-wallet-apis
-- fetch-beneficiary-api
 - update-beneficiary-api
 - delete-beneficiary-api
 - change-card-status-api
