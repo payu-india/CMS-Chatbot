@@ -16,7 +16,7 @@ This part of the API documentation includes the API reference for the open-loop 
 * [Check Status API](https://docs.payu.in/reference/check-status-api)
 * [Statement Inquiry API](https://docs.payu.in/reference/statement-inquiry-api)
 * [Unload API](https://docs.payu.in/reference/unload-api)
-* [Load API](https://docs.payu.in/reference/load_api_hexawallet)
+* [Load API](ref:load_api_hexawallet)
 * [Fund Transfer API](https://docs.payu.in/reference/fund-transfer-api)
 * [Create Beneficiary API](https://docs.payu.in/reference/create-beneficiary-api)
 * [Fetch Beneficiary API](https://docs.payu.in/reference/fetch-beneficiary-api)
