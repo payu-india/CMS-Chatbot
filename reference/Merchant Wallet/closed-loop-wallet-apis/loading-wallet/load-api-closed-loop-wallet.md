@@ -1,8 +1,9 @@
 ---
 title: Load API - Closed Loop Wallet
 deprecated: false
-hidden: false
+hidden: true
 metadata:
+  title: Load API - Closed Loop Wallet
   robots: index
 ---
 The Load API allows you to credit money directly into a customer's wallet without involving Payment Gateway (PG) transactions. This API enables merchants to load funds directly into wallets with specific parameters.
