@@ -75,7 +75,7 @@ C:/custom_addons
 
 <Image align="center" src="https://files.readme.io/bbf6d1cf1e13450733b682013d0a4dcfec3af9bd6f9d7911a71fb276deb39814-odoo_setup_image_3_page_4.png" />
 
-2. Clone the PayU repository in your custom add-ons folder:
+3. Clone the PayU repository in your custom add-ons folder:
 
 ```bash
 cd C:/custom_addons
@@ -110,7 +110,7 @@ The **Apps** section is displayed on the Dashboard.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/4b0594bed1ce7a961e2309d100de443677ceb51d3da665ca4c55a3b369281955-odoo_setup_image_8_page_7.png" />
 
-1. Select the **Home** menu and choose **Settings** in the upper left-corner.
+2. Select the **Home** menu and choose **Settings** in the upper left-corner.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/b00bf1271cd915cab1f83053fc523607cdea7ffcd6583c354f0df28bae702e7a-odoo_setup_image_9_page_7.png" />
 
@@ -118,7 +118,7 @@ The *Settings* page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/5a5fa04583e17c8e863bf617046f77a83fac227d7df66d8386e1f90ef301bc53-odoo_setup_image_10_page_8.png" />
 
-1. Clicl **Activate the Developer Mode**.
+3. Clicl **Activate the Developer Mode**.
 
 <Callout icon="📘" theme="info">
   **Note**: Developer Mode is required to access advanced configuration options.
@@ -145,19 +145,19 @@ After activating these apps, your customers will be able access the **Shop** sec
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/248806062e9dcf87a1bb7a0e2a1a75e0bfa3b6851c5a8c01b8dff02bb5f95b6c-odoo_setup_image_13_page_9.png" />
 
-1. Click **Activate** on the **PayU Payment Provider** tile.
+2. Click **Activate** on the **PayU Payment Provider** tile.
 
 ### Step 4: Configure PayU as payment provider
 
 To configure PayU as the payment provider:
 
-1. From the **Home** page, navigate to **Configuration > Payment Providers**.
+3. From the **Home** page, navigate to **Configuration > Payment Providers**.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/9f16337e2485d220d1610f26daa4dd67cc7930f8478a9274dfc573f2dd0fc628-odoo_setup_image_15_page_10.png" />
 
 <br />
 
-1. Find **PayU** and click **Activate** on the **PayU** tile to activate as the payment provider.
+4. Find **PayU** and click **Activate** on the **PayU** tile to activate as the payment provider.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/2142b4864cb65e4aaeb2bf7260d3387de724d3467c3c7c88cbfb1052a1f1b973-odoo_setup_image_16_page_11.png" />
 
