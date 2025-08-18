@@ -1,5 +1,4 @@
 - open-loop-wallet-apis
-- load_api_hexawallet
 - fund-transfer-api
 - create-beneficiary-api
 - fetch-beneficiary-api
