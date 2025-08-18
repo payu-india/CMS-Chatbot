@@ -24,17 +24,13 @@ Before you begin, ensure that:
 
 To install the PayU custom add-on on Linux-based servers:
 
-### Step 1: Create custom add-ons directory structure
-
-Create the directory structure for custom add-ons:
+1. Create the directory structure for custom add-ons:
 
 ```bash
 mkdir /opt/odoo/custom_addons
 ```
 
-### Step 2: Clone the PayU repository
-
-Clone the GitHub repository into the newly created folder:
+2. Clone the GitHub repository into the newly created folder:
 
 ```bash
 cd /opt/odoo/custom_addons
@@ -43,23 +39,19 @@ git clone https://github.com/boxpay-tech/payu-connectors.git
 
 After cloning, verify that the `Payment_payu` folder exists in the directory.
 
-### Step 3: Configure Odoo
-
-Modify the `odoo.conf` file to include the path to the custom addons folder:
+3. Modify the `odoo.conf` file to include the path to the custom addons folder:
 
 ```bash
 sudo nano /etc/odoo/odoo.conf
 ```
 
-Add the custom addons path to the `addons_path` configuration:
+4. Add the custom add-ons path to the `addons_path` configuration:
 
 ```bash
 addons_path = /usr/lib/python3/dist-packages/odoo/addons,/opt/odoo/custom_addons
 ```
 
-### Step 4: Restart Odoo service
-
-Restart the Odoo service to apply the changes:
+5. Restart the Odoo service to apply the changes:
 
 ```bash
 sudo systemctl restart odoo
@@ -69,46 +61,31 @@ sudo systemctl restart odoo
 
 Follow these steps to install the PayU Custom Addon on Windows systems:
 
-### Step 1: Create custom add-ons folder
-
-Create a folder in the same drive where Odoo is installed (preferably in the `C:/` drive):
+1. Create a folder in the same drive where Odoo is installed (preferably in the `C:/` drive):
 
 ```
 C:/custom_addons
 ```
 
-### Step 2: Navigate to Odoo Installation
-
-Open Odoo's installed folder and navigate to the `server` folder inside the installation directory.
-
-### Step 3: Clone PayU repository
-
-Clone the PayU repository in your custom add-ons folder:
+2. Open Odoo's installed folder and navigate to the `server` folder inside the installation directory.
+3. Clone the PayU repository in your custom add-ons folder:
 
 ```bash
 cd C:/custom_addons
 git clone https://github.com/boxpay-tech/payu-connectors.git
 ```
 
-### Step 4: Configure Odoo
-
-Modify the `odoo.conf` file located in the `server` folder to include the path of the custom\_addons folder under the `addons_path`:
+4. Modify the `odoo.conf` file located in the `server` folder to include the path of the custom\_addons folder under the `addons_path`:
 
 ```
 addons_path = C:/Program Files/Odoo/server/addons,C:/custom_addons
 ```
 
-### Step 5: Save Configuration
-
-Save the changes to the `odoo.conf` file.
-
-### Step 6: Restart Odoo service
-
-Restart the Odoo service using Microsoft Windows Services:
-
-1. Open **Services** from the **Start** menu.
-2. Search and select the **Odoo** service.
-3. Right-click and select **Restart**
+5. Save the changes to the `odoo.conf` file.
+6. Restart the Odoo service using Microsoft Windows Services:
+   * Open **Services** from the **Start** menu.
+   * Search and select the **Odoo** service.
+   * Right-click and select **Restart**
 
 ## Setup Odoo for eCommerce
 
