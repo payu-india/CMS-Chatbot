@@ -16,18 +16,9 @@ The **Retrieve Customer Record** API allows you to fetch customer details using 
 
 **HTTP Method**: POST
 
-## Authentication
-
-This API uses HMAC-SHA512 authentication. Refer to the [Authentication Guide](/docs/authentication) for detailed implementation.
-
 ## Request Headers
 
-| Parameter                                    | Description                                                                  |
-| -------------------------------------------- | ---------------------------------------------------------------------------- |
-| walletIdentifier<br /><code>mandatory</code> | <code>String</code> Program Type (e.g., CLW)                                 |
-| date<br /><code>mandatory</code>             | <code>String</code> GMT formatted date (e.g., Thu, 17 Feb 2022 08:17:59 GMT) |
-| Authorization<br /><code>mandatory</code>    | <code>String</code> HMAC-SHA512-based authentication token                   |
-| Content-Type<br /><code>mandatory</code>     | <code>String</code> application/json                                         |
+<Closed_Loop_HMAC />
 
 ## Request Parameters
 
@@ -43,18 +34,49 @@ The request body contains both encrypted and decrypted parameters.
 
 #### Decrypted
 
-| Parameter                                    | Description                                                                       | Example      |
-| -------------------------------------------- | --------------------------------------------------------------------------------- | ------------ |
-| messageCode<br /><code>mandatory</code>      | <code>Numeric(4)</code> API code to identify Retrieve Customer API                | 1930         |
-| clientTxnId<br /><code>mandatory</code>      | <code>Alphanumeric(100)</code> Unique transaction ID from the calling application | retrieval12  |
-| customerMobile<br /><code>conditional</code> | <code>Numeric(15)</code> Customer mobile number with country code                 | 918765432123 |
-| customerId<br /><code>conditional</code>     | <code>String(20)</code> Unique customer ID from the calling application           | 620934850    |
-| urn<br /><code>conditional</code>            | <code>Numeric(11)</code> Proxy wallet reference number                            | 70000000008  |
+<HTMLBlock>{`
+<table>
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>messageCode<br><code>mandatory</code></td>
+            <td><code>Numeric(4)</code> API code to identify Retrieve Customer API</td>
+            <td>1930</td>
+        </tr>
+        <tr>
+            <td>clientTxnId<br><code>mandatory</code></td>
+            <td><code>Alphanumeric(100)</code> Unique transaction ID from the calling application</td>
+            <td>retrieval12</td>
+        </tr>
+        <tr>
+            <td>customerMobile<br><code>conditional</code></td>
+            <td><code>Numeric(15)</code> Customer mobile number with country code</td>
+            <td>918765432123</td>
+        </tr>
+        <tr>
+            <td>customerId<br><code>conditional</code></td>
+            <td><code>String(20)</code> Unique customer ID from the calling application</td>
+            <td>620934850</td>
+        </tr>
+        <tr>
+            <td>urn<br><code>conditional</code></td>
+            <td><code>Numeric(11)</code> Proxy wallet reference number</td>
+            <td>70000000008</td>
+        </tr>
+    </tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
 
 <Callout icon="📘" theme="info">
-  **Note**:
-
-  At least one of `customerMobile`, `customerId`, or `urn` must be provided.
+  **Note**: At least one of `customerMobile`, `customerId`, or `urn` must be provided.
 </Callout>
 
 ## Response Parameters
