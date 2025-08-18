@@ -1,5 +1,5 @@
 ---
-title: Load API - Closed Loop Wallet
+title: Load API
 deprecated: false
 hidden: true
 metadata:
