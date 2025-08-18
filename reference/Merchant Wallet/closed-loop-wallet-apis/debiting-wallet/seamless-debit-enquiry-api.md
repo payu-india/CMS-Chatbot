@@ -9,18 +9,15 @@ The Seamless Debit Enquiry API provides transaction status for a debit request. 
 
 ## Environment
 
-| Environment | URL |
-| ----------- | --- |
-| Test | `https://test.payu.in/merchant/postservice.php?form=2` |
-| Production | `https://info.payu.in/merchant/postservice.php?form=2` |
+| Environment | URL                                                    |
+| ----------- | ------------------------------------------------------ |
+| Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
+| Production  | `https://info.payu.in/merchant/postservice.php?form=2` |
 
 **HTTP Method**: POST
 
-## Authentication
-
-This API uses hash-based authentication. The hash is calculated using SHA512 algorithm with specific parameters.
-
 ## Request Headers
+
 <HTMLBlock>{`
 <table>
   <thead>
@@ -45,6 +42,7 @@ This API uses hash-based authentication. The hash is calculated using SHA512 alg
 The request body contains both encrypted and decrypted parameters.
 
 #### Encrypted
+
 <HTMLBlock>{`
 <table>
   <thead>
@@ -63,6 +61,7 @@ The request body contains both encrypted and decrypted parameters.
 `}</HTMLBlock>
 
 #### Decrypted
+
 <HTMLBlock>{`
 <table>
 <thead>
@@ -96,7 +95,9 @@ The request body contains both encrypted and decrypted parameters.
 </tbody>
 </table>
 `}</HTMLBlock>
+
 ## Response Parameters
+
 <HTMLBlock>{`
 <table>
   <thead>
@@ -127,6 +128,7 @@ The request body contains both encrypted and decrypted parameters.
 `}</HTMLBlock>
 
 ### Transaction details object
+
 <HTMLBlock>{`
 <table>
 <thead>
@@ -254,6 +256,7 @@ The request body contains both encrypted and decrypted parameters.
 ## Sample Request
 
 ### Encrypted Packet
+
 ```bash
 curl --location --request POST 'https://test.payu.in/merchant/postservice.php?form=2' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -261,6 +264,7 @@ curl --location --request POST 'https://test.payu.in/merchant/postservice.php?fo
 ```
 
 ### Decrypted Packet
+
 ```
 key=JPM7Fg&command=verify_payment&var1=IhfgcZnXR&hash=a0ae79...
 ```
@@ -268,6 +272,7 @@ key=JPM7Fg&command=verify_payment&var1=IhfgcZnXR&hash=a0ae79...
 ## Sample Response
 
 ### Successful Transaction Found
+
 ```json
 {
   "status": 1,
@@ -298,6 +303,7 @@ key=JPM7Fg&command=verify_payment&var1=IhfgcZnXR&hash=a0ae79...
 ```
 
 ### Transaction Not Found
+
 ```json
 {
   "status": 0,
@@ -307,9 +313,9 @@ key=JPM7Fg&command=verify_payment&var1=IhfgcZnXR&hash=a0ae79...
 
 ## HTTP Status Codes
 
-| Status Code | Description |
-| ----------- | ----------- |
-| 200 | OK - Request processed successfully |
-| 400 | Bad Request - Invalid request parameters |
-| 401 | Unauthorized - Authentication failed |
-| 500 | Internal Server Error |
+| Status Code | Description                              |
+| ----------- | ---------------------------------------- |
+| 200         | OK - Request processed successfully      |
+| 400         | Bad Request - Invalid request parameters |
+| 401         | Unauthorized - Authentication failed     |
+| 500         | Internal Server Error                    |
