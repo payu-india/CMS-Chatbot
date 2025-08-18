@@ -16,18 +16,9 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
 
 **HTTP Method**: POST
 
-## Authentication
-
-This API uses HMAC-SHA512 authentication. Refer to the [Authentication Guide](/docs/authentication) for detailed implementation.
-
 ## Request Headers
 
-| Parameter                                    | Description                                                                  |
-| -------------------------------------------- | ---------------------------------------------------------------------------- |
-| walletIdentifier<br /><code>mandatory</code> | <code>String</code> Program Type (e.g., CLW)                                 |
-| date<br /><code>mandatory</code>             | <code>String</code> GMT formatted date (e.g., Thu, 17 Feb 2022 08:17:59 GMT) |
-| Authorization<br /><code>mandatory</code>    | <code>String</code> HMAC-SHA512-based authentication token                   |
-| Content-Type<br /><code>mandatory</code>     | <code>String</code> application/json                                         |
+<Closed_Loop_HMAC />
 
 ## Request Parameters
 
@@ -43,13 +34,44 @@ The request body contains both encrypted and decrypted parameters.
 
 #### Decrypted
 
-| Parameter                               | Description                                                                    | Example          |
-| --------------------------------------- | ------------------------------------------------------------------------------ | ---------------- |
-| messageCode<br /><code>mandatory</code> | <code>Numeric(4)</code> API identifier for statement inquiry                   | 1072             |
-| clientTxnId<br /><code>mandatory</code> | <code>String(100)</code> Unique identifier for this inquiry transaction        | StatementReq2023 |
-| fromDate<br /><code>mandatory</code>    | <code>String(10)</code> Start date of the statement period (DD/MM/YYYY format) | 01/07/2023       |
-| toDate<br /><code>mandatory</code>      | <code>String(10)</code> End date of the statement period (DD/MM/YYYY format)   | 31/07/2023       |
-| urn<br /><code>mandatory</code>         | <code>Numeric(11)</code> Unique wallet reference number                        | 7000123456       |
+<HTMLBlock>{`
+<table>
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>messageCode<br><code>mandatory</code></td>
+            <td><code>Numeric(4)</code> API identifier for statement inquiry</td>
+            <td>1072</td>
+        </tr>
+        <tr>
+            <td>clientTxnId<br><code>mandatory</code></td>
+            <td><code>String(100)</code> Unique identifier for this inquiry transaction</td>
+            <td>StatementReq2023</td>
+        </tr>
+        <tr>
+            <td>fromDate<br><code>mandatory</code></td>
+            <td><code>String(10)</code> Start date of the statement period (DD/MM/YYYY format)</td>
+            <td>01/07/2023</td>
+        </tr>
+        <tr>
+            <td>toDate<br><code>mandatory</code></td>
+            <td><code>String(10)</code> End date of the statement period (DD/MM/YYYY format)</td>
+            <td>31/07/2023</td>
+        </tr>
+        <tr>
+            <td>urn<br><code>mandatory</code></td>
+            <td><code>Numeric(11)</code> Unique wallet reference number</td>
+            <td>7000123456</td>
+        </tr>
+    </tbody>
+</table>
+`}</HTMLBlock>
 
 ## Response Parameters
 
