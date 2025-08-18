@@ -23,3 +23,10 @@ This part of the API documentation includes the following API reference for Clos
   * [Seamless Debit Enquiry API](https://docs.payu.in/reference/seamless-debit-enquiry-api)
 * [Change Wallet Status API](https://docs.payu.in/reference/change-wallet-status-api)
 * [Update Profile API - Closed Loop](https://docs.payu.in/reference/update-profile-api-closed-loop)
+
+<Callout icon="📘" theme="info">
+  **Note**: The following APIs in Open-Loop and Closed Loop wallets look similar but the authentication and request parameters differ, so you must not use them interchangeably:
+
+  * Load API
+  * Update Profile API
+</Callout>
