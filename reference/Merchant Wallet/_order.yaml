@@ -7,7 +7,7 @@
 - check-status-api
 - statement-inquiry-api
 - unload-api
-- l
+- load_api_hexawallet
 - fund-transfer-api
 - create-beneficiary-api
 - fetch-beneficiary-api
