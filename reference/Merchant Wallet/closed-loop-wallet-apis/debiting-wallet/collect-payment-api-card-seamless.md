@@ -16,10 +16,6 @@ The **Seamless Debit Transaction** API allows you to debit funds from a wallet s
 
 **HTTP Method**: POST
 
-## Authentication
-
-This API uses hash-based authentication. The hash is calculated using SHA512 algorithm with specific parameters.
-
 ## Request Headers
 
 | Parameter                                | Description                                           |
@@ -60,9 +56,7 @@ The request body contains both encrypted and decrypted parameters.
 | hash<br /><code>mandatory</code>                  | <code>String(128)</code> SHA512 hash for request authentication                   | 6e640b...                                                 |
 
 <Callout icon="📘" theme="info">
-  Note:
-
-  Either `Customer_id` or `walleturn` must be provided.
+  Note: Either `Customer_id` or `walleturn` must be provided.
 </Callout>
 
 ## Response Parameters
