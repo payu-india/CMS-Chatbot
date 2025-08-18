@@ -16,18 +16,9 @@ The **Change Wallet Status** API allows you to change the operational status of 
 
 **HTTP Method**: POST
 
-## Authentication
-
-This API uses HMAC-SHA512 authentication. Refer to the [Authentication Guide](/docs/authentication) for detailed implementation.
-
 ## Request Headers
 
-| Parameter                                    | Description                                                                  |
-| -------------------------------------------- | ---------------------------------------------------------------------------- |
-| walletIdentifier<br /><code>mandatory</code> | <code>String</code> Program Type (e.g., CLW)                                 |
-| date<br /><code>mandatory</code>             | <code>String</code> GMT formatted date (e.g., Thu, 17 Feb 2022 08:17:59 GMT) |
-| Authorization<br /><code>mandatory</code>    | <code>String</code> HMAC-SHA512-based authentication token                   |
-| Content-Type<br /><code>mandatory</code>     | <code>String</code> application/json                                         |
+<Closed_Loop_HMAC />
 
 ## Request Parameters
 
@@ -43,15 +34,54 @@ The request body contains both encrypted and decrypted parameters.
 
 #### Decrypted
 
-| Parameter                                   | Description                                                                          | Example                                    |
-| ------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------ |
-| messageCode<br /><code>mandatory</code>     | <code>Numeric(4)</code> Unique API ID for wallet status change                       | 3530                                       |
-| clientTxnId<br /><code>mandatory</code>     | <code>String(100)</code> Unique transaction ID for each request                      | CBL-458                                    |
-| requestDateTime<br /><code>mandatory</code> | <code>Numeric(14)</code> Local timestamp when request was initiated (YYYYMMDDHHMMSS) | 20220514181818                             |
-| accountNumber<br /><code>mandatory</code>   | <code>String(15)</code> Unique account number for the sub-wallet                     | 2000123hh                                  |
-| statusType<br /><code>mandatory</code>      | <code>String(10)</code> Status type to set                                           | CreditDebit                                |
-| reason<br /><code>optional</code>           | <code>String(100)</code> Reason for status change                                    | Customer request                           |
-| remarks<br /><code>optional</code>          | <code>String(255)</code> Additional remarks                                          | Temporary block due to suspicious activity |
+<HTMLBlock>{`
+<table>
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>messageCode<br><code>mandatory</code></td>
+            <td><code>Numeric(4)</code> Unique API ID for wallet status change</td>
+            <td>3530</td>
+        </tr>
+        <tr>
+            <td>clientTxnId<br><code>mandatory</code></td>
+            <td><code>String(100)</code> Unique transaction ID for each request</td>
+            <td>CBL-458</td>
+        </tr>
+        <tr>
+            <td>requestDateTime<br><code>mandatory</code></td>
+            <td><code>Numeric(14)</code> Local timestamp when request was initiated (YYYYMMDDHHMMSS)</td>
+            <td>20220514181818</td>
+        </tr>
+        <tr>
+            <td>accountNumber<br><code>mandatory</code></td>
+            <td><code>String(15)</code> Unique account number for the sub-wallet</td>
+            <td>2000123hh</td>
+        </tr>
+        <tr>
+            <td>statusType<br><code>mandatory</code></td>
+            <td><code>String(10)</code> Status type to set</td>
+            <td>CreditDebit</td>
+        </tr>
+        <tr>
+            <td>reason<br><code>optional</code></td>
+            <td><code>String(100)</code> Reason for status change</td>
+            <td>Customer request</td>
+        </tr>
+        <tr>
+            <td>remarks<br><code>optional</code></td>
+            <td><code>String(255)</code> Additional remarks</td>
+            <td>Temporary block due to suspicious activity</td>
+        </tr>
+    </tbody>
+</table>
+`}</HTMLBlock>
 
 ## Response Parameters
 
