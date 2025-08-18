@@ -1,6 +1,8 @@
 ---
 name: Closed_Loop_HMAC
 ---
+This API uses HMAC-SHA512 authentication on the header.
+
 <HTMLBlock>{`
 <table class="api-parameters">
   <thead>
