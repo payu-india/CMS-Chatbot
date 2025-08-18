@@ -5,6 +5,8 @@ hidden: true
 metadata:
   robots: index
 ---
+This part of the API documentation includes the following API reference for Closed-Loop Wallet APIs:
+
 * [Registering Customer APIs](ref:registering-customer)
   * [Register Customer API](https://docs.payu.in/reference/register-customer-api)
 * [Loading Wallet APIs](ref:loading-wallet)
