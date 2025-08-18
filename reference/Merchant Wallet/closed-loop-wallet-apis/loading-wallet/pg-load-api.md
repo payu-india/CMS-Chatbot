@@ -22,12 +22,7 @@ This API uses HMAC-SHA512 authentication.
 
 ## Request Headers
 
-| Parameter                                    | Description                                                                  |
-| -------------------------------------------- | ---------------------------------------------------------------------------- |
-| walletIdentifier<br /><code>mandatory</code> | <code>String</code> Program Type (e.g., CLW)                                 |
-| date<br /><code>mandatory</code>             | <code>String</code> GMT formatted date (e.g., Thu, 17 Feb 2022 08:17:59 GMT) |
-| Authorization<br /><code>mandatory</code>    | <code>String</code> HMAC-SHA512-based authentication token                   |
-| Content-Type<br /><code>mandatory</code>     | <code>String</code> application/json                                         |
+<Closed_Loop_HMAC />
 
 ## Request Parameters
 
