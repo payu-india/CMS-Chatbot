@@ -4,7 +4,7 @@ excerpt: >-
   **Complete payment solution where PayU handles the entire checkout
   experience**
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
