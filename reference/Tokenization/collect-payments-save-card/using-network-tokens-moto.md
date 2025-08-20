@@ -339,7 +339,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        {"last4Digits": "0001", </br> "tavv": "/wAAAAABaDazwwMAma6+gqUAAAA=", </br> "trid": "1234567890", </br> "tokenRefNo": "abcde123456"}
+        {"last4Digits": "0001", </br> "tavv": "/wAAAAABaDazwwMAma6+gqUAAAA="}
       </td>
     </tr>
 
