@@ -20,10 +20,10 @@ When your customer has an account on your shopping website, they may store their
 
 ### **Steps to Integrate:**
 
-1. [Get the saved card details of a customer]
-2. [Post the payment to PayU using \_payment API][Post the payment to PayU using \\_payment API]
-3. [Check the PayU Response]
-4. [Verify the payment]
+1. \[Get the saved card details of a customer]
+2. \[Post the payment to PayU using \_payment API]\[Post the payment to PayU using \_payment API]
+3. \[Check the PayU Response]
+4. \[Verify the payment]
 
 ***
 
@@ -90,6 +90,7 @@ Make the transaction request with the payment details along with the card nickna
 * [Using Zero Code Change](ref:zero-code-change-payment)
 * [Using Complete Card Details](ref:complete-card-details-payment)
 * [Using Network Tokens](ref:using-network-tokens)
+* [Using MOTO with Network Tokens](ref:using-network-tokens-moto)
 * [Using Issuer Tokens](ref:using-issuer-tokens)
 * [Using Card Tokenized with PayU](ref:using-card-tokenized-with-payu)
 * [Using Card on a Decoupled Flow with Network Token or Other Partner Tokenization](ref:using-card-a-decoupled-flow-with-network-token-or-other-partner-tokenization)
@@ -99,6 +100,7 @@ Make the transaction request with the payment details along with the card nickna
 >
 > * In addition to the request parameters used for Merchant Hosted Checkout (Seamless integration) payment request, you need to ensure the additional parameters as specified in each scenario specified in this step. For more information on the complete list of parameters, refer to [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted).
 > * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to [Cards Integration](doc:collect-payments-with-cards-seamless).
+> * MOTO is acronym for Mail Order Telephone Order
 
 ***
 
