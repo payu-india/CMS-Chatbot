@@ -23,11 +23,11 @@ metadata:
 next:
   description: ''
 ---
-PayU offers various iOS SDKs that each serve a unique use case. Here is a brief overview of the most popular SDKs:
+PayU offers various React Native SDKs that each serve a unique use case. Here is a brief overview of the most popular SDKs:
 
 * **Checkout Pro SDK**: The Checkout Pro SDK is a complete, ready-to-use native checkout UI that allows you to integrate a payment interface with minimal effort and get started quickly. The SDK includes a variety of features, such as support for multiple payment methods, a secure payment gateway, and a user-friendly interface.
 * **Core SDK**: The Core SDK allows you to integrate the PayU payment gateway into your own payment interface. This gives you more control over the look and feel of the payment interface, as well as the ability to add custom features and functionality.
-* **UPI SDK**: The UPI SDK allows you to integrate Unified Payments Interface (UPI) payments into your iOS app. UPI is a popular payment method in India that allows users to make payments directly from their bank accounts.
+* **UPI SDK**: The UPI SDK allows you to integrate Unified Payments Interface (UPI) payments into your app. UPI is a popular payment method in India that allows users to make payments directly from their bank accounts.
 
 ## Choose your integration
 
@@ -95,8 +95,8 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        * \*Low Effort Integration | UPI Checkout\
-          OlaMoney SDK|Allows you to integrate | OlaMoney payments into your iOS app.\*\*
+        * *Low Effort Integration | UPI Checkout
+          OlaMoney SDK|Allows you to integrate | OlaMoney payments into your iOS app.*\*
       </td>
     </tr>
 
