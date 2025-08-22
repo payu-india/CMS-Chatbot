@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-You can integrate Virtual card using `payu-ppi-react` SDK in Flutter. This section describes the procedure to integrate Virtual Card using Flutter SDK.
+You can integrate Virtual card using `payu-ppi-react` SDK in React Native. This section describes the procedure to integrate Virtual Card using React-Native SDK.
 
 # Overview
 
@@ -77,7 +77,7 @@ Internet permission is required (usually present by default), If missing:
 
 After pod install, open the .xcworkspace and build.
 
-Recommended: iOS 11+ (or higher per your app baseline).
+Recommended: iOS 13+ (or higher per your app baseline).
 
 Use your existing app signing/capabilities; no special entitlements are typically required for presenting the PPI UI.
 
