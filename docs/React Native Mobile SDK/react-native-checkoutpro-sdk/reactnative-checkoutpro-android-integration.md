@@ -24,7 +24,7 @@ next:
 ---
 To integrate with the CheckoutPro mobile SDK for Android:
 
-* [Include the SDK in your app project​](https://docs.payu.in/docs/reactnative-checkoutpro-android-integration#Step 1: Include the SDK in your app project)
+* Include the SDK in your app project
 * ​Build the payment parameters​
 * ​Initiate the payment​
 * ​Handle the payment completion​
