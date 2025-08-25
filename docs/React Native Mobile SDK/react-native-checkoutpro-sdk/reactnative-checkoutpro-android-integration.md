@@ -22,7 +22,7 @@ metadata:
 next:
   description: ''
 ---
-To integrate with the CheckoutPro mobile SDK for Android: 
+To integrate with the CheckoutPro mobile SDK for Android:
 
 * Include the SDK in your app project​
 * ​Set up the payment hashes​
@@ -33,7 +33,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
 ## Step 1: Include the SDK in your app project
 
-The CheckoutPro SDK is offered through npm. 
+The CheckoutPro SDK is offered through npm.
 
 Add the following entries to include CheckoutPro SDK in your app:
 
@@ -46,6 +46,20 @@ Add the following imports in the class where you need to initiate a payment:
 
 ```Text React
 import PayUBizSdk from 'payu-non-seam-less-react';
+```
+
+Add the below line of code from build.gradle root-level of your project:- 
+
+### Build.gradle
+
+```Text React.js
+allprojects {
+    repositories {
+        maven {
+            url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsdk-android"
+        }
+    }
+}
 ```
 
 ***
@@ -127,19 +141,19 @@ To initiate a payment, your app needs to send transactional information to the C
 
     <tr>
       <td>
-        transactionId\
+        transactionId
         `mandatory`
       </td>
 
       <td>
-        `String` It should be unique for each transaction.\
-        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "\_,$,%,&, etc"
+        `String` It should be unique for each transaction.
+        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "_,$,%,&, etc"
       </td>
     </tr>
 
     <tr>
       <td>
-        Amount\
+        Amount
         `mandatory`
       </td>
 
@@ -150,7 +164,7 @@ To initiate a payment, your app needs to send transactional information to the C
 
     <tr>
       <td>
-        productInfo\
+        productInfo
         `mandatory`
       </td>
 
@@ -161,7 +175,7 @@ To initiate a payment, your app needs to send transactional information to the C
 
     <tr>
       <td>
-        firstName\
+        firstName
         `mandatory`
       </td>
 
@@ -172,7 +186,7 @@ To initiate a payment, your app needs to send transactional information to the C
 
     <tr>
       <td>
-        Email\
+        Email
         `mandatory`
       </td>
 
@@ -183,7 +197,7 @@ To initiate a payment, your app needs to send transactional information to the C
 
     <tr>
       <td>
-        Phone\
+        Phone
         `mandatory`
       </td>
 
@@ -194,62 +208,62 @@ To initiate a payment, your app needs to send transactional information to the C
 
     <tr>
       <td>
-        ios\_surl\
+        ios_surl
         `mandatory`
       </td>
 
       <td>
-        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.  
+        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
 
-        * \*Note\*\*: This field is applicable for iOS integration
+        * *Note**: This field is applicable for iOS integration
       </td>
     </tr>
 
     <tr>
       <td>
-        ios\_furl\
+        ios_furl
         mandatory
       </td>
 
       <td>
-        `String` When the transaction fails, PayU will load this URL and pass the transaction response.  
+        `String` When the transaction fails, PayU will load this URL and pass the transaction response.
 
-        * \*Note\*\*: This field is applicable for iOS integration
+        * *Note**: This field is applicable for iOS integration
       </td>
     </tr>
 
     <tr>
       <td>
-        android\_surl\
+        android_surl
         `mandatory`
       </td>
 
       <td>
-        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.\
-        `Note`: This field is applicable for Android integration  
+        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
+        `Note`: This field is applicable for Android integration
 
-        * \*Sample URL\*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+        * *Sample URL**: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
       </td>
     </tr>
 
     <tr>
       <td>
-        android\_furl\
+        android_furl
         `mandatory`
       </td>
 
       <td>
-        `String` When the transaction gets fail, PayU will load this url and pass transaction response.\
-        When the transaction gets success, PayU will load this url and pass transaction response.\
-        `Note`: This field is applicable for Android integration  
+        `String` When the transaction gets fail, PayU will load this url and pass transaction response.
+        When the transaction gets success, PayU will load this url and pass transaction response.
+        `Note`: This field is applicable for Android integration
 
-        * \*Sample URL\*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+        * *Sample URL**: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
       </td>
     </tr>
 
     <tr>
       <td>
-        Environment\
+        Environment
         `mandatory`
       </td>
 
@@ -260,30 +274,30 @@ To initiate a payment, your app needs to send transactional information to the C
 
     <tr>
       <td>
-        User Credential\
+        User Credential
         `mandatory`
       </td>
 
       <td>
-        * \*String\*\* This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:\
-          `<merchantKey>:<userId>  `\
-          Here,\
+        * *String** This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:
+          `<merchantKey>:<userId>  `
+          Here,
           UserId is any id/email/phone number to uniquely identify the user.
       </td>
     </tr>
 
     <tr>
       <td>
-        user\_token\
+        user_token
         `mandatory`
       </td>
 
       <td>
-        String The use for this param is to allow the offer engine to apply velocity rules at a user level.  
+        String The use for this param is to allow the offer engine to apply velocity rules at a user level.
 
-        -**Card Based Offers (CC, DC, EMI):**&#x46;or card payment mode offers, if this parameter is passed then the velocity rules would be applied on this token, if not passed the same would be applied to the card number.  
+        -**Card Based Offers (CC, DC, EMI):**For card payment mode offers, if this parameter is passed then the velocity rules would be applied on this token, if not passed the same would be applied to the card number.
 
-        \-**NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.\
+        -**NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
         Note:- When we use Offer features then it's a mandatory parameter otherwise it's not required.
       </td>
     </tr>
@@ -294,8 +308,8 @@ To initiate a payment, your app needs to send transactional information to the C
       </td>
 
       <td>
-        String\
-        This parameter is required if merchant want to take additional charge from user,	should be string with PG:Amount or IBIBOCode:Amount\
+        String
+        This parameter is required if merchant want to take additional charge from user,	should be string with PG:Amount or IBIBOCode:Amount
         Sample : CC:10,NB:20,SBIB:15
       </td>
     </tr>
@@ -306,9 +320,9 @@ To initiate a payment, your app needs to send transactional information to the C
       </td>
 
       <td>
-        String\
-        This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable,\
-        should be string with PG:Amount or IBIBOCode:Amount\
+        String
+        This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable,
+        should be string with PG:Amount or IBIBOCode:Amount
         Sample : CC:100,NB:50,SBIB:25
       </td>
     </tr>
@@ -325,22 +339,22 @@ For details on Standing Instructions parameters, refer to [PayU Standing Instruc
 
 The additional parameters that are optional that can be passed to SDK are udf parameters, static hashes, and other parameters. For more details on Static Hash generation and passing them, refer to [generate hashes](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk). The following is a list of parameters that can be passed in additional parameters:
 
-| Parameter                                   | Description                                                                                                                                                                         |
-| :------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PayUCheckoutProConstants.CP\_UDF1           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-| PayUCheckoutProConstants.CP\_UDF2           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-| PayUCheckoutProConstants.CP\_UDF3           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-| PayUCheckoutProConstants.CP\_UDF4           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-| PayUCheckoutProConstants.CP\_UDF5           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-| Static hashes                               | `String` The static hashes is specified in this parameter. For more information, refer to [Hash Generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) section. |
-| PayUCheckoutProConstants.SODEX\_OSOURC\_EID | `String` Sodexo Source ID, Merchant can store it from the third field of PayU response.                                                                                             |
-| PaymentParamConstant.walletUrn              | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                                  |
+| Parameter                                 | Description                                                                                                                                                                         |
+| :---------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PayUCheckoutProConstants.CP_UDF1          | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+| PayUCheckoutProConstants.CP_UDF2          | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+| PayUCheckoutProConstants.CP_UDF3          | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+| PayUCheckoutProConstants.CP_UDF4          | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+| PayUCheckoutProConstants.CP_UDF5          | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+| Static hashes                             | `String` The static hashes is specified in this parameter. For more information, refer to [Hash Generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) section. |
+| PayUCheckoutProConstants.SODEX_OSOURC_EID | `String` Sodexo Source ID, Merchant can store it from the third field of PayU response.                                                                                             |
+| PaymentParamConstant.walletUrn            | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                                  |
 
 ## For split Payments details (Optional)
 
 For a split payment transaction, create a JSON string with the split payment parameters as shown below:
 
-JSON Request Structure of splitInfo Field\
+JSON Request Structure of splitInfo Field
 Here is a sample JSON structure for the splitPaymentDetails field:
 
 ```
@@ -486,25 +500,3 @@ this.generateHash.remove();
 ```
 
 ***
-
-## Step 6: Customization (Optional)
-
-### Build.gradle
-
-```Text React.js
-allprojects {
-    repositories {
-        maven {
-            url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsdk-android"
-        }
-    }
-}
-```
-
-### AndroidManifest.xml
-
-To automatically fill OTP on bank pages, SDK requires the **RECEIVE\_SMS** permission so kindly add the same in your `AndroidManifest.xml` like below.
-
-```Text XML
-<uses-permission android:name="android.permission.RECEIVE_SMS" />
-```
