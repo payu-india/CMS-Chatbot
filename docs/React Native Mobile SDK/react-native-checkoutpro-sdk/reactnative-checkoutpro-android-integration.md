@@ -60,53 +60,7 @@ allprojects {
 }
 ```
 
-***
-
-## Step 2: Set up payment hashes
-
-This step describes how to pass the static and dynamic hashes. For detailed information, refer to [Hash Generation](doc:generate-dynamic-hash-react).
-
-### Pass Static Hashes
-
-To pass static hashes during integration, use the following code snippet:
-
-```Text React
-var payUPaymentParams = {
-    key: "Merchant key",
-    ...
-    ...
-    ...
-    additionalParam: {
-        payment_related_details_for_mobile_sdk: "payment_related_details_for_mobile_sdk hash",
-        vas_for_mobile_sdk: "vas_for_mobile_sdk hash",
-        payment: "Payment Hash"
-    }
-}
-```
-
-### Passing dynamic hashes
-
-To pass dynamic hashes, the merchant will receive a call on the generateHash method. In the method parameter, you will receive a dictionary or hashMap, then extract the value of hashString from that. Pass that value to the server to append the Salt at the end and generate the sha512 hash over it. The server gives that hash back to your app, and the app will pass that hash to PayU through a callback mechanism. For passing dynamic hashes during integration, use the following code snippet:
-
-```Text React
-generateHash = (e) => {
-    console.log(e.hashName);
-    console.log(e.hashString);
-    var hashStringWithoutSalt = e.hashString;
-    var hashName = e.hashName;
-	  var postSalt = e.postSalt; // compulsory for Additional Charges and Split Payment
-// Pass hashStringWithoutSalt to server
-// Server will append salt at the end and generate sha512 hash over it
-//  "<create SHA -512 hash of 'hashString+salt+postSalt'>"
-    var hashValue = "<Set hash here which is fetched from server>";
-    var result = { [hashName]: hashValue };
-    PayUBizSdk.hashGenerated(result);
-}
-```
-
-***
-
-## Step 3: Build the payment parameters
+## Step 2: Build the payment parameters
 
 To initiate a payment, your app needs to send transactional information to the Checkout Pro SDK.
 
@@ -213,7 +167,7 @@ To initiate a payment, your app needs to send transactional information to the C
       <td>
         `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
 
-        * *Note**: This field is applicable for iOS integration
+        * _Note_*: This field is applicable for iOS integration
       </td>
     </tr>
 
@@ -226,7 +180,7 @@ To initiate a payment, your app needs to send transactional information to the C
       <td>
         `String` When the transaction fails, PayU will load this URL and pass the transaction response.
 
-        * *Note**: This field is applicable for iOS integration
+        * _Note_*: This field is applicable for iOS integration
       </td>
     </tr>
 
@@ -240,7 +194,7 @@ To initiate a payment, your app needs to send transactional information to the C
         `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
         `Note`: This field is applicable for Android integration
 
-        * *Sample URL**: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+        * _Sample URL_*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
       </td>
     </tr>
 
@@ -255,7 +209,7 @@ To initiate a payment, your app needs to send transactional information to the C
         When the transaction gets success, PayU will load this url and pass transaction response.
         `Note`: This field is applicable for Android integration
 
-        * *Sample URL**: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+        * _Sample URL_*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
       </td>
     </tr>
 
@@ -277,7 +231,7 @@ To initiate a payment, your app needs to send transactional information to the C
       </td>
 
       <td>
-        * *String** This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:
+        * _String_* This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:
           `<merchantKey>:<userId>  `
           Here,
           UserId is any id/email/phone number to uniquely identify the user.
@@ -429,7 +383,7 @@ For details on Standing Instructions parameters, refer to [PayU Standing Instruc
 
 ***
 
-## Step 4: Initiate the payment
+## Step 3: Initiate the payment
 
 Initialize and launch the Checkout Pro SDK by calling the following code snippet:
 
@@ -494,6 +448,34 @@ this.paymentFailure.remove();
 this.paymentCancel.remove();
 this.error.remove();
 this.generateHash.remove();
+}
+```
+
+***
+
+***
+
+## Step 4: Generate Hash
+
+This step describes how to pass the static and dynamic hashes. For detailed information, refer to [Hash Generation](doc:generate-dynamic-hash-react).
+
+### Passing dynamic hashes
+
+To pass dynamic hashes, the merchant will receive a call on the generateHash method. In the method parameter, you will receive a dictionary or hashMap, then extract the value of hashString from that. Pass that value to the server to append the Salt at the end and generate the sha512 hash over it. The server gives that hash back to your app, and the app will pass that hash to PayU through a callback mechanism. For passing dynamic hashes during integration, use the following code snippet:
+
+```Text React
+generateHash = (e) => {
+    console.log(e.hashName);
+    console.log(e.hashString);
+    var hashStringWithoutSalt = e.hashString;
+    var hashName = e.hashName;
+	  var postSalt = e.postSalt; // compulsory for Additional Charges and Split Payment
+// Pass hashStringWithoutSalt to server
+// Server will append salt at the end and generate sha512 hash over it
+//  "<create SHA -512 hash of 'hashString+salt+postSalt'>"
+    var hashValue = "<Set hash here which is fetched from server>";
+    var result = { [hashName]: hashValue };
+    PayUBizSdk.hashGenerated(result);
 }
 ```
 
