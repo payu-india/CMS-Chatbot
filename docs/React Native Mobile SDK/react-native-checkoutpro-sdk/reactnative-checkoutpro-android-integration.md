@@ -48,17 +48,15 @@ Add the following imports in the class where you need to initiate a payment:
 import PayUBizSdk from 'payu-non-seam-less-react';
 ```
 
-Add the below line of code from build.gradle root-level of your project:- 
+Add the following URL in the root project’s build.gradle:
 
-### Build.gradle
-
-```Text React.js
+```
 allprojects {
-    repositories {
-        maven {
-            url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsdk-android"
-        }
+  repositories {
+    maven {
+    url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsdk-android"
     }
+  }
 }
 ```
 
