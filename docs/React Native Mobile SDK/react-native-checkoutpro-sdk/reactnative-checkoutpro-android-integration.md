@@ -37,10 +37,14 @@ The CheckoutPro SDK is offered through npm.
 
 Add the following entries to include CheckoutPro SDK in your app:
 
+### Install the SDK
+
 ```
 npm install payu-non-seam-less-react --save
 react-native link payu-non-seam-less-react
 ```
+
+### Import the SDK in your payment component
 
 Add the following imports in the class where you need to initiate a payment:
 
@@ -48,7 +52,9 @@ Add the following imports in the class where you need to initiate a payment:
 import PayUBizSdk from 'payu-non-seam-less-react';
 ```
 
-Add the following URL in the root project’s build.gradle:
+### Update Root build.gradle
+
+Add the following to android/build.gradle::
 
 ```
 allprojects {
@@ -399,12 +405,13 @@ PayUBizSdk.openCheckoutScreen(paymentObject);
 
 ***
 
-## Step 4: Complete the payment
+## Step 4: Handle Payment Completion (Callbacks)
 
 To get the callbacks for payment-related statuses, create a NativeEventEmitter object and subscribe to the following events.
 
 ```Text React.js
 import { NativeEventEmitter } from 'react-native';
+
 //Register event emitters here.
 componentDidMount() {
 const eventEmitter = new NativeEventEmitter(PayUBizSdk);
@@ -455,7 +462,7 @@ this.generateHash.remove();
 
 ***
 
-## Step 5: Generate Hash
+## Step 5: Generate Hash (Dynamic Hash Generation)
 
 This step describes how to pass the dynamic hashes. For detailed information, refer to [Hash Generation](doc:generate-dynamic-hash-react).
 
@@ -480,3 +487,11 @@ generateHash = (e) => {
 ```
 
 ***
+
+<Callout icon="📘" theme="info">
+  Notes
+
+  * Always generate hashes on your backend. Never expose your salt on the client side.
+  * URLs like [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success) are placeholders; replace with your backend URLs post-testing.
+  * Split payment and SI (Standing Instruction) are optional features—only use them if needed.
+</Callout>
