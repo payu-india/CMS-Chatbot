@@ -24,12 +24,11 @@ next:
 ---
 To integrate with the CheckoutPro mobile SDK for Android:
 
-* Include the SDK in your app project​
-* ​Set up the payment hashes​
-* ​Build the payment parameters​
-* ​Initiate the payment​
-* ​Handle the payment completion​
-* Generate Hash
+* [Include the SDK in your app project​]()
+* [​Build the payment parameters​]()
+* [​Initiate the payment​]()
+* [​Handle the payment completion​]()
+* [Generate Hash]()
 
 ## Step 1: Include the SDK in your app project
 
