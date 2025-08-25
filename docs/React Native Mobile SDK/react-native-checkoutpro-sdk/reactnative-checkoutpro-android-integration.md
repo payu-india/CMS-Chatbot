@@ -399,7 +399,7 @@ PayUBizSdk.openCheckoutScreen(paymentObject);
 
 ***
 
-## Step 5: Complete the payment
+## Step 4: Complete the payment
 
 To get the callbacks for payment-related statuses, create a NativeEventEmitter object and subscribe to the following events.
 
@@ -455,7 +455,7 @@ this.generateHash.remove();
 
 ***
 
-## Step 4: Generate Hash
+## Step 5: Generate Hash
 
 This step describes how to pass the dynamic hashes. For detailed information, refer to [Hash Generation](doc:generate-dynamic-hash-react).
 
