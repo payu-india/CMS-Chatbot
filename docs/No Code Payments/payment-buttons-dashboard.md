@@ -32,15 +32,19 @@ To create a new Payment Button:
 
 1. Select **Payment Tools** > **Payment Buttons** from the left pane of the Dashboard.
 
-   The list of existing buttons are listed on the *Buttons* page.
+   The list of existing buttons are listed on the _Buttons_ page.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/a494bb1de682ae83ec3d1023e1e13dfb65e02db0ef5332ca52b6e85232638c63-Screenshot_2025-06-02_at_7.09.40_PM.png" />
 
 2. Click **Create New Button** at the top-right corner.
 
-   The *Create New Payment Button* page is displayed.
+   The _Create New Payment Button_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/dace80a25807f722b25d1ee7054db2836a7a3d44d97cb7ca82f67664bdbfd54b-Screenshot_2025-06-02_at_7.09.15_PM.png" />
+
+<Callout icon="👍">
+  **Reference**: You can configure webhooks and check the status of transaction. For more information, refer to [Webhooks for Payments](doc:webhooks).
+</Callout>
 
 ## Step 2: Customize the Payment button
 
@@ -206,3 +210,5 @@ A pop-up page is displayed with the status of the generated report.
 > 📘 Note:
 >
 > You can share the report to multiple email IDs by entering the comma-separated entries.
+
+<br />
