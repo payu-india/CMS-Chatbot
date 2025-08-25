@@ -457,7 +457,7 @@ this.generateHash.remove();
 
 ## Step 4: Generate Hash
 
-This step describes how to pass the static and dynamic hashes. For detailed information, refer to [Hash Generation](doc:generate-dynamic-hash-react).
+This step describes how to pass the dynamic hashes. For detailed information, refer to [Hash Generation](doc:generate-dynamic-hash-react).
 
 ### Passing dynamic hashes
 
