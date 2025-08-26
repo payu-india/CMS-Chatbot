@@ -14,17 +14,15 @@ To add a user on Partner Portal:
 
 1. Click your profile picture on the top-right corner and select **Invite a user** from the drop-down menu.
 
-<Image align="center" width="150px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.56.12-AM.png" />
-
-```
 The _My Users_ page is displayed.
-```
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/3fb3cce6908d85f492a0a9e040c932b6083f926f0b35bc427c40b741887688f1-partner_portal_add_user.png" />
 
 <Image align="center" width="450px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-11.00.43-AM-1024x568.png" />
 
 2. Click **Add User** from the left pane.
 
-   The *Add User Details* pop-up page is displayed.
+   The _Add User Details_ pop-up page is displayed.
 
 <Image align="center" width="350px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.39.27-AM-726x1024.png" />
 
