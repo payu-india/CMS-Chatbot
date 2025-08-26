@@ -28,6 +28,8 @@ To configure the URLs and brand logo for a merchant:
 
 3. Expand the **Application Details** pane (if required).
 
+<Image align="center" className="border" border={true} src="https://files.readme.io/08f4ed2da70075a2c0d553a2e68667d7012a97ce375da6581972462b3cb10896-partner_portal_aupdate_app_details.png" />
+
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-01-at-11.25.20-AM-1024x711.png)
 
 4. Update the following details to complete your app registration as described in the following table:
