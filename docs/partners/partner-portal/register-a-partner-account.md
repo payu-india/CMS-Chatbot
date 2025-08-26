@@ -46,9 +46,9 @@ The PayU Affiliate Partner Program page is displayed.
 
 <Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-21-1024x512.jpg" />
 
-```
- The _Tell us more about yourself_ page is displayed.
-```
+The _Tell us more about yourself_ page is displayed.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/82a984c583e59fb8a8d93aa1426accf7078fe667fae8e047d997c7baa7a2a234-Screenshot_2025-08-26_at_2.39.31_PM.png" />
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-21-1024x612.png)
 
@@ -86,7 +86,7 @@ The PayU Affiliate Partner Program page is displayed.
       <td>
         Enter your mobile phone number in this field.
 
-        * *Note:** PayU will send an OTP on this number for verification purposes.
+        * _Note:_* PayU will send an OTP on this number for verification purposes.
       </td>
     </tr>
 
@@ -118,12 +118,12 @@ The PayU Affiliate Partner Program page is displayed.
 
    The registration for the merchant in PayU is complete.
 
-> **Note:** If you have already registered for PayU Partner Program using the entered phone number then following message gets displayed:
-> _“Mobile Number already exists with PayU._
-> _83********_
-> _Please continue with your old password to add merchant account.”_
-
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-22-1024x418.png" />
+<Callout icon="📘" theme="info">
+  **Note:** If you have already registered for PayU Partner Program using the entered phone number then following message gets displayed:
+  _“Mobile Number already exists with PayU._
+  _83********_
+  _Please continue with your old password to add merchant account.”_
+</Callout>
 
 ## Complete your profile on Partner Portal
 
@@ -138,8 +138,6 @@ The **Profile** tab is used to complete your profile and contains the following 
 
 If you have not completed your profile, the **Get Paid> Complete your onboarding** tile is displayed on the top after you log in. Click **Get Paid** to complete your profile.
 
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-26-at-10.09.22-AM-1024x930.png" />
-
 OR
 
 Click your profile photo at the top-right corner and select **My Profile** from the drop-down menu.
@@ -151,8 +149,6 @@ The**Profile**tab is displayed with _Fill the details below to generate your par
 ## General Details
 
 The details on the **General Details** pane are automatically updated based on the details you filled in during registration. You can update these details if required.
-
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.19.50-AM-1024x731.png" />
 
 ## Business details
 
