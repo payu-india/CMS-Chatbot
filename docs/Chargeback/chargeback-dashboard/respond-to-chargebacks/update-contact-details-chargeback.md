@@ -1,7 +1,7 @@
 ---
 title: Update Contact Details - Chargeback
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
