@@ -24,6 +24,8 @@ The _My Users_ page is displayed.
 
    The _Add User Details_ pop-up page is displayed.
 
+<Image align="center" className="border" border={true} width="320px" src="https://files.readme.io/d99487df22adf33d23ddb38c889c7249a599ea094edb74b4a10cc7558fd123b9-Screenshot_2025-08-26_at_3.09.41_PM.png" />
+
 <Image align="center" width="350px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.39.27-AM-726x1024.png" />
 
 3. Enter the user’s name in the **Name** field.
