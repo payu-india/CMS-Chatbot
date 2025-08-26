@@ -1,7 +1,7 @@
 ---
 title: Respond to Chargebacks
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
