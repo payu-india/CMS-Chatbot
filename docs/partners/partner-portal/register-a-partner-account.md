@@ -39,7 +39,7 @@ To create a Partner Account:
 
 The PayU Affiliate Partner Program page is displayed.
 
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-20-1024x507.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/40a589301996024d72b3fa6404ade344c97b6ff98f8bc80a644c3405f6c9cd32-Screenshot_2025-08-26_at_2.40.32_PM.png" />
 
 2. Click **Become a Partner** button.
 3. Enter your email address in the Enter Email field and click **Next**.
@@ -84,9 +84,9 @@ The PayU Affiliate Partner Program page is displayed.
       </td>
 
       <td>
-        Enter your mobile phone number in this field.  
+        Enter your mobile phone number in this field.
 
-        * \*Note:\*\* PayU will send an OTP on this number for verification purposes.
+        * *Note:** PayU will send an OTP on this number for verification purposes.
       </td>
     </tr>
 
@@ -96,7 +96,7 @@ The PayU Affiliate Partner Program page is displayed.
       </td>
 
       <td>
-        Enter the password that you wish to use while logging into your merchant account with PayU. Your password must strictly meet these requirements:  
+        Enter the password that you wish to use while logging into your merchant account with PayU. Your password must strictly meet these requirements:
 
         * at least eight characters
         * at least one uppercase alphabet
@@ -118,10 +118,10 @@ The PayU Affiliate Partner Program page is displayed.
 
    The registration for the merchant in PayU is complete.
 
-> **Note:** If you have already registered for PayU Partner Program using the entered phone number then following message gets displayed:\
-> *“Mobile Number already exists with PayU.*\
-> *83\*\*\*\*\*\*\*\**\
-> *Please continue with your old password to add merchant account.”*
+> **Note:** If you have already registered for PayU Partner Program using the entered phone number then following message gets displayed:
+> _“Mobile Number already exists with PayU._
+> _83********_
+> _Please continue with your old password to add merchant account.”_
 
 <Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-22-1024x418.png" />
 
@@ -146,7 +146,7 @@ Click your profile photo at the top-right corner and select **My Profile** from 
 
 <Image align="center" width="250px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-9.59.59-AM.png" />
 
-The**Profile**tab is displayed with *Fill the details below to generate your partnership agreement* as the title.
+The**Profile**tab is displayed with _Fill the details below to generate your partnership agreement_ as the title.
 
 ## General Details
 
