@@ -5,14 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
-## Respond to Chargebacks
-
-### **[Accept Chargeback](https://docs.payu.in/docs/accept-chargeback)**: Process full or partial acceptance of chargeback cases when appropriate.
-
-### **[Contest Chargeback](https://docs.payu.in/docs/contest-chargeback)**: Submit documentation and evidence to dispute invalid chargeback claims.
-
-### **[Update Contact Details](https://docs.payu.in/docs/update-merchant-contacts)**: Maintain current contact information for chargeback notifications and alerts.
-
 ## Access Dashboard
 
 To find the chargeback details:
@@ -20,7 +12,7 @@ To find the chargeback details:
 1. Log on to PayU Dashboard.
 2. Select **Chargeback** from the left pane.
 
-   The *Chargeback* page is displayed in a new browser tab.
+   The _Chargeback_ page is displayed in a new browser tab.
 
 <Image align="center" src="https://files.readme.io/3045e4a-Bank_Portal_3_1.png" />
 
@@ -130,5 +122,5 @@ No information in this guide alters existing contractual obligations between Pay
 
 ***
 
-*Version 2.0 | Updated: January 2020*\
-*© PayU Payments Pvt Ltd - Confidential & Proprietary*
+_Version 2.0 | Updated: January 2020_
+_© PayU Payments Pvt Ltd - Confidential & Proprietary_
