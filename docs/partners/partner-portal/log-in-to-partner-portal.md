@@ -31,11 +31,15 @@ To log in to your Partner Account:
 
 The PayU Affiliate Partner Program page is displayed.
 
+<Image align="center" className="border" border={true} src="https://files.readme.io/40a589301996024d72b3fa6404ade344c97b6ff98f8bc80a644c3405f6c9cd32-Screenshot_2025-08-26_at_2.40.32_PM.png" />
+
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-20-1024x507.png)
 
 2. Click **Log In** button.
 
-   The *Enter your email to create account or login* page is displayed.
+   The _Enter your email to create account or login_ page is displayed.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/cdb7a5fe9c981c6c287f3410a3d5d10b27810eb52429aa7f1e0c0c9bac7f39fa-Screenshot_2025-08-26_at_2.53.16_PM.png" />
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-21-1024x512.jpg)
 
@@ -43,7 +47,7 @@ The PayU Affiliate Partner Program page is displayed.
 
    A page requesting your password is displayed.
 
-**Note**: If you do not have an account or not registered, *the Tell us more about yourself* page is displayed. For more information to register, refer to [Register a Partner Account](doc:register-a-partner-account).
+**Note**: If you do not have an account or not registered, _the Tell us more about yourself_ page is displayed. For more information to register, refer to [Register a Partner Account](doc:register-a-partner-account).
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-7.38.31-AM-1024x641.png)
 
