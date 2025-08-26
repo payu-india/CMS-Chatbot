@@ -18,7 +18,7 @@ You can view your incentive plan and manage incentives on the **My Incentives** 
 
 > 📘 Note:
 >
-> Your net incentive is: **(Client TDR – Base Rate)\* Transaction Value**. Where Client TDR is the rate given to your referrals.
+> Your net incentive is: **(Client TDR – Base Rate)* Transaction Value**. Where Client TDR is the rate given to your referrals.
 
 ## View your incentive plan
 
@@ -27,15 +27,13 @@ PayU provides incentives to you for onboarding merchants and payments done by cu
 To view your partner incentive plan on Partner Portal:
 
 1. Log in to Partner Portal.
-2. Click **Incentive Plan** at the top.
+2. Click your profile picture at the top-right and select **Incentive Plan** from the drop-down menu.
 
-<Image align="center" width="550px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-9.23.07-AM-1-1024x902.png" />
+![](https://files.readme.io/b3e8c99125068fda5648febbd3ccbb08d8a22074d8170d447e5f264d10596dfe-Screenshot_2025-08-26_at_2.45.17_PM.png)
 
-```
 The _Here is your incentive plan_ page is displayed.
-```
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-9.19.33-AM-1024x682.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/d17717449085d1ce7f42f7077b8658998a5007e4685babd8ef5261ad898db41a-partner_portal_incentive_rates_list.png" />
 
 The base rate is listed for various payment methods.
 
@@ -46,18 +44,17 @@ You can view your incentives on the **My Incentives** tab. Incentives get refres
 To view your accrued incentives from your merchant referrals:
 
 1. Perform any of the following:
-   * Select the **My Incentives** tab.
+   * Select the **My Incentives** tab on top.
    * Click your profile picture on the top-right corner and select **My Incentives** from the drop-down menu.
-
-<Image align="center" width="150px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-11.59.12-AM.png" />
-
-```
-The **My Incentives** tab is displayed.
-```
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-12.16.19-PM-1024x823.png)
 
-2. Use the options in the drop-down list at the top-right corner to view the incentives by the year.
+2. Select any of the following tabs to get a various view of incentives
+
+* My Incentives
+* Merchant Incentives
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/c34a9f797d18a802dcd03953b6b3fb2593a1eefc7b39d8f88bd392f04dcf2fa4-partner_portal_incentives_view.png" />
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-12.08.51-PM-1024x296.png)
 
@@ -65,7 +62,7 @@ The **My Incentives** tab is displayed.
 
 To view the specific incentive details, including the settlement breakup of the incentive:1. Enter the merchant MID or merchant name in the search column and click **Search** to view the results
 
-* Select the hamburger menu on the incentive entry and select **View Details**.![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-12.16.19-PM-1-1024x157.png) 
+* Select the hamburger menu on the incentive entry and select **View Details**.![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-12.16.19-PM-1-1024x157.png)
 
 > 📘 Note:
 >
