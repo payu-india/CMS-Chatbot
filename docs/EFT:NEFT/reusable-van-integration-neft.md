@@ -1,20 +1,20 @@
 ---
-title: Reusable VAN Integration - NEFT
+title: Reusable VANs Integration - NEFT
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-NEFT is an electronic payment system in India that facilitates secure fund transfers from one bank account to another on a one-to-one basis. A **Reusable Virtual Account Number (VAN)** is a unique virtual account assigned to customers or transactions that can be used multiple times for recurring payments, making it convenient for businesses to manage collections efficiently.
+NEFT is an electronic payment system in India that facilitates secure fund transfers from one bank account to another on a one-to-one basis. A **Reusable Virtual Account Numbers (VANs)** is a unique virtual account assigned to customers or transactions that can be used multiple times for recurring payments, making it convenient for businesses to manage collections efficiently.
 
-**NEFT (National Electronic Funds Transfer) with Reusable Virtual Account Number** is an advanced payment solution that enables seamless fund transfers through the NEFT system while providing businesses with unique virtual account numbers for easy payment tracking and reconciliation.
+**NEFT (National Electronic Funds Transfer) with Reusable Virtual Account Numbers** is an advanced payment solution that enables seamless fund transfers through the NEFT system while providing businesses with unique VANs for easy payment tracking and reconciliation.
 
 ## Key Features
 
 * Reusable Virtual Accounts
-  * Single virtual account number for multiple transactions
+  * Single VANs for multiple transactions
   * Eliminates need to create new account numbers for every transaction
-  * Customizable virtual account numbers with specific identifiers
+  * Customizable VANs with specific identifiers
 * Seamless Fund Transfers
   * Easy and efficient fund transfers through NEFT system
   * Real-time tracking and reconciliation of payments
@@ -32,7 +32,7 @@ NEFT is an electronic payment system in India that facilitates secure fund trans
 
 Here's the table converted to a bulleted list with the Feature column in bold formatting:
 
-• **Cost-Effective** - Reduces administrative costs associated with managing multiple accounts\
+• **Cost-Effective** - Reduces administrative costs associated with managing multiple accounts
 • **Improved Efficiency** - Speeds up payment process and reduces delays in fund allocation
 • **Enhanced Customer Experience** - Hassle-free payment experience with reusable account numbers
 • **Scalability** - Suitable for businesses of all sizes
@@ -63,8 +63,8 @@ Here's the table converted to a bulleted list with the Feature column in bold fo
 
 > 📘 Notes
 >
-> * The unique identifier (company prefix + mobile number) must be passed in the `udf1` parameter of the **\_payment** API request.
-> * After you make the first collect payment request using \_payment API, it will take atleast 15-30 minutes for the bank to register your VAN. Later, the payment is initiated in the next batch of NEFT transactions, which is approximately 15-30 minutes.
+> * The unique identifier (company prefix + mobile number) must be passed in the `udf1` parameter of the **_payment** API request.
+> * After you make the first collect payment request using _payment API, it will take atleast 15-30 minutes for the bank to register your VAN. Later, the payment is initiated in the next batch of NEFT transactions, which is approximately 15-30 minutes.
 
 ***
 
@@ -442,7 +442,7 @@ Include optional parameters for better customer profiling:
 
 | Environment               | URL                                                                                                          |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| **Test Payment URL**      | [https://test.payu.in/\_payment](https://test.payu.in/_payment)                                              |
+| **Test Payment URL**      | [https://test.payu.in/_payment](https://test.payu.in/_payment)                                               |
 | **Test Verification URL** | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
 
 ### Test Credentials
@@ -467,7 +467,7 @@ Use your test merchant credentials provided by PayU:
 
 | Environment                     | URL                                                                                                          |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| **Production Payment URL**      | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment)                                          |
+| **Production Payment URL**      | [https://secure.payu.in/_payment](https://secure.payu.in/_payment)                                           |
 | **Production Verification URL** | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
 ### Pre-production Checklist
