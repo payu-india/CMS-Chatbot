@@ -33,7 +33,7 @@ The _Contest_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/848280d3f9dadd4a53b1d2571ada140f9af8d128840d0a759bc9bb22df4d41bf-chargeback_dashboard_contest_chargeback_form.png" />
 
-1. Choose the appropriate contest reason and include the details accordingly:
+4. Choose the appropriate contest reason and include the details accordingly:
 
 * **Product/Services delivered** or **Product/Services Partially delivered**: Enter the following details based on selection:
   * **Product**: Refer to [Product details](#product-details)
@@ -101,11 +101,9 @@ The services details must be included if you select **Transaction refunded outsi
 
 ### Transaction refunded through PayU Panel
 
-<br />
-
 | Field                              | Description                                                                                                                                                   |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Day of refund                      | Based on the current date displayed, enter the number of days relative to the current. For example, -1 for yesterday's date and 2 for the day after tomorrow. |
 | Status of the Refund in PayU Panel | Indicates the current status of the refund (Queued, Requested, Successful, etc.)                                                                              |
 
-<br />
+
