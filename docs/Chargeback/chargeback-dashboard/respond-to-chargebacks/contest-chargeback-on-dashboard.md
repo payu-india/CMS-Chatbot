@@ -35,6 +35,29 @@ The response guidelines for the chargeback are:
 
 4. Choose the appropriate contest reason and include the details accordingly:
 
+
+
+***
+
+* **Customer withdrawn the chargeback**: Enter the following details:
+  * **Comments**: Enter your comments
+  * **Upload Customer Email/Letter**: Upload the screenshot of customer email or digital copy of the letter.
+
+
+<Callout icon="📘" theme="info">
+  **File Upload Guidelines**
+
+  * **File Size**: Maximum 5MB per upload
+  * **File Types**: PDF, Word documents, or image files
+  * **Organization**: Combine multiple screenshots into a single document
+  * **Documentation**: Add brief descriptions for each piece of evidence
+</Callout>
+
+### Product/Services delivered
+
+1. Enter the comments in the **Comments** field.
+2. Select any of the following tabs for the fields under **Product** or **Services** option based on the selection.
+
 <Tab title="Product/Services delivered">
   <Tabs>
     <Tab title="Product">
@@ -68,14 +91,15 @@ The response guidelines for the chargeback are:
     </Tab>
   </Tabs>
 </Tab>
------
-* **Customer withdrawn the chargeback**: Enter the following details:
-  * **Comments**: Enter your comments
-  * **Upload Customer Email/Letter**: Upload the screenshot of customer email or digital copy of the letter.
 
-* **Transaction already refunded**: Enter the following details based on selection:
+***
+
+###Transaction already refunded
+Enter the following details based on selection:
+
 <Tab title="Customer withdrawn the chargeback">
   Enter the following details:
+
   * **Comments**: Enter your comments
   * **Upload Customer Email/Letter**: Upload the screenshot of customer email or digital copy of the letter.
 </Tab>
@@ -83,38 +107,25 @@ The response guidelines for the chargeback are:
 <Tab title="Transaction already refunded">
   <Tabs>
     <Tab title="Refunded through PayU Panel">
-      | Field                          | Description                                                                 |
-      |--------------------------------|-----------------------------------------------------------------------------|
-      | Day of refund                  | Based on the current date displayed, enter the number of days relative to the current. For example, -1 for yesterday's date and 2 for the day after tomorrow. |
-      | Status of the Refund in PayU Panel | Indicates the current status of the refund (Queued, Requested, Successful, etc.) |
-
+      | Field                              | Description                                                                                                                                                   |
+      | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+      | Day of refund                      | Based on the current date displayed, enter the number of days relative to the current. For example, -1 for yesterday's date and 2 for the day after tomorrow. |
+      | Status of the Refund in PayU Panel | Indicates the current status of the refund (Queued, Requested, Successful, etc.)                                                                              |
     </Tab>
+
     <Tab title="Refunded outside PayU Panel">
       The following fields must be filled if you select **Transaction refunded outside PayU Panel** under the relevant field, as highlighted in the following screenshot. Refer to the table below for how to use these fields.
 
-      <Image
-        align="center"
-        src="https://files.readme.io/2751a7775c0f797a0ef119d99520c2600659503dc29835249ebcbe344e40f169-chargeback_dashbaord_contest_transaction_refunded_outside_details.png"
-      />
+      <Image align="center" src="https://files.readme.io/2751a7775c0f797a0ef119d99520c2600659503dc29835249ebcbe344e40f169-chargeback_dashbaord_contest_transaction_refunded_outside_details.png" />
 
-      | Field                     | Description                                                               |
-      |---------------------------|---------------------------------------------------------------------------|
-      | Amount That Needs To Refund| Amount refunded to the customer (outside PayU panel)                       |
-      | Date of Refund            | Date when the refund was processed externally                              |
-      | Refund Reference Number   | Reference/transaction number for the external refund                       |
-      | Mode of Refund            | Payment method used for the external refund (e.g., NEFT, IMPS, UPI)        |
-      | Proof of Refund           | Documentary proof or screenshot of the external refund                     |
-      | Comments                  | Additional details or clarification about the external refund process      |
-
+      | Field                       | Description                                                           |
+      | --------------------------- | --------------------------------------------------------------------- |
+      | Amount That Needs To Refund | Amount refunded to the customer (outside PayU panel)                  |
+      | Date of Refund              | Date when the refund was processed externally                         |
+      | Refund Reference Number     | Reference/transaction number for the external refund                  |
+      | Mode of Refund              | Payment method used for the external refund (e.g., NEFT, IMPS, UPI)   |
+      | Proof of Refund             | Documentary proof or screenshot of the external refund                |
+      | Comments                    | Additional details or clarification about the external refund process |
     </Tab>
   </Tabs>
 </Tab>
-
-<Callout icon="📘" theme="info">
-  **File Upload Guidelines**
-
-  * **File Size**: Maximum 5MB per upload
-  * **File Types**: PDF, Word documents, or image files
-  * **Organization**: Combine multiple screenshots into a single document
-  * **Documentation**: Add brief descriptions for each piece of evidence
-</Callout>
