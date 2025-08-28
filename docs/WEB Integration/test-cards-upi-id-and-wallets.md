@@ -309,23 +309,22 @@ You can use **anything@payu** or **[9999999999@payu](mailto:9999999999@payu)** a
 
 To test the UPI intent flow on UAT, please follow the steps below:
 
-Download the UPI Intent Simulator APK
+1. **Download the UPI Intent Simulator APK**
 
-Access the UPI Intent Simulator repository:
+* Access the UPI Intent Simulator repository:
+  [https://github.com/payu-india/PayU-UPI-Intent-Simulator-App](https://github.com/payu-india/PayU-UPI-Intent-Simulator-App)
+* Download the latest UAT APK from the Releases section or the appropriate branch tagged for UAT.
+
+2. **Install the APK on Your Mobile Device**
+
+* Transfer the APK to your device or download it directly on your phone.
+* Enable installation from unknown sources if prompted.
+* Install the APK.
+
+**For More Details**
+
+Please refer to the official GitHub README and follow the detailed steps here:
 [https://github.com/payu-india/PayU-UPI-Intent-Simulator-App](https://github.com/payu-india/PayU-UPI-Intent-Simulator-App)
-
-Download the latest UAT APK from the Releases section or the appropriate branch tagged for UAT.
-
-#### Install the APK on Your Mobile Device
-
-* Transfer the downloaded APK to your mobile device or download it directly on your phone.
-* If required, enable installation from unknown sources in your device settings.
-* Install the APK by tapping on the file.
-
-#### Launch the UPI Intent Simulator App
-
-* Open the installed UPI Intent Simulator app on your device.
-* Use this app to simulate UPI intents to test the UPI payment flow.
 
 ## Test Net Banking credentials
 
