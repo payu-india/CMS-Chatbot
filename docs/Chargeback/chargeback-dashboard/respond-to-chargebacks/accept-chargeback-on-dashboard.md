@@ -65,8 +65,6 @@ The _Partially Accept Chargeback form_ page is displayed.
   * **File Types**: PDF, Word documents, or image files
   * **Organization**: Combine multiple screenshots into a single document
   * **Documentation**: Add brief descriptions for each piece of evidence
-
-  > **Best Practice**: Merge all screenshots into a single MS Word or PDF file with descriptive captions for each piece of evidence.
 </Callout>
 
 7. Add detailed comments explaining the partial acceptance in the **Comments** field.
