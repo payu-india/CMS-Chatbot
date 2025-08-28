@@ -15,48 +15,49 @@ Use when the customer deserves a complete refund:
 
 1. Navigate to the chargeback details.
 
-2. Expand the **Accept/Contest** pane using the **+** button.
+2. Expand the **Accept/Contest** expandable pane using the **+** button.
 
-<br />
+<Image align="center" className="border" border={true} src="https://files.readme.io/3f3588bb64f8dbb20a93ad95a9ba41b050572595901731b5a0a4c1cc6f8829cd-chargeback_dashboard_accept_contest_pane.png" />
 
-3. **Select Accept Option**
-   * Click **"Fully Accept"** button
-   * Choose from predefined reason categories
+3. Click **Fully Accept**.
 
-2. **Provide Reason**
-   Select the appropriate reason:
-   * Customer cancelled the order
-   * Product out of stock
-   * Product returned by customer
-   * Product lost in transit
-   * Incorrect delivery address
-   * Order/booking unsuccessful
-   * Other reasons
+   <Image align="center" src="https://files.readme.io/23101e659f44fa0987b981cfeb0d68d37e22188289f0d94b10f3ec8e13059d56-chargeback_dashboard_fully_accept.png" />
 
-3. **Submit Response**
-   * Add any additional comments
-   * Click **Submit** to finalize
+4. Select the appropriate reason.
 
-> **Note**: Once accepted, the case moves to "Closed in Customer Favor" status and cannot be modified.
+   <Image align="center" className="border" border={true} src="https://files.readme.io/9f54e3f00bd2ed75eb650de7af74184e43d57ce08a808f09ae8ceb71e6226b55-chargeback_dashboard_reasons_selections.png" />
+
+5. Click **Submit** to finalize
+
+<Callout icon="📘" theme="info">
+  **Note**: After you accept, the case moves to "Closed in Customer Favor" status and cannot be modified.
+</Callout>
 
 ### Partial Acceptance
 
 Use when the customer deserves a partial refund:
 
-1. **Select Partial Accept**
-   * Click **"Partially Accept"** button
-   * Choose appropriate reason category
+1. Navigate to the chargeback details.
 
-2. **Specify Details**
-   * Enter the partial acceptance amount (must be less than chargeback amount)
-   * Select reason from available options:
-     * Product/Services partially delivered
-     * Transaction partially refunded
-     * Partial refund per terms and conditions
+2. Expand the **Accept/Contest** expandable pane using the **+** button.
 
-3. **Upload Documentation**
-   * Provide supporting documents (max 5MB)
-   * Add detailed comments explaining the partial acceptance
-   * Submit the response
+<Image align="center" className="border" border={true} src="https://files.readme.io/3f3588bb64f8dbb20a93ad95a9ba41b050572595901731b5a0a4c1cc6f8829cd-chargeback_dashboard_accept_contest_pane.png" />
+
+3. Click **Partially Accept**.
+
+The _Partially Accept Chargeback form_ page is displayed.
+
+<Image align="center" className="border" border={true} src="https://files.readme.io/772613b3501c92c8ce16dbde319dd94bc4fc96970ab724ce7b6e958703d963e6-chargeback_dashboard_partially_accept_reasons.png" />
+
+4. Select the reason.
+
+<Callout icon="📘" theme="info">
+  Steps 5 to  Full refund not due as per our T&C
+</Callout>
+
+5. Enter the partial acceptance amount (must be less than chargeback amount)in the **Partially Accept Amount** field.
+6. Add detailed comments explaining the partial acceptance in the **Comments** field.
+7. Provide supporting documents using the **Browse** button in the **Supporting documents** field. (max 5MB)
+8. Click **Submit**.
 
 <br />
