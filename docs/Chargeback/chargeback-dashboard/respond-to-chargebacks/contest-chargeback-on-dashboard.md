@@ -35,9 +35,21 @@ The _Contest_ page is displayed.
 
 1. Choose the appropriate contest reason and include the details accordingly:
 
-* If you select **Product/Services delivered** or **Product/Services Partially delivered** field, enter the following details based on selection
+* **Product/Services delivered** or **Product/Services Partially delivered**: Enter the following details based on selection:
   * **Product**: Refer to [Product details](#product-details)
   * **Services**: Refer to [Services details](#services-details)
+* **Customer withdrawn the chargeback**:  Refer to[ Customer withdrawn the chargeback](#customer-withdrawn-the-chargeback)
+
+<Callout icon="📘" theme="info">
+  **File Upload Guidelines**
+
+  * **File Size**: Maximum 5MB per upload
+  * **File Types**: PDF, Word documents, or image files
+  * **Organization**: Combine multiple screenshots into a single document
+  * **Documentation**: Add brief descriptions for each piece of evidence
+</Callout>
+
+###
 
 ### Product details
 
@@ -71,15 +83,17 @@ Refer to table below this screenshot for how to use these fields.
 | Screen Shot Of The Invoice                              | Billing and payment confirmation               |
 | Upload Any Other Relevant Details                       | Any other relevant supporting documentation    |
 
-<br />
+### Customer withdrawn the chargeback details
 
-<Callout icon="📘" theme="info">
-  **File Upload Guidelines**
+* Enter the details as in the following table:
 
-  * **File Size**: Maximum 5MB per upload
-  * **File Types**: PDF, Word documents, or image files
-  * **Organization**: Combine multiple screenshots into a single document
-  * **Documentation**: Add brief descriptions for each piece of evidence
-</Callout>
+| Field                       | Description                                                           |
+| --------------------------- | --------------------------------------------------------------------- |
+| Amount That Needs To Refund | Amount refunded to the customer (outside PayU panel)                  |
+| Date of Refund              | Date when the refund was processed externally                         |
+| Refund Reference Number     | Reference/transaction number for the external refund                  |
+| Mode of Refund              | Payment method used for the external refund (e.g., NEFT, IMPS, UPI)   |
+| Proof of Refund             | Documentary proof or screenshot of the external refund                |
+| Comments                    | Additional details or clarification about the external refund process |
 
 <br />
