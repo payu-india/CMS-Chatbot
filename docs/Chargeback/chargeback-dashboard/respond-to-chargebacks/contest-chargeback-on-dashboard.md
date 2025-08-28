@@ -12,6 +12,13 @@ Dispute invalid chargeback claims with proper documentation. Contest chargebacks
 * Transaction was already refunded
 * Customer has withdrawn the dispute
 
+The response guidelines for the chargeback are:
+
+* Submit all documentation before the the date specified under the  **Reply Before** column.
+* PayU reviews submitted evidence
+* PayU creates comprehensive case for bank submission
+* Bank reviews according to Visa/MasterCard guidelines
+
 ### Contest Process
 
 1. Navigate to the chargeback details.
@@ -50,7 +57,7 @@ The product details must be included if you select **Product** under the **Produ
 
 ### Services details
 
-The services details must be included if you select **Services** under the **Product/Services delivered** or **Product/Services Partially delivered** field, the highlighted fields similar to the following screenshot. 
+The services details must be included if you select **Services** under the **Product/Services delivered** or **Product/Services Partially delivered** field, the highlighted fields similar to the following screenshot.
 
 Refer to table below this screenshot for how to use these fields.
 
