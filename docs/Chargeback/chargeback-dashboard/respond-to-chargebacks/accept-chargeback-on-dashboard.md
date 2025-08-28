@@ -5,7 +5,12 @@ hidden: true
 metadata:
   robots: index
 ---
-Process chargeback acceptance when the customer claim is valid.
+Process chargeback acceptance when the customer claim is valid.  The response guidelines for the chargeback are:
+
+* Submit all documentation before the the date specified under the  **Reply Before** column.
+* PayU reviews submitted evidence
+* PayU creates comprehensive case for bank submission
+* Bank reviews according to Visa/MasterCard guidelines
 
 ### Full Acceptance
 
