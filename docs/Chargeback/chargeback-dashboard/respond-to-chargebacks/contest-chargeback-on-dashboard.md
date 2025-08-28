@@ -52,6 +52,7 @@ The response guidelines for the chargeback are:
       | Upload Screen Shot Of The Signed Proof Of Delivery | Visual proof of signed delivery confirmation      |
       | Screen Shot Of The Invoice                         | Billing and payment confirmation                  |
     </Tab>
+
     <Tab title="Services">
       The services details must be included if you select **Services** under the **Product/Services delivered** or **Product/Services Partially delivered** field, as highlighted in the following screenshot. Refer to the table below for details on how to use these fields.
 
@@ -67,14 +68,47 @@ The response guidelines for the chargeback are:
     </Tab>
   </Tabs>
 </Tab>
-
+-----
 * **Customer withdrawn the chargeback**: Enter the following details:
   * **Comments**: Enter your comments
   * **Upload Customer Email/Letter**: Upload the screenshot of customer email or digital copy of the letter.
 
 * **Transaction already refunded**: Enter the following details based on selection:
-  * **Transaction refunded through PayU Panel**: Refer to [Transaction refunded through PayU Panel](#transaction-refunded-through-payu-panel).
-  * **Transaction refunded outside PayU Panel**: Refer to [Transaction refunded outside PayU Panel details](#transaction-refunded-outside-payU-panel-details).
+<Tab title="Customer withdrawn the chargeback">
+  Enter the following details:
+  * **Comments**: Enter your comments
+  * **Upload Customer Email/Letter**: Upload the screenshot of customer email or digital copy of the letter.
+</Tab>
+
+<Tab title="Transaction already refunded">
+  <Tabs>
+    <Tab title="Refunded through PayU Panel">
+      | Field                          | Description                                                                 |
+      |--------------------------------|-----------------------------------------------------------------------------|
+      | Day of refund                  | Based on the current date displayed, enter the number of days relative to the current. For example, -1 for yesterday's date and 2 for the day after tomorrow. |
+      | Status of the Refund in PayU Panel | Indicates the current status of the refund (Queued, Requested, Successful, etc.) |
+
+    </Tab>
+    <Tab title="Refunded outside PayU Panel">
+      The following fields must be filled if you select **Transaction refunded outside PayU Panel** under the relevant field, as highlighted in the following screenshot. Refer to the table below for how to use these fields.
+
+      <Image
+        align="center"
+        src="https://files.readme.io/2751a7775c0f797a0ef119d99520c2600659503dc29835249ebcbe344e40f169-chargeback_dashbaord_contest_transaction_refunded_outside_details.png"
+      />
+
+      | Field                     | Description                                                               |
+      |---------------------------|---------------------------------------------------------------------------|
+      | Amount That Needs To Refund| Amount refunded to the customer (outside PayU panel)                       |
+      | Date of Refund            | Date when the refund was processed externally                              |
+      | Refund Reference Number   | Reference/transaction number for the external refund                       |
+      | Mode of Refund            | Payment method used for the external refund (e.g., NEFT, IMPS, UPI)        |
+      | Proof of Refund           | Documentary proof or screenshot of the external refund                     |
+      | Comments                  | Additional details or clarification about the external refund process      |
+
+    </Tab>
+  </Tabs>
+</Tab>
 
 <Callout icon="📘" theme="info">
   **File Upload Guidelines**
