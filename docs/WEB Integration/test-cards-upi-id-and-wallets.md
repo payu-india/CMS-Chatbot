@@ -316,6 +316,17 @@ Access the UPI Intent Simulator repository:
 
 Download the latest UAT APK from the Releases section or the appropriate branch tagged for UAT.
 
+#### Install the APK on Your Mobile Device
+
+* Transfer the downloaded APK to your mobile device or download it directly on your phone.
+* If required, enable installation from unknown sources in your device settings.
+* Install the APK by tapping on the file.
+
+#### Launch the UPI Intent Simulator App
+
+* Open the installed UPI Intent Simulator app on your device.
+* Use this app to simulate UPI intents to test the UPI payment flow.
+
 ## Test Net Banking credentials
 
 Use the following credentials for Net Banking in the sandbox:
