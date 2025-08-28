@@ -29,12 +29,12 @@ The _Contest_ page is displayed.
 1. Choose the appropriate contest reason and include the details accordingly:
 
 * If you select **Product/Services delivered** or **Product/Services Partially delivered** field, enter the following details based on selection
-  * **Product**: Refer to [Product details](#product-details) 
+  * **Product**: Refer to [Product details](#product-details)
   * **Services**: Refer to [Services details](#services-details)
 
 ### Product details
 
-The product details must be included if you select **Product** under the **Product/Services delivered** or **Product/Services Partially delivered** field, the highlighted fields similar to the following screenshot. Refer to [Product details](#product-details) table for how to use these fields.
+The product details must be included if you select **Product** under the **Product/Services delivered** or **Product/Services Partially delivered** field, the highlighted fields similar to the following screenshot. Refer to table below this screenshot for how to use these fields.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/1a3b6d484e965bd0555b4ef836fad326eb387a5579c7cf6a5b4efc28cab8122a-chargeback_dashbaord_contest_products_details.png" />
 
@@ -50,7 +50,9 @@ The product details must be included if you select **Product** under the **Produ
 
 ### Services details
 
-The services details must be included if you select **Services** under the **Product/Services delivered** or **Product/Services Partially delivered** field, the highlighted fields similar to the following screenshot. Refer to [Services details](#services-details) table for how to use these fields.
+The services details must be included if you select **Services** under the **Product/Services delivered** or **Product/Services Partially delivered** field, the highlighted fields similar to the following screenshot. 
+
+Refer to table below this screenshot for how to use these fields.
 
 <Image align="center" src="https://files.readme.io/4f339503e9d07506332c7187db29ae34c77ff64ccdc92963436f3b63f9aeb3af-chargeback_dashbaord_contest_services_details.png" />
 
@@ -73,13 +75,4 @@ The services details must be included if you select **Services** under the **Pro
   * **Documentation**: Add brief descriptions for each piece of evidence
 </Callout>
 
-### Response Timeline
-
-* Submit all documentation before the "Reply Before" deadline
-* PayU chargeback team reviews submitted evidence
-* Team creates comprehensive case for bank submission
-* Bank reviews according to Visa/MasterCard guidelines
-
-***
-
-##
+<br />
