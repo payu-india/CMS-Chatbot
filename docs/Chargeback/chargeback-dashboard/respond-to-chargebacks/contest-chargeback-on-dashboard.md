@@ -34,15 +34,13 @@ The response guidelines for the chargeback are:
    <Image align="center" className="border" border={true} src="https://files.readme.io/848280d3f9dadd4a53b1d2571ada140f9af8d128840d0a759bc9bb22df4d41bf-chargeback_dashboard_contest_chargeback_form.png" />
 
 4. Choose the appropriate contest reason and include the details accordingly:
-
-
+   * <br />
 
 ***
 
 * **Customer withdrawn the chargeback**: Enter the following details:
   * **Comments**: Enter your comments
   * **Upload Customer Email/Letter**: Upload the screenshot of customer email or digital copy of the letter.
-
 
 <Callout icon="📘" theme="info">
   **File Upload Guidelines**
@@ -94,8 +92,11 @@ The response guidelines for the chargeback are:
 
 ***
 
-###Transaction already refunded
-Enter the following details based on selection:
+### Transaction already refunded
+
+
+1. Enter the comments in the **Comments** field.
+2. Enter the following details based on selection:
 
 <Tab title="Customer withdrawn the chargeback">
   Enter the following details:
