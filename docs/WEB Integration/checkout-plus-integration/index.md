@@ -38,12 +38,12 @@ The following payment methods are supported in the PayU Checkout Plus:
 
 ## **Advantages of PayU Checkout Plus**
 
-**Lower failure rates using retry feature**  
+**Lower failure rates using retry feature**
 
-Our internal metrics show that around 15% transactions are failing at bank or 3D secure page. In such\
-cases usually, the consumers have to restart the entire checkout process. But with *CheckoutPlus*, the consumer remains in the payment context always. In the event that any system, network, or user error occurs, the\
-consumer is given a chance to retry seamlessly by landing back on inline’s payment form without\
-compromising current order. Thus consumers are empowered to start from where they left without\
+Our internal metrics show that around 15% transactions are failing at bank or 3D secure page. In such
+cases usually, the consumers have to restart the entire checkout process. But with _CheckoutPlus_, the consumer remains in the payment context always. In the event that any system, network, or user error occurs, the
+consumer is given a chance to retry seamlessly by landing back on inline’s payment form without
+compromising current order. Thus consumers are empowered to start from where they left without
 reinitiating the transaction process all over again.
 
 **Intuitive, Responsive design**
@@ -61,14 +61,4 @@ Nothing better than a few lines of code solving a complex problem. You can have 
 * **Complete re-directionless** payment on your cart page.
 * **Supports multiple payment modes** that your customer may want to use, such as, UPI, Net Banking, Credit Cards, Debit Cards, E-Wallets etc.
 * **Allows you to customise your payment page**, UI colours to suit your brand identity, logo etc.
-* **Create a wide range of offers** across different payment modes using the PayU dashboard. Customer is shown the applicable offers on the checkout page. 
-
-## **Supported Payment Modes**
-
-The following payment methods are supported in the PayU Checkout Plus:
-
-* Credit Card
-* Debit Card
-* Net-Banking
-* UPI
-* Wallet
+* **Create a wide range of offers** across different payment modes using the PayU dashboard. Customer is shown the applicable offers on the checkout page.
