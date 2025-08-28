@@ -49,15 +49,15 @@ The _Partially Accept Chargeback form_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/772613b3501c92c8ce16dbde319dd94bc4fc96970ab724ce7b6e958703d963e6-chargeback_dashboard_partially_accept_reasons.png" />
 
-4. Select the reason.
+4. Select the appropriate reason.
 
 <Callout icon="📘" theme="info">
-  Steps 5 to  Full refund not due as per our T&C
+  **Note**:  Steps 5 is not applicable for **Full refund not due as per our T&C** option.
 </Callout>
 
 5. Enter the partial acceptance amount (must be less than chargeback amount)in the **Partially Accept Amount** field.
-6. Add detailed comments explaining the partial acceptance in the **Comments** field.
-7. Provide supporting documents using the **Browse** button in the **Supporting documents** field. (max 5MB)
+6. Provide supporting documents using the **Browse** button in the **Supporting documents** field. (max 5MB)
+7. Add detailed comments explaining the partial acceptance in the **Comments** field.
 8. Click **Submit**.
 
 <br />
