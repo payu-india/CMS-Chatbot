@@ -34,13 +34,13 @@ The response guidelines for the chargeback are:
    <Image align="center" className="border" border={true} src="https://files.readme.io/848280d3f9dadd4a53b1d2571ada140f9af8d128840d0a759bc9bb22df4d41bf-chargeback_dashboard_contest_chargeback_form.png" />
 
 4. Choose the appropriate contest reason and include the details accordingly:
-   * <br />
+   * Product/Services delivered
+   * Product/Services Partially delivered
+   * Customer withdrawn the chargeback
+   * Transaction already refunded
+   * Generic reject reason
 
-***
-
-* **Customer withdrawn the chargeback**: Enter the following details:
-  * **Comments**: Enter your comments
-  * **Upload Customer Email/Letter**: Upload the screenshot of customer email or digital copy of the letter.
+<br />
 
 <Callout icon="📘" theme="info">
   **File Upload Guidelines**
@@ -92,11 +92,58 @@ The response guidelines for the chargeback are:
 
 ***
 
-### Transaction already refunded
-
+### Product/Services Partially delivered
 
 1. Enter the comments in the **Comments** field.
-2. Enter the following details based on selection:
+2. Select any of the following tabs for the fields under **Product** or **Services** option based on the selection.
+
+<Tab title="Product/Services delivered">
+  <Tabs>
+    <Tab title="Product">
+      The product details must be included if you select **Product** under the **Product/Services delivered** or **Product/Services Partially delivered** field, as highlighted in the following screenshot. Refer to the table below for details on how to use these fields.
+
+      <Image align="center" border={true} src="https://files.readme.io/1a3b6d484e965bd0555b4ef836fad326eb387a5579c7cf6a5b4efc28cab8122a-chargeback_dashbaord_contest_products_details.png" />
+
+      | Field                                              | Description                                       |
+      | -------------------------------------------------- | ------------------------------------------------- |
+      | Details Of The Product                             | Comprehensive description of the product provided |
+      | Which Part Of The Order Delivered                  | Specific part or item(s) of the order delivered   |
+      | Amount That Needs To Refund                        | Amount to be refunded (if applicable)             |
+      | Name Of The Courier Company Used                   | Courier service used for delivering the product   |
+      | Awb/Shipping Number                                | Air Waybill (AWB) or shipping/tracking number     |
+      | Upload Screen Shot Of The Signed Proof Of Delivery | Visual proof of signed delivery confirmation      |
+      | Screen Shot Of The Invoice                         | Billing and payment confirmation                  |
+    </Tab>
+
+    <Tab title="Services">
+      The services details must be included if you select **Services** under the **Product/Services delivered** or **Product/Services Partially delivered** field, as highlighted in the following screenshot. Refer to the table below for details on how to use these fields.
+
+      <Image align="center" src="https://files.readme.io/4f339503e9d07506332c7187db29ae34c77ff64ccdc92963436f3b63f9aeb3af-chargeback_dashbaord_contest_services_details.png" />
+
+      | Field                                                   | Description                                    |
+      | ------------------------------------------------------- | ---------------------------------------------- |
+      | Details Of The Services                                 | Comprehensive description of services provided |
+      | Proof Of Services                                       | Evidence of successful delivery/completion     |
+      | Screen Shot Of The Claiming Service Fulfillment Details | Visual proof of service completion             |
+      | Screen Shot Of The Invoice                              | Billing and payment confirmation               |
+      | Upload Any Other Relevant Details                       | Any other relevant supporting documentation    |
+    </Tab>
+  </Tabs>
+</Tab>
+
+***
+
+### Customer withdrawn the chargeback
+
+1. Enter your comments in the **Comments** field.
+2.  Upload the screenshot of customer email or digital copy of the letter in the **Upload Customer Email/Letter** field.
+
+***
+
+### Transaction already refunded
+
+1. Enter the comments in the **Comments** field.
+2. Enter the details in the following the **Customer withdrawn the chargeback** or **Refunded outside PayU Panel** based on selection:
 
 <Tab title="Customer withdrawn the chargeback">
   Enter the following details:
