@@ -272,7 +272,7 @@ The following table provides details of some of the test cards that you can use 
 * DOB = 21-07-1980
 * Aadhaar = 9999 9999 1234
 * Aadhaar OTP = 123456
-* UPI ID - test\@upi
+* UPI ID - test@upi
 
 ## International Payments or DCC
 
@@ -298,12 +298,23 @@ The following table provides details of some of the test cards that you can use 
 
 ## Test UPI ID
 
-You can use **anything\@payu** or **[9999999999@payu](mailto:9999999999@payu)** as VPA to test your UPI-related integration in the [sandbox](https://en.wikipedia.org/wiki/Sandbox_\(software_development\)#:) (Test environment) only for the payment flows involving **\_payment** AP.
+You can use **anything@payu** or **[9999999999@payu](mailto:9999999999@payu)** as VPA to test your UPI-related integration in the [sandbox](https://en.wikipedia.org/wiki/Sandbox_(software_development)#:) (Test environment) only for the payment flows involving **_payment** AP.
 
 > 📘 Notes:
 >
-> * The **anything\@payu** VPA can be used in the sandbox or [API Playground](https://api-playground.payu.in/) and any other VPA will not work for th&#x65;**\_payment** only.
+> * The **anything@payu** VPA can be used in the sandbox or [API Playground](https://api-playground.payu.in/) and any other VPA will not work for the**_payment** only.
 > * For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
+
+### Testing UPI Intent Flow on UAT
+
+To test the UPI intent flow on UAT, please follow the steps below:
+
+Download the UPI Intent Simulator APK
+
+Access the UPI Intent Simulator repository:
+[https://github.com/payu-india/PayU-UPI-Intent-Simulator-App](https://github.com/payu-india/PayU-UPI-Intent-Simulator-App)
+
+Download the latest UAT APK from the Releases section or the appropriate branch tagged for UAT.
 
 ## Test Net Banking credentials
 
