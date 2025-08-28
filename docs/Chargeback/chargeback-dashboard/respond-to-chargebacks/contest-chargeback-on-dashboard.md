@@ -38,7 +38,12 @@ The _Contest_ page is displayed.
 * **Product/Services delivered** or **Product/Services Partially delivered**: Enter the following details based on selection:
   * **Product**: Refer to [Product details](#product-details)
   * **Services**: Refer to [Services details](#services-details)
-* **Customer withdrawn the chargeback**:  Refer to[ Customer withdrawn the chargeback](#customer-withdrawn-the-chargeback)
+* **Customer withdrawn the chargeback**: Enter the following details:
+  * **Comments**: Enter your comments
+  * **Upload Customer Email/Letter**: Upload the screenshot of customer email or digital copy of the letter.
+* **Transaction already refunded**: Enter the following details based on selection:
+  * **Transaction refunded through PayU Panel**:  Refer to [Transaction refunded through PayU Panel](#transaction-refunded-through-payu-panel).
+  * **Transaction refunded outside PayU Panel**: Refer to [Transaction refunded outside PayU Panel details](#transaction-refunded-outside-payU-panel-details)
 
 <Callout icon="📘" theme="info">
   **File Upload Guidelines**
@@ -48,8 +53,6 @@ The _Contest_ page is displayed.
   * **Organization**: Combine multiple screenshots into a single document
   * **Documentation**: Add brief descriptions for each piece of evidence
 </Callout>
-
-###
 
 ### Product details
 
@@ -69,9 +72,7 @@ The product details must be included if you select **Product** under the **Produ
 
 ### Services details
 
-The services details must be included if you select **Services** under the **Product/Services delivered** or **Product/Services Partially delivered** field, the highlighted fields similar to the following screenshot.
-
-Refer to table below this screenshot for how to use these fields.
+The services details must be included if you select **Services** under the **Product/Services delivered** or **Product/Services Partially delivered** field, the highlighted fields similar to the following screenshot. Refer to table below this screenshot for how to use these fields.
 
 <Image align="center" src="https://files.readme.io/4f339503e9d07506332c7187db29ae34c77ff64ccdc92963436f3b63f9aeb3af-chargeback_dashbaord_contest_services_details.png" />
 
@@ -83,9 +84,11 @@ Refer to table below this screenshot for how to use these fields.
 | Screen Shot Of The Invoice                              | Billing and payment confirmation               |
 | Upload Any Other Relevant Details                       | Any other relevant supporting documentation    |
 
-### Customer withdrawn the chargeback details
+### Transaction refunded outside PayU Panel details
 
-* Enter the details as in the following table:
+The services details must be included if you select **Transaction refunded outside PayU Panel** under the **Transaction refunded outside PayU panel** field, the highlighted fields similar to the following screenshot. Refer to table below this screenshot for how to use these fields.
+
+<Image align="center" src="https://files.readme.io/2751a7775c0f797a0ef119d99520c2600659503dc29835249ebcbe344e40f169-chargeback_dashbaord_contest_transaction_refunded_outside_details.png" />
 
 | Field                       | Description                                                           |
 | --------------------------- | --------------------------------------------------------------------- |
@@ -95,5 +98,14 @@ Refer to table below this screenshot for how to use these fields.
 | Mode of Refund              | Payment method used for the external refund (e.g., NEFT, IMPS, UPI)   |
 | Proof of Refund             | Documentary proof or screenshot of the external refund                |
 | Comments                    | Additional details or clarification about the external refund process |
+
+### Transaction refunded through PayU Panel
+
+<br />
+
+| Field                              | Description                                                                                                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Day of refund                      | Based on the current date displayed, enter the number of days relative to the current. For example, -1 for yesterday's date and 2 for the day after tomorrow. |
+| Status of the Refund in PayU Panel | Indicates the current status of the refund (Queued, Requested, Successful, etc.)                                                                              |
 
 <br />
