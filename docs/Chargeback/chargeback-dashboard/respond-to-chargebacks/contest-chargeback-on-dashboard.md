@@ -33,11 +33,11 @@ The response guidelines for the chargeback are:
 
    <Image align="center" className="border" border={true} src="https://files.readme.io/848280d3f9dadd4a53b1d2571ada140f9af8d128840d0a759bc9bb22df4d41bf-chargeback_dashboard_contest_chargeback_form.png" />
 
-4. Choose the appropriate contest reason and include the details accordingly:
-   * Product/Services delivered
-   * Product/Services Partially delivered
-   * Customer withdrawn the chargeback
-   * Transaction already refunded
+4. Choose the appropriate contest reason and include the details accordingly and click **Submit**:
+   * [Product/Services delivered](https://docs.payu.in/docs/accept-chargeback-on-dashboard?isFramePreview=true#productservices-delivered)
+   * [Product/Services Partially delivered](https://docs.payu.in/docs/accept-chargeback-on-dashboard?isFramePreview=true#productservices-partially-delivered)
+   * [Customer withdrawn the chargeback](https://docs.payu.in/docs/accept-chargeback-on-dashboard?isFramePreview=true#customer-withdrawn-the-chargeback)
+   * [Transaction already refunded](https://docs.payu.in/docs/accept-chargeback-on-dashboard?isFramePreview=true#transaction-already-refunded)
    * Generic reject reason
 
 <br />
@@ -51,7 +51,7 @@ The response guidelines for the chargeback are:
   * **Documentation**: Add brief descriptions for each piece of evidence
 </Callout>
 
-### Product/Services delivered
+#### Product/Services delivered
 
 1. Enter the comments in the **Comments** field.
 2. Select any of the following tabs for the fields under **Product** or **Services** option based on the selection.
@@ -92,7 +92,7 @@ The response guidelines for the chargeback are:
 
 ***
 
-### Product/Services Partially delivered
+#### Product/Services Partially delivered
 
 1. Enter the comments in the **Comments** field.
 2. Select any of the following tabs for the fields under **Product** or **Services** option based on the selection.
@@ -133,14 +133,14 @@ The response guidelines for the chargeback are:
 
 ***
 
-### Customer withdrawn the chargeback
+#### Customer withdrawn the chargeback
 
 1. Enter your comments in the **Comments** field.
-2.  Upload the screenshot of customer email or digital copy of the letter in the **Upload Customer Email/Letter** field.
+2. Upload the screenshot of customer email or digital copy of the letter in the **Upload Customer Email/Letter** field.
 
 ***
 
-### Transaction already refunded
+#### Transaction already refunded
 
 1. Enter the comments in the **Comments** field.
 2. Enter the details in the following the **Customer withdrawn the chargeback** or **Refunded outside PayU Panel** based on selection:
