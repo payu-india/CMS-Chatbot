@@ -305,7 +305,7 @@ You can use **anything@payu** or **[9999999999@payu](mailto:9999999999@payu)** a
 > * The **anything@payu** VPA can be used in the sandbox or [API Playground](https://api-playground.payu.in/) and any other VPA will not work for the**_payment** only.
 > * For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
 
-### Testing UPI Intent Flow on UAT
+## Testing UPI Intent Flow on UAT
 
 To test the UPI intent flow on UAT, please follow the steps below:
 
