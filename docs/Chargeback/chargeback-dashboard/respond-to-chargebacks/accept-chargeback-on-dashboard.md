@@ -13,11 +13,17 @@ Use when the customer deserves a complete refund:
 
 > **Important**: You cannot process refunds for transactions marked as chargebacks through PayU or directly to customers. The chargeback process handles the refund.
 
-1. **Select Accept Option**
+1. Navigate to the chargeback details.
+
+2. Expand the **Accept/Contest** pane using the **+** button.
+
+<br />
+
+3. **Select Accept Option**
    * Click **"Fully Accept"** button
    * Choose from predefined reason categories
 
-2. **Provide Reason**\
+2. **Provide Reason**
    Select the appropriate reason:
    * Customer cancelled the order
    * Product out of stock
@@ -53,6 +59,4 @@ Use when the customer deserves a partial refund:
    * Add detailed comments explaining the partial acceptance
    * Submit the response
 
-***
-
-##
+<br />
