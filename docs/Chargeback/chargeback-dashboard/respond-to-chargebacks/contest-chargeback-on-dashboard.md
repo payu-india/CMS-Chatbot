@@ -36,7 +36,16 @@ For **Product/Services Delivered**, submit:
 * **Invoice Screenshots**: Billing and payment confirmation
 * **Additional Evidence**: Any other relevant supporting documentation
 
-<br />
+<Callout icon="📘" theme="info">
+  **File Upload Guidelines**
+
+  * **File Size**: Maximum 5MB per upload
+  * **File Types**: PDF, Word documents, or image files
+  * **Organization**: Combine multiple screenshots into a single document
+  * **Documentation**: Add brief descriptions for each piece of evidence
+
+  **Best Practice**: Merge all screenshots into a single MS Word or PDF file with descriptive captions for each piece of evidence.
+</Callout>
 
 ### Response Timeline
 
