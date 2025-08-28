@@ -19,7 +19,7 @@ The response guidelines for the chargeback are:
 * PayU creates comprehensive case for bank submission
 * Bank reviews according to Visa/MasterCard guidelines
 
-### Contest Process
+## Contest Process
 
 1. Navigate to the chargeback details.
 
