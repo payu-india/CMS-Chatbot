@@ -10,157 +10,106 @@ metadata:
 next:
   description: ''
 ---
-**Close-Loop Wallet API** is PayU's comprehensive solution for businesses looking to implement Prepaid Payment Instruments (PPIs) including wallets, gift cards, and prepaid cards. With Close-Loop Wallet API, you can offer customers a seamless digital payment experience while maintaining complete control over fund management and customer engagement.
+**Closed-Loop Wallet API** enables businesses to implement merchant-specific digital wallet solutions that can only be used within the issuing merchant's website or mobile application. This prepaid payment instrument provides a controlled, branded payment experience that drives customer loyalty and repeat engagement.
 
-The API provides one-click payments with pre-fetched wallet balances, eliminating checkout friction and improving conversion rates. Built on PayU's robust infrastructure with 99.98% uptime, Close-Loop Wallet API ensures reliable payment processing while maintaining full RBI compliance for all wallet types.
+Unlike semi-closed-loop wallets, closed-loop wallets are **not regulated by RBI** and operate within the merchant's ecosystem, making them ideal for businesses looking to create a seamless, integrated payment experience for their customers.
 
-**Key Highlights:**
-• Redirection-less payment experience with modal-based checkout
-• Pre-fetched wallet balances for instant payment processing
-• Complete PCI-DSS compliance through PayU's hosted infrastructure
-• Support for both minimal KYC and full KYC wallet requirements
+## Key Highlights
+
+* Merchant-specific wallet usage only
+* No RBI regulatory requirements
+* Enhanced customer retention through integrated experience
+* Cashback and loyalty program integration
+
+## Implementation Benefits
+
+• **No RBI Compliance Required:** Simplified implementation process
+• **Merchant Control:** Complete control over wallet features and experience
+• **Customer Retention:** Enhanced loyalty through integrated payment experience
+• **Flexible Features:** Support for cashback, promotions, and loyalty programs
+
+## Key Features
+
+### Merchant-Specific Usage
+
+The wallet can only be used on the issuing merchant's website or mobile application, ensuring complete control over the customer payment experience.
+
+### One-Click Payments
+
+• Instant payment processing using stored wallet balance
+• Pre-fetched wallet balance display during checkout
+• Seamless transaction completion without redirections
+
+### Load & Pay Functionality
+
+• On-the-fly wallet loading during checkout
+• Flexible payment options when wallet balance is insufficient
+• Immediate transaction processing after successful loading
+
+### Cashback Integration
+
+• Built-in cashback mechanisms to drive repeat usage
+• Customer retention through reward programs
+• Promotional campaign support
+
+### No Cash Withdrawal
+
+Cash withdrawal is not permitted, ensuring funds remain within the merchant ecosystem for future purchases.
 
 ## Advantages
 
-**Lower Transaction Abandonment with Retry Feature**
-When a payment fails, customers can retry using alternative funding sources without losing their transaction context, significantly reducing checkout abandonment rates.
-
-**Intuitive, Responsive Design**
-The wallet interface automatically adapts to all devices - smartphones, tablets, desktops, and laptops - ensuring a consistent experience across platforms.
-
-**One-Time Integration Effort**
-Simple API integration with pre-defined code snippets means minimal development effort. Once integrated, all updates and new features are automatically available without additional development work.
-
-**Enhanced Customer Engagement**
-Built-in loyalty programs, cashback mechanisms, and promotional tools help increase customer retention and lifetime value.## Features
-
-### Easy Integration
-
-Integrate Close-Loop Wallet API using simple REST APIs and JavaScript snippets. Our comprehensive documentation and code samples ensure quick implementation across web and mobile platforms.
-
-### Customizable Wallet Experience
-
-• **Brand Integration:** Add your logo, customize colors, and match your brand identity
-• **UI Customization:** Tailor the wallet interface to match your application design
-• **White-label Solutions:** Complete customization options for enterprise clients
-
-### Multiple Payment Support
-
-• One-click payments with stored wallet balances
-• Load & Pay functionality for insufficient balance scenarios
-• Integration with all major payment methods for wallet top-ups
-• Support for bulk transactions and corporate fund disbursement
-
-### Advanced Wallet Management
-
-• Real-time balance tracking and transaction history
-• Automated KYC verification workflows
-• Bulk card generation and distribution
-• Corporate expense management and controls
-
-### Comprehensive Reporting
-
-• Real-time transaction monitoring and analytics
-• Detailed settlement reports and reconciliation
-• Customer behavior insights and engagement metrics
-• Customizable dashboards for business intelligence
-
-### Offer Management
-
-Create and manage various customer offers directly through the PayU dashboard:
-• Cashback campaigns and promotional rewards
-• Loyalty point programs and tier-based benefits
-• Gift card promotions and seasonal campaigns
-• Corporate incentive programs
+* **Enhanced Customer Retention**: Closed-loop wallets keep customers within your ecosystem, encouraging repeat purchases and building long-term customer relationships through integrated loyalty programs
+* **Simplified Compliance**: Since closed-loop wallets are not regulated by RBI, businesses can implement wallet solutions without complex regulatory compliance requirements.
+* **Complete Control**: Merchants have full control over the wallet experience, including branding, features, and customer journey optimization.
+* **Increased Transaction Success**: With funds pre-loaded in the wallet, transaction success rates improve significantly compared to traditional payment methods.
 
 ## Use Cases
 
-### E-commerce & Retail
+### Diary Products Digital Wallet
 
-Implement digital wallets for faster checkout experiences, customer loyalty programs, and promotional campaigns with instant cashback rewards.
+**Implementation:** Customers load money and purchase groceries via Diary Products App for:
 
-### Corporate Expense Management
+* One-click payment processing
+* On-the-fly load-and-pay functionality
+* Seamless grocery shopping experience
 
-Deploy prepaid cards for employee expenses with controlled fund disbursement, real-time tracking, and automated expense reporting.
+### XYZ Wallet
 
-### FMCG & Consumer Brands
+**Implementation:** Available for app and QR-based payments for:
 
-Create branded wallet solutions for customer engagement, loyalty rewards, and seamless shopping experiences across online and offline channels.
+* Multi-channel payment support (app and QR codes)
+* Cashback programs that drive repeat usage
+* Enhanced customer retention mechanisms
 
-### Travel & Hospitality
+## Payment Journey
 
-Offer prepaid travel cards and wallet solutions for booking payments, loyalty programs, and enhanced customer service experiences.
+### **One-Click Payment Journey**
 
-### Gaming & Entertainment
+For Transaction Amount \< Wallet Balance:
 
-Implement in-app wallets for virtual currency, rewards, and seamless in-game purchases with enhanced user engagement.
+1. **Pre-fetched Balance Display**
+   Wallet balance is automatically retrieved and displayed based on user's mobile number
 
-***
+2. **Instant Payment Processing**
+   Direct debit from wallet balance without additional authentication
 
-## Technical Specifications
+3. **Transaction Completion**
+   Immediate confirmation and receipt generation
 
-### **Wallet Types & Compliance**
+### Load & Pay Journey
 
-**Small PPI (Minimal KYC)**
-• **Verification:** OTP-based authentication
-• **Limits:** ₹10,000 monthly balance and loading limit
-• **Use Case:** Quick onboarding for new customers
+For Transaction Amount > Wallet Balance:
 
-**Full KYC PPI**
-• **Verification:** Video eKYC or document-based verification
-• **Limits:** ₹2,00,000 balance limit with no loading restrictions
-• **Use Case:** High-value transactions and corporate clients
+1. **Insufficient Balance Detection**
+   System identifies when wallet balance is insufficient for the transaction
 
-### **Integration Capabilities**
+2. **Add Amount Option**
+   Customer can choose to add the required amount to complete the purchase
 
-• **APIs:** RESTful APIs with comprehensive documentation
-• **Real-time Processing:** Instant balance updates and transaction processing
-• **Webhooks:** Real-time transaction notifications and status updates
-• **SDKs:** Available for iOS, Android, and web platforms
+3. **Payment Instrument Selection**
+   Customer selects preferred payment method for wallet loading
 
-### **Security & Compliance**
+4. **Transaction Completion**
+   Wallet is loaded and original transaction is processed immediately
 
-• **PCI-DSS:** Level 1 compliant infrastructure
-• **Data Protection:** Multi-layer encryption and secure tokenization
-• **RBI Compliance:** Full adherence to Prepaid Payment Instrument guidelines
-• **Fraud Prevention:** Advanced fraud detection and risk management systems
-
-### **Performance Metrics**
-
-• **Uptime:** 99.98% guaranteed uptime
-• **Transaction Success:** Industry-leading success rates
-• **Response Time:** Sub-second API response times
-• **Scalability:** Support for high-volume transaction processing
-
-***
-
-## Next Steps
-
-Ready to implement Close-Loop Wallet API? Here's how to get started:
-
-1. **Contact Sales:** Reach out to our team to discuss your specific requirements
-2. **Account Setup:** Get your PayU merchant account configured with Close-Loop Wallet API access
-3. **Integration:** Use our comprehensive documentation and sandbox environment
-4. **Testing:** Thoroughly test your implementation in our sandbox environment
-5. **Go Live:** Deploy with confidence backed by PayU's reliable infrastructure
-
-**Need Help?**
-• [View Integration Guide](link-to-guide) - Detailed step-by-step integration instructions
-• [API Reference](link-to-api) - Complete API documentation and examples
-• [Contact Support](link-to-support) - 24/7 technical support for developers
-• [Business Consultation](link-to-consultation) - Expert guidance on solution optimization
-
-***
-
-> **Note:** Close-Loop Wallet API requires compliance with RBI guidelines for Prepaid Payment Instruments. Our team will guide you through the regulatory requirements during the onboarding process.
-
-Closed loop wallet management involves the following APIs:
-
-* [Create Wallet/Card API](ref:create-walletcard-api):  This API will be required by the merchants to register the customer for wallet.
-* [Retrieve Customer Record API](ref:retrieve-customer-record-api): This API will be required by Merchants to fetch customer details and balance present in the customer wallet.
-* [Update Profile API](ref:update-profile-api-wallet): This API will be used to update the customer profile details.
-* [Load API](ref:l): To load the money in the wallet post receiving success of the transaction.
-* [Unload API](ref:unload-api): To spend the money from the wallet.
-* [Check Status API](ref:check-status-api): This will be required to check status of the load API used in the top-up journey.
-* [Statement Inquiry API](ref:statement-inquiry-api): This API can be used to fetch wallet transaction data between specific range.
-* [Change Card Status API](ref:change-card-status-api): This API used to change the card status of the card number of the customer.
+<br />
