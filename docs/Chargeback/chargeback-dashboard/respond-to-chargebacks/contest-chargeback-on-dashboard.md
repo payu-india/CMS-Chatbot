@@ -14,7 +14,7 @@ Dispute invalid chargeback claims with proper documentation. Contest chargebacks
 
 The response guidelines for the chargeback are:
 
-* Submit all documentation before the the date specified under the  **Reply Before** column.
+* Submit all documentation before the date specified under the **Reply Before** column.
 * PayU reviews submitted evidence
 * PayU creates comprehensive case for bank submission
 * Bank reviews according to Visa/MasterCard guidelines
@@ -29,21 +29,52 @@ The response guidelines for the chargeback are:
 
 3. Click **Contest CB**.
 
-The _Contest_ page is displayed.
+   The _Contest_ page is displayed.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/848280d3f9dadd4a53b1d2571ada140f9af8d128840d0a759bc9bb22df4d41bf-chargeback_dashboard_contest_chargeback_form.png" />
+   <Image align="center" className="border" border={true} src="https://files.readme.io/848280d3f9dadd4a53b1d2571ada140f9af8d128840d0a759bc9bb22df4d41bf-chargeback_dashboard_contest_chargeback_form.png" />
 
 4. Choose the appropriate contest reason and include the details accordingly:
 
-* **Product/Services delivered** or **Product/Services Partially delivered**: Enter the following details based on selection:
-  * **Product**: Refer to [Product details](#product-details)
-  * **Services**: Refer to [Services details](#services-details)
+<Tab title="Product/Services delivered">
+  <Tabs>
+    <Tab title="Product">
+      The product details must be included if you select **Product** under the **Product/Services delivered** or **Product/Services Partially delivered** field, as highlighted in the following screenshot. Refer to the table below for details on how to use these fields.
+
+      <Image align="center" border={true} src="https://files.readme.io/1a3b6d484e965bd0555b4ef836fad326eb387a5579c7cf6a5b4efc28cab8122a-chargeback_dashbaord_contest_products_details.png" />
+
+      | Field                                              | Description                                       |
+      | -------------------------------------------------- | ------------------------------------------------- |
+      | Details Of The Product                             | Comprehensive description of the product provided |
+      | Which Part Of The Order Delivered                  | Specific part or item(s) of the order delivered   |
+      | Amount That Needs To Refund                        | Amount to be refunded (if applicable)             |
+      | Name Of The Courier Company Used                   | Courier service used for delivering the product   |
+      | Awb/Shipping Number                                | Air Waybill (AWB) or shipping/tracking number     |
+      | Upload Screen Shot Of The Signed Proof Of Delivery | Visual proof of signed delivery confirmation      |
+      | Screen Shot Of The Invoice                         | Billing and payment confirmation                  |
+    </Tab>
+    <Tab title="Services">
+      The services details must be included if you select **Services** under the **Product/Services delivered** or **Product/Services Partially delivered** field, as highlighted in the following screenshot. Refer to the table below for details on how to use these fields.
+
+      <Image align="center" src="https://files.readme.io/4f339503e9d07506332c7187db29ae34c77ff64ccdc92963436f3b63f9aeb3af-chargeback_dashbaord_contest_services_details.png" />
+
+      | Field                                                   | Description                                    |
+      | ------------------------------------------------------- | ---------------------------------------------- |
+      | Details Of The Services                                 | Comprehensive description of services provided |
+      | Proof Of Services                                       | Evidence of successful delivery/completion     |
+      | Screen Shot Of The Claiming Service Fulfillment Details | Visual proof of service completion             |
+      | Screen Shot Of The Invoice                              | Billing and payment confirmation               |
+      | Upload Any Other Relevant Details                       | Any other relevant supporting documentation    |
+    </Tab>
+  </Tabs>
+</Tab>
+
 * **Customer withdrawn the chargeback**: Enter the following details:
   * **Comments**: Enter your comments
   * **Upload Customer Email/Letter**: Upload the screenshot of customer email or digital copy of the letter.
+
 * **Transaction already refunded**: Enter the following details based on selection:
-  * **Transaction refunded through PayU Panel**:  Refer to [Transaction refunded through PayU Panel](#transaction-refunded-through-payu-panel).
-  * **Transaction refunded outside PayU Panel**: Refer to [Transaction refunded outside PayU Panel details](#transaction-refunded-outside-payU-panel-details)
+  * **Transaction refunded through PayU Panel**: Refer to [Transaction refunded through PayU Panel](#transaction-refunded-through-payu-panel).
+  * **Transaction refunded outside PayU Panel**: Refer to [Transaction refunded outside PayU Panel details](#transaction-refunded-outside-payU-panel-details).
 
 <Callout icon="📘" theme="info">
   **File Upload Guidelines**
@@ -53,82 +84,3 @@ The _Contest_ page is displayed.
   * **Organization**: Combine multiple screenshots into a single document
   * **Documentation**: Add brief descriptions for each piece of evidence
 </Callout>
-
-<Tab title="Product/Services delivered">
-  <Tabs>
-    <Tab title="Product">
-      The product details must be included if you select **Product** under the **Product/Services delivered** or **Product/Services Partially delivered** field, as highlighted in the following screenshot. Refer to the table below for details on how to use these fields.
-
-      <Image
-        align="center"
-        className="border"
-        border={true}
-        src="https://files.readme.io/1a3b6d484e965bd0555b4ef836fad326eb387a5579c7cf6a5b4efc28cab8122a-chargeback_dashbaord_contest_products_details.png"
-      />
-
-      | Field                                          | Description                                             |
-      |------------------------------------------------|---------------------------------------------------------|
-      | Details Of The Product                         | Comprehensive description of the product provided       |
-      | Which Part Of The Order Delivered              | Specific part or item(s) of the order delivered         |
-      | Amount That Needs To Refund                    | Amount to be refunded (if applicable)                   |
-      | Name Of The Courier Company Used               | Courier service used for delivering the product         |
-      | Awb/Shipping Number                            | Air Waybill (AWB) or shipping/tracking number           |
-      | Upload Screen Shot Of The Signed Proof Of Delivery | Visual proof of signed delivery confirmation          |
-      | Screen Shot Of The Invoice                     | Billing and payment confirmation                        |
-
-    </Tab>
-    <Tab title="Services">
-      The services details must be included if you select **Services** under the **Product/Services delivered** or **Product/Services Partially delivered** field, as highlighted in the following screenshot. Refer to the table below for details on how to use these fields.
-
-      <Image
-        align="center"
-        src="https://files.readme.io/4f339503e9d07506332c7187db29ae34c77ff64ccdc92963436f3b63f9aeb3af-chargeback_dashbaord_contest_services_details.png"
-      />
-
-      | Field                                          | Description                                             |
-      |------------------------------------------------|---------------------------------------------------------|
-      | Details Of The Services                        | Comprehensive description of services provided          |
-      | Proof Of Services                              | Evidence of successful delivery/completion              |
-      | Screen Shot Of The Claiming Service Fulfillment Details | Visual proof of service completion                  |
-      | Screen Shot Of The Invoice                     | Billing and payment confirmation                        |
-      | Upload Any Other Relevant Details              | Any other relevant supporting documentation             |
-
-    </Tab>
-  </Tabs>
-</Tab>
-
-<Tab title="Customer withdrawn the chargeback">
-  Enter the following details:
-  * **Comments**: Enter your comments
-  * **Upload Customer Email/Letter**: Upload the screenshot of customer email or digital copy of the letter.
-</Tab>
-
-<Tab title="Transaction already refunded">
-  <Tabs>
-    <Tab title="Refunded through PayU Panel">
-      | Field                          | Description                                                                 |
-      |--------------------------------|-----------------------------------------------------------------------------|
-      | Day of refund                  | Based on the current date displayed, enter the number of days relative to the current. For example, -1 for yesterday's date and 2 for the day after tomorrow. |
-      | Status of the Refund in PayU Panel | Indicates the current status of the refund (Queued, Requested, Successful, etc.) |
-
-    </Tab>
-    <Tab title="Refunded outside PayU Panel">
-      The following fields must be filled if you select **Transaction refunded outside PayU Panel** under the relevant field, as highlighted in the following screenshot. Refer to the table below for how to use these fields.
-
-      <Image
-        align="center"
-        src="https://files.readme.io/2751a7775c0f797a0ef119d99520c2600659503dc29835249ebcbe344e40f169-chargeback_dashbaord_contest_transaction_refunded_outside_details.png"
-      />
-
-      | Field                     | Description                                                               |
-      |---------------------------|---------------------------------------------------------------------------|
-      | Amount That Needs To Refund| Amount refunded to the customer (outside PayU panel)                       |
-      | Date of Refund            | Date when the refund was processed externally                              |
-      | Refund Reference Number   | Reference/transaction number for the external refund                       |
-      | Mode of Refund            | Payment method used for the external refund (e.g., NEFT, IMPS, UPI)        |
-      | Proof of Refund           | Documentary proof or screenshot of the external refund                     |
-      | Comments                  | Additional details or clarification about the external refund process      |
-
-    </Tab>
-  </Tabs>
-</Tab>
