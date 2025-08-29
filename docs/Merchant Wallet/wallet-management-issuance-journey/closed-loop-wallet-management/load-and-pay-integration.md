@@ -1,7 +1,7 @@
 ---
 title: Load and Pay Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
