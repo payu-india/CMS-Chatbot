@@ -53,7 +53,7 @@ import PayUBizSdk from 'payu-non-seam-less-react';
 
 ### Update Root build.gradle
 
-Add the following to android/build.gradle::
+Add the repository details for SDK dependencies under `allprojects` in `android/build.gradle`::
 
 ```
 allprojects {
@@ -490,7 +490,7 @@ generateHash = (e) => {
 <Callout icon="📘" theme="info">
   Notes
 
-  * Always generate hashes on your backend. 
+  * Always generate hashes on your backend.
   * URLs like [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success) are placeholders; replace with your backend URLs post-testing.
   * Split payment and SI (Standing Instruction) are optional features—only use them if needed.
 </Callout>
