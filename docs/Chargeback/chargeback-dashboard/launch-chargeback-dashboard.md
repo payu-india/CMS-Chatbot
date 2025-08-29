@@ -5,9 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-## Access Dashboard
-
-To find the chargeback details:
+To access the Chargeback Dashboard:
 
 1. Log on to PayU Dashboard.
 2. Select **Chargeback** from the left pane.
@@ -17,9 +15,9 @@ To find the chargeback details:
 <Image align="center" src="https://files.readme.io/54d13773e3bc40a82102786cab025d6348e80146348342d1e9879992d7a4b380-Screenshot_2025-08-29_at_10.50.07_AM.png" />
 
 <Callout icon="📘" theme="info">
-  **Notes**: 
+  **Notes**:
 
-  * In case you have multiple accounts with PayU, you will have separate chargeback dashboard for each of the account. 
+  * In case you have multiple accounts with PayU, you will have separate chargeback dashboard for each of the account.
   * You must pay special attention to the timeframe for submitting the documents for different level of Chargebacks. Click **Show/Hide** to hide the notification. For more information, refer to[ Chargeback Timeframes](#chargeback-timeframes)
 </Callout>
 
