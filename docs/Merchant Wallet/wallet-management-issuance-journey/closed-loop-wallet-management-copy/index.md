@@ -1,5 +1,5 @@
 ---
-title: Closed-Loop Wallet Management (COPY)
+title: Closed-Loop Wallet Management (Internal Review)
 deprecated: false
 hidden: true
 metadata:
