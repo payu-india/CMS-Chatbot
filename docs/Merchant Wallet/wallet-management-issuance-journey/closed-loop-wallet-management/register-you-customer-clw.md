@@ -1,7 +1,7 @@
 ---
 title: Register you Customer - CLW
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
