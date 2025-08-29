@@ -5,10 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-Registering your customers in your closed-loop wallet enables seamless payments, loyalty, and funding operations.
-Use the Register Customer API to quickly and securely provision wallet accounts for your users.
-The Register Customer API is applicable for PayU closed-loop wallet integrations.
-Please ensure that you have wallet functionality enabled for your merchant account.
+Registering your customers in your closed-loop wallet enables seamless payments, loyalty, and funding operations. Use the Register Customer API to quickly and securely provision wallet accounts for your users. The **Register Customer **API is applicable for PayU closed-loop wallet integrations. 
 
 ### Environment
 
