@@ -1,11 +1,12 @@
 ---
-title: Register you Customer - CLW
+title: Register you Customer Integration - CLW
 deprecated: false
 hidden: true
 metadata:
+  title: Register you Customer Integration - CLW
   robots: index
 ---
-Registering your customers in your closed-loop wallet enables seamless payments, loyalty, and funding operations. Use the Register Customer API to quickly and securely provision wallet accounts for your users. The **Register Customer **API is applicable for PayU closed-loop wallet integrations. 
+Registering your customers in your closed-loop wallet enables seamless payments, loyalty, and funding operations. Use the Register Customer API to quickly and securely provision wallet accounts for your users. The **Register Customer **API is applicable for PayU closed-loop wallet integrations.
 
 ### Environment
 
@@ -78,7 +79,7 @@ Send a JSON payload with your user’s details.
 
 ***
 
-### Step 2: Make the API Call
+## Step 2: Post request with PayU
 
 Below is a sample request using `curl`:
 
@@ -105,7 +106,7 @@ curl --request POST 'https://api.payu.in/wallet/registerCustomer'   --header 'Co
 
 ***
 
-### Step 3: Check the API Response
+## Step 3: Check PayU Response
 
 #### Successful Response
 
