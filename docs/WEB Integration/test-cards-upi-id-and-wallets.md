@@ -298,7 +298,7 @@ The following table provides details of some of the test cards that you can use 
 
 ## Test UPI ID
 
-You can use **anything@payu** or **[9999999999@payu](mailto:9999999999@payu)** as VPA to test your UPI-related integration in the [sandbox](https://en.wikipedia.org/wiki/Sandbox_(software_development)#:) (Test environment) only for the payment flows involving **_payment** AP.
+You can use **anything@payu** or **9999999999@payu** as VPA to test your UPI-related integration in the [sandbox](https://en.wikipedia.org/wiki/Sandbox_(software_development)#:) (Test environment) only for the payment flows involving **_payment** AP.
 
 > 📘 Notes:
 >
