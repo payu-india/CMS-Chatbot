@@ -91,6 +91,8 @@ flutter pub add payu_upi_bolt_ui_flutter 1.0.0.alpha
    $(PROJECT_DIR)/Frameworks
    ```
 
+   <br />
+
 #### Android Setup
 
 1. **Add Dependencies**
@@ -104,9 +106,58 @@ flutter pub add payu_upi_bolt_ui_flutter 1.0.0.alpha
    }
    ```
 
+   <br />
+
 2. **Add AAR File**
 
    Place the `SecureComponent-release-prod_05062024_9d3904ab.aar` file in the `libs` folder of your Android app module.
+
+#### Clear SDK cache
+
+The `clearCache` method is used to clear the cache corresponding to the passed PG value
+
+```
+payUUpiFlutter.clearCache(params: Map)
+```
+
+The following fields are needed as a request for this API:
+
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        pg 
+        `mandatory`
+      </td>
+
+      <td>
+        `String` - PG value to check clear pg specific data
+      </td>
+
+      <td>
+        `"payu"`
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
 
 ### Step 3: Initialize SDK
 
@@ -252,7 +303,11 @@ payUUpiFlutter.reset();
 </table>
 `}</HTMLBlock>
 
-### Step 4: Check UPI Bolt Availability
+<br />
+
+<br />
+
+### Step 5: Check UPI Bolt Availability
 
 Before proceeding with payment flows, verify if UPI Bolt is enabled:
 
@@ -262,7 +317,7 @@ void checkUPIBoltStatus() {
 }
 ```
 
-### Step 5: Implement Payment Flow
+### Step 6: Implement Payment Flow
 
 #### Register and Pay
 
