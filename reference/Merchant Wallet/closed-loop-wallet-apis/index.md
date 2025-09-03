@@ -17,7 +17,7 @@ This part of the API documentation includes the following API reference for Clos
   * [Load and Pay Transaction API](https://docs.payu.in/reference/load-and-pay-transaction-api)
   * [Check Status API](ref:check-status-api)
 * [Retrieve Customer Record API](ref:retrieve-customer-record-api-1)
-* [Statement Inquiry API](ref:statement-inquiry-api-1)
+* [Statement Inquiry API](ref:statement-inquiry-api-clw)
 * [Debiting Wallet APIs](ref:debiting-wallet)
   * [Non-Seamless Debit Transaction API](https://docs.payu.in/reference/non-seamless-debit-transaction-api)
   * [Seamless Debit Transaction API](https://docs.payu.in/reference/collect-payment-api-card-seamless)
