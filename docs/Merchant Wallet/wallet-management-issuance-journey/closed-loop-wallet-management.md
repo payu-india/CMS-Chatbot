@@ -1,5 +1,5 @@
 ---
-title: Closed-Loop Wallet Management
+title: Closed-Loop Wallet Management APIs
 excerpt: ''
 deprecated: false
 hidden: false
