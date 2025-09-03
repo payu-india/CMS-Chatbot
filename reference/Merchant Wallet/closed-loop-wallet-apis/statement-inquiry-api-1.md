@@ -1,8 +1,9 @@
 ---
-title: Statement Inquiry API
+title: Statement Inquiry API - CLW
 deprecated: false
 hidden: true
 metadata:
+  title: Statement Inquiry API - CLW
   robots: index
 ---
 The **Statement Inquiry** API allows you to retrieve wallet transaction details, including both financial and non-financial transactions, within a specific date range. This is useful for generating account statements and transaction history.
