@@ -5,9 +5,9 @@ hidden: true
 metadata:
   robots: index
 ---
-The following flow diagram illustrate the PaYU Chargeback flow:
+The following flow diagram illustrate the PayU Chargeback flow. PAM 
 
-<Image align="center" src="https://files.readme.io/19dacb18db891e46516c1b51f8d732c4d79a573e6d8085e58ed3856385325101-chargeback_flow.png" />
+<Image align="center" width="500px" src="https://files.readme.io/19dacb18db891e46516c1b51f8d732c4d79a573e6d8085e58ed3856385325101-chargeback_flow.png" />
 
 ## Step1 : Chargeback Notification
 
