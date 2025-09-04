@@ -186,7 +186,7 @@ After the customer completes the payment on the PayU checkout page, you must ver
 | Environment | URL                                   |
 | ----------- | ------------------------------------- |
 | Test        | `https://test.payu.in/v3/transaction` |
-| Production  | `https://api.payu.in/v3/transaction`  |
+| Production  | `https://info.payu.in/v3/transaction` |
 
 ### Request Headers
 
