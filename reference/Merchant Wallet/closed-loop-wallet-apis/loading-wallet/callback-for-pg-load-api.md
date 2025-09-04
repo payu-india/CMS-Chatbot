@@ -1,7 +1,7 @@
 ---
 title: Callback for PG Load API
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
