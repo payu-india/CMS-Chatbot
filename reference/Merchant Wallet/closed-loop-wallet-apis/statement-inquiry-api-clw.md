@@ -1,7 +1,7 @@
 ---
 title: Statement Inquiry API - CLW
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Statement Inquiry API - CLW
   robots: index
