@@ -1,7 +1,7 @@
 ---
 title: Registering Customer APIs
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Registering Customer APIs - Closed Loop
   robots: index
