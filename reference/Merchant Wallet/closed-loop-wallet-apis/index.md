@@ -1,7 +1,7 @@
 ---
 title: Closed-Loop Wallet APIs
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
