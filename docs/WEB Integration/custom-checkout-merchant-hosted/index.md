@@ -66,17 +66,6 @@ The following process diagram illustrates the Merchant Hosted Checkout workflow:
 
 Merchant Hosted Checkout supports a wide range of payment methods: 
 
-<br />
-
-* <br />
-* <br />
-* <br />
-* <br />
-* <br />
-* <br />
-* <br />
-* [EFTNET (NEFT/RTGS) Integration](https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless)
-* <br />
 * **Credit Cards and Debit Cards**: Visa, Mastercard, American Express, etc. For more information, refer to [Cards Integration](https://docs.payu.in/docs/collect-payments-with-cards-seamless).
 * **Net Banking**: Collect payments through Net Banking using PayU’s Merchant Hosted Checkout integration. Merchants should always send both customer account no and customer IFSC Code in Request. For more information, refer to [Net Banking Integration](https://docs.payu.in/docs/collect-payments-with-net-banking-seamless).
 * **Wallets**: Integrate with popular wallets like Paytm, PhonePe, and others.   For more information, refer to [Wallets Integration](doc:collect-payments-with-wallets-seamless).
@@ -84,17 +73,17 @@ Merchant Hosted Checkout supports a wide range of payment methods: 
 * **EMI (Equated Monthly Installments)**: Offer customers the option to pay in instalments. For more information, refer to [EMI Integration](https://docs.payu.in/docs/collect-payments-with-emi-seamless).
 * **BNPL (Buy Now, Pay Later)**: Integrate with BNPL providers to allow customers to spread payments over time. For more information, refer to
 * **PayPal**: Facilitate international payments through PayPal. If you’re using the PayU Hosted Checkout or Merchant Hosted integration, you need to activate PayPal from PayU Dashboard. 
-* **Pluxee Card**: Integrate with Pluxee (formerly Sodexo) meal cards. For Sodexo payment option mode or PG is MC and Ibibo\_code or bankcodeis SODEXO. In case customer provides the consent to save the card details with merchant on their check-out page: Merchant should pass save\_sodexo\_card parameter value as 1 when initiating the transaction using \_payment API. Merchants are recommended to use the check\_balance API for checking the Sodexo card balance. For more information, refer to [Pluxee Card Integration](https://docs.payu.in/docs/integrate-with-merchant-hosted-checkout-for-pluxee-card)/
+* **Pluxee Card**: Integrate with Pluxee (formerly Sodexo) meal cards. For Sodexo payment option mode or PG is MC and Ibibo_code or bankcodeis SODEXO. In case customer provides the consent to save the card details with merchant on their check-out page: Merchant should pass save_sodexo_card parameter value as 1 when initiating the transaction using _payment API. Merchants are recommended to use the check_balance API for checking the Sodexo card balance. For more information, refer to [Pluxee Card Integration](https://docs.payu.in/docs/integrate-with-merchant-hosted-checkout-for-pluxee-card)/
 * **EFT/NEFT**: Integrate with EFT/NEFT (National Electronics Fund Transfer), where **pg=NEFTRTGS** and bankcode parameter is based on the bank or institution. For more information, refer to [EFTNET (NEFT/RTGS) Integration](doc:collect-payments-with-eftnet-neftrtgs-seamless)
 * **QR Code**: Enable payments via QR codes. For more information, refer to [QR Integration](https://docs.payu.in/docs/merchant-hosted-qr-integration).
 
 > 📘 Note:
 >
-> For each payment method, you may need to pass specific parameters in the \_payment API request. Refer to the PayU documentation for each payment method for details. For all the supported wallets, refer to Wallet Codes to understand exact value which needs to be passed against bankcode parameter. 
+> For each payment method, you may need to pass specific parameters in the _payment API request. Refer to the PayU documentation for each payment method for details. For all the supported wallets, refer to Wallet Codes to understand exact value which needs to be passed against bankcode parameter. 
 
 ### Supported Payment Methods: Details for API Integration
 
-The following table summarizes the supported payment methods for PayU’s Merchant Hosted Checkout, along with the corresponding bankcode and pg values required in the \_payment API request. It also includes other relevant details and considerations for each payment method. 
+The following table summarizes the supported payment methods for PayU’s Merchant Hosted Checkout, along with the corresponding bankcode and pg values required in the _payment API request. It also includes other relevant details and considerations for each payment method. 
 
 | Payment Method       | pg     | bankcode                 | Additional Details                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | -------------------- | ------ | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -105,8 +94,8 @@ The following table summarizes the supported payment methods for PayU’s Mercha
 | EMI                  | CC     | N/A                      | EMI is usually processed through credit cards. The pg value is CC. You may need to pass additional parameters related to the EMI plan, such as the number of months and the interest rate. The availability of EMI options depends on the card issuing bank and PayU's agreements. For more information, refer to [EMI](doc:emi-api-integration).                                                                                     |
 | BNPL                 | Varies | Varies                   | The pg and bankcode values depend on the specific BNPL provider. Refer to the PayU documentation for the correct values for each provider. Integration requirements vary depending on the provider. For more information, refer to [BNPL Integration](doc:payu-bnpl-integration-introduction).                                                                                                                                        |
 | PayPal               | PAYPAL | N/A                      | Activate PayPal from the PayU Dashboard before integrating. No bankcode is required for PayPal. Settlements are typically processed in INR. You're using the PayU Hosted Checkout or Merchant Hosted integration, you need to activate PayPal from PayU Dashboard.                                                                                                                                                                    |
-| Pluxee Card (Sodexo) | MC     | SODEXO                   | Use the SODEXO bankcode. The pg value is MC. Merchants are recommended to use the check\_balance API for checking the Sodexo card balance.                                                                                                                                                                                                                                                                                            |
-| EFTNET (NEFT/RTGS)   | NB     | EFTAXTPV                 | The api\_version "6" must be passed for this parameter for NEFT/RTGS. Merchants should always send both customer account no and customer IFSC Code in Request.                                                                                                                                                                                                                                                                        |
+| Pluxee Card (Sodexo) | MC     | SODEXO                   | Use the SODEXO bankcode. The pg value is MC. Merchants are recommended to use the check_balance API for checking the Sodexo card balance.                                                                                                                                                                                                                                                                                             |
+| EFTNET (NEFT/RTGS)   | NB     | EFTAXTPV                 | The api_version "6" must be passed for this parameter for NEFT/RTGS. Merchants should always send both customer account no and customer IFSC Code in Request.                                                                                                                                                                                                                                                                         |
 | QR Code              | UPI    | N/A                      | The QR code format should be as per Bharat QR specifications.                                                                                                                                                                                                                                                                                                                                                                         |
 
 > 📘 Important Notes: 
