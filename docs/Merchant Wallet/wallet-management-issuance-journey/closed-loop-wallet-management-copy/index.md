@@ -1,8 +1,13 @@
 ---
-title: Closed-Loop Wallet Management (Internal Review)
+title: Closed-Loop Wallet Management
 deprecated: false
 hidden: true
 metadata:
+  title: Closed-Loop Wallet Management
+  keywords:
+    - Closed-Loop Wallet Management
+    - clw
+    - closed loop wallet management
   robots: index
 ---
 **Closed-Loop Wallet API** enables businesses to implement merchant-specific digital wallet solutions that can only be used within the issuing merchant's website or mobile application. This prepaid payment instrument provides a controlled, branded payment experience that drives customer loyalty and repeat engagement.
