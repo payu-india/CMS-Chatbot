@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-The following flow diagram illustrate the PayU Chargeback flow. PAM
+The following flow diagram illustrate the PayU Chargeback flow. 
 
 <Image align="center" width="500px" src="https://files.readme.io/41abd752e30c42d3f761fe65da96d0e45ace3b05c6f3241ce87d18dcfc2c6bd0-chargeback_flow_updated.png" />
 
@@ -17,11 +17,11 @@ Merchant receives a chargeback alert from PayU via dashboard and email. The deta
 * Reason code
 * "Reply Before" deadline (the date by which you must act)
 
-<Callout icon="📘">
+<Callout icon="📘" theme="info">
   **Reference**: For more information, refer to [View a Case Details](doc:view-a-case-details).
 </Callout>
 
-<Callout icon="❗️">
+<Callout icon="❗️" theme="error">
   **Notifications from child MIDs**: On the basis of configuration, the notifications from child MIDs can also be displayed.
 </Callout>
 
@@ -48,7 +48,7 @@ You must act before the "Reply Before" date! Choose one of the following actions
 
 * PayU Reviews the submission with evidences and then builds the case
 * PayU can return the submission because of insufficient documentation for re-submission
-* PayU forwards your response (acceptance or evidence) to the acquiring bank for final evaluation.
+* PayU forwards your response (acceptance or contest with evidence) to the acquiring bank for final evaluation.
 
 ***
 
