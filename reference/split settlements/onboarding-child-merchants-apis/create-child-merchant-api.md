@@ -25,10 +25,10 @@ HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                                                                                                     |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://uat-onepayuonboarding.payu.in/api/v3/product\_accounts>](https://uat-onepayuonboarding.payu.in/api/v3/product_accounts>) |
-| **Production Environment** | \<[https://onboarding.payu.in/api/v3/product\_accounts>](https://onboarding.payu.in/api/v3/product_accounts>)                       |
+|                            |                                                                                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://uat-onepayuonboarding.payu.in/api/v3/product_accounts>](https://uat-onepayuonboarding.payu.in/api/v3/product_accounts>) |
+| **Production Environment** | \<[https://onboarding.payu.in/api/v3/product_accounts>](https://onboarding.payu.in/api/v3/product_accounts>)                       |
 
 ## Step 1: Add child merchant
 
@@ -36,7 +36,7 @@ HTTP Method: **POST**
 >
 > Generate token using the [Get Client Token API](ref:get-client-token-api) and pass it in header along with the following request parameters.
 >
-> For the Postman collection, refer to [Postman Collection](https://documenter.getpostman.com/view/7484238/TVCcZAJC#auth-info-60abdedd-6640-49c8-9497-fe181220c2fd). Merchant access token or client token with scope ‘refer\_child\_merchant’ from Hub.
+> For the Postman collection, refer to [Postman Collection](https://documenter.getpostman.com/view/7484238/TVCcZAJC#auth-info-60abdedd-6640-49c8-9497-fe181220c2fd). Merchant access token or client token with scope ‘refer_child_merchant’ from Hub.
 
 ### Request Parameters
 
@@ -101,7 +101,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>business_entity_id<br><strong>mandatory</strong></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business entity ID of the merchant. The business entity ID and corresponding business entity is listed in the <a href="#business_entity_mapping">Business Entity Mapping</a> table of this section.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business entity ID of the merchant. The business entity ID and corresponding business entity is listed in the <a href="#business-entity-mapping">Business Entity Mapping</a> table of this section.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>P</p>
 </td>
@@ -133,7 +133,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>business_sub_category_id<br><strong>mandatory</strong></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business sub category ID of the child merchant. For the list business sub-category ID, refer to <a href="ref:business-category-sub-category-uuids-for-split-settlements#business-sub-category-list">Business Category &amp; Sub-category UUIDs List</a> .<br><strong>Note</strong>: Each business sub-category is dependent on business category. Hence, you must enter the sub-category according to the value you post in the <strong>business_category_id</strong> parameter.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business sub category ID of the child merchant. For the list business sub-category ID, refer to <a href="ref:business-category-sub-category-uuids-for-split-settlements">Business Category &amp; Sub-category UUIDs List</a> .<br><strong>Note</strong>: Each business sub-category is dependent on business category. Hence, you must enter the sub-category according to the value you post in the <strong>business_category_id</strong> parameter.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>128</p>
 </td>
@@ -168,7 +168,7 @@ HTTP Method: **POST**
 
 ### Business Entity Mapping
 
-The business entity ID (**business\_entity\_id**) and corresponding business entity mapping are:
+The business entity ID (**business_entity_id**) and corresponding business entity mapping are:
 
 | Entity Code | Business Entity Types                               |
 | :---------- | :-------------------------------------------------- |
@@ -522,15 +522,15 @@ After adding the child merchant in[ Step 1: Add a child merchant](##step-1-add-c
 
 > 📘 Authorization:
 >
-> This request is using Bearer Token from the collection. For more information, refer to [Postman Collection](https://documenter.getpostman.com/view/7484238/TVCcZAJC#auth-info-60abdedd-6640-49c8-9497-fe181220c2fd). Merchant access token or client token with scope ‘refer\_child\_merchant’ from Hub.
+> This request is using Bearer Token from the collection. For more information, refer to [Postman Collection](https://documenter.getpostman.com/view/7484238/TVCcZAJC#auth-info-60abdedd-6640-49c8-9497-fe181220c2fd). Merchant access token or client token with scope ‘refer_child_merchant’ from Hub.
 
-The **bank\_detail** parameter is in a JSON parameter, and the fields in this parameter are described in the following table:
+The **bank_detail** parameter is in a JSON parameter, and the fields in this parameter are described in the following table:
 
-| **Field**             | **Description**                                                                  | **Example**   |
-| --------------------- | -------------------------------------------------------------------------------- | ------------- |
-| bank\_account\_number | The account number of the child merchant is specified in this field.             | 6633809947434 |
-| holder\_name          | The name of the child merchant who holds the account is specified in this field. | Harsh Agarwal |
-| ifsc\_code            | The IFSC code of the bank branch where the child merchant has the account.       | ICIC0000031   |
+| **Field**           | **Description**                                                                  | **Example**   |
+| ------------------- | -------------------------------------------------------------------------------- | ------------- |
+| bank_account_number | The account number of the child merchant is specified in this field.             | 6633809947434 |
+| holder_name         | The name of the child merchant who holds the account is specified in this field. | Harsh Agarwal |
+| ifsc_code           | The IFSC code of the bank branch where the child merchant has the account.       | ICIC0000031   |
 
 ### Sample request
 
