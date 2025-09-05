@@ -17,7 +17,10 @@ Before you begin, ensure that:
 * You have a PayU merchant account (or can create one during setup)
 
 <Callout icon="📘" theme="info">
-  **Note**: Developer Mode must be enabled in Odoo to proceed with eCommerce and PayU module setup.
+  **Notes**: 
+
+  * **Developer** mode must be enabled in Odoo to proceed with eCommerce and PayU module setup.
+  * This plugin has been developed and tested on Odoo 18, so it is recommended using version 18 or above for optimal compatibility and performance.
 </Callout>
 
 ## Install on Linux OS
@@ -82,7 +85,7 @@ cd C:/custom_addons
 git clone https://github.com/boxpay-tech/payu-connectors.git
 ```
 
-4. Modify the `odoo.conf` file located in the `server` folder to include the path of the custom\_addons folder under the `addons_path`:
+4. Modify the `odoo.conf` file located in the `server` folder to include the path of the custom_addons folder under the `addons_path`:
 
 ```
 addons_path = C:/Program Files/Odoo/server/addons,C:/custom_addons
@@ -114,7 +117,7 @@ The **Apps** section is displayed on the Dashboard.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/b00bf1271cd915cab1f83053fc523607cdea7ffcd6583c354f0df28bae702e7a-odoo_setup_image_9_page_7.png" />
 
-The *Settings* page is displayed.
+The _Settings_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/5a5fa04583e17c8e863bf617046f77a83fac227d7df66d8386e1f90ef301bc53-odoo_setup_image_10_page_8.png" />
 
