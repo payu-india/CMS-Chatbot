@@ -23,8 +23,6 @@ The PayU India plugin for Odoo allows store owners to accept online payments sec
   Only offers that do not modify the final invoice amount (such as cashback) are supported.
 </Callout>
 
-Before You Begin
-
-
+## Before You Begin
 
 You’ll need to register for a PayU merchant account before starting the integration. For more details, refer to [Register for a Merchant Account](https://www.payu.in/merchant-signup).
