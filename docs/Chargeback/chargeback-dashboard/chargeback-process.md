@@ -27,11 +27,15 @@ The following flow diagram illustrate the PayU Chargeback flow. PAM
 
 You must act before the "Reply Before" date! Choose one of the following actions:
 
-* **Accept the Chargeback**
-* **Contest/Dispute the Chargeback**
+* **Accept the Chargeback**: For more information, refer to any of the following:
+  * **Manually**: [Accept Chargeback on Dashboard](doc:accept-chargeback-on-dashboard)
+  *  **API**:  [Accept Chargeback API](ref:accept-chargeback-api)
+* **Contest/Dispute the Chargeback**: For more information, refer to any of the following:
+  * **Manually**: [Contest Chargeback on Dashboard](doc:contest-chargeback-on-dashboard)
+  * **API**: [Contest Chargeback API](ref:contest-chargeback-api)
 
 <Callout icon="📘" theme="info">
-  **Update evidences**: In order to contest the chargeback, evidences should be uploaded based the reason code. 
+  **Update evidences**: In order to contest the chargeback, evidences should be uploaded based the reason code.
 </Callout>
 
 ***
@@ -58,6 +62,7 @@ You must act before the "Reply Before" date! Choose one of the following actions
 * **Pre-Arbitration**: After the merchant/acquirer has represented the case (submitted evidence) and the issuer still disagrees with the response. This offers a final opportunity to resolve the dispute based on new information or further clarification, potentially avoiding formal arbitration. The following happens with the case:
   * The issuer (customer’s bank) initiates pre-arbitration, usually providing new evidence or arguments as to why the chargeback should stand.
   * The acquirer (merchant’s bank through PayU) receives this and can:
+
     * Accept (agree with chargeback, absorbing the loss), or
     * Decline (dispute further, escalating to arbitration).
 
