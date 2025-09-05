@@ -125,7 +125,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>business_category_id<br><strong>mandatory</strong></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business category ID of the child merchant. For the list business category ID, refer to <a href="ref:business-category-sub-category-uuids-for-split-settlements">Business Category &amp; Sub-category UUIDs List</a>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business category ID of the child merchant. For the list business category ID, refer to <a href="https://docs.payu.in/reference/business-category-sub-category-uuids-for-split-settlements/">Business Category &amp; Sub-category UUIDs List</a>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>16</p>
 </td>
@@ -133,7 +133,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>business_sub_category_id<br><strong>mandatory</strong></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business sub category ID of the child merchant. For the list business sub-category ID, refer to <a href="ref:business-category-sub-category-uuids-for-split-settlements">Business Category &amp; Sub-category UUIDs List</a> .<br><strong>Note</strong>: Each business sub-category is dependent on business category. Hence, you must enter the sub-category according to the value you post in the <strong>business_category_id</strong> parameter.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The business sub category ID of the child merchant. For the list business sub-category ID, refer to <a href="https://docs.payu.in/reference/business-category-sub-category-uuids-for-split-settlements/">Business Category &amp; Sub-category UUIDs List</a> .<br><strong>Note</strong>: Each business sub-category is dependent on business category. Hence, you must enter the sub-category according to the value you post in the <strong>business_category_id</strong> parameter.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>128</p>
 </td>
