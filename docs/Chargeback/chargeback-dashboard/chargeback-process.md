@@ -11,13 +11,17 @@ The following flow diagram illustrate the PayU Chargeback flow. PAM
 
 ## Step1 : Chargeback Notification
 
-* Merchant receives a chargeback alert from PayU via dashboard and email.
-  * Details include:
-    • Chargeback amount
-    • Reason code
-    • "Reply Before" deadline (the date by which you must act)
+Merchant receives a chargeback alert from PayU via dashboard and email. The details include:
 
-<Callout icon="📘" theme="info">
+* Chargeback amount
+* Reason code
+* "Reply Before" deadline (the date by which you must act)
+
+<Callout icon="📘">
+  **Reference**: For more information, refer to [View a Case Details](doc:view-a-case-details).
+</Callout>
+
+<Callout icon="❗️">
   **Notifications from child MIDs**: On the basis of configuration, the notifications from child MIDs can also be displayed.
 </Callout>
 
@@ -29,7 +33,7 @@ You must act before the "Reply Before" date! Choose one of the following actions
 
 * **Accept the Chargeback**: For more information, refer to any of the following:
   * **Manually**: [Accept Chargeback on Dashboard](doc:accept-chargeback-on-dashboard)
-  *  **API**:  [Accept Chargeback API](ref:accept-chargeback-api)
+  * **API**:  [Accept Chargeback API](ref:accept-chargeback-api)
 * **Contest/Dispute the Chargeback**: For more information, refer to any of the following:
   * **Manually**: [Contest Chargeback on Dashboard](doc:contest-chargeback-on-dashboard)
   * **API**: [Contest Chargeback API](ref:contest-chargeback-api)
