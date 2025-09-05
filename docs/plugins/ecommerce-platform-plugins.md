@@ -22,6 +22,7 @@ PayU provides a plugin to integrate with the following e-commerce enablers:
   * [Affordability Widget Integration for Shopify](doc:affordability-widget-integration-for-shopify)
   * [Install CommercePro Checkout App](doc:install-commercepro-checkout-app)
 * [Wix](doc:wix)
+* [Odoo](doc:odoo)
 * [WooCommerce](doc:woocommerce)
 * [Interakt for WhatsApp Business](doc:interakt-for-whatsapp-business)
 * [Magento](doc:magento)
