@@ -1,7 +1,7 @@
 ---
 title: Install and Configure Odoo Plugin
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
