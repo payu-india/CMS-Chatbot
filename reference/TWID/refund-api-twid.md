@@ -7,11 +7,17 @@ metadata:
 ---
 The **Refund** API is used to initiate a refund request for a loyalty-based transaction.
 
-## Endpoint
+### Environment
 
 |            |                                     |
 | :--------- | :---------------------------------- |
 | Production | \{\{loyalty-service-url}}/refund/v1 |
+
+## Request header
+
+<V2_paymentHeader />
+
+<br />
 
 ## Request parameters
 
@@ -99,6 +105,6 @@ curl -X POST "https://apitest.payu.in/loyalty-points/refund/v1" \
 <Callout icon="📘" theme="info">
   **Notes:**
 
-  * When the refund is queued, the status must be verified using the **Refund Status API** for confirmation. 
+  * When the refund is queued, the status must be verified using the **Refund Status API** for confirmation.
   * The `loyaltyRefundId` returned should be used to check the refund status
 </Callout>
