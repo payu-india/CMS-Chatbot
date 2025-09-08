@@ -14,7 +14,7 @@ Registering your customers in your closed-loop wallet enables seamless payments,
 `POST https://api.payu.in/wallet/registerCustomer`
 
 **Sandbox URL:**
-`POST https://sandboxapi.payu.in/wallet/registerCustomer`
+`POST https://apitest.payu.in/wallet/registerCustomer`
 
 ## Step 1: Build the Request Payload
 
