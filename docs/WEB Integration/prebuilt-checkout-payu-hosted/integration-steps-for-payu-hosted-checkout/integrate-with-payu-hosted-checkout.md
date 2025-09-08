@@ -561,5 +561,3 @@ PayU recommends this step to reconcile with PayU’s database after you receive 
 <Recipe slug="parse-the-verify-payment-api-response" title="Parse the Verify Payment API response" />
 
 <br />
-
-<Recipe slug="parse-the-verify-payment-api-response" title="Parse the Verify Payment API response" />
