@@ -9,10 +9,10 @@ The Merchant Onboarding API is used to onboard new merchants on the Twid platfor
 
 ## Environment
 
-|            |                                       |
-| :--------- | :------------------------------------ |
-| Production | \{\{loyalty-service-url}}/merchant/v1 |
-| Test       | https://apitest.payu.in/merchant/v1   |
+|            |                                                                            |
+| :--------- | :------------------------------------------------------------------------- |
+| Production | \{\{loyalty-service-url}}/merchant/v1                                      |
+| Test       | [https://apitest.payu.in/merchant/v1](https://apitest.payu.in/merchant/v1) |
 
 ## Request header
 
@@ -130,10 +130,10 @@ curl -X POST "https://apitest.payu.in/loyalty-points/merchant/v1" \
 
 ## Response parameters
 
-| Parameter            | Description                                                            | Example                                    |
-| -------------------- | ---------------------------------------------------------------------- | ------------------------------------------ |
-| `loyaltyMerchantKey` | `String` - Unique key assigned to the merchant for loyalty integration | `"LS309b6df5-4740-4459-889f-ea4b261d3d2a"` |
-| `msg`                | `String` - The outcome message of the API call                         | `"SUCCESS"`                                |
+| Parameter          | Description                                                            | Example                                    |
+| ------------------ | ---------------------------------------------------------------------- | ------------------------------------------ |
+| loyaltyMerchantKey | `String` - Unique key assigned to the merchant for loyalty integration | `"LS309b6df5-4740-4459-889f-ea4b261d3d2a"` |
+| msg                | `String` - The outcome message of the API call                         | `"SUCCESS"`                                |
 
 ## Sample response
 
