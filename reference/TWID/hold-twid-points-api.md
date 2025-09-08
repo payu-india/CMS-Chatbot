@@ -9,10 +9,9 @@ The **Hold TWID Points** API is used to hold (reserve) reward points for a speci
 
 ## Environment
 
-|            |                                                                 |
-| :--------- | :-------------------------------------------------------------- |
-| Production |  \{\{loyalty-service-url}}/payment/v1/createPayment             |
-| Test       | https://apitest.payu.in/loyalty-points/payment/v1/createPayment |
+|            |                                                    |
+| :--------- | :------------------------------------------------- |
+| Production | \{\{loyalty-service-url}}/payment/v1/createPayment |
 
 HTTP Method: **POST**
 
@@ -81,7 +80,7 @@ HTTP Method: **POST**
 ### Non-seamless Integration
 
 ```bash
-curl -X POST "https://apitest.payu.in/loyalty-points/payment/v1/createPayment" \
+curl -X POST "\{\{loyalty-service-url}}/payment/v1/createPaymentt" \
   -H "Content-Type: application/json" \
   -H "mid: YOUR_MERCHANT_ID" \
   -d '{
@@ -99,7 +98,7 @@ curl -X POST "https://apitest.payu.in/loyalty-points/payment/v1/createPayment" \
 ### Seamless Integration
 
 ```bash
-curl -X POST "https://apitest.payu.in/loyalty-points/payment/v1/createPayment" \
+curl -X POST "\{\{loyalty-service-url}}/payment/v1/createPayment" \
   -H "Content-Type: application/json" \
   -H "Date: Wed, 08 Sep 2025 13:22:43 GMT" \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\"" \
