@@ -211,11 +211,11 @@ curl --location 'https://info.payu.in/merchant/postservice.php/?form=2' \
 ### Success scenario
 
 ```
-{"status":1,"action":"MANDATE_REVOKE","message":"Mandate Revoke request processed successfully"} 
+{"status":1,"msg":"Cancelled Request Queued","txn_update_id":"4993824106405","bank_ref_num":null,"error_code":102}
 ```
 
 ### Failure scenario
 
 ```
-{"status":0,"msg":"Cancelled failed","error_code":105}
+{"status":0,"action":"MANDATE_REVOKE","message":"Request failed"} 
 ```
