@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The **pre\_authorize** parameter is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API.
+The **pre_authorize** parameter is used to pre-authorize payments using the PayU Hosted Checkout integration with the **_payment** API.
 
 > 📘 Note:
 >
@@ -22,12 +22,12 @@ Post the additional parameters for using the Pre-Auth. For complete list of para
 
 **Environment**
 
-|                            |                                                                       |
-| :------------------------- | :-------------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | [https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
+|                            |                                                                      |
+| :------------------------- | :------------------------------------------------------------------- |
+| **Test Environment**       | [https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | [https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
 
-The **pre\_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API.
+The **pre_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **_payment** API.
 
 <HTMLBlock>{`
 <table>
@@ -201,7 +201,7 @@ https://apiplayground-response.herokuapp.com/
 
 By default, the response in HTML format. The formatted sample response body is similar to the following, and you need to look for the following parameters:
 
-* PG\_TYPE: CC PG
+* PG_TYPE: CC PG
 * bankcode: CC
 * **unamappedstatus: auth**
 
@@ -297,8 +297,8 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 
 ## Step 3: Check Action Status
 
-* To check the status of the transaction, use the **verify\_payment** API.  For more information, refer to [Verify Payment API](ref:verify_payment_api)
-* To check the status of the Auth Request and then Capture Request sent, use the **check\_action\_status** API. For more information,  refer to  [Check Refund Status API with Request ID](ref:check_action_status_api_with_request_id).
+* To check the status of the transaction, use the **verify_payment** API.  For more information, refer to [Verify Payment API](ref:verify_payment_api)
+* To check the status of the Auth Request and then Capture Request sent, use the **check_action_status** API. For more information,  refer to  [Check Refund Status API with Request ID](ref:check_action_status_api_with_request_id).
 
 > 📘 Note:
 >
@@ -450,3 +450,9 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 
 } 
 ```
+
+<br />
+
+<Callout icon="👍">
+  **Reference**: For cancelling pre-auth payments, refer to [Cancel a Pre-Authorized Transaction API](ref:cancel-a-pre-authorized-transaction).
+</Callout>
