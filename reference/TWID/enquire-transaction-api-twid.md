@@ -5,12 +5,18 @@ hidden: true
 metadata:
   robots: index
 ---
-This API allows the merchant to verify the status of a specific loyalty transaction either using the `loyaltyTxnId` or `payuTxnId` parameter. Both parameters are optional but at least one must be provided. The use cases for this API are:
+The **Enquire Transaction** API allows the merchant to verify the status of a specific loyalty transaction either using the `loyaltyTxnId` or `payuTxnId` parameter. Both parameters are optional but at least one must be provided. The use cases for this API are:
 
 * Reconciliation or to confirm the final status of loyalty transactions
 * Transaction status verification during payment processing
 
-\{\{loyalty-service-url}}/payment/v1/enquiry
+## Environment
+
+|            |                                              |
+| :--------- | :------------------------------------------- |
+| Production | \{\{loyalty-service-url}}/payment/v1/enquiry |
+
+HTTP Method: **POST**
 
 ## Request parameters
 
