@@ -10,10 +10,10 @@ metadata:
 next:
   description: ''
 ---
-The merchant initiates a call to PayU with the SI details, pg, bankcode, and pre-authorization amount. This amount is considered the Block Amount.\
+The merchant initiates a call to PayU with the SI details, pg, bankcode, and pre-authorization amount. This amount is considered the Block Amount.
 Using these details, Payu will then relay the callback with the current status to the merchant.
 
-The **pre\_authorize** parameter is used for pre-authorize payments using the seamless integration with the \_payment API.
+The **pre_authorize** parameter is used for pre-authorize payments using the seamless integration with the _payment API.
 
 ## Step 1: Post the Pre-Auth transaction request
 
@@ -21,10 +21,10 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
 **Environment**
 
-|                            |                                                                      |
-| :------------------------- | :------------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)      |
-| **Production Environment** | [https://secure.payu.in/\_payment>](https://secure.payu.in/_payment) |
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)      |
+| **Production Environment** | [https://secure.payu.in/_payment>](https://secure.payu.in/_payment) |
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -69,7 +69,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
         `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.
         `Character limit`: 25
 
-        * *Note*\*: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’
+        * _Note_*: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’
       </td>
 
       <td>
@@ -79,14 +79,14 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
     <tr>
       <td>
-        amount\
+        amount
         `mandatory`
       </td>
 
       <td>
         `float` This parameter should contain the payment amount of the particular transaction.
 
-        * *Note*\*: Type-cast the amount to float type
+        * _Note_*: Type-cast the amount to float type
       </td>
 
       <td>
@@ -96,12 +96,12 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
     <tr>
       <td>
-        productinfo\
+        productinfo
         `mandatory`
       </td>
 
       <td>
-        `varchar` This parameter should contain a brief product description. It should be a string describing the product.\
+        `varchar` This parameter should contain a brief product description. It should be a string describing the product.
         `Character limit`: 100
       </td>
 
@@ -112,12 +112,12 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
     <tr>
       <td>
-        firstname\
+        firstname
         `mandatory`
       </td>
 
       <td>
-        `varchar` Must contain the first name of the customer.\
+        `varchar` Must contain the first name of the customer.
         `Character limit`: 60
       </td>
 
@@ -128,32 +128,36 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
     <tr>
       <td>
-        email\
+        email
         `mandatory`
       </td>
 
       <td>
-        `varchar` Must contain the email of the customer.\
+        `varchar` Must contain the email of the customer.
         This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.
         Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
         Character limit: 50
       </td>
 
       <td>
+
+
         [Ashish@test.com](mailto:Ashish@test.com)
+
+
       </td>
     </tr>
 
     <tr>
       <td>
-        phone\
+        phone
         `mandatory`
       </td>
 
       <td>
         `varchar` Must contain the phone number of the customer.
 
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.\
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
         Character limit: 50
       </td>
 
@@ -164,7 +168,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
     <tr>
       <td>
-        surl\
+        surl
         `mandatory`
       </td>
 
@@ -179,7 +183,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
     <tr>
       <td>
-        furl\
+        furl
         `mandatory`
       </td>
 
@@ -194,7 +198,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
     <tr>
       <td>
-        txn\_s2s\_flow\
+        txn_s2s_flow
         `mandatory`
       </td>
 
@@ -209,7 +213,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
     <tr>
       <td>
-        pre\_authorize\
+        pre_authorize
         `mandatory for Pre-Auth`
       </td>
 
@@ -224,7 +228,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
     <tr>
       <td>
-        si\_details
+        si_details
       </td>
 
       <td>
@@ -241,17 +245,17 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
     <tr>
       <td>
-        hash\
+        hash
         `mandatory`
       </td>
 
       <td>
         Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU’s payment interface while registration transactions.
 
-        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.
+        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.
 
-        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:\
-        \`HASH = sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:
+        `HASH = sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
       </td>
 
       <td>
@@ -295,7 +299,7 @@ curl --request POST  
 
 ## Step 2: Check the response from PayU
 
-On receiving valid request over PayU’s payment interface (\_payment), PayU returns J
+On receiving valid request over PayU’s payment interface (_payment), PayU returns J
 
 ```curl
 mihpayid=6MAESTROMAESTRO5&mode=UPI&status=success&key=travelibibo&txnid=8286f8e3954bf669c02e&amount=10000.00&addedon=2024-04-22 15:48:45&productinfo=Product Info&firstname=CARDHOLDERXXXXXXXXNAME-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test@example.com&"phone":"##########"&udf1=&udf2=&udf3=&udf4=Created&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=sur***@icici&field2=&field3=sur***icici&field4=ICICI Test Vpa&field5=3159219e58ed45eda39e8914b998401a@icici&field6=rambo|_mobilenum_&field7=00|APPROVED OR COMPLETED SUCCESSFULLY&field8=&field9=APPROVED OR COMPLETED SUCCESSFULLY|Completed Using Callback&payment_source=payuPureS2S&PG_TYPE=UPI-PG&error=E000&error_Message=No Error&net_amount_debit=10000&discount=0.00&unmappedstatus=auth&hash=3ca863c1c8148baa13891f6e8e124c07f909d9fa14d6757acc01b08b736c35bbdae9845fa445cdaf22fb190f717285d0d09c02508bbfe081b4833eaf5637ec03&bank_ref_no=410901015475&bank_ref_num=410901015475&bankcode=UPI&surl=http://local.admin.payu.in/test_response&curl=http://local.admin.payu.in/test_response&furl=http://local.admin.payu.in/test_response 
@@ -382,7 +386,7 @@ To capture a pre-authorized payment, use the following command. After the API co
   <tbody>
     <tr>
       <td>
-        key \`\`\`
+        key ```
 
         mandatory
 
@@ -403,13 +407,13 @@ To capture a pre-authorized payment, use the following command. After the API co
       </td>
 
       <td>
-        For initiating a capture transaction, the value of the parameter will be passed as - **capture\_transaction**
+        For initiating a capture transaction, the value of the parameter will be passed as - **capture_transaction**
       </td>
     </tr>
 
     <tr>
       <td>
-        hash \`\`\`
+        hash ```
 
         mandatory
 
@@ -437,7 +441,7 @@ To capture a pre-authorized payment, use the following command. After the API co
 
     <tr>
       <td>
-        var2 \`\`\`
+        var2 ```
 
         mandatory
 
@@ -503,4 +507,8 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 
 ### Step 4: Check Transaction Status
 
-To check the status of the transaction, use the verify\_payment API. For more information, refer to [Verify Payment API](ref:verify_payment_api).
+To check the status of the transaction, use the verify_payment API. For more information, refer to [Verify Payment API](ref:verify_payment_api).
+
+<Callout icon="👍" theme="okay">
+  **Reference**: For cancelling pre-auth payments, refer to [Cancel a Pre-Authorized Transaction API](ref:cancel-a-pre-authorized-transaction).
+</Callout>
