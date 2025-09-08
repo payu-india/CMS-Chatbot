@@ -55,7 +55,7 @@ HTTP Method: **GET**
 ### Non-seamless integration
 
 ```bash
-curl -X GET "https://apitest.payu.in/loyalty-points/refund/v1/1213" \
+curl -X GET "\{\{loyalty-service-url}}/refund/v1/1213" \
   -H "Content-Type: application/json" \
   -H "mid: YOUR_MERCHANT_ID"
 ```
@@ -63,7 +63,7 @@ curl -X GET "https://apitest.payu.in/loyalty-points/refund/v1/1213" \
 ### Seamless integration
 
 ```bash
-curl -X GET "https://apitest.payu.in/loyalty-points/refund/v1/1213" \
+curl -X GET "\{\{loyalty-service-url}}/refund/v1/1213" \
   -H "Content-Type: application/json" \
   -H "Date: Wed, 08 Sep 2025 13:22:43 GMT" \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\""
