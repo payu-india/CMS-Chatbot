@@ -9,8 +9,8 @@ The **Redeem TWID Points** API is used to redeem or finalize TWID points that ha
 
 ## Environment
 
-|            |                                             |
-| :--------- | :------------------------------------------ |
+|            |                                               |
+| :--------- | :-------------------------------------------- |
 | Production | \{\{loyalty-service-url}}/payment/v1/continue |
 
 HTTP Method: **POST**
@@ -22,7 +22,7 @@ HTTP Method: **POST**
 ## Request parameters
 
 \<HTMLBlock>
-\{\`
+\{`
 \<table>
 \<thead>
 \<tr>
@@ -34,7 +34,7 @@ HTTP Method: **POST**
 \<tbody>
 \<tr>
 \<td>loyaltyTxnId \<code>mandatory\</code>\</td>
-\<td>\<code>String\</code> - Reference ID provided by the Loyalty-Service during the \`Create Payment\` call\</td>
+\<td>\<code>String\</code> - Reference ID provided by the Loyalty-Service during the `Create Payment` call\</td>
 \<td>\<code>"bd1a77b6-1596-46e1-b79f-2770bcb636c7"\</code>\</td>
 \</tr>
 \<tr>
@@ -44,10 +44,8 @@ HTTP Method: **POST**
 \</tr>
 \</tbody>
 \</table>
-\`}
+`}
 \</HTMLBlock>
-
-
 
 <br />
 
@@ -71,7 +69,6 @@ HTTP Method: **POST**
 
 ### JSON Payload
 
-
 ```json
 {
   "loyaltyTxnId": "bd1a77b6-1596-46e1-b79f-2770bcb636c7",
@@ -83,9 +80,8 @@ HTTP Method: **POST**
 
 ### Non-seamless Integration
 
-
 ```bash
-curl -X POST "https://apitest.payu.in/loyalty-points/payment/v1/continue" \
+curl -X POST "{{loyalty-service-url}}/payment/v1/continue" \
   -H "Content-Type: application/json" \
   -H "mid: YOUR_MERCHANT_ID" \
   -d '{
@@ -98,9 +94,8 @@ curl -X POST "https://apitest.payu.in/loyalty-points/payment/v1/continue" \
 
 ### Seamless Integration
 
-
 ```bash
-curl -X POST "https://apitest.payu.in/loyalty-points/payment/v1/continue" \
+curl -X POST "{{loyalty-service-url}}/payment/v1/continue" \
   -H "Content-Type: application/json" \
   -H "Date: Wed, 08 Sep 2025 13:22:43 GMT" \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\"" \
@@ -114,7 +109,6 @@ curl -X POST "https://apitest.payu.in/loyalty-points/payment/v1/continue" \
 
 ### Success scenario
 
-
 ```json
 {
   "status": "SUCCESS",
@@ -125,7 +119,6 @@ curl -X POST "https://apitest.payu.in/loyalty-points/payment/v1/continue" \
 ```
 
 ### Failure scenario
-
 
 ```json
 {
