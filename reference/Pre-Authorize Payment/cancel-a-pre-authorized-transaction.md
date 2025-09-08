@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The Cancel Transaction (**cancel\_transaction**) API is used to cancel a pre-authorized transaction.
+The Cancel Transaction (**cancel_transaction**) API is used to cancel a pre-authorized transaction.
 
 <GENERALAPIsEnvironment />
 
@@ -41,11 +41,19 @@ The Cancel Transaction (**cancel\_transaction**) API is used to cancel a pre-aut
       </td>
 
       <td>
-        For more information on how to generate the Key and Salt, refer to any of the following: \* **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard) \* **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+        For more information on how to generate the Key and Salt, refer to any of the following: * **Production**: 
+
+        [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+
+         * **Test**: 
+
+        [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+
+
       </td>
 
       <td>
-        JP\*\*\*g
+        JP***g
       </td>
     </tr>
 
@@ -56,11 +64,11 @@ The Cancel Transaction (**cancel\_transaction**) API is used to cancel a pre-aut
       </td>
 
       <td>
-        The API command name is **cancel\_transaction** for this API.
+        The API command name is **cancel_transaction** for this API.
       </td>
 
       <td>
-        cancel\_transaction
+        cancel_transaction
       </td>
     </tr>
 
@@ -168,7 +176,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php/?form=2' \
 
     <tr>
       <td>
-        txn\_update\_id
+        txn_update_id
       </td>
 
       <td>
@@ -178,7 +186,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php/?form=2' \
 
     <tr>
       <td>
-        bank\_ref\_num
+        bank_ref_num
       </td>
 
       <td>
@@ -188,7 +196,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php/?form=2' \
 
     <tr>
       <td>
-        error\_code
+        error_code
       </td>
 
       <td>
@@ -203,7 +211,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php/?form=2' \
 ### Success scenario
 
 ```
-{"status":1,"msg":"Cancelled Request Queued","txn_update_id":"4993824106405","bank_ref_num":null,"error_code":102}
+{"status":1,"action":"MANDATE_REVOKE","message":"Mandate Revoke request processed successfully"} 
 ```
 
 ### Failure scenario
