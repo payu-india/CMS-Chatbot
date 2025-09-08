@@ -8,12 +8,14 @@ metadata:
 The **Refund** API is used to initiate a refund request for a loyalty-based transaction.
 
 ## Endpoint
-\{\{loyalty-service-url}}/refund/v1
+
+|            |                                     |
+| :--------- | :---------------------------------- |
+| Production | \{\{loyalty-service-url}}/refund/v1 |
 
 ## Request parameters
 
-<HTMLBlock>
-{`
+<HTMLBlock>{`
 <table>
 <thead>
 <tr>
@@ -45,12 +47,12 @@ The **Refund** API is used to initiate a refund request for a loyalty-based tran
 </tr>
 </tbody>
 </table>
-`}
-</HTMLBlock>
+`}</HTMLBlock>
 
 ## Sample request
 
 ### Non-seamless integration
+
 ```bash
 curl -X POST "https://apitest.payu.in/loyalty-points/refund/v1" \
   -H "Content-Type: application/json" \
@@ -62,7 +64,9 @@ curl -X POST "https://apitest.payu.in/loyalty-points/refund/v1" \
     "refundId": "4656526"
   }'
 ```
+
 ### Seamless integration
+
 ```bash
 curl -X POST "https://apitest.payu.in/loyalty-points/refund/v1" \
   -H "Content-Type: application/json" \
@@ -75,14 +79,16 @@ curl -X POST "https://apitest.payu.in/loyalty-points/refund/v1" \
     "refundId": "4656526"
   }'
 ```
+
 ## Response parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| message | `String` - Status message of the refund request | `"Queued"` |
-| loyaltyRefundId | `String` - Loyalty refund ID for tracking | `"1213"` |
+| Parameter       | Description                                     | Example    |
+| --------------- | ----------------------------------------------- | ---------- |
+| message         | `String` - Status message of the refund request | `"Queued"` |
+| loyaltyRefundId | `String` - Loyalty refund ID for tracking       | `"1213"`   |
 
 ## Sample response
+
 ```json
 {
   "message": "Queued",
@@ -90,6 +96,9 @@ curl -X POST "https://apitest.payu.in/loyalty-points/refund/v1" \
 }
 ```
 
-## Notes
-- When the refund is queued, the status must be verified using the **Refund Status API** for confirmation
-- The `loyaltyRefundId` returned should be used to check the refund status
+<Callout icon="📘" theme="info">
+  **Notes:**
+
+  * When the refund is queued, the status must be verified using the **Refund Status API** for confirmation. 
+  * The `loyaltyRefundId` returned should be used to check the refund status
+</Callout>
