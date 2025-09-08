@@ -379,11 +379,13 @@ The Collect Payment (**_payment**) API is used for collecting payments in Web Ch
 
 <Recipe slug="payu-hosted-checkout-curl-request-walkthrough" title="PayU Hosted Checkout cURL Request Walkthrough" />
 
-<Recipe slug="_payment-request-python-walkthrough" title="_payment Request Python Walkthrough" />
-
-<Recipe slug="_payment-request-php-code-walkthrough" title="_payment request PHP Code Walkthrough" />
+<Recipe slug="_payment-request-python-code-walkthrough" title="_payment Request Python Code Walkthrough" />
 
 <Recipe slug="_payment-request-java-code-walkthrough" title="_payment Request Java Code Walkthrough" />
+
+<Recipe slug="_payment-request-php-code-walkthrough-1" title="_payment Request PHP Code Walkthrough" />
+
+<br />
 
 <PayUHostedSampleRequest />
 
