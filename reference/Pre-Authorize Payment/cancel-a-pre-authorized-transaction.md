@@ -41,15 +41,13 @@ The Cancel Transaction (**cancel_transaction**) API is used to cancel a pre-auth
       </td>
 
       <td>
-        For more information on how to generate the Key and Salt, refer to any of the following: * **Production**: 
+        For more information on how to generate the Key and Salt, refer to any of the following: * **Production**:
 
         [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
 
-         * **Test**: 
+        * **Test**:
 
         [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
-
-
       </td>
 
       <td>
@@ -208,13 +206,29 @@ curl --location 'https://info.payu.in/merchant/postservice.php/?form=2' \
 
 ## Sample response
 
-### Success scenario
+### Regular Pre-Auth payments for cards
+
+* Success scenario
 
 ```
 {"status":1,"msg":"Cancelled Request Queued","txn_update_id":"4993824106405","bank_ref_num":null,"error_code":102}
 ```
 
-### Failure scenario
+* Failure scenario
+
+```
+{"status":0,"msg":"Cancelled failed","error_code":105}
+```
+
+### UPI OTM mandates
+
+* Success scenario
+
+```
+{"status":1,"action":"MANDATE_REVOKE","message":"Mandate Revoke request processed successfully"} 
+```
+
+* Failure scenario
 
 ```
 {"status":0,"action":"MANDATE_REVOKE","message":"Request failed"} 
