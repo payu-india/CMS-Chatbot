@@ -60,7 +60,7 @@ The **Refund** API is used to initiate a refund request for a loyalty-based tran
 ### Non-seamless integration
 
 ```bash
-curl -X POST "https://apitest.payu.in/loyalty-points/refund/v1" \
+curl -X POST "{{loyalty-service-url}}/refund/v1" \
   -H "Content-Type: application/json" \
   -H "mid: YOUR_MERCHANT_ID" \
   -d '{
@@ -74,7 +74,7 @@ curl -X POST "https://apitest.payu.in/loyalty-points/refund/v1" \
 ### Seamless integration
 
 ```bash
-curl -X POST "https://apitest.payu.in/loyalty-points/refund/v1" \
+curl -X POST "{{loyalty-service-url}}/refund/v1" \
   -H "Content-Type: application/json" \
   -H "Date: Wed, 08 Sep 2025 13:22:43 GMT" \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\"" \
