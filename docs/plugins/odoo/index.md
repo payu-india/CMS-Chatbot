@@ -1,8 +1,13 @@
 ---
 title: Odoo
 deprecated: false
-hidden: true
+hidden: false
 metadata:
+  title: Odoo Integration
+  keywords:
+    - Odoo Plugin
+    - Odoo integration
+    - Odoo
   robots: index
 ---
 Odoo is an open-source business management platform that offers a powerful suite of applications for companies of all sizes. From CRM and accounting to e-commerce and inventory, Odoo helps businesses manage and streamline operations through a modular and user-friendly interface. Odoo’s website and e-commerce modules allow merchants to create, customize, and manage online stores efficiently.
