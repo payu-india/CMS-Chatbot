@@ -510,3 +510,7 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 ### Step 4: Check Transaction Status
 
 To check the status of the transaction, use the verify_payment API. For more information, refer to [Verify Payment API](ref:verify_payment_api).
+
+<Callout icon="👍" theme="okay">
+  **Reference**: For cancelling pre-auth payments, refer to [Cancel a Pre-Authorized Transaction API](ref:cancel-a-pre-authorized-transaction).
+</Callout>
