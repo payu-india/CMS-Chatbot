@@ -8,14 +8,25 @@ metadata:
 This API is used to fetch the user's reward point balance and its corresponding monetary savings for a specific loyalty provider.
 
 ## Environment
-```
- \{\{loyalty-service-url}}/v1/balance
-```
-HTTP method: POST
-## Request Parameters
 
-<HTMLBlock>
-{`
+<br />
+
+|            |                                                   |
+| :--------- | :------------------------------------------------ |
+| Production |  \{\{loyalty-service-url}}/v1/balance             |
+| Test       | https://apitest.payu.in/loyalty-points/v1/balance |
+
+HTTP method: **POST**
+
+## Request header
+
+<V2_paymentHeader />
+
+<br />
+
+## Request parameters
+
+<HTMLBlock>{`
 <table>
 <thead>
 <tr>
@@ -47,25 +58,25 @@ HTTP method: POST
 </tr>
 </tbody>
 </table>
-`}
-</HTMLBlock>
+`}</HTMLBlock>
 
-## Response Parameters
+## Response parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| loyaltyProvider | `String` - The loyalty provider for the response | `"TWID"` |
-| usableAmount | `Number` - Maximum monetary amount that can be saved | `500.0` |
-| usablePoints | `Number` - Required reward points for maximum savings | `500` |
-| title | `String` - Display title of the reward offer | `"Save Rs 500 using 500 TWID Cash Points"` |
-| earnConfig.points | `Number` - Points that can be earned in this transaction | `0` |
-| issuerDetailDTO.brandName | `String` - Brand name of the issuer | `"TWID Cash"` |
-| issuerDetailDTO.logo | `String` - Logo URL of the brand or issuer | `"https://cdn.twidpay.com/..."` |
-| holdApplicable | `Boolean` - Indicates if points can be held/reserved for the reward | `false` |
+| Parameter                 | Description                                                         | Example                                    |
+| ------------------------- | ------------------------------------------------------------------- | ------------------------------------------ |
+| loyaltyProvider           | `String` - The loyalty provider for the response                    | `"TWID"`                                   |
+| usableAmount              | `Number` - Maximum monetary amount that can be saved                | `500.0`                                    |
+| usablePoints              | `Number` - Required reward points for maximum savings               | `500`                                      |
+| title                     | `String` - Display title of the reward offer                        | `"Save Rs 500 using 500 TWID Cash Points"` |
+| earnConfig.points         | `Number` - Points that can be earned in this transaction            | `0`                                        |
+| issuerDetailDTO.brandName | `String` - Brand name of the issuer                                 | `"TWID Cash"`                              |
+| issuerDetailDTO.logo      | `String` - Logo URL of the brand or issuer                          | `"https://cdn.twidpay.com/..."`            |
+| holdApplicable            | `Boolean` - Indicates if points can be held/reserved for the reward | `false`                                    |
 
 ## Sample request
 
 ### Non-seamless Integration
+
 ```bash
 curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance" \
   -H "Content-Type: application/json" \
@@ -79,6 +90,7 @@ curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance" \
 ```
 
 ### Seamless Integration
+
 ```bash
 curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance" \
   -H "Content-Type: application/json" \
@@ -93,6 +105,7 @@ curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance" \
 ```
 
 ## Sample response
+
 ```json
 {
   "loyaltyProvider": "TWID",
