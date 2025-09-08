@@ -84,7 +84,7 @@ The Collect Payment (**_payment**) API is used for collecting payments in Web Ch
 #### Request parameters
 
 <HTMLBlock>{`
-<table border="1" cellpadding="5" cellspacing="0">
+<table border="1" cellpadding="5" cellspacing="0" style="width: 75%;">
   <thead>
     <tr>
       <th>Parameter</th>
