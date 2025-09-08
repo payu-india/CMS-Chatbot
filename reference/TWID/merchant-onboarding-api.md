@@ -9,9 +9,10 @@ The Merchant Onboarding API is used to onboard new merchants on the Twid platfor
 
 ## Environment
 
-|            |                                     |
-| :--------- | :---------------------------------- |
+|            |                                       |
+| :--------- | :------------------------------------ |
 | Production | \{\{loyalty-service-url}}/merchant/v1 |
+| Test       | https://apitest.payu.in/merchant/v1   |
 
 ## Request header
 
@@ -21,12 +22,13 @@ The Merchant Onboarding API is used to onboard new merchants on the Twid platfor
 
 ### For seamless integration
 
-* **Authorization**: `hmac username="merchantKey", algorithm="sha512", headers="date", signature="fullBodyHash"`
-* **Date**: `EEE, dd MMM yyyy HH:mm:ss 'GMT'`
+<V2_paymentHeader />
+
+<br />
 
 ## Request parameters
-<HTMLBlock>
-{`
+
+<HTMLBlock>{`
 <table>
 <thead>
 <tr>
@@ -83,14 +85,12 @@ The Merchant Onboarding API is used to onboard new merchants on the Twid platfor
 </tr>
 </tbody>
 </table>
-`}
-</HTMLBlock>
-
-
+`}</HTMLBlock>
 
 ## Sample request
 
-###Non-seamless integration
+### Non-seamless integration
+
 ```bash
 curl -X POST "https://apitest.payu.in/loyalty-points/merchant/v1" \
   -H "Content-Type: application/json" \
@@ -107,7 +107,9 @@ curl -X POST "https://apitest.payu.in/loyalty-points/merchant/v1" \
     "loyaltyProvider": "TWID"
   }'
 ```
-###Seamless integration
+
+### Seamless integration
+
 ```bash
 curl -X POST "https://apitest.payu.in/loyalty-points/merchant/v1" \
   -H "Content-Type: application/json" \
@@ -125,6 +127,7 @@ curl -X POST "https://apitest.payu.in/loyalty-points/merchant/v1" \
     "loyaltyProvider": "TWID"
   }'
 ```
+
 ## Response parameters
 
 | Parameter            | Description                                                            | Example                                    |
