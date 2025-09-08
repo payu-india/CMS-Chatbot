@@ -3,6 +3,11 @@ title: Install and Configure Odoo Plugin
 deprecated: false
 hidden: false
 metadata:
+  title: Install and Configure Odoo Plugin
+  keywords:
+    - Install Odoo Plugin
+    - Configure Odoo Plugin
+    - Odoo Plugin
   robots: index
 ---
 After installing Odoo on your local machine or server, follow these steps for each operating system to configure the PayU custom add-on or plugin.
