@@ -9,10 +9,9 @@ The **Fetch Balance All** API retrieves balance information from multiple specif
 
 ## Environment
 
-|            |                                                       |
-| :--------- | :---------------------------------------------------- |
-| Production | \{\{loyalty-service-url}}/v1/balance/all              |
-| Test       | https://apitest.payu.in/loyalty-points/v1/balance/all |
+|            |                                          |
+| :--------- | :--------------------------------------- |
+| Production | \{\{loyalty-service-url}}/v1/balance/all |
 
 HTTP Method: **POST**
 
@@ -58,7 +57,7 @@ HTTP Method: **POST**
 ### Non-seamless integration
 
 ```bash
-curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance/all" \
+curl -X POST "{{loyalty-service-url}}/v1/balance/all" \
   -H "Content-Type: application/json" \
   -H "mid: YOUR_MERCHANT_ID" \
   -d '{
@@ -71,7 +70,7 @@ curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance/all" \
 ### Seamless integration
 
 ```bash
-curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance/all" \
+curl -X POST "{{loyalty-service-url}}/v1/balance/all" \
   -H "Content-Type: application/json" \
   -H "Date: Wed, 08 Sep 2025 13:22:43 GMT" \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\"" \
