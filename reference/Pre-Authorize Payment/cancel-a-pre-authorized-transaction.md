@@ -1,5 +1,5 @@
 ---
-title: Cancel a Pre-Authorized Transaction
+title: Cancel a Pre-Authorized Transaction API
 excerpt: 'API Command: **cancel_transaction**'
 deprecated: false
 hidden: false
