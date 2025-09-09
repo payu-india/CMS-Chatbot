@@ -7,5 +7,5 @@ metadata:
 ---
 You can respond to chargebacks by taking following actions:
 
-* [Accept Chargeback](https://docs.payu.in/docs/accept-chargeback): Process full or partial acceptance of chargeback cases when appropriate.
-* [Contest Chargeback](https://docs.payu.in/docs/contest-chargeback): Submit documentation and evidence to dispute invalid chargeback claims.
+* [Accept Chargeback on Dashboard](doc:accept-chargeback-on-dashboard) Process full or partial acceptance of chargeback cases when appropriate.
+* [Contest Chargeback on Dashboard](doc:contest-chargeback-on-dashboard): Submit documentation and evidence to dispute invalid chargeback claims.
