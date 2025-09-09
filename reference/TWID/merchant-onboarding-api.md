@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-The Merchant Onboarding API is used to onboard new merchants on the Twid platform.
+The Merchant Onboarding API is used to onboard new merchants on the Twid platform. 
 
 ## Environment
 
