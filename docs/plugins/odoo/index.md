@@ -23,6 +23,7 @@ The PayU India plugin for Odoo allows store owners to accept online payments sec
 * Supports 150+ payment modes offered by PayU
 * Acceptance of international cards
 * BIN-based offers and cashback support
+* Increase sales with EMI & BNPL
 
 <Callout icon="📘" theme="info">
   Only offers that do not modify the final invoice amount (such as cashback) are supported.
