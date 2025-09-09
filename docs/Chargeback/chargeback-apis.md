@@ -2,7 +2,7 @@
 title: Chargeback APIs
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Chargeback APIs
   description: >-
