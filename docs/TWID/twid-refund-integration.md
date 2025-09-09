@@ -8,13 +8,14 @@ metadata:
 The **Refund** API is used to initiate refund and **Refund Status** API used to check the status of refund for TWID API integration. This section describes the steps to integrate TWID Refund integration.
 
 ## Step 1: Initiate the refund
+
 ### Environment
 
 |            |                                     |
 | :--------- | :---------------------------------- |
 | Production | \{\{loyalty-service-url}}/refund/v1 |
 
-<Accordion title="Request parameters" icon="fa-info-table" />
+<Accordion title="Request parameters" icon="fa-info-table">
 
 **Request header**
 
@@ -53,9 +54,10 @@ The **Refund** API is used to initiate refund and **Refund Status** API used to 
 </tbody>
 </table>
 `}</HTMLBlock>
+</Accordion>
 
+<Accordion title="Request parameters" icon="fa-info-pay">
 
-<Accordion title="Request parameters" icon="fa-info-pay" />
 **Non-seamless integration**
 
 ```bash
@@ -84,9 +86,10 @@ curl -X POST "{{loyalty-service-url}}/refund/v1" \
     "refundId": "4656526"
   }'
 ```
+</Accordion>
 
+<Accordion title="Response details" icon="fa-info-table">
 
-<Accordion title="Response details" icon="fa-info-table" />
 **Response parameters**
 
 | Parameter       | Description                                     | Example    |
@@ -102,15 +105,13 @@ curl -X POST "{{loyalty-service-url}}/refund/v1" \
   "loyaltyRefundId": "1213"
 }
 ```
-
+</Accordion>
 <Callout icon="📘" theme="info">
   **Notes:**
 
   * When the refund is queued, the status must be verified using the **Refund Status API** for confirmation.
   * The `loyaltyRefundId` returned should be used to check the refund status
 </Callout>
-
-
 
 ## Step 2: Capture the loyaltyRefundId from the response
 
