@@ -9,7 +9,7 @@ TWID Rewards is a loyalty points integration solution that leverages India's lar
 
 ## Product Ecosystem
 
-* **Network & Scale Coverage**: 
+* **Network & Scale Coverage**:
   * Over 300 million active users
   * 20+ issuer partners (e.g., Flipkart SuperCoins, Zillion)
   * 35,000+ live merchants (e.g., Swiggy, BookMyShow, McDonald's)
@@ -35,21 +35,21 @@ TWID Rewards is a loyalty points integration solution that leverages India's lar
 
 ## Integration Benefits
 
-### For Merchants:
+### For Merchants
 
 * Access to Twid's loyalty ecosystem without requiring separate integrations
 * Strengthened customer relationships through integrated loyalty platforms
 * Higher transaction value using strategic reward point redemption
 * Reduced technical infrastructure complexity by utilizing PayU's unified payment systems
 
-### For Developers:
+### For Developers
 
 * Minimal implementation due to leveraging PayU's existing integration framework
 * Access to detailed documentation and developer support from PayU
 * Reliable scalability designed to handle large transaction volumes
 * Proven solutions tested across 35,000+ active merchant integrations
 
-### Use Cases & Applications 
+## Use Cases & Applications 
 
 * **E-commerce Platforms**: Seamless reward point redemption during online checkout processes 
 * **Subscription Services**: Enhanced customer retention through loyalty point incentives 
