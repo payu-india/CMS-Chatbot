@@ -5,11 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-The **Refund Status** API is used to fetch the status of a previously initiated refund.the Refund status flow involves:
-
-1. Initiate the refund using the **Refund** API
-2. Capture the `loyaltyRefundId` from the response
-3. Use the **Refund Status** API to check the status of the refund using the `loyaltyRefundId`
+The **Refund Status** API is used to fetch the status of a previously initiated refund.
 
 ### Response States
 
