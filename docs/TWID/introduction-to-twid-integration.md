@@ -1,7 +1,7 @@
 ---
 title: Introduction to TWID Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
