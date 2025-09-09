@@ -21,10 +21,10 @@ The **Load and Pay** API allows you to register customers and seamlessly load fu
 
 #### Environment
 
-* **Production:**
-  `POST https://api.payu.in/wallet/loadAndPayTransaction`
-* **Sandbox:**
-  `POST https://sandboxapi.payu.in/wallet/loadAndPayTransaction`
+| Environment | URL                               |
+| ----------- | --------------------------------- |
+| Test        | `https://test.payu.in/_payment`   |
+| Production  | `https://secure.payu.in/_payment` |
 
 ## Step 1: Post the payment request
 
@@ -153,7 +153,7 @@ curl --location --request POST 'https://test.payu.in/_payment' \
 ```
 
 <Callout icon="📘" theme="info">
-  **Notes**: 
+  **Notes**:
 
   * Always use a unique <code>customer_id</code> and <code>order_id</code>.
   * Use your secure, production <code>ACCESS_TOKEN</code> in the Authorization header.
