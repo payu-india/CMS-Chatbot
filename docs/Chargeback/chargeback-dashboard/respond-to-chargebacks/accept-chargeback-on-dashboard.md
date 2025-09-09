@@ -12,7 +12,7 @@ Process chargeback acceptance when the customer claim is valid.  The response gu
 * PayU creates comprehensive case for bank submission
 * Bank reviews according to Visa/MasterCard guidelines
 
-### Full Acceptance
+## Full Acceptance
 
 Use when the customer deserves a complete refund:
 
@@ -38,7 +38,7 @@ Use when the customer deserves a complete refund:
   **Note**: After you accept, the case moves to "Closed in Customer Favor" status and cannot be modified.
 </Callout>
 
-### Partial Acceptance
+## Partial Acceptance
 
 Use when the customer deserves a partial refund:
 
