@@ -2,7 +2,7 @@
 title: Payment Webhooks
 excerpt: Create and Manage Payments Webhooks from PayU Dashboard
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
