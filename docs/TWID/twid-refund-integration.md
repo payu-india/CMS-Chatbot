@@ -180,13 +180,25 @@ curl -X POST "{{loyalty-service-url}}/refund/v1" \
 
 ## Step 2: Capture the loyaltyRefundId from the response
 
+You have to capture the **loyaltyRefundId** parameter value from the response similar to the following:
+
+```json
+{
+  "message": "Queued",
+  "loyaltyRefundId": "1213"
+}
+```
+
 ## Step 3: Check the status of the refund
+
+Use the **loyaltyRefundId** parameter value and check the status of the refund.
 
 #### Environment
 
 |            |                                                        |
 | :--------- | :----------------------------------------------------- |
 | Production | \{\{loyalty-service-url}}/refund/v1/\{loyaltyRefundId} |
+
 ### Request parameters
 
 <Accordion title="Request header" icon="fa-info-table">
@@ -259,6 +271,7 @@ curl -X POST "{{loyalty-service-url}}/refund/v1" \
 </Accordion>
 
 #### Request path parameters
+
 <HTMLBlock>{`
 <table>
 <thead>
@@ -277,9 +290,10 @@ curl -X POST "{{loyalty-service-url}}/refund/v1" \
 </tbody>
 </table>
 `}</HTMLBlock>
+
 ### Sample request
 
-***Non-seamless integration***
+_**Non-seamless integration**_
 
 ```bash
 curl -X GET "\{\{loyalty-service-url}}/refund/v1/1213" \
@@ -287,7 +301,7 @@ curl -X GET "\{\{loyalty-service-url}}/refund/v1/1213" \
   -H "mid: YOUR_MERCHANT_ID"
 ```
 
-***Seamless integration***
+_**Seamless integration**_
 
 ```bash
 curl -X GET "\{\{loyalty-service-url}}/refund/v1/1213" \
@@ -297,47 +311,46 @@ curl -X GET "\{\{loyalty-service-url}}/refund/v1/1213" \
 ```
 
 <Accordion title="Response details" icon="fa-info-table">
-**Response parameters**
+  **Response parameters**
 
-| Parameter          | Description                                                            | Example                                |
-| ------------------ | ---------------------------------------------------------------------- | -------------------------------------- |
-| message            | `String` - Refund process status (`Success`, `Failed`, or `Pending`)   | `"Success"` / `"Failed"` / `"Pending"` |
-| loyaltyRefundId    | `String` - Loyalty refund ID                                           | `"1213"`                               |
-| rewardPartnerRefId | `String` - Reference ID provided by the reward partner (if successful) | `"7251637276230479872"`                |
+  | Parameter          | Description                                                            | Example                                |
+  | ------------------ | ---------------------------------------------------------------------- | -------------------------------------- |
+  | message            | `String` - Refund process status (`Success`, `Failed`, or `Pending`)   | `"Success"` / `"Failed"` / `"Pending"` |
+  | loyaltyRefundId    | `String` - Loyalty refund ID                                           | `"1213"`                               |
+  | rewardPartnerRefId | `String` - Reference ID provided by the reward partner (if successful) | `"7251637276230479872"`                |
 
-**Sample response**
+  **Sample response**
 
-* Success scenario
+  * Success scenario
 
-```json
-{
-  "message": "Success",
-  "loyaltyRefundId": 83,
-  "rewardPartnerRefId": "7251637276230479872"
-}
-```
+  ```json
+  {
+    "message": "Success",
+    "loyaltyRefundId": 83,
+    "rewardPartnerRefId": "7251637276230479872"
+  }
+  ```
 
-* Failure scenario
+  * Failure scenario
 
-   - Failed refund
+    * Failed refund
 
-```json
-{
-  "message": "Failed",
-  "loyaltyRefundId": "1213"
-}
-```
+  ```json
+  {
+    "message": "Failed",
+    "loyaltyRefundId": "1213"
+  }
+  ```
 
-   - Pending refund
+  * Pending refund
 
-```json
-{
-  "message": "Pending",
-  "loyaltyRefundId": "1213"
-}
-```
+  ```json
+  {
+    "message": "Pending",
+    "loyaltyRefundId": "1213"
+  }
+  ```
 </Accordion>
-
 
 <Callout icon="📘" theme="info">
   **Notes:**
@@ -345,4 +358,3 @@ curl -X GET "\{\{loyalty-service-url}}/refund/v1/1213" \
   * Both APIs are part of the **Loyalty Points Network** and must be called within a secure server-to-server (S2S) framework
   * Regular status checks are recommended for pending refunds
 </Callout>
-
