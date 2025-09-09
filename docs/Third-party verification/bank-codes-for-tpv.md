@@ -36,7 +36,7 @@ The following codes must be used as the value for the <Glossary>bankcode</Glossa
 | Karnataka Bank                   | KRKBTPV  |
 | Karur Vysya Bank                 | KVBNBTPV |
 | Kotak Mahindra Bank              | KTKNBTPV |
-| Punjab & Sindh Bank              | PSBTPV   |
+| Punjab & Sindh Bank              | PSBNBTPV |
 | Punjab National Bank             | PNBNBTPV |
 | RBL                              | RBLTPV   |
 | Shamrao Vithal Co-operative Bank | SVCTPV   |
