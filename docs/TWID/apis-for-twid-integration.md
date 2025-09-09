@@ -10,7 +10,7 @@ The following APIs used for TWID Integration:
 * **Onboarding**
   * [Merchant Onboarding API](https://docs.payu.in/reference/merchant-onboarding-api)
 * **Transactions**
-  * [Fetch Balance API](ref: fetch-balance-api-twid)
+  * [Fetch Balance API](ref:fetch-balance-api-twid)
   * [Fetch Balance All API](https://docs.payu.in/reference/fetch-balance-all-api-twid)
   * [Hold TWID Points API](https://docs.payu.in/reference/hold-twid-points-api)
   * [Redeem TWID Points API](https://docs.payu.in/reference/redeem-twid-points-api)
