@@ -2,7 +2,7 @@
 title: Get Token API - Chargeback
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
