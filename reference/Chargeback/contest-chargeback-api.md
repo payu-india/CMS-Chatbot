@@ -81,9 +81,7 @@ This must contain the header with token you get using the Get Token API in the f
       </td>
 
       <td>
-        The identifier that was received in response when you used the **Read Reasons** API. For more information, refer to
-
-        [Read Reasons API](ref:read-reasons-api)
+        The identifier that was received in response when you used the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api)
 
         .
       </td>
@@ -100,11 +98,7 @@ This must contain the header with token you get using the Get Token API in the f
       </td>
 
       <td>
-        The response that you wish to send (to the frontend). The value can be any of the responses from the **Read Reasons** API. For more information, refer to
-
-        [Read Reasons API](ref:read-reasons-api)
-
-        .
+        The response that you wish to send (to the frontend). The value can be any of the responses from the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api).
       </td>
 
       <td>
