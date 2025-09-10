@@ -1,5 +1,5 @@
 ---
-title: Chargeback States
+title: Chargeback Status
 deprecated: false
 hidden: false
 metadata:
