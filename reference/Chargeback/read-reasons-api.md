@@ -73,15 +73,15 @@ curl --location 'https://bankportal.payu.in/api/v1/reasons' \
 
 ### attributes JSON field descriptions
 
-| Field       | Description                                                                                                                                                              | Example                              |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------- |
-| identifier  | This field contains the reason identifier. This identified is used in [Accept Chargeback API](ref:accept-chargeback-api) to accept the chargeback.                       | 094fd3fe-4923-4819-becc-14d08054ff2d |
-| parent-id   | This field contains the parent ID of the reason.                                                                                                                         |                                      |
-| reason-text | This field contains the reason for the chargeback.                                                                                                                       | Customer cancelled the order         |
-| field-type  | This field contains the field type of the reason to be displayed on UI.                                                                                                  | radio-button                         |
-| reason-type | This field contains the reason type. For the list of closure reason types, refer to [Chargeback Closure Reasons](https://docs.payu.in/docs/chargeback-closure-reasons) . | accept                               |
-| message     | This field contains the reason message.                                                                                                                                  | false                                |
-| form-data   | This field contains the form data of the read reason.                                                                                                                    |                                      |
+| Field       | Description                                                                                                                                                               | Example                              |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------- |
+| identifier  | This field contains the reason identifier. This identified is used in [Accept Chargeback API](ref:accept-chargeback-api) to accept the chargeback.                        | 094fd3fe-4923-4819-becc-14d08054ff2d |
+| parent-id   | This field contains the parent ID of the reason.                                                                                                                          |                                      |
+| reason-text | This field contains the reason for the chargeback. For the list of reasons, refer to [Chargeback Closure Reasons](https://docs.payu.in/docs/chargeback-closure-reasons) . | Customer cancelled the order         |
+| field-type  | This field contains the field type of the reason to be displayed on UI.                                                                                                   | radio-button                         |
+| reason-type | This field contains the reason type. For the list of closure reason types, refer to [Chargeback Closure Reasons](https://docs.payu.in/docs/chargeback-closure-reasons) .  | accept                               |
+| message     | This field contains the reason message.                                                                                                                                   | false                                |
+| form-data   | This field contains the form data of the read reason.                                                                                                                     |                                      |
 
 ## Sample response
 
