@@ -2,6 +2,5 @@
 - chargeback-process
 - chargeback-dashboard
 - chargeback-apis
-- chargeback-types
 - chargeback-states
 - webhooks-for-chargeback
