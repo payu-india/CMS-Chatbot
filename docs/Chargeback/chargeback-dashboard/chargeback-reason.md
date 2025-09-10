@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-This section explains how to use the **Reasons** page of the Chargeback dashbaord.  It lists all available reasons in a tabular format. Reason codes help standardize your chargeback responses and maintain consistency in case management.
+This section explains how to use the _Reasons_ page of the Chargeback dashbaord. It lists all available reasons in a tabular format. Reason codes help standardize your chargeback responses and maintain consistency in case management. The chargeback reason lists the various reason codes with which the customer raises a chargeback.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/240245acd8b166a5c93f7988e052667428c8455168e62485d16756fca9865506-charge_dashboard_reasons.png" />
 
