@@ -142,11 +142,11 @@ curl --location --globoff --request PATCH 'https://chbuat.payu.in/api/v1/chargeb
 
 ### attributes JSON field descriptions
 
-| Field   | Description                                                                                                                                                      | Example            |
-| :------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------- |
-| id      | This field contains the  chargeback ID.                                                                                                                          | 1035881            |
-| payu-id | The field contains the PayU ID of the merchant.                                                                                                                  | 15420278029        |
-| status  | This field contains the status of the chargeback. For the list of chargeback states, refer to [Chargeback States](https://docs.payu.in/docs/chargeback-states) . | Pending Doc Review |
+| Field   | Description                                                                                                                                                           | Example            |
+| :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------- |
+| id      | This field contains the  chargeback ID.                                                                                                                               | 1035881            |
+| payu-id | The field contains the PayU ID of the merchant.                                                                                                                       | 15420278029        |
+| status  | This field contains the status of the chargeback. For the list of chargeback states, refer to [Chargeback Status List](https://docs.payu.in/docs/chargeback-status) . | Pending Doc Review |
 
 ## Sample response
 
