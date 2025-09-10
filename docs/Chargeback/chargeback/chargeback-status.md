@@ -5,7 +5,11 @@ hidden: false
 metadata:
   robots: index
 ---
-## Chargeback Status List
+Any of the status listed in the following table can be found in response of the following Chargeback APIs only:
+
+* [Accept Chargeback API](https://docs.payu.in/reference/accept-chargeback-api)
+* [Accept/Contest Chargeback API](https://docs.payu.in/reference/accept-contest-chargeback-api)
+* [Contest Chargeback API](https://docs.payu.in/reference/contest-chargeback-api)
 
 | Chargeback Status         | Description                                                                                                                                                   |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
