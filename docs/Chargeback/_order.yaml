@@ -2,7 +2,6 @@
 - chargeback-process
 - chargeback-dashboard
 - chargeback-apis
-- chargeback-closure-reasons
 - chargeback-types
 - chargeback-states
 - webhooks-for-chargeback
