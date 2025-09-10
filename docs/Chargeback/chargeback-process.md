@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-The following flow diagram illustrate the PayU Chargeback flow. 
+The following flow diagram illustrate the PayU Chargeback flow.
 
 <Image align="center" width="500px" src="https://files.readme.io/41abd752e30c42d3f761fe65da96d0e45ace3b05c6f3241ce87d18dcfc2c6bd0-chargeback_flow_updated.png" />
 
@@ -92,14 +92,14 @@ You must act before the "Reply Before" date! Choose one of the following actions
    * If declined, the process moves to arbitration.
 
 3. **During Arbitration:**
-   * The dispute case file—including all prior evidence, chargeback codes, written arguments, and any newly exchanged materials—is sent to MasterCard for adjudication.
-   * MasterCard sets a deadline for both sides to submit any additional evidence/arguments.
-   * MasterCard’s ruling is communicated back to the acquiring and issuing banks.
+   * The dispute case file—including all prior evidence, chargeback codes, written arguments, and any newly exchanged materials—is sent to card issuer for adjudication.
+   * Card issuer sets a deadline for both sides to submit any additional evidence/arguments.
+   * Card issuer's ruling is communicated back to the acquiring and issuing banks.
    * Any imposed fees (arbitration costs, penalties for losing party) are charged to the losing side’s bank, which may then debit/credit the merchant via PayU.
 
 4. **Timeline and Finality:**
-   * Timeframes for responses and escalation are strictly governed by MasterCard rules (often 45-60 days for each stage).
-   * Once MasterCard has ruled, there is very limited scope for appeal.
+   * Timeframes for responses and escalation are strictly governed by Card issuer's rules (often 45-60 days for each stage).
+   * Once Card issuers has ruled, there is very limited scope for appeal.
    * The result is enforced through settlement systems, adjusting balances between acquirer, issuer, and, eventually, merchant.
 
 |                 | PayU’s Role                        | Acquirer’s Role             | Merchant’s Part                                  |
