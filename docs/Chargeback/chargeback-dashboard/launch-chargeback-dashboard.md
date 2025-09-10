@@ -10,9 +10,7 @@ To access the Chargeback Dashboard:
 1. Log on to PayU Dashboard.
 2. Select **Chargeback** from the left pane.
 
-<br />
-
-The _Chargeback_ page is displayed in a new browser tab.
+   The _Chargeback_ page is displayed in a new browser tab.
 
 <Image align="center" src="https://files.readme.io/54d13773e3bc40a82102786cab025d6348e80146348342d1e9879992d7a4b380-Screenshot_2025-08-29_at_10.50.07_AM.png" />
 
