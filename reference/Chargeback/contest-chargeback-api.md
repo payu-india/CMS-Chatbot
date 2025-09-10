@@ -46,7 +46,7 @@ This must contain the header with token you get using the Get Token API in the f
   <tbody>
     <tr>
       <td>
-        chargeback\_id
+        chargeback_id
         `mandatory`
       </td>
 
@@ -61,7 +61,7 @@ This must contain the header with token you get using the Get Token API in the f
 
     <tr>
       <td>
-        merchant\_id
+        merchant_id
         `mandatory`
       </td>
 
@@ -81,7 +81,11 @@ This must contain the header with token you get using the Get Token API in the f
       </td>
 
       <td>
-        The identifier that was received in response when you used the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api).
+        The identifier that was received in response when you used the **Read Reasons** API. For more information, refer to 
+
+        [Read Reasons API](ref:read-reasons-api)
+
+        .
       </td>
 
       <td>
@@ -96,7 +100,11 @@ This must contain the header with token you get using the Get Token API in the f
       </td>
 
       <td>
-        The response that you wish to send (to the frontend). The value can be any of the responses from the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api) .
+        The response that you wish to send (to the frontend). The value can be any of the responses from the **Read Reasons** API. For more information, refer to 
+
+        [Read Reasons API](ref:read-reasons-api)
+
+         .
       </td>
 
       <td>
@@ -134,11 +142,11 @@ curl --location --globoff --request PATCH 'https://chbuat.payu.in/api/v1/chargeb
 
 ### attributes JSON field descriptions
 
-| Field   | Description                                       | Example            |
-| :------ | :------------------------------------------------ | :----------------- |
-| id      | This field contains the  chargeback ID.           | 1035881            |
-| payu-id | The field contains the PayU ID of the merchant.   | 15420278029        |
-| status  | This field contains the status of the chargeback. | Pending Doc Review |
+| Field   | Description                                                                                                                                                      | Example            |
+| :------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------- |
+| id      | This field contains the  chargeback ID.                                                                                                                          | 1035881            |
+| payu-id | The field contains the PayU ID of the merchant.                                                                                                                  | 15420278029        |
+| status  | This field contains the status of the chargeback. For the list of chargeback states, refer to [Chargeback States](https://docs.payu.in/docs/chargeback-states) . | Pending Doc Review |
 
 ## Sample response
 
