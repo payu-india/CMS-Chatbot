@@ -39,6 +39,7 @@ The following codes must be used as the value for the <Glossary>bankcode</Glossa
 | Punjab & Sindh Bank              | PSBNBTPV |
 | Punjab National Bank             | PNBNBTPV |
 | RBL                              | RBLTPV   |
+| Saraswat Co-operative Bank Ltd.  | SRSWTTPV |
 | Shamrao Vithal Co-operative Bank | SVCTPV   |
 | South Indian Bank                | SIBNBTPV |
 | Standard Chartered Bank          | SCBNBTPV |
