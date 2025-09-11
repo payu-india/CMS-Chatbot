@@ -14,10 +14,6 @@ For the past few years, commerce has been moving in a two-dimensional direction.
 
 The following figure illustrates how your customers can make the payments in omnichannel when compared to multichannel or crosschannel:
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/Omnichannel-chart-1024x402.png)
-
-The following figure illustrates the difference between the customer experience in omnichannel vs multichannel:
-
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/Multichannel-vs-Omnichannel-Contact-Center-1024x595.jpeg)
 
 ## Advantages of PayU Omnichannel
