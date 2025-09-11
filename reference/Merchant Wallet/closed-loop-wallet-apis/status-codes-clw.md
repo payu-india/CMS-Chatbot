@@ -1,8 +1,10 @@
 ---
-title: Status Codes - CLW
+title: Status Codes
 deprecated: false
 hidden: false
 metadata:
+  title: CLW Status Codes
+  description: Status Codes for Close-Loop Wallets
   robots: index
 ---
 <br />
