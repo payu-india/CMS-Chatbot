@@ -5,9 +5,9 @@ hidden: false
 metadata:
   robots: index
 ---
-The following flow diagram illustrate the PayU Chargeback flow for Accept or Contest process. 
+The following flow diagram illustrate the PayU Chargeback flow for Accept or Contest process.
 
-<Image align="center" width="500px" src="https://files.readme.io/41abd752e30c42d3f761fe65da96d0e45ace3b05c6f3241ce87d18dcfc2c6bd0-chargeback_flow_updated.png" />
+<Image align="center" width="500px" src="https://files.readme.io/dad76f35b770ecd42527db5847b0716a9bb031c17e91201c8b12bd50e5d3656d-acquiring_1.png" />
 
 ## Step1 : Chargeback Notification
 
