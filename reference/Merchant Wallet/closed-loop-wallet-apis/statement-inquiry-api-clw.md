@@ -91,19 +91,19 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
 
 ## Response Parameters
 
-| Parameter        | Description                                             | Example          |
-| ---------------- | ------------------------------------------------------- | ---------------- |
-| responseCode     | Response status code                                    | 00               |
-| messageCode      | API response code                                       | 1073             |
-| clientTxnId      | Echoes the request's clientTxnId                        | StatementReq2023 |
-| urn              | Wallet reference number                                 | 7000123456       |
-| availableBalance | Current balance in the wallet                           | 10000            |
-| openingBalance   | Wallet balance at the beginning of the specified period | 5000             |
-| closingBalance   | Wallet balance at the end of the specified period       | 15000            |
-| statementDetails | Array of transaction details within the date range      | [...]            |
-| responseMessage  | Response message                                        | SUCCESS          |
+| Parameter        | Description                                                                                                                                                                                        | Example          |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| responseCode     | Response status code                                                                                                                                                                               | 00               |
+| messageCode      | API response code                                                                                                                                                                                  | 1073             |
+| clientTxnId      | Echoes the request's clientTxnId                                                                                                                                                                   | StatementReq2023 |
+| urn              | Wallet reference number                                                                                                                                                                            | 7000123456       |
+| availableBalance | Current balance in the wallet                                                                                                                                                                      | 10000            |
+| openingBalance   | Wallet balance at the beginning of the specified period                                                                                                                                            | 5000             |
+| closingBalance   | Wallet balance at the end of the specified period                                                                                                                                                  | 15000            |
+| statementDetails | Array of transaction details within the date range. For the field descriptions in this object, refer to[ statementDetails object fields description](#statementDetails object-fields-description). | [...]            |
+| responseMessage  | Response message                                                                                                                                                                                   | SUCCESS          |
 
-### Statement Details Object
+### statementDetails object fields description
 
 | Parameter         | Description                            | Example         |
 | ----------------- | -------------------------------------- | --------------- |
