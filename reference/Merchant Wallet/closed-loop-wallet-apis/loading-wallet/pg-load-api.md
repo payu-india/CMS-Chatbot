@@ -5,14 +5,14 @@ hidden: false
 metadata:
   robots: index
 ---
-The \*\*PG Load \*\*API allows you to create a credit transaction entry directly into the wallet without going through a payment gateway. This is useful for scenarios like cashback, rewards, or direct fund transfers.
+The **PG Load **API allows you to create a credit transaction entry directly into the wallet without going through a payment gateway. This is useful for scenarios like cashback, rewards, or direct fund transfers.
 
 ## Environment
 
-| Environment | URL                                                             |
-| ----------- | --------------------------------------------------------------- |
-| Test        | `https://apitest.payu.in/loyalty-points/v1/wallet/load-account` |
-| Production  | `https://api.payu.in/loyalty-points/v1/wallet/load-account`     |
+| Environment | URL                                                           |
+| ----------- | ------------------------------------------------------------- |
+| Test        | https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1 |
+| Production  | `https://api.payu.in//loyalty-points/ppi/payment/pg-load/v1   |
 
 **HTTP Method**: PATCH
 
@@ -34,34 +34,266 @@ The request body contains both encrypted and decrypted parameters.
 
 #### Decrypted
 
-| Parameter                                     | Description                                                                              | Example          |
-| --------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------- |
-| messageCode<br /><code>mandatory</code>       | <code>Numeric(4)</code> Load card request type code                                      | 1080             |
-| clientTxnId<br /><code>mandatory</code>       | <code>Alphanumeric(14)</code> Unique transaction ID for this request                     | Reload\_V3\_1234 |
-| requestDateTime<br /><code>mandatory</code>   | <code>Numeric(14)</code> Timestamp of the transaction (YYYYMMDDHHMMSS format)            | 20230822183015   |
-| customerMobile<br /><code>conditional</code>  | <code>Numeric(13)</code> Customer's mobile number with country code                      | 919988776655     |
-| urn<br /><code>conditional</code>             | <code>Numeric(11)</code> Unique wallet reference number generated during wallet creation | 70000000008      |
-| transactionAmount<br /><code>mandatory</code> | <code>Numeric(12)</code> Amount to load (expressed in implied decimals)                  | 1500             |
-| sourceType<br /><code>mandatory</code>        | <code>Numeric(2)</code> Source of funding (0 = Wallet, 1 = Account)                      | 1                |
-| sender<br /><code>mandatory</code>            | <code>String(100)</code> Name identifying the funding source                             | Amazon           |
-| fundFlowType<br /><code>mandatory</code>      | <code>String(20)</code> Type of fund flow (I = Inward, O = Outward)                      | I                |
-| implId<br /><code>mandatory</code>            | <code>String(100)</code> Implementing identifier matching a mapped configuration         | I\|70190         |
-| implType<br /><code>mandatory</code>          | <code>String(100)</code> Implementation type                                             | PG\_W2A\_I       |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
-> **Note**: Either `customerMobile` or `urn` must be provided.
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        clientTxnId<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>Alphanumeric(14)</code> Unique transaction ID for this request
+      </td>
+
+      <td>
+        Reload_V3_1234
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        requestDateTime<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>Numeric(14)</code> Timestamp of the transaction (YYYYMMDDHHMMSS format)
+      </td>
+
+      <td>
+        20230822183015
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        customerId
+        <code>optional</code>
+      </td>
+
+      <td>
+        <code>Numeric(20)</code> A unique customer ID from calling application to be shared. If the value is not passed in the request, the platform will auto-generate a unique value for this
+        field."
+      </td>
+
+      <td>
+        89342546
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        customer.firstName
+        <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String(50)</code> Customer first Name. The following validations for this field :  
+
+        1. Start and end with valid characters (no extra characters outside the allowed set).   
+        2. Contain only:   Uppercase letters (A-Z)   Lowercase letters (a-z)   Periods (.)   Spaces ( )   Have at least one character and no invalid symbols like numbers, special characters outside the allowed set, etc.
+        3. Total length of string should be max 50 chars (including space) and it can only contain characters, hyphens and single spaces in b/w words. No double spaces allowed b/w 2 words
+      </td>
+
+      <td>
+        Ashish
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        customer.lastName
+        <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String(50)</code> Customer last name. The following validations are done for this field: 
+
+        1. Start and end with valid characters (no extra characters outside the allowed set). 
+        2. Contain only:   Uppercase letters (A-Z)   Lowercase letters (a-z)   Periods (.)   Spaces ( )   Have at least one character and no invalid symbols like numbers, special characters outside the allowed set, etc.
+        3. Total length of string should be max 50 chars (including space) and it can only contain characters, hyphens and single spaces in b/w words. No double spaces allowed b/w 2 words
+      </td>
+
+      <td>
+        Mishra
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        customer.mobileNumber<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>Numeric(13)</code> Customer's mobile number with country code
+      </td>
+
+      <td>
+        919988776655
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        customer.email
+        <br/> <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String(50)</code> Valid Email address with valid email format
+      </td>
+
+      <td>
+        ashsih@gmail.com
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        surl<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> This is the URL to which customer is redirected incase if PG Transaction
+        is a success
+      </td>
+
+      <td>
+        https://pp1admin.payu.in/test_response
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        furl<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> This is the URL to which customer is redirected incase if PG Transaction
+        is a failure
+      </td>
+
+      <td>
+        https://pp1admin.payu.in/test_response
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        currency<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> Currency code of the currency used.
+      </td>
+
+      <td>
+        INR
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        loadAmount<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>Numeric(12)</code> Amount to load (expressed in implied decimals)
+      </td>
+
+      <td>
+        1500
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        seamlessTransaction<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> Identifier if it is a seamless transaction or non seamless. This must be either true or false, where:
+
+        * **false** indicates it is a non-seamless transaction. 
+        * **true**indicates it is a seamless transaction.
+      </td>
+
+      <td>
+        false
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Response Parameters
 
-| Parameter           | Description                                   | Example          |
-| ------------------- | --------------------------------------------- | ---------------- |
-| responseCode        | Response status code                          | 00               |
-| messageCode         | Code indicating the load transaction's result | 1081             |
-| clientTxnId         | Echoes the request's clientTxnId              | Reload\_V3\_1234 |
-| urn                 | Wallet reference number                       | 1000019          |
-| accosaTransactionId | Internal transaction ID for this load         | 1234567890       |
-| accosaRefNo         | System-generated reference sequence           | 20230822001      |
-| availableBalance    | Updated wallet balance after the transaction  | 1500             |
-| responseMessage     | Response message                              | SUCCESS          |
+<HTMLBlock>{`
+<table>
+    <tbody>
+        <tr>
+            <td style="background-color:#9d9d9d;border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;vertical-align:top;width:96.0px;">
+                Field
+            </td>
+            <td style="background-color:#9d9d9d;border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;vertical-align:top;width:87.0px;">
+                Description
+            </td>
+            <td style="background-color:#9d9d9d;border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;vertical-align:top;width:136.0px;">
+                Example
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:32.0px;padding:4.0px;vertical-align:top;width:96.0px;">
+                referenceId
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:32.0px;padding:4.0px;vertical-align:top;width:87.0px;">
+                Reference ID of Transaction
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:32.0px;padding:4.0px;vertical-align:top;width:136.0px;">
+                e47293311906aeb0eb65168adacdce01
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:56.0px;padding:4.0px;vertical-align:top;width:96.0px;">
+                data.redirectUrl
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:56.0px;padding:4.0px;vertical-align:top;width:87.0px;">
+                Redirection link
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:56.0px;padding:4.0px;vertical-align:top;width:136.0px;">
+                "<a href="https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0">https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0</a>”
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color:#000000;border-width:1.0px;height:57.0px;padding:4.0px;vertical-align:top;width:96.0px;">
+                seamlessTxn
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:57.0px;padding:4.0px;vertical-align:top;width:87.0px;">
+                Identifier if it is a seamless transaction or non seamless
+            </td>
+            <td style="border-color:#000000;border-width:1.0px;height:57.0px;padding:4.0px;vertical-align:top;width:136.0px;">
+                true/false
+            </td>
+        </tr>
+    </tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
 
 ## Sample Request
 
