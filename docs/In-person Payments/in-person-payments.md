@@ -12,10 +12,6 @@ next:
 ---
 For the past few years, commerce has been moving in a two-dimensional direction. Retailers are trying to create an online experience that resembles their in-store experiences, but this just doesn’t work. You need an omni-channel platform that can drive results for your business in all aspects of your business, be it mobile or ecommerce.
 
-The following figure illustrates how your customers can make the payments in omnichannel when compared to multichannel or crosschannel:
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/Multichannel-vs-Omnichannel-Contact-Center-1024x595.jpeg)
-
 ## Advantages of PayU Omnichannel
 
 * **Faster and secure payments**: As PayU itself a payment provider and implements intelligence to find the fastest route to make payments.
