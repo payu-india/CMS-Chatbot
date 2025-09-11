@@ -24,23 +24,13 @@ The **Load Enquiry** API allows you to check the status of a wallet load transac
 
 ### Body Parameters
 
-The request body contains both encrypted and decrypted parameters.
-
-#### Encrypted
-
-| Parameter                         | Description                                                                                    |
-| --------------------------------- | ---------------------------------------------------------------------------------------------- |
-| token<br /><code>mandatory</code> | <code>String</code> AES-192-CBC encrypted request body containing all the decrypted parameters |
-
-#### Decrypted
-
 | Parameter                               | Description                                                                   | Example      |
 | --------------------------------------- | ----------------------------------------------------------------------------- | ------------ |
 | clientTxnId<br /><code>mandatory</code> | <code>Alphanumeric(100)</code> Unique transaction ID from the PG Load request | PGLOAD123456 |
 
 ## Response Parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -209,7 +199,7 @@ The request body contains both encrypted and decrypted parameters.
       </td>
 
       <td>
-        PG result for **Verify Payment** API. For more information, refer to 
+        PG result for **Verify Payment** API. For more information, refer to
 
         [Verify Payment API](ref:verify_payment_api)
 
