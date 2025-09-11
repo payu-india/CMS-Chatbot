@@ -196,21 +196,4 @@ curl --location --request POST 'https://apitest.payu.in/loyalty- points/v1/walle
 }
 ```
 
-## HTTP Status Codes
-
-| Status Code | Description                              |
-| ----------- | ---------------------------------------- |
-| 200         | OK - Request processed successfully      |
-| 400         | Bad Request - Invalid request parameters |
-| 401         | Unauthorized - Authentication failed     |
-| 404         | Not Found - Customer record not found    |
-| 500         | Internal Server Error                    |
-
-## Error Codes
-
-| Error Code | Description                            |
-| ---------- | -------------------------------------- |
-| 1931       | Customer record retrieved successfully |
-| 1010       | Invalid message code                   |
-| 1020       | Missing required parameters            |
-| 1040       | Customer not found                     |
+<br />
