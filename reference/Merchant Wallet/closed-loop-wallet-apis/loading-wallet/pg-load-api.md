@@ -9,10 +9,10 @@ The **PG Load **API allows you to create a credit transaction entry directly int
 
 ## Environment
 
-| Environment | URL                                                           |
-| ----------- | ------------------------------------------------------------- |
-| Test        | https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1 |
-| Production  | `https://api.payu.in//loyalty-points/ppi/payment/pg-load/v1   |
+| Environment | URL                                                                                                                            |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Test        | [https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1](https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1) |
+| Production  | `[https://api.payu.in//loyalty-points/ppi/payment/pg-load/v1](https://api.payu.in//loyalty-points/ppi/payment/pg-load/v1)      |
 
 **HTTP Method**: PATCH
 
@@ -24,17 +24,7 @@ The **PG Load **API allows you to create a credit transaction entry directly int
 
 ### Body Parameters
 
-The request body contains both encrypted and decrypted parameters.
-
-#### Encrypted
-
-| Parameter                         | Description                                                                                    |
-| --------------------------------- | ---------------------------------------------------------------------------------------------- |
-| token<br /><code>mandatory</code> | <code>String</code> AES-192-CBC encrypted request body containing all the decrypted parameters |
-
-#### Decrypted
-
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -105,7 +95,7 @@ The request body contains both encrypted and decrypted parameters.
       <td>
         <code>String(50)</code> Customer first Name. The following validations for this field :  
 
-        1. Start and end with valid characters (no extra characters outside the allowed set).   
+        1. Start and end with valid characters (no extra characters outside the allowed set).  
         2. Contain only:   Uppercase letters (A-Z)   Lowercase letters (a-z)   Periods (.)   Spaces ( )   Have at least one character and no invalid symbols like numbers, special characters outside the allowed set, etc.
         3. Total length of string should be max 50 chars (including space) and it can only contain characters, hyphens and single spaces in b/w words. No double spaces allowed b/w 2 words
       </td>
@@ -124,7 +114,7 @@ The request body contains both encrypted and decrypted parameters.
       <td>
         <code>String(50)</code> Customer last name. The following validations are done for this field: 
 
-        1. Start and end with valid characters (no extra characters outside the allowed set). 
+        1. Start and end with valid characters (no extra characters outside the allowed set).
         2. Contain only:   Uppercase letters (A-Z)   Lowercase letters (a-z)   Periods (.)   Spaces ( )   Have at least one character and no invalid symbols like numbers, special characters outside the allowed set, etc.
         3. Total length of string should be max 50 chars (including space) and it can only contain characters, hyphens and single spaces in b/w words. No double spaces allowed b/w 2 words
       </td>
@@ -151,7 +141,7 @@ The request body contains both encrypted and decrypted parameters.
     <tr>
       <td>
         customer.email
-        <br/> <code>mandatory</code>
+        <br /> <code>mandatory</code>
       </td>
 
       <td>
@@ -159,7 +149,11 @@ The request body contains both encrypted and decrypted parameters.
       </td>
 
       <td>
-        ashsih@gmail.com
+
+
+        [ashsih@gmail.com](mailto:ashsih@gmail.com)
+
+
       </td>
     </tr>
 
@@ -174,7 +168,11 @@ The request body contains both encrypted and decrypted parameters.
       </td>
 
       <td>
-        https://pp1admin.payu.in/test_response
+
+
+        [https://pp1admin.payu.in/test_response](https://pp1admin.payu.in/test_response)
+
+
       </td>
     </tr>
 
@@ -189,7 +187,11 @@ The request body contains both encrypted and decrypted parameters.
       </td>
 
       <td>
-        https://pp1admin.payu.in/test_response
+
+
+        [https://pp1admin.payu.in/test_response](https://pp1admin.payu.in/test_response)
+
+
       </td>
     </tr>
 
@@ -229,7 +231,7 @@ The request body contains both encrypted and decrypted parameters.
       <td>
         <code>String</code> Identifier if it is a seamless transaction or non seamless. This must be either true or false, where:
 
-        * **false** indicates it is a non-seamless transaction. 
+        * **false** indicates it is a non-seamless transaction.
         * **true**indicates it is a seamless transaction.
       </td>
 
@@ -242,114 +244,35 @@ The request body contains both encrypted and decrypted parameters.
 
 ## Response Parameters
 
-<HTMLBlock>{`
-<table>
-    <tbody>
-        <tr>
-            <td style="background-color:#9d9d9d;border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;vertical-align:top;width:96.0px;">
-                Field
-            </td>
-            <td style="background-color:#9d9d9d;border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;vertical-align:top;width:87.0px;">
-                Description
-            </td>
-            <td style="background-color:#9d9d9d;border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;vertical-align:top;width:136.0px;">
-                Example
-            </td>
-        </tr>
-        <tr>
-            <td style="border-color:#000000;border-width:1.0px;height:32.0px;padding:4.0px;vertical-align:top;width:96.0px;">
-                referenceId
-            </td>
-            <td style="border-color:#000000;border-width:1.0px;height:32.0px;padding:4.0px;vertical-align:top;width:87.0px;">
-                Reference ID of Transaction
-            </td>
-            <td style="border-color:#000000;border-width:1.0px;height:32.0px;padding:4.0px;vertical-align:top;width:136.0px;">
-                e47293311906aeb0eb65168adacdce01
-            </td>
-        </tr>
-        <tr>
-            <td style="border-color:#000000;border-width:1.0px;height:56.0px;padding:4.0px;vertical-align:top;width:96.0px;">
-                data.redirectUrl
-            </td>
-            <td style="border-color:#000000;border-width:1.0px;height:56.0px;padding:4.0px;vertical-align:top;width:87.0px;">
-                Redirection link
-            </td>
-            <td style="border-color:#000000;border-width:1.0px;height:56.0px;padding:4.0px;vertical-align:top;width:136.0px;">
-                "<a href="https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0">https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0</a>”
-            </td>
-        </tr>
-        <tr>
-            <td style="border-color:#000000;border-width:1.0px;height:57.0px;padding:4.0px;vertical-align:top;width:96.0px;">
-                seamlessTxn
-            </td>
-            <td style="border-color:#000000;border-width:1.0px;height:57.0px;padding:4.0px;vertical-align:top;width:87.0px;">
-                Identifier if it is a seamless transaction or non seamless
-            </td>
-            <td style="border-color:#000000;border-width:1.0px;height:57.0px;padding:4.0px;vertical-align:top;width:136.0px;">
-                true/false
-            </td>
-        </tr>
-    </tbody>
-</table>
-`}</HTMLBlock>
-
-<br />
+| Parameter        | Description                                                | Example**                                                                                                                            |
+| ---------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| referenceId      | Reference ID of Transaction                                | e47293311906aeb0eb65168adacdce01                                                                                                     |
+| data.redirectUrl | Redirection link                                           | "[https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0](https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0)" |
+| seamlessTxn      | Identifier if it is a seamless transaction or non seamless | true/false                                                                                                                           |
 
 ## Sample Request
 
-### Encrypted Packet
-
 ```bash
-curl --location --request PATCH 'https://apitest.payu.in/loyalty-points/v1/wallet/load-account' \
---header 'walletIdentifier: CLW' \
---header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="hmac_generated_signature"' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "token": "h/0YSUd9jKOQ8+2Dc3Phr4s7vxyz123..."
-}'
-```
-
-### Decrypted Packet
-
-```json
-{
-  "messageCode": "1080",
-  "clientTxnId": "Reload_V3_1234",
-  "requestDateTime": "20230822183015",
-  "urn": 70000000008,
-  "transactionAmount": 1500,
-  "sourceType": 1,
-  "sender": "Amazon",
-  "fundFlowType": "I",
-  "implId": "I|70190",
-  "implType": "PG_W2A_I"
-}
+curl --location --request POST 'https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1' \ 
+--header 'walletIdentifier: CLW' \ 
+--header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \ 
+--header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="v15rnvh1InSEWRq6EW9BCfXlxO0QI/4Sxxmdxd2f4Q0="' \ 
+--header 'Content-Type: application/json' \ 
+--data-raw '{  
+"clientTxnId": "testRegistration10",  
+"requestDateTime": "20230620123143",  {  "customer": {  "firstName": "FGHJ",  "lastName": "DFTTYUI",  "email": "tegyh@gh.com",  "mobileNumber": "919999999999"  },  "surl": "https://pp1admin.payu.in/test_response",  "furl": "https://pp1admin.payu.in/test_response",  "currency": "INR",  "loadAmount": 4100,  "customerId": "2201919",  "seamlessTxn": false  }
 ```
 
 ## Sample Response
 
-### Encrypted Response
-
 ```json
-{
-  "result": "h/0YSUd9jKOQ8+2Dc3Phr4s7vxyz789..."
-}
-```
-
-### Decrypted Response
-
-```json
-{
-  "responseCode": "00",
-  "messageCode": 1081,
-  "clientTxnId": "Reload_V3_1234",
-  "urn": 1000019,
-  "accosaTransactionId": 1234567890,
-  "accosaRefNo": 20230822001,
-  "availableBalance": 1500,
-  "responseMessage": "SUCCESS"
-}
+{ 
+"referenceId": "e47293311906aeb0eb65168adacdce01", 
+"data": { 
+       "redirectUrl": "https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0"
+}, 
+"seamlessTxn": false
+}
 ```
 
 ## HTTP Status Codes
