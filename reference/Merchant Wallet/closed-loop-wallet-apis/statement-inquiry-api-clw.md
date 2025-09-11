@@ -120,52 +120,45 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
 
 ## Sample Request
 
-### Encrypted Packet
-
-```bash
-curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet/statement-inquiry' \
+```curl
+curl --location --request POST 'https://apitest.payu.in/loyalty- points/v1/wallet/statement-inquiry' \
 --header 'walletIdentifier: CLW' \
+--header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="v15rnvh1InSEWRq6EW9BCfXlxO0QI/4Sxxmdxd2f4Q0="' \
 --header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="hmac_generated_signature"' \
 --header 'Content-Type: application/json' \
---data-raw '{
-  "token": "h/0YSUd9jKOQ8+2Dc3Phr4s7vxyz123..."
+--header 'Cookie: PHPSESSID=s4uujktf7gm484pt7uk7bdhv55' \
+--data-raw '{ 
+ 		 "messageCode": "1072",
+ "requestDateTime": "20191009030456",
+"clientTxnId": "statementinqtes21", 
+"fromDate": "01/01/2024",
+"toDate": "19/03/2024", "last4Digits": "3877",
+"urn": 1000000,
+"customerId": "22019",
+"count": "100"
 }'
-```
 
-### Decrypted Packet
-
-```json
-{
-  "messageCode": "1072",
-  "clientTxnId": "StatementReq2023",
-  "fromDate": "01/07/2023",
-  "toDate": "31/07/2023",
-  "urn": "7000123456"
-}
 ```
 
 ## Sample Response
 
-### Encrypted Response
-
 ```json
 {
-  "result": "h/0YSUd9jKOQ8+2Dc3Phr4s7vxyz789..."
-}
-```
-
-### Decrypted Response
-
-```json
-{
+  "urn": 1000020,
+  "customerId": "220555",
   "responseCode": "00",
   "messageCode": 1073,
-  "clientTxnId": "StatementReq2023",
-  "urn": 7000123456,
-  "availableBalance": 10000,
-  "openingBalance": 5000,
-  "closingBalance": 15000,
+  "clientTxnId": "statementinqtes22",
+  "clientId": "7310",
+  "responseDateTime": "20240522120617",
+  "responseMessage": "SUCCESS",
+  "bankId": 6060,
+  "availableBalance": "100000",
+  "availableCashLimit": "0",
+  "pageNumber": 1,
+  "count": 100,
+  "openingBalance": "0",
+  "closingBalance": "0",
   "statementDetails": [
     {
       "transactionId": "TXN123456789",
@@ -179,50 +172,9 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
       "status": "SUCCESS",
       "referenceNumber": "REF789012345"
     }
-  ],
-  "responseMessage": "SUCCESS"
+  ]
 }
+
 ```
 
-## HTTP Status Codes
-
-| Status Code | Description                              |
-| ----------- | ---------------------------------------- |
-| 200         | OK - Request processed successfully      |
-| 400         | Bad Request - Invalid request parameters |
-| 401         | Unauthorized - Authentication failed     |
-| 404         | Not Found - Wallet not found             |
-| 500         | Internal Server Error                    |
-
-## Error Codes
-
-| Error Code | Description                  |
-| ---------- | ---------------------------- |
-| 1073       | Statement inquiry successful |
-| 1010       | Invalid message code         |
-| 1020       | Missing required parameters  |
-| 1040       | Wallet not found             |
-| 1074       | Invalid date range           |
-
-## Transaction Types
-
-| Type   | Description                    |
-| ------ | ------------------------------ |
-| CREDIT | Money added to the wallet      |
-| DEBIT  | Money deducted from the wallet |
-
-## Transaction Status Values
-
-| Status    | Description                        |
-| --------- | ---------------------------------- |
-| SUCCESS   | Transaction completed successfully |
-| FAILED    | Transaction failed                 |
-| PENDING   | Transaction is still in progress   |
-| CANCELLED | Transaction was cancelled          |
-
-## Date Range Limitations
-
-* Maximum date range: 90 days
-* Date format: DD/MM/YYYY
-* Both `fromDate` and `toDate` are inclusive
-* Future dates are not allowed
+<br />
