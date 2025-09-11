@@ -22,18 +22,6 @@ The **Retrieve Customer Record** API allows you to fetch customer details using 
 
 ## Request Parameters
 
-### Body Parameters
-
-The request body contains both encrypted and decrypted parameters.
-
-#### Encrypted
-
-| Parameter                         | Description                                                                                    |
-| --------------------------------- | ---------------------------------------------------------------------------------------------- |
-| token<br /><code>mandatory</code> | <code>String</code> AES-192-CBC encrypted request body containing all the decrypted parameters |
-
-#### Decrypted
-
 <HTMLBlock>{`
 <table>
     <thead>
