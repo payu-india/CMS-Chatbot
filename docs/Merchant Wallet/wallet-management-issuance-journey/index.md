@@ -1,5 +1,5 @@
 ---
-title: Wallet/Card Management APIs
+title: Wallet/Card Management
 excerpt: ''
 deprecated: false
 hidden: false
@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The following sections provide the list of APIs or integration procedures:
+The following sections provide API integration or list of APIs for:
 
 > 📘 Note:
 >
