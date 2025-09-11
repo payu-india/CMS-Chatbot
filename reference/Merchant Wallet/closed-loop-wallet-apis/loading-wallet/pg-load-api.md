@@ -22,7 +22,15 @@ The **PG Load **API allows you to create a credit transaction entry directly int
 
 ## Request Parameters
 
-### Body Parameters
+The request body contains both encrypted and decrypted parameters.
+
+#### Encrypted
+
+| Parameter                         | Description                                                                                    |
+| --------------------------------- | ---------------------------------------------------------------------------------------------- |
+| token<br /><code>mandatory</code> | <code>String</code> AES-192-CBC encrypted request body containing all the decrypted parameters |
+
+#### Decrypted
 
 <Table align={["left","left","left"]}>
   <thead>
