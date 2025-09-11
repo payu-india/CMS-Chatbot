@@ -52,6 +52,10 @@ This API uses HMAC-SHA512 authentication on the header.
 </table>
 `}</HTMLBlock>
 
+<Callout icon="↩️">
+  If you do not post the authentication, you will get error in response. For the list of error codes, refer to [Status Codes](ref:status-codes-clw)
+</Callout>
+
 ### hmac authentication logic
 
 ```
@@ -63,6 +67,6 @@ Where, the fields in this example are:
 * **username**: The merchant key of the merchant.
 * **algorithm**: This must have the value as hmac-sha512 that is used for this API.
 * **headers**: This must have the value as date digest.
-* **signature**: This must contain the hmacsha512 of (signing\_string, merchant\_secret), where:
-* **signing\_string**: It must be in the "date: \{dateValue}"format. Here, the dateValue is the same values in the fields listed in this table For example, "date: Thu, 17 Feb 2022 08:17:59 GMT"
-* **merchant\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.
+* **signature**: This must contain the hmacsha512 of (signing_string, merchant_secret), where:
+* **signing_string**: It must be in the "date: \{dateValue}"format. Here, the dateValue is the same values in the fields listed in this table For example, "date: Thu, 17 Feb 2022 08:17:59 GMT"
+* **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.
