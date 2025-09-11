@@ -24,8 +24,6 @@ The Load and Pay Transaction API is designed to handle wallet transactions where
 
 ## Request Parameters
 
-### Body Parameters
-
 <HTMLBlock>{`
 <table>
     <thead>
