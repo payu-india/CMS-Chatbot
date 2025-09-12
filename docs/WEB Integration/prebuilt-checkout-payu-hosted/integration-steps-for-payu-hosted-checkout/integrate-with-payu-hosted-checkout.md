@@ -85,9 +85,10 @@ The Collect Payment (**_payment**) API is used for collecting payments in Web Ch
 
 <HTMLBlock>{`
 <style>
-  .payu-table {
-    width: 75%;
-  }
+.payu-table {
+  width: 75% !important;
+  word-break: break-word !important;
+}
 </style>
 <table border="1" cellpadding="5" cellspacing="0" class="payu-table">
   <thead>
