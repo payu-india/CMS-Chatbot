@@ -21,7 +21,7 @@ You can use the **Get Payment Status** API to manually request the status of a b
 
 > 📘 Note:
 >
-> Send the scope of the Get Token API as **read\_transactions** to obtain the access\_token for this request. For more information, refer to [Get Token API - BBPS](ref:get-token-api-bbps).
+> Send the scope of the Get Token API as **read_transactions** to obtain the access_token for this request. For more information, refer to [Get Token API - BBPS](ref:get-token-api-bbps).
 
 <details>
   <summary>Sample request</summary>
@@ -93,7 +93,7 @@ You can use the **Get Payment Status** API to manually request the status of a b
   | Field            | Description                                                                                                                                                                                                                                                                                           |
   | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | refId            | This field contains the reference ID for the queried payment request.                                                                                                                                                                                                                                 |
-  | txnStatus        | This field contains the status related to requested refId. It will contain status as in the Transaction Status Code table. For more information, refer to [Transaction Status Code](https://devguide.vercel.app/agent-api-integration/bill-apis/bill-payment-transaction-status/#Transaction_Status). |
+  | txnStatus        | This field contains the status related to requested refId. It will contain status as in the Transaction Status Code table. For more information, refer to [Payment State Explanation](https://docs.payu.in/reference/payment-state-explanations). |
   | requestTimeStamp | This field contains the actual payment requested date time stamp of payment request.                                                                                                                                                                                                                  |
   | paidAmount       | This field contains the payment requested amount                                                                                                                                                                                                                                                      |
   | billerId         | This field contains the payment requested biller ID.                                                                                                                                                                                                                                                  |
