@@ -14,18 +14,18 @@ To integrate with PayU Hosted Checkout for partners, you need to send a request 
 
 The following steps allow you to integrate the PayU Hosted Checkout:
 
-1. [Make the transaction request to PayU](https://payu-hosted-checkout.readme.io/docs/hosted-checkout-api-whatsapp-integration#step-1-make-the-transaction-request-to-payu)
-2. [Customer submits payment details on PayU page](https://payu-hosted-checkout.readme.io/docs/hosted-checkout-api-whatsapp-integration#step-2-customer-submits-payment-details-on-payu-page)
-3. [Validate the response from PayU](https://payu-hosted-checkout.readme.io/docs/hosted-checkout-api-whatsapp-integration#step-3-validate-the-response-from-payu)
-4. [Verify the Payment](https://payu-hosted-checkout.readme.io/docs/hosted-checkout-api-whatsapp-integration#step-4-verify-the-payment)t
-5. [PayU sends Server-to-Server callback response](https://payu-hosted-checkout.readme.io/docs/hosted-checkout-api-whatsapp-integration#step-5-payu-sends-server-to-server-call-back-response)
+1. [Make the transaction request to PayU](https://docs.payu.in/docs/hosted-checkout-api-whatsapp-integration#step-1-make-the-transaction-request-to-payu)
+2. [Customer submits payment details on PayU page](https://docs.payu.in/docs/hosted-checkout-api-whatsapp-integration#step-2-customer-submits-payment-details-on-payu-page)
+3. [Validate the response from PayU](https://docs.payu.in/docs/hosted-checkout-api-whatsapp-integration#step-3-validate-the-response-from-payu)
+4. [Verify the Payment](https://docs.payu.in/docs/hosted-checkout-api-whatsapp-integration#step-4-verify-the-payment)t
+5. [PayU sends Server-to-Server callback response](https://docs.payu.in/docs/hosted-checkout-api-whatsapp-integration#step-5-payu-sends-server-to-server-call-back-response)
 
 ## Step 1: Make the transaction request to PayU
 
-|           |                                                                  |
-| --------- | ---------------------------------------------------------------- |
-| UAT Host- | \<https://test-partnerapilayer.payu.in/apilayer/partner/payments> |
-| PROD Host | \<https://api.payu.in/partner/payments>                           |
+|           |                                                                                                                                      |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| UAT Host- | \<[https://test-partnerapilayer.payu.in/apilayer/partner/payments>](https://test-partnerapilayer.payu.in/apilayer/partner/payments>) |
+| PROD Host | \<[https://api.payu.in/partner/payments>](https://api.payu.in/partner/payments>)                                                     |
 
 ### **Request headers**
 
@@ -54,14 +54,13 @@ The following steps allow you to integrate the PayU Hosted Checkout:
 </table>
 `}</HTMLBlock>
 
-
 ### Request parameters
 
-The following table lists the request parameter descriptions for Partner Payment integration. 
+The following table lists the request parameter descriptions for Partner Payment integration.
 
 > 📘 Extra params for Partner integration:
-> 
-> The following params are the extra parameters (optional) used compared to the regular **\_payment** API, but with a different endpoint:  partner_udf_3, partner_udf_4, shipping_firstname, shipping_lastname, shipping_address1, shipping_address2, shipping_city, shipping_state, shipping_country, shipping_zipcode,  shipping_phone
+>
+> The following params are the extra parameters (optional) used compared to the regular **_payment** API, but with a different endpoint:  partner_udf_3, partner_udf_4, shipping_firstname, shipping_lastname, shipping_address1, shipping_address2, shipping_city, shipping_state, shipping_country, shipping_zipcode,  shipping_phone
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -344,7 +343,6 @@ The following table lists the request parameter descriptions for Partner Payment
 </table>
 `}</HTMLBlock>
 
-
 ### Sample Request
 
 ```curl
@@ -480,7 +478,6 @@ curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/pa
 </table>
 `}</HTMLBlock>
 
-
 ## Step 2: Customer Submits Payment Details on PayU Page
 
 The customer selects the appropriate payment option (Credit Card, Debit Card, Net Banking, etc.) on PayU Payment page.
@@ -496,15 +493,15 @@ This section provides a list of parameters included in the response for PayU Hos
 ### Response Parameters
 
 > 📘 Note:
-> 
+>
 > Verify the **amount** and **txnid** parameters at your end in response from PayU.
 
 #### Sample Response
 
 PayU responds to the status of the transaction:
 
-- **Success response**: If the transaction is successful, PayU will redirect the customer’s browser to the success URL, which is a URL provided by you using the `surl` parameter.
-- **Failure response**: If the transaction fails, PayU will redirect the customer’s browser to the failure URL, which is a URL provided by you using the `furl` parameter.
+* **Success response**: If the transaction is successful, PayU will redirect the customer’s browser to the success URL, which is a URL provided by you using the `surl` parameter.
+* **Failure response**: If the transaction fails, PayU will redirect the customer’s browser to the failure URL, which is a URL provided by you using the `furl` parameter.
 
 For more information on `surl` or `furl` parameter, refer to the [Collect Payment - Merchant Hosted Checkout](ref:_payment_merchant_hosted).
 
@@ -578,10 +575,10 @@ cardhash: This field is no longer supported in postback params.
 
 **Environment**
 
-|           |                                                 |
-| --------- | ----------------------------------------------- |
-| UAT Host  | \<https://test-partnerapilayer.payu.in/apilayer> |
-| PROD Host | \<https://api.payu.in>                           |
+|           |                                                                                                    |
+| --------- | -------------------------------------------------------------------------------------------------- |
+| UAT Host  | \<[https://test-partnerapilayer.payu.in/apilayer>](https://test-partnerapilayer.payu.in/apilayer>) |
+| PROD Host | \<[https://api.payu.in>](https://api.payu.in>)                                                     |
 
 ### Request headers
 
@@ -824,7 +821,6 @@ curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/pa
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### Sample response
 
