@@ -27,10 +27,10 @@ Here's the HTML content converted to markdown format:
 
 * Web Checkout
   * Choose between Prebuilt Web Checkout (PayU Hosted Checkout), Custom Checkout (Merchant Hosted Checkout) or Low Code Web SDK integration based on your resources and time to integrate as described in Collect Payment from your website. With your Web Checkout integration, you can opt-in for the following PayU products:
-    * [Subscription or Recurring Payments](doc:introduction-recurring-payments-integration/)
+    * [Subscription or Recurring Payments](doc:introduction-recurring-payments-integration)
     * [International Payments](doc:introduction-dynamic-currency-conversion/)
     * [Cross-Border Payments](doc:introduction-cross-border-payments-import/)
-    * [Split Settlements](https://docs.payu.in/docs/split-settlments/)\
+    * [Split Settlements](https://docs.payu.in/docs/split-settlments/)
       You can value add to your existing PayU Web Checkout integration with the following products:
     * [Save Cards](https://docs.payu.in/docs/introduction-save-cards/)
     * [Offers](https://docs.payu.in/update/docs/introduction-to-affordability/)
@@ -45,7 +45,7 @@ Here's the HTML content converted to markdown format:
     * [iOS](#ios)
     * [React Native](https://docs.payu.in/docs/explore-reactnative-sdks)
     * [Cordova](https://docs.payu.in/docs/cordova-sdk-introduction/)
-    * [Flutter](https://docs.payu.in/docs/flutter-sdk-introduction/)\
+    * [Flutter](https://docs.payu.in/docs/flutter-sdk-introduction/)
       You can choose to integrate using the Checkout Plus, the pre-built GUI for Android, iOS or React Native or use various SDK components as described in [Collect payment from Mobile](#collect-payment-from-mobile).
 
 * Payment Links
