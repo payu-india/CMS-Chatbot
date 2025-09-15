@@ -368,7 +368,15 @@ The Collect Payment (**_payment**) API is used for collecting payments in Web Ch
 </table>
 `}</HTMLBlock>
 
-<br />
+### Hashing
+
+You must hash the request parameters using the following hash logic:
+
+```
+sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+```
+
+For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
 
 #### Sample request
 
