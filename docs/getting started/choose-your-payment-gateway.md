@@ -95,12 +95,12 @@ You can collect payments using Omnichannel after any one of the following integr
 
 You can configure PayU plugins for the following eCommerce platforms within few minutes and start collecting payments.
 
-|                                                                      |                              |                                |
-| :------------------------------------------------------------------- | :--------------------------- | :----------------------------- |
-| [Shopify](doc:shopify)                                               | [Wix](doc:wix)               | [WooCommerce](doc:woocommerce) |
-| [Interakt for WhatsApp Business](doc:interakt-for-whatsapp-business) | [Magento](doc:magento)       | [OpenCart](doc:opencart)       |
-| [Shopmatic](doc:shopmatic)                                           | [PrestaShop](doc:prestashop) | [BigCommerce](doc:bigcommerce) |
-| [Zoho](doc:zoho-integration)                                         |                              |                                |
+|                                                                      |                              |                                    |
+| :------------------------------------------------------------------- | :--------------------------- | :--------------------------------- |
+| [Shopify](doc:shopify)                                               | [Wix](doc:wix)               | [WooCommerce](doc:woocommerce)     |
+| [Interakt for WhatsApp Business](doc:interakt-for-whatsapp-business) | [Magento](doc:magento)       | [OpenCart](doc:opencart)           |
+| [Shopmatic](doc:shopmatic)                                           | [PrestaShop](doc:prestashop) | [BigCommerce](doc:bigcommerce)     |
+| [Zoho](doc:zoho-integration)                                         | [Odoo](doc:odoo)             | [Fynd Store](doc:fynd-integration) |
 
 # Become a partner
 
