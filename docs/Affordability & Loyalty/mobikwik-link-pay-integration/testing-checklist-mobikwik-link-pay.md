@@ -1,7 +1,7 @@
 ---
 title: Testing Checklist -  Mobikwik Link & Pay
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
