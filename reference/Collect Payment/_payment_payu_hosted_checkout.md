@@ -32,11 +32,11 @@ next:
       slug: integrate-with-payu-hosted-checkout
       title: 1. Integration Steps
 ---
-The Collect Payment API (**\_payment** API) is used to collect payments for all the Web Checkout integration. This section provides the API Reference for PayU Hosted Checkout or Pre-Built Checkout.
+The Collect Payment API (**_payment** API) is used to collect payments for all the Web Checkout integration. This section provides the API Reference for PayU Hosted Checkout or Pre-Built Checkout.
 
 > 📘 Reference:
 >
-> For an example of how to submit a payment request on your\[website, refer to [Submitting Payment Requ](doc:submitting-payment-request-on-your-website) st-on-your-website). To handle redirect URLs (surl a\[d furl), refer to [Handlin](doc:handling-the-redirect-urls) -the-redirect-urls).
+> For an example of how to submit a payment request on your[website, refer to [Submitting Payment Request on your Website](doc:submitting-payment-request-on-your-website). To handle redirect URLs (surl a[d furl), refer to [Handling the Redirect URLs](doc:handling-the-redirect-urls) -.
 
 ### Environment
 
