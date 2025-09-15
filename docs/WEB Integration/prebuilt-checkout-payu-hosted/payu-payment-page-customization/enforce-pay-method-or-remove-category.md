@@ -59,9 +59,9 @@ To enforce complete categories, use the values as described in the following tab
 
 To enforce sub-categories, use the respective bank codes for them. Contact PayU Support or at help.payu.in to get the respective bank codes.
 
-> 📘 Note
->
-> Ensure that you are using the delimiter as pipe (|) character between the values in these examples.
+<Callout icon="📘" theme="info">
+  **Note**: Ensure that you are using the delimiter as pipe (|) character between the values in these examples.
+</Callout>
 
 ## Usage examples
 
