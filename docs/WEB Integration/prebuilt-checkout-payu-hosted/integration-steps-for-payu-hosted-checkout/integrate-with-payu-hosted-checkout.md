@@ -18,12 +18,6 @@ next:
 ---
 To integrate with PayU Hosted Checkout, you need to send a request and check the response. This will redirect the customer from the merchant’s website to PayU’s payment page to complete the payment. You can use the sample request and response in the provided documentation to get started.
 
-> 👍 Before you begin:
->
-> * PayU recommends you to integrate with Test environment initially. For merchants registered before August 3rd, 2023, use the following URL to sign up for the Test environment:
->   [https://uat-onepayuonboarding.payu.in/app/account/signup](https://uat-onepayuonboarding.payu.in/app/account/signup)
-> * Later, register for a production account with PayU. For more information, refer to [Register for a Merchant Account](register-for-a-merchant-account-on-dashboard).
-
 The steps involved in PayU Hosted Checkout integration are:
 
 1. [Make Transaction Request to PayU](#step-1-make-the-transaction-request-to-payu)
@@ -33,9 +27,9 @@ The steps involved in PayU Hosted Checkout integration are:
 
 Make the transaction request to the PayU Test server.
 
-> 📘 Tip
->
-> When the customer is redirected to the PayU payment page, you can enforce certain payment modes or drop categories. For more information on customizing the payment codes and categories, refer to Enforce refer to  [Enforce Pay Method or Remove Category](doc:enforce-pay-method-or-remove-category).
+<Callout icon="📘" theme="info">
+  Tip: When the customer is redirected to the PayU payment page, you can enforce certain payment modes or drop categories. For more information on customizing the payment codes and categories, refer to  [Enforce Pay Method or Remove Category](doc:enforce-pay-method-or-remove-category).
+</Callout>
 
 ### Post request syntax & composition
 
@@ -64,7 +58,7 @@ The code block is a sample post request that you need to send to PayU:
 
 ### Request and response
 
-The Collect Payment (**_payment**) API is used for collecting payments in Web Checkout integration. For request and response, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted) under API Reference.
+The Collect Payment (**_payment**) API is used for collecting payments in Web Checkout integration. For request and response, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) under API Reference.
 
 **Environment**
 
@@ -75,7 +69,7 @@ The Collect Payment (**_payment**) API is used for collecting payments in Web Ch
 
 > ❗️ Error Handling
 >
-> If any error message is displayed with an error code, refer to [Error Codes for Refund Initiation](ref:error-codes-for-refund-initiation) to understand the reason for these error codes.
+> If any error message is displayed with an error code, refer to [Error Codes](ref:error-codes) to understand the reason for these error codes.
 
 > 📘 Reference
 >
