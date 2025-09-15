@@ -223,153 +223,9 @@ Verify the transaction details using the **Verification Payment** API. For more 
   }
   ```
 
-  * Offer availed on cart level
+  ````
 
-  ```
-  {
-      "status": 1,
-      "msg": "1 out of 1 Transactions Fetched Successfully",
-      "transaction_details": {
-          "1036-f0cf85f2": {
-              "mihpayid": "21564143078",
-              "request_id": "",
-              "bank_ref_num": "431998369241",
-              "amt": "2.00",
-              "transaction_amount": "2.00",
-              "txnid": "1036-f0cf85f2",
-              "additional_charges": "0.00",
-              "productinfo": "EXPRESS",
-              "firstname": "guest",
-              "bankcode": "TEZOMNI",
-              "udf1": "Magento2",
-              "udf2": "",
-              "udf3": "",
-              "udf4": "",
-              "udf5": "qs8rbc1ng2hmqtakk381en6j2p",
-              "field2": "114390824407",
-              "field9": "SUCCESS|Completed Using Callback",
-              "error_code": "E000",
-              "addedon": "2024-11-14 16:06:40",
-              "payment_source": "express",
-              "card_type": null,
-              "error_Message": "NO ERROR",
-              "net_amount_debit": 2.00,
-              "disc": "0.00",
-              "mode": "UPI",
-              "PG_TYPE": "UPI-PG",
-              "card_no": "",
-              "status": "success",
-              "unmappedstatus": "captured",
-              "Merchant_UTR": null,
-              "Settled_At": "0000-00-00 00:00:00",
-              "App_Name": "GooglePay",
-              "card_token": null,
-              "field4": null,
-              "offerAvailed": null,
-              "cart_details": {
-                  "id": "2446425",
-                  "payu_id": "21564143078",
-                  "total_items": "1",
-                  "total_cart_amount": "2.00",
-                  "offer_applied": null,
-                  "offer_availed": null,
-                  "offer_auto_apply": "0",
-                  "instant_discount": "0.00",
-                  "cashback_discount": "0.00",
-                  "total_discount": "0.00",
-                  "net_cart_amount": "2.00",
-                  "created_at": "2024-11-14 16:06:40",
-                  "updated_at": "2024-11-14 16:06:40",
-                  "sku_details": [
-                      {
-                          "id": "3468748",
-                          "cart_id": "2446425",
-                          "payu_id": "21564143078",
-                          "mid": "2",
-                          "sku_id": "Sample Sofa Design-Red",
-                          "sku_name": "Sample Sofa Designtest?=!name",
-                          "amount_per_sku": "2.00",
-                          "quantity": "1",
-                          "amount_before_discount": "2.00",
-                          "discount": "0.00",
-                          "amount_after_discount": "2.00",
-                          "offer_applied": null,
-                          "offer_availed": null,
-                          "offer_status": null,
-                          "offer_type": null,
-                          "offer_auto_apply": "0",
-                          "is_nce": "0",
-                          "failure_reason": null,
-                          "created_at": "2024-11-14 16:06:40",
-                          "updated_at": "2024-11-14 16:06:40",
-                          "offer_title": null,
-                          "offer_description": null,
-                          "instant_discount": null,
-                          "cashback_discount": null,
-                          "offers_raw_response": null,
-                          "raw_response": null
-                      }
-                  ]
-              }
-          }
-      }
-  }
-  ```
-
-  * Offer availed at Transaction level
-
-  ```
-  {
-      "status": 1,
-      "msg": "1 out of 1 Transactions Fetched Successfully",
-      "transaction_details": {
-          "1725950872187": {
-              "mihpayid": "20911942990",
-              "request_id": null,
-              "bank_ref_num": null,
-              "amt": "9900.00",
-              "transaction_amount": "10000.00",
-              "txnid": "1725950872187",
-              "additional_charges": "0.00",
-              "productinfo": "Macbook Pro",
-              "firstname": "Abc",
-              "bankcode": "MAST",
-              "udf1": "udf1",
-              "udf2": "udf2",
-              "udf3": "udf3",
-              "udf4": "udf4",
-              "udf5": "udf5",
-              "field2": null,
-              "field9": "You have reached credit card load limit. Please use other payment options to continue.",
-              "error_code": "E4936",
-              "addedon": "2024-09-10 12:18:20",
-              "payment_source": "payu",
-              "card_type": "MAST",
-              "error_Message": "Bank was unable to authenticate.",
-              "net_amount_debit": "0.00",
-              "disc": "100.00",
-              "mode": "DC",
-              "PG_TYPE": "DC-PG",
-              "card_no": "XXXXXXXXXXXX9528",
-              "status": "failure",
-              "unmappedstatus": "failed",
-              "Merchant_UTR": null,
-              "Settled_At": null,
-              "cardhash": "31056eb2112b68cdc90896f1953ca26605bb525249096172c178881bcd45ac93",
-              "name_on_card": null,
-              "card_token": null,
-              "field4": null,
-              "offerApplied": "LoadTest1@m3phN7YptAA6",
-              "offerAvailed": "LoadTest1@m3phN7YptAA6",
-              "transactionOffer": "{"offer_data":[{"offer_key":"LoadTest1@m3phN7YptAA6","discount":100,"offer_type":"INSTANT","isNoCost":false,"flag_to_fail":false,"status":"SUCCESS","failure_code":null,"failure_reason":"Offer Applied Successfully","offer_description":"Load Test 1","offer_title":"Load Test 1","record_type":"OFFER","parent_offer_key":null,"offer_category":null,"isDpEmi":false}],"discount_data":{"total_discount":100,"cashback_discount":0,"instant_discount":100,"total_nce_discount":0,"instant_nce_discount":0,"cashback_nce_discount":0,"gstSubventedViaOffer":false,"downPaymentAmount":0}}",
-              "offerType": "instant",
-              "offerLevel": "TRANSACTION_LEVEL"
-          }
-      }
-  }
-  ```
-
-  #### Failure Responses
+  **Failure Responses**
 
   * If txnID is not found, the response is similar to the following:
 
@@ -379,7 +235,7 @@ Verify the transaction details using the **Verification Payment** API. For more 
 
   Successfully","transaction_details":{"IhfgcZnXR4o4nB":{"mihpayid":"Not Found","status":"Not Found"}}
   }
-  ```
+  ````
 </Accordion>
 
 <Accordion title="Response parameters" icon="fa-list">
