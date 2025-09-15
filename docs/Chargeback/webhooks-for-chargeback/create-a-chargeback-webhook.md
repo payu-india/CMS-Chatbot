@@ -23,13 +23,13 @@ Before configuring a chargeback webhook, ensure that:
 1. Log on to PayU Dashboard. For more information, refer to [Log in to Dashboard](doc:log-in-to-dashboard).
 2. Select **Developers** > **Webhooks tab**.
 
-<Image align="center" src="https://files.readme.io/da995061d23e136d36c3bfe4482a90bfc5d2644e5c8e13b831a304e3ded73100-Screenshot_2024-10-08_at_5.21.21_PM.png" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/da995061d23e136d36c3bfe4482a90bfc5d2644e5c8e13b831a304e3ded73100-Screenshot_2024-10-08_at_5.21.21_PM.png" />
 
     The Create Webhooks page is displayed with the list of webhooks.
 
-2. Click **Create Webhook** on the top-right corner of the *Create Webhooks* page.
+2. Click **Create Webhook** on the top-right corner of the _Create Webhooks_ page.
 
-   The *Create Webhook* pop-up page is displayed.
+   The _Create Webhook_ pop-up page is displayed.
 
 <Image align="center" src="https://files.readme.io/b1afa2ecaf68bcc42dcc8906f4d56d12183126483b65652f19417ff9cac243de-Screenshot_2024-10-08_at_5.22.20_PM.png" />
 
@@ -53,7 +53,7 @@ Before configuring a chargeback webhook, ensure that:
 1. Open the Chargeback portal using the **Chargeback** menu on Dashboard.
 2. Click the **Configure Webhooks** button.
 
-The *Configure Webhook* page is displayed.
+The _Configure Webhook_ page is displayed.
 
 <Image align="center" src="https://files.readme.io/703624965764d8eac5bc1b230db29779f55b97f8d28f11073e7c60779027ab20-cb_confgure_webhook.png" />
 
