@@ -29,7 +29,7 @@ Here's the HTML content converted to markdown format:
   * Choose between Prebuilt Web Checkout (PayU Hosted Checkout), Custom Checkout (Merchant Hosted Checkout) or Low Code Web SDK integration based on your resources and time to integrate as described in Collect Payment from your website. With your Web Checkout integration, you can opt-in for the following PayU products:
     * [Subscription or Recurring Payments](doc:introduction-recurring-payments-integration)
     * [International Payments](doc:introduction-dynamic-currency-conversion)
-    * [Cross-Border Payments](doc:introduction-cross-border-payments-import/)
+    * [Cross-Border Payments](doc:https://docs.payu.in/docs/doc:introduction-cross-border-payments-import)
     * [Split Settlements](https://docs.payu.in/docs/split-settlments/)
       You can value add to your existing PayU Web Checkout integration with the following products:
     * [Save Cards](https://docs.payu.in/docs/introduction-save-cards/)
