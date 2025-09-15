@@ -658,4 +658,95 @@ curl --location 'https://test.payu.in/_payment' \
 
 ## Step 3: Upload the Invoices
 
-According to the RBI guidelines, the invoice file must be shared with PayU within 10 days of the transaction. The invoices can be uploaded using the **Invoice Upload** API. For more information, refer to [Invoice Upload API](ref:invoice_upload_api).
+According to the RBI guidelines, the invoice file must be shared with PayU within 10 days of the transaction. The invoices can be uploaded using the **Invoice Upload** API. 
+
+<Accordion title="Sample request for Cards" icon="fa-code">
+  ```
+    curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
+    --form 'key="PRiQvJ"' \
+    --form 'command="udf_update"' \
+    --form 'var1="my_order_642"' \
+    --form 'var2="AAAPZ1234C"' \
+    --form 'var4="22/08/1972"' \
+    --form 'var5="SellerName"' \
+    --form 'var6="INV000000005"' \
+    --form 'hash="{{hash}}"'
+  ```
+</Accordion>
+
+<Accordion title="Sample request for UPI autopay" icon="fa-code">
+  ```
+    curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
+    --form 'key="PRiQvJ"' \
+    --form 'command="udf_update"' \
+    --form 'var1="my_order_64240"' \
+    --form 'var2="AAAPZ1234C||22/08/1972"' \
+    --form 'var4="INV-123_1231||MerchantName"' \
+    --form 'hash="{{hash}}"'
+  ```
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
+  ### Success Scenario
+
+  * If successfully updated for cards
+
+  ```plaintext
+  {
+      "status": "UDF values updated",
+      "transaction_id": "my_order_64240",
+      "udf1": "AAAPZ1234C",
+      "udf2": "",
+      "udf3": "22/08/1972",
+      "udf4": "SellerName",
+      "udf5": "INV000000005"
+  }
+  ```
+
+  * If successfully updated for UPI autopay:
+
+  ```plaintext
+  {
+      "status": "UDF values updated",
+      "transaction_id": "my_order_64240",
+      "udf1": "AAAPZ1234C",
+      "udf2": "",
+      "udf3": "22/08/1972",
+      "udf4": "SellerName",
+      "udf5": "INV000000005"
+  }
+  ```
+
+  ### Failure Scenarios
+
+  * If the transaction ID is empty
+
+  ```plaintext
+  ( 
+  [status] => 0 
+  [msg] => Parameter missing 
+  ) 
+  ```
+
+  * If the transaction ID is invalid
+
+  ```plaintext
+  ( 
+  [status] => 0 
+  [msg] => Invalid TXN ID 
+  ) 
+  ```
+
+  * If Hash is invalid:
+
+  ```plaintext
+  {
+      "status": 0,
+      "msg": "Invalid Hash."
+  }
+  ```
+</Accordion>
+
+<Callout icon="📘" theme="info">
+  **Reference**: For **Try It **experience, refer to [Invoice Upload API](ref:invoice_upload_api).
+</Callout>
