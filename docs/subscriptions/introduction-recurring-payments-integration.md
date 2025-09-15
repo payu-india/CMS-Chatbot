@@ -18,7 +18,7 @@ metadata:
 next:
   description: ''
 ---
-The Subscriptions, Recurring Payments or Standing Instruction (SI) is the mode of payment agreed by the customer to pay against a package for each payment term during the subscription. The customer can instruct banks for regular funds transfers through standing instructions to automatically make payments.\
+The Subscriptions, Recurring Payments or Standing Instruction (SI) is the mode of payment agreed by the customer to pay against a package for each payment term during the subscription. The customer can instruct banks for regular funds transfers through standing instructions to automatically make payments.
 Recurring Payments is an easy and automated method to reduce the administrative burden for periodical payments. Based on the specified pay modes, the customer gives a mandate to the bank to debit a fixed amount from the customer’s account and pay to the merchant.
 
 PayU offers Recurring Payments integration using the APIs, Zion Subscription platforms, or PayU Dashboard.
@@ -49,7 +49,7 @@ To enable subscription for your customer using various payment modes, it involve
 
 PayU offers the following methods to implement subscriptions for your customers:
 
-* [Using API Integration](doc:using-api-integration-recurring-payments-1)
+* [Using API Integration](doc:using-api-integration-recurring-payments)
 * [Using Zion Subscription Automation](doc:using-zion-subscription-automation-platform)
 * [Using PayUBiz Dashboard](doc:recurring-payments-using-payubiz-dashboard)
 
@@ -67,7 +67,7 @@ This integration is possible with a few code changes, and you can start acceptin
 
 PayU provides Seamless integration (Merchant Hosted Checkout) and Non-seamless integration (PayU Hosted Checkout) using APIs. The same set of APIs is used for the various payment modes in the case of Seamless or Non-seamless integration. The following APIs are used to enable Subscription:
 
-* **\_payment** API and integration for each payment mode are:
+* **_payment** API and integration for each payment mode are:
   * [Cards Recurring Payment Consent Transaction](ref:credit-card-recurring-payment-consent-transaction)
   * [Net Banking Recurring Payment Consent Transaction](ref:netbanking-recurring-payment-consent-transaction)
   * [UPI Recurring Payment Consent Transaction](ref:upi-recurring-payment-consent-transaction)
