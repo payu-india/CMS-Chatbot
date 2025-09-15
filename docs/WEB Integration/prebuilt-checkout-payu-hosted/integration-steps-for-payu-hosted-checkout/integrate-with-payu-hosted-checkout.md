@@ -64,18 +64,18 @@ The code block is a sample post request that you need to send to PayU:
 
 ### Request and response
 
-The Collect Payment (**_payment**) API is used for collecting payments in Web Checkout integration. For request and response, refer to [Collect Payment API - Merchant Hosted Checkout](doc:_payment_merchant_hosted) under API Reference.
+The Collect Payment (**_payment**) API is used for collecting payments in Web Checkout integration. For request and response, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted) under API Reference.
 
 **Environment**
 
-|                            |                                                                        |
-| :------------------------- | :--------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | \<[https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 > ❗️ Error Handling
 >
-> If any error message is displayed with an error code, refer to [Error Codes for Refund Initiation](doc:error-codes-for-refund-initiation) to understand the reason for these error codes.
+> If any error message is displayed with an error code, refer to [Error Codes for Refund Initiation](ref:error-codes-for-refund-initiation) to understand the reason for these error codes.
 
 > 📘 Reference
 >
@@ -547,17 +547,17 @@ Along with the request, the sensitive information should not be a part of any me
 * Notification URLs configured with the merchant account.
 * Invoice Completion URLs configured with the merchant account.
 
-> 📘 Important
->
-> Compare the parameters sent by PayU in the response with the ones you sent in the request to make sure none of them have been changed. You should verify specific parameters such as the transaction ID and amount. PayU is not responsible for any security breaches or loss resulting from your failure to implement the necessary security measures.
+<Callout icon="📘" theme="info">
+  **Important**: Compare the parameters sent by PayU in the response with the ones you sent in the request to make sure none of them have been changed. You should verify specific parameters such as the transaction ID and amount. PayU is not responsible for any security breaches or loss resulting from your failure to implement the necessary security measures.
+</Callout>
 
 ## Step 2: Verify the payment
 
 PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](ref:verify_payment_api) under API Reference.
 
-> 👍 Tip
->
-> The Transaction ID (txnid) value that you passed in request of Step 1 with PayU must be used here.
+<Callout icon="👍" theme="okay">
+  **Tip**: The Transaction ID (txnid) value that you passed in request of Step 1 with PayU must be used here.
+</Callout>
 
 <Recipe slug="parse-the-verify-payment-api-response" title="Parse the Verify Payment API response" />
 
