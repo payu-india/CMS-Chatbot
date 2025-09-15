@@ -21,7 +21,7 @@ To integrate with PayU Hosted Checkout, you need to send a request and check the
 The steps involved in PayU Hosted Checkout integration are:
 
 1. [Post Transaction Request to PayU](#step-1-make-the-transaction-request-to-payu)
-2. [Check the response from PayU](#check-the-response-from-payu)
+2. C[Check the response from PayU](#check-the-response-from-payu)
 3. [Verify Payment](#step-2-verify-the-payment)
 
 ## Step 1: Post the transaction request to PayU
@@ -385,6 +385,7 @@ For more information, refer to  <a href="generate-hash-payu-hosted" target="_bla
 |-----------------------------------------------|------------------------------------------|
 | <Recipe slug="_payment-request-java-code-walkthrough" title="_payment Request Java Code Walkthrough" />        | <Recipe slug="_payment-request-php-code-walkthrough-1" title="_payment Request PHP Code Walkthrough" />   |
 ```
+
 <PayUHostedSampleRequest />
 
 ## Step 2: Check the response from PayU
