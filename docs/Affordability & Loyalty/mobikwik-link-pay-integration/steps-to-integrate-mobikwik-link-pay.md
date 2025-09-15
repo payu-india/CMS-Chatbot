@@ -1,7 +1,7 @@
 ---
 title: Steps to Integrate - Mobikwik Link & Pay
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
