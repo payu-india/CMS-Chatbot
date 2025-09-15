@@ -43,24 +43,10 @@ For more information enforcing or hiding Pluxee payment option, refer to [Collec
 ### Workflow on PayU Payment Page
 
 1. Merchant initiates payment & redirects the customer to PayU’s check out page to choose a payment option of their choice.
-
-![Picture 5](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/picture-5.png)
-
 2. Customer selects the Pluxee payment option available on the PayU’s check out page & either enters new card details or selects already saved Pluxee card.
-
-![Picture 6](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/picture-6.png)
-
 3. In case customer want’s to use an already saved Pluxee card, PayU will only allow that, provided the balance available in the card is greater than or equal to transaction amount.
-
-![Picture 7](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/picture-7.png)
-
 4. The customer is then re-directed to Pluxee ACS page, where the customer can enter the PIN and complete the payment.
-
-![Picture 8](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/picture-8.png)
-
 5. Once PayU receives a successful confirmation from Sodexo, we will provide a confirmation to merchant via webhook or merchant can use our status check API to fetch the transaction status.
-
-![Picture 10](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/picture-10.png)
 
 ## Step 1: Post the transaction request to PayU
 
