@@ -20,10 +20,11 @@ To integrate with PayU Hosted Checkout, you need to send a request and check the
 
 The steps involved in PayU Hosted Checkout integration are:
 
-1. [Make Transaction Request to PayU](#step-1-make-the-transaction-request-to-payu)
-2. [Verify Payment](#step-2-verify-the-payment)
+1. [Post Transaction Request to PayU](#step-1-make-the-transaction-request-to-payu)
+2. <br />
+3. [Verify Payment](#step-2-verify-the-payment)
 
-## Step 1: Make the transaction request to PayU
+## Step 1: Post the transaction request to PayU
 
 Make the transaction request to the PayU Test server.
 
@@ -56,8 +57,6 @@ The code block is a sample post request that you need to send to PayU:
  
 ```
 
-### Request and response
-
 The Collect Payment (**_payment**) API is used for collecting payments in Web Checkout integration. For request and response, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) under API Reference.
 
 **Environment**
@@ -75,7 +74,7 @@ The Collect Payment (**_payment**) API is used for collecting payments in Web Ch
 >
 > To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](doc:handling-the-redirect-urls).
 
-#### Request parameters
+### Request parameters
 
 <HTMLBlock>{`
 <style>
@@ -388,11 +387,13 @@ For more information, refer to  <a href="generate-hash-payu-hosted" target="_bla
 
 <Recipe slug="_payment-request-php-code-walkthrough-1" title="_payment Request PHP Code Walkthrough" />
 
-<br />
+### Sample request
 
 <PayUHostedSampleRequest />
 
-#### Sample response
+## Step 2: Check the response from PayU
+
+### Sample response
 
 The response URL returned from PayU is similar to the following:
 
@@ -553,9 +554,9 @@ Along with the request, the sensitive information should not be a part of any me
   **Important**: Compare the parameters sent by PayU in the response with the ones you sent in the request to make sure none of them have been changed. You should verify specific parameters such as the transaction ID and amount. PayU is not responsible for any security breaches or loss resulting from your failure to implement the necessary security measures.
 </Callout>
 
-## Step 2: Verify the payment
+## Step 3: Verify the payment
 
-PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](ref:verify_payment_api) under API Reference.
+PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the Verification APIs. 
 
 <Callout icon="👍" theme="okay">
   **Tip**: The Transaction ID (txnid) value that you passed in request of Step 1 with PayU must be used here.
