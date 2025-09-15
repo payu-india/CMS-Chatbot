@@ -52,22 +52,22 @@ When a chargeback event occurs, PayU will send a POST request to your configured
 
 ### Fields in the payload
 
-| Field        | Description                                                                                                                                                      |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type         | Type of transaction  and merchant must include the value as **payments** only.                                                                                   |
-| event        | Event type and the merchant must the include the value as **dispute** only.                                                                                      |
-| reason\_code | Reason for the chargeback. For the list of reason codes, refer to [Reason codes for chargebacks](reason-codes-for-chargebacks).                                  |
-| created\_at  | Timestamp when the chargeback was created                                                                                                                        |
-| updated\_at  | Timestamp when the chargeback was last updated                                                                                                                   |
-| mid          | PayU Merchant ID                                                                                                                                                 |
-| cb\_id       | Chargeback ID                                                                                                                                                    |
-| txn\_id      | Transaction ID associated with the chargeback. This is merchant transaction ID or PayU transaction ID.                                                           |
-| cb\_type     | Type of chargeback (for example, "RBI/BO", that is, Reserve Bank of India/Banking Operations)                                                                    |
-| due\_date    | Due date for the chargeback resolution                                                                                                                           |
-| cb\_amount   | Amount involved in the chargeback                                                                                                                                |
-| cb\_status   | Current status of the chargeback. For the possible chargeback status values, refer to [cb\_status field values description](#cb_status-field-values-description) |
+| Field       | Description                                                                                                                                                      |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type        | Type of transaction  and merchant must include the value as **payments** only.                                                                                   |
+| event       | Event type and the merchant must the include the value as **dispute** only.                                                                                      |
+| reason_code | Reason for the chargeback. For the list of reason codes, refer to [Reason codes for chargebacks](doc:reason-codes-for-chargebacks).                              |
+| created_at  | Timestamp when the chargeback was created                                                                                                                        |
+| updated_at  | Timestamp when the chargeback was last updated                                                                                                                   |
+| mid         | PayU Merchant ID                                                                                                                                                 |
+| cb_id       | Chargeback ID                                                                                                                                                    |
+| txn_id      | Transaction ID associated with the chargeback. This is merchant transaction ID or PayU transaction ID.                                                           |
+| cb_type     | Type of chargeback (for example, "RBI/BO", that is, Reserve Bank of India/Banking Operations)                                                                    |
+| due_date    | Due date for the chargeback resolution                                                                                                                           |
+| cb_amount   | Amount involved in the chargeback                                                                                                                                |
+| cb_status   | Current status of the chargeback. For the possible chargeback status values, refer to [cb\_status field values description](#cb_status-field-values-description) |
 
-### cb\_status field values description
+### cb_status field values description
 
 The `cb_status` or chargeback status field can have the following values:
 
