@@ -22,7 +22,7 @@ Prebuilt Web Checkout or PayU Hosted Checkout is a payment integration method pr
 
 ## How it works?
 
-To use PayU Hosted Checkout, merchants need to integrate the PayU payment gateway into their website. Once integrated, customers can select the payment method they want to use and enter their payment details on the payment form. When they click the "Pay" button, they will be redirected to a PayU-hosted payment page where they will complete the payment process.
+To use PayU Hosted Checkout, merchants need to integrate the PayU payment gateway into their website. Once integrated, customers can select the payment method they want to use and enter their payment details on the payment form. When they click the **Pay** button, they will be redirected to a PayU-hosted payment page where they will complete the payment process.
 
 Once the payment is processed, the customer will be redirected back to the merchant's website where they can view the payment result.
 
@@ -33,16 +33,16 @@ Once the payment is processed, the customer will be redirected back to the merch
 The following sample customer journey is for cards payment mode:
 
 1. The customer clicks **Pay Now** on merchant website after checkout.
-2. The customer is redirected to \_PayU Payment \_page.
+2. The customer is redirected to _PayU Payment _page.
 
-<Image align="center" className="border" width="622px" border={true} src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" />
+<Image align="center" className="border" border={true} width="622px" src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" />
 
-3. The customer chooses a payment mode from the \_PayU Payment \_page. For example, **Cards (Debit/Credit)**.
+3. The customer chooses a payment mode from the _PayU Payment _page. For example, **Cards (Debit/Credit)**.
 4. The card details are provided by the customer and clicks **Proceed**.
 
-<Image align="center" className="border" width="622px" border={true} src="https://files.readme.io/fd09cbd284ffe7fb3b60d03e2acd8a5a51d850dd1795f1eca9879893b3569603-Screenshot_2024-09-06_at_11.56.40_AM.png" />
+<Image align="center" className="border" border={true} width="622px" src="https://files.readme.io/fd09cbd284ffe7fb3b60d03e2acd8a5a51d850dd1795f1eca9879893b3569603-Screenshot_2024-09-06_at_11.56.40_AM.png" />
 
-   A consent message is displayed whether the card the details can be stored.
+A consent message is displayed whether the card the details can be stored.
 
 <Image align="center" width="622px" src="https://files.readme.io/caa8481-Screenshot_2023-10-05_at_10.37.33_AM.png" />
 
