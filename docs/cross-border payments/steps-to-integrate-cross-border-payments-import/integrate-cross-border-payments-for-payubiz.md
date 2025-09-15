@@ -40,7 +40,7 @@ The following parameters (mandatory) must be posted using any of the following W
 
 * [PayU Hosted Integration](doc:integrate-with-payu-hosted-checkout)
 * [Merchant Hosted Checkout > Cards](doc:collect-payments-with-cards-seamless)
-* [Server-to-Server > General Integration](doc:integration-with-s2s)
+* [Server-to-Server > General Integration](doc:integrate-with-s2s)
 
 ### Request parameters
 
@@ -83,13 +83,13 @@ The following are the additional request parameter required for cross-border pay
       </td>
 
       <td>
-         JPg\*\*\*\*f
+         JPg****f
       </td>
     </tr>
 
     <tr>
       <td>
-        txnid\
+        txnid
         `mandatory`
       </td>
 
@@ -118,7 +118,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        productinfo\
+        productinfo
         `mandatory`
       </td>
 
@@ -133,7 +133,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        firstname\
+        firstname
         `mandatory`
       </td>
 
@@ -148,7 +148,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        lastname\
+        lastname
         `mandatory`
       </td>
 
@@ -163,7 +163,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        email\
+        email
         `mandatory`
       </td>
 
@@ -172,13 +172,17 @@ The following are the additional request parameter required for cross-border pay
       </td>
 
       <td>
-         [abc@payu.in](mailto:abc@payu.in)
+         
+
+        [abc@payu.in](mailto:abc@payu.in)
+
+
       </td>
     </tr>
 
     <tr>
       <td>
-        phone\
+        phone
         `mandatory`
       </td>
 
@@ -193,15 +197,15 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        address1\
+        address1
         `mandatory`
       </td>
 
       <td>
-        `String` The first line of the billing address.\
+        `String` The first line of the billing address.
         H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai
 
-        * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * _Note_*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -211,7 +215,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        address2\
+        address2
         `mandatory`
       </td>
 
@@ -226,7 +230,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        city\
+        city
         `mandatory`
       </td>
 
@@ -241,7 +245,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        state\
+        state
         `mandatory`
       </td>
 
@@ -256,7 +260,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        country\
+        country
         `mandatory`
       </td>
 
@@ -271,13 +275,13 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        zipcode\
+        zipcode
         `mandatory`
       </td>
 
       <td>
-        `String` Billing address zip code is mandatory for the cardless EMI option.\
-        \`Character Limit-20
+        `String` Billing address zip code is mandatory for the cardless EMI option.
+        `Character Limit-20
       </td>
 
       <td>
@@ -287,7 +291,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        pg\
+        pg
         `mandatory for seamless/s2s flow`
       </td>
 
@@ -302,7 +306,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        bankcode\
+        bankcode
         `mandatory for seamless/s2s flow`
       </td>
 
@@ -317,7 +321,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        ccnum\
+        ccnum
         `mandatory for cards`
       </td>
 
@@ -332,7 +336,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        ccname\
+        ccname
         `mandatory for cards`
       </td>
 
@@ -347,7 +351,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        ccvv\
+        ccvv
         `mandatory for cards`
       </td>
 
@@ -362,7 +366,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        ccexpmon\
+        ccexpmon
         `mandatory for cards`
       </td>
 
@@ -377,7 +381,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        ccexpyr\
+        ccexpyr
         `mandatory for cards`
       </td>
 
@@ -392,7 +396,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        surl\
+        surl
         `mandatory`
       </td>
 
@@ -407,7 +411,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        furl\
+        furl
         `mandatory`
       </td>
 
@@ -422,7 +426,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        udf1\
+        udf1
         `conditional`
       </td>
 
@@ -431,13 +435,13 @@ The following are the additional request parameter required for cross-border pay
       </td>
 
       <td>
-        AELPR\*\*\*\*E
+        AELPR****E
       </td>
     </tr>
 
     <tr>
       <td>
-        udf3\
+        udf3
         `conditional`
       </td>
 
@@ -452,7 +456,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        udf4\
+        udf4
         `mandatory for payment aggregators`
       </td>
 
@@ -467,7 +471,7 @@ The following are the additional request parameter required for cross-border pay
 
     <tr>
       <td>
-        udf5\
+        udf5
         `mandatory`
       </td>
 
@@ -523,7 +527,7 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'zipcode=122018'
 ```
 
-## Step 2: Update Invoice ID \[Conditional]
+## Step 2: Update Invoice ID [Conditional]
 
 **Case**: If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter. For more information, refer to [UDF Update API](ref:udf_update_api).
 
