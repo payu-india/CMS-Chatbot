@@ -1,7 +1,7 @@
 ---
 title: Mobikwik Wallet Integration APIs
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
