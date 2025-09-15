@@ -654,11 +654,177 @@ curl --location 'https://test.payu.in/_payment' \
 
 ## Step 2: Update Invoice ID [Conditional]
 
-**Case**: If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter. For more information, refer to [UDF Update API](ref:udf_update_api).
+**Case**: If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter. 
+
+<GENERALAPIsEnvironment />
+
+<Accordion title="Request parameters" icon="fa-info-circle">
+<HTMLBlock>{`
+<table>
+  <thead>
+    <tr>
+      <th><strong>Parameter</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Example</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>key</td>
+      <td>
+        Merchant key provided by PayU. For more information on checking your key and Salt, refer to <a href="https://devguide.payu.in/merchant-integration/getting-started-with-web-checkout/generate-key-and-salt-payubiz/">Generate Merchant Key and Salt on PayUBiz Dashboard</a>.
+      </td>
+      <td>Your Test Key</td>
+    </tr>
+    <tr>
+      <td>command</td>
+      <td>
+        The API command for this API, that is, <strong>opgsp_upload_invoice_awb</strong> must be specified for this parameter.
+      </td>
+      <td>opgsp_upload_invoice_awb</td>
+    </tr>
+    <tr>
+      <td>
+        var1<br>
+        (primaryKey)<br>
+        <strong>mandatory</strong>
+      </td>
+      <td>
+        The PayU ID (mihpayuid) of the transaction must be specified in this field. The Invoice or AWB will be uploaded basis of the PayU ID.
+      </td>
+      <td><code>403993715521937565</code></td>
+    </tr>
+    <tr>
+      <td>
+        var2<br>
+        (uniqueNumber)<br>
+        <strong>mandatory</strong>
+      </td>
+      <td>
+        The invoice ID or AWB ID is specified in this parameter. Alphanumeric with special characters is allowed.
+      </td>
+      <td><code>9eec02ac9e2efc335bdda2d7486121ce03de24c2fa7d32d17462ad5a6a9058db</code></td>
+    </tr>
+    <tr>
+      <td>
+        var3<br>
+        (uploadType)<br>
+        <strong>mandatory</strong>
+      </td>
+      <td>
+        The type of document to be uploaded is specified in this field, and it can be any of the following:
+        <ul>
+          <li>Invoice</li>
+          <li>AWB</li>
+        </ul>
+      </td>
+      <td>AWB</td>
+    </tr>
+    <tr>
+      <td>
+        file<br>
+        (attachment)<br>
+        <strong>mandatory</strong>
+      </td>
+      <td>
+        The absolute path of the file to be uploaded is specified in this parameter. The maximum size supported is 2 MB and the following formats are supported:
+        <ul>
+          <li>PDF (.pdf)</li>
+          <li>Document (.doc or .docx)</li>
+          <li>Image (.jpg, .jpeg)</li>
+        </ul>
+        <strong>Note</strong>: The Merchant Dashboard supports only the .pdf and .docx formats.
+      </td>
+      <td>C:\invoice.docx</td>
+    </tr>
+    <tr>
+      <td>hash</td>
+      <td>
+        The hash is generated in the following format:<br>
+        sha512(key|command|var1|salt) sha512
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
+</Accordion>
+
+<Accordion title="Sample request" icon="fa-info-circle">
+```curl
+curl --location -g --request POST '{{baseUrl}}/merchant/postservice?form=2' \ 
+--form 'key="{{merchantKey}}"' \ 
+--form 'command="opgsp_upload_invoice_awb"' \ 
+--form 'var1="403993715525825059"' \  - PayuId 
+--form 'var2="TestInv0001234568"' \ - invoice Id 
+--form 'var3="Invoice"' \ - type of upload - Invoice/AWB 
+--form 'file=@"/path/to/file"' \ - file 
+--form 'hash="{{hash}}"' 
+```
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-info-circle">
+**Success Scenario**
+
+* When a file is uploaded successfully:
+
+```plaintext
+{
+"responseCode":"00",
+"responseMsg":"File Uploaded Successfully"
+}
+```
+
+**Failure Scenarios**
+
+* When there is an error in uploading the file:
+
+```plaintext
+{ 
+“responseCode”: “103”, 
+“responseMsg”: “Failed to Upload” 
+} 
+```
+
+* When the file format is not supported:
+
+```plaintext
+{ 
+“responseCode”: “105”, 
+“responseMsg”: “Not an PACB merchant, contact KAM” 
+} 
+```
+
+* When the payuid is invalid:
+
+```plaintext
+{
+"responseCode":"107",
+"responseMsg":"The PayuID in request is invalid"
+}
+```
+
+* When a mandatory field is missing:
+
+```plaintext
+{
+"responseCode":"109",
+"responseMsg":"All fields are mandatory, please check!"
+} 
+```
+</Accordion>
+## Response Code and Description
+
+Refer to [Response Code and Description - Invoice Upload API](ref:response-code-and-description-invoice-upload-api).
+
+
+<Callout icon="📘" theme="info">
+  **Reference**: For API reference, refer to [UDF Update API](ref:udf_update_api).
+</Callout>
 
 ## Step 3: Upload the Invoices
 
-According to the RBI guidelines, the invoice file must be shared with PayU within 10 days of the transaction. The invoices can be uploaded using the **Invoice Upload** API. 
+According to the RBI guidelines, the invoice file must be shared with PayU within 10 days of the transaction. The invoices can be uploaded using the **Invoice Upload** API.
 
 <Accordion title="Sample request for Cards" icon="fa-code">
   ```
@@ -687,7 +853,7 @@ According to the RBI guidelines, the invoice file must be shared with PayU withi
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
-  ### Success Scenario
+**Success Scenario**
 
   * If successfully updated for cards
 
@@ -717,7 +883,7 @@ According to the RBI guidelines, the invoice file must be shared with PayU withi
   }
   ```
 
-  ### Failure Scenarios
+**Failure Scenarios**
 
   * If the transaction ID is empty
 
