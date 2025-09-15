@@ -14,19 +14,19 @@ In order to initiate payments for partners, Whatsapp needs to use the access tok
 
 The following steps allow you to integrate the server-to-server UPI intent:
 
-1. [Initiate payment request](https://payu-hosted-checkout.readme.io/docs/whatsapp-refund-status-api#step-1-initiate-payment-request)
-2. [Invoke UPI Intent on customer’s device](https://payu-hosted-checkout.readme.io/docs/whatsapp-refund-status-api#step-2-invoke-upi-intent-on-customers-device)
-3. [Verify payment](https://payu-hosted-checkout.readme.io/docs/whatsapp-refund-status-api#step-3-verify-payment-api)
-4. [PayU sends Server-to-Server callback response](https://payu-hosted-checkout.readme.io/docs/whatsapp-refund-status-api#step-4-payu-sends-server-to-server-call-back-response)
+1. [Initiate payment request](https://https://docs.payu.in/reference/upi-s2s-partner-integration-api/docs/whatsapp-refund-status-api#step-1-initiate-payment-request)
+2. [Invoke UPI Intent on customer’s device](https://https://docs.payu.in/reference/upi-s2s-partner-integration-api/docs/whatsapp-refund-status-api#step-2-invoke-upi-intent-on-customers-device)
+3. [Verify payment](https://https://docs.payu.in/reference/upi-s2s-partner-integration-api/docs/whatsapp-refund-status-api#step-3-verify-payment-api)
+4. [PayU sends Server-to-Server callback response](https://https://docs.payu.in/reference/upi-s2s-partner-integration-api/docs/whatsapp-refund-status-api#step-4-payu-sends-server-to-server-call-back-response)
 
 ## Step 1: Initiate payment request
 
 **Environment**
 
-|           |                                                 |
-| --------- | ----------------------------------------------- |
-| UAT Host  | \<https://test-partnerapilayer.payu.in/apilayer> |
-| PROD Host | \<https://api.payu.in>                           |
+|           |                                                                                                    |
+| --------- | -------------------------------------------------------------------------------------------------- |
+| UAT Host  | \<[https://test-partnerapilayer.payu.in/apilayer>](https://test-partnerapilayer.payu.in/apilayer>) |
+| PROD Host | \<[https://api.payu.in>](https://api.payu.in>)                                                     |
 
 ### Request headers
 
@@ -55,14 +55,13 @@ The following steps allow you to integrate the server-to-server UPI intent:
 </table>
 `}</HTMLBlock>
 
-
 ### Request parameters
 
 The following table lists the request parameter descriptions for Partner Payment integration.
 
 > 📘 Extra params for Partner integration:
-> 
-> The following params are the extra parameters (optional) used compared to the regular **\_payment** API, but with a different endpoint:  partner_udf_3, partner_udf_4, shipping_firstname, shipping_lastname, shipping_address1, shipping_address2, shipping_city, shipping_state, shipping_country, shipping_zipcode,  shipping_phone
+>
+> The following params are the extra parameters (optional) used compared to the regular **_payment** API, but with a different endpoint:  partner_udf_3, partner_udf_4, shipping_firstname, shipping_lastname, shipping_address1, shipping_address2, shipping_city, shipping_state, shipping_country, shipping_zipcode,  shipping_phone
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -368,7 +367,6 @@ The following table lists the request parameter descriptions for Partner Payment
 </table>
 `}</HTMLBlock>
 
-
 ### Sample request
 
 ```curl
@@ -435,7 +433,7 @@ upi://pay?<IntentURIData>
 "upi://pay"+ <intentURIData>
 ```
 
-After the response is received from the transacting app (BHIM/Google Pay/PhonePe/AxisPay/Any other app), a merchant can check the status of the transaction using the **verify\_payment** API**.**
+After the response is received from the transacting app (BHIM/Google Pay/PhonePe/AxisPay/Any other app), a merchant can check the status of the transaction using the **verify_payment** API**.**
 
 #### Failed responses
 
@@ -510,19 +508,18 @@ After the response is received from the transacting app (BHIM/Google Pay/PhonePe
 </table>
 `}</HTMLBlock>
 
-
 ## Step 3: Verify Payment API
 
-Check the UPI transaction status using the **Verify Payment API** (check\_upi\_txn\_status) API.
+Check the UPI transaction status using the **Verify Payment API** (check_upi_txn_status) API.
 
 After the response is received from your customer’s app (BHIM, Google Pay, PhonePe, AxisPay, or any other app), you can check the status of the transaction using the **Verify Payment API**. Web services can be accessed by making a server-to-server call using the following PayU URLs.
 
 **Environment**
 
-|           |                                                 |
-| --------- | ----------------------------------------------- |
-| UAT Host  | \<https://test-partnerapilayer.payu.in/apilayer> |
-| PROD Host | \<https://api.payu.in>                           |
+|           |                                                                                                    |
+| --------- | -------------------------------------------------------------------------------------------------- |
+| UAT Host  | \<[https://test-partnerapilayer.payu.in/apilayer>](https://test-partnerapilayer.payu.in/apilayer>) |
+| PROD Host | \<[https://api.payu.in>](https://api.payu.in>)                                                     |
 
 ### Request headers
 
@@ -581,7 +578,6 @@ After the response is received from your customer’s app (BHIM, Google Pay, Pho
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### Sample Request
 
@@ -805,7 +801,6 @@ curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/pa
 </table>
 `}</HTMLBlock>
 
-
 ### Sample response
 
 ```plaintext
@@ -923,7 +918,6 @@ curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/pa
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ## Step 4: PayU sends Server-to-Server call-back response
 
