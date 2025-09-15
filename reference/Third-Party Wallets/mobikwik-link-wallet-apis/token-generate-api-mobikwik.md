@@ -1,7 +1,7 @@
 ---
 title: Token Generate API - Mobikwik
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
