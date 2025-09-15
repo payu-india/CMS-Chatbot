@@ -58,6 +58,6 @@ When you are integrating with PayU Hosted Checkout, at times you may encounter s
 
 <Image align="center" width="520px" src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/Screenshot-2021-06-25-at-5.10.53-PM-1024x763.png" />
 
-**Solution**: Ensure that all the mandatory parameters are passed in the transaction request to PayU. For more information on mandatory parameters, refer to refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) or [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted) based on the integration you are using.
+**Solution**: Ensure that all the mandatory parameters are passed in the transaction request to PayU. For more information on mandatory parameters, refer to refer to <Anchor label="Collect Payment API - PayU Hosted Checkout" target="_blank" href="ref:_payment_payu_hosted_checkout">Collect Payment API - PayU Hosted Checkout</Anchor> or <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="ref:_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor> based on the integration you are using.
 
-You may simulate these errors and view the corrective action in the PayU API Playground too. For more information on [PayU API Playground](https://api-playground.payu.in/).
+<br />
