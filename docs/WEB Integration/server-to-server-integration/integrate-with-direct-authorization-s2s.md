@@ -54,6 +54,7 @@ Initiate an authorization request with the payment details provided post a succe
     <tr>
       <td>
         key
+
         `mandatory`
       </td>
 
@@ -69,6 +70,7 @@ Initiate an authorization request with the payment details provided post a succe
     <tr>
       <td>
         txnid
+
         `mandatory`
       </td>
 
@@ -84,6 +86,7 @@ Initiate an authorization request with the payment details provided post a succe
     <tr>
       <td>
         amount
+
         `mandatory`
       </td>
 
@@ -98,7 +101,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        productinfo `mandatory`
+        productinfo 
+        `mandatory`
       </td>
 
       <td>
@@ -112,7 +116,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        firstname `mandatory`
+        firstname 
+        `mandatory`
       </td>
 
       <td>
@@ -127,6 +132,7 @@ Initiate an authorization request with the payment details provided post a succe
     <tr>
       <td>
         email
+
         `mandatory`
       </td>
 
@@ -142,6 +148,7 @@ Initiate an authorization request with the payment details provided post a succe
     <tr>
       <td>
         phone
+
         `mandatory`
       </td>
 
@@ -157,6 +164,7 @@ Initiate an authorization request with the payment details provided post a succe
     <tr>
       <td>
         pg
+
         `mandatory`
       </td>
 
@@ -171,7 +179,9 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        bankcode `mandatory`
+        bankcode 
+
+        `mandatory`
       </td>
 
       <td>
@@ -186,6 +196,7 @@ Initiate an authorization request with the payment details provided post a succe
     <tr>
       <td>
         ccnum
+
         `mandatory`
       </td>
 
@@ -200,7 +211,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccname `mandatory`
+        ccname 
+        `mandatory`
       </td>
 
       <td>
@@ -215,6 +227,7 @@ Initiate an authorization request with the payment details provided post a succe
     <tr>
       <td>
         ccvv
+
         `mandatory`
       </td>
 
@@ -229,7 +242,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccexpmon `mandatory`
+        ccexpmon 
+        `mandatory`
       </td>
 
       <td>
@@ -243,7 +257,8 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccexpyr `mandatory`
+        ccexpyr 
+        `mandatory`
       </td>
 
       <td>
@@ -258,6 +273,7 @@ Initiate an authorization request with the payment details provided post a succe
     <tr>
       <td>
         furl
+
         `mandatory`
       </td>
 
@@ -273,6 +289,7 @@ Initiate an authorization request with the payment details provided post a succe
     <tr>
       <td>
         surl
+
         `mandatory`
       </td>
 
@@ -288,6 +305,7 @@ Initiate an authorization request with the payment details provided post a succe
     <tr>
       <td>
         hash
+
         `mandatory`
       </td>
 
@@ -302,7 +320,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        txn\_s2s\_flow `mandatory`
+        txn_s2s_flow `mandatory`
       </td>
 
       <td>
@@ -316,11 +334,15 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        authentication\_info `mandatory`
+        authentication_info `mandatory`
       </td>
 
       <td>
-        `JSON` This parameter contains the authentication information in a JSON format for direct authorization. For more information, refer to [authentication\_info JSON object](#authentication_info-json-object)
+        `JSON` This parameter contains the authentication information in a JSON format for direct authorization. For more information, refer to 
+
+        [authentication_info JSON object](#authentication_info-json-object)
+
+
       </td>
 
       <td>
@@ -351,7 +373,7 @@ Initiate an authorization request with the payment details provided post a succe
       </td>
 
       <td>
-        `String` The first line of the billing address. \* For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        `String` The first line of the billing address. * For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -512,7 +534,7 @@ Initiate an authorization request with the payment details provided post a succe
 
 <HashingRequestParameters />
 
-### authentication\_info JSON object
+### authentication_info JSON object
 
 #### Example
 
@@ -531,19 +553,19 @@ curl -X POST "https://test.payu.in/_payment" \
 -d "key=JP***g&txnid=ATGNMtNsHKgBQ4&amount=199.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=cc&bankcode=cc&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=5123456789012346&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=&txn_s2s_flow=3&threeDS2RequestData={\"threeDSVersion\":\"2.2.0\",\"deviceChannel\":\"APP/BRW\"}&authentication_info={\"eci\":\"05\",\"cavv\":\"AAABAWFlmQAAAABjRWWZEEFgFz+=\",\"flowType\":\"Frictionless\",\"threeDSTransID\":\"67b4c71f-19bf-4d97-bd09-4e3687dc9e42\",\"threeDSServerTransID\":\"eea30d14-71cf-41af-b961-f95b7d67dc93\",\"threeDSTransStatus\":\"Y\",\"threeDSTransStatusReason\":\"01-99\",\"additionalinfo\":{\"authudf2\":\"1_1665637507_954_104_l73c004m_IAMRB\"},\"acquirer_bin\":\"401200\"}&s2s_client_ip=83.191.88.168&s2s_device_info=221.6.48.86&hash=1447162a8519a8cbaf8726fdff99487cbac7743595cf355a27fac4a2b42a576e5f23d21ebf59b50004714f7b6b4775e34355ce6acad86f60e2c7369b5df4c55b"
 ```
 
-Collect the response in the [Cards Direct Authorization Flow](ref:_payment_s2s_direct_authorization_flow) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters and authentication\_info JSON Fields Description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
+Collect the response in the [Cards Direct Authorization Flow](ref:_payment_s2s_direct_authorization_flow) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters and authentication_info JSON Fields Description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
 
-> 📘 Note:
->
-> This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
+<Callout icon="📘" theme="info">
+  **Note**: This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
+</Callout>
 
 ## Step 2: Check response from PayU
 
 PayU marks the transaction status based on the response received from the bank. PayU provides the final transaction response string to you through a post response. A hash generated by PayU also accompanies the post response.
 
-> 📘 Note:
->
-> Verify the authenticity of the hash value before accepting or rejecting the invoice order. For more information, refer to <a href="hashing-request-and-response" target="_blank">Generate Hash</a>.
+<Callout icon="📘" theme="info">
+  **Note**: Verify the authenticity of the hash value before accepting or rejecting the invoice order. For more information, refer to <a href="hashing-request-and-response" target="_blank">Generate Hash</a>.
+</Callout>
 
 ### Response parameters description
 
