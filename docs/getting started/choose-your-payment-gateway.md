@@ -89,7 +89,7 @@ You can send payment links using after any one of the following integration:
 You can collect payments using Omnichannel after any one of the following integration:
 
 * **PayU Hosted Checkout**: Share QR to your customers using Omnichannel Integration APIs. For more information, refer to [Integrated Dynamic Storefront](doc:integrated-dynamic-storefront)
-* **Merchant Hosted Checkout**: Share QR to your customers using Omnichannel Integration APIs. For more information, refer to [QR Generation API](doc:qr-generation-api).
+* **Merchant Hosted Checkout**: Share QR to your customers using Omnichannel Integration APIs. For more information, refer to [Dynamic Storefront QR](doc:integrated-dynamic-storefront)
 
 # Collect payment on eCommerce Platforms
 
