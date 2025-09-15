@@ -379,12 +379,10 @@ For more information, refer to  <a href="generate-hash-payu-hosted" target="_bla
 
 ### Sample request
 
-```
-| <Recipe slug="payu-hosted-checkout-curl-request-walkthrough" title="PayU Hosted Checkout cURL Request Walkthrough" />
- | <Recipe slug="_payment-request-python-code-walkthrough" title="_payment Request Python Code Walkthrough" /> |
-|-----------------------------------------------|------------------------------------------|
-| <Recipe slug="_payment-request-java-code-walkthrough" title="_payment Request Java Code Walkthrough" />        | <Recipe slug="_payment-request-php-code-walkthrough-1" title="_payment Request PHP Code Walkthrough" />   |
-```
+|                                                                                                                       |                                                                                                              |
+| :-------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
+| <Recipe slug="payu-hosted-checkout-curl-request-walkthrough" title="PayU Hosted Checkout cURL Request Walkthrough" /> | <Recipe slug="_payment-request-python-code-walkthrough" title="_payment Request Python Code Walkthrough" />  |
+| <Recipe slug="_payment-request-java-code-walkthrough" title="_payment Request Java Code Walkthrough" />               | <Recipe slug="_payment-request-php-code-walkthrough-1" title="_payment Request PHP Code Walkthrough" />      |
 
 <PayUHostedSampleRequest />
 
