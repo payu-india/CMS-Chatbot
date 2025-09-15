@@ -21,9 +21,9 @@ For the past few years, commerce has been moving in a two-dimensional direction.
 
 PayU provides the following Omnichannel APIs to collect payments from your customers:
 
-* [Dynamic QR for Merchant Hosted APIs](https://docs.payu.in/docs/dynamic-bharat-qr-generation-api) to generate Dynamic QR with Merchant Hosted checkout (seamless integration), where the payment details can be updated in real-time based on the transaction. 
-* [Insta Static Bharat QR APIs](https://docs.payu.in/docs/insta-static-qr-generation-api) to generate Static QR codes, where you have pre-configured payment details. 
-* [Integrated Static Bharat QR APIs](https://docs.payu.in/docs/integrated-static-bharat-qr-generation-api) to generate Static Bharat QR codes, where you have pre-configured payment details.
+* [Dynamic QR for Merchant Hosted APIs](ref:dynamic-qr-generation-api) to generate Dynamic QR with Merchant Hosted checkout (seamless integration), where the payment details can be updated in real-time based on the transaction. 
+* [Insta Static Bharat QR APIs](ref:insta-static-qr-generation-api#/) to generate Static QR codes, where you have pre-configured payment details. 
+* [Integrated Static Bharat QR APIs](ref:integrated-static-bharat-qr-generation-api) to generate Static Bharat QR codes, where you have pre-configured payment details.
 
 Also, this part of the document includes the following:
 
