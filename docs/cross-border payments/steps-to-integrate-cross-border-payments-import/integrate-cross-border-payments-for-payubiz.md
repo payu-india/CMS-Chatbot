@@ -175,8 +175,6 @@ The following are the additional request parameter required for cross-border pay
          
 
         [abc@payu.in](mailto:abc@payu.in)
-
-
       </td>
     </tr>
 
