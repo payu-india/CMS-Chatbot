@@ -16,7 +16,12 @@ next:
 ---
 <UPIIntentCallout />
 
-<TestingChecklist />
+> 👍 Testing checklist:
+>
+> Things to remember while testing an integration:
+>
+> 1. To test the integration make sure that you are making a transaction call to the test endpoint.
+> 2. Use your test key and salt for the transaction requests.  For more information, refer to [Access Test Key and Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt).
 
 To test the PayU Hosted Checkout integration:
 
@@ -26,7 +31,7 @@ To test the PayU Hosted Checkout integration:
 
 2. Check if all the payment modes are listed.
 
-   If anyof the payment modes are listed not listed, contact your KAM or PayU Support.
+   If any of the payment modes are listed not listed, contact your KAM or PayU Support.
 
 3. Select a payment mode. For example, **Credit Card**.
 
