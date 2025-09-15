@@ -17,31 +17,31 @@ The steps involved in creating a child merchant are:
 1. [Get Client Token API](ref:get-client-token-api)
 2. [Create Child Merchant API](ref:create-child-merchant-api)
 
-> 📘 Note:
-> 
-> Before you onboard child merchants, ensure you have followed the [Prerequisites](#prerequisites) (one-time).
+<Callout icon="📘" theme="info">
+  **Note**: Before you onboard child merchants, ensure you have followed the [Prerequisites](#prerequisites) (one-time).
+</Callout>
 
 ## Domains
 
 ### Common onboarding
 
-|                        |                                         |
-| ---------------------- | --------------------------------------- |
-| Test Environment       | \<https://uat-onepayuonboarding.payu.in> |
-| Production Environment | \<https://onboarding.payu.in>            |
+|                        |                                                                                    |
+| ---------------------- | ---------------------------------------------------------------------------------- |
+| Test Environment       | \<[https://uat-onepayuonboarding.payu.in>](https://uat-onepayuonboarding.payu.in>) |
+| Production Environment | \<[https://onboarding.payu.in>](https://onboarding.payu.in>)                       |
 
 ### Hub service domains
 
-|                        |                                |
-| ---------------------- | ------------------------------ |
-| Test Environment       | \<https://uat-accounts.payu.in> |
-| Production Environment | \<https://accounts.payu.in>     |
+|                        |                                                                  |
+| ---------------------- | ---------------------------------------------------------------- |
+| Test Environment       | \<[https://uat-accounts.payu.in>](https://uat-accounts.payu.in>) |
+| Production Environment | \<[https://accounts.payu.in>](https://accounts.payu.in>)         |
 
 ## Prerequisites
 
 Before you onboard child merchants, you need to ensure the following (one-time process):
 
-- Caller client service should be registered on Hub (PayU’s oAuth2 Service ) with the details as described in the following table:
+* Caller client service should be registered on Hub (PayU’s oAuth2 Service ) with the details as described in the following table:
 
 | **Field**                   | **Description**                                                                                                                               |
 | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -49,14 +49,14 @@ Before you onboard child merchants, you need to ensure the following (one-time p
 | Customer Service Name       | The service name of the customer.                                                                                                             |
 | Customer Owner phone number | The phone number of the owner who is assigned for the customer.                                                                               |
 | Customer Owner Email        | The customer owner’s email ID.                                                                                                                |
-| Scopes                      | The scope to be whitelisted on the client must be **refer\_child\_merchant**                                                                  |
-| Grant type                  | The grant type must be specified as **client\_credentials** in this field.                                                                    |
+| Scopes                      | The scope to be whitelisted on the client must be **refer_child_merchant**                                                                    |
+| Grant type                  | The grant type must be specified as **client_credentials** in this field.                                                                     |
 | Client type                 | Provide **External** as input since you are outside the PayU ecosystem.                                                                       |
 | Access Token Expiry Time    | The access token expiry time from the times of creation (in seconds). There is no defined limit for configuring the access token expiry time. |
 
 ## Step 1: Get client token
 
-Use the **Get Client Token** API with the scope as **refer\_child\_merchant** to create a client token from Hub. For more information, refer to [Get Client Token API](ref:get-client-token-api)
+Use the **Get Client Token** API with the scope as **refer_child_merchant** to create a client token from Hub. For more information, refer to [Get Client Token API](ref:get-client-token-api)
 
 ## Step 2: Create a child merchant
 
@@ -229,7 +229,7 @@ Create Child Merchant Success Scenario
 
 #### Failure Scenarios
 
-- The token is invalid or expired
+* The token is invalid or expired
 
 ```plaintext
 {
@@ -239,7 +239,7 @@ Create Child Merchant Success Scenario
 
 ## Step 3: Update Bank Details
 
-After adding the child merchant in[ Step 2: Create a child merchant]\(#step 2:-create-a-child-merchant), update the bank details of the child merchant using the **Create Child Merchant** API again. For more information, refer to [Create Child Merchant API](ref:create-child-merchant-api) under API Reference.
+After adding the child merchant in[ Step 2: Create a child merchant](#step 2:-create-a-child-merchant), update the bank details of the child merchant using the **Create Child Merchant** API again. For more information, refer to [Create Child Merchant API](ref:create-child-merchant-api) under API Reference.
 
 ### Sample request
 
@@ -401,5 +401,7 @@ curl --location -g --request PUT '{{host}}/api/v3/product_accounts/{{product_acc
 
 After you onboard your child merchants, you can fetch the child merchant details as described in the following section:
 
-- [Fetch Child Merchants Details](doc:fetch-child-merchants-details-1) under API Reference
-  - [Sub Account Listing API](ref:sub-account-listing-api)
+* [Fetch Child Merchants Details](doc:fetch-child-merchants-details-1) under API Reference
+  * [Sub Account Listing API](ref:https://docs.payu.in/reference/sub-account-listing-v3-api)
+
+<br />
