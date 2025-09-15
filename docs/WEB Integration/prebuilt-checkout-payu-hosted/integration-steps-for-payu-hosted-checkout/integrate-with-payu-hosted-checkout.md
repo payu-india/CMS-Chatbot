@@ -21,7 +21,7 @@ To integrate with PayU Hosted Checkout, you need to send a request and check the
 The steps involved in PayU Hosted Checkout integration are:
 
 1. [Post Transaction Request to PayU](#step-1-make-the-transaction-request-to-payu)
-2. <br />
+2. [Check the response from PayU](#check-the-response-from-payu)
 3. [Verify Payment](#step-2-verify-the-payment)
 
 ## Step 1: Post the transaction request to PayU
@@ -66,13 +66,13 @@ The Collect Payment (**_payment**) API is used for collecting payments in Web Ch
 | **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
-> ❗️ Error Handling
->
-> If any error message is displayed with an error code, refer to [Error Codes](ref:error-codes) to understand the reason for these error codes.
+<Callout icon="❗️" theme="error">
+  **Error Handling**: If any error message is displayed with an error code, refer to [Error Codes](ref:error-codes) to understand the reason for these error codes.
+</Callout>
 
-> 📘 Reference
->
-> To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](doc:handling-the-redirect-urls).
+<Callout icon="📘" theme="info">
+  **Reference**: To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](doc:handling-the-redirect-urls).
+</Callout>
 
 ### Request parameters
 
@@ -377,18 +377,14 @@ sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||
 
 For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
 
-#### Sample request
-
-<Recipe slug="payu-hosted-checkout-curl-request-walkthrough" title="PayU Hosted Checkout cURL Request Walkthrough" />
-
-<Recipe slug="_payment-request-python-code-walkthrough" title="_payment Request Python Code Walkthrough" />
-
-<Recipe slug="_payment-request-java-code-walkthrough" title="_payment Request Java Code Walkthrough" />
-
-<Recipe slug="_payment-request-php-code-walkthrough-1" title="_payment Request PHP Code Walkthrough" />
-
 ### Sample request
 
+```
+| <Recipe slug="payu-hosted-checkout-curl-request-walkthrough" title="PayU Hosted Checkout cURL Request Walkthrough" />
+ | <Recipe slug="_payment-request-python-code-walkthrough" title="_payment Request Python Code Walkthrough" /> |
+|-----------------------------------------------|------------------------------------------|
+| <Recipe slug="_payment-request-java-code-walkthrough" title="_payment Request Java Code Walkthrough" />        | <Recipe slug="_payment-request-php-code-walkthrough-1" title="_payment Request PHP Code Walkthrough" />   |
+```
 <PayUHostedSampleRequest />
 
 ## Step 2: Check the response from PayU
@@ -556,7 +552,7 @@ Along with the request, the sensitive information should not be a part of any me
 
 ## Step 3: Verify the payment
 
-PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the Verification APIs. 
+PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the Verification APIs.
 
 <Callout icon="👍" theme="okay">
   **Tip**: The Transaction ID (txnid) value that you passed in request of Step 1 with PayU must be used here.
