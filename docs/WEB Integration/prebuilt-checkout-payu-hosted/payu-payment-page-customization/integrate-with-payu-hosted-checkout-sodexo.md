@@ -16,11 +16,11 @@ next:
 ---
 Pay Hosted Checkout (non-seamless) integration provides you to collect payments from customers using Pluxee (earlier Sodexo BRS) meal card on specific merchant categories such as restaurants, groceries etc.
 
-> 📘 Note
->
-> PayU supports only PayU Hosted Checkout (non-seamless) and Merchant Hosted Checkout integration (seamless) using this API. Server-to-Server (S2S) integration is not be supported for Sodexo.
+<Callout icon="📘" theme="info">
+  **Note**: PayU supports only PayU Hosted Checkout (non-seamless) and Merchant Hosted Checkout integration (seamless) using this API. Server-to-Server (S2S) integration is not be supported for Sodexo.
+</Callout>
 
-This section describes the parameters required to collect payments using the Pluxee card with PayU Hosted Checkout integration (using the  **\_payment** API) with parameters to enforce only the Pluxee card in the **mealcard** category or hide it.
+This section describes the parameters required to collect payments using the Pluxee card with PayU Hosted Checkout integration (using the  **_payment** API) with parameters to enforce only the Pluxee card in the **mealcard** category or hide it.
 
 ***
 
@@ -34,9 +34,9 @@ This section describes the parameters required to collect payments using the Plu
 
 The following describe the characteristics and workflow involved using PayU Hosted Checkout Integration with Pluxee:
 
-* The existing **\_payment** API used to initiate payments for online transactions will be used to initiate payments for Pluxee payment option.
-* In case the merchant wants to enforce Pluxee payment option on our check out page, **enforce\_paymethod** value should be passed as **SODEXO**.
-* In case merchant wants to drop the Pluxee payment option under the **mealcard** category on the PayU checkout page, then **drop\_category** value should be passed as **MC|SODEXO**. In case the **entire mealcard category** need to be dropped, then value should be passed as **MC**. Currently, PayU only supports the Sodexo payment option in the **mealcard** category.
+* The existing **_payment** API used to initiate payments for online transactions will be used to initiate payments for Pluxee payment option.
+* In case the merchant wants to enforce Pluxee payment option on our check out page, **enforce_paymethod** value should be passed as **SODEXO**.
+* In case merchant wants to drop the Pluxee payment option under the **mealcard** category on the PayU checkout page, then **drop_category** value should be passed as **MC|SODEXO**. In case the **entire mealcard category** need to be dropped, then value should be passed as **MC**. Currently, PayU only supports the Sodexo payment option in the **mealcard** category.
 
 For more information enforcing or hiding Pluxee payment option, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
 
@@ -70,15 +70,15 @@ The parameters for the Sodexo card remain the same for as mentioned in the [Coll
 
 If you wish to enforce the Sodexo card payment and hide other cards, you can use the following parameters and other PayU Hosted Checkout parameters according to your requirements.
 
-| **Parameter**      | **Description**                                                                                                                                               | **Example** |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| enforce\_paymethod | This parameter allows you to customize the payment options for each individual transaction. To enforce Sodexo card as the payment method, specify **SODEXO**. | SODEXO      |
+| **Parameter**     | **Description**                                                                                                                                               | **Example** |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| enforce_paymethod | This parameter allows you to customize the payment options for each individual transaction. To enforce Sodexo card as the payment method, specify **SODEXO**. | SODEXO      |
 
 ### Dropping the Sodexo Card payment
 
 If you wish to hide the Sodexo card payment in the **mealcard** category, you can use the following parameters and other PayU Hosted Checkout parameters according to your requirements.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -98,7 +98,7 @@ If you wish to hide the Sodexo card payment in the **mealcard** category, you ca
   <tbody>
     <tr>
       <td>
-        drop\_category
+        drop_category
         **optional**
       </td>
 
@@ -133,6 +133,6 @@ The customer performs the authorization or authentication process on the bank’
 
 ## Step 3: Check the response from PayU
 
-PayU marks the transaction status based on the response received from the bank. PayU communicates the success URL to you if the payment is successful. Verify the authenticity of the hash value before accepting or rejecting the invoice order. For the list of parameters in the response body for the PayU Hosted integration, refer to\~\~ Collect Payments with PayU Hosted Checkout\~\~ under API Reference.
+PayU marks the transaction status based on the response received from the bank. PayU communicates the success URL to you if the payment is successful. Verify the authenticity of the hash value before accepting or rejecting the invoice order. For the list of parameters in the response body for the PayU Hosted integration, refer to~~ Collect Payments with PayU Hosted Checkout~~ under API Reference.
 
 ***
