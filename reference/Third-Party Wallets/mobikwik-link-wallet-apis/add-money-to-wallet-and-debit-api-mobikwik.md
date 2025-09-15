@@ -1,7 +1,7 @@
 ---
 title: Add Money to Wallet And Debit API - Mobikwik
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
