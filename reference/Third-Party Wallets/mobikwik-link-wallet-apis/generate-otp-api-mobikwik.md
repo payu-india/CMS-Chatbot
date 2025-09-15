@@ -1,7 +1,7 @@
 ---
 title: Generate OTP API - Mobikwik
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
