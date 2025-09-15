@@ -18,7 +18,7 @@ A payment link is a URL that merchants can send to their customers to initiate a
 
 * **How can I create a payment link using PayU’s API?**
 
-You can create a payment link using **Create Payment Link** API. You need to provide some mandatory parameters such as merchant key, transaction amount, product info, customer details, and callback URL to create a payment link. PayU will return a URL that you can share with your customers to initiate a payment. For more information, refer to [Create Invoice API](ref:create_invoice_api)
+You can create a payment link using **Create Payment Link** API. You need to provide some mandatory parameters such as merchant key, transaction amount, product info, customer details, and callback URL to create a payment link. PayU will return a URL that you can share with your customers to initiate a payment. For more information, refer to [Create Payment Link API](ref:create-payment-links)
 
 * **Can I customize the payment link according to my business requirements?**
 
@@ -57,28 +57,28 @@ The payment token is generated using a combination of the client ID & secret, gr
 
 Using a payment token instead of the customer’s details provides an additional layer of security as the customer’s sensitive information is not shared with you. This helps to prevent fraud and ensure the privacy of customer data.
 
-* **What does it mean to have a wrong scope perspective in API usage?** \
+* **What does it mean to have a wrong scope perspective in API usage?** 
   A wrong scope perspective occurs when the scope of an API request is incorrectly defined or misunderstood, leading to errors or unexpected behavior. This can happen if the permissions or access levels required for the API are not correctly specified.
-* **How can I identify if I am using the wrong scope in my API request?**\
+* **How can I identify if I am using the wrong scope in my API request?**
   You can identify a wrong scope by checking the error messages returned by the API. Common indicators include unauthorized access errors, permission denied messages, or responses indicating that the requested resource is not available.
 * **What are the common causes of wrong scope issues in API requests?** Common causes include:
   * Incorrectly configured API keys or tokens.
   * Misunderstanding the required permissions for specific API endpoints.
   * Using outdated or incorrect documentation.
   * Not updating the scope when the API’s requirements change.
-* **How can I avoid wrong scope issues when using APIs?** \
+* **How can I avoid wrong scope issues when using APIs?** 
   To avoid wrong scope issues:
   * Always refer to the latest API documentation.
   * Ensure that your API keys or tokens have the correct permissions.
   * Regularly review and update your API configurations.
   * Test your API requests in a development environment before deploying them to production.
-* **What should I do if I encounter a wrong scope error?** \
+* **What should I do if I encounter a wrong scope error?** 
   If you encounter a wrong scope error:
   * Review the error message for specific details.
   * Check the API documentation to confirm the required scope.
   * Update your API request with the correct scope.
   * If the issue persists, contact the API provider’s support team for assistance.
-* **Can wrong scope issues affect the security of my application?** \
+* **Can wrong scope issues affect the security of my application?** 
   Yes, wrong scope issues can affect security. Using an incorrect scope might grant excessive permissions, leading to potential security vulnerabilities. Conversely, insufficient scope can prevent your application from functioning correctly.
 * **How often should I review the scopes used in my API requests?** 
 
