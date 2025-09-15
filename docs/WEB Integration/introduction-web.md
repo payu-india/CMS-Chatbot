@@ -52,7 +52,7 @@ PayU offers the following Web Checkout integrations to cater to merchants with o
   <tbody>
     <tr>
       <td>
-        ![PayU\_Hosted](https://devguide.payu.in/wordpress/wp-content/uploads/2021/05/PayU-Hosted-3.png)[Prebuilt Hosted Checkout or PayU Hosted Checkout](/docs/prebuilt-checkout-payu-hosted)
+        ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/05/PayU-Hosted-3.png)[Prebuilt Hosted Checkout or PayU Hosted Checkout](/docs/prebuilt-checkout-payu-hosted)
 
         * Easier and faster integration.
         * Redirect your customers to pre-built pages of PayU for making payments.
@@ -64,6 +64,7 @@ PayU offers the following Web Checkout integrations to cater to merchants with o
 
         * Collect customer’s payment credentials directly through your payments interface.
         * Integrate with suite of Web Checkout-based products API  with your custom interface.
+        * PCI-DSS certifications required.
       </td>
 
       <td>
@@ -71,6 +72,7 @@ PayU offers the following Web Checkout integrations to cater to merchants with o
 
         * Collect customer’s payment credentials unlike other integrations, where the data is fetched through a direct call.
         * Progress cannot be witnessed through the change of the URLs.
+        * PCI-DSS certifications required.
       </td>
     </tr>
   </tbody>
