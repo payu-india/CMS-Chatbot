@@ -17,15 +17,15 @@ metadata:
 next:
   description: ''
 ---
-> 📘 Note
->
-> Before implementing on your Production environment, PayU strongly recommends you to enforce the payment parameters described in this section on the Test environment.
+<Callout icon="📘" theme="info">
+  **Note**: Before implementing on your Production environment, PayU strongly recommends you to enforce the payment parameters described in this section on the Test environment.
+</Callout>
 
 You can append the parameter names in your transaction request to opt for all or some of the payment modes.
 
 ## Enforce payment customization
 
-Parameter name: enforce\_paymethod
+Parameter name: **enforce_paymethod**
 
 This parameter allows you to customize the payment options for each transaction. You can enforce specific payment modes, cards scheme, and specific banks under Net Banking using this method.
 
@@ -44,18 +44,18 @@ The categories and sub-categories are as follows:
 
 To enforce complete categories, use the values as described in the following table:
 
-| Category    | Value of enforced\_payment |
-| :---------- | :------------------------- |
-| Credit Card | creditcard                 |
-| Debit Card  | debitcard                  |
-| Net Banking | netbanking                 |
-| NEFT/RTGS   | neftrtgs                   |
-| EMI         | emi                        |
-| UPI         | upi                        |
-| Wallet      | cashcard                   |
-| Sodexo      | SODEXO                     |
-| BNPL        | bnpl                       |
-| QR          | qr                         |
+| Category    | Value of enforced_payment |
+| :---------- | :------------------------ |
+| Credit Card | creditcard                |
+| Debit Card  | debitcard                 |
+| Net Banking | netbanking                |
+| NEFT/RTGS   | neftrtgs                  |
+| EMI         | emi                       |
+| UPI         | upi                       |
+| Wallet      | cashcard                  |
+| Sodexo      | SODEXO                    |
+| BNPL        | bnpl                      |
+| QR          | qr                        |
 
 To enforce sub-categories, use the respective bank codes for them. Contact PayU Support or at help.payu.in to get the respective bank codes.
 
@@ -73,19 +73,19 @@ All the credit card and debit card options are displayed (as the whole category 
 
 All the credit card, Net Banking, and cash card options are displayed (as the whole category is enforced for these).
 
-> 📘 Note:
->
-> Ensure you use this parameter only after testing properly as an incorrect string will lead to undesirable payment options being displayed.
+<Callout icon="📘" theme="info">
+  **Note**: Ensure you use this parameter only after testing properly as an incorrect string will lead to undesirable payment options being displayed.
+</Callout>
 
 For an example procedure on how to enforce payment with a credit card, refer to Enforce Payment with Credit Card.
 
 ## Hide Specific Payment Modes
 
-**Parameter name : drop\_category**
+**Parameter name : drop_category**
 
-The **drop\_category** parameter can be used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
+The **drop_category** parameter can be used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
 
-If 30 Net Banking options are available and you want to drop two of those net banking options (that is, do not display those two options on the PayU page), the **drop\_category** parameter can be used effectively.
+If 30 Net Banking options are available and you want to drop two of those net banking options (that is, do not display those two options on the PayU page), the **drop_category** parameter can be used effectively.
 
 To drop the whole category, use the following values:
 
@@ -100,18 +100,18 @@ To drop the whole category, use the following values:
 | BNPL        | BNPL           |
 | Sodexo      | SODEXO         |
 
-To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration). 
+To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration).
 
 ## Checkout customization examples
 
-**drop\_category – DC|VISA|MAST**
+**drop_category – DC|VISA|MAST**
 
 In this example:
 
 * For the debit card category, only Visa and Master Card options will be dropped, so they are not displayed on the PayU page.
 * All other active payment options are displayed.
 
-**drop\_category – CC|AMEX, DC|VISA, EMI|EMI6**
+**drop_category – CC|AMEX, DC|VISA, EMI|EMI6**
 
 In this example:
 
@@ -120,6 +120,6 @@ In this example:
 * In the EMI category, only HDFC 6 months EMI option (bank code – EMI6) will be dropped.
 * All the other active payment options will be displayed on the PayU page.
 
-> 📘 Note:
->
-> Use this parameter only after proper testing as an incorrect string will display undesirable payment modes.
+<Callout icon="📘" theme="info">
+  **Note**: Use this parameter only after proper testing as an incorrect string will display undesirable payment modes.
+</Callout>
