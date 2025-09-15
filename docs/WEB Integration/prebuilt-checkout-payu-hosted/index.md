@@ -58,7 +58,7 @@ A consent message is displayed whether the card the details can be stored.
 PayU manages the checkout experience on your website. The features of PayU Hosted Checkout are:
 
 * Enables the customer to select the payment option through the readymade payment page hosted on the PayU server, and accept corresponding payment details. After submitting the details, PayU will take the customer to the desired payment options webpage for further authentication. For configuring payment modes on payment page, refer to [Configure Checkout Payment Methods](doc:checkout-payment-modes).
-* Facilitates access to color schemes, customize logo, and display language (some Indian languages supported) though PayU owns this page. For more information, refer to [Change the Language](doc:changing-the-language)  and r [Configure Checkout Settings](doc:configure-checkout-settings).
+* Facilitates access to color schemes, customize logo, and display language (some Indian languages supported) though PayU owns this page. For more information, refer to [Change the Language](doc:changing-the-language)  and  [Configure Checkout Settings](doc:configure-checkout-settings).
 * Enables easy and quick integration so you can integrate with minimal technical knowledge.
 
 Web Checkout provides multiple payment options that can be easily pre-configured by you on-demand, according to your business case. You can execute PayU Hosted Checkout integration efficiently with PayU web payments systems using a PG integration kit provided by PayU.
