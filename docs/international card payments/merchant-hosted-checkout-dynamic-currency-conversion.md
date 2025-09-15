@@ -28,9 +28,9 @@ next:
 ---
 This section describes how to integrate Dynamic Currency Conversion with Merchant Hosted Checkout Integration (Seamless Integration).
 
-> 📘 Note:
->
-> You need to contact your PayU Key Account Manager to enable Dynamic Currency Conversion.
+<Callout icon="📘" theme="info">
+  **Note**: You need to contact your PayU Key Account Manager to enable Dynamic Currency Conversion.
+</Callout>
 
 > 👍 Before you begin:
 >
@@ -53,9 +53,9 @@ Check if the card number of the customer is international or domestic using the 
 
 Make the transaction request with the payment details provided by the customer to PayU. For the description of the request and response parameters, refer to <a href="_payment_merchant_hosted" target="_blank">Collect Payments API</a>.
 
-> 📘 Note:
->
-> It is recommended to collect the customer’s e-mail address, phone, address, city, state, and country and then post those details along with the payment request with PayU. This will help in checking the risk of the transaction based on these data.
+<Callout icon="📘" theme="info">
+  **Note**: It is recommended to collect the customer’s e-mail address, phone, address, city, state, and country and then post those details along with the payment request with PayU. This will help in checking the risk of the transaction based on these data.
+</Callout>
 
 <HashingRequestParameters />
 
@@ -148,6 +148,6 @@ Array
 
 Verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to [Verify Payment API](refverify_payment_api)
 
-> 📘 Note:
->
-> The transaction ID that you posted in Step 1 with PayU must be used here.
+<Callout icon="📘" theme="info">
+  **Note**: The transaction ID that you posted in Step 1 with PayU must be used here.
+</Callout>
