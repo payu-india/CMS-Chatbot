@@ -16,7 +16,7 @@ To update your brand settings:
 
 1. Navigate to **Dashboard > Settings > Checkout Settings.**
 
-   The *Set up your brand* page is displayed.
+   The _Set up your brand_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/eb8cf99-Screenshot_2024-07-19_at_10.43.53_AM.png" />
 
@@ -42,9 +42,9 @@ To update your brand settings:
       </td>
 
       <td>
-        Enter the location or URL of the brand logo.  
+        Enter the location or URL of the brand logo.
 
-        * \*Note\*\*: You need to that the size of the logo image is 90×90 and format of the logo image is PNG
+        * *Note**: You need to that the size of the logo image is 90×90 and format of the logo image is PNG
       </td>
     </tr>
 
@@ -64,7 +64,7 @@ To update your brand settings:
       </td>
 
       <td>
-        Select the language from the  **Language** drop-down list that has to be displayed on the Checkout page. 
+        Select the language from the  **Language** drop-down list that has to be displayed on the Checkout page.
       </td>
     </tr>
 
@@ -80,6 +80,6 @@ To update your brand settings:
   </tbody>
 </Table>
 
-> 📘 Note:
->
-> While you configure each field above on the ,  you can see the preview in the right pane. For example, if you add or update the brand logo URL, it will be updated in the right pane preview.
+<Callout icon="📘" theme="info">
+  **Note**: While you configure each field above on the ,  you can see the preview in the right pane. For example, if you add or update the brand logo URL, it will be updated in the right pane preview.
+</Callout>
