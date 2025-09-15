@@ -338,8 +338,4 @@ Verify the transaction details using the **Verification Payment** API. For more 
   To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 </Accordion>
 
-##
-
-<Recipe slug="parse-the-verify-payment-api-response" title="Parse the Verify Payment API response" />
-
 <br />
