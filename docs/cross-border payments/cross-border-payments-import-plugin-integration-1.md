@@ -27,8 +27,8 @@ Download the Cross-Border Payments Import plugin and install it from the followi
 To integrate the Cross-Border Payments Import plugin, refer the following recipe or step-by-step procedure:
 
 <a
-      href='https://payu-hosted-checkout.readme.io/v1.3.0/recipes/cross-border-payments-import-plugin'
-      style={{
+  href="https://payu-hosted-checkout.readme.io/v1.3.0/recipes/cross-border-payments-import-plugin"
+  style={{
         backgroundColor: '#018FF4',
         display: 'block',
         padding: '20px',
@@ -39,14 +39,19 @@ To integrate the Cross-Border Payments Import plugin, refer the following recipe
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         transition: 'transform 0.2s',
       }}
-      onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
-      onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-    >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <span style={{ fontSize: '24px' }}>{"🦉"}</span>
-        <h3 style={{ margin: 0, fontSize: '18px' }}>{`Cross-Border Payments Import Plugin`}</h3>
-      </div>
-    </a>
+  onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+  onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <span style={{ fontSize: '24px' }}>
+      {"🦉"}
+    </span>
+
+    <h3 style={{ margin: 0, fontSize: '18px' }}>
+      {`Cross-Border Payments Import Plugin`}
+    </h3>
+  </div>
+</a>
 
 1. Import the PayU package:
 
@@ -172,6 +177,6 @@ invoiceObj.hash = hashForUdfUpdateApi;
 String invoiceUpdateStatus = invoiceObj.updateInvoice();
 ```
 
-> 📘 Note:
->
-> The file size of the invoice to be uploaded must be less than 2MB.
+<Callout icon="📘" theme="info">
+  **Note**: The file size of the invoice to be uploaded must be less than 2MB.
+</Callout>
