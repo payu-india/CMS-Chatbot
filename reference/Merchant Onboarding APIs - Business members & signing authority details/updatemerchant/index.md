@@ -1,4 +1,4 @@
 ---
 title: UpdateMerchant
-hidden: false
+hidden: true
 ---
