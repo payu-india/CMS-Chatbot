@@ -248,7 +248,11 @@ Post the following parameters for the card payment to PayU using the Merchant Ho
       </td>
 
       <td>
-        `String` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to [Card Number Formats](doc:card-number-formats) and display error message on invalid input.
+        `String` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to 
+
+        [Card Number Formats](doc:card-number-formats)
+
+         and display error message on invalid input.
       </td>
 
       <td>
@@ -1175,7 +1179,7 @@ Array
 
 ## Step 4: Verify the Payment
 
-Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](doc:verify_payment_api) under API Reference.
+Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](ref:verify_payment_api) under API Reference.
 
 > 📘 Note:
 >
