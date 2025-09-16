@@ -46,8 +46,8 @@ Use the following credentials to test the Net Banking integration:
 
 You can use either of the following VPAs to test your UPI-related integration:
 
-* [anything@payu](anything@payu)
-* [9999999999@payu.in](mailto:9999999999@payu.in)
+* anything@payu
+* 9999999999@payu.in
 
 > ❗️ Callout
 >
@@ -117,7 +117,7 @@ You can use the following Debit and Credit cards to test Emi integration.
 
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -155,7 +155,11 @@ You can use the following wallets and their corresponding credentials to test wa
       </td>
 
       <td>
-        Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: [https://developer.phonepe.com/v1/docs/setting-up-test-account](https://developer.phonepe.com/v1/docs/setting-up-test-account)
+        Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: 
+
+        [https://developer.phonepe.com/v1/docs/setting-up-test-account](https://developer.phonepe.com/v1/docs/setting-up-test-account)
+
+
         Download the app and register your mobile number and follow the instructions as described in the above PhonePe docs.
       </td>
 
