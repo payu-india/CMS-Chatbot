@@ -10,11 +10,11 @@ metadata:
 next:
   description: ''
 ---
-Ensure these steps before you deploy the integration in a live environment. 
+Ensure these steps before you deploy the integration in a live environment.
 
 ## Collect Live Payments
 
-After [testing the integration](doc:2-test-the-integration-copy-1), once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers. 
+After [testing the integration](doc:android-phonepesdk-test-integration), once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
 > 🚧 Watch Out!
 >
@@ -28,7 +28,7 @@ Set the value of the `setIsProduction()`to `true` in the payment integration cod
 
 ### Checklist 3: Configure verify payment method
 
-Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error. 
+Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
 
 ### Checklist 4: Configure Webhook
 
