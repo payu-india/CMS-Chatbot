@@ -85,7 +85,6 @@ The following parameters vary for the EFTNEFT payment mode in the **Collect Paym
 | **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
-
 ### Request parameters
 
 <Table align={["left","left","left"]}>
@@ -112,7 +111,7 @@ The following parameters vary for the EFTNEFT payment mode in the **Collect Paym
       </td>
 
       <td>
-        `String` This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to 
+        `String` This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to
 
         [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
 
@@ -126,7 +125,7 @@ The following parameters vary for the EFTNEFT payment mode in the **Collect Paym
 
     <tr>
       <td>
-        txnid 
+        txnid
         `mandatory`
       </td>
 
@@ -141,12 +140,12 @@ The following parameters vary for the EFTNEFT payment mode in the **Collect Paym
 
     <tr>
       <td>
-        amount 
+        amount
         `mandatory`
       </td>
 
       <td>
-        `float` This parameter should contain the payment amount of the particular transaction. 
+        `float` This parameter should contain the payment amount of the particular transaction.
         **Note**: Type-cast the amount to float type
       </td>
 
@@ -157,7 +156,7 @@ The following parameters vary for the EFTNEFT payment mode in the **Collect Paym
 
     <tr>
       <td>
-        productinfo 
+        productinfo
         `mandatory`
       </td>
 
@@ -963,14 +962,14 @@ namespace PayUNeftIntegration
 
 <ReverseHashing />
 
-> 📘 Note on Response:
->
-> For security reasons, the sample response or URL is not included here.
+<Callout icon="📘" theme="info">
+  **Note on Response**: For security reasons, the sample response or URL is not included here.
+</Callout>
 
 ## Step 3: Verify the payment
 
-Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](doc:verify_payment_api) under API Reference.
+Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](ref:verify_payment_api) under API Reference.
 
-> 📘 Note:
->
-> The transaction ID that you posted in Step 1 with PayU must be used here.
+<Callout icon="📘" theme="info">
+  **Note**: The transaction ID that you posted in Step 1 with PayU must be used here.
+</Callout>
