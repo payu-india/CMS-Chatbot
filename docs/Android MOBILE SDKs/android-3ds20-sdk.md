@@ -737,8 +737,8 @@ startRedirectionFlow(
 				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
           // Handle erro
         }
-				override fun generateHash(map: HashMap<String, String>,hashGenerationListener: PayUHashGeneratedListener) {
-          //// Handle 
+				override fun generateHash(map: HashMap<String, String>,hashGenerationListener: 			 PayUHashGeneratedListener) {
+          //// Handle Hash
 				}	
     }
 )
