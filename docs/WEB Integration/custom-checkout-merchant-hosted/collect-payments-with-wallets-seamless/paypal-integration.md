@@ -60,9 +60,9 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
 | **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
-> 📘 Reference:
->
-> For the complete list of parameters (with **Try It** experience ) and response, refer to <a href="https://docs.payu.in/reference/_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
+<Callout icon="📘" theme="info">
+  **Reference**: For the complete list of parameters (with **Try It** experience ) and response, refer to <a href="https://docs.payu.in/reference/_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
+</Callout>
 
 | **Parameter**          | **Description**                                                                                                                                                        | **Example** |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
