@@ -511,56 +511,70 @@ HTTP Method: **POST**
 
 <br />
 
-<Callout icon="📘" theme="info">
-  **Notes for additional_info:**
-
-  * The last 4 digits of cards is mandatory for all transactions.
-  * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
-  * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
-</Callout>
-
-## Sample request
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=YourMerchantKey" \
-  -d "txnid=NT_TXN_1234567890" \
-  -d "amount=250.00" \
-  -d "productinfo=Premium Subscription Plan" \
-  -d "firstname=John" \
-  -d "lastname=Doe" \
-  -d "email=john.doe@example.com" \
-  -d "phone=9876543210" \
-  -d "surl=https://yourwebsite.com/payment/success" \
-  -d "furl=https://yourwebsite.com/payment/failure" \
-  -d "pg=CC" \
-  -d "bankcode=VISA" \
-  -d "ccexpmon=12" \
-  -d "ccexpyr=2025" \
-  -d "ccname=John Doe" \
-  -d "store_card_token=4111111111111111" \
-  -d "storecard_token_type=1" \
-  -d "additional_info={\"last4Digits\":\"1111\",\"TAVV\":\"ABCD1234EFGH5678\",\"trid\":\"987654321012345\",\"tokenRefNo\":\"TKN_REF_12345678\"}" \
-  -d "api_version=1" \
-  -d "address1=123 Business District" \
-  -d "address2=Tech Park Avenue" \
-  -d "city=Bangalore" \
-  -d "state=Karnataka" \
-  -d "country=India" \
-  -d "zipcode=560001" \
-  -d "udf1=Premium_Plan" \
-  -d "udf2=Monthly_Billing" \
-  -d "udf3=Customer_ID_789" \
-  -d "udf4=" \
-  -d "udf5=" \
-  -d "hash=b5c6d8e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9"
-
-```
-
-<br />
+> 📘 Notes for additional_info:
+>
+> * The last 4 digits of cards is mandatory for all transactions.
+> * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
+> * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
 
 ## Response
 
 There are no changes in the response, it will remain as it is like the existing plain card number.
+
+```json
+Array
+(
+    [mihpayid] => 403993715524069222
+    [mode] => CC
+    [status] => success
+    [unmappedstatus] => captured
+    [key] => JF***g
+    [txnid] => EaE4ZO3vU4iPsp
+    [amount] => 10.00
+    [cardCategory] => domestic
+    [discount] => 0.00
+    [net_amount_debit] => 10
+    [addedon] => 2021-09-08 19:37:19
+    [productinfo] => iPhone
+    [firstname] => Ashish
+    [lastname] => 
+    [address1] => 
+    [address2] => 
+    [city] => 
+    [state] => 
+    [country] => 
+    [zipcode] => 
+    [email] => test@gmail.com
+    [phone] => 9876543210
+    [udf1] => 
+    [udf2] => 
+    [udf3] => 
+    [udf4] => 
+    [udf5] => 
+    [udf6] => 
+    [udf7] => 
+    [udf8] => 
+    [udf9] => 
+    [udf10] => 
+    [hash] => ed99957adb08fea56c907b88e8d158a79c3562c67f96c298461509826f77a7ae9e88b2a176b3234c25f50bcd451271728719656f3bb59c13a52bebabc468615a
+    [field1] => 0608273386032718000015
+    [field2] => 986987
+    [field3] => 10.00
+    [field4] => 403993715524069222
+    [field5] => 100
+    [field6] => 02
+    [field7] => AUTHPOSITIVE
+    [field8] => 
+    [field9] => Transaction is Successful
+    [payment_source] => payu
+    [PG_TYPE] => CC-PG
+    [bank_ref_num] => 0608273386032718000015
+    [bankcode] => CC
+    [error] => E000
+    [error_Message] => No Error
+    [name_on_card] => payu
+    [cardnum] => 512345XXXXXX2346
+)
+```
+
+<br />
