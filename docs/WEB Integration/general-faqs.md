@@ -24,7 +24,7 @@ next:
 
 * **Where can I get the test Key/Salt details?**
 
-  You can get the Key/Salt details from the PayU Dashboard. After you log in to PayU Dashboard, navigate to **Collect Payments\> Payment Gateway** and scroll down to view the Key/Salt. For more information, refer to [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt).
+  You can get the Key/Salt details from the PayU Dashboard. After you log in to PayU Dashboard, navigate to **Collect Payments> Payment Gateway** and scroll down to view the Key/Salt. For more information, refer to [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt).
 
 * **What is the role of Key/Salt in the encryption process?**
 
@@ -36,7 +36,7 @@ next:
 
 * **How do I get my Key/Salt?**
 
-  You can get the Key/Salt details from the PayU Dashboard. After you log in to PayU Dashboard, navigate to **Collect Payments\> Payment Gateway** and scroll down to view the Key/Salt. For the procedure to get the test Key and Salt, refer to [Access Production Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+  You can get the Key/Salt details from the PayU Dashboard. After you log in to PayU Dashboard, navigate to **Collect Payments> Payment Gateway** and scroll down to view the Key/Salt. For the procedure to get the test Key and Salt, refer to [Access Production Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard).
 
 * **Can I share my Key/Salt with others?**
 
@@ -50,7 +50,7 @@ next:
 
   To handle CORS errors, you can add the appropriate headers to your server-side response, such as Access-Control-Allow-Origin or Access-Control-Allow-Methods. You can also use third-party libraries or frameworks to handle CORS, such as CORS middleware in Node.js or Flask-CORS in Python.
 
-* **Can I use my Production Key and Salt details on API Playground?**
+* **Can I use my Production Key and Salt details on API Reference?**
 
   No, you can only use your test credentials or Key and Salt from your UAT account. For more information on how to get Key/Salt for Test environment, refer to [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt).
 
@@ -107,7 +107,7 @@ In the cURL request, if there are unwanted spaces in the key, Salt, or with any 
   To create a webhook, you need to follow these steps:
 
 1. Log in to your PayU Dashboard.
-2. Navigate to the **Settings\> Webhook**.
+2. Navigate to the **Settings> Webhook**.
 3. Click **Create Webhook**.
 4. Select any of the following types from the Type drop-down list:
    * **Payments**
@@ -137,7 +137,7 @@ In the cURL request, if there are unwanted spaces in the key, Salt, or with any 
 
 * **How do I create a webhook?**
 
-  To create a webhook, you will need to create a URL at your server which will be able to receive the callback message that will be sent. Once you have created the URL, you can go to your PayU merchant account -\> Settings -\> My Account -\>Webhook Click on Create New Webhook button.
+  To create a webhook, you will need to create a URL at your server which will be able to receive the callback message that will be sent. Once you have created the URL, you can go to your PayU merchant account -> Settings -> My Account ->Webhook Click on Create New Webhook button.
 
 * **Do I need to whitelist any PayU Server IP addresses for webhooks?**
 
