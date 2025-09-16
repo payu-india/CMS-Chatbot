@@ -1,4 +1,4 @@
 ---
 title: Manage KYC documents
-hidden: false
+hidden: true
 ---
