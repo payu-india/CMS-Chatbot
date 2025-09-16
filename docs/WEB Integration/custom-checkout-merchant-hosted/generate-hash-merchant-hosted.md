@@ -37,18 +37,18 @@ To generate hash for a payment request in general:
 * email: Customer's email ID 
 * <Glossary>Salt</Glossary>: Your Salt (Test or Production)
 
-> 📘 Reference:
->
-> For more information on getting key and salt, refer to [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt) or [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+<Callout icon="📘" theme="info">
+  **Reference**: For more information on getting key and salt, refer to [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt) or [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+</Callout>
 
 2. **Create a Hash String**: Concatenate the collected data in the following format: 
    `sha512(key|txnid|amount|productinfo|firstname|email|||||||||||SALT)` 
 3. **Generate Hash**: Use the SHA512 encryption algorithm to generate a hash of the concatenated string. 
 
-> 📘 Hash logic for _payment API Version 19:
->
-> The following hash logic must be used for _payment API with **api_version=19**:
-> `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone`
+<Callout icon="📘" theme="info">
+  **Hash logic for _payment API Version 19**: The following hash logic must be used for _payment API with **api_version=19**:
+  `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone`
+</Callout>
 
 ### Example Hash Generation
 
@@ -64,7 +64,7 @@ Suppose the transaction data is: 
 
 The concatenated string would be: 
 
-`gtKFFx|123456789|10.00|Test Product|John|john@example.com|||||||||||| <Salt>` 
+`JP***g|123456789|10.00|Test Product|John|john@example.com|||||||||||| <Salt>` 
 
 > 📘 Important Notes:
 >
@@ -119,9 +119,9 @@ sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|\|udf2\|\|udf4\|\|\|\|
 sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|\|\|\|\|\|\|\|\|\|\|SALT)
 ```
 
-> 📘 Delimiters when UDF parameters are not passed:
->
-> Ensure that you include the delimiters (pipe symbol: **|**) if you don't pass the UDF parameters, so you need to ensure that 5 delimiters are included if UDF parameters are not passed. There are 15 delimiters in total.
+<Callout icon="📘" theme="info">
+  **Delimiters when UDF parameters are not passed**: Ensure that you include the delimiters (pipe symbol: **|**) if you don't pass the UDF parameters, so you need to ensure that 5 delimiters are included if UDF parameters are not passed. There are 15 delimiters in total.
+</Callout>
 
 <details>
   <summary>Tips for Hashing</summary>
