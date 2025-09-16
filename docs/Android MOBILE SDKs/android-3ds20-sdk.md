@@ -566,7 +566,7 @@ mPaymentParams.cardTokenType = 1               // Type of tokenization (e.g., 1 
 mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token details
 ```
 
-#### EMI 
+#### EMI
 
 To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
 
@@ -578,6 +578,159 @@ mPaymentParams.setExpiryYear("2023")               // Expiry year (YYYY)
 mPaymentParams.setCvv("123")                        // CVV of the card
 mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., EMI03)
 mPaymentParams.setPg("EMI")                         // Set payment gateway to EMI
+```
+
+## Start Redirection Flow (WebView Integration)
+
+For integrating PayU’s 3DS2 redirection flow in a WebView, use the startRedirectionFlow function. This helps handle authentication and payment confirmation via a WebView or bottom sheet UI.
+
+```
+fun startRedirectionFlow(
+    activity: Activity,
+    params: Map<String, Any>,
+    uiCustomisation: UICustomisation,
+    callback: PayU3DS2PaymentBaseCallback
+)
+```
+
+### Parameters
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **activity**
+      </td>
+
+      <td>
+        Pass the current `Activity` instance where the WebView will be launched.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **params**
+      </td>
+
+      <td>
+        A map containing key-value pairs for configuration. Valid keys include:
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+
+      </td>
+
+      <td>
+        * `APIConstants.POST_DATA` or `APIConstants.ACS_TEMPLATE` — Contains the POST data or ACS template.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+
+      </td>
+
+      <td>
+        * `APIConstants.AUTO_READ` — Pass `true` to enable auto-reading of the data.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+
+      </td>
+
+      <td>
+        * `APIConstants.AUTO_SUBMIT` — Pass `true` to enable auto-submission of the form.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+
+      </td>
+
+      <td>
+        * `APIConstants.SURL` — Success URL to redirect after successful payment.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+
+      </td>
+
+      <td>
+        * `APIConstants.FURL` — Failure URL to redirect after failed payment.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **uiCustomisation**
+      </td>
+
+      <td>
+        Customize the bottom sheet UI for the redirection flow. Use the `UICustomisation` object.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **callback**
+      </td>
+
+      <td>
+        Callback interface to receive the payment status: success, failure, or error.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+```
+val params = mapOf(
+    APIConstants.POST_DATA to "<post_data>",
+    APIConstants.AUTO_READ to true,
+    APIConstants.AUTO_SUBMIT to true,
+    APIConstants.SURL to "<success_url>",
+    APIConstants.FURL to "<failure_url>"
+)
+
+val uiCustomization = UICustomisation()
+// Customize uiCustomization as needed
+
+startRedirectionFlow(
+    activity = this,
+    params = params,
+    uiCustomisation = uiCustomization,
+    callback = object : PayU3DS2PaymentBaseCallback {
+        override fun onPaymentSuccess() {
+            // Handle success
+        }
+
+        override fun onPaymentFailure() {
+            // Handle failure
+        }
+
+        override fun onError(errorCode: Int, errorMessage: String) {
+            // Handle error
+        }
+    }
+)
 ```
 
 ## Hash Generation
