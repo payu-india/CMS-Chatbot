@@ -141,7 +141,7 @@ fun makePayment(packageName: String,mActivity: Activity,intentUri:String) {
 
 ## Step 5: Get Callback
 
-Get a callback in `onActivityResult` for the status of the transaction. Refer to [Verify Payment](ref:transaction-verification-apis) API to get the final status of the transaction.
+Get a callback in `onActivityResult` for the status of the transaction. Refer to [Verify Payment](ref:verify_payment_api) API to get the final status of the transaction.
 
 ```java
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
