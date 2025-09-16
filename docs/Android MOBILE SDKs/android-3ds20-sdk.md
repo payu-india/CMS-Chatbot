@@ -719,7 +719,7 @@ startRedirectionFlow(
     activity = this,
     params = params,
     uiCustomisation = uiCustomization,
-    callback = object : PayU3DS2PaymentBaseCallback {
+    callback = object : PayU3DS2PaymentCallback {
         override fun onPaymentSuccess() {
             // Handle success
         }
@@ -731,6 +731,15 @@ startRedirectionFlow(
         override fun onError(errorCode: Int, errorMessage: String) {
             // Handle error
         }
+				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
+          // Handle erro
+        }
+				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
+          // Handle erro
+        }
+				override fun generateHash(map: HashMap<String, String>,hashGenerationListener: PayUHashGeneratedListener) {
+          //// Handle 
+				}	
     }
 )
 ```
