@@ -294,9 +294,9 @@ If specific intent has to be opened instead of Generic Intent, the **bankcode**
 | GPay             | TEZ          |
 | PhonePe          | PPINTENT     |
 
-> 📘 Note:
->
-> User VPA is not required for this flow. The different parameters and their descriptions are in the following table.
+<Callout icon="📘" theme="info">
+  **Note**: User VPA is not required for this flow. The different parameters and their descriptions are in the following table.
+</Callout>
 
 Collect the response in the <Anchor label="UPI Collection - S2S" target="_blank" href="ref:_payment_s2s_upi_collection">UPI Collection - S2S</Anchor> under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request) .
 
