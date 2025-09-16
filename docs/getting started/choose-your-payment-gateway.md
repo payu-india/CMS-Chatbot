@@ -36,7 +36,7 @@ Here's the HTML content converted to markdown format:
     * [Offers](doc:introduction-to-affordability)
     * [EMI](doc:introduction-to-affordability)
     * [Loyalty Edge](doc:loyalty-edge-introduction)
-    * [Recommendation Engine](doc:recommendation-engine/)
+    * [Recommendation Engine](doc:recommendation-engine)
     * [Affordability Widget](doc:affordability-suite)
 
 * Mobile SDK
@@ -44,8 +44,8 @@ Here's the HTML content converted to markdown format:
     * [Android](#android)
     * [iOS](#ios)
     * [React Native](doc:explore-reactnative-sdks)
-    * [Cordova](doc:cordova-sdk-introduction/)
-    * [Flutter](doc:flutter-sdk-introduction/)
+    * [Cordova](doc:cordova-sdk-introduction)
+    * [Flutter](doc:flutter-sdk-introduction)
       You can choose to integrate using the Checkout Plus, the pre-built GUI for Android, iOS or React Native or use various SDK components as described in [Collect payment from Mobile](#collect-payment-from-mobile).
 
 * Payment Links
