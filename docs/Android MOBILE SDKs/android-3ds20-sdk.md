@@ -701,6 +701,8 @@ fun startRedirectionFlow(
   </tbody>
 </Table>
 
+### Sample Code
+
 ```
 val params = mapOf(
     APIConstants.ACS_TEMPLATE to "<pass acs_templete>",
