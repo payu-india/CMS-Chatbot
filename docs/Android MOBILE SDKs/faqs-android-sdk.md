@@ -340,7 +340,7 @@ When the merchant collects the customer’s card details on their website/server
 Only the following integrations in Android SDK work through Intent:
 
 * [PhonePe](doc:android-phonepe-sdk)
-* [Google Pay](doc:google-pay-sdk)
+* [Google Pay](doc:android-google-pay-sdk)
 * PayTM
 * **Can merchants generate hash from PayU SDK?**
 
@@ -391,11 +391,11 @@ With version 7.4.0, PayU has optimized the SDK Offerings for you. After you upda
 
 * **I am a CustomBrowser Merchant version >=7.4.0. I have added UPI SDK for UPI offering(Generic Intent and UPI Collect). I would like to add Google, PhonePe, and Samsung Pay payment options. What should I do?**
 
-You just need to add PayU Gradle dependencies for [GooglePay](doc:google-pay-sdk), [Phonepe](https://docs.payu.in/docs/android-phonepe-sdk), and Samsung Pay. Generate _PostData_ according to the payment option you choose.
+You just need to add PayU Gradle dependencies for [GooglePay](doc:android-google-pay-sdk), [Phonepe](https://docs.payu.in/docs/android-phonepe-sdk), and Samsung Pay. Generate _PostData_ according to the payment option you choose.
 
 * **I am a UPI SDK merchant(Directly UPI SDK not through CustomBrowser), I would like to add GooglePay, PhonePe, or SamsungPay.**
 
-You just need to add PayU Gradle dependencies for [Googlepay](doc:google-pay-sdk), [Phonepe](https://docs.payu.in/docs/android-phonepe-sdk), and Samsung Pay and generate `PostData` for the same reference [Postdata through UPI SDK](https://docs.payu.in/docs/android-upisdk-integration-steps#step-4-payment-request-post-data).
+You just need to add PayU Gradle dependencies for [Googlepay](doc:android-google-pay-sdk), [Phonepe](https://docs.payu.in/docs/android-phonepe-sdk), and Samsung Pay and generate `PostData` for the same reference [Postdata through UPI SDK](https://docs.payu.in/docs/android-upisdk-integration-steps#step-4-payment-request-post-data).
 
 * **Is PG SDK mandatory to use with CustomBrowser?**
 
