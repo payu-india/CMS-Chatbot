@@ -298,11 +298,11 @@ If specific intent has to be opened instead of Generic Intent, the **bankcode**
 >
 > User VPA is not required for this flow. The different parameters and their descriptions are in the following table.
 
-Collect the response in the [UPI Collection - S2S](ref:payment_s2s_upi_collection) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request) .
+Collect the response in the [UPI Collection - S2S](ref:_payment_s2s_upi_collection) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request) .
 
 ## Step 2: Check UPI transaction status
 
-After receiving a successful response from the above API, the need to check the status of the transaction using the \*\*Verify Payment \*\*API. Web services can be accessed by making a server to server call on the following PayU URLs. For a sample request or response, refer to  [Verify Payment API](ref:verify_payment_api)under API Reference.
+After receiving a successful response from the above API, the need to check the status of the transaction using the **Verify Payment **API. Web services can be accessed by making a server to server call on the following PayU URLs. For a sample request or response, refer to  [Verify Payment API](ref:verify_payment_api)under API Reference.
 
 ## Step 3: PayU sends S2S callback response
 
