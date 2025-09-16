@@ -33,10 +33,10 @@ For the response parameters, refer to [Additional Info for Payment APIs](ref:add
 
 ## Request parameters
 
-> ❗️ Error handling
->
-> If any error message is displayed with an error code, refer to the <a href="error-codes" target="_blank">Error Codes</a> section to understand the reason for these error codes.
+<Callout icon="❗️" theme="error">
+  **Error handling**: If any error message is displayed with an error code, refer to the <a href="error-codes" target="_blank">Error Codes</a> section to understand the reason for these error codes.
+</Callout>
 
-> 🚧 Values to be used in Test environment
->
-> For values to be used in Test environment, refer to <a href="test-cards-upi-id-and-wallets#web-checkout" target="_blank">Test Cards</a>.
+<Callout icon="🚧" theme="warn">
+  **Values to be used in Test environment**: For values to be used in Test environment, refer to <a href="test-cards-upi-id-and-wallets#web-checkout" target="_blank">Test Cards</a>.
+</Callout>
