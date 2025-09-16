@@ -177,4 +177,4 @@ To submit the documents manually:
 
 > 📘 Reach PayU:
 >
-> If you are unable to complete your KYC, contact your PayU Key Account Manager or visit <Anchor label="PayU Support" target="_blank" href="help.payu.in">PayU Support</Anchor>.
+> If you are unable to complete your KYC, contact your PayU Key Account Manager or visit <Anchor label="PayU Support" target="_blank" href="https://help.payu.in/knowledge-center">PayU Support</Anchor>.
