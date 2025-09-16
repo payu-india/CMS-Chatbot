@@ -30,7 +30,7 @@ The S2S decoupled flow for cards involves the following steps for the **redirect
 
 ## Step 1: Initiate payment request with PayU
 
-The merchant initiates PayU with the required transaction mandatory or optional parameters. This needs to be a server-to-server curl call request. URL, parameters, and their descriptions. For more information, refer to [Cards Decoupled Flow](_payment_s2s_decoupled_flow).
+The merchant initiates PayU with the required transaction mandatory or optional parameters. This needs to be a server-to-server curl call request. URL, parameters, and their descriptions. For more information, refer to [Cards Decoupled Flow](ref:_payment_s2s_decoupled_flow).
 
 <PaymentAPIEnvironment />
 
@@ -614,7 +614,7 @@ The authorization request is the final step of transaction processing. This agai
 </table>
 `}</HTMLBlock>
 
-#### Example for authentication\_info JSON
+#### Example for authentication_info JSON
 
 ```plaintext
 {
@@ -637,7 +637,7 @@ The authorization request is the final step of transaction processing. This agai
 }
 ```
 
-####  authentication\_info JSON Fields Description
+####  authentication_info JSON Fields Description
 
 | **Field**      | **Description**                                                                                        | **Applicable to EMV 3DS** |
 | -------------- | ------------------------------------------------------------------------------------------------------ | ------------------------- |
