@@ -14,12 +14,12 @@ PayU Checkout Plus is the most convenient way to collect payment on your website
 
 > 📘 Notes:
 >
-> The Checkout Plus integration is not recommended for the app browsers. For example, WebView, Chrome Custom tab, etc. Although there is Redirection Web Checkout which can be integrated. For more information, refer to following: 
+> The Checkout Plus integration is not recommended for the app browsers. For example, WebView, Chrome Custom tab, etc. Although there is Redirection Web Checkout which can be integrated. For more information, refer to following:
 >
 > * Redirection Web Checkout: [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted) .
-> * Webview configurations: 
->   * [Webview Integration in Android](https://docs.payu.in/docs/webview-integration-in-android) 
->   * [Webview Integration in iOS](https://docs.payu.in/docs/webview-intgration-in-ios)
+> * Webview configurations:
+>   * [Webview Integration in Android](https://docs.payu.in/docs/webview-integration-in-android)
+>   * [Webview Integration in iOS](doc:webview-intgration-in-ios)
 
 ***
 
@@ -137,7 +137,7 @@ var handlers = {responseHandler: function (BOLT) {
 
 ### Request parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -175,7 +175,11 @@ var handlers = {responseHandler: function (BOLT) {
       </td>
 
       <td>
-        `String` This field must contain the has and it is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to [Encryption of Request](https://docs.payu.in/docs/generate-hash-merchant-hosted).
+        `String` This field must contain the has and it is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to 
+
+        [Encryption of Request](https://docs.payu.in/docs/generate-hash-merchant-hosted)
+
+        .
       </td>
 
       <td>
@@ -249,7 +253,11 @@ var handlers = {responseHandler: function (BOLT) {
       </td>
 
       <td>
+
+
         [test@gmail.com](mailto:test@gmail.com)
+
+
       </td>
     </tr>
 
@@ -273,7 +281,7 @@ var handlers = {responseHandler: function (BOLT) {
       </td>
 
       <td>
-        `String` This parameter must contain a brief description of the product.\`
+        `String` This parameter must contain a brief description of the product.`
       </td>
 
       <td>
@@ -291,7 +299,11 @@ var handlers = {responseHandler: function (BOLT) {
       </td>
 
       <td>
+
+
         [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
+
+
       </td>
     </tr>
 
@@ -305,13 +317,17 @@ var handlers = {responseHandler: function (BOLT) {
       </td>
 
       <td>
+
+
         [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
+
+
       </td>
     </tr>
 
     <tr>
       <td>
-        udf1 \
+        udf1 
         **optional**
       </td>
 
@@ -326,7 +342,7 @@ var handlers = {responseHandler: function (BOLT) {
 
     <tr>
       <td>
-        udf2 \
+        udf2 
         **optional**
       </td>
 
@@ -341,7 +357,7 @@ var handlers = {responseHandler: function (BOLT) {
 
     <tr>
       <td>
-        udf3\
+        udf3
          **optional**
       </td>
 
@@ -356,7 +372,7 @@ var handlers = {responseHandler: function (BOLT) {
 
     <tr>
       <td>
-        udf4\
+        udf4
          **optional**
       </td>
 
@@ -371,7 +387,7 @@ var handlers = {responseHandler: function (BOLT) {
 
     <tr>
       <td>
-        udf5 \
+        udf5 
         **optional**
       </td>
 
@@ -386,14 +402,14 @@ var handlers = {responseHandler: function (BOLT) {
 
     <tr>
       <td>
-        pg\
+        pg
          **optional**
       </td>
 
       <td>
-        `String `Pass the payment category that you want to display on your payment page. The default value for this parameter is CC (Credit Card).  
+        `String `Pass the payment category that you want to display on your payment page. The default value for this parameter is CC (Credit Card).
 
-        * \*Note\*\*: Checkout Plus only supports the following payment methods:  
+        * *Note**: Checkout Plus only supports the following payment methods:
         * [Net Banking](https://docs.payu.in/docs/collect-payments-with-net-banking-seamless)
         * [Credit/Debit Cards](https://docs.payu.in/docs/collect-payments-with-cards-seamless)
         * [UPI](https://docs.payu.in/docs/collect-payments-with-upi-seamless)
@@ -407,7 +423,7 @@ var handlers = {responseHandler: function (BOLT) {
 
     <tr>
       <td>
-        bankcode\
+        bankcode
          **optional**
       </td>
 
@@ -436,7 +452,7 @@ var handlers = {responseHandler: function (BOLT) {
 
     <tr>
       <td>
-        drop\_category **optional** 
+        drop_category **optional**
       </td>
 
       <td>
@@ -450,11 +466,11 @@ var handlers = {responseHandler: function (BOLT) {
 
     <tr>
       <td>
-         enforce \_paymethod **optional**
+        enforce _paymethod **optional**
       </td>
 
       <td>
-        String\`This parameter allows you to customize the payment options for each transaction. You can enforce specific payment modes, cards scheme, specific banks under Net Banking using this method. 
+        String`This parameter allows you to customize the payment options for each transaction. You can enforce specific payment modes, cards scheme, specific banks under Net Banking using this method.
       </td>
 
       <td>
@@ -464,11 +480,11 @@ var handlers = {responseHandler: function (BOLT) {
 
     <tr>
       <td>
-        custom\_note - optional\*\*
+        custom_note - optional**
       </td>
 
       <td>
-        String\` This parameter allows yo pass any custom note for the transaction. 
+        String` This parameter allows yo pass any custom note for the transaction.
       </td>
 
       <td>
@@ -478,11 +494,11 @@ var handlers = {responseHandler: function (BOLT) {
 
     <tr>
       <td>
-         note\_category **optional**
+        note_category **optional**
       </td>
 
       <td>
-         `String` This parameter allows you to define the category of the note. Example - CC, NB will show the custom\_note for Credit Card & Net banking only.
+        `String` This parameter allows you to define the category of the note. Example - CC, NB will show the custom_note for Credit Card & Net banking only.
       </td>
 
       <td>
@@ -590,14 +606,14 @@ cardhash: This field is no longer supported in postback params.
       </td>
 
       <td>
-        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  \
-        &#x9;•	Credit Card – CC \
-        &#x9;•	Debit Card – DC \
-        &#x9;•	Net Banking – NB\
-        &#x9;•	Cash Card – CASH\
-        &#x9;•	EMI – EMI \
-        &#x9;•	Cardless EMI – CLEMI\
-        &#x9;•	Buy Now Pay Later - BNPL
+        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  
+        	•	Credit Card – CC 
+        	•	Debit Card – DC 
+        	•	Net Banking – NB
+        	•	Cash Card – CASH
+        	•	EMI – EMI 
+        	•	Cardless EMI – CLEMI
+        	•	Buy Now Pay Later - BNPL
       </td>
     </tr>
 
@@ -617,9 +633,9 @@ cardhash: This field is no longer supported in postback params.
       </td>
 
       <td>
-        This parameter returns the status of the transaction and must be used to map the order status. Possible values are success, failure, or pending. The significance of the values for these values are:  \
-        &#x9;•	**Success**: If the value of status parameter is ’success’, the transaction is successful. \
-        &#x9;•	**Failed**: If the value of status parameter is ‘failure’ or ‘pending’, must only be treated as a failed transaction.
+        This parameter returns the status of the transaction and must be used to map the order status. Possible values are success, failure, or pending. The significance of the values for these values are:  
+        	•	**Success**: If the value of status parameter is ’success’, the transaction is successful. 
+        	•	**Failed**: If the value of status parameter is ‘failure’ or ‘pending’, must only be treated as a failed transaction.
       </td>
     </tr>
 
@@ -629,7 +645,11 @@ cardhash: This field is no longer supported in postback params.
       </td>
 
       <td>
-        This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to  [Payment State Explanations](ref:payment-state-explanations).
+        This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to  
+
+        [Payment State Explanations](ref:payment-state-explanations)
+
+        .
       </td>
     </tr>
 
@@ -655,17 +675,21 @@ cardhash: This field is no longer supported in postback params.
 
     <tr>
       <td>
-        error\_message
+        error_message
       </td>
 
       <td>
-        This parameter contains the error message. For the list of error message, refer to [Error Codes](ref:error-codes).
+        This parameter contains the error message. For the list of error message, refer to 
+
+        [Error Codes](ref:error-codes)
+
+        .
       </td>
     </tr>
 
     <tr>
       <td>
-        bank\_ref\_num
+        bank_ref_num
       </td>
 
       <td>
@@ -755,7 +779,7 @@ cardhash: This field is no longer supported in postback params.
 
     <tr>
       <td>
-        PG\_TYPE
+        PG_TYPE
       </td>
 
       <td>
