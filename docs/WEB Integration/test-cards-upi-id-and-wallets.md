@@ -298,11 +298,11 @@ The following table provides details of some of the test cards that you can use 
 
 ## Test UPI ID
 
-You can use **anything@payu** or **999999999@payu** as VPA to test your UPI-related integration in the [sandbox](https://en.wikipedia.org/wiki/Sandbox_(software_development)#:) (Test environment) only for the payment flows involving **_payment** AP.
+You can use **anything@payu** or **999999999@payu** as VPA to test your UPI-related integration in the [sandbox](https://en.wikipedia.org/wiki/Sandbox_\(software_development\)#:) (Test environment) only for the payment flows involving **_payment** AP.
 
 > 📘 Notes:
 >
-> * The **anything@payu** VPA can be used in the sandbox or [API Playground](https://api-playground.payu.in/) and any other VPA will not work for the**_payment** only.
+> * The **anything@payu** VPA can be used in the sandbox or [Merchant Hosted > Collect Payment - UPI](ref:_payment_merchant_hosted_upi#/) API reference page and any other VPA will not work for the**_payment** only.
 > * For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
 
 ## Test UPI Intent Flow
@@ -334,7 +334,7 @@ Use the following credentials for Net Banking in the sandbox:
 * **password**: payu
 * **OTP**: 123456
 
-The above Net Banking credentials must be used in [API Playground](https://api-playground.payu.in/).
+The above Net Banking credentials must be used in[ Collect Payment > Net Banking ](ref:_payment_merchant_hosted_netbanking#/)API Reference.
 
 ## Test Wallets
 
