@@ -38,5 +38,5 @@ For the response parameters, refer to [Additional Info for Payment APIs](ref:add
 </Callout>
 
 <Callout icon="🚧" theme="warn">
-  **Values to be used in Test environment**: For values to be used in Test environment, refer to <a href="test-cards-upi-id-and-wallets#web-checkout" target="_blank">Test Cards</a>.
+  **Values to be used in Test environment**: For values to be used in Test environment, refer to <a href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets#web-checkout" target="_blank">Test Cards</a>.
 </Callout>
