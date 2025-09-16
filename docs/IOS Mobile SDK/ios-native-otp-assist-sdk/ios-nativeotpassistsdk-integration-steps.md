@@ -37,7 +37,7 @@ import PayUNativeOtpAssist
 
 In order to receive all the crashes related to our SDKs, add the below-mentioned line to your AppDelegate's `didFinishLaunchingWithOptions`.
 
-**CrashReporter**\
+**CrashReporter**
 In order to receive all the crashes related to our SDKs, add the below-mentioned line to your AppDelegate’s `didFinishLaunchingWithOptions`.
 
 ```Text Objective-C
@@ -51,7 +51,7 @@ PayUOtpAssist.start()
 
 You can integrate PayUIndia-NativeOtpAssist with your app or SDK with the following methods:
 
-* **Using Xcode**: Navigate to the File > Add Package menu and install the following package:\
+* **Using Xcode**: Navigate to the File > Add Package menu and install the following package:
   [https://github.com/payu-intrepos/PayUNativeOtpAssist-iOS](https://github.com/payu-intrepos/PayUNativeOtpAssist-iOS)
 * **Using Package.Swift**: Add the following line in the Package.swift dependencies:
 
@@ -61,7 +61,7 @@ You can integrate PayUIndia-NativeOtpAssist with your app or SDK with the follow
 
 ## Step 2: Generate payment hash
 
-For detailed information on hash generation, refer to [Hash Generation](https://docs.payu.in/docs/ios-checkoutpro-generate-hash).
+For detailed information on hash generation, refer to [Hash Generation](doc:set-up-the-payment-hashes).
 
 > ❗️ Callout
 >
@@ -163,7 +163,7 @@ The list of the callback function provided by PayUOtpAssistCallback class:
   1. `errorCode`: Error Code
   2. `errorMessage`: Error Description
 
-* `fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest):` Boolean – It’s an optional callback, override when you want to handle the Bank page redirection flow. You just need to change the return value to false. You can also open CustomBrowser in fallback scenarios. The following code snippet is used to open the CustomBrowser. For more information on using CustomBrowser, refer to [iOS CustomBrowser SDK](https://docs.payu.in/docs/ios-custombrowser-sdk).
+* `fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest):` Boolean – It’s an optional callback, override when you want to handle the Bank page redirection flow. You just need to change the return value to false. You can also open CustomBrowser in fallback scenarios. The following code snippet is used to open the CustomBrowser. For more information on using CustomBrowser, refer to [iOS CustomBrowser SDK](doc:ios-custombrowser-sdk).
 
 ```Text Swift
 fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest) : Boolean {
@@ -217,7 +217,7 @@ After you get the response from SDK, make sure to confirm it with the PayU serve
 
 ### Implementation of PayU Verify API
 
-Since you already have the txnID (Order ID generated at your end) value for such cases, you simply need to execute the verify\_payment API with the necessary input parameters. The output would return you the transaction status in the `status` key and various other parameters also. For more information, refer to the [Verify Payment Status ](https://docs.payu.in/reference/verify_payment_api)API.
+Since you already have the txnID (Order ID generated at your end) value for such cases, you simply need to execute the verify_payment API with the necessary input parameters. The output would return you the transaction status in the `status` key and various other parameters also. For more information, refer to the <Anchor label="Verify Payment Status " target="_blank" href="ref:verify_payment_api">Verify Payment Status </Anchor>API.
 
 Endpoint URL: [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2)
 
