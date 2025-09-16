@@ -472,4 +472,4 @@ The `catchException`() function captures the transaction message in case of any 
 
 ## Next Steps
 
-You can use the  <a href="get-order-details-api" target="_blank"> Get Order Details API</a> if you want to fetch the order details and order status for a given transaction id (txn id).
+You can use the  <a href="https://docs.payu.in/reference/get-order-details-api/" target="_blank"> Get Order Details API</a> if you want to fetch the order details and order status for a given transaction id (txn id).
