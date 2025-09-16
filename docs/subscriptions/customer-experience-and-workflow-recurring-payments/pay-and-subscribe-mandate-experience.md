@@ -21,7 +21,7 @@ The Pay and Subscribe supports a variety of payment flows, including eNACH, UPI 
 
 > 📘 Note:
 >
-> The Pay and Subscribe is supported only with PayU Hosted Checkout integration. For the request and response parameters, refer to [Pay and Subscribe Consent Transaction using PayU Hosted Checkout](ref:one-time-mandate-consent-transaction).
+> The Pay and Subscribe is supported only with PayU Hosted Checkout integration. For the request and response parameters, refer to[ Payment Consent Transaction - PayU Hosted Integration](ref:payment-consent-transaction-payu-hosted).
 
 Currently, the standard transaction flow for Pay and Subscribe transactions, integrated with a PayU Recommendation Engine and SI capabilities.
 
@@ -39,7 +39,7 @@ Currently, the standard transaction flow for Pay and Subscribe transactions, int
 
 <Image align="center" width="222px" src="https://files.readme.io/5460162-ome-time-mandate-cards-step2a.png" />
 
-4. Based on mandate eligibility user will see an option to opt in for registration. 
+4. Based on mandate eligibility user will see an option to opt in for registration.
 
 <Image align="center" width="222px" src="https://files.readme.io/16b7e58-one-time-mandate-cards-3-register-for-subscription.png" />
 
@@ -68,7 +68,7 @@ If the card is not eligible, an error message is displayed below the **Enter Car
 
 <Image align="center" width="222px" src="https://files.readme.io/b7fbb06-one-time-mandate-upi.png" />
 
-4. User will see an option to opt in for registration. 
+4. User will see an option to opt in for registration.
 
 <Image align="center" width="222px" src="https://files.readme.io/a278ee8-one-time-mandate-upi-common-1.png" />
 
@@ -90,7 +90,7 @@ If the card is not eligible, an error message is displayed below the **Enter Car
 
 <Image align="center" width="222px" src="https://files.readme.io/be181e1-one-time-upi-collect-2.png" />
 
-4. User will see an option to opt in for registration. 
+4. User will see an option to opt in for registration.
 
 <Image align="center" width="222px" src="https://files.readme.io/00fd7bb-one-time-mandate-upi-common-1.png" />
 
@@ -134,7 +134,7 @@ The user redirected to the bank page for eMandate consent.
 
 * Case 2: When user does not opt for Mandate Registration along with one time payment:
 
-<Image align="center" className="border" width="222px" border={true} src="https://files.readme.io/46ddde2-one-time-mandate-netbanking-not-opted-mandate.png" />
+<Image align="center" className="border" border={true} width="222px" src="https://files.readme.io/46ddde2-one-time-mandate-netbanking-not-opted-mandate.png" />
 
 * Case 3: When one time payment is declined
 
