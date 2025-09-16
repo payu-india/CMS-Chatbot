@@ -36,10 +36,6 @@ PayU’s Merchant Hosted Checkout allows you to create a custom payment experien
 
 ## Workflow and Experience
 
-The following process diagram illustrates the Merchant Hosted Checkout workflow:
-
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/08/Merchant_Hosted_Flow-2048x989.png" />
-
 1. It operates through a form post-call directly from the customer’s browser, sending their payment data into the PayU’s systems.
 2. A payment process initiated from your e-commerce website travels through PayU’s secured environment before reaching the card ACS or a bank’s Net Banking page.
 3. After the transaction is completed in the bank’s website environment, the customer is redirected to your website.
