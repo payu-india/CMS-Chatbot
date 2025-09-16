@@ -486,20 +486,17 @@ paymentParam.cardinfo = cardDetails // PayU3DS2CardInfo with card details
 The PaymentParams object contains key fields required for initiating a payment request with PayU. These parameters are critical for identifying the transaction, the customer, and the product.
 
 ```kotlin
-var mPaymentParams = PaymentParams()
-mPaymentParams.key = "<Your Key issued by PayU>"  // Merchant key provided by PayU
-mPaymentParams.amount = "<Transaction Amount>"     // The total amount of the transaction
-mPaymentParams.productInfo = "<Product Description>"  // Description of the product being purchased
-mPaymentParams.firstName = "<Customer First Name>"    // Customer's first name
-mPaymentParams.email = "<Customer Email>"             // Customer's email address
-mPaymentParams.txnId = "<Transaction Id>"             // Unique transaction ID for this payment
-mPaymentParams.surl = "<Success URL>"                 // URL to redirect on successful payment
-mPaymentParams.furl = "<Failure URL>"                 // URL to redirect on failed payment
-mPaymentParams.udf1 = "<User Defined Fields>"         // User-defined field 1
-mPaymentParams.udf2 = "<User Defined Fields>"         // User-defined field 2
-mPaymentParams.udf3 = "<User Defined Fields>"         // User-defined field 3
-mPaymentParams.udf4 = "<User Defined Fields>"         // User-defined field 4
-mPaymentParams.udf5 = "<User Defined Fields>"         // User-defined field 5
+ let paymentParam = PayU3DS2PaymentParam(
+     key: "<Your Key issued by PayU>",
+     transactionId: "<Transaction Id>",
+     amount: "<Transaction Amount>",
+     productInfo: "<Product Description>",
+     firstName: "<Customer First Name>",
+     email: "<Customer Email>",
+     phone: "9876543210",
+     surl: "<Success URL>",
+     furl: "<Failure URL>"
+ )
 ```
 
 #### Credit/Debit Card Payment
