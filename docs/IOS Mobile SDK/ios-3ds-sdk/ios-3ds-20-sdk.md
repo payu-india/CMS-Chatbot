@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The iOS 3DS SDK integration involves the following steps: 
+The iOS 3DS SDK integration involves the following steps:
 
 1. [Install the SDK in your app project](https://docs.payu.in/docs/ios-3ds-20-sdk#step-1-install-the-sdk-in-your-app-project)
 2. [Initialise the SDK](https://docs.payu.in/docs/ios-3ds-20-sdk#step-2-initialise-the-sdk)
@@ -42,14 +42,14 @@ pod 'PayUIndia-3DS2-SDK'
 
 You can integrate 3DS2 SDK with your app or SDK using SPM with following methods:
 
-- **Using Xcode**: Navigate to File > Add Package menu and add the following package:
-- **Using Package.Swift**: Add the following line in the Package.swift dependencies:
+* **Using Xcode**: Navigate to File > Add Package menu and add the following package:
+* **Using Package.Swift**: Add the following line in the Package.swift dependencies:
 
 ```
 .package(name: "PayUIndia-3DS2-SDK", url: "https://github.com/payu-intrepos/PayU3DS2SDK-iOS", from: "1.3.1")
 ```
 
-- **Import**: Add the following imports in the class where you need to initiate a payment using 3DS2.
+* **Import**: Add the following imports in the class where you need to initiate a payment using 3DS2.
 
 ```
 import PayU3DS2Kit
@@ -64,7 +64,7 @@ import PayU3DS2Kit
 Initialise SDK before invoking any de-coupled functionality
 
 > 📘 Remember
-> 
+>
 > Initialisation of SDK is mandatory if merchant is utilising PayU 3DS 2.0 for de-couple functionality. Call initialise before every transaction.
 
 ```
@@ -78,9 +78,9 @@ Initialise SDK before invoking any de-coupled functionality
 
 **This method accepts four parameters**:
 
-- **Key**: The unique merchant key. 
-- **RequestId**: Unique request ID.
-- **PayU3DS2Config**: It contains below properties:
+* **Key**: The unique merchant key.
+* **RequestId**: Unique request ID.
+* **PayU3DS2Config**: It contains below properties:
 
 ```
 PayU3DS2Config: It contains below properties
@@ -114,7 +114,7 @@ config.acsContentConfig?.maxResendInfoContent =  "Limit has been exceeded to sen
 
 ```
 
-- **Completion**:  PayU3DS2Completion -  This is a Closure/Callback where you will receive response after Initialisation done. It contains PayU3DS2Response which will have below properties.
+* **Completion**:  PayU3DS2Completion -  This is a Closure/Callback where you will receive response after Initialisation done. It contains PayU3DS2Response which will have below properties.
 
 ```
 PayU3DS2Response:
@@ -276,7 +276,7 @@ var challengeParameter = PayU3DS2ChallengeParameter(acsSignedContent: String,
 
 Before invoking this method, generate the authentication request through any aggregator and pass the above defined challenge parameters to initiate challenge.
 
-- PayU3DS2Completion: Closure consists of 1 parameter:
+* PayU3DS2Completion: Closure consists of 1 parameter:
 
 ```
 PayU3DS2Response: Three items are in the response:
@@ -381,10 +381,10 @@ Please refer below code to create cardBinInfoRequest object:
 val cardBinInfoRequest = PayU3DS2CardBinInfoRequest(cardDetails: "enter card number or network Token", isSI: true) //set second parameter to true if txn is for standing instructions, card details cannot be null
 ```
 
-- **cardBinInfoRequest**: It contains two parameters cardDetails, isSI.
-- **PayU3DS2HashDelegate**: This API need sha512 hash and this delegate will call to pass hash using generateHash functions.
+* **cardBinInfoRequest**: It contains two parameters cardDetails, isSI.
+* **PayU3DS2HashDelegate**: This API need sha512 hash and this delegate will call to pass hash using generateHash functions.
 
-In this, if messageVersion is anything that starts with 2., then it is supported on 3DS 2 else if it starts with 1., then it is supported on 3DS1. 
+In this, if messageVersion is anything that starts with 2., then it is supported on 3DS 2 else if it starts with 1., then it is supported on 3DS1.
 
 ```
 func generateHash(for param: [String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion) 
@@ -433,9 +433,9 @@ Call the following method to initiate payment through PayU and we will return su
 ```
 
 2. You have to pass the following parameters:
-   - **vc**: Parent ViewController Object
-   - **config**: It contains multiple properties. 
-   - **paymentParams**: Merchant to create payment param object and pass it which will contains info like: cardDeatails, SI details etc. Refer the following sample code for `paymentParams`:
+   * **vc**: Parent ViewController Object
+   * **config**: It contains multiple properties.
+   * **paymentParams**: Merchant to create payment param object and pass it which will contains info like: cardDeatails, SI details etc. Refer the following sample code for `paymentParams`:
 
 ```
  let paymentParam = PayU3DS2PaymentParam(
@@ -465,28 +465,35 @@ Call the following method to initiate payment through PayU and we will return su
  cardDetails.expiryMonth = "<expiryMonth>"// MM
  cardDetails.expiryYear = "<expiryYear>"// YYYY
  cardDetails.cvv = "<cvv>"
- Note: To make payment using saved card, please pass both network token and card token.
- cardDetails.networkToken = "<networkToken>"
- cardDetails.cardToken = "<cardToken>"
+Note: To make payment using another payment aggregator vault saved card.
+cardDetails.networkToken = "<networkToken>"
+paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","trid" : "40020003934", "tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
+paymentParam.cardTokenTpe = "1" //if passing networkToken otherwise value = 0 if you will pass cardToken
 
- paymentParam.cardinfo = cardDetails // PayU3DS2CardInfo with card details
+Note: To make payment using PayU vault saved card.
+cardDetails.cardToken = "<cardToken>"
+
+paymentParam.cardinfo = cardDetails // PayU3DS2CardInfo with card details
+
+
+
 ```
 
 3. Implement `PayU3DS2Delegate`. It contains the following methods:
-   - func `onPaymentSuccess`(successResponse: Any): It will contain success response. This will be a JSON Object, parse response as per your need.
-   - func `onPaymentFailure`(failureResponse: Any): It will contain failure response. This will be a JSON Object, parse response as per your need.
-   - func `onPaymentCancel`(isTxnInitiated: Bool): It will tell if payment was cancelled.
-   - func `onError`(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
-   - func `generateHash`(for param: [String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion): Merchant will get map with type of hash and hash string as value of map.  
-          They have to sign that string using salt to create hash value and pass that in completion  
+   * func `onPaymentSuccess`(successResponse: Any): It will contain success response. This will be a JSON Object, parse response as per your need.
+   * func `onPaymentFailure`(failureResponse: Any): It will contain failure response. This will be a JSON Object, parse response as per your need.
+   * func `onPaymentCancel`(isTxnInitiated: Bool): It will tell if payment was cancelled.
+   * func `onError`(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
+   * func `generateHash`(for param: [String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion): Merchant will get map with type of hash and hash string as value of map.
+     They have to sign that string using salt to create hash value and pass that in completion
      param: this contains 3 keys:
-   - **hashName**: command name
-   - **hashString**: hash string with out salt
-   - **postSalt**: needs to add after salt
+   * **hashName**: command name
+   * **hashString**: hash string with out salt
+   * **postSalt**: needs to add after salt
 
 You need to create hash on your server using hashString + salt + postSalt and SHA512 algorithm.
 
-4. Implement `PayU3DS2HashGenerationCompletion`. This contains `hashDict` parameter  
+4. Implement `PayU3DS2HashGenerationCompletion`. This contains `hashDict` parameter
    hashDict: pass a dictionary which contains hashName as key and hash as value
 
 ## Step 7: Error Codes
