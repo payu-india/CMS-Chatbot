@@ -32,7 +32,7 @@ To integrate with Google Pay InApp flow, the merchant can add the below gradle d
 
 > 📘 Onboarding Requirements
 >
-> To start transacting through Google Pay™, register your business on Google using the [Google Onboarding](https://pay.google.com/about/business/) form, In this registration process, you need to add the merchant VPAs created by PayU for you. In the case of multiple VPAs, all of them need to be registered with Google.\
+> To start transacting through Google Pay™, register your business on Google using the [Google Onboarding](https://pay.google.com/about/business/) form, In this registration process, you need to add the merchant VPAs created by PayU for you. In the case of multiple VPAs, all of them need to be registered with Google.
 > To enable Google Pay, contact your Point of Contact at Google.
 >
 > For any further queries or help with onboarding, send a mail to PayU Mobile Integration Team.
@@ -47,7 +47,7 @@ The merchant needs to pass Google Pay as described in [Additional payment option
 >
 > The Gpay InApp flow is not available in the Test mode.
 
-Refer to [Gpay SDK](https://dash.readme.com/project/payu-hosted-checkout/v1/docs/google-pay-sdk) doc for more details
+For GPay SDK integration, refer to [GPay SDK](docs:google-pay-sdk) for more details
 
 # PhonePe InApp
 
