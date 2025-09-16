@@ -35,9 +35,9 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
 
 ## Step 1: Validate the card type
 
-When customers use debit cards or credit cards on your website, you can validate the card type with the first six digits. Use the **check_isDomestic** API (known as BIN API) to validate the type of card. For more information, refer to  [BIN APIs](ref:bin-apis).
+When customers use debit cards or credit cards on your website, you can validate the card type with the first six digits. Use the **check_isDomestic** API (known as BIN API) to validate the type of card. For more information, refer to  <Anchor label="BIN APIs" target="_blank" href="ref:bin-apis">BIN APIs</Anchor>.
 
-After the customer enters the card number, you can validate the first six digits with the **check_isDomestic** API. For more information, refer to [Check is Domestic API](ref:check_is_domestic_api).
+After the customer enters the card number, you can validate the first six digits with the **check_isDomestic** API. For more information, refer to <Anchor label="Check is Domestic API" target="_blank" href="ref:check_is_domestic_api">Check is Domestic API</Anchor>.
 
 ## Step 2: Initiate the payment to PayU
 
@@ -86,9 +86,9 @@ Post the following parameters for the card payment to PayU using the Merchant Ho
 | **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
-> 📘 Reference:
->
-> For the **Try It** experience and response, refer to [Collect Payment API - Merchant Hosted Checkout](doc:_payment_merchant_hosted) under API Reference.
+<Callout icon="📘" theme="info">
+  **Reference**: For the **Try It** experience and response, refer to [Collect Payment API - Merchant Hosted Checkout](doc:_payment_merchant_hosted) under API Reference.
+</Callout>
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -248,11 +248,11 @@ Post the following parameters for the card payment to PayU using the Merchant Ho
       </td>
 
       <td>
-        `String` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to 
+        `String` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to
 
         [Card Number Formats](doc:card-number-formats)
 
-         and display error message on invalid input.
+        and display error message on invalid input.
       </td>
 
       <td>
@@ -1179,11 +1179,11 @@ Array
 
 ## Step 4: Verify the Payment
 
-Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](ref:verify_payment_api) under API Reference.
+Verify the transaction details using the Verification APIs. For API reference, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> under API Reference.
 
-> 📘 Note:
->
-> The transaction ID that you posted in Step 1 with PayU must be used here.
+<Callout icon="📘" theme="info">
+  **Note**: The transaction ID that you posted in Step 1 with PayU must be used here.
+</Callout>
 
 ## Recommended Integrations for Cards
 
