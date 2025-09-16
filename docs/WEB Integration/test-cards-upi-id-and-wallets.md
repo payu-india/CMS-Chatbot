@@ -334,7 +334,7 @@ Use the following credentials for Net Banking in the sandbox:
 * **password**: payu
 * **OTP**: 123456
 
-The above Net Banking credentials must be used in[ Collect Payment > Net Banking ](ref:_payment_merchant_hosted_netbanking#/)API Reference.
+The above Net Banking credentials must be used in[ Collect Payment > Net Banking ](ref:_payment_merchant_hosted_netbanking)API Reference.
 
 ## Test Wallets
 
