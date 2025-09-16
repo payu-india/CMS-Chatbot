@@ -22,13 +22,13 @@ metadata:
 next:
   description: ''
 ---
-To ensure compliance with regulatory guidelines, PayU requires its merchants to complete the KYC (Know Your Customer) process. Completing the KYC process is mandatory for all merchants using PayU's services. After completing the KYC, your account gets activated. You can access the *Periodic KYC Update* page using the following URL:
+To ensure compliance with regulatory guidelines, PayU requires its merchants to complete the KYC (Know Your Customer) process. Completing the KYC process is mandatory for all merchants using PayU's services. After completing the KYC, your account gets activated. You can access the _Periodic KYC Update_ page using the following URL:
 
 [https://onboarding.payu.in/app/onboarding](https://onboarding.payu.in/app/onboarding)
 
-> 📘 Complete Re-KYC:
->
-> This section is applicable or explains the procedure for completing the Re-KYC too.
+<Callout icon="📘" theme="info">
+  **Complete Re-KYC:** This section is applicable or explains the procedure for completing the Re-KYC too.
+</Callout>
 
 ## Prerequisites
 
@@ -46,14 +46,14 @@ Before starting the KYC process, make sure you have the following documents read
 
 To open the merchant activation page on the Dashboard:
 
-1. Log in to Dashboard.\
-   The *Business Summary* page is displayed.
+1. Log in to Dashboard.
+   The _Business Summary_ page is displayed.
 
-2. Click **Activate Account\***at the top or under **Complete your Onboarding**.
+2. Click **Activate Account***at the top or under **Complete your Onboarding**.
 
 A page is displayed with the message, "Your account is active. Complete your full KYC." The PAN Verification section is displayed, requesting your PAN details.
 
-<Image align="center" className="border" width="600px" border={true} src="https://files.readme.io/650400a04a6a1f8532fde8b010b2259f92cc6d4e613142d79a7c62a2a7db622f-Screenshot_2024-10-01_at_5.15.41_PM.png" />
+<Image align="center" className="border" border={true} width="600px" src="https://files.readme.io/650400a04a6a1f8532fde8b010b2259f92cc6d4e613142d79a7c62a2a7db622f-Screenshot_2024-10-01_at_5.15.41_PM.png" />
 
 The onboarding page is displayed with **PAN verification** tile is displayed.
 
@@ -65,7 +65,7 @@ To verify your PAN on the PAN verification section:
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/3b43f6f-Screenshot_2024-05-07_102118.png" />
 
-2. Click **Proceed to Verify**.\
+2. Click **Proceed to Verify**.
    After the PAN is verified, the section name gets updated to "Your PAN is verified. Way yo Go!" and Tell us a little bit about your business section is enabled.
 
 ## Tell us a little bit about your business
@@ -78,7 +78,7 @@ To enter information on your business in the **Tell us a little bit about your b
 2. Select your business sub-category from the **Business Sub-Category** drop-down list.
 3. Enter your GSTIN in the **GSTIN** field (optional).
 4. Enter your business's estimated monthly sales or revenue in the **Expected Sales per month** field.
-5. Click **Proceed**.\
+5. Click **Proceed**.
    The section name gets updated to Business details submitted successfully. The Enter Bank details of `<your name>` section is enabled, where `<your name>` is substituted with your name as in PAN.
 
 ## Enter Bank Details
@@ -130,7 +130,7 @@ To verify your business signing authority details in the Verify signing authorit
 
 2. Update the email ID in the Signing Authority Email ID field if required.
 
-3. Click Proceed to KYC.\
+3. Click Proceed to KYC.
    The section name gets updated to "Signing authority details captured" and the Complete the KYC section is enabled.
 
 ## Complete the KYC
@@ -140,12 +140,12 @@ To fetch your KYC documents automatically from the cKYC/Aadhaar database or uplo
 * **Fetch from cKYC**: To fetch your KYC automatically from the cKYC database:
   1. Enter your date of birth or company’s incorporation date in the Date of Birth/ Date of Incorporation field.
   2. Select the "I hereby authorize PayU..." check box to authorize PayU to fetch the KYC documents from cKYC.
-  3. Click **Submit**.\
+  3. Click **Submit**.
      ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-8.23.06-PM-1024x441.jpg)
 
 * **Fetch from Aadhaar**: To fetch your KYC automatically from the Aadhaar database:
   1. Select the "By proceeding I accept Aadhar Terms and Conditions" check box to accept Aadhar Terms & Conditions.
-  2. Click Submit.\
+  2. Click Submit.
      ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-8.23.17-PM-1024x611.jpg)
 
 * **Upload documents manually**: To upload the KYC documents manually:
@@ -159,7 +159,7 @@ To fetch your KYC documents automatically from the cKYC/Aadhaar database or uplo
   3. Choose **Yes** in the **Do you have a different Operating Business Address?** field if the business address is different and enter the following details:
      * Address
      * Postal Code
-  4. Click **Confirm and Proceed**.\
+  4. Click **Confirm and Proceed**.
      An additional section, Additional documents required is displayed. For more information, refer to Additional Documents Required.
 
 ## Additional Documents Required
@@ -172,9 +172,9 @@ To submit the documents manually:
    * **PAN Card**: Select a scanned copy or photo of your PAN card.
    * **Address Proof**: Select a scanned copy or photo of a government-issued ID card such as Passport or Driving License.
    * **Government issued certificate copy (only if requested**): Select your Income Tax returns scanned document (80G).
-2. Click **Submit** Documents.\
+2. Click **Submit** Documents.
    A message similar to the following is displayed at the bottom right corner of your browser.
 
 > 📘 Reach PayU:
 >
-> If you are unable to complete your KYC, contact your PayU Key Account Manager or visit [PayU Support](https:help.payu.in).
+> If you are unable to complete your KYC, contact your PayU Key Account Manager or visit <Anchor label="PayU Support" target="_blank" href="help.payu.in">PayU Support</Anchor>.
