@@ -93,10 +93,10 @@ paymentParams?.offerKey = "cardnumber@8370,cardnumbers2@8380,for particular bins
 
 > 📘 Note
 >
-> Hashes must be generated only on your server. Your secret key (also known as salt) must never be included in your app.For more information, refer to [Hash Generation](https://docs.payu.in/docs/ios-checkoutpro-generate-hash).
+> Hashes must be generated only on your server. Your secret key (also known as salt) must never be included in your app.For more information, refer to [Set up Payment Hashes](doc:set-up-the-payment-hashes).
 
-* PayUHashes has two properties. Each of these three is used for a distinct API call. The two properties are as follows:\
-  `paymentHash`: This is required to create transactions at PayU’s end.\
+* PayUHashes has two properties. Each of these three is used for a distinct API call. The two properties are as follows:
+  `paymentHash`: This is required to create transactions at PayU’s end.
   `eligibilityHash`: This is required by the checkEligibility API to check eligibility if user is eligible/registered for the Ola Money
 * You need to provide hashes before asking SDK to initiate the payment and check the user’s eligibility.
 * Command and var1 values for generating paymentRelatedDetailsForMobileSDKHash and validateVPAHash as defined in the following table:
