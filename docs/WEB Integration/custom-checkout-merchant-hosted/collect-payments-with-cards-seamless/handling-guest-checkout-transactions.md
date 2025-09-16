@@ -39,7 +39,7 @@ No changes required in the **_payment** request used to collect payments.
 
 ### Request parameters
 
-Along with the parameters listed in the <Anchor label="Collect Payment API - Cards (Merchant Hosted Checkout)" target="_blank" href="ref:payment_merchant_hosted_cards">Collect Payment API - Cards (Merchant Hosted Checkout)</Anchor>, you have to pass alt ID as a variable and pass TAVV (Cryptogram), last four digits and **par** parameter as part of **additional_info** JSON. There is no change in the response and it remains the same.
+Along with the parameters listed in the <Anchor label="Collect Payment API - Cards (Merchant Hosted Checkout)" target="_blank" href="ref:_payment_merchant_hosted_cards">Collect Payment API - Cards (Merchant Hosted Checkout)</Anchor>, you have to pass alt ID as a variable and pass TAVV (Cryptogram), last four digits and **par** parameter as part of **additional_info** JSON. There is no change in the response and it remains the same.
 
 <Callout icon="📘" theme="info">
   **Note**: The **par** parameter is optional as part of **additional_info** JSON.
