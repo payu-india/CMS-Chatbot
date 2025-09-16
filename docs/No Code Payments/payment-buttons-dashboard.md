@@ -42,7 +42,7 @@ To create a new Payment Button:
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/dace80a25807f722b25d1ee7054db2836a7a3d44d97cb7ca82f67664bdbfd54b-Screenshot_2025-06-02_at_7.09.15_PM.png" />
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Reference**: You can configure webhooks and check the status of transaction. For more information, refer to [Webhooks for Payments](doc:webhooks).
 </Callout>
 
@@ -72,7 +72,7 @@ To customize the Payment Button:
 
    The fields on the **Custom Details** tile are displayed.
 
-<Image align="center" className="border" border={true} width="412px" src="https://files.readme.io/b3a27b5d2959197102e56442a3f0fa6054486c1db2caba39ba45c7bbab504f4f-Screenshot_2025-06-04_at_12.32.20_PM.png" />
+<Image align="center" className="border" border={true} width="250px" src="https://files.readme.io/b3a27b5d2959197102e56442a3f0fa6054486c1db2caba39ba45c7bbab504f4f-Screenshot_2025-06-04_at_12.32.20_PM.png" />
 
 2. Clic the toggle button to enable each field on the **Custom Details** tile and then Click the pencil button next to the field to launch the pop-up page similar to the following and then provide the details as described in the following table and click **Add Field**:
 
@@ -207,8 +207,8 @@ A pop-up page is displayed with the status of the generated report.
    * Click **Download Report** to complete the action.
    * Click **Share**, enter the recipient email ID, and then click **Share**.
 
-> 📘 Note:
->
-> You can share the report to multiple email IDs by entering the comma-separated entries.
+<Callout icon="📘" theme="info">
+  **Note**: You can share the report to multiple email IDs by entering the comma-separated entries.
+</Callout>
 
 <br />
