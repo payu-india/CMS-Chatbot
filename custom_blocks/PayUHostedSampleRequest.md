@@ -1,5 +1,5 @@
 ---
-name: PayU Hosted Sample Request
+name: PayUHostedSampleRequest
 ---
 ```curl
 curl -X POST "https://test.payu.in/_payment"
