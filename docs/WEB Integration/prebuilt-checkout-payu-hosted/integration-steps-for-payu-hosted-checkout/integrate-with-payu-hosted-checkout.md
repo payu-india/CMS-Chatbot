@@ -20,12 +20,12 @@ To integrate with PayU Hosted Checkout, you need to send a request and check the
 
 The steps involved in PayU Hosted Checkout integration are:
 
-1. [Post Transaction Request to PayU](#step-1-make-the-transaction-request-to-payu)
-2. [Hash the request](#hash-the-request)
+1. [Prepare the request parameters](#step=1-prepare-the-request-parameters)
+2. [Hash the request and post to PayU](#hash-the-request-and-post-to-payu)
 3. [Check the response from PayU](#check-the-response-from-payu)
 4. [Verify Payment](#step-2-verify-the-payment)
 
-## Step 1: Post the transaction request to PayU
+## Step 1: Prepare the request parameters
 
 Make the transaction request to the PayU Test server.
 
@@ -78,13 +78,7 @@ The Collect Payment (**_payment**) API is used for collecting payments in Web Ch
 ### Request parameters
 
 <HTMLBlock>{`
-<style>
-.payu-table {
-  width: 100% !important;
-  word-break: break-word !important;
-}
-</style>
-<table border="1" cellpadding="5" cellspacing="0" class="payu-table">
+<table>
   <thead>
     <tr>
       <th>Parameter</th>
@@ -368,7 +362,7 @@ The Collect Payment (**_payment**) API is used for collecting payments in Web Ch
 </table>
 `}</HTMLBlock>
 
-## Step 2. Hash the request
+## Step 2. Hash the request and post to PayU
 
 You must hash the request parameters using the following hash logic:
 
