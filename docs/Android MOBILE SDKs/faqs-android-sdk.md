@@ -42,7 +42,7 @@ There are several customization options available, including:
 
 For more information, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations).
 
-* **Can I customize the payment modes in PayU Checkout Pro?**\
+* **Can I customize the payment modes in PayU Checkout Pro?**
   Yes, you can customize the payment modes. For more information, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations).
 * **How can I modify the color scheme in Android SDK integration?**
 
@@ -227,7 +227,7 @@ SHA512 is a hashing algorithm that generates a fixed-length, 512-bit hash value 
 
 * **Why is the tilde symbol (‘|’) used in the Hash calculation formula?**
 
-The ‘|’ character is used as a separator between the transaction\_details and the merchant\_salt in the formula. This helps to ensure that the hashing algorithm processes the input data correctly and generates a consistent hash value.
+The ‘|’ character is used as a separator between the transaction_details and the merchant_salt in the formula. This helps to ensure that the hashing algorithm processes the input data correctly and generates a consistent hash value.
 
 ## **Native OTP Integration**
 
@@ -317,7 +317,7 @@ Yes, you can customize the PhonePe payment user interface in your app by using t
 
 PayU Android SDK supports PhonePe transactions for making payments, requesting payments, and checking the status of a payment.
 
-* **What is the difference between PayU CheckoutPro and Non-Seamless?** 
+* **What is the difference between PayU CheckoutPro and Non-Seamless?**
 
 **PayU CheckoutPro** and **Non-Seamless** integration are the same. For more information, refer to the [PayU Android SDK Integration docs.](https://docs.payu.in/docs/android-checkoutpro-integration-steps).
 
@@ -339,8 +339,8 @@ When the merchant collects the customer’s card details on their website/server
 
 Only the following integrations in Android SDK work through Intent:
 
-* [PhonePe](https://docs.payu.in/docs/android-phonepe-sdk)
-* [Google Pay](https://docs.payu.in/docs/google-pay-sdk)
+* [PhonePe](doc:android-phonepe-sdk)
+* [Google Pay](doc:google-pay-sdk)
 * PayTM
 * **Can merchants generate hash from PayU SDK?**
 
@@ -391,7 +391,7 @@ With version 7.4.0, PayU has optimized the SDK Offerings for you. After you upda
 
 * **I am a CustomBrowser Merchant version >=7.4.0. I have added UPI SDK for UPI offering(Generic Intent and UPI Collect). I would like to add Google, PhonePe, and Samsung Pay payment options. What should I do?**
 
-You just need to add PayU Gradle dependencies for [GooglePay](https://docs.payu.in/docs/google-pay-sdk), [Phonepe](https://docs.payu.in/docs/android-phonepe-sdk), and Samsung Pay. Generate *PostData* according to the payment option you choose.
+You just need to add PayU Gradle dependencies for [GooglePay](https://docs.payu.in/docs/google-pay-sdk), [Phonepe](https://docs.payu.in/docs/android-phonepe-sdk), and Samsung Pay. Generate _PostData_ according to the payment option you choose.
 
 * **I am a UPI SDK merchant(Directly UPI SDK not through CustomBrowser), I would like to add GooglePay, PhonePe, or SamsungPay.**
 
@@ -403,13 +403,13 @@ PG SDK is not mandatory to make payments with CustomBrowser. You can create `Pos
 
 * **How to switch the environment from Testing to Production in PayU SDK?**
 
-Refer to the sample app. You need to change the value of the environment variable accordingly for testing or production, in MainActivity in the sample app. Refer following code snippe&#x74;**:**
+Refer to the sample app. You need to change the value of the environment variable accordingly for testing or production, in MainActivity in the sample app. Refer following code snippet**:**
 
 Node
 
-int env = PayuConstants.PRODUCTION\_ENV; *//for production*
+int env = PayuConstants.PRODUCTION_ENV; _//for production_
 
-int env = PayuConstants.STAGING\_ENV; *//for testing*
+int env = PayuConstants.STAGING_ENV; _//for testing_
 
 Remove the following metadata from the manifest file:
 
@@ -436,7 +436,7 @@ To fix this problem, use the following code block in your **styles.xml** file:
 
 * **How to fix the** build error after adding the **PayUCheckoutPro SDK gradle dependency?**
 
-After adding the *PayUCheckoutPro* SDK gradle dependency, if the build error similar to the following is received, include the parameter as indicated (after the error screenshot):
+After adding the _PayUCheckoutPro_ SDK gradle dependency, if the build error similar to the following is received, include the parameter as indicated (after the error screenshot):
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/09/image-11-1024x84.png)
 
@@ -640,11 +640,11 @@ PayU recommends you generate the hashes on your server. Do not generate the hash
 
 * **I was checking the** [**PayU Github**](https://github.com/payu-intrepos) **code for Ionic Cordova files and was unable to find the integration code.**
 
-The JS code for Ionic Cordova can be accessed from the following location:  
+The JS code for Ionic Cordova can be accessed from the following location:
 
 [https://github.com/payu-intrepos/payu-checkoutpro-cordova-ionic-sample/tree/main/PayUCheckoutProIonicSample/www/js](https://github.com/payu-intrepos/payu-checkoutpro-cordova-ionic-sample/tree/main/PayUCheckoutProIonicSample/www/js)
 
-* **Should I make a payment request using the Payment (\_payment) API for Android**?
+* **Should I make a payment request using the Payment (_payment) API for Android**?
 
 You need not use the Payment API if you are using PayU Mobile SDK, as PayU Mobile SDK will call all the APIs internally.
 
