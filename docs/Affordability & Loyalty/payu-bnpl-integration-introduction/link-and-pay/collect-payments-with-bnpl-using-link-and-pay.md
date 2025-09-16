@@ -19,14 +19,14 @@ The following steps are involved when collecting payment with \<\<glossary:BNPL>
 
 ## Step 1: Check the BNPL eligibility
 
-Before you can initiate payment with PayU, you can check the eligibility using the **Get EMI Checkout Details** API. For more information, refer to [Get EMI Checkout Details API](ref:get-emi-checkout-details-api).
+Before you can initiate payment with PayU, you can check the eligibility using the **Get EMI Checkout Details** API. For more information, refer to <Anchor label="Get EMI Checkout Details API" target="_blank" href="ref:get-emi-checkout-details-api">Get EMI Checkout Details API</Anchor>.
 
 ### Environment
 
-|                        |                                                                 |
-| ---------------------- | --------------------------------------------------------------- |
-| Test Environment       | \<https://test.payu.in/info/linkAndPay/get_emi_checkout_details> |
-| Production Environment | \<https://info.payu.in/linkAndPay/get_emi_checkout_details>      |
+|                        |                                                                                                                                       |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Test Environment       | \<[https://test.payu.in/info/linkAndPay/get\_emi\_checkout\_details>](https://test.payu.in/info/linkAndPay/get_emi_checkout_details>) |
+| Production Environment | \<[https://info.payu.in/linkAndPay/get\_emi\_checkout\_details>](https://info.payu.in/linkAndPay/get_emi_checkout_details>)           |
 
 ### Sample request
 
@@ -79,20 +79,20 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 
 ## Step 2: Initiate the payment
 
-You can initiate the payment using the \_payment API along with the following additional parameters as in Merchant Hosted Checkout Integration for BNPL. For complete list of parameters and "Try It" experience on API Reference, refer to [Collect Payment API - S2S Link and Pay](ref:_payment_s2s_link_pay).
+You can initiate the payment using the _payment API along with the following additional parameters as in Merchant Hosted Checkout Integration for BNPL. For complete list of parameters and "Try It" experience on API Reference, refer to [Collect Payment API - S2S Link and Pay](ref:_payment_s2s_link_pay).
 
 > 📘 Notes:
 >
-> - The **txn_s2s_flow** parameter must be passed with the **value 4** for **OneClick checkout** flow.
-> - User credentials is a request parameter in the payment request which will be the unique identifier for each user that will have to be passed by the merchant and will be used to identify each unique user. It can be string with the following format. abc:xyz (data type: string), abc corresponds to the merchant key and xyz corresponds to the user identifier. For example, **BmzSVc: userid**
+> * The **txn_s2s_flow** parameter must be passed with the **value 4** for **OneClick checkout** flow.
+> * User credentials is a request parameter in the payment request which will be the unique identifier for each user that will have to be passed by the merchant and will be used to identify each unique user. It can be string with the following format. abc:xyz (data type: string), abc corresponds to the merchant key and xyz corresponds to the user identifier. For example, **BmzSVc: userid**
 
 `<PaymentAPIEnvironment />`
 
 ### Request parameters
 
-> 📘 Reference:
->
-> For **Try It ** experience, refer to <a href="_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API - BNPL</a> under API Reference.
+<Callout icon="📘" theme="info">
+  **Reference**: For **Try It** experience, refer to <a href="https:/docs.payu.in/reference/_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API - BNPL</a> under API Reference.
+</Callout>
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -170,7 +170,7 @@ You can initiate the payment using the \_payment API along with the following ad
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;<a href="glossary:bankcode">glossary:bankcode</a>&gt; <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bankcodes for BNPL, refer to <a href="doc:bnpl-codes">BNPL Codes</a> .</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bankcodes for BNPL, refer to <a href="https://docs.payu.in/docs/bnpl-codes">BNPL Codes</a> .</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>LAZYPAY</p>
 </td>
@@ -327,7 +327,6 @@ You can initiate the payment using the \_payment API along with the following ad
 </table>
 `}</HTMLBlock>
 
-
 `<HashingRequestParameters />`
 
 ### Sample request
@@ -364,13 +363,13 @@ curl --request POST \
 >
 > There will be different scenarios and the response according to different scenarios:
 >
-> - **Repeat User Flow**: If the customer’s account is linked and auto-debit is success:
-> - **Repeat User Flow**: If the customer’s account is linked and auto debit fails (eg. Customer not eligible, Failed at Payment Option’s end)
-> - **First Time User Flow**: If customer is eligible, but is not linked: This is the registration flow, where a first-time user is paying on a merchant with the specific payment option
+> * **Repeat User Flow**: If the customer’s account is linked and auto-debit is success:
+> * **Repeat User Flow**: If the customer’s account is linked and auto debit fails (eg. Customer not eligible, Failed at Payment Option’s end)
+> * **First Time User Flow**: If customer is eligible, but is not linked: This is the registration flow, where a first-time user is paying on a merchant with the specific payment option
 
 #### Success scenario
 
-- Repeat User Flow: Auto-debit Successful
+* Repeat User Flow: Auto-debit Successful
 
 This is the case where Customer’s account is liked & Auto debit is also successful
 
@@ -455,7 +454,7 @@ This is the case where Customer’s account is liked & Auto debit is also succes
 
 #### Failure scenario
 
-- Repeat User Flow: Auto-debit Failed
+* Repeat User Flow: Auto-debit Failed
 
 ```
 {
@@ -476,7 +475,7 @@ This is the case where Customer’s account is liked & Auto debit is also succes
 }
 ```
 
-- Failed at Payment option’s end
+* Failed at Payment option’s end
 
 ```
 {
@@ -503,8 +502,8 @@ This is the case where Customer’s account is liked & Auto debit is also succes
 >
 > To request OTP on a page, you can utilize the URLs in the response itself. There are two URLs to use:
 >
-> - otpPostUrl (Merchant Hosted OTP page)
-> - acsTemplate (PayU Hosted OTP page) which acts as a fallback
+> * otpPostUrl (Merchant Hosted OTP page)
+> * acsTemplate (PayU Hosted OTP page) which acts as a fallback
 >
 > If you are getting a URL in otpPostUrl, use otpPostUrl, otherwise, you can use acsTemplate, which acts as a fallback. In this scenario, use PayU (or WebView or Checkout) OTP page as this is a fallback case.
 > Hence, for cases where the above response is not successful, it could either be Failed or Pending. In the **Pending** state, you can send a fallback URL (as above) which can be shown to the customer.
@@ -513,12 +512,12 @@ This is the case where Customer’s account is liked & Auto debit is also succes
 
 You can submit the OTP using any of the following methods:
 
-- Capture the OTP natively on your interface
-- Use fallback option to redirect to Payu page to capture OTP
+* Capture the OTP natively on your interface
+* Use fallback option to redirect to Payu page to capture OTP
 
 ### Capture the OTP natively on your interface
 
-After you have collected the OTP from the customer, the reference ID can be found in the **Collect Payment** API (\_payment) response. Submit the OTP that is entered by the customer is submitted along with the reference ID using the **Submit OTP **API. For more information, refer to [Submit OTP API](ref:submit-otp-to-payu).
+After you have collected the OTP from the customer, the reference ID can be found in the **Collect Payment** API (_payment) response. Submit the OTP that is entered by the customer is submitted along with the reference ID using the **Submit OTP **API. For more information, refer to <Anchor label="Submit OTP API" target="_blank" href="ref:submit-otp-to-payu">Submit OTP API</Anchor>.
 
 ### Capture the OTP after redirection to Payu page
 
@@ -530,15 +529,7 @@ The redirect URL would be shared as part of the payment response in acsTemplate 
 
 On opening the above HTML, you will get a PayU checkout OTP page similar to the following screenshot:
 
-<Image
-  src="https://files.readme.io/ff3f604-image.png"
-  alt=""
-  caption=""
-  align="center"
-  sizing="400px"
-/>
-
-
+<Image align="center" src="https://files.readme.io/ff3f604-image.png" />
 
 From here, the steps are as in PayU Hosted (non-seamless) or Merchant Hosted or Server-to-Server (seamless) transactions.
 
@@ -546,11 +537,11 @@ From here, the steps are as in PayU Hosted (non-seamless) or Merchant Hosted or 
 
 Incorrect OTP Submission is allowed 3 times in total (1 + 2 retries), post which the transaction fails. Scenarios are described as follows:
 
-> 📘 Note:
->
-> If the customer enters the incorrect OTP or OTP has expired, you need to resend the OTP to the customer using the **Resend OTP** API and then submit using the **Submit OTP** API. For more information, refer to [Collect Payments with BNPL-Merchant Hosted Checkout](doc:collect-payments-with-bnpl-merchant-hosted-checkoutt#native-otp-flow)
+<Callout icon="📘" theme="info">
+  **Note**: If the customer enters the incorrect OTP or OTP has expired, you need to resend the OTP to the customer using the **Resend OTP** API and then submit using the **Submit OTP** API. For more information, refer to [Collect Payments with BNPL-Merchant Hosted Checkout](doc:collect-payments-with-bnpl-merchant-hosted-checkout#native-otp-flow)
+</Callout>
 
-- **Case 1**: With 1st Incorrect retry OTP attempt
+* **Case 1**: With 1st Incorrect retry OTP attempt
 
 ```
 {
@@ -569,7 +560,7 @@ Incorrect OTP Submission is allowed 3 times in total (1 + 2 retries), post which
 
 ```
 
-- **Case 2**: With 2nd Incorrect retry OTP attempt
+* **Case 2**: With 2nd Incorrect retry OTP attempt
 
 ```
 {
@@ -588,10 +579,10 @@ Incorrect OTP Submission is allowed 3 times in total (1 + 2 retries), post which
 
 ```
 
-> 📘 Note:
->
-> The driving factor here is **retryAttemptCount**. In case 1, retryAttemptCount was 2, whereas it is 1 in case 2.
+<Callout icon="📘" theme="info">
+  **Note**: The driving factor here is **retryAttemptCount**. In case 1, retryAttemptCount was 2, whereas it is 1 in case 2.
+</Callout>
 
-> 📘 Reference:
->
-> If your customer fails to authorize the payment due to incorrect OTP submission or the OTP was submitted after OTP had expired, they can request another OTP based on the number of retry attempts remaining using the **Resend OTP** API. For more information, refer to [Resend OTP API](ref:resend-otp-api).
+<Callout icon="📘" theme="info">
+  **Reference**: If your customer fails to authorize the payment due to incorrect OTP submission or the OTP was submitted after OTP had expired, they can request another OTP based on the number of retry attempts remaining using the **Resend OTP** API. For more information, refer to [Resend OTP API](ref:resend-otp-api).
+</Callout>
