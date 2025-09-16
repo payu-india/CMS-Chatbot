@@ -33,7 +33,7 @@ This section explains the procedure for getting a customer’s card details and 
 
 For all the scenarios mentioned in this section you must follow the
 
-1. **Get the tokenized card details**:  Get the customer’s card details your merchant key and customer’s registered mail ID to PayU using the **get\_user\_details** API. For more information, refer to [Get User Cards API - Model 3](ref:get_user_cards_api_model3) API  under API Reference.
+1. **Get the tokenized card details**:  Get the customer’s card details your merchant key and customer’s registered mail ID to PayU using the **get_user_details** API. For more information, refer to <Anchor label="Get User Cards API - Model 3" target="_blank" href="ref:get_user_cards_api_model3">Get User Cards API - Model 3</Anchor> API  under API Reference.
 
 2. **Post Payment to PayU and check response**: Make the transaction request with the payment details along with the card nickname to PayU based on the following scenarios of tokenization:
 
@@ -56,7 +56,7 @@ For all the scenarios mentioned in this section you must follow the
    > * In addition to the request parameters used for Merchant Hosted Checkout (Seamless integration) payment request, you need to ensure the additional parameters as specified in each scenario specified in this step. For more information on the complete list of parameters, refer to Integrate with Merchant Hosted Checkout.
    > * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted)
 
-3. **Verify the Payment**: Verify the transaction details using the Verification APIs. Post the transaction ID using the **verify\_payment** API to verify the payment. For more information, refer to [Verify Payment API](ref:verify_payment_api)
+3. **Verify the Payment**: Verify the transaction details using the Verification APIs. Post the transaction ID using the **verify_payment** API to verify the payment. For more information, refer to [Verify Payment API](ref:verify_payment_api)
 
 ## Using zero code change approach
 
@@ -80,11 +80,11 @@ This scenario is applicable where a customer is providing the complete card numb
 * It is a guest checkout  
 * It is a standard checkout request where there is no need to tokenize the card 
 
-> 📘 Note:
->
-> Plain card details coming from the merchant, so no changes are applicable in the request & response.
+<Callout icon="📘" theme="info">
+  Note: Plain card details coming from the merchant, so no changes are applicable in the request & response.
+</Callout>
 
-For the sample request and response, refer to [Using Complete Card Details](ref:complete-card-details-payment)
+For the sample request and response, refer to <Anchor label="Using Complete Card Details" target="_blank" href="ref:complete-card-details-payment">Using Complete Card Details</Anchor>
 
 ## Using network tokens
 
@@ -99,7 +99,7 @@ This scenario is applicable if you wanted to collect payments using network toke
 >
 > This scenario is applicable if you are PCI compliant and got the network token and `TAVV` from any other aggregator or schemes and then sending the card transaction request in the form of authentication.
 
-For the sample request and response, refer to [Using Network Tokens](ref:using-network-tokens)
+For the sample request and response, refer to <Anchor label="Using Network Tokens" target="_blank" href="ref:using-network-tokens">Using Network Tokens</Anchor>
 
 ## Using issuer tokens
 
@@ -114,7 +114,7 @@ This scenario is applicable if you wanted to collect payments using issuer token
 >
 > This scenario is applicable if you are PCI compliant and got the `issuer token`, `trMerchantId`, and `tokenReferenceId` and then sending the card transaction request in the form of authentication.
 
-For the sample request and response, refer to [Using Issuer Tokens](ref:using-issuer-tokens).
+For the sample request and response, refer to <Anchor label="Using Issuer Tokens" target="_blank" href="ref:using-issuer-tokens">Using Issuer Tokens</Anchor>.
 
 ## Using card tokenized with PayU
 
@@ -128,7 +128,7 @@ If the merchant has tokenized the card with PayU and needs to process the transa
 >
 > This scenario is applicable if any PCI or Non-PCI complied merchant sends the PayU token in a request for fulfilment purposes.
 
-For the sample request and response, refer to [Using Card Tokenized with PayU](ref:using-card-tokenized-with-payu).
+For the sample request and response, refer to <Anchor label="Using Card Tokenized with PayU" target="_blank" href="ref:using-card-tokenized-with-payu">Using Card Tokenized with PayU</Anchor>.
 
 ## Using card on a decoupled flow with network token or other partner tokenization
 
@@ -136,7 +136,7 @@ This scenario is applicable where you are on a decoupled flow. This is where you
 
 **Decoupled flow**: You are sending the authentication request to PayU and if the merchant wishes to send the authorization request eventually or to other aggregators.
 
-For the sample request and response, refer to [Using Card on a Decoupled Flow with Network Token or Other Partner Tokenization](ref:using-card-tokenized-with-payu-1).
+For the sample request and response, refer to <Anchor label="Using Card on a Decoupled Flow with Network Token or Other Partner Tokenization" target="_blank" href="ref:using-card-tokenized-with-payu-1">Using Card on a Decoupled Flow with Network Token or Other Partner Tokenization</Anchor>.
 
 ## Using card on a decoupled flow with PayU tokenization
 
@@ -144,4 +144,6 @@ This scenario is the application on a decoupled flow using the PayU for either a
 
 **Direct Authorisation Flow**: When you have done the authentication from some other aggregator and authorization request is coming to PayU.
 
-For the sample request and response, refer to [Using Card on a Decoupled Flow with PayU Tokenization](ref:using-card-on-a-decoupled-flow-with-payu-tokenization).
+For the sample request and response, refer to <Anchor label="Using Card on a Decoupled Flow with PayU Tokenization" target="_blank" href="ref:using-card-on-a-decoupled-flow-with-payu-tokenization">Using Card on a Decoupled Flow with PayU Tokenization</Anchor>.
+
+<br />
