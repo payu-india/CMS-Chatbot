@@ -21,9 +21,9 @@ next:
 ---
 Guest Checkout is a valuable feature that can provided be enabled for your e-commerce websites. It allows your customers to make purchases without the need to sign in or create a user account. This streamlined process benefits one-time or occasional shoppers, as it eliminates the registration step, leading to faster transactions and enhanced customer satisfaction.
 
-> 📘 Enable this feature:
->
-> To enable this feature, contact your PayU Key Account Manager or PayU Integration Support.
+<Callout icon="📘" theme="info">
+  **Enable Guest Checkout**: To enable this feature, contact your PayU Key Account Manager or PayU Integration Support.
+</Callout>
 
 As per RBI compliances, acquirers are also not allowed to store card details after a stipulated timeline. As per recommendations from RBI end, Guest checkout transactions won’t be allowed post 31st Oct. 2023. Guest checkout PAN should be replaced with some alternative number for transaction processing. As per the new regulations on guest checkout, where we have to tokenise plain card numbers. This token is called Alternative ID or Alt ID.
 
@@ -39,7 +39,7 @@ No changes required in the **_payment** request used to collect payments.
 
 ### Request parameters
 
-Along with the parameters listed in the [Collect Payment API - Cards (Merchant Hosted Checkout)](ref:payment_merchant_hosted_cards), you have to pass alt ID as a variable and pass TAVV (Cryptogram), last four digits and **par** parameter as part of **additional_info** JSON. There is no change in the response and it remains the same.
+Along with the parameters listed in the <Anchor label="Collect Payment API - Cards (Merchant Hosted Checkout)" target="_blank" href="ref:payment_merchant_hosted_cards">Collect Payment API - Cards (Merchant Hosted Checkout)</Anchor>, you have to pass alt ID as a variable and pass TAVV (Cryptogram), last four digits and **par** parameter as part of **additional_info** JSON. There is no change in the response and it remains the same.
 
 <Callout icon="📘" theme="info">
   **Note**: The **par** parameter is optional as part of **additional_info** JSON.
@@ -146,11 +146,11 @@ Along with the parameters listed in the [Collect Payment API - Cards (Merchant H
       </td>
 
       <td>
-        `JSON`The fields which are included in this JSON are described in the 
+        `JSON`The fields which are included in this JSON are described in the
 
-        [additional_info JSON sample and field description](#additional_info-json-sample-and-field-description)
+        [additional\_info JSON sample and field description](#additional_info-json-sample-and-field-description)
 
-         section.
+        section.
       </td>
 
       <td>
