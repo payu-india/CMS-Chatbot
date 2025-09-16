@@ -580,9 +580,9 @@ mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., 
 mPaymentParams.setPg("EMI")                         // Set payment gateway to EMI
 ```
 
-## Start Redirection Flow (WebView Integration)
+## Start Redirection Flow
 
-For integrating PayU’s 3DS2 redirection flow in a WebView, use the startRedirectionFlow function. This helps handle authentication and payment confirmation via a WebView or bottom sheet UI.
+To authenticate the transaction using PayU’s 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
 
 ```
 fun startRedirectionFlow(
@@ -635,7 +635,7 @@ fun startRedirectionFlow(
       </td>
 
       <td>
-        * `APIConstants.POST_DATA` or `APIConstants.ACS_TEMPLATE` — Contains the POST data or ACS template.
+        * `APIConstants.ACS_TEMPLATE` — Contains the ACS template.
       </td>
     </tr>
 
@@ -703,7 +703,7 @@ fun startRedirectionFlow(
 
 ```
 val params = mapOf(
-    APIConstants.POST_DATA to "<post_data>",
+    APIConstants.ACS_TEMPLATE to "<pass acs_templete>",
     APIConstants.AUTO_READ to true,
     APIConstants.AUTO_SUBMIT to true,
     APIConstants.SURL to "<success_url>",
