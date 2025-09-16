@@ -29,7 +29,7 @@ The following process flow can be referred for building a tailored experience fo
 
 1. Customer navigates through your website, selects the preferred subscription plan.
 2. Present a checkout page to the customer and takes an explicit consent by furnishing all the details regarding chosen Subscription Plan (amount, billing frequency, start date, end date, etc.)
-3. Call the **Consent Transaction** API, that is, **\_payments** API which is used for all other types of products. For more information, refer to any of the following sections:
+3. Call the **Consent Transaction** API, that is, **_payments** API which is used for all other types of products. For more information, refer to any of the following sections:
    * [Payment Consent Transaction using PayU Hosted Checkout](https://docs.payu.in/reference/payment-consent-transaction-payu-hosted)
    * [Payment Consent Transaction with Merchant Hosted Checkout](https://docs.payu.in/reference/payment-consent-transaction-merchant-hosted)
      * [Net Banking Recurring Payment Consent Transaction](https://docs.payu.in/reference/netbanking-recurring-payment-consent-transaction)
@@ -44,13 +44,13 @@ The Subscription of the customer is defined, and it is associated with the chose
    * The consent transaction deducts first Instalments Amount/Deposit Amount/Registration Amount of the subscription depending upon the use case from your side and then the subsequent transactions are processed automatically by Zion.
    * A consent transaction can be a penny transaction (5 INR) where the card is taken on the file along with the consent and the amount is refunded back from your side by calling the **Refund Transaction** API. This can be considered as a Free trial use case and then and then subsequent transactions can be processed automatically by Zion.  For more information on Refund API, refer to [Refund Transaction API](ref:refund_transaction_api).
 
-In both scenarios, it is important to pass the **Subscription ID** received from the Consent Transaction API response as one of the request parameters in the consent transaction interface. Also, the **payment\_source** parameter in response is **sist**.
+In both scenarios, it is important to pass the **Subscription ID** received from the Consent Transaction API response as one of the request parameters in the consent transaction interface. Also, the **payment_source** parameter in response is **sist**.
 
 The above step helps the PayU to associate the customer’s card details with provided Subscription ID to automatically process the charge over subsequent payment after the **Start Date** for a given Subscription is reached.
 
 When the consent transaction is completed successfully, the success response is posted back to your return URL. If the response is a success, then the Subscription is successfully set up on the customer’s account, and no further action is required from your end.
 
-5. If the response of the consent transaction is unsuccessful, then you need to retry as in Step 4 and try to perform the Consent flow again. However, you need not to reinitiate the [Create Plan API](ref:create-plan-api) or [Define Subscription API](ref:create-a-subscription).
+5. If the response of the consent transaction is unsuccessful, then you need to retry as in Step 4 and try to perform the Consent flow again. 
 6. PayU will attempt to charge the customer’s card, UPI or eNACH after the start date of the subscription reached. The response of the charge will be notified over pre-configured “Webhook” exposed by you over the Server-to-Server interface in JSON format.
 
 > 📘 Note:
