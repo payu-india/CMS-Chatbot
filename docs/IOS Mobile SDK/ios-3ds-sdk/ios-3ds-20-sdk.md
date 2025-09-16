@@ -613,12 +613,7 @@ mPaymentParams.setPg("EMI")                         // Set payment gateway to EM
 To authenticate the transaction using PayU’s 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
 
 ```
-fun startRedirectionFlow(
-    activity: Activity,
-    params: Map<String, Any>,
-    uiCustomisation: UICustomisation,
-    callback: PayU3DS2PaymentBaseCallback
-)
+PayU3DS2.startRedirectionFlow(vc: <#T##UIViewController#>, params: <#T##[String : Any]#>, delegate: <#T##any PayU3DS2Delegate#>)
 ```
 
 ### Parameters
@@ -639,11 +634,11 @@ fun startRedirectionFlow(
   <tbody>
     <tr>
       <td>
-        **activity**
+        **vc**
       </td>
 
       <td>
-        Pass the current `Activity` instance where the WebView will be launched.
+        Pass the current `self` instance where the WebView will be launched.
       </td>
     </tr>
 
@@ -709,16 +704,6 @@ fun startRedirectionFlow(
 
     <tr>
       <td>
-        **uiCustomisation**
-      </td>
-
-      <td>
-        Customize the bottom sheet UI for the redirection flow. Use the `UICustomisation` object.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
         **callback**
       </td>
 
@@ -732,40 +717,28 @@ fun startRedirectionFlow(
 ### Sample Code
 
 ```
-val params = mapOf(
-    APIConstants.ACS_TEMPLATE to "<pass acs_templete>",
-    APIConstants.AUTO_READ to true,
-    APIConstants.AUTO_SUBMIT to true,
-    APIConstants.SURL to "<success_url>",
-    APIConstants.FURL to "<failure_url>"
-)
-
-val uiCustomization = UICustomisation()
-// Customize uiCustomization as needed
+val params = ["acsTemplate": data, "autoRead":"true", "autoSubmit":"true","surl":"https://cbjs.payu.in/sdk/success","furl":"https://cbjs.payu.in/sdk/failure","merchantResponseTimeout":"2000"]
 
 startRedirectionFlow(
-    activity = this,
-    params = params,
-    uiCustomisation = uiCustomization,
-    callback = object : PayU3DS2PaymentCallback {
-        override fun onPaymentSuccess() {
+    vc: <#T##UIViewController#>, 
+  	params: <#T##[String : Any]#>, 
+		delegate: <#T##any PayU3DS2Delegate#> {
+        func onPaymentSuccess(successResponse: Any?) {
             // Handle success
         }
-
-        override fun onPaymentFailure() {
+        func onPaymentFailure(failureResponse: Any?) {
             // Handle failure
         }
-
-        override fun onError(errorCode: Int, errorMessage: String) {
+        func onError(errorCode: Int, errorMessage: String) {
             // Handle error
         }
-				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
+				func onPaymentCancel(isTxnInitiated: Bool) {
           // Handle erro
         }
 				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
           // Handle erro
         }
-				override fun generateHash(map: HashMap<String, String>,hashGenerationListener: 			 PayUHashGeneratedListener) {
+				func generateHash(for param: [String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion) {
           //// Handle Hash
 				}	
     }
