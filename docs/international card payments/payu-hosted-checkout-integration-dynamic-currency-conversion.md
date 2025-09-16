@@ -49,7 +49,7 @@ The following diagram depicts the steps involved in the end-to-end integration p
 
 ## Step 1: Make the transaction request to PayU and check the response
 
-With the **POST REQUEST**, the customer will be redirected to the PayU’s payment page. The customer now selects the credit card payment option on PayU’s page and clicks the Pay Now button. PayU redirects the customer to the chosen payment method. The customer enters an international credit card number, and PayU displays the conversion. For the description of the request and response parameters, refer to Response Parameters section of [Collect Payment API - PayU Hosted Checkout](doc:_payment_payu_hosted_checkout).
+With the **POST REQUEST**, the customer will be redirected to the PayU’s payment page. The customer now selects the credit card payment option on PayU’s page and clicks the Pay Now button. PayU redirects the customer to the chosen payment method. The customer enters an international credit card number, and PayU displays the conversion. For the description of the request and response parameters, refer to Response Parameters section of [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 
 PayU marks the transaction status based on the response received from the bank. PayU provides the final transaction response string to the merchant through a POST RESPONSE. The parameters in this response are covered in the subsequent sections.
 
