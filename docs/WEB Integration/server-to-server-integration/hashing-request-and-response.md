@@ -130,8 +130,6 @@ sha512(key|txnid|amount|productinfo|firstname|email||||||||||||SALT)
 
 While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
 
-The order of the parameters is similar to the following code block for various integration scenarios:
-
 <Reverse_Hash_Types />
 
 ### Integration Security
