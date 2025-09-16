@@ -25,7 +25,7 @@ metadata:
 next:
   description: ''
 ---
-The Get Checkout Details (**get\_checkout\_details**) API is a generic API using which they can get information when you create the custom checkout pages, that will contain the payment options, offers, recommendations, and downtime details. The API provides the following details: 
+The Get Checkout Details (**get_checkout_details**) API is a generic API using which they can get information when you create the custom checkout pages, that will contain the payment options, offers, recommendations, and downtime details. The API provides the following details: 
 
 * **Payment option details**: The extended details for each payment option are available for the merchant.
 * **Additional charges**: The additional charges are configured for all payment options.
@@ -40,7 +40,7 @@ The Get Checkout Details (**get\_checkout\_details**) API is a generic API using
 | Production Environment | [https://info.payu.in-merchant/postservice?form=2](https://info.payu.in-merchant/postservice?form=2) |
 
 <Accordion title="Sample request and response" icon="fa-reply">
-### Get extended payment details
+  ### Get extended payment details
 
   ```cUrl
   curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
@@ -1793,7 +1793,7 @@ The Get Checkout Details (**get\_checkout\_details**) API is a generic API using
 </Accordion>
 
 <Accordion title="Response parameters" icon="fa-book">
-### JSON Format
+  ### JSON Format
 
   ```bash
   {
@@ -1849,7 +1849,7 @@ The Get Checkout Details (**get\_checkout\_details**) API is a generic API using
 </Accordion>
 
 <Accordion title="Additional information for request parameters" icon="fa-book">
-| Parameter | Reference                                                                                                                                                                                                                                                                                        |
+  | Parameter | Reference                                                                                                                                                                                                                                                                                        |
   | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
   | **key**   | For more information on how to generate the Key and Salt, refer to any of the following:      - **Production**: [Generate Merchant Key and Salt](#generate-merchant-key-and-salt-on-payu-dashboard)      - **Test**: [Generate Test Merchant Key and Salt](#generate-test-merchant-key-and-salt) |
   | **hash**  | Hash logic for this API is:   `sha512(key\|command\|var1\|salt) sha512 `                                                                                                                                                                                                                         |
@@ -1868,8 +1868,8 @@ The Get Checkout Details (**get\_checkout\_details**) API is a generic API using
 
   | **useCase Field**                   | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
   | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | getExtendedPaymentDetails`optional` | `Boolean` This flag is posted as **true** to check EMI eligibility based on mobile number and-or card number depending on the payment method used. Also, checks the eligibility for “Buy Now Pay Later” payment modes. **Example**: Title, EMI amount breakup, etc details are displayed in the response. For a sample request or response using this field, refer to the [Get Extended Payment Details](https://devguide.vercel.app-api/get-checkout-details/#getExtendedPaymentDetails)  section. |
-  | getAdditionalCharges`optional`      | `Boolean` This flag is posted as **true** to return the additional charges configured for all payment options. For a sample request or response using this field, refer to the [Get Additional Charges](https://devguide.vercel.app-api/get-checkout-details/#getAdditionalCharges) section. **Note**: You need to use the **getTaxSpecification** field if you want to calculate the tax split of additional charges on their end.                                                                 |
-  | getTaxSpecification`optional`       | `Boolean` This flag is posted as **true** to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option. For a sample request or response using this field, refer to the [Get Tax Specification](https://devguide.vercel.app-api/get-checkout-details/#getTaxSpecification) section.                                                                                                                       |
-  | checkDownStatus`optional`           | `Boolean` This flag is posted as **true** to return the downtime of the payment options. For a sample request or response using this field, refer to [Check Down Status](https://devguide.vercel.app-api/get-checkout-details/#checkDownStatus) field.                                                                                                                                                                                                                                              |
+  | getExtendedPaymentDetails`optional` | `Boolean` This flag is posted as **true** to check EMI eligibility based on mobile number and-or card number depending on the payment method used. Also, checks the eligibility for “Buy Now Pay Later” payment modes. **Example**: Title, EMI amount breakup, etc details are displayed in the response. For a sample request or response using this field, refer to the [Get Extended Payment Details](#getExtendedPaymentDetails)  section. |
+  | getAdditionalCharges`optional`      | `Boolean` This flag is posted as **true** to return the additional charges configured for all payment options. For a sample request or response using this field, refer to the [Get Additional Charges](#getAdditionalCharges) section. **Note**: You need to use the **getTaxSpecification** field if you want to calculate the tax split of additional charges on their end.                                                                 |
+  | getTaxSpecification`optional`       | `Boolean` This flag is posted as **true** to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option. For a sample request or response using this field, refer to the [Get Tax Specification](#getTaxSpecification) section.                                                                                                                       |
+  | checkDownStatus`optional`           | `Boolean` This flag is posted as **true** to return the downtime of the payment options. For a sample request or response using this field, refer to [Check Down Status](#checkDownStatus) field.                                                                                                                                                                                                                                              |
 </Accordion>
