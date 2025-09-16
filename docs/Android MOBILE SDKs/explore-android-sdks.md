@@ -47,7 +47,9 @@ PayU offers various Android SDKs that each serve a unique use case. Here is a br
 
 ## Choose your integration
 
-> ✅ The best SDK for you will depend on your specific needs and requirements.
+<Callout icon="✅" theme="okay">
+  The best SDK for you will depend on your specific needs and requirements.
+</Callout>
 
 If you need a quick and easy way to integrate a payment interface into your app, then the Checkout Pro SDK is a good option. If you need more control over the look and feel of the payment interface, then the Core SDK is a good choice. And if you need to accept payments through UPI, OlaMoney, PhonePe, or Native OTP Assist, then the respective SDKs are a good fit.
 
@@ -73,7 +75,11 @@ Here is a comparison table that summarizes the key features of the different SDK
   <tbody>
     <tr>
       <td>
+
+
         [Android CheckoutPro SDK](doc:android-checkoutpro-sdk)
+
+
       </td>
 
       <td>
@@ -81,13 +87,17 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        \| **Low Effort Integration**, | **Non-Seamless Checkout** | **Limited Tech** | **Resource** |
+        | **Low Effort Integration**, | **Non-Seamless Checkout** | **Limited Tech** | **Resource** |
       </td>
     </tr>
 
     <tr>
       <td>
+
+
         [Android Core SDK](doc:android-core-sdk)
+
+
       </td>
 
       <td>
@@ -95,13 +105,17 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        \| **Seamless Checkout** | **Medium Effort** |  **Enterprise Businesses** |
+        | **Seamless Checkout** | **Medium Effort** |  **Enterprise Businesses** |
       </td>
     </tr>
 
     <tr>
       <td>
+
+
         [Android UPI SDK](doc:android-upi-sdk)
+
+
       </td>
 
       <td>
@@ -109,14 +123,18 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        * *Low Effort Integration*\*|
+        * _Low Effort Integration_*|
           **UPI Checkout**
       </td>
     </tr>
 
     <tr>
       <td>
+
+
         [PhonePe SDK](https://docs.payu.in/docs/android-phonepe-sdk)
+
+
       </td>
 
       <td>
@@ -130,7 +148,11 @@ Here is a comparison table that summarizes the key features of the different SDK
 
     <tr>
       <td>
+
+
         [Google Pay SDK](doc:android-google-pay-sdk)
+
+
       </td>
 
       <td>
@@ -144,7 +166,11 @@ Here is a comparison table that summarizes the key features of the different SDK
 
     <tr>
       <td>
+
+
         [Android Ola Money SDK](doc:ola-money-sdk)
+
+
       </td>
 
       <td>
@@ -158,7 +184,11 @@ Here is a comparison table that summarizes the key features of the different SDK
 
     <tr>
       <td>
+
+
         [Android Native OTP Assist SDK](doc:native-otp-assist-sdk)
+
+
       </td>
 
       <td>
@@ -172,7 +202,11 @@ Here is a comparison table that summarizes the key features of the different SDK
 
     <tr>
       <td>
+
+
         [Android 3DS 2.0 SDK](https://docs.payu.in/docs/android-3ds20-sdk)
+
+
       </td>
 
       <td>
