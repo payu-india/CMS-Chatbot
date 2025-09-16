@@ -43,9 +43,7 @@ For the complete list of parameters, refer to [UPI Collection – S2S](_payment_
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key is provided by PayU and acts as a unique identifier for a specific merchant account in PayU’s database.<br>Reference: For more information on how to generate the Key and Salt, refer to any of the following:  </p>
-<p><strong>Production</strong>: Generate Production Merchant Key and Sat.  </p>
-<p><strong>Test</strong>: Generate Test Merchant Key and Salt.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key is provided by PayU and acts as a unique identifier for a specific merchant account in PayU’s database.
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>Your Test Key</p>
 </td>
