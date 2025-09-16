@@ -17,9 +17,9 @@ next:
 ---
 A hash is an encrypted value (checksum) that is sent by you in a payment request and reverted by PayU in the payment response. The hash is used to protect transactions against a “man-in-the-middle-attack.”
 
-> 📘 Hashing logic for Web Integration and SDK is different
->
-> For the hashing logic in Android SDK or iOS SKD, refer to [Generate Dynamic Hash](doc:ioscheckoutpro-generate-hash).
+<Callout icon="📘" theme="info">
+  **Hashing logic for Web Integration and SDK is different**: For the hashing logic in Android SDK or iOS SKD, refer to [Generate Dynamic Hash](doc:ioscheckoutpro-generate-hash).
+</Callout>
 
 ## Hash Generation Logic for Basic Payment Request
 
@@ -29,7 +29,7 @@ To generate hash for a payment request in general:
 
 1. **Collect Transaction Data**: Gather the required transaction details, including: 
 
-* <Glossary>key</Glossary>: Your merchant key (Test or Production key). 
+* <Glossary>key</Glossary>: Your merchant key (Test or Production key).
 * txnid: Unique transaction ID 
 * amount: Transaction amount 
 * productinfo: Product information 
@@ -43,10 +43,10 @@ To generate hash for a payment request in general:
    `sha512(key|txnid|amount|productinfo|firstname|email|||||||||||SALT)` 
 3. **Generate Hash**: Use the SHA512 encryption algorithm to generate a hash of the concatenated string. 
 
-> 📘 Hash logic for \_payment API Version 19:
->
-> The following hash logic must be used for \_payment API with **api\_version=19**:
-> `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone`
+<Callout icon="📘" theme="info">
+  **Hash logic for _payment API Version 19**: The following hash logic must be used for _payment API with **api_version=19**:
+  `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone`
+</Callout>
 
 ### Example Hash Generation
 
@@ -58,11 +58,11 @@ Suppose the transaction data is: 
 * productinfo: Test Product 
 * firstname: John 
 * email: [john@example.com](mailto:john@example.com) 
-* Salt: &lt;Salt&gt;
+* Salt: \<Salt>
 
 The concatenated string would be: 
 
-`gtKFFx|123456789|10.00|Test Product|John|john@example.com|||||||||||| <Salt>` 
+`JP***g|123456789|10.00|Test Product|John|john@example.com|||||||||||| <Salt>` 
 
 > 📘 Important Notes:
 >
@@ -72,19 +72,17 @@ The concatenated string would be: 
 > * Salt is a susceptible information. **Do not** pass Salt in the payment request. 
 > * PayU recommends you to use **Merchant Salt (Version 2)**. To know more about generating salt, that is **Merchant Salt (Version 2)**, see [Generate PayU key and Salt](https://devguide.payu.in/merchant-integration/getting-started-with-web-checkout/generate-api-key-and-salt/).
 
-> 🚧 Salt Security
->
-> Salt is a susceptible information. **Do not** pass Salt in the payment request. To know more about generating salt, see [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+<Callout icon="🚧" theme="warn">
+  **Salt Security**: Salt is a susceptible information. **Do not** pass Salt in the payment request. To know more about generating salt, see [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+</Callout>
 
 ### Sample code for generating hash
 
 <HashingSample />
 
-<br />
-
-> 📘 Reference:
->
-> You can use the Hash API of the PayU node SDK on Github to perform hashing. Refer to the [PayU node SDK Readme](https://github.com/payu-india/payu-sdk-node/blob/main/README.md), download and install the PayU node SDK from the [PayU node SDK Github location](https://github.com/payu-india/payu-sdk-node).
+<Callout icon="📘" theme="info">
+  **Reference**: You can use the Hash API of the PayU node SDK on Github to perform hashing. Refer to the [PayU node SDK Readme](https://github.com/payu-india/payu-sdk-node/blob/main/README.md), download and install the PayU node SDK from the [PayU node SDK Github location](https://github.com/payu-india/payu-sdk-node).
+</Callout>
 
 ### Hashing scenarios for payment request
 
@@ -108,38 +106,33 @@ sha512(key|txnid|amount|productinfo|firstname|email||udf2||udf4||||||||SALT)
 sha512(key|txnid|amount|productinfo|firstname|email||||||||||||SALT)
 ```
 
-> 📘 Delimiters when UDF parameters are not passed:
->
-> Ensure that you include the delimiters (pipe symbol: **|**) if you don't pass the UDF parameters, so you need to ensure that 5 delimiters are included if UDF parameters are not passed. There are 15 delimiters in total.
+<Callout icon="📘" theme="info">
+  **Delimiters when UDF parameters are not passed**: Ensure that you include the delimiters (pipe symbol: **|**) if you don't pass the UDF parameters, so you need to ensure that 5 delimiters are included if UDF parameters are not passed. There are 15 delimiters in total.
+</Callout>
 
 <details>
   <summary>Tips for Hashing</summary>
 
-* In the **test environment** (payu.test.in), PayU displays the error message and the correct action required to resolve the error.
-* However, in the **live environment**, to retain the confidentiality of the business information, PayU displays only an error message and drops the transaction.
-* It has been observed that a majority of the hash mismatch errors result from an incorrect key insert by the merchant’s developers while generating the hash value. For instance:
+  * In the **test environment** (payu.test.in), PayU displays the error message and the correct action required to resolve the error.
+  * However, in the **live environment**, to retain the confidentiality of the business information, PayU displays only an error message and drops the transaction.
+  * It has been observed that a majority of the hash mismatch errors result from an incorrect key insert by the merchant’s developers while generating the hash value. For instance:
 
-| Inserting Merchant ID (MID) instead of Merchant Key                   | sha512(4**1**1112345110001 Shopping I Vinay I [vinay@test.com](mailto:vinay@test.com) I &#x33;**\*\*\*\***&#x73;**\***&#x6B;**\*\*\*\***&#x68;**\***&#x6A;)                   |
-| --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Inserting SALT instead of Merchant Key & Merchant ID in place of SALT | sha512(&#x33;**\*\*\*\***&#x73;**\***&#x6B;**\*\*\*\***&#x68;**\***[j112345110001Shopping1Vinaylvinay@test.com](mailto:j112345110001Shopping1Vinaylvinay@test.com) \|4**1**1) |
+  | Inserting Merchant ID (MID) instead of Merchant Key                   | sha512(4**1**1112345110001 Shopping I Vinay I [vinay@test.com](mailto:vinay@test.com) I &#x33;**\*\*\*\***&#x73;**\***&#x6B;**\*\*\*\***&#x68;**\***&#x6A;)                   |
+  | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Inserting SALT instead of Merchant Key & Merchant ID in place of SALT | sha512(&#x33;**\*\*\*\***&#x73;**\***&#x6B;**\*\*\*\***&#x68;**\***[j112345110001Shopping1Vinaylvinay@test.com](mailto:j112345110001Shopping1Vinaylvinay@test.com) \|4**1**1) |
 
-   In these cases, while PayU will compile the hash value with the right positioning of the merchant key and salt in the string, it will be different from the one posted by the merchant for apparent reasons, leading to a mismatch.
+  In these cases, while PayU will compile the hash value with the right positioning of the merchant key and salt in the string, it will be different from the one posted by the merchant for apparent reasons, leading to a mismatch.
 
-* PayU advises **against sending the salt value as part of the payment request package**, as it severely compromises the security of the transaction. Because, with access to the salt, a malicious actor executing a *man-in-the-middle* (MITM) attack can easily alter the details, regenerate the hash value, and can pass the same through the authentication filters in the PayU’s servers.
-
+  * PayU advises **against sending the salt value as part of the payment request package**, as it severely compromises the security of the transaction. Because, with access to the salt, a malicious actor executing a *man-in-the-middle* (MITM) attack can easily alter the details, regenerate the hash value, and can pass the same through the authentication filters in the PayU’s servers.
 </details>
 
 ## Hash Validation Logic for Payment Response (Reverse Hashing)
 
 While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
 
-The order of the parameters is similar to the following code block:
+The order of the parameters is similar to the following code block for various integration scenarios:
 
-```
-sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-```
-
-**Note**: You can use the Hash API of the PayU node SDK on Github to perform reverse hashing. Refer to the [PayU node SDK Readme](https://github.com/payu-india/payu-sdk-node/blob/main/README.md), download and install the PayU node SDK from the [PayU node SDK Github location](https://github.com/payu-india/payu-sdk-node).
+<Reverse_Hash_Types />
 
 ### Integration Security
 
