@@ -121,11 +121,11 @@ private fun getSmartIntentUPIApps(context: Context?):ArrayList<HashMap<String,St
 
 ## Step 3: Get Intent URI
 
-Use the **\_payment** API to get Intent URI and transaction details for the UPI app selected by the customer. For more information, refer to [Payments API](ref:payment-apis).
+Use the **_payment** API to get Intent URI and transaction details for the UPI app selected by the customer. For more information, refer to [Collect Payment API > PayU Hosted Checkout](ref:_payment_payu_hosted_checkout#/).
 
 ## Step 4: Start Activity
 
-Start activity using package id and Intent URI. After the intent UI you get from the **\_payment** API, you need to add “upi://pay“ as a prefix.
+Start activity using package id and Intent URI. After the intent UI you get from the **_payment** API, you need to add “upi://pay“ as a prefix.
 
 ```java
 fun makePayment(packageName: String,mActivity: Activity,intentUri:String) {
