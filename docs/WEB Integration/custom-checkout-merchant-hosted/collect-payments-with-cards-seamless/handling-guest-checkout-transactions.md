@@ -142,7 +142,7 @@ Along with the parameters listed in the <Anchor label="Collect Payment API - Car
     </tr>
     <tr>
       <td>additional_info <code>mandatory</code></td>
-      <td><code>JSON</code> The fields which are included in this JSON are described in the additional_info JSON sample and field description section.</td>
+      <td><code>JSON</code> The fields which are included in this JSON. For more information, refer to <a href="#additional_info-json-sample-and-field-description">additional_info JSON sample and field description</a>></td>
       <td></td>
     </tr>
     <tr>
