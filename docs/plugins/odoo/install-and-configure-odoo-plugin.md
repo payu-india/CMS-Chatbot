@@ -22,7 +22,7 @@ Before you begin, ensure that:
 * You have a PayU merchant account (or can create one during setup)
 
 <Callout icon="📘" theme="info">
-  **Notes**: 
+  **Notes**:
 
   * **Developer** mode must be enabled in Odoo to proceed with eCommerce and PayU module setup.
   * This plugin has been developed and tested on Odoo 18, so it is recommended using version 18 or above for optimal compatibility and performance.
@@ -224,6 +224,7 @@ To verify the installation:
 
 After successful installation and configuration:
 
-* [Configure Payment Methods](https://docs.payu.in/docs/payment-methods)
-* [Set Up Webhooks](https://docs.payu.in/docs/webhooks)
-* [Test Your Integration](https://docs.payu.in/docs/testing)
+* [Configure Payment Methods](doc:payment-methods)
+* [Set Up Webhooks](doc:webhooks)
+
+<br />
