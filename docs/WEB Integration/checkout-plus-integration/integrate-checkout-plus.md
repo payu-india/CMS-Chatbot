@@ -19,7 +19,7 @@ PayU Checkout Plus is the most convenient way to collect payment on your website
 > * Redirection Web Checkout: [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted) .
 > * Webview configurations:
 >   * [Webview Integration in Android](docs:webview-integration-in-android)
->   * [Webview Integration in iOS](doc:webview-intgration-in-ios)
+>   * [Webview Integration in iOS](doc:webview-integration-in-ios)
 
 ***
 
@@ -175,7 +175,7 @@ var handlers = {responseHandler: function (BOLT) {
       </td>
 
       <td>
-        `String` This field must contain the has and it is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to 
+        `String` This field must contain the has and it is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to
 
         [Encryption of Request](https://docs.payu.in/docs/generate-hash-merchant-hosted)
 
@@ -409,7 +409,7 @@ var handlers = {responseHandler: function (BOLT) {
       <td>
         `String `Pass the payment category that you want to display on your payment page. The default value for this parameter is CC (Credit Card).
 
-        * *Note**: Checkout Plus only supports the following payment methods:
+        * _Note_*: Checkout Plus only supports the following payment methods:
         * [Net Banking](https://docs.payu.in/docs/collect-payments-with-net-banking-seamless)
         * [Credit/Debit Cards](https://docs.payu.in/docs/collect-payments-with-cards-seamless)
         * [UPI](https://docs.payu.in/docs/collect-payments-with-upi-seamless)
@@ -607,13 +607,13 @@ cardhash: This field is no longer supported in postback params.
 
       <td>
         This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  
-        	•	Credit Card – CC 
-        	•	Debit Card – DC 
-        	•	Net Banking – NB
-        	•	Cash Card – CASH
-        	•	EMI – EMI 
-        	•	Cardless EMI – CLEMI
-        	•	Buy Now Pay Later - BNPL
+        •	Credit Card – CC 
+        •	Debit Card – DC 
+        •	Net Banking – NB
+        •	Cash Card – CASH
+        •	EMI – EMI 
+        •	Cardless EMI – CLEMI
+        •	Buy Now Pay Later - BNPL
       </td>
     </tr>
 
@@ -634,8 +634,8 @@ cardhash: This field is no longer supported in postback params.
 
       <td>
         This parameter returns the status of the transaction and must be used to map the order status. Possible values are success, failure, or pending. The significance of the values for these values are:  
-        	•	**Success**: If the value of status parameter is ’success’, the transaction is successful. 
-        	•	**Failed**: If the value of status parameter is ‘failure’ or ‘pending’, must only be treated as a failed transaction.
+        •	**Success**: If the value of status parameter is ’success’, the transaction is successful. 
+        •	**Failed**: If the value of status parameter is ‘failure’ or ‘pending’, must only be treated as a failed transaction.
       </td>
     </tr>
 
@@ -645,7 +645,7 @@ cardhash: This field is no longer supported in postback params.
       </td>
 
       <td>
-        This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to  
+        This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to 
 
         [Payment State Explanations](ref:payment-state-explanations)
 
@@ -679,7 +679,7 @@ cardhash: This field is no longer supported in postback params.
       </td>
 
       <td>
-        This parameter contains the error message. For the list of error message, refer to 
+        This parameter contains the error message. For the list of error message, refer to
 
         [Error Codes](ref:error-codes)
 
