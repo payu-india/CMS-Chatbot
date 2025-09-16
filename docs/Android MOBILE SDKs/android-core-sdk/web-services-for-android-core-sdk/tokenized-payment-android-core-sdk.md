@@ -12,7 +12,7 @@ next:
 ---
 You can store and get stored card details from the vault. The tokenized payments for Android Core SDK includes the following APIs:
 
-* [Get Tokenized Stored Cards API](get-tokenized-stored-cards-api)
+* [Get Tokenized Stored Cards API](#get-tokenized-stored-cards-api)
 * [Get Tokenized Stored Card Details API](#get-tokenized-stored-card-details-api)
 * [Delete Tokenized Stored Cards API](#delete-tokenized-stored-cards-api)
 
