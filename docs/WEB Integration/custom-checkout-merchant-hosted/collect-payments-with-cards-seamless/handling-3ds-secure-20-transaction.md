@@ -20,7 +20,7 @@ PayU supports 3DS Secure 2.0 transaction with Merchant Hosted Checkout integrati
 You must include the `threeDS2RequestData` parameter along with the regular Collect Payment API for cards.
 
 <Callout icon="📘" theme="info">
-  **Reference**: For the **Try It** experience, refer to  [Collect Payment API - Cards (Merchant Hosted Checkout)](ref:https://docs.payu.in/reference/_payment_merchant_hosted_cards),
+  **Reference**: For the **Try It** experience, refer to  [Collect Payment API - Cards (Merchant Hosted Checkout)](ref:_payment_merchant_hosted_cards),
 </Callout>
 
 <HTMLBlock>{`
