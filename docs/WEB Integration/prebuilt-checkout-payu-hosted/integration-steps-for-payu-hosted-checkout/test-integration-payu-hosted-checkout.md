@@ -27,7 +27,7 @@ To test the PayU Hosted Checkout integration:
 
 1. After the items are added to cart, click Pay to redirect to the _PayU Payment_ page.
 
-   If any error message is displayed, refer to [Error Handling ](ref:error-handling)and troubleshoot the error accordingly.
+   If any error message is displayed, refer to [Error Handling ](doc:error-handling)and troubleshoot the error accordingly.
 
 2. Check if all the payment modes are listed.
 
