@@ -45,8 +45,6 @@ Along with the parameters listed in the <Anchor label="Collect Payment API - Car
   **Note**: The **par** parameter is optional as part of **additional_info** JSON.
 </Callout>
 
-# Merged Payment API Parameters
-
 <HTMLBlock>{`
 <table>
   <thead>
@@ -265,7 +263,7 @@ curl --location 'http://local.secure.payu.in/_payment' \
 >
 > To enable the  **authRefNo** response parameter in response, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in).
 
-```
+```json
 Array
 (
     [mihpayid] => 20869277619
