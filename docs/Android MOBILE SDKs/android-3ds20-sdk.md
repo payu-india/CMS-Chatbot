@@ -139,7 +139,7 @@ You have to pass the following parameters:
       </td>
 
       <td>
-        Merchants have to create the payment param object and pass it which will contain info such as `cardDeatails`, SI details, etc. For more information, refer to 
+        Merchants have to create the payment param object and pass it which will contain info such as `cardDeatails`, SI details, etc. For more information, refer to
 
         [SDK Integration > Build the payment parameters](doc:android-checkoutpro-integration-steps#step-3-build-the-payment-parameters-mandatory-step)
 
@@ -546,7 +546,7 @@ To make payments using a previously saved card, you need to pass both the networ
 
 #### Third-Party Card Tokenization
 
-If the card has been tokenized outside of PayU’s platform (via a third-party service), you need to provide additional tokenization information. 
+If the card has been tokenized outside of PayU’s platform (via a third-party service), you need to provide additional tokenization information.
 
 ```
  private fun getTokenizedDetails(): TokenizedCardAdditionalParam? {
@@ -562,11 +562,9 @@ mPaymentParams.expiryMonth = "XX"              // Card expiry month (MM)
 mPaymentParams.expiryYear = "XXXX"             // Card expiry year (YYYY)
 mPaymentParams.cardToken = "XXXXXXXXXXXXXXXXX" // The token representing the saved card
 mPaymentParams.cardTokenType = 1               // Type of tokenization (e.g., 1 = PayU token, 2 = third-party token)
+
 mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token details
-
 ```
-
-<br />
 
 ## Hash Generation
 
