@@ -17,9 +17,9 @@ next:
 ---
 A hash is an encrypted value (checksum) that is sent by you in a payment request and reverted by PayU in the payment response. The hash is used to protect transactions against a “man-in-the-middle-attack.”
 
-> 📘 Hashing logic for Web Integration and SDK is different
->
-> For the hashing logic in Android SDK or iOS SKD, refer to [Generate Dynamic Hash](doc:ioscheckoutpro-generate-hash).
+<Callout icon="📘" theme="info">
+  **Hashing logic for Web Integration and SDK is different**: For the hashing logic in Android SDK or iOS SKD, refer to [Generate Dynamic Hash](doc:ioscheckoutpro-generate-hash).
+</Callout>
 
 ## Hash Generation Logic for Basic Payment Request
 
@@ -41,13 +41,13 @@ To generate hash for a payment request in general:
 >
 > For more information on getting key and salt, refer to [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt) or [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
 
-2. **Create a Hash String**: Concatenate the collected data in the following format: \
+2. **Create a Hash String**: Concatenate the collected data in the following format: 
    `sha512(key|txnid|amount|productinfo|firstname|email|||||||||||SALT)` 
 3. **Generate Hash**: Use the SHA512 encryption algorithm to generate a hash of the concatenated string. 
 
-> 📘 Hash logic for \_payment API Version 19:
+> 📘 Hash logic for _payment API Version 19:
 >
-> The following hash logic must be used for \_payment API with **api\_version=19**:\
+> The following hash logic must be used for _payment API with **api_version=19**:
 > `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone`
 
 ### Example Hash Generation
@@ -143,15 +143,7 @@ sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|\|\|\|\|\|\|\|\|\|\|SA
 
 While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
 
-The order of the parameters is similar to the following code block:
-
-```
-sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-```
-
-> 📘 PayU SDK Github resource for Hashing:
->
-> You can use the Hash API of the PayU node SDK on Github to perform reverse hashing. Refer to the [PayU node SDK Readme](https://github.com/payu-india/payu-sdk-node/blob/main/README.md), download and install the PayU node SDK from the [PayU node SDK Github location](https://github.com/payu-india/payu-sdk-node).
+<Reverse_Hash_Types />
 
 ### Integration Security
 
