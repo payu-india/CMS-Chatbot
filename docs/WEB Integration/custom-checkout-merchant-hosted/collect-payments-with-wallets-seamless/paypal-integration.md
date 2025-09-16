@@ -64,10 +64,54 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
   **Reference**: For the complete list of parameters (with **Try It** experience ) and response, refer to <a href="https://docs.payu.in/reference/_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
 </Callout>
 
-| **Parameter**          | **Description**                                                                                                                                                        | **Example** |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| pg **mandatory**       | _String_ It defines the payment category using the Merchant Hosted Checkout integration. For a Wallet payment, "**PAYPAL**" must be specified in the **pg** parameter. | PAYPAL      |
-| bankcode **mandatory** | _String_ The merchant must post  **PAYPAL** as the value for this parameter.                                                                                           | PAYPAL      |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Example**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        pg 
+        **mandatory**
+      </td>
+
+      <td>
+        _String_ It defines the payment category using the Merchant Hosted Checkout integration. For a Wallet payment, "**PAYPAL**" must be specified in the **pg** parameter.
+      </td>
+
+      <td>
+        PAYPAL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankcode **mandatory**
+      </td>
+
+      <td>
+        _String_ The merchant must post  **PAYPAL** as the value for this parameter.
+      </td>
+
+      <td>
+        PAYPAL
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### Sample request
 
