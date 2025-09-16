@@ -33,31 +33,31 @@ There are three scenarios with Alternative ID:
 
 ## Scenario 1: Provision & processes guest transaction with PayU
 
-No changes required in the **\_payment** request used to collect payments.
+No changes required in the **_payment** request used to collect payments.
 
 ## Scenario 2: Provision Alt ID outside PayU and use PayU to Process Transaction
 
 ### Request parameters
 
-Along with the parameters listed in the [Collect Payment API - Cards (Merchant Hosted Checkout)](ref:payment_merchant_hosted_cards), you have to pass alt ID as a variable and pass TAVV (Cryptogram), last four digits and **par** parameter as part of **additional\_info** JSON. There is no change in the response and it remains the same. 
+Along with the parameters listed in the [Collect Payment API - Cards (Merchant Hosted Checkout)](ref:payment_merchant_hosted_cards), you have to pass alt ID as a variable and pass TAVV (Cryptogram), last four digits and **par** parameter as part of **additional_info** JSON. There is no change in the response and it remains the same.
 
-> 📘 Note:
->
-> The **par** parameter is optional as part of **additional\_info** JSON.
+<Callout icon="📘" theme="info">
+  **Note**: The **par** parameter is optional as part of **additional_info** JSON.
+</Callout>
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
-        **Parameter**
+        Parameter
       </th>
 
       <th>
-        **Description**
+        Description
       </th>
 
       <th>
-        **Example**
+        Example
       </th>
     </tr>
   </thead>
@@ -65,8 +65,8 @@ Along with the parameters listed in the [Collect Payment API - Cards (Merchant H
   <tbody>
     <tr>
       <td>
-        <Glossary>pg</Glossary>
-        **mandatory**
+        pg
+        `mandatory`
       </td>
 
       <td>
@@ -80,7 +80,7 @@ Along with the parameters listed in the [Collect Payment API - Cards (Merchant H
 
     <tr>
       <td>
-        <Glossary>bankcode</Glossary> **mandatory**
+        <Glossary>bankcode</Glossary> `mandatory`
       </td>
 
       <td>
@@ -94,8 +94,8 @@ Along with the parameters listed in the [Collect Payment API - Cards (Merchant H
 
     <tr>
       <td>
-        alt\_id\
-        **mandatory**
+        alt_id
+        `mandatory`
       </td>
 
       <td>
@@ -109,13 +109,13 @@ Along with the parameters listed in the [Collect Payment API - Cards (Merchant H
 
     <tr>
       <td>
-        ccexpmon\
-        **mandatory**
+        ccexpmon
+        `mandatory`
       </td>
 
       <td>
-        `String` This parameter must contain the Alt ID expiry month.\
-        For VISA cards, Plain card's expiry month need to be posted this parameter. 
+        `String` This parameter must contain the Alt ID expiry month.
+        For VISA cards, Plain card's expiry month need to be posted this parameter.
       </td>
 
       <td>
@@ -125,12 +125,12 @@ Along with the parameters listed in the [Collect Payment API - Cards (Merchant H
 
     <tr>
       <td>
-        ccexpyr\
-        **mandatory**
+        ccexpyr
+        `mandatory`
       </td>
 
       <td>
-        `String` This parameter must contain the Alt ID expiry year.\
+        `String` This parameter must contain the Alt ID expiry year.
         For VISA cards, Plain card's expiry year need to be posted this parameter.
       </td>
 
@@ -141,12 +141,16 @@ Along with the parameters listed in the [Collect Payment API - Cards (Merchant H
 
     <tr>
       <td>
-        additional\_info\
-        **mandatory**
+        additional_info
+        `mandatory`
       </td>
 
       <td>
-        `JSON`The fields which are included in this JSON are described in the [additional\_info JSON sample and field description](#additional_info-json-sample-and-field-description) section. 
+        `JSON`The fields which are included in this JSON are described in the 
+
+        [additional_info JSON sample and field description](#additional_info-json-sample-and-field-description)
+
+         section.
       </td>
 
       <td>
@@ -156,11 +160,11 @@ Along with the parameters listed in the [Collect Payment API - Cards (Merchant H
   </tbody>
 </Table>
 
-> 📘 Note:
->
-> **tokenReferenceid** field is required in the additional\_info parameter if you are provisioning Alt ID outside PayU for Diners card.
+<Callout icon="📘" theme="info">
+  **Note**: **tokenReferenceid** field is required in the additional_info parameter if you are provisioning Alt ID outside PayU for Diners card.
+</Callout>
 
-#### additional\_info JSON sample and field description
+#### additional_info JSON sample and field description
 
 ```
 {  
@@ -171,7 +175,7 @@ Along with the parameters listed in the [Collect Payment API - Cards (Merchant H
 }
 ```
 
-The description of the fields in the additional\_info JSON.
+The description of the fields in the additional_info JSON.
 
 | Field            | Description                                                                                                                                                                   |
 | :--------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -210,7 +214,7 @@ curl --location 'http://local.secure.payu.in/_payment' \
 >
 > The **authRefNo** response parameter contains:
 >
-> * <Glossary>AEVV</Glossary> number for an AMEX card transaction. This is mandatory for AMEX for compliance for token (<Glossary>CoFT</Glossary>) provisioning. 
+> * <Glossary>AEVV</Glossary> number for an AMEX card transaction. This is mandatory for AMEX for compliance for token (<Glossary>CoFT</Glossary>) provisioning.
 > * rupayAuthRefId for a Rupay card transaction
 >
 > To enable the  **authRefNo** response parameter in response, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in).
