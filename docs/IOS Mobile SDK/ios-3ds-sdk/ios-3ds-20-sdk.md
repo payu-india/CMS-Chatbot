@@ -479,8 +479,6 @@ paymentParam.cardinfo = cardDetails // PayU3DS2CardInfo with card details
 
 ```
 
-<br />
-
 ## PaymentParams Parameter Example
 
 ### Basic Payment Parameters
@@ -508,13 +506,16 @@ mPaymentParams.udf5 = "<User Defined Fields>"         // User-defined field 5
 
 To process payments using a credit or debit card, the following parameters need to be included in the PaymentParams object..
 
-```kotlin Kotlin
-mPaymentParams.cardNumber = "<cardNumber>"          // Credit/Debit card number
-mPaymentParams.cardName = "<cardName>"              // Card type (e.g., Visa, MasterCard)
-mPaymentParams.nameOnCard = "<cardholderName>"      // Name of the cardholder
-mPaymentParams.expiryMonth = "<expiryMonth>"        // Card expiry month (MM)
-mPaymentParams.expiryYear = "<expiryYear>"          // Card expiry year (YYYY)
-mPaymentParams.cvv = "<cvv>"                        // CVV code on the back of the card
+```swift Swift
+let cardDetails = PayU3DS2CardInfo()
+   cardDetails.cardNumber = "<cardNumber>"
+   cardDetails.cardName = "<cardName>"
+   cardDetails.nameOnCard = "<cardholderName>"
+   cardDetails.expiryMonth = "<expiryMonth>"// MM
+   cardDetails.expiryYear = "<expiryYear>"// YYYY
+	 cardDetails.cvv = "<cvv>"
+
+paymentParam.cardinfo = cardDetails
 ```
 
 #### Store Credit/Debit Card
@@ -522,15 +523,17 @@ mPaymentParams.cvv = "<cvv>"                        // CVV code on the back of t
 To store the card for future transactions (such as recurring payments), the StoreCard option should be enabled. This allows the card to be saved securely for later use..
 
 ```
-mPaymentParams.setCardNumber(cardNumber);
-mPaymentParams.setCardName(cardName);
-mPaymentParams.setNameOnCard(cardholderName);
-mPaymentParams.setExpiryMonth(expiryMonth);// MM
-mPaymentParams.setExpiryYear(expiryYear);// YYYY
-mPaymentParams.setCvv(cvv);
+ var cardDetails =  PayU3DS2CardInfo()
+ cardDetails.cardNumber = "<cardNumber>"
+ cardDetails.cardName = "<cardName>"
+ cardDetails.nameOnCard = "<cardholderName>"
+ cardDetails.expiryMonth = "<expiryMonth>"// MM
+ cardDetails.expiryYear = "<expiryYear>"// YYYY
+ cardDetails.cvv = "<cvv>"
  
-mPaymentParam.setUserCredentials(userCredentials);
-mPaymentParam.setStoreCard(1);
+paymentParam.userCredential = "ol4Spy:7879357664"
+paymentParam.shouldSavedCard = true
+paymentParam.cardinfo = cardDetails
 ```
 
 #### Recurring Payments via Card
@@ -538,25 +541,16 @@ mPaymentParam.setStoreCard(1);
 For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
 
 ```
-fun getSIDetails(): SIParams {
-    var siParams = SIParams()
-    siParams.api_version = "7"                       // API version
-    siParams.si = "1"                                // Indicates recurring payment
-    siParams.isFree_trial = false                    // Free trial flag (if applicable)
-
-    var siParamDetails = SIParamsDetails()
-    siParamDetails.billingAmount = "1.0"             // Recurring billing amount
-    siParamDetails.billingCurrency = "INR"           // Currency (INR in this example)
-    siParamDetails.billingInterval = 1               // Interval between payments (e.g., monthly)
-    siParamDetails.billingCycle = BillingCycle.ADHOC // Recurring cycle type
-    siParamDetails.paymentStartDate = "2025-09-26"   // Start date of the recurring payments
-    siParamDetails.paymentEndDate = "2025-10-26"     // End date of the recurring payments
-    
-    siParams.si_details = siParamDetails
-    return siParams
-}
-
-mPaymentParams.siParams = getSIDetails() // Add subscription details to the payment parameters
+let siInfo = PayU3DS2SIParams(billingAmount: "1",
+                                                 paymentStartDate: paymentStartDate,
+                                                 paymentEndDate: paymentEndDate ,
+                                                 billingCycle: .monthly,
+                                                 billingInterval: 1)
+    siInfo.isFreeTrial = true
+    siInfo.billingLimit = "ON"
+    siInfo.billingRule = "MAX"
+	
+paymentParam.siParam = siInfo  // Add Subscription details to the payment parameters
 ```
 
 ### Card Tokenization
@@ -567,31 +561,27 @@ Tokenization is used to securely store card details without exposing sensitive i
 
 To make payments using a previously saved card, you need to pass both the network token and the card token..
 
-```
- cardDetails.networkToken = "<networkToken>"
- cardDetails.cardToken = "<cardToken>"
+```swift
+let cardDetails = PayU3DS2CardInfo()
+cardinfo.cardToken = "5595337480792395"
+cardinfo.networkToken = "5595337480792395"
+paymentParam.cardinfo = cardDetails
 ```
 
 #### Third-Party Card Tokenization
 
 If the card has been tokenized outside of PayU’s platform (via a third-party service), you need to provide additional tokenization information.
 
-```
- private fun getTokenizedDetails(): TokenizedCardAdditionalParam? {
-    var token = TokenizedCardAdditionalParam()
-    token.last4Digits = "XXXX"                // Last 4 digits of the card
-    token.tavv = "XXXXXXXXXXXXXX"             // Transaction authorization verification value
-    token.tokenRefNo = "XXXXXXXXXXXXXX"       // Reference number for tokenized card
-    token.trid = "XXXXXXXXXXXXXX"             // Transaction ID for this payment
-    return token
-}
+```swift
+let cardDetails = PayU3DS2CardInfo()
+        cardinfo.expiryMonth = "04"
+        cardinfo.expiryYear = "2028"
+        cardinfo.networkToken = "5595337480792395"
 
-mPaymentParams.expiryMonth = "XX"              // Card expiry month (MM)
-mPaymentParams.expiryYear = "XXXX"             // Card expiry year (YYYY)
-mPaymentParams.cardToken = "XXXXXXXXXXXXXXXXX" // The token representing the saved card
-mPaymentParams.cardTokenType = 1               // Type of tokenization (e.g., 1 = PayU token, 2 = third-party token)
+paymentParam.cardTokenType = "1"
+paymentParam.cardinfo = cardinfo
+paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","trid" : "40020003934", "tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
 
-mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token details
 ```
 
 #### EMI
@@ -599,13 +589,17 @@ mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token
 To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
 
 ```
-mPaymentParams.setCardNumber("5123456789012346")   // Card number used for EMI payment
-mPaymentParams.setNameOnCard("test")               // Name on the card
-mPaymentParams.setExpiryMonth("06")                // Expiry month (MM)
-mPaymentParams.setExpiryYear("2023")               // Expiry year (YYYY)
-mPaymentParams.setCvv("123")                        // CVV of the card
-mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., EMI03)
-mPaymentParams.setPg("EMI")                         // Set payment gateway to EMI
+var cardDetails =  PayU3DS2CardInfo()
+ cardDetails.cardNumber = "<cardNumber>"
+ cardDetails.cardName = "<cardName>"
+ cardDetails.nameOnCard = "<cardholderName>"
+ cardDetails.expiryMonth = "<expiryMonth>"// MM
+ cardDetails.expiryYear = "<expiryYear>"// YYYY
+ cardDetails.cvv = "<cvv>"
+ 
+paymentParam.cardinfo = cardDetails                       
+paymentParam.bankCode = "EMIIC3"
+paymentParam.pgCode = "EMI"                
 ```
 
 ## Start Redirection Flow
