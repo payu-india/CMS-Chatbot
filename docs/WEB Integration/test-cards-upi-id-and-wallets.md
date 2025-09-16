@@ -30,15 +30,15 @@ next:
 
 The following table provides details of some of the test cards that you can use to test your integration in the sandbox (Test environment). As Sandbox is a replica of the production environment, you can push the code in production by just replacing account credentials and URLs.
 
-> 📘 Note:
->
-> The character “X” in the card numbers are placeholders that can be substituted with any number (1-9).
+<Callout icon="📘" theme="info">
+  **Note**: The character “X” in the card numbers are placeholders that can be substituted with any number (1-9).
+</Callout>
 
 ## Web Checkout
 
-> 📘 Note:
->
-> Any value can be used for the **name** parameter in Test environment.
+<Callout icon="📘" theme="info">
+  **Note**: Any value can be used for the **name** parameter in Test environment.
+</Callout>
 
 ### Credit Card
 
@@ -59,9 +59,9 @@ The following table provides details of some of the test cards that you can use 
 
 ## EMI test cards
 
-> 📘 Note:
->
-> Any value can be used for the **name** parameter in Test environment.
+<Callout icon="📘" theme="info">
+  **Note**: Any value can be used for the **name** parameter in Test environment.
+</Callout>
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -276,9 +276,9 @@ The following table provides details of some of the test cards that you can use 
 
 ## International Payments or DCC
 
-> 📘 Note:
->
-> Any name can be used for the **name** parameter in Test environment.
+<Callout icon="📘" theme="info">
+  **Note**: Any name can be used for the **name** parameter in Test environment.
+</Callout>
 
 | Currency | **Card Number**  | **Expiry** | **CVV** | **OTP** |
 | -------- | ---------------- | ---------- | ------- | ------- |
@@ -287,9 +287,9 @@ The following table provides details of some of the test cards that you can use 
 
 ## Save cards
 
-> 📘 Note:
->
-> Any value can be used for the **name** parameter in Test environment.
+<Callout icon="📘" theme="info">
+  **Note**: Any value can be used for the **name** parameter in Test environment.
+</Callout>
 
 | **Card Number**  | Network     | **Expiry** | **CVV** |
 | ---------------- | :---------- | ---------- | ------- |
@@ -302,7 +302,7 @@ You can use **anything@payu** or **999999999@payu** as VPA to test your UPI-rela
 
 > 📘 Notes:
 >
-> * The **anything@payu** VPA can be used in the sandbox or [Merchant Hosted > Collect Payment - UPI](ref:_payment_merchant_hosted_upi#/) API reference page and any other VPA will not work for the**_payment** only.
+> * The **anything@payu** VPA can be used in the sandbox or [Merchant Hosted > Collect Payment - UPI](ref:_payment_merchant_hosted_upi) API reference page and any other VPA will not work for the**_payment** only.
 > * For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
 
 ## Test UPI Intent Flow
