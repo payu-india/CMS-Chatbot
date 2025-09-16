@@ -46,10 +46,10 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 
 PayU SDK offers the following methods to integrate with 3DS 2.0:
 
-* **SDK Integration**:\
+* **SDK Integration**:
   Min SDK Version is v21
   Compile SDK Version is v31 or later
-* **Maven Dependency URL**\
+* **Maven Dependency URL**
   Use the following code snippet in your app’s build.gradle file:
 
 ```
@@ -112,7 +112,7 @@ You have to pass the following parameters:
 
         * **config.uiCustomisation** = Set UI customization object. For more information, refer to [GUI Customisation](#gui-customization)
         * **config.isProduction** = Set environment where you want to test:
-          *true*\* for the Production environment
+          _true_* for the Production environment
         * **false** for the Test environment
         * **config.fallback3DS1** = Set the value as true to complete payment on the bank page in case of any failure. By default, the value is false
         * **config.autoRead** = Set the values as true to allow auto-read OTP and fill in the OTP field. By default, the value is false.
@@ -121,7 +121,7 @@ You have to pass the following parameters:
         * **config.setDefaultProgressLoader(true, "HexColor")**: Set to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode.
         * **config.enableCustomizedOtpUIFlow** = //To customise UI with your content please pass as true
         * **config.enableTxnTimeoutTimer** = //pass as true to show timer for page timeout
-          *config.merchantName*\* = "merchant name"// pass merchant name with customised OTP Flow
+          _config.merchantName_* = "merchant name"// pass merchant name with customised OTP Flow
         * **config.amount** = "txn amount"// pass transaction amount with customised OTP Flow
         * **val acsContentConfig** = ACSContentConfig()
         * **acsContentConfig.otpContent** = "OTP has been sent to your registered mobile number". //you can set this value to as per your need
@@ -139,7 +139,11 @@ You have to pass the following parameters:
       </td>
 
       <td>
-        Merchants have to create the payment param object and pass it which will contain info such as `cardDeatails`, SI details, etc. For more information, refer to [SDK Integration > Build the payment parameters](doc:android-checkoutpro-integration-steps#step-3-build-the-payment-parameters-mandatory-step).
+        Merchants have to create the payment param object and pass it which will contain info such as `cardDeatails`, SI details, etc. For more information, refer to 
+
+        [SDK Integration > Build the payment parameters](doc:android-checkoutpro-integration-steps#step-3-build-the-payment-parameters-mandatory-step)
+
+        .
       </td>
     </tr>
 
@@ -149,12 +153,16 @@ You have to pass the following parameters:
       </td>
 
       <td>
-        This parameter contains the following methods:\
+        This parameter contains the following methods:
         **fun onPaymentSuccess(successResponse: Any)**: It will contain a success response. This will be a JSON Object, parse response as per your need.
         **fun onPaymentFailure(failureResponse: Any)**: It will contain a failure response. This will be a JSON Object, parse response as per your need
         **fun onPaymentCancel(isTxnInitiated: Boolean)**: It will tell if payment was canceled.
         **fun onError(errorCode: Int, errorMessage: String)**: It will contain failure reason code and reason.
-        **fun generateHash(map: HashMap\<String, String>, hashGenerationListener**: PayUHashGeneratedListener): Merchant will get a map with the type of hash and hash string as the value of the map. Refer to the[ Sample code for callback - generateHash](#sample-code-for-callback-generateHash).
+        **fun generateHash(map: HashMap\<String, String>, hashGenerationListener**: PayUHashGeneratedListener): Merchant will get a map with the type of hash and hash string as the value of the map. Refer to the
+
+        [ Sample code for callback - generateHash](#sample-code-for-callback-generateHash)
+
+        .
       </td>
     </tr>
   </tbody>
@@ -445,30 +453,120 @@ fun onError(errorCode: Int, errorMessage: String) //It will contain failure reas
 //Cast response to String. If value is "Y" that means challenge is successfully executed else it is failed.
 ```
 
-PaymentParams Parameter Example
+## PaymentParams Parameter Example
 
-```Text Kotlin
-var mPaymentParams =  PaymentParams();
-        mPaymentParams.key = "<Your Key issued by PayU>"
-        mPaymentParams.amount = "<Transaction Amount>"
-        mPaymentParams.productInfo = "<Product Description>"
-        mPaymentParams.firstName = "<Customer First Name>"
-        mPaymentParams.email = "<Customer Email>"
-        mPaymentParams.txnId = "<Transaction Id>"
-        mPaymentParams.surl = "<Success URL>"
-        mPaymentParams.furl = "<Failure URL>"
-        mPaymentParams.udf1 = "<User Defined Fields>"
-        mPaymentParams.udf2 = "<User Defined Fields>"
-        mPaymentParams.udf3 = "<User Defined Fields>"
-        mPaymentParams.udf4 = "<User Defined Fields>"
-        mPaymentParams.udf5 = "<User Defined Fields>"
-        mPaymentParams.cardNumber = "<cardNumber>"
-        mPaymentParams.cardName = "<cardName>"
-        mPaymentParams.nameOnCard = "<cardholderName>"
-        mPaymentParams.expiryMonth = "<expiryMonth>"// MM
-        mPaymentParams.expiryYear = "<expiryYear>"// YYYY
-        mPaymentParams.cvv = "<cvv>"
+### Basic Payment Parameters
+
+The PaymentParams object contains key fields required for initiating a payment request with PayU. These parameters are critical for identifying the transaction, the customer, and the product.
+
+```kotlin
+var mPaymentParams = PaymentParams()
+mPaymentParams.key = "<Your Key issued by PayU>"  // Merchant key provided by PayU
+mPaymentParams.amount = "<Transaction Amount>"     // The total amount of the transaction
+mPaymentParams.productInfo = "<Product Description>"  // Description of the product being purchased
+mPaymentParams.firstName = "<Customer First Name>"    // Customer's first name
+mPaymentParams.email = "<Customer Email>"             // Customer's email address
+mPaymentParams.txnId = "<Transaction Id>"             // Unique transaction ID for this payment
+mPaymentParams.surl = "<Success URL>"                 // URL to redirect on successful payment
+mPaymentParams.furl = "<Failure URL>"                 // URL to redirect on failed payment
+mPaymentParams.udf1 = "<User Defined Fields>"         // User-defined field 1
+mPaymentParams.udf2 = "<User Defined Fields>"         // User-defined field 2
+mPaymentParams.udf3 = "<User Defined Fields>"         // User-defined field 3
+mPaymentParams.udf4 = "<User Defined Fields>"         // User-defined field 4
+mPaymentParams.udf5 = "<User Defined Fields>"         // User-defined field 5
 ```
+
+#### Credit/Debit Card Payment
+
+To process payments using a credit or debit card, the following parameters need to be included in the PaymentParams object..
+
+```kotlin Kotlin
+mPaymentParams.cardNumber = "<cardNumber>"          // Credit/Debit card number
+mPaymentParams.cardName = "<cardName>"              // Card type (e.g., Visa, MasterCard)
+mPaymentParams.nameOnCard = "<cardholderName>"      // Name of the cardholder
+mPaymentParams.expiryMonth = "<expiryMonth>"        // Card expiry month (MM)
+mPaymentParams.expiryYear = "<expiryYear>"          // Card expiry year (YYYY)
+mPaymentParams.cvv = "<cvv>"                        // CVV code on the back of the card
+```
+
+#### Store Credit/Debit Card
+
+To store the card for future transactions (such as recurring payments), the StoreCard option should be enabled. This allows the card to be saved securely for later use..
+
+```
+mPaymentParams.setCardNumber(cardNumber);
+mPaymentParams.setCardName(cardName);
+mPaymentParams.setNameOnCard(cardholderName);
+mPaymentParams.setExpiryMonth(expiryMonth);// MM
+mPaymentParams.setExpiryYear(expiryYear);// YYYY
+mPaymentParams.setCvv(cvv);
+ 
+mPaymentParam.setUserCredentials(userCredentials);
+mPaymentParam.setStoreCard(1);
+```
+
+#### Recurring Payments via Card
+
+For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
+
+```
+fun getSIDetails(): SIParams {
+    var siParams = SIParams()
+    siParams.api_version = "7"                       // API version
+    siParams.si = "1"                                // Indicates recurring payment
+    siParams.isFree_trial = false                    // Free trial flag (if applicable)
+
+    var siParamDetails = SIParamsDetails()
+    siParamDetails.billingAmount = "1.0"             // Recurring billing amount
+    siParamDetails.billingCurrency = "INR"           // Currency (INR in this example)
+    siParamDetails.billingInterval = 1               // Interval between payments (e.g., monthly)
+    siParamDetails.billingCycle = BillingCycle.ADHOC // Recurring cycle type
+    siParamDetails.paymentStartDate = "2025-09-26"   // Start date of the recurring payments
+    siParamDetails.paymentEndDate = "2025-10-26"     // End date of the recurring payments
+    
+    siParams.si_details = siParamDetails
+    return siParams
+}
+
+mPaymentParams.siParams = getSIDetails() // Add subscription details to the payment parameters
+```
+
+### Card Tokenization
+
+Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
+
+#### Card Tokenization with PayU
+
+To make payments using a previously saved card, you need to pass both the network token and the card token..
+
+```
+ cardDetails.networkToken = "<networkToken>"
+ cardDetails.cardToken = "<cardToken>"
+```
+
+#### Third-Party Card Tokenization
+
+If the card has been tokenized outside of PayU’s platform (via a third-party service), you need to provide additional tokenization information. 
+
+```
+ private fun getTokenizedDetails(): TokenizedCardAdditionalParam? {
+    var token = TokenizedCardAdditionalParam()
+    token.last4Digits = "XXXX"                // Last 4 digits of the card
+    token.tavv = "XXXXXXXXXXXXXX"             // Transaction authorization verification value
+    token.tokenRefNo = "XXXXXXXXXXXXXX"       // Reference number for tokenized card
+    token.trid = "XXXXXXXXXXXXXX"             // Transaction ID for this payment
+    return token
+}
+
+mPaymentParams.expiryMonth = "XX"              // Card expiry month (MM)
+mPaymentParams.expiryYear = "XXXX"             // Card expiry year (YYYY)
+mPaymentParams.cardToken = "XXXXXXXXXXXXXXXXX" // The token representing the saved card
+mPaymentParams.cardTokenType = 1               // Type of tokenization (e.g., 1 = PayU token, 2 = third-party token)
+mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token details
+
+```
+
+<br />
 
 ## Hash Generation
 
