@@ -53,6 +53,6 @@ name: Additional_paymentRequestParams
 
 <br />
 
-> 📘 Reference
->
-> For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+<Callout icon="📘" theme="info">
+  **Reference**: For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+</Callout>
