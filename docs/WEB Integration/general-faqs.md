@@ -14,6 +14,18 @@ metadata:
 next:
   description: ''
 ---
+This section provides answers to general frequently asked questions (FAQs) on payment integration.
+
+<Callout icon="📘" theme="info">
+  **Reference**: For the product-specific FAQs or refunds, refer to: 
+
+  * [FAQs for Refunds](doc:faqs-for-refunds)
+  * [FAQs - Recurring Payments](doc:faqs-recurring-payments)
+  * [FAQs for Split Settlements](doc:faqs-for-split-settlements)
+  * [FAQs for International Payments](doc:faqs-dynamic-currency-conversion)
+  * [FAQs for Cross-Border Payments](doc:faqs-for-cross-border-payments)
+</Callout>
+
 ## Test Environment
 
 * **How do I test my payment integration?**
