@@ -49,12 +49,6 @@ Incorporating PayU into your Checkout system offers several benefits:
 
 This section describes the request parameters with sampe request and response to integrate the Paypal.
 
-> 📘 Note:
->
-> If you're using the PayU Hosted Checkout or Merchant Hosted integration, you need to activate PayPal from PayU Dashboard. For more information, refer to [Activate PayPal Wallet](#activate-paypal-wallet).
->
-> After it is approved by PayU, PayPal integration is activated and it will be displayed on your PayU Payment page for all supported currencies. If you are facing difficulties with activation, contact your PayU Key Account Manager (KAM) for more information.
-
 ### Step 1: Initiate the payment with PayU
 
 Along the request parameters listed in the [Collect Payments using Merchant Hosted Checkout > Wallets](ref:_payment_merchant_hosted_wallets), you need use the following **bankcode** with the **pg** as CASH.
@@ -72,8 +66,8 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
 
 | **Parameter**          | **Description**                                                                                                                                                        | **Example** |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| pg **mandatory**       | *String* It defines the payment category using the Merchant Hosted Checkout integration. For a Wallet payment, "**PAYPAL**" must be specified in the **pg** parameter. | PAYPAL      |
-| bankcode **mandatory** | *String* The merchant must post  **PAYPAL** as the value for this parameter.                                                                                           | PAYPAL      |
+| pg **mandatory**       | _String_ It defines the payment category using the Merchant Hosted Checkout integration. For a Wallet payment, "**PAYPAL**" must be specified in the **pg** parameter. | PAYPAL      |
+| bankcode **mandatory** | _String_ The merchant must post  **PAYPAL** as the value for this parameter.                                                                                           | PAYPAL      |
 
 #### Sample request
 
