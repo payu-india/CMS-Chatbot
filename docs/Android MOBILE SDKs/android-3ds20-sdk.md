@@ -566,6 +566,20 @@ mPaymentParams.cardTokenType = 1               // Type of tokenization (e.g., 1 
 mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token details
 ```
 
+#### EMI 
+
+To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
+
+```
+mPaymentParams.setCardNumber("5123456789012346")   // Card number used for EMI payment
+mPaymentParams.setNameOnCard("test")               // Name on the card
+mPaymentParams.setExpiryMonth("06")                // Expiry month (MM)
+mPaymentParams.setExpiryYear("2023")               // Expiry year (YYYY)
+mPaymentParams.setCvv("123")                        // CVV of the card
+mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., EMI03)
+mPaymentParams.setPg("EMI")                         // Set payment gateway to EMI
+```
+
 ## Hash Generation
 
 You will receive a call on the generateHash method of PayU3DS2PaymentCallback.
