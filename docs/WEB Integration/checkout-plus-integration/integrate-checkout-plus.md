@@ -42,15 +42,15 @@ Add the following meta-tag & JS script in the HTML header section of your websit
 <script src="https://jssdk.payu.in/bolt/bolt.min.js"></script>
 ```
 
-> 📘 Test Script
->
-> Replace the script mentioned in the earlier code snippet with [https://jssdk-uat.payu.in/bolt/bolt.min.js](https://jssdk-uat.payu.in/bolt/bolt.min.js) to test the integration.
+<Callout icon="📘" theme="info">
+  **Test Script**: Replace the script mentioned in the earlier code snippet with [https://jssdk-uat.payu.in/bolt/bolt.min.js](https://jssdk-uat.payu.in/bolt/bolt.min.js) to test the integration.
+</Callout>
 
 ## Step 2: Pass transaction request objects
 
 The `bolt.launch()` function takes two arguments.
 
-* In the first argument, the data objects contain the transaction request data see the [request parameters](https://docs.payu.in/docs/introduction-web) section for the details of the parameters to be passed as data objects). The format of the data object is as shown below:
+* In the first argument, the data objects contain the transaction request data see the [Request parameters](#request-parameters) section for the details of the parameters to be passed as data objects). The format of the data object is as shown below:
 
 ```plaintext
 var data = { key: 'O85456',
@@ -131,9 +131,9 @@ var handlers = {responseHandler: function (BOLT) {
         
 ```
 
-> 📘 Note:
->
-> Here, when your customer clicks on the payment button (#submit), this code triggers the `bolt.launch() `function that passes the transaction parameters along with the `responseHandler()` and `catchException()`functions as arguments.
+<Callout icon="📘" theme="info">
+  **Note**: Here, when your customer clicks on the payment button (#submit), this code triggers the `bolt.launch() `function that passes the transaction parameters along with the `responseHandler()` and `catchException()`functions as arguments.
+</Callout>
 
 ### Request parameters
 
@@ -510,7 +510,7 @@ var handlers = {responseHandler: function (BOLT) {
 
 ## Step 3: Fetch the response using responseHandler
 
-The `responseHandler()` function fetches the response from PayU once the transaction is completed. In case of a successful, failed, or canceled transaction, the [response parameters](https://docs.payu.in/docs/integrate-checkout-plus#response-parameters) will be returned to the `responseHandler()` function based on the corresponding logic defined by the merchant.
+The `responseHandler()` function fetches the response from PayU once the transaction is completed. In case of a successful, failed, or canceled transaction, the [Response parameters](#response-parameters) will be returned to the `responseHandler()` function based on the corresponding logic defined by the merchant.
 
 ### **CatchException**
 
