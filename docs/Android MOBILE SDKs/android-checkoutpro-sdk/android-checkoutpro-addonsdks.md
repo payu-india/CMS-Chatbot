@@ -24,7 +24,7 @@ implementation 'in.payu:olamoney:1.3.6'
 
 On integrating, the merchant will see the native screen for entering a mobile number, verify if it is enabled for Olamoney, and do the transaction.
 
-Refer to [Ola Money SDK ](https://dash.readme.com/project/payu-hosted-checkout/v1/docs/ola-money-sdk) doc for more details
+Refer to [Ola Money SDK ](doc:ola-money-sdk) doc for more details
 
 # Google Pay InApp
 
