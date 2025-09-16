@@ -18,7 +18,7 @@ PayU Checkout Plus is the most convenient way to collect payment on your website
 >
 > * Redirection Web Checkout: [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted) .
 > * Webview configurations:
->   * [Webview Integration in Android](docs:webview-integration-in-android)
+>   * [Webview Integration in Android](doc:/webview-integration-in-android)
 >   * [Webview Integration in iOS](doc:webview-integration-in-ios)
 
 ***
