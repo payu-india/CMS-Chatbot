@@ -21,13 +21,13 @@ next:
 > Things to remember while testing an integration:
 >
 > 1. To test the integration make sure that you are making a transaction call to the test endpoint.
-> 2. Use your test key and salt for the transaction requests.  For more information, refer to [Access Test Key and Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt).
+> 2. Use your test key and salt for the transaction requests.  For more information, refer to [Access Test Key and Salt](doc:generate-test-merchant-key-and-salt).
 
 To test the PayU Hosted Checkout integration:
 
 1. After the items are added to cart, click Pay to redirect to the _PayU Payment_ page.
 
-   If any error message is displayed, refer to [Error Handling ](/docs/error-handling)and troubleshoot the error accordingly.
+   If any error message is displayed, refer to [Error Handling ](ref:error-handling)and troubleshoot the error accordingly.
 
 2. Check if all the payment modes are listed.
 
@@ -42,7 +42,7 @@ To test the PayU Hosted Checkout integration:
    * CVV: 123
    * Name on Card: Any name
 
-   For more test card details, refer to [Test Cards, UPI ID and Wallets](/docs/test-cards-upi-id-and-wallets).
+   For more test card details, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).
 
    A dummy bank OTP page is displayed.
 
