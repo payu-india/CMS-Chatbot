@@ -1,6 +1,8 @@
 ---
 name: Reverse_Hash_Types
 ---
+The order of the parameters is similar to the following code block for various integration scenarios:
+
 ### Regular integration
 
 The order of the parameters is similar to the following code block:
