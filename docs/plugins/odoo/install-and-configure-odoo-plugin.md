@@ -219,12 +219,3 @@ To verify the installation:
 1. Ensure the PayU module is displayed in your installed apps.
 2. Check that PayU is available as a payment option in your eCommerce checkout.
 3. Perform a test transaction to confirm functionality.
-
-## Next Steps
-
-After successful installation and configuration:
-
-* [Configure Payment Methods](doc:payment-methods)
-* [Set Up Webhooks](doc:webhooks)
-
-<br />
