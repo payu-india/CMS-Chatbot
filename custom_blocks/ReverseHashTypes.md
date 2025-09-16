@@ -1,5 +1,5 @@
 ---
-name: ReverseHashTypes
+name: Reverse_Hash_Types
 ---
 ### Regular integration
 
