@@ -146,7 +146,7 @@ Array
 
 ## Step 4: Verify the payment
 
-Verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to [Verify Payment API](refverify_payment_api)
+Verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to [Verify Payment API](ref:verify_payment_api)
 
 <Callout icon="📘" theme="info">
   **Note**: The transaction ID that you posted in Step 1 with PayU must be used here.
