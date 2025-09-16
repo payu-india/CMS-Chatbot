@@ -78,7 +78,7 @@ compileOptions {
 
 > 🚧 Import Runtime Issue
 >
-> 1. Dependency '`androidx.activity:activity:1.8.0`' requires libraries and applications that\
+> 1. Dependency '`androidx.activity:activity:1.8.0`' requires libraries and applications that
 >    depend on it to compile against version 34 or later of the Android APIs.
 >
 >    ```
@@ -302,8 +302,8 @@ The following fields are included in the `splitPaymentDetails` parameter in a JS
       <td>
         `string` Any of the following types of split is specified in this field.
 
-        * *- absolute:*\* The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment
-        * *- percentage*\*: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment
+        * _- absolute:_* The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment
+        * _- percentage_*: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment
       </td>
 
       <td>
@@ -313,22 +313,22 @@ The following fields are included in the `splitPaymentDetails` parameter in a JS
 
     <tr>
       <td>
-        splitInfo\
+        splitInfo
         `mandatory`
       </td>
 
       <td>
         `JSON` This parameter must include the list of aggregator sub-transaction IDs and sub-amounts as follows:
 
-        * *- aggregatorSubTxnId*\*: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only for child merchants.
-        * *- aggregatorSubAmt*\*: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.
-        * *- aggregatorCharges*\*: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.
-        * *Note*\*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.\
+        * _- aggregatorSubTxnId_*: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only for child merchants.
+        * _- aggregatorSubAmt_*: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.
+        * _- aggregatorCharges_*: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.
+        * _Note_*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.
           The sample request structure JSON Request Structure of splitInfo Field.
       </td>
 
       <td>
-        \{\
+        \{
         "merchantKey1": \{
         "aggregatorSubTxnId": "30nknyhkhib",
         "aggregatorSubAmt": "8",
@@ -368,21 +368,21 @@ paymentParam.setSkuDetails = "";
 
 > 🚧 Keep in mind
 >
-> if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities \* skuAmount of each item.
+> if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities * skuAmount of each item.
 
 ### Step 3.6: Additional parameters (Optional)
 
 Additional parameters are optional parameters such as UDF (User Defined Fields), static hashes, etc. More details on static hash generation and passing are mentioned in the hash generation section. The following is a list of other parameters that can be passed in additional parameters.
 
-| Parameter                                               | Description                                                                                            | Example      |
-| :------------------------------------------------------ | :----------------------------------------------------------------------------------------------------- | :----------- |
-| PayUCheckoutProConstants.CP\_UDF1        `optional`     | `String` User-defined field, Merchant can store their customer ID, etc.                                | udf1         |
-| PayUCheckoutProConstants.CP\_UDF2            `optional` | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf2         |
-| PayUCheckoutProConstants.CP\_UDF3        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc                                  | udf3         |
-| PayUCheckoutProConstants.CP\_UDF4        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf4         |
-| PayUCheckoutProConstants.CP\_UDF5        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf5         |
-| PayUCheckoutProConstants.SODEXO\_SOURCE\_ID `mandatory` | `String`When we use SODEXO Card payment then it's a mandatory parameter otherwise not required.        | 456788765678 |
-| PayUCheckoutProConstants.WALLET\_URN `mandatory`        | `String`When we use ClossedLoop Wallet payment then it's a mandatory parameter otherwise not required. | 67890987     |
+| Parameter                                              | Description                                                                                            | Example      |
+| :----------------------------------------------------- | :----------------------------------------------------------------------------------------------------- | :----------- |
+| PayUCheckoutProConstants.CP_UDF1        `optional`     | `String` User-defined field, Merchant can store their customer ID, etc.                                | udf1         |
+| PayUCheckoutProConstants.CP_UDF2            `optional` | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf2         |
+| PayUCheckoutProConstants.CP_UDF3        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc                                  | udf3         |
+| PayUCheckoutProConstants.CP_UDF4        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf4         |
+| PayUCheckoutProConstants.CP_UDF5        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf5         |
+| PayUCheckoutProConstants.SODEXO_SOURCE_ID `mandatory`  | `String`When we use SODEXO Card payment then it's a mandatory parameter otherwise not required.        | 456788765678 |
+| PayUCheckoutProConstants.WALLET_URN `mandatory`        | `String`When we use ClossedLoop Wallet payment then it's a mandatory parameter otherwise not required. | 67890987     |
 
 ***
 
@@ -476,7 +476,7 @@ val additionalParamsMap: HashMap = HashMap()
       </td>
 
       <td>
-        "sms\*\*\*"
+        "sms***"
       </td>
     </tr>
 
@@ -488,7 +488,7 @@ val additionalParamsMap: HashMap = HashMap()
 
       <td>
         `String` It should be unique for each transaction.
-        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "\_,$,%,&, etc"
+        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "_,$,%,&, etc"
       </td>
 
       <td>
@@ -552,7 +552,11 @@ val additionalParamsMap: HashMap = HashMap()
       </td>
 
       <td>
-        "[test@payu.in](mailto:test@payu.in)"
+        "
+
+        [test@payu.in](mailto:test@payu.in)
+
+        "
       </td>
     </tr>
 
@@ -580,8 +584,8 @@ val additionalParamsMap: HashMap = HashMap()
       <td>
         `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
 
-        * *Sample SURL for testing*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
-        * *Note*\*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
+        * _Sample SURL for testing_*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+        * _Note_*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
       </td>
 
       <td>
@@ -591,15 +595,15 @@ val additionalParamsMap: HashMap = HashMap()
 
     <tr>
       <td>
-        Furl\
+        Furl
         `mandatory`
       </td>
 
       <td>
         `String` When the transaction fails, PayU will load this URL and pass the transaction response.
 
-        * *Sample FURL for testing*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
-        * *Note*\*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
+        * _Sample FURL for testing_*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+        * _Note_*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
       </td>
 
       <td>
@@ -609,14 +613,14 @@ val additionalParamsMap: HashMap = HashMap()
 
     <tr>
       <td>
-        User Credential\
+        User Credential
         `mandatory `
       </td>
 
       <td>
-        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:\
+        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:
         `<merchantKey>:<userId>  `
-        Here, the `UserId` is any ID/email/phone number to uniquely identify the user. \*\*
+        Here, the `UserId` is any ID/email/phone number to uniquely identify the user. **
       </td>
 
       <td>
@@ -640,7 +644,7 @@ val additionalParamsMap: HashMap = HashMap()
 
     <tr>
       <td>
-        user\_token\
+        user_token
         `mandatory`
       </td>
 
@@ -655,14 +659,14 @@ val additionalParamsMap: HashMap = HashMap()
 
     <tr>
       <td>
-        SkuDetails\
+        SkuDetails
         `'madatory'`
       </td>
 
       <td>
         Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to PayUPaymentParams.
 
-        * \*Note:- \*\*When we use SKU features then it's a mandatory parameter otherwise it's not required.
+        * *Note:- **When we use SKU features then it's a mandatory parameter otherwise it's not required.
       </td>
 
       <td>
@@ -676,12 +680,12 @@ val additionalParamsMap: HashMap = HashMap()
       </td>
 
       <td>
-        String\
+        String
         This parameter is required if merchant want to take additional charge from user
       </td>
 
       <td>
-        should be string with PG:Amount or IBIBOCode:Amount\
+        should be string with PG:Amount or IBIBOCode:Amount
         Sample : CC:10,NB:20,SBIB:15
       </td>
     </tr>
@@ -692,12 +696,12 @@ val additionalParamsMap: HashMap = HashMap()
       </td>
 
       <td>
-        String\
+        String
         This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable
       </td>
 
       <td>
-        should be string with PG:Amount or IBIBOCode:Amount\
+        should be string with PG:Amount or IBIBOCode:Amount
         Sample : CC:100,NB:50,SBIB:25
       </td>
     </tr>
@@ -747,7 +751,7 @@ public void generateHash(@NotNull HashMap map, @NotNull PayUHashGenerationListen
 
 Here:
 
-`map` -> a hash map that contains hash string and hash name\
+`map` -> a hash map that contains hash string and hash name
 `hashGenerationListener` -> After the hash is generated on the merchant side. Pass the generated hash in the onHashGenerated() method of the hashGenerationListener.
 
 ```Text JAVA
@@ -761,7 +765,7 @@ interface PayUHashGenerationListener {
 } 
 ```
 
-The generateHash() method is called by the SDK each time it needs an individual hash. The CP\_HASH\_NAME will contain the name of the specific hash requested in that call, and the CP\_HASH\_STRING will contain the data/string that needs to be hashed.
+The generateHash() method is called by the SDK each time it needs an individual hash. The CP_HASH_NAME will contain the name of the specific hash requested in that call, and the CP_HASH_STRING will contain the data/string that needs to be hashed.
 
 ### Step 4.3: Getting Hash data to calculate hash
 
@@ -769,7 +773,7 @@ Checkout Pro SDK will give a callback in the `generateHash()` method whenever an
 
 To extract the hash string and hash name from the map received in `generateHash()` method, use the following keys:
 
-`CP_HASH_STRING` -> This will contain a complete hash string excluding salt. For eg, for vas for mobile SDK hash, the hash string will contain `“<key>\|<command>\|<var1>|”`. Merchant can append their salt at the end of the hash string to calculate the hash.\
+`CP_HASH_STRING` -> This will contain a complete hash string excluding salt. For eg, for vas for mobile SDK hash, the hash string will contain `“<key>\|<command>\|<var1>|”`. Merchant can append their salt at the end of the hash string to calculate the hash.
 `CP_HASH_NAME `-> This will contain the hash name.
 
 ### Step 4.4: Pass generated hash to SDK
@@ -1232,7 +1236,7 @@ paymentParam.setUserToken = "";
   <tbody>
     <tr>
       <td>
-        user\_token
+        user_token
         `mandatory`
       </td>
 
@@ -1241,7 +1245,7 @@ paymentParam.setUserToken = "";
 
         -**Card Based Offers (CC, DC, EMI):** In the case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied to the card number.
 
-        -**UPI, NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.                                                                                                                                 \*\*Note:-\*\*When we use Offer features then it's a mandatory parameter otherwise it's not required.
+        -**UPI, NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.                                                                                                                                 **Note:-**When we use Offer features then it's a mandatory parameter otherwise it's not required.
       </td>
     </tr>
   </tbody>
@@ -1261,7 +1265,7 @@ This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
 ### Step 1: Create a Custom Note List
 
-Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and `custom_note_category` need to be passed.
+Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom_note and `custom_note_category` need to be passed.
 
 ```Text Java
 // for specific custom_note_category
@@ -1343,4 +1347,4 @@ checkoutProConfig.customNoteDetails = customNote
 
 ## Additional SDK Offerings
 
-If you want to add features like **Native OTP**, **Gpay InApp**, **PhonePe Inapp**, and **Ola Money** in our PayUCheckoutPro SDK, then please refer to the below [Add-on SDKs](https://dash.readme.com/project/payu-hosted-checkout/v1/docs/android-checkoutpro-addonsdks)
+If you want to add features like **Native OTP**, **Gpay InApp**, **PhonePe Inapp**, and **Ola Money** in our PayUCheckoutPro SDK, then please refer to the below [Add-on SDKs](doc:android-checkoutpro-addonsdks)
