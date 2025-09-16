@@ -24,9 +24,11 @@ metadata:
 next:
   description: ''
 ---
-> 💬 Pre-requisites
->
-> To start transacting through Google Pay, register yourself on Google Pay using the following [Google Onboarding](https://pay.google.com/about/business/) form. In this registration process, add the Merchant VPA Ids created by PayU for you. In case of multiple VPAs, all of them need to be registered. For any queries regarding the same, raise a [ticket with PayU](https://help.payu.in/query).
+<Callout icon="💬" theme="default">
+  ### Pre-requisites
+
+  To start transacting through Google Pay, register yourself on Google Pay using the following [Google Onboarding](https://pay.google.com/about/business/) form. In this registration process, add the Merchant VPA Ids created by PayU for you. In case of multiple VPAs, all of them need to be registered. For any queries regarding the same, raise a [ticket with PayU](https://help.payu.in/query).
+</Callout>
 
 ## Step 1: Create a PayU account
 
@@ -76,7 +78,7 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
 > 📘 Ways to generate postdata
 >
 > * By UPI SDK itself (recommended if you are using UPI SDK alone)
-> * By using the [PG SDK](https://dash.readme.com/project/payu-hosted-checkout/v1/docs/android-core-sdk) library.
+> * By using the [PG SDK](doc:android-core-sdk) library.
 
 ### Step 4.1 Build the payment parameters (mandatory step)
 
@@ -253,7 +255,7 @@ To make a payment through Samsung Pay, you must have to add PayU Samsung depende
 implementation 'com.payu.samsungpay:samsungpay:1.0'
 ```
 
-* Use `PaymentPostParams` class to generate Postdata. For more information, refer to TPV Integration.\
+* Use `PaymentPostParams` class to generate Postdata. For more information, refer to TPV Integration.
   After you check the payment availability of Payment, you can go ahead to make the payment.
 
 ## Step 7: Callbacks
@@ -274,11 +276,11 @@ implementation 'com.payu.samsungpay:samsungpay:1.0'
 
 If the following error messages are received while processing payment, check your Payment Post Data or Payment hash.
 
-| Error Code | Error Message                       | Description                                                     |
-| :--------- | :---------------------------------- | :-------------------------------------------------------------- |
-| 1002       | MERCHANT\_INFO\_NOT\_PRESENT        |                                                                 |
-| 1004       | INVOKING\_APP\_NOT\_INSTALLED\_CODE | The selected app is not installed on the device.                |
-| 1005       | INVOKING\_APP\_NOT\_ONBOARDED\_CODE | Application uses have not been onboarded on UPI on the selected |
+| Error Code | Error Message                   | Description                                                     |
+| :--------- | :------------------------------ | :-------------------------------------------------------------- |
+| 1002       | MERCHANT_INFO_NOT_PRESENT       |                                                                 |
+| 1004       | INVOKING_APP_NOT_INSTALLED_CODE | The selected app is not installed on the device.                |
+| 1005       | INVOKING_APP_NOT_ONBOARDED_CODE | Application uses have not been onboarded on UPI on the selected |
 
 * `isPaymentOptionAvailable`(boolean isAvailable, PaymentOption paymentOption): The merchant must check for Samsung Pay/PhonePe payment option availability on the customer device before showing Samsung Pay/PhonePe as the payment option on their checkout page.
 * `onVpaEntered`(String vpa, IValidityCheck iValidityCheck): For Generic Intent, you need to calculate validateVpahash using VPA and provide to verifyVpa method of iValidityCheck. Hash can be calculated using the validateVpa webservice. For more information, refer to Hash Generation.
