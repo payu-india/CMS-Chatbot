@@ -16,7 +16,9 @@ next:
 2. [Check UPI Transaction Status](#step-2-check-upi-transaction-status)
 3. [PayU Sends S2S Call Back Response](#step-3-payu-sends-s2s-callback-response)
 
-<RegisterMerchantPrerequiste />
+> 👍 Before you begin:
+>
+> Register for an account with PayU before you start integration. For more information, refer to <a href="https://docs.payu.in/v1/docs/register-for-a-merchant-account-on-dashboard" target="_blank"> Register for a Merchant Account</a>.
 
 ## Step 1: Initiate payment
 
@@ -28,7 +30,7 @@ Post the **initiatePayment** API to initiate payment with all the required para
 
 ### Request parameters
 
-For the complete list of parameters, refer to [UPI Collection – S2S](_payment_s2s_upi_collection).
+For the complete list of parameters, refer to <Anchor label="UPI Collection – S2S" target="_blank" href="ref:_payment_s2s_upi_collection">UPI Collection – S2S</Anchor>.
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -113,7 +115,7 @@ For the complete list of parameters, refer to [UPI Collection – S2S](_payment_
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;<a href="glossary:pg">glossary:pg</a>&gt;<br><code>mandatory</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pg <br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The payment method is specified in this field. For UPI INTENT, specify parameter as UPI.</p>
 </td>
@@ -121,7 +123,7 @@ For the complete list of parameters, refer to [UPI Collection – S2S](_payment_
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;<a href="glossary:bankcode">glossary:bankcode</a>&gt;<br><code>mandatory</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>bankcode</<br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Each payment option is identified with a unique bank code at PayU. For UPI Intent, specify the values as INTENT.</p>
 </td>
@@ -300,7 +302,7 @@ Collect the response in the <Anchor label="UPI Collection - S2S" target="_blank"
 
 ## Step 2: Check UPI transaction status
 
-After receiving a successful response from the above API, the need to check the status of the transaction using the **Verify Payment **API. Web services can be accessed by making a server to server call on the following PayU URLs. For a sample request or response, refer to  [Verify Payment API](ref:verify_payment_api)under API Reference.
+After receiving a successful response from the above API, the need to check the status of the transaction using the **Verify Payment **API. Web services can be accessed by making a server to server call on the following PayU URLs. For a sample request or response, refer to  <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>under API Reference.
 
 ## Step 3: PayU sends S2S callback response
 
