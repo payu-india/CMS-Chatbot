@@ -36,7 +36,7 @@ next:
 
 * **I am a small merchant or developer and not an expert in developing websites with payment integration. Could you recommend the best approach for Web Checkout integration?**
 
-  PayU recommends you first do the Web Checkout integration using Low-Code SDK as it allows you to integrate low-coding efforts and to integrate with PayU much faster and swiftly. For more information, refer to [No-Code Integration](doc:introduction-1) and [Checkout Plus](doc:checkout-plus-integration).
+  PayU recommends you first do the Web Checkout integration using Low-Code SDK as it allows you to integrate low-coding efforts and to integrate with PayU much faster and swiftly. For more information, refer to [No-Code Integration](doc:introduction-no-code-payments-integration) and [Checkout Plus](doc:checkout-plus-integration).
 
   Later, you can integrate using Prebuilt Checkout Pages or PayU Hosted Checkout integration. For more information, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
 
@@ -212,10 +212,6 @@ If the Key and Salt are still not working, contact your KAM or raise a ticket wi
 
   You can use the **Validate UPI Handle** API to validate a customer’s VPA. For more information, refer to [Validate UPI Handle API](ref:validate_vpa_api).
 
-* **How do I send invoice to my customers through SMS or email?**
-
-  You can send invoice to your customers through SMS or email using the [Create Invoice API](ref:create_invoice_api).
-
 * **Which API is used to capture at a transaction level: the TDR, Service Tax, NCEMI / Discount, UTR Number amount along with the other details for a given order ID?**
 
   You can use the **Transaction Details API** to check these details. For more information, refer to [Transaction Detail APIs](ref:transaction-detail-apis).
@@ -303,7 +299,7 @@ You cannot include only udf1 to udf5, so udf6 to udf10 cannot be included with h
 
 * **I am a PayU’s partner and I onboarded merchants to PayU. How do I my merchants can collect payments?**
 
-  Merchants onboarded by partners using [Refer Merchants using Partner Portal](doc:partner-portal) or [Refer Merchants using Integration APIs](doc:refer-merchants)can collect payments using PayU Hosted Checkout. For more information on PayU Hosted Checkout Integration, refer to [PayU Hosted Checkout](doc:custom-checkout-merchant-hosted).
+  Merchants onboarded by partners using [Refer Merchants using Partner Portal](doc:partner-portal) or [Refer Merchants using Integration APIs](ref:partner-integration-api-introductio)can collect payments using PayU Hosted Checkout. For more information on PayU Hosted Checkout Integration, refer to [PayU Hosted Checkout](doc:custom-checkout-merchant-hosted).
 
 * **Can PayU enable the following payment URL for UPI to create payment links**.
 
