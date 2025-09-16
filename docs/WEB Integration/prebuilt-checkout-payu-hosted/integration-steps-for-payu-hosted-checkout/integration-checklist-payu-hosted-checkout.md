@@ -33,9 +33,9 @@ Use the following checklist to ensure your PayU Hosted Checkout integration is c
 >
 > * [Working with Response after a Customer Checkout](doc:working-with-response-after-a-customer-checkout)
 
-2. Verified the Response from PayU. For more information on responses, refer to [Verify Payment API](ref:verify_payment_api).
+2. Verified the Response from PayU. For more information on responses, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>.
 3. Completed the callback response (reverse hashing) is not tampered with. For more information, refer to [Hashing Request and Response](doc:generate-hash-payu-hosted).
 4. Confirmed the transaction status on the Server-side, if the callback fail. Use Webhooks for hearing callbacks. For more information, refer to ~~Verify Payment Status ~~ (under API Reference) and [Webhooks](/docs/webhooks).
 5. Completed the integration on Production. The endpoint for the  Production environment is:
 
-    [https://secure.payu.in/](https://secure.payu.in/)
+   [https://secure.payu.in/](https://secure.payu.in/)
