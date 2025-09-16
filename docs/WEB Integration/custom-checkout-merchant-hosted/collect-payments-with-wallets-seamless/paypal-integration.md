@@ -62,7 +62,7 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
 
 > 📘 Reference:
 >
-> For the complete list of parameters (with **Try It** experience ) and response, refer to <a href="_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
+> For the complete list of parameters (with **Try It** experience ) and response, refer to <a href="https://docs.payu.in/reference/_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
 
 | **Parameter**          | **Description**                                                                                                                                                        | **Example** |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
