@@ -174,7 +174,7 @@ The description of fields in the **transaction** JSON of the response:
     </tr>
     <tr>
       <td align="left">mode</td>
-      <td align="left">This parameter contains the mode of the transaction such as credit card, debit card, etc. For more information, refer to <a href="doc:payment-mode-codes">Payment Mode Codes</a>.</td>
+      <td align="left">This parameter contains the mode of the transaction such as credit card, debit card, etc. For more information, refer to <a href="http://docs.payu.in/docs/payment-mode-codes">Payment Mode Codes</a>.</td>
       <td align="left">CC</td>
     </tr>
     <tr>
