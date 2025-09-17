@@ -19,13 +19,13 @@ The parent merchant can be on any one of the following models:
 * TDR Model
 * Convenience Fee Model
 
-> 📘 Note:
->
-> The convenience fee will not be refunded to the parent when refund is requested for a transaction.
+<Callout icon="📘" theme="info">
+  **Note**: The convenience fee will not be refunded to the parent when refund is requested for a transaction.
+</Callout>
 
 ## Split details for Convenience fee
 
-* The convenience fee will be applied to parent only.\
+* The convenience fee will be applied to parent only.
   For example, if a transaction T is Rs 100 and the convenience is Rs 10 and there is a split as follows:
   * **T1**: INR 40 (transaction fee: 40, amount:40) on C1(normal child)
   * **T2**: INR 60 (transaction fee: 60, amount:60) on C2(normal child).
@@ -33,15 +33,15 @@ The parent merchant can be on any one of the following models:
 
 > 📘 Notes:
 >
-> * PayU will automatically calculate the convenience fee (T3 as in the above list) as own child transaction. The convenience fee is based on configuration during onboarding. For more information, contact your PayU Key Account Manager (KAM). 
+> * PayU will automatically calculate the convenience fee (T3 as in the above list) as own child transaction. The convenience fee is based on configuration during onboarding. For more information, contact your PayU Key Account Manager (KAM).
 > * In this case, to adjust convenience, one parent’s own child transaction would be created T3 with INR 10 (transaction fee: 0, amount: 10) which contains the convenience fee.
 
 ## Sample request
 
 Split JSON request for the example described in [Split Details for Convenience Fee](#split-details-for-convenience-fee). For a list of request parameters for split payment requests, refer to the following sections:
 
-* [Split During Payment](ref:splitduringpayment)
-* [Split After Transaction API](ref:split_after_transaction_api)
+* <Anchor label="Split During Payment" target="_blank" href="ref:split-during-transaction-using-_payment">Split During Payment</Anchor>
+* <Anchor label="Split After Transaction API" target="_blank" href="ref:split_after_transaction_api">Split After Transaction API</Anchor>
 
 For a complete list of request parameters, refer to [Merchant Hosted Checkout Integration](doc:custom-checkout-merchant-hosted)
 
@@ -67,7 +67,7 @@ For a complete list of request parameters, refer to [Merchant Hosted Checkout In
 
 ## Sample response
 
-The **splitStatus** parameter in JSON format of response for the Split Details for Convenience Fee with Example. The additionalCharges field in the JSON contains the convenience fee details and it is applied only for parent own child. The transaction\_fee field in the JSON contains the amount split for each child.
+The **splitStatus** parameter in JSON format of response for the Split Details for Convenience Fee with Example. The additionalCharges field in the JSON contains the convenience fee details and it is applied only for parent own child. The transaction_fee field in the JSON contains the amount split for each child.
 
 ```
 {
