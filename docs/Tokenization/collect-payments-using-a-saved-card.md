@@ -54,7 +54,7 @@ For all the scenarios mentioned in this section you must follow the
    > 📘 Notes:
    >
    > * In addition to the request parameters used for Merchant Hosted Checkout (Seamless integration) payment request, you need to ensure the additional parameters as specified in each scenario specified in this step. For more information on the complete list of parameters, refer to Integrate with Merchant Hosted Checkout.
-   > * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted)
+   > * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="ref:_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>
 
 3. **Verify the Payment**: Verify the transaction details using the Verification APIs. Post the transaction ID using the **verify_payment** API to verify the payment. For more information, refer to [Verify Payment API](ref:verify_payment_api)
 
@@ -136,7 +136,7 @@ This scenario is applicable where you are on a decoupled flow. This is where you
 
 **Decoupled flow**: You are sending the authentication request to PayU and if the merchant wishes to send the authorization request eventually or to other aggregators.
 
-For the sample request and response, refer to <Anchor label="Using Card on a Decoupled Flow with Network Token or Other Partner Tokenization" target="_blank" href="ref:using-card-tokenized-with-payu-1">Using Card on a Decoupled Flow with Network Token or Other Partner Tokenization</Anchor>.
+For the sample request and response, refer to <Anchor label="Using Card on a Decoupled Flow with Network Token or Other Partner Tokenization" target="_blank" href="ref:using-card-tokenized-with-payu">Using Card on a Decoupled Flow with Network Token or Other Partner Tokenization</Anchor>.
 
 ## Using card on a decoupled flow with PayU tokenization
 
