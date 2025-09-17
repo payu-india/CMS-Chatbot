@@ -28,12 +28,12 @@ This API requires an access token using the **Get Token** API with the scope as 
 > 📘 Note:
 >
 > * The access token with the scope as **EsignMergedDocument** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
-> * uuid value can be found in the response of the \*\*Create Merchant \*\* API that must be used as the path parameter. For more information, refer to [Create Merchant API](ref:create_merchant_api).
+> * uuid value can be found in the response of the **Create Merchant ** API that must be used as the path parameter. For more information, refer to [Create Merchant API](ref:create_merchant_api).
 
-|               |                            |
-| ------------- | -------------------------- |
-| Authorization | Bearer \{\{access\_token}} |
-| Content-Type  | multipart/form-data        |
+|               |                           |
+| ------------- | ------------------------- |
+| Authorization | Bearer \{\{access_token}} |
+| Content-Type  | multipart/form-data       |
 
 ## Request Parameters
 
@@ -49,7 +49,7 @@ This API requires an access token using the **Get Token** API with the scope as 
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>otp<br><strong>mandatory</strong> </p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must include the OTP that is received by merchant when you initiate the Send OTP to Signatory Email API. For more information, refer to <a href="ref:send-otp-to-signatory-email-api">Send OTP to Signatory Email API</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must include the OTP that is received by merchant when you initiate the Send OTP to Signatory Email API. For more information, refer to <a href="http://docs.payu.in/reference/send-otp-to-signatory-email-api">Send OTP to Signatory Email API</a></p>
 </td>
 </tr>
 </tbody>
@@ -64,7 +64,7 @@ curl --location --request POST '{{onboarding_url}}/api/v3/merchants/{{merchant_u
 --data-urlencode 'otp=0025'
 ```
 
-Where **\{\{onboarding\_url}}** is substituted with the URL specified in the Test or Production environment as mentioned in the *Environment* section.
+Where **\{\{onboarding_url}}** is substituted with the URL specified in the Test or Production environment as mentioned in the _Environment_ section.
 
 ## Sample Response
 
@@ -116,9 +116,9 @@ Successful response
 
 ### Failure Scenarios
 
-* Merchant is not found with the given merchant\_uuid
+* Merchant is not found with the given merchant_uuid
 
-Merchant is not found with the given merchant\_uuid
+Merchant is not found with the given merchant_uuid
 
 ```plaintext
 {
@@ -146,9 +146,9 @@ OTP is incorrect
 }
 ```
 
-* KYC document not found with the given merged\_document\_uuid
+* KYC document not found with the given merged_document_uuid
 
-KYC document not found with the given merged\_document\_uuid
+KYC document not found with the given merged_document_uuid
 
 ```plaintext
 {
