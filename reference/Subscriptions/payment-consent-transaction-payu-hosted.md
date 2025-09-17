@@ -239,7 +239,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 
       <td style={{ textAlign: "left" }}>
         This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.
-        <br/><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections: <br/>- <a href="ref:manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a> <br/>- <a href="ref:api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a>
+        <br/><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections: <br/>- <a href="http://docs.payu.in/docs/manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a> <br/>- <a href="http://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a>
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -311,7 +311,7 @@ For parameters address1, address2, city, state, country, product info, email, an
 
 * Characters: A to Z, a to z, 0 to 9
 * – (Minus)
-* \_ (Underscore)
+* _ (Underscore)
 * @ ()
 * / (Slash)
 * (Space)
