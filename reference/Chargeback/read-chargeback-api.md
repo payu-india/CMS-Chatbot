@@ -46,7 +46,7 @@ This must contain the header with token you get using the Get Token API in the f
   <tbody>
     <tr>
       <td>
-        merchant\_Id
+        merchant_Id
         `mandatory`
       </td>
 
@@ -91,7 +91,7 @@ This must contain the header with token you get using the Get Token API in the f
   <tbody>
     <tr>
       <td>
-        merchant\_Id
+        merchant_Id
         `mandatory`
       </td>
 
@@ -106,7 +106,7 @@ This must contain the header with token you get using the Get Token API in the f
 
     <tr>
       <td>
-        from\_date
+        from_date
         `mandatory`
       </td>
 
@@ -121,7 +121,7 @@ This must contain the header with token you get using the Get Token API in the f
 
     <tr>
       <td>
-        to\_date
+        to_date
         `optional`
       </td>
 
@@ -167,7 +167,7 @@ curl --location 'https://bankportal.payu.in/api/v1/chargebacks?from_date=20-02-2
 | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id         | This parameter contains the  chargeback ID.                                                                                                                                |
 | type       | The parameter contains the **chargebacks** as type.                                                                                                                        |
-| attributes | This parameter contains the chargeback details in a JSON format. For more information, refer to  [attributes JSON field descriptions](attributes-json-field-descriptions). |
+| attributes | This parameter contains the chargeback details in a JSON format. For more information, refer to  [attributes JSON field descriptions](#attributes-json-field-descriptions). |
 
 ### attributes JSON field descriptions
 
