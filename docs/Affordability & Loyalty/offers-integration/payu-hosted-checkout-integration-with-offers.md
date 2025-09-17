@@ -58,12 +58,7 @@ The PayU Hosted Checkout page on Mobile
 
 The PayU Hosted Checkout page for specific payment option on Mobile is similar to the following screenshot:
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Mweb.L2.Without-Global-Vault_Cards_Filled-Copy.png)
-
 5. Alternatively, the customer can choose the payment option. If only an offer is applicable for that payment option, the offer will be automatically applied.
-
-![Picture 1522098393](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/picture-1522098393.png)
-
 6. For Instant Discount, the amount is reduced after the offer is applied, whereas, in the case of cashback, the amount will not be reduced after the offer is applied.
 7. Customer completes the 2FA payment on the adjusted amount.
 8. Customer is redirected back to the merchant’s mobile application or website.
@@ -72,9 +67,9 @@ The PayU Hosted Checkout page for specific payment option on Mobile is similar t
 
 To integrate offers using PayU Hosted Checkout integration:
 
-> 📘 **Reference**:
->
-> For the PayU Hosted Checkout flow, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
+<Callout icon="📘" theme="info">
+   **Reference**: For the PayU Hosted Checkout flow, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
+</Callout>
 
 1. Make the payment request to PayU:
 
@@ -101,7 +96,7 @@ To integrate offers using PayU Hosted Checkout integration:
     <tr>
       <td>
         api_version
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -116,7 +111,7 @@ To integrate offers using PayU Hosted Checkout integration:
     <tr>
       <td>
         user_token
-        **mandatory for UPI, NB, Wallet**
+        `mandatory for UPI, NB, Wallet`
       </td>
 
       <td>
@@ -134,7 +129,7 @@ To integrate offers using PayU Hosted Checkout integration:
     <tr>
       <td>
         hash
-        **mandatory**
+        for UPI, NB, Wallet
       </td>
 
       <td>
@@ -261,9 +256,9 @@ After you create an SKU-based offer on PayU Dashboard, you can start collecting 
 
 This section describes the customer workflow with an SKU-based offer on the PayU Payment page when redirected from your website for payment and request parameters for the **_payment** API to collect payments with an SKU-Based Offer.
 
-> 📘 Note:
->
-> For payment journey of instant discount offers using Redirection Flow or PayU Hosted Checkout, refer to [Integrate with PayU Hosted Checkout](doc:payu-hosted-checkout-integration-with-offers).
+<Callout icon="📘" theme="info">
+  **Note**: For payment journey of instant discount offers using Redirection Flow or PayU Hosted Checkout, refer to [Integrate with PayU Hosted Checkout](doc:payu-hosted-checkout-integration-with-offers).
+</Callout>
 
 ### Customer journey
 
@@ -323,41 +318,41 @@ The following request parameters are posted along with request parameters posted
     <tr>
       <td>
         cart_details
-        **mandatory for SKU**
+        `mandatory for SKU`
       </td>
 
       <td>
-        * JSON Object_ The card details is specified in this parameter in a JSON format.
-        * _Note_*: If given null, no cart will be created for the transaction.
+        `JSON Object `The card details is specified in this parameter in a JSON format. 
+        **Note**: If given null, no cart will be created for the transaction.
       </td>
     </tr>
 
     <tr>
       <td>
         cart_details.amount
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
-        * String_ The amount for the SKU-based offer.
+        `String` The amount for the SKU-based offer.
       </td>
     </tr>
 
     <tr>
       <td>
         cart_details.surcharges
-        **conditional**
+        `conditional`
       </td>
 
       <td>
-        * String_ Total txn amount is now increased, but the cart_details.amount is lesser, to handle the difference, the additonal amount added by the merchant should be passed in surcharges field
+        `String` Total txn amount is now increased, but the cart_details.amount is lesser, to handle the difference, the additonal amount added by the merchant should be passed in surcharges field
       </td>
     </tr>
 
     <tr>
       <td>
         cart_details.pre_discount
-        **conditional**
+        `conditional`
       </td>
 
       <td>
@@ -368,7 +363,7 @@ The following request parameters are posted along with request parameters posted
     <tr>
       <td>
         cart_details.items
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -379,7 +374,7 @@ The following request parameters are posted along with request parameters posted
     <tr>
       <td>
         cart_details.sku_details
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -390,7 +385,7 @@ The following request parameters are posted along with request parameters posted
     <tr>
       <td>
         cart_details.sku_details.sku_id
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -402,55 +397,55 @@ The following request parameters are posted along with request parameters posted
     <tr>
       <td>
         sku_details.sku_name
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
-        * String _ This parameter contains the SKU name.
+        `String`  This parameter contains the SKU name.
       </td>
     </tr>
 
     <tr>
       <td>
         sku_details.quantity
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
-        * String _ The parameter must contain the quantity of SKU added in cart.
+        `String`  The parameter must contain the quantity of SKU added in cart.
       </td>
     </tr>
 
     <tr>
       <td>
         sku_details.amount_per_sku
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
-        * String _ The parameter must contain the per SKU amount.
+        `String`  The parameter must contain the per SKU amount.
       </td>
     </tr>
 
     <tr>
       <td>
         sku_details.offer_key
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
-        * String_ This parameter must contain the Offer Key(s) which can be used for this transaction. |
+        `String` This parameter must contain the Offer Key(s) which can be used for this transaction. |
       </td>
     </tr>
 
     <tr>
       <td>
         sku_details.offer_auto_apply
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
-        * String_This parameter contains the flag for when to enable auto application of best offer on this SKU.
+        `String` This parameter contains the flag for when to enable auto application of best offer on this SKU.
       </td>
     </tr>
   </tbody>
@@ -1161,4 +1156,4 @@ For a list of error messages for the failure scenarios, refer to [Error Codes f
 
 #### Step 3: Verify Payment
 
-Verify the payment using the **Verify Payment** API. For more information, For API reference, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>. 
+Verify the payment using the **Verify Payment** API. For more information, For API reference, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>.
