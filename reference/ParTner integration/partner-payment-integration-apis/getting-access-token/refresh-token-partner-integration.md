@@ -12,16 +12,16 @@ next:
 ---
 This API is used to generate a refresh token to obtain a renewed access token using client ID.
 
-> 📘 Note:
->
-> You can use this API when the token generated using the** Get Token **API has expired. The expiry period of the token generated using this API is configurable by you (partner). The expiry period (in seconds) of the token is displayed in the **expires_in** parameter of the response.
+<Callout icon="📘" theme="info">
+  **Note**: You can use this API when the token generated using the** Get Token **API has expired. The expiry period of the token generated using this API is configurable by you (partner). The expiry period (in seconds) of the token is displayed in the **expires_in** parameter of the response.
+</Callout>
 
 **Environment**
 
-|                |                                |
-| :------------- | :----------------------------- |
-| **Test**       | \<https://uat-accounts.payu.in> |
-| **Production** | \<https://accounts.payu.in>     |
+|                |                                                                  |
+| :------------- | :--------------------------------------------------------------- |
+| **Test**       | \<[https://uat-accounts.payu.in>](https://uat-accounts.payu.in>) |
+| **Production** | \<[https://accounts.payu.in>](https://accounts.payu.in>)         |
 
 ## Request parameters
 
@@ -61,7 +61,7 @@ This API is used to generate a refresh token to obtain a renewed access token us
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>refresh_token<br><strong>mandatory</strong></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Indicates the refresh token. This is the token that was generated using the  <a href="ref:getting-access-token">Get Access Token - WhatsApp</a>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Indicates the refresh token. This is the token that was generated using the  <a href="http://docs.payu.in/reference/getting-access-token">Get Access Token - WhatsApp</a>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
