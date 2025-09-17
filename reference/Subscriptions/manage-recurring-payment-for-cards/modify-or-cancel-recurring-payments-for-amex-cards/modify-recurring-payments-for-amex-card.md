@@ -28,7 +28,7 @@ next:
       title: Cancel the Recurring Payment for a Card
       type: endpoint
 ---
-This section describes how to use the **\_payment** API to update an existing recurring payment for American Express (AMEX) cards.
+This section describes how to use the **_payment** API to update an existing recurring payment for American Express (AMEX) cards.
 
 > 📘 Note:
 >
@@ -87,7 +87,7 @@ The following table describes the parameters for modifying the recurring payment
     </tr>
     <tr>
       <td>unmappedstatus</td>
-      <td>This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to <a href="ref:payment-state-explanations">Payment State Explanations</a>.</td>
+      <td>This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to <a href="http://docs.payu.in/reference/payment-state-explanations">Payment State Explanations</a>.</td>
     </tr>
     <tr>
       <td>key</td>
@@ -99,7 +99,7 @@ The following table describes the parameters for modifying the recurring payment
     </tr>
     <tr>
       <td>error_message</td>
-      <td>This parameter contains the error message. For the list of error message, refer to <a href="ref:error-codes">Error Codes</a>.</td>
+      <td>This parameter contains the error message. For the list of error message, refer to <a href="http://docs.payu.in/reference/error-codes">Error Codes</a>.</td>
     </tr>
     <tr>
       <td>bank_ref_num</td>
@@ -151,7 +151,7 @@ The following table describes the parameters for modifying the recurring payment
     </tr>
     <tr>
       <td>hash</td>
-      <td>This parameter is crucial and is similar to the hash parameter used in the transaction request. For more information, refer to <a href="doc:generate-hash-merchant-hosted">Generate Hash</a>.</td>
+      <td>This parameter is crucial and is similar to the hash parameter used in the transaction request. For more information, refer to <a href="http://docs.payu.in/docs/generate-hash-merchant-hosted">Generate Hash</a>.</td>
     </tr>
     <tr>
       <td>PG_TYPE</td>
@@ -254,7 +254,7 @@ This is applicable for the following scenarios:
   <tbody>
     <tr>
       <td>
-        store\_card\_token
+        store_card_token
         `mandatory for store card transactions`
       </td>
 
@@ -269,7 +269,7 @@ This is applicable for the following scenarios:
 
     <tr>
       <td>
-        storecard\_token\_type
+        storecard_token_type
         `mandatory`
       </td>
 
@@ -284,7 +284,7 @@ This is applicable for the following scenarios:
 
     <tr>
       <td>
-        additional\_info
+        additional_info
         `mandatory`
       </td>
 
@@ -300,7 +300,7 @@ This is applicable for the following scenarios:
   </tbody>
 </Table>
 
-> 📘 Notes for **additional\_info** parameter:
+> 📘 Notes for **additional_info** parameter:
 >
 > The JSON format contains the following fields:
 >
@@ -314,9 +314,9 @@ This is applicable for the following scenarios:
 > * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
 > * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
 
-#### si\_details Parameter – JSON Details
+#### si_details Parameter – JSON Details
 
-The description for the **si\_details** parameter (JSON format):
+The description for the **si_details** parameter (JSON format):
 
 > 📘 Notes:
 >
@@ -324,7 +324,7 @@ The description for the **si\_details** parameter (JSON format):
 >   * billingCycle
 >   * billingInterval
 >   * billingAmount
-> * If the request was to modify a subscription,  **si\_consent\_action** parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
+> * If the request was to modify a subscription,  **si_consent_action** parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
 
 <br />
 
@@ -387,12 +387,12 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        billingAmount\
+        billingAmount
         **optional**
       </td>
 
       <td>
-        The billing amount is passed in XX. XX format.\
+        The billing amount is passed in XX. XX format.
         In use cases where **billingCycle = ADHOC**, amount passed is treated as maximum amount since billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.  For UPI, **billingAmount** should not be more than INR 15000 as it is the maximum limit allowed for UPI currently.
       </td>
 
@@ -403,7 +403,7 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        billingCurrency\
+        billingCurrency
         **optional**
       </td>
 
@@ -418,7 +418,7 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        paymentEndDate\
+        paymentEndDate
         **mandatory**
       </td>
 
@@ -435,7 +435,7 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        siTokenRequestor\
+        siTokenRequestor
         **mandatory for saved cards**
       </td>
 
@@ -453,7 +453,7 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        remarks\
+        remarks
         **mandatory**
       </td>
 
@@ -470,7 +470,7 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        authpayuid\
+        authpayuid
         **mandatory for modifying subscription with cards**
       </td>
 
@@ -485,7 +485,7 @@ The description for the **si\_details** parameter (JSON format):
 
     <tr>
       <td>
-        action\
+        action
         **mandatory for cards**
       </td>
 
@@ -500,7 +500,7 @@ The description for the **si\_details** parameter (JSON format):
   </tbody>
 </Table>
 
-### **si\_details JSON example**
+### **si_details JSON example**
 
 For a yearly plan starting from 1st January 2019, having a monthly billing amount of INR 100, the plan details:
 
