@@ -34,25 +34,25 @@ To integrate Wix with PayU as a payment gateway:
 
 2. Select **Settings** from the menu (at the bottom of the left navigation pane).
 
-   The *Settings* page is displayed.
+   The _Settings_ page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Wix_Accept_Payments_menu_selection-1024x473.png)
 
 3. Select **Accept Payments** on the **Settings** page.
 
-   The *Accept Payments* page is displayed.
+   The _Accept Payments_ page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Wix_See_More_Pymt_Options-1024x539.png)
 
 4. Click **See More Payment Options** at the bottom.
 
-   The *More Payment Options* page is displayed.
+   The _More Payment Options_ page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Wix_More_Pymt_Options_Page-1024x512.png)
 
 5. Click **Connect** on the **PayU India** tile.
 
-   The *Connect PayU* India page is displayed.
+   The _Connect PayU_ India page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Wix_Connect_PayU_India_Page1-1024x571.png)
 
@@ -77,6 +77,6 @@ The “PayU India connected” message is displayed similar to the following scr
 
 <Image align="center" width="512px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Wix_Connect_Success-1024x648.png" />
 
-> 📘 Note:
->
-> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="https://docs.payu.in/reference/introduction-api-reference/verify_payment_api" target="_blank">Verify Payment API</a>..
+<Callout icon="📘" theme="info">
+  **Note**: PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>..
+</Callout>
