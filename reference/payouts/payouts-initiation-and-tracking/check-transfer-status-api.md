@@ -116,130 +116,130 @@ HTTP Method: **POST**
   <summary> Response parameters description</summary>
 
   <HTMLBlock>{`
-            <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-            <tr>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of web service call. The status can be any of the following:  </p>
-            <ul>
-            <li><strong>0</strong> - If web service call succeeded.</li>
-            <li><strong>1</strong> - If web service call failed</li>
-            </ul>
-            </td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>msg</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the message to convey success or failure.</p>
-            </td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>code</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the code.</p>
-            </td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>data</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the transfer status in a JSON format. Refer the <a href="#description-of-data-parameter-fields">Description of data Parameter Fields</a></p>
-            </td>
-            </tr>
-            </tbody>
-            </table>
+                <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                <tr>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of web service call. The status can be any of the following:  </p>
+                <ul>
+                <li><strong>0</strong> - If web service call succeeded.</li>
+                <li><strong>1</strong> - If web service call failed</li>
+                </ul>
+                </td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>msg</p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the message to convey success or failure.</p>
+                </td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>code</p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the code.</p>
+                </td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>data</p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the transfer status in a JSON format. Refer the <a href="#description-of-data-parameter-fields">Description of data Parameter Fields</a></p>
+                </td>
+                </tr>
+                </tbody>
+                </table>
   `}</HTMLBlock>
 
   ### Description of data parameter fields
 
   <HTMLBlock>{`
-            <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-            <tr>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>noOfPages</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>The field contains the number of pages with the transfer status details.</p>
-            </td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>totalElements</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>The field contains the number of elements with the transfer status details.</p>
-            </td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>currentPage</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>The field contains the current page that is returned.</p>
-            </td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>totalAmount</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>The field contains the total amount of the transaction.</p>
-            </td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>succesTxn</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>The field contains the code whether transaction is successful.</p>
-            </td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>pendingTxn</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the code whether transaction is pending.</p>
-            </td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>transactionDetails</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the following transaction details in an JSON format and each object contains the following details:  </p>
-            <ul>
-            <li><strong>txnId</strong>: Contains the transaction ID from PayU</li>
-            <li><strong>batchId</strong>: Contains the batch ID provided by merchant at the time of initiating transfer</li>
-            <li><strong>merchantRefId</strong>: merchantRefId provided by merchant at the time of initiating transfer</li>
-            <li>purpose: Contains the purpose provided by merchant at the time of initiating transfer</li>
-            <li><strong>amount</strong>: The amount transferred for this transaction</li>
-            <li><strong>txnStatus</strong>: Contains the transaction status for this transaction. For list of transaction status, refer to <a href="https://devguide.vercel.app/payouts-api/payouts-initiation-and-tracking/check-transfer-status-api/#Transaction_Status">Transaction Status</a>  sub-section</li>
-            <li><strong>txnSubStatus</strong>: Contains the sub-status of the transaction</li>
-            <li><strong>txnSource</strong>: Contains the source of transaction from where it is initiated</li>
-            <li><strong>txnDate</strong>: The date when transaction initiated</li>
-            <li><strong>scheduledTxnDate</strong>: The date when transactions is scheduled</li>
-            <li><strong>payuTransactionRefNo</strong>: Contains the PayU transaction reference number.</li>
-            <li><strong>beneficiaryName</strong>: Contains the name of the beneficiary passed in request</li>
-            <li><strong>beneficiaryCardNo</strong>: Contains the name of the beneficiary passed in request</li>
-            <li><strong>msg</strong>: Contains the response message for transaction</li>
-            <li><strong>responseCode</strong>: Contains the response code from PayU, For the list of response codes, refer to <a href="https://devguide.payu.in/payouts-api/miscellaneous-2/payouts-error-codes/">Payouts Error Codes</a></li>
-            <li><strong>transferType</strong>: Contains the mode of the transfer used while initiating request (IMPS,NEFT,UPI)</li>
-            <li><strong>bankTransactionRefNo</strong>: Contains the bank transfer reference number</li>
-            <li><strong>nameWithBank</strong>: Contains the beneficiary name as per bank</li>
-            <li><strong>lastStatusUpdateDate</strong>: Contains the transfer terminating state time (Transfer success or failure time)</li>
-            <li>succeedOn</li>
-            <li><strong>fee</strong>: the fee charged for transaction. This is basis the agreement signed by merchant</li>
-            <li><strong>tax</strong>:applicable on fee as applicable</li>
-            <li><strong>txnStatusDescription</strong>: show description of transaction failed/queued reason</li>
-            <li><strong>custom1</strong>: entered by merchant in Initiate transfer API</li>
-            <li><strong>custom2</strong>: entered by merchant in Initiate transfer API</li>
-            <li><strong>custom2</strong>: entered by merchant in Initiate transfer API</li>
-            <li><strong>nameMatch</strong>: Will return name match percentage for penny drop with name match transaction</li>
-            </ul>
-            </td>
-            </tr>
-            </tbody>
-            </table>
+                <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                <tr>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>noOfPages</p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>The field contains the number of pages with the transfer status details.</p>
+                </td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>totalElements</p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>The field contains the number of elements with the transfer status details.</p>
+                </td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>currentPage</p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>The field contains the current page that is returned.</p>
+                </td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>totalAmount</p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>The field contains the total amount of the transaction.</p>
+                </td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>succesTxn</p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>The field contains the code whether transaction is successful.</p>
+                </td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>pendingTxn</p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the code whether transaction is pending.</p>
+                </td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>transactionDetails</p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the following transaction details in an JSON format and each object contains the following details:  </p>
+                <ul>
+                <li><strong>txnId</strong>: Contains the transaction ID from PayU</li>
+                <li><strong>batchId</strong>: Contains the batch ID provided by merchant at the time of initiating transfer</li>
+                <li><strong>merchantRefId</strong>: merchantRefId provided by merchant at the time of initiating transfer</li>
+                <li>purpose: Contains the purpose provided by merchant at the time of initiating transfer</li>
+                <li><strong>amount</strong>: The amount transferred for this transaction</li>
+                <li><strong>txnStatus</strong>: Contains the transaction status for this transaction. For list of transaction status, refer to <a href="https://devguide.vercel.app/payouts-api/payouts-initiation-and-tracking/check-transfer-status-api/#Transaction_Status">Transaction Status</a>  sub-section</li>
+                <li><strong>txnSubStatus</strong>: Contains the sub-status of the transaction</li>
+                <li><strong>txnSource</strong>: Contains the source of transaction from where it is initiated</li>
+                <li><strong>txnDate</strong>: The date when transaction initiated</li>
+                <li><strong>scheduledTxnDate</strong>: The date when transactions is scheduled</li>
+                <li><strong>payuTransactionRefNo</strong>: Contains the PayU transaction reference number.</li>
+                <li><strong>beneficiaryName</strong>: Contains the name of the beneficiary passed in request</li>
+                <li><strong>beneficiaryCardNo</strong>: Contains the name of the beneficiary passed in request</li>
+                <li><strong>msg</strong>: Contains the response message for transaction</li>
+                <li><strong>responseCode</strong>: Contains the response code from PayU, For the list of response codes, refer to <a href="https://devguide.payu.in/payouts-api/miscellaneous-2/payouts-error-codes/">Payouts Error Codes</a></li>
+                <li><strong>transferType</strong>: Contains the mode of the transfer used while initiating request (IMPS,NEFT,UPI)</li>
+                <li><strong>bankTransactionRefNo</strong>: Contains the bank transfer reference number</li>
+                <li><strong>nameWithBank</strong>: Contains the beneficiary name as per bank</li>
+                <li><strong>lastStatusUpdateDate</strong>: Contains the transfer terminating state time (Transfer success or failure time)</li>
+                <li>succeedOn</li>
+                <li><strong>fee</strong>: the fee charged for transaction. This is basis the agreement signed by merchant</li>
+                <li><strong>tax</strong>:applicable on fee as applicable</li>
+                <li><strong>txnStatusDescription</strong>: show description of transaction failed/queued reason</li>
+                <li><strong>custom1</strong>: entered by merchant in Initiate transfer API</li>
+                <li><strong>custom2</strong>: entered by merchant in Initiate transfer API</li>
+                <li><strong>custom2</strong>: entered by merchant in Initiate transfer API</li>
+                <li><strong>nameMatch</strong>: Will return name match percentage for penny drop with name match transaction</li>
+                </ul>
+                </td>
+                </tr>
+                </tbody>
+                </table>
   `}</HTMLBlock>
 
   This field contains the following transaction details in an JSON format and each object contains the following details:\
@@ -263,46 +263,43 @@ HTTP Method: **POST**
 >
 > The payoutMerchantId is different from PayU Merchant Id. Check the Payouts Dashboard or call the PayU Customer Support if you don’t know your payoutMerchantId.
 
-> 📘 Reference:
->
-> For sample request and response, refer to [Sample Request and Response for Initiation & Tracking APIs](ref:sample-request-and-response-for-initiation-tracking-apis#check-transfer-status-api).
 
 <details>
   <summary>Additional Info for request parameters</summary>
 
   <HTMLBlock>{`
-            <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-            <tr>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>transferStatus<br><code>optional</code></p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Search by status of transfer. Merchant can get all success or failure transaction of the day to reconcile. The transfer status can be any of the following:  </p>
-            <ul>
-            <li>QUEUED/SCHEDULED</li>
-            <li>IN_PROGRESS</li>
-            <li>PENDING</li>
-            <li>FAILED<br>Refer to the <a href="#transfer-status">Transfer Status</a> table for the description of each status.</li>
-            </ul>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>success</p>
-            </td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>filterBySucceedOn]<code> optional</code></p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> This parameter must be passed <strong>True</strong> along with <strong>dateFrom</strong> and <strong>dateTo</strong> parameters, to filter the transactions that were successful between these dates.<br> <strong>Note</strong>: For this filter, date range can be maximum of seven days.</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-            </td>
-            </tr>
-            </tbody>
-            </table>
+                <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                <tr>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>transferStatus<br><code>optional</code></p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Search by status of transfer. Merchant can get all success or failure transaction of the day to reconcile. The transfer status can be any of the following:  </p>
+                <ul>
+                <li>QUEUED/SCHEDULED</li>
+                <li>IN_PROGRESS</li>
+                <li>PENDING</li>
+                <li>FAILED<br>Refer to the <a href="#transfer-status">Transfer Status</a> table for the description of each status.</li>
+                </ul>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>success</p>
+                </td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>filterBySucceedOn]<code> optional</code></p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> This parameter must be passed <strong>True</strong> along with <strong>dateFrom</strong> and <strong>dateTo</strong> parameters, to filter the transactions that were successful between these dates.<br> <strong>Note</strong>: For this filter, date range can be maximum of seven days.</p>
+                </td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+                </td>
+                </tr>
+                </tbody>
+                </table>
   `}</HTMLBlock>
 </details>
