@@ -1161,4 +1161,4 @@ For a list of error messages for the failure scenarios, refer to [Error Codes f
 
 #### Step 3: Verify Payment
 
-Verify the payment using the **Verify Payment** API. For more information, For API reference, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>. For the sample response using the **Verify Payment** API from PayU involving offers, refer to [Additional Info for General APIs](ref:addl-info-general-apis#sample-response).
+Verify the payment using the **Verify Payment** API. For more information, For API reference, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>. 
