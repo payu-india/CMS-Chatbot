@@ -18,14 +18,14 @@ The **pre_authorize** parameter is used to pre-authorize payments using the PayU
 
 ## Step 1: Post the pre-auth transaction request
 
-Post the additional parameters for using the Pre-Auth. For complete list of parameters, refer to [Pre-Authorize Payment](ref:pre_authorize_payment1) for the complete list parameters with **Try It** experience.
+Post the additional parameters for using the Pre-Auth. For complete list of parameters, refer to <Anchor label="Pre-Authorize Payment" target="_blank" href="ref:pre_authorize_payment">Pre-Authorize Payment</Anchor> for the complete list parameters with **Try It** experience.
 
 **Environment**
 
-|                            |                                                                      |
-| :------------------------- | :------------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | [https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
+|                            |                                                                       |
+| :------------------------- | :-------------------------------------------------------------------- |
+| **Test Environment**       | [https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | [https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 The **pre_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **_payment** API.
 
@@ -297,12 +297,12 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 
 ## Step 3: Check Action Status
 
-* To check the status of the transaction, use the **verify_payment** API.  For more information, refer to [Verify Payment API](ref:verify_payment_api)
-* To check the status of the Auth Request and then Capture Request sent, use the **check_action_status** API. For more information,  refer to  [Check Refund Status API with Request ID](ref:check_action_status_api_with_request_id).
+* To check the status of the transaction, use the **verify_payment** API.  For more information, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>
+* To check the status of the Auth Request and then Capture Request sent, use the **check_action_status** API. For more information,  refer to  <Anchor label="Check Refund Status API with Request ID" target="_blank" href="ref:check_action_status_api_with_request_id">Check Refund Status API with Request ID</Anchor>.
 
 > 📘 Note:
 >
-> * The **unamappedstatus** to **auth** can be checked using thje [Verify Payment API](ref:verify_payment_api) and in callback response in the Transaction callback.
+> * The **unamappedstatus** to **auth** can be checked using thje <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> and in callback response in the Transaction callback.
 > * If you want to cancel or refund a pre-authorized payment, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
 
 ### Sample response
@@ -453,6 +453,6 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 
 <br />
 
-<Callout icon="👍">
-  **Reference**: For cancelling pre-auth payments, refer to [Cancel a Pre-Authorized Transaction API](ref:cancel-a-pre-authorized-transaction).
+<Callout icon="👍" theme="okay">
+  **Reference**: For cancelling pre-auth payments, refer to <Anchor label="Cancel a Pre-Authorized Transaction API" target="_blank" href="ref:cancel-a-pre-authorized-transaction">Cancel a Pre-Authorized Transaction API</Anchor>.
 </Callout>
