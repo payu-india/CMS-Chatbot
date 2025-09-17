@@ -14,4 +14,4 @@ You can invite users and provide permissions to manage or maintain your Partner 
 
 * [Add a User](doc:add-a-user)
 * [Revoke a User](doc:revoke-a-user)
-* [Edit Permissions for a User](doc:edit-permissions-for-a-user)
+* [Edit Permission for a User](doc:edit-permission-for-a-user)
