@@ -29,7 +29,7 @@ With the PayU Hosted Checkout integration, the entire payment experience is cont
 3. Customer is shown the applicable offers on the checkout page for that transaction.
 4. Customer will have an option to apply the offer. If the offer is applicable on a specific payment option, the customer will be redirected to the specific payment option.
 
-  The PayU Hosted Checkout page for specify payment option on Mobile.
+The PayU Hosted Checkout page for specify payment option on Mobile.
 
 5. Alternatively, the customer can choose the payment option. If only an offer is applicable for that payment option, the offer will be automatically applied.
 6. For Instant Discount, the amount is reduced after the offer is applied, whereas, in the case of cashback, the amount will not be reduced after the offer is applied.
@@ -47,7 +47,7 @@ With the PayU Hosted Checkout integration, the entire payment experience is cont
 
    The PayU Hosted Checkout page on Desktop is similar to the following screenshot. In case offer keys have been passed by the merchant, the same would be filtered and displayed to the customer.
 
-  The PayU Hosted Checkout page on Mobile 
+The PayU Hosted Checkout page on Mobile
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Mweb.L1.Offers_Without-Global-vault-a-Copy.png)
 
@@ -140,7 +140,7 @@ To integrate offers using PayU Hosted Checkout integration:
       <td>
         It is used to avoid the possibility of transaction tampering.
 
-        * *Note**: The following order must be used for hashing:
+        * _Note_*: The following order must be used for hashing:
           `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
           For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-payu-hosted) .
       </td>
@@ -328,7 +328,7 @@ The following request parameters are posted along with request parameters posted
 
       <td>
         * JSON Object_ The card details is specified in this parameter in a JSON format.
-        * *Note**: If given null, no cart will be created for the transaction.
+        * _Note_*: If given null, no cart will be created for the transaction.
       </td>
     </tr>
 
@@ -395,7 +395,7 @@ The following request parameters are posted along with request parameters posted
 
       <td>
         * String_ This parameter contains the unique identifier for SKU.
-        * *Note**: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
+        * _Note_*: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
       </td>
     </tr>
 
@@ -1161,4 +1161,4 @@ For a list of error messages for the failure scenarios, refer to [Error Codes f
 
 #### Step 3: Verify Payment
 
-Verify the payment using the **Verify Payment** API. For more information, For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>. For the sample response using the **Verify Payment** API from PayU involving offers, refer to <a href="addl-info-general-apis#sample-response" target="_blank">Additional Info for General APIsI</a>.
+Verify the payment using the **Verify Payment** API. For more information, For API reference, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>. For the sample response using the **Verify Payment** API from PayU involving offers, refer to [Additional Info for General APIs](ref:addl-info-general-apis#sample-response).
