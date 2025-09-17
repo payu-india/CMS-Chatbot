@@ -121,7 +121,7 @@ private fun getSmartIntentUPIApps(context: Context?):ArrayList<HashMap<String,St
 
 ## Step 3: Get Intent URI
 
-Use the **_payment** API to get Intent URI and transaction details for the UPI app selected by the customer. For more information, refer to [Collect Payment API > PayU Hosted Checkout](ref:_payment_payu_hosted_checkout#/).
+Use the **_payment** API to get Intent URI and transaction details for the UPI app selected by the customer. For more information, refer to <Anchor label="Collect Payment API > PayU Hosted Checkout" target="_blank" href="ref:_payment_payu_hosted_checkout">Collect Payment API > PayU Hosted Checkout</Anchor>.
 
 ## Step 4: Start Activity
 
@@ -141,7 +141,7 @@ fun makePayment(packageName: String,mActivity: Activity,intentUri:String) {
 
 ## Step 5: Get Callback
 
-Get a callback in `onActivityResult` for the status of the transaction. Refer to [Verify Payment](ref:verify_payment_api) API to get the final status of the transaction.
+Get a callback in `onActivityResult` for the status of the transaction. Refer to <Anchor label="Verify Payment" target="_blank" href="ref:verify_payment_api">Verify Payment</Anchor> API to get the final status of the transaction.
 
 ```java
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
