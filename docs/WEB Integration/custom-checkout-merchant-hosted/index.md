@@ -30,9 +30,9 @@ PayU’s Merchant Hosted Checkout allows you to create a custom payment experien
 * **Direct Customer Relationship**: Maintain control over the customer experience from start to finish. 
 * **Flexible Integration**: Integrate with a wide range of payment methods, including cards, net banking, wallets, UPI, and more.
 
-> 👍 Note:
->
-> Merchant Hosted Checkout is a specific PayU product with defined features. It’s distinct from simply hosting payment elements on your website. This guide specifically covers the PayU’s Merchant Hosted Checkout product and its associated APIs.
+<Callout icon="👍" theme="okay">
+  Note: Merchant Hosted Checkout is a specific PayU product with defined features. It’s distinct from simply hosting payment elements on your website. This guide specifically covers the PayU’s Merchant Hosted Checkout product and its associated APIs.
+</Callout>
 
 ## Workflow and Experience
 
@@ -45,8 +45,6 @@ PayU’s Merchant Hosted Checkout allows you to create a custom payment experien
 **Step 1:** The customer completes shopping at your website and initiates a transaction with saved card (for example, VISA) credentials.
 
 **Step 2:** The customer enters the CVV and proceeds to complete the payment.
-
-<Image align="center" className="border" border={true} width="300px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/05/MicrosoftTeams-image-1.png" />
 
 **Step 3:** After the credentials are entered, and the payment flow is launched, the user is navigated through a secured PayU environment that reflects the transaction ID.
 
