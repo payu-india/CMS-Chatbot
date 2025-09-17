@@ -41,4 +41,4 @@ To launch a loyalty campaign using PayU Dashboard:
 2. [Set up a Loyalty](doc:set-up-loyalty)
 3. [Create a New Campaign](doc:create-a-new-campaign)
 
-After you create a campaign, you can update the campaign details. For more information, refer to [Update Campaign Details](doc:manage-loyalty-edge-campaigns/update-campaign-details)
+After you create a campaign, you can update the campaign details. For more information, refer to [Manage Loyalty Edge Campaigns](doc:manage-loyalty-edge-campaigns)
