@@ -68,7 +68,7 @@ The PayU Hosted Checkout page for specific payment option on Mobile is similar t
 To integrate offers using PayU Hosted Checkout integration:
 
 <Callout icon="📘" theme="info">
-   **Reference**: For the PayU Hosted Checkout flow, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
+  **Reference**: For the PayU Hosted Checkout flow, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
 </Callout>
 
 1. Make the payment request to PayU:
@@ -322,7 +322,7 @@ The following request parameters are posted along with request parameters posted
       </td>
 
       <td>
-        `JSON Object `The card details is specified in this parameter in a JSON format. 
+        `JSON Object `The card details is specified in this parameter in a JSON format.
         **Note**: If given null, no cart will be created for the transaction.
       </td>
     </tr>
@@ -450,6 +450,52 @@ The following request parameters are posted along with request parameters posted
     </tr>
   </tbody>
 </Table>
+
+#### Sample request
+
+```curl
+curl --location 'https://test.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e' \
+--data-urlencode 'key=JF****g' \
+--data-urlencode 'txnid=jYhbOYH9o4' \
+--data-urlencode 'amount=10' \
+--data-urlencode 'productinfo=Product_info' \
+--data-urlencode 'firstname=Ashish' \
+--data-urlencode 'lastname=Test' \
+--data-urlencode 'email=test@example.com' \
+--data-urlencode 'phone=9876543210' \
+--data-urlencode 'furl=http://pp30admin.payu.in/test_response' \
+--data-urlencode 'surl=http://pp30admin.payu.in/test_response' \
+--data-urlencode 'api_version=19' \
+--data-urlencode 'hash=e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184' \
+--data-urlencode 'cart_details={
+  "amount": 55000,
+  "items": 2,
+  "surcharges": 10,
+  "pre_discount": 5,
+  "sku_details": [
+    {
+      "sku_id": "smartphone234",
+      "sku_name": "Smartphone",
+      "amount_per_sku": "45000",
+      "quantity": 1,
+      "offer_key": null,
+      "offer_auto_apply": true
+    },
+    {
+      "sku_id": "smartwatch132",
+      "sku_name": "Smartwatch",
+      "amount_per_sku": "10000",
+      "quantity": 1,
+      "offer_key": ["flat500@2022"],
+      "offer_auto_apply": false
+    }
+  ]
+}'
+```
+
+<br />
 
 #### cart_details object in sample request
 
@@ -1086,8 +1132,6 @@ namespace PayuPaymentIntegration
 }
 
 ```
-
-<br />
 
 #### Step 2: Check the PayU response
 
