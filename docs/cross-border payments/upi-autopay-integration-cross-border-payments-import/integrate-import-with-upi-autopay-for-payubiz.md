@@ -410,8 +410,8 @@ curl --location 'https://test.payu.in/_payment' \
 
 To post a recurring transaction:
 
-1. Post the pre-debit notification before 48 hours of the actual debit to notify the customer. For more information, refer to [Pre-Debit Notification API](ref:pre_debit_notification_api).
-2. Initiate recurring using the **Recurring Payment Transaction** API including the below UDF params under var1 object required for PACB flow. For more information, refer to [Recurring Payment Transaction API](ref:recurring_payment_api).
+1. Post the pre-debit notification before 48 hours of the actual debit to notify the customer. For more information, refer to <Anchor label="Pre-Debit Notification API" target="_blank" href="ref:pre_debit_notification_api">Pre-Debit Notification API</Anchor>.
+2. Initiate recurring using the **Recurring Payment Transaction** API including the below UDF params under var1 object required for PACB flow. For more information, refer to <Anchor label="Recurring Payment Transaction API" target="_blank" href="ref:recurring_payment_api">Recurring Payment Transaction API</Anchor>.
 
 <Table align={["left","left"]}>
   <thead>
@@ -462,5 +462,5 @@ To post a recurring transaction:
 > * If first value is absent, then UDF param will be sent as  NULL || \<VALUE> 
 > * If second value is absent, then UDF param will be sent as \ \<VALUE>
 
-3. If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter. For more information, refer to [UDF Update API](ref:udf_update_api).
-4. According to the RBI guidelines, the invoice file must be shared with PayU within 10 days of the transaction. The invoices can be uploaded using the **Invoice Upload** API. For more information, refer to [Invoice Upload API](ref:invoice_upload_api).
+3. If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter. For more information, refer to <Anchor label="UDF Update API" target="_blank" href="ref:udf_update_api">UDF Update API</Anchor>.
+4. According to the RBI guidelines, the invoice file must be shared with PayU within 10 days of the transaction. The invoices can be uploaded using the **Invoice Upload** API. For more information, refer to <Anchor label="Invoice Upload API" target="_blank" href="ref:invoice_upload_api">Invoice Upload API</Anchor>.
