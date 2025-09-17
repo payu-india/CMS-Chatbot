@@ -26,28 +26,12 @@ With the PayU Hosted Checkout integration, the entire payment experience is cont
 2. Customer is redirected to the PayU Hosted Checkout page.
 
    The PayU Hosted Checkout page on Desktop is similar to the following screenshot. In case offer keys have been passed by the merchant, the same would be filtered and displayed to the customer.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Web.L1.Offers_Without-Global-vault-Copy-1-1024x858.png)
-
-   The PayU Hosted Checkout page on Mobile is similar to the following screenshot:
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Mweb.L1.Offers_Without-Global-vault-a-Copy.png)
-
 3. Customer is shown the applicable offers on the checkout page for that transaction.
 4. Customer will have an option to apply the offer. If the offer is applicable on a specific payment option, the customer will be redirected to the specific payment option.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Web.L2.Without-Global-Vault_Cards_Filled-Copy-2-1024x863.png)
-
-```
-The PayU Hosted Checkout page for specify payment option on Mobile is similar to the following screenshot:
-```
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Mweb.L2.Without-Global-Vault_Cards_Filled-Copy.png)
+  The PayU Hosted Checkout page for specify payment option on Mobile.
 
 5. Alternatively, the customer can choose the payment option. If only an offer is applicable for that payment option, the offer will be automatically applied.
-
-![Picture 1522098393](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/picture-1522098393.png)
-
 6. For Instant Discount, the amount is reduced after the offer is applied, whereas, in the case of cashback, the amount will not be reduced after the offer is applied.
 7. Customer completes the 2FA payment on the adjusted amount.
 8. Customer is redirected back to the merchant mobile application or website.
@@ -63,9 +47,7 @@ With the PayU Hosted Checkout integration, the entire payment experience is cont
 
    The PayU Hosted Checkout page on Desktop is similar to the following screenshot. In case offer keys have been passed by the merchant, the same would be filtered and displayed to the customer.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Web.L1.Offers_Without-Global-vault-Copy-1-1024x858.png)
-
-   The PayU Hosted Checkout page on Mobile is similar to the following screenshot:
+  The PayU Hosted Checkout page on Mobile 
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Mweb.L1.Offers_Without-Global-vault-a-Copy.png)
 
@@ -74,7 +56,7 @@ With the PayU Hosted Checkout integration, the entire payment experience is cont
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Web.L2.Without-Global-Vault_Cards_Filled-Copy-2-1024x863.png)
 
-   The PayU Hosted Checkout page for specific payment option on Mobile is similar to the following screenshot:
+The PayU Hosted Checkout page for specific payment option on Mobile is similar to the following screenshot:
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Mweb.L2.Without-Global-Vault_Cards_Filled-Copy.png)
 
@@ -96,9 +78,9 @@ To integrate offers using PayU Hosted Checkout integration:
 
 1. Make the payment request to PayU:
 
-   You need to send an additional parameter (**user token)**, **api\_version** as 14, and hash as described in the following table. This user token would be used to identify the customer for applying velocity rules.
+   You need to send an additional parameter (**user token)**, **api_version** as 14, and hash as described in the following table. This user token would be used to identify the customer for applying velocity rules.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -118,12 +100,12 @@ To integrate offers using PayU Hosted Checkout integration:
   <tbody>
     <tr>
       <td>
-        api\_version
+        api_version
         **mandatory**
       </td>
 
       <td>
-        The API version of the \_payment API must be specified as **14**.
+        The API version of the _payment API must be specified as **14**.
       </td>
 
       <td>
@@ -133,12 +115,12 @@ To integrate offers using PayU Hosted Checkout integration:
 
     <tr>
       <td>
-        user\_token\
+        user_token
         **mandatory for UPI, NB, Wallet**
       </td>
 
       <td>
-        The use for this param is to allow the offer engine to apply velocity rules at a user level.  
+        The use for this param is to allow the offer engine to apply velocity rules at a user level.
 
         * **Card Based Offers (CC, DC, EMI)**: In case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied on the card number.
         * **UPI, NB, Wallet**: It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
@@ -151,15 +133,15 @@ To integrate offers using PayU Hosted Checkout integration:
 
     <tr>
       <td>
-        hash\
+        hash
         **mandatory**
       </td>
 
       <td>
-        It is used to avoid the possibility of transaction tampering.  
+        It is used to avoid the possibility of transaction tampering.
 
-        * \*Note\*\*: The following order must be used for hashing:\
-          `key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|offer_auto_apply\|SALT`\
+        * *Note**: The following order must be used for hashing:
+          `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
           For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-payu-hosted) .
       </td>
 
@@ -174,7 +156,7 @@ To integrate offers using PayU Hosted Checkout integration:
 
    You need to understand the following parameters to handle the payment response as the net amount debit may be different from the amount sent by you in the request.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -208,7 +190,7 @@ To integrate offers using PayU Hosted Checkout integration:
 
     <tr>
       <td>
-        net\_amount\_debit
+        net_amount_debit
       </td>
 
       <td>
@@ -230,17 +212,17 @@ To integrate offers using PayU Hosted Checkout integration:
       </td>
 
       <td>
-        newoffer1\@5686
+        newoffer1@5686
       </td>
     </tr>
 
     <tr>
       <td>
-        offer\_type
+        offer_type
       </td>
 
       <td>
-        This parameter is used to post any of the following offer\_type:  
+        This parameter is used to post any of the following offer_type:
 
         * instant
         * cashback
@@ -255,13 +237,13 @@ To integrate offers using PayU Hosted Checkout integration:
 
 3. Verify the payment.
 
-   Similar to the payment response, the same parameters can be handled as part of the **verify\_payment** API. For more information, refer to [Verify Payment API](ref:verify_payment_api),
+   Similar to the payment response, the same parameters can be handled as part of the **verify_payment** API. For more information, refer to [Verify Payment API](ref:verify_payment_api),
 
-| **Parameter**       | **Description**                                                                                                                                                                                  | **Example** |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| transaction\_amount | This parameter contains the total transaction amount before discount.                                                                                                                            | 50000.00    |
-| net\_amount\_debit  | This parameter contains the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 47500.00    |
-| discount            | This parameter contains the offer value provided to the user. This value will specify the offer amount for both Instant discount and Cashback offers.                                            | 2500.00     |
+| **Parameter**      | **Description**                                                                                                                                                                                  | **Example** |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| transaction_amount | This parameter contains the total transaction amount before discount.                                                                                                                            | 50000.00    |
+| net_amount_debit   | This parameter contains the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 47500.00    |
+| discount           | This parameter contains the offer value provided to the user. This value will specify the offer amount for both Instant discount and Cashback offers.                                            | 2500.00     |
 
 For the sample request and response from PayU, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 
@@ -277,7 +259,7 @@ PayU would refund the exact amount passed by you in the Refund request. For more
 
 After you create an SKU-based offer on PayU Dashboard, you can start collecting payments for products with an SKU-based offer.
 
-This section describes the customer workflow with an SKU-based offer on the PayU Payment page when redirected from your website for payment and request parameters for the **\_payment** API to collect payments with an SKU-Based Offer.
+This section describes the customer workflow with an SKU-based offer on the PayU Payment page when redirected from your website for payment and request parameters for the **_payment** API to collect payments with an SKU-Based Offer.
 
 > 📘 Note:
 >
@@ -291,19 +273,19 @@ After your customer selects the items from your website (for example, mobile onl
 
 <Image align="center" width="322px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Mweb.L1.Offers_L1-523x1024.png" />
 
-   All the offers for the products in the shopping cart (if any) are listed.
+All the offers for the products in the shopping cart (if any) are listed.
 
 <Image align="center" width="322px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Mweb.L1.Offers_AllOffers-1-568x1024.png" />
 
 2. Select the **Product Offers** tab.
 
-   The **Product Offers** tab is displayed on the *Offer & Discount* page.
+   The **Product Offers** tab is displayed on the _Offer & Discount_ page.
 
 <Image align="center" width="322px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/skuoffers.png" />
 
 3. Apply an offer using the **Use Offer** button for the offer you wish to apply.
 
-   The *Offer Applied!* pop-up page is displayed.
+   The _Offer Applied!_ pop-up page is displayed.
 
 <Image align="center" width="322px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Mweb.L1.Offer_Applied.png" />
 
@@ -340,141 +322,141 @@ The following request parameters are posted along with request parameters posted
   <tbody>
     <tr>
       <td>
-        cart\_details
+        cart_details
         **mandatory for SKU**
       </td>
 
       <td>
-        * JSON Object\_ The card details is specified in this parameter in a JSON format.  
-        * \*Note\*\*: If given null, no cart will be created for the transaction.
+        * JSON Object_ The card details is specified in this parameter in a JSON format.
+        * *Note**: If given null, no cart will be created for the transaction.
       </td>
     </tr>
 
     <tr>
       <td>
-        cart\_details.amount\
+        cart_details.amount
         **mandatory**
       </td>
 
       <td>
-        * String\_ The amount for the SKU-based offer.
+        * String_ The amount for the SKU-based offer.
       </td>
     </tr>
 
     <tr>
       <td>
-        cart\_details.surcharges\
+        cart_details.surcharges
         **conditional**
       </td>
 
       <td>
-        * String\_ Total txn amount is now increased, but the cart\_details.amount is lesser, to handle the difference, the additonal amount added by the merchant should be passed in surcharges field
+        * String_ Total txn amount is now increased, but the cart_details.amount is lesser, to handle the difference, the additonal amount added by the merchant should be passed in surcharges field
       </td>
     </tr>
 
     <tr>
       <td>
-        cart\_details.pre\_discount\
+        cart_details.pre_discount
         **conditional**
       </td>
 
       <td>
-        * String\_ If there are any pre discount given by merchant on their checkout page. Total txn amount is now reduced, but the cart\_details.amount is higher, to handle the difference, the discount given by the merchant should be passed in pre\_discount field
+        * String_ If there are any pre discount given by merchant on their checkout page. Total txn amount is now reduced, but the cart_details.amount is higher, to handle the difference, the discount given by the merchant should be passed in pre_discount field
       </td>
     </tr>
 
     <tr>
       <td>
-        cart\_details.items\
+        cart_details.items
         **mandatory**
       </td>
 
       <td>
-        * String\_ The number of the items for the SKU-based offer.
+        * String_ The number of the items for the SKU-based offer.
       </td>
     </tr>
 
     <tr>
       <td>
-        cart\_details.sku\_details\
+        cart_details.sku_details
         **mandatory**
       </td>
 
       <td>
-        * JSON Object\_ The SKU details is specified in this parameter in a JSON format.
+        * JSON Object_ The SKU details is specified in this parameter in a JSON format.
       </td>
     </tr>
 
     <tr>
       <td>
-        cart\_details.sku\_details.sku\_id\
+        cart_details.sku_details.sku_id
         **mandatory**
       </td>
 
       <td>
-        * String\_ This parameter contains the unique identifier for SKU.  
-        * \*Not&#x65;**: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **&#x73;kuId\*\* request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
+        * String_ This parameter contains the unique identifier for SKU.
+        * *Note**: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
       </td>
     </tr>
 
     <tr>
       <td>
-        sku\_details.sku\_name\
+        sku_details.sku_name
         **mandatory**
       </td>
 
       <td>
-        * String \_ This parameter contains the SKU name.
+        * String _ This parameter contains the SKU name.
       </td>
     </tr>
 
     <tr>
       <td>
-        sku\_details.quantity\
+        sku_details.quantity
         **mandatory**
       </td>
 
       <td>
-        * String \_ The parameter must contain the quantity of SKU added in cart.
+        * String _ The parameter must contain the quantity of SKU added in cart.
       </td>
     </tr>
 
     <tr>
       <td>
-        sku\_details.amount\_per\_sku\
+        sku_details.amount_per_sku
         **mandatory**
       </td>
 
       <td>
-        * String \_ The parameter must contain the per SKU amount.
+        * String _ The parameter must contain the per SKU amount.
       </td>
     </tr>
 
     <tr>
       <td>
-        sku\_details.offer\_key\
+        sku_details.offer_key
         **mandatory**
       </td>
 
       <td>
-        * String\_ This parameter must contain the Offer Key(s) which can be used for this transaction. |
+        * String_ This parameter must contain the Offer Key(s) which can be used for this transaction. |
       </td>
     </tr>
 
     <tr>
       <td>
-        sku\_details.offer\_auto\_apply\
+        sku_details.offer_auto_apply
         **mandatory**
       </td>
 
       <td>
-        * String\_This parameter contains the flag for when to enable auto application of best offer on this SKU. 
+        * String_This parameter contains the flag for when to enable auto application of best offer on this SKU.
       </td>
     </tr>
   </tbody>
 </Table>
 
-#### cart\_details object in sample request
+#### cart_details object in sample request
 
 ```curl
 "cart_details": {
@@ -1116,7 +1098,7 @@ namespace PayuPaymentIntegration
 
 **Success scenario**
 
-The **cart\_details** JSON Object in the response (sample):
+The **cart_details** JSON Object in the response (sample):
 
 ```
 {"cart_details": {
