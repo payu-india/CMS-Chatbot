@@ -18,9 +18,11 @@ The following APIs is used to cancel a refund transaction and instant refunds:
 
 The following APIs helps you to get the refund status of one or more request against a particular transaction ID.
 
-* [Refund Status APIs for Split Settlements](reference:refund-status-api-for-split-payments)
+* [Refund Status APIs for Split Settlements](ref:refund-status-api-for-split-payments)
 * [Get All Refunds from Transaction IDs](ref:get_all_refunds_from_transaction_ids_api)
 
-> 📘 **Note**:
->
-> Use the following endpoint for Refund APIs: [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2)
+<Callout icon="📘" theme="info">
+  **Note**: Use the following endpoint for Refund APIs: [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2)
+</Callout>
+
+<br />
