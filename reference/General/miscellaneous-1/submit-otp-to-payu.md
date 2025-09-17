@@ -10,10 +10,6 @@ metadata:
 next:
   description: ''
 ---
-# Submit OTP API
-
-<br />
-
 After collecting the OTP from your customer on the payment page, submit the OTP to PayU by using this API.
 
 You must pass the **reference id** of the corresponding transaction along with other parameters (see request parameters) in the request body of the Submit OTP API.
