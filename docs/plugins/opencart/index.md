@@ -19,7 +19,7 @@ metadata:
 next:
   description: ''
 ---
-Opencart is a free plugin developed in PHP used to create online shops. OpenCart provides a professional and reliable base on which an online shop can be built; this base appeals to various users. OpenCart has a list of features that provide strong control over your shop’s customization. 
+Opencart is a free plugin developed in PHP used to create online shops. OpenCart provides a professional and reliable base on which an online shop can be built; this base appeals to various users. OpenCart has a list of features that provide strong control over your shop’s customization.
 
 ## What does this app do?
 
@@ -35,4 +35,4 @@ PayU allows merchants to accept following payment methods on the OpenCart platfo
 * EMI
 * Wallets
 
-For procedure to install and configure, refer to [Install and Configure PayU OpenCart Plugin](doc:install-and-configure-payu-opencart-plugin) . If you encounter issues while integration, refer to [Troubleshooting OpenCart Integration](doc:troubleshooting-opencart-integration).
+For procedure to install and configure, refer to [Install and Configure PayU OpenCart Plugin](doc:install-and-configure-opencart-plugin) . If you encounter issues while integration, refer to [Troubleshooting OpenCart Integration](doc:troubleshooting-opencart-integration).
