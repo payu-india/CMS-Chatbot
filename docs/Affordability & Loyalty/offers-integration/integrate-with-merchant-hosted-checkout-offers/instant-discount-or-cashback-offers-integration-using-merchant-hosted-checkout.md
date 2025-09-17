@@ -33,28 +33,12 @@ The steps involves in the customer journey are:
 
 1. User logs in to the merchant’s app/website.
 2. User chooses the product(s)/service(s) he/she wishes to purchase.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/merchant_hosted_offers_checkout1-1024x576.png)
-
 3. User reaches the checkout page. The merchant can use the Fetch offers API to display all the live applicable offers for this transaction. As part of this API the merchant would get all the necessary information to display to the user regarding the offer include Offer Title, description, terms and conditions, applicable payment modes & the offer value.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/merchant_hosted_offers_checkout3-1024x576.png)
-
 4. User would make his/her decision and pay through a specific payment option. After the customer has entered all the required details, the merchant can use the Validate Offer API to check whether the offer would be applied to the transaction or not.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/merchant_hosted_offers_checkout4-1024x576.png)
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/merchant_hosted_offers_checkout7-1.png)
-
 5. The merchant would initiate the payment along with the offer using the **_payment** API
 6. In case of Instant discount, the amount would be reduced on application of offer, in case of cashback the amount would not be charged.
 7. User would complete the 2FA (2 Form Authentication) payment on the adjusted amount.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/merchant_hosted_offers_checkout8.png)
-
 8. User would be redirected back to the merchant app/website.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/merchant_hosted_offers_checkout9.png)
 
 The merchant can use the Fetch offers API to display the offers on **Product Display Page** & **Cart** screens or in case merchant wishes to have a separate **Offers section** on their website/app
 
@@ -62,13 +46,13 @@ The merchant can use the Fetch offers API to display the offers on **Product Dis
 
 To integrate offers using Merchant Hosted Checkout integration:
 
-> 📘 Reference:
->
-> For the Merchant Hosted Checkout workflow, refer [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted)
+<Callout icon="📘" theme="info">
+  **Reference**: For the Merchant Hosted Checkout workflow, refer [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted)
+</Callout>
 
 1. On the checkout page (or earlier on PDP, Cart, Offers) use the **Fetch Offers** API to get the offers and display all the offers. For more information, refer to [Fetch Offers API](ref:fetch-offers-api).
 2. Use the **Validate Offer** API to validate if the offer will be applied on this transaction or not. For more information, refer to [Validate Offer API](ref:validate-offer-api).
-3. Make the payment request using the **_payment** API using the following additional parameters for Offers. For more information on the complete list of parameters to be posted, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted)
+3. Make the payment request using the **_payment** API using the following additional parameters for Offers. For more information on the complete list of parameters to be posted, refer to <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="ref:_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>
 
 <Table align={["left","left","left"]}>
   <thead>
