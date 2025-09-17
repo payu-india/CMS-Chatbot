@@ -30,7 +30,7 @@ The plugin can be downloaded from the following Github location:
 
 To install the PayU plugin for WooCommerce on CommercePro:
 
-1. After the plugin archive is downloaded in the **ZIP** format, extract to get the integration folder. For the plugin location, refer to in the [Plugin location](plugin-location) sub-section.
+1. After the plugin archive is downloaded in the **ZIP** format, extract to get the integration folder. For the plugin location, refer to in the [Plugin location](#plugin-location) sub-section.
 2. Log in to WooCommerce Dashboard.
 3. Select **Plugin** from the menu on the left pane.
 
@@ -128,11 +128,11 @@ To configure the WooCommerce environment for PayU:
       </td>
 
       <td>
-        Select any of the following gateway environments from the drop-down list to which customer payment details will be redirected.  
+        Select any of the following gateway environments from the drop-down list to which customer payment details will be redirected.
 
-        * \*Sandbox:\*\* This is the Test environment, and no actual fund transfer will take place.  
-        * \*Production:\*\* This is the Live environment.  
-        * \*Note\*\*: If you select Sandbox in Transaction Mode,  use the following credentials:  
+        * *Sandbox:** This is the Test environment, and no actual fund transfer will take place.
+        * *Production:** This is the Live environment.
+        * *Note**: If you select Sandbox in Transaction Mode,  use the following credentials:
         * Merchant ID: oZ7oo9
         * Salt: UkojH5TS
       </td>
@@ -154,7 +154,11 @@ To configure the WooCommerce environment for PayU:
       </td>
 
       <td>
-        Enter your Salt for the Production environment. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+        Enter your Salt for the Production environment. For more information, refer to 
+
+        [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+
+        .
       </td>
     </tr>
 
@@ -174,11 +178,11 @@ To configure the WooCommerce environment for PayU:
       </td>
 
       <td>
-        Select the page to which you want to redirect the customers after payment done:  
+        Select the page to which you want to redirect the customers after payment done:
 
-        * .  Shop  
-        * .  Cart  
-        * .  Checkout  
+        * .  Shop
+        * .  Cart
+        * .  Checkout
         * .  My Account
       </td>
     </tr>
