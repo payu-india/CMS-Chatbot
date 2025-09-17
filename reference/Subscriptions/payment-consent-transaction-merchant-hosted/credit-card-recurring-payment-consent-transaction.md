@@ -33,11 +33,11 @@ next:
       slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
 ---
-This section provides the request parameters, sample request and response for a Cards Recurring Payment Consent transaction.
+This section provides the request parameters, sample request and response for a Cards Recurring Payment \<\<glossary:Consent transaction>>.
 
-<Callout icon="📘" theme="info">
-  **Note**: During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
-</Callout>
+> 📘 Note:
+>
+> During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
 
 HTTP Method: **POST**
 
@@ -65,7 +65,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key is a unique identifier for a merchant account in PayU&#39;s database. For more information, <a href="doc:check-api-key-and-salt">Check your API Key and Salt</a>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key is a unique identifier for a merchant account in PayU&#39;s database. For more information, <a href="http://docs.payu.in/docs/check-api-key-and-salt">Check your API Key and Salt</a>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>Your Test Key</p>
 </td>
@@ -185,7 +185,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>si<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.<br><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections:<br>_.   <a href="ref:manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a><br>_.   <a href="ref:api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.<br><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections:<br>_.   <a href="http://docs.payu.in/reference/manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a><br>_.   <a href="http://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
 </td>
@@ -195,14 +195,14 @@ HTTP Method: **POST**
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.  </p>
 <p><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&amp;Mode=0</a> )  </p>
-<p>This is a JSON object and it includes a set of fields. For more information,  refer to <a href="ref:si-parameter-json-details">SI Parameter JSON Details</a></p>
+<p>This is a JSON object and it includes a set of fields. For more information,  refer to <a href="http://docs.payu.in/reference/si-parameter-json-details">SI Parameter JSON Details</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to <a href="doc:generate-hash-merchant-hosted">Hashing Request and Response</a>.<br>In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br><code>HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||si_details\|SALT)</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to <a href="http://docs.payu.in/docs/generate-hash-merchant-hosted">Hashing Request and Response</a>.<br>In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br><code>HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||si_details\|SALT)</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972</code></p>
 </td>
@@ -218,7 +218,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>bankcode<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it.  For more information, refer <a href="doc:card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it.  For more information, refer <a href="http://docs.payu.in/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>AMEX</p>
 </td>
@@ -319,9 +319,9 @@ HTTP Method: **POST**
 > * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
 > * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
 
-<Callout icon="📘" theme="info">
-  **Note for Bankcode**: Debit Card or Credit Card: There are different options like Visa Debit Card, Mastercard, Maestro, etc. For each option, a unique bank code exists and it would be returned in this bankcode parameter. For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards). For example, VISA for VISA Debit Card.
-</Callout>
+> 📘 Notes for Bankcode
+>
+> Debit Card or Credit Card: There are different options like Visa Debit Card, Mastercard, Maestro, etc. For each option, a unique bank code exists and it would be returned in this bankcode parameter. For more information, refer to Card Type Codes. For example, VISA for VISA Debit Card.
 
 Characters allowed for parameters
 
