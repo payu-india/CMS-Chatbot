@@ -24,4 +24,4 @@ The following APIs used to integrate Android POS SDK:
 * [Send SMS and Email API](https://docs.payu.in/reference/send-sms-and-email-api)
 * [Print Receipts API](https://docs.payu.in/reference/print-receipts-api)
 
-For the shared response payload, refer to [Shared Response Payload](#shared-response-payload).
+For the shared response payload, refer to [Shared Response Payload](#hared-response-payload).
