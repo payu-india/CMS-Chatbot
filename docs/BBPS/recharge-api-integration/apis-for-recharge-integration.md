@@ -12,7 +12,7 @@ next:
 ---
 ## Token API
 
-* [Get Token API](ref:get-token-api-copy)
+* [Get Token API](ref:get-token-api-bbps)
 
 ## Biller and  Payment APIs
 
