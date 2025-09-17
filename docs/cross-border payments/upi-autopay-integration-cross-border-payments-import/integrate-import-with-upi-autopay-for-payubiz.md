@@ -26,11 +26,11 @@ next:
 UPI Autopay integration for Cross-Border Import involves the following steps:
 
 1. [Post a Registration transaction](#post-a-registration-transaction) (one-time only)
-2. [Post a Recurring transaction](post-a-recurring-transaction) (repeat transaction flow)
+2. [Post a Recurring transaction](#post-a-recurring-transaction) (repeat transaction flow)
 
 ## Post a Registration transaction (one-time)
 
-The following parameters (mandatory) must be posted using the **\_payment** API:
+The following parameters (mandatory) must be posted using the **_payment** API:
 
 ### Request parameters
 
@@ -45,7 +45,7 @@ The following are the additional request parameter required for cross-border pay
 
 <br />
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -74,7 +74,7 @@ The following are the additional request parameter required for cross-border pay
       </td>
 
       <td>
-        JPg\*\*\*\*f
+        JPg****f
       </td>
     </tr>
 
@@ -160,7 +160,11 @@ The following are the additional request parameter required for cross-border pay
       </td>
 
       <td>
+
+
         [abc@payu.in](mailto:abc@payu.in)
+
+
       </td>
     </tr>
 
@@ -350,7 +354,7 @@ The following are the additional request parameter required for cross-border pay
       </td>
 
       <td>
-        INV-123\_1231||MerchantName
+        INV-123_1231||MerchantName
       </td>
     </tr>
   </tbody>
@@ -360,9 +364,9 @@ The following are the additional request parameter required for cross-border pay
 >
 > For **udf1** and **udf3**, the following are applicable:
 >
-> * if first value is absent, then UDF param will be sent as \
+> * if first value is absent, then UDF param will be sent as 
 >   NULL || \<VALUE> 
-> * If second value is absent, then UDF param will be sent as \
+> * If second value is absent, then UDF param will be sent as 
 >   \<VALUE> 
 > * If both values are absent, nothing will be sent in UDF param.
 
@@ -432,7 +436,7 @@ To post a recurring transaction:
         This parameter must include the PAN and DOB of the buyer in the following format:
         PAN||DOB
 
-        * *Note*\*: The PAN and DOB are separated with two pipe (||) characters.
+        * _Note_*: The PAN and DOB are separated with two pipe (||) characters.
       </td>
     </tr>
 
@@ -442,10 +446,10 @@ To post a recurring transaction:
       </td>
 
       <td>
-        This parameter must include the invoice\_id and the seller name(for PACB reseller use case) in the following format:\
-        invoice\_id||sellerName
+        This parameter must include the invoice_id and the seller name(for PACB reseller use case) in the following format:
+        invoice_id||sellerName
 
-        * *Note*\*: The invoice\_id and seller name are separated with two pipe (||) characters.
+        * _Note_*: The invoice_id and seller name are separated with two pipe (||) characters.
       </td>
     </tr>
   </tbody>
