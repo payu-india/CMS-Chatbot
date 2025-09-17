@@ -33,11 +33,11 @@ next:
       slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
 ---
-This section provides the request parameters, sample request and response for a Cards Recurring Payment \<\<glossary:Consent transaction>>.
+This section provides the request parameters, sample request and response for a Cards Recurring Payment Consent transaction.
 
-> 📘 Note:
->
-> During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
+<Callout icon="📘" theme="info">
+  **Note**: During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
+</Callout>
 
 HTTP Method: **POST**
 
@@ -303,7 +303,7 @@ HTTP Method: **POST**
 </table>
 `}</HTMLBlock>
 
-> 📘 Notes for **additional\_info** parameter:
+> 📘 Notes for **additional_info** parameter:
 >
 > The JSON format contains the following fields:
 >
@@ -319,9 +319,9 @@ HTTP Method: **POST**
 > * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
 > * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
 
-> 📘 Notes for Bankcode
->
-> Debit Card or Credit Card: There are different options like Visa Debit Card, Mastercard, Maestro, etc. For each option, a unique bank code exists and it would be returned in this bankcode parameter. For more information, refer to Card Type Codes. For example, VISA for VISA Debit Card.
+<Callout icon="📘" theme="info">
+  **Note for Bankcode**: Debit Card or Credit Card: There are different options like Visa Debit Card, Mastercard, Maestro, etc. For each option, a unique bank code exists and it would be returned in this bankcode parameter. For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards). For example, VISA for VISA Debit Card.
+</Callout>
 
 Characters allowed for parameters
 
@@ -329,7 +329,7 @@ For parameters address1, address2, city, state, country, product info, email, an
 
 * Characters: A to Z, a to z, 0 to 9
 * – (Minus)
-* \_ (Underscore)
+* _ (Underscore)
 * @ ()
 * / (Slash)
 * (Space)
@@ -353,8 +353,8 @@ In the case of Cards, you must ensure that the payment response from PayU has th
 | Response Parameter | Expected Value                   | Description                                                                     |
 | ------------------ | -------------------------------- | ------------------------------------------------------------------------------- |
 | status             | success                          | This indicates that the transaction is successful                               |
-| cardToken          | \<card\_token> sent by PayU      | Indicates that card details are saved correctly in PayUBiz Database             |
-| payment\_source    | sist                             | Indicates that card details have been marked correctly for Standing Instruction |
+| cardToken          | \<card_token> sent by PayU       | Indicates that card details are saved correctly in PayUBiz Database             |
+| payment_source     | sist                             | Indicates that card details have been marked correctly for Standing Instruction |
 | mihpayid           | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction           |
 
 > 📘 Notes:
@@ -485,7 +485,7 @@ Array
 
 ## Webhook for Getting Transaction Details
 
-You can expose a webhook by requesting the PayU Integration team to configure the same against the **ws\_online\_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method similar to the following:
+You can expose a webhook by requesting the PayU Integration team to configure the same against the **ws_online_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method similar to the following:
 
 ```plaintext
 unmappedstatus=success&phone=9999999999&txnid=FCDA1R100870163781&hash=84e335094bbcb2ddaa0f9a488eb338e143b273765d89c9dfa502402562d0b6f3c7935e28194ca92f380be7c84c3695415b106dcf52cb016a15fcf6adc98d724&status=success&curl=https://www.abc.in/payment/handlepayuresposne&firstname=NA&card_no=519619XXXXXX5049&furl=https://www.abc.in/payment/handlepayuresposne&productinfo=2&mode=DC&amount=800.00&field4=6807112311042810&field3=6807112311042810&field2=838264&field9=SUCCESS&email=NA&mihpayid=175477248&surl=https://www.ABC.in/payment/handlepayuresposne&card_hash=9e88cb0573d4a826b61d808c0a870ed4a990682459b0ec9e95ea421e8e47be8c&field1=42812&payment_source=sist
