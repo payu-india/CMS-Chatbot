@@ -105,7 +105,7 @@ Method: **POST**
   <tbody>
     <tr>
       <td align="left">authPayuId<br/><strong>mandatory</strong></td>
-      <td align="left">This parameter must contain the mihpayid returned in the payment response of the Registration transaction when the transaction is successfully completed.<br/>As explained earlier in the <a href="ref:credit-card-recurring-payment-consent-transaction">Register a Recurring Payment</a> section, the merchant needs to map this value against the customer profile at their end so that correct authPayuid will be passed in the request.</td>
+      <td align="left">This parameter must contain the mihpayid returned in the payment response of the Registration transaction when the transaction is successfully completed.<br/>As explained earlier in the <a href="http://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction">Register a Recurring Payment</a> section, the merchant needs to map this value against the customer profile at their end so that correct authPayuid will be passed in the request.</td>
     </tr>
     <tr>
       <td align="left">requestId<br/><strong>mandatory</strong></td>
