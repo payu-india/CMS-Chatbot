@@ -1,11 +1,5 @@
 ---
 title: Instant Discount or Cashback using Merchant Hosted Checkout
-excerpt: >-
-  With the Merchant Hosted Checkout integration, the entire payment experience
-  can be controlled by merchants and PayU provides APIs to power this checkout
-  experience. This section describes how PayU will help you to discover Offer
-  (not only on Checkout page but anywhere on the merchant app/website), validate
-  Offer & apply Offer (along with payment).  ##
 deprecated: false
 hidden: false
 metadata:
@@ -29,6 +23,8 @@ metadata:
 next:
   description: ''
 ---
+With the Merchant Hosted Checkout integration, the entire payment experience can be controlled by merchants and PayU provides APIs to power this checkout experience. This section describes how PayU will help you to discover Offer (not only on Checkout page but anywhere on the merchant app/website), validate Offer & apply Offer (along with payment).
+
 ## Customer journey on Merchant Hosted Checkout
 
 The following video walks through the customer journey:
@@ -50,7 +46,7 @@ The steps involves in the customer journey are:
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/merchant_hosted_offers_checkout7-1.png)
 
-5. The merchant would initiate the payment along with the offer using the **\_payment** API
+5. The merchant would initiate the payment along with the offer using the **_payment** API
 6. In case of Instant discount, the amount would be reduced on application of offer, in case of cashback the amount would not be charged.
 7. User would complete the 2FA (2 Form Authentication) payment on the adjusted amount.
 
@@ -72,7 +68,7 @@ To integrate offers using Merchant Hosted Checkout integration:
 
 1. On the checkout page (or earlier on PDP, Cart, Offers) use the **Fetch Offers** API to get the offers and display all the offers. For more information, refer to [Fetch Offers API](ref:fetch-offers-api).
 2. Use the **Validate Offer** API to validate if the offer will be applied on this transaction or not. For more information, refer to [Validate Offer API](ref:validate-offer-api).
-3. Make the payment request using the **\_payment** API using the following additional parameters for Offers. For more information on the complete list of parameters to be posted, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted)
+3. Make the payment request using the **_payment** API using the following additional parameters for Offers. For more information on the complete list of parameters to be posted, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted)
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -94,12 +90,12 @@ To integrate offers using Merchant Hosted Checkout integration:
   <tbody>
     <tr>
       <td>
-        api\_version
+        api_version
         **mandatory**
       </td>
 
       <td>
-        The API version of the \_payment API must be specified as **14**.
+        The API version of the _payment API must be specified as **14**.
       </td>
 
       <td>
@@ -109,7 +105,7 @@ To integrate offers using Merchant Hosted Checkout integration:
 
     <tr>
       <td>
-        user\_token
+        user_token
         **mandatory for UPI, NB, Wallet**
       </td>
 
@@ -127,15 +123,15 @@ To integrate offers using Merchant Hosted Checkout integration:
 
     <tr>
       <td>
-        hash\
+        hash
         **mandatory**
       </td>
 
       <td>
         It is used to avoid the possibility of transaction tampering.
 
-        * *Note*\*: The following order must be used for hashing:\
-          `key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|offer_auto_apply\|SALT`
+        * _Note_*: The following order must be used for hashing:
+          `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
           For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted) .
       </td>
 
@@ -148,13 +144,13 @@ To integrate offers using Merchant Hosted Checkout integration:
 
 > **Notes**:  
 >
-> * The following order must be used for hashing:\
+> * The following order must be used for hashing:
 >   `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
 >   For more information on hash generation process, refer to [Hashing Request and Response](ref:generate-hash-merchant-hosted).
 > * If any of the keys is null/not configured, "|" character must be concatenated.
-> * The above hash logic is for \_payment API version 10 or later
+> * The above hash logic is for _payment API version 10 or later
 
-**Sample Request with cart\_details JSON object:**
+**Sample Request with cart_details JSON object:**
 
 ```curl
 curl -X POST "https://test.payu.in/_payment" \
@@ -878,7 +874,7 @@ namespace PayUCardIntegration
 
     <tr>
       <td>
-        net\_amount\_debit
+        net_amount_debit
       </td>
 
       <td>
@@ -900,17 +896,17 @@ namespace PayUCardIntegration
       </td>
 
       <td>
-        newoffer1\@5686
+        newoffer1@5686
       </td>
     </tr>
 
     <tr>
       <td>
-        offer\_type
+        offer_type
       </td>
 
       <td>
-        This parameter is used to post any of the following offer\_type:
+        This parameter is used to post any of the following offer_type:
          - instant
 
         * cashback
@@ -929,11 +925,11 @@ For a sample response, refer to the [Additional Info for Payment APIs](ref:addl_
 
 Similar to the payment response, same params can be handled as part of the **Verify Payment** API. For more information, For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>. For the sample response using the **Verify Payment** API from PayU involving offers, refer to <a href="addl-info-general-apis#sample-response" target="_blank">Additional Info for General APIsI</a>.
 
-| **Parameter**       | **Description**                                                                                                                                                                                  | **Example** |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| transaction\_amount | This parameter contains the total transaction amount before discount.                                                                                                                            | 50000.00    |
-| net\_amount\_debit  | This parameter contains the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 47500.00    |
-| discount            | This parameter contains the offer value provided to the user. This value will specify the offer amount for both Instant discount and Cashback offers.                                            | 2500.00     |
+| **Parameter**      | **Description**                                                                                                                                                                                  | **Example** |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| transaction_amount | This parameter contains the total transaction amount before discount.                                                                                                                            | 50000.00    |
+| net_amount_debit   | This parameter contains the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 47500.00    |
+| discount           | This parameter contains the offer value provided to the user. This value will specify the offer amount for both Instant discount and Cashback offers.                                            | 2500.00     |
 
 PayU would refund the exact amount passed by you in the Refund request. For more information, refer to [Refunds for Offers](doc:refunds-for-offers)
 
