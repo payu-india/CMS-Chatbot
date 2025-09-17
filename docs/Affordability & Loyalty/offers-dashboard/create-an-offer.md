@@ -49,13 +49,13 @@ After you create an Instant Discount or Cashback Offer, you can collect payments
 1. Navigate to [Offers Dashboard](doc:offers-dashboard).
 2. Click **Create an Offer** at the top-right corner.
 
-   The *Create New Offer* page is displayed.
+   The _Create New Offer_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/94d041dbfbfc5faa76260a76e736cdbb4030553dddcde8c5ef3efeb9ca5d0f95-Screenshot_2025-06-03_at_10.16.03_AM.png" />
 
 3. Select the **Instant Discount** or **Cashback Offer** as the discount type.
 
-  The *Basic Offer Details* page is displayed.
+  The _Basic Offer Details_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/5002858696d93c6edf465cf830ca8b20c69c06231342acce95fbcf8add81e0d2-Screenshot_2025-06-03_at_10.16.41_AM.png" />
 
@@ -79,7 +79,7 @@ The fields to collect coupon code details are displayed.
 
 6. After you complete the above details and click **Next**.
 
-The *Payment Options* page is displayed.
+The _Payment Options_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/db5bf09d5216d77a25b7e3b81af9dc0de8974d6b0640404b069ab69f5986e04e-Screenshot_2025-06-03_at_10.41.42_AM.png" />
 
@@ -93,7 +93,7 @@ Select any of the following payment modes to configure offer details that is exp
 >
 > You can configure one or multiple payment options for an offer. For example, the “HDFC Diwali Offer” can contain 10% discount for HDFC debit or credit cards, HDFC UPI, and a 3-month interest-free EMI for HDFC cards.
 
-* [Credit Card](credit-card)
+* [Debit Card](#debit-cards)
 * [Net Banking](#net-banking)
 * [UPI](#upi)
 * [Wallets](#wallets)
@@ -104,7 +104,7 @@ Select any of the following payment modes to configure offer details that is exp
 
 1. Click the **Edit** button on the **Debit Cards** tile.
 
-The *Debit Card Details* page is displayed.
+The _Debit Card Details_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/f4debd9c82f8c3454c0956ecb20e30df6d4166551c291d521ea1abc13b88dee9-dashboard_payment_options_debit_card.png" />
 
@@ -146,7 +146,7 @@ The *Debit Card Details* page is displayed.
       </td>
 
       <td>
-        Select the banks for which the offer is applicable from  **Select Banks** drop-down list.\
+        Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
         ![](https://files.readme.io/f963378804c89d83e901c6876e88d1cccc166fe077f22b06e2f6a62764291acc-dashboard_payment_options_debit_card_bank_options.png)
 
         **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
@@ -192,7 +192,7 @@ The *Debit Card Details* page is displayed.
 
 1. Click the **Edit** button on the **Credit Cards**.
 
-The *Credit Card Details* page is displayed.
+The _Credit Card Details_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/76e11ce918eea78d776d4e1e58d725ede254db76915876b06c3da6c666aae885-dashboard_payment_options_credit_card.png" />
 
@@ -230,7 +230,7 @@ The *Credit Card Details* page is displayed.
       </td>
 
       <td>
-        Select the banks for which the offer is applicable from  **Select Banks** drop-down list.\
+        Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
         ![](https://files.readme.io/fc566b263b8296ca383f15ff3db5b34ec4f27be6d9b10ccb6876b53b7fc92747-dashboard_payment_options_select_bank.png)
 
         **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
@@ -246,7 +246,7 @@ The *Credit Card Details* page is displayed.
         <br />
 
         * Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
-        * Search and select a network from the **Select Networks** drop-down list.\
+        * Search and select a network from the **Select Networks** drop-down list.
           ![](https://files.readme.io/5f46cc00126b4bb750577aaa70755da76171c5dbc5494a50babc0c70a90afbb3-dashboard_payment_options_select_bank_and_upload_bin.png)
           **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
       </td>
@@ -268,35 +268,35 @@ The *Credit Card Details* page is displayed.
   </tbody>
 </Table>
 
-3. Click the **Back** button to go back to the *Payment Options* page.
+3. Click the **Back** button to go back to the _Payment Options_ page.
 
 ### UPI
 
 1. Click the **Edit** button on the **UPIs** tile.
 
-   The *UPI Details* page is displayed.
+   The _UPI Details_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/ed2bf68ddd113d64d0b18c364319deca799bc85451af4e74c4a99388c8a2e057-dashboard_payment_options_upi.png" />
 
-2. Select the check boxes for the UPIs you wish to enable the offer from the \*\*Select UPI Channel \*\*drop-down list.
+2. Select the check boxes for the UPIs you wish to enable the offer from the **Select UPI Channel **drop-down list.
 3. Click the **Back** button to go back to the payment options list.
 
 ### Wallets
 
 1. Click the **Edit** button on the the **Wallets** option.
 
-   The *Select Wallets* page is displayed.
+   The _Select Wallets_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/a33d1d65b26720c45c414770c1adb2f0f7284fce6f0b1278b64d240eb79aa5de-dashboard_payment_options_wallets.png" />
 
 2. Select the check boxes for the wallets you wish to enable the offer.
-3. Click the **Back** button to return to the *Payment Options* page.
+3. Click the **Back** button to return to the _Payment Options_ page.
 
 ### EMI
 
 1. Click the **Edit** button on the the **EMI** option.
 
-   The *EMI* Offer page is displayed.
+   The _EMI_ Offer page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/bdfb661ae9732fc1c7293a8bd54935d378efb781a8903804fbc19ef14ab1506b-dashboard_payment_options_emi.png" />
 
@@ -312,13 +312,13 @@ The *Credit Card Details* page is displayed.
 * Update the CSV or text file to include the BIN details. For updating the CSV file, you can use Microsoft Excel or any other Spreadsheet tool. 
 * Click the browse button in the **Add a list of bins that you want to include or exclude on offer** to upload the updated CSV file.
 
-4. Click the **Back** button to go to *Payment Options* page.
+4. Click the **Back** button to go to _Payment Options_ page.
 
 ### BNPL
 
-Select the **BNPL** option on the *Setup Payment options of your offer* page.
+Select the **BNPL** option on the _Setup Payment options of your offer_ page.
 
-The *Select BNPL Options* page is displayed.
+The _Select BNPL Options_ page is displayed.
 
 <Image align="center" src="https://files.readme.io/d5a47d52dd4c1b7f1eeae0b3c8e37fd2dff576352ae578b5108b2528042f4795-dashboard_payment_options_bnpl.png" />
 
@@ -329,11 +329,11 @@ After you complete adding any one or combination of the offers involving various
 > * No-Cost EMI offers can be created on Credit and Debit Card EMIs. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer).
 > * Low-Cost EMI offers can create on Credit and Debit Card EMIs. For more information, refer to Create a Low-Cost EMI Offer.
 
-The offer for the payment options you configured gets added to the Setup *Payment options of your offer* page.
+The offer for the payment options you configured gets added to the Setup _Payment options of your offer_ page.
 
 2. Select the applicable payment options and click **Next.**
 
-The *Offer Rules* page is displayed.
+The _Offer Rules_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/a169ac96a97658d1884f8047cd73ace82b112223eb6b67aae45e495c83288e23-Screenshot_2025-06-03_at_10.27.01_AM.png" />
 
@@ -344,7 +344,7 @@ The *Offer Rules* page is displayed.
 ## Step 3: Include the Offer rules
 
 1. Select the **Flat Discount** or **Percentage** tab to specify the discount is in terms of a flat discount or percentage of the transaction amount.
-2. Enter the following details on the *Set Offer Rules* page.
+2. Enter the following details on the _Set Offer Rules_ page.
 
 | **Field**                                               | **Description**                                                                    |
 | ------------------------------------------------------- | ---------------------------------------------------------------------------------- |
@@ -420,7 +420,7 @@ The *Offer Rules* page is displayed.
 
 3. After you complete the above details and click **Next**.
 
-The *Set Offer Subvention Details* page is displayed.
+The _Set Offer Subvention Details_ page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/a74a7875c37e0a2924fedb73fe7b047068bfb8fe6c7d2ca2aa1a755eabad1c65-dashboard_offers_subvention_step.png" />
 
@@ -431,11 +431,11 @@ The *Set Offer Subvention Details* page is displayed.
    * I will share offer settlements with bank and brand:  Choose this option if you want to make the cashback settlements to bank or brand.
 2. After you complete the above details and click **Next**.
 
-   The *Preview Details* page is displayed.
+   The _Preview Details_ page is displayed.
 
 ## Step 5: Review of the Offer
 
-The *Preview of Cashback Offer* page summarizes the details you provided in Step 2 to Step 4.
+The _Preview of Cashback Offer_ page summarizes the details you provided in Step 2 to Step 4.
 
 1. Review all the configurations added before you make the offer available to your customers.
 2. Click the **Edit** button in the relevant areas return back to the corresponding page and update the configuration.
