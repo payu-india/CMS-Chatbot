@@ -17,21 +17,21 @@ To fetch the child merchant details for a parent merchant:
 
 ## Step 1: Get client token
 
-Use the **get\_client\_token** API with the scope as **fetch\_child\_merchants** to create a client token from Hub. For more information, refer to [Get Client Token API](ref:get-client-token-api)
+Use the **get_client_token** API with the scope as **fetch_child_merchants** to create a client token from Hub. For more information, refer to <Anchor label="Get Client Token API" target="_blank" href="ref:get-client-token-api">Get Client Token API</Anchor>
 
 > 📘 Notes:
 >
 > * Caller client service should be registered on Hub (PayU’s oAuth2 Service )
-> * **fetch\_child\_merchants** scope should be whitelisted on caller client on Hub
+> * **fetch_child_merchants** scope should be whitelisted on caller client on Hub
 
 ## Step 2: Get sub account listing
 
-Call the **Sub Account Listing** API to fetch all child merchant details linked to a parent merchant. You must pass the UUID in this request. For more information, refer to [Sub Account Listing API](ref:sub-account-listing-api).
+Call the **Sub Account Listing** API to fetch all child merchant details linked to a parent merchant. You must pass the UUID in this request. For more information, refer to <Anchor label="Sub Account Listing API" target="_blank" href="ref:sub-account-listing-v3-api">Sub Account Listing API</Anchor>.
 
 > 📘 Notes:
 >
-> * Use correct Environment URL as base URL in place of \{\{onboarding\_base\_url}} variable
-> * Use parent merchant UUID in place of \{\{merchant\_uuid}} variable in request
+> * Use correct Environment URL as base URL in place of \{\{onboarding_base_url}} variable
+> * Use parent merchant UUID in place of \{\{merchant_uuid}} variable in request
 
 ### Sample request
 
