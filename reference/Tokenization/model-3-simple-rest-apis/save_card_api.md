@@ -54,8 +54,8 @@ HTTP Method: **POST**
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU while onboarding.<br>For more information on how to generate the Key and Salt, refer to any of the following:  </p>
 <ul>
-<li><strong>Production</strong>: <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
-<li><strong>Test</strong>: <a href="doc:generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
+<li><strong>Production</strong>: <a href="http://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
+<li><strong>Test</strong>: <a href="http://docs.payu.in/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
 </ul>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>JP*****g</p>
@@ -95,7 +95,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>var3<br>mandatory</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card mode is specified in this parameter. For more information on card mode codes, refer to <a href="doc:card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card mode is specified in this parameter. For more information on card mode codes, refer to <a href="http://docs.payu.in/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>CC</p>
 </td>
@@ -103,7 +103,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>var4<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card type of the card is specified in this parameter. For more information on card type codes, refer to <a href="doc:card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card type of the card is specified in this parameter. For more information on card type codes, refer to <a href="http://docs.payu.in/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>AMEX</p>
 </td>
@@ -119,7 +119,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>var6<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card number is is specified in this parameter. For the <strong>test cards</strong> to do mock API calls, refer to <a href="doc:test-cards-upi-id-and-wallets">Test Cards, UPI ID and Wallets</a>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card number is is specified in this parameter. For the <strong>test cards</strong> to do mock API calls, refer to <a href="http://docs.payu.in/docs/test-cards-upi-id-and-wallets">Test Cards, UPI ID and Wallets</a>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
@@ -285,7 +285,7 @@ card_label: "Diner_Card",
 The following table describes the parameters in the response:
 
 <Callout icon="📘" theme="info">
-  **Note**:  For every successful payment transactions, PayU returns the **mihpayuid** and **cardToken** parameters to the merchants, but networkToken and issuer\_token are returned only if you are PCI-DSS compliant.
+  **Note**:  For every successful payment transactions, PayU returns the **mihpayuid** and **cardToken** parameters to the merchants, but networkToken and issuer_token are returned only if you are PCI-DSS compliant.
 </Callout>
 
 <HTMLBlock>{`
