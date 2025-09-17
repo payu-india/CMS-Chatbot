@@ -154,23 +154,22 @@ You can collect payments from customers in EMI using the Merchant Hosted integra
 
 ## Request parameters
 
-> 📘 Reference
->
-> For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+<Callout icon="📘" theme="info">
+  **Reference**: For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+</Callout>
 
 <Accordion title="Values to be used in Test environment" icon="fa-flask">
+  * You can used any EMI code listed in the <a href="emi-codes" target="_blank">EMI Codes</a> section. section and test cards listed in the <a href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets#emi-test-cards" target="_blank">Test Cards</a> section. For example, the following values can be used:
 
-* You can used any EMI code listed in the <a href="emi-codes" target="_blank">EMI Codes</a> section. section and test cards listed in the <a href="test-cards-upi-id-and-wallets#emi-test-cards" target="_blank">Test Cards</a> section. For example, the following values can be used:
+  |                   |                         |                   |
+  | :---------------- | :---------------------- | :---------------- |
+  | bankcode: EMIA3   | ccnum: 5123456789012346 | ccexpmon: 05      |
+  | ccexpyr: 2025     | ccvv: 123               | ccname: Any value |
+  | phone: 9123412345 |                         |                   |
 
-|                   |                         |                   |
-| :---------------- | :---------------------- | :---------------- |
-| bankcode: EMIA3   | ccnum: 5123456789012346 | ccexpmon: 05      |
-| ccexpyr: 2025     | ccvv: 123               | ccname: Any value |
-| phone: 9123412345 |                         |                   |
-
-* For the **amount** parameter, use **>=INR 1000** in the Test environment.
-
+  * For the **amount** parameter, use **>=INR 1000** in the Test environment.
 </Accordion>
+
 > ❗️ Error handling
 >
-> If any error message is displayed with an error code, refer to the <a href="error-codes" target="_blank">Error Codes</a> section. to understand the reason for these error codes.
+> If any error message is displayed with an error code, refer to the [Error Codes](ref:error-codes) section. to understand the reason for these error codes.
