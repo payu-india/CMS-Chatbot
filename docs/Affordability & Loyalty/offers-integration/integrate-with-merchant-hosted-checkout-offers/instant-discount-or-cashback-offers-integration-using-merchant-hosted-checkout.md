@@ -923,9 +923,9 @@ For a sample response, refer to the [Additional Info for Payment APIs](ref:addl_
 
 5. Verify the payment.
 
-Similar to the payment response, same params can be handled as part of the **Verify Payment** API. For more information, For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>. For the sample response using the **Verify Payment** API from PayU involving offers, refer to <a href="addl-info-general-apis#sample-response" target="_blank">Additional Info for General APIsI</a>.
+Similar to the payment response, same params can be handled as part of the **Verify Payment** API. For more information, For API reference, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>. For the sample response using the **Verify Payment** API from PayU.
 
-| **Parameter**      | **Description**                                                                                                                                                                                  | **Example** |
+| Parameter          | Description                                                                                                                                                                                      | **Example** |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
 | transaction_amount | This parameter contains the total transaction amount before discount.                                                                                                                            | 50000.00    |
 | net_amount_debit   | This parameter contains the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 47500.00    |
@@ -933,6 +933,8 @@ Similar to the payment response, same params can be handled as part of the **Ver
 
 PayU would refund the exact amount passed by you in the Refund request. For more information, refer to [Refunds for Offers](doc:refunds-for-offers)
 
-> 📘 Note:
->
-> You can enable the **Enforce Offer** flag by requesting your PayU Key Account Manager. If you enable the **Enforce Offer** flag, the best offer out of the all the offers passed will be applied for the customer.
+<Callout icon="📘" theme="info">
+  **Note**: You can enable the **Enforce Offer** flag by requesting your PayU Key Account Manager. If you enable the **Enforce Offer** flag, the best offer out of the all the offers passed will be applied for the customer.
+</Callout>
+
+<br />
