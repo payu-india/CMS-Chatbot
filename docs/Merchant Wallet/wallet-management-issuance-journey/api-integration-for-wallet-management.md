@@ -15,7 +15,7 @@ Semi-Closed or Open Loop Wallet/Card can be used at websites/app where the issui
 * [Create Wallet/Card API](ref:create-walletcard-api):  This API will be required by the merchants to register the customer for wallet
 * [Retrieve Customer Record API](ref:retrieve-customer-record-api): This API will be required by Merchants to fetch customer details and balance present in the customer wallet.
 * [Update Profile API](ref:update-profile-api-wallet): This API will be used to update the customer profile details.
-* [Load API](ref:load-wallet-api): To load the money in the wallet post receiving success of the transaction.
+* [Load API](ref:load_api_hexawallet): To load the money in the wallet post receiving success of the transaction.
 * [Unload API](ref:unload-api): To spend the money from the wallet.
 * [Check Status API](ref:check-status-api): This will be required to check status of the load API used in the top-up journey.
 * [Statement Inquiry API](ref:statement-inquiry-api): This API can be used to fetch wallet transaction data between specific range
