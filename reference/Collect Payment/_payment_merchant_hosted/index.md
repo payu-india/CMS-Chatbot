@@ -31,9 +31,9 @@ next:
 ---
 To process payments with credit/debit card, UPI, wallet, etc. on your website using PayU, collect the payment details on your website and submit them to PayU via API. This eliminates the need for redirection to PayU’s payment page, resulting in a more secure and efficient transaction.
 
-> 📘 Reference:
->
-> For an example of how to submit a payment request on your website, refer to [Submitting Payment Request on your Website](doc:submitting-payment-request-on-your-website). To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](doc:handling-the-redirect-urls).
+<Callout icon="📘" theme="info">
+  **Reference**: For an example of how to submit a payment request on your website, refer to [Submitting Payment Request on your Website](doc:submitting-payment-request-on-your-website). To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](doc:handling-the-redirect-urls).
+</Callout>
 
 |                            |                                                                         |
 | :------------------------- | :---------------------------------------------------------------------- |
@@ -48,7 +48,6 @@ You can get the **Try It** experience for the following payment modes:
 * [Wallets](ref:_payment_merchant_hosted_wallets)
 * [EMI](ref:_payment_merchant_hosted_emi)
 * [BNPL](ref:_payment_merchant_hosted_bnpl)
-* [QR](ref:_payment_merchant_hosted_qr)
 
 > 📘 Note:
 >
