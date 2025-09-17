@@ -52,13 +52,13 @@ All successful registration transactions are charged over the recurring interfac
 | Test Environment       | \<[https://test.payu.in/merchant/>](https://test.payu.in/merchant/>) |
 
 <Accordion title="Sample request" icon="fa-code">
-```
-  curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=si_transaction&var1={\"authpayuid\": \"6611192557\",\"invoiceDisplayNumber\":\"12345678910\",\"amount\": 3,\"txnid\": \"REC15113506209\",\"phone\": \"9999999999\",\"email\": \"chota.bheem@gmail.com\",\"udf2\": \"\",\"udf3\": \"\",\"udf4\": \"\",\"udf5\": \"\"}&hash=jbUS07Og8BToVZ"
+  ```
+    curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=si_transaction&var1={\"authpayuid\": \"6611192557\",\"invoiceDisplayNumber\":\"12345678910\",\"amount\": 3,\"txnid\": \"REC15113506209\",\"phone\": \"9999999999\",\"email\": \"chota.bheem@gmail.com\",\"udf2\": \"\",\"udf3\": \"\",\"udf4\": \"\",\"udf5\": \"\"}&hash=jbUS07Og8BToVZ"
   ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
-**Success scenario**
+  **Success scenario**
 
   Here is a sample response object returned against recurring payment API when the transaction is successfully charged.
 
@@ -120,7 +120,7 @@ All successful registration transactions are charged over the recurring interfac
 </Accordion>
 
 <Accordion title="Response parameters" icon="fa-list">
-**JSON fields description of the Details parameter**
+  **JSON fields description of the Details parameter**
 
   | JSON Field    | Description                                                                                                                                                                       |
   | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -162,38 +162,38 @@ All successful registration transactions are charged over the recurring interfac
 ## Request parameters
 
 <Accordion title="Reference information" icon="fa-flask">
-<HTMLBlock>{`
-    <table style="width: 100%; border-collapse: collapse;">
-    <thead>
-    <tr>
-      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-      <th style="border: 1px solid #ddd; padding: 8px;">Reference</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:key&gt;&gt;</p>
-    </td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>For more information on how to generate the Key and Salt, refer to any of the following:  </p>
-    <ul>
-    <li><strong>Production</strong>: <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
-    <li><strong>Test</strong>: <a href="doc:generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
-    </ul>
-    </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:hash&gt;&gt;</p>
-    </td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>Hash logic for this API is:<br>sha512(key|command|var1|salt)sha512</p>
-    </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
-    </td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>For JSON fields description, refer to <a href="ref:additional-info-for-recurring-payment-apis">Additional Info. for Recurring Payment APIs</a></p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  <HTMLBlock>{`
+        <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Reference</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:key&gt;&gt;</p>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>For more information on how to generate the Key and Salt, refer to any of the following:  </p>
+        <ul>
+        <li><strong>Production</strong>: <a href="http://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
+        <li><strong>Test</strong>: <a href="http://docs.payu.in/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
+        </ul>
+        </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:hash&gt;&gt;</p>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>Hash logic for this API is:<br>sha512(key|command|var1|salt)sha512</p>
+        </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>For JSON fields description, refer to <a href="http://docs.payu.in/reference/additional-info-for-recurring-payment-apis">Additional Info. for Recurring Payment APIs</a></p>
+        </td>
+        </tr>
+        </tbody>
+        </table>
   `}</HTMLBlock>
 </Accordion>
