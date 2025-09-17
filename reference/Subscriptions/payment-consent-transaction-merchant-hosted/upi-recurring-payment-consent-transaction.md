@@ -30,12 +30,11 @@ next:
       slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
 ---
-This section provides the request parameters, sample request and response for a UPI Recurring Payment <Glossary>Consent transaction</Glossary>.
+This section provides the request parameters, sample request and response for a UPI Recurring Payment Consent transaction.
 
-> 📘 Note:
->
-> * During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
-> * Unlike Cards
+<Callout icon="📘" theme="info">
+  **Note**: During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
+</Callout>
 
 HTTP Method: **POST**
 
@@ -206,7 +205,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to <a href="doc:hashing-request-and-response">Generate Hash</a>.<br>In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br><code>HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||si_details\|SALT)</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to <a href="http://docs.payu.in/docs/hashing-request-and-response">Generate Hash</a>.<br>In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br><code>HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||si_details\|SALT)</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972</code></p>
 </td>
@@ -230,7 +229,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>si<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.<br><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections:<br>_.   <a href="ref:manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a><br>_.   <a href="ref:api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.<br><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections:<br>_.   <a href="http://docs.payu.in/reference/manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a><br>_.   <a href="http://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
@@ -239,15 +238,15 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.  </p>
 <p><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&amp;Mode=0</a> )  </p>
-<p>This is a JSON object and it includes a set of fields. For more information,  refer to <a href="ref:si-parameter-json-details">SI Parameter JSON Details</a></p>
+<p>This is a JSON object and it includes a set of fields. For more information,  refer to <a href="http://docs.payu.in/reference/si-parameter-json-details">SI Parameter JSON Details</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>vpa<br><code>mandatory for UPI Collect</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> This parameter contains the customer's VPA handle. For the list UPI handles supported, refer to <a href="doc:upi-handles">UPI Handles</a>  </p>
-<p>The merchant is advised to check the validity of the VPA through using the VPA Validation API. PayU extends support for the same if required. For more information on using VPA Validation API, refer to <a href="ref:validate_vpa_api">Validate VPA Handle API</a>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> This parameter contains the customer's VPA handle. For the list UPI handles supported, refer to <a href="http://docs.payu.in/docs/upi-handles">UPI Handles</a>  </p>
+<p>The merchant is advised to check the validity of the VPA through using the VPA Validation API. PayU extends support for the same if required. For more information on using VPA Validation API, refer to <a href="http://docs.payu.in/reference/validate_vpa_api">Validate VPA Handle API</a>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>abc@upi</p>
 </td>
@@ -293,7 +292,7 @@ For parameters address1, address2, city, state, country, product info, email, an
 
 * Characters: A to Z, a to z, 0 to 9
 * – (Minus)
-* \_ (Underscore)
+* _ (Underscore)
 * @ ()
 * / (Slash)
 * (Space)
@@ -334,7 +333,7 @@ For also UPI registration transaction, you must ensure that the payment response
 | **Response Parameter** | **Expected Value**               | **Description**                                                                |
 | ---------------------- | -------------------------------- | ------------------------------------------------------------------------------ |
 | status                 | success                          | Indicates that the transaction is successful with the UPI provider             |
-| payment\_source        | SIST                             | Indicates that UPI details have been marked correctly for Standing Instruction |
+| payment_source         | SIST                             | Indicates that UPI details have been marked correctly for Standing Instruction |
 | mihpayid               | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction          |
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
@@ -431,7 +430,7 @@ Array
 
 ## Webhook for Getting Transaction Details
 
-You can expose a webhook by requesting the PayU Integration team to configure the same against the **ws\_online\_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method similar to the following:
+You can expose a webhook by requesting the PayU Integration team to configure the same against the **ws_online_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method similar to the following:
 
 ```plaintext
 unmappedstatus=success&phone=9999999999&txnid=FCDA1R100870163781&hash=84e335094bbcb2ddaa0f9a488eb338e143b273765d89c9dfa502402562d0b6f3c7935e28194ca92f380be7c84c3695415b106dcf52cb016a15fcf6adc98d724&status=success&curl=https://www.abc.in/payment/handlepayuresposne&firstname=NA&card_no=519619XXXXXX5049&furl=https://www.abc.in/payment/handlepayuresposne&productinfo=2&mode=DC&amount=800.00&field4=6807112311042810&field3=6807112311042810&field2=838264&field9=SUCCESS&email=NA&mihpayid=175477248&surl=https://www.ABC.in/payment/handlepayuresposne&card_hash=9e88cb0573d4a826b61d808c0a870ed4a990682459b0ec9e95ea421e8e47be8c&field1=42812&payment_source=sist
