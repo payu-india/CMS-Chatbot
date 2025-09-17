@@ -399,9 +399,9 @@ curl --location -g --request PUT '{{host}}/api/v3/product_accounts/{{product_acc
 
 <br />
 
-After you onboard your child merchants, you can fetch the child merchant details as described in the following section:
+After you onboard your child merchants, you can fetch the child merchant details as described in the following API Reference sections:
 
-* [Fetch Child Merchants Details](doc:fetch-child-merchants-details-1) under API Reference
-  * [Sub Account Listing API](ref:https://docs.payu.in/reference/sub-account-listing-v3-api)
+* [Fetch Child Merchants Details](doc:fetch-child-merchants-details-1) 
+* [Sub Account Listing API](ref:sub-account-listing-v3-api)
 
 <br />
