@@ -10,14 +10,14 @@ metadata:
 next:
   description: ''
 ---
-The **validate\_offer** API validates the payment request against an offer key. This API doesn’t apply the offer and only validates the request.
+The **validate_offer** API validates the payment request against an offer key. This API doesn’t apply the offer and only validates the request.
 
 **Endpoints**
 
-|                            |                                                        |
-| -------------------------- | ------------------------------------------------------ |
-| **Test Environment**       | \<https://sandbox.payu.in/offers/transactions/validate> |
-| **Production Environment** | \<https://api.payu.in/offers/transactions/validate>     |
+|                            |                                                                                                                  |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://sandbox.payu.in/offers/transactions/validate>](https://sandbox.payu.in/offers/transactions/validate>) |
+| **Production Environment** | \<[https://api.payu.in/offers/transactions/validate>](https://api.payu.in/offers/transactions/validate>)         |
 
 ## Request headers
 
@@ -86,7 +86,7 @@ public class HmacAuth {
 The sample header is similar to the following:
 
 > 📘 **Note**:
-> 
+>
 > You need to include the current date and time in the **Date** field of the header.
 
 ```plaintext
@@ -226,7 +226,6 @@ The sample header is similar to the following:
 </table>
 `}</HTMLBlock>
 
-
 ### Description of paymentDetail JSON fields
 
 <HTMLBlock>{`
@@ -307,7 +306,6 @@ The sample header is similar to the following:
 </table>
 `}</HTMLBlock>
 
-
 #### Sample paymentDetail JSON
 
 ```plaintext
@@ -362,7 +360,6 @@ The sample header is similar to the following:
 </table>
 `}</HTMLBlock>
 
-
 #### Sample userDetail JSON
 
 ```plaintext
@@ -413,13 +410,12 @@ In addition to the request parameters listed in this section, the **skusDetail**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>skuId<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The product identifier to select offer is specified in this field. For more information on creating a SKU offer, refer to <a href="doc:collect-payments-with-sku-based-offer-using-merchant-hosted-checkout-offers-integration">SKU-Based Offer using Merchant Hosted Checkout</a>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The product identifier to select offer is specified in this field. For more information on creating a SKU offer, refer to <a href="http://docs.payu.in/docs/collect-payments-with-sku-based-offer-using-merchant-hosted-checkout-offers-integration">SKU-Based Offer using Merchant Hosted Checkout</a>.</p>
 </td>
 </tr>
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 #### Sample skusDetails
 
@@ -746,7 +742,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 
 ### Failure scenarios
 
-- Merchant ID does not exists
+* Merchant ID does not exists
 
 ```plaintext
 {
@@ -757,7 +753,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 }
 ```
 
-- Client ID does not exist or not matching with platform ID
+* Client ID does not exist or not matching with platform ID
 
 ```plaintext
 {
@@ -768,7 +764,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 }
 ```
 
-- Service Unavailable
+* Service Unavailable
 
 ```plaintext
 
@@ -1152,7 +1148,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 
 ### Failure scenarios
 
-- Merchant ID does not exists
+* Merchant ID does not exists
 
 ```plaintext
 {
@@ -1163,7 +1159,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 }
 ```
 
-- Client ID does not exist or not matching with platform ID
+* Client ID does not exist or not matching with platform ID
 
 ```plaintext
 {
@@ -1174,7 +1170,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 }
 ```
 
-- Service Unavailable
+* Service Unavailable
 
 ```plaintext
 
@@ -1186,7 +1182,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 }
 ```
 
-- Invalid request
+* Invalid request
 
 ```
 {
@@ -1197,7 +1193,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 }
 ```
 
-- Offer key is mandatory when autoApply=false
+* Offer key is mandatory when autoApply=false
 
 ```
 {
@@ -1251,7 +1247,7 @@ The response involves the following parameters and the **result** parameter cont
 
 The **result** parameter contains the result in a JSON format and the fields in the JSON are described in the following table. The **offerDiscount** and **offerDetail** fields in this JSON contains the offer details as described in the following subsections:
 
-This field contains any of the following values to specify whether the offer is valid or not valid:  
+This field contains any of the following values to specify whether the offer is valid or not valid:
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -1359,7 +1355,6 @@ This field contains any of the following values to specify whether the offer is 
 </table>
 `}</HTMLBlock>
 
-
 The sample value for **result** parameter in a JSON is similar to the following:
 
 ```plaintext
@@ -1466,7 +1461,6 @@ The **offerDiscount** field in the **result** JSON contains the offer discount d
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 The sample value for **offerDiscount** field in a JSON is similar to the following:
 
@@ -1782,7 +1776,6 @@ The **offerDetail** field in the **result** JSON contains the offer details in a
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 The sample value for **offerDetail** field in a JSON is similar to the following:
 
