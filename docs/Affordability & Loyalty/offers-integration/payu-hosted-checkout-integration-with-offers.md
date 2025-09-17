@@ -147,6 +147,30 @@ To integrate offers using PayU Hosted Checkout integration:
   </tbody>
 </Table>
 
+#### Sample request
+
+```curl
+curl --location 'https://test.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e' \
+--data-urlencode 'key=JF****g' \
+--data-urlencode 'txnid=jYhbOYH9o4' \
+--data-urlencode 'amount=10' \
+--data-urlencode 'productinfo=Product_info' \
+--data-urlencode 'firstname=Ashish' \
+--data-urlencode 'lastname=Test' \
+--data-urlencode 'email=test@example.com' \
+--data-urlencode 'phone=9876543210' \
+--data-urlencode 'furl=http://pp30admin.payu.in/test_response' \
+--data-urlencode 'surl=http://pp30admin.payu.in/test_response' \
+--data-urlencode 'hash=e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184' \
+--data-urlencode 'api_version=14' \
+--data-urlencode 'user_token=8789'
+
+```
+
+<br />
+
 2. Check the response from PayU.
 
    You need to understand the following parameters to handle the payment response as the net amount debit may be different from the amount sent by you in the request.
