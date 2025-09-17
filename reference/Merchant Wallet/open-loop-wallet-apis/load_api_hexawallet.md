@@ -1,5 +1,5 @@
 ---
-title: Load API
+title: Load API - Open Loop Wallet
 excerpt: ''
 deprecated: false
 hidden: false
