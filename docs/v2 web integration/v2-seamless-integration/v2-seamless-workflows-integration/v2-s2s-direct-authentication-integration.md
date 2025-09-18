@@ -1,5 +1,5 @@
 ---
-title: Direct Authentication Integration
+title: Direct Authorization Integration
 excerpt: ''
 deprecated: false
 hidden: false
