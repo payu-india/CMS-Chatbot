@@ -25,11 +25,11 @@ next:
 ---
 ## Prerequisites
 
-Merchant Hosted or S2S (Seamless) integration has to be done as per the standard kit. For more information, refer to  [UPI Integration](doc:collect-payments-with-upi-seamless).
+Merchant Hosted or S2S (Seamless) integration has to be done as per the standard kit. 
 
 ## Step 1: Validate VPA
 
-When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API. For more information, refer to [Validate VPA Handle API](https://docs.payu.in/v2/reference/v2-validate-vpa-api/).
+When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API. For more information, refer to <Anchor label="Validate VPA Handle API" target="_blank" href="https://docs.payu.in/v2/reference/v2-validate-vpa-api/">Validate VPA Handle API</Anchor>.
 
 ***
 
@@ -138,8 +138,7 @@ When your customer makes payment through UPI, you can validate the customer’s 
   </tbody>
 </Table>
 
-
-#####order object
+##### order object
 
 <Accordion title="order Object" icon="fa-box">
   <V2_order_object />
@@ -161,38 +160,38 @@ When your customer makes payment through UPI, you can validate the customer’s 
 
 <Accordion title="additionalInfo Object" icon="fa-info">
   <HTMLBlock>{`
-                <table style="width: 100%; border-collapse: collapse;">
-                <thead>
-                <tr>
-                  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-                  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-                  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
-                  <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method..</td>
-                  <td style="border: 1px solid #ddd; padding: 8px;">UPI</td>
-                </tr>
-                <tr>
-                  <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-                  <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-                  <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-                </tr>
-                <tr>
-                  <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
-                  <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-                  <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
-                </tr>
-                <tr>
-                  <td style="border: 1px solid #ddd; padding: 8px;"> <strong>vpa</strong><br/><code>optional</code></td>
-                  <td style="border: 1px solid #ddd; padding: 8px;">The UPI handle of the customer</td>
-                  <td style="border: 1px solid #ddd; padding: 8px;">test@payu</td>
-                </tr>
+                    <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                    <tr>
+                      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+                      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+                      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method..</td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">UPI</td>
+                    </tr>
+                    <tr>
+                      <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+                    </tr>
+                    <tr>
+                      <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnFlow</strong><br/><code>optional</code></td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+                    </tr>
+                    <tr>
+                      <td style="border: 1px solid #ddd; padding: 8px;"> <strong>vpa</strong><br/><code>optional</code></td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">The UPI handle of the customer</td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">test@payu</td>
+                    </tr>
 
-                </tbody>
-                </table>
+                    </tbody>
+                    </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -271,6 +270,6 @@ When your customer makes payment through UPI, you can validate the customer’s 
 
 ### Verify Payment
 
-> ⚠️ **Important**
->
-> After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="ref:v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
+<Callout icon="⚠️" theme="warn">
+  **Important**: After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
+</Callout>
