@@ -205,7 +205,7 @@ For the complete list of parameters, refer to <Anchor label="UPI Collection – 
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. For more information, refer to <a href="doc:hashing-request-and-response">Generate Hash</a>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. For more information, refer to <a href="https://docs.payu.in/docs/hashing-request-and-response">Generate Hash</a>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972</p>
 </td>
