@@ -1,5 +1,5 @@
 ---
-title: Collect Payment API - Non-Seamless v2 Payment
+title: Collect Payment API - PayU Hosted v2 Payment
 excerpt: ''
 deprecated: false
 hidden: false
