@@ -129,11 +129,9 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
       </td>
 
       <td>
-        `String`Bank code for the selected bank. Character limit: 10. 
+        `String`Bank code for the selected bank. Character limit: 10.
 
         <Anchor label="For more information, refer to Net Banking codes" target="_blank" href="https://docs.payu.in/v1/docs/net-banking-codes">For more information, refer to Net Banking codes</Anchor>
-
-
       </td>
     </tr>
   </tbody>
