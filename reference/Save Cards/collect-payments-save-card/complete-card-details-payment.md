@@ -102,28 +102,28 @@ Request and response elements will remain intact as it is.
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-api#order-object-fields-description">order object fields description target="_blank"</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-apis#order-object-fields-description">order object fields description target="_blank"</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-api#additionalinfo-object-fields-description">additionalInfo object fields description target="_blank"</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-apis#additionalinfo-object-fields-description">additionalInfo object fields description target="_blank"</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-api#callbackactions-object-fields-description">callbackActions object fields description target="_blank"</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-apis#callbackactions-object-fields-description">callbackActions object fields description target="_blank"</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="href="https://docs.payu.in/v2/reference/addl_info-payment-api#billingdetails-object-field-descriptions">billingDetails object field descriptions target="_blank"</a>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="href="https://docs.payu.in/v2/reference/addl_info-payment-apis#billingdetails-object-field-descriptions">billingDetails object field descriptions target="_blank"</a>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
