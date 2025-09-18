@@ -294,4 +294,4 @@ Array
 
 > ⚠️ **Important**
 >
-> After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="ref:v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
+> After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
