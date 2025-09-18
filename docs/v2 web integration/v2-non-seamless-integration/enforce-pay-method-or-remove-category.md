@@ -13,9 +13,9 @@ metadata:
 next:
   description: ''
 ---
-> 📘 Note
->
-> Before implementing on your Production environment, PayU strongly recommends you to enforce the payment parameters described in this section on the Test environment.
+<Callout icon="📘" theme="info">
+  **Note**: Before implementing on your Production environment, PayU strongly recommends you to enforce the payment parameters described in this section on the Test environment.
+</Callout>
 
 You can append the parameter names in your transaction request to opt for all or some of the payment modes.
 
