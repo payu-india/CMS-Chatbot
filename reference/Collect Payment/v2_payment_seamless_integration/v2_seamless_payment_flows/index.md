@@ -23,4 +23,4 @@ This part of the document includes the API Reference for the following with "Try
 
 > 📘 Note:
 >
-> The above API Reference pages only provides the Initiate Payment step only. You need to follow the respective integrations for the complete flow. For more information, refer to [Integration for various flows](doc:/docs/v2-seamless-workflows-integration/).
+> The above API Reference pages only provides the Initiate Payment step only. You need to follow the respective integrations for the complete flow. For more information, refer to [Integration for various flows](https://docs.payu.in/v2/docs/v2-seamless-workflows-integration/).
