@@ -25,7 +25,7 @@ next:
 ---
 ## Step 1: Integrate Cocapods
 
-Add the following lines to your Podfile: 
+Add the following lines to your Podfile:
 
 ```
 // make sure to add below-mentioned line to use dynamic frameworks
@@ -38,7 +38,7 @@ pod 'PayUIndia-UPI'
 
 You can integrate PayUIndia-PG-SDK with your app or SDK using the following methods:
 
-* **Using Xcode**: Navigate to File > Add Package menu and install the following package:\
+* **Using Xcode**: Navigate to File > Add Package menu and install the following package:
   [https://github.com/payu-intrepos/payu-upi-ios-sdk](https://github.com/payu-intrepos/payu-upi-ios-sdk)
 * **Using Package.Swift**: Add the following code to Package.swift dependencies:
 
@@ -68,7 +68,7 @@ pod 'PayUIndia-UPICore'
 
 You can integrate PayUIndia-UPIKit, `PayUIndia-UPICoreKit` with your app or SDK in two ways:
 
-Using the Xcode – Go to File-> Add Package-> [https://github.com/payu-intrepos/payu-upi-ios-sdk](https://github.com/payu-intrepos/payu-upi-ios-sdk)\
+Using the Xcode – Go to File-> Add Package-> [https://github.com/payu-intrepos/payu-upi-ios-sdk](https://github.com/payu-intrepos/payu-upi-ios-sdk)
 Using `Package.Swift`, add the following line in `Package.swift `dependencies:
 
 ```
@@ -184,12 +184,12 @@ To fetch hashes and save them in the `paymentParams` object:
    2. `paymentHash`: This is required to create transactions at PayU’s end.
    3. `validateVPAHash`: This is required by `validateVPA` API in UPI collect flow to check if provided VPA is registered with a bank account and is active or not. Not required in intent transactions.
 3. Provide the first two hashes before asking SDK to initiate the payment. Hashes must be generated only on your server as it needs a secret key (also known as salt). Your app must never contain salt.
-4. Command and var1 values for generating `paymentRelatedDetailsForMobileSDKHash` & `validateVPAHash` are described in the following table. For generating hashes on your server, refer to [Hash Generation](https://docs.payu.in/docs/ios-checkoutpro-generate-hash).
+4. Command and var1 values for generating `paymentRelatedDetailsForMobileSDKHash` & `validateVPAHash` are described in the following table. For generating hashes on your server, refer to [Hash Generation](https://docs.payu.in/docs/set-up-the-payment-hashes/).
 
-| Hash for Parameter                    | Command                                     | Var1                                                              |
-| :------------------------------------ | :------------------------------------------ | :---------------------------------------------------------------- |
-| paymentRelatedDetailsForMobileSDKHash | payment\_related\_details\_for\_mobile\_sdk | value of the `userCredentials `(You have set it in paymentParams) |
-| validateVPAHash                       | validateVPA                                 | VPA string of your user                                           |
+| Hash for Parameter                    | Command                                | Var1                                                              |
+| :------------------------------------ | :------------------------------------- | :---------------------------------------------------------------- |
+| paymentRelatedDetailsForMobileSDKHash | payment_related_details_for_mobile_sdk | value of the `userCredentials `(You have set it in paymentParams) |
+| validateVPAHash                       | validateVPA                            | VPA string of your user                                           |
 
 5. Call the following method of the PayUAPI class to get all available payment options to “Merchant”:
 
