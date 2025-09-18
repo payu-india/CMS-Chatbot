@@ -127,11 +127,9 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
       </td>
 
       <td>
-        `String`Bank code for the selected bank. Character limit: 10. For more information, refer to 
+        `String`Bank code for the selected bank. Character limit: 10. For more information, refer to
 
         <Anchor label="TPV Codes" target="_blank" href="https://docs.payu.in/docs/bank-codes-for-tpv/">TPV Codes</Anchor>
-
-
       </td>
     </tr>
   </tbody>
@@ -141,32 +139,32 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 
 <Accordion title="beneficiaryDetail Object" icon="fa-user">
   <HTMLBlock>{`
-            <table>
-            <thead>
-            <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-            <th>Example</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <td>beneficiaryName<br/><code>mandatory</code></td>
-            <td><code>String</code> Name of the beneficiary account holder. Character limit: 100</td>
-            <td><code>"Merchant Account"</code></td>
-            </tr>
-            <tr>
-            <td>beneficiaryAccountNumber<br/><code>mandatory</code></td>
-            <td><code>String</code> Bank account number of the beneficiary. Character limit: 50</td>
-            <td><code>"1234567890"</code></td>
-            </tr>
-            <tr>
-            <td>beneficiaryAccountType<br/><code>mandatory</code></td>
-            <td><code>String</code> Type of beneficiary account (e.g., <code>"SAVINGS"</code>, <code>"CURRENT"</code>). Character limit: 20</td>
-            <td><code>"SAVINGS"</code></td>
-            </tr>
-            </tbody>
-            </table>
+                <table>
+                <thead>
+                <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Example</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <td>beneficiaryName<br/><code>mandatory</code></td>
+                <td><code>String</code> Name of the beneficiary account holder. Character limit: 100</td>
+                <td><code>"Merchant Account"</code></td>
+                </tr>
+                <tr>
+                <td>beneficiaryAccountNumber<br/><code>mandatory</code></td>
+                <td><code>String</code> Bank account number of the beneficiary. Character limit: 50</td>
+                <td><code>"1234567890"</code></td>
+                </tr>
+                <tr>
+                <td>beneficiaryAccountType<br/><code>mandatory</code></td>
+                <td><code>String</code> Type of beneficiary account (e.g., <code>"SAVINGS"</code>, <code>"CURRENT"</code>). Character limit: 20</td>
+                <td><code>"SAVINGS"</code></td>
+                </tr>
+                </tbody>
+                </table>
   `}</HTMLBlock>
 
   \#####order object
@@ -192,32 +190,32 @@ This section describes the step-by-step procedure to integrate TPV with non-seam
 
 <Accordion title="additionalInfo Object" icon="fa-info">
   <HTMLBlock>{`
-            <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-            <tr>
-              <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-              <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-              <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
-              <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method..</td>
-              <td style="border: 1px solid #ddd; padding: 8px;">NB</td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-              <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-              <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
-              <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-              <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
-            </tr>
-            </tbody>
-            </table>
+                <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                <tr>
+                  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+                  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+                  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;">enforcePaymethod<br/><code>optional</code></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">Force a transaction with a specified method..</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">NB</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+                </tr>
+                </tbody>
+                </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -300,6 +298,6 @@ curl -X POST \
 
 ### Verify Payment
 
-> ⚠️ **Important**
->
-> After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
+<Callout icon="⚠️" theme="warn">
+  **Important**: After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
+</Callout>
