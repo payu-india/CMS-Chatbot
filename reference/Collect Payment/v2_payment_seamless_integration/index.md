@@ -1,5 +1,5 @@
 ---
-title: Collect Payment API - Seamless v2 Payment
+title: Collect Payment API - Merchant Hosted & S2S v2 Payment
 excerpt: ''
 deprecated: false
 hidden: false
@@ -31,9 +31,9 @@ next:
 ---
 To process payments with credit/debit card, UPI, wallet, etc. on your website using PayU, collect the payment details on your website and submit them to PayU via API. This eliminates the need for redirection to PayU’s payment page, resulting in a more secure and efficient transaction.
 
-> 📘 Reference:
->
-> To handle redirect URLs (surl and furl), refer to <Anchor label="Handling the Redirect URLs" target="_blank" href="https://docs.payu.in/v1/docs/handling-the-redirect-urls">Handling the Redirect URLs</Anchor>.
+<Callout icon="📘" theme="info">
+  **Reference**: To handle redirect URLs (surl and furl), refer to <Anchor label="Handling the Redirect URLs" target="_blank" href="https://docs.payu.in/v1/docs/handling-the-redirect-urls">Handling the Redirect URLs</Anchor>.
+</Callout>
 
 This part of the document includes the API reference for the following payment methods with v2/payment seamless integration:
 
