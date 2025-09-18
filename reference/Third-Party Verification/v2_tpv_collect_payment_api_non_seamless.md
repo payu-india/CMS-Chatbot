@@ -1,5 +1,5 @@
 ---
-title: Non-Seamless - TPV
+title: PayU Hosted Checkout - TPV
 deprecated: false
 hidden: false
 metadata:
