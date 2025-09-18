@@ -395,7 +395,6 @@ The response for the S2S payment request is not similar to Merchant Hosted or Pa
 
 To start with, the request is raised from the Merchant to PayU with the required transaction mandatory/optional parameters. This needs to be a server-to-server curl call request. This API is used for both Cards and UPI for generating a new transaction. Parameters and their descriptions are mentioned below.
 
-For the "Try It" experience, refer to <a href="https://docs.payu.in/v2/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection</a>.
 
 ### Environment
 
