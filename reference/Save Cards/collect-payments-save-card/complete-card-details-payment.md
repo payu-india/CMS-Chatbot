@@ -22,9 +22,9 @@ HTTP Method: **POST**
 * It is a guest checkout  
 * It is a standard checkout request where there is no need to save the card 
 
-> 📘 Note
->
-> Plain card details coming from the merchant, so no changes are applicable in the request & response.
+<Callout icon="📘" theme="info">
+  **Note**: Plain card details coming from the merchant, so no changes are applicable in the request & response.
+</Callout>
 
 Request and response elements will remain intact as it is.
 
