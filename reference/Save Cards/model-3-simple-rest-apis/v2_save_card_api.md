@@ -73,7 +73,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>var3<br>mandatory</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card mode is specified in this parameter. For more information on card mode codes, refer to <a href="doc:card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card mode is specified in this parameter. For more information on card mode codes, refer to <a href="https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>CC</p>
 </td>
@@ -81,7 +81,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>var4<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card type of the card is specified in this parameter. For more information on card type codes, refer to <a href="doc:card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card type of the card is specified in this parameter. For more information on card type codes, refer to <a href="https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>AMEX</p>
 </td>
