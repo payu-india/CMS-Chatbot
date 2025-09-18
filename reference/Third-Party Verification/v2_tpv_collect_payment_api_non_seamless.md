@@ -8,9 +8,9 @@ metadata:
 ---
 The PayU v2 Payment API enables merchants to process payments through a hosted checkout flow for TPV integration.
 
-> 📘 **Note**
->
-> This documentation covers the **non-seamless (hosted checkout)** integration. For seamless payment flows, refer to the [v2 Payment API (Seamless)](https://docs.payu.in/v2/docs/v2-seamless-integration/) documentation.
+<Callout icon="📘" theme="info">
+  **Note**: This documentation covers the **non-seamless (hosted checkout)** integration. For seamless payment flows, refer to the [v2 Payment API (Seamless)](https://docs.payu.in/v2/docs/v2-seamless-integration/) documentation.
+</Callout>
 
 **Environment**
 
