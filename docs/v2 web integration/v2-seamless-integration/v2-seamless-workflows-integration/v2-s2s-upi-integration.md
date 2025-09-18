@@ -17,13 +17,13 @@ In UPI Collect payment flow, the sequence of APIs is called to follow for redire
 1. [Post the transaction to PayU](#step-1-post-the-transaction-to-payu)
 2. [Check Response from PayU](#step-2-check-response-from-payu)
 
-> 👍 Before you begin:
->
-> PayU recommends you to integrate with Test environment initially. For more information, contact you PayU Key Account Manager (KAM) or PayU Support.
+<Callout icon="👍" theme="okay">
+  **Before you begin**: PayU recommends you to integrate with Test environment initially. For more information, contact you PayU Key Account Manager (KAM) or PayU Support.
+</Callout>
 
 ## Step 1: Post the transaction to PayU
 
-Initiate an authorization request with the payment details provided post a successful authentication via the MPI/3DSS.  For the request parameters, refer to  <a href="https://docs.payu.in/v2/reference/cards-direct-authorization-flow-s2s-v2-_payment/" target="_blank">Cards Direct Authorization Flow</a>.
+Initiate an authorization request with the payment details provided post a successful authentication via the MPI/3DSS.  For the request parameters, refer to  <a href="https://docs.payu.in/v2/reference/v2-cards-direct-authorization-flow/" target="_blank">Cards Direct Authorization Flow</a>.
 
 ### Environment
 
@@ -31,7 +31,7 @@ Initiate an authorization request with the payment details provided post a succe
 
 > 📘 Reference:
 >
-> For the **Try It** experience and response, refer to <a href="https://docs.payu.in/v2/reference/cards-classic-integration" target="_blank">Cards Classic Integration</a> under API Reference.
+> For the **Try It** experience and response, refer to <a href="https://docs.payu.in/v2/reference/v2-cards-classic-integration" target="_blank">Cards Classic Integration</a> under API Reference.
 
 ### Request header
 
@@ -110,32 +110,32 @@ The following table describes the request body parameters:
 
 <Accordion title="paymentMethod object" icon="fa-code">
   <HTMLBlock>{`
-            <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-            <tr>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br><code>mandatory</code></p></td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For Classic Integration, use "CreditCard" or "DebitCard". For more information, refer to <a href="https://docs.payu.in/v1/docs/payment-mode-codes">Payment Mode Codes</a>.</p></td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>CreditCard</p></td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode<br><code>mandatory</code></p></td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the card type code. For more information, refer to <a href="https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a>.</p></td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>CC</p></td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentCard<br><code>mandatory for cards</code></p></td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> This object contains the physical card or saved card token details. For more information, refer to <a href="#paymentcard-object-fields-description">paymentCard object fields description</a>.</p></td>
-              <td style="border: 1px solid #ddd; padding: 8px;"></td>
-            </tr>
-            </tbody>
-            </table>
+                <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                <tr>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br><code>mandatory</code></p></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For Classic Integration, use "CreditCard" or "DebitCard". For more information, refer to <a href="https://docs.payu.in/v1/docs/payment-mode-codes">Payment Mode Codes</a>.</p></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>CreditCard</p></td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode<br><code>mandatory</code></p></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the card type code. For more information, refer to <a href="https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a>.</p></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>CC</p></td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentCard<br><code>mandatory for cards</code></p></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> This object contains the physical card or saved card token details. For more information, refer to <a href="#paymentcard-object-fields-description">paymentCard object fields description</a>.</p></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                </tr>
+                </tbody>
+                </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -157,32 +157,32 @@ The following table describes the request body parameters:
 
 <Accordion title="AdditionalInfo object" icon="fa-code">
   <HTMLBlock>{`
-            <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-            <tr>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>txnFlow<br><code>mandatory for S2S</code></p></td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Indicates the transaction S2S flow type and must be set to "3" for Direct Authorization Flow.</p></td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>3</p></td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>authenticationFlow<br><code>mandatory for S2S</code></p></td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Indicates the authentication flow type and must be set to "REDIRECT" for Direct Authorization Integration.</p></td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>REDIRECT</p></td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>createOrder<br><code>optional</code></p></td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> Whether to create an order during the payment process.</p></td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>false</p></td>
-            </tr>
-            </tbody>
-            </table>
+                <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                <tr>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnFlow<br><code>mandatory for S2S</code></p></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Indicates the transaction S2S flow type and must be set to "3" for Direct Authorization Flow.</p></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>3</p></td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>authenticationFlow<br><code>mandatory for S2S</code></p></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Indicates the authentication flow type and must be set to "REDIRECT" for Direct Authorization Integration.</p></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>REDIRECT</p></td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>createOrder<br><code>optional</code></p></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> Whether to create an order during the payment process.</p></td>
+                  <td style="border: 1px solid #ddd; padding: 8px;"><p>false</p></td>
+                </tr>
+                </tbody>
+                </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -387,7 +387,7 @@ Verify the transaction details using the Verification APIs. For API reference, r
 
 This web service will let you validate VPA if it is a valid VPA or not.
 
-After the customer enters VPA on your website, you need to call this API to check for VPA validation. If VPA is valid, you need to proceed with the next step. For a sample request or response, refer to  <a href="v2_validate_vpa_api" target="_blank"> Validate VPA</a>.
+After the customer enters VPA on your website, you need to call this API to check for VPA validation. If VPA is valid, you need to proceed with the next step. For a sample request or response, refer to  <a href="https://docs.payu.in/v2/reference/v2_validate_vpa_api" target="_blank"> Validate VPA</a>.
 
 Collect the response in the  <a href="https://docs.payu.in/v2/reference/v2_payment_s2s_upi_collection" target="_blank"> UPI Collection</a> under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to <a href="addl_info-payment-apis" target="_blank"> Additional Info for Payment APIs</a>.
 
@@ -455,27 +455,27 @@ For the "Try It" experience, refer to <a href="https://docs.payu.in/v2/reference
 
 <Accordion title="paymentMethod object" icon="fa-code">
   <HTMLBlock>{`
-        <table style="width: 100%; border-collapse: collapse;">
-        <thead>
-        <tr>
-          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br/><code>mandatory</code></p></td>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For UPI, use "UPI."</td>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p>UPI</p></td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode<br/><code>mandatory</code></p></td>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the card type code. For more information, refer to <a href="https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a>.</p></td>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p>CC</p></td>
-        </tr>
-        </tbody>
-        </table>
+            <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+            <tr>
+              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br/><code>mandatory</code></p></td>
+              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For UPI, use "UPI."</td>
+              <td style="border: 1px solid #ddd; padding: 8px;"><p>UPI</p></td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode<br/><code>mandatory</code></p></td>
+              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the card type code. For more information, refer to <a href="https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a>.</p></td>
+              <td style="border: 1px solid #ddd; padding: 8px;"><p>CC</p></td>
+            </tr>
+            </tbody>
+            </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -604,4 +604,4 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 }
 ```
 
-Check the UPI transaction status using the **Verify Payment API** (verify\_payment) API. For more information, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+Check the UPI transaction status using the **Verify Payment API** (verify_payment) API. For more information, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
