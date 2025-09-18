@@ -129,7 +129,11 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
       </td>
 
       <td>
-        `String`Bank code for the selected bank. Character limit: 10. <Anchor label="For more information, refer to Net Banking codes" target="_blank" href="https://docs.payu.in/v1/docs/net-banking-codes">For more information, refer to Net Banking codes</Anchor>
+        `String`Bank code for the selected bank. Character limit: 10. 
+
+        <Anchor label="For more information, refer to Net Banking codes" target="_blank" href="https://docs.payu.in/v1/docs/net-banking-codes">For more information, refer to Net Banking codes</Anchor>
+
+
       </td>
     </tr>
   </tbody>
@@ -292,4 +296,4 @@ Array
 
 > ⚠️ **Important**
 >
-> After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="ref:v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
+> After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="ref:v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
