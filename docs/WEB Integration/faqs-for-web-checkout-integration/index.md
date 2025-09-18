@@ -299,7 +299,7 @@ You cannot include only udf1 to udf5, so udf6 to udf10 cannot be included with h
 
 * **I am a PayU’s partner and I onboarded merchants to PayU. How do I my merchants can collect payments?**
 
-  Merchants onboarded by partners using [Refer Merchants using Partner Portal](doc:partner-portal) or [Refer Merchants using Integration APIs](ref:partner-integration-api-introductio)can collect payments using PayU Hosted Checkout. For more information on PayU Hosted Checkout Integration, refer to [PayU Hosted Checkout](doc:custom-checkout-merchant-hosted).
+  Merchants onboarded by partners using [Refer Merchants using Partner Portal](doc:partner-portal) or [Refer Merchants using Integration APIs](ref:partner-integration-api-introduction)can collect payments using PayU Hosted Checkout. For more information on PayU Hosted Checkout Integration, refer to [PayU Hosted Checkout](doc:custom-checkout-merchant-hosted).
 
 * **Can PayU enable the following payment URL for UPI to create payment links**.
 
