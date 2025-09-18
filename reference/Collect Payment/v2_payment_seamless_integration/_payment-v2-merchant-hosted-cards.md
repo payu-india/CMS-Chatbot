@@ -234,6 +234,8 @@ Array
 )
 ```
 
-> 📘 Reference:
->
-> To check the transaction status, refer to[Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+<Callout icon="📘" theme="info">
+  **Reference**: To check the transaction status, refer to[Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+</Callout>
+
+<br />
