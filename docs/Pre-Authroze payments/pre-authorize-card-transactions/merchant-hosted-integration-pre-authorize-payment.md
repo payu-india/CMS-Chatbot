@@ -18,14 +18,14 @@ The **pre_authorize** parameter is used to pre-authorize payments using the Merc
 
 ## Step 1: Post the Pre-Auth transaction request
 
-Post the additional parameters for with the Pre-Authorization using the Merchant Hosted Checkout. For complete list of parameters, refer to [Pre-Authorize Payment](ref:pre_authorize_payment1) for the complete list parameters with **Try It** experience.
+Post the additional parameters for with the Pre-Authorization using the Merchant Hosted Checkout. For complete list of parameters, refer to [Pre-Authorize Payment](ref:pre_authorize_payment) for the complete list parameters with **Try It** experience.
 
 **Environment**
 
-|                            |                                                                    |
-| :------------------------- | :----------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
-| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 The **pre_authorize** parameter as specified is used to pre-authorize payments using the Merchant Hosted Checkout integration with the **_payment** API.
 
@@ -305,7 +305,7 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
       <td>
         `String` The first line of the billing address.
 
-        * *For Fraud Detection**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * _For Fraud Detection_*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
