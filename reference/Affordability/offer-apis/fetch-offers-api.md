@@ -10,18 +10,18 @@ metadata:
 next:
   description: ''
 ---
-The **fetch\_offers** API fetches all active (with the **Live** status on Dashboard) offers for this Merchant ID.
+The **fetch_offers** API fetches all active (with the **Live** status on Dashboard) offers for this Merchant ID.
 
-> 📘 **Note**:
-> 
-> If the amount are received in the request, the discount calculation for each offer is also sent as part of the response. If the amount is not received, the response does not contain the discount calculation fields.
+<Callout icon="📘" theme="info">
+  **Note**: If the amount are received in the request, the discount calculation for each offer is also sent as part of the response. If the amount is not received, the response does not contain the discount calculation fields.
+</Callout>
 
 **Endpoints**
 
-|                            |                                               |
-| -------------------------- | --------------------------------------------- |
-| **Test Environment**       | \<https://sandbox.payu.in/offers/transactions> |
-| **Production Environment** | \<https://api.payu.in/offers/transactions>     |
+|                            |                                                                                                |
+| -------------------------- | ---------------------------------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://sandbox.payu.in/offers/transactions>](https://sandbox.payu.in/offers/transactions>) |
+| **Production Environment** | \<[https://api.payu.in/offers/transactions>](https://api.payu.in/offers/transactions>)         |
 
 ## Request Headers
 
@@ -63,7 +63,7 @@ The request header contains the following fields:
 <li><strong>headers</strong>: This must have the value as <strong>date digest</strong></li>
 <li><strong>signature</strong>: This must contain the hmacsha256 of (signing_string, merchant_secret), where:<ul>
 <li><strong>signing_string</strong>: This is in the &quot;<strong>Date</strong>&quot;+&quot;\n&quot;+&quot;<strong>Digest</strong>&quot; format. Here, the Date and Digest is the same values in the fields listed in this table For example, &quot;Thu, 17 Feb 2022 08:17:59 GMT&quot;&quot;\n&quot;+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“</li>
-<li><strong>merchant_secret</strong>: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt on PayU Dashboard</a></li>
+<li><strong>merchant_secret</strong>: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to <a href="https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt on PayU Dashboard</a></li>
 </ul>
 </li>
 </ul>
@@ -82,7 +82,6 @@ The request header contains the following fields:
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 The following sample Java code contains the logic used to encrypt as described in the above table:
 
@@ -205,11 +204,10 @@ public class HmacAuth {
 </table>
 `}</HTMLBlock>
 
-
 > 📘 Notes:
-> 
-> - If you had enable the **Enforce Offer** flag with PayU, the best offer out of the all the offers passed will be applied for the customer. While using this API,  the **autoApply** parameter must be set to true if the offer is automatically applied.
-> - All the parameters are optional, but the header is mandatory.
+>
+> * If you had enable the **Enforce Offer** flag with PayU, the best offer out of the all the offers passed will be applied for the customer. While using this API,  the **autoApply** parameter must be set to true if the offer is automatically applied.
+> * All the parameters are optional, but the header is mandatory.
 
 ### **skusDetail Parameter Description**
 
@@ -251,7 +249,6 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ## Sample request and response for a normal transactional offer
 
@@ -592,7 +589,7 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
 
 ### Failure scenarios
 
-- Merchant ID does not exists
+* Merchant ID does not exists
 
 Merchant ID does not exists
 
@@ -605,7 +602,7 @@ Merchant ID does not exists
 }
 ```
 
-- The platform for client mismatch or does not exists
+* The platform for client mismatch or does not exists
 
 ```plaintext
 {
@@ -616,7 +613,7 @@ Merchant ID does not exists
 }
 ```
 
-- Service unavailable
+* Service unavailable
 
 ```plaintext
 {
@@ -627,7 +624,7 @@ Merchant ID does not exists
 }
 ```
 
-- Invalid request
+* Invalid request
 
 ```
 {
@@ -1002,7 +999,7 @@ Sample request
 
 ### Failure scenarios
 
-- Merchant ID does not exists
+* Merchant ID does not exists
 
 Merchant ID does not exists
 
@@ -1015,7 +1012,7 @@ Merchant ID does not exists
 }
 ```
 
-- The platform for client mismatch or does not exists
+* The platform for client mismatch or does not exists
 
 ```plaintext
 {
@@ -1026,7 +1023,7 @@ Merchant ID does not exists
 }
 ```
 
-- Service unavailable
+* Service unavailable
 
 ```plaintext
 {
@@ -1037,7 +1034,7 @@ Merchant ID does not exists
 }
 ```
 
-- Invalid request
+* Invalid request
 
 ```
 {
@@ -1048,7 +1045,7 @@ Merchant ID does not exists
 }
 ```
 
-- Offer key is mandatory when autoApply=false
+* Offer key is mandatory when autoApply=false
 
 ```
 {
@@ -1113,7 +1110,6 @@ The response involves the following parameters and the **result** parameter cont
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### result Parameter JSON Details
 
@@ -1527,7 +1523,6 @@ The **offers** field in the **result** JSON contains the offer details and detai
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 The sample value for **offers** field in a JSON is similar to the following:
 
