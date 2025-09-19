@@ -16,9 +16,9 @@ metadata:
 next:
   description: ''
 ---
-To integrate with PayU Hosted Checkout, you need to send a request and check the response. This will redirect the customer from the merchant’s website to PayU’s payment page to complete the payment. You can use the sample request and response in the provided documentation to get started.
+To accept payments using a PayU Hosted Checkout. You need to redirect your users to PayU Hosted checkout on the click of "Make Payment" equivalent Call to action in your website/app. You need to create the redirection URL in by providing the payment and user details in the URL parameters. These parameters should be accompanied with a unique hash. This hash helps to keep the payment secure. 
 
-The steps involved in PayU Hosted Checkout integration are:
+Follow the below detailed steps to accept payments with PayU Hosted Checkout:
 
 1. [Prepare the request parameters](#step=1-prepare-the-request-parameters)
 2. [Hash the request and post to PayU](#hash-the-request-and-post-to-payu)
