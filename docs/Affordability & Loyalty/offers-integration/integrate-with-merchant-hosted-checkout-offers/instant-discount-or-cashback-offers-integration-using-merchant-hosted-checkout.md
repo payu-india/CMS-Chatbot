@@ -29,6 +29,10 @@ With the Merchant Hosted Checkout integration, the entire payment experience can
 
 The following video walks through the customer journey:
 
+<Embed typeOfEmbed="youtube" url="https://www.youtube.com/watch?v=tRRbSzk9Egg" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FtRRbSzk9Egg%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DtRRbSzk9Egg%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FtRRbSzk9Egg%252Fhqdefault.jpg%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" href="https://www.youtube.com/watch?v=tRRbSzk9Egg" providerUrl="https://www.youtube.com/" providerName="YouTube" />
+
+<br />
+
 The steps involves in the customer journey are:
 
 1. User logs in to the merchant’s app/website.
@@ -126,7 +130,7 @@ To integrate offers using Merchant Hosted Checkout integration:
   </tbody>
 </Table>
 
-> **Notes**:  
+> 📘 Notes:
 >
 > * The following order must be used for hashing:
 >   `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
@@ -134,7 +138,7 @@ To integrate offers using Merchant Hosted Checkout integration:
 > * If any of the keys is null/not configured, "|" character must be concatenated.
 > * The above hash logic is for _payment API version 10 or later
 
-**Sample Request with cart_details JSON object:**
+**Sample Request with cart_details JSON object**
 
 ```curl
 curl -X POST "https://test.payu.in/_payment" \
