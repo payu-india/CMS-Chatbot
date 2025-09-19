@@ -56,9 +56,9 @@ Check the balance of the wallet using the **Fetch Balance** API before you can i
 
 ### Request Parameters and Check Response
 
-Along with the mandatory parameters mentioned in <a href="_payment-merchant-hosted" target="_blank">Collect Payments API</a>, you must post the following parameters for the wallet. 
+Along with the mandatory parameters mentioned in <a href="https://docs.payu.in/reference/_payment-merchant-hosted" target="_blank">Collect Payments API</a>, you must post the following parameters for the wallet.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -93,7 +93,7 @@ Along with the mandatory parameters mentioned in <a href="_payment-merchant-host
 
     <tr>
       <td>
-        phone\
+        phone
         **mandatory**
       </td>
 
@@ -108,7 +108,7 @@ Along with the mandatory parameters mentioned in <a href="_payment-merchant-host
 
     <tr>
       <td>
-        pg\
+        pg
         **mandatory**
       </td>
 
@@ -123,7 +123,7 @@ Along with the mandatory parameters mentioned in <a href="_payment-merchant-host
 
     <tr>
       <td>
-        bankcode\
+        bankcode
         **mandatory**
       </td>
 
