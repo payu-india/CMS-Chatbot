@@ -29,10 +29,6 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
 The **pre_authorize** parameter as specified is used to pre-authorize payments using the Merchant Hosted Checkout integration with the **_payment** API.
 
-| Parameter | Description | **Example** |
-| :-------- | :---------- | :---------- |
-|           |             |             |
-
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -134,7 +130,11 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
       </td>
 
       <td>
-        ashish@abccorp.com
+
+
+        [ashish@abccorp.com](mailto:ashish@abccorp.com)
+
+
       </td>
     </tr>
 
@@ -174,7 +174,7 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to <a href="card-type-codes-and-supported-banks-for-cards" target="_blank"> Card Type Codes and Supported Banks for Cards</a>.
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to <a href="https://docs.payu.in/docs/card-type-codes-and-supported-banks-for-cards" target="_blank"> Card Type Codes and Supported Banks for Cards</a>.
       </td>
 
       <td>
