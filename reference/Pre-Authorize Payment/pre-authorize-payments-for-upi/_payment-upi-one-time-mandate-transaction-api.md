@@ -13,7 +13,7 @@ next:
 This section describes the request and response parameters with sample request and response for UPI One-Time mandate Intent and Collect flow. For more information on integration, refer to [Merchant Hosted Integration - UPI OTM](doc:merchant-hosted-integration-upi-otm).
 
 <Callout icon="📘" theme="info">
-  Note: Currently, PayU supports UPI One-Time Mandate only for the Seamless integration.
+  **Note**: Currently, PayU supports UPI One-Time Mandate only for the Seamless integration.
 </Callout>
 
 ## Request Parameters
@@ -558,6 +558,212 @@ curl --request POST
 --data furl=https://apiplayground-response.herokuapp.com/  
 --data hash=8e8de8a3cf2ba999e16c0ffdb63a645074af4ad1aa0a8d66d81555a119c004e1791173fe6199084f256623664b250d3aeb50fc2c4cfc155e729d8811a157c98b 
 ```
+```python
+<?php
+// PHP implementation using cURL
+
+// Define the URL
+$url = "https://test.payu.in/_payment";
+
+// Define the form data
+$formData = array(
+    'key' => 'JPM7Fg',
+    'pg' => 'UPI',
+    'bankcode' => 'UPI',
+    'vpa' => 'anything@payu',
+    'txn_s2s_flow' => '4',
+    'txnid' => 'aso6787',
+    'siDetails' => '{"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"}',
+    'pre_authorize' => '1',
+    'amount' => '100.00',
+    'productinfo' => 'iPhone',
+    'firstname' => 'Ashish',
+    'email' => 'ashish@abc.com',
+    'phone' => '9876543210',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'hash' => '8e8de8a3cf2ba999e16c0ffdb63a645074af4ad1aa0a8d66d81555a119c004e1791173fe6199084f256623664b250d3aeb50fc2c4cfc155e729d8811a157c98b'
+);
+
+// Initialize cURL
+$ch = curl_init();
+
+// Set cURL options
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($formData));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'accept: text/plain',
+    'content-type: application/x-www-form-urlencoded'
+));
+
+// Execute the request
+$response = curl_exec($ch);
+
+// Check for errors
+if (curl_errno($ch)) {
+    echo 'Error: ' . curl_error($ch);
+} else {
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+// Close cURL handle
+curl_close($ch);
+?>
+
+```
+```java
+// Java implementation using OkHttp library
+import okhttp3.*;
+import java.io.IOException;
+
+public class PayUClient {
+    private static final OkHttpClient client = new OkHttpClient();
+
+    public static void main(String[] args) {
+        // Define the URL
+        String url = "https://test.payu.in/_payment";
+
+        // Create form body
+        RequestBody formBody = new FormBody.Builder()
+            .add("key", "JPM7Fg")
+            .add("pg", "UPI")
+            .add("bankcode", "UPI")
+            .add("vpa", "anything@payu")
+            .add("txn_s2s_flow", "4")
+            .add("txnid", "aso6787")
+            .add("siDetails", "{\"paymentStartDate\": \"2019-09-01\",\"paymentEndDate\": \"2019-12-01\"}")
+            .add("pre_authorize", "1")
+            .add("amount", "100.00")
+            .add("productinfo", "iPhone")
+            .add("firstname", "Ashish")
+            .add("email", "ashish@abc.com")
+            .add("phone", "9876543210")
+            .add("surl", "https://apiplayground-response.herokuapp.com/")
+            .add("furl", "https://apiplayground-response.herokuapp.com/")
+            .add("hash", "8e8de8a3cf2ba999e16c0ffdb63a645074af4ad1aa0a8d66d81555a119c004e1791173fe6199084f256623664b250d3aeb50fc2c4cfc155e729d8811a157c98b")
+            .build();
+
+        // Create request
+        Request request = new Request.Builder()
+            .url(url)
+            .addHeader("accept", "text/plain")
+            .addHeader("content-type", "application/x-www-form-urlencoded")
+            .post(formBody)
+            .build();
+
+        try {
+            // Execute the request
+            Response response = client.newCall(request).execute();
+            System.out.println("Status Code: " + response.code());
+            System.out.println("Response: " + response.body().string());
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+
+```
+```csharp
+// C# implementation using HttpClient
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+public class PayUClient
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    public static async Task Main(string[] args)
+    {
+        // Define the URL
+        string url = "https://test.payu.in/_payment";
+
+        // Set headers
+        client.DefaultRequestHeaders.Add("accept", "text/plain");
+
+        // Define the form data
+        var formData = new FormUrlEncodedContent(new[]
+        {
+            new KeyValuePair<string, string>("key", "JPM7Fg"),
+            new KeyValuePair<string, string>("pg", "UPI"),
+            new KeyValuePair<string, string>("bankcode", "UPI"),
+            new KeyValuePair<string, string>("vpa", "anything@payu"),
+            new KeyValuePair<string, string>("txn_s2s_flow", "4"),
+            new KeyValuePair<string, string>("txnid", "aso6787"),
+            new KeyValuePair<string, string>("siDetails", "{\"paymentStartDate\": \"2019-09-01\",\"paymentEndDate\": \"2019-12-01\"}"),
+            new KeyValuePair<string, string>("pre_authorize", "1"),
+            new KeyValuePair<string, string>("amount", "100.00"),
+            new KeyValuePair<string, string>("productinfo", "iPhone"),
+            new KeyValuePair<string, string>("firstname", "Ashish"),
+            new KeyValuePair<string, string>("email", "ashish@abc.com"),
+            new KeyValuePair<string, string>("phone", "9876543210"),
+            new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
+            new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
+            new KeyValuePair<string, string>("hash", "8e8de8a3cf2ba999e16c0ffdb63a645074af4ad1aa0a8d66d81555a119c004e1791173fe6199084f256623664b250d3aeb50fc2c4cfc155e729d8811a157c98b")
+        });
+
+        try
+        {
+            // Make the POST request
+            HttpResponseMessage response = await client.PostAsync(url, formData);
+            string responseContent = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseContent}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
+        }
+    }
+}
+
+```
+```php
+# Python implementation using requests library
+import requests
+
+# Define the URL and headers
+url = "https://test.payu.in/_payment"
+headers = {
+    "accept": "text/plain",
+    "content-type": "application/x-www-form-urlencoded"
+}
+
+# Define the form data
+form_data = {
+    "key": "JPM7Fg",
+    "pg": "UPI",
+    "bankcode": "UPI",
+    "vpa": "anything@payu",
+    "txn_s2s_flow": "4",
+    "txnid": "aso6787",
+    "siDetails": "{\"paymentStartDate\": \"2019-09-01\",\"paymentEndDate\": \"2019-12-01\"}",
+    "pre_authorize": "1",
+    "amount": "100.00",
+    "productinfo": "iPhone",
+    "firstname": "Ashish",
+    "email": "ashish@abc.com",
+    "phone": "9876543210",
+    "surl": "https://apiplayground-response.herokuapp.com/",
+    "furl": "https://apiplayground-response.herokuapp.com/",
+    "hash": "8e8de8a3cf2ba999e16c0ffdb63a645074af4ad1aa0a8d66d81555a119c004e1791173fe6199084f256623664b250d3aeb50fc2c4cfc155e729d8811a157c98b"
+}
+
+# Make the POST request
+try:
+    response = requests.post(url, headers=headers, data=form_data)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+
+```
 
 ## Sample response
 
@@ -653,3 +859,5 @@ After the transaction is authorised by the customer, PayU will receive confirmat
    } 
 } 
 ```
+
+<br />
