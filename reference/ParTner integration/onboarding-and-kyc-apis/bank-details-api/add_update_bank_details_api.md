@@ -16,11 +16,11 @@ This API is used to perform the following:
 >
 > To get the bearer token for this API,
 >
-> * Use the Send OTP API with scope as **create\_bank\_details** to trigger an OTP to the merchants registered number.
+> * Use the Send OTP API with scope as **create_bank_details** to trigger an OTP to the merchants registered number.
 > * Verify the OTP using the Verify OTP API.
 > * Use the token returned in the Verify OTP API as a bearer token of the Add or update Bank Details API.
 >
-> For more information, refer to [User Token APIs](ref:user-token-apis).
+> For more information, refer to [User Token APIs](ref:partner-integration-user-token-apis).
 
 <PARTNEROnboardingEnvironment />
 
