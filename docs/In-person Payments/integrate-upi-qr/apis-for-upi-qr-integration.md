@@ -12,7 +12,7 @@ next:
 ---
 The following APIs used for UPI QR integration:
 
-* [Dynamic Bharat QR Generation API](https://docs.payu.in/reference/dynamic-bharat-qr-generation-api)
+* [Dynamic QR Generation API](ref:dynamic-qr-generation-api)
 * [Insta Static QR Generation API](https://docs.payu.in/reference/insta-static-qr-generation-api)
 * [Insta Deactivate VPA API](https://docs.payu.in/reference/insta-deactivate-vpa-api)
 * [Insta Static QR Regeneration API](https://docs.payu.in/reference/insta-static-qr-regeneration-api)
