@@ -40,7 +40,7 @@ The PayU Hosted Checkout page for specify payment option on Mobile.
 
 With the PayU Hosted Checkout integration, the entire payment experience is controlled by PayU. This section describes how to use the PayU Hosted Integration to collect payments with offers.
 
-### **Customer journey on PayU Hosted Checkout**
+### Customer journey on PayU Hosted Checkout
 
 1. Customer clicks **Pay** on your mobile application or website.
 2. Customer is redirected to the PayU Hosted Checkout page.
@@ -170,14 +170,12 @@ curl --location 'https://test.payu.in/_payment' \
 ```
 ```php
 <?php
-// PHP implementation using cURL
-
 // Define the URL
 $url = "https://test.payu.in/_payment";
 
-// Define the form data (http_build_query automatically URL encodes)
-$formData = array(
-    'key' => 'JF****g',  // Replace **** with actual key
+// Prepare form data
+$postData = array(
+    'key' => 'JF****g',
     'txnid' => 'jYhbOYH9o4',
     'amount' => '10',
     'productinfo' => 'Product_info',
@@ -198,34 +196,201 @@ $ch = curl_init();
 // Set cURL options
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($formData)); // Automatically URL encodes
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // Follow redirects (equivalent to --location)
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Type: application/x-www-form-urlencoded',
     'Cookie: PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
 ));
 
-// Execute the request
+// Execute request
 $response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 // Check for errors
 if (curl_errno($ch)) {
-    echo 'Error: ' . curl_error($ch);
+    echo 'cURL error: ' . curl_error($ch) . "\n";
 } else {
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    $finalUrl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
-    echo "Status Code: " . $httpCode . "\n";
-    echo "Final URL: " . $finalUrl . "\n";
+    echo "HTTP Code: " . $httpCode . "\n";
     echo "Response: " . $response . "\n";
 }
 
-// Close cURL handle
+// Close cURL
 curl_close($ch);
 ?>
 
 ```
+```python
+import requests
+
+# Define the URL
+url = "https://test.payu.in/_payment"
+
+# Define headers
+headers = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Cookie': 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
+}
+
+# Define form data
+data = {
+    'key': 'JF****g',
+    'txnid': 'jYhbOYH9o4',
+    'amount': '10',
+    'productinfo': 'Product_info',
+    'firstname': 'Ashish',
+    'lastname': 'Test',
+    'email': 'test@example.com',
+    'phone': '9876543210',
+    'furl': 'http://pp30admin.payu.in/test_response',
+    'surl': 'http://pp30admin.payu.in/test_response',
+    'hash': 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
+    'api_version': '14',
+    'user_token': '8789'
+}
+
+# Make the request
+try:
+    response = requests.post(url, headers=headers, data=data)
+    print("Status Code:", response.status_code)
+    print("Response:", response.text)
+except requests.exceptions.RequestException as e:
+    print("Error:", e)
+
 ```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        var client = new HttpClient();
+        var url = "https://test.payu.in/_payment";
+
+        // Prepare form data
+        var formData = new List<KeyValuePair<string, string>>
+        {
+            new KeyValuePair<string, string>("key", "JF****g"),
+            new KeyValuePair<string, string>("txnid", "jYhbOYH9o4"),
+            new KeyValuePair<string, string>("amount", "10"),
+            new KeyValuePair<string, string>("productinfo", "Product_info"),
+            new KeyValuePair<string, string>("firstname", "Ashish"),
+            new KeyValuePair<string, string>("lastname", "Test"),
+            new KeyValuePair<string, string>("email", "test@example.com"),
+            new KeyValuePair<string, string>("phone", "9876543210"),
+            new KeyValuePair<string, string>("furl", "http://pp30admin.payu.in/test_response"),
+            new KeyValuePair<string, string>("surl", "http://pp30admin.payu.in/test_response"),
+            new KeyValuePair<string, string>("hash", "e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184"),
+            new KeyValuePair<string, string>("api_version", "14"),
+            new KeyValuePair<string, string>("user_token", "8789")
+        };
+
+        var formContent = new FormUrlEncodedContent(formData);
+
+        // Set headers
+        client.DefaultRequestHeaders.Add("Cookie", "PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e");
+
+        try
+        {
+            var response = await client.PostAsync(url, formContent);
+            var responseContent = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseContent}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+        finally
+        {
+            client.Dispose();
+        }
+    }
+}
+
+```
+```java
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringJoiner;
+
+public class PayUSimpleRequest {
+    public static void main(String[] args) throws IOException {
+        String url = "https://test.payu.in/_payment";
+
+        // Prepare form data
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("key", "JF****g");
+        parameters.put("txnid", "jYhbOYH9o4");
+        parameters.put("amount", "10");
+        parameters.put("productinfo", "Product_info");
+        parameters.put("firstname", "Ashish");
+        parameters.put("lastname", "Test");
+        parameters.put("email", "test@example.com");
+        parameters.put("phone", "9876543210");
+        parameters.put("furl", "http://pp30admin.payu.in/test_response");
+        parameters.put("surl", "http://pp30admin.payu.in/test_response");
+        parameters.put("hash", "e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184");
+        parameters.put("api_version", "14");
+        parameters.put("user_token", "8789");
+
+        // Build URL-encoded string
+        StringJoiner sj = new StringJoiner("&");
+        for (Map.Entry<String, String> entry : parameters.entrySet()) {
+            sj.add(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" +
+                   URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
+        }
+        byte[] postData = sj.toString().getBytes(StandardCharsets.UTF_8);
+
+        // Create connection
+        URL obj = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+        
+        // Set request method and headers
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        connection.setRequestProperty("Cookie", "PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e");
+        connection.setRequestProperty("Content-Length", String.valueOf(postData.length));
+        connection.setDoOutput(true);
+
+        // Send request
+        try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
+            wr.write(postData);
+        }
+
+        // Read response
+        int responseCode = connection.getResponseCode();
+        
+        InputStream inputStream = responseCode >= 200 && responseCode < 300 
+            ? connection.getInputStream() 
+            : connection.getErrorStream();
+            
+        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+        String inputLine;
+        StringBuilder response = new StringBuilder();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine).append("\n");
+        }
+        in.close();
+
+        System.out.println("Response Code: " + responseCode);
+        System.out.println("Response: " + response.toString());
+    }
+}
+
 ```
 
 <br />
