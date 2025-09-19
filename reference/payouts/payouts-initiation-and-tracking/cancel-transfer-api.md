@@ -15,9 +15,9 @@ next:
 ---
 The **Cancel Transfer** API command is used to cancel the queued transfer.
 
-> 📘 Note:
->
-> You can cancel a transfer until it is in the **Queued/Scheduled** status only. After the transaction gets transitioned to the **In Progress** (the next status to Queued), you cannot cancel it.
+<Callout icon="📘" theme="info">
+  **Note**: You can cancel a transfer until it is in the **Queued/Scheduled** status only. After the transaction gets transitioned to the **In Progress** (the next status to Queued), you cannot cancel it.
+</Callout>
 
 **Environment**
 
@@ -69,10 +69,6 @@ The **Cancel Transfer** API command is used to cancel the queued transfer.
 
 ## Header and request parameters
 
-> 📘 Note:
->
-> The payoutMerchantId is different from PayU Merchant Id. Check the Payouts Dashboard or call the PayU Customer Support if you don’t know your payoutMerchantId.
-
-> 📘 Reference:
->
-> For sample request and response, refer to [Sample Request and Response for Initiation & Tracking APIs](ref:sample-request-and-response-for-initiation-tracking-apis#cancel-transfer-api).
+<Callout icon="📘" theme="info">
+  **Note**: The payoutMerchantId is different from PayU Merchant Id. Check the Payouts Dashboard or call the PayU Customer Support if you don’t know your payoutMerchantId.
+</Callout>
