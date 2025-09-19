@@ -29,7 +29,7 @@ next:
       title: Check Mandate Status for Cards API
       type: endpoint
 ---
-This section describes how to use the **\_payment** API with  to cancel a recurring payment registration for an AMEX card.
+This section describes how to use the **_payment** API with  to cancel a recurring payment registration for an AMEX card.
 
 > 📘 Notes:
 >
@@ -169,7 +169,7 @@ The following table describes the parameters for delete the recurring payment de
         <strong>bankcode</strong><br/>
         <code>mandatory</code>
       </td>
-      <td>Each payment option is identified with a String unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to <a href="doc:card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></td>
+      <td>Each payment option is identified with a String unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to <a href="http://docs.payu.in/reference/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></td>
       <td>AMEXSI</td>
     </tr>
     <tr>
@@ -287,13 +287,13 @@ The following table describes the parameters for delete the recurring payment de
 
 <br />
 
-## si\_details JSON fields description
+## si_details JSON fields description
 
-The description for the **si\_details** parameter (JSON format):
+The description for the **si_details** parameter (JSON format):
 
 > 📘 Note:
 >
-> If the request was to modify a subscription, **si\_consent\_action** parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
+> If the request was to modify a subscription, **si_consent_action** parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
 
 <HTMLBlock>{`
 <table>
@@ -327,7 +327,7 @@ The description for the **si\_details** parameter (JSON format):
 
 <br />
 
-### si\_details Parameter Example Values
+### si_details Parameter Example Values
 
 #### Token requestor 1 flow
 
@@ -385,7 +385,7 @@ curl 'https://test.payu.in/_payment' \
     </tr>
     <tr>
       <td>unmappedstatus</td>
-      <td>This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to <a href="ref:payment-state-explanations">Payment State Explanations</a>.</td>
+      <td>This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to <a href="http://docs.payu.in/reference/payment-state-explanations">Payment State Explanations</a>.</td>
     </tr>
     <tr>
       <td>key</td>
@@ -397,7 +397,7 @@ curl 'https://test.payu.in/_payment' \
     </tr>
     <tr>
       <td>error_message</td>
-      <td>This parameter contains the error message. For the list of error message, refer to <a href="ref:error-codes">Error Codes</a>.</td>
+      <td>This parameter contains the error message. For the list of error message, refer to <a href="http://docs.payu.in/reference/error-codes">Error Codes</a>.</td>
     </tr>
     <tr>
       <td>bank_ref_num</td>
@@ -449,7 +449,7 @@ curl 'https://test.payu.in/_payment' \
     </tr>
     <tr>
       <td>hash</td>
-      <td>This parameter is crucial and is similar to the hash parameter used in the transaction request. For more information, refer to <a href="doc:generate-hash-merchant-hosted">Generate Hash</a>.</td>
+      <td>This parameter is crucial and is similar to the hash parameter used in the transaction request. For more information, refer to <a href="http://docs.payu.in/docs/generate-hash-merchant-hosted">Generate Hash</a>.</td>
     </tr>
     <tr>
       <td>PG_TYPE</td>
