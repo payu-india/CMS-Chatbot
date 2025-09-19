@@ -43,12 +43,12 @@ This procedure describes how to create a Personalized coupon.
 1. Navigate to [.Offers Dashboard](doc:offers-dashboard).
 2. Click **Create an Offer** at the top-right corner.
 
-   The *Create New Offer* page is displayed.
+   The _Create New Offer_ page is displayed.
 
    <Image align="center" className="border" border={true} src="https://files.readme.io/94d041dbfbfc5faa76260a76e736cdbb4030553dddcde8c5ef3efeb9ca5d0f95-Screenshot_2025-06-03_at_10.16.03_AM.png" />
 3. Select **Personalised Coupons** as the offer type.  
 
-![Personalised Coupons Offer Step1](https://files.readme.io/30ed57e78d5f6d50dc129247e00df255cea989015879d9b9440e5e8a88494dc8-Screenshot_2025-06-05_at_11.31.13_AM.png) 
+![](https://files.readme.io/30ed57e78d5f6d50dc129247e00df255cea989015879d9b9440e5e8a88494dc8-Screenshot_2025-06-05_at_11.31.13_AM.png) 
 
 ## Step 2: Add basic details
 
@@ -106,7 +106,7 @@ This procedure describes how to create a Personalized coupon.
       <td>
         Select **Yes** to show the coupon code on the checkout page after authentication.
 
-        * *Note*\*: This option is enabled or visible only if**Yes**is selected in**Authenticate coupon at checkout**.
+        * _Note_*: This option is enabled or visible only if**Yes**is selected in**Authenticate coupon at checkout**.
       </td>
     </tr>
   </tbody>
@@ -114,7 +114,7 @@ This procedure describes how to create a Personalized coupon.
 
 2. After you complete the above details and click **Next**.
 
-   The *Payment Options* page is displayed.
+   The _Payment Options_ page is displayed.
 
    <Image align="center" className="border" border={true} src="https://files.readme.io/20face5ca921ac455c7dd74ba8fb532e274b2ac4dd69b581d64b52b3072af1a7-dashboard-prediscounted-payment-options.png" />
 
@@ -127,16 +127,16 @@ This procedure describes how to create a Personalized coupon.
    1. Configure the payment modes. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#configure-payment-modes).
    2. Click **Next**.
 
-   The *Offer Rules* page is displayed.
+   The _Offer Rules_ page is displayed.
 
    <Image align="center" className="border" border={true} src="https://files.readme.io/2e7610844659ed93bfa6380b4023a90f4ff3c2b5743acdbe9ed3a2eeb39c385c-dashboard-prediscounted-offer-rules.png" />
 
    ## Step 3: Include the Offer rules
 
-   1. Enter the offer rules and limitations on the *Set Offer Rules* page. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-3-include-the-offer-rules).
+   1. Enter the offer rules and limitations on the _Set Offer Rules_ page. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-3-include-the-offer-rules).
    2. After you complete the above details and click **Next**.
 
-      The *Subvention Details* page is displayed.
+      The _Subvention Details_ page is displayed.
 
    ## Step 5: Setting up customers and communications
 
@@ -159,7 +159,8 @@ This procedure describes how to create a Personalized coupon.
    This is an optional step. You can send the messages to the recipients directly and seamlessly from within the dashboard without the need to do it manually. The following communications are supported by PayU:
 
    * [Pre-launch communication for building Intrigue](#pre-launch-communication-for-building-intrigue)
-   * [Post-launch communication](post-launch-communication)
+
+   * [Post-launch communication](#post-launch-communication)
 
    > 📘 Note:
    >
@@ -195,16 +196,16 @@ This procedure describes how to create a Personalized coupon.
 
    ## Step 5: Configure Offer Subvention Details
 
-   1. Enter the subvention details in the *Subvention Details* page. For more information, refer to refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-4-configure-offer-subvention-details).
+   1. Enter the subvention details in the _Subvention Details_ page. For more information, refer to refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-4-configure-offer-subvention-details).
    2. After you complete the above details and click **Next**.
 
-   The *Preview Details* page is displayed.
+   The _Preview Details_ page is displayed.
 
    <Image align="center" className="border" border={true} src="https://files.readme.io/a87a0559ec1e51c8daed008b50a26c33c186b877accfc72a3a4bc72b15eb3aa5-dashboard-prediscounted-preview_page.png" />
 
    ## Step 6: Review of the Offer
 
-   The *Preview Details* page summarizes the details you provided in Step 2 to Step 4.
+   The _Preview Details_ page summarizes the details you provided in Step 2 to Step 4.
 3. Review all the configurations added before you make the offer available to your customers.
 4. Click the **Edit** button to return back to the corresponding page and update the configuration.
 5. Click **Publish** to make it available to customers.
