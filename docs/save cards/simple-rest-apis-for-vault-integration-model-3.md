@@ -23,9 +23,9 @@ next:
 ---
 To integrate vault with the Simple REST APIs, this section describes the following:
 
-> 📘 Note:
->
-> To use tokenisation, you need to get the Token Requestor onboarding to be done. Contact your PayU Key Account Manager (KAM) to get the onboarding done.
+<Callout icon="📘" theme="info">
+  **Note**: To use tokenisation, you need to get the Token Requestor onboarding to be done. Contact your PayU Key Account Manager (KAM) to get the onboarding done.
+</Callout>
 
 * [First-time transaction](#first-time-transaction)
 * [Repeat transaction with token](#repeat-transaction-with-token)
@@ -37,13 +37,13 @@ To integrate vault with the Simple REST APIs, this section describes the followi
 > **Note**: This 2FA is done as per RBI guidelines and you need to be PCI-DSS compliant to store your customer’s card details.
 
 2. Initiate the payment call to process the transaction with the card details.
-3. After the payment response is received as successful, you will trigger the **save\_user\_card** API to get **save\_card\_token**. For more information, refer to <Anchor label="Save a Card API" target="_blank" href="ref:/v2/reference/v2_save_card_api/">Save a Card API</Anchor>
+3. After the payment response is received as successful, you will trigger the **save_user_card** API to get **save_card_token**. For more information, refer to <Anchor label="Save a Card API" target="_blank" href="https://docs.payu.in/v2/reference/v2_save_card_api/">Save a Card API</Anchor>
 4. The response received will provide the PayU reference ID and the network/issuer tokens, if the merchant is PCI-DSS compliant.
 
 ## Repeat transaction with token
 
 1. If the transaction is to be processed through PayU:
-   * Send the card token, network token, or issuer token and other details in the **v2/payment** API. For more information, refer to <Anchor label="Collect Payments - Save Card" target="_blank" href="ref:/v2/reference/collect-payments-save-card/">Collect Payments - Save Card</Anchor>
+   * Send the card token, network token, or issuer token and other details in the **v2/payment** API. For more information, refer to <Anchor label="Collect Payments - Save Card" target="_blank" href="https://docs.payu.in/v2/reference/collect-payments-save-card/">Collect Payments - Save Card</Anchor>
 2. If the transaction is to be processed outside PayU:
-   * Call the **get\_payment\_details** API with the PayU/Network token and get the TAVV/cryptogram. For more information, refer to <Anchor label="Get User Cards API" target="_blank" href="ref:/v2/reference/v2_get_user_cards_api/">Get User Cards API</Anchor>
+   * Call the **get_payment_details** API with the PayU/Network token and get the TAVV/cryptogram. For more information, refer to <Anchor label="Get User Cards API" target="_blank" href="https://docs.payu.in/v2/reference/v2_get_user_cards_api/">Get User Cards API</Anchor>
    * After the token and cryptogram is available, you will be able to do transaction with the preferred PA/PG.
