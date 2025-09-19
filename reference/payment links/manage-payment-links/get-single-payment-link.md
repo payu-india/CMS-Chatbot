@@ -16,13 +16,13 @@ HTTP Method: **GET**
 
 **Environment**
 
-|                        |                                           |
-| :--------------------- | :---------------------------------------- |
-| Test Environment       | &lt;https://uatoneapi.payu.in/payment-links&gt; |
-| Production Environment | &lt;https://oneapi.payu.in/payment-links&gt;    |
+|                        |                                                                                       |
+| :--------------------- | :------------------------------------------------------------------------------------ |
+| Test Environment       | \<[https://uatoneapi.payu.in/payment-links](https://uatoneapi.payu.in/payment-links)> |
+| Production Environment | \<[https://oneapi.payu.in/payment-links](https://oneapi.payu.in/payment-links)>       |
 
 > 📘 Note:
-> 
+>
 > The access token with the scope as **read_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
 
 ## Request headers
@@ -45,7 +45,7 @@ HTTP Method: **GET**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br><strong>mandatory</strong></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer <code>String</code> This contains the client_token. For getting a token, refer to <a href="ref:get-token-api-payment-links">Get Token API - Payment Links</a> .</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer <code>String</code> This contains the client_token. For getting a token, refer to <a href="https://docs.payu.in/reference/get-token-api-payment-links">Get Token API - Payment Links</a> .</p>
 </td>
 </tr>
 </tbody>
