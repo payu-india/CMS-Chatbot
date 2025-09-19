@@ -58,7 +58,7 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
       </td>
 
       <td>
-        * String_ The price of one/ single unit of SKU is specified in this field.
+        `String` The price of one/ single unit of SKU is specified in this field.
       </td>
     </tr>
 
@@ -69,7 +69,7 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
       </td>
 
       <td>
-        * String_ The product identifier to select offer is specified in this field.
+        `String` The product identifier to select offer is specified in this field.
       </td>
     </tr>
 
@@ -80,7 +80,7 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
       </td>
 
       <td>
-        * String_ The quantity for the product is specified in this field.****
+        `String` The quantity for the product is specified in this field.****
       </td>
     </tr>
 
@@ -91,7 +91,7 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
       </td>
 
       <td>
-        * String The offer keys to filter at SKU-level is specified in this field.
+        `String` The offer keys to filter at SKU-level is specified in this field.
       </td>
     </tr>
   </tbody>
