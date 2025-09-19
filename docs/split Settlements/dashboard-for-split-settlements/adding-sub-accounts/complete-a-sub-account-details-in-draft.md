@@ -16,16 +16,10 @@ To complete sub-account details in the draft:
 
 1. Navigate to **Split Payments** .
 
-   The *Manage Sub-accounts* page is displayed. If any sub-account details are saved in the draft, the View Draft button is displayed in the top-right corner.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/Split_Dash_Sub-accts_Listing_Draft_Msg-1024x716.png)
-
+   The _Manage Sub-accounts_ page is displayed. If any sub-account details are saved in the draft, the View Draft button is displayed in the top-right corner.
 2. Click **View Draft** at the top-right corner.
 
-   The *Drafts* page is displayed.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/Split_Dash_Drafts_Listing-1024x732.png)
-
+   The _Drafts_ page is displayed.
 3. Click the **Edit** button (pencil) in the **Actions** column for the sub-account that you wish to complete the details.
 4. Follow these subsections of this section to complete the details:
    * [Step 1: Basic Details](doc:add-a-sub-account#step-1-basic-details)
