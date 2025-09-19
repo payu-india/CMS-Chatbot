@@ -40,13 +40,13 @@ The recommended workflow for using Split Settlements using API Integration:
 Use the following APIs for refunds or other purposes:
 
 * [Fetch Child Merchants Details](doc:fetch-child-merchants-details-1)
-  * [Sub Account Listing API](ref:sub-account-listing-api)
+  * [Sub Account Listing API](ref:sub-account-listing-v3-api)
 * Refund API
 
   * [Refund Transaction API](ref:refund_transaction_api)
     > 📘 Include var8 in Refund Transaction API:
     >
-    > You must include the var8 parameter similar to the following JSON array format with the refund details of split where **child\_merchant\_key\_x** must be substituted with the child merchant key. For more information, refer to **Refund Transaction API** > [Other request parameters](ref:refund_transaction_api#other-request-parameters)
+    > You must include the var8 parameter similar to the following JSON array format with the refund details of split where **child_merchant_key_x** must be substituted with the child merchant key. For more information, refer to **Refund Transaction API** > [Other request parameters](ref:refund_transaction_api#other-request-parameters)
     >
     > ```
     > {
