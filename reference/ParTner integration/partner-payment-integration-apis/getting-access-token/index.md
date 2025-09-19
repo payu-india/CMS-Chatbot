@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-To get access token to be used in WhatsApp integration:
+To get access token to be used in Partner integration:
 
 1. Receiving the **auth_code** on the redirect URI
 
