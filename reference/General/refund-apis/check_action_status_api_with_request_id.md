@@ -27,9 +27,9 @@ next:
       slug: check_action_status_api_with_payu_id
       title: Check Refund Status API with PayU ID
 ---
-Whenever the **cancel\_refund\_transaction** API is executed successfully to cancel a transaction, a Request ID is returned in the output parameters for that particular request. For more information on the cancel\_refund\_transaction API, refer to Refund Transaction.
+Whenever the **cancel_refund_transaction** API is executed successfully to cancel a transaction, a Request ID is returned in the output parameters for that particular request. For more information on the cancel_refund_transaction API, refer to Refund Transaction.
 
-In **check\_action\_status** API, you need to input this Request ID to get the current status of the request. The return parameters are MIHPayID, Amount, Discount, Mode, and Status of transaction. The following are different payment states:
+In **check_action_status** API, you need to input this Request ID to get the current status of the request. The return parameters are MIHPayID, Amount, Discount, Mode, and Status of transaction. The following are different payment states:
 
 <Accordion title="Refund states" icon="fa-hourglass">
   <RefundStates />
@@ -44,7 +44,7 @@ In **check\_action\_status** API, you need to input this Request ID to get the c
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location --request POST 'https://test.info.payu.in/merchant/postservice.php?form=2' \
+  curl --location --request POST 'https://test.payu.in/merchant/postservice.php?form=2' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
   --data 'key=JF****g&hash=9f5faabedb7f5d41f519db3a223cf5318ecc0b7e669f49e0a699d4c4879e1ccaed5b99f5cd8be4f2cbddefe5272ec983abd8f38480d9c2609a29447f750a3158&command=check_action_status_txnid&var1=7043873219'
   ```
