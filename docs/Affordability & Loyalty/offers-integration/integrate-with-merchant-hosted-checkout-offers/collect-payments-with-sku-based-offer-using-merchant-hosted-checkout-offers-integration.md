@@ -41,11 +41,11 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
   <thead>
     <tr>
       <th>
-        **Field**
+        Field
       </th>
 
       <th>
-        **Description**
+        Description
       </th>
     </tr>
   </thead>
@@ -58,35 +58,35 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
       </td>
 
       <td>
-        * String\_ The price of one/ single unit of SKU is specified in this field.
+        * String_ The price of one/ single unit of SKU is specified in this field.
       </td>
     </tr>
 
     <tr>
       <td>
-        skuId\
+        skuId
         **mandatory**
       </td>
 
       <td>
-        * String\_ The product identifier to select offer is specified in this field.
+        * String_ The product identifier to select offer is specified in this field.
       </td>
     </tr>
 
     <tr>
       <td>
-         quantity \
+        quantity 
         **optional**
       </td>
 
       <td>
-        * String\_ The quantity for the product is specified in this field.\*\*\*\*
+        * String_ The quantity for the product is specified in this field.****
       </td>
     </tr>
 
     <tr>
       <td>
-        offerKeys\
+        offerKeys
         **optional**
       </td>
 
@@ -139,7 +139,7 @@ In addition to the request parameters listed in  [Validate Offer API](ref:valida
 
 ### skusDetail Object in request
 
-```curl
+```json
   "skusDetail": {
     "skus": [
       {
@@ -157,7 +157,7 @@ In addition to the request parameters listed in  [Validate Offer API](ref:valida
 
 ### skusDetail Object in response
 
-```
+```json
         "skusDetail": {
             "skusDiscountDetail": {
                 "totalCashbackDiscount": null,
@@ -206,9 +206,9 @@ In addition to the request parameters listed in  [Validate Offer API](ref:valida
 
 ### Additional request parameters for SKU-Based offer
 
-> 📘 Reference:
->
-> For the checkout flow and list of request parameters required for the Offer integration, refer to [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout).
+<Callout icon="📘" theme="info">
+  **Reference**: For the checkout flow and list of request parameters required for the Offer integration, refer to [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout).
+</Callout>
 
 <Table>
   <thead>
@@ -226,151 +226,151 @@ In addition to the request parameters listed in  [Validate Offer API](ref:valida
   <tbody>
     <tr>
       <td>
-        cart\_details
+        cart_details
         `mandatory for SKU`
       </td>
 
       <td>
-        * JSON Object\_ The card details is specified in this parameter in a JSON format.  
-        * \*Note\*\*: If given null, no cart will be created for the transaction.
+        * JSON Object_ The card details is specified in this parameter in a JSON format.
+        * *Note**: If given null, no cart will be created for the transaction.
       </td>
     </tr>
 
     <tr>
       <td>
-        cart\_details.amount\
+        cart_details.amount
         `mandatory`
       </td>
 
       <td>
-        * String\_ The amount for the SKU-based offer.
+        * String_ The amount for the SKU-based offer.
       </td>
     </tr>
 
     <tr>
       <td>
-        cart\_details.items\
+        cart_details.items
         `mandatory`
       </td>
 
       <td>
-        * String\_ The number of the items for the SKU-based offer.
+        * String_ The number of the items for the SKU-based offer.
       </td>
     </tr>
 
     <tr>
       <td>
-        cart\_details.surcharges\
+        cart_details.surcharges
         `conditional`
       </td>
 
       <td>
-        * String\_ Total txn amount is now increased, but the cart\_details.amount is lesser, to handle the difference, the additional amount added by the merchant should be passed in surcharges field
+        * String_ Total txn amount is now increased, but the cart_details.amount is lesser, to handle the difference, the additional amount added by the merchant should be passed in surcharges field
       </td>
     </tr>
 
     <tr>
       <td>
-        cart\_details.pre\_discount\
+        cart_details.pre_discount
         `conditional`
       </td>
 
       <td>
-        * String\_ If there are any pre discount given by merchant on their checkout page. Total txn amount is now reduced, but the cart\_details.amount is higher, to handle the difference, the discount given by the merchant should be passed in pre\_discount field
+        * String_ If there are any pre discount given by merchant on their checkout page. Total txn amount is now reduced, but the cart_details.amount is higher, to handle the difference, the discount given by the merchant should be passed in pre_discount field
       </td>
     </tr>
 
     <tr>
       <td>
-        cart\_details.sku\_details\
+        cart_details.sku_details
         `mandatory`
       </td>
 
       <td>
-        * JSON Object\_ The SKU details is specified in this parameter in a JSON format.
+        * JSON Object_ The SKU details is specified in this parameter in a JSON format.
       </td>
     </tr>
 
     <tr>
       <td>
-        cart\_details.sku\_details.sku\_id\
+        cart_details.sku_details.sku_id
         `mandatory`
       </td>
 
       <td>
-        * String\_ This parameter contains the unique identifier for SKU.  
-        * \*Not&#x65;**: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **&#x73;kuId\*\* request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
+        * String_ This parameter contains the unique identifier for SKU.
+        * *Note**: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
       </td>
     </tr>
 
     <tr>
       <td>
-        sku\_details.sku\_name\
+        sku_details.sku_name
         `mandatory`
       </td>
 
       <td>
-        * String \_ This parameter contains the SKU name.
+        * String _ This parameter contains the SKU name.
       </td>
     </tr>
 
     <tr>
       <td>
-        sku\_details.quantity\
+        sku_details.quantity
         `mandatory`
       </td>
 
       <td>
-        * String \_ The parameter must contain the quantity of SKU added in cart.
+        * String _ The parameter must contain the quantity of SKU added in cart.
       </td>
     </tr>
 
     <tr>
       <td>
-        sku\_details.amount\_per\_sku\
+        sku_details.amount_per_sku
         `mandatory`
       </td>
 
       <td>
-        * String \_ The parameter must contain the per SKU amount.
+        * String _ The parameter must contain the per SKU amount.
       </td>
     </tr>
 
     <tr>
       <td>
-        sku\_details.offer\_key\
+        sku_details.offer_key
         `optional`
       </td>
 
       <td>
-        * String\_ This parameter must contain the Offer Key(s) which can be used for this transaction. |
+        * String_ This parameter must contain the Offer Key(s) which can be used for this transaction. |
       </td>
     </tr>
 
     <tr>
       <td>
-        sku\_details.offer\_auto\_apply\
+        sku_details.offer_auto_apply
         `optional`
       </td>
 
       <td>
-        * String\_This parameter contains the flag for when to enable auto application of best offer on this SKU. 
+        * String_This parameter contains the flag for when to enable auto application of best offer on this SKU.
       </td>
     </tr>
   </tbody>
 </Table>
 
-> **Notes**:  
+> **Notes**:
 >
-> * The following order must be used for hashing:\
->   `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`\
+> * The following order must be used for hashing:
+>   `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
 >   For more information on hash generation process, refer to [Hashing Request and Response](ref:generate-hash-merchant-hosted).
 > * If any of the keys is null/not configured, "|" character must be concatenated.
-> * The above hash logic is for \_payment API version 10 or later.
+> * The above hash logic is for _payment API version 10 or later.
 
-### cart\_details Object in sample request
+### cart_details Object in sample request
 
-```curl
+```json
 "cart_details": {
     "amount": 55000,
     "items": 2,
@@ -399,7 +399,7 @@ In addition to the request parameters listed in  [Validate Offer API](ref:valida
   }
 ```
 
-### Sample Request with **cart\_details** JSON object:
+### Sample Request with **cart_details** JSON object:
 
 ```curl
 curl -X POST "https://test.payu.in/_payment" \
