@@ -20,9 +20,9 @@ next:
 ---
 After you create a SKU-based offer on PayU Dashboard, you can start collecting payments for products with SKU-based offer.  For more information on creating a SKU-based offer, refer to [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
 
-> 📘 Note:
->
-> For payment journey of instant discount offers using Merchant Hosted Checkout, refer to [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout).
+<Callout icon="📘" theme="info">
+  **Note**: For payment journey of instant discount offers using Merchant Hosted Checkout, refer to [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout).
+</Callout>
 
 ### Steps to integrate
 
@@ -232,7 +232,7 @@ In addition to the request parameters listed in  [Validate Offer API](ref:valida
 
       <td>
         * JSON Object_ The card details is specified in this parameter in a JSON format.
-        * *Note**: If given null, no cart will be created for the transaction.
+        * _Note_*: If given null, no cart will be created for the transaction.
       </td>
     </tr>
 
@@ -299,7 +299,7 @@ In addition to the request parameters listed in  [Validate Offer API](ref:valida
 
       <td>
         * String_ This parameter contains the unique identifier for SKU.
-        * *Note**: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
+        * _Note_*: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
       </td>
     </tr>
 
