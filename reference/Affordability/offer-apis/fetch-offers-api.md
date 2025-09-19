@@ -25,63 +25,14 @@ The **fetch_offers** API fetches all active (with the **Live** status on Dashboa
 
 ## Request Headers
 
-The request header contains the following fields:
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Date<br><strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Thu, 17 Feb 2022 08:17:59 GMT</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Digest<br><strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Base 64 encode of (sha256 hash of the JSON data (post to server).</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=</code></p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br><strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field is in the following format:<br><code>hmac username=&quot;smsplus&quot;, algorithm=&quot;hmac-sha256&quot;, headers=&quot;date digest&quot;, signature=&quot;CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4=&quot;</code><br>Where the above format includes the following:  </p>
-<ul>
-<li><strong>username</strong>: The merchant key of the merchant.</li>
-<li><strong>algorithm</strong>: This must have the value as <strong>hmac-sha256</strong> that is used for this API</li>
-<li><strong>headers</strong>: This must have the value as <strong>date digest</strong></li>
-<li><strong>signature</strong>: This must contain the hmacsha256 of (signing_string, merchant_secret), where:<ul>
-<li><strong>signing_string</strong>: This is in the &quot;<strong>Date</strong>&quot;+&quot;\n&quot;+&quot;<strong>Digest</strong>&quot; format. Here, the Date and Digest is the same values in the fields listed in this table For example, &quot;Thu, 17 Feb 2022 08:17:59 GMT&quot;&quot;\n&quot;+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“</li>
-<li><strong>merchant_secret</strong>: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to <a href="https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt on PayU Dashboard</a></li>
-</ul>
-</li>
-</ul>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> hmac username=&quot;smsplus&quot;, algorithm=&quot;hmac-sha256&quot;, headers=&quot;date digest&quot;, signature=&quot;zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=&quot;</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>platformId<br><strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the platform ID and include the value as <strong>1</strong>.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+```markdown
+| Field | Description | Example |
+|-------|-------------|---------|
+| **Date**<br>**mandatory** | The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT. | Thu, 17 Feb 2022 08:17:59 GMT |
+| **Digest**<br>**mandatory** | Base 64 encode of (sha256 hash of the JSON data (post to server). | `vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=` |
+| **Authorization**<br>**mandatory** | This field is in the following format:<br>`hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="`<br>Where the above format includes the following:<br>• **username**: The merchant key of the merchant.<br>• **algorithm**: This must have the value as **hmac-sha256** that is used for this API<br>• **headers**: This must have the value as **date digest**<br>• **signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:<br>&nbsp;&nbsp;• **signing_string**: This is in the "**Date**"+"\\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="<br>&nbsp;&nbsp;• **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard) | hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=" |
+| **platformId**<br>**mandatory** | This field contains the platform ID and include the value as **1**. | 1 |
+```
 
 The following sample Java code contains the logic used to encrypt as described in the above table:
 
@@ -145,65 +96,16 @@ public class HmacAuth {
 
 ## Request Parameters
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Amount<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>float</code>The offer transaction amount</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>offerKeys<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String Array</code>This field contains list of keys to filter the offer in an array format.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>SummerSpecialOffer2021@q1Bh0jsogwqP</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentId<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Long</code>Unique reference ID for a transaction which is generated by merchant and sent in the request</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>110</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>userToken<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String Long</code>This parameter is used to uniquely identify a user for a client/merchant.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>skusDetail<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String Array</code>The skusDetail is in an array format and contains the SKU offer details. For more information, refer to</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>autoApply<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> This parameter must be set to true if the offer is automatically applied.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
+```markdown
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| **Amount**<br>`optional` | `float` The offer transaction amount | |
+| **offerKeys**<br>`optional` | `String Array` This field contains list of keys to filter the offer in an array format. | `SummerSpecialOffer2021@q1Bh0jsogwqP` |
+| **paymentId**<br>`optional` | `Long` Unique reference ID for a transaction which is generated by merchant and sent in the request | `110` |
+| **userToken**<br>`optional` | `String Long` This parameter is used to uniquely identify a user for a client/merchant. | |
+| **skusDetail**<br>`optional` | `String Array` The skusDetail is in an array format and contains the SKU offer details. For more information, refer to | |
+| **autoApply**<br>`optional` | `Boolean` This parameter must be set to true if the offer is automatically applied. | `true` |
+```
 > 📘 Notes:
 >
 > * If you had enable the **Enforce Offer** flag with PayU, the best offer out of the all the offers passed will be applied for the customer. While using this API,  the **autoApply** parameter must be set to true if the offer is automatically applied.
@@ -213,43 +115,14 @@ public class HmacAuth {
 
 In addition to the request parameters listed in the [Fetch Offers API](ref:fetch-offers-api) section, the **skusDetail** parameter is posted with the following fields are posted in an array:
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>skuAmount<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The price of one/ single unit of SKU is specified in this field.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>skuId<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The product identifier to select offer is specified in this field.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>quantity <br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The quantity for the product is specified in this field.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>offerKeys<br><code> optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The offer keys to filter at SKU-level is specified in this field.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
+```markdown
+| Field | Description |
+|-------|-------------|
+| **skuAmount**<br>`optional` | `String` The price of one/ single unit of SKU is specified in this field. |
+| **skuId**<br>`mandatory` | `String` The product identifier to select offer is specified in this field. |
+| **quantity**<br>`optional` | `String` The quantity for the product is specified in this field. |
+| **offerKeys**<br>`optional` | `String` The offer keys to filter at SKU-level is specified in this field. |
+```
 ## Sample request and response for a normal transactional offer
 
 ### With autoApply=true
@@ -1465,7 +1338,7 @@ The **offers** field in the **result** JSON contains the offer details and detai
 <li><strong>discountDetail</strong>: The discount detail an array format as in the example.</li>
 </ul>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>networks:<br>{<br>&quot;code&quot;: &quot;MAST&quot;,<br>&quot;title&quot;: &quot;Master Network&quot;<br>},<br>{<br>&quot;code&quot;: &quot;VISA&quot;,<br>&quot;title&quot;: &quot;VIsa Network&quot;<br>}<br>banks:<br>{<br>&quot;code&quot;: &quot;ICICI&quot;,<br>&quot;title&quot;: &quot;ICICI credit card&quot;<br>},<br>{<br>&quot;code&quot;: &quot;HDFC&quot;,<br>&quot;title&quot;: &quot;HDFC credit card&quot;<br>}</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>networks:{&quot;code&quot;: &quot;MAST&quot;,&quot;title&quot;: &quot;Master Network&quot;},{&quot;code&quot;: &quot;VISA&quot;,&quot;title&quot;: &quot;VIsa Network&quot;}banks:{&quot;code&quot;: &quot;ICICI&quot;,&quot;title&quot;: &quot;ICICI credit card&quot;},{&quot;code&quot;: &quot;HDFC&quot;,&quot;title&quot;: &quot;HDFC credit card&quot;}</p>
 </td>
 </tr>
 <tr>
