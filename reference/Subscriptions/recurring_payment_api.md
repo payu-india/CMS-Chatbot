@@ -192,7 +192,7 @@ All successful registration transactions are charged over the recurring interfac
             <tr>
               <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
             </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>For JSON fields description, refer to <a href="http://docs.payu.in/reference/addl_info-payment-apis#/">Additional Info. for Recurring Payment APIs</a></p>
+              <td style="border: 1px solid #ddd; padding: 8px;"><p>For JSON fields description, refer to <a href="http://docs.payu.in/reference/addl_info-payment-apis#/">Additional Info. Payment APIs</a></p>
             </td>
             </tr>
             </tbody>
