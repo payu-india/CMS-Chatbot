@@ -223,7 +223,7 @@ The following table describes the parameters for delete the recurring payment de
       <td>
         This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br/><br/>
         <strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0 )<br/><br/>
-        This is a JSON object and it includes a set of parameters are described in the the <a href="#si_details-parameter-json-details">si_details Parameter – JSON Details</a> table.
+        This is a JSON object and it includes a set of parameters are described in the the <a href="https://docs.payu.in/reference/cancel-recurring-payment-for-a-amex-card#si_details-parameter-json-details">si_details Parameter – JSON Details</a> table.
       </td>
       <td>Refer the example below the si_details Parameter Description table.</td>
     </tr>
