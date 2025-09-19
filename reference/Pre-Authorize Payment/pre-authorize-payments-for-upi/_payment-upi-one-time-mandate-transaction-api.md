@@ -10,11 +10,11 @@ metadata:
 next:
   description: ''
 ---
-This section describes the request and response parameters with sample request and response for UPI One-Time mandate Intent and Collect flow. For more information on integration, refer to [UPI One-Time Mandate](doc:upi-one-time-mandate-consent).
+This section describes the request and response parameters with sample request and response for UPI One-Time mandate Intent and Collect flow. For more information on integration, refer to [Merchant Hosted Integration - UPI OTM](doc:merchant-hosted-integration-upi-otm).
 
-> 📘 Note
->
-> Currently, PayU supports UPI One-Time Mandate only for the Seamless integration.
+<Callout icon="📘" theme="info">
+  Note: Currently, PayU supports UPI One-Time Mandate only for the Seamless integration.
+</Callout>
 
 ## Request Parameters
 
@@ -65,7 +65,7 @@ This section describes the request and response parameters with sample request a
         `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.
         `Character limit`: 25
 
-        * *Note*\*: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’
+        * _Note_*: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’
       </td>
 
       <td>
@@ -75,14 +75,14 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        amount\
+        amount
         `mandatory`
       </td>
 
       <td>
         `float` This parameter should contain the payment amount of the particular transaction.
 
-        * *Note*\*: Type-cast the amount to float type
+        * _Note_*: Type-cast the amount to float type
       </td>
 
       <td>
@@ -92,12 +92,12 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        productinfo\
+        productinfo
         `mandatory`
       </td>
 
       <td>
-        `varchar` This parameter should contain a brief product description. It should be a string describing the product.\
+        `varchar` This parameter should contain a brief product description. It should be a string describing the product.
         `Character limit`: 100
       </td>
 
@@ -108,12 +108,12 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        firstname\
+        firstname
         `mandatory`
       </td>
 
       <td>
-        `varchar` Must contain the first name of the customer.\
+        `varchar` Must contain the first name of the customer.
         `Character limit`: 60
       </td>
 
@@ -124,32 +124,36 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        email\
+        email
         `mandatory`
       </td>
 
       <td>
-        `varchar` Must contain the email of the customer.\
+        `varchar` Must contain the email of the customer.
         This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.
         Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
         Character limit: 50
       </td>
 
       <td>
+
+
         [Ashish@test.com](mailto:Ashish@test.com)
+
+
       </td>
     </tr>
 
     <tr>
       <td>
-        phone\
+        phone
         `mandatory`
       </td>
 
       <td>
         `varchar` Must contain the phone number of the customer.
 
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.\
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
         Character limit: 50
       </td>
 
@@ -160,7 +164,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        surl\
+        surl
         `mandatory`
       </td>
 
@@ -175,7 +179,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        furl\
+        furl
         `mandatory`
       </td>
 
@@ -190,7 +194,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        pg\
+        pg
         `mandatory`
       </td>
 
@@ -205,7 +209,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        bankcode\
+        bankcode
         `mandatory`
       </td>
 
@@ -221,7 +225,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        vpa\
+        vpa
         `mandatory`
       </td>
 
@@ -232,13 +236,13 @@ This section describes the request and response parameters with sample request a
       </td>
 
       <td>
-        abc\@payu
+        abc@payu
       </td>
     </tr>
 
     <tr>
       <td>
-        txn\_s2s\_flow\
+        txn_s2s_flow
         `mandatory`
       </td>
 
@@ -253,7 +257,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        pre\_authorize\
+        pre_authorize
         `mandatory for Pre-Auth`
       </td>
 
@@ -268,7 +272,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        si\_Details
+        si_Details
       </td>
 
       <td>
@@ -276,7 +280,7 @@ This section describes the request and response parameters with sample request a
 
         * paymentStartDate
         * paymentEndDate
-          * *Example*\*:  \{"paymentStartDate":"2024-07-24","paymentEndDate":"2024-07-28"}
+          * _Example_*:  \{"paymentStartDate":"2024-07-24","paymentEndDate":"2024-07-28"}
       </td>
 
       <td>
@@ -286,17 +290,17 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        hash\
+        hash
         `mandatory`
       </td>
 
       <td>
         Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU’s payment interface while registration transactions.
 
-        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.
+        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.
 
-        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:\
-        `HASH = SHA512(sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT))`
+        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:
+        `HASH = SHA512(sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT))`
       </td>
 
       <td>
