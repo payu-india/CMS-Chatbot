@@ -224,6 +224,6 @@ Array
 
 ## Verify Payment
 
-> ⚠️ **Important**
->
-> After creating a payment, you **must** call the [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api//) to get the final transaction status. The initial payment creation response will typically show "PENDING" status.
+<Callout icon="⚠️" theme="warn">
+  **Important**: After creating a payment, you **must** call the [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api//) to get the final transaction status. The initial payment creation response will typically show "PENDING" status.
+</Callout>
