@@ -33,7 +33,7 @@ next:
 The **Get Token API** returns the authentication token generated using the client ID and client secret for the following products:
 
 * [Payment Link API Integration](doc:integration-api-for-payment-links)
-* [Partner Integration API Integration](doc:refer-merchants)
+* [Partner Integration API Integration](ref:partner-integration-api-introduction)
 
 ### Environment
 
@@ -60,21 +60,29 @@ The **Get Token API** returns the authentication token generated using the clien
   <tbody>
     <tr>
       <td>
-        client\_id
+        client_id
       </td>
 
       <td>
-        For getting your client ID, refer to [Download Client Credentials](doc:download-client-credentials).
+        For getting your client ID, refer to 
+
+        [Download Client Credentials](doc:download-client-credentials)
+
+        .
       </td>
     </tr>
 
     <tr>
       <td>
-        client\_secret
+        client_secret
       </td>
 
       <td>
-        For getting your client secret, refer to [Download Client Credentials](doc:download-client-credentials).
+        For getting your client secret, refer to 
+
+        [Download Client Credentials](doc:download-client-credentials)
+
+        .
       </td>
     </tr>
 
@@ -86,23 +94,23 @@ The **Get Token API** returns the authentication token generated using the clien
       <td>
         The scopes to be used for various use cases in Parter Integration are:
 
-        * Refer Merchant, Verify Link Merchant, Get Merchant, Update Merchant, and Client Manage KYC Details: **refer\_merchant**
-        * Send Sign In OTP: **send\_sign\_in\_otp**
-        * Verify Sign In OTP: **verify\_sign\_in\_otp**
-        * Client Manage Agreement (Used in E-Sign flow): **client\_manage\_agreement**
+        * Refer Merchant, Verify Link Merchant, Get Merchant, Update Merchant, and Client Manage KYC Details: **refer_merchant**
+        * Send Sign In OTP: **send_sign_in_otp**
+        * Verify Sign In OTP: **verify_sign_in_otp**
+        * Client Manage Agreement (Used in E-Sign flow): **client_manage_agreement**
 
-        - Penny Verify - **user\_token**
-        - Manage Payment Links: **create\_payment\_links**
+        - Penny Verify - **user_token**
+        - Manage Payment Links: **create_payment_links**
       </td>
     </tr>
 
     <tr>
       <td>
-        grant\_type
+        grant_type
       </td>
 
       <td>
-        This parameter contains a constant value used to get the access token. The grant\_type used across the partner integration is **client\_credentials**.
+        This parameter contains a constant value used to get the access token. The grant_type used across the partner integration is **client_credentials**.
       </td>
     </tr>
   </tbody>
