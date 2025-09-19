@@ -54,7 +54,7 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
     <tr>
       <td>
         skuAmount
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -65,7 +65,7 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
     <tr>
       <td>
         skuId
-        **mandatory**
+        `mandatory`
       </td>
 
       <td>
@@ -76,7 +76,7 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
     <tr>
       <td>
         quantity 
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -87,7 +87,7 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
     <tr>
       <td>
         offerKeys
-        **optional**
+        `optional`
       </td>
 
       <td>
@@ -111,7 +111,7 @@ The sample request posted will include the **skusDetail** parameter similar to t
     }
 ```
 
-Sample Response
+**Sample response**
 
 ```
 "skusDetail": [
@@ -129,7 +129,7 @@ Sample Response
 
 In addition to the request parameters listed in  [Validate Offer API](ref:validate-offer-api), the **skusDetail** parameter with **skus** in an JSON array is posted, where each **skus** contain the following fields are posted in an array:
 
-| **Field** | **Description**                                                                                                  |
+| Field     | Description                                                                                                      |
 | --------- | ---------------------------------------------------------------------------------------------------------------- |
 | autoApply | The flag to specify to automatically apply the offer.                                                            |
 | skuAmount | The price of one/ single unit of SKU is specified in this field.                                                 |
