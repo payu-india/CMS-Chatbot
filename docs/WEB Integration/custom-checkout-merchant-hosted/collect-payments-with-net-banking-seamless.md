@@ -519,43 +519,68 @@ except urllib.error.HTTPError as e:
 
 ```
 ```php
-import urllib.request
-import urllib.parse
+<?php
+// PayU Payment Gateway API Request
 
-url = "https://test.payu.in/_payment"
+// Set the API endpoint
+$url = "https://test.payu.in/_payment";
 
-headers = {
-    "accept": "application/json",
-    "Content-Type": "application/x-www-form-urlencoded"
+// Prepare the form data
+$postData = array(
+    'key' => 'JP***g',
+    'txnid' => 'ewP8oRopzdHEtC',
+    'amount' => '10.00',
+    'firstname' => 'Ashish',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'pg' => 'TESTPG',
+    'bankcode' => 'TESTPGNB',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'hash' => 'bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319'
+);
+
+// Initialize cURL session
+$ch = curl_init();
+
+// Set cURL options
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+));
+
+// Optional: Disable SSL verification for testing (not recommended for production)
+// curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+// curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+// Execute the request
+$response = curl_exec($ch);
+
+// Check for cURL errors
+if (curl_errno($ch)) {
+    echo 'cURL Error: ' . curl_error($ch);
+} else {
+    // Get HTTP status code
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    echo "HTTP Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
 }
 
-payload = {
-    "key": "JP***g",
-    "txnid": "ewP8oRopzdHEtC",
-    "amount": "10.00",
-    "firstname": "Ashish",
-    "email": "test@gmail.com",
-    "phone": "9876543210",
-    "productinfo": "iPhone",
-    "pg": "TESTPG",
-    "bankcode": "TESTPGNB",
-    "surl": "https://apiplayground-response.herokuapp.com/",
-    "furl": "https://apiplayground-response.herokuapp.com/",
-    "hash": "bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319"
+// Close cURL session
+curl_close($ch);
+
+// Optional: Parse JSON response if needed
+$responseData = json_decode($response, true);
+if ($responseData !== null) {
+    echo "Parsed Response:\n";
+    print_r($responseData);
 }
-
-data = urllib.parse.urlencode(payload).encode('utf-8')
-req = urllib.request.Request(url, data=data, headers=headers, method="POST")
-
-try:
-    with urllib.request.urlopen(req) as response:
-        response_body = response.read().decode('utf-8')
-        print("Status Code:", response.getcode())
-        print("Response:")
-        print(response_body)
-except urllib.error.HTTPError as e:
-    print("Error:", e.code, e.reason)
-    print(e.read().decode('utf-8'))
+?>
 
 ```
 ```java
