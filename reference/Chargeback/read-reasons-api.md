@@ -32,11 +32,11 @@ curl --location 'https://bankportal.payu.in/api/v1/reasons' \
 
 ## Response parameters
 
-| Parameter  | Description                                                                                                                                                                       |
-| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| id         | This parameter contains the  merchant ID.                                                                                                                                         |
-| type       | The parameter contains the **reasons ** as type. The Reasons mapping table provides reason-type, reason-text and identifier as in the [Sample response](#sample-response).        |
-| attributes | This parameter contains the chargeback reason details in a JSON format. For more information, refer to  [attributes JSON field descriptions](attributes-json-field-descriptions). |
+| Parameter  | Description                                                                                                                                                                        |
+| :--------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id         | This parameter contains the  merchant ID.                                                                                                                                          |
+| type       | The parameter contains the **reasons ** as type. The Reasons mapping table provides reason-type, reason-text and identifier as in the [Sample response](#sample-response).         |
+| attributes | This parameter contains the chargeback reason details in a JSON format. For more information, refer to  [attributes JSON field descriptions](#attributes-json-field-descriptions). |
 
 ### Reasons mapping
 
