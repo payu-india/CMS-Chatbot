@@ -10,9 +10,7 @@ metadata:
 next:
   description: ''
 ---
-# UPI One-Time Mandate Intent and Collect Flow
-
-This section describes the request and response parameters with sample request and response for UPI One-Time mandate Intent and Collect flow with PayU Hosted Checkout integration (non-seamless flow). For more information on integration, refer to [UPI One-Time Mandate](doc:upi-intent-one-time-mandate-integration-payu-hosted#/).
+This section describes the request and response parameters with sample request and response for UPI One-Time mandate Intent and Collect flow with PayU Hosted Checkout integration (non-seamless flow). For more information on integration, refer to [UPI One-Time Mandate](doc:upi-intent-one-time-mandate-integration-payu-hosted).
 
 ## Request Parameters
 
@@ -206,7 +204,7 @@ This section describes the request and response parameters with sample request a
       </td>
 
       <td>
-        This parameter contains the customer's VPA handle. For the list UPI handles supported, refer to UPI Handles  The merchant is advised to check the validity of the VPA through using the VPA Validation API. PayU extends support for the same if required. For more information on using VPA Validation API, refer to 
+        This parameter contains the customer's VPA handle. For the list UPI handles supported, refer to UPI Handles  The merchant is advised to check the validity of the VPA through using the VPA Validation API. PayU extends support for the same if required. For more information on using VPA Validation API, refer to
 
         [Validate VPA API](ref:validate_vpa_api)
 
