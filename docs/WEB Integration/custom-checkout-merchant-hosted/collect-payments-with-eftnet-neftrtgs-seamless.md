@@ -1302,4 +1302,4 @@ Verify the transaction details using the Verification APIs. For more information
   To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 </Accordion>
 
-##
+<br />
