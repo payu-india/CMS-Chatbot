@@ -20,7 +20,7 @@ The PayU Hosted Checkout integration involves the following steps:
 <br />
 
 <Cards columns={3}>
-  <Card title="1. Start Integration" href="https://docs.payu.in/docs/integration-steps-copy#step-1--start-integration" target="_blank" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+  <Card title="1. Start Integration" href="docs:integration-steps-copy#step-1--start-integration" target="_blank" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
     Integrate pre-built checkout solution
   </Card>
 
