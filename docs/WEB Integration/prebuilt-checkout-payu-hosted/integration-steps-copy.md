@@ -65,7 +65,7 @@ First, you need to collect all the necessary information for the transaction. So
     <thead>
       <tr>
         <th style="width: 10%;">Parameter</th>
-        <th style="width: 65%; white-space: normal; word-break: break-word;">Type & Description</th>
+        <th style="width: 75%; white-space: normal; word-break: break-word;">Type & Description</th>
         <th style="width: 15%;">Example</th>
       </tr>
     </thead>
