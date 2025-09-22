@@ -49,13 +49,13 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
 ## Step 2: Include the SDK in your app build.gradle
 
-> ❗️ Maven Central
->
-> PayU has moved to Maven Central, update your existing dependency with the following configuration:
->
-> ```Text build.gradle
-> implementation 'in.payu:payu-checkout-pro:3.0.0' 
-> ```
+<Callout icon="❗️" theme="error">
+  **Maven Central**: PayU has moved to Maven Central, update your existing dependency with the following configuration:
+
+  ```Text build.gradle
+  implementation 'in.payu:payu-checkout-pro:3.0.0' 
+  ```
+</Callout>
 
 To include the CheckoutPro SDK in your project, add the following code snippet to your app’s <Glossary>build.gradle</Glossary> file inside the `android{}` block:
 
@@ -69,7 +69,7 @@ compileOptions {
     }
 ```
 
-> ❗️ Compatibility
+> ❗️ Compatibility:
 >
 > 1. **Android SDK** — Version 21 and above.
 > 2. **Compile SDK** — version 31 and above.
@@ -152,11 +152,11 @@ val payUPaymentParams = PayUPaymentParams.Builder()
     .build()  
 ```
 
-See [Payment Params Definition](https://docs.payu.in/docs/android-checkoutpro-integration-steps#step-35-payment-param-definitions) for parameter descriptions and sample values.
+For parameter descriptions and sample values, refer to [Payment Params Definition](https://docs.payu.in/docs/android-checkoutpro-integration-steps#step-35-payment-param-definitions) .
 
 > 📘 Important:
 >
-> * The URLs used in surl and furl are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed. See [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
+> * The URLs used in surl and furl are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed. For more information, refer to [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
 >
 > * The **TransactionId** parameter must not include special characters and must not exceed 25 characters.
 
@@ -214,7 +214,7 @@ val siDetails = PayUSIParams.Builder()
                 .build();
 ```
 
-Also need to enable isPreAuthTxn.
+Also need to enable `isPreAuthTxn`.
 
 ```Text Java
 paymentParam.setPayUSIParams(siDetails);
@@ -386,7 +386,7 @@ Additional parameters are optional parameters such as UDF (User Defined Fields),
 
 ***
 
-```Text JAVA
+```java JAVA
 HashMap additionalParams = new HashMap(); 
 additionalParams.put(PayUCheckoutProConstants.CP_UDF1, "udf1"); 
 additionalParams.put(PayUCheckoutProConstants.CP_UDF2, "udf2"); 
@@ -417,7 +417,7 @@ builder.setAmount("1.0")
         .setSplitPaymentDetails(splitPaymentDetails); //Only for Split parameter
 PayUPaymentParams payUPaymentParams = builder.build();  
 ```
-```Text Kotlin
+```kotlin Kotlin
 val additionalParamsMap: HashMap = HashMap() 
   additionalParamsMap[PayUCheckoutProConstants.CP_UDF1] = "udf1" 
   additionalParamsMap[PayUCheckoutProConstants.CP_UDF2] = "udf2" 
