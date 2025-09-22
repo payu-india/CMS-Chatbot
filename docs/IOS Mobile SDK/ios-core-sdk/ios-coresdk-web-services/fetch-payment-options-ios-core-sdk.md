@@ -12,26 +12,26 @@ next:
 ---
 The **Fetch Payment Option** API will get the payment options which are enabled for merchants including saved cards. Integrate this API by calling the `getPayUPaymentRelatedDetailForMobileSDK`.
 
-* **Command Name** - payment\_related\_details\_for\_mobile\_sdk
+* **Command Name** - payment_related_details_for_mobile_sdk
 * **Var1** - userCredentials (userCredentials might be blank)
 
-> 📘 Hash logic
->
-> The hash will be in the format of:
->
-> Sha512(Key|Command|Var1|Salt)
->
-> For more information, refer to [Generate Static Hash](doc:generate-static-hash-ios).
+<Callout icon="📘" theme="info">
+  **Hash logic**: The hash will be in the format of:
+
+  `SHA512(Key|Command|Var1|Salt)`
+
+  For more information, refer to [Generate Static Hash](doc:generate-static-hash-ios).
+</Callout>
 
 For this API, you need to set `hash` in the payment params similar to the following code block:
 
-```Text Swift
+```swift Swift
 self.paymentParamForPassing.hashes.paymentRelatedDetailsHash = "hash"
 ```
 
 **Method**
 
-```Text Swift
+```swift Swift
 webServiceResponse?.getPayUPaymentRelatedDetail(forMobileSDK: paymentParamForPassing) {
     [weak self] (paymentRelatedDetails, errorMessage, extraParam) in
     completion(paymentRelatedDetails,errorMessage,extraParam)
@@ -45,7 +45,7 @@ webServiceResponse?.getPayUPaymentRelatedDetail(forMobileSDK: paymentParamForPas
 
 }
 ```
-```text Objective-C
+```objectivec Objective-C
 [webServiceResponse getPayUPaymentRelatedDetailForMobileSDK:self.paymentParamForPassing withCompletionBlock:^(PayUModelPaymentRelatedDetail *paymentRelatedDetails, NSString *errorMessage, id extraParam) {
 ​
 if (errorMessage) {
