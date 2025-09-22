@@ -13,23 +13,23 @@ metadata:
 next:
   description: ''
 ---
-To pay using TwidPay, perform the following steps. 
+To pay using TwidPay, perform the following steps.
 
 1. Create the post data with `CASH_CARD_TWID`:
 
-```Text Objective-C
+```objectivec Objective-C
 self.paymentParamForPassing.bankCode = CASH_CARD_TWID;//BankCode
 ```
-```Text Swift
+```swift Swift
 paymentParamForPassing.bankCode = CASH_CARD_TWID //BankCode
 ```
 
 2. Get the Twid customer hash in the `field5` param of PayuResponse, which can be used in the next transactions to skip authentication.
 
-```Text Objective-C
+```objectivec Objective-C
     self.paymentParamForPassing.twidCustomerHash = @"Twid customer hash";
   
 ```
-```Text Swift
+```swift Swift
 paymentParamForPassing.twidCustomerHash = "Twid customer hash"
 ```
