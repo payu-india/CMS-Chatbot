@@ -1,24 +1,24 @@
 ---
-name: Dynamic Hash Generation
+name: DynamicHashGeneration
 ---
 The dynamic hashes must be generated at runtime for each transaction and will vary based on the transaction parameters.
 
-> 📘 Hashing logic for SDK and Web Integration is different
->
-> For the hashing logic for web integration, refer to [Generate Hash](doc:generate-hash-payu-hosted).
+<Callout icon="📘" theme="info">
+  **Hashing logic for SDK and Web Integration is different** : For the hashing logic for web integration, refer to [Generate Hash](doc:generate-hash-payu-hosted).
+</Callout>
 
 ## Recommended workflow for Dynamic Hashing
 
-<Image align="center" className="border" width="75% " border={true} src="https://files.readme.io/04949cb-Screenshot_2023-11-16_at_6.14.14_PM.png" />
+<Image align="center" className="border" border={true} width="75% " src="https://files.readme.io/04949cb-Screenshot_2023-11-16_at_6.14.14_PM.png" />
 
 1. Checkout Pro SDK will generate hash like `generateHash(Map<String, String> hashMap).` `PayUHashGenerationResult` method is called with the prepared map.
-2. Merchant App will: 
+2. Merchant App will:
    * Extract values for keys `PayUCheckoutProConstants.CP_HASH_NAME` and `PayUCheckoutProConstants.CP_HASH_STRING` from the hashmap received in the `generateHash()` method.
    * Pass this hash string to your server (Merchant Server) for hash calculation.
 3. Merchant Server will append the hash string that was received with a salt at the end to form a pipe-separated string.
 4. Merchant Server will generate a SHA-512 hash from this string.
-5. Merchant App will: 
-   * Prepare a map with the key as the value of `PayUCheckoutProConstants.CP_HASH_NAME` received in step 2 and its value as the hash received in Step 3. 
+5. Merchant App will:
+   * Prepare a map with the key as the value of `PayUCheckoutProConstants.CP_HASH_NAME` received in step 2 and its value as the hash received in Step 3.
    * Send this map instead of `PayUHashGenerationResult` that was received in Step 1.
 
 ## Procedure
@@ -51,19 +51,23 @@ The following table provides the list of dynamic hashes:
       </td>
 
       <td>
-        It is used to fetch Bin details. If not passed, card payments will not happen. For more info refer to: [GetBinInfo](https://docs.payu.in/reference/get_bin_info_api)
+        It is used to fetch Bin details. If not passed, card payments will not happen. For more info refer to: 
+
+        [GetBinInfo](https://docs.payu.in/reference/get_bin_info_api)
+
+
       </td>
     </tr>
 
     <tr>
       <td>
-        get\_eligible\_payment  
+        get_eligible_payment
 
         * options
       </td>
 
       <td>
-        It is used when verifying Phone number in OlaMoney Section. If not passed, phone number will not be verified and hence user will not be able to proceed. For more info refer to: get\_eligible\_payment\_options
+        It is used when verifying Phone number in OlaMoney Section. If not passed, phone number will not be verified and hence user will not be able to proceed. For more info refer to: get_eligible_payment_options
       </td>
     </tr>
 
@@ -73,13 +77,17 @@ The following table provides the list of dynamic hashes:
       </td>
 
       <td>
-        It is used for validating VPA on UPI Collect screen. If not passed, VPA will not be verified and hence user will not be able to proceed. For more info refer to: [VPA Validation](https://docs.payu.in/reference/validate_vpa_api)
+        It is used for validating VPA on UPI Collect screen. If not passed, VPA will not be verified and hence user will not be able to proceed. For more info refer to: 
+
+        [VPA Validation](https://docs.payu.in/reference/validate_vpa_api)
+
+
       </td>
     </tr>
 
     <tr>
       <td>
-        get\_checkout\_details
+        get_checkout_details
       </td>
 
       <td>
@@ -93,9 +101,9 @@ The following table provides the list of dynamic hashes:
       </td>
 
       <td>
-        It is used to fetch the Multi Currency Conversion details. This is used in MCP Integration.  
+        It is used to fetch the Multi Currency Conversion details. This is used in MCP Integration.
 
-        * \*Note\*\*: You need to calculate HMAC-SHA1 instead of SHA512 only for this hash.
+        * *Note**: You need to calculate HMAC-SHA1 instead of SHA512 only for this hash.
       </td>
     </tr>
 
