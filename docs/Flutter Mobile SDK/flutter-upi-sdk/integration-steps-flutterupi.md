@@ -46,7 +46,7 @@ import 'package:payu_upi_flutter/payu_upi_flutter.dart';
 
 Declare the `PayUUpiFlutter` instance and initialize the object.
 
-```Text dart
+```d Dart
 class _MyAppState extends State<MyApp> implements PayUUPIProtocol {
     late PayUUpiFlutter payUUpiFlutter;
 
@@ -58,21 +58,21 @@ class _MyAppState extends State<MyApp> implements PayUUPIProtocol {
 }
 ```
 
-> 🚧 Keep in mind
->
-> If you are developing for iOS, make sure your minimum deployment target is iOS 11.
+<Callout icon="📘">
+  **Note**: If you are developing for iOS, make sure your minimum deployment target is iOS 11.
+</Callout>
 
 ## Step 3: Implement the Callback protocol
 
 1. Implement PayUPIProtocol to receive hash and transaction callback.
 
-```Text dart
+```d Dart
 class _MyAppState extends State<MyApp> implements PayUUPIProtocol 
 ```
 
 2. Implement the following methods in your class to receive the callbacks.
 
-```Text dart
+```d Dart
 @override
 onPayUUPIMakePayment(Map response) {
 
@@ -164,7 +164,7 @@ Here is a sample hash value for your reference:
 >
 > For SI Trasnaction, use the following format to generate the hash :-
 >
-> SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si\_details|SALT)
+> SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)
 >
 > Here is sample hash value for reference :-
 >
@@ -263,7 +263,7 @@ var si_params = {
 
     <tr>
       <td>
-        transaction\_id
+        transaction_id
         `mandatory`
       </td>
 
@@ -272,7 +272,7 @@ var si_params = {
       </td>
 
       <td>
-        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: -\_/
+        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: -_/
       </td>
     </tr>
 
@@ -293,7 +293,7 @@ var si_params = {
 
     <tr>
       <td>
-        product\_info
+        product_info
         `mandatory`
       </td>
 
@@ -308,7 +308,7 @@ var si_params = {
 
     <tr>
       <td>
-        first\_name
+        first_name
         `mandatory`
       </td>
 
@@ -353,14 +353,14 @@ var si_params = {
 
     <tr>
       <td>
-        ios\_surl
+        ios_surl
         `mandatory`
       </td>
 
       <td>
         `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
 
-        * *Note*\*: This field is applicable for iOS integration
+        * _Note_*: This field is applicable for iOS integration
       </td>
 
       <td>
@@ -370,13 +370,13 @@ var si_params = {
 
     <tr>
       <td>
-        ios\_furl\
+        ios_furl
         `mandatory`
       </td>
 
       <td>
-        `String` When the transaction fails, PayU will load this URL and pass the transaction response.\
-        No\*\*\*\*te: This field is applicable for iOS integration
+        `String` When the transaction fails, PayU will load this URL and pass the transaction response.
+        No****te: This field is applicable for iOS integration
       </td>
 
       <td>
@@ -386,14 +386,14 @@ var si_params = {
 
     <tr>
       <td>
-        android\_surl\
+        android_surl
         `mandatory`
       </td>
 
       <td>
         `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
 
-        * *Note*\*: This field is applicable for Android integration
+        * _Note_*: This field is applicable for Android integration
       </td>
 
       <td>
@@ -403,15 +403,15 @@ var si_params = {
 
     <tr>
       <td>
-        android\_furl\
+        android_furl
         `mandatory`
       </td>
 
       <td>
-        `String` When the transaction fails, PayU will load this URL and pass the transaction response.\
+        `String` When the transaction fails, PayU will load this URL and pass the transaction response.
         When the transaction is a success, PayU will load this URL and pass the transaction response.
 
-        * *Note*\*: This field is applicable for Android integration
+        * _Note_*: This field is applicable for Android integration
       </td>
 
       <td>
@@ -421,7 +421,7 @@ var si_params = {
 
     <tr>
       <td>
-        environment\
+        environment
         `mandatory`
       </td>
 
@@ -436,7 +436,7 @@ var si_params = {
 
     <tr>
       <td>
-        user\_credentials\
+        user_credentials
         `mandatory`
       </td>
 
@@ -451,7 +451,7 @@ var si_params = {
 
     <tr>
       <td>
-        beneficiary\_ifsc\
+        beneficiary_ifsc
         `no`
       </td>
 
@@ -466,7 +466,7 @@ var si_params = {
 
     <tr>
       <td>
-        beneficiary\_account\_number
+        beneficiary_account_number
       </td>
 
       <td>
@@ -484,7 +484,7 @@ var si_params = {
 
 Initialise and launch the SDK by calling the following code snippet:
 
-```Text dart
+```d Dart
 payUUpiFlutter.makeUPIPayment(params: <PayU Payment Params>);
 ```
 
@@ -492,7 +492,7 @@ payUUpiFlutter.makeUPIPayment(params: <PayU Payment Params>);
 
 Initialise and launch the Flutter UPI SDK by calling the following code snippet to validate the VPA
 
-```Text dart
+```d Dart
   validateVPA() async {
     // ignore: prefer_interpolation_to_compose_strings
     var vpaHash = HashService.calculateHash(PayUTestCredentials.merchantKey +
@@ -516,7 +516,7 @@ Initialise and launch the Flutter UPI SDK by calling the following code snippet 
 
 The sample response of a VPA validation request is similar to the following:
 
-```Text JSON
+```json JSON
 {
   "status": "SUCCESS",
   "vpa": "9999999999@upi",
@@ -531,7 +531,7 @@ The sample response of a VPA validation request is similar to the following:
 
 Initialise and launch the Flutter UPI SDK by calling the following code snippet to get the list of UPI apps installed on Android and iOS devices
 
-```Text dart
+```d Dart
   intentApps() async {
     var data = await payUUpiFlutter.intentApps();
     showAlertDialog(context, "intentApps", "$data");
@@ -542,7 +542,7 @@ Initialise and launch the Flutter UPI SDK by calling the following code snippet 
 
 Here is how a sample response of UPI list request looks like:
 
-```Text JSON
+```json JSON
 {
   "data": {
     "value": "net.one97.paytm",
@@ -566,3 +566,5 @@ For fetch the Installed UPI apps, Kindly add the query schemes in the`info.plist
 		<string>credpay</string>
 	</array>
 ```
+
+<br />
