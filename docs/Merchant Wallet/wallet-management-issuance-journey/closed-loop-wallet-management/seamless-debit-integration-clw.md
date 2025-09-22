@@ -25,41 +25,79 @@ Before any wallet operation, check the current balance using the Retrieve Custom
 * **API Endpoint (Test)**: `https://apitest.payu.in/loyalty-points/v1/wallet/retrieveCustRecord`
 * **Method**: `POST`
 
-#### Request Headers
+### Request Headers
 
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>walletIdentifier <code>mandatory</code></td>
-      <td><code>String</code> - Type of wallet</td>
-      <td>CLW</td>
-    </tr>
-    <tr>
-      <td>date <code>mandatory</code></td>
-      <td><code>String</code> - GMT-formatted date</td>
-      <td>Thu, 17 Feb 2022 08:17:59 GMT</td>
-    </tr>
-    <tr>
-      <td>Authorization <code>mandatory</code></td>
-      <td><code>String</code> - HMAC-SHA512-based authentication token</td>
-      <td>HMAC token</td>
-    </tr>
-    <tr>
-      <td>Content-Type <code>mandatory</code></td>
-      <td><code>String</code> - Request content type</td>
-      <td>application/json</td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+<Accordion title="Header Authentication Parameters" icon="fa-info-circle">
+  This API uses HMAC-SHA512 authentication on the header.
+
+  <HTMLBlock>{`
+  <table class="api-parameters">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <strong>walletIdentifier</strong><br />
+          <span class="required-badge">mandatory</span>
+        </td>
+        <td>
+          <code>String</code> Program Type (e.g., CLW)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>date</strong><br />
+          <span class="required-badge">mandatory</span>
+        </td>
+        <td>
+          <code>String</code> GMT formatted date (e.g., Thu, 17 Feb 2022 08:17:59 GMT)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>Authorization</strong><br />
+          <span class="required-badge">mandatory</span>
+        </td>
+        <td>
+          <code>String</code> HMAC-SHA512-based authentication token
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>Content-Type</strong><br />
+          <span class="required-badge">mandatory</span>
+        </td>
+        <td>
+          <code>String</code> application/json
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  `}</HTMLBlock>
+
+  <Callout icon="↩️" theme="default">
+    If you do not post the authentication, you will get error in response. For the list of error codes, refer to [Status Codes](ref:status-codes-clw)
+  </Callout>
+
+  ### hmac authentication logic
+
+  ```
+  hmac username="smsplus", algorithm="sha512", headers="date", signature="7ff938849aa79265a3de63fe241dfecb1c680f58c6d11e9f9ca08512afea374705eb9f8995ef6c4584e16eca2e1dc688262bb0937a36cc0f75ec22a9eea33523"
+  ```
+
+  Where, the fields in this example are:
+
+  * **username**: The merchant key of the merchant.
+  * **algorithm**: This must have the value as hmac-sha512 that is used for this API.
+  * **headers**: This must have the value as date digest.
+  * **signature**: This must contain the hmacsha512 of (signing\_string, merchant\_secret), where:
+  * **signing\_string**: It must be in the "date: \{dateValue}"format. Here, the dateValue is the same values in the fields listed in this table For example, "date: Thu, 17 Feb 2022 08:17:59 GMT"
+  * **merchant\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.
+</Accordion>
 
 ### Request Body Parameters
 
@@ -156,39 +194,58 @@ If the wallet balance is insufficient, initiate a PG Load transaction to enable 
 
 ### Request Headers
 
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>walletIdentifier <code>mandatory</code></td>
-      <td><code>String</code> - Program type</td>
-      <td>CLW</td>
-    </tr>
-    <tr>
-      <td>date <code>mandatory</code></td>
-      <td><code>String</code> - GMT-formatted date</td>
-      <td>Wed, 12 Jun 2024 08:53:43 GMT</td>
-    </tr>
-    <tr>
-      <td>Authorization <code>mandatory</code></td>
-      <td><code>String</code> - HMAC-SHA512-based authentication token</td>
-      <td>HMAC token</td>
-    </tr>
-    <tr>
-      <td>Content-Type <code>mandatory</code></td>
-      <td><code>String</code> - Request content type</td>
-      <td>application/json</td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+\<Accordion title="Header Authentication Parameters" icon="fa-info-circle">
+This API uses HMAC-SHA512 authentication on the header.
+
+\<HTMLBlock>\{\`
+\<table class="api-parameters">
+&#x20; \<thead>
+&#x20;   \<tr>
+&#x20;     \<th scope="col">Parameter\</th>
+&#x20;     \<th scope="col">Description\</th>
+&#x20;   \</tr>
+&#x20; \</thead>
+&#x20; \<tbody>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>walletIdentifier\</strong>\<br />
+&#x20;       \<span class="required-badge">mandatory\</span>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>String\</code> Program Type (e.g., CLW)
+&#x20;     \</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>date\</strong>\<br />
+&#x20;       \<span class="required-badge">mandatory\</span>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>String\</code> GMT formatted date (e.g., Thu, 17 Feb 2022 08:17:59 GMT)
+&#x20;     \</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>Authorization\</strong>\<br />
+&#x20;       \<span class="required-badge">mandatory\</span>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>String\</code> HMAC-SHA512-based authentication token
+&#x20;     \</td>
+&#x20;   \</tr>
+&#x20;   \<tr>
+&#x20;     \<td>
+&#x20;       \<strong>Content-Type\</strong>\<br />
+&#x20;       \<span class="required-badge">mandatory\</span>
+&#x20;     \</td>
+&#x20;     \<td>
+&#x20;       \<code>String\</code> application/json
+&#x20;     \</td>
+&#x20;   \</tr>
+&#x20; \</tbody>
+\</table>
+\`}\</HTMLBlock>
+
 
 ### Request Body Parameters
 
