@@ -20,7 +20,7 @@ You can store and get stored card details from the vault. The tokenized payments
 
 The **Get Tokenized Stored Cards** API is helpful in getting all the stored cards for a particular user. For this API, you need to set the`userCredentials` in the payment params similar to the following:
 
-```Text Java
+```java Java
 MerchantWebService merchantWebService = new MerchantWebService();
 merchantWebService.setKey("<pass the merchant key>");
 merchantWebService.setCommand(PayuConstants.GET_TOKENISED_USER_CARD);
@@ -61,7 +61,7 @@ public void onTokenisedCardDetailsResponse(PayuResponse payuResponse) {
 
 The **Delete Tokenized Stored Cards** API is helpful in deleting stored cards.
 
-```Text Java
+```java Java
 MerchantWebService merchantWebService = new MerchantWebService();
 merchantWebService.setKey("<pass the merchant key>");
 merchantWebService.setCommand(PayuConstants.DELETE_TOKENISED_USER_CARD);
@@ -72,7 +72,7 @@ merchantWebService.setHash("<pass the hash value>");
 
 To integrate this API call the `deleteTokenizedStoredCard` method similar to the following:
 
-```Text Java
+```java Java
 @Override
 public void onDeleteTokenisedCardResponse(PayuResponse payuResponse) {
 
