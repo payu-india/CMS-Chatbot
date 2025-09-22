@@ -34,7 +34,6 @@ The request body contains both encrypted and decrypted parameters.
 #### Decrypted
 
 <HTMLBlock>{`
-<HTMLBlock>{\`
 <table>
   <thead>
     <tr>
@@ -121,7 +120,6 @@ The request body contains both encrypted and decrypted parameters.
     </tr>
   </tbody>
 </table>
-\`}</HTMLBlock>
 `}</HTMLBlock>
 
 <br />
