@@ -14,7 +14,7 @@ next:
 
 Create a class PayUSIParams object using the code similar to the following
 
-```Text Java
+```java Java
 PayUSIParams siDetails  = new PayUSIParams.Builder()
 .setIsFreeTrial(true) //set it to true for free trial. Default value is false 
 .setBillingAmount("1.0")
@@ -28,7 +28,7 @@ PayUSIParams siDetails  = new PayUSIParams.Builder()
 .setRemarks("SI Txn")
 .build();
 ```
-```Text Kotlin
+```kotlin Kotlin
 val siDetails  = PayUSIParams.Builder()
                 .setIsFreeTrial(true) //set it to true for free trial. Default value is false
                 .setBillingAmount("1.0")
@@ -80,7 +80,7 @@ val siDetails  = PayUSIParams.Builder()
 
     <tr>
       <td>
-        billingCycle\
+        billingCycle
         `mandatory`
       </td>
 
@@ -95,7 +95,7 @@ val siDetails  = PayUSIParams.Builder()
 
     <tr>
       <td>
-        billingInterval\
+        billingInterval
         `mandatory`
       </td>
 
@@ -110,16 +110,16 @@ val siDetails  = PayUSIParams.Builder()
 
     <tr>
       <td>
-        billingLimit\
+        billingLimit
         `mandatory`
       </td>
 
       <td>
-        `String` The possible values for this parameter are:  
+        `String` The possible values for this parameter are:
 
-        * ON = On the specific date  
-        * BEFORE = Before and on the specific date  
-        * AFTER = After and on the specific date\
+        * ON = On the specific date
+        * BEFORE = Before and on the specific date
+        * AFTER = After and on the specific date
           If no value is passed, then by default this is considered as ‘AFTER’
       </td>
 
@@ -130,16 +130,16 @@ val siDetails  = PayUSIParams.Builder()
 
     <tr>
       <td>
-        billingRule\
+        billingRule
         `mandatory`
       </td>
 
       <td>
-        `String`  
+        `String`
 
-        MAX = Maximum amount. Lesser than this or equal to this amount can be debited in recurring debits  
+        MAX = Maximum amount. Lesser than this or equal to this amount can be debited in recurring debits
 
-        EXACT= Exact to this amount can be debited in recurring debits\
+        EXACT= Exact to this amount can be debited in recurring debits
         `Note`: If no value is passed, then by default this is considered as ‘MAX’
       </td>
 
@@ -150,7 +150,7 @@ val siDetails  = PayUSIParams.Builder()
 
     <tr>
       <td>
-        billingCurrency\
+        billingCurrency
         `mandatory`
       </td>
 
@@ -165,7 +165,7 @@ val siDetails  = PayUSIParams.Builder()
 
     <tr>
       <td>
-        paymentStartDate\
+        paymentStartDate
         `mandatory`
       </td>
 
@@ -180,7 +180,7 @@ val siDetails  = PayUSIParams.Builder()
 
     <tr>
       <td>
-        paymentEndDate\
+        paymentEndDate
         `mandatory`
       </td>
 
@@ -199,9 +199,9 @@ val siDetails  = PayUSIParams.Builder()
       </td>
 
       <td>
-        `Boolean` This flag is to indicate any of the following:  
+        `Boolean` This flag is to indicate any of the following:
 
-        0: This is not a trial subscription. If this parameter is not posted, will be assumed as 0.  
+        0: This is not a trial subscription. If this parameter is not posted, will be assumed as 0.
 
         1: This is a trial subscription.
       </td>
