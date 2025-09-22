@@ -14,10 +14,10 @@ The **Lookup** API is used when integrating Multi-Currency Payments on Android C
 
 ## Step 1: Create request
 
-The Lookup API needs a JSON request. Product type needs to be passed either as DCC or MCP. DCC means Direct Currency Conversion, that is, it returns the conversion prices for card currency only. To get all enabled currencies on Merchant Access Key and their conversion prices, use product type as MCP. For DCC, cardBin is mandatory, but cardBin is not required for MCP.\
+The Lookup API needs a JSON request. Product type needs to be passed either as DCC or MCP. DCC means Direct Currency Conversion, that is, it returns the conversion prices for card currency only. To get all enabled currencies on Merchant Access Key and their conversion prices, use product type as MCP. For DCC, cardBin is mandatory, but cardBin is not required for MCP.
 The following example is a request for DCC as the product type:
 
-```Text JSON
+```json JSON
 {
    "merchantAccessKey":"E5ABOXOWAAZNXB6JEF5Z",
    "baseAmount":{
@@ -121,12 +121,12 @@ hashString = INROBE-JU89-13151-11010000.00
 
 Here, this is an object of a class that implements `LookupApiListener`. The following is a signature of LookupApiListener:
 
-```Text JAVA
+```java Java
 public interface LookupApiListener {
     void onLookupApiResponse(PayuResponse payuResponse);
 }
 ```
-```Text Kotlin
+```kotlin Kotlin
 interface LookupApiListener {
     fun onLookupApiResponse(payuResponse: PayuResponse?)   
 }
@@ -136,7 +136,7 @@ interface LookupApiListener {
 
 After you execute LookupTask, the `onLookupApiResponse` callback method is called:
 
-```Text JAVA
+```java Java
 @Override
 public void onLookupApiResponse(PayuResponse payuResponse){    
     
@@ -144,7 +144,7 @@ public void onLookupApiResponse(PayuResponse payuResponse){
     LookupDetails lookupDetails = payuResponse.getLookupDetails();     
     }
 ```
-```Text Kotlin
+```kotlin Kotlin
 override fun onLookupApiResponse(payuResponse: PayuResponse?){    
     
     //Fetch lookup Details using below code
