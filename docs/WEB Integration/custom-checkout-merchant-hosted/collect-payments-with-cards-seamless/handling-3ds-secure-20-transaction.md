@@ -120,7 +120,7 @@ You must include the `threeDS2RequestData` parameter along with the regular Coll
     </tr>
     <tr>
       <td>hash<br/><code>mandatory</code></td>
-      <td>It is the hash calculated by the merchant. The hash calculation logic is: sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT). Data type: <code>string</code>.</td>
+      <td>It is the hash calculated by the merchant. The hash calculation logic is: sha512(key|txnid|amount|productinfo|firstname|email</br>|udf1|udf2|udf3|udf4|udf5||||||SALT). Data type: <code>string</code>.</td>
       <td>e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184</td>
     </tr>
     <tr>
