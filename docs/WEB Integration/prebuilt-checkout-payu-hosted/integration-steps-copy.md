@@ -46,10 +46,10 @@ The PayU Hosted Checkout integration involves the following steps:
 
 ### Environment
 
-|                         |                                 |
-| :---------------------- | :------------------------------ |
-| Test Environment        | https://test.payu.in/_payment   |
-| Production Environment	 | https://secure.payu.in/_payment |
+|                        |                                                                     |
+| :--------------------- | :------------------------------------------------------------------ |
+| Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| Production Environment | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 ## 1.  Start Integration
 
@@ -64,9 +64,9 @@ First, you need to collect all the necessary information for the transaction. So
   <table>
     <thead>
       <tr>
-        <th style="width: 25%;">Parameter</th>
-        <th style="width: 50%; white-space: normal; word-break: break-word;">Description</th>
-        <th style="width: 25%;">Example</th>
+        <th style="width: 15%;">Parameter</th>
+        <th style="width: 65%; white-space: normal; word-break: break-word;">Type & Description</th>
+        <th style="width: 20%;">Example</th>
       </tr>
     </thead>
     <tbody>
