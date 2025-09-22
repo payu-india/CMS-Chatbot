@@ -19,21 +19,28 @@ The PayU Hosted Checkout integration involves the following steps:
 
 <br />
 
-\<Cards columns=\{3}>
+<br />
+
+\<Cards columns=\{4}>
 
 <br />
 
-  \<Card title="1. Start Integration" href="#step-1--start-integration" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
-    Integrate pre-built checkout solution
-  \</Card>
+\<Card title="Webhooks" href="/docs/webhooks" className="bg-gradient-to-r from-pink-500 to-red-500 text-white flex items-center gap-2 p-4 rounded-xl shadow-lg">
+&#x20; \<span>🔔\</span>
+&#x20; \<p>Configure webhooks for payment events.\</p>
+\</Card>
 
-  \<Card title="2. Test Integration" href="#step-2-test-integration" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
-    Test the integration by making a test transaction
-  \</Card>
+\<Card title="1. Start Integration" href="https\://docs.payu.in/docs/integration-steps-copy#step-1--start-integration" target="\_blank" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+&#x20;   Integrate pre-built checkout solution
+&#x20; \</Card>
 
-  \<Card title="3. Go live Checklist" href="#step-3-going-live-your-final-checklist" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
-    Follow the production checklist to go live
-  \</Card>
+&#x20; \<Card title="2. Test Integration" href="https\://docs.payu.in/docs/integration-steps-copy#step-2-test-integration" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+&#x20;   Test the integration by making a test transaction
+&#x20; \</Card>
+
+&#x20; \<Card title="3. Go live Checklist" href="https\://docs.payu.in/docs/integration-steps-copy#step-3-going-live-your-final-checklist" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+&#x20;   Follow the production checklist to go live
+&#x20; \</Card>
 \</Cards>
 
 <Callout icon="📘" theme="info">
