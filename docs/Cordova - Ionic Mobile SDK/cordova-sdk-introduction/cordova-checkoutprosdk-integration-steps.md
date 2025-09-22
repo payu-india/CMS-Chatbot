@@ -178,9 +178,9 @@ var siParamObject = {
 };
 ```
 
-> 📘 Note:
->
-> For more details on Standing Instructions parameters, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
+<Callout icon="📘" theme="info">
+  **Note**: For more details on Standing Instructions parameters, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
+</Callout>
 
 ***
 
@@ -213,10 +213,12 @@ function generateHash(response) {
 }
 ```
 
-> ❗️ Watch Out
->
-> * We need the following type of hashes to be generated at your backend: V1 Hash, V2 Hashes, MCP Lookup, and Post Salt Hash.
-> * You must generate the hashes on your server. Do not generate the hashes locally in your app, as it may compromise the security of the transactions.
+<Callout icon="📘">
+  **Notes**:
+
+  * You need the following type of hashes to be generated at your backend: v1 Hash, v2 Hashes, MCP Lookup, and Post Salt Hash.
+  * You must generate the hashes on your server. Do not generate the hashes locally in your app, as it may compromise the security of the transactions.
+</Callout>
 
 The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. The CheckoutPro SDK requires two types of hashes. For more information on the two types of hashes, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) for CheckoutPro SDK.
 
