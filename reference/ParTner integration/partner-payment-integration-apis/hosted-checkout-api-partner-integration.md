@@ -803,7 +803,7 @@ curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/pa
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>unmappedstatus</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the status of a transaction as per the internal database of PayU. PayU’s system has several intermediate statuses which are used for tracking various activities internal to the system. Hence, this status contains intermediate statuses of a transaction also – and hence is known as <strong>unmappedstatus</strong>. For detailed information on the statuses, refer to <a href="ref:payment-state-explanations">Payment State Explanations</a>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the status of a transaction as per the internal database of PayU. PayU’s system has several intermediate statuses which are used for tracking various activities internal to the system. Hence, this status contains intermediate statuses of a transaction also – and hence is known as <strong>unmappedstatus</strong>. For detailed information on the statuses, refer to <a href="https://docs.payu.in/reference/payment-state-explanations">Payment State Explanations</a>.</p>
 </td>
 </tr>
 <tr>
