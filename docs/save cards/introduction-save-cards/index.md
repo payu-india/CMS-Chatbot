@@ -38,6 +38,6 @@ Your users save invaluable time when they use their cards that are stored on Pay
 
 Users can update or delete their card details on the PayU vault when required. You may need to enable this on their website.
 
-> 📘 Note:
->
-> You need to ensure that you have filled the "[Self-Assessment Questionnaire A-EP and Attestation of Compliance](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf)" form from PCI, which is mandatory for all entities seeking to store, process, and transmit cardholder data.
+<Callout icon="📘" theme="info">
+  **Note**: You need to ensure that you have filled the "[Self-Assessment Questionnaire A-EP and Attestation of Compliance](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf)" form from PCI, which is mandatory for all entities seeking to store, process, and transmit cardholder data.
+</Callout>
