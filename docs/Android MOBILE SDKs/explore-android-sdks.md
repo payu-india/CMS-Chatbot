@@ -226,7 +226,7 @@ Here is a comparison table that summarizes the key features of the different SDK
 | :------------------------------------------------------------------- | :----------------- | :------- |
 | [CheckoutPro SDK](https://docs.payu.in/docs/android-checkoutpro-sdk) | 3.0.3              | 293KB    |
 | [Core PG SDK](https://docs.payu.in/docs/android-core-sdk)            | 7.10.3             | 163KB    |
-| [CustomBrowser SDK](https://docs.payu.in/docs/custom-browser-sdk)    | 7.15.4             | 386KB    |
+| [CustomBrowser SDK](https://docs.payu.in/docs/custom-browser-sdk)    | 7.15.6             | 386KB    |
 | [UPI SDK](doc:android-upi-sdk)                                       | 1.8.8              | 163KB    |
 | [PhonePe SDK](https://docs.payu.in/docs/android-phonepe-sdk)         | 1.8.7              | 68KB     |
 | [Google Pay SDK](doc:android-google-pay-sdk)                         | 4.0.0              | 94KB     |
