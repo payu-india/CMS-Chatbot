@@ -29,4 +29,4 @@ The Simple Rest APIs to store the cards and manage the tokens:
 
 > 📘 Reference:
 >
-> You need to use a specific test card details for mock API calls as mentioned in the [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets#save-cards).
+> You need to use a specific test card details for mock API calls as mentioned in the [Test Cards, UPI ID and Wallets](https://docs.payu.in/docs/test-cards-upi-id-and-wallets#save-cards).
