@@ -48,7 +48,7 @@ pod install
 
 To initiate a payment, your app needs to send transactional information to the Custom Browser SDK. Build the payUPaymentParams object with the mandatory parameters as shown in the following code snippet:
 
-```Text React.js
+```javascript React.js
 var payUPaymentParams = {
       payu_payment_params: {
         key: <String>, //merchant key (Mandatory)
@@ -86,9 +86,9 @@ For details on Standing Instructions parameters, refer to [PayU Standing Instruc
 
 For hash generation testing salt needs to be put in the HASH generation method. For more information, refer to [Generate Hash](doc:generate-dynamic-hash-react).
 
-> 📘 Remember
->
-> Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
+<Callout icon="📘" theme="info">
+  **Note**: Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
+</Callout>
 
 ***
 
@@ -96,7 +96,7 @@ For hash generation testing salt needs to be put in the HASH generation method. 
 
 Use the code snippet mentioned below to make the payment:
 
-```Text React.js
+```javascript React.js
 CBWrapper.openCB(
 Request Data <Map>, //payment params defined above
       (error) => {
@@ -119,7 +119,7 @@ Request Data <Map>, //payment params defined above
 
 Register Listener (in this case) Emitter to get the Response from Custom Browser SDK:
 
-```Text React.js
+```javascript React.js
 import {NativeEventEmitter} from 'react-native';
 const eventEmitter=new NativeEventEmitter(CBWrapper);
 eventEmitter.addListener("CBListener",(event)=>{
@@ -129,7 +129,7 @@ eventEmitter.addListener("CBListener",(event)=>{
 
 ### Response
 
-```Text JSON
+```json JSON
 {
   "eveneType": <String>, (onPaymentFailure | onPaymentTerminate | onPaymentTerminate | onCBErrorReceived | onBackButton | onBackApprove | onBackDismiss)
   "payuResult": <String>, //conditional
