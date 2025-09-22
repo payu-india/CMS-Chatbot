@@ -49,7 +49,7 @@ The PayU Hosted Checkout integration involves the following steps:
 | Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 | Production Environment | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-## Step 1:  Start Integration `#step-1--start-integration`
+## Step 1:  Start Integration
 
 Follow the below steps to complete the integration:
 
