@@ -12,19 +12,19 @@ next:
 ---
 The **Eligible BINs for EMI** API fetches a list of eligible Bins for EMI corresponding to each Bank name along with minimum amount. 
 
-> 📘 Hash logic
->
-> The hash logic for this API is:
->
-> `<key>|eligibleBinsForEMI|default|<salt>`
->
-> For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
+<Callout icon="📘" theme="info">
+  **Hash logic**: The hash logic for this API is:
+
+  `<key>|eligibleBinsForEMI|default|<salt>`
+
+  For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
+</Callout>
 
 ## Step 1: Set parameters
 
 Set the parameters similar to the following snippet:
 
-```Text Java
+```java Java
 MerchantWebService merchantWebService = new MerchantWebService();
 merchantWebService.setKey(merchantKey);
 merchantWebService.setCommand(PayuConstants.ELIGIBLE_BINS_FOR_EMI);
@@ -37,7 +37,7 @@ merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use t
 
 Handle the API response for eligible bins for EMI and log the raw response for debugging or informational purposes.
 
-```Text Java
+```java Java
 @Override
  public void onEligibleBinsForEMIApiResponse(PayuResponse payuResponse) {
     Log.d(TAG, "onEligibleBinsForEMIApiResponse: " + payuResponse.getRawResponse());
