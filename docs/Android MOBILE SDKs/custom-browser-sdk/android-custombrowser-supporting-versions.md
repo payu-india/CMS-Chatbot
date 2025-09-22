@@ -22,7 +22,7 @@ next:
 
 Convert the response that your surl/furl processes into URI encoded format and add it to the payload key like below. In case you want to send a response sent by the PayU server then, make sure to append it after $| similar to the following:
 
-```Text JAVA
+```java Java
 Uri encoded Post Data = <URI_ENCODED_YOUR_RESPONSE>$|<URI_ENCODED_PAYU_RESPONSE>
 
 <a id="intentId" href="intent://payload?<URI_ENCODED_POST_DATA>#Intent;scheme=<YOUR_SCHEME>;package=<YOUR_PACKAGE_NAME>;end\">
@@ -30,8 +30,8 @@ Uri encoded Post Data = <URI_ENCODED_YOUR_RESPONSE>$|<URI_ENCODED_PAYU_RESPONSE>
 
 **Where**:
 
-For Surl -scheme=\<YOUR\_PACKAGE\_NAME>.success\
-For Furl – scheme=\<YOUR\_PACKAGE\_NAME>.failure
+For Surl -scheme=\<YOUR_PACKAGE_NAME>.success
+For Furl – scheme=\<YOUR_PACKAGE_NAME>.failure
 
 > 📘 Tip
 >
@@ -53,17 +53,17 @@ href="Intent://payload?<URI_ENCODED_POST_DATA>Mntentscheme=<YOUR_SCHEME>;package
 </html> 
 ```
 
-> 📘 Tip
->
-> For API level 19, if the TLSv1.1+ connection cannot be made due to the old Cipher, you are advised to make changes as suggested in the reference.
+<Callout icon="📘" theme="info">
+  **Tip**: For API level 19, if the TLSv1.1+ connection cannot be made due to the old Cipher, you are advised to make changes as suggested in the reference.
+</Callout>
 
 ## Custom Browser changes
 
-> 📘 Tip
->
-> If the GMS provider is already updated or the host application handles it, PayU suggests you configure the following configuration so that CB OTP assists and SurePay can work on API 19.
+<Callout icon="📘" theme="info">
+  **Tip**: If the GMS provider is already updated or the host application handles it, PayU suggests you configure the following configuration so that CB OTP assists and SurePay can work on API 19.
+</Callout>
 
-```Text JAVA
+```java Java
 customBrowserConfig.setGmsProviderUpdatedStatus(CustomBrowserConfig.TRUE); //Default - CustomBrowserConfig.FALSE
 ```
 
