@@ -19,9 +19,9 @@ To pay using UPI, you need to pass a beneficiary account number parameter simila
 
 ### Hash Formula:
 
-> 📘 Note
->
-> It is recommended to pass ifscCode for UPI , UPI Intent and TEZ TPV transactions. The hash calculation will include ifscCode as shown below
+<Callout icon="📘" theme="info">
+  **Note**: It is recommended to pass ifscCode for UPI , UPI Intent and TEZ TPV transactions. The hash calculation will include ifscCode as shown below
+</Callout>
 
 ```
 // For single ifsc code
@@ -101,7 +101,7 @@ e.printStackTrace();
 
 After setting the above parameters for the UPI INTENT transaction, you can get the payment post parameters using the following code snippet:
 
-```Text JAVA
+```java Java
  // To pass the package name
 mPaymentParams.setPackageName("<Package Name>")‌;
 try {
@@ -110,7 +110,7 @@ mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.INTTPV).getPayme
 e.printStackTrace();
 }
 ```
-```Text Kotlin
+```kotlin Kotlin
     // To pass the package name
 mPaymentParams.setPackageName("<Package Name>")‌;
     try {
@@ -124,7 +124,7 @@ mPaymentParams.setPackageName("<Package Name>")‌;
 
 For TEZ transaction, you can get the payment post params using the below
 
-```Text Java
+```java Java
 try {
 mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.TEZTPV).getPaymentPostParams();
 } catch (Exception e) {
