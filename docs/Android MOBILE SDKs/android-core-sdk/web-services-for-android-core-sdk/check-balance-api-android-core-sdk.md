@@ -14,7 +14,7 @@ The **Check Balance** API can be used to fetch detail of the Sodexo card with th
 
 ## Step 1: Set parameters
 
-```Text Java
+```java Java
 MerchantWebService merchantWebService = new MerchantWebService();
 merchantWebService.setKey(merchantKey);
 merchantWebService.setCommand(PayuConstants.CHECK_BALANCE);
@@ -24,7 +24,7 @@ merchantWebService.setHash(HashGenerationUtils.generateHashFromSDK(hashData, sal
 
 ## Step 2: Handle response
 
-```Text Java
+```java Java
 @Override
   public void onCheckBalanceResponse(PayuResponse payuResponse) {
     Log.d(TAG, "onCheckBalanceResponse: " + payuResponse.getRawResponse());
