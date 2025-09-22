@@ -20,15 +20,15 @@ The PayU Hosted Checkout integration involves the following steps:
 <br />
 
 <Cards columns={3}>
-  <Card title="1. Start Integration" href="doc:integrate-with-payu-hosted-checkout" target="_blank" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+  <Card title="1. Start Integration" href="https://docs.payu.in/docs/integration-steps-copy#step-1--start-integration" target="_blank" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
     Integrate pre-built checkout solution
   </Card>
 
-  <Card title="2. Test Integration" href="doc:test-integration-payu-hosted-checkout" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+  <Card title="2. Test Integration" href="https://docs.payu.in/docs/integration-steps-copy#step-2-test-integration" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
     Test the integration by making a test transaction
   </Card>
 
-  <Card title="3. Production Checklist" href="doc:integration-checklist-payu-hosted-checkout" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+  <Card title="3. Go live Checklist" href="https://docs.payu.in/docs/integration-steps-copy#step-3-going-live-your-final-checklist" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
     Follow the production checklist to go live
   </Card>
 </Cards>
@@ -53,9 +53,11 @@ The PayU Hosted Checkout integration involves the following steps:
 
 Follow the below steps to complete the integration:
 
-### Step 1.1: Prepare the request parameters
-
 First, you need to collect all the necessary information for the transaction. Below is the list of parameters where some are mandatory and others are optional.
+
+<Accordion title="Step 1.1: Prepare the request parameters" icon="fa-info-circle" />
+
+### Step 1.1: Prepare the request parameters
 
 <HTMLBlock>{`
 <div >
