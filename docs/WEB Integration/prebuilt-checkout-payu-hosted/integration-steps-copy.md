@@ -363,7 +363,7 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|
 
 For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
 
-### Example: POST auto-submit form (server renders)
+### Step 1.3: POST the html form (server renders)
 
 ```html
 <!doctype html>
@@ -389,17 +389,17 @@ For more information, refer to  <a href="generate-hash-payu-hosted" target="_bla
 
 **Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.**
 
-<Callout icon="📘">
+<Callout icon="📘" theme="info">
   **Important**
 
   When you POST the form to [https://test.payu.in/\_payment](https://test.payu.in/_payment) or [https://secure.payu.in/\_payment](https://secure.payu.in/_payment), PayU returns HTML for the hosted checkout page (i.e., the payment UI). Render this response to user, it will render the PayU checkout.
 </Callout>
 
-### Step 1.3: Response handling & hash verification
+### Step 1.4: Response handling & hash verification
 
 **Response Handling: **
 
-After the customer completes or abandons the payment, PayU POSTs back to your return URL with URL-encoded fields (form post). This payload includes the transaction status, txnid, mihpayid, and a hash you must verify (reverse hashing) before trusting the result. 
+After the customer completes or abandons the payment, PayU POSTs back to your return URL with URL-encoded fields (form post). This payload includes the transaction status, txnid, mihpayid, and a hash you must verify (reverse hashing) before trusting the result.
 
 Sample surl/furl payload:
 
@@ -458,7 +458,7 @@ error_Message=Bank was unable to authenticate
 hash=<response_hash>
 ````
 
-#### Step 1.3.1: Response verification using reverse hashing 
+#### Step 1.4.1: Response verification using reverse hashing
 
 Verify the response received above by recomputing SHA-512 using the reverse sequence:
 
@@ -469,16 +469,16 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 * Compare the computed digest to hash from the POST payload (**case-insensitive**).
 * Trust the result only if the hash matches. Then update your order state.
 
-### Step 1.4: Verify the payment
+### Step 1.5: Verify the payment
 
 Upon receiving the response, We recommend performing a reconciliation step by querying the verification APIs to validate all transaction details.
 
 #### Environment
 
-|                        |                                                      |
-| :--------------------- | :--------------------------------------------------- |
-| Test Environment       | https://test.payu.in/merchant/postservice.php?form=2 |
-| Production Environment | https://info.payu.in/merchant/postservice.php?form=2 |
+|                        |                                                                                                              |
+| :--------------------- | :----------------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
