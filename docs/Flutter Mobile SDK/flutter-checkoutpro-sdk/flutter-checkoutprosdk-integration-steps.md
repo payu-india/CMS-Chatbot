@@ -36,7 +36,7 @@ The CheckoutPro SDK for Flutter is offered through Flutter `pub.dev`
 
 * To add the PayU Checkout Pro Flutter plugin add the following dependency in your app: `$ flutter pub add payu_checkoutpro_flutter`
 
-```Text Dart
+```d Dart
 import 'package:payu_checkoutpro_flutter/payu_checkoutpro_flutter.dart'; 
 import 'package:payu_checkoutpro_flutter/PayUConstantKeys.dart'; 
  
@@ -49,13 +49,13 @@ import 'package:payu_checkoutpro_flutter/PayUConstantKeys.dart';
 ## Step2: Initialize PayU Checkout Pro Flutter object
 
 * Create PayUCheckout Pro Flutter instance.
-  ```
+  ```d Dart
   late PayUCheckoutProFlutter \_checkoutPro;
   ```
 
 Initialize the PayUCheckoutProFlutter object using the current object.
 
-```Text Dart
+```d Dart
 @override 
 void initState() 
 { 
@@ -70,7 +70,7 @@ _checkoutPro = PayUCheckoutProFlutter(this);
 * Implement Checkout Pro protocol methods to get hash generation callback and transaction status callback from Checkout Pro SDK: `class MyClass extends SupeprClass implements PayUCheckoutProProtocol`
 * Implement the following methods in your class to get a callback from the SDK.
 
-```Text Dart
+```d Dart
 @override 
   generateHash(Map response) { 
     // Pass response param to your backend server 
@@ -206,19 +206,19 @@ To initiate the payment, your app needs to send transactional information to the
 
     <tr>
       <td>
-        transactionId\
+        transactionId
         `mandatory`
       </td>
 
       <td>
-        `String` It should be unique for each transaction.\
-        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "\_,$,%,&, etc"
+        `String` It should be unique for each transaction.
+        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "_,$,%,&, etc"
       </td>
     </tr>
 
     <tr>
       <td>
-        Amount\
+        Amount
         `mandatory`
       </td>
 
@@ -229,7 +229,7 @@ To initiate the payment, your app needs to send transactional information to the
 
     <tr>
       <td>
-        productInfo\
+        productInfo
         `mandatory`
       </td>
 
@@ -240,7 +240,7 @@ To initiate the payment, your app needs to send transactional information to the
 
     <tr>
       <td>
-        firstName\
+        firstName
         `mandatory`
       </td>
 
@@ -251,7 +251,7 @@ To initiate the payment, your app needs to send transactional information to the
 
     <tr>
       <td>
-        Email\
+        Email
         `mandatory`
       </td>
 
@@ -262,7 +262,7 @@ To initiate the payment, your app needs to send transactional information to the
 
     <tr>
       <td>
-        Phone\
+        Phone
         `mandatory`
       </td>
 
@@ -273,62 +273,62 @@ To initiate the payment, your app needs to send transactional information to the
 
     <tr>
       <td>
-        ios\_surl\
+        ios_surl
         `mandatory`
       </td>
 
       <td>
-        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.  
+        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
 
-        * \*Note\*\*: This field is applicable for iOS integration
+        * *Note**: This field is applicable for iOS integration
       </td>
     </tr>
 
     <tr>
       <td>
-        ios\_furl\
+        ios_furl
         mandatory
       </td>
 
       <td>
-        `String` When the transaction fails, PayU will load this URL and pass the transaction response.  
+        `String` When the transaction fails, PayU will load this URL and pass the transaction response.
 
-        * \*Note\*\*: This field is applicable for iOS integration
+        * *Note**: This field is applicable for iOS integration
       </td>
     </tr>
 
     <tr>
       <td>
-        android\_surl\
+        android_surl
         `mandatory`
       </td>
 
       <td>
-        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.\
-        `Note`: This field is applicable for Android integration  
+        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
+        `Note`: This field is applicable for Android integration
 
-        * \*Sample URL\*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+        * *Sample URL**: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
       </td>
     </tr>
 
     <tr>
       <td>
-        android\_furl\
+        android_furl
         `mandatory`
       </td>
 
       <td>
-        `String` When the transaction fails, PayU will load this URL and pass the transaction response.\
-        When the transaction gets successful, PayU will load this URL and pass the transaction response.\
-        `Note`: This field is applicable for Android integration  
+        `String` When the transaction fails, PayU will load this URL and pass the transaction response.
+        When the transaction gets successful, PayU will load this URL and pass the transaction response.
+        `Note`: This field is applicable for Android integration
 
-        * \*Sample URL\*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+        * *Sample URL**: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
       </td>
     </tr>
 
     <tr>
       <td>
-        Environment\
+        Environment
         `mandatory`
       </td>
 
@@ -339,36 +339,36 @@ To initiate the payment, your app needs to send transactional information to the
 
     <tr>
       <td>
-        User Credential\
+        User Credential
         `mandatory`
       </td>
 
       <td>
-        * \*String\*\* This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:\
-          `<merchantKey>:<userId>  `\
-          Here,\
+        * *String** This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:
+          `<merchantKey>:<userId>  `
+          Here,
           UserId is any id/email/phone number to uniquely identify the user.
       </td>
     </tr>
   </tbody>
 </Table>
 
-For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters). 
+For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
 
 ### Additional Parameters (Optional)
 
-The additional parameters that are optional that can be passed for the SDK are udf parameters, static hashes, and other parameters. For more details on Static Hash generation and passing them, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk). The following is a list of parameters that can be passed in additional parameters:  
+The additional parameters that are optional that can be passed for the SDK are udf parameters, static hashes, and other parameters. For more details on Static Hash generation and passing them, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk). The following is a list of parameters that can be passed in additional parameters:
 
-| Parameter                                   | Description                                                                                                                                                                                                         |
-| :------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| PayUCheckoutProConstants.CP\_UDF1           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                                                             |
-| PayUCheckoutProConstants.CP\_UDF2           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                                                             |
-| PayUCheckoutProConstants.CP\_UDF3           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                                                             |
-| PayUCheckoutProConstants.CP\_UDF4           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                                                             |
-| PayUCheckoutProConstants.CP\_UDF5           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                                                             |
-| Static hashes                               | `String` The static hashes is specified in this parameter. For more information, refer to [Hash Generation](https://docs.payu.in/docs/flutter-checkoutprosdk-integration-steps#step4-setup-payment-hashes) section. |
-| PayUCheckoutProConstants.SODEX\_OSOURC\_EID | `String` Sodexo Source ID, Merchant can store it from the third field of PayU response.                                                                                                                             |
-| PaymentParamConstant.walletUrn              | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                                                                  |
+| Parameter                                 | Description                                                                                                                                                                                                         |
+| :---------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| PayUCheckoutProConstants.CP_UDF1          | `String` User defined field, Merchant can store their customer id, etc.                                                                                                                                             |
+| PayUCheckoutProConstants.CP_UDF2          | `String` User defined field, Merchant can store their customer id, etc.                                                                                                                                             |
+| PayUCheckoutProConstants.CP_UDF3          | `String` User defined field, Merchant can store their customer id, etc.                                                                                                                                             |
+| PayUCheckoutProConstants.CP_UDF4          | `String` User defined field, Merchant can store their customer id, etc.                                                                                                                                             |
+| PayUCheckoutProConstants.CP_UDF5          | `String` User defined field, Merchant can store their customer id, etc.                                                                                                                                             |
+| Static hashes                             | `String` The static hashes is specified in this parameter. For more information, refer to [Hash Generation](https://docs.payu.in/docs/flutter-checkoutprosdk-integration-steps#step4-setup-payment-hashes) section. |
+| PayUCheckoutProConstants.SODEX_OSOURC_EID | `String` Sodexo Source ID, Merchant can store it from the third field of PayU response.                                                                                                                             |
+| PaymentParamConstant.walletUrn            | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                                                                  |
 
 The payment parameters and additional parameters can be passed using the following code snippet:
 
@@ -465,7 +465,7 @@ payUCheckoutProConfig: <payUConfigParams>,
 
 ## Step 7: Configure AndroidManifest.xml
 
-To automatically fill OTP on bank pages, SDK requires the RECEIVE\_SMS permission, configure the AndroidManifest.xml by adding receive sms permission as shown below.
+To automatically fill OTP on bank pages, SDK requires the RECEIVE_SMS permission, configure the AndroidManifest.xml by adding receive sms permission as shown below.
 
 ```
 <uses-permission android:name="android.permission.RECEIVE_SMS" /> 
