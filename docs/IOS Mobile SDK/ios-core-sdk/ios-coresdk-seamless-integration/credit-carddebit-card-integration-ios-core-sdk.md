@@ -17,7 +17,7 @@ To pay using a credit card or debit card, perform the following steps.
 
 1. Set the following credit card parameters:
 
-```Text Swift
+```swift Swift
 paymentParamForPassing.cardNumber = "5123456789012346" //cardNumber
 paymentParamForPassing.nameOnCard = "name" //Name on card
 paymentParamForPassing.expYear = "2018" //Expiry year
@@ -25,7 +25,7 @@ paymentParamForPassing.expMonth = "11" //ExpiryMonth
 paymentParamForPassing.cvv = "123" //CVV
 paymentParamForPassing.storeCardName = "My TestCard" //If you want to save card then pass StoreCardName otherwise it will not save & make sure userCredentials are provided
 ```
-```Text Objective-C
+```objectivec Objective-C
         self.paymentParamForPassing.cardNumber = @"5123456789012346";//cardNumber
         self.paymentParamForPassing.nameOnCard = @"name";//Name on card
         self.paymentParamForPassing.expYear = @"2018";//Expiry year
@@ -36,7 +36,7 @@ paymentParamForPassing.storeCardName = "My TestCard" //If you want to save card 
 
 2. Get the request by using the `createRequestWithPaymentParam` method as follows:
 
-```Text Swift
+```swift Swift
 createRequest().createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_CCDC, withCompletionBlock: { request, postParam, error in
     if error == nil {
         //It is good to go state. You can use request parameter in webview to open Payment Page
@@ -45,7 +45,7 @@ createRequest().createRequest(withPaymentParam: paymentParamForPassing, forPayme
     }
 })
 ```
-```Text Objective-C
+```objectivec Objective-C
         self.createRequest = [PayUCreateRequest new];
         [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_CCDC withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
         if (error == nil) {
