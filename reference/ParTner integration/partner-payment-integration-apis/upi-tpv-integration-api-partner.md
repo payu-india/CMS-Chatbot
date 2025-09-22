@@ -16,7 +16,7 @@ Integrate TPV through UPI using the procedure described in this section.
 
 ## Prerequisites
 
-S2S (Seamless) integration has to be done as per the standard kit. For more information, refer to [UPI S2S Integration API](https://docs.payu.in/reference/upi-s2s-integration-api)
+S2S (Seamless) integration has to be done as per the standard kit. For more information, refer to [UPI Intent S2S Integration](doc:upi-intent-server-to-server).
 
 ## Step 1: List the account numbers
 
