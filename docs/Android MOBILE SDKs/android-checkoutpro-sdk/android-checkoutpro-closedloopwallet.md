@@ -12,9 +12,9 @@ next:
 ---
 Closed-Loop wallets allow merchants to accept payments with their self-branded wallets. PayU’s Android SDK enables you to seamlessly integrate with a closed-loop wallet and start accepting payments.
 
-> 📘 Note
->
-> You can enable Closed-Loop wallet payment mode from PayU’s Merchant Dashboard. Contact your key account manager in PayU if you do not see the payment mode in your Dashboard.
+<Callout icon="📘" theme="info">
+  **Note**: You can enable Closed-Loop wallet payment mode from PayU’s Merchant Dashboard. Contact your key account manager in PayU if you do not see the payment mode in your Dashboard.
+</Callout>
 
 ## Prerequisites
 
