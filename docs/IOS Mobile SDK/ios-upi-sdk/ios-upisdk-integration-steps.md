@@ -83,14 +83,14 @@ Using `Package.Swift`, add the following line in `Package.swift `dependencies:
 
 1. Set environment to test or production. You can also set the debugging level to get logs from the SDK.
 
-```Text Swift
+```swift Swift
 PayUUPICore.shared.environment = .production
 PayUUPICore.shared.logLevel = .error //Other option is verbose. Logs are disabled by default
 ```
 
 2. Configure mandatory payment parameters required for the payment:
 
-```Text Swift
+```swift Swift
 do {
 paymentParams = try PayUPaymentParams(
 merchantKey: "smsplus", //Your merchant key for the environment set in step 1
@@ -121,9 +121,9 @@ print("Could not create post params due to: \(error.localizedDescription)")
 }
 ```
 
-> 📘 Note:
->
-> The URLs used in **surl** and **furl** are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed.
+<Callout icon="📘" theme="info">
+  **Note**: The URLs used in **surl** and **furl** are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed.
+</Callout>
 
 ### Configure Callbacks
 
@@ -131,7 +131,7 @@ Configure Callbacks to receive actionable events from SDK:
 
 * **paymentCompletion**: You receive the payment response here.
 
-```Text Swift
+```swift Swift
  PayUUPICore.shared.paymentCompletion = { [weak self] result in
 DispatchQueue.main.async { [weak self] in
 guard let self = self else {return}
@@ -149,7 +149,7 @@ Helper.showAlert(String(describing: error.rawValue), onController: self)
 
 * **backPressed**: If the user has not yet initiated the transaction, and when the user presses the back button from the UPI payment options page, this callback is triggered. You can dismiss SDK’s UI screen here.
 
-```Text Swift
+```swift Swift
 PayUUPICore.shared.backPressed = {[weak self] in
 self?.navigationController?.popToRootViewController(animated: true)
 }
@@ -157,7 +157,7 @@ self?.navigationController?.popToRootViewController(animated: true)
 
 * **onEnteringVPA**: For validating the VPA entered by the user, we need to hit PayU’s validate VPA API. This API needs a hash. In this callback, you will get the VPA entered by the user. Use this value to generate the required hash. When the hash is received from your server, send us the updated post params with the new hash.
 
-```Text Swift
+```swift Swift
 PayUUPICore.shared.onEnteringVPA = {[weak self] vpa, completion in
 guard let self = self else { return }
 self.paymentParams?.vpa = vpa
@@ -193,14 +193,14 @@ To fetch hashes and save them in the `paymentParams` object:
 
 5. Call the following method of the PayUAPI class to get all available payment options to “Merchant”:
 
-```Text Swift
+```swift Swift
 class func getUPIPaymentOptions(withPaymentParams params: PayUPaymentParams,
 completion: @escaping(Result) ->() )
 ```
 
 6. You will get a response of type Result with the value of the PayUUPIPaymentOptions type in the response success parameter. The sample code is similar to the following:
 
-```Text Swift
+```swift Swift
 PayUAPI.getUPIPaymentOptions(withPaymentParams: self.paymentParams!, completion: { [weak self] result in
      switch result {
      case .success(let paymentOptions):
@@ -227,7 +227,7 @@ Inside intent key of the PayUUPIPaymentOptions object, you get an array of objec
 
 1. Query the SDK for payment options available for the “Current User” based on factors like if Bank/Payment-Service-Provider(PSP) apps are installed on the current user’s device or not using the code similar to the following:
 
-```Text Swift
+```swift Swift
  public class func canUseIntent(forApp app: PayUSupportedIntentApp,
                 withUpiOptions options: PayUUPIPaymentOptions) -> Bool
  public class func canUseUpiCollect(withPaymentOptions options: PayUUPIPaymentOptions) -> Bool
@@ -237,13 +237,13 @@ Inside intent key of the PayUUPIPaymentOptions object, you get an array of objec
 
 Based on your priority and availability of payment options for the current user, you can order the payment options on your checkout page.
 
-> ❗️ Callout
->
-> The `canUseGpayOmni` and `canUseGpayCollect` methods provide you fallback options of the Google Pay intent app, which have approximately 10% more success rate when compared to general UPI collect payments. This implies that if your user does not have the Google Pay app installed, you can still show the Google Pay option on your checkout, and PayU will display these two fallback options upon Google Pay selection by the user. Google Pay omnichannel payment option takes the user’s phone number for UPI collect payment.
+<Callout icon="📘">
+  **Note**: The `canUseGpayOmni` and `canUseGpayCollect` methods provide you fallback options of the Google Pay intent app, which have approximately 10% more success rate when compared to general UPI collect payments. This implies that if your user does not have the Google Pay app installed, you can still show the Google Pay option on your checkout, and PayU will display these two fallback options upon Google Pay selection by the user. Google Pay omnichannel payment option takes the user’s phone number for UPI collect payment.
+</Callout>
 
 2. Create an instance of PayUIntentPaymentVC and follow data to it if the user selects the intent app option.
 
-```Text Swift
+```swift Swift
 let paymentVC = PayUIntentPaymentVC()
 paymentVC.availableUpiOptions = upiOptions
 paymentVC.paymentApp = app //object of type 'PayUSupportedIntentApp'
@@ -253,13 +253,13 @@ navigationController?.pushViewController(paymentVC, animated: false)
 
 3. Create an instance of `PayCollectPaymentVC` using the following code convenience method If user selects the UPI Collect or Google Pay Fallback option:
 
-```Text Swift
+```swift Swift
 let collectVC = PayCollectPaymentVC()
 ```
 
 4. Pass the following information for payment processing:
 
-```Text Swift
+```swift Swift
 collectVC.paymentParams = params
 collectVC.screenType = type // .upi or .gpayFallback
 collectVC.availablePaymentOptions = upiOptions
@@ -270,7 +270,7 @@ After the payment is made, you should get the response in your payment completio
 
 5. Add the query schemes in the `info.plist` file:
 
-```Text XML
+```xml XML
 <key>LSApplicationQueriesSchemes</key>
 <array>
 <string>phonepe</string>
