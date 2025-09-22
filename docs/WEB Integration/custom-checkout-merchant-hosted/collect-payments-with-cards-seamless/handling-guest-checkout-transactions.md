@@ -112,7 +112,7 @@ Along with the parameters listed in the <Anchor label="Collect Payment API - Car
     </tr>
     <tr>
       <td>ccexpmon <code>mandatory</code></td>
-      <td><code>String</code> This parameter must contain the card's expiry</br> month or Alt ID expiry month for guest checkout – as entered by the user</br> for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter</br> must be appended with 0 – like 01, 02…09. For months 10-12, this parameter</br> must not be appended – It should be 10,11 and 12 respectively. For VISA cards,</br> Plain card's expiry month need to be posted this parameter.</td>
+      <td><code>String</code> This parameter must contain the card's expiry month or Alt ID expiry month for guest checkout – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. For VISA cards,</br> Plain card's expiry month need to be posted this parameter.</td>
       <td>10</td>
     </tr>
     <tr>
