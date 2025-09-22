@@ -12,9 +12,9 @@ next:
 ---
 The PayUCheckoutPro SDK provides several customization options allowing you to make the SDK closer to the Look & Feel of your app and control some advanced capabilities provided by the SDK.
 
-> 📘 Remember:
->
-> You can dynamically make the changes listed in this section using the PayU Dashboard. For more information, refer to [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+<Callout icon="📘" theme="info">
+  **Remember**: You can dynamically make the changes listed in this section using the PayU Dashboard. For more information, refer to [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+</Callout>
 
 ## Modify theme
 
@@ -88,7 +88,7 @@ return super.onJsAlert(view, url, message, result);
 
 After creating your WebChromeClient, it can be set in PayUCheckoutPro SDK in the setWebViewProperties() callback method of PayUCheckoutProListener similar to the following code snippet:
 
-```Text JAVA
+```java Java
 PayUCheckoutPro.open( 
 this, 
 payUPaymentParams, 
@@ -134,7 +134,7 @@ hashGenerationListener.onHashGenerated(dataMap);
 } 
 );
 ```
-```Text Kotlin
+```kotlin Kotlin
  PayUCheckoutPro.open( 
         this, payUPaymentParams, 
         object : PayUCheckoutProListener { 
@@ -200,14 +200,14 @@ hashGenerationListener.onHashGenerated(dataMap);
 
 To set your WebViewClient in PayUCheckoutPro SDK, it must extend the`PayUWebViewClient` class similar to the following:
 
-```Text JAVA
+```java Java
 class CheckoutProWebViewClient extends PayUWebViewClient{
 public CheckoutProWebViewClient(Bank bank, String merchantKey){
 super(bank, merchantKey);
 }
 }
 ```
-```Text Kotlin
+```kotlin Kotlin
     class CheckoutProWebViewClient(bank: Bank, merchantKey: String): PayUWebViewClient(bank, merchantKey){ 
     
     }
@@ -215,7 +215,7 @@ super(bank, merchantKey);
 
 After creating your WebViewClient, it can be configured in the PayUCheckoutPro SDK in the `setWebViewProperties() `callback method of PayUCheckoutProListener similar to the following:
 
-```Text JAVA
+```java Java
 PayUCheckoutPro.open( 
 this, 
 payUPaymentParams, 
@@ -261,7 +261,7 @@ hashGenerationListener.onHashGenerated(dataMap);
 } 
 );
 ```
-```Text Kotlin
+```kotlin Kotlin
  PayUCheckoutPro.open( 
         this, payUPaymentParams, 
         object : PayUCheckoutProListener { 
@@ -327,14 +327,14 @@ hashGenerationListener.onHashGenerated(dataMap);
 
 To set your WebViewClient in PayUCheckoutPro SDK, it must extend the`PayUWebViewClient` class similar to the following:
 
-```Text JAVA
+```java Java
 class CheckoutProWebViewClient extends PayUWebViewClient{
 public CheckoutProWebViewClient(Bank bank, String merchantKey){
 super(bank, merchantKey);
 }
 }
 ```
-```Text Kotlin
+```kotlin Kotlin
     class CheckoutProWebViewClient(bank: Bank, merchantKey: String): PayUWebViewClient(bank, merchantKey){ 
     
     }
@@ -342,7 +342,7 @@ super(bank, merchantKey);
 
 After creating your WebViewClient, it can be configured in the PayUCheckoutPro SDK in the `setWebViewProperties()`callback method of `PayUCheckoutProListener` similar to the following:
 
-```Text JAVA
+```java Java
 PayUCheckoutPro.open( 
 this, 
 payUPaymentParams, 
@@ -388,7 +388,7 @@ hashGenerationListener.onHashGenerated(dataMap);
 } 
 );
 ```
-```Text Kotlin
+```kotlin Kotlin
  PayUCheckoutPro.open( 
         this, payUPaymentParams, 
         object : PayUCheckoutProListener { 
@@ -454,14 +454,14 @@ hashGenerationListener.onHashGenerated(dataMap);
 
 To configure the CheckoutPro SDK, you can customise the properties in the PayUCheckoutProConfig class and pass the config object in the open method when invoking the SDK similar to the following code snippet:
 
-```Text JAVA
+```java Java
 PayUCheckoutPro.open( 
     Activity activity, 
     PayUPaymentParams payUPaymentParams, 
     PayUCheckoutProConfig payUCheckoutProConfig, 
     PayUCheckoutProListener payUCheckoutProListener) 
 ```
-```Text Kotlin
+```kotlin Kotlin
 PayUCheckoutPro.open( 
     activity: Activity, 
     payUPaymentParams: PayUPaymentParams, 
@@ -473,11 +473,11 @@ PayUCheckoutPro.open(
 
 The merchant’s name is displayed in the SDK indicating the recipient of the payment. The maximum length is 20 characters. To set your brand name or business name, set the `merchantName` property of the PayUCheckoutProConfig object as indicated in the following code snippet:
 
-```Text JAVA
+```java Java
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig(); 
 payUCheckoutProConfig.setMerchantName("PayU"); 
 ```
-```Text Kotlin
+```kotlin Kotlin
 val payUCheckoutProConfig = PayUCheckoutProConfig() 
 payUCheckoutProConfig.merchantName = "PayU Payments Private Limited" 
 ```
@@ -488,11 +488,11 @@ You can display an image (typically, your brand logo) in the PayUCheckoutPro SDK
 
 Add the image in the **app/res/drawable** folder in the native Android app and pass the same under the merchantLogo.
 
-```Text JAVA
+```java Java
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig(); 
 payUCheckoutProConfig.setMerchantLogo(R.drawable.merchant_logo); 
 ```
-```Text Kotlin
+```kotlin Kotlin
 val payUCheckoutProConfig = PayUCheckoutProConfig() 
 payUCheckoutProConfig.merchantLogo = R.drawable.merchant_logo 
 ```
@@ -501,11 +501,11 @@ payUCheckoutProConfig.merchantLogo = R.drawable.merchant_logo
 
 Merchants want to show the logo on the PayU Hosted Page. By default, the logo is invisible.
 
-```Text Java
+```java Java
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
 payUCheckoutProConfig.setShowMerchantLogo(true); //true/false
 ```
-```Text Kotlin
+```kotlin Kotlin
 val payUCheckoutProConfig = PayUCheckoutProConfig() 
 payUCheckoutProConfig.showMerchantLogo = true //true/false
 ```
@@ -514,11 +514,11 @@ payUCheckoutProConfig.showMerchantLogo = true //true/false
 
 Merchants want to hide Saved Card features. By default, the Saved Card feature is enabled.
 
-```Text Java
+```java Java
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
 payUCheckoutProConfig.setEnableSavedCard(true); //true/false
 ```
-```Text Kotlin
+```kotlin Kotlin
 val payUCheckoutProConfig = PayUCheckoutProConfig() 
 payUCheckoutProConfig.enableSavedCard = true //true/false
 ```
@@ -527,11 +527,11 @@ payUCheckoutProConfig.enableSavedCard = true //true/false
 
 you are trying to show the dialog from a place that isn't permitted.
 
-```Text Java
+```java Java
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
 payUCheckoutProConfig.setEnableSslDialog(true); //true/false
 ```
-```Text Kotlin
+```kotlin Kotlin
 val payUCheckoutProConfig = PayUCheckoutProConfig() 
 payUCheckoutProConfig.enableSslDialog = true //true/false
 ```
@@ -544,11 +544,11 @@ payUCheckoutProConfig.enableSslDialog = true //true/false
 
 Merchants can choose to hide the toolbar on the custom browser. By default, the toolbar is displayed.
 
-```Text JAVA
+```java JAVA
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig (); 
 payUCheckoutProConfig.setShowCbToolbar(false); //hide toolbar 
 ```
-```Text Kotlin
+```kotlin Kotlin
 val payUCheckoutProConfig = PayUCheckoutProConfig() 
 payUCheckoutProConfig.showCbToolbar = false //hide toolbar 
 ```
@@ -557,11 +557,11 @@ payUCheckoutProConfig.showCbToolbar = false //hide toolbar
 
 You can choose to hide the dialog box that is displayed when the back button is clicked from the Level 1 screen. The default value is true.
 
-```Text JAVA
+```java Java
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig (); 
 payUCheckoutProConfig.setShowExitConfirmationOnCheckoutScreen(false); //hide back button dialog 
 ```
-```Text Kotlin
+```kotlin Kotlin
 val payUCheckoutProConfig = PayUCheckoutProConfig () 
 payUCheckoutProConfig.showExitConfirmationOnCheckoutScreen = false//hide back button dialog 
 ```
@@ -570,11 +570,11 @@ payUCheckoutProConfig.showExitConfirmationOnCheckoutScreen = false//hide back bu
 
 You can choose to hide the dialog box that is displayed when the back button is clicked in CB. The default value is true.
 
-```Text JAVA
+```java Java
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig(); 
 payUCheckoutProConfig.setShowExitConfirmationOnPaymentScreen(false); //hide back button dialog 
 ```
-```Text Kotlin
+```kotlin Kotlin
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig(); 
 payUCheckoutProConfig.setShowExitConfirmationOnPaymentScreen(false); //hide back button dialog 
 ```
@@ -583,11 +583,11 @@ payUCheckoutProConfig.setShowExitConfirmationOnPaymentScreen(false); //hide back
 
 If you do not want Checkout Pro SDK to ask for runtime SMS permission on the bank OTP page, you can configure the runtime SMS permission flag to false. The default value is true.
 
-```Text JAVA
+```java Java
 val payUCheckoutProConfig = PayUCheckoutProConfig () 
 payUCheckoutProConfig.showExitConfirmationOnPaymentScreen= false //hide back button dialog 
 ```
-```Text Kotlin
+```kotlin Kotlin
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig(); 
 payUCheckoutProConfig.setMerchantSmsPermission(false);  
 ```
@@ -596,11 +596,11 @@ payUCheckoutProConfig.setMerchantSmsPermission(false);
 
 Merchants can choose to auto-select OTP flow on the bank page with the following flag. The default value is false.
 
-```Text JAVA
+```java Java
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig(); 
 payUCheckoutProConfig.setAutoApprove(true);  
 ```
-```Text Kotlin
+```kotlin Kotlin
 val payUCheckoutProConfig = PayUCheckoutProConfig () 
 payUCheckoutProConfig.autoSelectOtp = true 
 ```
@@ -609,11 +609,11 @@ payUCheckoutProConfig.autoSelectOtp = true
 
 The period that PayU will wait for you to load surl/furl before passing the transaction response back to the app. If you take longer to load surl/furl, by default, PayU has a response timeout of 10 seconds. However, if you feel that surl/furl can take longer than 10 seconds, you can set this flag.
 
-```Text JAVA
+```java Java
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig(); 
 payUCheckoutProConfig.setMerchantResponseTimeout(15000); // for 15 seconds timeout 
 ```
-```Text Kotlin
+```kotlin Kotlin
 val payUCheckoutProConfig = PayUCheckoutProConfig() 
 payUCheckoutProConfig.merchantResponseTimeout = 15000 // for 15 seconds timeout 
 ```
@@ -622,11 +622,11 @@ payUCheckoutProConfig.merchantResponseTimeout = 15000 // for 15 seconds timeout
 
 We wait for a specified time for the OTP after which the SDK falls back to the manual OTP screen. The default time is 30 seconds; you may change it to any other duration. PayU recommends you configure it to less than 60 seconds for a better user experience.
 
-```Text JAVA
+```java Java
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig(); 
 payUCheckoutProConfig.setWaitingTime(45000); 
 ```
-```Text Kotlin
+```kotlin Kotlin
 PayUCheckoutProConfig payUCheckoutProConfig = PayUCheckoutProConfig()  
 payUCheckoutProConfig.waitingTime = 45000
 ```
@@ -635,11 +635,11 @@ payUCheckoutProConfig.waitingTime = 45000
 
 Merchants can enable Surepay on the bank page. When the internet is lost during the transaction, if the transaction can be retried from that bank page after the internet is resumed, the Surepay dialog box is displayed. It has legitimate values such as 0, 1, 2, and 3. Where number defines the number of times the Surepay dialog box should be displayed during the transaction for no internet connectivity. The default value is 0.
 
-```Text JAVA
+```java Java
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig(); 
 payUCheckoutProConfig.setSurePayCount(3); 
 ```
-```Text Kotlin
+```kotlin Kotlin
 val payUCheckoutProConfig = PayUCheckoutProConfig () 
 payUCheckoutProConfig.surePayCount = 3 
 ```
@@ -648,14 +648,14 @@ payUCheckoutProConfig.surePayCount = 3
 
 You can pass the checkout order details to the SDK that will be displayed in the SDK during the transaction flow.
 
-```Text JAVA
+```java Java
 ArrayList<OrderDetails> orderDetailsList = new ArrayList<>(); 
 orderDetailsList.add(new OrderDetails("Milk","1")); 
 orderDetailsList.add(new OrderDetails("Butter","1")); 
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig (); 
 payUCheckoutProConfig.setCartDetails(orderDetailsList); 
 ```
-```Text Kotlin
+```kotlin Kotlin
 val orderDetailsList = ArrayList<OrderDetails>() 
 orderDetailsList.add(OrderDetails(“Milk”,”1”)) 
 orderDetailsList.add(OrderDetails(“Butter”,”1”)) 
@@ -667,7 +667,7 @@ payUCheckoutProConfig.cartDetails = orderDetailsList
 
 Consider the following example to display Google Pay, PhonePe, and Paytm on the primary checkout screen.
 
-```Text JAVA
+```java Java
 ArrayList<PaymentMode> checkoutOrderList = new ArrayList<>(); 
 checkoutOrderList.add(new PaymentMode(PaymentType.UPI, PayUCheckoutProConstants.CP_GOOGLE_PAY)); 
 checkoutOrderList.add(new PaymentMode(PaymentType.WALLET, PayUCheckoutProConstants.CP_PHONEPE)); 
@@ -675,7 +675,7 @@ checkoutOrderList.add(new PaymentMode(PaymentType.WALLET, PayUCheckoutProConstan
 PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig (); 
 payUCheckoutProConfig.setPaymentModesOrder(checkoutOrderList);
 ```
-```Text Kotlin
+```kotlin Kotlin
 val checkoutOrderList = ArrayList<PaymentMode>() 
 checkoutOrderList.add(PaymentMode(PaymentType.UPI, PayUCheckoutProConstants.CP_GOOGLE_PAY)) 
 checkoutOrderList.add(PaymentMode(PaymentType.WALLET, PayUCheckoutProConstants.CP_PHONEPE)) 
@@ -703,13 +703,13 @@ You can directly open a specific payment mode like NB, WALLET, UPI, CARD, etc in
 
 #### Enforced Single Payment option
 
-```Text JAVA
+```java Java
  ArrayList<HashMap<String,String>> enforceList = new ArrayList();
  HashMap<String,String> map = new HashMap<>();
  map.put(PayUCheckoutProConstants.CP_PAYMENT_TYPE, PaymentType.NB.name());
  enforceList.add(map);
 ```
-```Text Kotlin
+```kotlin Kotlin
  val enforceList = ArrayList<HashMap<String,String>>()
  enforceList.add(HashMap<String,String>().apply {
            put(PayUCheckoutProConstants.CP_PAYMENT_TYPE,PaymentType.NB.name)
@@ -719,7 +719,7 @@ You can directly open a specific payment mode like NB, WALLET, UPI, CARD, etc in
 
 #### Enforced Multiple Payment option
 
-```Text JAVA
+```java Java
 ArrayList<HashMap<String, String>> enforceList = new ArrayList();
    HashMap<String, String> map1 = new HashMap<>();
    map1.put(PayUCheckoutProConstants.CP_PAYMENT_TYPE, PaymentType.NB.name());
@@ -729,7 +729,7 @@ ArrayList<HashMap<String, String>> enforceList = new ArrayList();
    map2.put(PayUCheckoutProConstants.CP_PAYMENT_TYPE, PaymentType.CARD.name());
    enforceList.add(map2);
 ```
-```Text Kotlin
+```kotlin Kotlin
  val enforceList = ArrayList<HashMap<String,String>>()
  enforceList.add(HashMap<String,String>().apply {
            put(PayUCheckoutProConstants.CP_PAYMENT_TYPE,PaymentType.NB.name)
@@ -743,14 +743,14 @@ ArrayList<HashMap<String, String>> enforceList = new ArrayList();
 
 #### Enforced Particular Bank wise Payment Mode :
 
-```Text JAVA
+```java Java
  ArrayList<HashMap<String,String>> enforceList = new ArrayList();
  HashMap<String,String> map = new HashMap<>();
  map.put(PayUCheckoutProConstants.CP_PAYMENT_TYPE, PaymentType.NB.name());
  map.put(PayUCheckoutProConstants.ENFORCED_IBIBOCODE, "AXIB");
  enforceList.add(map);
 ```
-```Text Kotlin
+```kotlin Kotlin
  val enforceList = ArrayList<HashMap<String,String>>()
  enforceList.add(HashMap<String,String>().apply {
            put(PayUCheckoutProConstants.CP_PAYMENT_TYPE,PaymentType.NB.name)
@@ -762,7 +762,7 @@ ArrayList<HashMap<String, String>> enforceList = new ArrayList();
 
 To enforce card type as well like CC or DC, the enforce list should have a hashmap with the PaymentType and CardType keys similar to the following code block:
 
-```Text JAVA
+```java Java
 ArrayList<HashMap<String,String>> enforceList = new ArrayList();
  HashMap<String,String> map = new HashMap<>();
  map.put(PayUCheckoutProConstants.CP_PAYMENT_TYPE, PaymentType.CARD.name());
@@ -770,7 +770,7 @@ ArrayList<HashMap<String,String>> enforceList = new ArrayList();
  map.put(PayUCheckoutProConstants.CP_CARD_SCHEME, CardScheme.MAST.name())
  enforceList.add(map);
 ```
-```Text Kotlin
+```kotlin Kotlin
  val enforceList = ArrayList<HashMap<String,String>>()
  enforceList.add(HashMap<String,String>().apply {
 put(PayUCheckoutProConstants.CP_PAYMENT_TYPE,PaymentType.CARD.name)
