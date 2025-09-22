@@ -121,7 +121,7 @@ You must include the `threeDS2RequestData` parameter along with the regular Coll
     <tr>
       <td>hash<br/><code>mandatory</code></td>
       <td>It is the hash calculated by the merchant. The hash calculation logic is: sha512(key|txnid|amount|productinfo|firstname|email</br>|udf1|udf2|udf3|udf4|udf5||||||SALT). Data type: <code>string</code>.</td>
-      <td>e5b286a9c8545038de9d4e4ee4d8a2fd02</br>e821015aff7e0323807ba174997d8643f9</br>aa174981385e3e4dfe60b918650806ccb97b3e8e3</br>471e1985ecadefd0184</td>
+      <td>e5b286a9c8545038de9</br>d4e4ee4d8a2fd02</br>e821015aff7e0323</br>807ba174997d8643f9</br>aa174981385e3e4dfe60</br>b918650806ccb97b3e8e3</br>471e1985ecadefd0184</td>
     </tr>
     <tr>
       <td>txn_s2s_flow<br/><code>optional</code></td>
@@ -131,7 +131,7 @@ You must include the `threeDS2RequestData` parameter along with the regular Coll
     <tr>
       <td>threeDS2RequestData<br/><code>optional</code></td>
       <td>JSON object containing 3DS2 authentication data including browser information, user agent, screen dimensions, timezone, and other parameters required for 3D Secure 2.0 authentication. Data type: <code>object</code>.</td>
-      <td>{"browserInfo": {"userAgent": "Mozilla/5.0...", "acceptHeader": "*/*", "language": "en-US", "colorDepth": "24", "screenHeight": "600", "screenWidth": "800", "timeZone": "-300", "javaEnabled": true, "ip": "10.248.2.71"}}</td>
+      <td>{"browserInfo": {"userAgent": "Mozilla/5.0...",</br> "acceptHeader": "*/*", "language": "en-US",</br> "colorDepth": "24", "screenHeight": "600",</br> "screenWidth": "800", "timeZone": "-300",</br> "javaEnabled": true, "ip": "10.248.2.71"}}</td>
     </tr>
   </tbody>
 </table>
