@@ -17,6 +17,6 @@ next:
 The Model 2 involves only zero code change
 
 * [Process Transaction with a Saved Card](https://docs.payu.in/v2/reference/process-transaction-with-a-saved-card)
-* [Get User Cards API](ref:get_user_cards_api)
+* [Get User Cards API](ref:v2_get_user_cards_api)
 
 For Zero-Code Change general workflow, refer to [Zero Code Change - Model 2](https://docs.payu.in/v2/docs/zero-code-change-for-vault-integration-model-2/).
