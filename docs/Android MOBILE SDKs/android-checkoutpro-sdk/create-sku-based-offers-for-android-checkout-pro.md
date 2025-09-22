@@ -45,9 +45,9 @@ implementation 'in.payu:payu-checkout-pro:2.2.1'
 
 ## Step 3: Create SKU Details
 
- Initalise Object of SKU details with vaild SKU’s.
+Initalise Object of SKU details with vaild SKU’s.
 
-```Text kotlin
+```kotlin kotlin
 SkuDetails: It contains below properties
 SkuDetails(val skus: List<SKU>)
 skus: "<ArrayList of SKU>"
@@ -73,7 +73,7 @@ offerKeys: "<Optional - Provide offer keys only if want to restrict offer for me
 
 Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to `PayUPaymentParams`.
 
-```Text kotlin
+```kotlin kotlin
 PayUPaymentParams.Builder()
         .setAmount(<String>)  
         .setIsProduction(<Boolean>)  //set is to true for Production and false for UAT
@@ -101,7 +101,7 @@ PayUPaymentParams.Builder()
 
 This integration requires dynamic hashes. We will get hash string in map again `CP_HASH_STRING `key in generateHash.  We need to send this string to server and append salt there, after appending salt convert string to sha512 hash and return back to SDK.
 
-```Text kotlin
+```kotlin kotlin
 public void generateHash(@NotNull HashMap map, @NotNull PayUHashGenerationListener hashGenerationListener) { 
 }
 
