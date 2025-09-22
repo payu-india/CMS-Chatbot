@@ -57,7 +57,7 @@ Use the Core SDK library to generate payment post data.
 
 Initialize the Native OTP Assist SDK by providing the PayUOtpAssistConfig object having post data and reference to PayUOtpAssistCallback to listen to the SDK events similar to the following code block:
 
-```Text JAVA
+```java Java
 PayUOtpAssistConfig payUOtpAssistConfig = PayUOtpAssistConfig();
 payUOtpAssistConfig.setPostData("POST_DATA_FOR_TRANSACTION");
 PayUOtpAssist.open(
@@ -65,7 +65,7 @@ Context context,
 PayUOtpAssistCallback payUOtpAssistCallback, 
 PayUOtpAssistConfig payUOtpAssistConfig);
 ```
-```Text Kotlin
+```kotlin Kotlin
 val payUOtpAssistConfig = PayUOtpAssistConfig()
 payUOtpAssistConfig.postData = "POST_DATA_FOR_TRANSACTION"
 PayUOtpAssist.open(
@@ -75,11 +75,11 @@ PayUOtpAssist.open(
 ) 
 ```
 
-> 📘 Remember
->
-> This SDK will work only if the customer or the user provides consent for the app to read the SMS on their device.
+<Callout icon="📘" theme="info">
+  **Remember**: This SDK will work only if the customer or the user provides consent for the app to read the SMS on their device.
+</Callout>
 
-PayU fetches the OTP through RECEIVE\_SMS if the RECEIVE\_SMS permission is granted. Otherwise, fetch the OTP using the Google Consent API. To understand the flow, refer to PayU OTP Parser.
+PayU fetches the OTP through RECEIVE_SMS if the RECEIVE_SMS permission is granted. Otherwise, fetch the OTP using the Google Consent API. To understand the flow, refer to PayU OTP Parser.
 
 ### Callbacks
 
@@ -92,7 +92,7 @@ The following is a list of callback functions provided by PayUOtpAssistCallback 
   * `errorMessage`: Error Description
 * `fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest)`: Boolean – It’s an optional callback, override when you want to handle the Bank page redirection flow. You just need to change the return value to false. You can also open CustomBrowser in fallback scenarios. The following code snippet is to launch the CustomBrowser.
 
-```Text JAVA
+```java Java
 boolean shouldHandleFallback(PayUAcsRequest payUAcsRequest) {
   CustomBrowserConfig customBrowserConfig = new CustomBrowserConfig(merchantKey, txnId);
   //Set the issuerUrl and issuerPostData to open in WebView for otp assist redirection to bank page
@@ -109,7 +109,7 @@ boolean shouldHandleFallback(PayUAcsRequest payUAcsRequest) {
   return false;
 }
 ```
-```Text Kotlin
+```kotlin Kotlin
 fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest): Boolean {
   val customBrowserConfig = CustomBrowserConfig(merchantKey, txnId)
    
@@ -130,11 +130,11 @@ fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest): Boolean {
 
 You will get PayUAcsRequest on `shouldHandleFallback()` callback. Whether you will get `issuerUrl` and `issuerPostData` or acsTemplate on `PayUAcsRequest.acsTemplate` is the HTML string that you need to load to the Web view.
 
-| PayUAcsRequest field | Description                                                                                                                                    |
-| :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
-| `issuerUrl`          | It’s the Bank/ACS page Url.                                                                                                                    |
-| `issuerPostData`     | You need to load issuerUrl to the Webview along with this issuerPostdata string. Ex: webView\.postUrl(issuerUrl, issuerPostData.toByteArray()) |
-| `acsTemplate`        | If the `issuerUrl` is empty, you need to load acsTemplate to the Webview. Ex: webView\.loadData(acsTemplate, “text/html”, “UTF-8”);            |
+| PayUAcsRequest field | Description                                                                                                                                   |
+| :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `issuerUrl`          | It’s the Bank/ACS page Url.                                                                                                                   |
+| `issuerPostData`     | You need to load issuerUrl to the Webview along with this issuerPostdata string. Ex: webView.postUrl(issuerUrl, issuerPostData.toByteArray()) |
+| `acsTemplate`        | If the `issuerUrl` is empty, you need to load acsTemplate to the Webview. Ex: webView.loadData(acsTemplate, “text/html”, “UTF-8”);            |
 
 The following table lists error codes and their description:
 
@@ -147,9 +147,9 @@ The following table lists error codes and their description:
 | 1005       | Something went wrong, please verify with your server.    |
 | 1006       | The bank page timed out, please verify with your server. |
 
-> 🚧 Remember
->
-> After you get the response from SDK, make sure to confirm it with the PayU server. It is recommended to implement the PayU Webhook or backend verify call from your backend.
+<Callout icon="🚧" theme="warn">
+  **Remember**: After you get the response from SDK, make sure to confirm it with the PayU server. It is recommended to implement the PayU Webhook or backend verify call from your backend.
+</Callout>
 
 ## Step 5: Verify the transaction using webhook
 
