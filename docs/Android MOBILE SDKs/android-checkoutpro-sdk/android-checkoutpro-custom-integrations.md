@@ -20,7 +20,7 @@ The PayUCheckoutPro SDK provides several customization options allowing you to m
 
 You can modify the color scheme and theme used in the PayUCheckoutPro SDK by providing your own set of colors. To change the color theme of the SDK, add the following color configuration to your colors.xml file. If you don’t have a colors.xml, create an empty file in your app project with this name, and include the following configuration settings:
 
-```Text XML
+```xml XML
 <color name="one_payu_colorPrimary">#053bc1</color>  //primary color has changed the appbar/toolbar and background color.
 <color name="one_payu_colorPrimaryDark">#053bc1</color> //primaryDark color has changed statusbar and contextual app bar.
 <color name="one_payu_colorAccent">#053bc1</color> //colorAccent has changed such as check boxes, radio buttons, and edit text boxes, cursor.
@@ -31,7 +31,7 @@ You can modify the color scheme and theme used in the PayUCheckoutPro SDK by pro
 
 You can customise the font used in the PayU checkout page as per your preference. To customise the font, add the following code snippet in the `style.xml` file of your Android app.
 
-```Text XML
+```xml XML
 <style name="PayU_header">
     <item name="android:fontFamily">@font/font_name</item>
 </style>
@@ -39,15 +39,15 @@ You can customise the font used in the PayU checkout page as per your preference
 
 Here, we are setting the fontFamily attribute to the font file that you want to access. See Add a font as an XML resource in the Android developer documentation to learn more.
 
-> 📘 Note
->
-> See[ Add a font as an XML resource](https://developer.android.com/develop/ui/views/text-and-emoji/fonts-in-xml)  in the Android developer documentation to learn more.
+<Callout icon="📘" theme="info">
+  **Note**: Refer to [ Add a font as an XML resource](https://developer.android.com/develop/ui/views/text-and-emoji/fonts-in-xml)  in the Android developer documentation to learn more.
+</Callout>
 
 ## Set WebChromeClient
 
 To set your WebChromeClient in PayUCheckoutPro SDK, it must extend the PayUWebChromeClient class similar to the following code snippet:
 
-```Text JAVA
+```java Java
 class CheckoutProWebChromeClient extends PayUWebChromeClient{
 public CheckoutProWebChromeClient(Bank bank){
 super(bank);
@@ -62,7 +62,7 @@ return super.onJsAlert(view, url, message, result);
 }
 }
 ```
-```Text Kotlin
+```kotlin Kotlin
     class CheckoutProWebChromeClient(
         val bank: Bank
     ) : PayUWebChromeClient(bank) {
@@ -779,14 +779,14 @@ put(PayUCheckoutProConstants.CP_CARD_SCHEMA, CardScheme.AMEX.name)
         })
 ```
 
-| Enforced Payment Mode | Key                                        | Value                       |
-| :-------------------- | :----------------------------------------- | :-------------------------- |
-| Card                  | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.CARD.name()     |
-| Net Banking           | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.NB.name()       |
-| Wallet                | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.WALLET.name()   |
-| UPI                   | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.UPI.name()      |
-| EMI                   | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.EMI.name()      |
-| NEFT / RTGS           | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.NEFTRTGS.name() |
-| Buy Now Pay Later     | PayUCheckoutProConstants.CP\_PAYMENT\_TYPE | PaymentType.BNPL.name()     |
+| Enforced Payment Mode | Key                                      | Value                       |
+| :-------------------- | :--------------------------------------- | :-------------------------- |
+| Card                  | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.CARD.name()     |
+| Net Banking           | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.NB.name()       |
+| Wallet                | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.WALLET.name()   |
+| UPI                   | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.UPI.name()      |
+| EMI                   | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.EMI.name()      |
+| NEFT / RTGS           | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.NEFTRTGS.name() |
+| Buy Now Pay Later     | PayUCheckoutProConstants.CP_PAYMENT_TYPE | PaymentType.BNPL.name()     |
 
 Kindly refer to the below link to get the list of [Bank and Card code](https://docs.payu.in/docs/bank-and-card-codes-for-integration) details
