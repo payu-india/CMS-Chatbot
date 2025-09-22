@@ -57,7 +57,7 @@ git clone https://github.com/payu-intrepos/payu-core-pg-react.git payuSdkExample
 
 Generate the payment hash and pass the hash in the JSON payUPaymentParams.hashes.payment parameter as shown below:
 
-```
+```javascript
 {
   payUPaymentParams: {
     hashes:{
@@ -160,7 +160,7 @@ var params={
 
 Use the following code snippet to start a payment:
 
-```Text React.js
+```javascript React.js
 CBWrapper.startPayment(
 params,
 Payment Mode <String> , // CC(CARD), CASH(WALLET), NB (NET BANKING)
@@ -184,7 +184,7 @@ Payment Mode <String> , // CC(CARD), CASH(WALLET), NB (NET BANKING)
 
 Register event listener (DeviceEventEmitter for this SDK)to capture the response of the transaction from Custom Browser SDK. Use the following code snippet to register the listener:
 
-```Text React.js
+```javascript React.js
 DeviceEventEmitter.addListener("CBListener",(event)=>{
      
 })
@@ -196,7 +196,7 @@ DeviceEventEmitter.addListener("CBListener",(event)=>{
 
 This is what a sample response from the Custom Browser SDK looks like:
 
-```Text React.js
+```javascript React.js
 {
   "eveneType": <String>, (onPaymentFailure | onPaymentTerminate | onPaymentTerminate | onCBErrorReceived | onBackButton | onBackApprove | onBackDismiss)
   "payuResult": <String>, //conditional
