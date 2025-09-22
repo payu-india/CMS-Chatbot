@@ -45,20 +45,20 @@ Add the following dependency in your application’s build.gradle:
 implementation 'in.payu:payu-custom-browser:7.15.4'
 ```
 
-> 🚧 Watch Out!
->
-> If you are getting the following error: `Default interface methods are only supported starting with Android N (--min-api 24): Landroidx/lifecycle/DefaultLifecycleObserver;onCreate(Landroidx/lifecycle/LifecycleOwner;)V`
->
-> Add the following compileOptions on your app's build.gradle:
->
-> ```
-> android {
->  compileOptions {
->         sourceCompatibility 1.8
->         targetCompatibility 1.8
->     }
->     }
-> ```
+<Callout icon="🚧" theme="warn">
+  **Watch Out**: If you are getting the following error: `Default interface methods are only supported starting with Android N (--min-api 24): Landroidx/lifecycle/DefaultLifecycleObserver;onCreate(Landroidx/lifecycle/LifecycleOwner;)V`
+
+  Add the following compileOptions on your app's build.gradle:
+
+  ```
+  android {
+   compileOptions {
+          sourceCompatibility 1.8
+          targetCompatibility 1.8
+      }
+      }
+  ```
+</Callout>
 
 From version 7.4.0 onwards, it is mandatory to import UPI SDK dependency if you want to make payments through any of the following UPI options along with the changes mentioned in the Third-Party Payments Support section.
 
@@ -71,9 +71,9 @@ From version 7.4.0 onwards, it is mandatory to import UPI SDK dependency if you 
 <uses-permission android:name="android.permission.RECEIVE_SMS" />
 ```
 
-> 👉 Tip
->
-> Merchants are advised to add this permission in the application’s `AndroidManifest.xml` to support OTP assist. In case your application supports a minimum SDK of less than 20, do these changes in your surl/furl.
+<Callout icon="👍">
+  **Tip**: Merchants are advised to add this permission in the application’s `AndroidManifest.xml` to support OTP assist. In case your application supports a minimum SDK of less than 20, do these changes in your surl/furl.
+</Callout>
 
 ## Step 3: Check for Payment Availability
 
@@ -97,8 +97,8 @@ The `CheckForPaymentAvailability` function in CustomBrowser class. Checks for pa
 >
 > where
 >
-> key= Provide your merchant key here\
-> command= "payment\_related\_details\_for\_mobile\_sdk" // Api Commands
+> key= Provide your merchant key here
+> command= "payment_related_details_for_mobile_sdk" // Api Commands
 > salt=  Provide your merchant salt here
 > var1= Provide user credentials or use "default"
 >
@@ -106,7 +106,7 @@ The `CheckForPaymentAvailability` function in CustomBrowser class. Checks for pa
 
 **Sample**
 
-```Text Java
+```java Java
 new CustomBrowser().checkForPaymentAvailability(Activity activity, PaymentOption paymentOption, PayUCustomBrowserCallback payUCustomBrowserCallback, String paymentOptionHash, String merchantKey, String user_credentials)
 ```
 
@@ -116,12 +116,14 @@ To invoke CustomBrowser:
 
 Create a basic object of CustomBrowserConfig similar to the following code snippet. For more information on configurations supported, refer to  [Android CustomBrowser Configurations](doc:android-custombrowser-configurations).
 
-> 📘 Post URL can be any of the following:
->
-> Production - [https://secure.payu.in/\_payment](https://secure.payu.in/_payment)\
-> Staging - [https://test.payu.in/\_payment](https://test.payu.in/_payment)
+<Callout icon="📘" theme="info">
+  **Post URL** can be any of the following:
 
-```Text JAVA
+  Production - [https://secure.payu.in/\_payment](https://secure.payu.in/_payment)
+  Staging - [https://test.payu.in/\_payment](https://test.payu.in/_payment)
+</Callout>
+
+```java JAVA
 CustomBrowserConfig customBrowserConfig = new CustomBrowserConfig(merchantKey,txnId);
 customBrowserConfig.setPayuPostData(<Post Data>);
 customBrowserConfig.setPostUrl(<Post Url>);
@@ -136,7 +138,7 @@ customBrowserConfig.setPostUrl(<Post Url>);
 * `CustomBrowserConfig`: configuration object of the custom browser.
 * `PayUCustomBrowserCallback`: this class provides callbacks.
 
-```Text JAVA
+```java Java
 Input:
     Activity : activity instance
     CustomBrowserConfig : configuration object of the custom browser
@@ -145,7 +147,7 @@ Input:
 
 **Sample**
 
-```Text Java
+```java Java
 new CustomBrowser().addCustomBrowser( Activity activity, CustomBrowserConfig customBrowserConfig, PayUCustomBrowserCallback cbPayUCustomBrowserCallback)
 ```
 
@@ -153,7 +155,7 @@ new CustomBrowser().addCustomBrowser( Activity activity, CustomBrowserConfig cus
 
 ### Card
 
-```
+```java
 firstname=John&ccnum=5123456789012346&device_type=1&ccvv=123&ccexpyr=2025&key=gt****&email=snooze@payu.in
 &bankcode=CC&txnid=1705055037779&amount=1.0&udf5=udf5&ccexpmon=05&surl=https://cbjs.payu.in/sdk/success
  &udf3=udf3&udf4=udf4&udf1=udf1&udf2=udf2&sdk_platform=[{"name":"PayUCheckoutPro","platform":"android","version":"2.0.27"},{"platform":"android","name":"coresdk","version":"7.0.1"},
@@ -208,12 +210,20 @@ udf4=udf4&udf1=udf1&udf2=udf2&sdk_platform=[{"name":"PayUCheckoutPro","platform"
 
     <tr>
       <td>
-        `bankcode `**mandatory**\`
+        `bankcode `**mandatory**`
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bank codes that can be used with the `bankcode` parameter, refer to [Net Banking Codes](https://docs.payu.in/docs/net-banking-codes).
-        Reference: For the test Net Banking credentials, refer to [Test Cards, UPI ID, and Wallets](https://docs.payu.in/docs/test-cards-upi-id-and-wallets).
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bank codes that can be used with the `bankcode` parameter, refer to 
+
+        [Net Banking Codes](https://docs.payu.in/docs/net-banking-codes)
+
+        .
+        Reference: For the test Net Banking credentials, refer to 
+
+        [Test Cards, UPI ID, and Wallets](https://docs.payu.in/docs/test-cards-upi-id-and-wallets)
+
+        .
       </td>
 
       <td>
