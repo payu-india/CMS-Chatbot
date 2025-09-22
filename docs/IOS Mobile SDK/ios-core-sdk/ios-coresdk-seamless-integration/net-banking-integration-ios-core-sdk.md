@@ -17,15 +17,15 @@ To pay using Net Banking, perform the following steps.
 
 1. Set the Net Banking parameter as follows:
 
-```Text Swift
+```swift Swift
 paymentParamForPassing.bankCode = "AXIB" //BankCode
 ```
-```Text Objective-C
+```objectivec Objective-C
 ```
 
 2. Get the request by using the `createRequestWithPaymentParam` method as follows:
 
-```Text Swift
+```swift Swift
 createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_NET_BANKING, withCompletionBlock: { request, postParam, error in
 if error == nil {
 //It is good to go state. You can use request parameter in webview to open Payment Page
@@ -34,7 +34,7 @@ if error == nil {
 }
 })
 ```
-```Text Objective-C
+```objectivec Objective-C
     self.createRequest = [PayUCreateRequest new];
     [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_NET_BANKING withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
     if (error == nil) {
