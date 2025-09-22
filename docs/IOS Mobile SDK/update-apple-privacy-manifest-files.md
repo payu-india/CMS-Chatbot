@@ -12,11 +12,13 @@ next:
 ---
 As per The Apple guidelines, we released below mention version of all iOS SDKs with privacy manifest files. You just need to run `pod update `to take latest version of iOS SDK's in your root project.
 
-> 📘 Apple Guideline
->
-> Refer to [Privacy manifest files | Apple Developer Documentation](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files)
+<Callout icon="📘" theme="info">
+  **Apple Guideline**: Refer to [Privacy manifest files | Apple Developer Documentation](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files)
+</Callout>
 
-> 🚧 Minimum supported iOS version is 12. Please update it on project and podfile.
+<Callout icon="🚧" theme="warn">
+  **Minimum supported iOS version** is 12. Please update it on project and podfile.
+</Callout>
 
 | SDK                                              | Version |
 | :----------------------------------------------- | :------ |
@@ -44,7 +46,7 @@ Global variable for search strings that may indicate a use of "iOS required reas
 
 [https://developer.apple.com/documentation/bundleresources/privacy\_manifest\_files/describing\_use\_of\_required\_reason\_api](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_use_of_required_reason_api)
 
- You can analyse with below Script:
+You can analyse with below Script:
 
 ```
 excluded_dirs=() # e.g. ("Pods" "3rdparty")
@@ -147,9 +149,9 @@ traverse_and_search "$1"
 
 ```
 
-To use above script first create one file named required\_reason\_api\_scanner.sh and save the above script in it. Then go to terminal and run below command:
+To use above script first create one file named required_reason_api_scanner.sh and save the above script in it. Then go to terminal and run below command:
 
 `sh required_reason_api_scanner.sh <path to project>`
 
-You will get report in your terminal, if you are using any API. like:\
+You will get report in your terminal, if you are using any API. like:
 `Found potentially required reason API usage 'UserDefaults' in '<filepath>'`
