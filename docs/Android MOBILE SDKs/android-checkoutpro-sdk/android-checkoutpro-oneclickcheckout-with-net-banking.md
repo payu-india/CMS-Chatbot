@@ -39,18 +39,7 @@ No integration change is required to enable One Click Checkout in Checkout Pro S
 
 To start One Click Checkout for NB, the merchant needs to set the following parameters in the `CustomBroswerConfig` object while initializing CB SDK:
 
-```Text Kotlin
-val customBrowserConfig = CustomBrowserConfig(merchantKey, txnId)
-customBrowserConfig.merchantName = <Merchant Name>
-customBrowserConfig.userCredential = <unique user id>
-customBrowserConfig.firstName = <Customer First Name>
-customBrowserConfig.lastName = <Customer Last Name>
-customBrowserConfig.phoneNumber = <Mobile number>
-customBrowserConfig.merchantKey = <Merchant Key>
-customBrowserConfig.setOneClickPayBankCodes({"ICIB","AXIB"});
-customBrowserConfig.email = <Customer Email Id>
-```
-```Text JAVA
+```java Java
 CustomBrowserConfig customBrowserConfig = new CustomBrowserConfig(merchantKey, txnId);
 customBrowserConfig.setMerchantKey( <Merchant Name>);
 customBrowserConfig.setUserCredential(<unique user id>);
@@ -60,4 +49,15 @@ customBrowserConfig.setPhoneNumber(<Mobile number>);
 customBrowserConfig.setMerchantKey(<Merchant Key>);
 customBrowserConfig.setOneClickPayBankCodes({"ICIB","AXIB"});
 customBrowserConfig.setEmail( <Customer Email Id>)
+```
+```kotlin Kotlin
+val customBrowserConfig = CustomBrowserConfig(merchantKey, txnId)
+customBrowserConfig.merchantName = <Merchant Name>
+customBrowserConfig.userCredential = <unique user id>
+customBrowserConfig.firstName = <Customer First Name>
+customBrowserConfig.lastName = <Customer Last Name>
+customBrowserConfig.phoneNumber = <Mobile number>
+customBrowserConfig.merchantKey = <Merchant Key>
+customBrowserConfig.setOneClickPayBankCodes({"ICIB","AXIB"});
+customBrowserConfig.email = <Customer Email Id>
 ```
