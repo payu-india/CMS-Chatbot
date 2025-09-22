@@ -69,8 +69,8 @@ Following are error messages concerning PhonePe initialization failure.
       </td>
 
       <td>
-        MERCHANT\_KEY\_NOT\_
-        REGISTER\_FOR\_PHONEPE
+        MERCHANT_KEY_NOT_
+        REGISTER_FOR_PHONEPE
       </td>
 
       <td>
@@ -82,7 +82,7 @@ Following are error messages concerning PhonePe initialization failure.
 
 Create an instance of PayUPhonePeCallback similar to the following code block:
 
-```Text JAVA
+```java Java
 PayUPhonePeCallback payUPhonePeCallback = new PayUPhonePeCallback() {
 @Override
 public void onPaymentOptionFailure(String payuResponse, String merchantResponse) {
@@ -133,7 +133,7 @@ Where:
 * Activity : Activity
 * paymentOptionHash: Payment Related Details hash
 * merchantKey: PayU Merchant Key
-* user\_credentials: Provide user credentials or use “default”
+* user_credentials: Provide user credentials or use “default”
 
 > 📘 Generate PaymentOption Hash
 >
@@ -144,7 +144,7 @@ Where:
 > where
 >
 > * key=YOUR KEY
-> * command="payment\_related\_details\_for\_mobile\_sdk" // Api Commands
+> * command="payment_related_details_for_mobile_sdk" // Api Commands
 > * salt= YOUR SALT
 > * var1= default // Pass `default` value in var1
 
@@ -152,7 +152,7 @@ Where:
 
 After successful initialization of PhonePe by calling checkForPaymentAvailability method, call makePayment method to make payment.
 
-```Text JAVA
+```java Java
 PhonePe.getInstance().makePayment(PayUPhonePeCallback callback, Activity activity, String postData,boolean isUserCacheEnabled, View customDialogView);
 ```
 
@@ -164,11 +164,11 @@ Where:
 * **isUserCacheEnabled**: To Enable/Disable User Cache
 * **customDialogView**: Provide your Custom Progress dialog view (Optional)
 
-> 📘 Generate Payment Hash
->
-> To generate a `Payment` Hash refer to [Hash Generation](https://docs.payu.in/docs/hash-generation#payment-hash).
->
-> **Formula** :-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
+<Callout icon="📘" theme="info">
+  **Generate Payment Hash**: To generate a payment hash refer to [Hash Generation](https://docs.payu.in/docs/hash-generation#payment-hash).
+
+  **Formula** :-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
+</Callout>
 
 ### Sample PostData
 
@@ -180,9 +180,9 @@ txnid=1524122818080&productinfo=product_info&user_credentials=default&key=*****&
 
 After you get the response from SDK, make sure to confirm it with the PayU server.
 
-> 🚧 Remember
->
-> It is recommended to implement the PayU Webhook or backend verify call from your backend.
+<Callout icon="🚧" theme="warn">
+  **Remember**: It is recommended to implement the PayU Webhook or backend verify call from your backend. For more information, refer to [Webhooks](doc:webhooks-copy).
+</Callout>
 
 Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended that the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks,
 
