@@ -38,9 +38,9 @@ Before starting the KYC process, make sure you have the following documents read
 * Proof of address (such as Aadhaar card, passport, or utility bill)
 * Business proof (such as GST registration certificate or business license)
 
-> 📘 Documents Checklist:
->
-> For the complete list of documents based on your business type, refer to [Documents Checklist for Account Activation](doc:documents-checklist-for-account-activation).
+<Callout icon="📘" theme="info">
+  **Documents Checklist**: For the complete list of documents based on your business type, refer to [Documents Checklist for Account Activation](doc:documents-checklist-for-account-activation).
+</Callout>
 
 ## Navigate to the Merchant Activation page
 
