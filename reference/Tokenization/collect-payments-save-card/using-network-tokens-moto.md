@@ -19,9 +19,9 @@ HTTP Method: **POST**
 * Transactions that are exempt from 2FA as per RBI guidelines for MOTO payments
 * For now, PayU is only supporting direct token cards in the request from the merchant
 
-> 📘 Note
->
-> This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sending the card transaction request in the form of authentication. MOTO transactions must comply with RBI and PCI DSS guidelines and are restricted to corporate cards in specific industries.
+<Callout icon="📘" theme="info">
+  **Note**: This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sending the card transaction request in the form of authentication. MOTO transactions must comply with RBI and PCI DSS guidelines and are restricted to corporate cards in specific industries.
+</Callout>
 
 ## Request Parameters
 
@@ -216,7 +216,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        <code>String</code> Used for transaction tamper-proofing. For more information, refer to <a href="doc:generate-hash-merchant-hosted">generate hash</a>.
+        <code>String</code> Used for transaction tamper-proofing. For more information, refer to <a href="https://docs.payu.in/docs/generate-hash-merchant-hosted">generate hash</a>.
       </td>
 
       <td>
@@ -511,7 +511,7 @@ HTTP Method: **POST**
 </Table>
 `}</HTMLBlock>
 
-> 📘 Notes for additional\_info
+> 📘 Notes for additional_info
 >
 > * **last4Digits**: The last 4 digits of the card. This parameter is mandatory for MOTO transactions to ensure proper card identification.
 > * **<Glossary>TAVV</Glossary>**: Token Authentication Verification Value (also known as cryptogram). This is mandatory for MOTO transactions to ensure the authenticity of the tokenized card.
