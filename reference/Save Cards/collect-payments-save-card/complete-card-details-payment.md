@@ -123,7 +123,7 @@ Request and response elements will remain intact as it is.
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="href="https://docs.payu.in/v2/reference/addl_info-payment-apis#billingdetails-object-field-descriptions">billingDetails object field descriptions target="_blank"</a>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-apis#billingdetails-object-field-descriptions">billingDetails object field descriptions target="_blank"</a>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
