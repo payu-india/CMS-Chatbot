@@ -14,7 +14,7 @@ next:
 
 Create a class PayUSIParams object using the code similar to the following:
 
-```Text Swift
+```swift Swift
 //Swift
 let siParam = PayUSIParams(billingAmount: <String>,
 paymentStartDate: <Date>,
@@ -24,7 +24,7 @@ billingInterval: <NSNumber>,
 billingLimit: <PayuBillingLimit>,
 billingRule: <PayuBillingRule>)
 ```
-```Text Objective-C
+```objectivec Objective-C
 /* Objective C */
 PayUSIParams *siParam = [[PayUSIParams alloc] initWithBillingAmount:<#(NSString * _Nonnull)#>                                                   paymentStartDate:<#(NSDate * _Nonnull)#>                                                     
 paymentEndDate:<#(NSDate * _Nonnull)#>                                                       billingCycle:<#(enum PayUBillingCycle)#>                                                    billingInterval:<#(NSNumber * _Nonnull)#>];
@@ -55,19 +55,19 @@ paymentEndDate:<#(NSDate * _Nonnull)#>                                          
       </td>
 
       <td>
-        `Boolean`: This flag must contain any of the following to indicate if SI or subscriptions is required for the payment link:  
+        `Boolean`: This flag must contain any of the following to indicate if SI or subscriptions is required for the payment link:
 
-        1: The request is eligible for SI  
+        1: The request is eligible for SI
 
-        0: The request is eligible for SI  
+        0: The request is eligible for SI
 
-        * \*Note\*\*: If EnableSI=1 in the JSON, the values for all other fields (mandatory) in this JSON must be posted
+        * *Note**: If EnableSI=1 in the JSON, the values for all other fields (mandatory) in this JSON must be posted
       </td>
     </tr>
 
     <tr>
       <td>
-        billingAmount\
+        billingAmount
         `mandatory for SI`
       </td>
 
@@ -78,7 +78,7 @@ paymentEndDate:<#(NSDate * _Nonnull)#>                                          
 
     <tr>
       <td>
-        billingCycle\
+        billingCycle
         `mandatory for SI`
       </td>
 
@@ -89,7 +89,7 @@ paymentEndDate:<#(NSDate * _Nonnull)#>                                          
 
     <tr>
       <td>
-        billingInterval\
+        billingInterval
         `mandatory for SI`
       </td>
 
@@ -100,37 +100,37 @@ paymentEndDate:<#(NSDate * _Nonnull)#>                                          
 
     <tr>
       <td>
-        billingLimit\
+        billingLimit
         `mandatory for SI`
       </td>
 
       <td>
-        `String` The possible values for this parameter are:  
+        `String` The possible values for this parameter are:
 
-        -`ON` = On the specific date  
+        -`ON` = On the specific date
 
         * `BEFORE` = Before and on the specific date
-        * `AFTER` = After and on the specific date\
+        * `AFTER` = After and on the specific date
           If no value is passed, then by default this is considered as ‘AFTER’
       </td>
     </tr>
 
     <tr>
       <td>
-        billingRule\
+        billingRule
         `mandatory for SI`
       </td>
 
       <td>
-        String\
-        `MAX` = Maximum amount. Lesser than this or equal to this amount can be debited in recurring debits\
+        String
+        `MAX` = Maximum amount. Lesser than this or equal to this amount can be debited in recurring debits
         `EXACT`= Exact this amount can be debited in recurring debits Note: If no value is passed, then by default this is considered as ‘MAX’.
       </td>
     </tr>
 
     <tr>
       <td>
-        billingCurrency\
+        billingCurrency
         `mandatory for SI`
       </td>
 
@@ -141,7 +141,7 @@ paymentEndDate:<#(NSDate * _Nonnull)#>                                          
 
     <tr>
       <td>
-        paymentStartDate\
+        paymentStartDate
         `mandatory`
       </td>
 
@@ -152,7 +152,7 @@ paymentEndDate:<#(NSDate * _Nonnull)#>                                          
 
     <tr>
       <td>
-        paymentEndDate\
+        paymentEndDate
         `mandatory`
       </td>
 
@@ -163,14 +163,14 @@ paymentEndDate:<#(NSDate * _Nonnull)#>                                          
 
     <tr>
       <td>
-        freeTrial\
+        freeTrial
         `optional`
       </td>
 
       <td>
-        `Boolean` This flag is to indicate any of the following:  
+        `Boolean` This flag is to indicate any of the following:
 
-        0: This is not a trial subscription. If this parameter is not posted, will be assumed as 0.  
+        0: This is not a trial subscription. If this parameter is not posted, will be assumed as 0.
 
         1: This is a trial subscription.
       </td>
@@ -178,14 +178,14 @@ paymentEndDate:<#(NSDate * _Nonnull)#>                                          
 
     <tr>
       <td>
-        isPreAuthTxn\
+        isPreAuthTxn
         `mandatory for UPI OTM`
       </td>
 
       <td>
-        `Boolean` This flag is to indicate any of the following:  
+        `Boolean` This flag is to indicate any of the following:
 
-        0: This is normal SI transaction.  
+        0: This is normal SI transaction.
 
         1: This is a UPI One time mandate transaction.
       </td>
