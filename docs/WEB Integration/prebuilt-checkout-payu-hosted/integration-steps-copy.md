@@ -30,7 +30,7 @@ The PayU Hosted Checkout integration involves the following steps:
     Test the integration by making a test transaction
   </Card>
 
-  <Card title="3. Production Checklist" href="doc:integration-checklist-payu-hosted-checkout" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+  <Card title="3. Go live Checklist" href="doc:integration-checklist-payu-hosted-checkout" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
     Follow the production checklist to go live
   </Card>
 </Cards>
@@ -870,5 +870,45 @@ After both the successful and failed transactions, you must verify the final sta
    1. Log in to your PayU test dashboard.
    2. Navigate to the "Transactions" section.
    3. Verify that both the successful and failed transactions are logged correctly with the corresponding status (success, failure). Check that details like txnid and amount match your records.
+
+## Step 3: Going Live: Your Final Checklist
+
+You've successfully tested your integration. Now, follow these critical steps to switch to the live environment and start accepting real payments from your customers.
+
+### **Step 3.1. Update to Production Credentials**
+
+First, you must switch your integration from using test credentials to production credentials.
+
+1. **Generate Live Keys:**
+   * Log in to your **PayU Dashboard**.
+   * Use the toggle at the top to switch from **Test Mode** to **Live Mode**.
+   * Navigate to **Developer Tools** → **API Keys** from the sidebar.
+   * Copy the **Live Merchant Key** and **Live Salt**.
+2. **Update Your Code:**
+   * In your integration code, replace the test `key` and `salt` with your new live credentials.
+3. **Update the Endpoint URL:**
+   * Ensure all API requests are now being sent to the production endpoint:
+     `https://secure.payu.in/_payment`
+
+### **Step 3.2. Final Integration Verification**
+
+Before you announce that you're live, run through this checklist to ensure everything is configured correctly.
+
+* **✅ Conduct a Live Transaction:** Make a small, real transaction with a genuine credit card or UPI ID. This is the best way to confirm that your production credentials are correct and that the end-to-end flow is working.
+
+* **✅ Verify the Server-to-Server (S2S) Webhook:** This is the most crucial step for confirming transaction status reliably.
+  * After your live test transaction, check your server logs to confirm that you received the webhook from PayU.
+  * Ensure your system correctly processes this webhook and updates the order status in your database.
+  * **Important:** Your system should rely on this S2S webhook as the primary source of truth for a transaction's final status, not the browser redirect. For more details, refer to **Webhooks**.
+
+* **✅ Validate the Response Hash:**
+  * Confirm that your code correctly validates the hash for the response sent to your return URL (`surl`/`furl`) and for the S2S webhook. This security measure prevents tampering and confirms the response is genuinely from PayU. For more information, refer to **Hashing Request and Response**.
+
+* **✅ Check Success and Failure Pages (`surl` / `furl`):**
+  * Ensure that after a successful payment, your customer is redirected to your success page and sees a clear confirmation message.
+  * Simulate a failed live payment (if possible, with a card that has insufficient funds) to ensure the customer is redirected to your failure page and given instructions to retry.
+
+* **✅ Implement a Reconciliation Plan:**
+  * In case of any discrepancy (e.g., a webhook is missed), use the **Verify Payment API** to programmatically fetch the status of a transaction from PayU and reconcile your records.
 
 <br />
