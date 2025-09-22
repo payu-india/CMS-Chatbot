@@ -18,7 +18,7 @@ next:
 
 To integrate with Ola money SDK, the merchant can add the below gradle dependency in their app’s build.gradle file
 
-```Text build.gradle
+```Text Text
 implementation 'in.payu:olamoney:1.3.6'
 ```
 
@@ -30,7 +30,7 @@ Refer to [Ola Money SDK ](doc:ola-money-sdk) doc for more details
 
 To integrate with Google Pay InApp flow, the merchant can add the below gradle dependency in their app’s build.gradle file.
 
-> 📘 Onboarding Requirements
+> 📘 Onboarding Requirements:
 >
 > To start transacting through Google Pay™, register your business on Google using the [Google Onboarding](https://pay.google.com/about/business/) form, In this registration process, you need to add the merchant VPAs created by PayU for you. In the case of multiple VPAs, all of them need to be registered with Google.
 > To enable Google Pay, contact your Point of Contact at Google.
@@ -53,13 +53,13 @@ For GPay SDK integration, refer to [GPay SDK](doc:google-pay-sdk) for more detai
 
 To integrate with PhonePe InApp flow, the merchant can add the below gradle dependency in their root project’s build.gradle file.
 
-```Text build.gradle (project-level)
+```Text Text
 maven { url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsdk-android" }
 ```
 
 and add the below dependency to the app's build.gradle file
 
-```Text build.gradle
+```Text Text
 implementation 'in.payu:phonepe-intent:1.8.7'
 ```
 
@@ -77,7 +77,7 @@ To integrate this, please enable the`txn_s2s_flow` flag on your merchant key fro
 
 To see the Native OTP Assist experience, refer to [Android Native OTP SDK](doc:native-otp-assist-sdk).
 
-```Text build.gradle
+```Text Text
 implementation 'in.payu:native-otp-assist:1.6.2'
 ```
 
