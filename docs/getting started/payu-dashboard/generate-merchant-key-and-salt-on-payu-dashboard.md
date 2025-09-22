@@ -18,8 +18,8 @@ You need to activate your account with PayU to get the key and salt details on P
 
 > 📘 Notes:
 >
-> * The API key and Salt will not be visible or accessible for merchants who have not completed onboarding or website was verified by PayU. While onboarding, the website verification takes 1-2 days.
-> * The API key and Salt will not be visible for merchants without a website.
+> * The Production key and Salt will not be visible or accessible for merchants who have not completed onboarding or website was verified by PayU. While onboarding, the website verification takes 1-2 days.
+> * The Production API key and Salt will not be visible for merchants without a website.
 
 ## Procedure to Access Key and Salt
 
@@ -29,13 +29,13 @@ To generate Salt from the PayU Merchant Dashboard:
 
 [https://onboarding.payu.in/app/account/signin](https://onboarding.payu.in/app/account/signin)
 
-2. Switch to **Live Mode** from the toggle option on the menu bar. 
+2. Switch to **Live Mode** from the toggle option on the menu bar.
 
-<Image align="center" className="border" width="320px" border={true} src="https://files.readme.io/e36828514287161a9b189454dd07463fea3a0697651e04b8f22ba3fc7bffbd54-Screenshot_2024-10-01_at_5.31.20_PM.png" />
+<Image align="center" className="border" border={true} width="320px" src="https://files.readme.io/e36828514287161a9b189454dd07463fea3a0697651e04b8f22ba3fc7bffbd54-Screenshot_2024-10-01_at_5.31.20_PM.png" />
 
 3. Select **Developer** from the menu on the left-pane and select the **API Details**tab if required.
 
-The *Developers* page is displayed similar to the following screenshot. The values for the following fields are generated automatically (for the first time) and displayed similar to the following screenshot:
+The _Developers_ page is displayed similar to the following screenshot. The values for the following fields are generated automatically (for the first time) and displayed similar to the following screenshot:
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/0ddaa94d203d7102154ece7c74b95ec50274d3fc3e4004ed64bbb8eadc0b37f3-dashboard_key_salt_live_mode.png" />
 
@@ -55,9 +55,9 @@ To regenerate key and salt and then activate them:
 
 [https://onboarding.payu.in/app/account/signin](https://onboarding.payu.in/app/account/signin)
 
-2. Switch to **Live Mode** from the toggle option on the menu bar. 
+2. Switch to **Live Mode** from the toggle option on the menu bar.
 
-<Image align="center" className="border" width="320px" border={true} src="https://files.readme.io/e36828514287161a9b189454dd07463fea3a0697651e04b8f22ba3fc7bffbd54-Screenshot_2024-10-01_at_5.31.20_PM.png" />
+<Image align="center" className="border" border={true} width="320px" src="https://files.readme.io/e36828514287161a9b189454dd07463fea3a0697651e04b8f22ba3fc7bffbd54-Screenshot_2024-10-01_at_5.31.20_PM.png" />
 
 3. Select **Developer** from the menu on the left-pane and select the **API Details**tab if required.
 
@@ -71,7 +71,7 @@ To regenerate key and salt and then activate them:
 
 5. Click the **Regenerate** button.
 
-   The *Success* message is displayed at top-right corner similar to the following screenshot:
+   The _Success_ message is displayed at top-right corner similar to the following screenshot:
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/d5538ab7c7b8a3c8418b58421110d9592b10e9f6bbc83a6d66de17372ab8cce9-dashboard_regenerate_salt_activate.png" />
 
@@ -81,5 +81,5 @@ To regenerate key and salt and then activate them:
 >
 > * New Salt expires in 15 days expiry if not activated.
 > * If the new Salt not activated within the 15 days, you will require to regenerate another salt.
-> * After the new Salt is activated, the new Salt will be updated to replace of Salt version 1. 
+> * After the new Salt is activated, the new Salt will be updated to replace of Salt version 1.
 > * PayU recommends you to activate the regenerated Salt to avoid any payment or API call failures with your customers.
