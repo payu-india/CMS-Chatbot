@@ -13,13 +13,27 @@ metadata:
 ---
 The PayU Hosted Checkout integration involves the following steps:
 
+<Cards columns={3}>
+  <Card title="Integrate" href="doc:integrate-with-payu-hosted-checkout" icon="fa-home" target="_blank">
+    Integrate pre-built checkout solution
+  </Card>
+
+  <Card title="Test Integration" href="doc:test-integration-payu-hosted-checkout" icon="fa-user">
+    *Test the integration by making a test transaction*
+  </Card>
+
+  <Card title="Production Checklist" href="doc:integration-checklist-payu-hosted-checkout" icon="fa-star">
+    > Follow the production checklist to go live
+  </Card>
+</Cards>
+
 [1. API Integration Steps](doc:integrate-with-payu-hosted-checkout)
 
 [2. Test Integration](doc:test-integration-payu-hosted-checkout)
 
 [3. Production Checklist](doc:integration-checklist-payu-hosted-checkout)
 
-During the **Collect Payment** (**\_payment**) API integration, refer the [Generate Hash](doc:generate-hash-payu-hosted) for hash generation details.
+During the **Collect Payment** (**_payment**) API integration, refer the [Generate Hash](doc:generate-hash-payu-hosted) for hash generation details.
 
 ## Checkout page customization
 
