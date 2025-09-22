@@ -51,13 +51,13 @@ The PayU Hosted Checkout integration involves the following steps:
 | Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 | Production Environment | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-## 1.  Start Integration
+## Step 1:  Start Integration
 
 Follow the below steps to complete the integration:
 
-### Step 1: Prepare the request parameters
+### Step 1.1: Prepare the request parameters
 
-First, you need to collect all the necessary information for the transaction. Some parameters are mandatory, while others are optional.
+First, you need to collect all the necessary information for the transaction. Below is the list of parameters where some are mandatory and others are optional.
 
 <HTMLBlock>{`
 <div >
@@ -346,7 +346,11 @@ First, you need to collect all the necessary information for the transaction. So
 </div>
 `}</HTMLBlock>
 
-### Step 2: Generate Hash
+<Callout icon="📘" theme="info">
+  Swap the form action to the production endpoint: [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) when you go live.
+</Callout>
+
+### Step 1.2: Generate Hash
 
 Concatenate fields in this exact sequence, then SHA-512:
 
@@ -359,11 +363,7 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|
 
 For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
 
-### Step 3: POST auto-submit form (server renders)
-
-<Callout icon="📘" theme="info">
-  Swap the form action to the production endpoint: https://secure.payu.in/_payment when you go live.
-</Callout>
+### Example: POST auto-submit form (server renders)
 
 ```html
 <!doctype html>
@@ -389,9 +389,417 @@ For more information, refer to  <a href="generate-hash-payu-hosted" target="_bla
 
 **Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.**
 
-### Step 4: Response handling & hash verification
+<Callout icon="📘">
+  **Important**
 
-<br />
+  When you POST the form to [https://test.payu.in/\_payment](https://test.payu.in/_payment) or [https://secure.payu.in/\_payment](https://secure.payu.in/_payment), PayU returns HTML for the hosted checkout page (i.e., the payment UI). Render this response to user, it will render the PayU checkout.
+</Callout>
+
+### Step 1.3: Response handling & hash verification
+
+**Response Handling: **
+
+After the customer completes or abandons the payment, PayU POSTs back to your return URL with URL-encoded fields (form post). This payload includes the transaction status, txnid, mihpayid, and a hash you must verify (reverse hashing) before trusting the result. 
+
+Sample surl/furl payload:
+
+```json Success Response
+mihpayid=403993715531077182
+mode=CC
+status=success
+unmappedstatus=captured
+key=JPM7Fg
+txnid=TXN12345
+amount=1000.00
+productinfo=Pro Plan
+firstname=Aditi
+email=aditi@example.com
+phone=9999999999
+udf1=
+...
+udf10=
+PG_TYPE=CC-PG
+bankcode=CC
+bank_ref_num=896193988312194700
+field1=...
+field9=Transaction is Successful
+hash=<response_hash>
+```
+````json Failure Response
+### Failure callback (`furl`) — example payload
+
+If the payment fails or the user cancels, PayU **POSTs** a `application/x-www-form-urlencoded` payload to your `furl`.  
+The structure is similar to `surl`, but `status` is **failure** and you’ll usually see `error` / `error_Message`.
+
+```text
+mihpayid=403993715531077182
+mode=CC
+status=failure
+unmappedstatus=failed
+key=JPM7Fg
+txnid=TXN12345
+amount=1000.00
+productinfo=Pro Plan
+firstname=Aditi
+email=aditi@example.com
+phone=9999999999
+udf1=
+...
+udf10=
+PG_TYPE=CC-PG
+bankcode=CC
+bank_ref_num=
+field1=
+field2=
+...
+field9=Transaction Failed
+error=E000
+error_Message=Bank was unable to authenticate
+hash=<response_hash>
+````
+
+#### Step 1.3.1: Response verification using reverse hashing 
+
+Verify the response received above by recomputing SHA-512 using the reverse sequence:
+
+```json
+sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+```
+
+* Compare the computed digest to hash from the POST payload (**case-insensitive**).
+* Trust the result only if the hash matches. Then update your order state.
+
+### Step 1.4: Verify the payment
+
+Upon receiving the response, We recommend performing a reconciliation step by querying the verification APIs to validate all transaction details.
+
+#### Environment
+
+|                        |                                                      |
+| :--------------------- | :--------------------------------------------------- |
+| Test Environment       | https://test.payu.in/merchant/postservice.php?form=2 |
+| Production Environment | https://info.payu.in/merchant/postservice.php?form=2 |
+
+<Accordion title="Sample request" icon="fa-code">
+  ```curl
+  curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'key=JP***g' \
+  --data-urlencode 'command=verify_payment' \
+  --data-urlencode 'var1=IhfgcZnXR4o4nB' \
+  --data-urlencode 'hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
+  ```
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
+  * If credit card payment is made, the response is similar to the following:
+
+  ```plaintext
+  {
+      "status": 1,
+      "msg": "1 out of 1 Transactions Fetched Successfully",
+      "transaction_details": {
+          "1733900931584": {
+              "mihpayid": "21820644083",
+              "request_id": null,
+              "bank_ref_num": null,
+              "amt": "1.00",
+              "transaction_amount": "1.00",
+              "txnid": "1733900931584",
+              "additional_charges": "0.00",
+              "productinfo": "Macbook Pro",
+              "firstname": "Abc",
+              "bankcode": "MAST",
+              "udf1": "udf1",
+              "udf2": "udf2",
+              "udf3": "udf3",
+              "udf4": "udf4",
+              "udf5": "udf5",
+              "field2": null,
+              "field9": "OTP/ATM page expired due to no user action",
+              "error_code": "E1602",
+              "addedon": "2024-12-11 12:43:03",
+              "payment_source": "payu",
+              "card_type": "MAST",
+              "error_Message": "Bank was unable to authenticate.",
+              "net_amount_debit": "0.00",
+              "disc": "0.00",
+              "mode": "DC",
+              "PG_TYPE": "DC-PG",
+              "card_no": "XXXXXXXXXXXX7596",
+              "status": "failure",
+              "unmappedstatus": "dropped",
+              "Merchant_UTR": null,
+              "Settled_At": null,
+              "cardhash": "095d184331be367bb92aa3eeecb57d0728de96cc598dd563d407982d75021149",
+              "name_on_card": null,
+              "card_token": "4e97156bc2d6320cdfe15",
+              "field4": null,
+              "threeDSVersion": "2.2.0",
+              "offerAvailed": null
+          }
+      }
+  }
+  ```
+
+  * Offer availed on cart level
+
+  ```
+  {
+      "status": 1,
+      "msg": "1 out of 1 Transactions Fetched Successfully",
+      "transaction_details": {
+          "1036-f0cf85f2": {
+              "mihpayid": "21564143078",
+              "request_id": "",
+              "bank_ref_num": "431998369241",
+              "amt": "2.00",
+              "transaction_amount": "2.00",
+              "txnid": "1036-f0cf85f2",
+              "additional_charges": "0.00",
+              "productinfo": "EXPRESS",
+              "firstname": "guest",
+              "bankcode": "TEZOMNI",
+              "udf1": "Magento2",
+              "udf2": "",
+              "udf3": "",
+              "udf4": "",
+              "udf5": "qs8rbc1ng2hmqtakk381en6j2p",
+              "field2": "114390824407",
+              "field9": "SUCCESS|Completed Using Callback",
+              "error_code": "E000",
+              "addedon": "2024-11-14 16:06:40",
+              "payment_source": "express",
+              "card_type": null,
+              "error_Message": "NO ERROR",
+              "net_amount_debit": 2.00,
+              "disc": "0.00",
+              "mode": "UPI",
+              "PG_TYPE": "UPI-PG",
+              "card_no": "",
+              "status": "success",
+              "unmappedstatus": "captured",
+              "Merchant_UTR": null,
+              "Settled_At": "0000-00-00 00:00:00",
+              "App_Name": "GooglePay",
+              "card_token": null,
+              "field4": null,
+              "offerAvailed": null,
+              "cart_details": {
+                  "id": "2446425",
+                  "payu_id": "21564143078",
+                  "total_items": "1",
+                  "total_cart_amount": "2.00",
+                  "offer_applied": null,
+                  "offer_availed": null,
+                  "offer_auto_apply": "0",
+                  "instant_discount": "0.00",
+                  "cashback_discount": "0.00",
+                  "total_discount": "0.00",
+                  "net_cart_amount": "2.00",
+                  "created_at": "2024-11-14 16:06:40",
+                  "updated_at": "2024-11-14 16:06:40",
+                  "sku_details": [
+                      {
+                          "id": "3468748",
+                          "cart_id": "2446425",
+                          "payu_id": "21564143078",
+                          "mid": "2",
+                          "sku_id": "Sample Sofa Design-Red",
+                          "sku_name": "Sample Sofa Designtest?=!name",
+                          "amount_per_sku": "2.00",
+                          "quantity": "1",
+                          "amount_before_discount": "2.00",
+                          "discount": "0.00",
+                          "amount_after_discount": "2.00",
+                          "offer_applied": null,
+                          "offer_availed": null,
+                          "offer_status": null,
+                          "offer_type": null,
+                          "offer_auto_apply": "0",
+                          "is_nce": "0",
+                          "failure_reason": null,
+                          "created_at": "2024-11-14 16:06:40",
+                          "updated_at": "2024-11-14 16:06:40",
+                          "offer_title": null,
+                          "offer_description": null,
+                          "instant_discount": null,
+                          "cashback_discount": null,
+                          "offers_raw_response": null,
+                          "raw_response": null
+                      }
+                  ]
+              }
+          }
+      }
+  }
+  ```
+
+  * Offer availed at Transaction level
+
+  ```
+  {
+      "status": 1,
+      "msg": "1 out of 1 Transactions Fetched Successfully",
+      "transaction_details": {
+          "1725950872187": {
+              "mihpayid": "20911942990",
+              "request_id": null,
+              "bank_ref_num": null,
+              "amt": "9900.00",
+              "transaction_amount": "10000.00",
+              "txnid": "1725950872187",
+              "additional_charges": "0.00",
+              "productinfo": "Macbook Pro",
+              "firstname": "Abc",
+              "bankcode": "MAST",
+              "udf1": "udf1",
+              "udf2": "udf2",
+              "udf3": "udf3",
+              "udf4": "udf4",
+              "udf5": "udf5",
+              "field2": null,
+              "field9": "You have reached credit card load limit. Please use other payment options to continue.",
+              "error_code": "E4936",
+              "addedon": "2024-09-10 12:18:20",
+              "payment_source": "payu",
+              "card_type": "MAST",
+              "error_Message": "Bank was unable to authenticate.",
+              "net_amount_debit": "0.00",
+              "disc": "100.00",
+              "mode": "DC",
+              "PG_TYPE": "DC-PG",
+              "card_no": "XXXXXXXXXXXX9528",
+              "status": "failure",
+              "unmappedstatus": "failed",
+              "Merchant_UTR": null,
+              "Settled_At": null,
+              "cardhash": "31056eb2112b68cdc90896f1953ca26605bb525249096172c178881bcd45ac93",
+              "name_on_card": null,
+              "card_token": null,
+              "field4": null,
+              "offerApplied": "LoadTest1@m3phN7YptAA6",
+              "offerAvailed": "LoadTest1@m3phN7YptAA6",
+              "transactionOffer": "{"offer_data":[{"offer_key":"LoadTest1@m3phN7YptAA6","discount":100,"offer_type":"INSTANT","isNoCost":false,"flag_to_fail":false,"status":"SUCCESS","failure_code":null,"failure_reason":"Offer Applied Successfully","offer_description":"Load Test 1","offer_title":"Load Test 1","record_type":"OFFER","parent_offer_key":null,"offer_category":null,"isDpEmi":false}],"discount_data":{"total_discount":100,"cashback_discount":0,"instant_discount":100,"total_nce_discount":0,"instant_nce_discount":0,"cashback_nce_discount":0,"gstSubventedViaOffer":false,"downPaymentAmount":0}}",
+              "offerType": "instant",
+              "offerLevel": "TRANSACTION_LEVEL"
+          }
+      }
+  }
+  ```
+
+  #### Failure Responses
+
+  * If txnID is not found, the response is similar to the following:
+
+  ```plaintext
+  {
+  "status":0,"msg":"0 out of 1 Transactions Fetched
+
+  Successfully","transaction_details":{"IhfgcZnXR4o4nB":{"mihpayid":"Not Found","status":"Not Found"}}
+  }
+  ```
+</Accordion>
+
+<Accordion title="Response parameters" icon="fa-list">
+  <Table align={["left","left","left"]}>
+    <thead>
+      <tr>
+        <th style={{ textAlign: "left" }}>
+          **Parameter**
+        </th>
+
+        <th style={{ textAlign: "left" }}>
+          **Description**
+        </th>
+
+        <th style={{ textAlign: "left" }}>
+          **Example**
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          status
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          This parameter returns the status of web service call. The status can be any of the following:
+
+          * 0 - If web service call failed.
+          * 1 - If web service call succeeded
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          0
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          msg
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          This parameter returns the reason string.
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          For example, any of the following messages are displayed:
+
+          * Parameter missing
+          * Token is empty
+          * Amount is empty
+          * Transaction not exists
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          transaction\_details
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          This parameter contains the response in a JSON format. For more information refer to [JSON fields description for transaction\_details parameter ](#json-field-description-for-transaction_details-parameter).
+        </td>
+
+        <td style={{ textAlign: "left" }} />
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          request\_id
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          PayU Request ID for a request in a Transaction. For example, a transaction can have a refund request.
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          7800456
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          bank\_ref\_num
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          This parameter returns the bank reference number. If the bank provides after a successful action.
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          204519474956
+        </td>
+      </tr>
+    </tbody>
+  </Table>
+
+  To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
+</Accordion>
 
 <br />
 
