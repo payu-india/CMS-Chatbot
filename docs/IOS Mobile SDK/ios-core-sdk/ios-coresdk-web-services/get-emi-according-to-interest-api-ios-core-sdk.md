@@ -10,16 +10,16 @@ metadata:
 next:
   description: ''
 ---
-The **Get EMI According to Interest** API helps you get details of all the available EMIs. 
+The **Get EMI According to Interest** API helps you get details of all the available EMIs.
 
 To integrate this API:
 
 1. Set the amount in the payment parameter for this API as described in the following code block.
 
-```Text Swift
+```swift Swift
 self.paymentParamForPassing.amount = @"100"; self.paymentParamForPassing.hashes.EMIDetailsHash = @"hash";
 ```
-```Text Objective-C
+```objectivec Objective-C
 [webServiceResponse getOfferStatus:self.paymentParamForPassing withCompletionBlock:^(PayUModelOfferStatus *offerStatus, NSString *errorMessage, id extraParam) {
     if (errorMessage == nil) {
         //It is good to go & offerStatus.discount contains the discounted amount if there is any offer & offerStatus.msg contains the message why offer is not available
@@ -32,7 +32,7 @@ self.paymentParamForPassing.amount = @"100"; self.paymentParamForPassing.hashes.
 
 2. Call the `getEMIAmountAccordingToInterest` method to integrate this API as described in the following code block:
 
-```Text Swift
+```swift Swift
 [webServiceResponse
 getEMIAmountAccordingToInterest:self.paymentParamForPassing withCompletionBlock:^(NSDictionary *dictEMIDetails, NSString *errorMessage, id extraParam) {
       if (errorMessage) {
@@ -43,7 +43,7 @@ getEMIAmountAccordingToInterest:self.paymentParamForPassing withCompletionBlock:
       }
     }];
 ```
-```Text Objective-C
+```objectivec Objective-C
 [webServiceResponse
 getEMIAmountAccordingToInterest:self.paymentParamForPassing withCompletionBlock:^(NSDictionary *dictEMIDetails, NSString *errorMessage, id extraParam) {
       if (errorMessage) {
