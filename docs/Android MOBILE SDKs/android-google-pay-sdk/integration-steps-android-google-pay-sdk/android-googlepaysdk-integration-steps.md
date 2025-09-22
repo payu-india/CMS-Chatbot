@@ -66,7 +66,7 @@ The following are error messages when the Google Pay Payment fail:
 
 Create an instance of `PayUGPayCallback` similar to the following code block:
 
-```Text Java
+```java Java
 PayUGPayCallback payUGPayCallback = new PayUGPayCallback() {
             @Override
             public void onPaymentSuccess(String payuResponse, String merchantResponse) {
@@ -99,7 +99,7 @@ PayUGPayCallback payUGPayCallback = new PayUGPayCallback() {
 
 If you are using the SDK with a test merchant, provide this metadata value to the manifest file:
 
-```text XML
+```xml XML
 <application>
   <meta-data
     android:name="payu_web_service_url"
@@ -114,7 +114,7 @@ If you are using the SDK with a test merchant, provide this metadata value to th
 
 Call the checkForPaymentAvailability method available in Google Pay to check if Google Pay payment is available or not on the device. The checkForPaymentAvailability method is called before showing Google Pay as a checkout option.
 
-```Text JAVA
+```java Java
 GPay.getInstance().checkForPaymentAvailability(Activity activity, PayUGPayCallback callback, String paymentOptionHash, String merchantKey, String user_credentials)
 ```
 
@@ -122,9 +122,9 @@ Where
 
 * PayUGPayCallback : the class to provide callbacks
 * Activity : Activity
-* paymentOptionHash : Payment Related Details hash (payment\_related\_details\_for\_mobile\_sdk)
+* paymentOptionHash : Payment Related Details hash (payment_related_details_for_mobile_sdk)
 * merchantKey : PayU Merchant Key
-* user\_credentials : Provide user credentials or use "default"
+* user_credentials : Provide user credentials or use "default"
 
 > 📘 Generate PaymentOption Hash
 >
@@ -135,7 +135,7 @@ Where
 > where
 >
 > * key= "Your Key"
-> * command= \<"payment\_related\_details\_for\_mobile\_sdk"> // Pass Command Name
+> * command= \<"payment_related_details_for_mobile_sdk"> // Pass Command Name
 > * salt= "Your SALT"
 > * var1= \<"default"> // Pass the "default" value in var1
 
@@ -143,7 +143,7 @@ Where
 
 After the successful initialization of Google Pay using the checkForPaymentAvailability method, call the makePayment method to make a payment.
 
-```Text JAVA
+```java Java
 GPay.getInstance().makePayment(Activity activity, String postData, final PayUGPayCallback payUGPayCallback, String merchantKey, View loadingDialogView);
 ```
 
@@ -170,9 +170,9 @@ txnid=1524122818080&productinfo=product_info&user_credentials=default&key=*****&
 
 After you get the response from SDK, make sure to confirm it with the PayU server.
 
-> 🚧 Remember
->
-> It is recommended to implement the PayU Webhook or backend verify call from your backend.
+<Callout icon="🚧" theme="warn">
+  **Remember**: It is recommended to implement the PayU Webhook or backend verify call from your backend.
+</Callout>
 
 Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended that the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks,
 
