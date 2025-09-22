@@ -803,18 +803,72 @@ Upon receiving the response, We recommend performing a reconciliation step by qu
 
 <br />
 
+## Step 2: Test Integration
+
+Before going live, it's crucial to test your integration thoroughly in the PayU test environment. Follow these steps to ensure your setup is correct and to simulate different transaction scenarios.
+
+### Step 2.1: Pre-Payment Validation
+
+Before initiating a transaction, ensure your server-side implementation is correct.
+
+1. **Verify API Credentials:** Double-check that you are using the correct key and salt for the test environment.
+2. **Validate Hash Calculation:** The most common point of failure is an incorrect hash.
+   1. Temporarily print the string that you are passing into the hash function on your server.
+   2. Ensure the order of the parameters (key|txnid|amount|productinfo|firstname|email...|salt) exactly matches the format specified in the documentation.
+   3. Verify that there are no empty or null values for mandatory parameters in the hash string.
+   4. If you encounter a "Checksum failed" error upon redirection, this is the first thing to debug.
+
+### Step 2.2: Simulate a Successful Transaction (The Happy Path)
+
+This test ensures that a successful payment is correctly processed and recorded.
+
+1. **Initiate Payment:** On your website or app, add items to the cart and proceed to payment. This should trigger your code to send the transaction details to PayU and redirect the user to the PayU payment page.
+2. **Error Check:** If you are not redirected and see an error message on your own site, check your server-side logs. If you are redirected to a PayU error page, refer to the Error Handling section to diagnose the issue.
+3. **Verify Payment Page:** Once on the PayU page, confirm the following:
+   1. The transaction amount and product details are displayed correctly.
+   2. All the payment methods (Credit/Debit Card, UPI, Net Banking, etc.) that should be active on your account are visible. If a payment method is missing, please contact your Key Account Manager (KAM) or PayU Support.
+4. **Test a Card Transaction**:
+   1. Select Credit Card as the payment method.
+   2. Use the following test card details:
+      1. Card Number: 5123456789012346
+      2. Expiry Date: Any valid future date (e.g., 12/2030)
+      3. CVV: 123
+      4. Name on Card: Test Name
+   3. Click Pay Now. You will be redirected to a dummy bank page to simulate 3D Secure authentication.
+   4. Enter the test OTP 123456 and click Submit.
+5. **Test a UPI Transaction:**
+   1. Select UPI as the payment method.
+   2. Enter a test UPI ID: testsuccess@gpay
+   3. Click Verify and then Pay Now. This will simulate a successful UPI transaction.
+
+For more test credentials, refer to the [Test Cards, UPI ID and Wallets guide](https://docs.payu.in/docs/test-cards-upi-id-and-wallets).
+
+### Step 2.3: Simulate a Failed Transaction
+
+It's equally important to test how your system handles failed payments.
+
+1. Initiate a New Payment as you did in Step 2.
+2. Test a Failing Card Transaction:
+   1. Select Credit Card as the payment method.
+   2. Use a test card designed to fail, for example:
+      1. Card Number: 5123456789012340 (Payment failed by user)
+   3. Complete the payment flow. The transaction should fail.
+
+### Step 2.4: Post-Transaction Verification
+
+After both the successful and failed transactions, you must verify the final status at multiple points.
+
+1. **Check the Return URL (surl / furl):**
+   1. After a successful payment, PayU will redirect the user to the Success URL (surl) you provided. Verify that your application handles this redirect correctly and displays an appropriate success message to the user.
+   2. After a failed payment, PayU will redirect the user to the Failure URL (furl). Verify that your application displays a clear failure message and provides the user with options to retry.
+2. **Verify the Server-to-Server (S2S) Webhook:**
+   1. This is the most reliable way to confirm transaction status.
+   2. Check your server logs to ensure that you have received the S2S POST request from PayU for the transaction.
+   3. Validate the hash in the webhook response to ensure the data is authentic.
+   4. Update the transaction status in your database based on the status received in the S2S webhook, not based on the browser redirect (surl/furl).
+3. **Cross-Verify in the PayU Dashboard:**
+   1. Log in to your PayU test dashboard.
+   2. Navigate to the "Transactions" section.
+   3. Verify that both the successful and failed transactions are logged correctly with the corresponding status (success, failure). Check that details like txnid and amount match your records.
+
 <br />
-
-## Checkout page customization
-
-After you integrate, you can perform the following customization on your Checkout page:
-
-* [Enforce Pay Method or Remove Category](https://docs.payu.in/docs/enforce-pay-method-or-remove-category)
-* [Change the Language](https://docs.payu.in/docs/changing-the-language)
-* [Enable Pluxee Card on Checkout](https://docs.payu.in/docs/integrate-with-payu-hosted-checkout-sodexo)
-
-## Recommended integrations for PayU Hosted Checkout
-
-* **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer) and [Offers](doc:offers-integration) .
-* **Pre-authorize Credit Card Transactions**: PayU’s pre-authorization (also card authorization, authorization hold or Auth and Capture) product allows merchants two-step card payments so you can temporarily block some amount of funds when a customer places an order (authorization) and then capture the amount later.. For more information, refer to [Pre-authorize Credit Card Payments](doc:auth-and-capture-pre-authorize-credit-card-payments) .
-* **Sodexo Integration**: Accept Sodexo payments by enabling Sodexo integration with PayU Hosted Checkout.  For more information, refer to [Enable Sodexo on Checkout](doc:integrate-with-payu-hosted-checkout-sodexo) .
