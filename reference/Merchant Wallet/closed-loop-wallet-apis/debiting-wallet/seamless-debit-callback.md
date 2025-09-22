@@ -20,27 +20,27 @@ The Seamless Debit Callback feature allows merchants to handle payment responses
     </thead>
     <tbody>
         <tr>
-            <td>accountId<code>mandatory</code></td>
+            <td>accountId</br><code>mandatory</code></td>
             <td><code>String</code> The merchant key provided by PayU during onboarding.</td>
             <td>MERCHANT123</td>
         </tr>
         <tr>
-            <td>txnId<code>mandatory</code></td>
+            <td>txnId<code></brmandatory</code></td>
             <td><code>String</code> Transaction ID for transaction tracking and this must be unique for every transaction.</td>
             <td>REF123456</td>
         </tr>
         <tr>
-            <td>paymentMethod<code>mandatory</code></td>
+            <td>paymentMethod<code></brmandatory</code></td>
             <td><code>Object</code> Details about the payment method used. For UPI payments:<br>• name: Must be "UPI"<br>• bankCode: Must be "UPI"</td>
             <td>{"name": "UPI", "bankCode": "UPI"}</td>
         </tr>
         <tr>
-            <td>order<code>mandatory</code></td>
+            <td>order<code</br>mandatory</code></td>
             <td><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a>.</td>
             <td></td>
         </tr>
         <tr>
-            <td>additionalInfo<code>mandatory</code></td>
+            <td>additionalInfo</br<code>mandatory</code></td>
             <td><code>Object</code> Additional information including UPI-specific parameters like VPA. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo object fields description</a>.</td>
             <td></td>
         </tr>
