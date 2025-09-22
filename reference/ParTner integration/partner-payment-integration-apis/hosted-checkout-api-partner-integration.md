@@ -58,9 +58,9 @@ The following steps allow you to integrate the PayU Hosted Checkout:
 
 The following table lists the request parameter descriptions for Partner Payment integration.
 
-> 📘 Extra params for Partner integration:
->
-> The following params are the extra parameters (optional) used compared to the regular **_payment** API, but with a different endpoint:  partner_udf_3, partner_udf_4, shipping_firstname, shipping_lastname, shipping_address1, shipping_address2, shipping_city, shipping_state, shipping_country, shipping_zipcode,  shipping_phone
+<Callout icon="📘" theme="info">
+  **Extra params for Partner integration**: The following params are the extra parameters (optional) used compared to the regular **_payment** API, but with a different endpoint:  partner_udf_3, partner_udf_4, shipping_firstname, shipping_lastname, shipping_address1, shipping_address2, shipping_city, shipping_state, shipping_country, shipping_zipcode,  shipping_phone
+</Callout>
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
