@@ -25,9 +25,7 @@ next:
   description: ''
 ---
 <Callout icon="💬" theme="default">
-  ### Pre-requisites
-
-  To start transacting through Google Pay, register yourself on Google Pay using the following [Google Onboarding](https://pay.google.com/about/business/) form. In this registration process, add the Merchant VPA Ids created by PayU for you. In case of multiple VPAs, all of them need to be registered. For any queries regarding the same, raise a [ticket with PayU](https://help.payu.in/query).
+  **Pre-requisites:** To start transacting through Google Pay, register yourself on Google Pay using the following [Google Onboarding](https://pay.google.com/about/business/) form. In this registration process, add the Merchant VPA Ids created by PayU for you. In case of multiple VPAs, all of them need to be registered. For any queries regarding the same, raise a [ticket with PayU](https://help.payu.in/query).
 </Callout>
 
 ## Step 1: Create a PayU account
@@ -69,9 +67,9 @@ force "path of conflicting library 2"
 
 To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
-> 📘 Tip
->
-> Every transaction (payment or non-payment) needs a hash by you before sending the transaction details to PayU. Hash is required for PayU to validate the authenticity of the transaction. The hashing must be done on your server.
+<Callout icon="📘" theme="info">
+  **Tip**: Every transaction (payment or non-payment) needs a hash by you before sending the transaction details to PayU. Hash is required for PayU to validate the authenticity of the transaction. The hashing must be done on your server.
+</Callout>
 
 ## Step 4: Payment Request Post Data
 
