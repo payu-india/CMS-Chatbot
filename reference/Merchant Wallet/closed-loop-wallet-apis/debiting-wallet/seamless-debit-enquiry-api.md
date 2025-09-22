@@ -1,7 +1,7 @@
 ---
 title: Seamless Debit Enquiry API
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
