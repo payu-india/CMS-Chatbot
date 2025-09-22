@@ -79,7 +79,7 @@ To learn more about sash generation, see Hash Generation.
 
 To initiate a payment, your app needs to send Transactional Information to the Custom Browser SDK. Build the payUPaymentParams object with the mandatory parameters as shown in the following code snippet:
 
-```Text react.js
+```javascript React.js
  var payUPaymentParams = {
       payUPaymentParams: {
         key: <String>, //merchant key 
@@ -118,7 +118,7 @@ Build parameters for different payment methods:
 
 To build the mandatory parameters to integrate Net Banking as a payment Method in JSON, use the following code snippet:
 
-```Text React.js
+```javascript React.js
 var params={
   payUPaymentParams: {
         bankcode:<String>, // ex: ICIB,AXIB 
@@ -129,7 +129,7 @@ var params={
 
 To build the mandatory parameters to integrate Cards as a payment Method in JSON, use the following code snippet:
 
-```Text React.js
+```javascript React.js
 var params={
   payUPaymentParams: {
         bankcode:"CC", 
@@ -147,7 +147,7 @@ var params={
 
 To build the mandatory parameters to integrate wallets as a payment Method in JSON, use the following code snippet:
 
-```Text React.js
+```javascript React.js
 var params={
   payUPaymentParams: {
         bankcode: <String>, // Payu provide Wallet Id (ex: AMON) 
