@@ -65,8 +65,8 @@ Make the transaction request with the payment details along with the card nickna
 
 > 📘 Notes
 >
-> * In addition to the request parameters used for Merchant Hosted Checkout (Seamless integration) payment request, you need to ensure the additional parameters as specified in each scenario specified in this step. For more information on the complete list of parameters, refer to [Seamless Integration](https://docs/payu.in/v2/docs/v2-seamless-integration).
-> * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to [Cards Integration](https://docs.payu.in/v2/docs/v2-cards-merchant-hosted-integration/).
+> * In addition to the request parameters used for Merchant Hosted Checkout (Seamless integration) payment request, you need to ensure the additional parameters as specified in each scenario specified in this step. For more information on the complete list of parameters, refer to [Seamless Integration](doc:v2-seamless-integration)
+> * The additional response parameters (if any) are specified for each scenario. For the sample response for a card payment using Merchant Hosted Checkout response, refer to [Cards Integration](doc:v2-cards-merchant-hosted-integration).
 
 ***
 
@@ -78,7 +78,7 @@ Make the transaction request with the payment details along with the card nickna
 
 ## Step 4: Verify the Payment
 
-Verify the transaction details using the Verification APIs. Post the transaction ID using the **verify\_payment** API to verify the payment. For more information, refer to <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api/">Verify Payment API</Anchor>/
+Verify the transaction details using the Verification APIs. Post the transaction ID using the **verify_payment** API to verify the payment. For more information, refer to <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api/">Verify Payment API</Anchor>/
 
 > 📘 Note:
 >
