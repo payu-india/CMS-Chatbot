@@ -12,7 +12,7 @@ next:
 ---
 Create an object of CustomBrowserConfig similar to the following code snippet:
 
-```Text JAVA
+```java Java
 CustomBrowserConfig customBrowserConfig = new CustomBrowserConfig(merchantKey,txnId);
 ```
 
@@ -34,7 +34,7 @@ CustomBrowserConfig customBrowserConfig = new CustomBrowserConfig(merchantKey,tx
 * `AutoApprove` – setAutoApprove(boolean isAutoApprove);
 * `true` – OTP will be fetched automatically and approved as well.
 * `false` – OTP will fetch automatically.
-* `default` – false\`
+* `default` – false`
 * `Surl/Furl Response Timeout` – setMerchantResponseTimeout(int merchantResponseTimeout);
 * `merchantResponseTimeout` – Surl/Furl loading timeout in milliseconds
 * `AutoSelectOTP` – setAutoSelectOTP(boolean `isAutoSelect`)
@@ -56,13 +56,13 @@ com.google.android.apps.nbu.paisa.user(GPay) etc.
 
 * `DisableIntentSeamlessFailure`: You can disable the Manual VPA Fallback option from the Generic Intent tray from the backend as well as from the front-end. To disable it from the front-end, configure CustomBrowserConfig. ENABLE to `setDisableIntentSeamlessFailure` flag. You must include UPI SDK dependency to show the generic Intent Apps. For more information on how to include UPI SDK, refer to [integration steps](https://docs.payu.in/docs/android-upisdk-integration-steps) for Android UPI SDK.
 
-```Text JAVA
+```java Java
 setDisableIntentSeamlessFailure(CustomBrowserConfig.DISABLE)
 ```
 
-> 📘 Remember
->
-> Do not clear cookies for some URLs- We clear cookies for the URLs that load on the Custom Browser. If you don’t want to clear your webpage cookies, you should provide a list of URLs on which we would not clear the cookies.
+<Callout icon="📘" theme="info">
+  **Remember**: Do not clear cookies for some URLs- We clear cookies for the URLs that load on the Custom Browser. If you don’t want to clear your webpage cookies, you should provide a list of URLs on which we would not clear the cookies.
+</Callout>
 
 ```Text JAVA
 setDomainUrlListToUnclear(ArrayList<String>);
@@ -72,6 +72,6 @@ setDomainUrlListToUnclear(ArrayList<String>);
 
 To show the popup message, you need to set true for the enableSslDialog config field:
 
-```Text JAVA
+```java Java
 setEnableSslDialog(Boolean);
 ```
