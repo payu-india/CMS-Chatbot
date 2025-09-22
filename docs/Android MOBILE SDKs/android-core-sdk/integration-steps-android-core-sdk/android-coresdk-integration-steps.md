@@ -73,12 +73,12 @@ mPaymentParams.setHash("<pass the payment Hash>");
 > * Transaction ID should be kept unique for each transaction and not more than 25 characters.
 > * udf1 to udf5 are options params where you can pass additional information related to transaction. If you don't want to use it, then send them as empty string like, udf1=""
 > * Email and First name can be empty strings "" if you don't want to use them
-> * For store user card feature\
->   /\**These are used for store card feature. If you are not using it then user\_credentials = "default"* user *credentials takes of the form like user\_credentials = "merchant\_key : user\_id"* here merchant *key = your merchant key,* user\_id = unique id related to user like, email, phone number, etc.\_/
+> * For store user card feature
+>   /*_These are used for store card feature. If you are not using it then user_credentials = "default"_ user _credentials takes of the form like user_credentials = "merchant_key : user_id"_ here merchant _key = your merchant key,_ user_id = unique id related to user like, email, phone number, etc._/
 > * For SURL ,Success url is where the transaction response is posted by PayU on successful transaction.PayU recommends you to design or use your own surl and furl after testing is completed. See Handling SURL and FURL.
 > * For FURL, Failure url is where the transaction response is posted by PayU on failed transaction. PayU recommends you to design or use your own surl and furl after testing is completed. See Handling SURL and FURL.
-> * For offers `mPaymentParams.setOfferKey`("your\_offer\_key")
-> * For any other payment default param (like phone and others) mPaymentParams.setPhone("your\_number")
+> * For offers `mPaymentParams.setOfferKey`("your_offer_key")
+> * For any other payment default param (like phone and others) mPaymentParams.setPhone("your_number")
 
 ## Step 4: Hash generation
 
@@ -86,7 +86,7 @@ mPaymentParams.setHash("<pass the payment Hash>");
 >
 > It is recommended to generate hash from server only. Keep your key and salt in server side hash generation code. For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
-The following approach for generating hash is not recommended. However, this approach can be used to test in PRODUCTION\_ENV
+The following approach for generating hash is not recommended. However, this approach can be used to test in PRODUCTION_ENV
 
 * if your server-side hash generation code is not completely setup. While going live, this approach for hash generation
 * should not be used.
@@ -430,7 +430,7 @@ mPaymentParams.setVpa(virtualPaymentAddress);
 You need to validate the following for the virtual payment address (VPA):
 
 * VPA length should be less than or equal to 50 characters
-* Regex for VPA: value.match(/^(\[A-Za-z0-9.])+@\[A-Za-z0-9]+$/)
+* Regex for VPA: value.match(/^([A-Za-z0-9.])+@[A-Za-z0-9]+$/)
 
 2. Get the request by using the `PaymentPostParams` method as follows:
 
@@ -465,9 +465,9 @@ try{
 
 ### TwidPay
 
-1. To Pay using TwidPay, create the post data with PayuConstants.PAY\_BY\_REWARDS.
+1. To Pay using TwidPay, create the post data with PayuConstants.PAY_BY_REWARDS.
 
-```
+```java
  try {
            mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.PAY_BY_REWARDS).getPaymentPostParams();
         }        } catch (Exception e) {
@@ -477,15 +477,15 @@ try{
 
 2. After a successful payment, you will get the Twid customer hash in field5 params of PayuResponse, which would use for the next transaction to skip authentication.
 
-```Text Java
+```java Java
 mPaymentParams.setTwidCustomerHash("Twid customer hash");
 ```
 
 ### Sodexo
 
-1. To pay using Sodexo, create the post data with PAYMENT\_PG\_SODEXO:
+1. To pay using Sodexo, create the post data with PAYMENT_PG_SODEXO:
 
-```Text Java
+```java Java
 mPaymentParams.setCardNumber(cardNumber);
 mPaymentParams.setCardName(cardName);
 mPaymentParams.setNameOnCard(cardholderName);
@@ -496,7 +496,7 @@ mPaymentParams.setCvv(cvv);
 
 2. After setting the above parameters, you can get the request by using the`PaymentPostParams` method similar to the following code snippet:
 
-```
+```java
   try {
             mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.SODEXO).getPaymentPostParams();
         } catch (Exception e) {
@@ -506,6 +506,6 @@ mPaymentParams.setCvv(cvv);
 
 After a successful payment, you would get the Sodexo source ID in the field3 param of PayU response, which can be used to show and get stored Sodexo card details and also can be used for initiating payment.
 
-```Text Java
+```java Java
 mPaymentParams.setsodexoSourceId("srcid123");
 ```
