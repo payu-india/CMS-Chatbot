@@ -22,9 +22,9 @@ HTTP Method: **POST**
 * Merchant has the card token, TAVV(Cryptogram), and the last four digits of the card 
 * The token could be created by the merchant or through another partner 
 
-> 📘 Note
->
-> This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sending the card transaction request in the form of authentication.
+<Callout icon="📘" theme="info">
+  **Note**: This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sending the card transaction request in the form of authentication.
+</Callout>
 
 ## Request headers
 
@@ -93,7 +93,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-api#order-object-fields-description">order object fields description target="_blank"</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-apis##order-object-fields-description">order object fields description target="_blank"</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
