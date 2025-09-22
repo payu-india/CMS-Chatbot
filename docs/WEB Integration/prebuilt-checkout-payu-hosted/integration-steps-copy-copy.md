@@ -23,23 +23,17 @@ The PayU Hosted Checkout integration involves the following steps:
 
 <br />
 
-\<div style="background: linear-gradient(to right, #60a5fa, #2563eb); color: white; padding: 16px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin: 10px 0;">
-&#x20; \<h3 style="margin: 0;">1. Start Integration\</h3>
-&#x20; \<p>Integrate pre-built checkout solution\</p>
-&#x20; \<a href="#step-1--start-integration" style="color: #fff; text-decoration: underline;">Go to Step\</a>
-\</div>
+  \<Card title="1. Start Integration" href="#step-1--start-integration" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+    Integrate pre-built checkout solution
+  \</Card>
 
-&#x20; \<Card title="1. Start Integration" href="#step-1--start-integration" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
-&#x20;   Integrate pre-built checkout solution
-&#x20; \</Card>
+  \<Card title="2. Test Integration" href="#step-2-test-integration" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+    Test the integration by making a test transaction
+  \</Card>
 
-&#x20; \<Card title="2. Test Integration" href="#step-2-test-integration" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
-&#x20;   Test the integration by making a test transaction
-&#x20; \</Card>
-
-&#x20; \<Card title="3. Go live Checklist" href="#step-3-going-live-your-final-checklist" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
-&#x20;   Follow the production checklist to go live
-&#x20; \</Card>
+  \<Card title="3. Go live Checklist" href="#step-3-going-live-your-final-checklist" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+    Follow the production checklist to go live
+  \</Card>
 \</Cards>
 
 <Callout icon="📘" theme="info">
