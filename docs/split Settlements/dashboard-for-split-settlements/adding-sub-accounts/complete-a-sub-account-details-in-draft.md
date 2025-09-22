@@ -25,4 +25,3 @@ To complete sub-account details in the draft:
    * [Step 1: Basic Details](doc:add-a-sub-account#step-1-basic-details)
    * [Step 2: Verify PAN](doc:add-a-sub-account#step-2-verify-pan)
    * [Step 3: Business Details](doc:add-a-sub-account#step-3-business-details)
-   * [Step 4: Sub-Account Bank Details](doc:add-a-sub-account#step-4:-sub-account-bank-details)
