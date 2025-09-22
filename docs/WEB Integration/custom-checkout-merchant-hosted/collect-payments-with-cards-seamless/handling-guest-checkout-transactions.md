@@ -117,7 +117,7 @@ Along with the parameters listed in the <Anchor label="Collect Payment API - Car
     </tr>
     <tr>
       <td>ccexpyr <code>mandatory</code></td>
-      <td><code>String</code> This parameter must contain the card's expiry year or Alt ID expiry year for guest checkout – as entered by the customer for the transaction. It must be of four digits. For VISA cards, Plain card's expiry year need to be posted this parameter.</td>
+      <td><code>String</code> This parameter must contain the card's expiry</br> year or Alt ID expiry year for guest checkout – as entered by the</br> customer for the transaction. It must be of four digits. For VISA cards,</br> Plain card's expiry year need to be posted this parameter.</td>
       <td>2021</td>
     </tr>
     <tr>
@@ -137,17 +137,17 @@ Along with the parameters listed in the <Anchor label="Collect Payment API - Car
     </tr>
     <tr>
       <td>hash <code>mandatory</code></td>
-      <td><code>String</code> It is the hash calculated by the merchant. The hash calculation logic is: <code>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code></td>
+      <td><code>String</code> It is the hash calculated by the merchant.</br> The hash calculation logic is: </br><code>sha512(key|txnid|amount|productinfo|firstname|</br>email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code></td>
       <td></td>
     </tr>
     <tr>
       <td>additional_info <code>mandatory</code></td>
-      <td><code>JSON</code> The fields which are included in this JSON. For more information, refer to <a href="#additional_info-json-sample-and-field-description">additional_info JSON sample and field description</a>></td>
+      <td><code>JSON</code> The fields which are included in this JSON.</br> For more information, refer to <a href="#additional_info-json-sample-and-field-description">additional_info JSON sample and field description</a>></td>
       <td></td>
     </tr>
     <tr>
       <td>address1 <code>optional</code></td>
-      <td><code>String</code> The first line of the billing address. For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
+      <td><code>String</code> The first line of the billing address.</br> For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
       <td></td>
     </tr>
     <tr>
