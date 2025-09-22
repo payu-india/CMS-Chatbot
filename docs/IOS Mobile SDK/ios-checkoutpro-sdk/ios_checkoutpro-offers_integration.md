@@ -18,7 +18,7 @@ PayU allows merchants to create offers for specific Products/SKUs in the cart an
 2. Merchant pass these sku details and user token when he initialising CheckoutPro SDK.
 3. SDK fetch offers from PayU Server and show list of offers.
 4. User can select any offer and can see  the benefit (instant/ cashback) of offer.
-5. If user did not select any offer we will auto apply best offer.
+5. If user did not select any offer, PayU will auto apply best offer.
 6. User can pay offered amount and can avail offers.
 
 # Steps to integrate
@@ -55,7 +55,7 @@ pod 'PayUIndia-CheckoutPro'
 
 Initalise Object of Sku details with vaild SKU’s.
 
-```
+```swift
 PayUSkuDetails: It contains below properties
 PayUSkuDetails(skus: [SKU])
 skus: "<Array of SKU's>"
@@ -81,7 +81,7 @@ offerKeys: "<Optional - Provide offer keys only if want to restrict offer for me
 
 Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to PayUPaymentParams.
 
-```
+```swift
 let paymentParam = PayUPaymentParam(key: <String>,
                                     transactionId: <String>,
                                     amount: <String>,
@@ -96,15 +96,15 @@ let paymentParam = PayUPaymentParam(key: <String>,
 paymentParam.skuDetail = <create SKU Details as mention above and provide here>
 ```
 
-> 🚧 Keep in mind
->
-> if we are adding details of SKU offers, the amount passed in `PayUPaymentParam` must be equal to the sum of quantities \* `skuAmount` of each item.
+<Callout icon="📘">
+  **Note**: If you are adding details of SKU offers, the amount passed in `PayUPaymentParam` must be equal to the sum of quantities * `skuAmount` of each item.
+</Callout>
 
 ## Step 5: Generate the hash
 
-This integration requires dynamic hashes. We will get hash string in map again `HashConstant.hashString` key in `generateHash`.  We need to send this string to server and append salt there, after appending salt convert string to sha512 hash and return back to sdk.
+This integration requires dynamic hashes. You must get hash string in map again `HashConstant.hashString` key in `generateHash`.  You need to send this string to server and append salt there, after appending salt convert string to sha512 hash and return back to SDK.
 
-```
+```swift
 /// Use this function to provide hashes
 /// - Parameters:
 ///   - param: Dictionary that contains key as HashConstant.hashName & HashConstant.hashString
