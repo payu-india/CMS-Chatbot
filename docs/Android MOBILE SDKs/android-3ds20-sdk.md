@@ -67,7 +67,7 @@ implementation 'in.payu:threeds-sdk:1.1.2'
 
 Call the method to initiate payment through us and we will return a success or failure callback post-transaction completion.
 
-```Text Kotlin
+```kotlin Kotlin
 fun initiatePayment(
         activity: AppCompatActivity,
         config: PayU3DS2Config,
@@ -236,7 +236,7 @@ The following components can be customized:
 * GUI
 * The sample code blocks for the above:
 
-```Text Kotlin
+```kotlin Kotlin
 var buttonCustomisation = ButtonCustomisation.Builder()
                           .setBackgroundColor("colorCode") //HEX CODE
                           .setCornerRadius(5).build() //Integer
@@ -279,7 +279,7 @@ var uiCustomisation = UICustomisation.Builder()
 
 #### Supported Font Type Details
 
-```Text Kotlin
+```kotlin Kotlin
 enum class FontName { 
     ROBOTO_REGULAR, 
     ROBOTO_MEDIUM
@@ -325,7 +325,7 @@ The response includes the following parameters:
 
 The following items are in the response:
 
-```Text Kotlin
+```kotlin Kotlin
 data class PayU3DS2DeviceWarning(
     val id: String? = null,
     val message: String? = null,
@@ -343,7 +343,7 @@ enum class DeviceSeverity {
 
 To obtain device information to initiate an authentication request:
 
-```Text Kotlin
+```kotlin Kotlin
 PayU3DS2.extractDeviceDetails(cardScheme: CardScheme): PayU3DS2Response
 ```
 
@@ -387,7 +387,7 @@ cardScheme expected values:
 </table>
 `}</HTMLBlock>
 
-```Text Kotlin
+```kotlin Kotlin
 data class PArqResponse(
     val sdkAppID: String,
     val sdkEncData: String,
@@ -408,7 +408,7 @@ After the authentication request has been initiated and a response has been rece
 
 Call the following function to start the challenge:
 
-```Text Kotlin
+```kotlin Kotlin
 PayU3DS2.initiateChallenge(activity: Activity, challengeParameter: ChallengeParameter, listener: PayU3DS2BaseCallback)
 ```
 
@@ -446,7 +446,7 @@ Before invoking this method, generate the authentication request through any agg
 
 **PayU3DS2BaseCallback**: Callback consists of two methods:
 
-```Text Kotlin
+```kotlin Kotlin
 fun onSuccess(response: Any) //It will contain success response.
 fun onError(errorCode: Int, errorMessage: String) //It will contain failure reason code and reason.
 
@@ -493,7 +493,7 @@ mPaymentParams.cvv = "<cvv>"                        // CVV code on the back of t
 
 To store the card for future transactions (such as recurring payments), the StoreCard option should be enabled. This allows the card to be saved securely for later use..
 
-```
+```kotlin
 mPaymentParams.setCardNumber(cardNumber);
 mPaymentParams.setCardName(cardName);
 mPaymentParams.setNameOnCard(cardholderName);
@@ -509,7 +509,7 @@ mPaymentParam.setStoreCard(1);
 
 For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
 
-```
+```kotlin
 fun getSIDetails(): SIParams {
     var siParams = SIParams()
     siParams.api_version = "7"                       // API version
@@ -539,7 +539,7 @@ Tokenization is used to securely store card details without exposing sensitive i
 
 To make payments using a previously saved card, you need to pass both the network token and the card token..
 
-```
+```kotlin
  cardDetails.networkToken = "<networkToken>"
  cardDetails.cardToken = "<cardToken>"
 ```
@@ -548,7 +548,7 @@ To make payments using a previously saved card, you need to pass both the networ
 
 If the card has been tokenized outside of PayU’s platform (via a third-party service), you need to provide additional tokenization information.
 
-```
+```kotlin
  private fun getTokenizedDetails(): TokenizedCardAdditionalParam? {
     var token = TokenizedCardAdditionalParam()
     token.last4Digits = "XXXX"                // Last 4 digits of the card
@@ -570,7 +570,7 @@ mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token
 
 To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
 
-```
+```kotlin
 mPaymentParams.setCardNumber("5123456789012346")   // Card number used for EMI payment
 mPaymentParams.setNameOnCard("test")               // Name on the card
 mPaymentParams.setExpiryMonth("06")                // Expiry month (MM)
@@ -584,7 +584,7 @@ mPaymentParams.setPg("EMI")                         // Set payment gateway to EM
 
 To authenticate the transaction using PayU’s 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
 
-```
+```kotlin
 fun startRedirectionFlow(
     activity: Activity,
     params: Map<String, Any>,
@@ -703,7 +703,7 @@ fun startRedirectionFlow(
 
 ### Sample Code
 
-```
+```kotlin
 val params = mapOf(
     APIConstants.ACS_TEMPLATE to "<pass acs_templete>",
     APIConstants.AUTO_READ to true,
