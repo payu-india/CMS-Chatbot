@@ -42,7 +42,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 Add the following dependency in your application’s build.gradle:
 
 ```
-implementation 'in.payu:payu-custom-browser:7.15.4'
+implementation 'in.payu:payu-custom-browser:7.15.6'
 ```
 
 <Callout icon="🚧" theme="warn">
@@ -71,7 +71,7 @@ From version 7.4.0 onwards, it is mandatory to import UPI SDK dependency if you 
 <uses-permission android:name="android.permission.RECEIVE_SMS" />
 ```
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Tip**: Merchants are advised to add this permission in the application’s `AndroidManifest.xml` to support OTP assist. In case your application supports a minimum SDK of less than 20, do these changes in your surl/furl.
 </Callout>
 
@@ -214,12 +214,12 @@ udf4=udf4&udf1=udf1&udf2=udf2&sdk_platform=[{"name":"PayUCheckoutPro","platform"
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bank codes that can be used with the `bankcode` parameter, refer to 
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bank codes that can be used with the `bankcode` parameter, refer to
 
         [Net Banking Codes](https://docs.payu.in/docs/net-banking-codes)
 
         .
-        Reference: For the test Net Banking credentials, refer to 
+        Reference: For the test Net Banking credentials, refer to
 
         [Test Cards, UPI ID, and Wallets](https://docs.payu.in/docs/test-cards-upi-id-and-wallets)
 
