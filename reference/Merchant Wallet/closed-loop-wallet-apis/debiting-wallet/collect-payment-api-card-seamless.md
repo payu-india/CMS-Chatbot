@@ -1,7 +1,7 @@
 ---
 title: Seamless Debit Transaction API
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
