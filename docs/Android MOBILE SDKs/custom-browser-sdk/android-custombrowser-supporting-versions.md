@@ -33,11 +33,11 @@ Uri encoded Post Data = <URI_ENCODED_YOUR_RESPONSE>$|<URI_ENCODED_PAYU_RESPONSE>
 For Surl -scheme=\<YOUR_PACKAGE_NAME>.success
 For Furl – scheme=\<YOUR_PACKAGE_NAME>.failure
 
-> 📘 Tip
->
-> You are advised to show a hyperlink, asking users to click to launch the deep link intent in.
+<Callout icon="📘" theme="info">
+  **Tip**: You are advised to show a hyperlink, asking users to click to launch the deep link intent in.
+</Callout>
 
-```Text Markup
+```html Markup
 <htmI><head></head> 
 <script type="text/javascript"> 
 var myFunc= function() {
