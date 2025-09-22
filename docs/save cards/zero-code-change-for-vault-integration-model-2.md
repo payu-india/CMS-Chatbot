@@ -21,9 +21,9 @@ next:
 ---
 The Model 2 involves only zero code change and this section describes the general workflow.
 
-> 📘 Note:
->
-> To use tokenisation, you need to get the Token Requestor onboarding to be done. Contact your PayU Key Account Manager (KAM) to get the onboarding done.
+<Callout icon="📘" theme="info">
+  **Note**: To use tokenisation, you need to get the Token Requestor onboarding to be done. Contact your PayU Key Account Manager (KAM) to get the onboarding done.
+</Callout>
 
 ## General workflow
 
@@ -71,7 +71,7 @@ For sample request and response, refer to <Anchor label="Model 2-Zero Code Chang
 
 The repeat transaction flow involves the following steps:
 
-1. Get the saved card details (as described in the [Get User Cards API](https://docs.payu.in/reference/get_user_cards_api) section)
+1. Get the saved card details (as described in the [Get User Cards API](https://docs.payu.in/v2/reference/v2_get_user_cards_api) section)
 2. [Process the transaction with a saved card](#repeat-transaction-flow)
 
 ### Workflow
