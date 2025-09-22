@@ -355,4 +355,6 @@ Common error scenarios for saved card transactions:
 
 ## Reference
 
-After initiating a saved card payment, use the [Verify Payment API](https://docs.payu.in/v2/reference/verify-payment-api/) to check the final transaction status.
+After initiating a saved card payment, use the [Verify Payment API](ref:v2_verify_payment_api) to check the final transaction status.
+
+<br />
