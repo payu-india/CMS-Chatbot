@@ -65,13 +65,13 @@ The following flow diagram illustrates the workflow for first-time payment workf
 
 ### Sample request and response
 
-For sample request and response, refer to <Anchor label="Model 2-Zero Code Change" target="_blank" href="ref:/v2/reference/model-2-zero-code-change-for-vault-integration/">Model 2-Zero Code Change</Anchor>.
+For sample request and response, refer to <Anchor label="Model 2-Zero Code Change" target="_blank" href="https://docs.payu.in/v2/reference/model-2-zero-code-change-for-vault-integration/">Model 2-Zero Code Change</Anchor>.
 
 ## Repeat transaction workflow
 
 The repeat transaction flow involves the following steps:
 
-1. Get the saved card details (as described in the [Get User Cards API](ref:get_user_cards_api) section)
+1. Get the saved card details (as described in the [Get User Cards API](https://docs.payu.in/reference/get_user_cards_api) section)
 2. [Process the transaction with a saved card](#repeat-transaction-flow)
 
 ### Workflow
@@ -89,9 +89,9 @@ The steps involved in creating token after processing payment workflow:
 
 ### Process transaction with a saved card
 
-If you have not received a response from PayU with First-Time Payment Workflow, use the **get\_user\_card** API as described in [Get User Cards API](ref:get_user_cards_api)
+If you have not received a response from PayU with First-Time Payment Workflow, use the **get_user_card** API as described in [Get User Cards API](ref:get_user_cards_api)
 
-### Extra parameters to be posted with saved card using \_payment API
+### Extra parameters to be posted with saved card using _payment API
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -133,13 +133,13 @@ If you have not received a response from PayU with First-Time Payment Workflow, 
 
 > 📘 Note:
 >
-> Only the fields needed for this operation are mentioned here. For the complete API details of the **\_payment** API, refer to [Collect Payments using Merchant Hosted Checkout](/docs/custom-checkout-merchant-hosted).
+> Only the fields needed for this operation are mentioned here. For the complete API details of the **_payment** API, refer to [Collect Payments using Merchant Hosted Checkout](https://docs.payu.in/v2/reference/v2_payment_seamless_integration/).
 
 ### Sample response
 
 #### Success scenario
 
-PayU will return the response (unformatted) similar to the following on the **surl** specified using **\_payment** API:
+PayU will return the response (unformatted) similar to the following on the **surl** specified using **_payment** API:
 
 ```plaintext
 mihpayid=999000000001268&mode=CC&status=success&unmappedstatus=captured&key=J****g&txnid=2b019fa0976d7480cf5&amount=10.00&cardCategory=domestic&discount=0.00&net_amount_debit=10&addedon=2021-11-29+11%3A51%3A35&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=82df12630b4e4083a90b314534872dfb22e97aaa191b1b93db2a76351561bd612a0b321609b0e31a3b7b62d1928c8e67e9fed5b2b5209deba4366c58706c1ffe&field1=3245029356632939671830&field2=302404&field3=10.00&field4=999000000001268&field5=100&field6=02&field7=AUTHPOSITIVE&field8=&field9=Transaction+is+Successful&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=3245029356632939671830&bankcode=CC&error=E000&error_Message=No+Error&cardToken=28b99d39e83e8031caa7ad&name_on_card=Test+User&cardnum=XXXXXXXXXXXX2346&cardhash=This+field+is+no+longer+supported+in+postback+params.
