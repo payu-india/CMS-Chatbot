@@ -122,7 +122,7 @@ For details on Standing Instructions parameters, refer to [PayU Standing Instruc
 
 Generate the payment hash and pass the hash in the JSON `payUPaymentParams.hashes.payment` parameter or in `payUPaymentParams.hashes.validate_vpa `as shown below:
 
-```Text React.js
+```javascript React.js
 {
   payu_payment_params: {
     hashes:{
@@ -135,9 +135,9 @@ Generate the payment hash and pass the hash in the JSON `payUPaymentParams.hashe
 
 For hash generation logic refer to G[enerate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk).
 
-> 📘 Remember
->
-> You must always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
+<Callout icon="📘" theme="info">
+  **Note**: You must always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
+</Callout>
 
 ***
 
@@ -145,7 +145,7 @@ For hash generation logic refer to G[enerate Hash](https://docs.payu.in/docs/has
 
 Build Mandatory parameters for UPI intent flow in JSON as shown in the code snippet below:
 
-```Text React.js
+```javascript React.js
 var params={
   payu_payment_params: {
         key: <String>, //merchant key 
@@ -174,11 +174,13 @@ var params={
 
 ## Step 5: Payment request post data (Generic Intent flow)
 
-> 📘 Generic Intent Flow is only supported for Android
+<Callout icon="📘" theme="info">
+  **Note**: Generic Intent Flow is only supported for Android
+</Callout>
 
 Build Mandatory parameters for generic intent flow in JSON as shown in the code snippet below:
 
-```Text React.js
+```javascript React.js
 var params={
   payu_payment_params: {
         key: <String>, //merchant key 
