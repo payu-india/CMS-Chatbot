@@ -66,7 +66,7 @@
                 "type": "object",
                 "properties": {
                   "key": {
-                    "default": "JPM7Fg",
+                    "x-default": "JPM7Fg",
                     "type": "string",
                     "description": "This parameter must contain merchant key provided by PayU."
                   },
