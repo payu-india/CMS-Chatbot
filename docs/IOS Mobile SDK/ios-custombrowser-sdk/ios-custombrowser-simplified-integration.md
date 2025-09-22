@@ -17,9 +17,9 @@ You can use PayU’s view controller, that is, `PUCBWebVC` for making payment. T
 1. Add the following line to Podfile:` PayUIndia-Custom-Browser`
 2. Execute the following command: `pod install`
 
-> 📘 **Integrate the latest Custom Browser SDK**:
->
-> PayU recommends that you integrate the latest version of Custom Browser SDK. To check the latest version, refer to PayU Github Release page.
+<Callout icon="📘" theme="info">
+  **Integrate the latest Custom Browser SDK**: PayU recommends that you integrate the latest version of Custom Browser SDK. To check the latest version, refer to PayU Github Release page.
+</Callout>
 
 ### Reinstall Custom Browser on latest Cocoapods release
 
