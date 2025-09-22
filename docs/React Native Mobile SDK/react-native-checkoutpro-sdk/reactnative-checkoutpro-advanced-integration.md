@@ -12,7 +12,7 @@ next:
 ---
 Before you start with the advanced integration with PayUCheckoutPro, the payUCheckoutProConfig the object needs to be passed with payUPaymentParams in the openCheckoutScreen method of PayUBizSdk. Sample code for can be 1.
 
-```Text React.js
+```javascript React.js
 var paymentObject = {
     payUPaymentParams: payUPaymentParams,
     payUCheckoutProConfig: payUCheckoutProConfig
@@ -26,7 +26,7 @@ PayUBizSdk.openCheckoutScreen(paymentObject);
 
 **For iOS**: You can change the primary and the secondary color of the UI to match the theme of your app:
 
-```Text React.js
+```javascript React.js
 var payUCheckoutProConfig = {
   primaryColor: "<Color Hex Code e.g. #aabbcc>",
   secondaryColor: "<Color Hex Code e.g. #000000>",
@@ -147,7 +147,7 @@ paymentModesOrder: [{ 'UPI': 'TEZ' }, { 'Wallets': 'PAYTM' }, { 'Wallets': 'PHON
 }
 ```
 
-This will display Google Pay, PhonePe, and Paytm respectively on top of available payment options. 
+This will display Google Pay, PhonePe, and Paytm respectively on top of available payment options.
 
 ***
 
@@ -177,13 +177,13 @@ The resulting payment order on the initial Checkout screen will be:
 
 ## Enforced payment modes
 
-You can directly open a specific payment mode like NB, WALLET, UPI, CARD, NB, BNPL, NEFTRTGS etc in SDK. 
+You can directly open a specific payment mode like NB, WALLET, UPI, CARD, NB, BNPL, NEFTRTGS etc in SDK.
 
 Create an enforce list similar to the following code block to enforce payment modes:
 
 ### Step 1: Create an enforced payment list
 
-For each enforced payment, the payment\_type parameters need to be passed.
+For each enforced payment, the payment_type parameters need to be passed.
 
 ```
 var enforcePaymentList = [  
@@ -216,7 +216,7 @@ merchantSMSPermission: true/false
 
 Merchants can choose to automatically approve OTP flow on the bank page with the flag specified in the following code block. The default value is false.
 
-```Text React.js
+```javascript React.js
 var payUCheckoutProConfig = {
 autoApprove: true/false
 }
@@ -226,7 +226,7 @@ autoApprove: true/false
 
 Merchants can choose to hide the toolbar on CB. By default, the CB toolbar is displayed.
 
-```Text React.js
+```javascript React.js
 var payUCheckoutProConfig = {
 showCbToolbar: true/false
 }
