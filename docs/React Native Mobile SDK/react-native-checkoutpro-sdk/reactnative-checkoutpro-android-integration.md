@@ -392,7 +392,7 @@ For details on Standing Instructions parameters, refer to [PayU Standing Instruc
 
 Initialize and launch the Checkout Pro SDK by calling the following code snippet:
 
-```Text React.js
+```javascript React.js
 var paymentObject = {
 payUPaymentParams: payUPaymentParams,
 // payUCheckoutProConfig is optional
@@ -408,7 +408,7 @@ PayUBizSdk.openCheckoutScreen(paymentObject);
 
 To get the callbacks for payment-related statuses, create a NativeEventEmitter object and subscribe to the following events.
 
-```Text React.js
+```javascript React.js
 import { NativeEventEmitter } from 'react-native';
 
 //Register event emitters here.
@@ -469,7 +469,7 @@ This step describes how to pass the dynamic hashes. For detailed information, re
 
 To pass dynamic hashes, the merchant will receive a call on the generateHash method. In the method parameter, you will receive a dictionary or hashMap, then extract the value of hashString from that. Pass that value to the server to append the Salt at the end and generate the sha512 hash over it. The server gives that hash back to your app, and the app will pass that hash to PayU through a callback mechanism. For passing dynamic hashes during integration, use the following code snippet:
 
-```Text React
+```javascript React.js
 generateHash = (e) => {
     console.log(e.hashName);
     console.log(e.hashString);
@@ -488,7 +488,7 @@ generateHash = (e) => {
 ***
 
 <Callout icon="📘" theme="info">
-  Notes
+  **Notes:**
 
   * Always generate hashes on your backend.
   * URLs like [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success) are placeholders; replace with your backend URLs post-testing.
