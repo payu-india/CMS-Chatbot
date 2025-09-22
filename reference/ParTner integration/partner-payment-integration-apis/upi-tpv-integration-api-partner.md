@@ -16,7 +16,7 @@ Integrate TPV through UPI using the procedure described in this section.
 
 ## Prerequisites
 
-S2S (Seamless) integration has to be done as per the standard kit. For more information, refer to [https://docs.payu.in/reference/upi-s2s-integration-api](https://docs.payu.in/reference/upi-s2s-integration-api)
+S2S (Seamless) integration has to be done as per the standard kit. For more information, refer to [UPI S2S Integration API](https://docs.payu.in/reference/upi-s2s-integration-api)
 
 ## Step 1: List the account numbers
 
@@ -78,7 +78,7 @@ With the following additional parameters, make the transaction request with the 
       </td>
 
       <td>
-        \{  
+        \{
         "beneficiaryAccountNumber":"002001600674|00000031957292212|00000035955239352|00000035955239352",
         "ifscCode":"KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"
         }
