@@ -58,7 +58,7 @@ pod install
 
 To initiate a payment, your app needs to send transactional information to the UPI SDK. Build the payUPaymentParams object with the mandatory parameters as shown in the following code snippet:
 
-```text React
+```javascript React.js
  var payUPaymentParams = {
       payu_payment_params: {
         key: <String>, //merchant key 
@@ -290,7 +290,7 @@ PayUUPI.validateVPA(
 
 The sample response of a VPA validation request is similar to the following:
 
-```Text JSON
+```json JSON
 {
   "status": "SUCCESS",
   "vpa": "1234567890@payu",
@@ -307,7 +307,7 @@ The sample response of a VPA validation request is similar to the following:
 
 Initialise and launch the UPI SDK by calling the following code snippet to get the list of UPI apps installed on Android and iOS devices:
 
-```Text React.js
+```javascript React.js
 PayUUPI.intentApps((intentApps) => {
         //list of installed UPI Apps
       });
@@ -317,7 +317,7 @@ PayUUPI.intentApps((intentApps) => {
 
 Here is how a sample response of UPI list request looks like:
 
-```Text JSON
+```json JSON
 {
   "data": {
     "value": "net.one97.paytm",
