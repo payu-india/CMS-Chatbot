@@ -10,7 +10,6 @@ metadata:
 next:
   description: ''
 ---
-
 ## Overview
 
 The Android SDK provides a wrapper for the Verify Payment API that allows your mobile application to reconcile transactions with PayU's database securely. This integration is essential for Android developers implementing PayU payment functionality in their apps.
@@ -19,9 +18,9 @@ The Android SDK provides a wrapper for the Verify Payment API that allows your m
 
 When implementing payments in your Android application, transaction responses may occasionally fail to reach your app due to network issues or user interactions (like app switching or device issues). The Verify Payment feature ensures your app can confirm transaction statuses directly with PayU's servers, preventing discrepancies in payment records.
 
-> 📱 **Android Developer Note:**
->
-> Implementing this verification step in your Android payment flow protects your application from potential payment status tampering and ensures a reliable payment experience for your users.
+<Callout icon="📘">
+  **Android Developer Note:**: Implementing this verification step in your Android payment flow protects your application from potential payment status tampering and ensures a reliable payment experience for your users.
+</Callout>
 
 ## Android Implementation
 
@@ -94,8 +93,8 @@ public void onVerifyPaymentResponse(PayuResponse payuResponse) {
 
 ### Common Issues:
 
-- **Hash calculation errors**: Ensure your hash generation uses the correct format and encoding
-- **Network connectivity**: Implement proper retry logic for intermittent network failures
-- **Transaction ID format**: Verify that transaction IDs are correctly formatted when sending multiple IDs
+* **Hash calculation errors**: Ensure your hash generation uses the correct format and encoding
+* **Network connectivity**: Implement proper retry logic for intermittent network failures
+* **Transaction ID format**: Verify that transaction IDs are correctly formatted when sending multiple IDs
 
 For additional support with Android SDK integration, refer to the complete PayU Android SDK documentation or contact PayU mobile developer support.
