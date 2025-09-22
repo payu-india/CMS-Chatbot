@@ -346,6 +346,55 @@ First, you need to collect all the necessary information for the transaction. So
 </div>
 `}</HTMLBlock>
 
+### Step 2: Generate Hash
+
+Concatenate fields in this exact sequence, then SHA-512:
+
+```json
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|SALT
+```
+
+* Use empty strings for missing udf*.
+* Compute on your server and include the lowercase hex digest as hash.
+
+For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
+
+### Step 3: POST auto-submit form (server renders)
+
+<Callout icon="📘" theme="info">
+  Swap the form action to the production endpoint: https://secure.payu.in/_payment when you go live.
+</Callout>
+
+```html
+<!doctype html>
+<html>
+  <body onload="document.forms.payu.submit()">
+    <form name="payu" method="post" action="https://test.payu.in/_payment">
+      <input type="hidden" name="key" value="JP***g">
+      <input type="hidden" name="txnid" value="t6svtqtjRdl4ws">
+      <input type="hidden" name="amount" value="499.00">
+      <input type="hidden" name="productinfo" value="Pro Plan">
+      <input type="hidden" name="firstname" value="Aditi">
+      <input type="hidden" name="email" value="test@example.com">
+      <input type="hidden" name="phone" value="9999999999">
+      <input type="hidden" name="surl" value="https://yourapp.com/payu/success">
+      <input type="hidden" name="furl" value="https://yourapp.com/payu/failure">
+      <input type="hidden" name="hash" value="sha512(...hash sequence...)">
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
+
+```
+
+**Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.**
+
+### Step 4: Response handling & hash verification
+
+<br />
+
+<br />
+
 <br />
 
 ## Checkout page customization
