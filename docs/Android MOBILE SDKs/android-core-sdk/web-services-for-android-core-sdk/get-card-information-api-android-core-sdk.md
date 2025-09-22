@@ -12,16 +12,16 @@ next:
 ---
 The **Get Card Information** (Check is Domestic) API is used to get if the card (passed in cardBin info API) is domestic or international. This API returns the following parameters:
 
-* card\_type
+* card_type
 * category
-* issuing\_bank
-* is\_atmpin\_card
+* issuing_bank
+* is_atmpin_card
 
 For this API, you need to set the following parameter in the payment params similar to the following code block:
 
 ## Step 1: Create Post Request
 
-```Text Java
+```java Java
 MerchantWebService merchantWebService = new MerchantWebService();
 merchantWebService.setKey(merchantKey); // Merchant key
 merchantWebService.setCommand(PayuConstants.CHECK_IS_DOMESTIC);
@@ -31,7 +31,7 @@ merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use t
 
 ## Step 2: Get onGetCardInformationResponse
 
-```Text Java
+```java Java
 @Override
 public void onGetCardInformationResponse(PayuResponse payuResponse) {
    Log.d(TAG, "onGetCardInformationResponse: " + payuResponse.getRawResponse());
