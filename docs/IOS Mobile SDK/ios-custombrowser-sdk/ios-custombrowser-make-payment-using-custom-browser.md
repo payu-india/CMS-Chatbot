@@ -20,11 +20,11 @@ To make payment using CustomBrowser in iOS:
 You just need to pass a few parameters to initialize `PUCBWebVC` controller which will initiate the payment process.
 
 * **postParam**: A string containing payment-related information. For more information on how to create it, refer to [SDK Wiki​](https://github.com/payu-intrepos/Documentations/wiki/).
-* **URL**: This is the first URL loaded in the webView. postParam will be posted here. For example, in the case of PayU (production server), it will be:\
+* **URL**: This is the first URL loaded in the webView. postParam will be posted here. For example, in the case of PayU (production server), it will be:
   [https://secure.payu.in/\_payment](https://secure.payu.in/_payment)
 * **merchantKey**: This is the key provided to you by PayU. This is required to provide tech support to merchants for live transactions.
 
-```Text Objective-C
+```objectivec Objective-C
 NSError *err = nil;
 PUCBWebVC * webVC = [[PUCBWebVC alloc] initWithNSURLRequest:request                                               merchantKey:self.paymentParamForPassing.key
                                                       error:&err];
@@ -39,7 +39,7 @@ if (!err) {
 
 To get the response of payment (success, failure, or error), you need to conform to the `PUCBWebVCDelegate `protocol. The class in which you create the `PUCBWebVC` object will generally be the delegate. The following methods need to be implemented for response handling:
 
-```Text Objective-C
+```objectivec Objective-C
 // Following methods give the response from your server's Success URL/ Failure URL. These are recommended to receive the response in your app after the transaction. 
 // First parameter contains PayU's response. The second parameter contains response that your server has posted 
 // to your app
