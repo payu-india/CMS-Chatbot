@@ -7,13 +7,13 @@ hidden: false
 metadata:
   title: Info KYC Document API
 ---
-This API is used to fetch a list of documents required for completing the KYC of the merchant. The access token is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
+This API is used to fetch a list of documents required for completing the KYC of the merchant. The access token is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
 The merchant ID in the request header must be included as a query parameter in the mid field.
 
 ## Authentication
 
-The access token with the scope as **refer\_merchant** from is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+The access token with the scope as **refer_merchant** from is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
 > 📘 Notes:
 >
