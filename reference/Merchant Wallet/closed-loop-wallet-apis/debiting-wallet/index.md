@@ -1,7 +1,7 @@
 ---
 title: Debiting Wallet APIs
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Debiting Wallet APIs - Closed Loop Wallet
   robots: index
