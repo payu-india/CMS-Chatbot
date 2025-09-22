@@ -111,12 +111,12 @@ You must include the `threeDS2RequestData` parameter along with the regular Coll
     <tr>
       <td>surl<br/><code>mandatory</code></td>
       <td>The success URL, which is the page PayU will redirect to if the transaction is successful. Data type: <code>string</code>.</td>
-      <td>http://pp30admin.payu.in/test_response</td>
+      <td>http://pp30admin.payu.in/</br>test_response</td>
     </tr>
     <tr>
       <td>furl<br/><code>mandatory</code></td>
       <td>The failure URL, which is the page PayU will redirect to if the transaction is failed. Data type: <code>string</code>.</td>
-      <td>http://pp30admin.payu.in/test_response</td>
+      <td>http://pp30admin.payu.in/</br>test_response</td>
     </tr>
     <tr>
       <td>hash<br/><code>mandatory</code></td>
@@ -131,7 +131,7 @@ You must include the `threeDS2RequestData` parameter along with the regular Coll
     <tr>
       <td>threeDS2RequestData<br/><code>optional</code></td>
       <td>JSON object containing 3DS2 authentication data including browser information, user agent, screen dimensions, timezone, and other parameters required for 3D Secure 2.0 authentication. Data type: <code>object</code>.</td>
-      <td>{"browserInfo": {"userAgent": "Mozilla/5.0...",</br> "acceptHeader": "*/*", "language": "en-US",</br> "colorDepth": "24", "screenHeight": "600",</br> "screenWidth": "800", "timeZone": "-300",</br> "javaEnabled": true, "ip": "10.248.2.71"}}</td>
+      <td>Refer to #threeds2requestdata-json-format</td>
     </tr>
   </tbody>
 </table>
