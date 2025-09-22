@@ -20,15 +20,15 @@ next:
 implementation 'in.payu:native-otp-assist:1.3.9'
 ```
 
-> 📘 Info
->
-> Once you moved in prod Enviornment then Kindly uncomment that above code from `build.gradle` file.
+<Callout icon="📘" theme="info">
+  **Info**: After you moved in Production environment, remove the commenting for above code from `build.gradle` file.
+</Callout>
 
 ***
 
 2. `Value &lt;!DOCTYPE of type java.lang.String cannot be converted to JSONObject`
 
-**Solution**: This error occurs when you take the payment integration live without setting the value of the `setIsProduction` parameter to `true`. Check the integration code to make the necessary changes and try again. 
+**Solution**: This error occurs when you take the payment integration live without setting the value of the `setIsProduction` parameter to `true`. Check the integration code to make the necessary changes and try again.
 
 ***
 
