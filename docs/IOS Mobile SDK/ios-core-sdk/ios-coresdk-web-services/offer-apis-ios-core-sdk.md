@@ -20,7 +20,7 @@ Use the **Fetch Offer Details** API to fetch all the offer list available for th
 
 > 📘 Hash Generation Logic
 >
-> In `completionBlockForHashGeneration`, you will get hash string without salt so you need to append the salt at the end of this hash string and convert using sha512 and pass that value in hash completion as passing below in the code. 
+> In `completionBlockForHashGeneration`, you will get hash string without salt so you need to append the salt at the end of this hash string and convert using sha512 and pass that value in hash completion as passing below in the code.
 >
 > For more information, refer to [Generate Static Hash](doc:generate-static-hash-ios).
 
@@ -63,7 +63,7 @@ Use the **Validate Offer Details** API to validate the offer available for the m
 
 1. Set amount and userToken inside your payment parameters for instance
 
-```Text Swift
+```swift Swift
         paymentParamForPassing.amount = "amount"
         paymentParamForPassing.cardNumber = "Card Number"
         paymentParamForPassing.offerParams = PayUModelOfferParams()
@@ -75,7 +75,7 @@ Use the **Validate Offer Details** API to validate the offer available for the m
 
 2. Call the `validateOfferDetails()` method to integrate this API as described in the following code block
 
-```Text Swift
+```swift Swift
 webServiceResponse?.validateOfferDetails(paymentParamForPassing, completionBlockForHashGeneration: { json, hashcompletion in
             if let hashDict = json as? [String: String] {
             let hashName = hashDict["hashName"] ?? ""
