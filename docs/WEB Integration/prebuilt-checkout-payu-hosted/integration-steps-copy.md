@@ -18,6 +18,10 @@ The PayU Hosted Checkout integration involves the following steps:
     Integrate pre-built checkout solution
   </Card>
 
+  <Card title="Integrate" href="doc:integrate-with-payu-hosted-checkout" target="_blank" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+    Test
+  </Card>
+
   <Card title="Test Integration" href="doc:test-integration-payu-hosted-checkout" className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white shadow-lg rounded-xl">
     Test the integration by making a test transaction
   </Card>
