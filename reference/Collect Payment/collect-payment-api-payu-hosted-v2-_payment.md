@@ -13,7 +13,7 @@ next:
 The PayU v2 Payment API enables merchants to process payments through a hosted checkout flow where customers are redirected to PayU's payment page to complete the transaction.
 
 <Callout icon="📘" theme="info">
-  **Note**: This documentation covers the **non-seamless (hosted checkout)** integration. For seamless payment flows, refer to the <Anchor label="v2 Payment API (Seamless)" target="_blank" href="ref:v2_payment_api_seamless_integration">v2 Payment API (Seamless)</Anchor> documentation.
+  **Note**: This documentation covers the **non-seamless (hosted checkout)** integration. For seamless payment flows, refer to [Seamless Payment Integration](ref:v2_payment_seamless_integration).
 </Callout>
 
 **Environment**
