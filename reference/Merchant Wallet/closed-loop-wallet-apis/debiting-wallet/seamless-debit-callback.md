@@ -25,12 +25,12 @@ The Seamless Debit Callback feature allows merchants to handle payment responses
             <td>MERCHANT123</td>
         </tr>
         <tr>
-          <td>txnId<code></br><mandatory</code></td>
+          <td>txnId</br> <code><mandatory</code></td>
             <td><code>String</code> Transaction ID for transaction tracking and this must be unique for every transaction.</td>
             <td>REF123456</td>
         </tr>
         <tr>
-            <td>paymentMethod</br><code></brmandatory</code></td>
+          <td>paymentMethod</br> <code></brmandatory</code></td>
             <td><code>Object</code> Details about the payment method used. For UPI payments:<br>• name: Must be "UPI"<br>• bankCode: Must be "UPI"</td>
             <td>{"name": "UPI", "bankCode": "UPI"}</td>
         </tr>
@@ -40,7 +40,7 @@ The Seamless Debit Callback feature allows merchants to handle payment responses
             <td></td>
         </tr>
         <tr>
-            <td>additionalInfo</br><code>mandatory</code></td>
+          <td>additionalInfo</br> <code>mandatory</code></td>
             <td><code>Object</code> Additional information including UPI-specific parameters like VPA. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo object fields description</a>.</td>
             <td></td>
         </tr>
