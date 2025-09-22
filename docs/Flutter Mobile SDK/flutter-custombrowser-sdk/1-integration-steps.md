@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-To integrate PayU CustomBrowser with flutter SDK, perform the following steps: 
+To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
 
 1. [Include the SDK in your app](https://docs.payu.in/docs/1-integration-steps#step-1-include-the-sdk-in-your-app)
 2. [Initialise the SDK ](https://docs.payu.in/docs/1-integration-steps#step-2-sdk-initialisation)
@@ -21,7 +21,7 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
 
 ## Step 1: Include the SDK in your app
 
-The CustomBrowser SDK for Flutter is offered through Fluter Pub.dev 
+The CustomBrowser SDK for Flutter is offered through Fluter Pub.dev
 
 To add the SDK plugin use the following dependency in your app: `$ flutter pub add payubiz_cb_flutter`:
 
@@ -30,19 +30,19 @@ import 'package:payubiz_cb_flutter/payubiz_cb_flutter.dart';
 import 'package:payubiz_cb_flutter/PayUCBConstantKeys.dart';
 ```
 
-> 📘 Note
->
-> If you are developing for iOS, Install the pod using the following command inside “ios” folder.
->
-> ```
-> $ pod install 
-> ```
+<Callout icon="📘" theme="info">
+  **Note**: If you are developing for iOS, Install the pod using the following command inside “ios” folder.
+
+  ```
+  $ pod install 
+  ```
+</Callout>
 
 ## Step 2: SDK initialisation
 
 Declare PayuCustomBrowserFlutter instance and initialise the object.
 
-```Text dart
+```d Dart
 class _MyAppState extends State<MyApp> implements PayUCustomBrowserProtocol {
 
   late PayUCustomBrowserFlutter payUCustomBrowserFlutterPlugin;
@@ -63,13 +63,13 @@ class _MyAppState extends State<MyApp> implements PayUCustomBrowserProtocol {
 
 * Implement protocol at class level and override it’s methods to get hash generation and transaction callbacks.
 
-```Text dart
+```d Dart
 class _MyAppState extends State<MyApp> implements PayUCustomBrowserProtocol
 ```
 
 * Implement the following methods in your class to get callback.
 
-```
+```d Dart
 @override
 onPayuCBResponse(Map? response) {
     String eventType = response[PayUEventType.eventType];
@@ -126,7 +126,7 @@ Hash is required to authenticate the request and to make sure MiTM has not happe
 
 Here is a sample hash logic with sample value of the parameters for your reference:
 
- `smsplus|1695662774012|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||  {"beneficiaryAccountNumber":"1234567890","ifscCode":"IFSC0000024"}|1b1b0`
+`smsplus|1695662774012|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||  {"beneficiaryAccountNumber":"1234567890","ifscCode":"IFSC0000024"}|1b1b0`
 
 ## Step 5: Generate the Payment Parameters
 
@@ -193,7 +193,7 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        transaction\_id\
+        transaction_id
         `Mandatory`
       </td>
 
@@ -202,13 +202,13 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
       </td>
 
       <td>
-        Cannot be null or empty and should be unique for each transaction. Maximum allowed length is 25 characters. It cannot contain special characters like: -\_/
+        Cannot be null or empty and should be unique for each transaction. Maximum allowed length is 25 characters. It cannot contain special characters like: -_/
       </td>
     </tr>
 
     <tr>
       <td>
-        amount\
+        amount
         `Mandatory`
       </td>
 
@@ -223,7 +223,7 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        product\_info\
+        product_info
         `Mandatory`
       </td>
 
@@ -238,7 +238,7 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        first\_name\
+        first_name
         `Mandatory`
       </td>
 
@@ -247,13 +247,13 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
       </td>
 
       <td>
-         Cannot be null or empty
+        Cannot be null or empty
       </td>
     </tr>
 
     <tr>
       <td>
-        email\
+        email
         `Mandatory`
       </td>
 
@@ -268,12 +268,12 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        phone\
+        phone
         `Mandatory`
       </td>
 
       <td>
-         `String` Customer’s phone number.
+        `String` Customer’s phone number.
       </td>
 
       <td>
@@ -283,13 +283,13 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        User Credential\
+        User Credential
         `mandatory`
       </td>
 
       <td>
         `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. **Format**: `<merchantKey>:<userId>`
-        Here, the UserId is any ID/email/phone number to uniquely identify the user. \*\*
+        Here, the UserId is any ID/email/phone number to uniquely identify the user. **
       </td>
 
       <td>
@@ -299,12 +299,12 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        ios\_surl\
+        ios_surl
         `Mandatory`
       </td>
 
       <td>
-        `String` When the transaction gets success, PayU will load this url and pass transaction response.\
+        `String` When the transaction gets success, PayU will load this url and pass transaction response.
         Note: This field is applicable for iOS integration
       </td>
 
@@ -315,28 +315,28 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        ios\_furl\
+        ios_furl
         `Mandatory`
       </td>
 
       <td>
-        `String` When the transaction gets fail, PayU will load this url and pass transaction response.\
+        `String` When the transaction gets fail, PayU will load this url and pass transaction response.
         Note: This field is applicable for iOS integration
       </td>
 
       <td>
-         Should be a valid URL
+        Should be a valid URL
       </td>
     </tr>
 
     <tr>
       <td>
-        android\_surl\
+        android_surl
         `Mandatory`
       </td>
 
       <td>
-         `String` When the transaction gets success, PayU will load this url and pass transaction response.\
+        `String` When the transaction gets success, PayU will load this url and pass transaction response.
         Note: This field is applicable for Android integration
       </td>
 
@@ -347,13 +347,13 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        android\_furl\
+        android_furl
         `Mandatory`
       </td>
 
       <td>
-        `String` When the transaction gets fail, PayU will load this url and pass transaction response.\
-        When the transaction gets success, PayU will load this url and pass transaction response.\
+        `String` When the transaction gets fail, PayU will load this url and pass transaction response.
+        When the transaction gets success, PayU will load this url and pass transaction response.
         Note: This field is applicable for Android integration
       </td>
 
@@ -364,7 +364,7 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        environment\
+        environment
         `Mandatory`
       </td>
 
@@ -373,13 +373,13 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
       </td>
 
       <td>
-         "0" for Production and "1" for Test
+        "0" for Production and "1" for Test
       </td>
     </tr>
 
     <tr>
       <td>
-        url\
+        url
         `Mandatory`
       </td>
 
@@ -394,7 +394,7 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        post\_data\
+        post_data
         `Mandatory`
       </td>
 
@@ -409,7 +409,7 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        payment\_type\
+        payment_type
         `Mandatory`
       </td>
 
@@ -424,7 +424,7 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        auto\_approve\
+        auto_approve
         `Mandatory`
       </td>
 
@@ -439,7 +439,7 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
 
     <tr>
       <td>
-        merchant\_response\_timeout\
+        merchant_response_timeout
         `Mandatory`
       </td>
 
@@ -541,7 +541,7 @@ PayUTestCredentials.addtionalDetails;   // {
 
 ## SI Payment
 
-```
+```d Dart
 PayUPaymentParamKey.si_details: {
       PayUSIParamsKeys.billingAmount: "1.00",
       PayUSIParamsKeys.billingCurrency: "INR",
@@ -557,7 +557,7 @@ PayUSIParamsKeys.si: "1"
 
 ### Recurring Payments in NetBanking
 
-```
+```d Dart
 PayUSIParamsKeys.beneficiarydetail: {
       PayUSIBeneDetailsKeys.beneficiaryAccountNumber:
       PayUTestCredentials.accountNumber,
@@ -573,6 +573,6 @@ PayUSIParamsKeys.beneficiarydetail: {
 
 Initialise and launch the SDK by calling the following code snippet:
 
-```Text dart
+```d Dart
 payUCustomBrowserFlutterPlugin.openCB(params: <PayU Payment Params>);
 ```
