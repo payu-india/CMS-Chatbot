@@ -1,7 +1,7 @@
 ---
 title: Integration Steps (COPY)
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: PayU Hosted Checkout Integration
   keywords:
