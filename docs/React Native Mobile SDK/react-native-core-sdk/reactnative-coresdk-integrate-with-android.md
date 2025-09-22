@@ -69,9 +69,9 @@ Generate the payment hash and pass the hash in the JSON `payUPaymentParams.hashe
 
 To learn more about sash generation, see Hash Generation.
 
-> 📘 Remember
->
-> Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
+<Callout icon="📘" theme="info">
+  **Note**: Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
+</Callout>
 
 ***
 
@@ -79,7 +79,7 @@ To learn more about sash generation, see Hash Generation.
 
 To initiate a payment, your app needs to send Transactional Information to the Custom Browser SDK. Build the payUPaymentParams object with the mandatory parameters as shown in the following code snippet:
 
-```Text react.js
+```javascript React.js
  var payUPaymentParams = {
       payUPaymentParams: {
         key: <String>, //merchant key 
@@ -118,7 +118,7 @@ Build parameters for different payment methods:
 
 To build the mandatory parameters to integrate Net Banking as a payment Method in JSON, use the following code snippet:
 
-```Text React.js
+```javascript React.js
 var params={
   payUPaymentParams: {
         bankcode:<String>, // ex: ICIB,AXIB 
@@ -129,7 +129,7 @@ var params={
 
 To build the mandatory parameters to integrate Cards as a payment Method in JSON, use the following code snippet:
 
-```Text React.js
+```javascript React.js
 var params={
   payUPaymentParams: {
         bankcode:"CC", 
@@ -147,7 +147,7 @@ var params={
 
 To build the mandatory parameters to integrate wallets as a payment Method in JSON, use the following code snippet:
 
-```Text React.js
+```javascript React.js
 var params={
   payUPaymentParams: {
         bankcode: <String>, // Payu provide Wallet Id (ex: AMON) 
@@ -160,7 +160,7 @@ var params={
 
 Use the following code snippet to start a payment:
 
-```Text React.js
+```javascript React.js
 CBWrapper.startPayment(
 params,
 Payment Mode <String> , // CC(CARD), CASH(WALLET), NB (NET BANKING)
@@ -184,7 +184,7 @@ Payment Mode <String> , // CC(CARD), CASH(WALLET), NB (NET BANKING)
 
 Register event listener (`DeviceEventEmitter` for this SDK)to capture the response of the transaction from Custom Browser SDK. Use the following code snippet to register the listener:
 
-```Text React.js
+```javascript React.js
 DeviceEventEmitter.addListener("CBListener",(event)=>{
      
 })
@@ -196,7 +196,7 @@ DeviceEventEmitter.addListener("CBListener",(event)=>{
 
 This is what a sample response from the Custom Browser SDK looks like:
 
-```Text React.js
+```javascript React.js
 {
   "eveneType": <String>, (onPaymentFailure | onPaymentTerminate | onPaymentTerminate | onCBErrorReceived | onBackButton | onBackApprove | onBackDismiss)
   "payuResult": <String>, //conditional
