@@ -21,11 +21,11 @@ The PayU Hosted Checkout integration involves the following steps:
   </Card>
 
   <Card title="2. Test Integration" href="doc:test-integration-payu-hosted-checkout" className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white shadow-lg rounded-xl">
-    <em>Test the integration by making a test transaction</em>
+    Test the integration by making a test transaction
   </Card>
 
   <Card title="3. Production Checklist" href="doc:integration-checklist-payu-hosted-checkout" className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white shadow-lg rounded-xl">
-    <strong>Follow the production checklist to go live</strong>
+    Follow the production checklist to go live
   </Card>
 </Cards>
 
