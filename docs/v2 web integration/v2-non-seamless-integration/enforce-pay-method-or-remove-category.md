@@ -55,9 +55,9 @@ To enforce complete categories, use the values as described in the following tab
 
 To enforce sub-categories, use the respective bank codes for them. Contact PayU Support or at help.payu.in to get the respective bank codes.
 
-> 📘 Note
->
-> Ensure that you are using the delimiter as pipe (|) character between the values in these examples.
+<Callout icon="📘" theme="info">
+  **Note**: Ensure that you are using the delimiter as pipe (|) character between the values in these examples.
+</Callout>
 
 ## Usage examples
 
@@ -69,9 +69,9 @@ All the credit card and debit card options are displayed (as the whole category 
 
 All the credit card, Net Banking, and cash card options are displayed (as the whole category is enforced for these).
 
-> 📘 Note:
->
-> Ensure you use this parameter only after testing properly as an incorrect string will lead to undesirable payment options being displayed.
+<Callout icon="📘" theme="info">
+  **Note**: Ensure you use this parameter only after testing properly as an incorrect string will lead to undesirable payment options being displayed.
+</Callout>
 
 For an example procedure on how to enforce payment with a credit card, refer to Enforce Payment with Credit Card.
 
