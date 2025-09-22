@@ -25,7 +25,7 @@ To pay using EMI, perform the following steps.
 
 1. Set the EMI parameter for instance:
 
-```Text Objective-C
+```objectivec Objective-C
     self.paymentParamForPassing.bankCode = @"EMI03";//BankCode
     self.paymentParamForPassing.expiryYear = @"2019";
     self.paymentParamForPassing.expiryMonth = @"12";
@@ -33,7 +33,7 @@ To pay using EMI, perform the following steps.
     self.paymentParamForPassing.cardNumber = @"5123456789012346";
     self.paymentParamForPassing.CVV = @"123";
 ```
-```Text Swift
+```swift Swift
 paymentParamForPassing.bankCode = "EMI03" //BankCode
 paymentParamForPassing.expiryYear = "2019"
 paymentParamForPassing.expiryMonth = "12"
@@ -44,7 +44,7 @@ paymentParamForPassing.cvv = "123"
 
 2. Get the request by using the `createRequestWithPaymentParam` method for instance.
 
-```Text Objective-C
+```objectivec Objective-C
 self.createRequest = [PayUCreateRequest new];
 [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_EMI withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
     if (error == nil) {
@@ -56,7 +56,7 @@ self.createRequest = [PayUCreateRequest new];
     }
 }];
 ```
-```Text Swift
+```swift Swift
 createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_EMI, withCompletionBlock: { request, postParam, error in
 if error == nil {
 //It is good to go state. You can use request parameter in webview to open Payment Page
@@ -70,13 +70,13 @@ if error == nil {
 
 To Pay using CardlessEMI, you need to set a parameter similar to the following code snippet:
 
-```Text Objective-C
+```objectivec Objective-C
     self.paymentParamForPassing.bankCode = @"ZESTMON";//BankID
     self.paymentParamForPassing.isCardlessEMI = true;
     self.paymentParamForPassing.phoneNumber = @"9999999999";
     
 ```
-```Text Swift
+```swift Swift
 paymentParamForPassing.bankCode = "ZESTMON" //BankID
 paymentParamForPassing.isCardlessEMI = true
 paymentParamForPassing.phoneNumber = "99999999"
@@ -88,7 +88,7 @@ To pay using Subvention EMI, perform the following steps.
 
 1. Set the value of the `subventionAmount` parameter of `paymentParams`:
 
-```Text Objective-C
+```objectivec Objective-C
     self.paymentParamForPassing.bankCode = @"EMI03";//BankCode
     self.paymentParamForPassing.expiryYear = @"2019";
     self.paymentParamForPassing.expiryMonth = @"12";
@@ -98,7 +98,7 @@ To pay using Subvention EMI, perform the following steps.
 
     self.paymentParamForPassing.subventionAmount = @"3000";
 ```
-```Text Swift
+```swift Swift
 paymentParamForPassing.bankCode = "EMI03" //BankCode
 paymentParamForPassing.expiryYear = "2019"
 paymentParamForPassing.expiryMonth = "12"
@@ -110,10 +110,10 @@ paymentParamForPassing.subventionAmount = "3000"
 
 2. Get the request by using the`createRequestWithPaymentParam` method as follows:
 
-```Text Objective-C
+```objectivec Objective-C
 Get the request by using createRequestWithPaymentParam method as follows:
 ```
-```Text Swift
+```swift Swift
 createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_EMI, withCompletionBlock: { request, postParam, error in
     if error == nil {
         //It is good to go state. You can use request parameter in webview to open Payment Page
@@ -123,9 +123,9 @@ createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPayment
 })
 ```
 
-> 📘 Hashing format of a subvention transaction
->
-> If subventionAmount is passed, the hash formula for payment hash will be similar to the following format: `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|SubventionAmount)`
+<Callout icon="📘" theme="info">
+  **Hashing format of a subvention transaction**: If subventionAmount is passed, the hash formula for payment hash will be similar to the following format: `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|SubventionAmount)`
+</Callout>
 
 ## Fetch a List of No-Cost EMI-supporting banks
 
