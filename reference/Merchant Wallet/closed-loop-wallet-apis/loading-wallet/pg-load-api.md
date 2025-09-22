@@ -12,7 +12,6 @@ The **PG Load **API allows you to create a credit transaction entry directly int
 | Environment | URL                                                                                                                            |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Test        | [https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1](https://apitest.payu.in/loyalty-points/v1/wallet/load-account) |
-| Production  |                                                                                                                                |
 
 **HTTP Method**: PATCH
 
