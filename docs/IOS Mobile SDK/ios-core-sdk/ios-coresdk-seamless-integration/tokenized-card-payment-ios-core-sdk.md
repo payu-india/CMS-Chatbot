@@ -13,15 +13,15 @@ metadata:
 next:
   description: ''
 ---
-To collect payments using cards tokenized outside the PayU platform: 
+To collect payments using cards tokenized outside the PayU platform:
 
 1. Pass the parameters similar to the following code block:
 
-```Text Swift
+```swift Swift
 paymentParam.cardTokenType = "1"
 paymentParam.additionalInfo = AdditionalInfo(last4Digits: "1234", tavv: "1234", trid: "1234", tokenRefNo: "1234")
 ```
-```Text Objective-C
+```objectivec Objective-C
     self.paymentParam.cardTokenType = @"1";
     self.paymentParam.additionalInfo = [[AdditionalInfo alloc] initWithLast4Digits:@"1234" tavv:@"1234" trid:@"1234" tokenRefNo:@"1234"];
 ```
