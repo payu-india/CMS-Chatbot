@@ -18,9 +18,12 @@ next:
 ---
 To integrate your website with PayU products and access PayU Dashboard, you require a merchant account. This section describes the procedure to register as a merchant.
 
-> 📘 Note:
+> 📘 Notes:
 >
-> After you register, PayU takes upto two days to validate your website (specified during registration). After your website is validated, you can get your merchant Key and Salt for integration. For more information, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+> * After you register, PayU takes upto two days to validate your website (specified during registration). After your website is validated, you can get your Production merchant Key and Salt for integration. For more information, refer to [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+> * The Test merchant key and Salt can be accessed immediately after you register. For more information, refer to [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt).
+>
+>
 
 To register for a merchant account:
 
@@ -28,7 +31,7 @@ To register for a merchant account:
 
 [https://onboarding.payu.in/app/account](https://onboarding.payu.in/app/account)
 
-   The *Create your PayU account* page is displayed.
+The _Create your PayU account_ page is displayed.
 
 <Image align="center" src="https://files.readme.io/2bbcb2c-register1.png" />
 
@@ -64,7 +67,7 @@ To register for a merchant account:
       </td>
 
       <td>
-        Enter the password that you wish to use while logging into your merchant account with PayU. Your password must strictly meet these requirements:  
+        Enter the password that you wish to use while logging into your merchant account with PayU. Your password must strictly meet these requirements:
 
         * at least eight characters
         * at least one uppercase alphabet
@@ -110,8 +113,8 @@ To register for a merchant account:
 
    The OTP is sent to the mobile number you have specified in the Phone Number field earlier.
 
-> **Note**: At Step 4, the following message is displayed if you had already registered on PayU Merchant Onboarding site based the mobile number you have provided in the Phone Number field:\
-> *Mobile Number already exists with PayU. Please continue with your old password to add new merchant account*.
+> **Note**: At Step 4, the following message is displayed if you had already registered on PayU Merchant Onboarding site based the mobile number you have provided in the Phone Number field:
+> _Mobile Number already exists with PayU. Please continue with your old password to add new merchant account_.
 
 4. Enter OTP sent to your mobile number that you specified earlier in the **Phone Number** field.
 5. Click **Verify Mobile**.
