@@ -19,19 +19,82 @@ A simple server-generated redirect that sends customers from your site/app to th
 
 The PayU Hosted Checkout integration involves the following steps:
 
-<Cards columns={3}>
-  <Card title="1. Start Integration" href="https://docs.payu.in/docs/integration-steps-copy#step-1--start-integration" target="_blank" className="bg-gradient-to-r from-emerald-400 to-emerald-600 hover:from-emerald-500 hover:to-emerald-700 text-white shadow-lg rounded-xl border-5">
-    Integrate pre-built checkout solution
-  </Card>
+\<div class="CardsGrid" style="grid-template-columns: repeat(3, 1fr);">
+&#x20;   \<a class="Card" href="https\://docs.payu.in/docs/integration-steps-copy#step-1--start-integration" target="\_blank">
+&#x20;       \<p class="Card-title">1. Start Integration\</p>
+&#x20;       \<div class="Card-content">
+&#x20;           \<p>Integrate pre-built checkout solution\</p>
+&#x20;       \</div>
+&#x20;   \</a>
+&#x20;   \<a class="Card" href="https\://docs.payu.in/docs/integration-steps-copy#step-2-test-integration">
+&#x20;       \<p class="Card-title">2. Test Integration\</p>
+&#x20;       \<div class="Card-content">
+&#x20;           \<p>Test the integration by making a test transaction\</p>
+&#x20;       \</div>
+&#x20;   \</a>
+&#x20;   \<a class="Card" href="https\://docs.payu.in/docs/integration-steps-copy#step-3-going-live-your-final-checklist">
+&#x20;       \<p class="Card-title">3. Go live Checklist\</p>
+&#x20;       \<div class="Card-content">
+&#x20;           \<p>Follow the production checklist to go live\</p>
+&#x20;       \</div>
+&#x20;   \</a>
+\</div>
 
-  <Card title="2. Test Integration" href="https://docs.payu.in/docs/integration-steps-copy#step-2-test-integration" className="bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white shadow-lg rounded-xl border-5">
-    Test the integration by making a test transaction
-  </Card>
+\<style>
+&#x20;   /\* Card Grid Styling \*/
+&#x20;   .CardsGrid \{
+&#x20;       display: grid;
+&#x20;       grid-template-columns: repeat(3, 1fr);
+&#x20;       gap: 20px;  /\* Adding some space between the cards \*/
+&#x20;   }
 
-  <Card title="3. Go live Checklist" href="https://docs.payu.in/docs/integration-steps-copy#step-3-going-live-your-final-checklist" className="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-500 hover:to-purple-700 text-white shadow-lg rounded-xl border-5">
-    Follow the production checklist to go live
-  </Card>
-</Cards>
+&#x20;   /\* Individual Card Styling \*/
+&#x20;   .Card \{
+&#x20;       background-color: #f3f3f3;  /\* Default light gray background \*/
+&#x20;       border-radius: 8px;
+&#x20;       padding: 20px;
+&#x20;       text-decoration: none;
+&#x20;       color: #333;  /\* Default text color \*/
+&#x20;       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+&#x20;       transition: background-color 0.3s ease, transform 0.3s ease;
+&#x20;   }
+
+&#x20;   /\* Card Title Styling \*/
+&#x20;   .Card-title \{
+&#x20;       font-size: 18px;
+&#x20;       font-weight: bold;
+&#x20;       margin: 0;
+&#x20;       color: #333;
+&#x20;   }
+
+&#x20;   /\* Card Content Styling \*/
+&#x20;   .Card-content p \{
+&#x20;       margin-top: 10px;
+&#x20;       color: #555;
+&#x20;       font-size: 14px;
+&#x20;   }
+
+&#x20;   /\* Hover Effect Styling \*/
+&#x20;   .Card:hover \{
+&#x20;       background-color: #008CBA;  /\* Blue background on hover \*/
+&#x20;       color: #fff;  /\* Change text color to white \*/
+&#x20;       transform: translateY(-5px);  /\* Slight upward movement \*/
+&#x20;   }
+
+&#x20;   /\* Adding unique colors for each card \*/
+&#x20;   .Card:nth-child(1) \{
+&#x20;       background-color: #FFDDC1;  /\* Soft Pink \*/
+&#x20;   }
+
+&#x20;   .Card:nth-child(2) \{
+&#x20;       background-color: #D4EDDA;  /\* Soft Green \*/
+&#x20;   }
+
+&#x20;   .Card:nth-child(3) \{
+&#x20;       background-color: #C6D8FF;  /\* Soft Blue \*/
+&#x20;   }
+\</style>
+
 
 <Callout icon="📘" theme="info">
   **Pre-requisite**
@@ -57,290 +120,290 @@ Follow the below steps to complete the integration:
   First, you need to collect all the necessary information for the transaction. Below is the list of parameters where some are mandatory and others are optional.
 
   <HTMLBlock>{`
-                      <div >
-                        <table>
-                          <thead>
-                            <tr>
-                              <th style="width: 10%;">Parameter</th>
-                              <th style="width: 75%; white-space: normal; word-break: break-word;">Type & Description</th>
-                              <th style="width: 15%;">Example</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                key<br>
-                                <code>mandatory</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> Merchant key provided by PayU during onboarding.
-                              </td>
-                              <td>JPG****.k</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                txnid<br>
-                               <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
+                          <div >
+                            <table>
+                              <thead>
+                                <tr>
+                                  <th style="width: 10%;">Parameter</th>
+                                  <th style="width: 75%; white-space: normal; word-break: break-word;">Type & Description</th>
+                                  <th style="width: 15%;">Example</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    key<br>
+                                    <code>mandatory</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> Merchant key provided by PayU during onboarding.
+                                  </td>
+                                  <td>JPG****.k</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    txnid<br>
+                                   <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
 
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The transaction ID is a reference number for a specific order generated by the merchant.
-                              </td>
-                              <td>ypl938459435</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                amount<br>
-                                <code>mandatory</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The payment amount for the transaction.
-                              </td>
-                              <td>10.00</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                productinfo<br>
-                                <code>mandatory</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> A brief description of the product.
-                              </td>
-                              <td>iPhone</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                firstname<br>
-                                <code>mandatory</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The first name of the customer.
-                              </td>
-                              <td>Ashish</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                email<br>
-                                <code>mandatory</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The email address of the customer.
-                              </td>
-                              <td>
-                                  <a href="mailto:abc@payu.in">abc@payu.in</a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                phone<br>
-                                <code>mandatory</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The phone number of the customer.
-                              </td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                lastname<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The last name of the customer.
-                              </td>
-                              <td>Kumar</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                surl<br>
-                                <code>mandatory</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.
-                              </td>
-                              <td>
-                                  <a href="https://test-payment-middleware.payu.in/simulatorResponse" target="_blank">https://test-payment-middleware.payu.in/simulatorResponse</a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                furl<br>
-                                <code>mandatory</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The failure URL, which is the page PayU will redirect to if the transaction fails.
-                              </td>
-                              <td>
-                                  <a href="https://test-payment-middleware.payu.in/simulatorResponse" target="_blank">https://test-payment-middleware.payu.in/simulatorResponse</a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                hash<br>
-                                <code>mandatory</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br>
-                                <code>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code><br>
-                                Reference: For detailed information on hashing, refer to
-                                <a href="generate-hash-payu-hosted" target="_blank">Generate Hash</a>.
-                              </td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                address1<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The first line of the billing address.<br>
-                                Fraud Detection: This information is helpful for fraud detection and chargebacks. Please provide the correct information.
-                              </td>
-                              <td>H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                address2<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The second line of the billing address.
-                              </td>
-                              <td>34 Saikripa-Estate, Tilak Nagar</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                city<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The city where your customer resides as part of the billing address.
-                              </td>
-                              <td>Mumbai</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                state<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The state where your customer resides as part of the billing address.
-                              </td>
-                              <td>Maharashtra</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                country<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> The country where your customer resides.
-                              </td>
-                              <td>India</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                zipcode<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br>
-                                Character Limit: 20
-                              </td>
-                              <td>400004</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                enforced_payment<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> This parameter is to customize the payment options for each transaction. You can enforce specific payment modes, card schemes, and specific banks under Net Banking using this method.
-                              </td>
-                              <td>creditcard|debitcard</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                drop_category<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> This parameter is used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
-                              </td>
-                              <td>CC</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                udf1<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
-                              </td>
-                              <td>AELPR****E</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                udf2<br>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
-                              </td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                udf3<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
-                              </td>
-                              <td>02-02-1980</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                udf4<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
-                              </td>
-                              <td>XYZ Pvt. Ltd.</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                udf5<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
-                              </td>
-                              <td>098450845</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                custom_note<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> This parameter allows you to display a message on the PayU Payment page. This can be useful if you want to provide additional information to your customers, such as an extra charge for a particular product. The message specified in the custom_note parameter will be displayed below the payment options.
-                              </td>
-                              <td>You will be charged an extra amount of Rs 100 on this transaction</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                note_category<br>
-                                <code>optional</code>
-                              </td>
-                              <td style="white-space: normal; word-break: break-word;">
-                                <code>String</code> This parameter allows you to specify which payment options the custom_note message will be displayed for. This parameter should contain a comma-separated list of the payment options that you want the custom_note displayed for. Example: "CC, NB" will show the custom_note for Credit Card & Net banking only.
-                              </td>
-                              <td>CC, NB</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The transaction ID is a reference number for a specific order generated by the merchant.
+                                  </td>
+                                  <td>ypl938459435</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    amount<br>
+                                    <code>mandatory</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The payment amount for the transaction.
+                                  </td>
+                                  <td>10.00</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    productinfo<br>
+                                    <code>mandatory</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> A brief description of the product.
+                                  </td>
+                                  <td>iPhone</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    firstname<br>
+                                    <code>mandatory</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The first name of the customer.
+                                  </td>
+                                  <td>Ashish</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    email<br>
+                                    <code>mandatory</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The email address of the customer.
+                                  </td>
+                                  <td>
+                                      <a href="mailto:abc@payu.in">abc@payu.in</a>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    phone<br>
+                                    <code>mandatory</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The phone number of the customer.
+                                  </td>
+                                  <td></td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    lastname<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The last name of the customer.
+                                  </td>
+                                  <td>Kumar</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    surl<br>
+                                    <code>mandatory</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.
+                                  </td>
+                                  <td>
+                                      <a href="https://test-payment-middleware.payu.in/simulatorResponse" target="_blank">https://test-payment-middleware.payu.in/simulatorResponse</a>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    furl<br>
+                                    <code>mandatory</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The failure URL, which is the page PayU will redirect to if the transaction fails.
+                                  </td>
+                                  <td>
+                                      <a href="https://test-payment-middleware.payu.in/simulatorResponse" target="_blank">https://test-payment-middleware.payu.in/simulatorResponse</a>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    hash<br>
+                                    <code>mandatory</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br>
+                                    <code>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code><br>
+                                    Reference: For detailed information on hashing, refer to
+                                    <a href="generate-hash-payu-hosted" target="_blank">Generate Hash</a>.
+                                  </td>
+                                  <td></td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    address1<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The first line of the billing address.<br>
+                                    Fraud Detection: This information is helpful for fraud detection and chargebacks. Please provide the correct information.
+                                  </td>
+                                  <td>H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    address2<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The second line of the billing address.
+                                  </td>
+                                  <td>34 Saikripa-Estate, Tilak Nagar</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    city<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The city where your customer resides as part of the billing address.
+                                  </td>
+                                  <td>Mumbai</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    state<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The state where your customer resides as part of the billing address.
+                                  </td>
+                                  <td>Maharashtra</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    country<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> The country where your customer resides.
+                                  </td>
+                                  <td>India</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    zipcode<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br>
+                                    Character Limit: 20
+                                  </td>
+                                  <td>400004</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    enforced_payment<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> This parameter is to customize the payment options for each transaction. You can enforce specific payment modes, card schemes, and specific banks under Net Banking using this method.
+                                  </td>
+                                  <td>creditcard|debitcard</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    drop_category<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> This parameter is used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
+                                  </td>
+                                  <td>CC</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    udf1<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
+                                  </td>
+                                  <td>AELPR****E</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    udf2<br>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
+                                  </td>
+                                  <td></td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    udf3<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
+                                  </td>
+                                  <td>02-02-1980</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    udf4<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
+                                  </td>
+                                  <td>XYZ Pvt. Ltd.</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    udf5<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
+                                  </td>
+                                  <td>098450845</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    custom_note<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> This parameter allows you to display a message on the PayU Payment page. This can be useful if you want to provide additional information to your customers, such as an extra charge for a particular product. The message specified in the custom_note parameter will be displayed below the payment options.
+                                  </td>
+                                  <td>You will be charged an extra amount of Rs 100 on this transaction</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    note_category<br>
+                                    <code>optional</code>
+                                  </td>
+                                  <td style="white-space: normal; word-break: break-word;">
+                                    <code>String</code> This parameter allows you to specify which payment options the custom_note message will be displayed for. This parameter should contain a comma-separated list of the payment options that you want the custom_note displayed for. Example: "CC, NB" will show the custom_note for Credit Card & Net banking only.
+                                  </td>
+                                  <td>CC, NB</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
   `}</HTMLBlock>
 
   <Callout icon="📘" theme="info">
