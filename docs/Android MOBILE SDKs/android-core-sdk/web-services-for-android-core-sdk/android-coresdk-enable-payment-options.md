@@ -10,31 +10,31 @@ metadata:
 next:
   description: ''
 ---
-This API is used enable multiple payment options on your checkout page. 
+This API is used enable multiple payment options on your checkout page.
 
-> 📘 Hash logic
->
-> The hash logic for this API is:
->
-> `<key>|payment_related_details_for_mobile_sdk|<userCredential>|<salt>`
->
-> For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
+<Callout icon="📘" theme="info">
+  **Hash logic**: The hash logic for this API is:
+
+  `<key>|payment_related_details_for_mobile_sdk|<userCredential>|<salt>`
+
+  For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
+</Callout>
 
 ## Step 1: Execute GetPaymentRelatedDetailsTask
 
 This class is used to get payment-related details. It takes an instance of a class that implements the `PaymentRelatedDetailsListener` interface as input.
 
-```Text Node
+```node Node
 GetPaymentRelatedDetailsTask paymentRelatedDetailsForMobileSdkTask = new GetPaymentRelatedDetailsTask(this);
 ```
 
- The `PaymentRelatedDetailsListener` interface has an abstract method called `onPaymentRelatedDetailsResponse()`. This method is called when the payment-related details are received.
+The `PaymentRelatedDetailsListener` interface has an abstract method called `onPaymentRelatedDetailsResponse()`. This method is called when the payment-related details are received.
 
 ## Step 2: Get Response using onPaymentRelatedDetailsResponse()
 
 Get response to determine the availability of various payment options (UPI, Google Pay, PhonePe, LazyPay, and Generic Intent) similar to the following code snippet:
 
-```Text Node
+```node Node
 @Override
 public void onPaymentRelatedDetailsResponse(PayuResponse payuResponse) {
 mPayuResponse = payuResponse;
