@@ -13,7 +13,7 @@ metadata:
     - PayU Hosted Checkout Integration Steps
   robots: index
 ---
-# What you’re building#
+# What you're building
 
 A simple server-generated redirect that sends customers from your site/app to the PayU-hosted payment page, then returns them to your success/failure URLs. You pass order & customer fields + a server-generated SHA-512 hash for integrity; PayU handles the payment UI and authentication.
 
@@ -22,21 +22,21 @@ The PayU Hosted Checkout integration involves the following steps:
 <br />
 
 <Cards columns={3}>
-  <Card title="1. Start Integration" href="https://docs.payu.in/docs/integration-steps-copy#step-1--start-integration" target="_blank" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+  <Card title="1. Start Integration" href="https://docs.payu.in/docs/integration-steps-copy#step-1--start-integration" target="_blank" className="bg-gradient-to-r from-emerald-400 to-emerald-600 hover:from-emerald-500 hover:to-emerald-700 text-white shadow-lg rounded-xl border-0">
     Integrate pre-built checkout solution
   </Card>
 
-  <Card title="2. Test Integration" href="https://docs.payu.in/docs/integration-steps-copy#step-2-test-integration" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+  <Card title="2. Test Integration" href="https://docs.payu.in/docs/integration-steps-copy#step-2-test-integration" className="bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white shadow-lg rounded-xl border-0">
     Test the integration by making a test transaction
   </Card>
 
-  <Card title="3. Go live Checklist" href="https://docs.payu.in/docs/integration-steps-copy#step-3-going-live-your-final-checklist" className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white shadow-lg rounded-xl">
+  <Card title="3. Go live Checklist" href="https://docs.payu.in/docs/integration-steps-copy#step-3-going-live-your-final-checklist" className="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-500 hover:to-purple-700 text-white shadow-lg rounded-xl border-0">
     Follow the production checklist to go live
   </Card>
 </Cards>
 
 <Callout icon="📘" theme="info">
-  **#Pre-requisite**
+  **Pre-requisite**
 
   * Merchant Key and Salt (test or production)
   * HTTPS success & failure URLs (surl, furl) reachable from the public internet.
@@ -44,761 +44,755 @@ The PayU Hosted Checkout integration involves the following steps:
   * Order ID generator for unique txnid.
 </Callout>
 
-### Environment
-
-|                        |                                                                     |
-| :--------------------- | :------------------------------------------------------------------ |
-| Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
-| Production Environment | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+<Accordion title="Environment" icon="fa-globe">
+  |                        |                                                                     |
+  | :--------------------- | :------------------------------------------------------------------ |
+  | Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+  | Production Environment | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+</Accordion>
 
 ## Step 1:  Start Integration
 
 Follow the below steps to complete the integration:
 
-### Step 1.1: Prepare the request parameters
+<Accordion title="Step 1.1: Prepare the request parameters" icon="fa-list-check">
+  First, you need to collect all the necessary information for the transaction. Below is the list of parameters where some are mandatory and others are optional.
 
-First, you need to collect all the necessary information for the transaction. Below is the list of parameters where some are mandatory and others are optional.
+  <HTMLBlock>{`
+  <div >
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 10%;">Parameter</th>
+          <th style="width: 75%; white-space: normal; word-break: break-word;">Type & Description</th>
+          <th style="width: 15%;">Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            key<br>
+            <code>mandatory</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> Merchant key provided by PayU during onboarding.
+          </td>
+          <td>JPG****.k</td>
+        </tr>
+        <tr>
+          <td>
+            txnid<br>
+           <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
 
-<HTMLBlock>{`
-<div >
-  <table>
-    <thead>
-      <tr>
-        <th style="width: 10%;">Parameter</th>
-        <th style="width: 75%; white-space: normal; word-break: break-word;">Type & Description</th>
-        <th style="width: 15%;">Example</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          key<br>
-          <code>mandatory</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> Merchant key provided by PayU during onboarding.
-        </td>
-        <td>JPG****.k</td>
-      </tr>
-      <tr>
-        <td>
-          txnid<br>
-         <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The transaction ID is a reference number for a specific order generated by the merchant.
+          </td>
+          <td>ypl938459435</td>
+        </tr>
+        <tr>
+          <td>
+            amount<br>
+            <code>mandatory</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The payment amount for the transaction.
+          </td>
+          <td>10.00</td>
+        </tr>
+        <tr>
+          <td>
+            productinfo<br>
+            <code>mandatory</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> A brief description of the product.
+          </td>
+          <td>iPhone</td>
+        </tr>
+        <tr>
+          <td>
+            firstname<br>
+            <code>mandatory</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The first name of the customer.
+          </td>
+          <td>Ashish</td>
+        </tr>
+        <tr>
+          <td>
+            email<br>
+            <code>mandatory</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The email address of the customer.
+          </td>
+          <td>
+              <a href="mailto:abc@payu.in">abc@payu.in</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            phone<br>
+            <code>mandatory</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The phone number of the customer.
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            lastname<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The last name of the customer.
+          </td>
+          <td>Kumar</td>
+        </tr>
+        <tr>
+          <td>
+            surl<br>
+            <code>mandatory</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.
+          </td>
+          <td>
+              <a href="https://test-payment-middleware.payu.in/simulatorResponse" target="_blank">https://test-payment-middleware.payu.in/simulatorResponse</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            furl<br>
+            <code>mandatory</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The failure URL, which is the page PayU will redirect to if the transaction fails.
+          </td>
+          <td>
+              <a href="https://test-payment-middleware.payu.in/simulatorResponse" target="_blank">https://test-payment-middleware.payu.in/simulatorResponse</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            hash<br>
+            <code>mandatory</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br>
+            <code>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code><br>
+            Reference: For detailed information on hashing, refer to
+            <a href="generate-hash-payu-hosted" target="_blank">Generate Hash</a>.
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            address1<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The first line of the billing address.<br>
+            Fraud Detection: This information is helpful for fraud detection and chargebacks. Please provide the correct information.
+          </td>
+          <td>H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai</td>
+        </tr>
+        <tr>
+          <td>
+            address2<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The second line of the billing address.
+          </td>
+          <td>34 Saikripa-Estate, Tilak Nagar</td>
+        </tr>
+        <tr>
+          <td>
+            city<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The city where your customer resides as part of the billing address.
+          </td>
+          <td>Mumbai</td>
+        </tr>
+        <tr>
+          <td>
+            state<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The state where your customer resides as part of the billing address.
+          </td>
+          <td>Maharashtra</td>
+        </tr>
+        <tr>
+          <td>
+            country<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> The country where your customer resides.
+          </td>
+          <td>India</td>
+        </tr>
+        <tr>
+          <td>
+            zipcode<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br>
+            Character Limit: 20
+          </td>
+          <td>400004</td>
+        </tr>
+        <tr>
+          <td>
+            enforced_payment<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> This parameter is to customize the payment options for each transaction. You can enforce specific payment modes, card schemes, and specific banks under Net Banking using this method.
+          </td>
+          <td>creditcard|debitcard</td>
+        </tr>
+        <tr>
+          <td>
+            drop_category<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> This parameter is used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
+          </td>
+          <td>CC</td>
+        </tr>
+        <tr>
+          <td>
+            udf1<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
+          </td>
+          <td>AELPR****E</td>
+        </tr>
+        <tr>
+          <td>
+            udf2<br>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            udf3<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
+          </td>
+          <td>02-02-1980</td>
+        </tr>
+        <tr>
+          <td>
+            udf4<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
+          </td>
+          <td>XYZ Pvt. Ltd.</td>
+        </tr>
+        <tr>
+          <td>
+            udf5<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
+          </td>
+          <td>098450845</td>
+        </tr>
+        <tr>
+          <td>
+            custom_note<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> This parameter allows you to display a message on the PayU Payment page. This can be useful if you want to provide additional information to your customers, such as an extra charge for a particular product. The message specified in the custom_note parameter will be displayed below the payment options.
+          </td>
+          <td>You will be charged an extra amount of Rs 100 on this transaction</td>
+        </tr>
+        <tr>
+          <td>
+            note_category<br>
+            <code>optional</code>
+          </td>
+          <td style="white-space: normal; word-break: break-word;">
+            <code>String</code> This parameter allows you to specify which payment options the custom_note message will be displayed for. This parameter should contain a comma-separated list of the payment options that you want the custom_note displayed for. Example: "CC, NB" will show the custom_note for Credit Card & Net banking only.
+          </td>
+          <td>CC, NB</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  `}</HTMLBlock>
 
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The transaction ID is a reference number for a specific order generated by the merchant.
-        </td>
-        <td>ypl938459435</td>
-      </tr>
-      <tr>
-        <td>
-          amount<br>
-          <code>mandatory</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The payment amount for the transaction.
-        </td>
-        <td>10.00</td>
-      </tr>
-      <tr>
-        <td>
-          productinfo<br>
-          <code>mandatory</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> A brief description of the product.
-        </td>
-        <td>iPhone</td>
-      </tr>
-      <tr>
-        <td>
-          firstname<br>
-          <code>mandatory</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The first name of the customer.
-        </td>
-        <td>Ashish</td>
-      </tr>
-      <tr>
-        <td>
-          email<br>
-          <code>mandatory</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The email address of the customer.
-        </td>
-        <td>
-            <a href="mailto:abc@payu.in">abc@payu.in</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          phone<br>
-          <code>mandatory</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The phone number of the customer.
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>
-          lastname<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The last name of the customer.
-        </td>
-        <td>Kumar</td>
-      </tr>
-      <tr>
-        <td>
-          surl<br>
-          <code>mandatory</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.
-        </td>
-        <td>
-            <a href="https://test-payment-middleware.payu.in/simulatorResponse" target="_blank">https://test-payment-middleware.payu.in/simulatorResponse</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          furl<br>
-          <code>mandatory</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The failure URL, which is the page PayU will redirect to if the transaction fails.
-        </td>
-        <td>
-            <a href="https://test-payment-middleware.payu.in/simulatorResponse" target="_blank">https://test-payment-middleware.payu.in/simulatorResponse</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          hash<br>
-          <code>mandatory</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br>
-          <code>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code><br>
-          Reference: For detailed information on hashing, refer to
-          <a href="generate-hash-payu-hosted" target="_blank">Generate Hash</a>.
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>
-          address1<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The first line of the billing address.<br>
-          Fraud Detection: This information is helpful for fraud detection and chargebacks. Please provide the correct information.
-        </td>
-        <td>H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai</td>
-      </tr>
-      <tr>
-        <td>
-          address2<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The second line of the billing address.
-        </td>
-        <td>34 Saikripa-Estate, Tilak Nagar</td>
-      </tr>
-      <tr>
-        <td>
-          city<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The city where your customer resides as part of the billing address.
-        </td>
-        <td>Mumbai</td>
-      </tr>
-      <tr>
-        <td>
-          state<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The state where your customer resides as part of the billing address.
-        </td>
-        <td>Maharashtra</td>
-      </tr>
-      <tr>
-        <td>
-          country<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The country where your customer resides.
-        </td>
-        <td>India</td>
-      </tr>
-      <tr>
-        <td>
-          zipcode<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br>
-          Character Limit: 20
-        </td>
-        <td>400004</td>
-      </tr>
-      <tr>
-        <td>
-          enforced_payment<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> This parameter is to customize the payment options for each transaction. You can enforce specific payment modes, card schemes, and specific banks under Net Banking using this method.
-        </td>
-        <td>creditcard|debitcard</td>
-      </tr>
-      <tr>
-        <td>
-          drop_category<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> This parameter is used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
-        </td>
-        <td>CC</td>
-      </tr>
-      <tr>
-        <td>
-          udf1<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
-        </td>
-        <td>AELPR****E</td>
-      </tr>
-      <tr>
-        <td>
-          udf2<br>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>
-          udf3<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
-        </td>
-        <td>02-02-1980</td>
-      </tr>
-      <tr>
-        <td>
-          udf4<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
-        </td>
-        <td>XYZ Pvt. Ltd.</td>
-      </tr>
-      <tr>
-        <td>
-          udf5<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
-        </td>
-        <td>098450845</td>
-      </tr>
-      <tr>
-        <td>
-          custom_note<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> This parameter allows you to display a message on the PayU Payment page. This can be useful if you want to provide additional information to your customers, such as an extra charge for a particular product. The message specified in the custom_note parameter will be displayed below the payment options.
-        </td>
-        <td>You will be charged an extra amount of Rs 100 on this transaction</td>
-      </tr>
-      <tr>
-        <td>
-          note_category<br>
-          <code>optional</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> This parameter allows you to specify which payment options the custom_note message will be displayed for. This parameter should contain a comma-separated list of the payment options that you want the custom_note displayed for. Example: "CC, NB" will show the custom_note for Credit Card & Net banking only.
-        </td>
-        <td>CC, NB</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-`}</HTMLBlock>
-
-<Callout icon="📘" theme="info">
-  Swap the form action to the production endpoint: [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) when you go live.
-</Callout>
-
-### Step 1.2: Generate Hash
-
-Concatenate fields in this exact sequence, then SHA-512:
-
-```json
-key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|SALT
-```
-
-* Use empty strings for missing udf*.
-* Compute on your server and include the lowercase hex digest as hash.
-
-For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
-
-### Step 1.3: POST the html form (server renders)
-
-```html
-<!doctype html>
-<html>
-  <body onload="document.forms.payu.submit()">
-    <form name="payu" method="post" action="https://test.payu.in/_payment">
-      <input type="hidden" name="key" value="JP***g">
-      <input type="hidden" name="txnid" value="t6svtqtjRdl4ws">
-      <input type="hidden" name="amount" value="499.00">
-      <input type="hidden" name="productinfo" value="Pro Plan">
-      <input type="hidden" name="firstname" value="Aditi">
-      <input type="hidden" name="email" value="test@example.com">
-      <input type="hidden" name="phone" value="9999999999">
-      <input type="hidden" name="surl" value="https://yourapp.com/payu/success">
-      <input type="hidden" name="furl" value="https://yourapp.com/payu/failure">
-      <input type="hidden" name="hash" value="sha512(...hash sequence...)">
-      <input type="submit" value="Submit" />
-    </form>
-  </body>
-</html>
-
-```
-
-**Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.**
-
-<Callout icon="📘" theme="info">
-  **Important**
-
-  When you POST the form to [https://test.payu.in/\_payment](https://test.payu.in/_payment) or [https://secure.payu.in/\_payment](https://secure.payu.in/_payment), PayU returns HTML for the hosted checkout page (i.e., the payment UI). Render this response to user, it will render the PayU checkout.
-</Callout>
-
-### Step 1.4: Response handling & hash verification
-
-**Response Handling: **
-
-After the customer completes or abandons the payment, PayU POSTs back to your return URL with URL-encoded fields (form post). This payload includes the transaction status, txnid, mihpayid, and a hash you must verify (reverse hashing) before trusting the result.
-
-Sample surl/furl payload:
-
-```json Success Response
-mihpayid=403993715531077182
-mode=CC
-status=success
-unmappedstatus=captured
-key=JPM7Fg
-txnid=TXN12345
-amount=1000.00
-productinfo=Pro Plan
-firstname=Aditi
-email=aditi@example.com
-phone=9999999999
-udf1=
-...
-udf10=
-PG_TYPE=CC-PG
-bankcode=CC
-bank_ref_num=896193988312194700
-field1=...
-field9=Transaction is Successful
-hash=<response_hash>
-```
-````json Failure Response
-### Failure callback (`furl`) — example payload
-
-If the payment fails or the user cancels, PayU **POSTs** a `application/x-www-form-urlencoded` payload to your `furl`.  
-The structure is similar to `surl`, but `status` is **failure** and you’ll usually see `error` / `error_Message`.
-
-```text
-mihpayid=403993715531077182
-mode=CC
-status=failure
-unmappedstatus=failed
-key=JPM7Fg
-txnid=TXN12345
-amount=1000.00
-productinfo=Pro Plan
-firstname=Aditi
-email=aditi@example.com
-phone=9999999999
-udf1=
-...
-udf10=
-PG_TYPE=CC-PG
-bankcode=CC
-bank_ref_num=
-field1=
-field2=
-...
-field9=Transaction Failed
-error=E000
-error_Message=Bank was unable to authenticate
-hash=<response_hash>
-````
-
-#### Step 1.4.1: Response verification using reverse hashing
-
-Verify the response received above by recomputing SHA-512 using the reverse sequence:
-
-```json
-sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-```
-
-* Compare the computed digest to hash from the POST payload (**case-insensitive**).
-* Trust the result only if the hash matches. Then update your order state.
-
-### Step 1.5: Verify the payment
-
-Upon receiving the response, We recommend performing a reconciliation step by querying the verification APIs to validate all transaction details.
-
-#### Environment
-
-|                        |                                                                                                              |
-| :--------------------- | :----------------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
-| Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
-
-<Accordion title="Sample request" icon="fa-code">
-  ```curl
-  curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JP***g' \
-  --data-urlencode 'command=verify_payment' \
-  --data-urlencode 'var1=IhfgcZnXR4o4nB' \
-  --data-urlencode 'hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
-  ```
+  <Callout icon="📘" theme="info">
+    Swap the form action to the production endpoint: [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) when you go live.
+  </Callout>
 </Accordion>
 
-<Accordion title="Sample response" icon="fa-reply">
-  * If credit card payment is made, the response is similar to the following:
+<Accordion title="Step 1.2: Generate Hash" icon="fa-key">
+  Concatenate fields in this exact sequence, then SHA-512:
 
-  ```plaintext
-  {
-      "status": 1,
-      "msg": "1 out of 1 Transactions Fetched Successfully",
-      "transaction_details": {
-          "1733900931584": {
-              "mihpayid": "21820644083",
-              "request_id": null,
-              "bank_ref_num": null,
-              "amt": "1.00",
-              "transaction_amount": "1.00",
-              "txnid": "1733900931584",
-              "additional_charges": "0.00",
-              "productinfo": "Macbook Pro",
-              "firstname": "Abc",
-              "bankcode": "MAST",
-              "udf1": "udf1",
-              "udf2": "udf2",
-              "udf3": "udf3",
-              "udf4": "udf4",
-              "udf5": "udf5",
-              "field2": null,
-              "field9": "OTP/ATM page expired due to no user action",
-              "error_code": "E1602",
-              "addedon": "2024-12-11 12:43:03",
-              "payment_source": "payu",
-              "card_type": "MAST",
-              "error_Message": "Bank was unable to authenticate.",
-              "net_amount_debit": "0.00",
-              "disc": "0.00",
-              "mode": "DC",
-              "PG_TYPE": "DC-PG",
-              "card_no": "XXXXXXXXXXXX7596",
-              "status": "failure",
-              "unmappedstatus": "dropped",
-              "Merchant_UTR": null,
-              "Settled_At": null,
-              "cardhash": "095d184331be367bb92aa3eeecb57d0728de96cc598dd563d407982d75021149",
-              "name_on_card": null,
-              "card_token": "4e97156bc2d6320cdfe15",
-              "field4": null,
-              "threeDSVersion": "2.2.0",
-              "offerAvailed": null
-          }
-      }
-  }
+  ```json
+  key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|SALT
   ```
 
-  * Offer availed on cart level
+  * Use empty strings for missing udf*.
+  * Compute on your server and include the lowercase hex digest as hash.
 
-  ```
-  {
-      "status": 1,
-      "msg": "1 out of 1 Transactions Fetched Successfully",
-      "transaction_details": {
-          "1036-f0cf85f2": {
-              "mihpayid": "21564143078",
-              "request_id": "",
-              "bank_ref_num": "431998369241",
-              "amt": "2.00",
-              "transaction_amount": "2.00",
-              "txnid": "1036-f0cf85f2",
-              "additional_charges": "0.00",
-              "productinfo": "EXPRESS",
-              "firstname": "guest",
-              "bankcode": "TEZOMNI",
-              "udf1": "Magento2",
-              "udf2": "",
-              "udf3": "",
-              "udf4": "",
-              "udf5": "qs8rbc1ng2hmqtakk381en6j2p",
-              "field2": "114390824407",
-              "field9": "SUCCESS|Completed Using Callback",
-              "error_code": "E000",
-              "addedon": "2024-11-14 16:06:40",
-              "payment_source": "express",
-              "card_type": null,
-              "error_Message": "NO ERROR",
-              "net_amount_debit": 2.00,
-              "disc": "0.00",
-              "mode": "UPI",
-              "PG_TYPE": "UPI-PG",
-              "card_no": "",
-              "status": "success",
-              "unmappedstatus": "captured",
-              "Merchant_UTR": null,
-              "Settled_At": "0000-00-00 00:00:00",
-              "App_Name": "GooglePay",
-              "card_token": null,
-              "field4": null,
-              "offerAvailed": null,
-              "cart_details": {
-                  "id": "2446425",
-                  "payu_id": "21564143078",
-                  "total_items": "1",
-                  "total_cart_amount": "2.00",
-                  "offer_applied": null,
-                  "offer_availed": null,
-                  "offer_auto_apply": "0",
-                  "instant_discount": "0.00",
-                  "cashback_discount": "0.00",
-                  "total_discount": "0.00",
-                  "net_cart_amount": "2.00",
-                  "created_at": "2024-11-14 16:06:40",
-                  "updated_at": "2024-11-14 16:06:40",
-                  "sku_details": [
-                      {
-                          "id": "3468748",
-                          "cart_id": "2446425",
-                          "payu_id": "21564143078",
-                          "mid": "2",
-                          "sku_id": "Sample Sofa Design-Red",
-                          "sku_name": "Sample Sofa Designtest?=!name",
-                          "amount_per_sku": "2.00",
-                          "quantity": "1",
-                          "amount_before_discount": "2.00",
-                          "discount": "0.00",
-                          "amount_after_discount": "2.00",
-                          "offer_applied": null,
-                          "offer_availed": null,
-                          "offer_status": null,
-                          "offer_type": null,
-                          "offer_auto_apply": "0",
-                          "is_nce": "0",
-                          "failure_reason": null,
-                          "created_at": "2024-11-14 16:06:40",
-                          "updated_at": "2024-11-14 16:06:40",
-                          "offer_title": null,
-                          "offer_description": null,
-                          "instant_discount": null,
-                          "cashback_discount": null,
-                          "offers_raw_response": null,
-                          "raw_response": null
-                      }
-                  ]
-              }
-          }
-      }
-  }
-  ```
-
-  * Offer availed at Transaction level
-
-  ```
-  {
-      "status": 1,
-      "msg": "1 out of 1 Transactions Fetched Successfully",
-      "transaction_details": {
-          "1725950872187": {
-              "mihpayid": "20911942990",
-              "request_id": null,
-              "bank_ref_num": null,
-              "amt": "9900.00",
-              "transaction_amount": "10000.00",
-              "txnid": "1725950872187",
-              "additional_charges": "0.00",
-              "productinfo": "Macbook Pro",
-              "firstname": "Abc",
-              "bankcode": "MAST",
-              "udf1": "udf1",
-              "udf2": "udf2",
-              "udf3": "udf3",
-              "udf4": "udf4",
-              "udf5": "udf5",
-              "field2": null,
-              "field9": "You have reached credit card load limit. Please use other payment options to continue.",
-              "error_code": "E4936",
-              "addedon": "2024-09-10 12:18:20",
-              "payment_source": "payu",
-              "card_type": "MAST",
-              "error_Message": "Bank was unable to authenticate.",
-              "net_amount_debit": "0.00",
-              "disc": "100.00",
-              "mode": "DC",
-              "PG_TYPE": "DC-PG",
-              "card_no": "XXXXXXXXXXXX9528",
-              "status": "failure",
-              "unmappedstatus": "failed",
-              "Merchant_UTR": null,
-              "Settled_At": null,
-              "cardhash": "31056eb2112b68cdc90896f1953ca26605bb525249096172c178881bcd45ac93",
-              "name_on_card": null,
-              "card_token": null,
-              "field4": null,
-              "offerApplied": "LoadTest1@m3phN7YptAA6",
-              "offerAvailed": "LoadTest1@m3phN7YptAA6",
-              "transactionOffer": "{"offer_data":[{"offer_key":"LoadTest1@m3phN7YptAA6","discount":100,"offer_type":"INSTANT","isNoCost":false,"flag_to_fail":false,"status":"SUCCESS","failure_code":null,"failure_reason":"Offer Applied Successfully","offer_description":"Load Test 1","offer_title":"Load Test 1","record_type":"OFFER","parent_offer_key":null,"offer_category":null,"isDpEmi":false}],"discount_data":{"total_discount":100,"cashback_discount":0,"instant_discount":100,"total_nce_discount":0,"instant_nce_discount":0,"cashback_nce_discount":0,"gstSubventedViaOffer":false,"downPaymentAmount":0}}",
-              "offerType": "instant",
-              "offerLevel": "TRANSACTION_LEVEL"
-          }
-      }
-  }
-  ```
-
-  #### Failure Responses
-
-  * If txnID is not found, the response is similar to the following:
-
-  ```plaintext
-  {
-  "status":0,"msg":"0 out of 1 Transactions Fetched
-
-  Successfully","transaction_details":{"IhfgcZnXR4o4nB":{"mihpayid":"Not Found","status":"Not Found"}}
-  }
-  ```
+  For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
 </Accordion>
 
-<Accordion title="Response parameters" icon="fa-list">
-  <Table align={["left","left","left"]}>
-    <thead>
-      <tr>
-        <th style={{ textAlign: "left" }}>
-          **Parameter**
-        </th>
+<Accordion title="Step 1.3: POST the html form (server renders)" icon="fa-code">
+  ```html
+  <!doctype html>
+  <html>
+    <body onload="document.forms.payu.submit()">
+      <form name="payu" method="post" action="https://test.payu.in/_payment">
+        <input type="hidden" name="key" value="JP***g">
+        <input type="hidden" name="txnid" value="t6svtqtjRdl4ws">
+        <input type="hidden" name="amount" value="499.00">
+        <input type="hidden" name="productinfo" value="Pro Plan">
+        <input type="hidden" name="firstname" value="Aditi">
+        <input type="hidden" name="email" value="test@example.com">
+        <input type="hidden" name="phone" value="9999999999">
+        <input type="hidden" name="surl" value="https://yourapp.com/payu/success">
+        <input type="hidden" name="furl" value="https://yourapp.com/payu/failure">
+        <input type="hidden" name="hash" value="sha512(...hash sequence...)">
+        <input type="submit" value="Submit" />
+      </form>
+    </body>
+  </html>
+  ```
 
-        <th style={{ textAlign: "left" }}>
-          **Description**
-        </th>
+  **Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.**
 
-        <th style={{ textAlign: "left" }}>
-          **Example**
-        </th>
-      </tr>
-    </thead>
+  <Callout icon="📘" theme="info">
+    **Important**
 
-    <tbody>
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          status
-        </td>
+    When you POST the form to [https://test.payu.in/\_payment](https://test.payu.in/_payment) or [https://secure.payu.in/\_payment](https://secure.payu.in/_payment), PayU returns HTML for the hosted checkout page (i.e., the payment UI). Render this response to user, it will render the PayU checkout.
+  </Callout>
+</Accordion>
 
-        <td style={{ textAlign: "left" }}>
-          This parameter returns the status of web service call. The status can be any of the following:
+<Accordion title="Step 1.4: Response handling & hash verification" icon="fa-shield-check">
+  **Response Handling:**
 
-          * 0 - If web service call failed.
-          * 1 - If web service call succeeded
-        </td>
+  After the customer completes or abandons the payment, PayU POSTs back to your return URL with URL-encoded fields (form post). This payload includes the transaction status, txnid, mihpayid, and a hash you must verify (reverse hashing) before trusting the result.
 
-        <td style={{ textAlign: "left" }}>
-          0
-        </td>
-      </tr>
+  Sample surl/furl payload:
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          msg
-        </td>
+  ```json Success Response
+  mihpayid=403993715531077182
+  mode=CC
+  status=success
+  unmappedstatus=captured
+  key=JPM7Fg
+  txnid=TXN12345
+  amount=1000.00
+  productinfo=Pro Plan
+  firstname=Aditi
+  email=aditi@example.com
+  phone=9999999999
+  udf1=
+  ...
+  udf10=
+  PG_TYPE=CC-PG
+  bankcode=CC
+  bank_ref_num=896193988312194700
+  field1=...
+  field9=Transaction is Successful
+  hash=<response_hash>
+  ```
 
-        <td style={{ textAlign: "left" }}>
-          This parameter returns the reason string.
-        </td>
+  ```json Failure Response
+  mihpayid=403993715531077182
+  mode=CC
+  status=failure
+  unmappedstatus=failed
+  key=JPM7Fg
+  txnid=TXN12345
+  amount=1000.00
+  productinfo=Pro Plan
+  firstname=Aditi
+  email=aditi@example.com
+  phone=9999999999
+  udf1=
+  ...
+  udf10=
+  PG_TYPE=CC-PG
+  bankcode=CC
+  bank_ref_num=
+  field1=
+  field2=
+  ...
+  field9=Transaction Failed
+  error=E000
+  error_Message=Bank was unable to authenticate
+  hash=<response_hash>
+  ```
 
-        <td style={{ textAlign: "left" }}>
-          For example, any of the following messages are displayed:
+  **Step 1.4.1: Response verification using reverse hashing**
 
-          * Parameter missing
-          * Token is empty
-          * Amount is empty
-          * Transaction not exists
-        </td>
-      </tr>
+  Verify the response received above by recomputing SHA-512 using the reverse sequence:
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          transaction\_details
-        </td>
+  ```json
+  sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+  ```
 
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the response in a JSON format. For more information refer to [JSON fields description for transaction\_details parameter ](#json-field-description-for-transaction_details-parameter).
-        </td>
+  * Compare the computed digest to hash from the POST payload (**case-insensitive**).
+  * Trust the result only if the hash matches. Then update your order state.
+</Accordion>
 
-        <td style={{ textAlign: "left" }} />
-      </tr>
+<Accordion title="Step 1.5: Verify the payment" icon="fa-magnifying-glass">
+  Upon receiving the response, We recommend performing a reconciliation step by querying the verification APIs to validate all transaction details.
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          request\_id
-        </td>
+  **Environment**
 
-        <td style={{ textAlign: "left" }}>
-          PayU Request ID for a request in a Transaction. For example, a transaction can have a refund request.
-        </td>
+  |                        |                                                                                                              |
+  | :--------------------- | :----------------------------------------------------------------------------------------------------------- |
+  | Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
+  | Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
-        <td style={{ textAlign: "left" }}>
-          7800456
-        </td>
-      </tr>
+  <Accordion title="Sample request" icon="fa-code">
+    ```curl
+    curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'key=JP***g' \
+    --data-urlencode 'command=verify_payment' \
+    --data-urlencode 'var1=IhfgcZnXR4o4nB' \
+    --data-urlencode 'hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
+    ```
+  </Accordion>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          bank\_ref\_num
-        </td>
+  <Accordion title="Sample response" icon="fa-reply">
+    * If credit card payment is made, the response is similar to the following:
 
-        <td style={{ textAlign: "left" }}>
-          This parameter returns the bank reference number. If the bank provides after a successful action.
-        </td>
+    ```plaintext
+    {
+        "status": 1,
+        "msg": "1 out of 1 Transactions Fetched Successfully",
+        "transaction_details": {
+            "1733900931584": {
+                "mihpayid": "21820644083",
+                "request_id": null,
+                "bank_ref_num": null,
+                "amt": "1.00",
+                "transaction_amount": "1.00",
+                "txnid": "1733900931584",
+                "additional_charges": "0.00",
+                "productinfo": "Macbook Pro",
+                "firstname": "Abc",
+                "bankcode": "MAST",
+                "udf1": "udf1",
+                "udf2": "udf2",
+                "udf3": "udf3",
+                "udf4": "udf4",
+                "udf5": "udf5",
+                "field2": null,
+                "field9": "OTP/ATM page expired due to no user action",
+                "error_code": "E1602",
+                "addedon": "2024-12-11 12:43:03",
+                "payment_source": "payu",
+                "card_type": "MAST",
+                "error_Message": "Bank was unable to authenticate.",
+                "net_amount_debit": "0.00",
+                "disc": "0.00",
+                "mode": "DC",
+                "PG_TYPE": "DC-PG",
+                "card_no": "XXXXXXXXXXXX7596",
+                "status": "failure",
+                "unmappedstatus": "dropped",
+                "Merchant_UTR": null,
+                "Settled_At": null,
+                "cardhash": "095d184331be367bb92aa3eeecb57d0728de96cc598dd563d407982d75021149",
+                "name_on_card": null,
+                "card_token": "4e97156bc2d6320cdfe15",
+                "field4": null,
+                "threeDSVersion": "2.2.0",
+                "offerAvailed": null
+            }
+        }
+    }
+    ```
 
-        <td style={{ textAlign: "left" }}>
-          204519474956
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+    * Offer availed on cart level
 
-  To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
+    ```
+    {
+        "status": 1,
+        "msg": "1 out of 1 Transactions Fetched Successfully",
+        "transaction_details": {
+            "1036-f0cf85f2": {
+                "mihpayid": "21564143078",
+                "request_id": "",
+                "bank_ref_num": "431998369241",
+                "amt": "2.00",
+                "transaction_amount": "2.00",
+                "txnid": "1036-f0cf85f2",
+                "additional_charges": "0.00",
+                "productinfo": "EXPRESS",
+                "firstname": "guest",
+                "bankcode": "TEZOMNI",
+                "udf1": "Magento2",
+                "udf2": "",
+                "udf3": "",
+                "udf4": "",
+                "udf5": "qs8rbc1ng2hmqtakk381en6j2p",
+                "field2": "114390824407",
+                "field9": "SUCCESS|Completed Using Callback",
+                "error_code": "E000",
+                "addedon": "2024-11-14 16:06:40",
+                "payment_source": "express",
+                "card_type": null,
+                "error_Message": "NO ERROR",
+                "net_amount_debit": 2.00,
+                "disc": "0.00",
+                "mode": "UPI",
+                "PG_TYPE": "UPI-PG",
+                "card_no": "",
+                "status": "success",
+                "unmappedstatus": "captured",
+                "Merchant_UTR": null,
+                "Settled_At": "0000-00-00 00:00:00",
+                "App_Name": "GooglePay",
+                "card_token": null,
+                "field4": null,
+                "offerAvailed": null,
+                "cart_details": {
+                    "id": "2446425",
+                    "payu_id": "21564143078",
+                    "total_items": "1",
+                    "total_cart_amount": "2.00",
+                    "offer_applied": null,
+                    "offer_availed": null,
+                    "offer_auto_apply": "0",
+                    "instant_discount": "0.00",
+                    "cashback_discount": "0.00",
+                    "total_discount": "0.00",
+                    "net_cart_amount": "2.00",
+                    "created_at": "2024-11-14 16:06:40",
+                    "updated_at": "2024-11-14 16:06:40",
+                    "sku_details": [
+                        {
+                            "id": "3468748",
+                            "cart_id": "2446425",
+                            "payu_id": "21564143078",
+                            "mid": "2",
+                            "sku_id": "Sample Sofa Design-Red",
+                            "sku_name": "Sample Sofa Designtest?=!name",
+                            "amount_per_sku": "2.00",
+                            "quantity": "1",
+                            "amount_before_discount": "2.00",
+                            "discount": "0.00",
+                            "amount_after_discount": "2.00",
+                            "offer_applied": null,
+                            "offer_availed": null,
+                            "offer_status": null,
+                            "offer_type": null,
+                            "offer_auto_apply": "0",
+                            "is_nce": "0",
+                            "failure_reason": null,
+                            "created_at": "2024-11-14 16:06:40",
+                            "updated_at": "2024-11-14 16:06:40",
+                            "offer_title": null,
+                            "offer_description": null,
+                            "instant_discount": null,
+                            "cashback_discount": null,
+                            "offers_raw_response": null,
+                            "raw_response": null
+                        }
+                    ]
+                }
+            }
+        }
+    }
+    ```
+
+    * Offer availed at Transaction level
+
+    ```
+    {
+        "status": 1,
+        "msg": "1 out of 1 Transactions Fetched Successfully",
+        "transaction_details": {
+            "1725950872187": {
+                "mihpayid": "20911942990",
+                "request_id": null,
+                "bank_ref_num": null,
+                "amt": "9900.00",
+                "transaction_amount": "10000.00",
+                "txnid": "1725950872187",
+                "additional_charges": "0.00",
+                "productinfo": "Macbook Pro",
+                "firstname": "Abc",
+                "bankcode": "MAST",
+                "udf1": "udf1",
+                "udf2": "udf2",
+                "udf3": "udf3",
+                "udf4": "udf4",
+                "udf5": "udf5",
+                "field2": null,
+                "field9": "You have reached credit card load limit. Please use other payment options to continue.",
+                "error_code": "E4936",
+                "addedon": "2024-09-10 12:18:20",
+                "payment_source": "payu",
+                "card_type": "MAST",
+                "error_Message": "Bank was unable to authenticate.",
+                "net_amount_debit": "0.00",
+                "disc": "100.00",
+                "mode": "DC",
+                "PG_TYPE": "DC-PG",
+                "card_no": "XXXXXXXXXXXX9528",
+                "status": "failure",
+                "unmappedstatus": "failed",
+                "Merchant_UTR": null,
+                "Settled_At": null,
+                "cardhash": "31056eb2112b68cdc90896f1953ca26605bb525249096172c178881bcd45ac93",
+                "name_on_card": null,
+                "card_token": null,
+                "field4": null,
+                "offerApplied": "LoadTest1@m3phN7YptAA6",
+                "offerAvailed": "LoadTest1@m3phN7YptAA6",
+                "transactionOffer": "{\"offer_data\":[{\"offer_key\":\"LoadTest1@m3phN7YptAA6\",\"discount\":100,\"offer_type\":\"INSTANT\",\"isNoCost\":false,\"flag_to_fail\":false,\"status\":\"SUCCESS\",\"failure_code\":null,\"failure_reason\":\"Offer Applied Successfully\",\"offer_description\":\"Load Test 1\",\"offer_title\":\"Load Test 1\",\"record_type\":\"OFFER\",\"parent_offer_key\":null,\"offer_category\":null,\"isDpEmi\":false}],\"discount_data\":{\"total_discount\":100,\"cashback_discount\":0,\"instant_discount\":100,\"total_nce_discount\":0,\"instant_nce_discount\":0,\"cashback_nce_discount\":0,\"gstSubventedViaOffer\":false,\"downPaymentAmount\":0}}",
+                "offerType": "instant",
+                "offerLevel": "TRANSACTION_LEVEL"
+            }
+        }
+    }
+    ```
+
+    **Failure Responses**
+
+    * If txnID is not found, the response is similar to the following:
+
+    ```plaintext
+    {
+    "status":0,"msg":"0 out of 1 Transactions Fetched
+
+    Successfully","transaction_details":{"IhfgcZnXR4o4nB":{"mihpayid":"Not Found","status":"Not Found"}}
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Response parameters" icon="fa-list">
+    <Table align={["left","left","left"]}>
+      <thead>
+        <tr>
+          <th style={{ textAlign: "left" }}>
+            **Parameter**
+          </th>
+
+          <th style={{ textAlign: "left" }}>
+            **Description**
+          </th>
+
+          <th style={{ textAlign: "left" }}>
+            **Example**
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            status
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            This parameter returns the status of web service call. The status can be any of the following:
+
+            * 0 - If web service call failed.
+            * 1 - If web service call succeeded
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            0
+          </td>
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            msg
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            This parameter returns the reason string.
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            For example, any of the following messages are displayed:
+
+            * Parameter missing
+            * Token is empty
+            * Amount is empty
+            * Transaction not exists
+          </td>
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            transaction\_details
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            This parameter contains the response in a JSON format. For more information refer to [JSON fields description for transaction\_details parameter ](#json-field-description-for-transaction_details-parameter).
+          </td>
+
+          <td style={{ textAlign: "left" }} />
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            request\_id
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            PayU Request ID for a request in a Transaction. For example, a transaction can have a refund request.
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            7800456
+          </td>
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            bank\_ref\_num
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            This parameter returns the bank reference number. If the bank provides after a successful action.
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            204519474956
+          </td>
+        </tr>
+      </tbody>
+    </Table>
+
+    To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
+  </Accordion>
 </Accordion>
 
 <br />
@@ -807,108 +801,108 @@ Upon receiving the response, We recommend performing a reconciliation step by qu
 
 Before going live, it's crucial to test your integration thoroughly in the PayU test environment. Follow these steps to ensure your setup is correct and to simulate different transaction scenarios.
 
-### Step 2.1: Pre-Payment Validation
+<Accordion title="Step 2.1: Pre-Payment Validation" icon="fa-check-circle">
+  Before initiating a transaction, ensure your server-side implementation is correct.
 
-Before initiating a transaction, ensure your server-side implementation is correct.
+  1. **Verify API Credentials:** Double-check that you are using the correct key and salt for the test environment.
+  2. **Validate Hash Calculation:** The most common point of failure is an incorrect hash.
+     1. Temporarily print the string that you are passing into the hash function on your server.
+     2. Ensure the order of the parameters (key|txnid|amount|productinfo|firstname|email...|salt) exactly matches the format specified in the documentation.
+     3. Verify that there are no empty or null values for mandatory parameters in the hash string.
+     4. If you encounter a "Checksum failed" error upon redirection, this is the first thing to debug.
+</Accordion>
 
-1. **Verify API Credentials:** Double-check that you are using the correct key and salt for the test environment.
-2. **Validate Hash Calculation:** The most common point of failure is an incorrect hash.
-   1. Temporarily print the string that you are passing into the hash function on your server.
-   2. Ensure the order of the parameters (key|txnid|amount|productinfo|firstname|email...|salt) exactly matches the format specified in the documentation.
-   3. Verify that there are no empty or null values for mandatory parameters in the hash string.
-   4. If you encounter a "Checksum failed" error upon redirection, this is the first thing to debug.
+<Accordion title="Step 2.2: Simulate a Successful Transaction (The Happy Path)" icon="fa-thumbs-up">
+  This test ensures that a successful payment is correctly processed and recorded.
 
-### Step 2.2: Simulate a Successful Transaction (The Happy Path)
+  1. **Initiate Payment:** On your website or app, add items to the cart and proceed to payment. This should trigger your code to send the transaction details to PayU and redirect the user to the PayU payment page.
+  2. **Error Check:** If you are not redirected and see an error message on your own site, check your server-side logs. If you are redirected to a PayU error page, refer to the Error Handling section to diagnose the issue.
+  3. **Verify Payment Page:** Once on the PayU page, confirm the following:
+     1. The transaction amount and product details are displayed correctly.
+     2. All the payment methods (Credit/Debit Card, UPI, Net Banking, etc.) that should be active on your account are visible. If a payment method is missing, please contact your Key Account Manager (KAM) or PayU Support.
+  4. **Test a Card Transaction**:
+     1. Select Credit Card as the payment method.
+     2. Use the following test card details:
+        1. Card Number: 5123456789012346
+        2. Expiry Date: Any valid future date (e.g., 12/2030)
+        3. CVV: 123
+        4. Name on Card: Test Name
+     3. Click Pay Now. You will be redirected to a dummy bank page to simulate 3D Secure authentication.
+     4. Enter the test OTP 123456 and click Submit.
+  5. **Test a UPI Transaction:**
+     1. Select UPI as the payment method.
+     2. Enter a test UPI ID: testsuccess@gpay
+     3. Click Verify and then Pay Now. This will simulate a successful UPI transaction.
 
-This test ensures that a successful payment is correctly processed and recorded.
+  For more test credentials, refer to the [Test Cards, UPI ID and Wallets guide](https://docs.payu.in/docs/test-cards-upi-id-and-wallets).
+</Accordion>
 
-1. **Initiate Payment:** On your website or app, add items to the cart and proceed to payment. This should trigger your code to send the transaction details to PayU and redirect the user to the PayU payment page.
-2. **Error Check:** If you are not redirected and see an error message on your own site, check your server-side logs. If you are redirected to a PayU error page, refer to the Error Handling section to diagnose the issue.
-3. **Verify Payment Page:** Once on the PayU page, confirm the following:
-   1. The transaction amount and product details are displayed correctly.
-   2. All the payment methods (Credit/Debit Card, UPI, Net Banking, etc.) that should be active on your account are visible. If a payment method is missing, please contact your Key Account Manager (KAM) or PayU Support.
-4. **Test a Card Transaction**:
-   1. Select Credit Card as the payment method.
-   2. Use the following test card details:
-      1. Card Number: 5123456789012346
-      2. Expiry Date: Any valid future date (e.g., 12/2030)
-      3. CVV: 123
-      4. Name on Card: Test Name
-   3. Click Pay Now. You will be redirected to a dummy bank page to simulate 3D Secure authentication.
-   4. Enter the test OTP 123456 and click Submit.
-5. **Test a UPI Transaction:**
-   1. Select UPI as the payment method.
-   2. Enter a test UPI ID: testsuccess@gpay
-   3. Click Verify and then Pay Now. This will simulate a successful UPI transaction.
+<Accordion title="Step 2.3: Simulate a Failed Transaction" icon="fa-times-circle">
+  It's equally important to test how your system handles failed payments.
 
-For more test credentials, refer to the [Test Cards, UPI ID and Wallets guide](https://docs.payu.in/docs/test-cards-upi-id-and-wallets).
+  1. Initiate a New Payment as you did in Step 2.
+  2. Test a Failing Card Transaction:
+     1. Select Credit Card as the payment method.
+     2. Use a test card designed to fail, for example:
+        1. Card Number: 5123456789012340 (Payment failed by user)
+     3. Complete the payment flow. The transaction should fail.
+</Accordion>
 
-### Step 2.3: Simulate a Failed Transaction
+<Accordion title="Step 2.4: Post-Transaction Verification" icon="fa-magnifying-glass">
+  After both the successful and failed transactions, you must verify the final status at multiple points.
 
-It's equally important to test how your system handles failed payments.
-
-1. Initiate a New Payment as you did in Step 2.
-2. Test a Failing Card Transaction:
-   1. Select Credit Card as the payment method.
-   2. Use a test card designed to fail, for example:
-      1. Card Number: 5123456789012340 (Payment failed by user)
-   3. Complete the payment flow. The transaction should fail.
-
-### Step 2.4: Post-Transaction Verification
-
-After both the successful and failed transactions, you must verify the final status at multiple points.
-
-1. **Check the Return URL (surl / furl):**
-   1. After a successful payment, PayU will redirect the user to the Success URL (surl) you provided. Verify that your application handles this redirect correctly and displays an appropriate success message to the user.
-   2. After a failed payment, PayU will redirect the user to the Failure URL (furl). Verify that your application displays a clear failure message and provides the user with options to retry.
-2. **Verify the Server-to-Server (S2S) Webhook:**
-   1. This is the most reliable way to confirm transaction status.
-   2. Check your server logs to ensure that you have received the S2S POST request from PayU for the transaction.
-   3. Validate the hash in the webhook response to ensure the data is authentic.
-   4. Update the transaction status in your database based on the status received in the S2S webhook, not based on the browser redirect (surl/furl).
-3. **Cross-Verify in the PayU Dashboard:**
-   1. Log in to your PayU test dashboard.
-   2. Navigate to the "Transactions" section.
-   3. Verify that both the successful and failed transactions are logged correctly with the corresponding status (success, failure). Check that details like txnid and amount match your records.
+  1. **Check the Return URL (surl / furl):**
+     1. After a successful payment, PayU will redirect the user to the Success URL (surl) you provided. Verify that your application handles this redirect correctly and displays an appropriate success message to the user.
+     2. After a failed payment, PayU will redirect the user to the Failure URL (furl). Verify that your application displays a clear failure message and provides the user with options to retry.
+  2. **Verify the Server-to-Server (S2S) Webhook:**
+     1. This is the most reliable way to confirm transaction status.
+     2. Check your server logs to ensure that you have received the S2S POST request from PayU for the transaction.
+     3. Validate the hash in the webhook response to ensure the data is authentic.
+     4. Update the transaction status in your database based on the status received in the S2S webhook, not based on the browser redirect (surl/furl).
+  3. **Cross-Verify in the PayU Dashboard:**
+     1. Log in to your PayU test dashboard.
+     2. Navigate to the "Transactions" section.
+     3. Verify that both the successful and failed transactions are logged correctly with the corresponding status (success, failure). Check that details like txnid and amount match your records.
+</Accordion>
 
 ## Step 3: Going Live: Your Final Checklist
 
 You've successfully tested your integration. Now, follow these critical steps to switch to the live environment and start accepting real payments from your customers.
 
-### **Step 3.1. Update to Production Credentials**
+<Accordion title="Step 3.1. Update to Production Credentials" icon="fa-key">
+  First, you must switch your integration from using test credentials to production credentials.
 
-First, you must switch your integration from using test credentials to production credentials.
+  1. **Generate Live Keys:**
+     * Log in to your **PayU Dashboard**.
+     * Use the toggle at the top to switch from **Test Mode** to **Live Mode**.
+     * Navigate to **Developer Tools** → **API Keys** from the sidebar.
+     * Copy the **Live Merchant Key** and **Live Salt**.
+  2. **Update Your Code:**
+     * In your integration code, replace the test `key` and `salt` with your new live credentials.
+  3. **Update the Endpoint URL:**
+     * Ensure all API requests are now being sent to the production endpoint:
+       `https://secure.payu.in/_payment`
+</Accordion>
 
-1. **Generate Live Keys:**
-   * Log in to your **PayU Dashboard**.
-   * Use the toggle at the top to switch from **Test Mode** to **Live Mode**.
-   * Navigate to **Developer Tools** → **API Keys** from the sidebar.
-   * Copy the **Live Merchant Key** and **Live Salt**.
-2. **Update Your Code:**
-   * In your integration code, replace the test `key` and `salt` with your new live credentials.
-3. **Update the Endpoint URL:**
-   * Ensure all API requests are now being sent to the production endpoint:
-     `https://secure.payu.in/_payment`
+<Accordion title="Step 3.2. Final Integration Verification" icon="fa-clipboard-check">
+  Before you announce that you're live, run through this checklist to ensure everything is configured correctly.
 
-### **Step 3.2. Final Integration Verification**
+  * **✅ Conduct a Live Transaction:** Make a small, real transaction with a genuine credit card or UPI ID. This is the best way to confirm that your production credentials are correct and that the end-to-end flow is working.
 
-Before you announce that you're live, run through this checklist to ensure everything is configured correctly.
+  * **✅ Verify the Server-to-Server (S2S) Webhook:** This is the most crucial step for confirming transaction status reliably.
+    * After your live test transaction, check your server logs to confirm that you received the webhook from PayU.
+    * Ensure your system correctly processes this webhook and updates the order status in your database.
+    * **Important:** Your system should rely on this S2S webhook as the primary source of truth for a transaction's final status, not the browser redirect. For more details, refer to **Webhooks**.
 
-* **✅ Conduct a Live Transaction:** Make a small, real transaction with a genuine credit card or UPI ID. This is the best way to confirm that your production credentials are correct and that the end-to-end flow is working.
+  * **✅ Validate the Response Hash:**
+    * Confirm that your code correctly validates the hash for the response sent to your return URL (`surl`/`furl`) and for the S2S webhook. This security measure prevents tampering and confirms the response is genuinely from PayU. For more information, refer to **Hashing Request and Response**.
 
-* **✅ Verify the Server-to-Server (S2S) Webhook:** This is the most crucial step for confirming transaction status reliably.
-  * After your live test transaction, check your server logs to confirm that you received the webhook from PayU.
-  * Ensure your system correctly processes this webhook and updates the order status in your database.
-  * **Important:** Your system should rely on this S2S webhook as the primary source of truth for a transaction's final status, not the browser redirect. For more details, refer to **Webhooks**.
+  * **✅ Check Success and Failure Pages (`surl` / `furl`):**
+    * Ensure that after a successful payment, your customer is redirected to your success page and sees a clear confirmation message.
+    * Simulate a failed live payment (if possible, with a card that has insufficient funds) to ensure the customer is redirected to your failure page and given instructions to retry.
 
-* **✅ Validate the Response Hash:**
-  * Confirm that your code correctly validates the hash for the response sent to your return URL (`surl`/`furl`) and for the S2S webhook. This security measure prevents tampering and confirms the response is genuinely from PayU. For more information, refer to **Hashing Request and Response**.
-
-* **✅ Check Success and Failure Pages (`surl` / `furl`):**
-  * Ensure that after a successful payment, your customer is redirected to your success page and sees a clear confirmation message.
-  * Simulate a failed live payment (if possible, with a card that has insufficient funds) to ensure the customer is redirected to your failure page and given instructions to retry.
-
-* **✅ Implement a Reconciliation Plan:**
-  * In case of any discrepancy (e.g., a webhook is missed), use the **Verify Payment API** to programmatically fetch the status of a transaction from PayU and reconcile your records.
+  * **✅ Implement a Reconciliation Plan:**
+    * In case of any discrepancy (e.g., a webhook is missed), use the **Verify Payment API** to programmatically fetch the status of a transaction from PayU and reconcile your records.
+</Accordion>
 
 <br />
