@@ -56,7 +56,7 @@ To integrate with OlaMoney:
 
 3. Set mandatory payment parameters required for the payment.
 
-```Text Swift
+```swift Swift
 do {
 paymentParams = try PayUOMPaymentParams(
 merchantKey: <Your merchant Key>, //Your merchant key for the environment set in step 1
@@ -129,13 +129,13 @@ self.elegebilityLabel.text = response?.msg
 7. Populate the relevant options on your checkout screen.
 8. Check the eligibility and fetch the post parameters with the method. Later, you can use the CustomBrowser or `WKWebView` to load the URL and PostData.
 
-```Text Node
+```node Node
 public func getPostData(params: PayUOMPaymentParams) -> String
 ```
 
 9. Use the Custom Browser to load data using the following code (Optional):
 
-```Text Node
+```node Node
 let customBrowser = try? PUCBWebVC(postParam: postData, url: PayUOMSecureEndPoint.securePayment().baseURL, merchantKey: "smsplus")
 customBrowser?.cbWebVCDelegate = self
 let navVC = UINavigationController(rootViewController: customBrowser!)
