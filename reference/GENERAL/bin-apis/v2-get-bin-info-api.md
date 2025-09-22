@@ -141,8 +141,8 @@ For multiple cards, the card details in the **bins_data** field are in a JSON ar
       </td>
 
       <td>
-        Response value can contain any of the following: 
-        • **1** signifies that the particular BIN is Domestic. 
+        Response value can contain any of the following:
+        • **1** signifies that the particular BIN is Domestic.
         • **0** signifies that the particular BIN is International.
       </td>
     </tr>
@@ -153,10 +153,10 @@ For multiple cards, the card details in the **bins_data** field are in a JSON ar
       </td>
 
       <td>
-        The response contains any of the following values to show if it is corporate or prepaid card: 
-        • **CE** - Corporate card 
-        • **PE** - Prepaid card 
-        **Note**: To receive the response for this parameter or enable this parameter, you need to contact your PayU Key Account Manager (KAM) or 
+        The response contains any of the following values to show if it is corporate or prepaid card:
+        • **CE** - Corporate card
+        • **PE** - Prepaid card
+        **Note**: To receive the response for this parameter or enable this parameter, you need to contact your PayU Key Account Manager (KAM) or
 
         [PayU Support](https://help.payu.in)
 
@@ -170,8 +170,8 @@ For multiple cards, the card details in the **bins_data** field are in a JSON ar
       </td>
 
       <td>
-        Response value can contain any of the following: 
-        • **0** signifies that the card is not an ATM card. 
+        Response value can contain any of the following:
+        • **0** signifies that the card is not an ATM card.
         • **1** signifies that the card is an ATM card.
       </td>
     </tr>
@@ -182,8 +182,8 @@ For multiple cards, the card details in the **bins_data** field are in a JSON ar
       </td>
 
       <td>
-        Response value can contain any of the following: 
-        • **0** signifies that the card does not have OTP on the fly facility. 
+        Response value can contain any of the following:
+        • **0** signifies that the card does not have OTP on the fly facility.
         • **1** signifies that the card have OTP on the fly facility.
       </td>
     </tr>
@@ -194,14 +194,14 @@ For multiple cards, the card details in the **bins_data** field are in a JSON ar
       </td>
 
       <td>
-        Response value will contain the 3DS version supported by the CardBin/CardNumber. For example, it can be any of the following: • 1.0.2 • 2.1.0 • 2.2.0 
+        Response value will contain the 3DS version supported by the CardBin/CardNumber. For example, it can be any of the following: • 1.0.2 • 2.1.0 • 2.2.0
         **Note**: This response parameter value is shown only if **var7** parameter value is posted in the request.
       </td>
     </tr>
   </tbody>
 </Table>
 
-To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
+To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/v2/reference/error-codes).
 
 ## Sample response
 
