@@ -34,10 +34,10 @@ The iOS CheckoutPro SDK provides the following advanced integration options:
 
 We introduce a new offer. Now, the only thing you need to give as a distinct string key for the user is a user token.
 
-```Text Swift
+```swift Swift
 paymentParam.userToken = "<userToken>"
 ```
-```Text Objective-C
+```objectivec Objective-C
 paymentParam.userToken = @"<userToken>";
 ```
 
@@ -45,11 +45,11 @@ paymentParam.userToken = @"<userToken>";
 
 You can change the primary and the secondary color of the GUI to match your app’s theme:
 
-```Text Swift
+```swift Swift
 let config = PayUCheckoutProConfig()
 config.customiseUI(primaryColor: <#UIColor#>, secondaryColor: <#UIColor#>)
 ```
-```Text Objective-C
+```objectivec Objective-C
 PayUCheckoutProConfig *config = [PayUCheckoutProConfig new];
 [config customiseUIWithPrimaryColor:[UIColor blueColor] secondaryColor:[UIColor whiteColor]];
 ```
@@ -58,7 +58,7 @@ PayUCheckoutProConfig *config = [PayUCheckoutProConfig new];
 
 You can customize the name and logo to personalize the checkout screen:
 
-```Text Swift
+```swift Swift
 let config = PayUCheckoutProConfig()
 config.merchantName = <#T##String?#>
 config.merchantLogo = <#T##UIImage?#>
@@ -68,11 +68,11 @@ config.merchantLogo = <#T##UIImage?#>
 
 You can choose to hide the dialog box displayed when the back button is clicked from the L1 screen. The default value is true.
 
-```Text Swift
+```swift Swift
 let config = PayUCheckoutProConfig()
 config.showExitConfirmationOnCheckoutScreen = <#Bool#>
 ```
-```Text Objective-C
+```objectivec Objective-C
 PayUCheckoutProConfig *config = [PayUCheckoutProConfig new];
 config.showExitConfirmationOnCheckoutScreen = <#(BOOL)#>;
 ```
@@ -81,11 +81,11 @@ config.showExitConfirmationOnCheckoutScreen = <#(BOOL)#>;
 
 You can choose to hide the dialog box displayed when the back button is clicked after payment is initialized. The default value is true.
 
-```Text Swift
+```swift Swift
 let config = PayUCheckoutProConfig()
 config.showExitConfirmationOnCheckoutScreen = <#Bool#>
 ```
-```Text Objective-c
+```objectivec Objective-C
 PayUCheckoutProConfig *config = [PayUCheckoutProConfig new];
 config.showExitConfirmationOnCheckoutScreen = <#(BOOL)#>;
 ```
@@ -94,11 +94,11 @@ config.showExitConfirmationOnCheckoutScreen = <#(BOOL)#>;
 
 You can choose to auto-select OTP flow on the bank page with the following flag. The default value is false.
 
-```Text Swift
+```swift Swift
 let config = PayUCheckoutProConfig()
 config.autoSelectOtp = <#Bool#>
 ```
-```Text Objective-C
+```objectivec Objective-C
 PayUCheckoutProConfig *config = [PayUCheckoutProConfig new];
 config.autoSelectOtp = <#BOOL#>;
 ```
@@ -107,11 +107,11 @@ config.autoSelectOtp = <#BOOL#>;
 
 You can choose to auto Submit OTP flow on the bank page with the following flag. The default value is false.
 
-```Text Swift
+```swift Swift
 let config = PayUCheckoutProConfig()
 config.autoSubmitOtp = <#Bool#>
 ```
-```Text Objective-C
+```objectivec Objective-C
 PayUCheckoutProConfig *config = [PayUCheckoutProConfig new];
 config.autoSubmitOtp = <#BOOL#>;
 ```
@@ -120,11 +120,11 @@ config.autoSubmitOtp = <#BOOL#>;
 
 This is the time PayU will wait for the merchant surl/furl to load before passing the transaction response back to the app. If the merchant surl/furl page takes longer to load, PayU has a response timeout of 5 seconds by default. However, if you feel that your surl/furl can take more than 5 seconds, you can configure this property:
 
-```Text Swift
+```swift Swift
 let config = PayUCheckoutProConfig()
 config.merchantResponseTimeout = <#TimeInterval?#>
 ```
-```Text Objective-C
+```objectivec Objective-C
 PayUCheckoutProConfig *config = [PayUCheckoutProConfig new];
 config.merchantResponseTimeout = <#(NSTimeInterval * _Nullable)#>;
 ```
@@ -133,11 +133,11 @@ config.merchantResponseTimeout = <#(NSTimeInterval * _Nullable)#>;
 
 You can pass the checkout order details to the SDK that will be displayed in the SDK during the transaction flow:
 
-```Text Swift
+```swift Swift
 let config = PayUCheckoutProConfig()
 config.cartDetails = [["Milk": "1L"],["Butter": "1Kg"]]
 ```
-```Text Objective-C
+```objectivec Objective-C
 PayUCheckoutProConfig *config = [PayUCheckoutProConfig new];
 config.cartDetails = @[@{@"Milk": @"1L"},@{@"Butter": @"1Kg"}];
 ```
@@ -146,7 +146,7 @@ config.cartDetails = @[@{@"Milk": @"1L"},@{@"Butter": @"1Kg"}];
 
 Consider the following example to display Google Pay, PhonePe, and PayTM on the primary checkout screen:
 
-```Text Swift
+```swift Swift
 var preferredPaymentModes: [PaymentMode] = []
 preferredPaymentModes.append(PaymentMode(paymentType: .upi, paymentOptionID: BankCodes.gPayUPI))
 preferredPaymentModes.append(PaymentMode(paymentType: .wallet, paymentOptionID: BankCodes.phonePeWallet))
@@ -155,7 +155,7 @@ preferredPaymentModes.append(PaymentMode(paymentType: .wallet, paymentOptionID: 
 let config = PayUCheckoutProConfig()
 config.paymentModesOrder = preferredPaymentModes
 ```
-```Text Objective-C
+```objectivec Objective-C
 NSMutableArray<PaymentMode *> *preferredPaymentModes = [NSMutableArray new];
 [preferredPaymentModes addObject: [[PaymentMode alloc] initWithPaymentType:PaymentTypeUpi paymentOptionID:BankCodes.gPayUPI]];
 [preferredPaymentModes addObject: [[PaymentMode alloc] initWithPaymentType:PaymentTypeWallet paymentOptionID:BankCodes.phonePeWallet]];
@@ -217,7 +217,7 @@ The resulting order on the initial checkout screen will be:
 
 ## Set Native OTP Assist
 
-It offers to capture OTP in the merchant app without any redirection to the bank’s 3Dsecure/ACS page. This means that there’s one less point of failure in the checkout process and a faster completion rate for transactions. To integrate this, please get enabled txn\_s2s\_flow on your merchant key from your Key Account Manager at PayU.
+It offers to capture OTP in the merchant app without any redirection to the bank’s 3Dsecure/ACS page. This means that there’s one less point of failure in the checkout process and a faster completion rate for transactions. To integrate this, please get enabled txn_s2s_flow on your merchant key from your Key Account Manager at PayU.
 
 For more information on Native OTP Assist experience, refer to [iOS Native OTP Assist SDK](doc:ios-native-otp-assist-sdk).
 
