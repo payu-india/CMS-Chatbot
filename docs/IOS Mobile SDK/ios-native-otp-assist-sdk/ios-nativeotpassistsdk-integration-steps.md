@@ -20,10 +20,10 @@ pod 'PayUIndia-NativeOtpAssist'`
 
 Install dependency using pod `installcommand `in `terminalNext`, add the following imports in the class where you need to initiate a payment:
 
-```Text Objective-C
+```objectivec Objective-C
 #import <PayUNativeOtpAssist/PayUNativeOtpAssist.h>
 ```
-```Text Swift
+```swift Swift
 import PayUNativeOtpAssist
 ```
 
@@ -147,9 +147,9 @@ PayUOtpAssist.open(
   )
 ```
 
-> 📘 Note:
->
-> Initiate payment must be on the Main thread.
+<Callout icon="📘" theme="info">
+  **Note**: Initiate payment must be on the Main thread.
+</Callout>
 
 ### Callbacks
 
@@ -211,9 +211,9 @@ You will get `PayUAcsRequest on shouldHandleFallback(`) callback. whether you wi
 
 After you get the response from SDK, make sure to confirm it with the PayU server.
 
-> 🚧 Remember
->
-> It is recommended to implement the PayU Webhook or backend verify call from your backend.
+<Callout icon="🚧" theme="warn">
+  **Remember**: It is recommended to implement the PayU Webhook or backend verify call from your backend. For more information, refer to [Webhooks](doc:webhooks-copy).
+</Callout>
 
 ### Implementation of PayU Verify API
 
@@ -223,7 +223,7 @@ Endpoint URL: [https://info.payu.in/merchant/postservice.php?form=2](https://inf
 
 **Sample Request**
 
-```Text Curl
+```curl Curl
 curl --location --request POST '{{Url}}' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'key={merchantKey}' \
