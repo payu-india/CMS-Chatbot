@@ -49,12 +49,12 @@ pod 'PayUIndia-CheckoutPro'
 * Install dependency using the pod install command in terminal
 * Add the following imports in the class where you need to initiate a payment.
 
-```Text Swift
+```swift Swift
 import PayUCheckoutProKit
 import PayUCheckoutProBaseKit
 import PayUParamsKit
 ```
-```Text Objective-C
+```objectivec Objective-C
 #import <PayUCheckoutProKit/PayUCheckoutProKit.h>
 #import <PayUCheckoutProBaseKit/PayUCheckoutProBaseKit.h>
 #import <PayUBizCoreKit/PayUBizCoreKit.h>
@@ -69,7 +69,7 @@ import PayUParamsKit
 
 You can integrate PayUIndia-Checkoutpro with your app or SDK using the following methods:
 
-* Using Xcode: Navigate to File > Add Package menu and add the following package:\
+* Using Xcode: Navigate to File > Add Package menu and add the following package:
   [https://github.com/payu-intrepos/PayUCheckoutPro-iOS](https://github.com/payu-intrepos/PayUCheckoutPro-iOS)
 * Using Package.Swift: Add the following line in the Package.swift dependencies: `.package(name: "PayUCheckoutProKit", url: "https://github.com/payu-intrepos/PayUCheckoutPro-iOS", from: "7.4.0")`
 
@@ -77,16 +77,16 @@ You can integrate PayUIndia-Checkoutpro with your app or SDK using the following
 
 In order to receive all the crashes related to our SDKs, add the following line to your AppDelegate’s `didFinishLaunchingWithOptions`:
 
-```Text Swift
+```swift Swift
 PayUCheckoutPro.start()
 ```
-```Text Objective-C
+```objectivec Objective-C
 [PayUCheckoutPro start];
 ```
 
-> 🚧 Remember
->
-> Please add NSCameraUsageDescription key in your application `Info.plist` file.
+<Callout icon="🚧" theme="warn">
+  **Remember**: Add NSCameraUsageDescription key in your application `Info.plist` file.
+</Callout>
 
 ## Step 2: Build the payment parameters (mandatory step)
 
@@ -94,7 +94,7 @@ To initiate a payment, your app must send the transaction information to the Che
 
 ### Step 2.1: Basic Integration
 
-```Text Swift
+```swift Swift
 let paymentParam = PayUPaymentParam(key: <String>,
                                     transactionId: <String>,
                                     amount: <String>,
@@ -108,7 +108,7 @@ let paymentParam = PayUPaymentParam(key: <String>,
                                     
 paymentParam.userCredential = <String> // For saving and fetching user’s saved card
 ```
-```Text Onjective-C
+```objectivec Onjective-C
 PayUPaymentParam *paymentParam = [[PayUPaymentParam alloc] initWithKey:<#(NSString * _Nonnull)#>
                                                          transactionId:<#(NSString * _Nonnull)#>
                                                                 amount:<#(NSString * _Nonnull)#>
@@ -263,8 +263,8 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
       <td>
         `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
 
-        * *Sample URL*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
-        * *Note*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+        * _Sample URL_*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+        * _Note_*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
       </td>
 
       <td>
@@ -274,15 +274,15 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 
     <tr>
       <td>
-        furl\
+        furl
         `mandatory`
       </td>
 
       <td>
         `String` When the transaction gets fail, PayU will load this url and pass transaction response.
 
-        * *Sample URL*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
-        * *Note*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+        * _Sample URL_*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+        * _Note_*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
       </td>
 
       <td>
@@ -292,7 +292,7 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 
     <tr>
       <td>
-        Environment\
+        Environment
         `mandatory`
       </td>
 
@@ -303,13 +303,13 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
       <td>
         Should be either
 
-        * *Swift*\*:`production or test `**ObjectiveC**: `EnvironmentProduction `or `EnvironmentTest`
+        * _Swift_*:`production or test `**ObjectiveC**: `EnvironmentProduction `or `EnvironmentTest`
       </td>
     </tr>
 
     <tr>
       <td>
-        User Credential\
+        User Credential
         `optional`
       </td>
 
@@ -318,7 +318,7 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
       </td>
 
       <td>
-        Should be a unique value\
+        Should be a unique value
         Format: \<merchantKey>:\<userId>
         Here, UserId is any id/email/phone number to uniquely identify the user
       </td>
@@ -326,7 +326,7 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 
     <tr>
       <td>
-        PayUSIParams\
+        PayUSIParams
         `optional`
       </td>
 
@@ -341,12 +341,12 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
 
     <tr>
       <td>
-        SplitPaymentDetails\
+        SplitPaymentDetails
         `optional`
       </td>
 
       <td>
-        `String`\
+        `String`
         This parameter is required for splitting the transactions.
       </td>
 
@@ -361,12 +361,12 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
       </td>
 
       <td>
-        String\
+        String
         This parameter is required if merchant want to take additional charge from user
       </td>
 
       <td>
-        should be string with PG:Amount or IBIBOCode:Amount\
+        should be string with PG:Amount or IBIBOCode:Amount
         Sample: CC:10,NB:20,SBIB:15
       </td>
     </tr>
@@ -377,12 +377,12 @@ paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use sav
       </td>
 
       <td>
-        String\
+        String
         This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable
       </td>
 
       <td>
-        should be string with PG:Amount or IBIBOCode:Amount\
+        should be string with PG:Amount or IBIBOCode:Amount
         Sample: CC:100,NB:50,SBIB:25
       </td>
     </tr>
@@ -393,7 +393,7 @@ The code block for passing the parameters is similar to the following:
 
 If you required any value in the response then pass the below value
 
-```Text Swift
+```swift Swift
 paymentParam.additionalParam[PaymentParamConstant.udf1] = <String>
 paymentParam.additionalParam[PaymentParamConstant.udf2] = <String>
 paymentParam.additionalParam[PaymentParamConstant.udf3] = <String>
@@ -401,7 +401,7 @@ paymentParam.additionalParam[PaymentParamConstant.udf4] = <String>
 paymentParam.additionalParam[PaymentParamConstant.udf5] = <String>
 paymentParam.additionalParam[PaymentParamConstant.walletURN] = <String>  // Required for Amul Wallet
 ```
-```Text Objective-C
+```objectivec Objective-C
 paymentParam.additionalParam = [[NSDictionary alloc] initWithObjectsAndKeys:
                                     <#(NSString)#>, PaymentParamConstant.udf1,
                                     <#(NSString)#>, PaymentParamConstant.udf2,
@@ -416,7 +416,7 @@ paymentParam.additionalParam = [[NSDictionary alloc] initWithObjectsAndKeys:
 
 If you are integrating SI, create an object of SIParam. After creating an object, pass the object similar to the following code:
 
-```Text Swift
+```swift Swift
  let siInfo = PayUSIParams(billingAmount: <String>,
                            paymentStartDate: <Date>,
                            paymentEndDate: <Date>,
@@ -428,7 +428,7 @@ If you are integrating SI, create an object of SIParam. After creating an object
             
             paymentParam.siParam = siInfo
 ```
-```Text Onjective-C
+```objectivec Onjective-C
 paymentParam.siParams = siParam;
 ```
 
@@ -438,7 +438,7 @@ For more information on the PayUSIParams parameters, refer to [PayU Standing Ins
 
 If you are integrating UPI OTM, create an object of SIParam. After creating an object, pass the object similar to the following code:
 
-```Text Swift
+```swift Swift
  let siInfo = PayUSIParams(billingAmount: <String>,
                            paymentStartDate: <Date>,
                            isPreAuthTxn:<Bool>)
@@ -446,7 +446,7 @@ If you are integrating UPI OTM, create an object of SIParam. After creating an o
             paymentParam.siParam = siInfo
  #isPreAuthTxn must be true for OTM transactions
 ```
-```Text Onjective-C
+```objectivec Onjective-C
 paymentParam.siParams = siParam;
 ```
 
@@ -462,10 +462,10 @@ If you are integrating Split Settlements, the splitPaymentDetails parameter is r
 
 After creating an object, pass the object similar to the following code:
 
-```Text Swift
+```swift Swift
 paymentParam.splitPaymentDetails = ""
 ```
-```Text Objective-C
+```objectivec Objective-C
 paymentParam.splitPaymentDetails = @"";
 ```
 
@@ -478,7 +478,7 @@ The sample JSON structure for the splitPaymentDetails field:
 > * For the **absolute** type split, you must ensure that the sum of amount of all splits is equal to the parent transaction amount.
 > * For the **percentage** type split, you must ensure that the sum of percentage of all splits is equal to 100. You can use any number decimal places for each split, but ensure the sum of percentage of all splits is equal to 100.
 
-```Text JSON
+```json JSON
 {
    "type":"absolute",
    "splitInfo":{
@@ -524,8 +524,8 @@ The following fields are included in the splitPaymentDetails parameter in a JSON
       <td>
         `string` Any of the following types of split is specified in this field.
 
-        * *absolute*\*: The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment
-        * *percentage*\*: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment
+        * _absolute_*: The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment
+        * _percentage_*: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment
       </td>
 
       <td>
@@ -535,22 +535,22 @@ The following fields are included in the splitPaymentDetails parameter in a JSON
 
     <tr>
       <td>
-        splitInfo\
+        splitInfo
         `mandatory`
       </td>
 
       <td>
         `JSON` This parameter must include the list of aggregator sub-transaction IDs and sub-amounts as follows:
 
-        * *aggregatorSubTxnId*\*: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only to child merchants.
-        * *aggregatorSubAmt*\*: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.
-        * *aggregatorCharges*\*: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.
-        * *Note*\*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.\
+        * _aggregatorSubTxnId_*: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only to child merchants.
+        * _aggregatorSubAmt_*: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.
+        * _aggregatorCharges_*: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.
+        * _Note_*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.
           The sample request structure JSON Request Structure of splitInfo Field.
       </td>
 
       <td>
-        \{\
+        \{
         "merchantKey1": \{
         "aggregatorSubTxnId": "30nknyhkhib",
         "aggregatorSubAmt": "8",
@@ -564,22 +564,22 @@ The following fields are included in the splitPaymentDetails parameter in a JSON
 
 If you are integrating additional charges or percentage additional charges, then generate the below payment params additionally
 
-```Text Swift
+```swift Swift
 paymentParam.additionalCharges = "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55"
 paymentParam.percentageAdditionalCharges = "CC:50,SBIB:100,DINR:100,DC:25,NB:50"
 ```
-```Text Objective-C
+```objectivec Objective-C
 paymentParam.additionalCharges = @"CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
 paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50";
 ```
 
-For more information on the Additional Charges, refer to \[[Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges)].
+For more information on the Additional Charges, refer to [[Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges)].
 
 ## Step 3: Set up the payment hashes
 
-> 🚧 Remember
->
-> Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
+<Callout icon="🚧" theme="warn">
+  **Remember**: Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
+</Callout>
 
 The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. For passing dynamic hashes, you will receive a call on the generateHash method of PayUCheckoutProListener.
 
@@ -589,7 +589,7 @@ There is no need to know the formula for dynamic hashes because PayU SDK gives y
 
 For passing dynamic hashes during integration, use the following code snippet:
 
-```Text Swift
+```swift Swift
 /// Use this function to provide hashes
 /// - Parameters:
 ///   - param: Dictionary that contains key as HashConstant.hashName & HashConstant.hashString
@@ -606,7 +606,7 @@ func generateHash(for param: DictOfString, onCompletion: @escaping PayUHashGener
     onCompletion([hashName : hashFetchedFromServer])
 }
 ```
-```Text Objective-C
+```objectivec Objective-C
 /// Use this function to provide hashes
 /// @param param NSDictionary that contains key as HashConstant.hashName & HashConstant.hashString
 /// @param onCompletion Once you fetch the hash from server, pass that hash with key as param[HashConstant.hashName]
@@ -628,7 +628,7 @@ Here,
 
            **param ->** Dictionary that contains key as **HashConstant.hashName** & **HashConstant.hashString**
 
-**onCompletion ->** Once you fetch the **hash** from server, pass that hash with key as **param\[HashConstant.hashName]**
+**onCompletion ->** Once you fetch the **hash** from server, pass that hash with key as **param[HashConstant.hashName]**
 
 ### Getting Hash Data to calculate hash
 
@@ -642,16 +642,16 @@ To extract hash string and hash name from dictionary received in generateHash() 
 
 ### Passing generated hash to SDK
 
-Prepare a dictionary, where key should be **param\[HashConstant.hashName]** and value should be generated **hash** value and pass this dictionary in **onCompletion()**
+Prepare a dictionary, where key should be **param[HashConstant.hashName]** and value should be generated **hash** value and pass this dictionary in **onCompletion()**
 
 ## Step 4: Initiate the payment
 
 Initialize and launch the Checkout Pro SDK by calling the following method from your UIViewController subclass:
 
-```Text Swift
+```swift Swift
 PayUCheckoutPro.open(on: self, paymentParam: paymentParam, config: <PayUCheckoutProConfig>, delegate: self)
 ```
-```Text Objective-C
+```objectivec Objective-C
 [PayUCheckoutPro openOn:self paymentParam:paymentParam config:<#(PayUCheckoutProConfig * _Nullable)#> delegate:self];
 ```
 
@@ -659,7 +659,7 @@ PayUCheckoutPro.open(on: self, paymentParam: paymentParam, config: <PayUCheckout
 
 Confirm to PayUCheckoutProDelegate and use these functions to get appropriate callbacks from the SDK:
 
-```Text Swift
+```swift Swift
 /// This function is called when we successfully process the payment
 /// - Parameter response: success response
 func onPaymentSuccess(response: Any?) {
@@ -701,7 +701,7 @@ func generateHash(for param: DictOfString, onCompletion: @escaping PayUHashGener
     onCompletion([hashName : hashFetchedFromServer])
 }
 ```
-```Text Objective-C
+```objectivec Objective-C
 /// This function is called when we successfully process the payment
 /// @param response  success response
 - (void)onPaymentSuccessWithResponse:(id _Nullable)response {
@@ -991,9 +991,9 @@ PayU provides a fat framework that allows you to test your app seamlessly on the
 
 ### Step 1: Create a Custom Note list
 
-Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and custom\_note\_category need to be passed.
+Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom_note and custom_note_category need to be passed.
 
-```Text Swift
+```swift Swift
   var customNotes = [PayUCustomNote]() 
 // for specific custom_note_category
   let customNote = PayUCustomNote()
@@ -1016,7 +1016,7 @@ Create a list of custom notes that you want to pass to the CheckoutPro SDK. For 
 
 To pass the custom note list (array) created in Step 1 to the SDK, create a PayUCheckoutProConfig object and set `customNotes` similar to the following code block:
 
-```Text Swift
+```swift Swift
 let checkoutProConfig = PayUCheckoutProConfig()
 config.customNotes = customNotes
 ```
