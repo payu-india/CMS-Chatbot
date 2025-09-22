@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> implements PayUUPIProtocol {
 }
 ```
 
-<Callout icon="📘">
+<Callout icon="📘" theme="info">
   **Note**: If you are developing for iOS, make sure your minimum deployment target is iOS 11.
 </Callout>
 
@@ -140,9 +140,9 @@ String parsePayUResponse(Map response){
 
 ## Step 4: Setup Payment Hashes
 
-> 🚧 Warning
->
-> Always generate the hash at your backend to ensure security.
+<Callout icon="🚧" theme="warn">
+  **Warning**: Always generate the hash at your backend to ensure security.
+</Callout>
 
 Hash is required to authenticate the request and to make sure MiTM has not happened while data was traveling over the network. You have to set the hash in the hash parameter during the creation of payment parameters.  Use the following format to generate the hash:
 
@@ -174,7 +174,7 @@ Here is a sample hash value for your reference:
 
 Set up the payment parameters for the SDK to initiate a transaction request. Use the following sample code for a quick integration:
 
-```Text dart
+```d Dart
 var additionalParam = {
   PayUAdditionalParamKeys.udf1: <user defined value 1>,
   PayUAdditionalParamKeys.udf2: <user defined value 2>,
