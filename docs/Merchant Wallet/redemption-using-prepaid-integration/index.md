@@ -16,7 +16,7 @@ Merchant has the option to only opt for PayU Prepaid services only. So, in those
 
 * [Retrieve Customer Record API](ref:retrieve-customer-record-api): This API will be required by Merchants to fetch and balance present in the customer wallet.
 * [Unload API](ref:unload-api): This API will be used to debit the customer wallet.
-* [Load API](ref:l): This API will be used to load the money in the wallet as part of refunds.
+* [Load API](ref:load-wallet-api): This API will be used to load the money in the wallet as part of refunds.
 * [Check Status API](ref:check-status-api): This will be required to check status of the load API used in the top-up journey.
 
 ## Redemption with Prepaid and PayU as PG
