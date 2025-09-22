@@ -30,12 +30,12 @@ The Seamless Debit Callback feature allows merchants to handle payment responses
             <td>REF123456</td>
         </tr>
         <tr>
-            <td>paymentMethod<code></brmandatory</code></td>
+            <td>paymentMethod</br<code></brmandatory</code></td>
             <td><code>Object</code> Details about the payment method used. For UPI payments:<br>• name: Must be "UPI"<br>• bankCode: Must be "UPI"</td>
             <td>{"name": "UPI", "bankCode": "UPI"}</td>
         </tr>
         <tr>
-            <td>order<code</br>mandatory</code></td>
+            <td>order</br><code>mandatory</code></td>
             <td><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a>.</td>
             <td></td>
         </tr>
