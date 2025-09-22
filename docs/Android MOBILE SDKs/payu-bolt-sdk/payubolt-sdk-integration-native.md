@@ -22,7 +22,7 @@ This integration involves the following steps:
 2. [Include Bolt SDK and AAR Files](#step-2-include-bolt-sdk-and-aar-files)
 3. [Initialize the SDK](#step-3-initialize-the-sdk)
 
- Later, you can integrate the following flows:
+Later, you can integrate the following flows:
 
 * [Integrate Registration Flow](https://docs.payu.in/docs/payubolt-sdk-integration-native#integrate-registration-flow)
 * [Integrate Repeat Flow](#integrate-repeat-flow)
@@ -121,7 +121,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        config\
+        config
         ` mandatory`
       </td>
 
@@ -132,7 +132,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        hashGenerationListener\
+        hashGenerationListener
         ` mandatory`
       </td>
 
@@ -172,7 +172,7 @@ The PayUUPIBoltConfig includes the following fields:
 
     <tr>
       <td>
-        phone\
+        phone
         `mandatory`
       </td>
 
@@ -183,7 +183,7 @@ The PayUUPIBoltConfig includes the following fields:
 
     <tr>
       <td>
-        email\
+        email
         `mandatory`
       </td>
 
@@ -194,7 +194,7 @@ The PayUUPIBoltConfig includes the following fields:
 
     <tr>
       <td>
-        pluginType\
+        pluginType
         `mandatory`
       </td>
 
@@ -205,7 +205,7 @@ The PayUUPIBoltConfig includes the following fields:
 
     <tr>
       <td>
-        isProd\
+        isProd
         `optional`
       </td>
 
@@ -216,7 +216,7 @@ The PayUUPIBoltConfig includes the following fields:
 
     <tr>
       <td>
-        excludedBanksIINs\
+        excludedBanksIINs
         `optional`
       </td>
 
@@ -227,7 +227,7 @@ The PayUUPIBoltConfig includes the following fields:
 
     <tr>
       <td>
-        requestId\
+        requestId
         `mandatory`
       </td>
 
@@ -244,9 +244,9 @@ The PayUUPIBoltConfig includes the following fields:
 | --------------- | ---------------------------------------- |
 | `PayUUPIBolt`   | PayUUPIBolt object for invoking SDK APIs |
 
-> 📘 Callback:
->
-> After the SDK is initialised, use the same object to call the sdk methods.
+<Callout icon="📘" theme="info">
+  **Callback**: After the SDK is initialised, use the same object to call the sdk methods.
+</Callout>
 
 ## De-initialise PayUBolt SDK
 
@@ -275,15 +275,15 @@ Listerner/Callback contains 3 methods where the merchant app will get the API re
 | message      | String    | Error or success message. Refer to[ Response codes](#response-codes)  . |
 | result       | Object    | Response data                                                           |
 
-Note: If result object is null or empty. Kindly use the response from message 
+Note: If result object is null or empty. Kindly use the response from message
 
 ### Response type
 
-| Response Type        | Response Code | Definition       |
-| -------------------- | ------------- | ---------------- |
-| REQUEST\_UPI\_BOLT   | 100           | UPI Bolt Status  |
-| REQUEST\_TRANSACTION | 124           | Register And Pay |
-| REQUEST\_MANAGE      | 125           | UPI Management   |
+| Response Type       | Response Code | Definition       |
+| ------------------- | ------------- | ---------------- |
+| REQUEST_UPI_BOLT    | 100           | UPI Bolt Status  |
+| REQUEST_TRANSACTION | 124           | Register And Pay |
+| REQUEST_MANAGE      | 125           | UPI Management   |
 
 ### Response codes
 
@@ -346,7 +346,7 @@ The following methods are used to integrate registration flow:
 
 Use the `isUpiBoltEnabled` method to check whether the UPI bolt is enabled for the merchant or not enabled.
 
-```
+```text
 bolt.core.isUpiBoltEnabled(callback: PayUUPIBoltCallBack)
 ```
 
@@ -356,13 +356,13 @@ The following parameters are needed as a request for this API:
 | --------------------- | ----------------------------------------------------------- |
 | callback`  mandatory` | `PayUUPIBoltCallback` Ref. Listener/Callback logic section. |
 
-**Response**: Response type : REQUEST\_UPI\_BOLT. For more information, refer to[ Response type](#response-type).
+**Response**: Response type : REQUEST_UPI_BOLT. For more information, refer to[ Response type](#response-type).
 
 ### Get registered mobile number
 
-Use the `getRegisteredMobile` method to get already registered mobile number. 
+Use the `getRegisteredMobile` method to get already registered mobile number.
 
-```
+```text
  bolt.core.getRegisteredMobile(): String
 ```
 
@@ -374,7 +374,7 @@ The following parameters are needed as a request for this API:
 
 ### Get subscriber info
 
-Use the `getSubscriberInfo` method to get SIM info from device. 
+Use the `getSubscriberInfo` method to get SIM info from device.
 
 ```swift ionic
 bolt.core.getSubscriberInfo(mobile: String, callback: PayUUPIBoltCallBack)
@@ -413,12 +413,16 @@ The following parameters are needed as a request for this API:
 
     <tr>
       <td>
-        callback\
+        callback
         `mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltUICallBack `This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltUICallBack `This parameter contains the callback. For callback logic refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
@@ -470,7 +474,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        subscriptionId\
+        subscriptionId
         `mandatory`
       </td>
 
@@ -481,18 +485,22 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        callback\
+        callback
         `mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is CHECK\_DEVICE\_STATUS.
+**Response**: Response type is CHECK_DEVICE_STATUS.
 
 ### Initiate SDK
 
@@ -510,7 +518,7 @@ The following fields are needed as a request for this API:
 | mobile         | `String `Mobile number to be used for registration                                                    |
 | callback       | `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section. |
 
-**Response**: Response type is REQUEST\_SDK\_HANDSHAKE
+**Response**: Response type is REQUEST_SDK_HANDSHAKE
 
 ### Fetch bank list
 
@@ -543,13 +551,17 @@ The following fields are needed as a request for this API:
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_LIST\_BANKS
+**Response**: Response type is REQUEST_LIST_BANKS
 
 The response is `PayUBankData `array list that contains the following fields:
 
@@ -590,20 +602,21 @@ The following fields are needed as a request for this API:
         iin```
 
         mandatory
-        ```
-      </td>
 
-      <td>
+        ````
+        </td>
+
+        <td>
         `String`Issuer identification number of bank
-      </td>
-    </tr>
+        </td>
+        </tr>
 
-    <tr>
-      <td>
+        <tr>
+        <td>
         bankname ```
 
         mandatory
-        ```
+        ````
       </td>
 
       <td>
@@ -613,7 +626,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        bankCode\
+        bankCode
         `optional`
       </td>
 
@@ -627,24 +640,25 @@ The following fields are needed as a request for this API:
         vpa```
 
         optional
-        ```
-      </td>
 
-      <td>
+        ````
+        </td>
+
+        <td>
         `String`UPI handle
-      </td>
-    </tr>
+        </td>
+        </tr>
 
-    <tr>
-      <td>
+        <tr>
+        <td>
         requestType```
 
         optional
-        ```
+        ````
       </td>
 
       <td>
-        `String`Only applicable for HDFC and contain any of the following:  
+        `String`Only applicable for HDFC and contain any of the following:
 
         * **A**: Add account
         * **R** : New registration
@@ -656,30 +670,35 @@ The following fields are needed as a request for this API:
         isCCTxnEnabled```
 
         mandatory
-        ```
-      </td>
 
-      <td>
+        ````
+        </td>
+
+        <td>
         `String`The default value is false. Set it true if bank is CC.
-      </td>
-    </tr>
+        </td>
+        </tr>
 
-    <tr>
-      <td>
+        <tr>
+        <td>
         callback ```
 
         mandatory
-        ```
+        ````
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)   sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+           sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_FETCH\_ACCOUNT\_V3
+**Response**: Response type is REQUEST_FETCH_ACCOUNT_V3
 
 The response is `PayUCustomerBankAccounts `array list that contains the following fields:
 
@@ -720,24 +739,32 @@ The following fields are needed as a request for this API:
       </td>
 
       <td>
-        `PayUAccountDetail` Refer to  [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
+        `PayUAccountDetail` Refer to  
+
+        [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
+
+
       </td>
     </tr>
 
     <tr>
       <td>
-        callback\
+        callback
         ` mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_SAVE\_VPA\_V3
+**Response**: Response type is REQUEST_SAVE_VPA_V3
 
 ### Set PIN
 
@@ -776,7 +803,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        cardNo\
+        cardNo
         ` mandatory`
       </td>
 
@@ -787,7 +814,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        exp\
+        exp
         ` mandatory`
       </td>
 
@@ -798,18 +825,22 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        callback\
+        callback
         ` mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_ACCOUNT\_MOBILE\_REG
+**Response**: Response type is REQUEST_ACCOUNT_MOBILE_REG
 
 ## Integrate Repeat Flow
 
@@ -844,13 +875,17 @@ The following fields are needed as a request for this API:
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_ALL\_ACCOUNTS\_V3
+**Response**: Response type is REQUEST_ALL_ACCOUNTS_V3
 
 The response is `PayUCustomerBankAccounts `array list that contains the following fields:
 
@@ -905,12 +940,16 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        callback\
+        callback
         `mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
@@ -953,13 +992,13 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        txnId\
+        txnId
         `mandatory`
       </td>
 
       <td>
-        `String` It should be unique for each transaction.\
-        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "\_,$,%,&, etc"
+        `String` It should be unique for each transaction.
+        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "_,$,%,&, etc"
       </td>
 
       <td>
@@ -969,7 +1008,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        productInfo\
+        productInfo
         `mandatory`
       </td>
 
@@ -984,7 +1023,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        firstName\
+        firstName
         `mandatory`
       </td>
 
@@ -999,12 +1038,16 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        accountDetail\
+        accountDetail
         `mandatory`
       </td>
 
       <td>
-        `PayUAccountDetail` Refer to  [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters) 
+        `PayUAccountDetail` Refer to  
+
+        [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
+
+
       </td>
 
       <td>
@@ -1033,24 +1076,25 @@ The following fields are needed as a request for this API:
         udf2```
 
         optional
-        ```
-      </td>
 
-      <td>
+        ````
+        </td>
+
+        <td>
         `String` User defined field
-      </td>
+        </td>
 
-      <td>
+        <td>
 
-      </td>
-    </tr>
+        </td>
+        </tr>
 
-    <tr>
-      <td>
+        <tr>
+        <td>
         udf3```
 
         optional
-        ```
+        ````
       </td>
 
       <td>
@@ -1067,24 +1111,25 @@ The following fields are needed as a request for this API:
         udf4```
 
         optional
-        ```
-      </td>
 
-      <td>
+        ````
+        </td>
+
+        <td>
         `String` User defined field
-      </td>
+        </td>
 
-      <td>
+        <td>
 
-      </td>
-    </tr>
+        </td>
+        </tr>
 
-    <tr>
-      <td>
+        <tr>
+        <td>
         udf5```
 
         optional
-        ```
+        ````
       </td>
 
       <td>
@@ -1098,7 +1143,7 @@ The following fields are needed as a request for this API:
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_PAY
+**Response**: Response type is REQUEST_PAY
 
 ### Check transaction status
 
@@ -1137,18 +1182,22 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        callback\
+        callback
         ` mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_CHECK\_PAYMENT\_STATUS
+**Response**: Response type is REQUEST_CHECK_PAYMENT_STATUS
 
 | Field   | Definition                                                  |
 | ------- | ----------------------------------------------------------- |
@@ -1185,13 +1234,17 @@ The following fields are needed as a request for this API:
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_CANCEL\_TRANSACTION
+**Response**: Response type is REQUEST_CANCEL_TRANSACTION
 
 ## Integrate Management flow
 
@@ -1248,7 +1301,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        toDate\
+        toDate
         ` mandatory`
       </td>
 
@@ -1259,18 +1312,22 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        callback\
+        callback
         ` mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_GET\_TRANSACTION\_HISTORY\_V3
+**Response**: Response type is REQUEST_GET_TRANSACTION_HISTORY_V3
 
 The response is `PayUTransactionHistory `array list.
 
@@ -1305,24 +1362,32 @@ The following fields are needed as a request for this API:
       </td>
 
       <td>
-        `PayUAccountDetail` Refer to  [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
+        `PayUAccountDetail` Refer to  
+
+        [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
+
+
       </td>
     </tr>
 
     <tr>
       <td>
-        callback\
+        callback
         ` mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_GET\_BALANCE
+**Response**: Response type is REQUEST_GET_BALANCE
 
 | Field   | Definition               |
 | ------- | ------------------------ |
@@ -1359,24 +1424,32 @@ The following fields are needed as a request for this API:
       </td>
 
       <td>
-        `PayUAccountDetail` Refer to  [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
+        `PayUAccountDetail` Refer to  
+
+        [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
+
+
       </td>
     </tr>
 
     <tr>
       <td>
-        callback\
+        callback
         ` mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_GET\_ACCOUNT\_REMOVE\_V3
+**Response**: Response type is REQUEST_GET_ACCOUNT_REMOVE_V3
 
 ### Change mPIN
 
@@ -1409,24 +1482,32 @@ The following fields are needed as a request for this API:
       </td>
 
       <td>
-        `PayUAccountDetail` Refer to  [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
+        `PayUAccountDetail` Refer to  
+
+        [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
+
+
       </td>
     </tr>
 
     <tr>
       <td>
-        callback\
+        callback
         ` mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_GET\_CHANGE\_MPIN
+**Response**: Response type is REQUEST_GET_CHANGE_MPIN
 
 ### Fetch VPA profile
 
@@ -1465,18 +1546,22 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        callback\
+        callback
         ` mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_GET\_PROFilE\_VPA\_V3
+**Response**: Response type is REQUEST_GET_PROFilE_VPA_V3
 
 ### Save VPA
 
@@ -1515,7 +1600,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        name\
+        name
         ` mandatory`
       </td>
 
@@ -1526,7 +1611,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        nickName\
+        nickName
         ` mandatory`
       </td>
 
@@ -1537,18 +1622,22 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        callback\
+        callback
         ` mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_SAVE\_VPA\_V3
+**Response**: Response type is REQUEST_SAVE_VPA_V3
 
 ### Delete VPA
 
@@ -1587,18 +1676,22 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        callback\
+        callback
         ` mandatory`
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_GET\_VPA\_REMOVE\_V3
+**Response**: Response type is REQUEST_GET_VPA_REMOVE_V3
 
 ### Raise query or dispute
 
@@ -1637,7 +1730,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        txnRefId\
+        txnRefId
         `mandatory`
       </td>
 
@@ -1648,7 +1741,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        amount\
+        amount
         `mandatory`
       </td>
 
@@ -1662,30 +1755,35 @@ The following fields are needed as a request for this API:
         query```
 
         mandatory
-        ```
-      </td>
 
-      <td>
+        ````
+        </td>
+
+        <td>
         `String` Query or dispute description
-      </td>
-    </tr>
+        </td>
+        </tr>
 
-    <tr>
-      <td>
+        <tr>
+        <td>
         callback```
 
         mandatory
-        ```
+        ````
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)   sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+           sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_GET\_RAISE\_QUERY\_V3
+**Response**: Response type is REQUEST_GET_RAISE_QUERY_V3
 
 ### Fetch query list
 
@@ -1718,13 +1816,17 @@ The following fields are needed as a request for this API:
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_LIST\_QUERIES\_V3
+**Response**: Response type is REQUEST_LIST_QUERIES_V3
 
 | Response Parameter                 | Definition                                   |
 | ---------------------------------- | -------------------------------------------- |
@@ -1761,13 +1863,17 @@ The following fields are needed as a request for this API:
       </td>
 
       <td>
-        `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        `PayUUPIBoltCallBack`Refer to 
+
+        [Listener or Callback logic](#listener-or-callback-logic)
+
+          sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
 
-**Response**: Response type is REQUEST\_GET\_CUSTOMER\_DEREGISTER\_V3
+**Response**: Response type is REQUEST_GET_CUSTOMER_DEREGISTER_V3
 
 ### Check required permissions
 
@@ -1810,7 +1916,7 @@ Use the `clearData` method clears user data saved on device. It also clears the 
 
     <tr>
       <td>
-        accRefNumber\
+        accRefNumber
         `mandatory`
       </td>
 
@@ -1821,7 +1927,7 @@ Use the `clearData` method clears user data saved on device. It also clears the 
 
     <tr>
       <td>
-        ifsc\
+        ifsc
         `optional`
       </td>
 
@@ -1832,7 +1938,7 @@ Use the `clearData` method clears user data saved on device. It also clears the 
 
     <tr>
       <td>
-        maskedAccnumber\
+        maskedAccnumber
         `optional`
       </td>
 
@@ -1843,7 +1949,7 @@ Use the `clearData` method clears user data saved on device. It also clears the 
 
     <tr>
       <td>
-        type\
+        type
         `optional`
       </td>
 
@@ -1854,18 +1960,18 @@ Use the `clearData` method clears user data saved on device. It also clears the 
 
     <tr>
       <td>
-        vpa\
+        vpa
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        iin\
+        iin
         `optional`
       </td>
 
@@ -1876,95 +1982,95 @@ Use the `clearData` method clears user data saved on device. It also clears the 
 
     <tr>
       <td>
-        mmid\
+        mmid
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        aeba\
+        aeba
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        mbeba\
+        mbeba
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        dLength\
+        dLength
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        dType\
+        dType
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        balance\
+        balance
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        balTime\
+        balTime
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        status\
+        status
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        bankCode\
+        bankCode
         `optional`
       </td>
 
@@ -1975,29 +2081,29 @@ Use the `clearData` method clears user data saved on device. It also clears the 
 
     <tr>
       <td>
-        formatType\
+        formatType
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        atmdLength\
+        atmdLength
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        bankName\
+        bankName
         `optional`
       </td>
 
@@ -2008,29 +2114,29 @@ Use the `clearData` method clears user data saved on device. It also clears the 
 
     <tr>
       <td>
-        otpdType\
+        otpdType
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        otpdLength\
+        otpdLength
         `optional`
       </td>
 
       <td>
-        \-
+        -
       </td>
     </tr>
 
     <tr>
       <td>
-        bankId\
+        bankId
         `optional`
       </td>
 
