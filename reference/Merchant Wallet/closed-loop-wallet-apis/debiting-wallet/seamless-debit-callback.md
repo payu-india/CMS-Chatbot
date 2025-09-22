@@ -20,7 +20,7 @@ The Seamless Debit Callback feature allows merchants to handle payment responses
     </thead>
     <tbody>
         <tr>
-            <td>accountId</br><code>mandatory</code></td>
+          <td>accountId</br> <code>mandatory</code></td>
             <td><code>String</code> The merchant key provided by PayU during onboarding.</td>
             <td>MERCHANT123</td>
         </tr>
@@ -35,7 +35,7 @@ The Seamless Debit Callback feature allows merchants to handle payment responses
             <td>{"name": "UPI", "bankCode": "UPI"}</td>
         </tr>
         <tr>
-            <td>order</br><code>mandatory</code></td>
+          <td>order</br> <code>mandatory</code></td>
             <td><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a>.</td>
             <td></td>
         </tr>
