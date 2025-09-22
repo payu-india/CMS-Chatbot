@@ -12,7 +12,7 @@ next:
 ---
 The **Get Check Out Details** API provides information on the bank down status, tax info, and offers enabled on a merchant key. You can call this API is similar to other Web Services. The only difference is that it requires a JSON in var1 as in the following code block:
 
-```Text JSON
+```json JSON
 {
    "requestId":"1614595430980",
    "transactionDetails":{
@@ -65,7 +65,7 @@ Mobile SDK has a Utility class to create a JSON, as explained above. The impleme
             .build().prepareJSON();
 ```
 
-After getting var1, pass that in Merchant Web Service with the command as PayuConstants.GET\_CHECKOUT\_DETAILS. 
+After getting var1, pass that in Merchant Web Service with the command as PayuConstants.GET_CHECKOUT_DETAILS.
 
 ## Step 2: Get API response
 
@@ -75,7 +75,7 @@ PayuResponse is received in the `onCheckoutDetailsResponse()` callback method of
 
 Additional Charges are returned in the PaymentDetails object for each payment option. The following example code snippet is for fetching Additional Charges for Net Banking:
 
-```Text JAVA
+```java Java
 //if netbanking is available on merchant key
 if(payuResponse.isNetBanksAvailable()){
 ArrayList<PaymentDetails> netbanks = payuResponse.getNetbanks();
@@ -90,7 +90,7 @@ ArrayList<PaymentDetails> netbanks = payuResponse.getNetbanks();
 
 Tax is not applied on individual Net Banking or card schemes but instead applied at the payment mode level for all CC(Credit Card), DC(Debit Card), NB(Net Banking), Wallets, etc. So, to fetch the Tax Specification, use the following code block:
 
-```Text JAVA
+```java Java
 if(payuResponse.isTaxSpecificationAvailable())
 TaxSpecification taxSpecification = payuResponse.getTaxSpecification();
 
