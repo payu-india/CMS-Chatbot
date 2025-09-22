@@ -201,7 +201,7 @@ For multiple cards, the card details in the **bins_data** field are in a JSON ar
   </tbody>
 </Table>
 
-To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/v2/reference/error-codes).
+To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 
 ## Sample response
 
