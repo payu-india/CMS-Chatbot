@@ -12,7 +12,7 @@ next:
 ---
 To integrate with CustomBrowser in iOS manually:
 
-1. Download the latest custom browser archive from the following PayU Github location and extract it:\
+1. Download the latest custom browser archive from the following PayU Github location and extract it:
    [https://github.com/payu-intrepos/iOS-Custom-Browser/releases](https://github.com/payu-intrepos/iOS-Custom-Browser/releases)
 2. Drag and drop PayUCustomBrowser.framework into your project.
 3. Add `libz.tbd` libraries into your project target’s build phases.
@@ -26,6 +26,8 @@ After the CustomBrowser library is added to your project, you can go ahead and u
 
 While working with a Swift project, add the above code in the `Bridging-Header.h` file. This is applicable to Objective-C or Swift programming language.
 
-```Text Objective-C
+```objectivec Objective-C
 #import <PayUCustomBrowser/PayUCustomBrowser.h>
 ```
+
+<br />
