@@ -22,7 +22,7 @@ This API is used to get the card BIN details. For this API, you need to set the 
 
 ## Step 1: Create Post Request
 
-```Text Java
+```java Java
 MerchantWebService merchantWebService = new MerchantWebService();
 merchantWebService.setKey(merchantKey); // Merchant key
 merchantWebService.setCommand(PayuConstants.GET_BIN_INFO);
@@ -34,7 +34,7 @@ merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use t
 
 ## Step 2: Get onBinInfoApiResponse
 
-```Text Java
+```java Java
 @Override
 public void onBinInfoApiResponse(PayuResponse payuResponse) {
 }
