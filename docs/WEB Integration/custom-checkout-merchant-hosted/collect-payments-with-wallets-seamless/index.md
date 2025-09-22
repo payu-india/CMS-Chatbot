@@ -19,7 +19,7 @@ You can collect payments from customers with leading wallets using the Merchant 
 **Steps to Integrate**
 
 1. [Initiate the payment with PayU](#step-1-initiate-the-payment-with-payu)
-2. [Check response from PayU](#step-2-check-response-from-payu)
+2. [Check response from PayU](#step-3-check-response-from-payu)
 3. [Verify Payment](#step-3-verify-the-payment)
 
 <RegisterMerchantPrerequiste />
