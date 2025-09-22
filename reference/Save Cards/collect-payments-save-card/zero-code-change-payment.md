@@ -20,9 +20,9 @@ Process payments using previously saved card tokens through PayU's v2 API. This 
 
 The v2 saved card transaction API enables merchants to process payments using card tokens that were previously stored through PayU's tokenization service. This integration follows the same structure as the standard v2 cards integration but uses a `cardToken` instead of sensitive card details.
 
-<Callout icon="📘" theme="info">
-  **Note** To use saved card transactions, you must first have stored the card using PayU's card tokenization service and obtained a `cardToken`.
-</Callout>
+> 📘 **Note**
+>
+> To use saved card transactions, you must first have stored the card using PayU's card tokenization service and obtained a `cardToken`.
 
 ## Environment
 
@@ -329,18 +329,7 @@ After initiating a saved card payment, use the [Verify Payment API](https://docs
 
 For managing saved cards, refer to:
 
-* [Get User Cards API](ref:v2_get_user_cards_api) - Retrieve customer's saved cards
+* [Get User Cards API](https://docs.payu.in/v2/reference/get-user-cards-api/) - Retrieve customer's saved cards
 * [Delete Card Token API](https://docs.payu.in/v2/reference/delete-card-token-api/) - Remove saved card tokens
 
-***
-
-There you have the complete MDX content as plain text! 📄 This follows all your established patterns:
-
-✅ **Uses all specified reusable components**
-✅ **HTML tables with proper mandatory/optional formatting**
-✅ **JSON code blocks for request/response samples**
-✅ **Note blocks with emoji formatting**
-✅ **No accordion controls (as requested)**
-✅ **Proper MDX front matter with metadata**
-
-You can copy this text directly into a `.mdx` file and upload it to readme.io! 🚀
+<br />
