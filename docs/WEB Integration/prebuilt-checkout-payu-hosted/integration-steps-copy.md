@@ -14,16 +14,16 @@ metadata:
 The PayU Hosted Checkout integration involves the following steps:
 
 <Cards columns={3}>
-  <Card title="Integrate" href="doc:integrate-with-payu-hosted-checkout" target="_blank" className="bg-blue-50 hover:bg-blue-100 text-blue-800 shadow rounded-xl">
+  <Card title="Integrate" href="doc:integrate-with-payu-hosted-checkout" target="_blank" className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white shadow-lg rounded-xl">
     Integrate pre-built checkout solution
   </Card>
 
-  <Card title="Test Integration" href="doc:test-integration-payu-hosted-checkout" className="bg-green-50 hover:bg-green-100 text-green-800 shadow rounded-xl">
-    <em>Test the integration by making a test transaction</em>
+  <Card title="Test Integration" href="doc:test-integration-payu-hosted-checkout" className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white shadow-lg rounded-xl">
+    Test the integration by making a test transaction
   </Card>
 
-  <Card title="Production Checklist" href="doc:integration-checklist-payu-hosted-checkout" className="bg-yellow-50 hover:bg-yellow-100 text-yellow-800 shadow rounded-xl">
-    <strong>Follow the production checklist to go live</strong>
+  <Card title="Production Checklist" href="doc:integration-checklist-payu-hosted-checkout" className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white shadow-lg rounded-xl">
+    Follow the production checklist to go live
   </Card>
 </Cards>
 
