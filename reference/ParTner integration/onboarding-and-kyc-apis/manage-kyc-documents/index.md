@@ -21,13 +21,12 @@ The following APIs are used to manage KYC documents:
 
 After the bank and KYC verification, the **Info KYC Document** API is used to fetch the documents submitted for KYC. If the KYC verification has failed, delete the existing KYC documents in the PayU database (using the **Delete KYC Document** API) and then submit KYC documents (using the **Create KYC Document** API). Also, you can upload Aadhaar from an XML file using the **Aadhaar XML Offline** API.
 
-> 📘 Note:
->
-> If the **bank\_verification\_status** parameter of the **Get Merchant API** response is unsuccessful, the [Create KYC Document](ref:create_kyc_document_api) is used to submit the KYC details.
+<Callout icon="📘" theme="info">
+  Note: If the **bank_verification_status** parameter of the **Get Merchant API** response is unsuccessful, the [Create KYC Document](ref:create_kyc_document_api) is used to submit the KYC details.
+</Callout>
 
 After the merchant details are verified, the following APIs are used to verify the bank details and the KYC for the merchant:
 
-* [Penny Verify API](ref:penny_verify_api)
 * [Send OTP API](ref:send_otp_api)
 * [Verify OTP API](ref:verify_otp_api)
 
@@ -55,7 +54,7 @@ After the merchant details are verified, the following APIs are used to verify t
       </td>
 
       <td>
-        * For individuals, merchant KYC can be done through Aadhaar or CKYC.  
+        * For individuals, merchant KYC can be done through Aadhaar or CKYC.
         * In case validation fails through the above two mechanisms, the merchant will have to submit document proofs ( POI, POA)
       </td>
     </tr>
