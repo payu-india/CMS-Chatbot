@@ -25,15 +25,15 @@ Hash = sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|u
 Hash = sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||siDetail|beneficiaryDetail|SALT)
 ```
 
-> 📘 Reference:
->
-> For more information on Static Hashing, refer to [Generate Static Hash](doc:generate-static-hash-ios).
+<Callout icon="📘" theme="info">
+  **Reference**: For more information on static hashing, refer to [Generate Static Hash](doc:generate-static-hash-ios).
+</Callout>
 
 ## Step 2: Make payment
 
 For Net Banking, StoreCard, and Card, create an object of `PayUSIParams` and pass in the payment parameter object:
 
-```Text Swift
+```swift Swift
 let siParam = PayUSIParams(billingAmount: <#T##String#>,
 paymentStartDate: <#T##Date#>,
 paymentEndDate: <#T##Date#>,
@@ -44,7 +44,7 @@ paymentParamForPassing.siParams = siParam
 
 For more details on `PayUSIParams`, refer to PayU Standing Instructions Parameters. For Net Banking payment, you have to give beneficiary details using the following code snippet:
 
-```Text Swift
+```swift Swift
 let beneficiaryParams = PayUBeneficiaryParams(beneficiaryName: <#T##String#>,
 beneficiaryAccountNumber: <#T##String#>,
 beneficiaryAccountType: <#T##BeneficiaryAccountType#>)
