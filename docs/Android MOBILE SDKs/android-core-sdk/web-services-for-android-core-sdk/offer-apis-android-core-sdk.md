@@ -21,7 +21,7 @@ Use this API to fetch the offer list available for the merchant.
 
 To integrate this API call the fetchOfferDetails pass the requestData as parameters as shown in the code snippet below:
 
-```Text Java
+```java Java
 payuConfig = new PayuConfig();
 payuConfig.setEnvironment(PayuConstants.STAGING_ENV);
 
@@ -53,7 +53,7 @@ Use this API to validate the offer for the merchants.
 
 To integrate this API call the method  validateOfferDetails and pass the requestData as parameters as shown in the code snippet below:
 
-```Text Java
+```java Java
 List<String> offerKey = new ArrayList<>();
 offerKey.add("<pass the offer key>");
 
