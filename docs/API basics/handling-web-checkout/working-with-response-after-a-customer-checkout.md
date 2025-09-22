@@ -1,11 +1,5 @@
 ---
 title: Working with Response after a Customer Checkout
-excerpt: >-
-  You will require to wrAll PayU India APIs use cURL format for posting requests
-  to endpoints and endpoints provide a response in encoded URL format. You need
-  to convert the encoded URL format to an array format.ite some amount of code
-  to collect the details from your customer and submit those details with PayU
-  using a cURL with PayU Hosted Checkout integration.
 deprecated: false
 hidden: false
 metadata:
@@ -15,6 +9,8 @@ metadata:
 next:
   description: ''
 ---
+You will require to wrAll PayU India APIs use cURL format for posting requests to endpoints and endpoints provide a response in encoded URL format. You need to convert the encoded URL format to an array format.ite some amount of code to collect the details from your customer and submit those details with PayU using a cURL with PayU Hosted Checkout integration.
+
 The response will contain response parameters and a few response parameters may contain the values in a JSON format. Therefore, you need to learn how to read and write data in the array format and JSON format. The array and JSON formats are similar, where the data is stored in key-value pairs. For instance, the following response is an example of a successful response to a **Collect Payment API** request.
 
 ```
