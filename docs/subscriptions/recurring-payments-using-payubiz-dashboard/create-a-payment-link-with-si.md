@@ -2,7 +2,7 @@
 title: Create a Payment Link with SI
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
