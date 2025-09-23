@@ -2,7 +2,7 @@
 title: Bulk Upload of Payment Links for Recurring Payments + Pre-Debit Notication
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
