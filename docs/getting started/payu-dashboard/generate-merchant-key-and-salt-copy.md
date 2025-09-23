@@ -1,5 +1,5 @@
 ---
-title: Generate Merchant Key and Salt
+title: Access Merchant Key and Salt
 deprecated: false
 hidden: true
 metadata:
