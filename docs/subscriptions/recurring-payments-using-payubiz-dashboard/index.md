@@ -2,7 +2,7 @@
 title: Using PayUBiz Dashboard
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
