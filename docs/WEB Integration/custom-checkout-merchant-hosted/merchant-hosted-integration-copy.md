@@ -272,7 +272,7 @@ Follow the below steps to complete the integration:
   </Tabs>
 </Accordion>
 
-<Accordion title="Step 1.2: Prepare the request parameters & sample request" icon="fa-cogs">
+<Accordion title="Step 1.2: Prepare the request parameters" icon="fa-cogs">
   **Common Parameters (Required for all payment modes)**
 
   <HTMLBlock>{`
