@@ -20,14 +20,22 @@ Use the right pair depending on your environment:
   <Tab title="Test Environment">
     You can access your **test Key and Salt** from the PayU Test Dashboard.
 
-    1. Log in to the [PayU Test Dashboard](https://test.payu.in/).\
+    1. Log in to the [PayU Test Dashboard](https://test.payu.in/).
        ![Login to Test Dashboard](test-dashboard-login.png)
 
-    2. Navigate to **Dashboard → Explore Dashboard → Access Test Merchant Key and Salt**.\
-       ![Access Test Key and Salt](test-key-salt.png)
+    2. Switch to **Test Mode** from the toggle option on the menu bar.
 
-    3. The page displays the **Key** and **Salt** assigned for your test account.\
-       ![View Test Key and Salt](test-key-salt-details.png)
+       <Image align="center" className="border" border={true} width="320px" src="https://files.readme.io/2282abf-dashboard_select_test_mode.png" />
+
+    3. Select **Developer** from the menu on the left-pane and select the **API Details** tab if required.
+
+       The _Developers_ page is displayed similar to the following screenshot. The values for the following fields are generated automatically (for the first time) and displayed similar to the following screenshot:
+
+       <Image align="center" className="border" border={true} src="https://files.readme.io/ab723100609b4fa6179ab350ba7d5755807aaf52f1027a134dacc87f21a48bda-Screenshot_2024-09-09_at_6.25.24_PM.png" />
+
+       * **key**: The API key that you must use for all payment requests.
+       * **Salt-32 bit**: The Salt, v1 is the 32-character string that you must use to generate a hash and further post the hash along with parameters when posting a payment request with PayU.
+       * **Salt-256 bit**: The Salt, v2 that you must use to generate a hash and further post the hash along with parameters when posting a payment request with PayU.
 
     ⚠️ These credentials are only valid in the **test environment**. They cannot be used in production.
   </Tab>
@@ -35,14 +43,18 @@ Use the right pair depending on your environment:
   <Tab title="Production Environment">
     Once your merchant account is activated, you can generate **production credentials** from the PayU Merchant Dashboard.
 
-    1. Log in to the [PayU Merchant Dashboard](https://merchant.payu.in/).\
+    1. Log in to the [PayU Merchant Dashboard](https://merchant.payu.in/).
        ![Login to Production Dashboard](prod-dashboard-login.png)
 
-    2. Navigate to **Dashboard → Explore Dashboard → Access Production Key and Salt**.\
-       ![Access Production Key and Salt](prod-key-salt.png)
+    2. Switch to **Live Mode** from the toggle option on the menu bar.
 
-    3. The page displays your live **Key** and **Salt**, which must be used in the **production environment**.\
-       ![View Production Key and Salt](prod-key-salt-details.png)
+       <Image align="center" className="border" border={true} width="320px" src="https://files.readme.io/e36828514287161a9b189454dd07463fea3a0697651e04b8f22ba3fc7bffbd54-Screenshot_2024-10-01_at_5.31.20_PM.png" />
+
+    3. Select **Developer** from the menu on the left-pane and select the **API Details** tab if required.
+
+       The _Developers_ page is displayed similar to the following screenshot. The values for the following fields are generated automatically (for the first time) and displayed similar to the following screenshot:
+
+       <Image align="center" className="border" border={true} src="https://files.readme.io/0ddaa94d203d7102154ece7c74b95ec50274d3fc3e4004ed64bbb8eadc0b37f3-dashboard_key_salt_live_mode.png" />
 
     ⚠️ These credentials are sensitive.
 
