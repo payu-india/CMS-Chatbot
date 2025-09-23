@@ -1,5 +1,5 @@
 ---
-title: UPI Collect One-Time Mandate Integration
+title: UPI Collect OTM - Merchant Hosted
 excerpt: ''
 deprecated: false
 hidden: false
