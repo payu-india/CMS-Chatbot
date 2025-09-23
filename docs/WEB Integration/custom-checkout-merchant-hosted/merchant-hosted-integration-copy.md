@@ -59,12 +59,6 @@ The PayU Merchant Hosted (Custom Checkout) integration involves the following st
 Follow the below steps to complete the integration:
 
 <Accordion title="Step 1.1: Validate Inputs" icon="fa-list-check">
-  <Tabs>
-    <Tab title="💳 Cards">
-      ## Check if Card is Domestic API
-
-      Determines whether a card BIN (the first 6 digits of a card) corresponds to a domestic or international card, and provides additional information about the card including issuing bank, card type, and category.
-
       **Environment**
 
       | Environment | URL                                                    |
@@ -72,39 +66,29 @@ Follow the below steps to complete the integration:
       | Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
       | Production  | `https://info.payu.in/merchant/postservice?form=2`     |
 
+  <Tabs>
+    <Tab title="💳 Cards">
+      ## Get BIN Info API
+
+      The **Get BIN Info** API or **getBinInfo** API is used to determine the card's issuing bank and card type such as Visa, Master, etc. The following values are specified in the var1, var2, and var5 for this scenario:
+
+  * var1 = 1
+  * var2 = 512345
+  * var5 = 1
+
       **Sample Request**
 
-      ```bash
-      curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
-      -H "accept: application/json" \
-      -H "Content-Type: application/x-www-form-urlencoded" \
-      -d "key=&lt;Merchant_Key&gt;&command=check_isDomestic&var1=462273&hash=&lt;Generated_Hash&gt;"
-      ```
-
-      **Sample Response**
-
-      ```json
-      {
-        "isDomestic": "Y",
-        "issuingBank": "SCB",
-        "cardType": "VISA",
-        "cardCategory": "CC"
-      }
-      ```
+       ```bash
+  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=JP***g&command=getBinInfo&var1=2&var2=512345&var3=&var4=&var5=1&hash=df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
     </Tab>
 
     <Tab title="🏦 Net Banking">
       ## Get Net Banking Status API
 
       Provides detailed information about the availability (up or down status) of specific or all Net Banking options to help merchants handle bank downtime issues and ensure seamless user transactions.
-
-      **Environment**
-
-      | Environment | URL                                                    |
-      | ----------- | ------------------------------------------------------ |
-      | Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
-      | Production  | `https://info.payu.in/merchant/postservice?form=2`     |
-
       **Sample Request**
 
       ```bash
@@ -130,12 +114,6 @@ Follow the below steps to complete the integration:
       ## Validate VPA API
 
       Validates Virtual Payment Address (VPA) to check if it's valid for transactions. Also checks eligibility for UPI recurring payments/autopay functionality.
-
-      **Environment**
-
-      | Environment | URL                                                    |
-      | ----------- | ------------------------------------------------------ |
-      | Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
 
       **Sample Request**
 
@@ -209,13 +187,6 @@ Follow the below steps to complete the integration:
       ## Get Checkout Details API
 
       Provides comprehensive checkout details including payment options, eligibility for BNPL, EMI options, additional charges, downtime information, and recommendations to create custom payment pages.
-
-      **Environment**
-
-      | Environment | URL                                                |
-      | ----------- | -------------------------------------------------- |
-      | Test        | `https://test.payu.in/merchant/postservice?form=2` |
-      | Production  | `https://info.payu.in/merchant/postservice?form=2` |
 
       **Sample Request**
 
