@@ -53,14 +53,14 @@ Follow the below steps to complete the integration:
 
 First, you need to collect all the necessary information for the transaction. Below is the list of parameters where some are mandatory and others are optional.
 
-\<Accordion title="My Accordion Title" icon="fa-info-circle"&#x20;
+<Accordion title="My Accordion Title" icon="fa-info-circle" >
 
 ```
 ```
 ```
 ```
 
-/>
+</Accordion>
 
 ### Step 1.1: Prepare the request parameters
 
