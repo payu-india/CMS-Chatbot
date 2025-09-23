@@ -38,7 +38,7 @@ To generate hash for a payment request in general:
 * <Glossary>Salt</Glossary>: Your Salt (Test or Production)
 
 <Callout icon="📘" theme="info">
-  **Reference**: For more information on getting key and salt, refer to [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt) or [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+  **Reference**: For more information on getting key and salt, refer to [Generate Test Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy#) or [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy#).
 </Callout>
 
 2. **Create a Hash String**: Concatenate the collected data in the following format: 
@@ -72,11 +72,11 @@ The concatenated string would be: 
 > * The hash should be generated on the server-side to prevent tampering. 
 > * The hash should be verified on the PayU server to ensure the authenticity of the transaction data. 
 > * Salt is a susceptible information. **Do not** pass Salt in the payment request. 
-> * PayU recommends you to use **Merchant Salt (Version 2)**. To know more about generating salt, that is **Merchant Salt (Version 2)**, see [Access Production Key and Salt](https://devguide.payu.in/merchant-integration/getting-started-with-web-checkout/generate-api-key-and-salt/).
+> * PayU recommends you to use **Merchant Salt (Version 2)**. To know more about generating salt, that is **Merchant Salt (Version 2)**, see [Access Production Key and Salt](doc:generate-merchant-key-and-salt-copy#).
 
 > 🚧 Salt Security
 >
-> Salt is a susceptible information. **Do not** pass Salt in the payment request. To know more about generating salt, see [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+> Salt is a susceptible information. **Do not** pass Salt in the payment request. To know more about generating salt, see [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-copy#).
 
 For more information on the parameters (and their descriptions) listed in the above hash logic, refer to any of the following based on the merchant hosted integration you are integrating:
 
