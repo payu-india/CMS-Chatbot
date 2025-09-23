@@ -170,5 +170,5 @@ excerpt: >-
 api:
   file: Enhanced_Merchant_Onboarding_APIs.json
   operationId: post_api-v3-merchants
-hidden: false
+hidden: true
 ---
