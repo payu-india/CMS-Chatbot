@@ -58,145 +58,336 @@ The PayU Merchant Hosted (Custom Checkout) integration involves the following st
 
 Follow the below steps to complete the integration:
 
-<Accordion title="Step 1.1: Validate Inputs" icon="fa-list-check" />
+<Accordion title="Step 1.1: Validate Inputs" icon="fa-list-check">
+<Tabs>
+  <Tab title="💳 Cards">
+    ## Check if Card is Domestic API
+    Determines whether a card BIN (the first 6 digits of a card) corresponds to a domestic or international card, and provides additional information about the card including issuing bank, card type, and category.
+
+    **Environment**  
+    | Environment | URL |
+    |-------------|-----|
+    | Test | `https://test.payu.in/merchant/postservice.php?form=2` |
+    | Production | `https://info.payu.in/merchant/postservice?form=2` |
+
+    **Sample Request**  
+    ```bash
+    curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=&lt;Merchant_Key&gt;&command=check_isDomestic&var1=462273&hash=&lt;Generated_Hash&gt;"
+    ```
+    **Sample Response**  
+    ```json
+    {
+      "isDomestic": "Y",
+      "issuingBank": "SCB",
+      "cardType": "VISA",
+      "cardCategory": "CC"
+    }
+    ```
+  </Tab>
+
+  <Tab title="🏦 Net Banking">
+    ## Get Net Banking Status API
+    Provides detailed information about the availability (up or down status) of specific or all Net Banking options to help merchants handle bank downtime issues and ensure seamless user transactions.
+
+    **Environment**  
+    | Environment | URL |
+    |-------------|-----|
+    | Test | `https://test.payu.in/merchant/postservice.php?form=2` |
+    | Production | `https://info.payu.in/merchant/postservice?form=2` |
+
+    **Sample Request**  
+    ```bash
+    curl -X POST "https://test.payu.in/merchant/postservice.php?form=2" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=JP***g&command=getNetbankingStatus&var1=AXIB&hash=&lt;Generated_Hash&gt;"
+    ```
+
+    **Sample Response**  
+    ```json
+    {
+      "ibibo_code": "AXIB",
+      "title": "AXIS Bank NetBanking",
+      "up_status": 0,
+      "mode": "NB"
+    }
+    ```
+  </Tab>
+
+  <Tab title="📱 UPI">
+    ## Validate VPA API
+    Validates Virtual Payment Address (VPA) to check if it's valid for transactions. Also checks eligibility for UPI recurring payments/autopay functionality.
+
+    **Environment**  
+    | Environment | URL |
+    |-------------|-----|
+    | Test | `https://test.payu.in/merchant/postservice.php?form=2` |
+
+    **Sample Request**  
+    ```bash
+    curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=JP***g&command=validateVPA&var1=9999999999@upi&hash=&lt;Generated_Hash&gt;"
+    ```
+
+    **Sample Response**  
+    ```json
+    {
+      "status": "SUCCESS",
+      "vpa": "9999999999@upi",
+      "isVPAValid": 1,
+      "isAutoPayVPAValid": 1,
+      "isAutoPayBankValid": "NA",
+      "payerAccountName": "ABC"
+    }
+    ```
+  </Tab>
+
+  <Tab title="💰 EMI">
+    ## Eligible BINs for EMI API
+    
+    Determines the eligibility of a card BIN for EMI offers, provides issuing bank details, and retrieves minimum transaction amount required for EMI.
+
+    **Environment**  
+    HTTP POST request (specific URLs not explicitly mentioned in documentation)
+
+    **Sample Request**  
+    **Headers:**
+    - `Date`: Current date/time in GMT format
+    - `Digest`: Base64 encoded SHA-256 hash of request body
+    - `Authorization`: HMAC authorization with merchant key
+    - `platformId`: `1`
+
+    **Request Body:**
+    ```json
+    {
+      "bintype": "bin",
+      "value": "4161041969147181",
+      "amount": "10000",
+      "bank": "ICICI"
+    }
+    ```
+
+    **Sample Response**  
+    ```json
+    {
+      "message": "Details fetched successfully",
+      "status": 1,
+      "result": [
+        {
+          "isEligible": 1,
+          "bank": "ICICI",
+          "minAmount": 1500.0
+        }
+      ]
+    }
+    ```
+  </Tab>
+
+  <Tab title="📅 BNPL">
+    ## Get Checkout Details API
+    Provides comprehensive checkout details including payment options, eligibility for BNPL, EMI options, additional charges, downtime information, and recommendations to create custom payment pages.
+
+    **Environment**  
+    | Environment | URL |
+    |-------------|-----|
+    | Test | `https://test.payu.in/merchant/postservice?form=2` |
+    | Production | `https://info.payu.in/merchant/postservice?form=2` |
+
+    **Sample Request**  
+    ```bash
+    curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
+    --form 'key="merchant_key"' \
+    --form 'command="get_checkout_details"' \
+    --form 'var1="{\"requestId\":\"9920371372_38\",\"transactionDetails\":{\"amount\":8000},\"useCase\":{\"getExtendedPaymentDetails\":true}}"' \
+    --form 'hash="&lt;Generated_Hash&gt;"'
+    ```
+
+    **Sample Response**  
+    ```json
+    {
+      "status": 1,
+      "details": {
+        "paymentOptions": {
+          "emi": {
+            "all": {
+              "dc": {
+                "hasEligible": true,
+                "all": {
+                  "HDFC": {
+                    "title": "HDFC Bank",
+                    "minimumAmount": 1000,
+                    "eligibility": { "status": true },
+                    "tenureOptions": {
+                      "HDFC12": { 
+                        "tenure": 12, 
+                        "interestRate": 10.5, 
+                        "eligibility": { "status": true } 
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "downInfo": {
+          "issuingBanks": [ "HDFC", "ICICI" ],
+          "nb": ["SBIB", "ANDB"]
+        },
+        "config": {
+          "taxSpecification": {
+            "default": 18
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+</Accordion>
 
 <Accordion title="Step 1.2: Prepare the request parameters" icon="fa-cogs">
   **Common Parameters (Required for all payment modes)**
 
   <HTMLBlock>{`
-                                              <div>
-                                                <table>
-                                                  <thead>
-                                                    <tr>
-                                                      <th style="width: 10%;">Parameter</th>
-                                                      <th style="width: 75%; white-space: normal; word-break: break-word;">Type & Description</th>
-                                                      <th style="width: 15%;">Example</th>
-                                                    </tr>
-                                                  </thead>
-                                                  <tbody>
-                                                    <tr>
-                                                      <td>
-                                                        key<br>
-                                                        <code>mandatory</code>
-                                                      </td>
-                                                      <td style="white-space: normal; word-break: break-word;">
-                                                        <code>String</code> Merchant key provided by PayU during onboarding.
-                                                      </td>
-                                                      <td>JPG****.k</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>
-                                                        txnid<br>
-                                                        <code>mandatory</code>
-                                                      </td>
-                                                      <td style="white-space: normal; word-break: break-word;">
-                                                        <code>String</code> The transaction ID is a reference number for a specific order generated by the merchant.
-                                                      </td>
-                                                      <td>ypl938459435</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>
-                                                        amount<br>
-                                                        <code>mandatory</code>
-                                                      </td>
-                                                      <td style="white-space: normal; word-break: break-word;">
-                                                        <code>String</code> The payment amount for the transaction.
-                                                      </td>
-                                                      <td>10.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>
-                                                        productinfo<br>
-                                                        <code>mandatory</code>
-                                                      </td>
-                                                      <td style="white-space: normal; word-break: break-word;">
-                                                        <code>String</code> A brief description of the product.
-                                                      </td>
-                                                      <td>iPhone</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>
-                                                        firstname<br>
-                                                        <code>mandatory</code>
-                                                      </td>
-                                                      <td style="white-space: normal; word-break: break-word;">
-                                                        <code>String</code> The first name of the customer.
-                                                      </td>
-                                                      <td>Ashish</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>
-                                                        email<br>
-                                                        <code>mandatory</code>
-                                                      </td>
-                                                      <td style="white-space: normal; word-break: break-word;">
-                                                        <code>String</code> The email address of the customer.
-                                                      </td>
-                                                      <td>test@payu.in</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>
-                                                        phone<br>
-                                                        <code>mandatory</code>
-                                                      </td>
-                                                      <td style="white-space: normal; word-break: break-word;">
-                                                        <code>String</code> The phone number of the customer.
-                                                      </td>
-                                                      <td>9876543210</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>
-                                                        pg<br>
-                                                        <code>mandatory</code>
-                                                      </td>
-                                                      <td style="white-space: normal; word-break: break-word;">
-                                                        <code>String</code> Payment gateway/method identifier. <strong>This is the key difference from hosted checkout.</strong>
-                                                      </td>
-                                                      <td>CC, NB, UPI, CASH</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>
-                                                        bankcode<br>
-                                                        <code>conditional</code>
-                                                      </td>
-                                                      <td style="white-space: normal; word-break: break-word;">
-                                                        <code>String</code> Bank or payment provider specific code. Required for specific payment methods.
-                                                      </td>
-                                                      <td>HDFC, PAYTM, UPI</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>
-                                                        surl<br>
-                                                        <code>mandatory</code>
-                                                      </td>
-                                                      <td style="white-space: normal; word-break: break-word;">
-                                                        <code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.
-                                                      </td>
-                                                      <td>https://yoursite.com/success</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>
-                                                        furl<br>
-                                                        <code>mandatory</code>
-                                                      </td>
-                                                      <td style="white-space: normal; word-break: break-word;">
-                                                        <code>String</code> The failure URL, which is the page PayU will redirect to if the transaction fails.
-                                                      </td>
-                                                      <td>https://yoursite.com/failure</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>
-                                                        hash<br>
-                                                        <code>mandatory</code>
-                                                      </td>
-                                                      <td style="white-space: normal; word-break: break-word;">
-                                                        <code>String</code> It is the hash calculated by the merchant using SHA-512.
-                                                      </td>
-                                                      <td>[computed hash]</td>
-                                                    </tr>
-                                                  </tbody>
-                                                </table>
-                                              </div>
+                                                  <div>
+                                                    <table>
+                                                      <thead>
+                                                        <tr>
+                                                          <th style="width: 10%;">Parameter</th>
+                                                          <th style="width: 75%; white-space: normal; word-break: break-word;">Type & Description</th>
+                                                          <th style="width: 15%;">Example</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>
+                                                            key<br>
+                                                            <code>mandatory</code>
+                                                          </td>
+                                                          <td style="white-space: normal; word-break: break-word;">
+                                                            <code>String</code> Merchant key provided by PayU during onboarding.
+                                                          </td>
+                                                          <td>JPG****.k</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            txnid<br>
+                                                            <code>mandatory</code>
+                                                          </td>
+                                                          <td style="white-space: normal; word-break: break-word;">
+                                                            <code>String</code> The transaction ID is a reference number for a specific order generated by the merchant.
+                                                          </td>
+                                                          <td>ypl938459435</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            amount<br>
+                                                            <code>mandatory</code>
+                                                          </td>
+                                                          <td style="white-space: normal; word-break: break-word;">
+                                                            <code>String</code> The payment amount for the transaction.
+                                                          </td>
+                                                          <td>10.00</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            productinfo<br>
+                                                            <code>mandatory</code>
+                                                          </td>
+                                                          <td style="white-space: normal; word-break: break-word;">
+                                                            <code>String</code> A brief description of the product.
+                                                          </td>
+                                                          <td>iPhone</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            firstname<br>
+                                                            <code>mandatory</code>
+                                                          </td>
+                                                          <td style="white-space: normal; word-break: break-word;">
+                                                            <code>String</code> The first name of the customer.
+                                                          </td>
+                                                          <td>Ashish</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            email<br>
+                                                            <code>mandatory</code>
+                                                          </td>
+                                                          <td style="white-space: normal; word-break: break-word;">
+                                                            <code>String</code> The email address of the customer.
+                                                          </td>
+                                                          <td>test@payu.in</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            phone<br>
+                                                            <code>mandatory</code>
+                                                          </td>
+                                                          <td style="white-space: normal; word-break: break-word;">
+                                                            <code>String</code> The phone number of the customer.
+                                                          </td>
+                                                          <td>9876543210</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            pg<br>
+                                                            <code>mandatory</code>
+                                                          </td>
+                                                          <td style="white-space: normal; word-break: break-word;">
+                                                            <code>String</code> Payment gateway/method identifier. <strong>This is the key difference from hosted checkout.</strong>
+                                                          </td>
+                                                          <td>CC, NB, UPI, CASH</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            bankcode<br>
+                                                            <code>conditional</code>
+                                                          </td>
+                                                          <td style="white-space: normal; word-break: break-word;">
+                                                            <code>String</code> Bank or payment provider specific code. Required for specific payment methods.
+                                                          </td>
+                                                          <td>HDFC, PAYTM, UPI</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            surl<br>
+                                                            <code>mandatory</code>
+                                                          </td>
+                                                          <td style="white-space: normal; word-break: break-word;">
+                                                            <code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.
+                                                          </td>
+                                                          <td>https://yoursite.com/success</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            furl<br>
+                                                            <code>mandatory</code>
+                                                          </td>
+                                                          <td style="white-space: normal; word-break: break-word;">
+                                                            <code>String</code> The failure URL, which is the page PayU will redirect to if the transaction fails.
+                                                          </td>
+                                                          <td>https://yoursite.com/failure</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            hash<br>
+                                                            <code>mandatory</code>
+                                                          </td>
+                                                          <td style="white-space: normal; word-break: break-word;">
+                                                            <code>String</code> It is the hash calculated by the merchant using SHA-512.
+                                                          </td>
+                                                          <td>[computed hash]</td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
   `}</HTMLBlock>
 
   ## Payment Method Specific Parameters
@@ -617,7 +808,7 @@ Follow the below steps to complete the integration:
               /// Process payment using PayU Merchant Hosted Checkout
               /// </summary>
               /// <returns>PaymentResponse containing status and response data</returns>
-              public async Task<PaymentResponse> ProcessPaymentAsync()
+              public async Task&lt;PaymentResponse&gt; ProcessPaymentAsync()
               {
                   try
                   {
@@ -1406,7 +1597,7 @@ Follow the below steps to complete the integration:
               /// Process UPI payment through PayU
               /// </summary>
               /// <returns>PaymentResponse containing status and response data</returns>
-              public async Task<PaymentResponse> ProcessUpiPaymentAsync()
+              public async Task&lt;PaymentResponse&gt; ProcessUpiPaymentAsync()
               {
                   try
                   {
@@ -1912,7 +2103,7 @@ Follow the below steps to complete the integration:
               /// Process wallet payment through PayU
               /// </summary>
               /// <returns>PaymentResponse containing status and response data</returns>
-              public async Task<PaymentResponse> ProcessWalletPaymentAsync()
+              public async Task&lt;PaymentResponse&gt; ProcessWalletPaymentAsync()
               {
                   try
                   {
@@ -2499,7 +2690,7 @@ Follow the below steps to complete the integration:
               /// Process Pluxee card payment through PayU
               /// </summary>
               /// <returns>PaymentResponse containing status and response data</returns>
-              public async Task<PaymentResponse> ProcessPluxeeCardPaymentAsync()
+              public async Task&lt;PaymentResponse&gt; ProcessPluxeeCardPaymentAsync()
               {
                   try
                   {
@@ -3027,7 +3218,7 @@ Follow the below steps to complete the integration:
               /// Process NEFT/RTGS payment through PayU
               /// </summary>
               /// <returns>PaymentResponse containing status and response data</returns>
-              public async Task<PaymentResponse> ProcessNeftPaymentAsync()
+              public async Task&lt;PaymentResponse&gt; ProcessNeftPaymentAsync()
               {
                   try
                   {
@@ -3146,7 +3337,7 @@ Follow the below steps to complete the integration:
     * Use empty strings for missing udf fields
     * Always compute hash on server-side
     * Include the lowercase hex digest as hash parameter
-</Accordion>
+  </Accordion>
 
   <Accordion title="Step 1.4: Response handling & hash verification" icon="fa-shield-check">
     **Response Handling:**
@@ -3175,7 +3366,7 @@ Follow the below steps to complete the integration:
     bank_ref_num=896193988312194700
     field1=...
     field9=Transaction is Successful
-    hash=<response_hash>
+    hash=&lt;response_hash&gt;
   ````
   ```json Failure
   mihpayid=403993715531077182
@@ -3201,7 +3392,7 @@ Follow the below steps to complete the integration:
   field9=Transaction Failed
   error=E000
   error_Message=Bank was unable to authenticate
-  hash=<response_hash>
+  hash=&lt;response_hash&gt;
   ```
 
   **PHP Response Verification**
@@ -3256,7 +3447,7 @@ Follow the below steps to complete the integration:
         --data-urlencode 'key=JP***g' \
         --data-urlencode 'command=verify_payment' \
         --data-urlencode 'var1=IhfgcZnXR4o4nB' \
-        --data-urlencode 'hash=<<calculated_hash_here>>'
+        --data-urlencode 'hash=<&lt;calculated_hash_here&gt;>'
         ```
       </Accordion>
 
