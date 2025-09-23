@@ -17,31 +17,31 @@ The **Bank Verification** API is used to verify bank account using penny drop/pe
 
 ## Environment
 
-| Environment            | URL                                                                                                                                |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Production Environment | \[[https://onboarding.payu.in/dvs/bank\_accounts/acc\_verification](https://onboarding.payu.in/dvs/bank_accounts/acc_verification) |
+| Environment            | URL                                                           |
+| ---------------------- | ------------------------------------------------------------- |
+| Production Environment | https://onboarding.payu.in/dvs/bank_accounts/acc_verification |
 
 > 📘 **Note:**
 >
-> The access token with the scope as **verify\_bank\_account** and grant type as **client\_credentials** are required on the header. For more information on getting the access token, refer to [Get Token API - Bank Verification](ref:gettoken-bank-verification).
+> The access token with the scope as **verify_bank_account** and grant type as **client_credentials** are required on the header. For more information on getting the access token, refer to [Get Token API - Bank Verification](ref:gettoken-bank-verification).
 
 ## Request parameters
 
 ### Header
 
-| Parameter                                | Description                                                                                                                                                                                                                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Bearer token<br /><code>mandatory</code> | The access token with the scope as **verify\_bank\_account** and grant type as **client\_credentials** are required on the header. For more information on getting the access token, refer to [Get Token API - Bank Verification](ref:gettoken-bank-verification). |
+| Parameter                                | Description                                                                                                                                                                                                                                                     |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Bearer token<br /><code>mandatory</code> | The access token with the scope as **verify_bank_account** and grant type as **client_credentials** are required on the header. For more information on getting the access token, refer to [Get Token API - Bank Verification](ref:gettoken-bank-verification). |
 
 ### Body
 
-| Parameter                                        | Description                                                                                                                                     |
-| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| account\_number<br /><code>mandatory</code>      | <code>String</code> This parameter must contain the account number to be verified.                                                              |
-| ifsc<br /><code>mandatory</code>                 | <code>String</code> This parameter must contain the bank IFSC code.                                                                             |
-| name<br /><code>mandatory</code>                 | <code>String</code> This parameter must contain the account holder name.                                                                        |
-| name\_match\_required<br /><code>optional</code> | <code>Boolean</code> This parameter must be set to <code>true</code> if the name must match along with bank account verification.               |
-| leniency<br /><code>optional</code>              | <code>String</code> If name\_match\_required is set to <code>true</code>, this parameter must contain any of the following:- Medium - High - Lo |
+| Parameter                                      | Description                                                                                                                                   |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| account_number<br /><code>mandatory</code>     | <code>String</code> This parameter must contain the account number to be verified.                                                            |
+| ifsc<br /><code>mandatory</code>               | <code>String</code> This parameter must contain the bank IFSC code.                                                                           |
+| name<br /><code>mandatory</code>               | <code>String</code> This parameter must contain the account holder name.                                                                      |
+| name_match_required<br /><code>optional</code> | <code>Boolean</code> This parameter must be set to <code>true</code> if the name must match along with bank account verification.             |
+| leniency<br /><code>optional</code>            | <code>String</code> If name_match_required is set to <code>true</code>, this parameter must contain any of the following:- Medium - High - Lo |
 
 ## Sample request
 
@@ -99,7 +99,7 @@ curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_ver
 
 ### Failure scenario
 
-* Missing client\_id value in header
+* Missing client_id value in header
 
 ```json
 {
