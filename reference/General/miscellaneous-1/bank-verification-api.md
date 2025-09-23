@@ -17,13 +17,13 @@ The **Bank Verification** API is used to verify bank account using penny drop/pe
 
 ## Environment
 
-| Environment            | URL                                                           |
-| ---------------------- | ------------------------------------------------------------- |
-| Production Environment | https://onboarding.payu.in/dvs/bank_accounts/acc_verification |
+| Environment            | URL                                                                                                                               |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Production Environment | [[https://onboarding.payu.in/dvs/bank\_accounts/acc\_verification](https://onboarding.payu.in/dvs/bank_accounts/acc_verification) |
 
-> 📘 **Note:**
->
-> The access token with the scope as **verify_bank_account** and grant type as **client_credentials** are required on the header. For more information on getting the access token, refer to [Get Token API - Bank Verification](ref:gettoken-bank-verification).
+<Callout icon="📘" theme="info">
+  **Note:** The access token with the scope as **verify_bank_account** and grant type as **client_credentials** are required on the header. For more information on getting the access token, refer to [Get Token API - Bank Verification](ref:gettoken-bank-verification).
+</Callout>
 
 ## Request parameters
 
