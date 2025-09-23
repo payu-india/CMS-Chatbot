@@ -1,5 +1,5 @@
 ---
-title: General Flow for BNPL
+title: Merchant Hosted BNPL Workflow
 excerpt: ''
 deprecated: false
 hidden: false
