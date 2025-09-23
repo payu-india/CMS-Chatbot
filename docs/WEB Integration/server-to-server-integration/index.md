@@ -1,12 +1,5 @@
 ---
 title: Server-to-Server
-excerpt: >-
-  The legacy flow such as the PayU Hosted Checkout and Merchant Hosted Checkout
-  involves intermediate browser hops. Server-to-Server (S2S) involves
-  communication between the merchant’s server and PayU servers that operate in
-  the backend. S2S is unlike the legacy flow, where the data is fetched through
-  a direct call on the customer’s browser, and its progress can be witnessed
-  through the change of the URLs.
 deprecated: false
 hidden: false
 metadata:
@@ -25,6 +18,8 @@ metadata:
 next:
   description: ''
 ---
+The legacy flow such as the PayU Hosted Checkout and Merchant Hosted Checkout involves intermediate browser hops. Server-to-Server (S2S) involves communication between the merchant’s server and PayU servers that operate in the backend. S2S is unlike the legacy flow, where the data is fetched through a direct call on the customer’s browser, and its progress can be witnessed through the change of the URLs.
+
 ## Prerequisites for S2S workflow
 
 The prerequisites for integrating with S2S are:
@@ -35,7 +30,7 @@ The prerequisites for integrating with S2S are:
 > 👍 Before you Begin:
 >
 > * PayU strongly recommends you test your integration using the test merchant Key or Salt. To create a test merchant account, refer to [Register for a Merchant Account on Dashboard](doc:register-for-a-merchant-account-on-dashboard). After you create a test merchant account, you can access the test Key or Salt as described in [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard).
-> * PayU recommends you integrate with Test environment initially. For merchants registered before August 3rd, 2023, use the following URL to sign up for the Test environment: 
+> * PayU recommends you integrate with Test environment initially. For merchants registered before August 3rd, 2023, use the following URL to sign up for the Test environment:
 >
 > [https://uat-onepayuonboarding.payu.in/app/account/signup](https://uat-onepayuonboarding.payu.in/app/account/signup)
 >
@@ -58,11 +53,11 @@ To get started with Server-to-Server integration, refer to [General Integration]
 
 **Step 1:** The customer completes shopping at your website and initiates a transaction with card credentials.
 
-<Image align="center" className="border" width="350px" border={true} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-6-576x1024.jpg" />
+<Image align="center" className="border" border={true} width="350px" src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-6-576x1024.jpg" />
 
 **Step 2:** The customer enters the CVV and proceeds to complete the payment.
 
-<Image align="center" className="border" width="350px" border={true} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-7-576x1024.jpg" />
+<Image align="center" className="border" border={true} width="350px" src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-7-576x1024.jpg" />
 
 **Step 3:** The merchant collects the Bank OTP for authentication where the customer needs to complete the transaction by using the OTP sent by the bank to the registered mobile number.
 
