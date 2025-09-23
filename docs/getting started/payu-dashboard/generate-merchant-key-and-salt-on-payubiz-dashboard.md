@@ -1,8 +1,8 @@
 ---
 title: Generate Merchant Key and Salt on PayUBiz Dashboard
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
