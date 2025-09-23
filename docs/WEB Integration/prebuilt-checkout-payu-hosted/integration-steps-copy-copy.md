@@ -77,6 +77,30 @@ First, you need to collect all the necessary information for the transaction. Be
   hash=<response_hash>
   ```
   ```json Failure
+  mihpayid=403993715531077182
+  mode=CC
+  status=failure
+  unmappedstatus=failed
+  key=JPM7Fg
+  txnid=TXN12345
+  amount=1000.00
+  productinfo=Pro Plan
+  firstname=Aditi
+  email=aditi@example.com
+  phone=9999999999
+  udf1=
+  ...
+  udf5=
+  PG_TYPE=CC-PG
+  bankcode=CC
+  bank_ref_num=
+  field1=
+  field2=
+  ...
+  field9=Transaction Failed
+  error=E000
+  error_Message=Bank was unable to authenticate
+  hash=<response_hash>
   ```
 </Accordion>
 
