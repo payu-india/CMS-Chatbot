@@ -20,26 +20,61 @@ A simple server-generated redirect that sends customers from your site/app to th
 **The PayU Hosted Checkout integration involves the following steps:**
 
 <Cards columns={3}>
-  <Card title="1. Start Integration" href="#step-1--start-integration" className="card card--start">
+  <Card title="1. Start Integration" href="https://docs.payu.in/docs/integration-steps-copy#step-1--start-integration" target="_blank">
     Integrate pre-built checkout solution
+
+    <br />
   </Card>
 
-  <Card title="2. Test Integration" href="#step-2-test-integration" className="card card--test">
+  <Card title="2. Test Integration" href="https://docs.payu.in/docs/integration-steps-copy#step-2-test-integration">
     Test the integration by making a test transaction
+
+    <br />
   </Card>
 
-  <Card title="3. Go live Checklist" href="#step-3-going-live-your-final-checklist" className="card card--golive">
+  <Card title="3. Go live Checklist" href="https://docs.payu.in/docs/integration-steps-copy#step-3-going-live-your-final-checklist">
     Follow the production checklist to go live
   </Card>
+
+  <br />
 </Cards>
 
 <HTMLBlock>{`
 <style>
-  .card { color:#fff; border-radius: 0.75rem; box-shadow: 0 10px 20px rgba(0,0,0,.08); transition: transform .15s ease; }
-  .card:hover { transform: translateY(-2px); }
-  .card--start { background: linear-gradient(90deg, #34d399, #059669); }
-  .card--test { background: linear-gradient(90deg, #60a5fa, #2563eb); }
-  .card--golive { background: linear-gradient(90deg, #f59e0b, #d97706); }
+.Card {
+  display: block;
+  padding: 1.5rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border: 5px solid #047857;
+  
+  /* The gradient background */
+  background-image: linear-gradient(to right, #34d399, #059669);
+  
+  /* A smooth transition for the hover effect */
+  transition: all 0.3s ease-in-out;
+}
+
+/* This handles the hover effect */
+.Card:hover {
+  background-image: linear-gradient(to right, #10b981, #047857);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Basic styling for the text inside the card */
+.Card h3 {
+  margin: 0 0 0.5rem 0;
+  font-family: sans-serif;
+}
+
+.Card p {
+  margin: 0;
+  font-family: sans-serif;
+  font-weight: normal;
+  opacity: 0.9;
+}
 </style>
 `}</HTMLBlock>
 
