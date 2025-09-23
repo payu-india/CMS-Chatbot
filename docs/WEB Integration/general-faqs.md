@@ -36,7 +36,7 @@ This section provides answers to general frequently asked questions (FAQs) on pa
 
 * **Where can I get the test Key/Salt details?**
 
-  You can get the Key/Salt details from the PayU Dashboard. After you log in to PayU Dashboard, navigate to **Collect Payments> Payment Gateway** and scroll down to view the Key/Salt. For more information, refer to [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt).
+  You can get the Key/Salt details from the PayU Dashboard. After you log in to PayU Dashboard, navigate to **Collect Payments> Payment Gateway** and scroll down to view the Key/Salt. For more information, refer to [Access Test Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy#).
 
 * **What is the role of Key/Salt in the encryption process?**
 
