@@ -1,7 +1,7 @@
 ---
-title: Integrate WebView for Mobile Apps (COPY)
+title: WebView Integration for Mobile Apps
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Integrate WebView for Mobile Apps with PayU Hosted Checkout
   description: >-
