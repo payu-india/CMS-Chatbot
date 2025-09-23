@@ -53,14 +53,14 @@ Follow the below steps to complete the integration:
 
 First, you need to collect all the necessary information for the transaction. Below is the list of parameters where some are mandatory and others are optional.
 
-<Accordion title="Environment" icon="fa-globe">
+\<Accordion title="Step 1.1: Prepare the request parameters" icon="fa-info-circle"&#x20;
 
 ```Text Json 1
 ```
 ```Text Json 2
 ```
 
-</Accordion>
+/>
 
 ### Step 1.1: Prepare the request parameters
 
