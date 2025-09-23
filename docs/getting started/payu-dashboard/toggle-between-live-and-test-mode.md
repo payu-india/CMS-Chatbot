@@ -36,7 +36,7 @@ Use the right pair depending on your environment:
   </Tab>
 
   <Tab title="Production Environment">
-    Once your merchant account is activated, you can generate **production credentials** from the PayU Merchant Dashboard.
+    Once your merchant account is activated, you can generate **Production key and Salt** from the PayU Merchant Dashboard.
 
     1. Log in to the [PayU Merchant Dashboard](https://merchant.payu.in/).
 
