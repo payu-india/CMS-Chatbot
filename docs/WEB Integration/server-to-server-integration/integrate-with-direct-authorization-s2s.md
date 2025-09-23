@@ -1,9 +1,5 @@
 ---
 title: Direct Authorization Integration
-excerpt: >-
-  PayU enables merchants to process direct authorization for pre-authenticated
-  transactions (external MPI/3DSS). This section describes how to integrate with
-  PayU’s direct authorization flow.
 deprecated: false
 hidden: false
 metadata:
@@ -13,6 +9,8 @@ metadata:
 next:
   description: ''
 ---
+PayU enables merchants to process direct authorization for pre-authenticated transactions (external MPI/3DSS). This section describes how to integrate with PayU’s direct authorization flow.
+
 ### Steps to Integrate
 
 1. [Post the Parameters to PayU](#step-1-post-the-parameters-to-payu)
