@@ -1054,6 +1054,18 @@ Upon receiving the response, We recommend performing a reconciliation step by qu
                 }
             }
         ```
+
+        #### Failure Responses
+
+        * If txnID is not found, the response is similar to the following:
+
+        ```plaintext
+        {
+        "status":0,"msg":"0 out of 1 Transactions Fetched
+
+        Successfully","transaction_details":{"IhfgcZnXR4o4nB":{"mihpayid":"Not Found","status":"Not Found"}}
+        }
+        ```
       </Accordion>
 
       <Accordion title="Response parameters" icon="fa-list">
