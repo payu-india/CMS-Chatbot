@@ -1,5 +1,5 @@
 ---
-title: UPI Collection S2S Integration
+title: UPI Collection with S2S Integration
 excerpt: ''
 deprecated: false
 hidden: false
