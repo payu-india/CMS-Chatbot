@@ -1,5 +1,5 @@
 ---
-title: Integration Steps (COPY)
+title: Web Integration Steps
 deprecated: false
 hidden: true
 link:
