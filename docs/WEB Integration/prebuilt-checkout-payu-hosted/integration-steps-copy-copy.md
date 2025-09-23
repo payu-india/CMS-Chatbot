@@ -53,71 +53,9 @@ Follow the below steps to complete the integration:
 
 First, you need to collect all the necessary information for the transaction. Below is the list of parameters where some are mandatory and others are optional.
 
-\<Accordion title="My Accordion Title" icon="fa-info-circle">
+<Accordion title="My Accordion Title" icon="fa-info-circle">
 
-```Text Success
-mihpayid=403993715531077182
-  mode=CC
-  status=success
-  unmappedstatus=captured
-  key=JPM7Fg
-  txnid=TXN12345
-  amount=1000.00
-  productinfo=Pro Plan
-  firstname=Aditi
-  email=aditi@example.com
-  phone=9999999999
-  udf1=
-  ...
-  udf5=
-  PG_TYPE=CC-PG
-  bankcode=CC
-  bank_ref_num=896193988312194700
-  field1=...
-  field9=Transaction is Successful
-  hash=<response_hash>
-```
-```Text Failure
-mihpayid=403993715531077182
-  mode=CC
-  status=failure
-  unmappedstatus=failed
-  key=JPM7Fg
-  txnid=TXN12345
-  amount=1000.00
-  productinfo=Pro Plan
-  firstname=Aditi
-  email=aditi@example.com
-  phone=9999999999
-  udf1=
-  ...
-  udf5=
-  PG_TYPE=CC-PG
-  bankcode=CC
-  bank_ref_num=
-  field1=
-  field2=
-  ...
-  field9=Transaction Failed
-  error=E000
-  error_Message=Bank was unable to authenticate
-  hash=<response_hash>
-```
-
-<br />
-
-**Step 1.4.1: Response verification using reverse hashing**
-
-Verify the response received above by recomputing SHA-512 using the reverse sequence:
-
-```json
-sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-```
-
-* Compare the computed digest to hash from the POST payload (**case-insensitive**).
-* Trust the result only if the hash matches. Then update your order state.
-
-\</Accordion>
+</Accordion>
 
 ### Step 1.1: Prepare the request parameters
 
