@@ -56,30 +56,30 @@ First, you need to collect all the necessary information for the transaction. Be
 <br />
 
 \<Accordion title="My Accordion Title" icon="fa-info-circle">
-&#x20; \`\`\`json Success
-&#x20; mihpayid=403993715531077182
-&#x20; mode=CC
-&#x20; status=success
-&#x20; unmappedstatus=captured
-&#x20; key=JPM7Fg
-&#x20; txnid=TXN12345
-&#x20; amount=1000.00
-&#x20; productinfo=Pro Plan
-&#x20; firstname=Aditi
-&#x20; email=aditi\@example.com
-&#x20; phone=9999999999
-&#x20; udf1=
-&#x20; ...
-&#x20; udf5=
-&#x20; PG\_TYPE=CC-PG
-&#x20; bankcode=CC
-&#x20; bank\_ref\_num=896193988312194700
-&#x20; field1=...
-&#x20; field9=Transaction is Successful
-&#x20; hash=\<response\_hash>
-&#x20; \`\`\`
-&#x20; \`\`\`json Failure
-&#x20; mihpayid=403993715531077182
+  ```json Success
+  mihpayid=403993715531077182
+  mode=CC
+  status=success
+  unmappedstatus=captured
+  key=JPM7Fg
+  txnid=TXN12345
+  amount=1000.00
+  productinfo=Pro Plan
+  firstname=Aditi
+  email=[aditi@example.com](mailto:aditi@example.com)
+  phone=9999999999
+  udf1=
+  ...
+  udf5=
+  PG_TYPE=CC-PG
+  bankcode=CC
+  bank_ref_num=896193988312194700
+  field1=...
+  field9=Transaction is Successful
+  hash=\<response_hash>
+  ```
+  ```json Failure
+  mihpayid=403993715531077182
 
 <br />
 
@@ -832,8 +832,8 @@ Upon receiving the response, We recommend performing a reconciliation step by qu
 <br />
 
 <Accordion title="Step 1.5: Verify the payment" icon="fa-magnifying-glass">
-  Upon receiving the response, we recommend performing a reconciliation step to validate all transaction details.\
-  You can verify your payments using either of the following methods:
+  <p>Upon receiving the response, we recommend performing a reconciliation step to validate all transaction details.\
+  You can verify your payments using either of the following methods:</p>
 
   <Tabs>
     <Tab title="1. Verify using Webhooks">
