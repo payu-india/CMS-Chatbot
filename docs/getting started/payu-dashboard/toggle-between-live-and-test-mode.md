@@ -18,7 +18,7 @@ Use the right pair depending on your environment:
 
 <Tabs>
   <Tab title="Test Environment">
-    You can access your **test Key and Salt** from the PayU Test Dashboard.
+    You can access your **Test Key and Salt** from the PayU Test Dashboard.
 
     1. Log in to the [PayU Test Dashboard](https://test.payu.in/).
 
