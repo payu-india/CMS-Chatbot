@@ -1,11 +1,5 @@
 ---
 title: General Integration
-excerpt: >-
-  The Server-to-Server integration is performed at the server level, that is,
-  your server (merchant server) and PayU server. The transaction is initiated
-  from your server; hence redirection hop is eliminated. Since the details are
-  captured on your page, customers gain confidence and enhance the checkout
-  experience.
 deprecated: false
 hidden: false
 metadata:
@@ -15,7 +9,11 @@ metadata:
 next:
   description: ''
 ---
-**Note**: You must be **PCI-DSS** certified to use Server-to-Server integration. For more information on PCI-DSS certification, contact your Account Manager at PayU.
+The Server-to-Server integration is performed at the server level, that is, your server (merchant server) and PayU server. The transaction is initiated from your server; hence redirection hop is eliminated. Since the details are captured on your page, customers gain confidence and enhance the checkout experience.
+
+<Callout icon="📘" theme="info">
+  **Note**: You must be **PCI-DSS** certified to use Server-to-Server integration. For more information on PCI-DSS certification, contact your Account Manager at PayU.
+</Callout>
 
 <RegisterMerchantPrerequiste />
 
