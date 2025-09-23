@@ -1,5 +1,6 @@
 - log-in-to-dashboard
 - toggle-between-live-and-test-mode
+- generate-merchant-key-and-salt-copy
 - generate-test-merchant-key-and-salt
 - generate-merchant-key-and-salt-on-payu-dashboard
 - business-summary
@@ -18,4 +19,3 @@
 - faqs-for-dashboard
 - reset-password-for-payu-dashboard-login
 - generate-merchant-key-and-salt-on-payubiz-dashboard
-- generate-merchant-key-and-salt-copy
