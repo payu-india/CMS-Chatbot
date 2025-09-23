@@ -1,7 +1,7 @@
 ---
 title: Merchant Onboarding APIs
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
