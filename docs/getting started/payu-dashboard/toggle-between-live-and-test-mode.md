@@ -22,6 +22,8 @@ Use the right pair depending on your environment:
 
     1. Log in to the [PayU Test Dashboard](https://test.payu.in/).
 
+    <Image align="center" src="https://files.readme.io/66f1002-payu_in_dashboard_login.png" />
+
     2. Switch to **Test Mode** from the toggle option on the menu bar.
 
        <Image align="center" border={true} src="https://files.readme.io/2282abf-dashboard_select_test_mode.png" width="320px" />
