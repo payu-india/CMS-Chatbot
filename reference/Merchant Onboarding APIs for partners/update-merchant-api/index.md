@@ -1,4 +1,4 @@
 ---
 title: Update Merchant API
-hidden: false
+hidden: true
 ---
