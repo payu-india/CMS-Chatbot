@@ -56,30 +56,30 @@ First, you need to collect all the necessary information for the transaction. Be
 <br />
 
 \<Accordion title="My Accordion Title" icon="fa-info-circle">
-&#x20; \`\`\`json Success
-&#x20; mihpayid=403993715531077182
-&#x20; mode=CC
-&#x20; status=success
-&#x20; unmappedstatus=captured
-&#x20; key=JPM7Fg
-&#x20; txnid=TXN12345
-&#x20; amount=1000.00
-&#x20; productinfo=Pro Plan
-&#x20; firstname=Aditi
-&#x20; email=aditi\@example.com
-&#x20; phone=9999999999
-&#x20; udf1=
-&#x20; ...
-&#x20; udf5=
-&#x20; PG\_TYPE=CC-PG
-&#x20; bankcode=CC
-&#x20; bank\_ref\_num=896193988312194700
-&#x20; field1=...
-&#x20; field9=Transaction is Successful
-&#x20; hash=\<response\_hash>
-&#x20; \`\`\`
-&#x20; \`\`\`json Failure
-&#x20; mihpayid=403993715531077182
+  ```json Success
+  mihpayid=403993715531077182
+  mode=CC
+  status=success
+  unmappedstatus=captured
+  key=JPM7Fg
+  txnid=TXN12345
+  amount=1000.00
+  productinfo=Pro Plan
+  firstname=Aditi
+  email=[aditi@example.com](mailto:aditi@example.com)
+  phone=9999999999
+  udf1=
+  ...
+  udf5=
+  PG_TYPE=CC-PG
+  bankcode=CC
+  bank_ref_num=896193988312194700
+  field1=...
+  field9=Transaction is Successful
+  hash=\<response_hash>
+  ```
+  ```json Failure
+  mihpayid=403993715531077182
 
 <br />
 
@@ -831,45 +831,45 @@ Upon receiving the response, We recommend performing a reconciliation step by qu
 
 <br />
 
-<Accordion title="Step 1.5: Verify the payment" icon="fa-magnifying-glass">
-  Upon receiving the response, we recommend performing a reconciliation step to validate all transaction details.\
-  You can verify your payments using either of the following methods:
+\<Accordion title="Step 1.5: Verify the payment" icon="fa-magnifying-glass">
+&#x20; Upon receiving the response, we recommend performing a reconciliation step to validate all transaction details.\\
+&#x20; You can verify your payments using either of the following methods:
+\</br>
+&#x20; \<Tabs>
+&#x20;   \<Tab title="1. Verify using Webhooks">
+&#x20;     Configure the webhooks to monitor the status of payments.\\
+&#x20;     Webhooks enable a server to communicate with another server by sending an HTTP callback or message.\\
+&#x20;     These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.
 
-  <Tabs>
-    <Tab title="1. Verify using Webhooks">
-      Configure the webhooks to monitor the status of payments.\
-      Webhooks enable a server to communicate with another server by sending an HTTP callback or message.\
-      These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.
+&#x20;     👉 For more details, refer to \[Webhooks for Payments]\(https\://docs.payu.in/reference/webhooks).
+&#x20;   \</Tab>
 
-      👉 For more details, refer to [Webhooks for Payments](https://docs.payu.in/reference/webhooks).
-    </Tab>
+&#x20;   \<Tab title="2. Verify using Verify Payments API">
+&#x20;     \*\*Environment\*\*
 
-    <Tab title="2. Verify using Verify Payments API">
-      **Environment**
+&#x20;     \|                        |                                                                                                              |
+&#x20;     \| :--------------------- | :----------------------------------------------------------------------------------------------------------- |
+&#x20;     \| Test Environment       | \[https\://test.payu.in/merchant/postservice.php?form=2]\(https\://test.payu.in/merchant/postservice.php?form=2) |
+&#x20;     \| Production Environment | \[https\://info.payu.in/merchant/postservice.php?form=2]\(https\://info.payu.in/merchant/postservice.php?form=2) |
 
-      |                        |                                                                                                              |
-      | :--------------------- | :----------------------------------------------------------------------------------------------------------- |
-      | Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
-      | Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
+&#x20;     \<Accordion title="Sample request" icon="fa-code">
+&#x20;       \`\`\`curl
+&#x20;       curl --location 'https\://test.payu.in/merchant/postservice.php?form=2' \\
+&#x20;       \--header 'Content-Type: application/x-www-form-urlencoded' \\
+&#x20;       \--data-urlencode 'key=JP\*\*\*g' \\
+&#x20;       \--data-urlencode 'command=verify\_payment' \\
+&#x20;       \--data-urlencode 'var1=IhfgcZnXR4o4nB' \\
+&#x20;       \--data-urlencode 'hash=\<\<calculated\_hash\_here>>'
+&#x20;       \`\`\`
+&#x20;     \</Accordion>
 
-      <Accordion title="Sample request" icon="fa-code">
-        ```curl
-        curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
-        --header 'Content-Type: application/x-www-form-urlencoded' \
-        --data-urlencode 'key=JP***g' \
-        --data-urlencode 'command=verify_payment' \
-        --data-urlencode 'var1=IhfgcZnXR4o4nB' \
-        --data-urlencode 'hash=<<calculated_hash_here>>'
-        ```
-      </Accordion>
+&#x20;     \<Accordion title="Sample response" icon="fa-reply">
+&#x20;       … (your detailed success, failure, and offer-level response samples here) …
+&#x20;     \</Accordion>
 
-      <Accordion title="Sample response" icon="fa-reply">
-        … (your detailed success, failure, and offer-level response samples here) …
-      </Accordion>
-
-      <Accordion title="Response parameters" icon="fa-list">
-        … (your response parameter table here) …
-      </Accordion>
-    </Tab>
-  </Tabs>
-</Accordion>
+&#x20;     \<Accordion title="Response parameters" icon="fa-list">
+&#x20;       … (your response parameter table here) …
+&#x20;     \</Accordion>
+&#x20;   \</Tab>
+&#x20; \</Tabs>
+\</Accordion>
