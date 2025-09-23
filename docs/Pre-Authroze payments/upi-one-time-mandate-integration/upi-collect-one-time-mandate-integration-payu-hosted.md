@@ -1,5 +1,5 @@
 ---
-title: UPI Collect One-Time Mandate Integration - PayU Hosted
+title: UPI Collect OTM - PayU Hosted
 excerpt: ''
 deprecated: false
 hidden: false
