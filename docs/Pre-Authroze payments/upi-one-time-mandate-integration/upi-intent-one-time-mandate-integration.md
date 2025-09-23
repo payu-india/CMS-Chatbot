@@ -1,5 +1,5 @@
 ---
-title: UPI Intent One-Time Mandate Integration
+title: UPI Intent OTM - Merchant Hosted
 excerpt: ''
 deprecated: false
 hidden: false
