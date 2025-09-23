@@ -21,7 +21,6 @@ Use the right pair depending on your environment:
     You can access your **test Key and Salt** from the PayU Test Dashboard.
 
     1. Log in to the [PayU Test Dashboard](https://test.payu.in/).
-       ![Login to Test Dashboard](test-dashboard-login.png)
 
     2. Switch to **Test Mode** from the toggle option on the menu bar.
 
@@ -40,7 +39,6 @@ Use the right pair depending on your environment:
     Once your merchant account is activated, you can generate **production credentials** from the PayU Merchant Dashboard.
 
     1. Log in to the [PayU Merchant Dashboard](https://merchant.payu.in/).
-       ![Login to Production Dashboard](prod-dashboard-login.png)
 
     2. Switch to **Live Mode** from the toggle option on the menu bar.
 
