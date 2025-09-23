@@ -2,7 +2,7 @@
 title: UPI Integrations
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: UPI Integrations - S2S
   description: ''
