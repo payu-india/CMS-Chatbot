@@ -53,13 +53,32 @@ Follow the below steps to complete the integration:
 
 First, you need to collect all the necessary information for the transaction. Below is the list of parameters where some are mandatory and others are optional.
 
-<Accordion title="My Accordion Title" icon="fa-info-circle" >
-
-```
-```
-```
-```
-
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  ```
+  json Success Response
+  mihpayid=403993715531077182
+  mode=CC
+  status=success
+  unmappedstatus=captured
+  key=JPM7Fg
+  txnid=TXN12345
+  amount=1000.00
+  productinfo=Pro Plan
+  firstname=Aditi
+  email=aditi@example.com
+  phone=9999999999
+  udf1=
+  ...
+  udf5=
+  PG_TYPE=CC-PG
+  bankcode=CC
+  bank_ref_num=896193988312194700
+  field1=...
+  field9=Transaction is Successful
+  hash=<response_hash>
+  ```
+  ```
+  ```
 </Accordion>
 
 ### Step 1.1: Prepare the request parameters
