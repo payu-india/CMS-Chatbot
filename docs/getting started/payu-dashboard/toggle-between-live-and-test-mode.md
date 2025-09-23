@@ -16,8 +16,6 @@ Use the right pair depending on your environment:
 
 ## Merchant Key Salt
 
-![]()
-
 <Tabs>
   <Tab title="Test Environment">
     You can access your **test Key and Salt** from the PayU Test Dashboard.
@@ -64,18 +62,3 @@ Use the right pair depending on your environment:
 * If you regenerate credentials, update them immediately in your application to avoid integration failures.
 
 <br />
-
-You can switch between Live and Mode mode easily on PayU Dashboard.
-
-To toggle between Live and Test mode:
-
-1. Log in to PayU Dashboard. For more information, refer to [Log in to Dashboard](doc:log-in-to-dashboard).
-2. Click the mode drop-down list.
-
-The **Live Mode** and **Test Mode** options are displayed in the drop-down list similar to the following screenshot:
-
-<Image align="center" className="border" border={true} src="https://files.readme.io/2d5c31a-switch_live.png" />
-
-3. Select **Test Mode** from the mode drop-down list.
-
-The **Test Mode** is displayed as the active mode.
