@@ -1,11 +1,15 @@
 ---
-title: UPI Integrations - S2S
+title: UPI Integrations
 excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
+  title: UPI Integrations - S2S
   description: ''
+  keywords:
+    - UPI Integrations
+    - Integrate UPI with S2S
+    - S2S UPI Integration
   robots: index
 next:
   description: ''
