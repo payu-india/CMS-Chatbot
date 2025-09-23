@@ -18,7 +18,7 @@ Use the right pair depending on your environment:
 
 <Tabs>
   <Tab title="Test Environment">
-    You can access your **Test Key and Salt** from the PayU Test Dashboard.
+    You can access your **Test Key and Salt** from the PayU Test Dashboard as soon as you create an account with PayU.
 
     1. Log in to the [PayU Test Dashboard](https://test.payu.in/).
 
@@ -38,7 +38,7 @@ Use the right pair depending on your environment:
   </Tab>
 
   <Tab title="Production Environment">
-    Once your merchant account is activated, you can generate **Production key and Salt** from the PayU Merchant Dashboard.
+    Once your website is verified and merchant account is activated, you can generate **Production key and Salt** from the PayU Merchant Dashboard.
 
     1. Log in to the [PayU Merchant Dashboard](https://merchant.payu.in/).
 
