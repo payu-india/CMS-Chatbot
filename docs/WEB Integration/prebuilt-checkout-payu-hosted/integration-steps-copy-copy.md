@@ -832,7 +832,7 @@ Upon receiving the response, We recommend performing a reconciliation step by qu
 
 <br />
 
-<Accordion title="Step 1.5: Verify the payment" icon="fa-magnifying-glass">
+<Accordion title="Step 1.5: Verify the payment" icon="fa-magnifying-glass" defaultOpen>
   <p>Upon receiving the response, we recommend performing a reconciliation step to validate all transaction details.\
   You can verify your payments using either of the following methods:</p>
 
