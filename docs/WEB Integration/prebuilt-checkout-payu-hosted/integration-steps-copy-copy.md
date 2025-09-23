@@ -867,60 +867,59 @@ Upon receiving the response, We recommend performing a reconciliation step by qu
       </Accordion>
 
       <Accordion title="Sample response" icon="fa-reply">
-        * If credit card payment is made, the response is similar to the following:
-
         <br />
 
         ```json Success Response
+        If credit card payment is made, the response is similar to the following:
         {
-         "status": 1,
-         "msg": "1 out of 1 Transactions Fetched Successfully",
-         "transaction_details": {
-             "1733900931584": {
-                 "mihpayid": "21820644083",
-                 "request_id": null,
-                 "bank_ref_num": null,
-                 "amt": "1.00",
-                 "transaction_amount": "1.00",
-                 "txnid": "1733900931584",
-                 "additional_charges": "0.00",
-                 "productinfo": "Macbook Pro",
-                 "firstname": "Abc",
-                 "bankcode": "MAST",
-                 "udf1": "udf1",
-                 "udf2": "udf2",
-                 "udf3": "udf3",
-                 "udf4": "udf4",
-                 "udf5": "udf5",
-                 "field2": null,
-                 "field9": "OTP/ATM page expired due to no user action",
-                 "error_code": "E1602",
-                 "addedon": "2024-12-11 12:43:03",
-                 "payment_source": "payu",
-                 "card_type": "MAST",
-                 "error_Message": "Bank was unable to authenticate.",
-                 "net_amount_debit": "0.00",
-                 "disc": "0.00",
-                 "mode": "DC",
-                 "PG_TYPE": "DC-PG",
-                 "card_no": "XXXXXXXXXXXX7596",
-                 "status": "failure",
-                 "unmappedstatus": "dropped",
-                 "Merchant_UTR": null,
-                 "Settled_At": null,
-                 "cardhash": "095d184331be367bb92aa3eeecb57d0728de96cc598dd563d407982d75021149",
-                 "name_on_card": null,
-                 "card_token": "4e97156bc2d6320cdfe15",
-                 "field4": null,
-                 "threeDSVersion": "2.2.0",
-                 "offerAvailed": null
-             }
-         }
+        "status": 1,
+        "msg": "1 out of 1 Transactions Fetched Successfully",
+        "transaction_details": {
+           "1733900931584": {
+               "mihpayid": "21820644083",
+               "request_id": null,
+               "bank_ref_num": null,
+               "amt": "1.00",
+               "transaction_amount": "1.00",
+               "txnid": "1733900931584",
+               "additional_charges": "0.00",
+               "productinfo": "Macbook Pro",
+               "firstname": "Abc",
+               "bankcode": "MAST",
+               "udf1": "udf1",
+               "udf2": "udf2",
+               "udf3": "udf3",
+               "udf4": "udf4",
+               "udf5": "udf5",
+               "field2": null,
+               "field9": "OTP/ATM page expired due to no user action",
+               "error_code": "E1602",
+               "addedon": "2024-12-11 12:43:03",
+               "payment_source": "payu",
+               "card_type": "MAST",
+               "error_Message": "Bank was unable to authenticate.",
+               "net_amount_debit": "0.00",
+               "disc": "0.00",
+               "mode": "DC",
+               "PG_TYPE": "DC-PG",
+               "card_no": "XXXXXXXXXXXX7596",
+               "status": "failure",
+               "unmappedstatus": "dropped",
+               "Merchant_UTR": null,
+               "Settled_At": null,
+               "cardhash": "095d184331be367bb92aa3eeecb57d0728de96cc598dd563d407982d75021149",
+               "name_on_card": null,
+               "card_token": "4e97156bc2d6320cdfe15",
+               "field4": null,
+               "threeDSVersion": "2.2.0",
+               "offerAvailed": null
+           }
+        }
         }
         ```
         ```json Failure Response
 
-        * If txnID is not found, the response is similar to the following
+        If txnID is not found, the response is similar to the following
         {
         "status":0,"msg":"0 out of 1 Transactions Fetched
 
