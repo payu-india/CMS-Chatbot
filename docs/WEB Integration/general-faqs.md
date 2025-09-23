@@ -48,7 +48,7 @@ This section provides answers to general frequently asked questions (FAQs) on pa
 
 * **How do I get my Key/Salt?**
 
-  You can get the Key/Salt details from the PayU Dashboard. After you log in to PayU Dashboard, navigate to **Collect Payments> Payment Gateway** and scroll down to view the Key/Salt. For the procedure to get the test Key and Salt, refer to [Access Production Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+  You can get the Key/Salt details from the PayU Dashboard. After you log in to PayU Dashboard, navigate to **Collect Payments> Payment Gateway** and scroll down to view the Key/Salt. For the procedure to get the test Key and Salt, refer to [Access Production Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-copy#).
 
 * **Can I share my Key/Salt with others?**
 
@@ -64,7 +64,7 @@ This section provides answers to general frequently asked questions (FAQs) on pa
 
 * **Can I use my Production Key and Salt details on API Reference?**
 
-  No, you can only use your test credentials or Key and Salt from your UAT account. For more information on how to get Key/Salt for Test environment, refer to [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt).
+  No, you can only use your test credentials or Key and Salt from your UAT account. For more information on how to get Key/Salt for Test environment, refer to [Access Test Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy#).
 
 ## Request/Response
 
