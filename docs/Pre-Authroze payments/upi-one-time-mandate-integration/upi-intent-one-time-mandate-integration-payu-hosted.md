@@ -1,5 +1,5 @@
 ---
-title: UPI Intent One-Time Mandate Integration - PayU Hosted
+title: UPI Intent OTM - PayU Hosted
 excerpt: ''
 deprecated: false
 hidden: false
