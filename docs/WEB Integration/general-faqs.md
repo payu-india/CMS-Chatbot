@@ -17,7 +17,7 @@ next:
 This section provides answers to general frequently asked questions (FAQs) on payment integration.
 
 <Callout icon="📘" theme="info">
-  **Reference**: For the product-specific FAQs or refunds, refer to: 
+  **Reference**: For the product-specific FAQs or refunds, refer to:
 
   * [FAQs for Refunds](doc:faqs-for-refunds)
   * [FAQs - Recurring Payments](doc:faqs-recurring-payments)
@@ -30,7 +30,7 @@ This section provides answers to general frequently asked questions (FAQs) on pa
 
 * **How do I test my payment integration?**
 
-  PayU provides a test environment that allows you to test your payment integration without processing real payments. You can access the test key/salt and simulate different payment scenarios to ensure that your integration works correctly. For more information, refer to [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+  PayU provides a test environment that allows you to test your payment integration without processing real payments. You can access the test key/salt and simulate different payment scenarios to ensure that your integration works correctly. For more information, refer to [Access Test Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy#)
 
 ## Key/Salt
 
