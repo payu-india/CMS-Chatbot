@@ -2,7 +2,7 @@
 title: Bulk Upload of Payment Links with SI Registration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
