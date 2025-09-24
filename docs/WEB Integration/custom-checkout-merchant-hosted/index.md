@@ -40,6 +40,8 @@ PayU’s Merchant Hosted Checkout allows you to create a custom payment experien
 2. A payment process initiated from your e-commerce website travels through PayU’s secured environment before reaching the card ACS or a bank’s Net Banking page.
 3. After the transaction is completed in the bank’s website environment, the customer is redirected to your website.
 
+<Image align="center" border={false} src="https://files.readme.io/4aeeafdbefc392fa362522d8209dc7268178e104e699b067895a3408ff412c42-merchant_hosted_flow.png" />
+
 ### Customer Experience
 
 **Step 1:** The customer completes shopping at your website and initiates a transaction with saved card (for example, VISA) credentials.
@@ -50,7 +52,7 @@ PayU’s Merchant Hosted Checkout allows you to create a custom payment experien
 
 **Step 4:** The flow takes the user to the login ACS page of the bank, where the user needs to complete the transaction by using the OTP sent by the bank to the registered mobile number.
 
-<Image align="center" className="border" border={true} width="300px" src="https://files.readme.io/1764f1a919d1e2a65ea7af0227bbb1b649c85cfde4cdbc4b435be8e6fb722fd3-merchant_hosted_acs_page.png" />
+<Image align="center" border={true} width="300px" src="https://files.readme.io/1764f1a919d1e2a65ea7af0227bbb1b649c85cfde4cdbc4b435be8e6fb722fd3-merchant_hosted_acs_page.png" className="border" />
 
 **Step 5:** Customer is shown the status (failed/successful) on your website based on the transaction status from PayU.
 
