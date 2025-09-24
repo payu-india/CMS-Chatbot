@@ -21,16 +21,6 @@ A hash is an encrypted value (checksum) that is sent by you in a payment request
   **Hashing logic for Web Integration and SDK is different**: For the hashing logic in Android SDK or iOS SKD, refer to [Generate Dynamic Hash](doc:ioscheckoutpro-generate-hash).
 </Callout>
 
-<br />
-
-<Image align="center" border={false} src="https://files.readme.io/427f8ce6f00d4c2c1b9401a35f3bb1719f82d05b531f990599315b1d1f3e8154-netbanking_icon.png" />
-
-|    |    |    |
-| :- | :- | :- |
-|  <Image align="center" border={false} src="https://files.readme.io/427f8ce6f00d4c2c1b9401a35f3bb1719f82d05b531f990599315b1d1f3e8154-netbanking_icon.png" />  |    |    |
-|    |    |    |
-|    |    |    |
-
 ## Hash Generation Logic for Basic Payment Request
 
 PayU uses the SHA-512 hash function that belongs to the SHA-2 family of cryptographic functions to generate hash values.
