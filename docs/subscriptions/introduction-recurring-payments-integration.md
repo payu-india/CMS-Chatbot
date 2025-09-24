@@ -29,9 +29,9 @@ The following video describes PayU’s Recurring Payment Suite offering:
 
 To enable subscription for your customer using various payment modes, it involves the following phases for each payment mode:
 
-> 👍 Before you begin:
->
-> Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+<Callout icon="👍" theme="okay">
+  **Before you begin**: Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+</Callout>
 
 * Cards
   1. [Cards Recurring Payment Consent Transaction](ref:credit-card-recurring-payment-consent-transaction)
@@ -53,9 +53,9 @@ PayU offers the following methods to implement subscriptions for your customers:
 * [Using Zion Subscription Automation](doc:using-zion-subscription-automation-platform)
 * [Using PayUBiz Dashboard](doc:recurring-payments-using-payubiz-dashboard)
 
-> 📘 Note:
->
-> You need to enable Subscription for your PayU account after choosing the model that suits you. Contact your PayU Key Account Manager to facilitate Subscription.
+<Callout icon="📘" theme="info">
+  **Note**: You need to enable Subscription for your PayU account after choosing the model that suits you. Contact your PayU Key Account Manager to facilitate Subscription.
+</Callout>
 
 ### Using Zion Subscription Automation Platform
 
@@ -91,4 +91,4 @@ PayU’s recurring platform allows the merchant to offer a standing instruction 
 
 The PayU Standing Instructions suite of API automates repeat payments in the Subscription business. In the Subscription business, the billing amount and the billing cycle are fixed. The customer’s preferred payment instrument (credit card, debit card, net banking, or UPI) is charged regularly for a subscribed service.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-14-at-7.40.54-AM-1-2-1024x978.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-14-at-7.40.54-AM-1-2-1024x978.png" />
