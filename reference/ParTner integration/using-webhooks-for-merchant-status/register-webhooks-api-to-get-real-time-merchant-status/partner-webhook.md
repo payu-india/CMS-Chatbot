@@ -7,2016 +7,794 @@ metadata:
 ---
 <br />
 
-# PayU Webhook Integration Guide
+# PayU Merchant Status Webhooks
 
-## Overview
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+  <div className="p-6 border rounded-lg">
+    <div className="text-2xl mb-2">🔔</div>
+    <h3 className="font-semibold mb-2">Real-time Updates</h3>
+    <p className="text-sm text-gray-600">Get instant notifications when merchant onboarding status changes</p>
+  </div>
 
-Webhooks allow you to receive real-time notifications about merchant onboarding status changes. Partners can refer multiple merchants, and each merchant goes through their own onboarding journey with PayU. Instead of polling our API, PayU will send secure HTTP POST requests to your specified endpoint whenever a merchant's status updates during the onboarding process.
+  <div className="p-6 border rounded-lg">
+    <div className="text-2xl mb-2">🔐</div>
+    <h3 className="font-semibold mb-2">HMAC Secured</h3>
+    <p className="text-sm text-gray-600">Every webhook is signed with HMAC-SHA256 for verification</p>
+  </div>
 
-**What you'll accomplish:**
-- Set up secure webhook endpoints for real-time merchant status updates
-- Implement HMAC signature validation for security
-- Handle all 12+ merchant onboarding event types
-- Build production-ready error handling and retry logic
+  <div className="p-6 border rounded-lg">
+    <div className="text-2xl mb-2">⚡</div>
+    <h3 className="font-semibold mb-2">Auto Retry</h3>
+    <p className="text-sm text-gray-600">5 automatic retries with exponential backoff</p>
+  </div>
+</div>
 
----
+Receive real-time notifications for document verification, bank validation, KYC approvals, and other merchant onboarding milestones.
 
-## Step 1: Prerequisites & Setup
+***
 
-Follow the below steps to prepare for webhook integration:
+## Getting Started
 
-<Accordion title="Step 1.1: Gather required credentials and access" icon="fa-key">
-  Before starting webhook integration, ensure you have all necessary credentials and access permissions.
+<Accordion title="Prerequisites & Setup" icon="🚀">
+  Before integrating webhooks, you'll need:
 
-  <HTMLBlock>{`
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 15%;">Requirement</th>
-            <th style="width: 70%; white-space: normal; word-break: break-word;">Description & How to Obtain</th>
-            <th style="width: 15%;">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              PayU Partner Account<br>
-              <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
-            </td>
-            <td style="white-space: normal; word-break: break-word;">
-              Valid PayU partner credentials with active account status. Contact PayU sales team if you don't have an account.
-            </td>
-            <td>☐ Ready</td>
-          </tr>
-          <tr>
-            <td>
-              Access Token<br>
-              <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
-            </td>
-            <td style="white-space: normal; word-break: break-word;">
-              OAuth access token with <code>refer_merchant</code> scope. Obtain via <a href="#get-token-api">Get Token API</a>.
-            </td>
-            <td>☐ Ready</td>
-          </tr>
-          <tr>
-            <td>
-              Client Secret<br>
-              <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
-            </td>
-            <td style="white-space: normal; word-break: break-word;">
-              Your partner application's client secret for HMAC signature validation. Available in your PayU partner dashboard.
-            </td>
-            <td>☐ Ready</td>
-          </tr>
-          <tr>
-            <td>
-              Reseller UUID<br>
-              <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
-            </td>
-            <td style="white-space: normal; word-break: break-word;">
-              Your unique reseller identifier provided during PayU onboarding.
-            </td>
-            <td>☐ Ready</td>
-          </tr>
-          <tr>
-            <td>
-              HTTPS Endpoint<br>
-              <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
-            </td>
-            <td style="white-space: normal; word-break: break-word;">
-              Publicly accessible HTTPS URL that can receive POST requests and return 200 status codes.
-            </td>
-            <td>☐ Ready</td>
-          </tr>
-        </tbody>
-      </table>
+  <div className="bg-blue-50 border-l-4 border-blue-400 p-4 my-4">
+    <div className="flex">
+      <div className="ml-3">
+        <p className="text-sm text-blue-700">
+          <strong>Important:</strong> Contact PayU support or your Key Account Manager to enable real-time merchant status service for your reseller account.
+        </p>
+      </div>
     </div>
-  `}</HTMLBlock>
-</Accordion>
+  </div>
 
-<Accordion title="Step 1.2: Understand webhook event types" icon="fa-list">
-  PayU sends webhooks for various merchant onboarding events. Understanding these helps you plan your integration architecture.
+  **Required Items:**
 
-  <HTMLBlock>{`
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 35%;">Event Name</th>
-            <th style="width: 45%; white-space: normal; word-break: break-word;">Description</th>
-            <th style="width: 20%;">Business Impact</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Document status update</td>
-            <td style="white-space: normal; word-break: break-word;">General document verification status changes during merchant onboarding</td>
-            <td>Medium</td>
-          </tr>
-          <tr>
-            <td>Website status update</td>
-            <td style="white-space: normal; word-break: break-word;">Merchant website verification and compliance check results</td>
-            <td>Medium</td>
-          </tr>
-          <tr>
-            <td>Bank verification status update</td>
-            <td style="white-space: normal; word-break: break-word;">Bank account verification and validation status changes</td>
-            <td>High</td>
-          </tr>
-          <tr>
-            <td>Settlement status update</td>
-            <td style="white-space: normal; word-break: break-word;">Payment settlement configuration and approval status</td>
-            <td>High</td>
-          </tr>
-          <tr>
-            <td>Agreement status update</td>
-            <td style="white-space: normal; word-break: break-word;">Legal agreement signing and approval status</td>
-            <td>High</td>
-          </tr>
-          <tr>
-            <td>SIGNED_AUTHORISATION_LETTER status update</td>
-            <td style="white-space: normal; word-break: break-word;">Authorization letter verification status</td>
-            <td>Medium</td>
-          </tr>
-          <tr>
-            <td>PATNERSHIP_PAN_CARD status update</td>
-            <td style="white-space: normal; word-break: break-word;">Partnership PAN card document verification</td>
-            <td>Medium</td>
-          </tr>
-          <tr>
-            <td>GOVT_ISSUED_CERTIFICATE status update</td>
-            <td style="white-space: normal; word-break: break-word;">Government certificate verification status</td>
-            <td>Medium</td>
-          </tr>
-          <tr>
-            <td>BANK_PROOF status update</td>
-            <td style="white-space: normal; word-break: break-word;">Bank proof document verification</td>
-            <td>Medium</td>
-          </tr>
-          <tr>
-            <td>ADDRESS_PROOF_SIGNED_AUTHORITY status update</td>
-            <td style="white-space: normal; word-break: break-word;">Address proof with signed authority verification</td>
-            <td>Medium</td>
-          </tr>
-          <tr>
-            <td>PANCARD_SIGNED_AUTHORITY status update</td>
-            <td style="white-space: normal; word-break: break-word;">PAN card with signed authority verification</td>
-            <td>Medium</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  `}</HTMLBlock>
-</Accordion>
+  * ✅ PayU partner credentials with `refer_merchant` scope
+  * ✅ Your reseller UUID
+  * ✅ Client secret for HMAC verification
+  * ✅ HTTPS endpoint that returns 200 status codes
+  * ✅ Webhook service enabled by PayU support
 
-<Accordion title="Step 1.3: Choose your webhook architecture" icon="fa-sitemap">
-  Decide whether to use single or multiple webhook endpoints based on your business needs.
+  **Quick Check:**
 
-  **Option A: Single Endpoint (Recommended for most cases)**
   ```bash
-  # Single URL receives all events, route internally
-  https://your-domain.com/webhooks/payu
+  # Test your endpoint accessibility
+  curl -X POST https://your-domain.com/payu/webhooks \
+    -H "Content-Type: application/json" \
+    -d '{"test": "connectivity"}'
+  # Should return: 200 OK
+  ```
+</Accordion>
+
+***
+
+## Register Your Webhook
+
+<Accordion title="API Registration" icon="📝">
+  Register a single HTTPS endpoint to receive all merchant status events.
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+    <div className="p-4 bg-gray-50 rounded-lg">
+      <h4 className="font-semibold mb-2">Test Environment</h4>
+      <code className="text-sm">[https://uat-partner.payu.in](https://uat-partner.payu.in)</code>
+    </div>
+
+    <div className="p-4 bg-gray-50 rounded-lg">
+      <h4 className="font-semibold mb-2">Production</h4>
+      <code className="text-sm">[https://partner.payu.in](https://partner.payu.in)</code>
+    </div>
+  </div>
+
+  **Endpoint:** `POST /api/v1/partners/register_webhook`
+
+  ```bash
+  curl https://partner.payu.in/api/v1/partners/register_webhook \
+    -H "Authorization: Bearer your_access_token" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d webhook_url=https://your-domain.com/payu/webhooks \
+    -d reseller_uuid=83fe-eb64-021844d8-9397-26535b1bf0c2
   ```
 
-  **Option B: Multiple Endpoints (Enterprise/Team-based)**
-  ```bash
-  # Different endpoints for different event categories
-  https://your-domain.com/webhooks/payu/onboarding     # Document, Website, Agreement
-  https://your-domain.com/webhooks/payu/financial      # Settlement, Bank verification
-  https://your-domain.com/webhooks/payu/compliance     # KYC documents
+  **Parameters:**
+
+  | Field           | Description                   |
+  | --------------- | ----------------------------- |
+  | `webhook_url`   | Your HTTPS endpoint URL       |
+  | `reseller_uuid` | Your PayU reseller identifier |
+
+  **Success Response:**
+
+  ```json
+  {
+    "message": "Webhook Successfully Registered"
+  }
+  ```
+</Accordion>
+
+***
+
+## Understanding Webhook Events
+
+<Accordion title="Event Types & Payloads" icon="📋">
+  PayU sends POST requests when merchant status changes occur during onboarding.
+
+  **Sample Webhook Request:**
+
+  ```json
+  {
+    "previous_status": "Pending",
+    "current_status": "Approved",
+    "change_timestamp": 1654812374,
+    "mid": 123456,
+    "merchant_uuid": "123-abcd-5678-gcjsa",
+    "event_name": "Document status update",
+    "error": "NA",
+    "remarks": "NA"
+  }
   ```
 
-  **Business Considerations:**
-  - **Single Endpoint:** Simpler management, unified monitoring, easier deployment
-  - **Multiple Endpoints:** Team separation, different SLAs, microservice architecture
-</Accordion>
+  **Merchant Onboarding Events:**
 
----
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div className="p-4 border rounded-lg">
+      <h4 className="font-semibold text-green-700 mb-2">🏢 Business Events</h4>
 
-## Step 2: Enable Webhook Service
-
-<Accordion title="Step 2.1: Contact PayU to enable webhook service" icon="fa-phone">
-  Before you can register webhooks, PayU must enable the real-time merchant status service for your partner account.
-
-  **Required Actions:**
-  1. **Contact your Key Account Manager** or PayU Support
-  2. **Request activation** of real-time merchant status service
-  3. **Provide your reseller UUID** for service enablement
-  4. **Wait for confirmation** that the service is active
-
-  **What to expect:**
-  - Service activation typically takes 1-2 business days
-  - You'll receive confirmation via email when enabled
-  - Test environment and production require separate enablement
-
-  > **Important:** You cannot proceed to webhook registration until this service is enabled for your account.
-</Accordion>
-
----
-
-## Step 3: Register Your Webhook
-
-<Accordion title="Step 3.1: Prepare webhook registration request" icon="fa-cog">
-  Set up the API request to register your webhook URL with PayU.
-
-  **API Endpoints:**
-
-  <HTMLBlock>{`
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 20%;">Environment</th>
-            <th style="width: 80%; white-space: normal; word-break: break-word;">URL</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Test</td>
-            <td style="white-space: normal; word-break: break-word;">
-              <code>https://uat-partner.payu.in/api/v1/partners/register_webhook</code>
-            </td>
-          </tr>
-          <tr>
-            <td>Production</td>
-            <td style="white-space: normal; word-break: break-word;">
-              <code>https://partner.payu.in/api/v1/partners/register_webhook</code>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <ul className="text-sm space-y-1">
+        <li>• Document status update</li>
+        <li>• Website status update</li>
+        <li>• Agreement status update</li>
+        <li>• Settlement status update</li>
+      </ul>
     </div>
-  `}</HTMLBlock>
 
-  **Request Headers:**
+    <div className="p-4 border rounded-lg">
+      <h4 className="font-semibold text-blue-700 mb-2">🏦 Financial Events</h4>
 
-  <HTMLBlock>{`
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 25%;">Header</th>
-            <th style="width: 75%; white-space: normal; word-break: break-word;">Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Authorization</td>
-            <td style="white-space: normal; word-break: break-word;">
-              <code>Bearer {{access_token}}</code>
-            </td>
-          </tr>
-          <tr>
-            <td>Content-Type</td>
-            <td style="white-space: normal; word-break: break-word;">
-              <code>application/x-www-form-urlencoded</code>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <ul className="text-sm space-y-1">
+        <li>• Bank verification status update</li>
+        <li>• Nodal status update</li>
+        <li>• Settlement status update</li>
+      </ul>
     </div>
-  `}</HTMLBlock>
+
+    <div className="p-4 border rounded-lg">
+      <h4 className="font-semibold text-purple-700 mb-2">📄 KYC Document Events</h4>
+
+      <ul className="text-sm space-y-1">
+        <li>• SIGNED\_AUTHORISATION\_LETTER status update</li>
+        <li>• PATNERSHIP\_PAN\_CARD status update</li>
+        <li>• GOVT\_ISSUED\_CERTIFICATE status update</li>
+        <li>• BANK\_PROOF status update</li>
+        <li>• ADDRESS\_PROOF\_SIGNED\_AUTHORITY status update</li>
+        <li>• PANCARD\_SIGNED\_AUTHORITY status update</li>
+      </ul>
+    </div>
+  </div>
+
+  **Status Values:**
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+      <h4 className="font-semibold text-green-800 mb-2">General Events</h4>
+
+      <div className="text-sm text-green-700">
+        <code>Pending</code> • <code>Success</code> • <code>Failed</code> • <code>In Progress</code>
+      </div>
+    </div>
+
+    <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+      <h4 className="font-semibold text-blue-800 mb-2">KYC Documents</h4>
+
+      <div className="text-sm text-blue-700">
+        <code>Pending</code> • <code>Received</code> • <code>Approved</code> • <code>Declined</code> • <code>Reuploaded</code> • <code>Exceptionally</code>
+      </div>
+    </div>
+  </div>
 </Accordion>
 
-<Accordion title="Step 3.2: Configure request parameters" icon="fa-list-check">
-  Prepare the required parameters for webhook registration.
+***
 
-  <HTMLBlock>{`
+## Implement Webhook Security
+
+<Accordion title="HMAC Signature Verification" icon="🔐">
+  Every webhook includes an HMAC signature in the `Authorization` header. **Always validate this** to ensure authenticity.
+
+  **PayU's Signature Process:**
+
+  1. Sort payload keys alphabetically
+  2. Concatenate key-value pairs: `"key1value1key2value2..."`
+  3. Generate HMAC-SHA256 using your `client_secret`
+  4. Send hex digest in Authorization header
+
+  **Example Calculation:**
+
+  <div className="bg-gray-50 p-4 rounded-lg mb-4">
+    <div className="text-sm mb-2"><strong>Payload:</strong></div>
+
+    <pre className="text-xs overflow-x-auto">
+      {`{
+              "previous_status": "Pending",
+              "current_status": "Success", 
+              "change_timestamp": 18548123746,
+              "mid": 123456,
+              "merchant_uuid": "123-abcd-5678-gcjsa",
+              "event_name": "Document status update",
+              "error": "NA",
+              "remarks": "NA"
+            }`}
+    </pre>
+  </div>
+
+  <div className="bg-gray-50 p-4 rounded-lg mb-4">
+    <div className="text-sm mb-2"><strong>Sorted String:</strong></div>
+
+    <code className="text-xs break-all">
+      change\_timestamp18548123746current\_statusSuccesserrorNAevent\_nameDocument status updatemerchant\_uuid123-abcd-5678-gcjsamid123456previous\_statusPendingremarksNA
+    </code>
+  </div>
+
+  **Implementation:**
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 20%;">Parameter</th>
-            <th style="width: 60%; white-space: normal; word-break: break-word;">Type & Description</th>
-            <th style="width: 20%;">Example</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              webhook_url<br>
-              <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
-            </td>
-            <td style="white-space: normal; word-break: break-word;">
-              <code>String</code> Your HTTPS endpoint URL that will receive webhook notifications. Must be publicly accessible and return 200 status codes.
-            </td>
-            <td>https://your-domain.com/webhooks/payu</td>
-          </tr>
-          <tr>
-            <td>
-              reseller_uuid<br>
-              <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
-            </td>
-            <td style="white-space: normal; word-break: break-word;">
-              <code>String</code> Your unique reseller identifier provided by PayU during partner onboarding.
-            </td>
-            <td>83fe-eb64-021844d8-9397-26535b1bf0c2</td>
-          </tr>
-        </tbody>
-      </table>
+      <h4 className="font-semibold mb-2">Python</h4>
+
+      ```python
+      import hmac
+      import hashlib
+
+      def verify_signature(payload, signature, client_secret):
+          # Create sorted string
+          items = [f"{k}{v}" for k, v in sorted(payload.items())]
+          payload_string = "".join(items)
+          
+          # Generate expected signature
+          expected = hmac.new(
+              client_secret.encode('utf-8'),
+              payload_string.encode('utf-8'),
+              hashlib.sha256
+          ).hexdigest()
+          
+          return hmac.compare_digest(expected, signature)
+      ```
     </div>
-  `}</HTMLBlock>
+
+    <div>
+      <h4 className="font-semibold mb-2">Node.js</h4>
+
+      ```javascript
+      const crypto = require('crypto');
+
+      function verifySignature(payload, signature, clientSecret) {
+          // Create sorted string
+          const keys = Object.keys(payload).sort();
+          const payloadString = keys.map(k => `${k}${payload[k]}`).join('');
+          
+          // Generate expected signature
+          const expected = crypto
+              .createHmac('sha256', clientSecret)
+              .update(payloadString)
+              .digest('hex');
+          
+          return crypto.timingSafeEqual(
+              Buffer.from(expected), 
+              Buffer.from(signature)
+          );
+      }
+      ```
+    </div>
+  </div>
 </Accordion>
 
-<Accordion title="Step 3.3: Execute webhook registration" icon="fa-rocket">
-  Send the registration request to PayU API.
+***
 
-  **cURL Example:**
-  ```bash
-  curl -X POST 'https://uat-partner.payu.in/api/v1/partners/register_webhook' \
-    -H 'Authorization: Bearer 169e576ee0794085e48f0de683bc39563c43c9493f23867e1c53481bdaa9cada' \
-    -H 'Content-Type: application/x-www-form-urlencoded' \
-    -d 'webhook_url=https://your-domain.com/webhooks/payu' \
-    -d 'reseller_uuid=83fe-eb64-021844d8-9397-26535b1bf0c2'
-  ```
+## Build Your Webhook Endpoint
 
-  **Python Example:**
+<Accordion title="Event Processing Implementation" icon="⚙️">
+  Create a robust webhook handler that processes merchant status updates.
+
+  **Basic Webhook Handler:**
+
   ```python
-  import requests
-
-  url = "https://uat-partner.payu.in/api/v1/partners/register_webhook"
-  headers = {
-      "Authorization": "Bearer YOUR_ACCESS_TOKEN",
-      "Content-Type": "application/x-www-form-urlencoded"
-  }
-  data = {
-      "webhook_url": "https://your-domain.com/webhooks/payu",
-      "reseller_uuid": "YOUR_RESELLER_UUID"
-  }
-
-  response = requests.post(url, headers=headers, data=data)
-  print(f"Status: {response.status_code}")
-  print(f"Response: {response.json()}")
-  ```
-
-  **Expected Success Response:**
-  ```json
-  {
-      "message": "Webhook Successfully Registered"
-  }
-  ```
-
-  **Common Error Responses:**
-  ```json
-  // 401 Unauthorized
-  {
-      "error": "Invalid or expired access token"
-  }
-
-  // 400 Bad Request
-  {
-      "error": "Invalid webhook_url format"
-  }
-
-  // 403 Forbidden
-  {
-      "error": "Webhook service not enabled for this reseller"
-  }
-  ```
-</Accordion>
-
----
-
-## Step 4: Implement Webhook Endpoint
-
-<Accordion title="Step 4.1: Understand webhook request format" icon="fa-info">
-  Learn the structure of incoming webhook requests from PayU.
-
-  **Webhook Request Details:**
-
-  <HTMLBlock>{`
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 20%;">Component</th>
-            <th style="width: 80%; white-space: normal; word-break: break-word;">Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>HTTP Method</td>
-            <td style="white-space: normal; word-break: break-word;">POST</td>
-          </tr>
-          <tr>
-            <td>Content-Type</td>
-            <td style="white-space: normal; word-break: break-word;"><code>application/json</code></td>
-          </tr>
-          <tr>
-            <td>Authorization Header</td>
-            <td style="white-space: normal; word-break: break-word;">Contains HMAC signature for verification</td>
-          </tr>
-          <tr>
-            <td>Request Body</td>
-            <td style="white-space: normal; word-break: break-word;">JSON payload with merchant status information</td>
-          </tr>
-          <tr>
-            <td>Expected Response</td>
-            <td style="white-space: normal; word-break: break-word;">HTTP 200 with empty body</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  `}</HTMLBlock>
-
-  **Sample Webhook Payload:**
-  ```json
-  {
-      "previous_status": "Pending",
-      "current_status": "Success", 
-      "change_timestamp": 1654812374,
-      "mid": 123456,
-      "merchant_uuid": "123-abcd-5678-gcjsa",
-      "event_name": "Document status update",
-      "error": "NA",
-      "remarks": "NA"
-  }
-  ```
-</Accordion>
-
-<Accordion title="Step 4.2: Implement basic webhook endpoint" icon="fa-code">
-  Create a basic webhook endpoint that can receive and acknowledge PayU requests.
-
-  **Python/Flask Implementation:**
-  ```python
-  from flask import Flask, request, jsonify
+  from flask import Flask, request
   import logging
 
   app = Flask(__name__)
-  logging.basicConfig(level=logging.INFO)
+  CLIENT_SECRET = "your_client_secret"  # Store securely
 
-  @app.route('/webhooks/payu', methods=['POST'])
+  @app.route('/payu/webhooks', methods=['POST'])
   def handle_webhook():
       try:
-          # Log incoming request
-          logging.info("Received webhook from PayU")
-          
-          # Get headers and payload
-          auth_header = request.headers.get('Authorization', '')
           payload = request.get_json()
+          signature = request.headers.get('Authorization', '')
           
-          # Basic payload validation
-          if not payload:
-              logging.warning("Received empty payload")
-              return '', 200  # Still return 200 to prevent retries
+          # Verify signature first
+          if not verify_signature(payload, signature, CLIENT_SECRET):
+              logging.warning('Invalid webhook signature')
+              return '', 200  # Return 200 to prevent retries
           
-          # Log key information
-          merchant_uuid = payload.get('merchant_uuid')
-          event_name = payload.get('event_name')
-          current_status = payload.get('current_status')
-          
-          logging.info(f"Webhook received: {merchant_uuid} - {event_name} - {current_status}")
-          
-          # TODO: Add signature validation (Step 5)
-          # TODO: Add business logic processing
-          
-          # Return 200 OK (required)
-          return '', 200
-          
-      except Exception as e:
-          logging.error(f"Webhook processing error: {e}")
-          return '', 200  # Always return 200 to prevent retries
-
-  if __name__ == '__main__':
-      app.run(debug=True, port=3000)
-  ```
-
-  **Node.js/Express Implementation:**
-  ```javascript
-  const express = require('express');
-  const app = express();
-
-  app.use(express.json());
-
-  app.post('/webhooks/payu', (req, res) => {
-      try {
-          console.log('Received webhook from PayU');
-          
-          const authHeader = req.headers.authorization || '';
-          const payload = req.body;
-          
-          if (!payload) {
-              console.warn('Received empty payload');
-              return res.status(200).send('');
-          }
-          
-          const merchantUuid = payload.merchant_uuid;
-          const eventName = payload.event_name;
-          const currentStatus = payload.current_status;
-          
-          console.log(`Webhook: ${merchantUuid} - ${eventName} - ${currentStatus}`);
-          
-          // TODO: Add signature validation (Step 5)
-          // TODO: Add business logic processing
-          
-          res.status(200).send('');
-          
-      } catch (error) {
-          console.error('Webhook processing error:', error);
-          res.status(200).send(''); // Always return 200
-      }
-  });
-
-  app.listen(3000, () => {
-      console.log('Webhook server running on port 3000');
-  });
-  ```
-</Accordion>
-
-<Accordion title="Step 4.3: Define payload field structure" icon="fa-database">
-  Understand each field in the webhook payload for proper processing.
-
-  <HTMLBlock>{`
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 20%;">Field</th>
-            <th style="width: 15%;">Type</th>
-            <th style="width: 50%; white-space: normal; word-break: break-word;">Description</th>
-            <th style="width: 15%;">Example</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>previous_status</td>
-            <td>String</td>
-            <td style="white-space: normal; word-break: break-word;">The merchant's previous status before this change</td>
-            <td>Pending</td>
-          </tr>
-          <tr>
-            <td>current_status</td>
-            <td>String</td>
-            <td style="white-space: normal; word-break: break-word;">The merchant's new status after this change</td>
-            <td>Approved</td>
-          </tr>
-          <tr>
-            <td>change_timestamp</td>
-            <td>Integer</td>
-            <td style="white-space: normal; word-break: break-word;">Unix timestamp when the status change occurred</td>
-            <td>1654812374</td>
-          </tr>
-          <tr>
-            <td>mid</td>
-            <td>Integer</td>
-            <td style="white-space: normal; word-break: break-word;">PayU merchant ID</td>
-            <td>123456</td>
-          </tr>
-          <tr>
-            <td>merchant_uuid</td>
-            <td>String</td>
-            <td style="white-space: normal; word-break: break-word;">Unique merchant identifier</td>
-            <td>123-abcd-5678-gcjsa</td>
-          </tr>
-          <tr>
-            <td>event_name</td>
-            <td>String</td>
-            <td style="white-space: normal; word-break: break-word;">Type of onboarding event that triggered the webhook</td>
-            <td>Document status update</td>
-          </tr>
-          <tr>
-            <td>error</td>
-            <td>String</td>
-            <td style="white-space: normal; word-break: break-word;">Error details if status change failed, otherwise "NA"</td>
-            <td>NA</td>
-          </tr>
-          <tr>
-            <td>remarks</td>
-            <td>String</td>
-            <td style="white-space: normal; word-break: break-word;">Additional remarks or comments, otherwise "NA"</td>
-            <td>NA</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  `}</HTMLBlock>
-</Accordion>
-
----
-
-## Step 5: Implement Signature Validation
-
-<Accordion title="Step 5.1: Understand HMAC signature validation" icon="fa-shield">
-  Learn how PayU generates and validates webhook signatures for security.
-
-  **Security Overview:**
-  - Every webhook includes an HMAC signature in the Authorization header
-  - Signature is generated using SHA-256 algorithm
-  - Uses your client_secret as the signing key
-  - Payload is sorted alphabetically before signing
-
-  **HMAC Generation Formula:**
-  ```
-  HMAC = OpenSSL::HMAC.hexdigest("SHA256", client_secret, sorted_payload_string)
-  ```
-
-  **Signature Generation Process:**
-  1. Take webhook payload JSON object
-  2. Sort all keys alphabetically
-  3. Concatenate key-value pairs (no separators)
-  4. Generate HMAC-SHA256 using client_secret
-  5. Send hex digest in Authorization header
-</Accordion>
-
-<Accordion title="Step 5.2: Implement signature validation logic" icon="fa-lock">
-  Add HMAC signature validation to your webhook endpoint for security.
-
-  **Python Implementation:**
-  ```python
-  import hmac
-  import hashlib
-  import json
-  from flask import Flask, request
-
-  CLIENT_SECRET = "your_client_secret_here"  # Store securely
-
-  def validate_webhook_signature(payload_dict, received_signature):
-      """Validate webhook HMAC signature"""
-      
-      # Sort payload keys and create concatenated string
-      sorted_items = []
-      for key in sorted(payload_dict.keys()):
-          sorted_items.append(f"{key}{payload_dict[key]}")
-      
-      payload_string = "".join(sorted_items)
-      
-      # Generate expected HMAC signature
-      expected_signature = hmac.new(
-          CLIENT_SECRET.encode('utf-8'),
-          payload_string.encode('utf-8'),
-          hashlib.sha256
-      ).hexdigest()
-      
-      # Secure comparison
-      return hmac.compare_digest(expected_signature, received_signature)
-
-  @app.route('/webhooks/payu', methods=['POST'])
-  def handle_webhook():
-      try:
-          # Get signature from Authorization header
-          auth_header = request.headers.get('Authorization', '')
-          
-          # Parse JSON payload
-          payload = request.get_json()
-          
-          # Validate signature
-          if not validate_webhook_signature(payload, auth_header):
-              logging.warning("Invalid webhook signature")
-              return '', 401  # Or return 200 to prevent retries
-          
-          # Process the webhook (signature is valid)
-          process_merchant_update(payload)
+          # Process the merchant event
+          process_merchant_event(payload)
           
           return '', 200
           
       except Exception as e:
-          logging.error(f"Webhook processing error: {e}")
-          return '', 200
+          logging.error(f"Webhook error: {e}")
+          return '', 200  # Always return 200
   ```
 
-  **Node.js Implementation:**
-  ```javascript
-  const crypto = require('crypto');
-  const CLIENT_SECRET = 'your_client_secret_here';
+  **Event Routing Logic:**
 
-  function validateWebhookSignature(payload, receivedSignature) {
-      // Sort payload keys and create concatenated string
-      const sortedKeys = Object.keys(payload).sort();
-      const payloadString = sortedKeys.map(key => `${key}${payload[key]}`).join('');
-      
-      // Generate expected HMAC signature
-      const expectedSignature = crypto
-          .createHmac('sha256', CLIENT_SECRET)
-          .update(payloadString)
-          .digest('hex');
-      
-      // Secure comparison
-      return crypto.timingSafeEqual(
-          Buffer.from(expectedSignature, 'hex'),
-          Buffer.from(receivedSignature, 'hex')
-      );
-  }
-
-  app.post('/webhooks/payu', (req, res) => {
-      try {
-          const authHeader = req.headers.authorization || '';
-          const payload = req.body;
-          
-          // Validate signature
-          if (!validateWebhookSignature(payload, authHeader)) {
-              console.warn('Invalid webhook signature');
-              return res.status(401).json({ error: 'Invalid signature' });
-          }
-          
-          // Process the webhook
-          processMerchantUpdate(payload);
-          
-          res.status(200).send('');
-          
-      } catch (error) {
-          console.error('Webhook processing error:', error);
-          res.status(200).send('');
-      }
-  });
-  ```
-</Accordion>
-
-<Accordion title="Step 5.3: Test signature validation" icon="fa-test-tube">
-  Verify your signature validation implementation with a known example.
-
-  **Test Example:**
-  
-  **Given Payload:**
-  ```json
-  { 
-      "previous_status": "Pending", 
-      "current_status": "Success", 
-      "change_timestamp": 18548123746,
-      "mid": 123456,
-      "merchant_uuid": "123-abcd-5678-gcjsa",
-      "event_name": "Document status update",
-      "error": "NA",
-      "remarks": "NA" 
-  }
-  ```
-
-  **Sorted String (for HMAC):**
-  ```
-  change_timestamp18548123746current_statusSuccesserrorNAevent_nameDocument status updatemerchant_uuid123-abcd-5678-gcjsamid123456previous_statusPendingremarksNA
-  ```
-
-  **Expected HMAC (with test client_secret):**
-  ```
-  d59e5be387204e8c37bc8f46306f5013197b2f9d082ec859da1b09f9bc703036
-  ```
-
-  **Test Script:**
   ```python
-  def test_signature_validation():
-      test_payload = {
-          "previous_status": "Pending",
-          "current_status": "Success", 
-          "change_timestamp": 18548123746,
-          "mid": 123456,
-          "merchant_uuid": "123-abcd-5678-gcjsa",
-          "event_name": "Document status update",
-          "error": "NA",
-          "remarks": "NA"
-      }
-      
-      expected_signature = "d59e5be387204e8c37bc8f46306f5013197b2f9d082ec859da1b09f9bc703036"
-      
-      # Use your validation function
-      is_valid = validate_webhook_signature(test_payload, expected_signature)
-      print(f"Signature validation test: {'PASSED' if is_valid else 'FAILED'}")
-      
-      return is_valid
-
-  # Run the test
-  test_signature_validation()
-  ```
-</Accordion>
-
----
-
-## Step 6: Handle Webhook Events
-
-<Accordion title="Step 6.1: Implement event routing and processing" icon="fa-route">
-  Build business logic to handle different types of merchant onboarding events.
-
-  **Event Router Implementation:**
-  ```python
-  from enum import Enum
-  from typing import Dict, Callable
-  import logging
-
-  class PayUEventType(Enum):
-      DOCUMENT = "Document status update"
-      WEBSITE = "Website status update"
-      BANK_VERIFICATION = "Bank verification status update"
-      SETTLEMENT = "Settlement status update"
-      AGREEMENT = "Agreement status update"
-      NODAL = "Nodal status update"
-      
-      # KYC Document events
-      SIGNED_AUTH_LETTER = "SIGNED_AUTHORISATION_LETTER status update"
-      PARTNERSHIP_PAN = "PATNERSHIP_PAN_CARD status update"
-      GOVT_CERTIFICATE = "GOVT_ISSUED_CERTIFICATE status update"
-      BANK_PROOF = "BANK_PROOF status update"
-      ADDRESS_PROOF = "ADDRESS_PROOF_SIGNED_AUTHORITY status update"
-      PANCARD_AUTHORITY = "PANCARD_SIGNED_AUTHORITY status update"
-
-  class WebhookEventHandler:
-      def __init__(self):
-          self.handlers: Dict[PayUEventType, Callable] = {
-              PayUEventType.DOCUMENT: self.handle_document_update,
-              PayUEventType.WEBSITE: self.handle_website_update,
-              PayUEventType.BANK_VERIFICATION: self.handle_bank_verification,
-              PayUEventType.SETTLEMENT: self.handle_settlement_update,
-              PayUEventType.AGREEMENT: self.handle_agreement_update,
-          }
-          
-          # KYC document handlers
-          self.kyc_handlers = [
-              PayUEventType.SIGNED_AUTH_LETTER,
-              PayUEventType.PARTNERSHIP_PAN,
-              PayUEventType.GOVT_CERTIFICATE,
-              PayUEventType.BANK_PROOF,
-              PayUEventType.ADDRESS_PROOF,
-              PayUEventType.PANCARD_AUTHORITY,
-          ]
-      
-      def process_webhook(self, payload: dict) -> None:
-          """Main webhook processing logic"""
-          event_name = payload.get('event_name')
-          merchant_uuid = payload.get('merchant_uuid')
-          
-          logging.info(f"Processing webhook: {event_name} for merchant {merchant_uuid}")
-          
-          # Find and execute handler
-          handler = self.find_handler(event_name)
-          if handler:
-              handler(payload)
-          else:
-              self.handle_unknown_event(payload)
-      
-      def find_handler(self, event_name: str) -> Callable:
-          """Find appropriate handler for event type"""
-          
-          # Check direct event mappings
-          for event_type, handler in self.handlers.items():
-              if event_type.value == event_name:
-                  return handler
-          
-          # Check KYC document events
-          for kyc_event in self.kyc_handlers:
-              if kyc_event.value == event_name:
-                  return self.handle_kyc_document_update
-          
-          return None
-      
-      def handle_document_update(self, payload: dict) -> None:
-          """Handle general document status updates"""
-          merchant_uuid = payload['merchant_uuid']
-          current_status = payload['current_status']
-          
-          logging.info(f"Document update: {merchant_uuid} -> {current_status}")
-          
-          # Your business logic here
-          # - Update merchant record in database
-          # - Send notifications to merchant
-          # - Trigger next onboarding step
-          
-      def handle_bank_verification(self, payload: dict) -> None:
-          """Handle bank verification status updates"""
-          merchant_uuid = payload['merchant_uuid']
-          current_status = payload['current_status']
-          
-          logging.info(f"Bank verification: {merchant_uuid} -> {current_status}")
-          
-          if current_status == "Approved":
-              # Enable payment processing
-              self.enable_payment_processing(merchant_uuid)
-          elif current_status == "Declined":
-              # Notify merchant of issues
-              self.notify_bank_verification_failure(merchant_uuid, payload.get('error'))
-      
-      def handle_settlement_update(self, payload: dict) -> None:
-          """Handle settlement configuration updates"""
-          merchant_uuid = payload['merchant_uuid']
-          current_status = payload['current_status']
-          
-          logging.info(f"Settlement update: {merchant_uuid} -> {current_status}")
-          
-          if current_status == "Approved":
-              # Configure settlement parameters
-              self.setup_settlement_config(merchant_uuid)
-      
-      def handle_kyc_document_update(self, payload: dict) -> None:
-          """Handle KYC document verification updates"""
-          merchant_uuid = payload['merchant_uuid']
-          event_name = payload['event_name']
-          current_status = payload['current_status']
-          
-          logging.info(f"KYC document update: {event_name} -> {current_status}")
-          
-          # Extract document type from event name
-          doc_type = event_name.replace(' status update', '')
-          
-          if current_status == "Declined":
-              # Handle document rejection
-              self.handle_document_rejection(merchant_uuid, doc_type, payload.get('error'))
-          elif current_status == "Approved":
-              # Check if all KYC documents are approved
-              self.check_kyc_completion(merchant_uuid)
-      
-      def handle_unknown_event(self, payload: dict) -> None:
-          """Handle unknown or new event types"""
-          event_name = payload.get('event_name')
-          logging.warning(f"Unknown event type: {event_name}")
-          
-          # Store for analysis and contact PayU support
-          self.store_unknown_event(payload)
-      
-      # Helper methods (implement based on your business logic)
-      def enable_payment_processing(self, merchant_uuid: str) -> None:
-          # Implementation specific to your system
-          pass
-      
-      def notify_bank_verification_failure(self, merchant_uuid: str, error: str) -> None:
-          # Send notification to merchant
-          pass
-      
-      def setup_settlement_config(self, merchant_uuid: str) -> None:
-          # Configure settlement parameters
-          pass
-      
-      def handle_document_rejection(self, merchant_uuid: str, doc_type: str, error: str) -> None:
-          # Handle document rejection workflow
-          pass
-      
-      def check_kyc_completion(self, merchant_uuid: str) -> None:
-          # Check if all required KYC documents are approved
-          pass
-      
-      def store_unknown_event(self, payload: dict) -> None:
-          # Store unknown events for analysis
-          pass
-
-  # Usage in webhook endpoint
-  webhook_handler = WebhookEventHandler()
-
-  @app.route('/webhooks/payu', methods=['POST'])
-  def handle_webhook():
-      try:
-          auth_header = request.headers.get('Authorization', '')
-          payload = request.get_json()
-          
-          # Validate signature
-          if not validate_webhook_signature(payload, auth_header):
-              return '', 401
-          
-          # Process the webhook
-          webhook_handler.process_webhook(payload)
-          
-          return '', 200
-          
-      except Exception as e:
-          logging.error(f"Webhook processing error: {e}")
-          return '', 200
-  ```
-</Accordion>
-
-<Accordion title="Step 6.2: Handle KYC document status values" icon="fa-file-check">
-  Understand and handle different status values for KYC document events.
-
-  **KYC Document Status Values:**
-
-  <HTMLBlock>{`
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 20%;">Status</th>
-            <th style="width: 50%; white-space: normal; word-break: break-word;">Description</th>
-            <th style="width: 30%;">Recommended Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Pending</td>
-            <td style="white-space: normal; word-break: break-word;">Document submitted and awaiting review</td>
-            <td>No action required, inform merchant</td>
-          </tr>
-          <tr>
-            <td>Received</td>
-            <td style="white-space: normal; word-break: break-word;">Document received and queued for verification</td>
-            <td>Update status, notify merchant</td>
-          </tr>
-          <tr>
-            <td>Approved</td>
-            <td style="white-space: normal; word-break: break-word;">Document verified and approved</td>
-            <td>Enable next onboarding step</td>
-          </tr>
-          <tr>
-            <td>Declined</td>
-            <td style="white-space: normal; word-break: break-word;">Document rejected due to issues</td>
-            <td>Notify merchant, request resubmission</td>
-          </tr>
-          <tr>
-            <td>Reuploaded</td>
-            <td style="white-space: normal; word-break: break-word;">Document has been resubmitted after rejection</td>
-            <td>Update status, reset review process</td>
-          </tr>
-          <tr>
-            <td>Exceptionally</td>
-            <td style="white-space: normal; word-break: break-word;">Special case requiring manual review</td>
-            <td>Flag for manual intervention</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  `}</HTMLBlock>
-
-  **Status Processing Logic:**
-  ```python
-  def process_kyc_status_change(self, payload: dict) -> None:
-      """Process KYC document status changes"""
-      status = payload['current_status']
+  def process_merchant_event(payload):
+      event_name = payload['event_name']
       merchant_uuid = payload['merchant_uuid']
-      doc_type = payload['event_name']
-      error = payload.get('error', 'NA')
-      remarks = payload.get('remarks', 'NA')
+      status = payload['current_status']
       
-      if status == "Approved":
-          self.handle_document_approval(merchant_uuid, doc_type)
-          
-      elif status == "Declined":
-          self.handle_document_decline(merchant_uuid, doc_type, error, remarks)
-          
-      elif status == "Reuploaded":
-          self.handle_document_reupload(merchant_uuid, doc_type)
-          
-      elif status == "Exceptionally":
-          self.handle_exceptional_case(merchant_uuid, doc_type, remarks)
-          
-      elif status in ["Pending", "Received"]:
-          self.update_document_status(merchant_uuid, doc_type, status)
+      # Route based on event type
+      if event_name == 'Bank verification status update':
+          handle_bank_verification(merchant_uuid, status, payload)
+      elif event_name == 'Settlement status update':
+          handle_settlement_update(merchant_uuid, status, payload)
+      elif any(kyc in event_name for kyc in ['SIGNED_', 'PAN', 'GOVT_', 'BANK_PROOF', 'ADDRESS_']):
+          handle_kyc_document(merchant_uuid, event_name, status, payload)
+      else:
+          handle_general_status_update(merchant_uuid, event_name, status, payload)
+
+  def handle_bank_verification(merchant_uuid, status, payload):
+      if status == 'Approved':
+          # Enable payment processing
+          enable_merchant_payments(merchant_uuid)
+          send_approval_notification(merchant_uuid, 'bank_verification')
+      elif status == 'Declined':
+          # Handle rejection
+          error_details = payload.get('error', 'Unknown error')
+          notify_bank_verification_failure(merchant_uuid, error_details)
+
+  def handle_kyc_document(merchant_uuid, doc_type, status, payload):
+      # Update document status in your system
+      update_document_status(merchant_uuid, doc_type, status)
       
-      # Always update merchant record
-      self.update_merchant_document_status(merchant_uuid, doc_type, status)
-  
-  def handle_document_approval(self, merchant_uuid: str, doc_type: str) -> None:
-      """Handle approved document"""
-      # Update internal status
-      # Check if all required documents are approved
-      # Progress to next onboarding stage if complete
-      # Send approval notification
-      pass
-  
-  def handle_document_decline(self, merchant_uuid: str, doc_type: str, error: str, remarks: str) -> None:
-      """Handle declined document"""
-      # Log decline reason
-      # Send notification to merchant with specific feedback
-      # Provide guidance for resubmission
-      # Update merchant dashboard with requirements
-      pass
+      if status == 'Approved':
+          # Check if all KYC documents are now complete
+          if all_kyc_documents_approved(merchant_uuid):
+              complete_kyc_process(merchant_uuid)
+      elif status == 'Declined':
+          # Notify merchant with specific feedback
+          error_reason = payload.get('error', 'Document verification failed')
+          request_document_resubmission(merchant_uuid, doc_type, error_reason)
+  ```
+
+  **Idempotency Handling:**
+
+  ```python
+  # Use database or Redis in production
+  processed_events = set()
+
+  def is_duplicate_event(payload):
+      event_id = f"{payload['merchant_uuid']}_{payload['change_timestamp']}_{payload['event_name']}"
+      
+      if event_id in processed_events:
+          return True
+      
+      processed_events.add(event_id)
+      return False
+
+  @app.route('/payu/webhooks', methods=['POST'])
+  def handle_webhook():
+      payload = request.get_json()
+      
+      # Check for duplicates first
+      if is_duplicate_event(payload):
+          logging.info('Duplicate webhook ignored')
+          return '', 200
+      
+      # Continue with processing...
   ```
 </Accordion>
 
-<Accordion title="Step 6.3: Implement error handling and retry logic" icon="fa-exclamation-triangle">
-  Add robust error handling and implement PayU's retry policy understanding.
+<Accordion title="Error Handling & Retries" icon="🔄">
+  PayU implements automatic retries for failed webhook deliveries.
 
   **PayU Retry Policy:**
-  - **Retry attempts:** 5 times maximum
-  - **Retry intervals:** 3, 9, 27, 81, 243 seconds (exponential backoff)
-  - **Failure criteria:** Non-200 responses, timeouts, connection errors
-  - **Timeout:** 30 seconds per request
+
+  <div className="bg-orange-50 border-l-4 border-orange-400 p-4 mb-4">
+    <div className="flex items-center">
+      <div className="text-orange-400 mr-2">⚠️</div>
+
+      <div>
+        <p className="text-sm"><strong>Retry Schedule:</strong> 5 attempts at 3, 9, 27, 81, 243 seconds</p>
+        <p className="text-sm"><strong>Your endpoint must:</strong> Return 200 status, respond within 30 seconds, handle duplicates</p>
+      </div>
+    </div>
+  </div>
 
   **Robust Error Handling:**
+
   ```python
   import logging
   from datetime import datetime
-  from typing import Set
 
-  # Track processed events (use database in production)
-  processed_events: Set[str] = set()
-
-  @app.route('/webhooks/payu', methods=['POST'])
+  @app.route('/payu/webhooks', methods=['POST'])
   def handle_webhook():
       start_time = datetime.utcnow()
       webhook_id = None
       
       try:
-          # Parse request
-          auth_header = request.headers.get('Authorization', '')
           payload = request.get_json()
-          
-          if not payload:
-              logging.warning("Received empty webhook payload")
-              return '', 200  # Return 200 to prevent retries
-          
-          # Create unique webhook ID for deduplication
-          webhook_id = f"{payload.get('merchant_uuid')}_{payload.get('change_timestamp')}_{payload.get('event_name')}"
+          webhook_id = f"{payload.get('merchant_uuid')}_{payload.get('change_timestamp')}"
           
           logging.info(f"Processing webhook: {webhook_id}")
           
-          # Check for duplicate processing (idempotency)
-          if webhook_id in processed_events:
-              logging.info(f"Duplicate webhook ignored: {webhook_id}")
+          # Validate payload structure
+          if not all(key in payload for key in ['merchant_uuid', 'event_name', 'current_status']):
+              logging.warning(f"Invalid payload structure: {webhook_id}")
               return '', 200
           
-          # Validate signature
-          if not validate_webhook_signature(payload, auth_header):
-              logging.warning(f"Invalid signature for webhook: {webhook_id}")
-              # Decide: return 401 to see retry, or 200 to accept but not process
-              return '', 200  # Recommended: accept but don't process
+          # Verify signature
+          if not verify_signature(payload, request.headers.get('Authorization'), CLIENT_SECRET):
+              logging.warning(f"Invalid signature: {webhook_id}")
+              return '', 200
           
-          # Process the webhook
-          webhook_handler.process_webhook(payload)
-          
-          # Mark as processed
-          processed_events.add(webhook_id)
+          # Process webhook
+          process_merchant_event(payload)
           
           # Log success
-          processing_time = (datetime.utcnow() - start_time).total_seconds()
-          logging.info(f"Webhook processed successfully: {webhook_id} in {processing_time:.2f}s")
+          duration = (datetime.utcnow() - start_time).total_seconds()
+          logging.info(f"Webhook processed successfully: {webhook_id} ({duration:.2f}s)")
           
           return '', 200
           
       except Exception as e:
-          # Log error with context
-          processing_time = (datetime.utcnow() - start_time).total_seconds()
-          logging.error(f"Webhook processing error for {webhook_id}: {e}", extra={
-              'webhook_id': webhook_id,
-              'processing_time': processing_time,
-              'payload': payload if 'payload' in locals() else None,
-              'error_type': type(e).__name__
-          })
+          # Log error with context but always return 200
+          duration = (datetime.utcnow() - start_time).total_seconds()
+          logging.error(f"Webhook processing failed: {webhook_id} - {e} ({duration:.2f}s)")
           
-          # Always return 200 to prevent PayU retries
-          # Handle the error through internal alerting/retry mechanisms
-          return '', 200
-
-  # Production-ready processing with internal error handling
-  def process_webhook_safe(self, payload: dict) -> None:
-      """Process webhook with comprehensive error handling"""
-      try:
-          self.process_webhook(payload)
+          # Optional: Queue for manual review or retry
+          queue_failed_webhook(payload, str(e))
           
-      except DatabaseConnectionError as e:
-          # Database issues - might want to retry internally
-          logging.error(f"Database connection error: {e}")
-          self.queue_for_retry(payload)
-          
-      except ValidationError as e:
-          # Data validation error - probably won't succeed on retry
-          logging.error(f"Payload validation error: {e}")
-          self.store_invalid_payload(payload)
-          
-      except ExternalAPIError as e:
-          # External API failure - might succeed later
-          logging.error(f"External API error: {e}")
-          self.queue_for_retry(payload)
-          
-      except Exception as e:
-          # Unknown error - log and investigate
-          logging.error(f"Unknown error processing webhook: {e}")
-          self.store_failed_webhook(payload, str(e))
+          return '', 200  # Prevent PayU retries
   ```
 
-  **Monitoring and Alerting:**
-  ```python
-  import time
-  from collections import defaultdict
+  **Production Monitoring:**
 
-  # Webhook metrics tracking
-  webhook_metrics = {
+  ```python
+  # Track webhook metrics
+  webhook_stats = {
       'total_received': 0,
-      'successful_processed': 0,
-      'failed_processing': 0,
-      'invalid_signatures': 0,
-      'duplicate_events': 0,
-      'processing_times': []
+      'successful': 0,
+      'failed': 0,
+      'invalid_signatures': 0
   }
 
-  def track_webhook_metrics(webhook_id: str, status: str, processing_time: float):
-      """Track webhook processing metrics"""
-      webhook_metrics['total_received'] += 1
-      webhook_metrics['processing_times'].append(processing_time)
-      
-      if status == 'success':
-          webhook_metrics['successful_processed'] += 1
-      elif status == 'failed':
-          webhook_metrics['failed_processing'] += 1
-      elif status == 'invalid_signature':
-          webhook_metrics['invalid_signatures'] += 1
-      elif status == 'duplicate':
-          webhook_metrics['duplicate_events'] += 1
+  def track_webhook_result(result_type):
+      webhook_stats['total_received'] += 1
+      webhook_stats[result_type] += 1
       
       # Alert on high failure rate
-      failure_rate = webhook_metrics['failed_processing'] / webhook_metrics['total_received']
-      if failure_rate > 0.1:  # 10% failure rate threshold
-          send_alert(f"High webhook failure rate: {failure_rate:.2%}")
-
-  def send_alert(message: str):
-      """Send alert to monitoring system"""
-      # Implement your alerting mechanism
-      # - Email notifications
-      # - Slack alerts  
-      # - PagerDuty incidents
-      # - Monitoring dashboard updates
-      pass
+      failure_rate = webhook_stats['failed'] / webhook_stats['total_received']
+      if failure_rate > 0.1:  # 10% threshold
+          send_alert(f"High webhook failure rate: {failure_rate:.1%}")
   ```
 </Accordion>
 
----
+***
 
-## Step 7: Testing Your Integration
+## Testing Your Integration
 
-<Accordion title="Step 7.1: Set up test environment" icon="fa-flask">
-  Configure your testing environment for webhook development and validation.
+<Accordion title="Development & Testing Tools" icon="🧪">
+  Test your webhook implementation before production deployment.
 
   **Local Development Setup:**
-  ```bash
-  # Install ngrok for local testing
-  npm install -g ngrok
-  # or
-  brew install ngrok
 
-  # Expose your local server
+  ```bash
+  # Use ngrok to expose local development server
   ngrok http 3000
 
-  # Example output:
-  # Forwarding https://abc123.ngrok.io -> http://localhost:3000
+  # Register your ngrok URL with PayU
+  curl https://uat-partner.payu.in/api/v1/partners/register_webhook \
+    -H "Authorization: Bearer your_test_token" \
+    -d webhook_url=https://abc123.ngrok.io/payu/webhooks \
+    -d reseller_uuid=your_test_uuid
   ```
-
-  **Test Environment Registration:**
-  ```bash
-  # Register webhook in PayU test environment
-  curl -X POST 'https://uat-partner.payu.in/api/v1/partners/register_webhook' \
-    -H 'Authorization: Bearer YOUR_TEST_TOKEN' \
-    -H 'Content-Type: application/x-www-form-urlencoded' \
-    -d 'webhook_url=https://abc123.ngrok.io/webhooks/payu' \
-    -d 'reseller_uuid=YOUR_TEST_RESELLER_UUID'
-  ```
-
-  **Environment Variables Setup:**
-  ```bash
-  # .env file for testing
-  PAYU_CLIENT_SECRET=your_test_client_secret
-  PAYU_ACCESS_TOKEN=your_test_access_token
-  PAYU_RESELLER_UUID=your_test_reseller_uuid
-  PAYU_WEBHOOK_URL=https://abc123.ngrok.io/webhooks/payu
-  ENVIRONMENT=test
-  ```
-</Accordion>
-
-<Accordion title="Step 7.2: Create webhook simulation scripts" icon="fa-robot">
-  Build scripts to simulate PayU webhook deliveries for testing your implementation.
 
   **Webhook Simulation Script:**
+
   ```python
   import requests
   import hmac
   import hashlib
-  import json
   import time
-  from typing import Dict, Any
 
-  class PayUWebhookSimulator:
-      def __init__(self, webhook_url: str, client_secret: str):
-          self.webhook_url = webhook_url
-          self.client_secret = client_secret
-      
-      def generate_signature(self, payload: Dict[str, Any]) -> str:
-          """Generate HMAC signature for payload"""
-          # Sort payload keys and create concatenated string
-          sorted_items = []
-          for key in sorted(payload.keys()):
-              sorted_items.append(f"{key}{payload[key]}")
-          
-          payload_string = "".join(sorted_items)
-          
-          # Generate HMAC signature
-          signature = hmac.new(
-              self.client_secret.encode('utf-8'),
-              payload_string.encode('utf-8'),
-              hashlib.sha256
-          ).hexdigest()
-          
-          return signature
-      
-      def send_webhook(self, payload: Dict[str, Any]) -> bool:
-          """Send simulated webhook to your endpoint"""
-          try:
-              signature = self.generate_signature(payload)
-              
-              response = requests.post(
-                  self.webhook_url,
-                  json=payload,
-                  headers={
-                      'Authorization': signature,
-                      'Content-Type': 'application/json'
-                  },
-                  timeout=30
-              )
-              
-              print(f"Response Status: {response.status_code}")
-              print(f"Response Body: {response.text}")
-              
-              return response.status_code == 200
-              
-          except Exception as e:
-              print(f"Error sending webhook: {e}")
-              return False
-      
-      def test_document_approval(self) -> bool:
-          """Test document approval webhook"""
-          payload = {
+  def simulate_payu_webhook(webhook_url, client_secret, event_type="document_approval"):
+      # Sample payloads for different scenarios
+      scenarios = {
+          "document_approval": {
               "previous_status": "Pending",
               "current_status": "Approved",
-              "change_timestamp": int(time.time()),
-              "mid": 123456,
-              "merchant_uuid": "test-merchant-001",
               "event_name": "Document status update",
               "error": "NA",
               "remarks": "NA"
-          }
-          
-          print("Testing document approval webhook...")
-          return self.send_webhook(payload)
-      
-      def test_document_decline(self) -> bool:
-          """Test document decline webhook"""
-          payload = {
+          },
+          "bank_verification": {
               "previous_status": "Pending", 
-              "current_status": "Declined",
-              "change_timestamp": int(time.time()),
-              "mid": 123456,
-              "merchant_uuid": "test-merchant-001",
-              "event_name": "Document status update",
-              "error": "Document quality insufficient",
-              "remarks": "Please resubmit with higher resolution"
-          }
-          
-          print("Testing document decline webhook...")
-          return self.send_webhook(payload)
-      
-      def test_bank_verification(self) -> bool:
-          """Test bank verification webhook"""
-          payload = {
-              "previous_status": "Pending",
-              "current_status": "Approved", 
-              "change_timestamp": int(time.time()),
-              "mid": 123456,
-              "merchant_uuid": "test-merchant-001",
+              "current_status": "Approved",
               "event_name": "Bank verification status update",
               "error": "NA",
               "remarks": "NA"
-          }
-          
-          print("Testing bank verification webhook...")
-          return self.send_webhook(payload)
-      
-      def test_kyc_document(self) -> bool:
-          """Test KYC document webhook"""
-          payload = {
+          },
+          "kyc_declined": {
               "previous_status": "Received",
-              "current_status": "Approved",
-              "change_timestamp": int(time.time()),
-              "mid": 123456,
-              "merchant_uuid": "test-merchant-001", 
+              "current_status": "Declined", 
               "event_name": "SIGNED_AUTHORISATION_LETTER status update",
-              "error": "NA",
-              "remarks": "NA"
+              "error": "Document clarity insufficient",
+              "remarks": "Please resubmit with better quality"
           }
-          
-          print("Testing KYC document webhook...")
-          return self.send_webhook(payload)
+      }
       
-      def test_invalid_signature(self) -> bool:
-          """Test webhook with invalid signature"""
-          payload = {
-              "previous_status": "Pending",
-              "current_status": "Approved",
-              "change_timestamp": int(time.time()),
-              "mid": 123456,
-              "merchant_uuid": "test-merchant-001",
-              "event_name": "Document status update",
-              "error": "NA",
-              "remarks": "NA"
-          }
-          
-          print("Testing invalid signature webhook...")
-          
-          # Send with invalid signature
-          response = requests.post(
-              self.webhook_url,
-              json=payload,
-              headers={
-                  'Authorization': 'invalid_signature_here',
-                  'Content-Type': 'application/json'
-              }
-          )
-          
-          print(f"Response Status: {response.status_code}")
-          # Should handle gracefully (return 200 or 401)
-          return response.status_code in [200, 401]
+      payload = {
+          **scenarios.get(event_type, scenarios["document_approval"]),
+          "change_timestamp": int(time.time()),
+          "mid": 123456,
+          "merchant_uuid": "test-merchant-001"
+      }
       
-      def run_all_tests(self) -> bool:
-          """Run comprehensive test suite"""
-          tests = [
-              ("Document Approval", self.test_document_approval),
-              ("Document Decline", self.test_document_decline), 
-              ("Bank Verification", self.test_bank_verification),
-              ("KYC Document", self.test_kyc_document),
-              ("Invalid Signature", self.test_invalid_signature),
-          ]
-          
-          results = []
-          print("Running PayU Webhook Test Suite...")
-          print("=" * 50)
-          
-          for test_name, test_func in tests:
-              try:
-                  result = test_func()
-                  results.append(result)
-                  status = "✅ PASSED" if result else "❌ FAILED"
-                  print(f"{test_name}: {status}")
-              except Exception as e:
-                  results.append(False)
-                  print(f"{test_name}: ❌ ERROR - {e}")
-              
-              print("-" * 30)
-              time.sleep(1)  # Brief pause between tests
-          
-          passed = sum(results)
-          total = len(results)
-          print(f"\nTest Results: {passed}/{total} tests passed")
-          
-          return passed == total
-
-  # Usage example
-  if __name__ == "__main__":
-      simulator = PayUWebhookSimulator(
-          webhook_url="https://your-domain.com/webhooks/payu",
-          client_secret="your_test_client_secret"
+      # Generate PayU signature
+      sorted_items = [f"{k}{v}" for k, v in sorted(payload.items())]
+      payload_string = "".join(sorted_items)
+      signature = hmac.new(
+          client_secret.encode('utf-8'),
+          payload_string.encode('utf-8'),
+          hashlib.sha256
+      ).hexdigest()
+      
+      # Send webhook
+      response = requests.post(
+          webhook_url,
+          json=payload,
+          headers={'Authorization': signature}
       )
       
-      success = simulator.run_all_tests()
-      print(f"\nOverall test result: {'SUCCESS' if success else 'FAILURE'}")
+      print(f"Test '{event_type}': {response.status_code}")
+      return response.status_code == 200
+
+  # Run tests
+  webhook_url = "https://your-domain.com/payu/webhooks"
+  client_secret = "your_test_client_secret"
+
+  print("Testing PayU webhooks...")
+  simulate_payu_webhook(webhook_url, client_secret, "document_approval")
+  simulate_payu_webhook(webhook_url, client_secret, "bank_verification") 
+  simulate_payu_webhook(webhook_url, client_secret, "kyc_declined")
   ```
+
+  **Validation Checklist:**
+
+  <div className="space-y-2">
+    <div className="flex items-center">
+      <input type="checkbox" className="mr-2" />
+
+      <span className="text-sm">Endpoint returns 200 for valid requests</span>
+    </div>
+
+    <div className="flex items-center">
+      <input type="checkbox" className="mr-2" />
+
+      <span className="text-sm">HMAC signature validation working</span>
+    </div>
+
+    <div className="flex items-center">
+      <input type="checkbox" className="mr-2" />
+
+      <span className="text-sm">Handles all 12+ PayU event types</span>
+    </div>
+
+    <div className="flex items-center">
+      <input type="checkbox" className="mr-2" />
+
+      <span className="text-sm">Processes duplicate events idempotently</span>
+    </div>
+
+    <div className="flex items-center">
+      <input type="checkbox" className="mr-2" />
+
+      <span className="text-sm">Returns 200 even for internal errors</span>
+    </div>
+
+    <div className="flex items-center">
+      <input type="checkbox" className="mr-2" />
+
+      <span className="text-sm">Response time under 30 seconds</span>
+    </div>
+  </div>
 </Accordion>
 
-<Accordion title="Step 7.3: Validate webhook endpoint requirements" icon="fa-check-circle">
-  Verify your webhook endpoint meets all PayU requirements before production deployment.
+***
 
-  **Endpoint Validation Checklist:**
+## Production Deployment
 
-  <HTMLBlock>{`
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 10%;">✓</th>
-            <th style="width: 40%; white-space: normal; word-break: break-word;">Requirement</th>
-            <th style="width: 50%; white-space: normal; word-break: break-word;">Test Method</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>☐</td>
-            <td>Returns HTTP 200 for valid requests</td>
-            <td><code>curl -X POST https://your-domain.com/webhooks/payu -d '{"test":"data"}'</code></td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Responds within 30 seconds</td>
-            <td>Monitor response times during testing</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Uses HTTPS with valid SSL certificate</td>
-            <td><code>curl -I https://your-domain.com/webhooks/payu</code></td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Validates HMAC signatures correctly</td>
-            <td>Use webhook simulator with known signatures</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Handles duplicate events idempotently</td>
-            <td>Send same webhook payload multiple times</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Processes all event types</td>
-            <td>Test each of the 12+ event types</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Handles malformed payloads gracefully</td>
-            <td>Send invalid JSON, missing fields</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Returns 200 even for processing errors</td>
-            <td>Simulate internal errors, verify response</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Logs webhook events appropriately</td>
-            <td>Check logs for proper event tracking</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Implements proper security measures</td>
-            <td>Test signature validation, input sanitization</td>
-          </tr>
-        </tbody>
-      </table>
+<Accordion title="Go-Live Checklist" icon="🚀">
+  Final steps before deploying your webhook integration to production.
+
+  **Security Verification:**
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+    <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+      <h4 className="font-semibold text-green-800 mb-2">✅ Security Implemented</h4>
+
+      <ul className="text-sm text-green-700 space-y-1">
+        <li>• HMAC signature validation</li>
+        <li>• HTTPS with valid SSL certificate</li>
+        <li>• Client secret stored securely</li>
+        <li>• Input validation and sanitization</li>
+      </ul>
     </div>
-  `}</HTMLBlock>
 
-  **Automated Validation Script:**
+    <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+      <h4 className="font-semibold text-blue-800 mb-2">⚡ Performance Ready</h4>
+
+      <ul className="text-sm text-blue-700 space-y-1">
+        <li>• Response time under 30 seconds</li>
+        <li>• Idempotent event processing</li>
+        <li>• Comprehensive error handling</li>
+        <li>• Monitoring and alerting setup</li>
+      </ul>
+    </div>
+  </div>
+
+  **Production Registration:**
+
   ```bash
-  #!/bin/bash
-  # webhook-validation.sh
-
-  WEBHOOK_URL="https://your-domain.com/webhooks/payu"
-  
-  echo "PayU Webhook Endpoint Validation"
-  echo "================================"
-  
-  # Test 1: Basic connectivity
-  echo "1. Testing basic connectivity..."
-  response=$(curl -s -o /dev/null -w "%{http_code}" -X POST $WEBHOOK_URL)
-  if [ $response -eq 200 ]; then
-      echo "   ✅ Endpoint responds with 200"
-  else
-      echo "   ❌ Endpoint returned: $response"
-  fi
-  
-  # Test 2: HTTPS certificate
-  echo "2. Testing HTTPS certificate..."
-  cert_status=$(curl -s -I $WEBHOOK_URL | head -n 1 | grep "200")
-  if [ ! -z "$cert_status" ]; then
-      echo "   ✅ HTTPS working correctly"
-  else
-      echo "   ❌ HTTPS issues detected"
-  fi
-  
-  # Test 3: Response time
-  echo "3. Testing response time..."
-  response_time=$(curl -o /dev/null -s -w "%{time_total}" -X POST $WEBHOOK_URL)
-  if (( $(echo "$response_time < 5.0" | bc -l) )); then
-      echo "   ✅ Response time: ${response_time}s (good)"
-  else
-      echo "   ⚠️  Response time: ${response_time}s (slow)"
-  fi
-  
-  # Test 4: Content-Type handling
-  echo "4. Testing JSON content handling..."
-  response=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
-      -H "Content-Type: application/json" \
-      -d '{"test": "data"}' \
-      $WEBHOOK_URL)
-  if [ $response -eq 200 ]; then
-      echo "   ✅ JSON content handled correctly"
-  else
-      echo "   ❌ JSON handling failed: $response"
-  fi
-  
-  echo "Validation complete!"
+  # Register your production webhook URL
+  curl https://partner.payu.in/api/v1/partners/register_webhook \
+    -H "Authorization: Bearer your_production_token" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d webhook_url=https://your-production-domain.com/payu/webhooks \
+    -d reseller_uuid=your_production_reseller_uuid
   ```
-</Accordion>
-
----
-
-## Step 8: Production Deployment
-
-<Accordion title="Step 8.1: Security and compliance checklist" icon="fa-shield-alt">
-  Ensure your webhook implementation meets security and compliance requirements for production.
-
-  **Security Checklist:**
-
-  <HTMLBlock>{`
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 10%;">✓</th>
-            <th style="width: 40%; white-space: normal; word-break: break-word;">Security Requirement</th>
-            <th style="width: 50%; white-space: normal; word-break: break-word;">Implementation Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>☐</td>
-            <td>HMAC signature validation implemented</td>
-            <td>Always validate webhook signatures before processing</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>HTTPS with valid SSL certificate</td>
-            <td>Use TLS 1.2+ with certificate from trusted CA</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Client secret stored securely</td>
-            <td>Use environment variables or secure key management</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Input validation and sanitization</td>
-            <td>Validate all payload fields, sanitize before database storage</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Rate limiting implemented</td>
-            <td>Protect against webhook flooding attacks</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>IP allowlisting (optional)</td>
-            <td>Restrict webhook access to PayU IP ranges</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Audit logging enabled</td>
-            <td>Log all webhook events for compliance and debugging</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Error handling without data leakage</td>
-            <td>Don't expose internal errors in webhook responses</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  `}</HTMLBlock>
-
-  **Production Security Configuration:**
-  ```python
-  import os
-  from flask import Flask
-  from flask_limiter import Limiter
-  from flask_limiter.util import get_remote_address
-
-  app = Flask(__name__)
-
-  # Rate limiting
-  limiter = Limiter(
-      app,
-      key_func=get_remote_address,
-      default_limits=["100 per hour"]
-  )
-
-  # Secure configuration
-  CLIENT_SECRET = os.environ.get('PAYU_CLIENT_SECRET')
-  if not CLIENT_SECRET:
-      raise ValueError("PAYU_CLIENT_SECRET environment variable required")
-
-  # PayU IP allowlist (get current ranges from PayU support)
-  PAYU_IP_RANGES = [
-      # Add PayU webhook IP ranges here
-      "203.0.113.0/24",  # Example range
-  ]
-
-  def validate_source_ip(request):
-      """Validate request comes from PayU IP ranges"""
-      client_ip = request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr)
-      
-      # In production, implement proper IP range checking
-      # For now, log the IP for analysis
-      logging.info(f"Webhook received from IP: {client_ip}")
-      return True  # Implement proper validation
-
-  @app.route('/webhooks/payu', methods=['POST'])
-  @limiter.limit("10 per minute")  # Webhook-specific rate limit
-  def handle_webhook():
-      # Validate source IP
-      if not validate_source_ip(request):
-          logging.warning(f"Webhook from unauthorized IP: {request.remote_addr}")
-          return '', 403
-      
-      # Your webhook processing logic here
-      return process_webhook_securely()
-  ```
-</Accordion>
-
-<Accordion title="Step 8.2: Monitoring and alerting setup" icon="fa-chart-line">
-  Implement comprehensive monitoring for your webhook integration in production.
-
-  **Monitoring Components:**
-  ```python
-  import time
-  import logging
-  from datetime import datetime, timedelta
-  from collections import defaultdict
-  
-  class WebhookMonitor:
-      def __init__(self):
-          self.metrics = {
-              'total_received': 0,
-              'successful_processed': 0,
-              'failed_processing': 0,
-              'invalid_signatures': 0,
-              'duplicate_events': 0,
-              'processing_times': [],
-              'events_by_type': defaultdict(int),
-              'events_by_status': defaultdict(int)
-          }
-          self.alert_thresholds = {
-              'failure_rate': 0.05,  # 5% failure rate threshold
-              'avg_processing_time': 5.0,  # 5 second average threshold
-              'invalid_signature_rate': 0.02  # 2% invalid signature threshold
-          }
-      
-      def record_webhook_event(self, event_type: str, status: str, processing_time: float):
-          """Record webhook processing metrics"""
-          self.metrics['total_received'] += 1
-          self.metrics['events_by_type'][event_type] += 1
-          self.metrics['events_by_status'][status] += 1
-          self.metrics['processing_times'].append(processing_time)
-          
-          if status == 'success':
-              self.metrics['successful_processed'] += 1
-          elif status == 'failed':
-              self.metrics['failed_processing'] += 1
-          elif status == 'invalid_signature':
-              self.metrics['invalid_signatures'] += 1
-          elif status == 'duplicate':
-              self.metrics['duplicate_events'] += 1
-          
-          self.check_alert_conditions()
-      
-      def check_alert_conditions(self):
-          """Check if any alert conditions are met"""
-          total = self.metrics['total_received']
-          if total < 10:  # Need minimum sample size
-              return
-          
-          # Check failure rate
-          failure_rate = self.metrics['failed_processing'] / total
-          if failure_rate > self.alert_thresholds['failure_rate']:
-              self.send_alert(f"High failure rate: {failure_rate:.2%}")
-          
-          # Check invalid signature rate
-          invalid_rate = self.metrics['invalid_signatures'] / total
-          if invalid_rate > self.alert_thresholds['invalid_signature_rate']:
-              self.send_alert(f"High invalid signature rate: {invalid_rate:.2%}")
-          
-          # Check average processing time
-          if self.metrics['processing_times']:
-              avg_time = sum(self.metrics['processing_times']) / len(self.metrics['processing_times'])
-              if avg_time > self.alert_thresholds['avg_processing_time']:
-                  self.send_alert(f"Slow processing time: {avg_time:.2f}s average")
-      
-      def send_alert(self, message: str):
-          """Send alert to monitoring systems"""
-          # Implement your alerting mechanism
-          logging.error(f"WEBHOOK ALERT: {message}")
-          
-          # Examples:
-          # - Send to Slack webhook
-          # - Create PagerDuty incident
-          # - Send email notification
-          # - Update monitoring dashboard
-      
-      def get_health_report(self) -> dict:
-          """Generate health report for monitoring dashboard"""
-          total = self.metrics['total_received']
-          if total == 0:
-              return {'status': 'no_data'}
-          
-          failure_rate = self.metrics['failed_processing'] / total
-          success_rate = self.metrics['successful_processed'] / total
-          avg_processing_time = sum(self.metrics['processing_times']) / len(self.metrics['processing_times']) if self.metrics['processing_times'] else 0
-          
-          return {
-              'status': 'healthy' if failure_rate < 0.05 else 'degraded',
-              'total_webhooks': total,
-              'success_rate': f"{success_rate:.2%}",
-              'failure_rate': f"{failure_rate:.2%}",
-              'avg_processing_time': f"{avg_processing_time:.2f}s",
-              'events_by_type': dict(self.metrics['events_by_type']),
-              'last_updated': datetime.utcnow().isoformat()
-          }
-
-  # Global monitor instance
-  webhook_monitor = WebhookMonitor()
-
-  # Enhanced webhook handler with monitoring
-  @app.route('/webhooks/payu', methods=['POST'])
-  def handle_webhook_with_monitoring():
-      start_time = time.time()
-      event_type = None
-      status = 'unknown'
-      
-      try:
-          payload = request.get_json()
-          event_type = payload.get('event_name', 'unknown')
-          
-          # Validate signature
-          if not validate_webhook_signature(payload, request.headers.get('Authorization', '')):
-              status = 'invalid_signature'
-              return '', 200
-          
-          # Process webhook
-          webhook_handler.process_webhook(payload)
-          status = 'success'
-          
-          return '', 200
-          
-      except Exception as e:
-          status = 'failed'
-          logging.error(f"Webhook processing error: {e}")
-          return '', 200
-          
-      finally:
-          # Record metrics
-          processing_time = time.time() - start_time
-          webhook_monitor.record_webhook_event(event_type or 'unknown', status, processing_time)
-
-  # Health check endpoint for monitoring
-  @app.route('/webhooks/health', methods=['GET'])
-  def webhook_health():
-      """Health check endpoint for monitoring systems"""
-      health_report = webhook_monitor.get_health_report()
-      status_code = 200 if health_report.get('status') == 'healthy' else 503
-      return jsonify(health_report), status_code
-  ```
-
-  **Monitoring Dashboard Metrics:**
-  - Webhook volume (requests per minute/hour)
-  - Success/failure rates
-  - Processing time percentiles (p50, p95, p99)
-  - Event type distribution
-  - Invalid signature attempts
-  - Error patterns and trends
-</Accordion>
-
-<Accordion title="Step 8.3: Production deployment checklist" icon="fa-rocket">
-  Final checklist before deploying your webhook integration to production.
-
-  **Pre-Deployment Checklist:**
-
-  <HTMLBlock>{`
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 10%;">✓</th>
-            <th style="width: 40%; white-space: normal; word-break: break-word;">Deployment Task</th>
-            <th style="width: 50%; white-space: normal; word-break: break-word;">Verification Method</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>☐</td>
-            <td>End-to-end testing in UAT environment</td>
-            <td>Complete merchant onboarding flow with webhook notifications</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Load testing completed</td>
-            <td>Test with expected webhook volume (10x normal load)</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Security validation passed</td>
-            <td>Penetration testing, signature validation, HTTPS verification</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Monitoring and alerting configured</td>
-            <td>Dashboards created, alert rules tested, escalation paths defined</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Error handling validated</td>
-            <td>Test failure scenarios, verify graceful degradation</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Database scaling configured</td>
-            <td>Ensure database can handle webhook processing load</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Backup and recovery procedures</td>
-            <td>Document rollback procedures, test data recovery</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Documentation updated</td>
-            <td>API docs, runbooks, troubleshooting guides</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Team training completed</td>
-            <td>Support team trained on webhook operations and troubleshooting</td>
-          </tr>
-          <tr>
-            <td>☐</td>
-            <td>Production webhook registration</td>
-            <td>Register production URL with PayU, verify service is enabled</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  `}</HTMLBlock>
-
-  **Production Deployment Steps:**
-
-  1. **Deploy to production environment**
-     ```bash
-     # Deploy your webhook service
-     docker build -t payu-webhook-service .
-     docker push your-registry/payu-webhook-service:latest
-     kubectl apply -f webhook-deployment.yaml
-     ```
-
-  2. **Register production webhook URL**
-     ```bash
-     curl -X POST 'https://partner.payu.in/api/v1/partners/register_webhook' \
-       -H 'Authorization: Bearer YOUR_PRODUCTION_TOKEN' \
-       -H 'Content-Type: application/x-www-form-urlencoded' \
-       -d 'webhook_url=https://your-production-domain.com/webhooks/payu' \
-       -d 'reseller_uuid=YOUR_PRODUCTION_RESELLER_UUID'
-     ```
-
-  3. **Monitor initial deployment**
-     ```bash
-     # Watch webhook logs
-     kubectl logs -f deployment/payu-webhook-service
-     
-     # Monitor health endpoint
-     watch curl -s https://your-domain.com/webhooks/health | jq
-     ```
-
-  4. **Validate production webhooks**
-     - Create test merchant in production
-     - Monitor webhook delivery for test merchant events
-     - Verify all processing steps work correctly
-     - Confirm monitoring and alerting are functional
 
   **Post-Deployment Monitoring:**
-  - Monitor webhook delivery success rates
-  - Track processing times and performance
-  - Watch for any error patterns or issues
-  - Validate business processes are working correctly
-  - Ensure team is receiving monitoring alerts
+
+  ```python
+  # Health check endpoint for monitoring
+  @app.route('/payu/webhooks/health', methods=['GET'])
+  def webhook_health():
+      recent_errors = get_recent_webhook_errors()  # Last 24 hours
+      
+      status = "healthy" if len(recent_errors) < 10 else "degraded"
+      
+      return {
+          "status": status,
+          "webhook_stats": webhook_stats,
+          "recent_errors": len(recent_errors),
+          "last_webhook": get_last_webhook_timestamp()
+      }
+  ```
+
+  **Launch Strategy:**
+
+  1. Deploy webhook endpoint to production
+  2. Register production URL with PayU
+  3. Monitor first few webhook deliveries closely
+  4. Validate merchant status updates in your system
+  5. Confirm alerting and monitoring are working
 </Accordion>
 
----
+***
 
-## Troubleshooting & Support
+## Troubleshooting
 
-<Accordion title="Common issues and solutions" icon="fa-tools">
-  Solutions for frequently encountered webhook integration problems.
+<Accordion title="Common Issues & Solutions" icon="🔧">
+  Quick solutions for frequently encountered webhook problems.
 
-  **Problem: Webhook registration fails**
-  - ✅ Verify access token has `refer_merchant` scope
-  - ✅ Check webhook URL is HTTPS and publicly accessible
-  - ✅ Confirm reseller UUID is correct
-  - ✅ Ensure webhook service is enabled with PayU
+  <div className="space-y-4">
+    <div className="p-4 border border-red-200 bg-red-50 rounded-lg">
+      <h4 className="font-semibold text-red-800 mb-2">❌ Not Receiving Webhooks</h4>
 
-  **Problem: Not receiving webhooks**
-  - ✅ Test endpoint returns 200 status codes
-  - ✅ Verify endpoint is publicly accessible (test with curl)
-  - ✅ Check firewall allows PayU's webhook requests
-  - ✅ Confirm webhook registration was successful
+      <div className="text-sm text-red-700">
+        <p><strong>Check:</strong> Webhook service enabled by PayU support</p>
+        <p><strong>Verify:</strong> Endpoint returns 200 and is publicly accessible</p>
+        <p><strong>Test:</strong> <code>curl -X POST [https://your-domain.com/payu/webhooks](https://your-domain.com/payu/webhooks)</code></p>
+      </div>
+    </div>
 
-  **Problem: Signature validation fails**
-  - ✅ Verify using correct client_secret
-  - ✅ Check payload key sorting (alphabetical order)
-  - ✅ Ensure using SHA-256 algorithm
-  - ✅ Validate payload string construction matches PayU's method
+    <div className="p-4 border border-orange-200 bg-orange-50 rounded-lg">
+      <h4 className="font-semibold text-orange-800 mb-2">⚠️ Signature Validation Fails</h4>
 
-  **Problem: Webhook processing errors**
-  - ✅ Always return 200 OK to prevent retries
-  - ✅ Implement comprehensive error logging
-  - ✅ Handle duplicate events gracefully
-  - ✅ Use try-catch blocks for all processing logic
+      <div className="text-sm text-orange-700">
+        <p><strong>Verify:</strong> Using correct client\_secret from PayU dashboard</p>
+        <p><strong>Check:</strong> Payload keys sorted alphabetically before concatenation</p>
+        <p><strong>Ensure:</strong> Using HMAC-SHA256 algorithm exactly</p>
+      </div>
+    </div>
+
+    <div className="p-4 border border-blue-200 bg-blue-50 rounded-lg">
+      <h4 className="font-semibold text-blue-800 mb-2">🔄 Webhook Registration Issues</h4>
+
+      <div className="text-sm text-blue-700">
+        <p><strong>Confirm:</strong> Access token has <code>refer\_merchant</code> scope</p>
+        <p><strong>Validate:</strong> Reseller UUID is correct and active</p>
+        <p><strong>Check:</strong> Webhook URL is HTTPS and publicly accessible</p>
+      </div>
+    </div>
+
+    <div className="p-4 border border-purple-200 bg-purple-50 rounded-lg">
+      <h4 className="font-semibold text-purple-800 mb-2">⚡ Processing Errors</h4>
+
+      <div className="text-sm text-purple-700">
+        <p><strong>Always:</strong> Return 200 OK to prevent PayU retries</p>
+        <p><strong>Implement:</strong> Comprehensive logging for debugging</p>
+        <p><strong>Handle:</strong> Duplicate events gracefully with idempotency</p>
+      </div>
+    </div>
+  </div>
+
+  **Debug Script:**
+
+  ```bash
+  # Quick webhook endpoint test
+  curl -X POST https://your-domain.com/payu/webhooks \
+    -H "Content-Type: application/json" \
+    -H "Authorization: test_signature" \
+    -d '{
+      "merchant_uuid": "test-123",
+      "event_name": "Document status update", 
+      "current_status": "Approved",
+      "change_timestamp": 1654812374,
+      "mid": 123456,
+      "previous_status": "Pending",
+      "error": "NA",
+      "remarks": "NA"
+    }'
+  ```
 </Accordion>
 
-<Accordion title="Support and resources" icon="fa-life-ring">
-  Where to get help and additional resources for PayU webhook integration.
+***
 
-  **PayU Support Channels:**
-  - **Developer Support:** Contact PayU technical support team
-  - **Key Account Manager:** Your designated PayU account representative
-  - **Documentation:** Complete PayU API documentation portal
-  - **Status Page:** Check PayU service status and maintenance schedules
+## Support & Resources
 
-  **Additional Resources:**
-  - **[KYC Errors and Solutions](ref:kyc-errors-and-solutions)** - Detailed error codes and resolutions
-  - **[Get Token API](ref:get_token_api)** - Authentication and token management
-  - **PayU Partner Dashboard** - Webhook registration and monitoring tools
-  - **Developer Community** - Forums and community support channels
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div className="p-6 border rounded-lg">
+    <h3 className="font-semibold mb-4 flex items-center">
+      <span className="mr-2">📞</span> Get Help
+    </h3>
 
-  **Emergency Contact:**
-  - For production issues affecting webhook delivery
-  - Include webhook URLs, reseller UUID, and error details
-  - Provide timeline of when issues started
-  - Include relevant log excerpts and error messages
-</Accordion>
+    <div className="space-y-2 text-sm">
+      <p><strong>Enable Webhooks:</strong> Contact PayU Key Account Manager</p>
+      <p><strong>Technical Support:</strong> [developer-support@payu.in](mailto:developer-support@payu.in)</p>
+      <p><strong>KYC Issues:</strong> <a href="#" className="text-blue-600">KYC Errors & Solutions</a></p>
+    </div>
+  </div>
 
----
+  <div className="p-6 border rounded-lg">
+    <h3 className="font-semibold mb-4 flex items-center">
+      <span className="mr-2">📚</span> Resources
+    </h3>
 
-## Next Steps
+    <div className="space-y-2 text-sm">
+      <p><strong>API Docs:</strong> Complete PayU API reference</p>
+      <p><strong>Status Page:</strong> PayU service status</p>
+      <p><strong>Partner Dashboard:</strong> Webhook monitoring tools</p>
+    </div>
+  </div>
+</div>
 
-1. **✅ Complete Prerequisites** - Gather credentials and enable webhook service
-2. **✅ Register Webhook** - Use PayU API to register your endpoint  
-3. **✅ Implement Endpoint** - Build secure webhook receiver with signature validation
-4. **✅ Test Thoroughly** - Validate all event types and error scenarios
-5. **✅ Deploy to Production** - Monitor and maintain your webhook integration
+***
 
-**Ready to integrate?** Start with Step 1 and follow this guide sequentially for a successful PayU webhook integration! 🚀
+<div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg">
+  <h3 className="font-semibold mb-2 flex items-center">
+    <span className="mr-2">🎉</span> Ready to Go Live?
+  </h3>
 
-For additional support, contact your PayU Key Account Manager or developer support team.
+  <p className="text-sm text-gray-700 mb-4">
+    Your webhook integration will enable real-time merchant status updates, improving operational efficiency and customer experience.
+  </p>
+
+  <div className="flex space-x-4">
+    <div className="text-xs bg-white px-3 py-1 rounded border">1. Enable Service</div>
+    <div className="text-xs bg-white px-3 py-1 rounded border">2. Register Endpoint</div>
+    <div className="text-xs bg-white px-3 py-1 rounded border">3. Implement Handler</div>
+    <div className="text-xs bg-white px-3 py-1 rounded border">4. Deploy & Monitor</div>
+  </div>
+</div>
