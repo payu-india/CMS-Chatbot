@@ -1,7 +1,7 @@
 ---
 title: TWID Pay Redemption Integraiton
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
