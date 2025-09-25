@@ -7,68 +7,47 @@ metadata:
 ---
 Integrate TWID pay to enable customers to redeem their TWID loyalty points during checkout. Follow these sequential steps to implement a complete TWID pay solution.
 
-<Callout icon="📘" theme="info">
-  All the APIs mentioned in this section uses the following header authentication;
-
-  <TWID_Pay_Header />
-</Callout>
+> 📘 Header-based authentication 
+>
+> All the APIs mentioned in this section uses the following header-based authentication. Include the following headers in all API requests:
+>
+> ```http
+> Authorization: Bearer {API_KEY}
+> Content-Type: application/json
+> X-Merchant-Key: {MERCHANT_KEY}
+> ```
 
 \<Accordion title="Step 1: Fetch Balance API" icon="fa-wallet">
-&#x20; Get the available TWID points balance for a specific customer before initiating any redemption process.
-&#x20; The \*\*Fetch Balance\*\* API retrieves the current TWID points balance for a customer using their mobile number or user identifier.
-\*\*End point\*\*: 	\{\{loyalty-service-url}}/v1/balance
+  Get the available TWID points balance for a specific customer before initiating any redemption process.
+  The **Fetch Balance** API retrieves the current TWID points balance for a customer using their mobile number or user identifier.
+**End point**: 	\{\{loyalty-service-url}}/v1/balance
 
-&#x20; \<Accordion title="Request Parameters" icon="fa-table">
-&#x20;   \<HTMLBlock>\{\`
-&#x20;   \<table> \<thead> \<tr> \<th>Parameter\</th> \<th>Description\</th> \<th>Example\</th> \</tr> \</thead> \<tbody> \<tr> \<td>mobile \<code>mandatory\</code>\</td> \<td>Customer's registered mobile number (10 digits). \<code>String\</code>\</td> \<td>9876543210\</td> \</tr> \<tr> \<td>timestamp \<code>mandatory\</code>\</td> \<td>Request timestamp in ISO 8601 format. \<code>String\</code>\</td> \<td>2023-12-25T10:30:00Z\</td> \</tr> \<tr> \<td>userId \<code>optional\</code>\</td> \<td>Alternative customer identifier. \<code>String\</code>\</td> \<td>user\_123456\</td> \</tr> \<tr> \<td>email \<code>optional\</code>\</td> \<td>Customer's registered email address. \<code>String\</code>\</td> \<td>customer\@example.com\</td> \</tr> \</tbody> \</table>&#x20;
-&#x20;   \`}\</HTMLBlock>
-&#x20; \</Accordion>
+  \<Accordion title="Request Parameters" icon="fa-table">
+    \<HTMLBlock>\{`
+    \<table> \<thead> \<tr> \<th>Parameter\</th> \<th>Description\</th> \<th>Example\</th> \</tr> \</thead> \<tbody> \<tr> \<td>mobile \<code>mandatory\</code>\</td> \<td>Customer's registered mobile number (10 digits). \<code>String\</code>\</td> \<td>9876543210\</td> \</tr> \<tr> \<td>timestamp \<code>mandatory\</code>\</td> \<td>Request timestamp in ISO 8601 format. \<code>String\</code>\</td> \<td>2023-12-25T10:30:00Z\</td> \</tr> \<tr> \<td>userId \<code>optional\</code>\</td> \<td>Alternative customer identifier. \<code>String\</code>\</td> \<td>user_123456\</td> \</tr> \<tr> \<td>email \<code>optional\</code>\</td> \<td>Customer's registered email address. \<code>String\</code>\</td> \<td>[customer@example.com](mailto:customer@example.com)\</td> \</tr> \</tbody> \</table> 
+    `}\</HTMLBlock>
+  \</Accordion>
 
-&#x20; \<Accordion title="Sample Request/Response" icon="fa-code">
-&#x20;   \*\*Sample Request:\*\*
+  \<Accordion title="Sample Request/Response" icon="fa-code">
+    **Sample Request:**
 
-&#x20;   \`\`\`json
-&#x20;   POST 	\{\{loyalty-service-url}}/v1/balance
-&#x20;   Headers:
-&#x20;   Authorization: Bearer your\_api\_key\_here
-&#x20;   Content-Type: application/json
-&#x20;   X-Merchant-Key: JPM7Fg
+```
+```
 
-&#x20;   \{
-&#x20;     "mobile": "9876543210",
-&#x20;     "timestamp": "2024-09-25T09:00:00Z",
-&#x20;     "email": "customer\@example.com"
-&#x20;   }
-&#x20;   \`\`\`
+```
+```
 
-&#x20;   \*\*Sample Success Response:\*\*
+```
+```
 
-&#x20;   \`\`\`json
-&#x20;   \{
-&#x20;     "status": "success",
-&#x20;     "message": "Balance fetched successfully",
-&#x20;     "data": \{
-&#x20;       "mobile": "9876543210",
-&#x20;       "availableBalance": 2500,
-&#x20;       "currency": "TWID\_POINTS",
-&#x20;       "expiryDate": "2024-12-31",
-&#x20;       "lastUpdated": "2024-09-25T08:45:00Z"
-&#x20;     }
-&#x20;   }
-&#x20;   \`\`\`
+```
+```
 
-&#x20;   \*\*Sample Error Response:\*\*
+```
+```
 
-&#x20;   \`\`\`json
-&#x20;   \{
-&#x20;     "status": "failure",
-&#x20;     "message": "Customer not found",
-&#x20;     "errorCode": "CUSTOMER\_NOT\_FOUND",
-&#x20;     "data": null
-&#x20;   }
-&#x20;   \`\`\`
-&#x20; \</Accordion>
-\</Accordion>
+```
+```
 
 ***
 
@@ -78,7 +57,7 @@ Integrate TWID pay to enable customers to redeem their TWID loyalty points durin
 
   <Accordion title="Request Parameters" icon="fa-table">
     <HTMLBlock>{`
-        <table> <thead> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> </thead> <tbody> <tr> <td>transactionId <code>mandatory</code></td> <td>Unique transaction identifier from previous API calls. <code>String</code></td> <td>TXN_20231225_ABC123</td> </tr> <tr> <td>timestamp <code>mandatory</code></td> <td>Request timestamp in ISO 8601 format. <code>String</code></td> <td>2023-12-25T14:30:00Z</td> </tr> <tr> <td>mobile <code>optional</code></td> <td>Customer's mobile number for additional validation. <code>String</code></td> <td>9876543210</td> </tr> <tr> <td>includeDetails <code>optional</code></td> <td>Include detailed transaction breakdown (default: false). <code>Boolean</code></td> <td>true</td> </tr> </tbody> </table> 
+                <table> <thead> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> </thead> <tbody> <tr> <td>transactionId <code>mandatory</code></td> <td>Unique transaction identifier from previous API calls. <code>String</code></td> <td>TXN_20231225_ABC123</td> </tr> <tr> <td>timestamp <code>mandatory</code></td> <td>Request timestamp in ISO 8601 format. <code>String</code></td> <td>2023-12-25T14:30:00Z</td> </tr> <tr> <td>mobile <code>optional</code></td> <td>Customer's mobile number for additional validation. <code>String</code></td> <td>9876543210</td> </tr> <tr> <td>includeDetails <code>optional</code></td> <td>Include detailed transaction breakdown (default: false). <code>Boolean</code></td> <td>true</td> </tr> </tbody> </table> 
     `}</HTMLBlock>
   </Accordion>
 
@@ -150,7 +129,7 @@ Integrate TWID pay to enable customers to redeem their TWID loyalty points durin
 
   <Accordion title="Request Parameters" icon="fa-table">
     <HTMLBlock>{`
-        <table> <thead> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> </thead> <tbody> <tr> <td>mobile <code>mandatory</code></td> <td>Customer's registered mobile number (10 digits). <code>String</code></td> <td>9876543210</td> </tr> <tr> <td>pointsToHold <code>mandatory</code></td> <td>Number of TWID points to hold/reserve. <code>Integer</code></td> <td>100</td> </tr> <tr> <td>merchantTransactionId <code>mandatory</code></td> <td>Unique transaction ID from merchant system. <code>String</code></td> <td>MERCH_TXN_20231225_001</td> </tr> <tr> <td>timestamp <code>mandatory</code></td> <td>Request timestamp in ISO 8601 format. <code>String</code></td> <td>2023-12-25T14:30:00Z</td> </tr> <tr> <td>holdDuration <code>optional</code></td> <td>Hold duration in minutes (default: 15, max: 30). <code>Integer</code></td> <td>20</td> </tr> <tr> <td>categoryPreference <code>optional</code></td> <td>Preferred point category to hold ["CASHBACK", "REWARDS", "PROMOTIONAL"]. <code>String</code></td> <td>CASHBACK</td> </tr> </tbody> </table> 
+                <table> <thead> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> </thead> <tbody> <tr> <td>mobile <code>mandatory</code></td> <td>Customer's registered mobile number (10 digits). <code>String</code></td> <td>9876543210</td> </tr> <tr> <td>pointsToHold <code>mandatory</code></td> <td>Number of TWID points to hold/reserve. <code>Integer</code></td> <td>100</td> </tr> <tr> <td>merchantTransactionId <code>mandatory</code></td> <td>Unique transaction ID from merchant system. <code>String</code></td> <td>MERCH_TXN_20231225_001</td> </tr> <tr> <td>timestamp <code>mandatory</code></td> <td>Request timestamp in ISO 8601 format. <code>String</code></td> <td>2023-12-25T14:30:00Z</td> </tr> <tr> <td>holdDuration <code>optional</code></td> <td>Hold duration in minutes (default: 15, max: 30). <code>Integer</code></td> <td>20</td> </tr> <tr> <td>categoryPreference <code>optional</code></td> <td>Preferred point category to hold ["CASHBACK", "REWARDS", "PROMOTIONAL"]. <code>String</code></td> <td>CASHBACK</td> </tr> </tbody> </table> 
     `}</HTMLBlock>
   </Accordion>
 
@@ -228,7 +207,7 @@ Integrate TWID pay to enable customers to redeem their TWID loyalty points durin
 
   <Accordion title="Request Parameters" icon="fa-table">
     <HTMLBlock>{`
-        <table> <thead> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> </thead> <tbody> <tr> <td>holdId <code>mandatory</code></td> <td>Hold ID received from Hold TWID Points API. <code>String</code></td> <td>HOLD_20231225_XYZ789</td> </tr> <tr> <td>merchantTransactionId <code>mandatory</code></td> <td>Unique transaction ID from merchant system. <code>String</code></td> <td>MERCH_TXN_20231225_001</td> </tr> <tr> <td>timestamp <code>mandatory</code></td> <td>Request timestamp in ISO 8601 format. <code>String</code></td> <td>2023-12-25T14:30:00Z</td> </tr> <tr> <td>actualRedemptionAmount <code>optional</code></td> <td>Actual points to redeem (≤ held points). <code>Integer</code></td> <td>75</td> </tr> <tr> <td>orderDetails <code>optional</code></td> <td>Order information for receipt and records. <code>Object</code></td> <td>{"orderId": "ORD123", "amount": 500}</td> </tr> </tbody> </table> 
+                <table> <thead> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> </thead> <tbody> <tr> <td>holdId <code>mandatory</code></td> <td>Hold ID received from Hold TWID Points API. <code>String</code></td> <td>HOLD_20231225_XYZ789</td> </tr> <tr> <td>merchantTransactionId <code>mandatory</code></td> <td>Unique transaction ID from merchant system. <code>String</code></td> <td>MERCH_TXN_20231225_001</td> </tr> <tr> <td>timestamp <code>mandatory</code></td> <td>Request timestamp in ISO 8601 format. <code>String</code></td> <td>2023-12-25T14:30:00Z</td> </tr> <tr> <td>actualRedemptionAmount <code>optional</code></td> <td>Actual points to redeem (≤ held points). <code>Integer</code></td> <td>75</td> </tr> <tr> <td>orderDetails <code>optional</code></td> <td>Order information for receipt and records. <code>Object</code></td> <td>{"orderId": "ORD123", "amount": 500}</td> </tr> </tbody> </table> 
     `}</HTMLBlock>
   </Accordion>
 
