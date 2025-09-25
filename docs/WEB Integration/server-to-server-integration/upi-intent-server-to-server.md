@@ -224,6 +224,17 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
 <tr>
   <td>
+    <p>surl<br/><code>mandatory</code></p>
+</td>
+  <td>
+     <p><strong>String</strong> Success URL(surl) – It must contain the URL on which PayU will redirect the final response if the transaction is successful.</p>
+</td>
+  <td>
+     <p><a href="https://apiplayground-response.herokuapp.com/">https://apiplayground-response.herokuapp.com/</a></p>
+</td>
+</tr>
+<tr>
+  <td>
      <p>furl<br/><code>mandatory</code></p>
   </td>
   <td>
