@@ -23,7 +23,7 @@ The following steps allow you to integrate the server-to-server UPI intent:
 
 The following diagram depicts the UPI intent flow from server to server:
 
-![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/UPI-Intent-Process-Flow-1024x511.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/UPI-Intent-Process-Flow-1024x511.png" />
 
 ***
 
@@ -33,7 +33,7 @@ The following diagram depicts the UPI intent flow from server to server:
 
 <PaymentAPIEnvironment />
 
-The **\_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
+The **_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
 
 This needs to be a server-to-server cURL request. This API is used for both Cards and UPI for generating a new transaction.
 
@@ -51,8 +51,9 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
 
 For the complete list of parameters, refer to <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
 
+
 <Table align={["left","left","left"]}>
-  <thead>
+    <thead>
     <tr>
       <th>
         Parameter
@@ -78,19 +79,16 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
       <td>
         `String` The merchant key provided by PayU must be included.
 
-        * *Reference*\*: For more information on how to generate the Key and Salt, refer to any of the following:
+        * _Reference_*: For more information on how to generate the Key and Salt, refer to any of the following:
         * **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
         * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
       </td>
 
-      <td>
-
-      </td>
     </tr>
 
     <tr>
       <td>
-        txnid\
+        txnid
         `mandatory`
       </td>
 
@@ -99,13 +97,13 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
       </td>
 
       <td>
-        1234\_abcdedf
+        1234_abcdedf
       </td>
     </tr>
 
     <tr>
       <td>
-        amount\
+        amount
         `mandatory`
       </td>
 
@@ -120,7 +118,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        phone\
+        phone
         `mandatory`
       </td>
 
@@ -135,7 +133,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        productinfo\
+        productinfo
         `mandatory`
       </td>
 
@@ -150,7 +148,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        firstname\
+        firstname
         `mandatory`
       </td>
 
@@ -165,7 +163,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        email\
+        email
         `mandatory`
       </td>
 
@@ -174,43 +172,17 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
       </td>
 
       <td>
+
+
         [hello@payu.in](mailto:hello@payu.in)
+
+
       </td>
     </tr>
 
     <tr>
       <td>
-        <Glossary>pg</Glossary>\
-        `mandatory`
-      </td>
-
-      <td>
-        `String` It must be set as UPI for this transaction.
-      </td>
-
-      <td>
-        UPI
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <Glossary>bankcode</Glossary>\
-        `mandatory`
-      </td>
-
-      <td>
-        `String` It must be set as INTENT for this transaction.
-      </td>
-
-      <td>
-        INTENT
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        lastname\
+        lastname
         `optional`
       </td>
 
@@ -222,10 +194,36 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
         Teja
       </td>
     </tr>
+<tr>
+      <td>
+        <p>pg<br /><code>mandatory</code></p>
+      </td>
+
+      <td>
+        <p><strong>String</strong> The payment method is specified in this field. For UPI INTENT, specify the parameter value as <strong>UPI</strong>.</p>
+      </td>
+
+      <td>
+        <p>UPI</p>
+      </td>
+    </tr>
 
     <tr>
       <td>
-        address1\
+        <p>bankcode<br /><code>mandatory</code></p>
+      </td>
+
+      <td>
+        <p><strong>String</strong> Each payment option is identified with a unique bank code at PayU. For UPI Intent, specify the value as <strong>INTENT</strong>.</p>
+      </td>
+
+      <td>
+        <p>INTENT</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        address1
         `optional`
       </td>
 
@@ -240,7 +238,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        address2\
+        address2
         `optional`
       </td>
 
@@ -255,7 +253,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        city\
+        city
         `optional`
       </td>
 
@@ -270,7 +268,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        country\
+        country
         `optional`
       </td>
 
@@ -285,7 +283,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        state\
+        state
         `optional`
       </td>
 
@@ -300,7 +298,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        zipcode\
+        zipcode
         `optional`
       </td>
 
@@ -315,7 +313,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        udf1\
+        udf1
         `optional`
       </td>
 
@@ -330,7 +328,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        udf2\
+        udf2
         `optional`
       </td>
 
@@ -345,12 +343,12 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        udf3\
+        udf3
         `optional`
       </td>
 
       <td>
-        `String` This parameter can include any custom information in request.\
+        `String` This parameter can include any custom information in request.
         (up to 255 characters.)
       </td>
 
@@ -361,12 +359,12 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        udf4\
+        udf4
         optional
       </td>
 
       <td>
-        `String` This parameter can include any custom information in request.\
+        `String` This parameter can include any custom information in request.
         (up to 255 characters.)
       </td>
 
@@ -377,12 +375,12 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        udf5\
+        udf5
         `optional`
       </td>
 
       <td>
-        `String` This parameter can include any custom information in request.\
+        `String` This parameter can include any custom information in request.
         (up to 255 characters.)
       </td>
 
@@ -393,7 +391,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        txn\_s2s\_flow\
+        txn_s2s_flow
         `mandatory`
       </td>
 
@@ -408,14 +406,14 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        s2s\_client\_ip\
+        s2s_client_ip
         `mandatory`
       </td>
 
       <td>
         `varchar` This parameter must have the source IP of the user's device.
 
-        * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * _Note_*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -425,14 +423,14 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        s2s\_device\_info\
+        s2s_device_info
         `mandatory`
       </td>
 
       <td>
         `varchar` This parameter must have the user agent of device.
 
-        * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * _Note_*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -442,7 +440,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        upiAppName\
+        upiAppName
         `mandatory`
       </td>
 
@@ -456,7 +454,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
         * cred
         * amazonpay
         * whatsapp
-        * genericintent – For any other app apart from\
+        * genericintent – For any other app apart from
           above
       </td>
 
@@ -467,12 +465,16 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 
     <tr>
       <td>
-        hash\
+        hash
         `mandatory`
       </td>
 
       <td>
-        `String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to  [Generate Hash](doc:hashing-request-and-response)
+        `String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to  
+
+        [Generate Hash](doc:hashing-request-and-response)
+
+
       </td>
 
       <td>
@@ -498,7 +500,7 @@ The **IntentURIData** parameter returns the URI in the response. For example, it
 >
 > * Every time there is a change, you need to incorporate the changes to avoid breaking the transactions.
 > * The **tid** value which is passed in the intent URI acts as a validation check at NPCI’s end which do not allow duplicate transaction.
-> * The tr value not necessary and it is a payU\_id. It can be any reference id for PayU’s internal reconciliation.
+> * The tr value not necessary and it is a payU_id. It can be any reference id for PayU’s internal reconciliation.
 
 ## Step 2: Invoke UPI Intent on customer’s device
 
@@ -531,7 +533,7 @@ Where the description of the parameters used in the URL is as described in the f
 
 ## Step 3: Check UPI transaction status
 
-Check the UPI transaction status using the **Verify Payment API** (verify\_payment) API. For more information, refer to  <a href="verify_payment_api" target="_blank"> Verify Payment API</a>.
+Check the UPI transaction status using the **Verify Payment API** (verify_payment) API. For more information, refer to  <a href="verify_payment_api" target="_blank"> Verify Payment API</a>.
 
 ***
 
