@@ -1,7 +1,7 @@
 ---
 title: TWID Rewards & Zillion Coins Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
