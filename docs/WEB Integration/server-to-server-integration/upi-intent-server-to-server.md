@@ -221,6 +221,18 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
         <p>INTENT</p>
       </td>
     </tr>
+
+<tr>
+  <td>
+     <p>furl<br/><code>mandatory</code></p>
+  </td>
+  <td>
+     <p><code>String</code> Failure URL (furl) – It must contain the URL on which PayU will redirect the final response in case of failure.</p>
+  </td>
+  <td>
+     <p><a href="https://apiplayground-response.herokuapp.com/">https://apiplayground-response.herokuapp.com/</a></p>
+  </td>
+</tr>
     <tr>
       <td>
         address1
