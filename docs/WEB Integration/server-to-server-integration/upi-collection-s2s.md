@@ -198,7 +198,51 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
 
       </td>
     </tr>
-    <tr>
+<tr>
+            <td>
+                <p>surl<br /><code>mandatory</code></p>
+            </td>
+            <td>
+                <p><strong>String</strong> Success URL (surl) – It must contain the URL to which PayU will redirect the final response if the transaction is successful.</p>
+            </td>
+            <td>
+                <p><a href="https://apiplayground-response.herokuapp.com/">https://apiplayground-response.herokuapp.com/</a></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>furl<br /><code>mandatory</code></p>
+            </td>
+            <td>
+                <p><strong>String</strong> Failure URL (furl) – It must contain the URL to which PayU will redirect the final response in case of failure.</p>
+            </td>
+            <td>
+                <p><a href="https://apiplayground-response.herokuapp.com/">https://apiplayground-response.herokuapp.com/</a></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>pg<br /><code>mandatory</code></p>
+            </td>
+            <td>
+                <p><strong>String</strong> The payment method is specified in this field. For UPI INTENT, specify the parameter value as <strong>UPI</strong>.</p>
+            </td>
+            <td>
+                <p>UPI</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>bankcode<br /><code>mandatory</code></p>
+            </td>
+            <td>
+                <p><strong>String</strong> Each payment option is identified with a unique bank code at PayU. For UPI Intent, specify the value as <strong>INTENT</strong>.</p>
+            </td>
+            <td>
+                <p>INTENT</p>
+            </td>
+        </tr>
+<tr>
       <td>
         lastname
         `optional`
