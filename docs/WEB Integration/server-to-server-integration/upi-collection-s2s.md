@@ -25,7 +25,7 @@ In UPI Collect, the sequence of APIs is called to follow for redirection less ex
 
 The following diagram illustrates the UPI content process flow from the initiation of the transaction by the customer to the success of payment.
 
-![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/UPI-Content-Flow-1024x457.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/UPI-Content-Flow-1024x457.png" />
 
 **UPI Collect Process Steps**
 
@@ -197,44 +197,134 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
 
       </td>
     </tr>
-
-    <tr>
-      <td>
-
-      </td>
-    </tr>
   </tbody>
 </Table>
-
-<Glossary>pg</Glossary>
-`mandatory`
-
-|    | `String` It must be set as UPI for this transaction. | UPI |
-| :- | :--------------------------------------------------- | :-- |
-|    |                                                      |     |
-
-<Glossary>bankcode</Glossary>
-`mandatory`
 
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
-
+        Parameter
       </th>
 
       <th>
-        `String` Value should be "UPI": for UPI collect transaction
-        "INTENT": for initiating the UPI Intent transaction
+        Description
       </th>
 
       <th>
-        UPI
+        Example
       </th>
     </tr>
   </thead>
 
   <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        `String` The merchant key provided by PayU must be included.
+
+        * _Reference_*: For more information on how to generate the Key and Salt, refer to any of the following:
+        * **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+        * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txnid
+        `mandatory`
+      </td>
+
+      <td>
+        `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,&, ‘).
+      </td>
+
+      <td>
+        1234_abcdedf
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount
+        `mandatory`
+      </td>
+
+      <td>
+        `String` (rounded to two decimal places) This parameter must contain the amount for which QR needs to be generated. The amount should be greater than or equal to Rs.1.00.
+      </td>
+
+      <td>
+        1000
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must contain the customer phone number (10 characters).
+      </td>
+
+      <td>
+        9876786756
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productinfo
+        `mandatory`
+      </td>
+
+      <td>
+        `String` (alphanumeric) This field must contain the product name. By default, the value is 'storefront' (max. 100 characters).
+      </td>
+
+      <td>
+        iPhone 12
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstname
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must contain the customer's first name (max. 60 characters).
+      </td>
+
+      <td>
+        Sundar
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter must contain the customer email ID.
+      </td>
+      <td>
+        [hello@payu.in](mailto:hello@payu.in)
+      </td>
+    </tr>
     <tr>
       <td>
         lastname
@@ -244,7 +334,6 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
       <td>
         `String` This parameter must contain the customer last name (maximum 20 characters).
       </td>
-
       <td>
         Teja
       </td>
