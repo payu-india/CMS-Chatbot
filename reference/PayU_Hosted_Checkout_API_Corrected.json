@@ -66,7 +66,8 @@
                   "amount": {
                     "type": "integer",
                     "description": "The payment amount for the transaction.",
-                    "contentEncoding": "int32"
+                    "contentEncoding": "int32",
+                    "default": 10
                   },
                   "productinfo": {
                     "type": "string",
@@ -231,7 +232,7 @@
           },
           "billingAmount": {
             "type": "integer",
-            "description": "The billing amount is passed in XX. XX format. In use cases where billingCycle = ADHOC, amount passed is treated as maximum amount since billing amount and billing cycle varies as per the usage of the subscription service. \u2028In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call. \u2028For UPI, billingAmount should not be more than INR 15000 as it is the maximum limit allowed for UPI currently.",
+            "description": "The billing amount is passed in XX. XX format. In use cases where billingCycle = ADHOC, amount passed is treated as maximum amount since billing amount and billing cycle varies as per the usage of the subscription service. In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call. For UPI, billingAmount should not be more than INR 15000 as it is the maximum limit allowed for UPI currently.",
             "contentEncoding": "int32",
             "examples": [
               2000
@@ -240,7 +241,7 @@
           "billingCurrency": {
             "const": "INR",
             "type": "string",
-            "description": "This field must be passed as \u201cINR\u201d\u2028 for India."
+            "description": "This field must be passed as “INR” for India."
           },
           "paymentStartDate": {
             "type": "string",
@@ -262,7 +263,7 @@
           },
           "remarks": {
             "type": "string",
-            "description": "This field is used to provide remarks on PSP applications during the registration transaction of UPI.\u2028 For cards and Net Banking, this parameter has no significance.\u2028 Character limit = 50.",
+            "description": "This field is used to provide remarks on PSP applications during the registration transaction of UPI. For cards and Net Banking, this parameter has no significance. Character limit = 50.",
             "examples": [
               "Subscription for a year"
             ]
@@ -319,7 +320,7 @@
         "properties": {
           "beneficiaryName": {
             "type": "string",
-            "description": "Registered name against customer\u2019s account",
+            "description": "Registered name against customer’s account",
             "examples": [
               "Ashish Kumar"
             ]
@@ -348,7 +349,7 @@
           },
           "verificationMode": {
             "type": "string",
-            "description": "DEBIT_CARD \u2013 authentication will be done through a debit card. If no value or value other than DEBIT_CARD, then it will trigger net banking login password flow.",
+            "description": "DEBIT_CARD – authentication will be done through a debit card. If no value or value other than DEBIT_CARD, then it will trigger net banking login password flow.",
             "examples": [
               "DEBIT_CARD"
             ]
@@ -382,7 +383,7 @@
         "title": "bankcode",
         "const": "CC",
         "type": "string",
-        "description": "Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option\u2019s bank code value in it."
+        "description": "Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it."
       },
       "surl": {
         "title": "surl",
