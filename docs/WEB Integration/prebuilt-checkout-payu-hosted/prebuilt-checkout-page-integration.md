@@ -1,5 +1,5 @@
 ---
-title: Prebuilt Checkout Page Integration
+title: Web Integration
 deprecated: false
 hidden: false
 metadata:
