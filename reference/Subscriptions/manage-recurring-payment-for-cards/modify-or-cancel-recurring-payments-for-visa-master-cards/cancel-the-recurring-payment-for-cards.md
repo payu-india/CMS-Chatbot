@@ -151,21 +151,13 @@ Method: **POST**
 * Sample response for successful cancellation of Cards mandate:
 
 ```json
-{
-  "action": "MANDATE_REVOKE",
-  "statusCode": 1,
-  "Message": "Request Initiated"
-}
+{"status":1,"message":"Mandate Revoked Successfully","action":"MANDATE_REVOKE"}
 ```
 
 * Sample Response for failed cancellation
 
 ```json
-{
-  "action": "MANDATE_REVOKE",
-  "statusCode": 0,
-  "Message": "Mandate is not active"
-}
+{"status":0,"message":"Mandate not in appropriate state to perform action","action":"MANDATE_REVOKE"}
 ```
 
 export const RequestParameters = ({children}) => (
