@@ -1,7 +1,7 @@
 ---
 title: Using MOTO with Network Tokens
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
