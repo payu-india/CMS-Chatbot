@@ -35,7 +35,21 @@ You can fetch cards details with the following specific feature-level informatio
 * Complete BIN list having ATM PIN support is required
 * Complete BIN list with OTP-on-the-fly support (IVR) is required
 
-When fetching multiple card details, you can limit the number of card details in the response using the start index and offset.
+<br />
+
+| Use Case              | var1 | var2   | var3 | var4 | var5 | Description                                |
+| --------------------- | ---- | ------ | ---- | ---- | ---- | ------------------------------------------ |
+| Single BIN Query      | 1    | 512345 | 0    | 0    | 0    | Get info for specific BIN                  |
+| Single BIN + Enhanced | 1    | 512345 | 0    | 0    | 1    | Single BIN with zero redirect & SI support |
+| ATM PIN Support Cards | 2    | 1      | 1    | 20   | 0    | Get BINs with ATM PIN support              |
+| OTP Support Cards     | 2    | 2      | 1    | 20   | 0    | Get BINs with OTP-on-the-fly support       |
+| All Cards - Page 1    | 3    | ``     | 1    | 20   | 0    | First 20 cards (records 1-20)              |
+| All Cards - Page 2    | 3    | ``     | 21   | 20   | 0    | Next 20 cards (records 21-40)              |
+| All Cards - Page 3    | 3    | ``     | 41   | 20   | 0    | Next 20 cards (records 41-60)              |
+| Large Batch Query     | 3    | ``     | 1    | 100  | 0    | Get 100 cards at once                      |
+| Custom Range          | 3    | ``     | 501  | 50   | 0    | Cards 501-550                              |
+
+The table shows different use cases for what appears to be a BIN (Bank Identification Number) lookup system, with various parameters (var1-var5) and their corresponding descriptions. The empty backticks (``) in var2 for some rows likely represent empty or null values for that parameter.
 
 ## Environment
 
