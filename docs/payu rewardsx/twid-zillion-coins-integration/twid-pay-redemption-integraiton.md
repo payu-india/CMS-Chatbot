@@ -17,57 +17,29 @@ Integrate TWID pay to enable customers to redeem their TWID loyalty points durin
 > X-Merchant-Key: {MERCHANT_KEY}
 > ```
 
-
-
-## Overview
-This documentation provides the complete integration guide for TWID Pay API, enabling merchants to integrate TWID points as a payment method in their applications.
-
-## Base URLs
-- **Production**: `https://api.payu.in/loyalty-points/`
-- **Test**: `https://apitest.payu.in/loyalty-points/`
-
-## Authentication
-
-### For Non-Seamless Merchants
-Add the following header to all API requests:
-```http
-mid: {MERCHANT_ID}
-```
-
-### For Seamless Merchants
-Add the following headers to all API requests:
-```http
-Date: {DATE_IN_GMT_FORMAT}
-Authorization: hmac username="{MERCHANT_KEY}", algorithm="sha512", headers="date", signature="{FULL_BODY_HASH}"
-```
-
-**Date Format**: `"EEE, dd MMM yyyy HH:mm:ss 'GMT'"`
-
-**Note**: The signature (fullBodyHash) is generated using SHA512 algorithm. Refer to PayU documentation for signature generation details.
-
 ## API Integration Steps
 
-<details>
-<summary><strong>Step 1: Fetch Balance API</strong></summary>
+<Accordion title="1. Fetch Balance API" icon="fa-search">
 
-The Fetch Balance API is used to retrieve TWID points balance for a customer. This endpoint allows you to check the available TWID points that can be used for a transaction before proceeding with the payment process.
-
+Retrieve TWID points balance for a customer.
 **Endpoint**: `POST {{loyalty-service-url}}/v1/balance`
 
-<details>
-<summary><strong>Request Parameters</strong></summary>
+<Accordion title="Request Parameters" icon="fa-table">
 
 | Parameter                 | Description                                                         | Example                                    |
 | ------------------------- | ------------------------------------------------------------------- | ------------------------------------------ |
 | loyaltyProvider           | `String` - The loyalty provider for the response                    | `"TWID"`                                   |
-| mobileNumber              | `String` - Customer's mobile number                                 | `"88001085**"`                             |
-| fetchRevisedEarn          | `Boolean` - Whether to fetch revised earn points                    | `true`                                     |
-| orderAmount               | `Number` - Total order amount                                       | `1000`                                     |
+| usableAmount              | `Number` - Maximum monetary amount that can be saved                | `500.0`                                    |
+| usablePoints              | `Number` - Required reward points for maximum savings               | `500`                                      |
+| title                     | `String` - Display title of the reward offer                        | `"Save Rs 500 using 500 TWID Cash Points"` |
+| earnConfig.points         | `Number` - Points that can be earned in this transaction            | `0`                                        |
+| issuerDetailDTO.brandName | `String` - Brand name of the issuer                                 | `"TWID Cash"`                              |
+| issuerDetailDTO.logo      | `String` - Logo URL of the brand or issuer                          | `"https://cdn.twidpay.com/..."`            |
+| holdApplicable            | `Boolean` - Indicates if points can be held/reserved for the reward | `false`                                    |
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>Sample Request</strong></summary>
+<Accordion title="Sample Request" icon="fa-code">
 
 ```json
 {
@@ -78,10 +50,9 @@ The Fetch Balance API is used to retrieve TWID points balance for a customer. Th
 }
 ```
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>Sample Response</strong></summary>
+<Accordion title="Sample Response" icon="fa-reply">
 
 ```json
 {
@@ -89,31 +60,20 @@ The Fetch Balance API is used to retrieve TWID points balance for a customer. Th
   "usableAmount": 500.0,
   "usablePoints": 500,
   "title": "Save Rs 500 using 500 twid Cash Points",
-  "rewardId": 270943,
-  "earnConfig": {
-    "points": 0
-  },
-  "issuerDetailDTO": {
-    "brandName": "TWID Cash",
-    "logo": "https://cdn.twidpay.com/..."
-  },
-  "holdApplicable": false
+  "rewardId": 270943
 }
 ```
 
-</details>
+</Accordion>
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>Step 2: Hold TWID Coins API</strong></summary>
+<Accordion title="2. Hold TWID Coins API" icon="fa-lock">
 
-The Hold TWID Coins API is used to hold or reserve TWID points for a transaction. This step ensures that the required points are temporarily blocked for the transaction, preventing them from being used elsewhere during the payment process.
-
+Hold/reserve TWID points for a transaction.
 **Endpoint**: `POST {{loyalty-service-url}}/payment/v1/createPayment`
 
-<details>
-<summary><strong>Request Parameters</strong></summary>
+<Accordion title="Request Parameters" icon="fa-table">
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
@@ -123,16 +83,12 @@ The Hold TWID Coins API is used to hold or reserve TWID points for a transaction
 | parentPayuTxnId `mandatory` | `String` - Parent transaction ID from main payment transaction | `"65646400234509041"` |
 | totalAmount `mandatory` | `Number` - Total monetary reward amount to be held/redeemed | `1000` |
 | mobile `mandatory` | `String` - User's mobile number | `"9304204**"` |
-| email `optional` | `String` - User's email address | `"test@gmail.com"` |
 | loyaltyProvider `mandatory` | `String` - Loyalty provider identifier | `"TWID"` |
-| rewardId `mandatory` | `Number` - Reward ID from balance API response | `270940` |
-| currency `mandatory` | `String` - Currency code | `"INR"` |
 | orderAmount `mandatory` | `Number` - Total order/bill amount for transaction | `10000` |
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>Sample Request</strong></summary>
+<Accordion title="Sample Request" icon="fa-code">
 
 ```json
 {
@@ -150,10 +106,9 @@ The Hold TWID Coins API is used to hold or reserve TWID points for a transaction
 }
 ```
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>Sample Response</strong></summary>
+<Accordion title="Sample Response" icon="fa-reply">
 
 ```json
 {
@@ -163,29 +118,25 @@ The Hold TWID Coins API is used to hold or reserve TWID points for a transaction
 }
 ```
 
-</details>
+</Accordion>
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>Step 3: Redeem TWID Points API</strong></summary>
+<Accordion title="3. Redeem TWID Points API" icon="fa-check-circle">
 
-The Redeem TWID Points API is used to complete the redemption of held TWID points. This is the final step that confirms the transaction and deducts the points from the customer's account after successful payment processing.
-
+Complete the redemption of held TWID points.
 **Endpoint**: `POST {{loyalty-service-url}}/payment/v1/continue`
 
-<details>
-<summary><strong>Request Parameters</strong></summary>
+<Accordion title="Request Parameters" icon="fa-table">
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
 | loyaltyTxnId `mandatory` | `String` - Reference ID provided by the Loyalty-Service during the Create Payment call | `"bd1a77b6-1596-46e1-b79f-2770bcb636c7"` |
 | loyaltyProvider `mandatory` | `String` - The loyalty provider identifier (e.g., TWID) | `"TWID"` |
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>Sample Request</strong></summary>
+<Accordion title="Sample Request" icon="fa-code">
 
 ```json
 {
@@ -194,10 +145,9 @@ The Redeem TWID Points API is used to complete the redemption of held TWID point
 }
 ```
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>Sample Response</strong></summary>
+<Accordion title="Sample Response" icon="fa-reply">
 
 ```json
 {
@@ -207,19 +157,16 @@ The Redeem TWID Points API is used to complete the redemption of held TWID point
 }
 ```
 
-</details>
+</Accordion>
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>Step 4: Transaction Enquiry API (Optional)</strong></summary>
+<Accordion title="4. Transaction Enquiry API (Optional)" icon="fa-search-plus">
 
-The Transaction Enquiry API is used to query the status and details of TWID transactions. This optional step allows you to check the current status of any transaction using either the loyalty transaction ID or PayU transaction ID.
-
+Query the status and details of TWID transactions.
 **Endpoint**: `POST {{loyalty-service-url}}/payment/v1/enquiry`
 
-<details>
-<summary><strong>Request Parameters</strong></summary>
+<Accordion title="Request Parameters" icon="fa-table">
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
@@ -228,10 +175,9 @@ The Transaction Enquiry API is used to query the status and details of TWID tran
 
 **Note**: At least one parameter must be provided
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>Sample Request</strong></summary>
+<Accordion title="Sample Request" icon="fa-code">
 
 ```json
 {
@@ -240,39 +186,25 @@ The Transaction Enquiry API is used to query the status and details of TWID tran
 }
 ```
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>Sample Response</strong></summary>
+<Accordion title="Sample Response" icon="fa-reply">
 
 ```json
 {
   "status": "SUCCESS",
   "loyaltyTxnId": "bd1a77b6-1596-46e1-b79f-2770bcb636c7",
-  "payuTxnId": "89887897898",
-  "transactionDetails": {
-    "amount": 1000,
-    "currency": "INR",
-    "points": 500,
-    "timestamp": "2024-01-15T10:30:00Z"
-  }
+  "payuTxnId": "89887897898"
 }
 ```
 
-</details>
+</Accordion>
 
-</details>
+</Accordion>
 
 ## Integration Flow
 
-The complete integration flow follows these steps:
-1. **Fetch Balance**: Check available TWID points for the customer
-2. **Hold Points**: Reserve the required points for the transaction
-3. **Process Payment**: Complete the main payment transaction
-4. **Redeem Points**: Confirm and deduct the points from customer account
-5. **Enquiry** (Optional): Check transaction status if needed
-
-## Error Handling
+### Error Handling
 
 All APIs may return error responses. Implement proper error handling for:
 - Invalid parameters
@@ -281,7 +213,7 @@ All APIs may return error responses. Implement proper error handling for:
 - Network timeouts
 - Server errors
 
-## Security Best Practices
+### Security Best Practices
 
 1. **Secure Storage**: Store API keys and merchant credentials securely
 2. **HTTPS Only**: All API calls must use HTTPS
