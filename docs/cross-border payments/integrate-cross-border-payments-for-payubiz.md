@@ -34,6 +34,15 @@ The cross-border payment integration for PayUBiz involves the following signific
 2. [Update Invoice ID \[Optional\]](#step2-update-invoice-id-optional)
 3. [Upload Invoice with PayU](#step-3-upload-the-invoices)
 
+> 📘 Prerequisites
+>
+> * **Invoice ID**: The Invoice ID needs to be shared with the AD-1 category bank on the same day of the transaction to initiate settlements with the merchant. Hence, if the Invoice ID is not available at the time of the transaction, it is mandatory to be passed through the UDF Update API or Invoice Upload API on the same day (IST). If the merchant fails to furnish the invoice ID on the same day (IST) of the transaction through any of the three options, PayU or the Partner Bank will not be able to process the settlement. For more information on **UDF Update** API and **Invoice Upload** API, refer to [UDF Update API](ref:udf_update_api) and [Invoice Upload API](ref:invoice_upload_api).
+> * **Invoice file**: The invoice file must be shared with PayU within 10 days of transaction since the bank requires the same as per the Govt and RBI guidelines. To follow the guidelines – PayU’s system will create an auto-refund entry to the buyer if the Invoice file is not received within 10 days. Merchant can configure the 10 days window on a merchant _MID_ level. 
+>
+> > 📘 Note:
+> >
+> > The recommended solution is to pass both the Invoice ID and Invoice file simultaneously when hitting the Invoice Upload API on the same day of the transaction.
+
 ## Step 1: Make Payment using Web Checkout Integration
 
 The following parameters (mandatory) must be posted using any of the following Web Checkout integration and refer to the corresponding section of [Web Checkout Integration](doc:introduction-web) documentation for the complete list of parameters to be posted:
@@ -660,93 +669,93 @@ curl --location 'https://test.payu.in/_payment' \
 
 <Accordion title="Request parameters" icon="fa-info-circle">
   <HTMLBlock>{`
-    <table>
-      <thead>
-        <tr>
-          <th><strong>Parameter</strong></th>
-          <th><strong>Description</strong></th>
-          <th><strong>Example</strong></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>key</td>
-          <td>
-            Merchant key provided by PayU. For more information on checking your key and Salt, refer to <a href="https://devguide.payu.in/merchant-integration/getting-started-with-web-checkout/generate-key-and-salt-payubiz/">Generate Merchant Key and Salt on PayUBiz Dashboard</a>.
-          </td>
-          <td>Your Test Key</td>
-        </tr>
-        <tr>
-          <td>command</td>
-          <td>
-            The API command for this API, that is, <strong>opgsp_upload_invoice_awb</strong> must be specified for this parameter.
-          </td>
-          <td>opgsp_upload_invoice_awb</td>
-        </tr>
-        <tr>
-          <td>
-            var1<br>
-            (primaryKey)<br>
-            <strong>mandatory</strong>
-          </td>
-          <td>
-            The PayU ID (mihpayuid) of the transaction must be specified in this field. The Invoice or AWB will be uploaded basis of the PayU ID.
-          </td>
-          <td><code>403993715521937565</code></td>
-        </tr>
-        <tr>
-          <td>
-            var2<br>
-            (uniqueNumber)<br>
-            <strong>mandatory</strong>
-          </td>
-          <td>
-            The invoice ID or AWB ID is specified in this parameter. Alphanumeric with special characters is allowed.
-          </td>
-          <td><code>9eec02ac9e2efc335bdda2d7486121ce03de24c2fa7d32d17462ad5a6a9058db</code></td>
-        </tr>
-        <tr>
-          <td>
-            var3<br>
-            (uploadType)<br>
-            <strong>mandatory</strong>
-          </td>
-          <td>
-            The type of document to be uploaded is specified in this field, and it can be any of the following:
-            <ul>
-              <li>Invoice</li>
-              <li>AWB</li>
-            </ul>
-          </td>
-          <td>AWB</td>
-        </tr>
-        <tr>
-          <td>
-            file<br>
-            (attachment)<br>
-            <strong>mandatory</strong>
-          </td>
-          <td>
-            The absolute path of the file to be uploaded is specified in this parameter. The maximum size supported is 2 MB and the following formats are supported:
-            <ul>
-              <li>PDF (.pdf)</li>
-              <li>Document (.doc or .docx)</li>
-              <li>Image (.jpg, .jpeg)</li>
-            </ul>
-            <strong>Note</strong>: The Merchant Dashboard supports only the .pdf and .docx formats.
-          </td>
-          <td>C:\invoice.docx</td>
-        </tr>
-        <tr>
-          <td>hash</td>
-          <td>
-            The hash is generated in the following format:<br>
-            sha512(key|command|var1|salt) sha512
-          </td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+        <table>
+          <thead>
+            <tr>
+              <th><strong>Parameter</strong></th>
+              <th><strong>Description</strong></th>
+              <th><strong>Example</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>key</td>
+              <td>
+                Merchant key provided by PayU. For more information on checking your key and Salt, refer to <a href="https://devguide.payu.in/merchant-integration/getting-started-with-web-checkout/generate-key-and-salt-payubiz/">Generate Merchant Key and Salt on PayUBiz Dashboard</a>.
+              </td>
+              <td>Your Test Key</td>
+            </tr>
+            <tr>
+              <td>command</td>
+              <td>
+                The API command for this API, that is, <strong>opgsp_upload_invoice_awb</strong> must be specified for this parameter.
+              </td>
+              <td>opgsp_upload_invoice_awb</td>
+            </tr>
+            <tr>
+              <td>
+                var1<br>
+                (primaryKey)<br>
+                <strong>mandatory</strong>
+              </td>
+              <td>
+                The PayU ID (mihpayuid) of the transaction must be specified in this field. The Invoice or AWB will be uploaded basis of the PayU ID.
+              </td>
+              <td><code>403993715521937565</code></td>
+            </tr>
+            <tr>
+              <td>
+                var2<br>
+                (uniqueNumber)<br>
+                <strong>mandatory</strong>
+              </td>
+              <td>
+                The invoice ID or AWB ID is specified in this parameter. Alphanumeric with special characters is allowed.
+              </td>
+              <td><code>9eec02ac9e2efc335bdda2d7486121ce03de24c2fa7d32d17462ad5a6a9058db</code></td>
+            </tr>
+            <tr>
+              <td>
+                var3<br>
+                (uploadType)<br>
+                <strong>mandatory</strong>
+              </td>
+              <td>
+                The type of document to be uploaded is specified in this field, and it can be any of the following:
+                <ul>
+                  <li>Invoice</li>
+                  <li>AWB</li>
+                </ul>
+              </td>
+              <td>AWB</td>
+            </tr>
+            <tr>
+              <td>
+                file<br>
+                (attachment)<br>
+                <strong>mandatory</strong>
+              </td>
+              <td>
+                The absolute path of the file to be uploaded is specified in this parameter. The maximum size supported is 2 MB and the following formats are supported:
+                <ul>
+                  <li>PDF (.pdf)</li>
+                  <li>Document (.doc or .docx)</li>
+                  <li>Image (.jpg, .jpeg)</li>
+                </ul>
+                <strong>Note</strong>: The Merchant Dashboard supports only the .pdf and .docx formats.
+              </td>
+              <td>C:\invoice.docx</td>
+            </tr>
+            <tr>
+              <td>hash</td>
+              <td>
+                The hash is generated in the following format:<br>
+                sha512(key|command|var1|salt) sha512
+              </td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
   `}</HTMLBlock>
 </Accordion>
 
