@@ -37,10 +37,10 @@ Method: **POST**
 
 ## Environment
 
-| Environment            | URL                                                              |
-| :--------------------- | :--------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/merchant/](https://test.payu.in/_payment)  |
-| Production Environment | [https://info.payu.in/merchant/](https://info.payu.in/merchant/) |
+| Environment            | URL                                                  |
+| :--------------------- | :--------------------------------------------------- |
+| Test Environment       | https://test.payu.in/merchant/postservice.php?form=2 |
+| Production Environment | https://info.payu.in/merchant/postservice.php?form=2 |
 
 ## Request parameters
 
@@ -114,6 +114,19 @@ Method: **POST**
   </tbody>
 </table>
 `}</HTMLBlock>
+
+<br />
+
+## Sample request
+
+```curl
+curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=PRiQvJ' \
+--data-urlencode 'command=upi_mandate_revoke' \
+--data-urlencode 'var1={"authpayuid":"19504273314","requestId":"test000212"}' \
+--data-urlencode 'hash='
+```
 
 <br />
 
