@@ -37,10 +37,10 @@ Method: **POST**
 
 ## Environment
 
-| Environment            | URL                                                  |
-| :--------------------- | :--------------------------------------------------- |
-| Test Environment       | https://test.payu.in/merchant/postservice.php?form=2 |
-| Production Environment | https://info.payu.in/merchant/postservice.php?form=2 |
+| Environment            | URL                                                                                                          |
+| :--------------------- | :----------------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
 ## Request parameters
 
@@ -146,7 +146,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
       <td align="left">Always returned as "MANDATE_REVOKE" to highlight the type of action.</td>
     </tr>
     <tr>
-      <td align="left">statusCode</td>
+      <td align="left">status</td>
       <td align="left">Status defines acknowledgment from PayU. Possible values are:<br/><strong>1</strong>- This value indicates that Cards mandate is successfully canceled<br/><strong>0</strong> – This value indicates that Cards mandate failed to get canceled</td>
     </tr>
     <tr>
