@@ -1,5 +1,5 @@
 ---
-title: Integrate Import for Payments OS
+title: '[Deprecated]Integrate Import for Payments OS'
 excerpt: ''
 deprecated: false
 hidden: true
