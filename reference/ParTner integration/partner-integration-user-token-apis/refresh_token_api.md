@@ -15,16 +15,16 @@ next:
 ---
 This API is used to generate a refresh token to obtain a renewed access token using client ID.
 
-> 📘 Note:
->
-> You can use this API when the token generated using the\*\* Get Token \*\*API has expired. The expiry period of the token generated using this API is configurable by you (partner). The expiry period (in seconds) of the token is displayed in the **expires\_in** parameter of the response.
+<Callout icon="📘" theme="info">
+  **Note**: You can use this API when the token generated using the** Get Token **API has expired. The expiry period of the token generated using this API is configurable by you (partner). The expiry period (in seconds) of the token is displayed in the **expires_in** parameter of the response.
+</Callout>
 
 **Environment**
 
-|                |                                                                  |
-| :------------- | :--------------------------------------------------------------- |
-| **Test**       | \<[https://uat-accounts.payu.in>](https://uat-accounts.payu.in>) |
-| **Production** | \<[https://accounts.payu.in>](https://accounts.payu.in>)         |
+|                |                                                          |
+| :------------- | :------------------------------------------------------- |
+| **Test**       | https://uat-accounts.payu.in/oauth/token.                |
+| **Production** | \<[https://accounts.payu.in>](https://accounts.payu.in>) |
 
 <details>
   <summary>Sample request</summary>
