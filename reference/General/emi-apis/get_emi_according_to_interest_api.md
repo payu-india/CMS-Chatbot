@@ -20,8 +20,6 @@ metadata:
 next:
   description: ''
 ---
-# Get EMI Amount According to Interest API
-
 The **Get EMI Amount According to Interest** API (**getEmiAmountAccordingToInterest** API) is used to get the EMI interest bank rates for all the enabled EMIs.
 
 ## Sample request
@@ -63,24 +61,24 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 
 The response includes the JSON array and each JSON has the fields as described in the following table:
 
-> 📘 **Reference:**
->
-> In the JSON Array of the response of the **Get EMI Amount According to Interest** API, the code displayed for the each issuer (at the beginning of each object). The significance of these codes are described in [EMI Options for Get EMI According to Interest API](ref:emi-options-for-get-emi-according-to-interest-api).
+<Callout icon="📘" theme="info">
+  **Reference**: In the JSON Array of the response of the **Get EMI Amount According to Interest** API, the code displayed for the each issuer (at the beginning of each object). The significance of these codes are described in [EMI Options for Get EMI According to Interest API](ref:emi-options-for-get-emi-according-to-interest-api).
+</Callout>
 
-| **Parameter**       | **Description**                                                                                                     | **Example** |
-| :------------------ | :------------------------------------------------------------------------------------------------------------------ | :---------- |
-| transactionAmount   | The transaction amount that is will be converted into EMI.                                                          | 20000       |
-| loanAmount          | The loan amount that needs to be converted as EMI.                                                                  | 20000       |
-| emiAmount           | The amount that needs to be converted as EMI.                                                                       | 20000       |
-| additionalCost      | The processing fee or additional cost for processing the EMI excluding interest.                                    | 0.00        |
-| emiMdrNote          | The EMI Merchant Discount Rate (MDR) note if any for the transaction.                                               | 0.25        |
-| bankRate            | The interest rate in percentage for the EMI. This is excluding the processing fee. For example, 12%, 18%, 24%, etc. | 13          |
-| bankCharge          | The bank charges for the EMI transaction.                                                                           | 0           |
-| amount              | The principal part of the EMI.                                                                                      | 6666.67     |
-| card\_type          | The card type used by the customer and can be any of the following:  \* credit card  \* debit card                  | credit card |
-| emi\_value          | The amount to be paid per EMI.                                                                                      | 6811.63     |
-| emi\_interest\_paid | The total interest paid for all the EMIs.                                                                           | 434.89      |
-| tenure              | The tenure for the EMI in months. For example, 3, 6, 12, 24, 36, etc.                                               | 3           |
+| **Parameter**     | **Description**                                                                                                     | **Example** |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------ | :---------- |
+| transactionAmount | The transaction amount that is will be converted into EMI.                                                          | 20000       |
+| loanAmount        | The loan amount that needs to be converted as EMI.                                                                  | 20000       |
+| emiAmount         | The amount that needs to be converted as EMI.                                                                       | 20000       |
+| additionalCost    | The processing fee or additional cost for processing the EMI excluding interest.                                    | 0.00        |
+| emiMdrNote        | The EMI Merchant Discount Rate (MDR) note if any for the transaction.                                               | 0.25        |
+| bankRate          | The interest rate in percentage for the EMI. This is excluding the processing fee. For example, 12%, 18%, 24%, etc. | 13          |
+| bankCharge        | The bank charges for the EMI transaction.                                                                           | 0           |
+| amount            | The principal part of the EMI.                                                                                      | 6666.67     |
+| card_type         | The card type used by the customer and can be any of the following:  * credit card  * debit card                    | credit card |
+| emi_value         | The amount to be paid per EMI.                                                                                      | 6811.63     |
+| emi_interest_paid | The total interest paid for all the EMIs.                                                                           | 434.89      |
+| tenure            | The tenure for the EMI in months. For example, 3, 6, 12, 24, 36, etc.                                               | 3           |
 
 ## Request parameters
 
@@ -121,8 +119,8 @@ Use the following sample values while trying out the API:
       </td>
 
       <td>
-        Hash logic for this API is:\
-        `sha512(key\|command\|var1\|salt) sha512 `
+        Hash logic for this API is:
+        `sha512(key|command|var1|salt) sha512 `
         For more information about the hash generation process, refer to [Encryption of Request.](/docs/hashing-request-and-response)
       </td>
     </tr>
