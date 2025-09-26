@@ -2,7 +2,7 @@
 title: Integrate Import for Payments OS
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Integrate Import for Payments OS
   description: >-
