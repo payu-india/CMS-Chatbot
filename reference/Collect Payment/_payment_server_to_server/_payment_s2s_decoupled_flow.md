@@ -19,9 +19,9 @@ next:
 ---
 You can collect card payments without redirection to bank page for entering OTP using S2S integration. This section provides the request and response parameters used in Step 1 of [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s). You can get the sample request and response when use the "Try It" experience. For more information remaining steps of integration, refer to [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s).
 
-> 📘 Reference
->
-> For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+<Callout icon="📘" theme="info">
+  **Reference**: For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+</Callout>
 
 <Accordion_Collect_Fraud_Detection />
 
