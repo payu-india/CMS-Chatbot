@@ -21,32 +21,10 @@ HTTP Method: **POST**
 
 ## Request parameters
 
-\<HTMLBlock>
-\{`
-\<table>
-\<thead>
-\<tr>
-\<th>Parameter\</th>
-\<th>Description\</th>
-\<th>Example\</th>
-\</tr>
-\</thead>
-\<tbody>
-\<tr>
-\<td>loyaltyTxnId \<code>mandatory\</code>\</td>
-\<td>\<code>String\</code> - Reference ID provided by the Loyalty-Service during the `Create Payment` call\</td>
-\<td>\<code>"bd1a77b6-1596-46e1-b79f-2770bcb636c7"\</code>\</td>
-\</tr>
-\<tr>
-\<td>loyaltyProvider \<code>mandatory\</code>\</td>
-\<td>\<code>String\</code> - The loyalty provider identifier (e.g., TWID)\</td>
-\<td>\<code>"TWID"\</code>\</td>
-\</tr>
-\</tbody>
-\</table>
-`}
-\</HTMLBlock>
-
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| loyaltyTxnId <br/> `mandatory` | `String` - Reference ID provided by the Loyalty-Service during the Create Payment call | `"bd1a77b6-1596-46e1-b79f-2770bcb636c7"` |
+| loyaltyProvider <br/> `mandatory` | `String` - The loyalty provider identifier (e.g., TWID) | `"TWID"` |
 <br />
 
 ## Response Parameters
