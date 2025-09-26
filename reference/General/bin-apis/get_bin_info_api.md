@@ -49,7 +49,7 @@ You can fetch cards details with the following specific feature-level informatio
 | Large Batch Query     | 3    | ``     | 1    | 100  | 0    | Get 100 cards at once                      |
 | Custom Range          | 3    | ``     | 501  | 50   | 0    | Cards 501-550                              |
 
-The table shows different use cases for what appears to be a BIN (Bank Identification Number) lookup system, with various parameters (var1-var5) and their corresponding descriptions. The empty backticks (``) in var2 for some rows likely represent empty or null values for that parameter.
+<br />
 
 ## Environment
 
@@ -57,6 +57,22 @@ The table shows different use cases for what appears to be a BIN (Bank Identific
 | :--------------------- | :--------------------------------------------------------------------------------------------------- |
 | Test Environment       | [https://test.payu.in/merchant/postservice?form=2](https://test.payu.in/merchant/postservice?form=2) |
 | Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2) |
+
+<Accordion title="BIN API Use Cases" icon="fa-info-circle">
+  The following table shows different use cases for BIN (Bank Identification Number) lookup system, with various parameters (var1-var5) and their corresponding descriptions. The empty backticks (\`\`) in var2 for some rows likely represent empty or null values for that parameter.
+
+  | Use Case              | var1 | var2   | var3 | var4 | var5 | Description                                |
+  | --------------------- | ---- | ------ | ---- | ---- | ---- | ------------------------------------------ |
+  | Single BIN Query      | 1    | 512345 | 0    | 0    | 0    | Get info for specific BIN                  |
+  | Single BIN + Enhanced | 1    | 512345 | 0    | 0    | 1    | Single BIN with zero redirect & SI support |
+  | ATM PIN Support Cards | 2    | 1      | 1    | 20   | 0    | Get BINs with ATM PIN support              |
+  | OTP Support Cards     | 2    | 2      | 1    | 20   | 0    | Get BINs with OTP-on-the-fly support       |
+  | All Cards - Page 1    | 3    | \`\`   | 1    | 20   | 0    | First 20 cards (records 1-20)              |
+  | All Cards - Page 2    | 3    | \`\`   | 21   | 20   | 0    | Next 20 cards (records 21-40)              |
+  | All Cards - Page 3    | 3    | \`\`   | 41   | 20   | 0    | Next 20 cards (records 41-60)              |
+  | Large Batch Query     | 3    | \`\`   | 1    | 100  | 0    | Get 100 cards at once                      |
+  | Custom Range          | 3    | \`\`   | 501  | 50   | 0    | Cards 501-550                              |
+</Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
   ## For Single Card
