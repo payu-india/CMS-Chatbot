@@ -43,7 +43,7 @@ The following are the additional request parameter required for cross-border pay
 | **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
-<br />
+## Request parameters
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -160,11 +160,7 @@ The following are the additional request parameter required for cross-border pay
       </td>
 
       <td>
-
-
         [abc@payu.in](mailto:abc@payu.in)
-
-
       </td>
     </tr>
 
