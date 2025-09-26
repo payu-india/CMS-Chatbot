@@ -45,7 +45,7 @@ The advantages for the overseas merchant include: 
 * International merchants are looking at simplified market entry into India. They want partners who can eliminate operational complexities by operating through local merchants of record with knowledge of the Indian market. 
 * Merchants are looking to tap the Indian eCommerce market by offering them the majority of the local payment methods like Net Banking, Rupay cards, and local card processing with higher transaction success rates. 
 
-Merchants cannot sell products for more than Rs.2.5 lakhs per transaction. 
+Merchants cannot sell products for more than Rs.2.5 lakhs per transaction.
 
 * Every transaction must be accompanied by a copy of the (digital) invoice. 
 * Every transaction must be accompanied by a copy of the AWB once the product(s) has been shipped. 
@@ -58,9 +58,6 @@ The customers or end-users will be able to pay using their Indian debit cards an
 * Reconciliation and settlement queries can be directly raised to PayU.
 * Overseas merchants can easily offer services to Indian consumers.
 
-To get started with integration, refer to any of the following integrations:
-
-* [Payments OS](doc:integrate-cross-border-payments-for-payments-os)  
-* [PayUBiz](doc:integrate-cross-border-payments-for-payubiz). 
+To get started with integration, refer to [Integrate Import for PayUBiz](doc:integrate-cross-border-payments-for-payubiz).
 
 After the integration is complete, you can integrate UPI autopay for cross-border payment-import integration. For more information, refer to [UPI Autopay Integration.](doc:upi-autopay-integration-cross-border-payments-import)
