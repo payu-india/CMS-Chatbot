@@ -2,7 +2,7 @@
 title: Steps to Integrate - Import
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
