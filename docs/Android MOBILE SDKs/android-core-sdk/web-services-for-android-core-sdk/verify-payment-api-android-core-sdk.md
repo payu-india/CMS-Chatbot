@@ -2,7 +2,7 @@
 title: 'Android SDK: Verify Payment Integration Guide'
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Verify Payment API - Android Core SDK
   description: ''
