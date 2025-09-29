@@ -2,7 +2,7 @@
 title: Set up a Loyalty
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
