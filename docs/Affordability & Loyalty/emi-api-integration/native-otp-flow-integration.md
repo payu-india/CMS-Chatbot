@@ -21,8 +21,8 @@ next:
 ---
 You can enable Native OTP flow in EMI payments and collect payments. Currently, Native OTP can be enabled for the following types of EMI payments:
 
-* [Debit Card](doc:collect-payments-with-debit-card-native-otp-flow)
-* [Cardless EMI](doc:collect-payments-with-cardless-emi-native-otp-flow)
+* [Debit Card](#debit-card-emi)
+* [Cardless EMI](#cardless-emi)
 
 <Callout icon="📘" theme="info">
   **Note**: If you don’t have EMI enabled, try requesting using Dashboard. For more information, refer to [Configure Checkout Settings](doc:checkout-payment-modes). If you could not request through Dashboard, contact your PayU Key Account Manager or PayU Support.
@@ -39,6 +39,7 @@ What are the advantages and why should merchants integrate this flow with PayU?
 This flow supports the latest native OTP generation flow (server-to-server) via Initiate Payment API, followed by the Submit OTP API, to initiate an S2S=4 transaction.
 
 ## Debit Card EMI
+
 The steps involved in debit card integration with native OTP flow:
 
 ### Step 1: Check Pre-EMI Eligibility
@@ -787,6 +788,7 @@ Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pas
 If the customer enters the incorrect OTP or an expired OTP, use [Resend OTP API](ref:resend-otp-api) to handle the Resend OTP request made by a customer.
 
 ## Cardless EMI
+
 The steps involved in cardless EMI with Native OTP:
 
 1. [Check pre-EMI eligibility](#step-1-check-pre-emi-eligibility)
