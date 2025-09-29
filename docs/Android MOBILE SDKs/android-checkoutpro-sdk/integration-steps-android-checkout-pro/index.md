@@ -18,13 +18,15 @@ next:
 ---
 Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard > Settings > Payment methods**.  For more information, refer. to [Checkout Payment Modes](doc:checkout-payment-modes). By default, Cards, UPI, and other payment methods are enabled, and PayU recommends that you to enable other payment methods that are relevant to you.
 
-## Step 1: Create a PayU account
+## SDK Integration
+
+### Step 1: Create a PayU account
 
 First, create a PayU account. For more information, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard).
 
 ***
 
-## Step 2: Include the SDK in your app build.gradle
+### Step 2: Include the SDK in your app build.gradle
 
 <Callout icon="❗️" theme="error">
   **Maven Central**: PayU has moved to Maven Central, update your existing dependency with the following configuration:
@@ -51,7 +53,7 @@ compileOptions {
 > 1. **Android SDK** — Version 21 and above.
 > 2. **Compile SDK** — version 31 and above.
 
-### 2.1 Import Runtime Issue
+#### 2.1 Import Runtime Issue
 
 > 🚧 Import Runtime Issue
 >
@@ -90,11 +92,11 @@ compileOptions {
 > tools:replace="android:allowBackup"
 > ```
 
-## Step 3: Build the payment parameters (mandatory step)
+### Step 3: Build the payment parameters (mandatory step)
 
 To initiate a payment, your app must send transactional information to the CheckoutPro SDK. To pass this information, create the`payUPaymentParams`object with the payment parameters.
 
-### Step 3.1: Basic Integration
+#### Step 3.1: Basic Integration
 
 ```Text Java
 PayUPaymentParams.Builder builder = new PayUPaymentParams.Builder(); 
@@ -137,7 +139,7 @@ For parameter descriptions and sample values, refer to [Payment Params Definitio
 >
 > * The **TransactionId** parameter must not include special characters and must not exceed 25 characters.
 
-### Step 3.2: For Recurring Payments(SI) (Optional)
+#### Step 3.2: For Recurring Payments(SI) (Optional)
 
 If you are integrating SI, then generate the below payment params additionally
 
@@ -172,7 +174,7 @@ val siDetails  = PayUSIParams.Builder()
 
 For more information on the PayUSIParams parameters, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters). After creating the above `PayUSIParams` object, configure it in the `PayUPaymentParams` object. For Standing Instruction, complete `PayUPaymentParams` similar to the following code block:
 
-### Step 3.3: For UPI One Time Mandate Payments (Optional)
+#### Step 3.3: For UPI One Time Mandate Payments (Optional)
 
 If you are integrating UPI OTM, then generate the below payment params additionally
 
@@ -200,7 +202,7 @@ paymentParam.setPayUSIParams(siDetails);
 paymentParam.setPayUSIParams(siDetails)
 ```
 
-### Step 3.4: For Additional Charges
+#### Step 3.4: For Additional Charges
 
 If you are integrating additional charges or percentage additional charges, then generate the below payment params additionally
 
@@ -214,11 +216,11 @@ paymentParam.setAdditionalCharges("CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55").se
 
 For more information on the Additional Charges, refer to [Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges).
 
-### Step 3:5: For split Payments details (Optional)
+#### Step 3:5: For split Payments details (Optional)
 
 For a split payment transaction, create a JSON string with the split payment parameters as shown below:
 
-#### JSON Request Structure of splitInfo Field
+**JSON Request Structure of splitInfo Field**
 
 Here is a sample JSON structure for the `splitPaymentDetails` field:
 
@@ -315,7 +317,7 @@ The following fields are included in the `splitPaymentDetails` parameter in a JS
   </tbody>
 </Table>
 
-### Step 3:5 : SKU details (Optional)
+#### Step 3:5 : SKU details (Optional)
 
 ```Text Kotlin
 SkuDetails: It contains below properties
@@ -347,7 +349,7 @@ paymentParam.setSkuDetails = "";
 >
 > if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities * skuAmount of each item.
 
-### Step 3.6: Additional parameters (Optional)
+#### Step 3.6: Additional parameters (Optional)
 
 Additional parameters are optional parameters such as UDF (User Defined Fields), static hashes, etc. More details on static hash generation and passing are mentioned in the hash generation section. The following is a list of other parameters that can be passed in additional parameters.
 
@@ -422,7 +424,7 @@ val additionalParamsMap: HashMap = HashMap()
                           .build() 
 ```
 
-### Step 3.7: Payment Param Definitions
+#### Step 3.7: Payment Param Definitions
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -687,17 +689,17 @@ val additionalParamsMap: HashMap = HashMap()
 
 ***
 
-## Step 4: Secure the payment request using Hash
+### Step 4: Secure the payment request using Hash
 
 This step is to generate a hash that secures your payment request to PayU.
 
-> 🚧 Remember
->
-> Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
+<Callout icon="🚧" theme="warn">
+  **Generate hash on your server**: Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
+</Callout>
 
 The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification.  For more information, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) CheckoutPro SDK.
 
-### Step 4.1: Set Up Payment Hashes
+#### Step 4.1: Set Up Payment Hashes
 
 **Passing static hashes**
 
@@ -714,7 +716,7 @@ additionalParamsMap[PayUCheckoutProConstants.CP_VAS_FOR_MOBILE_SDK] = <String>
 additionalParamsMap[PayUCheckoutProConstants.CP_PAYMENT_RELATED_DETAILS_FOR_MOBILE_SDK] = <String> 
 ```
 
-### Step 4.2: Passing dynamic hashes
+#### Step 4.2: Passing dynamic hashes
 
 For generating and passing dynamic hashes, the merchant will receive a call from the generateHash method of PayUCheckoutProListener.
 
@@ -744,7 +746,7 @@ interface PayUHashGenerationListener {
 
 The generateHash() method is called by the SDK each time it needs an individual hash. The CP_HASH_NAME will contain the name of the specific hash requested in that call, and the CP_HASH_STRING will contain the data/string that needs to be hashed.
 
-### Step 4.3: Getting Hash data to calculate hash
+#### Step 4.3: Getting Hash data to calculate hash
 
 Checkout Pro SDK will give a callback in the `generateHash()` method whenever any hash is needed by it. The merchant needs to calculate that hash and pass it back to the SDK.
 
@@ -753,7 +755,7 @@ To extract the hash string and hash name from the map received in `generateHash(
 `CP_HASH_STRING` -> This will contain a complete hash string excluding salt. For eg, for vas for mobile SDK hash, the hash string will contain `“<key>\|<command>\|<var1>|”`. Merchant can append their salt at the end of the hash string to calculate the hash.
 `CP_HASH_NAME `-> This will contain the hash name.
 
-### Step 4.4: Pass generated hash to SDK
+#### Step 4.4: Pass generated hash to SDK
 
 Prepare a map, where the key should be the hash name in Step 2: Build the Payment Parameters and value should be generated hash value and pass this map in `onHashGenerated()` method described above.
 
@@ -803,7 +805,7 @@ override fun generateHash(
 
 ***
 
-## Step 5: Initiate the Payment
+### Step 5: Initiate the Payment
 
 Initialize the PayUCheckoutPro SDK by submitting the payment parameters prepared in the previous step and a reference to the transaction listener.
 
@@ -820,7 +822,7 @@ PayUCheckoutPro.open(
     payUCheckoutProListener: PayUCheckoutProListener) 
 ```
 
-## Step 6: Handle the Payment Callback
+### Step 6: Handle the Payment Callback
 
 Confirm to PayUCheckoutProListener and use these functions to get appropriate callbacks from the SDK:
 
@@ -952,14 +954,14 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
         })
 ```
 
-## Sample Responses
+### Sample Responses
 
-> 🚧 Watch Out
+> 🚧 Callback response notes:
 >
 > * In case of `UPI intent/InApp flow`,  you will not receive a callback response in surl or furl. In this case, the format of PayU response received will be different from other payment options that you need to handle at your end.
 > * Consider the **mihpayid** in the PayU response as **PayU ID/ID**
 
-### Card/NB/Wallet and other transactions
+#### Card/NB/Wallet and other transactions
 
 ```Text Success
 {
@@ -1053,7 +1055,7 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
 }
 ```
 
-### UPI Intent /InApp payments
+#### UPI Intent /InApp payments
 
 ```Text Success
 {
@@ -1176,11 +1178,11 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
 
 ***
 
-Placeholder for CheckoutPro Recipes
+<Recipe slug="android-checkoutpro-integration" title="Android CheckoutPro Integration" />
 
 ***
 
-## Additional Integrations
+#### Additional Integrations
 
 The following are the additional Android SDK offerings:
 
@@ -1189,7 +1191,7 @@ The following are the additional Android SDK offerings:
 * Custom Note Integration
 * Add-on SDKs
 
-## Offers Integration
+#### Offers Integration
 
 Kindly add the `setUserToken` parameter in paymentParam.
 
@@ -1230,17 +1232,17 @@ paymentParam.setUserToken = "";
 
 For more details on Offer Integration, refer to [Integration with PayU Hosted Checkout Integration](https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers)
 
-## MCP Integration
+### MCP Integration
 
-> 📘 Note
->
-> MCP is inbulit in CheckoutPro SDK. Get in touch with your KAMs to enable this feature for your MID.
+<Callout icon="📘" theme="info">
+  **Note**: MCP is inbulit in CheckoutPro SDK. Get in touch with your KAMs to enable this feature for your MID.
+</Callout>
 
-## Custom Note Integration
+### Custom Note Integration
 
 This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
-### Step 1: Create a Custom Note List
+#### Step 1: Create a Custom Note List
 
 Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom_note and `custom_note_category` need to be passed.
 
@@ -1322,6 +1324,87 @@ val checkoutProConfig = PayUCheckoutProConfig()
 checkoutProConfig.customNoteDetails = customNote
 ```
 
-## Additional SDK Offerings
+### Additional SDK Offerings
 
 If you want to add features like **Native OTP**, **Gpay InApp**, **PhonePe Inapp**, and **Ola Money** in our PayUCheckoutPro SDK, then please refer to the below [Add-on SDKs](doc:android-checkoutpro-addonsdks)
+
+<br />
+
+After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
+
+You can make test payments using one of the payment methods configured at the Checkout.
+
+> 🚧 Callout
+>
+> The UPI in-app and UPI intent flow is not available in the Test mode.
+
+## Test the Integration
+
+<TestingChecklist />
+
+***
+
+<TestCardsCallout />
+
+You can make test payments using one of the payment methods configured at the Checkout.
+
+## Test credentials for supported payment methods
+
+Following are the payment methods supported in PayU Test mode.
+
+### Test Credential for Card
+
+| Card Number      | Expiry | CVV | OTP    |
+| :--------------- | :----- | :-- | :----- |
+| 5123456789012346 | 05/25  | 123 | 123456 |
+
+### Test credentials for Net Banking
+
+Use the following credentials to test the Net Banking integration:
+
+* **user name:** payu
+* **password**: payu
+* **OTP**: 123456
+
+### Test VPA for UPI
+
+You can use either of the following VPAs to test your UPI-related integration:
+
+* anything@upi
+* 9999999999@upi
+
+For Testing the UPI Collect flow, Please follow the below steps:- 
+
+1. Once you enter the VPA click on the verify button and proceed to pay.
+2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
+3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
+
+[https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)`<Txn_id>`
+
+#### For Android
+
+You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
+
+<Callout icon="🚧" theme="warn">
+  **Remove code from manifest**: Ensure to remove the code from the manifest file before going live.
+</Callout>
+
+```Text xml
+<application>
+<meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
+<meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
+<meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
+</application>
+```
+
+### Test cards for EMI
+
+You can use the following Debit and Credit cards to test EMI integration.\
+
+<EMITestCards />
+
+### Test Wallets
+
+You can use the following wallets and their corresponding credentials to test wallet integration.
+
+<EMITestWallets />
