@@ -10,16 +10,14 @@ metadata:
 next:
   description: ''
 ---
+## Prerequisites
+
 > ❗️ Before you begin
 >
 > * To download iOS SDK through CocoaPod, refer to CocoaPods Integration.
 > * Run the sample app:
 >   i. Download latest SDK version and unzip it.
 >   ii. Unzip Release-Universal, now drag and drop the content of unzipped file into Sample App
-
-***
-
-## Prerequisites
 
 ### Step 1: Initial set up
 
@@ -28,10 +26,10 @@ To perform the initial setup:
 1. Download the latest SDK version from the following location and unzip it: [https://github.com/payu-intrepos/iOS-SDK/releases](https://github.com/payu-intrepos/iOS-SDK/releases)
 2. Unzip Release-Universal, drag and drop the content of the unzipped file into Sample App.
 
-```Text Swift
+```swift Swift
 import PayUBizCoreKit
 ```
-```Text Objective-C
+```swift Objective-C
 #import <PayUBizCoreKit/PayUBizCoreKit.h>
 ```
 
@@ -40,7 +38,7 @@ import PayUBizCoreKit
 3. Get all the required parameters.
 4. Create an object of PayUModelPaymentParams and set all the parameters in it.
 
-```Text Swift
+```swift Swift
 let paymentParamForPassing = PayUModelPaymentParams()
 paymentParamForPassing.key = "0MQaQP"
 paymentParamForPassing.transactionID = "Ywism0Q9XC88qvy"
@@ -60,7 +58,7 @@ paymentParamForPassing.udf5 = "u5"
 paymentParamForPassing.environment = ENVIRONMENT_PRODUCTION
 paymentParamForPassing.offerKey = "offertest@1411"
 ```
-```Text Objective-C
+```objectivec Objective-C
   @property (strong, nonatomic) PayUModelPaymentParams *paymentParamForPassing;
   self.paymentParamForPassing = [PayUModelPaymentParams new];
   self.paymentParamForPassing.key = @"0MQaQP";
@@ -87,41 +85,41 @@ paymentParamForPassing.offerKey = "offertest@1411"
 
 5. Set `paymentParamForPassing.userCredentials` to store the user card:
 
-```Text Swift
+```swift Swift
 paymentParamForPassing.userCredentials = "ra:ra"
 ```
-```Text Objective-c
+```objectivec Objective-c
   self.paymentParamForPassing.userCredentials = @"ra:ra"
 ```
 
 6. Set `offerKey` for offers:
 
-```Text Swift
+```swift Swift
 paymentParamForPassing.offerKey = "offertest@1411"
 ```
-```Text Objective-C
+```objectivec Objective-C
   self.paymentParamForPassing.offerKey = @"offertest@1411"
 ```
 
 7. Set default param (like phone and others) for any other payment:
 
-```Text Swift
+```swift Swift
 paymentParamForPassing.phoneNumber = "1111111111"
 ```
-```Text Objective-C
+```objectivec Objective-C
 self.paymentParamForPassing.phoneNumber = @"1111111111";
 ```
 
 8. Get the required hashes by using your own server. Set the hashes as follows:
 
-```Text Swift
+```swift Swift
 paymentParamForPassing.hashes.paymentHash = "ade84bf6dd9da35d0aab50a5bf61d6272ab0fc488b361b65c66745054aacf1900e3c60b5022d2114bae7360174ebcb3cd7185a5d472e5c99701e5e7e1eccec34"
 paymentParamForPassing.hashes.paymentRelatedDetailsHash = "915299224c80eff0eb2407b945a5087556292f58baca25fd05a0bceb6826aa9eb531810001dd4b4677dd928dd60d39eecf843b2189f213f9bb82c5a9483e3aac"
 paymentParamForPassing.hashes.vasForMobileSDKHash = "5c0314c2781876f7e0a53676b0d08e1457dafe904d2d15d948626b57409538d51093eef4f15c792b1b9651be7b5659efdd45926e43a1145d68cea094687011ca"
 paymentParamForPassing.hashes.deleteUserCardHash = "03e10e892005755f91061121036fb1b10f46202b4138d182f153c5de5c7fd44930ed94b32fac230e59bac1e4ca123aca3297e4b9d25024bf13237db9721fec1a"
 paymentParamForPassing.hashes.offerHash = "1e99fdb59bd91c1a85624104c0fcfae34d7fcb850dd17a0b75e7efe49857d15fdefc47dd0d86ca34cbc3a8b580839aea6341a573e4e60dc1ddcf7ecc32bf9cae"
 ```
-```Text Objective-C
+```objectivec Objective-C
   self.paymentParamForPassing.hashes.paymentHash = @"ade84bf6dd9da35d0aab50a5bf61d6272ab0fc488b361b65c66745054aacf1900e3c60b5022d2114bae7360174ebcb3cd7185a5d472e5c99701e5e7e1eccec34";
   self.paymentParamForPassing.hashes.paymentRelatedDetailsHash = @"915299224c80eff0eb2407b945a5087556292f58baca25fd05a0bceb6826aa9eb531810001dd4b4677dd928dd60d39eecf843b2189f213f9bb82c5a9483e3aac";
   self.paymentParamForPassing.hashes.VASForMobileSDKHash = @"5c0314c2781876f7e0a53676b0d08e1457dafe904d2d15d948626b57409538d51093eef4f15c792b1b9651be7b5659efdd45926e43a1145d68cea094687011ca";
@@ -135,10 +133,10 @@ paymentParamForPassing.hashes.offerHash = "1e99fdb59bd91c1a85624104c0fcfae34d7fc
 
 To generate an URL request (and post parameters), you need to create an object as `createRequest `of the PayUCreateRequest class as shown in the following code block:
 
-```Text Swift
+```swift Swift
 let createRequest = PayUCreateRequest()
 ```
-```Text Objective-C
+```objectivec Objective-C
 @property (nonatomic, strong) PayUCreateRequest *createRequest;
 ```
 
@@ -147,6 +145,7 @@ The callbacks give your URLRequest as well as post parameters (NSString format).
 The following payment types are supported by SDK, and additional parameters are supported. The additional parameters that can be configured in the createRequest object created earlier are described in the following sections:
 
 ## Credit Card/Debit Card Integration
+
 To pay using a credit card or debit card, perform the following steps.
 
 1. Set the following credit card parameters:
@@ -194,6 +193,7 @@ createRequest().createRequest(withPaymentParam: paymentParamForPassing, forPayme
 <br />
 
 ## Stored Card Integration
+
 To pay using a stored card, perform the following steps.
 
 1. Set the stored card parameter similar to the following code snippet:
@@ -237,6 +237,7 @@ createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPayment
 ```
 
 ## Tokenized Card Payments
+
 To pay using a stored card, perform the following steps.
 
 1. Set the stored card parameter similar to the following code snippet:
@@ -280,6 +281,7 @@ createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPayment
 ```
 
 ## Net Banking Integration
+
 To pay using Net Banking, perform the following steps.
 
 1. Set the Net Banking parameter as follows:
@@ -316,6 +318,7 @@ if error == nil {
 <br />
 
 ## Cash Card Integration
+
 To pay using a Cash Card, perform the following steps
 
 1. Set the cashcard parameter as follows:
@@ -352,6 +355,7 @@ if error == nil {
 ```
 
 ## EMI Payment
+
 The section describes the following methods to collect payments with EMI:
 
 * [EMI](#emi)
@@ -470,8 +474,8 @@ createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPayment
 
 Pass the value for the subventionEligibility parameter as “all” in the Fetch Payment Option WebService. For more information refer to Web Services for Core.
 
-
 ## LazyPay BNPL Integration
+
 To pay using LazyPay (BNPL), perform the following steps.
 
 1. Set the Notify URL to the HTTPS Callback URL of the merchant where notification of transaction status will be sent on completion of a transaction.
@@ -506,7 +510,9 @@ if error == nil {
 }
 })
 ```
+
 ## TWID Pay BNPL Integration
+
 To pay using TWID Pay:
 
 1. Create the post data with `CASH_CARD_TWID`:
@@ -527,12 +533,14 @@ paymentParamForPassing.bankCode = CASH_CARD_TWID //BankCode
 ```swift Swift
 paymentParamForPassing.twidCustomerHash = "Twid customer hash"
 ```
+
 ## Pluxee Card Integration
+
 To pay using Pluxee card:
 
 1. Create the post data with the`PAYMENT_PG_SODEXO `:
 
-```Text Objective-C
+```objectivec Objective-C
     self.paymentParamForPassing.cardNumber = @"<Sodexo card number>";//cardNumber
     self.paymentParamForPassing.nameOnCard = @"name";//Name on card
     self.paymentParamForPassing.expYear = @"2018";//Expiry year
@@ -540,7 +548,7 @@ To pay using Pluxee card:
     self.paymentParamForPassing.CVV = @"123";//CVV
     self.paymentParamForPassing.shouldSaveCard = YES;//If you want to save card then pass it otherwise it will not save 
 ```
-```Text Swift
+```swift Swift
 self.paymentParamForPassing.cardNumber = "<Sodexo card number>";//cardNumber
 self.paymentParamForPassing.nameOnCard = "name";//Name on card
 self.paymentParamForPassing.expYear = "2018";//Expiry year
@@ -551,7 +559,7 @@ self.paymentParamForPassing.shouldSaveCard = true;//If you want to save card the
 
 2. Get the request by using the`createRequestWithPaymentParam` method similar to the following code snippet:
 
-```Text Objective-C
+```objectivec Objective-C
         self.createRequest = [PayUCreateRequest new];
         [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_SODEXO withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
         if (error == nil) {
@@ -562,7 +570,7 @@ self.paymentParamForPassing.shouldSaveCard = true;//If you want to save card the
         }
     }];
 ```
-```Text Swift
+```swift Swift
 createRequest().createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_SODEXO, withCompletionBlock: { request, postParam, error in
     if error == nil {
         //It is good to go state. You can use request parameter in webview to open Payment Page
@@ -576,10 +584,12 @@ The successful or failed payment response is sent by PayU.
 
 3. Get the Sodexo source id in the field3 param of PayuResponse, which can be used to show and get stored Sodexo card details and also can be used for initiating payment.
 
-```Text Objective-C
+```c Objective-C
     self.paymentParamForPassing.sodexoSourceId = @"<Sodexo source id>";
     
 ```
-```Text Swift
+```swift Swift
     self.paymentParamForPassing.sodexoSourceId = "<Sodexo source id>"
 ```
+
+<br />
