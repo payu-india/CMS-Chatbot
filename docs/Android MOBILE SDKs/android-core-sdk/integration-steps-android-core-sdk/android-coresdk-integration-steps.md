@@ -2,7 +2,7 @@
 title: 1. SDK Integration
 excerpt: Build a custom payment flow integration for your Android app
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Integrate Android Android Core SDK
   description: >-
