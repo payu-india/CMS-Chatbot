@@ -1,20 +1,19 @@
 ---
 title: 3. Go-live Checklist
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
-Ensure these steps before you deploy the integration in a live environment. 
+Ensure these steps before you deploy the integration in a live environment.
 
 ## Collect Live Payments
 
-After [testing the integration](https://docs.payu.in/docs/flutter-checkoutprosdk-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers. 
+After [testing the integration](https://docs.payu.in/docs/flutter-checkoutprosdk-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
 > 🚧 Watch Out!
 >
