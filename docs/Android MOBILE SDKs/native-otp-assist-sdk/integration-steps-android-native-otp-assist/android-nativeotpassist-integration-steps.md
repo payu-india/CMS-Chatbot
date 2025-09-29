@@ -1,8 +1,9 @@
 ---
 title: 1. SDK Integration
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Steps to Integrate Android Native OTP Assist SDK
   description: >-
@@ -18,8 +19,6 @@ metadata:
     - PayU Android Native OTP Assist set up for Mobile
     - Android Native OTP Assist SDK integration steps
   robots: index
-next:
-  description: ''
 ---
 Before you start with the integration, enable the payment methods that you want to offer to your customers from Dashboard > Settings > Payment methods. We enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you.
 
