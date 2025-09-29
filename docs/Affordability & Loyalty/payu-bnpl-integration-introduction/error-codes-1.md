@@ -1,5 +1,5 @@
 ---
-title: Error Codes for BNPL Link & Pay
+title: Error Codes for BNPL Link and Pay
 excerpt: ''
 deprecated: false
 hidden: false
