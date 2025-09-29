@@ -2,7 +2,9 @@
 title: 2. Test the Integration
 excerpt: Use the Test mode to check if the integration is working as expected.
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Flutter Checkout Pro SDK Integration Testing
   description: >-
@@ -17,8 +19,6 @@ metadata:
     - Flutter CheckoutPro SDK Integration Testing
     - PayU Hosted Checkout SDK for Mobile Integration Testing
   robots: index
-next:
-  description: ''
 ---
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
