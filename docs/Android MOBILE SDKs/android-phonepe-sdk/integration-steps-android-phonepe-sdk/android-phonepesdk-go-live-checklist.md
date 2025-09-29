@@ -1,14 +1,13 @@
 ---
 title: 3. Go-live Checklist
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 Ensure these steps before you deploy the integration in a live environment.
 
