@@ -4,6 +4,7 @@
 - test-integration-payu-hosted-checkout
 - old-integrate-with-payu-hosted-checkout
 - payu-payment-page-customization
+- webview-for-mobile-apps
 - generate-hash-payu-hosted
 - enforce-pay-method-or-remove-category
 - changing-the-language
@@ -12,5 +13,4 @@
 - integrate-with-payu-hosted-checkout-sodexo
 - webview-integration-in-android
 - webview-integration-in-ios
-- webview-for-mobile-apps
 - integrate-webview-for-mobile-apps-copy
