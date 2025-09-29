@@ -452,14 +452,381 @@ Handle the API response for eligible bins for EMI and log the raw response for d
 }
 ```
 
-Get EMI According to Interest API]([https://docs.payu.in/docs/get-emi-according-to-interest-api-android-core-sdk](https://docs.payu.in/docs/get-emi-according-to-interest-api-android-core-sdk))
+## Get EMI According to Interest API
+**Get EMI According to Interest** API is used to get information to get details related to EMI such as EMI amount, tenure in month, interest rate, etc.
 
-* [Get Transaction Info API](https://docs.payu.in/docs/get-transaction-info-api-android-core-sdk)
-* [Verify Payment API](https://docs.payu.in/docs/verify-payment-api-android-core-sdk)
-* [Get BIN Info API](https://docs.payu.in/docs/get-bin-info-api-android-core-sdk)
-* [Get Card Information API](https://docs.payu.in/docs/get-card-information-api-android-core-sdk)
-* [Offer APIs](https://docs.payu.in/docs/offer-apis-android-core-sdk)
-* [Check Balance API](https://docs.payu.in/docs/check-balance-api-android-core-sdk)
-* [Tokenized Payment APIs](https://docs.payu.in/docs/tokenized-payment-android-core-sdk)
+<Callout icon="📘" theme="info">
+  **Hash logic**: The hash logic for this API is:
+
+  `<key>|vas_for_mobile_sdk|<amount>|<salt>`
+
+  For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
+</Callout>
+
+### Step 1: Set parameters
+
+```java Java
+MerchantWebService merchantWebService = new MerchantWebService();
+merchantWebService.setKey(merchantKey);
+merchantWebService.setCommand(PayuConstants.API_GET_EMI_AMOUNT_ACCORDING_INTEREST);
+merchantWebService.setVar1(amount); // The amount that must be converted to EMI.
+merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use the below formula
+```
+
+### Step 2: Handle response
+
+```java Java
+@Override
+public void onGetEmiAmountAccordingToInterestApiResponse(PayuResponse payuResponse) {
+    Log.d(TAG, "onGetEmiAmountAccordingToInterestApiResponse: " + payuResponse.getRawResponse());
+}
+```
+
+## Get Transaction Info API
+The **Get Transaction Info** API is used to extract the transaction details between two given time periods.
+
+### Step 1: Set parameters
+
+The API takes the input as two dates and the time (initial and final) between which the transaction details are needed. The output would consist of the status of the API (success or failed) and all the transaction details in an array format. Set startTime and endTime in the payment params as described in the following code block:
+
+```Text Java
+MerchantWebService merchantWebService = new MerchantWebService();
+merchantWebService.setKey(merchantKey);
+merchantWebService.setCommand(PayuConstants.GET_TRANSACTION_INFO);
+merchantWebService.setVar1(startDate); // The starting Time (from when the transaction details are needed
+merchantWebService.setVar2(endDate); // The end Time (till when the transaction details are needed).
+merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use the below formula
+```
+
+### Step 2: Handle response
+
+```Text Java
+@Override
+public void onGetTransactionApiListener(PayuResponse payuResponse) {
+    Log.d(TAG, "onGetTransactionApiListener: " + payuResponse.getRawResponse());
+}
+```
+
+## Verify Payment API
+## Overview
+
+The Android SDK provides a wrapper for the Verify Payment API that allows your mobile application to reconcile transactions with PayU's database securely. This integration is essential for Android developers implementing PayU payment functionality in their apps.
+
+## Why Use Verify Payment in Your Android App
+
+When implementing payments in your Android application, transaction responses may occasionally fail to reach your app due to network issues or user interactions (like app switching or device issues). The Verify Payment feature ensures your app can confirm transaction statuses directly with PayU's servers, preventing discrepancies in payment records.
+
+<Callout icon="📘" theme="info">
+  **Android Developer Note:**: Implementing this verification step in your Android payment flow protects your application from potential payment status tampering and ensures a reliable payment experience for your users.
+</Callout>
+
+## Android Implementation
+
+### Step 1: Configure the Verify Payment Request
+
+In your Android payment handling class, implement the Verify Payment API using the MerchantWebService provided by the PayU Android SDK:
+
+```java
+// Import the required PayU Android SDK classes
+import com.payu.india.Model.PayuResponse;
+import com.payu.india.Payu.PayuConstants;
+import com.payu.india.Payu.PayuMerchantWebService;
+
+// In your payment verification method
+private void verifyTransactionStatus(String transactionId) {
+    MerchantWebService merchantWebService = new MerchantWebService();
+    
+    // Set your merchant credentials and API parameters
+    merchantWebService.setKey(merchantKey);
+    merchantWebService.setCommand(PayuConstants.VERIFY_PAYMENT);
+    
+    // Set the transaction ID to verify
+    // For multiple transactions, use pipe symbol (|) as separator: "txnId1|txnId2|txnId3"
+    merchantWebService.setVar1(transactionId);
+    
+    // Generate and set the hash for secure communication
+    String hashString = merchantKey + "|" + PayuConstants.VERIFY_PAYMENT + "|" + transactionId + "|" + salt;
+    String hash = calculateHash(hashString);
+    merchantWebService.setHash(hash);
+    
+    // Execute the verification request
+    merchantWebService.postWebServiceRequest(this);
+}
+```
+
+### Step 2: Implement the Response Handler
+
+Add the response handler in your Activity or Fragment that implements PayuResponseListener:
+
+```java
+@Override
+public void onVerifyPaymentResponse(PayuResponse payuResponse) {
+    if (payuResponse != null) {
+        // Log the complete response for debugging
+        Log.d(TAG, "Payment Verification Response: " + payuResponse.getRawResponse());
+        
+        // Process the verification result
+        if (payuResponse.isResponseAvailable() && payuResponse.getResponseStatus().equals(PayuConstants.SUCCESS)) {
+            // Transaction verified successfully
+            // Update your app's UI or database based on the verified status
+            String transactionStatus = payuResponse.getResult();
+            updateTransactionStatus(transactionStatus);
+        } else {
+            // Verification failed - handle accordingly
+            handleVerificationFailure(payuResponse.getErrorMessage());
+        }
+    }
+}
+```
+
+### Best Practices for Android Implementation
+
+1. **Always verify after receiving payment notifications** - Implement the verification call in your app's payment completion handler
+2. **Handle timeouts appropriately** - Set reasonable timeouts for verification requests to avoid blocking your app's UI
+3. **Implement proper error handling** - Create user-friendly error messages for different verification failure scenarios
+4. **Store verification results** - Cache verification results locally to reduce unnecessary API calls
+5. **Background processing** - Consider using WorkManager for verification to ensure it completes even if the app is closed
+
+### Troubleshooting Android Integration
+
+#### Common Issues:
+
+* **Hash calculation errors**: Ensure your hash generation uses the correct format and encoding
+* **Network connectivity**: Implement proper retry logic for intermittent network failures
+* **Transaction ID format**: Verify that transaction IDs are correctly formatted when sending multiple IDs
+
+For additional support with Android SDK integration, refer to the complete PayU Android SDK documentation or contact PayU mobile developer support.
+
+## Get BIN Info API
+The **Get Bin Info** API is used to get the following using the BIN number, that is, the first six digits of a credit card or debit card:
+
+**BIN information**
+
+* Detect whether a particular BIN number is international or domestic.
+* Determine the card’s issuing bank, the card type brand, that is, Visa, Master, etc.,
+* Determine the card category, that is, credit, debit, etc.
+
+This API is used to get the card BIN details. For this API, you need to set the following parameter in the payment params similar to the following code block:
+
+### Step 1: Create Post Request
+
+```java Java
+MerchantWebService merchantWebService = new MerchantWebService();
+merchantWebService.setKey(merchantKey); // Merchant key
+merchantWebService.setCommand(PayuConstants.GET_BIN_INFO);
+merchantWebService.setVar1("1")
+merchantWebService.setVar2("1") //only for SI
+merchantWebService.setVar5("<pass card BIN Number>") // Pass card BIN Number
+merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use the below formula
+```
+
+### Step 2: Get onBinInfoApiResponse
+
+```java Java
+@Override
+public void onBinInfoApiResponse(PayuResponse payuResponse) {
+}
+```
+
+## Get Card Information API
+The **Get Card Information** (Check is Domestic) API is used to get if the card (passed in cardBin info API) is domestic or international. This API returns the following parameters:
+
+* card_type
+* category
+* issuing_bank
+* is_atmpin_card
+
+For this API, you need to set the following parameter in the payment params similar to the following code block:
+
+### Step 1: Create Post Request
+
+```java Java
+MerchantWebService merchantWebService = new MerchantWebService();
+merchantWebService.setKey(merchantKey); // Merchant key
+merchantWebService.setCommand(PayuConstants.CHECK_IS_DOMESTIC);
+merchantWebService.setVar1("<pass the card Bin number>")
+merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use the below formula
+```
+
+### Step 2: Get onGetCardInformationResponse
+
+```java Java
+@Override
+public void onGetCardInformationResponse(PayuResponse payuResponse) {
+   Log.d(TAG, "onGetCardInformationResponse: " + payuResponse.getRawResponse());
+}
+```
+
+### Offer APIs
+The following APIs used for offers with Android Core SDK:
+
+* [Fetch Offer Details](#fetch-offer-details)
+* [Validate Offer Details](#validate-offer-details)
+
+### Fetch Offer Details
+
+Use this API to fetch the offer list available for the merchant.
+
+To integrate this API call the fetchOfferDetails pass the requestData as parameters as shown in the code snippet below:
+
+```java Java
+payuConfig = new PayuConfig();
+payuConfig.setEnvironment(PayuConstants.STAGING_ENV);
+
+V2ApiTask v2ApiTask = new V2ApiTask(merchantKey, payuConfig);
+FetchOfferApiRequest fetchOfferApiRequest = new FetchOfferApiRequest.Builder().setAmount(100.00).setUserToken("56789067890").build();
+v2ApiTask.getOffers(fetchOfferApiRequest, new HashGenerationListener() {
+    @Override
+    public void generateSignature(HashMap<String, String> hashMap, HashCompletionListener hashCompletionListener) {
+        String hashName = hashMap.get(PayuConstants.CP_HASH_NAME);
+        String hashData = hashMap.get(PayuConstants.CP_HASH_STRING);
+        Log.d(TAG, "generateSignature: " + hashName);
+        Log.d(TAG, "generateSignature: " + hashData);
+        String hash = HashGenerationUtils.generateHashFromSDK(hashData, salt);
+        HashMap hashMap1 = new HashMap();
+        hashMap1.put(hashName, hash);
+        hashCompletionListener.onSignatureGenerated(hashMap1);  // If you are passing wrong Hash then you will get null response
+    }
+}, new FetchOfferDetailsListener() {
+    @Override
+    public void onFetchOfferDetailsResponse(PayuResponse payuResponse) {
+        Log.d(TAG, "onFetchOfferDetailsResponse: " + payuResponse.getRawResponse());
+    }
+});
+```
+
+### Validate Offer API
+
+Use this API to validate the offer for the merchants.
+
+To integrate this API call the method  validateOfferDetails and pass the requestData as parameters as shown in the code snippet below:
+
+```java Java
+List<String> offerKey = new ArrayList<>();
+offerKey.add("<pass the offer key>");
+
+PaymentDetailsForOffer paymentDetailsForOffer = new PaymentDetailsForOffer.Builder().setPaymentCode("CC").setCardNumber("5123456789012346").setCategory("CREDITCARD").build();
+
+UserDetailsForOffer userDetailsForOffer = new UserDetailsForOffer.Builder().setUserToken("56789067890").build();
+
+payuConfig = new PayuConfig();
+payuConfig.setEnvironment(PayuConstants.STAGING_ENV);
+
+V2ApiTask v2ApiTask = new V2ApiTask(merchantKey, payuConfig);
+ValidateOfferRequest validateOfferRequest = new ValidateOfferRequest.Builder().setAmount("100.00").setOfferKey(offerKey).setPaymentDetails(paymentDetailsForOffer).setuserDetails(userDetailsForOffer).setAutoApply(false).build();
+v2ApiTask.validateOffers(validateOfferRequest, new HashGenerationListener() {
+    @Override
+    public void generateSignature(HashMap<String, String> hashMap, HashCompletionListener hashCompletionListener) {
+        String hashName = hashMap.get(PayuConstants.CP_HASH_NAME);
+        String hashData = hashMap.get(PayuConstants.CP_HASH_STRING);
+        Log.d(TAG, "generateSignature: " + hashName);
+        Log.d(TAG, "generateSignature: " + hashData);
+        String hash = HashGenerationUtils.generateHashFromSDK(hashData, salt);
+        HashMap hashMap1 = new HashMap();
+        hashMap1.put(hashName, hash);
+        hashCompletionListener.onSignatureGenerated(hashMap1);  // If you are passing wrong Hash then you will get null response
+    }
+}, new ValidateOfferApiListener() {
+    @Override
+    public void onValiDateOfferResponse(PayuResponse payuResponse) {
+        Log.d(TAG, "onValiDateOfferResponse: " + payuResponse.getRawResponse());
+    }
+});
+```
+
+## Check Balance API
+The **Check Balance** API can be used to fetch detail of the Sodexo card with the source ID.
+
+### Step 1: Set parameters
+
+```java Java
+MerchantWebService merchantWebService = new MerchantWebService();
+merchantWebService.setKey(merchantKey);
+merchantWebService.setCommand(PayuConstants.CHECK_BALANCE);
+merchantWebService.setVar1(sodexoSourceId); // This parameter must contain the Sodexo Source ID
+merchantWebService.setHash(HashGenerationUtils.generateHashFromSDK(hashData, salt));        
+```
+
+### Step 2: Handle response
+
+```java Java
+@Override
+  public void onCheckBalanceResponse(PayuResponse payuResponse) {
+    Log.d(TAG, "onCheckBalanceResponse: " + payuResponse.getRawResponse());
+}
+```
 
 ***
+
+## Tokenized Payment APIs
+You can store and get stored card details from the vault. The tokenized payments for Android Core SDK includes the following APIs:
+
+* [Get Tokenized Stored Cards API](#get-tokenized-stored-cards-api)
+* [Get Tokenized Stored Card Details API](#get-tokenized-stored-card-details-api)
+* [Delete Tokenized Stored Cards API](#delete-tokenized-stored-cards-api)
+
+### Get Tokenized Stored Cards API
+
+The **Get Tokenized Stored Cards** API is helpful in getting all the stored cards for a particular user. For this API, you need to set the`userCredentials` in the payment params similar to the following:
+
+```java Java
+MerchantWebService merchantWebService = new MerchantWebService();
+merchantWebService.setKey("<pass the merchant key>");
+merchantWebService.setCommand(PayuConstants.GET_TOKENISED_USER_CARD);
+merchantWebService.setVar1(user_credentials); //In var1, pass the user_credential
+merchantWebService.setHash("<pass the hash value>"); 
+```
+
+To integrate this API call the `getTokenizedStoredCards` method similar to the following:
+
+```Text Java
+@Override
+public void onGetTokenisedCardResponse(PayuResponse payuResponse) {
+        
+}
+```
+
+### Get Tokenized Stored Card Details API
+
+The **Get Tokenized Stored Card Details** API is used to get details of the stored card to make payment on another PG.
+
+```Text Java
+MerchantWebService merchantWebService = new MerchantWebService();
+merchantWebService.setKey("<pass the merchant key>");
+merchantWebService.setCommand(PayuConstants.GET_TOKENISED_CARD_DETAILS); 
+merchantWebService.setVar1("<user_credentials>"); //In var1, pass the user_credential
+merchantWebService.setVar2("<cardToken>"); //In var2, pass the cardToken to get the saved card details
+merchantWebService.setHash("<pass the hash value>"); 
+```
+
+```Text Java
+@Override
+public void onTokenisedCardDetailsResponse(PayuResponse payuResponse) {
+        
+}
+```
+
+### Delete Tokenized Stored Cards API
+
+The **Delete Tokenized Stored Cards** API is helpful in deleting stored cards.
+
+```java Java
+MerchantWebService merchantWebService = new MerchantWebService();
+merchantWebService.setKey("<pass the merchant key>");
+merchantWebService.setCommand(PayuConstants.DELETE_TOKENISED_USER_CARD);
+merchantWebService.setVar1("<user_credentials>"); //In var1, pass the user_credential
+merchantWebService.setVar2("<cardToken>"); //In var2, pass the cardToken to delete the saved card details
+merchantWebService.setHash("<pass the hash value>"); 
+```
+
+To integrate this API call the `deleteTokenizedStoredCard` method similar to the following:
+
+```java Java
+@Override
+public void onDeleteTokenisedCardResponse(PayuResponse payuResponse) {
+
+}
+```
+
+
+
