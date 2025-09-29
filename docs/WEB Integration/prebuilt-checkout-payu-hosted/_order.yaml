@@ -4,6 +4,7 @@
 - test-integration-payu-hosted-checkout
 - old-integrate-with-payu-hosted-checkout
 - generate-hash-payu-hosted
+- enforce-pay-method-or-remove-category
 - payu-payment-page-customization
 - webview-for-mobile-apps
 - integrate-webview-for-mobile-apps-copy
