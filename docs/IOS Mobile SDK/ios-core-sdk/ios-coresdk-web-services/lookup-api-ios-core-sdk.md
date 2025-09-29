@@ -1,14 +1,13 @@
 ---
 title: Lookup API
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Lookup API - iOS Core SDK
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The **Lookup** API is used when integrating multi-currency payments. To use Lookup API for iOs, follow these subsections:
 
