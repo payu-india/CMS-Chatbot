@@ -2,7 +2,7 @@
 title: View an Existing Offer Performance Details
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
