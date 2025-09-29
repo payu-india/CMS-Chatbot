@@ -2,7 +2,7 @@
 title: Get Checkout Details API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Get Bin Info API – iOS Core SDK
   description: ''
