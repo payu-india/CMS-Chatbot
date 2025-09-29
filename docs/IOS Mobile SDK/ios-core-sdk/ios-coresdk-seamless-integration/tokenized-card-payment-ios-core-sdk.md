@@ -2,7 +2,7 @@
 title: Tokenized Card Payment Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Tokenized Card Integration - iOS Core SDK
   description: ''
