@@ -2,7 +2,7 @@
 title: 1. SDK Integration Steps
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Android UPI SDK Integration Steps
   description: >-
