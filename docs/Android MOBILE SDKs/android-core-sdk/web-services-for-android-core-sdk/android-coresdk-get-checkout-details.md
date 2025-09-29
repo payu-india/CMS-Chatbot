@@ -2,7 +2,7 @@
 title: Get Checkout Details API
 excerpt: Display bank down status, tax info, and offers enabled on a merchant key
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Get Checkout Details API - Android Core SDK
   description: ''
