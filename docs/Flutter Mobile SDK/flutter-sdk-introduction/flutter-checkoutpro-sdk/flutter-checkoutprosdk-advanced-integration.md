@@ -2,7 +2,7 @@
 title: Advanced Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
@@ -30,7 +30,7 @@ This section describes how to integrate the following advanced features with Flu
 
 ***
 
-## Prerequisites
+### Prerequisites
 
 Before you start with the advanced integration with PayUCheckoutPro, the payUCheckoutProConfig object needs to be passed with payUPaymentParams in the openCheckoutScreen method of the PayU SDK. The sample code snippet is similar to the following:
 
@@ -43,9 +43,9 @@ payUCheckoutProConfig: payUCheckoutProConfig,
 
 ***
 
-## Change theme
+### Change theme
 
-### For iOS
+#### For iOS
 
 You can change the primary and the secondary color of the UI to match the theme of your app:
 
@@ -56,9 +56,9 @@ var payUCheckoutProConfig = {
 }
 ```
 
-### For Android
+#### For Android
 
-You can modify the color scheme and theme used in the PayUCheckoutPro SDK by providing your own set of colors. To change the color theme of the SDK, add the following color configuration to your **colors.xml** file. 
+You can modify the color scheme and theme used in the PayUCheckoutPro SDK by providing your own set of colors. To change the color theme of the SDK, add the following color configuration to your **colors.xml** file.
 
 If you don’t have a **colors.xml**, create an empty file in your app project with this name, and include the following configuration settings:
 
@@ -71,7 +71,7 @@ If you don’t have a **colors.xml**, create an empty file in your app project w
 
 ***
 
-## Customise font
+### Customise font
 
 You can customize the font used in the PayU checkout page as per your preference. To customize the font, add the following code snippet in the `style.xml` file of your Android app.
 
@@ -91,7 +91,7 @@ Here, we are setting the fontFamily attribute to the font file that you want to 
 
 You can customize the logo to personalize the checkout screen for iOS or Android platforms.
 
-### For iOS
+#### For iOS
 
 ```Text Dart
 var payUCheckoutProConfig = {
@@ -99,13 +99,13 @@ var payUCheckoutProConfig = {
 }
 ```
 
-### For Android
+#### For Android
 
 Add the image in the app/res/drawable folder of the native Android app and pass the same under the merchantLogo key.
 
 ***
 
-## Set merchant name
+### Set merchant name
 
 You can customize the name to personalize the checkout screen.
 
@@ -117,7 +117,7 @@ var payUCheckoutProConfig = {
 
 ***
 
-## Hide Checkout screen Back button dialog box
+### Hide Checkout screen Back button dialog box
 
 You can choose to hide the dialog box that is displayed when the Back button is clicked from the L1 screen. The default value is true.
 
@@ -129,7 +129,7 @@ var payUCheckoutProConfig = {
 
 ***
 
-## Hide Back button dialog box after payment initialisation
+### Hide Back button dialog box after payment initialisation
 
 You can choose to hide the dialog that is displayed when the Back button is clicked after payment is initialized. The default value is true.
 
@@ -141,7 +141,7 @@ PayUCheckoutProConfigKeys.showExitConfirmationOnPaymentScreen: true/false,
 
 ***
 
-## Auto Select OTP
+### Auto Select OTP
 
 You can choose to auto-select OTP flow on the bank page with the flag as in the following code block. The default value is false.
 
@@ -153,7 +153,7 @@ PayUCheckoutProConfigKeys.autoSelectOtp:: true/false,
 
 ***
 
-## Set merchant response timeout
+### Set merchant response timeout
 
 The merchant response timeout is the time interval that PayU waits for merchant surl/furl to load before passing the transaction response back to the app. If merchant surl/furl pages take longer to load, PayU has a response timeout of 5000 milliseconds by default. However, if you feel that their surl/furl can take longer than 5000 milliseconds, you can set this flag.
 
@@ -165,7 +165,7 @@ var payUCheckoutProConfig = {
 
 ***
 
-## Review order
+### Review order
 
 You can pass the checkout order details to the SDK that will be displayed in the SDK during the transaction flow.
 
@@ -187,7 +187,7 @@ var cartDetails = [
 
 ***
 
-## Additional payment options on the Checkout screen
+### Additional payment options on the Checkout screen
 
 The following code snippet is used to display Google Pay, PhonePe, and Paytm on the primary Checkout screen.
 
@@ -203,7 +203,7 @@ This will display Google Pay, PhonePe, and Paytm respectively on top of availabl
 
 ***
 
-## Configure checkout payment modes order
+### Configure checkout payment modes order
 
 Default payment modes order on the checkout screen, as illustrated in the following code block, is:
 
@@ -232,7 +232,7 @@ The resulting payment order on the initial Checkout screen will be:
 
 ***
 
-## Offers integration
+### Offers integration
 
 To pass offers in the CheckoutPro SDK, use the following code snippet:
 
@@ -244,7 +244,7 @@ PayUPaymentParamKey.userToken:           "<Pass a unique token to fetch offers
 
 ***
 
-## Native OTP assist
+### Native OTP assist
 
 To enable Native OTP assistance in iOS, use the following code. In Android, this will be added by default.
 
@@ -256,22 +256,22 @@ PayUPaymentParamKey.enableNativeOTP: true, // OPTIONAL
 
 ***
 
-## Custom Note integration
+### Custom Note integration
 
 This subsection describes how to integrate custom notes in PayUCheckoutPro SDK. To integrate custom notes in PayUCheckoutPro SDK:
 
 * Create a custom note list
 * Pass custom note list to SDK
 
-### Step 1: Create a Custom Note list
+#### Step 1: Create a Custom Note list
 
-Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and custom\_note\_category need to be passed.
+Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom_note and custom_note_category need to be passed.
 
 ```Text Dart
 var customNotes = [       {         "custom_note": "Its Common custom note for testing purpose",         "custom_note_category": [           PayUPaymentTypeKeys.emi,           PayUPaymentTypeKeys.card         ]       },       {         "custom_note": "Payment options custom note",         "custom_note_category": null       }     ];
 ```
 
-### Step 2: Add in PayU Checkout config
+#### Step 2: Add in PayU Checkout config
 
 Add in the PayU Checkout Config similar to the following code snippet:
 
@@ -282,22 +282,22 @@ var payUCheckoutProConfig = {  		     	PayUCheckoutProConfigKeys.customNotes
 
 ***
 
-## Enforced Payment Modes
+### Enforced Payment Modes
 
 You can directly open a specific payment mode like NB, WALLET, UPI, CARD, etc in SDK. To enforce payments:
 
 1. Create an enforced payment list
 2. Add in PayU Checkout Config
 
-### Step 1: Create an enforced payment list
+#### Step 1: Create an enforced payment list
 
-Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each enforce payment, payment\_type and enforce\_ibiboCode needs to be passed.
+Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each enforce payment, payment_type and enforce_ibiboCode needs to be passed.
 
 ```Text Dart
 var enforcePaymentList = [       {"payment_type": "CARD", "enforce_ibiboCode": "UTIBENCC"},  ];
 ```
 
-### Step 2: Add in PayU Checkout config
+#### Step 2: Add in PayU Checkout config
 
 Add in PayU Checkout Config similar to the following snippet:
 
@@ -307,9 +307,9 @@ var payUCheckoutProConfig = {
 }
 ```
 
-## Android specific configurations
+### Android specific configurations
 
-### Runtime SMS permission
+#### Runtime SMS permission
 
 You can set this flag to false if you do not want CheckoutPro SDK to ask for runtime SMS permission on the bank OTP page. The default value is true.
 
@@ -319,7 +319,7 @@ PayUCheckoutProConfigKeys .merchantSMSPermission: true/false
 }
 ```
 
-### Auto Approve OTP
+#### Auto Approve OTP
 
 You can choose to automatically approve OTP flow on the bank page with the flag specified in the following code block. The default value is false.
 
@@ -329,7 +329,7 @@ PayUCheckoutProConfigKeys.autoApprove: true/false
 }
 ```
 
-### Hide toolbar in the Custom Browser (CB)
+**Hide toolbar in the Custom Browser (CB)**
 
 You can choose to hide the toolbar on CB. By default, the CB toolbar is displayed.
 
