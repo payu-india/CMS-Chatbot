@@ -1,5 +1,5 @@
 ---
-title: Collect Payments with BNPL using Link and Pay
+title: Collect Payments with BNPL Link and Pay
 excerpt: ''
 deprecated: false
 hidden: false
