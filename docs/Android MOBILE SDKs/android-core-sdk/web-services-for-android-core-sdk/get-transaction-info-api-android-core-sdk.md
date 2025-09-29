@@ -2,7 +2,7 @@
 title: Get Transaction Info API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Get Transaction Info API - Android Core SDK
   description: ''
