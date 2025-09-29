@@ -1,8 +1,9 @@
 ---
 title: Handling 3DS Secure 2.0 Transaction
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Handling 3DS Secure 2.0 Transaction
   description: >-
@@ -10,8 +11,6 @@ metadata:
     integration, requiring the inclusion of `threeDS2RequestData` in the JSON
     format for card payments.
   robots: index
-next:
-  description: ''
 ---
 PayU supports 3DS Secure 2.0 transaction with Merchant Hosted Checkout integration. This section provides the information relevant to 3DS Secure 2.0 transaction.
 
