@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Checkout Solutions
 excerpt: ''
 deprecated: false
 hidden: false
