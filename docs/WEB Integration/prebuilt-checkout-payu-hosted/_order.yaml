@@ -6,6 +6,7 @@
 - generate-hash-payu-hosted
 - enforce-pay-method-or-remove-category
 - changing-the-language
+- checkout-payment-modes
 - payu-payment-page-customization
 - webview-for-mobile-apps
 - integrate-webview-for-mobile-apps-copy
