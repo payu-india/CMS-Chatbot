@@ -379,6 +379,7 @@ override fun onLookupApiResponse(payuResponse: PayuResponse?){
 ```
 
 ## VAS API
+
 The VAS API is used to get the list of down Net Banking and card BIN that is down.
 
 <Callout icon="📘" theme="info">
@@ -414,9 +415,45 @@ After you execute `ValueAddedServiceTask`, the `onValueAddedServiceApiResponse` 
         }
     }
 ```
-## Eligible Bins for EMI API
 
-Get EMI According to Interest API](https://docs.payu.in/docs/get-emi-according-to-interest-api-android-core-sdk)
+## Eligible Bins for EMI API
+The **Eligible BINs for EMI** API fetches a list of eligible Bins for EMI corresponding to each Bank name along with minimum amount. 
+
+<Callout icon="📘" theme="info">
+  **Hash logic**: The hash logic for this API is:
+
+  `<key>|eligibleBinsForEMI|default|<salt>`
+
+  For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
+</Callout>
+
+### Step 1: Set parameters
+
+Set the parameters similar to the following snippet:
+
+```java Java
+MerchantWebService merchantWebService = new MerchantWebService();
+merchantWebService.setKey(merchantKey);
+merchantWebService.setCommand(PayuConstants.ELIGIBLE_BINS_FOR_EMI);
+merchantWebService.setVar1("BIN"); // This parameter needs can include either Bin or NET.
+merchantWebService.setVar2(cardBin); // The first 6/8/9 digits of card number or network token.
+merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use the below formula
+```
+
+### Step 2: Handle the response
+
+Handle the API response for eligible bins for EMI and log the raw response for debugging or informational purposes.
+
+```java Java
+@Override
+ public void onEligibleBinsForEMIApiResponse(PayuResponse payuResponse) {
+    Log.d(TAG, "onEligibleBinsForEMIApiResponse: " + payuResponse.getRawResponse());
+}
+```
+
+
+Get EMI According to Interest API]([https://docs.payu.in/docs/get-emi-according-to-interest-api-android-core-sdk](https://docs.payu.in/docs/get-emi-according-to-interest-api-android-core-sdk))
+
 * [Get Transaction Info API](https://docs.payu.in/docs/get-transaction-info-api-android-core-sdk)
 * [Verify Payment API](https://docs.payu.in/docs/verify-payment-api-android-core-sdk)
 * [Get BIN Info API](https://docs.payu.in/docs/get-bin-info-api-android-core-sdk)
