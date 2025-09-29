@@ -236,7 +236,7 @@ taxSpecification.getCashTaxValue() //tax applicable on Wallet transactions
 
 <br />
 
-* [](https://docs.payu.in/docs/lookup-api-web-service-android-core-sdk)
+
 * [VAS API](https://docs.payu.in/docs/vas-api-android-core-sdk)
 * [Eligible Bins for EMI API](https://docs.payu.in/docs/eligible-bins-for-emi-api-android-core-sdk)
 * [Get EMI According to Interest API](https://docs.payu.in/docs/get-emi-according-to-interest-api-android-core-sdk)
