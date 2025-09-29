@@ -18,12 +18,6 @@ The Loyalty Rewards on Dashboard provides you with comprehensive tools to manage
   Refer to [Enable Loyalty Edge](doc:enable-loyalty-edge) to enable Loyalty Edge. If you are not able to see it on Dashboard, contact you PayU Key Account Manager (KAM) or raise a ticket with [PayU Support](https://help.payu.in).
 </Callout>
 
-To launch a loyalty program using PayU Dashboard:
-
-1. [Set up Loyalty](doc:set-up-loyalty)
-2. [Create a New Campaign](doc:create-a-new-campaign)
-3. [Manage Loyalty Edge Campaigns](doc:manage-loyalty-edge-campaigns)
-
 The Loyalty Rewards on PayU Dashboard provides the following features:
 
 * **General**:
@@ -35,3 +29,9 @@ The Loyalty Rewards on PayU Dashboard provides the following features:
 * **Loyalty Activity**: Offers the ability to filter or search loyalty activities based on user phone numbers, arranged in a paginated list. Displays detailed information such as transaction dates, event types (earn or redemption), and available loyalty points.
 * **Burn Rule Display**: Displays a card with the current active burn rule, including the conversion ratio. Also,. provides option for you to edit and update the burn rule as needed.
 * **Loyalty Settings:**: You can configure settings related to point expiry, customer limits for earning and redemption, and notifications for various loyalty events.
+
+To launch a loyalty program using PayU Dashboard:
+
+1. [Set up Loyalty](doc:set-up-loyalty)
+2. [Create a New Campaign](doc:create-a-new-campaign)
+3. [Manage Loyalty Edge Campaigns](doc:manage-loyalty-edge-campaigns)
