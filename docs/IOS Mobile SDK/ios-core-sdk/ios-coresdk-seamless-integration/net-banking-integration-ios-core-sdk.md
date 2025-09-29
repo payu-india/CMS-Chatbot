@@ -1,8 +1,9 @@
 ---
 title: Net Banking Integration
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Net Banking Integration - iOS Core SDK
   description: ''
@@ -10,8 +11,6 @@ metadata:
     - Net Banking Integration for iOS Core SDK
     - ' iOS Net Banking Integration'
   robots: index
-next:
-  description: ''
 ---
 To pay using Net Banking, perform the following steps.
 
@@ -45,3 +44,5 @@ if error == nil {
     }
 }];
 ```
+
+<br />
