@@ -2,13 +2,13 @@
 title: 2. Test the Integration
 excerpt: Use the Test mode to check if the integration is working as expected.
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
@@ -20,7 +20,7 @@ After the integration is complete, you must test the integration before you go l
 >
 > Things to remember while testing an integration:
 >
-> 1. To test the integration make sure that you are making a transaction call to the test endpoint. 
+> 1. To test the integration make sure that you are making a transaction call to the test endpoint.
 > 2. Use your test key and salt for the transaction requests. See [Genearate test key and salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt).
 > 3. Set the value of the `environment` parameters to `1`.
 
@@ -51,7 +51,7 @@ For Testing the UPI Collect flow, Please follow the below steps:- 
 2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
 3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
 
-[https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn\_id>
+[https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn_id>
 
 #### For Android
 
