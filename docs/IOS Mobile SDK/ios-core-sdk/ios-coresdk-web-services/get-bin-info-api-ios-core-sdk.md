@@ -1,14 +1,13 @@
 ---
 title: Get Bin Info API
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Get Bin Info API – iOS Core SDK
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The **Get Bin Info** API is used to detect whether a particular BIN number is international or domestic. In addition, it is useful to determine the card’s issuing bank, the card type brand, that is, Visa, Mastercard, etc., and the card category, that is, credit card, debit card, etc. The BIN number is the first six digits of a credit or debit card. This API is also helpful in knowing whether the card BIN is eligible for Standing Instructions. For this API, you need to set the card number in the payment parameters.
 
