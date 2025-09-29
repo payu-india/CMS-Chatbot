@@ -4,13 +4,13 @@ excerpt: >-
   Steps to integrate UPI payments in your mobile application bulit on Flutter
   framework.
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 To integrate the Flutter UPI SDK, perform the following steps:
 
