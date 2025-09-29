@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: In-Person Payments
 excerpt: ''
 deprecated: false
 hidden: false
