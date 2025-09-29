@@ -2,7 +2,7 @@
 title: Deactivate a Bulk Upload Payment Link
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Deactivate a Bulk Upload Payment Link,Deactivate a Recurring Payment Link
   description: >-
