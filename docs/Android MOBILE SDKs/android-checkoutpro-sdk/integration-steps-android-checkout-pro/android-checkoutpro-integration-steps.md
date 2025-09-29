@@ -4,7 +4,7 @@ excerpt: >-
   Android Payment SDK Documentation: Comprehensive Integration Guide for
   Checkout Flow Implementation
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Android Checkout Pro Integration Steps
   description: >-
