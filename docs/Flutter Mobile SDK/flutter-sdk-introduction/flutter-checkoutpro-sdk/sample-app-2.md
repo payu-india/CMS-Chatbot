@@ -2,7 +2,7 @@
 title: Sample App
 excerpt: 'The sample application for integration with Flutter PayUCheckoutPro SDK :'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
