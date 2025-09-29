@@ -547,6 +547,7 @@ Currently, PayU supports only PhonePe and GooglePay through Intent. Add the quer
 What you get by default is a fat framework that allows you to test your app seamlessly on the device and simulator. But before archiving your app, you need to remove simulator slices from the framework. For detailed information on archiving your app with PayU ChekoutPro, refer to [Releasing Apple App Store](https://docs.payu.in/docs/ios-releasing-the-app-to-the-app-store).
 
 ## Test the Integration
+
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 > 🚧 Callout
@@ -627,7 +628,9 @@ You can use the following Debit and Credit cards to test EMI integration.
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
 <EMITestWallets />
+
 ## Go-live Checklist
+
 Ensure these steps before you deploy the integration in a live environment.
 
 ### Collect Live Payments
@@ -674,5 +677,8 @@ Configure the Verify payment method to fetch the payment status. We strongly rec
 
 We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
 
+## Sample App
+
+[https://github.com/payu-intrepos/PayUCheckoutPro-Flutter.git](https://github.com/payu-intrepos/PayUCheckoutPro-Flutter.git)
 
 <br />
