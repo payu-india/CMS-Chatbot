@@ -191,8 +191,8 @@ txnid=1524122818080&productinfo=product_info&user_credentials=default&key=*****&
 
 After you get the response from SDK, make sure to confirm it with the PayU server.
 
-<Callout icon="🚧" theme="warn"> 
-**Remember**: It is recommended to implement the PayU Webhook or backend verify call from your backend. For more information, refer to [Webhooks](doc:webhooks-copy).
+<Callout icon="🚧" theme="warn">
+  **Remember**: It is recommended to implement the PayU Webhook or backend verify call from your backend. For more information, refer to [Webhooks](doc:webhooks-copy).
 </Callout>
 
 Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended that the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks,
@@ -201,11 +201,11 @@ Also, you can verify payment through polling, the transaction status after the S
 
 <br />
 
-### Step 7.1: Create a PayU account
+#### Step 7.1: Create a PayU account
 
 First, create a PayU account. See [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard).
 
-### Step 7.2: Set up build.gradle
+#### Step 7.2: Set up build.gradle
 
 Add the following URL in the root project’s build.gradle:
 
@@ -225,7 +225,7 @@ Add the following dependency in your application’s build.gradle:
 implementation 'in.payu:phonepe-intent:1.8.7'
 ```
 
-### Step 7.3: Create Callbacks Instance
+#### Step 7.3: Create Callbacks Instance
 
 PayUPhonePeCallback provides the following callback methods.
 
@@ -295,7 +295,7 @@ public void onPaymentOptionInitialisationFailure (int errorCode, String descript
 };
 ```
 
-### Step 7.4: Set up for Test/Sandbox merchant
+#### Step 7.4: Set up for Test/Sandbox merchant
 
 If you are using the SDK with a test merchant, provide the following metadata value to the manifest file:
 
@@ -310,7 +310,7 @@ If you are using the SDK with a test merchant, provide the following metadata va
 </application>
 ```
 
-### Step 7.5: Check for PhonePe availability
+#### Step 7.5: Check for PhonePe availability
 
 SDK provides the checkForPaymentAvailability method to check if PhonePe payment is available or not on the device. This method must be executed before showing PhonePe as a checkout option.
 
@@ -339,7 +339,7 @@ Where:
 > * salt= YOUR SALT
 > * var1= default // Pass `default` value in var1
 
-### Step 7.6: Make Payment by PhonePe
+#### Step 7.6: Make Payment by PhonePe
 
 After successful initialization of PhonePe by calling checkForPaymentAvailability method, call makePayment method to make payment.
 
@@ -361,13 +361,13 @@ Where:
   **Formula** :-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
 </Callout>
 
-#### Sample PostData
+Sample PostData
 
 ```
 txnid=1524122818080&productinfo=product_info&user_credentials=default&key=*****&surl=**SUCCESS_URL**&furl=**FAILURE_URL&firstname=firstname&email=test@gmail.com&amount=10&udf1=udf1&udf2=udf2&udf3=udf3&udf4=udf4&udf5=udf5&pg=CASH&bankcode=PPINTENT&hash=***PAYMENT_HASH***
 ```
 
-### Step 7.7: Verify the transaction using Webhooks
+#### Step 7.7: Verify the transaction using Webhooks
 
 After you get the response from SDK, make sure to confirm it with the PayU server.
 
@@ -380,6 +380,7 @@ Webhook is a server-to-server callback. Once this feature is activated for merch
 Also, you can verify payment through polling, the transaction status after the SDK callback from your backend. For more information, refer to Verify the Transaction.
 
 ## Test the Integration
+
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 You can make test payments using one of the payment methods configured at the Checkout.
@@ -395,6 +396,7 @@ You can make test payments using one of the payment methods configured at the Ch
 > ❗️ **Not available in Test mode**: The UPI in-app and UPI intent flow is not available in the Test mode.
 
 ## Go-live Checklist
+
 Ensure these steps before you deploy the integration in a live environment.
 
 ### Collect Live Payments
