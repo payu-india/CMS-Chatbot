@@ -2,7 +2,7 @@
 title: 1. Integration Steps
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
