@@ -1,5 +1,5 @@
 ---
-title: Android SDKs
+title: Android Mobile SDKs
 excerpt: >-
   Explore the Android SDKs offered by PayU to find the best fit for your use
   case.
