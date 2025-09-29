@@ -31,9 +31,9 @@ You can post a request using any of the following methods:
 
 <br />
 
-|            |                                                         |
-| :--------- | :------------------------------------------------------ |
-| Production | https://info.payu.in/issuing-bank/v1/bin/binEligibility |
+|            |                                                                                                                    |
+| :--------- | :----------------------------------------------------------------------------------------------------------------- |
+| Production | [https://info.payu.in/issuing-bank/v1/bin/binEligibility](https://info.payu.in/issuing-bank/v1/bin/binEligibility) |
 
 ## Request headers
 
@@ -255,7 +255,7 @@ public class HmacAuth {
       <td>
         This parameter needs to include the transaction amount.
 
-        * *Note**: Amount is a non-mandatory field, but is mandatory if bank code is ONEC or BAJFIN .
+        * _Note_*: Amount is a non-mandatory field, but is mandatory if bank code is ONEC or BAJFIN .
       </td>
 
       <td>
@@ -336,6 +336,19 @@ public class HmacAuth {
 ### Sample Request
 
 ```
+curl -X POST \
+  'https://info.payu.in/issuing-bank/v1/bin/binEligibility' \
+  -H 'Date: $(date -u "+%a, %d %b %Y %H:%M:%S GMT")' \
+  -H 'Digest: YOUR_BASE64_ENCODED_SHA256_DIGEST' \
+  -H 'Authorization: hmac username="YOUR_MERCHANT_KEY", algorithm="hmac-sha256", headers="date digest", signature="YOUR_CALCULATED_SIGNATURE"' \
+  -H 'platformId: 1' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "bintype": "bin",
+    "value": "416104",
+    "amount": 10000
+  }'
+
 ```
 
 <br />
@@ -476,6 +489,25 @@ If not found:
     </tr>
   </tbody>
 </Table>
+
+### Sample request
+
+```
+curl -X POST \
+  'https://info.payu.in/issuing-bank/v1/bin/binEligibility' \
+  -H 'Date: $(date -u "+%a, %d %b %Y %H:%M:%S GMT")' \
+  -H 'Digest: YOUR_BASE64_ENCODED_SHA256_DIGEST' \
+  -H 'Authorization: hmac username="YOUR_MERCHANT_KEY", algorithm="hmac-sha256", headers="date digest", signature="YOUR_CALCULATED_SIGNATURE"' \
+  -H 'platformId: 1' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "bintype": "bin",
+    "value": "416104",
+    "amount": 10000,
+    "bank": "ICICI"
+  }'
+
+```
 
 ### Response parameters
 
