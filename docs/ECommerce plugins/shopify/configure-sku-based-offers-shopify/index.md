@@ -71,7 +71,7 @@ To download the SKU ID’s in bulk:
 
 ## Configure Checkout SKU-Based Offers Webhooks
 
-This part of the document describes the procedure to allow PayU payment app access to checkout details (including SKU information in the cart).
+This part of the document describes the procedure to configure webhooks for SKU-based offers on Shopify.
 
 To configure webhooks for Shopify and share it with PayU support:
 
