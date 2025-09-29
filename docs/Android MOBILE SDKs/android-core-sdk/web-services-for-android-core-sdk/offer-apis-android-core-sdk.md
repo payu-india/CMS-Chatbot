@@ -2,7 +2,7 @@
 title: Offer APIs
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Offer APIs - Android Core SDK
   description: ''
