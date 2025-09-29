@@ -1,8 +1,9 @@
 ---
 title: LazyPay BNPL Integration - iOS Core SDK
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: LazyPay BNPL Integration - iOS Core SDK
   description: ''
@@ -10,8 +11,6 @@ metadata:
     - LazyPay BNPL Integration for iOS Core SDK
     - iOS LazyPay BNPL Integration
   robots: index
-next:
-  description: ''
 ---
 To pay using LazyPay (BNPL), perform the following steps.
 
