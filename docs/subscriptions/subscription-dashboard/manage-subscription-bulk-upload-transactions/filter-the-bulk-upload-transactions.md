@@ -2,7 +2,7 @@
 title: Filter the Bulk Upload Transactions
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: >-
     Filter the Bulk Upload Transactions or Filter the Bulk Upload Recurring
