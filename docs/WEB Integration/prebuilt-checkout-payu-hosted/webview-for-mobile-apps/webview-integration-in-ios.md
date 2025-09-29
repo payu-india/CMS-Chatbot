@@ -1,14 +1,13 @@
 ---
 title: Webview Integration in iOS
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 ### Create postData for Payment
 
@@ -146,9 +145,9 @@ webView.configuration.websiteDataStore = WKWebsiteDataStore.default()
 
 #### 2. In the ICP checkout being opened within a webview inside the application. This configuration is leading to unexpected and unusual behavior, likely due to the way the webview is interacting with the ICP checkout:
 
- Set Correct User Agent String value otherwise may get unexpected UI and function Issues in custom webView. Ex:- For IOS device (Mozilla/5.0 (iPhone; CPU iPhone OS 12\_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1).
+Set Correct User Agent String value otherwise may get unexpected UI and function Issues in custom webView. Ex:- For IOS device (Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1).
 
-#### 3. Some issues arise when merchants configure their system to close the webview whenever an error occurs on the checkout page Eg ERR\_BLOCKED\_BY\_ORB:
+#### 3. Some issues arise when merchants configure their system to close the webview whenever an error occurs on the checkout page Eg ERR_BLOCKED_BY_ORB:
 
 This may be because web Page is not loaded/rendered properly. this type of error can be ignored.
 
@@ -156,7 +155,7 @@ This may be because web Page is not loaded/rendered properly. this type of error
 
 #### 5. Merchant App Issues: After successfully completing a transaction on checkout using UPI, everything functioned smoothly. Following a proper socket connection response, the user was redirected to a secure page. However, instead of being redirected to either the success URL (surl) or failure URL (furl)
 
- Make sure to write Url load logic inside viewDidLoad() function, never write logic inside  viewWillDisappear() function.
+Make sure to write Url load logic inside viewDidLoad() function, never write logic inside  viewWillDisappear() function.
 
 #### 6. User was not redirected to merchant page after making success payments.
 
@@ -172,7 +171,7 @@ If in manifest file this is not added, keyboard opens on top of input field. :- 
 
 #### 9. Sending Data from WKWebview's Webpage to Native Code
 
- To achieve this, the WKWebview needs to have a WKUserContentController configured that uses message handlers. Here is a sample configuration and definition. ex. let controller = WKUserContentController()
+To achieve this, the WKWebview needs to have a WKUserContentController configured that uses message handlers. Here is a sample configuration and definition. ex. let controller = WKUserContentController()
 
 ```
     controller.add(self, name: "observe")
@@ -184,7 +183,7 @@ If in manifest file this is not added, keyboard opens on top of input field. :- 
     webView = WKWebView(frame: view.frame, configuration: configuration)
 ```
 
- In the above example, "observe" defines the message thread over which the Javascript code can call a native swift method
+In the above example, "observe" defines the message thread over which the Javascript code can call a native swift method
 
 a simple string is sent from Javascript to native swift code via WKScriptMessageHandler interface
 
@@ -196,9 +195,9 @@ func userContentController(_ userContentController: WKUserContentController, did
    print("User message got") }}
 ```
 
-#### 10. How to handle window\.open in Webview
+#### 10. How to handle window.open in Webview
 
-As webview did not support multiple tab need to implement below function and create new webview to handle window\.open()
+As webview did not support multiple tab need to implement below function and create new webview to handle window.open()
 
 ```
 func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
