@@ -679,28 +679,6 @@ We recommend that you configure Webhook to receive payment responses on your ser
 
 ## Advanced Integration
 
-<br />
-
-This section describes how to integrate the following advanced features with Flutter SDK:
-
-* Change Theme
-* Customise font
-* Set Merchant Logo
-* Set Merchant Name
-* Hide Checkout Screen Back Button dialog box
-* Hide Back Button dialog box after Payment Initialisation
-* Auto Select OTP
-* Set Merchant Response Timeout
-* Additional Payment Options on the Checkout screen
-* Configure Checkout Payment Modes Order
-* Offers Integration
-* Native OTP Assist
-* Custom Note Integration
-* Enforced Payment Modes
-* Android Specific Configuration
-
-***
-
 ### Prerequisites
 
 Before you start with the advanced integration with PayUCheckoutPro, the payUCheckoutProConfig object needs to be passed with payUPaymentParams in the openCheckoutScreen method of the PayU SDK. The sample code snippet is similar to the following:
