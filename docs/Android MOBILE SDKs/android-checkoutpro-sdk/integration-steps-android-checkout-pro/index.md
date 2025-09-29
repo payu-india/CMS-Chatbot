@@ -1348,17 +1348,17 @@ You can make test payments using one of the payment methods configured at the Ch
 
 You can make test payments using one of the payment methods configured at the Checkout.
 
-## Test credentials for supported payment methods
+### Test credentials for supported payment methods
 
 Following are the payment methods supported in PayU Test mode.
 
-### Test Credential for Card
+#### Test Credential for Card
 
 | Card Number      | Expiry | CVV | OTP    |
 | :--------------- | :----- | :-- | :----- |
 | 5123456789012346 | 05/25  | 123 | 123456 |
 
-### Test credentials for Net Banking
+#### Test credentials for Net Banking
 
 Use the following credentials to test the Net Banking integration:
 
@@ -1366,7 +1366,7 @@ Use the following credentials to test the Net Banking integration:
 * **password**: payu
 * **OTP**: 123456
 
-### Test VPA for UPI
+#### Test VPA for UPI
 
 You can use either of the following VPAs to test your UPI-related integration:
 
@@ -1381,7 +1381,7 @@ For Testing the UPI Collect flow, Please follow the below steps:- 
 
 [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)`<Txn_id>`
 
-#### For Android
+**For Android**
 
 You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
 
@@ -1397,14 +1397,62 @@ You can add the below metadata under the application tag in the manifest file to
 </application>
 ```
 
-### Test cards for EMI
+#### Test cards for EMI
 
 You can use the following Debit and Credit cards to test EMI integration.\
 
 <EMITestCards />
 
-### Test Wallets
+#### Test Wallets
 
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
 <EMITestWallets />
+
+## Go-live Checklist
+
+Ensure these steps before you deploy the integration in a live environment.
+
+### Collect Live payments
+
+After testing the integration end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
+
+<Callout icon="🚧" theme="warn">
+  **Generate Production Key and Salt**: Ensure that you are using the production merchant key and salt generated in the live mode.
+</Callout>
+
+<ProductionKeyAndSaltProcedure />
+
+### Checklist 2: Configure setIsProduction()
+
+Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
+
+### Checklist 3:- Configure your SURL/FURL
+
+PayU recommends you to design, your own SURL and FURL.
+
+Refer the link to [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk) doc details.
+
+> 🚧 We are not recommended to go live with PayU SURL and FURL.
+
+### Checklist 4:- Remove/comment meta -data code from manifest file :-
+
+#### For Android
+
+You must be comment/remove the below metadata code from the manifest file to use the UPI Collect flow on Production env:-
+
+```Text XML
+<application>
+<meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
+<meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
+<meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
+</appliction>
+```
+
+### Checklist 5: Configure verify payment method
+
+Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
+
+### Checklist 6: Configure Webhook
+
+We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
