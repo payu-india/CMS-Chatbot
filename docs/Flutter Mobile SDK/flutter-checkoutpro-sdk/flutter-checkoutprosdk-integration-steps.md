@@ -1,8 +1,9 @@
 ---
 title: 1. Integration Steps
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Flutter Check Out SDK Integration Steps
   description: ''
@@ -15,8 +16,6 @@ metadata:
     - PayU Hosted Checkout SDK for Mobile steps
     - Mobile Flutter SDK Basic Integration with Checkout Pro
   robots: index
-next:
-  description: ''
 ---
 To integrate PayU CheckoutPro with Flutter SDK:
 
@@ -280,7 +279,7 @@ To initiate the payment, your app needs to send transactional information to the
       <td>
         `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
 
-        * *Note**: This field is applicable for iOS integration
+        * _Note_*: This field is applicable for iOS integration
       </td>
     </tr>
 
@@ -293,7 +292,7 @@ To initiate the payment, your app needs to send transactional information to the
       <td>
         `String` When the transaction fails, PayU will load this URL and pass the transaction response.
 
-        * *Note**: This field is applicable for iOS integration
+        * _Note_*: This field is applicable for iOS integration
       </td>
     </tr>
 
@@ -307,7 +306,7 @@ To initiate the payment, your app needs to send transactional information to the
         `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
         `Note`: This field is applicable for Android integration
 
-        * *Sample URL**: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+        * _Sample URL_*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
       </td>
     </tr>
 
@@ -322,7 +321,7 @@ To initiate the payment, your app needs to send transactional information to the
         When the transaction gets successful, PayU will load this URL and pass the transaction response.
         `Note`: This field is applicable for Android integration
 
-        * *Sample URL**: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+        * _Sample URL_*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
       </td>
     </tr>
 
@@ -344,7 +343,7 @@ To initiate the payment, your app needs to send transactional information to the
       </td>
 
       <td>
-        * *String** This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:
+        * _String_* This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:
           `<merchantKey>:<userId>  `
           Here,
           UserId is any id/email/phone number to uniquely identify the user.
