@@ -1,14 +1,13 @@
 ---
 title: Configure Checkout Payment Methods
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 By default, the following payment methods are enabled for merchants on PayU Payment page (with PayU Hosted Checkout integration):
 
@@ -38,19 +37,19 @@ To configure the Dashboard to enable payment method:
 
    The _Manage Payment Methods_ page is displayed with **Debit Card** tab selected by default.
 
-<Image align="center" className="border" border={true} width="722px" src="https://files.readme.io/30b21d8-Screenshot_2024-07-19_at_10.34.10_AM.png" />
+<Image align="center" border={true} width="722px" src="https://files.readme.io/30b21d8-Screenshot_2024-07-19_at_10.34.10_AM.png" className="border" />
 
 2. Select any of the payment method tab that you wish to configure.
 
    If you are eligible for the payment method, the **Activate Now** button is displayed. For example, the **Activate Now** button is enabled in the **International Payments** tab similar to the following screenshot:
 
-<Image align="center" className="border" border={true} width="722px" src="https://files.readme.io/87d81fd-Screenshot_2024-07-19_at_10.35.59_AM.png" />
+<Image align="center" border={true} width="722px" src="https://files.readme.io/87d81fd-Screenshot_2024-07-19_at_10.35.59_AM.png" className="border" />
 
 3. Click **Activate Now**.
 
    A pop-up dialog box is displayed similar to the following screenshot and this will vary according to the payment method:
 
-<Image align="center" width="622px" src="https://files.readme.io/6d9c81f-Screenshot_2024-07-19_at_10.37.45_AM.png" />
+<Image align="center" border={false} width="622px" src="https://files.readme.io/6d9c81f-Screenshot_2024-07-19_at_10.37.45_AM.png" />
 
 4. Click **Proceed** to activate.
 
@@ -65,33 +64,33 @@ To activate PayPal wallet and start collecting payments with PayPal:
 
 You are redirected to the PayPal page similar to the following screenshot.
 
-<Image align="center" className="border" border={true} width="320px" src="https://files.readme.io/15f4290-Screenshot_2024-03-14_at_2.22.56_PM.png" />
+<Image align="center" border={true} width="320px" src="https://files.readme.io/15f4290-Screenshot_2024-03-14_at_2.22.56_PM.png" className="border" />
 
 3. Enter your email address that you want to use in future with PayPal.
 
-<Image align="center" className="border" border={true} width="320px" src="https://files.readme.io/fc21647-Screenshot_2024-03-14_at_2.23.12_PM.png" />
+<Image align="center" border={true} width="320px" src="https://files.readme.io/fc21647-Screenshot_2024-03-14_at_2.23.12_PM.png" className="border" />
 
 4. Select your country as **India**.
 5. Click **Next**.
 6. Enter the password to create the account.
 
-<Image align="center" width="320px" src="https://files.readme.io/c498645-Screenshot_2024-03-14_at_2.23.36_PM.png" />
+<Image align="center" border={false} width="320px" src="https://files.readme.io/c498645-Screenshot_2024-03-14_at_2.23.36_PM.png" />
 
 7. Select your nature of your business and PAN details, name to displayed on statement and website URL as required and click **Next**.
 
-<Image align="center" className="border" border={true} width="320px" src="https://files.readme.io/5d0d968-Screenshot_2024-03-14_at_5.07.28_PM.png" />
+<Image align="center" border={true} width="320px" src="https://files.readme.io/5d0d968-Screenshot_2024-03-14_at_5.07.28_PM.png" className="border" />
 
 8. Enter your name, date of birth and contact details.
 
-<Image align="center" className="border" border={true} width="320px" src="https://files.readme.io/e137009-paypal_name_dob.png" />
+<Image align="center" border={true} width="320px" src="https://files.readme.io/e137009-paypal_name_dob.png" className="border" />
 
 9. Scroll down and enter the business contact phone number and primary
 
-<Image align="center" className="border" border={true} width="320px" src="https://files.readme.io/2e3e74f-paypal_details_mobile_currency.png" />
+<Image align="center" border={true} width="320px" src="https://files.readme.io/2e3e74f-paypal_details_mobile_currency.png" className="border" />
 
 10. Click **Next**.
 
-<Image align="center" className="border" border={true} width="320px" src="https://files.readme.io/32522a2-paypal_details_thanks_signup.png" />
+<Image align="center" border={true} width="320px" src="https://files.readme.io/32522a2-paypal_details_thanks_signup.png" className="border" />
 
 ## Disable Checkout payment modes
 
