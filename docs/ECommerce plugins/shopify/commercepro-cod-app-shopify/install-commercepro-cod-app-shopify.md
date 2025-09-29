@@ -1,14 +1,13 @@
 ---
 title: Install CommercePro COD App - Shopify
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 ## Prerequisites
 
@@ -25,20 +24,20 @@ To install CommercePro COD app:
 1. Log on to your shopify store (if required).
 2. Navigate to the following URL:
 
- [https://apps.shopify.com/payu-cash-on-delivery](https://apps.shopify.com/payu-cash-on-delivery)
+[https://apps.shopify.com/payu-cash-on-delivery](https://apps.shopify.com/payu-cash-on-delivery)
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/679c5b505b0b6c8e371a2dc35e7ea74a969fc73a40ccb000e6db34014411bbbc-Screenshot_2024-11-05_at_11.28.11_AM.png" />
+<Image align="center" border={true} src="https://files.readme.io/679c5b505b0b6c8e371a2dc35e7ea74a969fc73a40ccb000e6db34014411bbbc-Screenshot_2024-11-05_at_11.28.11_AM.png" className="border" />
 
 3. Click **Install**.
 
   You will be redirected to PayU Account sign in page.  
 
-4. Log in into your PayU Account using the **Email** and **Password** OR **Login using OTP** option. 
+4. Log in into your PayU Account using the **Email** and **Password** OR **Login using OTP** option.
 
    This process will connect your PayU account with ‘PayU CommercePro Checkout’ Shopify App.  
 
-<Image align="center" width="650px" src="https://files.readme.io/66f1002-payu_in_dashboard_login.png" />
+<Image align="center" border={false} width="650px" src="https://files.readme.io/66f1002-payu_in_dashboard_login.png" />
 
    After successfully login into your PayU account, a page similar to the following is displayed to indicate that app installation is complete and linked to your PayU account.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/f75a7d07bbeb212fb5862962d95726da3f7485dfcc08ab1255960579f42b808c-CommercePro_COD_install_success.png" />
+<Image align="center" border={true} src="https://files.readme.io/f75a7d07bbeb212fb5862962d95726da3f7485dfcc08ab1255960579f42b808c-CommercePro_COD_install_success.png" className="border" />
