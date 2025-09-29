@@ -2,7 +2,7 @@
 title: Tokenized Payment APIs
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Tokenized Payment APIs - Android Core SDK
   description: ''
