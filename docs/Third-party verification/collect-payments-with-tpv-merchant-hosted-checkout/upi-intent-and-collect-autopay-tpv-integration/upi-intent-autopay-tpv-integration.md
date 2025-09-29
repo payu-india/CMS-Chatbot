@@ -4,7 +4,7 @@ excerpt: >-
   Integrate <<glossary:TPV>> through UPI using the procedure described in this
   section.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
