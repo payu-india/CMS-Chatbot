@@ -5,7 +5,9 @@ excerpt: >-
   suit your requirements. You can opt for all or some payment modes according to
   their requirements.
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Enforce Payment Method or Remove Category in PayU Hosted Checkout
   description: >-
@@ -14,8 +16,6 @@ metadata:
     the payMethods parameter to enforce a specific payment method or remove a
     payment category for your customers.
   robots: index
-next:
-  description: ''
 ---
 <Callout icon="📘" theme="info">
   **Note**: Before implementing on your Production environment, PayU strongly recommends you to enforce the payment parameters described in this section on the Test environment.
