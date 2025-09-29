@@ -2,7 +2,7 @@
 title: 1. SDK Integration Steps - Android PhonePe SDK
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
