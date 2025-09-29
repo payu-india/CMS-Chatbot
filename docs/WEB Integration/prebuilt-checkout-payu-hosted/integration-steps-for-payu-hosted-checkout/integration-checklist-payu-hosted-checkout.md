@@ -2,7 +2,7 @@
 title: 3. Production Checklist
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
