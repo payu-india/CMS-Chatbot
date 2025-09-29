@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Third-Party Verification (TPV)
 excerpt: >-
   The global financial industry is coming up with a new paradigm for risk
   management. If you are a merchant in the BFSI sector, your business is subject
