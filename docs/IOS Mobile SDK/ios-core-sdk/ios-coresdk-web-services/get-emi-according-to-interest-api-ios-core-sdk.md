@@ -1,14 +1,13 @@
 ---
 title: Get EMI According to Interest API
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Get EMI According to Interest API - iOS Core SDK
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The **Get EMI According to Interest** API helps you get details of all the available EMIs.
 
