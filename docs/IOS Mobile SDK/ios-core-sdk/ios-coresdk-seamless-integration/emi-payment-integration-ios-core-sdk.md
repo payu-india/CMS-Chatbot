@@ -2,7 +2,7 @@
 title: EMI Payment Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: EMI Payment Integration - iOS Core SDK
   description: ''
