@@ -1,8 +1,9 @@
 ---
 title: Update an Offer
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
@@ -12,33 +13,31 @@ metadata:
     - Update PayU India Offer Details
     - Offer Details Updation
   robots: index
-next:
-  description: ''
 ---
 After you create an offer and publish it to customers, you can update the following offer details:
 
-* Basic details such as offer name & description, T\&C, T\&C URL, and valid to date.
+* Basic details such as offer name & description, T&C, T&C URL, and valid to date.
 * BIN list in case of cards, banks list for Net Banking, or wallets list for Wallets.
 
 To update an existing offer:
 
 1. Select **Offers Engine** > **Manage** from the menu on the left pane.
 
-   The *Offers List* page is displayed.
+   The _Offers List_ page is displayed.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/42dba0d373fadd714abfb9b058ce4d52f41de6958dc83c5bbd678e51be20d567-dashboard-offers-published-edit-selection.png" />
+<Image align="center" border={true} src="https://files.readme.io/42dba0d373fadd714abfb9b058ce4d52f41de6958dc83c5bbd678e51be20d567-dashboard-offers-published-edit-selection.png" className="border" />
 
 2. Click the **Actions** (**…**) menu and select **Edit**.
 
-   The *Create New \<Offer Type> Offer* page is displayed.
+   The _Create New \<Offer Type> Offer_ page is displayed.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/3b26103582ce85f37d5cc31b5f00526c0f977918cf18e21e1ac8eaf02f11d153-Screenshot_2025-06-06_at_9.54.13_AM.png" />
+<Image align="center" border={true} src="https://files.readme.io/3b26103582ce85f37d5cc31b5f00526c0f977918cf18e21e1ac8eaf02f11d153-Screenshot_2025-06-06_at_9.54.13_AM.png" className="border" />
 
 3. Click the **Edit** button (pencil) on the **Basic Details** pane.
 
-   The *Basic Details* pop-up page is displayed.
+   The _Basic Details_ pop-up page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/Screenshot-2023-04-08-at-1.41.55-PM-1024x946.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/04/Screenshot-2023-04-08-at-1.41.55-PM-1024x946.png" />
 
 4. Update the following basic offer details. For more information, refer to  [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
    * Offer Title and Description
@@ -61,4 +60,4 @@ To update an existing offer:
 
 After you update the basic details of the offer, you can check the audit trials for the changes made to an existing offer.
 
-9. Select the **Go Back to Dashboard** option at the top-right corner to go back to the *Offers Overview* page.
+9. Select the **Go Back to Dashboard** option at the top-right corner to go back to the _Offers Overview_ page.
