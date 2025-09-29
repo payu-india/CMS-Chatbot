@@ -10,10 +10,9 @@ metadata:
 next:
   description: ''
 ---
-The Eligible Bin for EMI API v2 is used only when the merchant needs the EMI feature of PayU. If you are managing card details on your website, this API can tell the issuing bank of the card bin. It also provides the minimum eligible amount for a particular bank.
+The Eligible Bin for EMI API v2.0 is used only when the merchant needs the EMI feature of PayU. If you are managing card details on your website, this API can tell the issuing bank of the card bin. It also provides the minimum eligible amount for a particular bank.
 
-<Image align="center" src="https://files.readme.io/2eaac64-emi_eligible_bins_flow.png" />
-
+<Image align="center" border={false} src="https://files.readme.io/2eaac64-emi_eligible_bins_flow.png" />
 
 HTTP Method: **POST**
 
@@ -21,6 +20,14 @@ You can post a request using any of the following methods:
 
 * [Request without bank selection](#request-without-bank-selection)
 * [Request with bank selection](#request-with-bank-selection)
+
+### Environment
+
+<br />
+
+|            |                                                                                                                    |
+| :--------- | :----------------------------------------------------------------------------------------------------------------- |
+| Production | [https://info.payu.in/issuing-bank/v1/bin/binEligibility](https://info.payu.in/issuing-bank/v1/bin/binEligibility) |
 
 ## Request headers
 
@@ -88,9 +95,9 @@ The request header contains the following fields:
         * **username**: The merchant key of the merchant.
         * **algorithm**: This must have the value as **hmac-sha256** that is used for this API
         * **headers**: This must have the value as **date digest**
-        * **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:
-          * **signing\_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“
-          * **merchant\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](https://docs.payu.in/v1/docs/generate-merchant-key-and-salt-on-payu-dashboard)
+        * **signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:
+          * **signing_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“
+          * **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)
       </td>
 
       <td>
@@ -100,7 +107,7 @@ The request header contains the following fields:
 
     <tr>
       <td>
-        platformId\
+        platformId
         **mandatory**
       </td>
 
@@ -217,7 +224,7 @@ public class HmacAuth {
 
     <tr>
       <td>
-        value\
+        value
         **mandatory**
       </td>
 
@@ -235,14 +242,14 @@ public class HmacAuth {
 
     <tr>
       <td>
-        amount\
+        amount
         **conditional**
       </td>
 
       <td>
         This parameter needs to include the transaction amount.
 
-        * *Note*\*: Amount is a non-mandatory field, but is mandatory if bank code is ONEC or BAJFIN .
+        * _Note_*: Amount is a non-mandatory field, but is mandatory if bank code is ONEC or BAJFIN .
       </td>
 
       <td>
@@ -319,6 +326,26 @@ public class HmacAuth {
     </tr>
   </tbody>
 </Table>
+
+### Sample Request
+
+```
+curl -X POST \
+  'https://info.payu.in/issuing-bank/v1/bin/binEligibility' \
+  -H 'Date: $(date -u "+%a, %d %b %Y %H:%M:%S GMT")' \
+  -H 'Digest: YOUR_BASE64_ENCODED_SHA256_DIGEST' \
+  -H 'Authorization: hmac username="YOUR_MERCHANT_KEY", algorithm="hmac-sha256", headers="date digest", signature="YOUR_CALCULATED_SIGNATURE"' \
+  -H 'platformId: 1' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "bintype": "bin",
+    "value": "416104",
+    "amount": 10000
+  }'
+
+```
+
+<br />
 
 ### Sample response
 
@@ -409,7 +436,7 @@ If not found:
 
     <tr>
       <td>
-        value\
+        value
         **mandatory**
       </td>
 
@@ -427,7 +454,7 @@ If not found:
 
     <tr>
       <td>
-        amount\
+        amount
         **conditional**
       </td>
 
@@ -442,7 +469,7 @@ If not found:
 
     <tr>
       <td>
-        bank\
+        bank
         **mandatory**
       </td>
 
@@ -456,6 +483,25 @@ If not found:
     </tr>
   </tbody>
 </Table>
+
+### Sample request
+
+```
+curl -X POST \
+  'https://info.payu.in/issuing-bank/v1/bin/binEligibility' \
+  -H 'Date: $(date -u "+%a, %d %b %Y %H:%M:%S GMT")' \
+  -H 'Digest: YOUR_BASE64_ENCODED_SHA256_DIGEST' \
+  -H 'Authorization: hmac username="YOUR_MERCHANT_KEY", algorithm="hmac-sha256", headers="date digest", signature="YOUR_CALCULATED_SIGNATURE"' \
+  -H 'platformId: 1' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "bintype": "bin",
+    "value": "416104",
+    "amount": 10000,
+    "bank": "ICICI"
+  }'
+
+```
 
 ### Response parameters
 
