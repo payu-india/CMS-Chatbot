@@ -2,7 +2,7 @@
 title: Eligible Bins for EMI API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Eligible Bins for EMI API - Android Core SDK
   description: ''
