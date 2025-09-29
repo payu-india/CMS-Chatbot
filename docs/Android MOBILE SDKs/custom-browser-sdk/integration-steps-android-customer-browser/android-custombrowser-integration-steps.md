@@ -1,8 +1,9 @@
 ---
 title: 1. SDK Integration
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: SDK Integration Steps for Android Customer Browser
   description: >-
@@ -25,11 +26,10 @@ metadata:
     - Android Customer Browser SDK Integration
   robots: index
 next:
-  description: ''
   pages:
-    - type: basic
-      slug: android-custombrowser-custombrowser-callback
+    - slug: android-custombrowser-custombrowser-callback
       title: CustomBrowser Callback
+      type: basic
 ---
 Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard** > **Settings** > **Payment methods**. PayU enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you. For more information, refer to [Configure Checkout Payment Methods](doc:checkout-payment-modes).
 
