@@ -498,4 +498,251 @@ getTransactionInfo:self.paymentParamForPassing withCompletionBlock:^(NSArray *ar
       }
     }];
 ```
+## Get Checkout Details API
+The **Get Checkout Details** API provides information on `additionalCharges`, `bankDownStatus`, `taxSpecification`, `offerDetails`, `customerEligibility`, `merchantDetails`, `extendedPaymentDetails`, and pg id information for payment options on a merchant key.
 
+To integrate this API:
+
+1. Call this API is similar to other Web Services, the only difference is that it requires a JSON in var1. Check the following code block for more details. Here, requestId is a unique random number passed in the request.
+
+```Text JSON Response
+{
+        "useCase":{
+            "getExtendedPaymentDetails":true,
+            "getTaxSpecification":true,
+            "checkDownStatus":true,
+            "getAdditionalCharges":true,
+            "getOfferDetails":true,
+            "getPgIdForEachOption":true,
+            "checkCustomerEligibility":true,
+            "getMerchantDetails":true,
+            "getPaymentDetailsWithExtraFields":true
+        },
+        "filters":{
+            "paymentOptions":{
+                "emi":{
+                    "dc":"HDFC",
+                    "cardless":"ZESTMON"
+                },
+                "bnpl":"MOBIZIP"
+            }
+        },
+        "requestId":"iOS230113135103",
+        "customerDetails":{
+            "mobile":"9876543210"
+        },
+        "transactionDetails":{
+            "amount":"1"
+        }
+    }
+```
+
+2. Set `amount`, `additionalCharges`, `checkDownStatus`, `checkTaxSpecification`, `checkOfferDetails`, `checkCustomerEligibility`, `getMerchantDetails`, `getExtendedPaymentDetails` and `getPgIdForEachOption` in the payment parameters, for instance:
+
+```Text Objective-C
+self.paymentParamForPassing.getExtendedPaymentDetails = true; 
+self.paymentParamForPassing.checkTaxSpecification = true;      
+self.paymentParamForPassing.checkDownStatus = true;   self.paymentParamForPassing.checkAdditionalCharges = true;      
+self.paymentParamForPassing.checkOfferDetails = true;   self.paymentParamForPassing.getPgIdForEachOption = true;     self.paymentParamForPassing.checkCustomerEligibility = true;   
+self.paymentParamForPassing.getMerchantDetails = true;          self.paymentParamForPassing.getPaymentDetailsWithExtraFields = true;     
+self.paymentParamForPassing.amount = @"<Amount>";   self.paymentParamForPassing.hashes.getCheckoutDetailsHash = @"hash";         PayUModelGetCheckoutAPIFilters *getCheckoutAPIFilters = [PayUModelGetCheckoutAPIFilters new];         getCheckoutAPIFilters.dcEMIBankCode = @"<BankCode>";         getCheckoutAPIFilters.cardlessEMIBankCode = @"<BankCode>";         getCheckoutAPIFilters.bnplBankCode = @"<BankCode>";        self.paymentParamForPassing.getCheckoutAPIFilters = getCheckoutAPIFilters;
+```
+
+3. Call the `getCheckoutDetail` to integrate this API:
+
+```Text Objective-C
+[webServiceResponse
+getCheckoutDetail:self.paymentParamForPassing withCompletionBlock:^(NSArray *paymentRelatedDetails, NSString *errorMessage, id extraParam) {
+      if (errorMessage) {
+        // Something went wrong errorMessage is having the Detail
+      }
+      else{
+        // paymentRelatedDetails object is having the required detail
+      }
+    }];
+```
+
+The **Lookup** API is used when integrating multi-currency payments. To use Lookup API for iOs, follow these subsections:
+
+* [Prerequisites](#Prerequisites)
+* [Request parameters](#Request-parameters)
+* [Calculate the signature for Hash](#calculate-the-signature-for-hash)
+
+### Prerequisites for Lookup API
+
+> 📘 Before you begin
+>
+> Connect with your Key Account Manager at PayU to get the following credentials:
+>
+> * Merchant Access Key
+> * Merchant Secret Key
+
+Lookup API needs a JSON request. Product types need to be passed either as DCC or MCP. Direct Currency Conversion (DCC) returns the conversion prices for card currency only. To get all enabled currencies on Merchant Access Key along with their conversion prices, use product type as MCP. For DCC, cardBin is mandatory, while for MCP cardBin is not required
+
+The following example is to request for MCP as a product type:
+
+```Text JSON
+{   
+  "merchantAccessKey":"E5ABOXOWAAZNXB6JEF5Z", 
+  "baseAmount":
+  {     
+    "value":10000.00,      
+     "currency":"INR"   
+   },   
+    "merchantOrderId":"OBE-JU89-13151-110",   
+    "productType":"MCP",   
+    "signature":"be5a56667354d9e2ea5ea1c6af78b0afc1894eb2"
+  }
+```
+
+For this API you need to set the `amount`, `lookupAPIHash`, and `lookuprequestId` parameters in the payment parameters for instance.
+
+```Text Objective-C
+self.paymentParamForPassing.amount = @"Total amount";
+self.paymentParamForPassing.hashes.lookupApiHash = @"HMACSHA1 Signature";
+self.paymentParamForPassing.lookupRequestId = @"Any unique id";
+```
+
+### Request parameters
+
+The details of the parameters used in the **Lookup** API are:
+
+| Parameter           | `Description`                                                                                                         |
+| :------------------ | :-------------------------------------------------------------------------------------------------------------------- |
+| Amount              | Transaction Amount                                                                                                    |
+| Card Bin            | First 6 digits of the card number                                                                                     |
+| Currency            | Base Currency of Transaction (“INR”)                                                                                  |
+| Merchant Access Key | Merchant Access Key provided by PayU                                                                                  |
+| Merchant OrderId    | A unique request id for the Lookup API request                                                                        |
+| Product Type        | Use MCP to get all enabled currency on Merchant Access Key or DCC to get direct currency conversion for card currency |
+| Signature           | Hmac SHA1 hash created with formula explained below                                                                   |
+
+### Calculate the signature for hash
+
+Use the following data to calculate the signature for creating the HmacSHA1 hash.
+
+* `Signature` =HMAC-SHA1(data, key);
+* `Data` = baseCurrency+merchantOrderId+baseAmount
+* `Key` = Secret Key shared with the merchant at the time of onboarding
+* `Example`: INROBE-JU89-13151-11010000.00
+
+To integrate this API, call the `mcpLookup `method for instance:
+
+```Text Objective-C
+[webServiceResponse
+mcpLookup:self.paymentParamForPassing withCompletionBlock:^(PayUModelMultiCurrencyPayment *paymentRelatedDetails, NSString *errorMessage, id extraParam) {
+      if (errorMessage) {
+        // Something went wrong errorMessage is having the Detail
+      }
+      else{
+        // PayUModelMultiCurrencyPayment object is having the required detail
+      }
+}];
+```
+
+> 📘 Reference:
+>
+> For more information on Static Hashing, refer to [Generate Static Hash](doc:generate-static-hash-ios).
+
+## Check Pluxee Card Balance API
+The **Check Pluxee Card Balance** API can be used to fetch detail of the Sodexo card with the source ID.
+
+1. Set the sodexoSourceId and checkBalanceApiHash parameter for instance:
+
+```Text Objective-C
+self.paymentParamForPassing.sodexoSourceId = @"<Sodexo source id>;
+self.paymentParamForPassing.hashes.checkBalanceApiHash =  @"hash";
+```
+
+2. Call the `fetchSodexoCardDetails` method to integrate with this API similar to the following code block:
+
+```Text Objective-C
+[webServiceResponse
+fetchSodexoCardDetails.paymentParamForPassing withCompletionBlock:^(PayUModelSodexoCardDetail *sodexoCardDetail, NSString *errorMessage, id extraParam) {
+      if (errorMessage) {
+        // Something went wrong errorMessage is having the Detail
+      }
+      else{
+        // sodexoCardDetail object is having the required detail
+      }
+    }];
+```
+
+## Tokenized Payment Integration
+You can store and get stored card details from the vault.
+
+### Get tokenized payment details
+
+1. Get details of the stored card to make payment on another PG.
+
+```Text Objective-C
+self.paymentParam.userCredentials = @"<user_credentials>";  
+self.paymentParam.cardToken = @"<cardToken>";    
+self.paymentParam.amount = @"100";  
+self.paymentParam.currency = @"INR";
+self.paymentParamForPassing.hashes.getTokenizedPaymentDetailHash = @"hash";
+```
+
+2. Call the `getTokenizedPaymentDetails` method to integrate this similar to the following:
+
+```Text Objective-C
+[webServiceResponse getTokenizedPaymentDetails.paymentParamForPassing withCompletionBlock:^(PayUModelTokenizedPaymentDetails *tokenizedPaymentdetails,NSString *errorMessage, id extraParam) {
+            if (errorMessage) {
+        // Something went wrong errorMessage is having the Detail
+            }
+            else{
+        //It is good to go & deleteStoredCardMessage is having the full detail of it
+            }
+        }];
+```
+
+### Get tokenised stored cards
+
+This API is helpful in getting all the stored cards for a particular user.
+
+1. Set the`userCredentials` in the payment params similar to the following:
+
+```Text Objective-C
+self.paymentParam.userCredentials = @"<user_credentials>";  
+self.paymentParamForPassing.hashes.getTokenizeddStoredCardHash = @"hash";
+```
+
+2. Call the getTokenizedStoredCards method to integrate this API similar to the following:
+
+```Text Objecitve-C
+[webServiceResponse getTokenizedStoredCards:self.paymentParamForPassing withCompletionBlock:^(NSDictionary *dictStoredCard,NSString *errorMessage, id extraParam) {
+            if (errorMessage) {
+        // Something went wrong errorMessage is having the Detail
+            }
+            else{
+        //It is good to go & deleteStoredCardMessage is having the full detail of it
+            }
+        }];
+```
+
+### Delete tokenised stored cards
+
+This API is helpful in deleting stored cards.
+
+1. Set the`userCredentials` in the payment params similar to the following:
+
+```Text Objective-C
+self.paymentParam.userCredentials = @"<user_credentials>";  
+self.paymentParam.cardToken = @"<cardToken>";    
+self.paymentParam.networkToken = @"<networkToken>";  
+self.paymentParam.issuerToken = @"<issuerToken>";
+self.paymentParamForPassing.hashes.deleteTokenizedStoredCardHash = @"hash";
+```
+
+2. Call the `deleteTokenizedStoredCard` method to integrate this API similar to the following:
+
+```Text Objective-C
+[webServiceResponse deleteTokenizedStoredCard:self.paymentParamForPassing withCompletionBlock:^(NSString *deleteStoredCardStatus, NSString *deleteStoredCardMessage, NSString *errorMessage, id extraParam) {
+            if (errorMessage) {
+        // Something went wrong errorMessage is having the Detail
+            }
+            else{
+        //It is good to go & deleteStoredCardMessage is having the full detail of it
+            }
+        }];
+```
