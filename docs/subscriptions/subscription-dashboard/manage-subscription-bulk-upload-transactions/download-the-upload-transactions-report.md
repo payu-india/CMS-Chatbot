@@ -2,7 +2,7 @@
 title: Download the Bulk Upload Report
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: >-
     Download the Recurring Bulk Upload Report or Download the SI Bulk Upload
