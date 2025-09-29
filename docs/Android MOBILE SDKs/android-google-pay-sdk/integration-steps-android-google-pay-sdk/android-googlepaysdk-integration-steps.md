@@ -2,7 +2,7 @@
 title: 1. SDK Integration
 excerpt: This section describes how to integrate with Google Pay SDK.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Android Google Pay SDK Integration Steps
   description: >-
