@@ -18,7 +18,7 @@ This section provides a reference for the following Web Service APIs for Android
 
 Create an object of MerchantWebService with any of the supported API commands.
 
-```Text JAVA
+```java JAVA
 MerchantWebService merchantWebService = new MerchantWebService();
 merchantWebService.setKey(merchantKey); // Merchant key
 merchantWebService.setCommand(<Api Commands>); // Pass the command name
