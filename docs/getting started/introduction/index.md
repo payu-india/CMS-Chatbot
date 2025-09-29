@@ -77,6 +77,10 @@ A payment gateway is a technology used by merchants to accept debit or credit ca
 * [Recommendation Engine](https://docs.payu.in/docs/recommendation-engine)
 * [Refunds](https://docs.payu.in/docs/introduction-refunds)
 
+# MCP
+
+Communicate with the PayU Payments APIs using Model Context Protocol and collection payments. For more information, refer to [PayU MCP](https://docs.payu.in/docs/payu-mcp-server/).
+
 # Partnership and Payouts
 
 * **Partner Integration**: For more information, refer to [Partner - Introduction](https://docs.payu.in/docs/payu-partner-program-overview#/)
@@ -95,7 +99,3 @@ A payment gateway is a technology used by merchants to accept debit or credit ca
 
 * **Merchant Key and Salt**:  Before starting your integration, check your key and salt in the Dashboard. For more information, refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy) .
 * **Test Card, UPI, Wallet, etc**:  For the card, EMI, UPI, wallet, BNPL details to test the integration, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).
-
-## Get support
-
-Our dedicated support team is here to assist you if you encounter any issues or have questions during your integration process. Visit [https://help.payu.in](https://help.payu.in) and raise a ticket.
