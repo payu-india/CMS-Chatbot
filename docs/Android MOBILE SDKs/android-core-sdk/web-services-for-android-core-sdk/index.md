@@ -10,10 +10,76 @@ metadata:
 next:
   description: ''
 ---
-This section provides a reference for the following Web Service APIs for Android Core SDK. Before you integrate these APIs, you must follow [Step 1](#step-1-initialise-merchant-web-service) and [Step 2](#step-2-create-merchant-web-service-postdata) of this section.
+This section provides a reference for the following Web Service APIs for Android Core SDK.
 
-* [Enable Payment Options](https://docs.payu.in/docs/android-coresdk-enable-payment-options)
-* [Get Checkout Details API](https://docs.payu.in/docs/android-coresdk-get-checkout-details)
+## Enable Payment Options
+
+This API is used enable multiple payment options on your checkout page.
+
+<Callout icon="📘" theme="info">
+  **Hash logic**: The hash logic for this API is:
+
+  `<key>|payment_related_details_for_mobile_sdk|<userCredential>|<salt>`
+
+  For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
+</Callout>
+
+### Step 1: Execute GetPaymentRelatedDetailsTask
+
+This class is used to get payment-related details. It takes an instance of a class that implements the `PaymentRelatedDetailsListener` interface as input.
+
+```node Node
+GetPaymentRelatedDetailsTask paymentRelatedDetailsForMobileSdkTask = new GetPaymentRelatedDetailsTask(this);
+```
+
+The `PaymentRelatedDetailsListener` interface has an abstract method called `onPaymentRelatedDetailsResponse()`. This method is called when the payment-related details are received.
+
+### Step 2: Get Response using onPaymentRelatedDetailsResponse()
+
+Get response to determine the availability of various payment options (UPI, Google Pay, PhonePe, LazyPay, and Generic Intent) similar to the following code snippet:
+
+```node Node
+@Override
+public void onPaymentRelatedDetailsResponse(PayuResponse payuResponse) {
+mPayuResponse = payuResponse;
+// Check if UPI as payment option available.
+if(payuResponse.isUpiAvailable()){
+// To check if UPI as payment option is available
+}
+if(payuResponse.isGoogleTezAvailable()){
+// To check if Google Pay as payment option is available
+}
+if(payuResponse.isPhonePeIntentAvailable()){
+// To check if Phonepe as payment option is available
+}
+if(payuResponse.isLazyPayAvailable()){
+// To check if LazyPay as payment option is available
+}
+if(payuResponse.isGenericIntentAvailable()){
+// To check if Generic Intent as payment option is available
+}
+//For SI Payments
+if(payuResponse.isNBAvailableFoSI){
+//Fetch SI NB List from payuResponse.getSiBankList() method
+}
+}
+```
+
+This method is called when the payment-related details are received. This method takes a `PayuResponse` object as input. The `PayuResponse` object contains the payment-related details.
+
+The `onPaymentRelatedDetailsResponse()` method can be used to check if the following payment options are available:
+
+* UPI
+* Google Pay
+* PhonePe Intent
+* LazyPay
+* Generic Intent
+* The `onPaymentRelatedDetailsResponse()` method can also be used to fetch the list of SI banks if SI payments are enabled.
+
+## Get Checkout Details API
+
+<br />
+
 * [Lookup API](https://docs.payu.in/docs/lookup-api-web-service-android-core-sdk)
 * [VAS API](https://docs.payu.in/docs/vas-api-android-core-sdk)
 * [Eligible Bins for EMI API](https://docs.payu.in/docs/eligible-bins-for-emi-api-android-core-sdk)
