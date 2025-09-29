@@ -1,8 +1,9 @@
 ---
 title: Integration Steps
-excerpt: ''
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Android PhonePe SDK Integration Steps
   description: >-
@@ -14,8 +15,6 @@ metadata:
     - ' Steps to Integrate Android PhonePe SDK'
     - ' Android PhonePe SDK Integration Steps'
   robots: index
-next:
-  description: ''
 ---
 The Android PhonePe SDK integration involves the following steps:
 
