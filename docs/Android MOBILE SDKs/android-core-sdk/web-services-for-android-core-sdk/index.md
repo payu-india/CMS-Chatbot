@@ -28,36 +28,36 @@ merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use t
 
 For more information on Web Service hash generation, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
-> 📘 Generate Hash for MerchantWebService
->
-> To generate Hash refer to Hash Generation.
->
-> **Formula** :-sha512(key|command|var1|salt)
->
-> where
->
-> key= "Your Key"
->
-> command= \<"Api Commands"> // Pass Command Name
->
-> var1= \<"default"> // Pass the var1 value
->
-> salt= "Your SALT"
+<Callout icon="📘" theme="info">
+  **Generate Hash for MerchantWebService**: To generate Hash refer to Hash Generation, use the following algorithm:
 
-## Step 2: Create Merchant web service PostData
+  `sha512(key|command|var1|salt)`
 
-```Text JAVA
+  where
+
+  key= "Your Key"
+
+  command= \<"Api Commands"> // Pass Command Name
+
+  var1= \<"default"> // Pass the var1 value
+
+  salt= "Your SALT"
+</Callout>
+
+### Step 2: Create Merchant web service PostData
+
+```java JAVA
 PostData postData = new MerchantWebServicePostParams(merchantWebService).getMerchantWebServicePostParams();
 if (postData.getCode() == PayuErrors.NO_ERROR) {
 payuConfig.setData(postData.getResult());
 }
 ```
 
-> 📘 Troubleshoot Postdata code errors
->
-> If the PostData code snippet (above) is returning errors, check the data point set in merchantWebService.
+<Callout icon="📘" theme="info">
+  **Troubleshoot Postdata code errors**: If the PostData code snippet (above) is returning errors, check the data point set in merchantWebService.
+</Callout>
 
-## Commands
+### Commands
 
 | Commands                                 | Description                                                           | Task                                                                                                                                            | Listener                                   |
 | ---------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
@@ -417,6 +417,7 @@ After you execute `ValueAddedServiceTask`, the `onValueAddedServiceApiResponse` 
 ```
 
 ## Eligible Bins for EMI API
+
 The **Eligible BINs for EMI** API fetches a list of eligible Bins for EMI corresponding to each Bank name along with minimum amount. 
 
 <Callout icon="📘" theme="info">
@@ -450,7 +451,6 @@ Handle the API response for eligible bins for EMI and log the raw response for d
     Log.d(TAG, "onEligibleBinsForEMIApiResponse: " + payuResponse.getRawResponse());
 }
 ```
-
 
 Get EMI According to Interest API]([https://docs.payu.in/docs/get-emi-according-to-interest-api-android-core-sdk](https://docs.payu.in/docs/get-emi-according-to-interest-api-android-core-sdk))
 
