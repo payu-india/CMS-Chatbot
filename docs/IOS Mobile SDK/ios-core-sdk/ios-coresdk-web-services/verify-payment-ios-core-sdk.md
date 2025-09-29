@@ -2,7 +2,7 @@
 title: Verify Payment API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Verify Payment API – iOS Core SDK
   description: ''
