@@ -579,3 +579,29 @@ You can use the following Debit and Credit cards to test EMI integration.
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
 <EMITestWallets />
+
+## Go-live Checklist
+
+Ensure these steps before you deploy the integration in a live environment.
+
+### Collect Live payments
+
+After testing the integration end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
+
+<Callout icon="🚧" theme="warn">
+  **Generate Production Key and Salt**: Ensure that you are using the production merchant key and salt generated in the live mode. For more information, refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy).
+</Callout>
+
+<ProductionKeyAndSaltProcedure />
+
+### Checklist 2: Configure setIsProduction()
+
+Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
+
+### Checklist 3: Configure verify payment method
+
+Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
+
+### Checklist 4: Configure Webhook
+
+We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
