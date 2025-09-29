@@ -1,5 +1,5 @@
 ---
-title: Explore React Native SDKs
+title: React Native Mobile SDKs
 excerpt: ''
 deprecated: false
 hidden: false
