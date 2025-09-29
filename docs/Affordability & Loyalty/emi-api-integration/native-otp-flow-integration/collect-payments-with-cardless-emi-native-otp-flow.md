@@ -1,14 +1,13 @@
 ---
 title: Cardless EMI - Native OTP Flow
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The steps involved in cardless EMI with Native OTP:
 
@@ -26,7 +25,7 @@ Before initiating a payment request for a customer, it is necessary to check the
 
 Send the following additional parameters to PayU through a server-to-server curl request to initiate the payment. As a result of this API call, the customer will receive the OTP. For sample request and response, refer to [Collect Payment API - Server-to-Server](ref:_payment_server_to_server).
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -61,7 +60,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        s2s\_device\_info\
+        s2s_device_info
         `mandatory`
       </td>
 
@@ -76,7 +75,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        s2s\_client\_ip\
+        s2s_client_ip
         `mandatory`
       </td>
 
@@ -91,7 +90,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        txn\_s2s\_flow\
+        txn_s2s_flow
         `mandatory`
       </td>
 
