@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Pre-Authorize Payments
 excerpt: ''
 deprecated: false
 hidden: false
