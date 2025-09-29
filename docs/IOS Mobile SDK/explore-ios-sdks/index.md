@@ -1,5 +1,5 @@
 ---
-title: Explore iOS SDKs
+title: ' iOS Mobile SDKs'
 excerpt: Explore the iOS SDKs offered by PayU to find the best fit for your use case.
 deprecated: false
 hidden: false
