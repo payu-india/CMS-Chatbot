@@ -1,5 +1,5 @@
 ---
-title: Explore Server-Side Integrations
+title: Server-Side SDKs
 excerpt: >-
   Integrate the PayU Payment Gateway using our server SDKs available in multiple
   languages.
