@@ -1,14 +1,13 @@
 ---
 title: Check Pluxee Card Balance API
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Check Pluxee Card Balance API - iOS Core SDK
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The **Check Pluxee Card Balance** API can be used to fetch detail of the Sodexo card with the source ID.
 
