@@ -1,14 +1,13 @@
 ---
 title: WebView Integration in Android
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 ### Add WebView configurations
 
@@ -26,7 +25,7 @@ webSettings.setSupportMultipleWindows(true)
 
 ### Create postData for Payment
 
- for Payment
+for Payment
 
 Build a string with the payment parameters and pass it as `postData`. For more information on the payment parameters, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 
@@ -43,7 +42,7 @@ Build a string with the payment parameters and pass it as `postData`. For more i
  webView.postUrl("URL", postData);
 ```
 
-Pass the postData to load the PayU checkout form with the transaction data using *postUrl*() method.
+Pass the postData to load the PayU checkout form with the transaction data using _postUrl_() method.
 
 <Table align={["left","left"]}>
   <thead>
@@ -55,19 +54,13 @@ Pass the postData to load the PayU checkout form with the transaction data using
       <th>
         String. The endpoint of the API.
 
+        Test URL:
 
+        [https://test.payu.in/\_payment](https://test.payu.in/_payment)
 
+        Production URL:
 
-        Test URL: 
-
-        [https://test.payu.in/_payment](https://test.payu.in/_payment)
-
-
-
-
-        Production URL: 
-
-        [https://secure.payu.in/_payment](https://secure.payu.in/_payment)
+        [https://secure.payu.in/\_payment](https://secure.payu.in/_payment)
       </th>
     </tr>
   </thead>
@@ -92,9 +85,9 @@ Set the WebViewClient of the WebView object to a new instance of the WebViewClie
 **Step 1: Add WebViewClient class in WebView**
 
 1. Set the WebView’s client to a new instance of the WebViewClient class. Add the following methods of the WebViewClient class or handling interactions with the WebView: 
-2. `shouldOverrideUrlLoading()`\_—\_method is called when the WebView is about to load a URL. The method is used to override the default behavior and handle the URL request to support UPI intents.  
-3. `onPageFinished()`\_—\_method is called when the WebView has finished loading a page. The method is used to handle the success and failure scenarios of the request. 
-4. `onPageStarted()`\_—\_method is called when the WebView starts loading a page. The method can be used to show a loading indicator or perform any other necessary actions before the page starts loading.
+2. `shouldOverrideUrlLoading()`_—_method is called when the WebView is about to load a URL. The method is used to override the default behavior and handle the URL request to support UPI intents.  
+3. `onPageFinished()`_—_method is called when the WebView has finished loading a page. The method is used to handle the success and failure scenarios of the request. 
+4. `onPageStarted()`_—_method is called when the WebView starts loading a page. The method can be used to show a loading indicator or perform any other necessary actions before the page starts loading.
 
 ```java Kotlin
      private fun initWebViewClient(mWebView: WebView){
@@ -259,7 +252,7 @@ Add the following configuration to display an alert message when user clicks on 
 
 ## Handle in Chrome Custom Tab
 
-Open url in cct(chrome custom tab) - 
+Open url in cct(chrome custom tab) -
 
 ```
 val builder = CustomTabsIntent.Builder()  
@@ -273,7 +266,7 @@ if (context.isPackageInstalled("com.android.chrome")) {
 }
 ```
 
-Code to check if chrome is installed - 
+Code to check if chrome is installed -
 
 ```
  private fun Context.isPackageInstalled(packageName: String): Boolean {  
@@ -291,25 +284,25 @@ Code to check if chrome is installed -
 
 #### 1. Variable  should be set as true in session for fallback to work
 
- \-> PayuHandleIntent should be set as true in session for fallback to work.
+-> PayuHandleIntent should be set as true in session for fallback to work.
 
 #### 2. Some issues arise when merchants configure their system to close the webview whenever an error occurs on the checkout page
 
-\-> Merchant need not to handel such error like ERR\_BLOCKED\_BY\_ORB , let webview default behaviour handle it
+-> Merchant need not to handel such error like ERR_BLOCKED_BY_ORB , let webview default behaviour handle it
 
 #### 3. Integration Code of Webview - Given above
 
 #### 4. WebView loading again and again
 
-\-> Call webview\.loadUrl(url) only once in a session like in OnCreate of Activity or fragment(once in a session) , Please do not loadURL in onResume. 
+-> Call webview.loadUrl(url) only once in a session like in OnCreate of Activity or fragment(once in a session) , Please do not loadURL in onResume.
 
 #### 5. Do we need to add  configuration  to use checkout to  use local storage
 
-\-> WebSettings.domStorageEnabled = true 
+-> WebSettings.domStorageEnabled = true
 
 #### 6. User was not redirected to merchant page after making success payments.
 
-\-> Need to implement webchromeClient with payuhandleIntent 
+-> Need to implement webchromeClient with payuhandleIntent
 
 ```
 view!!.evaluateJavascript(  
@@ -319,21 +312,21 @@ view!!.evaluateJavascript(
         }
 ```
 
-and need to open new url in new webView or merchant need to call activity.startActivityForResult(intent,101) instead of  mWebView\.context.startActivity(intent) launch intent  and listen psp app response in activity in onActivityResult 
+and need to open new url in new webView or merchant need to call activity.startActivityForResult(intent,101) instead of  mWebView.context.startActivity(intent) launch intent  and listen psp app response in activity in onActivityResult
 
 #### 7. In the ICP checkout being opened within a webview inside the application. This configuration is leading to unexpected and unusual behavior, likely due to the way the webview is interacting with the ICP checkout
 
-\-> Merchant needs to pass userAgent in webViewSetting -  (webSettings.userAgentString = userAgent)
+-> Merchant needs to pass userAgent in webViewSetting -  (webSettings.userAgentString = userAgent)
 
 Example value of userAgent - Mozilla/5.0 (Linux; Android 13; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36
 
 #### 8. CSS Issues: Since different merchants use various languages in their applications, CSS issues have occasionally been reported in Flutter applications. While the layout may display correctly in web browsers like Safari and Chrome, it sometimes encounters problems when viewed in a Flutter webview. Eg android:windowSoftInputMode="adjustResize" - if in manifest file this is not added, keyboard opens on top of input field.
 
- \-> This may be due to wrong User Agent. always pass right User Agent to webView
+-> This may be due to wrong User Agent. always pass right User Agent to webView
 
-#### 9. How to handle window\.open in Webview
+#### 9. How to handle window.open in Webview
 
-\-> First set for multiple window in webview setting `webSettings.setSupportMultipleWindows(true)` and then set webview client for same and override onCreateWindow function. In onCreateWindow create new webView.
+-> First set for multiple window in webview setting `webSettings.setSupportMultipleWindows(true)` and then set webview client for same and override onCreateWindow function. In onCreateWindow create new webView.
 
 ```
   // To support multiple windows
