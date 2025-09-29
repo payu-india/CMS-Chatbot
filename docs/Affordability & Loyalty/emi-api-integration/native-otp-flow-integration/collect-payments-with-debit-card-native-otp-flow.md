@@ -1,16 +1,15 @@
 ---
 title: Debit Card EMI - Native OTP Flow
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
-The steps involved in debit card integration with native OTP flow: 
+The steps involved in debit card integration with native OTP flow:
 
 1. [Check Pre-EMI Eligibility](#step-1-check-pre-emi-eligibility)
 2. [Initiate the payment request](#step-2-initiate-the-payment-request)
@@ -26,7 +25,7 @@ Before initiating a payment request for a customer, it is necessary to check the
 
 Send the transaction information to PayU through a server-to-server curl request to initiate the transaction. As a result of this API call, the customer will receive the OTP. For more information, refer to [Collect Payment API - Server-to-Server](ref:_payment_server_to_server).
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -46,12 +45,12 @@ Send the transaction information to PayU through a server-to-server curl request
   <tbody>
     <tr>
       <td>
-        s2s\_device\_info
+        s2s_device_info
         `mandatory`
       </td>
 
       <td>
-        `String` This parameter must have the customer agent’s device.  <br/>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        `String` This parameter must have the customer agent’s device.  <br />**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -61,12 +60,12 @@ Send the transaction information to PayU through a server-to-server curl request
 
     <tr>
       <td>
-        s2s\_client\_ip\
+        s2s_client_ip
         `mandatory`
       </td>
 
       <td>
-        `String` This parameter must have the source IP of the customer.  <br/>**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        `String` This parameter must have the source IP of the customer.  <br />**Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -76,7 +75,7 @@ Send the transaction information to PayU through a server-to-server curl request
 
     <tr>
       <td>
-        txn\_s2s\_flow\
+        txn_s2s_flow
         `mandatory`
       </td>
 
