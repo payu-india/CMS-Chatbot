@@ -1,14 +1,13 @@
 ---
 title: Check Is Domestic API
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Check Is Domestic API - iOS Core SDK
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The **Check is Domestic** API is used to get the following using the BIN number, that is, the first six digits of a credit card or debit card:
 
@@ -19,12 +18,12 @@ The **Check is Domestic** API is used to get the following using the BIN number,
 
 The command name and var1 will be:
 
-* Command Name - check\_isDomestic
+* Command Name - check_isDomestic
 * Var1 - Card Number(Like. "5123456789012346")
 
 > 📘 Hash logic
 >
-> The hash will be in the format of: 
+> The hash will be in the format of:
 >
 > `Sha512(Key|Command|Var1|Salt)`
 >
