@@ -2,7 +2,7 @@
 title: Enable Payment Options
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Enable Payment Options API - Android Core SDK
   description: ''
