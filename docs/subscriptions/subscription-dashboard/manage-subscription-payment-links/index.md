@@ -12,11 +12,11 @@ next:
 ---
 You can manage or share payment links as described in the following sections:
 
-* [View a Subscription Payment Link Details](doc:view-a-subscription-payment-link-details)
-* [Filter the Subscription Payment Links](doc:filter-the-subscription-payment-links)
-* [Deactivate a Subscription Payment Link](doc:deactivate-a-subscription-payment-link)
-* [Duplicate a Subscription Payment Link](doc:duplicate-a-subscription-payment-link)
-* [Share a Subscription Payment Link](doc:share-a-subscription-payment-link)
+* [Filter the Payment Links](#filter-the-payment-links)
+* [View a Subscription Payment Link Details](#view-a-subscription-payment-link-details)
+* [Deactivate a Payment Link](#deactivate-a-payment-link)
+* [Duplicate a Payment Link](=true#duplicate-a-payment-link)
+* [Share a Payment Link](#true#share-a-payment-link)
 
 <Callout icon="📘" theme="info">
   **Reference**: You can perform the following for Payment Links on Subscriptions Dashboard similar to Transactions Dashboard:
