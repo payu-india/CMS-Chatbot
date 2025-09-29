@@ -1,8 +1,9 @@
 ---
 title: Cash Card Integration
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Cash Card Integration for iOS Core SDK
   description: ''
@@ -10,8 +11,6 @@ metadata:
     - Cash Card Integration for iOS Core SDK
     - iOS Cash Card Integration
   robots: index
-next:
-  description: ''
 ---
 To pay using a Cash Card, perform the following steps
 
