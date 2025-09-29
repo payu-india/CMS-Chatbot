@@ -2,7 +2,7 @@
 title: 1. API Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: 1. API Integration - PayU Hosted Checkout
   description: ''
