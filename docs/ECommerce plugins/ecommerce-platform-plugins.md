@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: eCommerce Plugins
 excerpt: >-
   PayU allows you to integrate the Payment Gateway plugin for any e-commerce or
   publishing website. This plugin helps you collect payments from your customers
