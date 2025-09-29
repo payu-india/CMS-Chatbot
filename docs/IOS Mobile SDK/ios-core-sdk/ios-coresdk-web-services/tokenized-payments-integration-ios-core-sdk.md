@@ -1,14 +1,13 @@
 ---
 title: Tokenized Payments Integration
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Tokenized Payments Integration - iOS Core SDK
   description: ''
   robots: index
-next:
-  description: ''
 ---
 You can store and get stored card details from the vault.
 
@@ -39,7 +38,7 @@ self.paymentParamForPassing.hashes.getTokenizedPaymentDetailHash = @"hash";
 
 ## Get tokenised stored cards
 
-This API is helpful in getting all the stored cards for a particular user. 
+This API is helpful in getting all the stored cards for a particular user.
 
 1. Set the`userCredentials` in the payment params similar to the following:
 
