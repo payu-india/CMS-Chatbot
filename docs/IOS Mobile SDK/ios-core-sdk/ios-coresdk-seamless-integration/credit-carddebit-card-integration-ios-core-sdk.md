@@ -1,8 +1,9 @@
 ---
 title: Credit Card/Debit Card Integration
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Credit Card/Debit Card Integration - iOS Core SDK
   description: ''
@@ -10,8 +11,6 @@ metadata:
     - Credit Card/Debit Card Integration for iOS Core SDK
     - ' iOS Core SDK Card Integration'
   robots: index
-next:
-  description: ''
 ---
 To pay using a credit card or debit card, perform the following steps.
 
