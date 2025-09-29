@@ -2,7 +2,7 @@
 title: 2. Test Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: >-
