@@ -2,7 +2,7 @@
 title: Fetch Payment Options API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Fetch Payment Options API - iOS Core SDK
   description: ''
