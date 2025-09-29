@@ -2,7 +2,7 @@
 title: Check Balance API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Check Balance API - Android Core SDK
   description: ''
