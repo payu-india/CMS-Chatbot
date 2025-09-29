@@ -12,9 +12,9 @@ next:
 ---
 You can manage the registration or recurring transactions using bulk upload as described in the following sections:
 
-* [Filter the Bulk Upload Transactions](doc:filter-the-bulk-upload-transactions)
-* [Download the Bulk Upload Report](doc:download-the-upload-transactions-report)
-* [Deactivate a Bulk Upload Payment Link](doc:deactivate-bulk-upload-payment-links)
+* [Filter the Uploaded Transactions](#filter-the-uploaded-transactions)
+* [Download the Uploaded Transactions Report](#download-the-uploaded-transactions-report)
+* [Deactivate an Uploaded Payment Link](#deactivate-an-uploaded-payment-link)
 
 <Callout icon="📘" theme="info">
   **Reference**: You can perform the following for bulk upload transactions on Subscriptions Dashboard similar to Transactions Dashboard:
@@ -81,7 +81,7 @@ The "Report Ready to Download" message is displayed after the report is generate
 
 5. Click the **Download and Share** button to download the report.
 
-## Deactivate a Uploaded Payment Link
+## Deactivate an Uploaded Payment Link
 
 To deactivate a registration transactions done through bulk upload:
 
