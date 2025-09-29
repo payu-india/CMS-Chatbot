@@ -33,7 +33,17 @@ A payment gateway is a technology used by merchants to accept debit or credit ca
 * Enables you to accept multiple payment types and cards securely
 * Reduces declined payments with real time transactions.
 
-# Collect Payments
+> 📘 PayU recommends you to:
+>
+> * Understand the product integration steps on this **Integration Guide** and later refer to [API Reference](ref:introduction-api-reference).
+>
+> * The [API Reference](ref:introduction-api-reference) pages for various APIs allows you to make mock API calls with most of the PayU APIs (using a static test key).  Also, it provides support in 16 language bindings, so you can get the source code in apart from bash or cURL.
+>
+> * PayU recommends you to integrate with Test environment initially for all the integration before you go live to Production environment.
+>
+> * It is recommended to follow the **Integration Checklist** for checkout or SDK integrations to ensure that your integration is complete before making your integration live.
+
+## Collect Payments
 
 * [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted)
 * [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted)
@@ -72,21 +82,14 @@ A payment gateway is a technology used by merchants to accept debit or credit ca
 * **Partner Integration**: For more information, refer to [Partner - Introduction](https://docs.payu.in/docs/payu-partner-program-overview#/)
 * **Payouts**: For more information, refer to [Payouts - Introduction](https://docs.payu.in/docs/introduction-to-payouts/)
 
-> 📘 PayU recommends you to:
->
-> * Understand the product integration steps on this **Integration Guide** and later refer to [API Reference](ref:introduction-api-reference).
->
-> * The [API Reference](ref:introduction-api-reference) pages for various APIs allows you to make mock API calls with most of the PayU APIs (using a static test key for General or Integration APIs).  Also, it provides support in 16 language bindings, so you can get the source code in apart from cURL.
->
-> * PayU recommends you to integrate with Test environment initially for all the integration before you go live to Production enviroment.
->
-> * It is recommended to follow the **Integration Checklist** for checkout or SDK integrations to ensure that your integration is complete before making your integration live.
-
 # Wallets
 
 * [Merchant Wallets](https://docs.payu.in/docs/introduction-to-merchant-wallet/)
 
 # Bill Payments
+
+* [Connect Agent API Integration](https://docs.payu.in/docs/connect-agent-api-integration)
+* [Recharge API Integration](https://docs.payu.in/docs/recharge-api-integration)
 
 # Developer resources
 
