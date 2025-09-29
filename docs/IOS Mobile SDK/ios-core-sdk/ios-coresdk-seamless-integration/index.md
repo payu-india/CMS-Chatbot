@@ -13,13 +13,15 @@ next:
 > ❗️ Before you begin
 >
 > * To download iOS SDK through CocoaPod, refer to CocoaPods Integration.
-> * Run the sample app:\
->   i. Download latest SDK version and unzip it.\
+> * Run the sample app:
+>   i. Download latest SDK version and unzip it.
 >   ii. Unzip Release-Universal, now drag and drop the content of unzipped file into Sample App
 
 ***
 
-## Step 1: Initial set up
+## Prerequisites
+
+### Step 1: Initial set up
 
 To perform the initial setup:
 
@@ -129,7 +131,7 @@ paymentParamForPassing.hashes.offerHash = "1e99fdb59bd91c1a85624104c0fcfae34d7fc
 
 ***
 
-## Step 2: Generate URL request for payment
+### Step 2: Generate URL request for payment
 
 To generate an URL request (and post parameters), you need to create an object as `createRequest `of the PayUCreateRequest class as shown in the following code block:
 
@@ -144,12 +146,440 @@ The callbacks give your URLRequest as well as post parameters (NSString format).
 
 The following payment types are supported by SDK, and additional parameters are supported. The additional parameters that can be configured in the createRequest object created earlier are described in the following sections:
 
-* [Credit Card/Debit Card Integration](https://docs.payu.in/docs/credit-carddebit-card-integration-ios-core-sdk)
-* [Stored Card Integration](https://docs.payu.in/docs/stored-card-integration-ios-core-sdk)
-* [Tokenized Card Payments](https://docs.payu.in/docs/tokenized-card-payment-ios-core-sdk)
-* [Net Banking Integration](https://docs.payu.in/docs/net-banking-integration-ios-core-sdk)
-* [Cash Card Integration](https://docs.payu.in/docs/cash-card-ios-core-sdk)
-* [EMI Payment Integration](https://docs.payu.in/docs/emi-payment-integration-ios-core-sdk)
-* [LazyPay BNPL Integration](https://docs.payu.in/docs/lazypay-bnpl-integration-ios-core-sdk)
-* [TwidPay BNPL Integration](https://docs.payu.in/docs/twidpay-integration-ios-core-sdk)
-* [Pluxee Card Integration](https://docs.payu.in/docs/pluxee-card-integration-ios-core-sdk)
+## Credit Card/Debit Card Integration
+To pay using a credit card or debit card, perform the following steps.
+
+1. Set the following credit card parameters:
+
+```swift Swift
+paymentParamForPassing.cardNumber = "5123456789012346" //cardNumber
+paymentParamForPassing.nameOnCard = "name" //Name on card
+paymentParamForPassing.expYear = "2018" //Expiry year
+paymentParamForPassing.expMonth = "11" //ExpiryMonth
+paymentParamForPassing.cvv = "123" //CVV
+paymentParamForPassing.storeCardName = "My TestCard" //If you want to save card then pass StoreCardName otherwise it will not save & make sure userCredentials are provided
+```
+```objectivec Objective-C
+        self.paymentParamForPassing.cardNumber = @"5123456789012346";//cardNumber
+        self.paymentParamForPassing.nameOnCard = @"name";//Name on card
+        self.paymentParamForPassing.expYear = @"2018";//Expiry year
+        self.paymentParamForPassing.expMonth = @"11";//ExpiryMonth
+        self.paymentParamForPassing.CVV = @"123";//CVV
+        self.paymentParamForPassing.storeCardName = @"My TestCard";//If you want to save card then pass StoreCardName otherwise it will not save & make sure userCredentials are provided
+```
+
+2. Get the request by using the `createRequestWithPaymentParam` method as follows:
+
+```swift Swift
+createRequest().createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_CCDC, withCompletionBlock: { request, postParam, error in
+    if error == nil {
+        //It is good to go state. You can use request parameter in webview to open Payment Page
+    } else {
+        //Something went wrong with Parameter, error contains the error Message string
+    }
+})
+```
+```objectivec Objective-C
+        self.createRequest = [PayUCreateRequest new];
+        [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_CCDC withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
+        if (error == nil) {
+        //It is good to go state. You can use request parameter in webview to open Payment Page
+        }
+        else{
+        //Something went wrong with Parameter, error contains the error Message string
+        }
+    }];
+```
+
+<br />
+
+## Stored Card Integration
+To pay using a stored card, perform the following steps.
+
+1. Set the stored card parameter similar to the following code snippet:
+
+```swift Swift
+let modelStoredCard = paymentRelatedDetail.storedCardArray[indexPath.row] as? PayUModelStoredCard
+
+paymentParamForPassing.cardToken = modelStoredCard?.cardToken
+paymentParamForPassing.cardBin = modelStoredCard?.cardBin
+paymentParamForPassing.cvv = "123" //CVV
+```
+```objectivec Objective-C
+    PayUModelStoredCard *modelStoredCard = [self.paymentRelatedDetail.storedCardArray objectAtIndex:indexPath.row];
+
+    self.paymentParamForPassing.cardToken = modelStoredCard.cardToken;
+    self.paymentParamForPassing.cardBin = modelStoredCard.cardBin;
+    self.paymentParamForPassing.CVV = @"123";//CVV
+```
+
+2. Get the request by using the`createRequestWithPaymentParam` method similar to the following code snippet:
+
+```swift Swift
+createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_STOREDCARD, withCompletionBlock: { request, postParam, error in
+    if error == nil {
+        //It is good to go state. You can use request parameter in webview to open Payment Page
+    } else {
+        //Something went wrong with Parameter, error contains the error Message string
+    }
+})
+```
+```objectivec Objective-C
+   self.createRequest = [PayUCreateRequest new];
+    [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_STOREDCARD withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
+    if (error == nil) {
+    //It is good to go state. You can use request parameter in webview to open Payment Page
+    }
+    else{
+    //Something went wrong with Parameter, error contains the error Message string
+    }
+}];
+```
+
+## Tokenized Card Payments
+To pay using a stored card, perform the following steps.
+
+1. Set the stored card parameter similar to the following code snippet:
+
+```swift Swift
+let modelStoredCard = paymentRelatedDetail.storedCardArray[indexPath.row] as? PayUModelStoredCard
+
+paymentParamForPassing.cardToken = modelStoredCard?.cardToken
+paymentParamForPassing.cardBin = modelStoredCard?.cardBin
+paymentParamForPassing.cvv = "123" //CVV
+```
+```objectivec Objective-C
+    PayUModelStoredCard *modelStoredCard = [self.paymentRelatedDetail.storedCardArray objectAtIndex:indexPath.row];
+
+    self.paymentParamForPassing.cardToken = modelStoredCard.cardToken;
+    self.paymentParamForPassing.cardBin = modelStoredCard.cardBin;
+    self.paymentParamForPassing.CVV = @"123";//CVV
+```
+
+2. Get the request by using the`createRequestWithPaymentParam` method similar to the following code snippet:
+
+```swift Swift
+createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_STOREDCARD, withCompletionBlock: { request, postParam, error in
+    if error == nil {
+        //It is good to go state. You can use request parameter in webview to open Payment Page
+    } else {
+        //Something went wrong with Parameter, error contains the error Message string
+    }
+})
+```
+```objectivec Objective-C
+   self.createRequest = [PayUCreateRequest new];
+    [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_STOREDCARD withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
+    if (error == nil) {
+    //It is good to go state. You can use request parameter in webview to open Payment Page
+    }
+    else{
+    //Something went wrong with Parameter, error contains the error Message string
+    }
+}];
+```
+
+## Net Banking Integration
+To pay using Net Banking, perform the following steps.
+
+1. Set the Net Banking parameter as follows:
+
+```swift Swift
+paymentParamForPassing.bankCode = "AXIB" //BankCode
+```
+```objectivec Objective-C
+```
+
+2. Get the request by using the `createRequestWithPaymentParam` method as follows:
+
+```swift Swift
+createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_NET_BANKING, withCompletionBlock: { request, postParam, error in
+if error == nil {
+//It is good to go state. You can use request parameter in webview to open Payment Page
+} else {
+//Something went wrong with Parameter, error contains the error Message string
+}
+})
+```
+```objectivec Objective-C
+    self.createRequest = [PayUCreateRequest new];
+    [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_NET_BANKING withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
+    if (error == nil) {
+    //It is good to go state. You can use request parameter in webview to open Payment Page
+    }
+    else{
+    //Something went wrong with Parameter, error contains the error Message string
+    }
+}];
+```
+
+<br />
+
+## Cash Card Integration
+To pay using a Cash Card, perform the following steps
+
+1. Set the cashcard parameter as follows:
+
+```swift Swift
+  paymentParamForPassing.bankCode = "AXIB" //BankCode
+```
+```objectivec
+ self.paymentParamForPassing.bankCode = @"AXIB";//BankCode
+```
+
+2. Get the request by using the `createRequestWithPaymentParam` method for instance.
+
+```swift Swift
+createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_CASHCARD, withCompletionBlock: { request, postParam, error in
+if error == nil {
+//It is good to go state. You can use request parameter in webview to open Payment Page
+} else {
+//Something went wrong with Parameter, error contains the error Message string
+}
+})
+```
+```objectivec Objective-C
+    self.createRequest = [PayUCreateRequest new];
+    [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing
+     forPaymentType:PAYMENT_PG_CASHCARD withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
+       if (error == nil) {
+          //It is good to go state. You can use request parameter in webview to open Payment Page
+       }
+       else{
+         //Something went wrong with Parameter, error contains the error Message string
+       }
+    }];
+```
+
+## EMI Payment
+The section describes the following methods to collect payments with EMI:
+
+* [EMI](#emi)
+* [Cardless EMI](#cardless-emi)
+* [Subvention EMI](#subvention-emi)
+
+### EMI
+
+To pay using EMI, perform the following steps.
+
+1. Set the EMI parameter for instance:
+
+```objectivec Objective-C
+    self.paymentParamForPassing.bankCode = @"EMI03";//BankCode
+    self.paymentParamForPassing.expiryYear = @"2019";
+    self.paymentParamForPassing.expiryMonth = @"12";
+    self.paymentParamForPassing.nameOnCard = @"test";
+    self.paymentParamForPassing.cardNumber = @"5123456789012346";
+    self.paymentParamForPassing.CVV = @"123";
+```
+```swift Swift
+paymentParamForPassing.bankCode = "EMI03" //BankCode
+paymentParamForPassing.expiryYear = "2019"
+paymentParamForPassing.expiryMonth = "12"
+paymentParamForPassing.nameOnCard = "test"
+paymentParamForPassing.cardNumber = "5123456789012346"
+paymentParamForPassing.cvv = "123"
+```
+
+2. Get the request by using the `createRequestWithPaymentParam` method for instance.
+
+```objectivec Objective-C
+self.createRequest = [PayUCreateRequest new];
+[self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_EMI withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
+    if (error == nil) {
+            //It is good to go state. You can use request parameter in webview to open Payment Page
+    }
+    else{
+     //Something went wrong with Parameter, error contains the error Message string
+
+    }
+}];
+```
+```swift Swift
+createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_EMI, withCompletionBlock: { request, postParam, error in
+if error == nil {
+//It is good to go state. You can use request parameter in webview to open Payment Page
+} else {
+//Something went wrong with Parameter, error contains the error Message string
+}
+})
+```
+
+### Cardless EMI
+
+To Pay using CardlessEMI, you need to set a parameter similar to the following code snippet:
+
+```objectivec Objective-C
+    self.paymentParamForPassing.bankCode = @"ZESTMON";//BankID
+    self.paymentParamForPassing.isCardlessEMI = true;
+    self.paymentParamForPassing.phoneNumber = @"9999999999";
+    
+```
+```swift Swift
+paymentParamForPassing.bankCode = "ZESTMON" //BankID
+paymentParamForPassing.isCardlessEMI = true
+paymentParamForPassing.phoneNumber = "99999999"
+```
+
+### Subvention EMI
+
+To pay using Subvention EMI, perform the following steps.
+
+1. Set the value of the `subventionAmount` parameter of `paymentParams`:
+
+```objectivec Objective-C
+    self.paymentParamForPassing.bankCode = @"EMI03";//BankCode
+    self.paymentParamForPassing.expiryYear = @"2019";
+    self.paymentParamForPassing.expiryMonth = @"12";
+    self.paymentParamForPassing.nameOnCard = @"test";
+    self.paymentParamForPassing.cardNumber = @"5123456789012346";
+    self.paymentParamForPassing.CVV = @"123";
+
+    self.paymentParamForPassing.subventionAmount = @"3000";
+```
+```swift Swift
+paymentParamForPassing.bankCode = "EMI03" //BankCode
+paymentParamForPassing.expiryYear = "2019"
+paymentParamForPassing.expiryMonth = "12"
+paymentParamForPassing.nameOnCard = "test"
+paymentParamForPassing.cardNumber = "5123456789012346"
+paymentParamForPassing.cvv = "123"
+paymentParamForPassing.subventionAmount = "3000"
+```
+
+2. Get the request by using the`createRequestWithPaymentParam` method as follows:
+
+```objectivec Objective-C
+Get the request by using createRequestWithPaymentParam method as follows:
+```
+```swift Swift
+createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_EMI, withCompletionBlock: { request, postParam, error in
+    if error == nil {
+        //It is good to go state. You can use request parameter in webview to open Payment Page
+    } else {
+        //Something went wrong with Parameter, error contains the error Message string
+    }
+})
+```
+
+<Callout icon="📘" theme="info">
+  **Hashing format of a subvention transaction**: If subventionAmount is passed, the hash formula for payment hash will be similar to the following format: `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|SubventionAmount)`
+</Callout>
+
+### Fetch a List of No-Cost EMI-supporting banks
+
+Pass the value for the subventionEligibility parameter as “all” in the Fetch Payment Option WebService. For more information refer to Web Services for Core.
+
+
+## LazyPay BNPL Integration
+To pay using LazyPay (BNPL), perform the following steps.
+
+1. Set the Notify URL to the HTTPS Callback URL of the merchant where notification of transaction status will be sent on completion of a transaction.
+
+```objectivec Objective-C
+self.paymentParamForPassing.notifyURL= @"https://notifyURL.com";
+```
+```swift Swift
+paymentParamForPassing.notifyURL = "https://notifyURL.com"
+```
+
+2. Get the request by using the`createRequestWithPaymentParam` method as follows:
+
+```objectivec Objective-C
+    self.createRequest = [PayUCreateRequest new];
+
+    [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_LAZYPAY withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
+      if (error == nil) {
+        //It is good to go. You can use request parameter in webview to open Payment Page
+      }
+      else{
+        //Something went wrong with Parameter, error contains the error Message string
+      }
+    }];
+```
+```swift Swift
+reateRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_LAZYPAY, withCompletionBlock: { request, postParam, error in
+if error == nil {
+//It is good to go. You can use request parameter in webview to open Payment Page
+} else {
+//Something went wrong with Parameter, error contains the error Message string
+}
+})
+```
+## TWID Pay BNPL Integration
+To pay using TWID Pay:
+
+1. Create the post data with `CASH_CARD_TWID`:
+
+```objectivec Objective-C
+self.paymentParamForPassing.bankCode = CASH_CARD_TWID;//BankCode
+```
+```swift Swift
+paymentParamForPassing.bankCode = CASH_CARD_TWID //BankCode
+```
+
+2. Get the Twid customer hash in the `field5` param of PayuResponse, which can be used in the next transactions to skip authentication.
+
+```objectivec Objective-C
+    self.paymentParamForPassing.twidCustomerHash = @"Twid customer hash";
+  
+```
+```swift Swift
+paymentParamForPassing.twidCustomerHash = "Twid customer hash"
+```
+## Pluxee Card Integration
+To pay using Pluxee card:
+
+1. Create the post data with the`PAYMENT_PG_SODEXO `:
+
+```Text Objective-C
+    self.paymentParamForPassing.cardNumber = @"<Sodexo card number>";//cardNumber
+    self.paymentParamForPassing.nameOnCard = @"name";//Name on card
+    self.paymentParamForPassing.expYear = @"2018";//Expiry year
+    self.paymentParamForPassing.expMonth = @"11";//ExpiryMonth
+    self.paymentParamForPassing.CVV = @"123";//CVV
+    self.paymentParamForPassing.shouldSaveCard = YES;//If you want to save card then pass it otherwise it will not save 
+```
+```Text Swift
+self.paymentParamForPassing.cardNumber = "<Sodexo card number>";//cardNumber
+self.paymentParamForPassing.nameOnCard = "name";//Name on card
+self.paymentParamForPassing.expYear = "2018";//Expiry year
+self.paymentParamForPassing.expMonth = "11";//ExpiryMonth
+self.paymentParamForPassing.CVV = "123";//CVV
+self.paymentParamForPassing.shouldSaveCard = true;//If you want to save card then pass it otherwise it will not save 
+```
+
+2. Get the request by using the`createRequestWithPaymentParam` method similar to the following code snippet:
+
+```Text Objective-C
+        self.createRequest = [PayUCreateRequest new];
+        [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_SODEXO withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
+        if (error == nil) {
+        //It is good to go state. You can use request parameter in webview to open Payment Page
+        }
+        else{
+        //Something went wrong with Parameter, error contains the error Message string
+        }
+    }];
+```
+```Text Swift
+createRequest().createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_SODEXO, withCompletionBlock: { request, postParam, error in
+    if error == nil {
+        //It is good to go state. You can use request parameter in webview to open Payment Page
+    } else {
+        //Something went wrong with Parameter, error contains the error Message string
+    }
+})
+```
+
+The successful or failed payment response is sent by PayU.
+
+3. Get the Sodexo source id in the field3 param of PayuResponse, which can be used to show and get stored Sodexo card details and also can be used for initiating payment.
+
+```Text Objective-C
+    self.paymentParamForPassing.sodexoSourceId = @"<Sodexo source id>";
+    
+```
+```Text Swift
+    self.paymentParamForPassing.sodexoSourceId = "<Sodexo source id>"
+```
