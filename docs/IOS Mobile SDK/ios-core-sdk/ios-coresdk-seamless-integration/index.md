@@ -467,7 +467,7 @@ createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPayment
 ```
 
 <Callout icon="📘" theme="info">
-  **Hashing format of a subvention transaction**: If subventionAmount is passed, the hash formula for payment hash will be similar to the following format: `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|SubventionAmount)`
+  **Hashing algorithm of a subvention transaction**: If subventionAmount is passed, the hash formula for payment hash will be similar to the following algorithm: `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|SubventionAmount)`
 </Callout>
 
 ### Fetch a List of No-Cost EMI-supporting banks
@@ -593,7 +593,9 @@ The successful or failed payment response is sent by PayU.
 ```
 
 <br />
+
 ## Test the Integration
+
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 You can make test payments using one of the payment methods configured at the Checkout.
@@ -625,9 +627,9 @@ You can use either of the following VPAs to test your UPI-related integration:
 * [anything@payu](anything@payu)
 * [9999999999@payu.in](mailto:9999999999@payu.in)
 
-> ❗️ Callout
->
-> The UPI in-app and UPI intent flow is not available in the Test mode.
+<Callout icon="❗️" theme="error">
+  **Not available in Test mode**: The UPI in-app and UPI intent flow is not available in the Test mode.
+</Callout>
 
 #### Test cards for EMI
 
@@ -775,8 +777,11 @@ You can use the following wallets and their corresponding credentials to test wa
     </tr>
   </tbody>
 </Table>
-<br/>
+
+<br />
+
 ## Go-live Checklist
+
 Ensure these steps before you deploy the integration in a live environment.
 
 ### Collect Live Payments
