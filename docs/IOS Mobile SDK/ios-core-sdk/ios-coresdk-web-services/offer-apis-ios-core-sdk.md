@@ -1,14 +1,13 @@
 ---
 title: Offer APIs
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Offer APIs - Core iOS SDK
   description: ''
   robots: index
-next:
-  description: ''
 ---
 This section includes the offer APIs for iOS Core SDK:
 
