@@ -2,7 +2,7 @@
 title: 1. SDK Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: PayU iOS SDK Checkout Pro Integration Steps
   description: >-
