@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: International Payments
 excerpt: ''
 deprecated: false
 hidden: false
