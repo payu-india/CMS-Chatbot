@@ -1,8 +1,9 @@
 ---
 title: Change the Language
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Change the Language for your PayU Checkout Page
   description: >-
@@ -10,8 +11,6 @@ metadata:
     match your customers’ preferences. This page provides information on how to
     use the udf1 parameter to specify the language code for your checkout page.
   robots: index
-next:
-  description: ''
 ---
 To change the display language in PayU Hosted Checkout, add the `language` parameter to the payment request API call. The following video shows how vernacular support can improve your business:
 
@@ -38,4 +37,4 @@ curl -X POST "https://test.payu.in/_payment" \
 
 The PayU payment page is displayed with the display language as “Hindi” similar to the following screenshot:
 
-![](https://files.readme.io/3aae0ef-hindipage.png)
+<Image border={false} src="https://files.readme.io/3aae0ef-hindipage.png" />
