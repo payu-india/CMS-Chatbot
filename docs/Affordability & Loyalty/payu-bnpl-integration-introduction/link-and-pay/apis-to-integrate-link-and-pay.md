@@ -1,5 +1,5 @@
 ---
-title: APIs to Integrate Link & Pay
+title: APIs to Integrate Link and Pay
 excerpt: ''
 deprecated: false
 hidden: false
