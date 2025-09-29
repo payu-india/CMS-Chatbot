@@ -2,7 +2,7 @@
 title: Get Card Information API
 excerpt: Check isDomestic
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Get Card Information API - Android Core SDK
   description: ''
