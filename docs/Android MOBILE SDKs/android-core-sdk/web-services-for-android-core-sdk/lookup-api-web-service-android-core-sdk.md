@@ -2,7 +2,7 @@
 title: Lookup API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Lookup API - Android Core SDK
   description: ''
