@@ -1,7 +1,7 @@
 ---
 title: Manage Loyalty Edge Campaigns
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
