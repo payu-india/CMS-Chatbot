@@ -2,7 +2,9 @@
 title: 2. Test the Integration
 excerpt: Use the Test mode to check if the integration is working as expected.
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Test the Android Custom Browser SDK Integration
   description: >-
@@ -19,8 +21,6 @@ metadata:
     - Test Mobile payment integration with PayU Android SDK
     - PayU Android CB for Mobile Integration Test
   robots: index
-next:
-  description: ''
 ---
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
@@ -201,10 +201,9 @@ You can use the following wallets and their corresponding credentials to test wa
       </td>
 
       <td>
-        Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: 
+        Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location:
 
         [https://developer.phonepe.com/v1/docs/setting-up-test-account](https://developer.phonepe.com/v1/docs/setting-up-test-account)
-
 
         Download the app and register your mobile number and follow the instructions as described in the above PhonePe docs.
       </td>
