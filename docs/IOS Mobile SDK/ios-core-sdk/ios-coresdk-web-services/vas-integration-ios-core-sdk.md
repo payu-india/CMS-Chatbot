@@ -1,14 +1,13 @@
 ---
 title: VAS Integration API
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: VAS Integration API - iOS Core SDK
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The **VAS Integration** API is used to get the list of down Net Banking and down card BIN. Integrate this API by calling the `callVASForMobileSDKWithPaymentParam`. The command name and var1 for this API integration are:
 
