@@ -1,8 +1,9 @@
 ---
 title: Enable Pluxee Card on Checkout
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Enable Sodexo Payments for PayU Hosted Checkout
   description: >-
@@ -11,8 +12,6 @@ metadata:
     process. Elevate your payment options and offer convenient Sodexo payment
     solutions to your customers using PayU India's API.
   robots: index
-next:
-  description: ''
 ---
 Pay Hosted Checkout (non-seamless) integration provides you to collect payments from customers using Pluxee (earlier Sodexo BRS) meal card on specific merchant categories such as restaurants, groceries etc.
 
@@ -111,7 +110,7 @@ For a sample request, refer to  [Collect Payment API - PayU Hosted Checkout](ref
 
 The customer selects the Sodexo payment option on PayU’s page.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/10/Screenshot-2022-10-28-at-12.14.55-PM-837x1024.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/10/Screenshot-2022-10-28-at-12.14.55-PM-837x1024.png" />
 
 After the customer selects the **Sodexo** payment mode, PayU gets the Sodexo card details from the customer.
 
