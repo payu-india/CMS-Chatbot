@@ -82,7 +82,13 @@ A payment gateway is a technology used by merchants to accept debit or credit ca
 >
 > * It is recommended to follow the **Integration Checklist** for checkout or SDK integrations to ensure that your integration is complete before making your integration live.
 
-## Developer resources
+# Wallets
+
+* [Merchant Wallets](https://docs.payu.in/docs/introduction-to-merchant-wallet/)
+
+# Bill Payments
+
+# Developer resources
 
 * **Merchant Key and Salt**:  Before starting your integration, check your key and salt in the Dashboard. For more information, refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy) .
 * **Test Card, UPI, Wallet, etc**:  For the card, EMI, UPI, wallet, BNPL details to test the integration, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).
