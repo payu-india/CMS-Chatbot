@@ -521,7 +521,7 @@ Customization (Optional)
 
 Currently, PayU supports only PhonePe and GooglePay through Intent. Add the query schemes in the `info.plist.`
 
-```Text XML
+```xml XML
 <key>LSApplicationQueriesSchemes</key> 
 <array> 
 <string>phonepe</string> 
@@ -534,7 +534,7 @@ Currently, PayU supports only PhonePe and GooglePay through Intent. Add the quer
 
 * Card Scanner, Camera Permission
 
-```Text XML
+```xml XML
 <key>NSCameraUsageDescription</key> 
 
 <string>Please mention the description to give user info</string> 
@@ -607,7 +607,7 @@ You can add the below metadata under the application tag in the manifest file to
 
 > 🚧 Ensure to remove the code from the manifest file before going live.
 
-```Text xml
+```xml xml
 <application>
 <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
 <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
@@ -661,7 +661,7 @@ Refer to the link below for Handling SURL and FURL doc details.
 
 You must be comment/remove the below metadata code from the manifest file to use the UPI Collect flow on Production env:-
 
-```Text XML
+```xml XML
 <application>
 <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
 <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
@@ -733,7 +733,7 @@ You can modify the color scheme and theme used in the PayUCheckoutPro SDK by pro
 
 If you don’t have a **colors.xml**, create an empty file in your app project with this name, and include the following configuration settings:
 
-```Text color.xml
+```xml color.xml
 <color name="one_payu_colorPrimary">#053bc1</color>  //primary color has changed the appbar/toolbar and background color.  
 <color name="one_payu_colorPrimaryDark">#053bc1</color> //primaryDark color has changed statusbar and contextual app bar.  
 <color name="one_payu_colorAccent">#053bc1</color> //colorAccent has changed such as check boxes, radio buttons, and edit text boxes, cursor.  
@@ -746,7 +746,7 @@ If you don’t have a **colors.xml**, create an empty file in your app project w
 
 You can customize the font used in the PayU checkout page as per your preference. To customize the font, add the following code snippet in the `style.xml` file of your Android app.
 
-```Text XML
+```xml XML
 <style name="PayU_header">
     <item name="android:fontFamily">@font/font_name</item>
 </style>
@@ -780,7 +780,7 @@ Add the image in the app/res/drawable folder of the native Android app and pass 
 
 You can customize the name to personalize the checkout screen.
 
-```Text Dart
+```d Dart
 var payUCheckoutProConfig = {
  	PayUCheckoutProConfigKeys.merchantName: "<Merchant Name>",
 }
