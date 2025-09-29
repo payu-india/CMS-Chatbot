@@ -1,8 +1,9 @@
 ---
 title: Pluxee Card Integration - iOS Core SDK
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: TwidPay BNPL Integration - iOS Core SDK
   description: ''
@@ -10,8 +11,6 @@ metadata:
     - iOS TwidPay BNPL Integration
     - ' TwidPay BNPL Integration for iOS Core SDK'
   robots: index
-next:
-  description: ''
 ---
 To pay using Pluxee card:
 
