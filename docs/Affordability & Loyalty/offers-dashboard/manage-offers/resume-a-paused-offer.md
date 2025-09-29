@@ -2,7 +2,7 @@
 title: Resume a Paused Offer
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
