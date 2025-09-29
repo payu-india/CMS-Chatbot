@@ -1,8 +1,9 @@
 ---
 title: TwidPay BNPL Integration - iOS Core SDK
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: TwidPay BNPL Integration - iOS Core SDK
   description: ''
@@ -10,8 +11,6 @@ metadata:
     - TwidPay BNPL Integration for iOS Core SDK
     - ' iOS TwidPay BNPL Integration'
   robots: index
-next:
-  description: ''
 ---
 To pay using TwidPay, perform the following steps.
 
