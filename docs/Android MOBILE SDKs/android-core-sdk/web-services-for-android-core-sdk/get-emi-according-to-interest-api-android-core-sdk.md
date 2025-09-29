@@ -2,7 +2,7 @@
 title: Get EMI According to Interest API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Get EMI According to Interest API - Android Core SDK
   description: ''
