@@ -1,8 +1,9 @@
 ---
 title: Stored Card Integration
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Stored Card Integration - iOS Core SDK
   description: ''
@@ -10,8 +11,6 @@ metadata:
     - iOS Stored Card Integration
     - ' Stored Card Integration for iOS Core SDK'
   robots: index
-next:
-  description: ''
 ---
 To pay using a stored card, perform the following steps.
 
