@@ -1,5 +1,5 @@
 ---
-title: Chargeback Introduction
+title: Chargeback
 deprecated: false
 hidden: true
 metadata:
