@@ -1,7 +1,7 @@
 ---
 title: Contest Chargeback on Dashboard
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
