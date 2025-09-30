@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU’s **\_payment** API supports LRS transactions by capturing the following information additional to the typical PayU Hosted Checkout transaction:
+PayU’s **_payment** API supports LRS transactions by capturing the following information additional to the typical PayU Hosted Checkout transaction:
 
 * LRS Service Type
 * PAN of buyer
@@ -68,13 +68,13 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-         JPg\*\*\*\*f
+         JPg****f
       </td>
     </tr>
 
     <tr>
       <td>
-        txnid\
+        txnid
         `mandatory`
       </td>
 
@@ -103,7 +103,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        productinfo\
+        productinfo
         `mandatory`
       </td>
 
@@ -118,7 +118,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        firstname\
+        firstname
         `mandatory`
       </td>
 
@@ -133,7 +133,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        lastname\
+        lastname
         `mandatory`
       </td>
 
@@ -148,7 +148,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        email\
+        email
         `mandatory`
       </td>
 
@@ -163,7 +163,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        phone\
+        phone
         `mandatory`
       </td>
 
@@ -178,15 +178,15 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        address1\
+        address1
         `mandatory`
       </td>
 
       <td>
-        `String` The first line of the billing address.\
+        `String` The first line of the billing address.
         H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai
 
-        * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * _Note_*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -196,7 +196,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        address2\
+        address2
         `mandatory`
       </td>
 
@@ -211,7 +211,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        city\
+        city
         `mandatory`
       </td>
 
@@ -226,7 +226,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        state\
+        state
         `mandatory`
       </td>
 
@@ -241,7 +241,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        country\
+        country
         `mandatory`
       </td>
 
@@ -256,13 +256,13 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        zipcode\
+        zipcode
         `mandatory`
       </td>
 
       <td>
-        `String` Billing address zip code is mandatory for the cardless EMI option.\
-        \`Character Limit-20
+        `String` Billing address zip code is mandatory for the cardless EMI option.
+        `Character Limit-20
       </td>
 
       <td>
@@ -272,7 +272,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        surl\
+        surl
         `mandatory`
       </td>
 
@@ -287,7 +287,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        furl\
+        furl
         `mandatory`
       </td>
 
@@ -302,31 +302,31 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        udf1\
+        udf1
         `conditional`
       </td>
 
       <td>
         `String` The Permanent Account Number of the buyer must be collected in this field. This is required if AD bank request this detail.
 
-        *Note: If not sent in the payment request, it will collected on the checkout page.*
+        _Note: If not sent in the payment request, it will collected on the checkout page._
       </td>
 
       <td>
-        AELPR\*\*\*\*E
+        AELPR****E
       </td>
     </tr>
 
     <tr>
       <td>
-        udf3\
+        udf3
         `conditional`
       </td>
 
       <td>
         `String` The date of birth of the buyer must be collected using this field in the DD-MM-YYYY format. This is required if AD bank request this detail.
 
-        *Note: If not sent in the payment request, it will collected on the checkout page.*
+        _Note: If not sent in the payment request, it will collected on the checkout page._
       </td>
 
       <td>
@@ -336,7 +336,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        udf4\
+        udf4
         `mandatory for payment aggregators`
       </td>
 
@@ -351,7 +351,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        udf5\
+        udf5
         `mandatory`
       </td>
 
@@ -366,7 +366,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        buyer\_type\_business\
+        buyer_type_business
         `mandatory for CB payments`
       </td>
 
@@ -381,7 +381,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        lrs\_service\_type\
+        lrs_service_type
         `mandatory for LRS transactions`
       </td>
 
@@ -396,7 +396,7 @@ The following parameters (mandatory) must be posted using any of the following s
   </tbody>
 </Table>
 
-#### lrs\_service\_type parameter values
+#### lrs_service_type parameter values
 
 <HTMLBlock>{`
 <HTMLBlock>
@@ -496,15 +496,7 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'udf2=' \
 --data-urlencode 'udf3=' \
 --data-urlencode 'udf4=' \
---data-urlencode 'udf5=' \
---data-urlencode 'ccnum=5506900480000008' \
---data-urlencode 'ccexpyr=2025' \
---data-urlencode 'ccexpmon=09' \
---data-urlencode 'ccvv=123' \
---data-urlencode 'ccname=test' \
---data-urlencode 'si_details={"billingAmount":"10.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval": 1,"paymentStartDate":"2024-11-19","paymentEndDate":"2025-12-01"}' \
---data-urlencode 'api_version=7' \
---data-urlencode 'si=1' \
+--data-urlencode 'udf5=invoice_num_1234' \
 --data-urlencode 'firstname=sudhanshu' \
 --data-urlencode 'user_credentials=T58CQx:sudhanshu' \
 --data-urlencode 'lastname=kr' \
@@ -514,11 +506,7 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'state=UP' \
 --data-urlencode 'country=IND' \
 --data-urlencode 'zipcode=122018' \
---data-urlencode 'buyer_type_business=1' \
---data-urlencode 'lrs_mandatory_limit_declaration=I declare that the remittance is within my annual LRS limit' \
---data-urlencode 'lrs_tnc=I agree to the terms and conditions for LRS transactions' \
---data-urlencode 'lrs_tcs_declaration_under_limit=I declare that this transaction is under the specified limit' \
---data-urlencode 'lrs_service_type=0'
+--data-urlencode 'lrs_service_type=travel'
 ```
 
 ## Step 2: Check response from PayU
