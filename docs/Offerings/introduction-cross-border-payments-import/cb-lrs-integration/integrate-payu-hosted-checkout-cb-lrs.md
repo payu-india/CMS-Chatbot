@@ -352,7 +352,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         udf5
-        `mandatory`
+        `mandatory for cross-border payments`
       </td>
 
       <td>
@@ -367,7 +367,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         buyer_type_business
-        `mandatory for CB payments`
+        `conditional for cross-border payments`
       </td>
 
       <td>
@@ -382,7 +382,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         lrs_service_type
-        `mandatory for LRS transactions`
+        `conditional for cross-border transactions`
       </td>
 
       <td>
