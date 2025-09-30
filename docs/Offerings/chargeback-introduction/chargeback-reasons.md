@@ -1,0 +1,69 @@
+---
+title: Chargeback Reasons
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
+This section explains how to use the **Reasons** page of the Chargeback dashbaord.  It lists all available reasons in a tabular format. Reason codes help standardize your chargeback responses and maintain consistency in case management.
+
+<Image align="center" border={true} src="https://files.readme.io/240245acd8b166a5c93f7988e052667428c8455168e62485d16756fca9865506-charge_dashboard_reasons.png" className="border" />
+
+## Access Chargeback Reasons
+
+1. Select the  **Reasons** menu.
+
+   The **Reasons** page will display all configured chargeback reason codes
+
+2. Use the **Preview Reason Hierarchy** option to view the hierarchical structure.
+
+3. Click on **Preview Reason Hierarchy** to see how reasons are organized.
+
+4. Use the following fields to filter the reasons:
+   * **Label**: Shows the category type (for example., "Label", "Type")
+   * **Type**: Displays the hierarchical structure of reason organization
+
+5. Enter keywords in the **Search** field to find specific reasons
+
+   The search function filters through reason labels and descriptions
+
+## View Reason Details
+
+Each reason entry displays the following information:
+
+* **ID**: Unique identifier for the reason
+* **Label**: Descriptive name of the reason
+* **Type**: Category classification (accept, reject, partially accept)
+* **Created by**: User who created the reason
+* **Created at**: Date and time of creation
+* **Updated at**: Last modification timestamp
+* **Action**: Available actions for the reason
+
+## Understanding Reason Types
+
+The system categorizes reasons into three main types:
+
+### **Accept**
+
+* Used for cases where the chargeback claim is fully accepted
+* Example: "Others" - for straightforward acceptance cases
+
+### **Reject**
+
+* Applied when the chargeback claim is denied
+* Examples:
+  * "Generic reject reason"
+  * "Transaction refunded through PayU Panel"
+  * "Services"
+
+### **Partially Accept**
+
+* Used for cases requiring partial resolution
+* Examples:
+  * "Full refund not due as per our T&C"
+  * "Customer cancelled the order"
+  * "Product was returned by the customer"
+  * "Product lost in transit"
+  * "Transaction partially refunded"
+
+<br />
