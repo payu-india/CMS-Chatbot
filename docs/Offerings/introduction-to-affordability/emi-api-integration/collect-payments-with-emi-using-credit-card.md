@@ -52,7 +52,7 @@ When your customer has an account on your shopping website, they may store their
 
 ### Using complete card details
 
-#### Request parameters
+<Accordion title="Sample request" icon="fa-database">
 
 Post the following parameters for cards. For complete list of parameters, refer to <Anchor label="Collect Payment API - EMI" target="_blank" href="ref:_payment_merchant_hosted_emi">Collect Payment API - EMI</Anchor> for the complete list parameters with **Try It** experience.
 
@@ -520,11 +520,11 @@ Post the following parameters for cards. For complete list of parameters, refer 
     </tr>
   </tbody>
 </Table>
-
+</Accordion>
 <HashingRequestParameters />
 
 ### Sample request
-
+<Accordion title="Sample request" icon="fa-server">
 ```curl
 curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=H6mUfE0ccAY94j&amount=20000.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=EMI&bankcode=EMIA3&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=5123456789012346&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=&hash=782057a8bb0288c858149b4805103befa22041bb3092bc45a813738b43742e31baeae92375be5286a98b44ed66c36121aba0fff6a3170339a4949bc880125d36"
 ```
@@ -1039,7 +1039,7 @@ namespace PayUCreditCardEmiIntegration
 }
 
 ```
-
+</Accordion>
 ### Using network tokens
 
 #### Applicable scenarios
@@ -1054,7 +1054,7 @@ namespace PayUCreditCardEmiIntegration
 #### Additional request parameters
 
 Along the parameters listed in the [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted_emi), include the following additional request parameters in your collect payment request with PayU. Check the response when you try enter the values in API Reference.
-
+<Accordion title="Request parameters" icon="fa-database">
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -1161,7 +1161,7 @@ Along the parameters listed in the [Collect Payment API - Merchant Hosted Checko
     </tr>
   </tbody>
 </Table>
-
+</Accordion>
 ### Using issuer tokens
 
 This scenario is applicable if you wanted to collect payments using issuer tokens.
@@ -1175,7 +1175,7 @@ This scenario is applicable if you wanted to collect payments using issuer token
 >
 > This scenario is applicable if you are PCI compliant and got the issuer token, **trMerchantId**, and **tokenReferenceId** and then sending the card transaction request in the form of authentication.
 
-#### Additional request parameters
+<Accordion title="Additional request parameters" icon="fa-database">
 
 Along the parameters listed in the [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted_emi)., include the following additional request parameters in your collect payment request with PayU. Check the response when you try enter the values in API Reference.
 
@@ -1284,6 +1284,7 @@ Along the parameters listed in the [Collect Payment API - Merchant Hosted Checko
     </tr>
   </tbody>
 </Table>
+</Accordion>
 
 ### Using card tokenized with PayU
 
@@ -1297,7 +1298,7 @@ If the merchant has tokenized the card with PayU and needs to process the transa
 >
 > This scenario is applicable if any PCI or Non-PCI complied merchant sends the PayU token in a request for fulfilment purposes.
 
-#### Additional request parameters
+<Accordion title="Additional request parameters" icon="fa-database">
 
 Along the parameters listed in the <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="ref:_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>. include the following additional request parameters in your collect payment request with PayU. Check the response when you try enter the values in API Reference.
 
@@ -1377,6 +1378,7 @@ Along the parameters listed in the <Anchor label="Collect Payment API - Merchant
     </tr>
   </tbody>
 </Table>
+</Accordion>
 
 ### Using card on a decoupled flow with network token or other partner tokenization
 
@@ -1386,7 +1388,7 @@ This scenario is applicable where you are on a decoupled flow. This is where you
 
 **Decoupled flow**: You are sending the authentication request to PayU and if the merchant wishes to send the authorization request eventually or to other aggregators.
 
-#### Additional request parameters
+<Accordion title="Additional request parameters" icon="fa-database">
 
 Along the parameters listed in the [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted_emi), include the following additional request parameters in your collect payment request with PayU. Check the response when you try enter the values in API Reference.
 
@@ -1455,7 +1457,7 @@ Along the parameters listed in the [Collect Payment API - Merchant Hosted Checko
     </tr>
   </tbody>
 </Table>
-
+</Accordion>
 ### Using card on a decoupled flow with PayU tokenization
 
 #### Applicable scenario
@@ -1464,7 +1466,7 @@ This scenario is the application on a decoupled flow using the PayU for either a
 
 **Direct Authorisation Flow**: When you have done the authentication from some other aggregator and authorization request is coming to PayU.
 
-#### Additional Request Parameters
+<Accordion title="Additional request parameters" icon="fa-database">
 
 Along the parameters listed in the [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted_emi), include the following additional request parameters in your collect payment request with PayU. Check the response when you try enter the values in API Reference.
 
@@ -1550,6 +1552,7 @@ Along the parameters listed in the [Collect Payment API - Merchant Hosted Checko
     </tr>
   </tbody>
 </Table>
+</Accordion>
 
 ## Step 4: Check the PayU response
 
@@ -1561,7 +1564,7 @@ You need to look for the following parameters in the response:
 
 * **PG_TYPE**
 * **bankcode**
-
+<Accordion title="Sample response" icon="fa-reply">
 The formatted sample response from PayU is similar to the following:
 
 ```
@@ -1617,3 +1620,4 @@ Array
     [cardnum] =>512345XXXXXX2346
 )
 ```
+</Accordion>
