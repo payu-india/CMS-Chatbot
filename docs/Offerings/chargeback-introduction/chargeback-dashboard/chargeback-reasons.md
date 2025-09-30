@@ -1,11 +1,15 @@
 ---
-title: Chargeback Reasons
+title: Check the Chargeback Reasons
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
 This section explains how to use the **Reasons** page of the Chargeback dashbaord.  It lists all available reasons in a tabular format. Reason codes help standardize your chargeback responses and maintain consistency in case management.
+
+<Callout icon="📘" theme="info">
+  **Reference**: For understanding the various reasons, refer to [Chargeback Reasons](doc:chargeback-reasons)
+</Callout>
 
 <Image align="center" border={true} src="https://files.readme.io/240245acd8b166a5c93f7988e052667428c8455168e62485d16756fca9865506-charge_dashboard_reasons.png" className="border" />
 
@@ -38,32 +42,5 @@ Each reason entry displays the following information:
 * **Created at**: Date and time of creation
 * **Updated at**: Last modification timestamp
 * **Action**: Available actions for the reason
-
-## Understanding Reason Types
-
-The system categorizes reasons into three main types:
-
-### **Accept**
-
-* Used for cases where the chargeback claim is fully accepted
-* Example: "Others" - for straightforward acceptance cases
-
-### **Reject**
-
-* Applied when the chargeback claim is denied
-* Examples:
-  * "Generic reject reason"
-  * "Transaction refunded through PayU Panel"
-  * "Services"
-
-### **Partially Accept**
-
-* Used for cases requiring partial resolution
-* Examples:
-  * "Full refund not due as per our T&C"
-  * "Customer cancelled the order"
-  * "Product was returned by the customer"
-  * "Product lost in transit"
-  * "Transaction partially refunded"
 
 <br />
