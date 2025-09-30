@@ -94,227 +94,223 @@ Select any of the following payment modes to configure offer details that is exp
 > You can configure one or multiple payment options for an offer. For example, the “HDFC Diwali Offer” can contain 10% discount for HDFC debit or credit cards, HDFC UPI, and a 3-month interest-free EMI for HDFC cards.
 
 <Accordion title="Debit Cards" icon="fa-bell">
+  1. Click the **Edit** button on the **Debit Cards** tile.
 
-1. Click the **Edit** button on the **Debit Cards** tile.
+  The *Debit Card Details* page is displayed.
 
-The _Debit Card Details_ page is displayed.
+  <Image align="center" border={true} src="https://files.readme.io/f4debd9c82f8c3454c0956ecb20e30df6d4166551c291d521ea1abc13b88dee9-dashboard_payment_options_debit_card.png" />
 
-<Image align="center" border={true} src="https://files.readme.io/f4debd9c82f8c3454c0956ecb20e30df6d4166551c291d521ea1abc13b88dee9-dashboard_payment_options_debit_card.png" className="border" />
+  2. Perform any of the following based on the method you want to select the bank and network:
 
-2. Perform any of the following based on the method you want to select the bank and network:
+  <Table>
+    <thead>
+      <tr>
+        <th>
+          Channel
+        </th>
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Channel
-      </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
+    <tbody>
+      <tr>
+        <td>
+          Upload Bins to be include
+        </td>
 
-  <tbody>
-    <tr>
-      <td>
-        Upload Bins to be include
-      </td>
+        <td>
+          * Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
+          * Update the CSV file to include the BINs to be included.
+          * Click the **Upload Bins** button upload the bins to be included.
 
-      <td>
-        * Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
-        * Update the CSV file to include the BINs to be included.
-        * Click the **Upload Bins** button upload the bins to be included.
+            ![](https://files.readme.io/eb89a85f7a1920608e9f00e451d11cb8c92ce606734891c80383ad1a015c93e5-dashboard_payment_options_debit_card_upload_card_bin.png)
 
-          ![](https://files.readme.io/eb89a85f7a1920608e9f00e451d11cb8c92ce606734891c80383ad1a015c93e5-dashboard_payment_options_debit_card_upload_card_bin.png)
+            **Note**: For the sample file, click **Download** .
+        </td>
+      </tr>
 
-          **Note**: For the sample file, click **Download** .
-      </td>
-    </tr>
+      <tr>
+        <td>
+          Bank
+        </td>
 
-    <tr>
-      <td>
-        Bank
-      </td>
-
-      <td>
-        Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
-        ![](https://files.readme.io/f963378804c89d83e901c6876e88d1cccc166fe077f22b06e2f6a62764291acc-dashboard_payment_options_debit_card_bank_options.png)
-
-        **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Bank + Network
-      </td>
-
-      <td>
-        <br />- Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
-        - Search and select a network from the **Select Networks** drop-down list.
-
-          ![](https://files.readme.io/dbca7324d592ee3371239fb619e4517792135100fede381c8576b23a47be6e76-dashboard_payment_options_debit_card_bank_and_bin_options.png)
+        <td>
+          Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
+          ![](https://files.readme.io/f963378804c89d83e901c6876e88d1cccc166fe077f22b06e2f6a62764291acc-dashboard_payment_options_debit_card_bank_options.png)
 
           **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
-      </td>
-    </tr>
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        Network
-      </td>
+      <tr>
+        <td>
+          Bank + Network
+        </td>
 
-      <td>
-        Search and select a network from the **Select Networks** drop-down list.
+        <td>
+          <br />- Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
 
-        ![](https://files.readme.io/2463947de43fb77bec7c51b88e6073b7ab01af6ad74c1aa2b03775d4eb27db22-dashboard_payment_options_debit_card_network_options.png)
+          * Search and select a network from the **Select Networks** drop-down list.
 
-        **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
-      </td>
-    </tr>
-  </tbody>
-</Table>
+            ![](https://files.readme.io/dbca7324d592ee3371239fb619e4517792135100fede381c8576b23a47be6e76-dashboard_payment_options_debit_card_bank_and_bin_options.png)
 
-3. Click the **Back** button to go back to the payment options list.
+            **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          Network
+        </td>
+
+        <td>
+          Search and select a network from the **Select Networks** drop-down list.
+
+          ![](https://files.readme.io/2463947de43fb77bec7c51b88e6073b7ab01af6ad74c1aa2b03775d4eb27db22-dashboard_payment_options_debit_card_network_options.png)
+
+          **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
+        </td>
+      </tr>
+    </tbody>
+  </Table>
+
+  3. Click the **Back** button to go back to the payment options list.
 </Accordion>
 
 <Accordion title="Credit Cards" icon="fa-card">
+  1. Click the **Edit** button on the **Credit Cards**.
 
-1. Click the **Edit** button on the **Credit Cards**.
+  The *Credit Card Details* page is displayed.
 
-The _Credit Card Details_ page is displayed.
+  <Image align="center" border={true} src="https://files.readme.io/76e11ce918eea78d776d4e1e58d725ede254db76915876b06c3da6c666aae885-dashboard_payment_options_credit_card.png" />
 
-<Image align="center" border={true} src="https://files.readme.io/76e11ce918eea78d776d4e1e58d725ede254db76915876b06c3da6c666aae885-dashboard_payment_options_credit_card.png" className="border" />
+  2. Perform any of the following based on the method you want to select the bank and network:
 
-2. Perform any of the following based on the method you want to select the bank and network:
+  <Table>
+    <thead>
+      <tr>
+        <th>
+          **Channel**
+        </th>
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Channel**
-      </th>
+        <th>
+          **Description**
+        </th>
+      </tr>
+    </thead>
 
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
+    <tbody>
+      <tr>
+        <td>
+          Upload Bins to be include
+        </td>
 
-  <tbody>
-    <tr>
-      <td>
-        Upload Bins to be include
-      </td>
+        <td>
+          * Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
+          * Update the CSV file to include the BINs to be included.
+          * Click the **Upload Bins** button upload the bins to be included.![](https://files.readme.io/c955da31efdc6b4d2503d9a2ad5da6a86aa2285f8a0e754397c30c20c37bc880-dashboard_payment_options_upload_card_bin.png)**Note**: For the sample file, click **Download** .
+        </td>
+      </tr>
 
-      <td>
-        * Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
-        * Update the CSV file to include the BINs to be included.
-        * Click the **Upload Bins** button upload the bins to be included.![](https://files.readme.io/c955da31efdc6b4d2503d9a2ad5da6a86aa2285f8a0e754397c30c20c37bc880-dashboard_payment_options_upload_card_bin.png)**Note**: For the sample file, click **Download** .
-      </td>
-    </tr>
+      <tr>
+        <td>
+          Bank
+        </td>
 
-    <tr>
-      <td>
-        Bank
-      </td>
+        <td>
+          Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
+          ![](https://files.readme.io/fc566b263b8296ca383f15ff3db5b34ec4f27be6d9b10ccb6876b53b7fc92747-dashboard_payment_options_select_bank.png)
 
-      <td>
-        Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
-        ![](https://files.readme.io/fc566b263b8296ca383f15ff3db5b34ec4f27be6d9b10ccb6876b53b7fc92747-dashboard_payment_options_select_bank.png)
-
-        **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Bank + Network
-      </td>
-
-      <td>
-        <br />- Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
-        - Search and select a network from the **Select Networks** drop-down list.
-          ![](https://files.readme.io/5f46cc00126b4bb750577aaa70755da76171c5dbc5494a50babc0c70a90afbb3-dashboard_payment_options_select_bank_and_upload_bin.png)
           **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
-      </td>
-    </tr>
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        Network
-      </td>
+      <tr>
+        <td>
+          Bank + Network
+        </td>
 
-      <td>
-        Search and select a network from the **Select Networks** drop-down list.
+        <td>
+          <br />- Select the banks for which the offer is applicable from  **Select Banks** drop-down list.
 
-        ![](https://files.readme.io/86ce097797b4a7e3292feaec58a9ddc661a0b32dd9e528d4e61f9ff8cd2335b3-dashboard_payment_options_select_network.png)
+          * Search and select a network from the **Select Networks** drop-down list.
+            ![](https://files.readme.io/5f46cc00126b4bb750577aaa70755da76171c5dbc5494a50babc0c70a90afbb3-dashboard_payment_options_select_bank_and_upload_bin.png)
+            **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
+        </td>
+      </tr>
 
-        **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
-      </td>
-    </tr>
-  </tbody>
-</Table>
+      <tr>
+        <td>
+          Network
+        </td>
 
-3. Click the **Back** button to go back to the _Payment Options_ page.
+        <td>
+          Search and select a network from the **Select Networks** drop-down list.
+
+          ![](https://files.readme.io/86ce097797b4a7e3292feaec58a9ddc661a0b32dd9e528d4e61f9ff8cd2335b3-dashboard_payment_options_select_network.png)
+
+          **Note**: You can include exclusion list for offers. For the sample exclusion list file, click **Download** .
+        </td>
+      </tr>
+    </tbody>
+  </Table>
+
+  3. Click the **Back** button to go back to the *Payment Options* page.
 </Accordion>
 
 <Accordion title="UPI" icon="fa-terminal">
+  1. Click the **Edit** button on the **UPIs** tile.
 
-1. Click the **Edit** button on the **UPIs** tile.
+     The *UPI Details* page is displayed.
 
-   The _UPI Details_ page is displayed.
+  <Image align="center" border={true} src="https://files.readme.io/ed2bf68ddd113d64d0b18c364319deca799bc85451af4e74c4a99388c8a2e057-dashboard_payment_options_upi.png" />
 
-<Image align="center" border={true} src="https://files.readme.io/ed2bf68ddd113d64d0b18c364319deca799bc85451af4e74c4a99388c8a2e057-dashboard_payment_options_upi.png" className="border" />
-
-2. Select the check boxes for the UPIs you wish to enable the offer from the **Select UPI Channel **drop-down list.
-3. Click the **Back** button to go back to the payment options list.
+  2. Select the check boxes for the UPIs you wish to enable the offer from the \*\*Select UPI Channel \*\*drop-down list.
+  3. Click the **Back** button to go back to the payment options list.
 </Accordion>
 
-<Accordion title="Wallets" icon="fa-wallet">
+<Accordion title="Wallets" icon="fa-copy">
+  1. Click the **Edit** button on the the **Wallets** option.
 
-1. Click the **Edit** button on the the **Wallets** option.
+     The *Select Wallets* page is displayed.
 
-   The _Select Wallets_ page is displayed.
+  <Image align="center" border={true} src="https://files.readme.io/a33d1d65b26720c45c414770c1adb2f0f7284fce6f0b1278b64d240eb79aa5de-dashboard_payment_options_wallets.png" />
 
-<Image align="center" border={true} src="https://files.readme.io/a33d1d65b26720c45c414770c1adb2f0f7284fce6f0b1278b64d240eb79aa5de-dashboard_payment_options_wallets.png" className="border" />
-
-2. Select the check boxes for the wallets you wish to enable the offer.
-3. Click the **Back** button to return to the _Payment Options_ page.
+  2. Select the check boxes for the wallets you wish to enable the offer.
+  3. Click the **Back** button to return to the *Payment Options* page.
 </Accordion>
 
 <Accordion title="EMI" icon="<fa-line-columns">
+  1. Click the **Edit** button on the the **EMI** option.
 
-1. Click the **Edit** button on the the **EMI** option.
+     The *EMI* Offer page is displayed.
 
-   The _EMI_ Offer page is displayed.
+  <Image align="center" border={true} src="https://files.readme.io/bdfb661ae9732fc1c7293a8bd54935d378efb781a8903804fbc19ef14ab1506b-dashboard_payment_options_emi.png" />
 
-<Image align="center" border={true} src="https://files.readme.io/bdfb661ae9732fc1c7293a8bd54935d378efb781a8903804fbc19ef14ab1506b-dashboard_payment_options_emi.png" className="border" />
+  2. For each of the following sub tabs, select the desired item on first column and **Tenures** column on which you wish to enable the offer. You can select all tenures of a specific bank and choose specific tenures for each bank.
+     *  Credit Card
+     * Debit Card
+     * Cardless
+  3. Select the **Set an exclusion/inclusion bin for the offer** check box to include/exclude the offer on a select list of BINs on the banks that were selected in Step 2 using the following steps in each **Exclusion Bin** and **Inclusion Bin** sub tabs:
 
-2. For each of the following sub tabs, select the desired item on first column and **Tenures** column on which you wish to enable the offer. You can select all tenures of a specific bank and choose specific tenures for each bank.
-   *  Credit Card
-   * Debit Card
-   * Cardless
-3. Select the **Set an exclusion/inclusion bin for the offer** check box to include/exclude the offer on a select list of BINs on the banks that were selected in Step 2 using the following steps in each **Exclusion Bin** and **Inclusion Bin** sub tabs:
+  <Image align="center" border={true} src="https://files.readme.io/ffcb358c53def42d01a66edd5348191f536fd70af20a216e8e8c262b094a706d-dashboard_payment_options_emi_exclusion_list.png" />
 
-<Image align="center" border={true} src="https://files.readme.io/ffcb358c53def42d01a66edd5348191f536fd70af20a216e8e8c262b094a706d-dashboard_payment_options_emi_exclusion_list.png" className="border" />
+  * Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
+  * Update the CSV or text file to include the BIN details. For updating the CSV file, you can use Microsoft Excel or any other Spreadsheet tool. 
+  * Click the browse button in the **Add a list of bins that you want to include or exclude on offer** to upload the updated CSV file.
 
-* Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
-* Update the CSV or text file to include the BIN details. For updating the CSV file, you can use Microsoft Excel or any other Spreadsheet tool. 
-* Click the browse button in the **Add a list of bins that you want to include or exclude on offer** to upload the updated CSV file.
-
-4. Click the **Back** button to go to _Payment Options_ page.
+  4. Click the **Back** button to go to *Payment Options* page.
 </Accordion>
 
-<Accordion title="BNPL" icon="<fa-clock">
+<Accordion title="BNPL" icon="<fa-file-book">
+  Select the **BNPL** option on the *Setup Payment options of your offer* page.
 
-Select the **BNPL** option on the _Setup Payment options of your offer_ page.
+  The *Select BNPL Options* page is displayed.
 
-The _Select BNPL Options_ page is displayed.
-
-<Image align="center" border={false} src="https://files.readme.io/d5a47d52dd4c1b7f1eeae0b3c8e37fd2dff576352ae578b5108b2528042f4795-dashboard_payment_options_bnpl.png" />
+  <Image align="center" src="https://files.readme.io/d5a47d52dd4c1b7f1eeae0b3c8e37fd2dff576352ae578b5108b2528042f4795-dashboard_payment_options_bnpl.png" />
 </Accordion>
 
 After you complete adding any one or combination of the offers involving various payment options, click **Next**.
