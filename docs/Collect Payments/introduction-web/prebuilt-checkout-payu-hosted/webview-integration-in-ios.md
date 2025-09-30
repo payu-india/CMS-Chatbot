@@ -1,7 +1,7 @@
 ---
 title: Webview Integration in iOS
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
