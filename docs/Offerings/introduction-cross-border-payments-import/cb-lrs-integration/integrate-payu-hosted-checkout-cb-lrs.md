@@ -5,12 +5,12 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU’s **_payment** API supports LRS transactions by capturing the following information additional to the typical PayU Hosted Checkout transaction:
+PayU’s **_payment** API supports LRS transactions by capturing the following information in addition to the typical PayU Hosted Checkout transaction for cross-border paymentsL
 
-* LRS Service Type
-* PAN of buyer
-* First Name, Last Name of buyer (as on PAN)
-* Date of Birth of buyer
+* LRS Service Type - _Mandatory for LRS transactions_
+* PAN of buyer - Mandatory for LRS transactions, will be captured on PayU page if not sent in the request
+* First Name, Last Name of buyer (as on PAN) - _Mandatory for LRS transactions, will be captured on PayU page if not sent in the request_
+* Date of Birth of buyer - _Mandatory for LRS transactions, will be captured on PayU page if not sent in the request_
 
 > 📘 Reference:
 >
