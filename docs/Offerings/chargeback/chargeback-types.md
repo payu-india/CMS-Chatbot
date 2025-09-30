@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-The chargeback types are used while processing a chargeback. You can find the chargeback type in the Chargeback home as in the following screenshot:
+The chargeback types are used while processing a chargeback. You can find the **Chargeback Type** field in the Chargeback home page while filtering casesin the Chargeback home as in the following screenshot:
 
 <Image align="center" border={true} src="https://files.readme.io/fc20984bfb1fb7e4d72948c8747e513a90034ea10e1015e2b6e7bb2d154e0d07-chargeback_type_highlighted.png" className="border" />
 
