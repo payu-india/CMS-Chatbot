@@ -21,52 +21,45 @@ With the PayU Hosted Checkout integration, the entire payment experience is cont
 * [SKU-Based Offer](#sku-based-offer)
 
 <Accordion title="General customer journey" icon="fa-route">
+  1. Customer clicks **Pay** on your mobile application or website.
+  2. Customer is redirected to the PayU Hosted Checkout page.
 
-1. Customer clicks **Pay** on your mobile application or website.
-2. Customer is redirected to the PayU Hosted Checkout page.
+     The PayU Hosted Checkout page on Desktop is similar to the following screenshot. In case offer keys have been passed by the merchant, the same would be filtered and displayed to the customer.
+  3. Customer is shown the applicable offers on the checkout page for that transaction.
+  4. Customer will have an option to apply the offer. If the offer is applicable on a specific payment option, the customer will be redirected to the specific payment option.
 
-   The PayU Hosted Checkout page on Desktop is similar to the following screenshot. In case offer keys have been passed by the merchant, the same would be filtered and displayed to the customer.
-3. Customer is shown the applicable offers on the checkout page for that transaction.
-4. Customer will have an option to apply the offer. If the offer is applicable on a specific payment option, the customer will be redirected to the specific payment option.
+  The PayU Hosted Checkout page for specify payment option on Mobile.
 
-The PayU Hosted Checkout page for specify payment option on Mobile.
-
-5. Alternatively, the customer can choose the payment option. If only an offer is applicable for that payment option, the offer will be automatically applied.
-6. For Instant Discount, the amount is reduced after the offer is applied, whereas, in the case of cashback, the amount will not be reduced after the offer is applied.
-7. Customer completes the 2FA payment on the adjusted amount.
-8. Customer is redirected back to the merchant mobile application or website.
-
+  5. Alternatively, the customer can choose the payment option. If only an offer is applicable for that payment option, the offer will be automatically applied.
+  6. For Instant Discount, the amount is reduced after the offer is applied, whereas, in the case of cashback, the amount will not be reduced after the offer is applied.
+  7. Customer completes the 2FA payment on the adjusted amount.
+  8. Customer is redirected back to the merchant mobile application or website.
 </Accordion>
 
 ## Instant Discount or Cashback
 
 With the PayU Hosted Checkout integration, the entire payment experience is controlled by PayU. This section describes how to use the PayU Hosted Integration to collect payments with offers.
 
-
 <Accordion title="Customer journey on PayU Hosted Checkout" icon="fa-credit-card">
+  1. Customer clicks **Pay** on your mobile application or website.
+  2. Customer is redirected to the PayU Hosted Checkout page.
 
-1. Customer clicks **Pay** on your mobile application or website.
-2. Customer is redirected to the PayU Hosted Checkout page.
+     The PayU Hosted Checkout page on Desktop is similar to the following screenshot. In case offer keys have been passed by the merchant, the same would be filtered and displayed to the customer.
 
-   The PayU Hosted Checkout page on Desktop is similar to the following screenshot. In case offer keys have been passed by the merchant, the same would be filtered and displayed to the customer.
+  The PayU Hosted Checkout page on Mobile
 
-The PayU Hosted Checkout page on Mobile
+  3. Customer is shown the applicable offers on the checkout page for that transaction.
+  4. Customer will have the option to apply the offer. If the offer is applicable to a specific payment option, the customer will be redirected to the specific payment option.
 
-3. Customer is shown the applicable offers on the checkout page for that transaction.
-4. Customer will have the option to apply the offer. If the offer is applicable to a specific payment option, the customer will be redirected to the specific payment option.
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Web.L2.Without-Global-Vault_Cards_Filled-Copy-2-1024x863.png)
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Web.L2.Without-Global-Vault_Cards_Filled-Copy-2-1024x863.png" />
+  The PayU Hosted Checkout page for specific payment option on Mobile is similar to the following screenshot:
 
-The PayU Hosted Checkout page for specific payment option on Mobile is similar to the following screenshot:
-
-5. Alternatively, the customer can choose the payment option. If only an offer is applicable for that payment option, the offer will be automatically applied.
-6. For Instant Discount, the amount is reduced after the offer is applied, whereas, in the case of cashback, the amount will not be reduced after the offer is applied.
-7. Customer completes the 2FA payment on the adjusted amount.
-8. Customer is redirected back to the merchant's mobile application or website.
-
+  5. Alternatively, the customer can choose the payment option. If only an offer is applicable for that payment option, the offer will be automatically applied.
+  6. For Instant Discount, the amount is reduced after the offer is applied, whereas, in the case of cashback, the amount will not be reduced after the offer is applied.
+  7. Customer completes the 2FA payment on the adjusted amount.
+  8. Customer is redirected back to the merchant's mobile application or website.
 </Accordion>
-
-
 
 ### Integration steps
 
@@ -79,466 +72,465 @@ To integrate offers using PayU Hosted Checkout integration:
 1. Make the payment request to PayU:
 
    You need to send an additional parameter (**user token)**, **api_version** as 14, and hash as described in the following table. This user token would be used to identify the customer for applying velocity rules.
+
 <Accordion title="Request parameters" icon="fa-database">
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
+  <Table align={["left","left","left"]}>
+    <thead>
+      <tr>
+        <th style={{ textAlign: "left" }}>
+          **Parameter**
+        </th>
 
-      <th>
-        **Description**
-      </th>
+        <th style={{ textAlign: "left" }}>
+          **Description**
+        </th>
 
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
+        <th style={{ textAlign: "left" }}>
+          **Example**
+        </th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr>
-      <td>
-        api_version
-        `mandatory`
-      </td>
+    <tbody>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          api\_version
+          `mandatory`
+        </td>
 
-      <td>
-        The API version of the _payment API must be specified as **14**.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          The API version of the \_payment API must be specified as **14**.
+        </td>
 
-      <td>
-        14
-      </td>
-    </tr>
+        <td style={{ textAlign: "left" }}>
+          14
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        user_token
-        `mandatory for UPI, NB, Wallet`
-      </td>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          user\_token
+          `mandatory for UPI, NB, Wallet`
+        </td>
 
-      <td>
-        The use for this param is to allow the offer engine to apply velocity rules at a user level.
+        <td style={{ textAlign: "left" }}>
+          The use for this param is to allow the offer engine to apply velocity rules at a user level.
 
-        * **Card Based Offers (CC, DC, EMI)**: In case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied on the card number.
-        * **UPI, NB, Wallet**: It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
-      </td>
+          * **Card Based Offers (CC, DC, EMI)**: In case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied on the card number.
+          * **UPI, NB, Wallet**: It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
+        </td>
 
-      <td>
+        <td style={{ textAlign: "left" }} />
+      </tr>
 
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          hash
+          for UPI, NB, Wallet
+        </td>
 
-    <tr>
-      <td>
-        hash
-        for UPI, NB, Wallet
-      </td>
+        <td style={{ textAlign: "left" }}>
+          It is used to avoid the possibility of transaction tampering.
 
-      <td>
-        It is used to avoid the possibility of transaction tampering.
+          * *Note*\*: The following order must be used for hashing:
+            `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
+            For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-payu-hosted) .
+        </td>
 
-        * _Note_*: The following order must be used for hashing:
-          `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
-          For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-payu-hosted) .
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-  </tbody>
-</Table>
+        <td style={{ textAlign: "left" }} />
+      </tr>
+    </tbody>
+  </Table>
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-server">
-```curl
-curl --location 'https://test.payu.in/_payment' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Cookie: PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e' \
---data-urlencode 'key=JF****g' \
---data-urlencode 'txnid=jYhbOYH9o4' \
---data-urlencode 'amount=10' \
---data-urlencode 'productinfo=Product_info' \
---data-urlencode 'firstname=Ashish' \
---data-urlencode 'lastname=Test' \
---data-urlencode 'email=test@example.com' \
---data-urlencode 'phone=9876543210' \
---data-urlencode 'furl=http://pp30admin.payu.in/test_response' \
---data-urlencode 'surl=http://pp30admin.payu.in/test_response' \
---data-urlencode 'hash=e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184' \
---data-urlencode 'api_version=14' \
---data-urlencode 'user_token=8789'
+  ```curl
+  curl --location 'https://test.payu.in/_payment' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'Cookie: PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e' \
+  --data-urlencode 'key=JF****g' \
+  --data-urlencode 'txnid=jYhbOYH9o4' \
+  --data-urlencode 'amount=10' \
+  --data-urlencode 'productinfo=Product_info' \
+  --data-urlencode 'firstname=Ashish' \
+  --data-urlencode 'lastname=Test' \
+  --data-urlencode 'email=test@example.com' \
+  --data-urlencode 'phone=9876543210' \
+  --data-urlencode 'furl=http://pp30admin.payu.in/test_response' \
+  --data-urlencode 'surl=http://pp30admin.payu.in/test_response' \
+  --data-urlencode 'hash=e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184' \
+  --data-urlencode 'api_version=14' \
+  --data-urlencode 'user_token=8789'
 
-```
-```javascript
-// Using Fetch API with URLSearchParams
-const url = "https://test.payu.in/_payment";
+  ```
+  ```javascript
+  // Using Fetch API with URLSearchParams
+  const url = "https://test.payu.in/_payment";
 
-// Define form data
-const formData = new URLSearchParams({
-    'key': 'JF****g',
-    'txnid': 'jYhbOYH9o4',
-    'amount': '10',
-    'productinfo': 'Product_info',
-    'firstname': 'Ashish',
-    'lastname': 'Test',
-    'email': 'test@example.com',
-    'phone': '9876543210',
-    'furl': 'http://pp30admin.payu.in/test_response',
-    'surl': 'http://pp30admin.payu.in/test_response',
-    'hash': 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
-    'api_version': '14',
-    'user_token': '8789'
-});
+  // Define form data
+  const formData = new URLSearchParams({
+      'key': 'JF****g',
+      'txnid': 'jYhbOYH9o4',
+      'amount': '10',
+      'productinfo': 'Product_info',
+      'firstname': 'Ashish',
+      'lastname': 'Test',
+      'email': 'test@example.com',
+      'phone': '9876543210',
+      'furl': 'http://pp30admin.payu.in/test_response',
+      'surl': 'http://pp30admin.payu.in/test_response',
+      'hash': 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
+      'api_version': '14',
+      'user_token': '8789'
+  });
 
-// Make the request
-fetch(url, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Cookie': 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
-    },
-    body: formData
-})
-.then(response => {
-    console.log('Status:', response.status);
-    return response.text();
-})
-.then(data => {
-    console.log('Response:', data);
-})
-.catch(error => {
-    console.error('Error:', error);
-});
+  // Make the request
+  fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Cookie': 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
+      },
+      body: formData
+  })
+  .then(response => {
+      console.log('Status:', response.status);
+      return response.text();
+  })
+  .then(data => {
+      console.log('Response:', data);
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  });
 
-```
-```python
-import requests
+  ```
+  ```python
+  import requests
 
-# Define the URL
-url = "https://test.payu.in/_payment"
+  # Define the URL
+  url = "https://test.payu.in/_payment"
 
-# Define headers
-headers = {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Cookie': 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
-}
+  # Define headers
+  headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Cookie': 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
+  }
 
-# Define form data
-data = {
-    'key': 'JF****g',
-    'txnid': 'jYhbOYH9o4',
-    'amount': '10',
-    'productinfo': 'Product_info',
-    'firstname': 'Ashish',
-    'lastname': 'Test',
-    'email': 'test@example.com',
-    'phone': '9876543210',
-    'furl': 'http://pp30admin.payu.in/test_response',
-    'surl': 'http://pp30admin.payu.in/test_response',
-    'hash': 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
-    'api_version': '14',
-    'user_token': '8789'
-}
+  # Define form data
+  data = {
+      'key': 'JF****g',
+      'txnid': 'jYhbOYH9o4',
+      'amount': '10',
+      'productinfo': 'Product_info',
+      'firstname': 'Ashish',
+      'lastname': 'Test',
+      'email': 'test@example.com',
+      'phone': '9876543210',
+      'furl': 'http://pp30admin.payu.in/test_response',
+      'surl': 'http://pp30admin.payu.in/test_response',
+      'hash': 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
+      'api_version': '14',
+      'user_token': '8789'
+  }
 
-# Make the request
-try:
-    response = requests.post(url, headers=headers, data=data)
-    print("Status Code:", response.status_code)
-    print("Response:", response.text)
-except requests.exceptions.RequestException as e:
-    print("Error:", e)
+  # Make the request
+  try:
+      response = requests.post(url, headers=headers, data=data)
+      print("Status Code:", response.status_code)
+      print("Response:", response.text)
+  except requests.exceptions.RequestException as e:
+      print("Error:", e)
 
-```
-```java
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringJoiner;
+  ```
+  ```java
+  import java.io.*;
+  import java.net.HttpURLConnection;
+  import java.net.URL;
+  import java.net.URLEncoder;
+  import java.nio.charset.StandardCharsets;
+  import java.util.HashMap;
+  import java.util.Map;
+  import java.util.StringJoiner;
 
-public class PayUSimpleRequest {
-    public static void main(String[] args) throws IOException {
-        String url = "https://test.payu.in/_payment";
+  public class PayUSimpleRequest {
+      public static void main(String[] args) throws IOException {
+          String url = "https://test.payu.in/_payment";
 
-        // Prepare form data
-        Map<String, String> parameters = new HashMap<>();
-        parameters.put("key", "JF****g");
-        parameters.put("txnid", "jYhbOYH9o4");
-        parameters.put("amount", "10");
-        parameters.put("productinfo", "Product_info");
-        parameters.put("firstname", "Ashish");
-        parameters.put("lastname", "Test");
-        parameters.put("email", "test@example.com");
-        parameters.put("phone", "9876543210");
-        parameters.put("furl", "http://pp30admin.payu.in/test_response");
-        parameters.put("surl", "http://pp30admin.payu.in/test_response");
-        parameters.put("hash", "e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184");
-        parameters.put("api_version", "14");
-        parameters.put("user_token", "8789");
+          // Prepare form data
+          Map<String, String> parameters = new HashMap<>();
+          parameters.put("key", "JF****g");
+          parameters.put("txnid", "jYhbOYH9o4");
+          parameters.put("amount", "10");
+          parameters.put("productinfo", "Product_info");
+          parameters.put("firstname", "Ashish");
+          parameters.put("lastname", "Test");
+          parameters.put("email", "test@example.com");
+          parameters.put("phone", "9876543210");
+          parameters.put("furl", "http://pp30admin.payu.in/test_response");
+          parameters.put("surl", "http://pp30admin.payu.in/test_response");
+          parameters.put("hash", "e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184");
+          parameters.put("api_version", "14");
+          parameters.put("user_token", "8789");
 
-        // Build URL-encoded string
-        StringJoiner sj = new StringJoiner("&");
-        for (Map.Entry<String, String> entry : parameters.entrySet()) {
-            sj.add(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" +
-                   URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
-        }
-        byte[] postData = sj.toString().getBytes(StandardCharsets.UTF_8);
+          // Build URL-encoded string
+          StringJoiner sj = new StringJoiner("&");
+          for (Map.Entry<String, String> entry : parameters.entrySet()) {
+              sj.add(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" +
+                     URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
+          }
+          byte[] postData = sj.toString().getBytes(StandardCharsets.UTF_8);
 
-        // Create connection
-        URL obj = new URL(url);
-        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-        
-        // Set request method and headers
-        connection.setRequestMethod("POST");
-        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        connection.setRequestProperty("Cookie", "PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e");
-        connection.setRequestProperty("Content-Length", String.valueOf(postData.length));
-        connection.setDoOutput(true);
+          // Create connection
+          URL obj = new URL(url);
+          HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+          
+          // Set request method and headers
+          connection.setRequestMethod("POST");
+          connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+          connection.setRequestProperty("Cookie", "PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e");
+          connection.setRequestProperty("Content-Length", String.valueOf(postData.length));
+          connection.setDoOutput(true);
 
-        // Send request
-        try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
-            wr.write(postData);
-        }
+          // Send request
+          try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
+              wr.write(postData);
+          }
 
-        // Read response
-        int responseCode = connection.getResponseCode();
-        
-        InputStream inputStream = responseCode >= 200 && responseCode < 300 
-            ? connection.getInputStream() 
-            : connection.getErrorStream();
-            
-        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
+          // Read response
+          int responseCode = connection.getResponseCode();
+          
+          InputStream inputStream = responseCode >= 200 && responseCode < 300 
+              ? connection.getInputStream() 
+              : connection.getErrorStream();
+              
+          BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+          String inputLine;
+          StringBuilder response = new StringBuilder();
 
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine).append("\n");
-        }
-        in.close();
+          while ((inputLine = in.readLine()) != null) {
+              response.append(inputLine).append("\n");
+          }
+          in.close();
 
-        System.out.println("Response Code: " + responseCode);
-        System.out.println("Response: " + response.toString());
-    }
-}
+          System.out.println("Response Code: " + responseCode);
+          System.out.println("Response: " + response.toString());
+      }
+  }
 
-```
-```php
-<?php
-// Define the URL
-$url = "https://test.payu.in/_payment";
+  ```
+  ```php
+  <?php
+  // Define the URL
+  $url = "https://test.payu.in/_payment";
 
-// Prepare form data
-$postData = array(
-    'key' => 'JF****g',
-    'txnid' => 'jYhbOYH9o4',
-    'amount' => '10',
-    'productinfo' => 'Product_info',
-    'firstname' => 'Ashish',
-    'lastname' => 'Test',
-    'email' => 'test@example.com',
-    'phone' => '9876543210',
-    'furl' => 'http://pp30admin.payu.in/test_response',
-    'surl' => 'http://pp30admin.payu.in/test_response',
-    'hash' => 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
-    'api_version' => '14',
-    'user_token' => '8789'
-);
+  // Prepare form data
+  $postData = array(
+      'key' => 'JF****g',
+      'txnid' => 'jYhbOYH9o4',
+      'amount' => '10',
+      'productinfo' => 'Product_info',
+      'firstname' => 'Ashish',
+      'lastname' => 'Test',
+      'email' => 'test@example.com',
+      'phone' => '9876543210',
+      'furl' => 'http://pp30admin.payu.in/test_response',
+      'surl' => 'http://pp30admin.payu.in/test_response',
+      'hash' => 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
+      'api_version' => '14',
+      'user_token' => '8789'
+  );
 
-// Initialize cURL
-$ch = curl_init();
+  // Initialize cURL
+  $ch = curl_init();
 
-// Set cURL options
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'Content-Type: application/x-www-form-urlencoded',
-    'Cookie: PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
-));
+  // Set cURL options
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/x-www-form-urlencoded',
+      'Cookie: PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
+  ));
 
-// Execute request
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  // Execute request
+  $response = curl_exec($ch);
+  $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-// Check for errors
-if (curl_errno($ch)) {
-    echo 'cURL error: ' . curl_error($ch) . "\n";
-} else {
-    echo "HTTP Code: " . $httpCode . "\n";
-    echo "Response: " . $response . "\n";
-}
+  // Check for errors
+  if (curl_errno($ch)) {
+      echo 'cURL error: ' . curl_error($ch) . "\n";
+  } else {
+      echo "HTTP Code: " . $httpCode . "\n";
+      echo "Response: " . $response . "\n";
+  }
 
-// Close cURL
-curl_close($ch);
-?>
+  // Close cURL
+  curl_close($ch);
+  ?>
 
-```
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
+  ```
+  ```csharp
+  using System;
+  using System.Collections.Generic;
+  using System.Net.Http;
+  using System.Threading.Tasks;
 
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        var client = new HttpClient();
-        var url = "https://test.payu.in/_payment";
+  class Program
+  {
+      static async Task Main(string[] args)
+      {
+          var client = new HttpClient();
+          var url = "https://test.payu.in/_payment";
 
-        // Prepare form data
-        var formData = new List<KeyValuePair<string, string>>
-        {
-            new KeyValuePair<string, string>("key", "JF****g"),
-            new KeyValuePair<string, string>("txnid", "jYhbOYH9o4"),
-            new KeyValuePair<string, string>("amount", "10"),
-            new KeyValuePair<string, string>("productinfo", "Product_info"),
-            new KeyValuePair<string, string>("firstname", "Ashish"),
-            new KeyValuePair<string, string>("lastname", "Test"),
-            new KeyValuePair<string, string>("email", "test@example.com"),
-            new KeyValuePair<string, string>("phone", "9876543210"),
-            new KeyValuePair<string, string>("furl", "http://pp30admin.payu.in/test_response"),
-            new KeyValuePair<string, string>("surl", "http://pp30admin.payu.in/test_response"),
-            new KeyValuePair<string, string>("hash", "e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184"),
-            new KeyValuePair<string, string>("api_version", "14"),
-            new KeyValuePair<string, string>("user_token", "8789")
-        };
+          // Prepare form data
+          var formData = new List<KeyValuePair<string, string>>
+          {
+              new KeyValuePair<string, string>("key", "JF****g"),
+              new KeyValuePair<string, string>("txnid", "jYhbOYH9o4"),
+              new KeyValuePair<string, string>("amount", "10"),
+              new KeyValuePair<string, string>("productinfo", "Product_info"),
+              new KeyValuePair<string, string>("firstname", "Ashish"),
+              new KeyValuePair<string, string>("lastname", "Test"),
+              new KeyValuePair<string, string>("email", "test@example.com"),
+              new KeyValuePair<string, string>("phone", "9876543210"),
+              new KeyValuePair<string, string>("furl", "http://pp30admin.payu.in/test_response"),
+              new KeyValuePair<string, string>("surl", "http://pp30admin.payu.in/test_response"),
+              new KeyValuePair<string, string>("hash", "e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184"),
+              new KeyValuePair<string, string>("api_version", "14"),
+              new KeyValuePair<string, string>("user_token", "8789")
+          };
 
-        var formContent = new FormUrlEncodedContent(formData);
+          var formContent = new FormUrlEncodedContent(formData);
 
-        // Set headers
-        client.DefaultRequestHeaders.Add("Cookie", "PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e");
+          // Set headers
+          client.DefaultRequestHeaders.Add("Cookie", "PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e");
 
-        try
-        {
-            var response = await client.PostAsync(url, formContent);
-            var responseContent = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine($"Status Code: {response.StatusCode}");
-            Console.WriteLine($"Response: {responseContent}");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-        }
-        finally
-        {
-            client.Dispose();
-        }
-    }
-}
+          try
+          {
+              var response = await client.PostAsync(url, formContent);
+              var responseContent = await response.Content.ReadAsStringAsync();
+              
+              Console.WriteLine($"Status Code: {response.StatusCode}");
+              Console.WriteLine($"Response: {responseContent}");
+          }
+          catch (Exception ex)
+          {
+              Console.WriteLine($"Error: {ex.Message}");
+          }
+          finally
+          {
+              client.Dispose();
+          }
+      }
+  }
 
-```
+  ```
 
-<br />
+  <br />
 </Accordion>
 
 2. Check the response from PayU.
 
    You need to understand the following parameters to handle the payment response as the net amount debit may be different from the amount sent by you in the request.
+
 <Accordion title="Response parameters" icon="fa-database">
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
+  <Table align={["left","left","left"]}>
+    <thead>
+      <tr>
+        <th style={{ textAlign: "left" }}>
+          **Parameter**
+        </th>
 
-      <th>
-        **Description**
-      </th>
+        <th style={{ textAlign: "left" }}>
+          **Description**
+        </th>
 
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
+        <th style={{ textAlign: "left" }}>
+          **Example**
+        </th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr>
-      <td>
-        discount
-      </td>
+    <tbody>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          discount
+        </td>
 
-      <td>
-        This will specify the offer value provided to the user.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          This will specify the offer value provided to the user.
+        </td>
 
-      <td>
-        10.00
-      </td>
-    </tr>
+        <td style={{ textAlign: "left" }}>
+          10.00
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        net_amount_debit
-      </td>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          net\_amount\_debit
+        </td>
 
-      <td>
-        This will specify the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          This will specify the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request.
+        </td>
 
-      <td>
-        100.00
-      </td>
-    </tr>
+        <td style={{ textAlign: "left" }}>
+          100.00
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        offer
-      </td>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          offer
+        </td>
 
-      <td>
-        This parameter is used to post the offer key.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          This parameter is used to post the offer key.
+        </td>
 
-      <td>
-        newoffer1@5686
-      </td>
-    </tr>
+        <td style={{ textAlign: "left" }}>
+          newoffer1\@5686
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        offer_type
-      </td>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          offer\_type
+        </td>
 
-      <td>
-        This parameter is used to post any of the following offer_type:
+        <td style={{ textAlign: "left" }}>
+          This parameter is used to post any of the following offer\_type:
 
-        * instant
-        * cashback
-      </td>
+          * instant
+          * cashback
+        </td>
 
-      <td>
-        instant
-      </td>
-    </tr>
-  </tbody>
-</Table>
+        <td style={{ textAlign: "left" }}>
+          instant
+        </td>
+      </tr>
+    </tbody>
+  </Table>
 </Accordion>
 
 3. Verify the payment.
 
    Similar to the payment response, the same parameters can be handled as part of the **verify_payment** API. For more information, refer to [Verify Payment API](ref:verify_payment_api),
-<Accordion title="Request parameters for verify_payment API" icon="fa-database">
 
-| **Parameter**      | **Description**                                                                                                                                                                                  | **Example** |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| transaction_amount | This parameter contains the total transaction amount before discount.                                                                                                                            | 50000.00    |
-| net_amount_debit   | This parameter contains the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 47500.00    |
-| discount           | This parameter contains the offer value provided to the user. This value will specify the offer amount for both Instant discount and Cashback offers.                                            | 2500.00     |
+<Accordion title="Response parameters from verify_payment API" icon="fa-database">
+The following response parameters are partial list which are relevant for SKU-based offers.
+  | **Parameter**       | **Description**                                                                                                                                                                                  | **Example** |
+  | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+  | transaction\_amount | This parameter contains the total transaction amount before discount.                                                                                                                            | 50000.00    |
+  | net\_amount\_debit  | This parameter contains the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 47500.00    |
+  | discount            | This parameter contains the offer value provided to the user. This value will specify the offer amount for both Instant discount and Cashback offers.                                            | 2500.00     |
 
-For the sample request and response from PayU, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
+  For the sample request and response from PayU, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 </Accordion>
 
 4. If you want to refund the payment to customer. refer to [Refund APIs](ref:refund-apis).
@@ -560,37 +552,38 @@ This section describes the customer workflow with an SKU-based offer on the PayU
 </Callout>
 
 ### Customer journey
+
 <Accordion title="Customer journey" icon="fa-times-circle">
-After your customer selects the items from your website (for example, mobile online shopping), the customer is redirected to the PayU page for payment and involves the following steps:
+  After your customer selects the items from your website (for example, mobile online shopping), the customer is redirected to the PayU page for payment and involves the following steps:
 
-1. Select **Offers** at the top-right corner.
+  1. Select **Offers** at the top-right corner.
 
-<Image align="center" border={false} width="322px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Mweb.L1.Offers_L1-523x1024.png" />
+  <Image align="center" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Mweb.L1.Offers_L1-523x1024.png" width="322px" />
 
-All the offers for the products in the shopping cart (if any) are listed.
+  All the offers for the products in the shopping cart (if any) are listed.
 
-<Image align="center" border={false} width="322px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Mweb.L1.Offers_AllOffers-1-568x1024.png" />
+  <Image align="center" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Mweb.L1.Offers_AllOffers-1-568x1024.png" width="322px" />
 
-2. Select the **Product Offers** tab.
+  2. Select the **Product Offers** tab.
 
-   The **Product Offers** tab is displayed on the _Offer & Discount_ page.
+     The **Product Offers** tab is displayed on the *Offer & Discount* page.
 
-<Image align="center" border={false} width="322px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/skuoffers.png" />
+  <Image align="center" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/skuoffers.png" width="322px" />
 
-3. Apply an offer using the **Use Offer** button for the offer you wish to apply.
+  3. Apply an offer using the **Use Offer** button for the offer you wish to apply.
 
-   The _Offer Applied!_ pop-up page is displayed.
+     The *Offer Applied!* pop-up page is displayed.
 
-<Image align="center" border={false} width="322px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Mweb.L1.Offer_Applied.png" />
+  <Image align="center" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Mweb.L1.Offer_Applied.png" width="322px" />
 
-4. Click **Thanks.**
+  4. Click **Thanks.**
 
-   The page to collect your credit card details is displayed.
+     The page to collect your credit card details is displayed.
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Mweb.L1.Offers_L2_Expanded-350x1024.png" />
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Mweb.L1.Offers_L2_Expanded-350x1024.png)
 
-5. Click **Proceed** to make payment and then enter the OTP sent by bank to your mobile to complete the purchase.
-6. Close this page to return back to the merchant website.
+  5. Click **Proceed** to make payment and then enter the OTP sent by bank to your mobile to complete the purchase.
+  6. Close this page to return back to the merchant website.
 </Accordion>
 
 ### Integration steps
@@ -598,681 +591,179 @@ All the offers for the products in the shopping cart (if any) are listed.
 #### Step 1: Post request parameters
 
 <Accordion title="Request parameters" icon="fa-database">
-**Additional request parameters for SKU-Based Offer**
+  **Additional request parameters for SKU-Based Offer**
 
-The following request parameters are posted along with request parameters posted for a PayU Hosted Checkout transaction. For the checkout flow and list of request parameters required for the Offer integration, refer to  [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
+  The following request parameters are posted along with request parameters posted for a PayU Hosted Checkout transaction. For the checkout flow and list of request parameters required for the Offer integration, refer to  [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Field**
-      </th>
+  <Table>
+    <thead>
+      <tr>
+        <th>
+          **Field**
+        </th>
 
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
+        <th>
+          **Description**
+        </th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr>
-      <td>
-        cart_details
-        `mandatory for SKU`
-      </td>
+    <tbody>
+      <tr>
+        <td>
+          cart\_details
+          `mandatory for SKU`
+        </td>
 
-      <td>
-        `JSON Object `The card details is specified in this parameter in a JSON format.
-        **Note**: If given null, no cart will be created for the transaction.
-      </td>
-    </tr>
+        <td>
+          `JSON Object `The card details is specified in this parameter in a JSON format.
+          **Note**: If given null, no cart will be created for the transaction.
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        cart_details.amount
-        `mandatory`
-      </td>
+      <tr>
+        <td>
+          cart\_details.amount
+          `mandatory`
+        </td>
 
-      <td>
-        `String` The amount for the SKU-based offer.
-      </td>
-    </tr>
+        <td>
+          `String` The amount for the SKU-based offer.
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        cart_details.surcharges
-        `conditional`
-      </td>
+      <tr>
+        <td>
+          cart\_details.surcharges
+          `conditional`
+        </td>
 
-      <td>
-        `String` Total txn amount is now increased, but the cart_details.amount is lesser, to handle the difference, the additonal amount added by the merchant should be passed in surcharges field
-      </td>
-    </tr>
+        <td>
+          `String` Total txn amount is now increased, but the cart\_details.amount is lesser, to handle the difference, the additonal amount added by the merchant should be passed in surcharges field
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        cart_details.pre_discount
-        `conditional`
-      </td>
+      <tr>
+        <td>
+          cart\_details.pre\_discount
+          `conditional`
+        </td>
 
-      <td>
-        * String_ If there are any pre discount given by merchant on their checkout page. Total txn amount is now reduced, but the cart_details.amount is higher, to handle the difference, the discount given by the merchant should be passed in pre_discount field
-      </td>
-    </tr>
+        <td>
+          * String\_ If there are any pre discount given by merchant on their checkout page. Total txn amount is now reduced, but the cart\_details.amount is higher, to handle the difference, the discount given by the merchant should be passed in pre\_discount field
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        cart_details.items
-        `mandatory`
-      </td>
+      <tr>
+        <td>
+          cart\_details.items
+          `mandatory`
+        </td>
 
-      <td>
-        * String_ The number of the items for the SKU-based offer.
-      </td>
-    </tr>
+        <td>
+          * String\_ The number of the items for the SKU-based offer.
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        cart_details.sku_details
-        `mandatory`
-      </td>
+      <tr>
+        <td>
+          cart\_details.sku\_details
+          `mandatory`
+        </td>
 
-      <td>
-        * JSON Object_ The SKU details is specified in this parameter in a JSON format.
-      </td>
-    </tr>
+        <td>
+          * JSON Object\_ The SKU details is specified in this parameter in a JSON format.
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        cart_details.sku_details.sku_id
-        `mandatory`
-      </td>
+      <tr>
+        <td>
+          cart\_details.sku\_details.sku\_id
+          `mandatory`
+        </td>
 
-      <td>
-        * String_ This parameter contains the unique identifier for SKU.
-        * _Note_*: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
-      </td>
-    </tr>
+        <td>
+          * String\_ This parameter contains the unique identifier for SKU.
+          * *Note*\*: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        sku_details.sku_name
-        `mandatory`
-      </td>
+      <tr>
+        <td>
+          sku\_details.sku\_name
+          `mandatory`
+        </td>
 
-      <td>
-        `String`  This parameter contains the SKU name.
-      </td>
-    </tr>
+        <td>
+          `String`  This parameter contains the SKU name.
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        sku_details.quantity
-        `mandatory`
-      </td>
+      <tr>
+        <td>
+          sku\_details.quantity
+          `mandatory`
+        </td>
 
-      <td>
-        `String`  The parameter must contain the quantity of SKU added in cart.
-      </td>
-    </tr>
+        <td>
+          `String`  The parameter must contain the quantity of SKU added in cart.
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        sku_details.amount_per_sku
-        `mandatory`
-      </td>
+      <tr>
+        <td>
+          sku\_details.amount\_per\_sku
+          `mandatory`
+        </td>
 
-      <td>
-        `String`  The parameter must contain the per SKU amount.
-      </td>
-    </tr>
+        <td>
+          `String`  The parameter must contain the per SKU amount.
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        sku_details.offer_key
-        `mandatory`
-      </td>
+      <tr>
+        <td>
+          sku\_details.offer\_key
+          `mandatory`
+        </td>
 
-      <td>
-        `String` This parameter must contain the Offer Key(s) which can be used for this transaction. |
-      </td>
-    </tr>
+        <td>
+          `String` This parameter must contain the Offer Key(s) which can be used for this transaction. |
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        sku_details.offer_auto_apply
-        `mandatory`
-      </td>
+      <tr>
+        <td>
+          sku\_details.offer\_auto\_apply
+          `mandatory`
+        </td>
 
-      <td>
-        `String` This parameter contains the flag for when to enable auto application of best offer on this SKU.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+        <td>
+          `String` This parameter contains the flag for when to enable auto application of best offer on this SKU.
+        </td>
+      </tr>
+    </tbody>
+  </Table>
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-server">
-```curl
-curl --location 'https://test.payu.in/_payment' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Cookie: PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e' \
---data-urlencode 'key=JF****g' \
---data-urlencode 'txnid=jYhbOYH9o4' \
---data-urlencode 'amount=10' \
---data-urlencode 'productinfo=Product_info' \
---data-urlencode 'firstname=Ashish' \
---data-urlencode 'lastname=Test' \
---data-urlencode 'email=test@example.com' \
---data-urlencode 'phone=9876543210' \
---data-urlencode 'furl=http://pp30admin.payu.in/test_response' \
---data-urlencode 'surl=http://pp30admin.payu.in/test_response' \
---data-urlencode 'api_version=19' \
---data-urlencode 'hash=e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184' \
---data-urlencode 'cart_details={
-  "amount": 55000,
-  "items": 2,
-  "surcharges": 10,
-  "pre_discount": 5,
-  "sku_details": [
-    {
-      "sku_id": "smartphone234",
-      "sku_name": "Smartphone",
-      "amount_per_sku": "45000",
-      "quantity": 1,
-      "offer_key": null,
-      "offer_auto_apply": true
-    },
-    {
-      "sku_id": "smartwatch132",
-      "sku_name": "Smartwatch",
-      "amount_per_sku": "10000",
-      "quantity": 1,
-      "offer_key": ["flat500@2022"],
-      "offer_auto_apply": false
-    }
-  ]
-}'
-```
-```javascript
-async function makePayURequest() {
-    const url = "https://test.payu.in/_payment";
-    
-    // Define cart details object
-    const cartDetails = {
-        amount: 55000,
-        items: 2,
-        surcharges: 10,
-        pre_discount: 5,
-        sku_details: [
-            {
-                sku_id: "smartphone234",
-                sku_name: "Smartphone",
-                amount_per_sku: "45000",
-                quantity: 1,
-                offer_key: null,
-                offer_auto_apply: true
-            },
-            {
-                sku_id: "smartwatch132",
-                sku_name: "Smartwatch",
-                amount_per_sku: "10000",
-                quantity: 1,
-                offer_key: ["flat500@2022"],
-                offer_auto_apply: false
-            }
-        ]
-    };
-
-    // Define form data
-    const formData = new URLSearchParams({
-        'key': 'JF****g',
-        'txnid': 'jYhbOYH9o4',
-        'amount': '10',
-        'productinfo': 'Product_info',
-        'firstname': 'Ashish',
-        'lastname': 'Test',
-        'email': 'test@example.com',
-        'phone': '9876543210',
-        'furl': 'http://pp30admin.payu.in/test_response',
-        'surl': 'http://pp30admin.payu.in/test_response',
-        'api_version': '19',
-        'hash': 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
-        'cart_details': JSON.stringify(cartDetails)
-    });
-
-    try {
-        console.log('Making request to:', url);
-        console.log('Cart details:', cartDetails);
-        
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Cookie': 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
-            },
-            body: formData
-        });
-
-        console.log('Response status:', response.status);
-        console.log('Response headers:', response.headers);
-
-        // Check if response is successful
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}, statusText: ${response.statusText}`);
-        }
-
-        const data = await response.text();
-        console.log('Success! Response data:', data);
-        
-        return {
-            success: true,
-            status: response.status,
-            data: data
-        };
-
-    } catch (error) {
-        console.error('Request failed:', error);
-        
-        return {
-            success: false,
-            error: error.message
-        };
-    }
-}
-
-// Call the function
-makePayURequest()
-    .then(result => {
-        if (result.success) {
-            console.log('Payment request completed successfully');
-        } else {
-            console.log('Payment request failed:', result.error);
-        }
-    });
-
-```
-```python
-import requests
-import json
-
-# Define the URL
-url = "https://test.payu.in/_payment"
-
-# Define headers
-headers = {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Cookie': 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
-}
-
-# Define the cart details as a dictionary first, then convert to JSON string
-cart_details = {
-    "amount": 55000,
-    "items": 2,
-    "surcharges": 10,
-    "pre_discount": 5,
-    "sku_details": [
-        {
-            "sku_id": "smartphone234",
-            "sku_name": "Smartphone",
-            "amount_per_sku": "45000",
-            "quantity": 1,
-            "offer_key": None,
-            "offer_auto_apply": True
-        },
-        {
-            "sku_id": "smartwatch132",
-            "sku_name": "Smartwatch",
-            "amount_per_sku": "10000",
-            "quantity": 1,
-            "offer_key": ["flat500@2022"],
-            "offer_auto_apply": False
-        }
-    ]
-}
-
-# Define form data
-data = {
-    'key': 'JF****g',
-    'txnid': 'jYhbOYH9o4',
-    'amount': '10',
-    'productinfo': 'Product_info',
-    'firstname': 'Ashish',
-    'lastname': 'Test',
-    'email': 'test@example.com',
-    'phone': '9876543210',
-    'furl': 'http://pp30admin.payu.in/test_response',
-    'surl': 'http://pp30admin.payu.in/test_response',
-    'api_version': '19',
-    'hash': 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
-    'cart_details': json.dumps(cart_details)
-}
-
-# Make the request
-response = requests.post(url, headers=headers, data=data)
-print("Status Code:", response.status_code)
-print("Response:", response.text)
-
-```
-```php
-<?php
-// For Laravel or similar frameworks
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
-
-class PayUService 
-{
-    private $apiUrl;
-    private $timeout;
-
-    public function __construct() 
-    {
-        $this->apiUrl = config('payu.api_url', 'https://test.payu.in/_payment');
-        $this->timeout = config('payu.timeout', 30);
-    }
-
-    public function processPayment(array $paymentData, array $cartDetails): array 
-    {
-        try {
-            // Add cart details as JSON
-            $formData = array_merge($paymentData, [
-                'cart_details' => json_encode($cartDetails, JSON_UNESCAPED_SLASHES)
-            ]);
-
-            Log::info('PayU Payment Request', [
-                'txnid' => $paymentData['txnid'] ?? 'N/A',
-                'amount' => $paymentData['amount'] ?? 'N/A'
-            ]);
-
-            // Make HTTP request using Laravel's HTTP client
-            $response = Http::timeout($this->timeout)
-                ->withHeaders([
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Cookie' => 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
-                ])
-                ->asForm()
-                ->post($this->apiUrl, $formData);
-
-            Log::info('PayU Payment Response', [
-                'status' => $response->status(),
-                'txnid' => $paymentData['txnid'] ?? 'N/A'
-            ]);
-
-            if ($response->successful()) {
-                return [
-                    'success' => true,
-                    'status_code' => $response->status(),
-                    'response' => $response->body(),
-                    'transaction_id' => $paymentData['txnid'] ?? null
-                ];
-            } else {
-                throw new \Exception("HTTP Error: " . $response->status());
-            }
-
-        } catch (\Exception $e) {
-            Log::error('PayU Payment Failed', [
-                'error' => $e->getMessage(),
-                'txnid' => $paymentData['txnid'] ?? 'N/A'
-            ]);
-
-            return [
-                'success' => false,
-                'error' => $e->getMessage(),
-                'transaction_id' => $paymentData['txnid'] ?? null
-            ];
-        }
-    }
-}
-
-// Usage in Laravel Controller
-class PaymentController extends Controller 
-{
-    protected $payuService;
-
-    public function __construct(PayUService $payuService) 
-    {
-        $this->payuService = $payuService;
-    }
-
-    public function processPayment(Request $request) 
-    {
-        $paymentData = [
-            'key' => 'JF****g',
-            'txnid' => 'jYhbOYH9o4',
-            'amount' => '10',
-            'productinfo' => 'Product_info',
-            'firstname' => 'Ashish',
-            'lastname' => 'Test',
-            'email' => 'test@example.com',
-            'phone' => '9876543210',
-            'furl' => 'http://pp30admin.payu.in/test_response',
-            'surl' => 'http://pp30admin.payu.in/test_response',
-            'api_version' => '19',
-            'hash' => 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184'
-        ];
-
-        $cartDetails = [
-            "amount" => 55000,
-            "items" => 2,
-            "surcharges" => 10,
-            "pre_discount" => 5,
-            "sku_details" => [
-                [
-                    "sku_id" => "smartphone234",
-                    "sku_name" => "Smartphone",
-                    "amount_per_sku" => "45000",
-                    "quantity" => 1,
-                    "offer_key" => null,
-                    "offer_auto_apply" => true
-                ],
-                [
-                    "sku_id" => "smartwatch132",
-                    "sku_name" => "Smartwatch",
-                    "amount_per_sku" => "10000",
-                    "quantity" => 1,
-                    "offer_key" => ["flat500@2022"],
-                    "offer_auto_apply" => false
-                ]
-            ]
-        ];
-
-        $result = $this->payuService->processPayment($paymentData, $cartDetails);
-
-        return response()->json($result);
-    }
-}
-?>
-
-```
-```java
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringJoiner;
-
-public class PayURequest {
-    public static void main(String[] args) throws IOException {
-        String url = "https://test.payu.in/_payment";
-        
-        // Cart details JSON string
-        String cartDetails = "{\n" +
-            "  \"amount\": 55000,\n" +
-            "  \"items\": 2,\n" +
-            "  \"surcharges\": 10,\n" +
-            "  \"pre_discount\": 5,\n" +
-            "  \"sku_details\": [\n" +
-            "    {\n" +
-            "      \"sku_id\": \"smartphone234\",\n" +
-            "      \"sku_name\": \"Smartphone\",\n" +
-            "      \"amount_per_sku\": \"45000\",\n" +
-            "      \"quantity\": 1,\n" +
-            "      \"offer_key\": null,\n" +
-            "      \"offer_auto_apply\": true\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"sku_id\": \"smartwatch132\",\n" +
-            "      \"sku_name\": \"Smartwatch\",\n" +
-            "      \"amount_per_sku\": \"10000\",\n" +
-            "      \"quantity\": 1,\n" +
-            "      \"offer_key\": [\"flat500@2022\"],\n" +
-            "      \"offer_auto_apply\": false\n" +
-            "    }\n" +
-            "  ]\n" +
-            "}";
-
-        // Prepare form data
-        Map<String, String> parameters = new HashMap<>();
-        parameters.put("key", "JF****g");
-        parameters.put("txnid", "jYhbOYH9o4");
-        parameters.put("amount", "10");
-        parameters.put("productinfo", "Product_info");
-        parameters.put("firstname", "Ashish");
-        parameters.put("lastname", "Test");
-        parameters.put("email", "test@example.com");
-        parameters.put("phone", "9876543210");
-        parameters.put("furl", "http://pp30admin.payu.in/test_response");
-        parameters.put("surl", "http://pp30admin.payu.in/test_response");
-        parameters.put("api_version", "19");
-        parameters.put("hash", "e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184");
-        parameters.put("cart_details", cartDetails);
-
-        // Build URL-encoded string
-        StringJoiner sj = new StringJoiner("&");
-        for (Map.Entry<String, String> entry : parameters.entrySet()) {
-            sj.add(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" +
-                   URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
-        }
-        byte[] postData = sj.toString().getBytes(StandardCharsets.UTF_8);
-
-        // Create connection
-        URL obj = new URL(url);
-        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-        
-        // Set request method and headers
-        connection.setRequestMethod("POST");
-        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        connection.setRequestProperty("Cookie", "PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e");
-        connection.setRequestProperty("Content-Length", String.valueOf(postData.length));
-        connection.setDoOutput(true);
-
-        // Send request
-        try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
-            wr.write(postData);
-        }
-
-        // Read response
-        int responseCode = connection.getResponseCode();
-        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-
-        System.out.println("Response Code: " + responseCode);
-        System.out.println("Response: " + response.toString());
-    }
-}
-
-```
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        var client = new HttpClient();
-        var url = "https://test.payu.in/_payment";
-
-        // Define cart details
-        var cartDetails = new
-        {
-            amount = 55000,
-            items = 2,
-            surcharges = 10,
-            pre_discount = 5,
-            sku_details = new[]
-            {
-                new
-                {
-                    sku_id = "smartphone234",
-                    sku_name = "Smartphone",
-                    amount_per_sku = "45000",
-                    quantity = 1,
-                    offer_key = (string)null,
-                    offer_auto_apply = true
-                },
-                new
-                {
-                    sku_id = "smartwatch132",
-                    sku_name = "Smartwatch",
-                    amount_per_sku = "10000",
-                    quantity = 1,
-                    offer_key = new[] { "flat500@2022" },
-                    offer_auto_apply = false
-                }
-            }
-        };
-
-        // Prepare form data
-        var formData = new List<KeyValuePair<string, string>>
-        {
-            new KeyValuePair<string, string>("key", "JF****g"),
-            new KeyValuePair<string, string>("txnid", "jYhbOYH9o4"),
-            new KeyValuePair<string, string>("amount", "10"),
-            new KeyValuePair<string, string>("productinfo", "Product_info"),
-            new KeyValuePair<string, string>("firstname", "Ashish"),
-            new KeyValuePair<string, string>("lastname", "Test"),
-            new KeyValuePair<string, string>("email", "test@example.com"),
-            new KeyValuePair<string, string>("phone", "9876543210"),
-            new KeyValuePair<string, string>("furl", "http://pp30admin.payu.in/test_response"),
-            new KeyValuePair<string, string>("surl", "http://pp30admin.payu.in/test_response"),
-            new KeyValuePair<string, string>("api_version", "19"),
-            new KeyValuePair<string, string>("hash", "e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184"),
-            new KeyValuePair<string, string>("cart_details", JsonConvert.SerializeObject(cartDetails))
-        };
-
-        var formContent = new FormUrlEncodedContent(formData);
-
-        // Set headers
-        client.DefaultRequestHeaders.Add("Cookie", "PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e");
-
-        try
-        {
-            var response = await client.PostAsync(url, formContent);
-            var responseContent = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine($"Status Code: {response.StatusCode}");
-            Console.WriteLine($"Response: {responseContent}");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-        }
-    }
-}
-
-```
-
-<br />
-
-#### cart_details object in sample request
-
-```json
-"cart_details": {
+  ```curl
+  curl --location 'https://test.payu.in/_payment' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'Cookie: PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e' \
+  --data-urlencode 'key=JF****g' \
+  --data-urlencode 'txnid=jYhbOYH9o4' \
+  --data-urlencode 'amount=10' \
+  --data-urlencode 'productinfo=Product_info' \
+  --data-urlencode 'firstname=Ashish' \
+  --data-urlencode 'lastname=Test' \
+  --data-urlencode 'email=test@example.com' \
+  --data-urlencode 'phone=9876543210' \
+  --data-urlencode 'furl=http://pp30admin.payu.in/test_response' \
+  --data-urlencode 'surl=http://pp30admin.payu.in/test_response' \
+  --data-urlencode 'api_version=19' \
+  --data-urlencode 'hash=e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184' \
+  --data-urlencode 'cart_details={
     "amount": 55000,
     "items": 2,
     "surcharges": 10,
@@ -1291,80 +782,583 @@ class Program
         "sku_name": "Smartwatch",
         "amount_per_sku": "10000",
         "quantity": 1,
-        "offer_key": [
-          "flat500@2022"
-        ],
+        "offer_key": ["flat500@2022"],
         "offer_auto_apply": false
       }
     ]
+  }'
+  ```
+  ```javascript
+  async function makePayURequest() {
+      const url = "https://test.payu.in/_payment";
+      
+      // Define cart details object
+      const cartDetails = {
+          amount: 55000,
+          items: 2,
+          surcharges: 10,
+          pre_discount: 5,
+          sku_details: [
+              {
+                  sku_id: "smartphone234",
+                  sku_name: "Smartphone",
+                  amount_per_sku: "45000",
+                  quantity: 1,
+                  offer_key: null,
+                  offer_auto_apply: true
+              },
+              {
+                  sku_id: "smartwatch132",
+                  sku_name: "Smartwatch",
+                  amount_per_sku: "10000",
+                  quantity: 1,
+                  offer_key: ["flat500@2022"],
+                  offer_auto_apply: false
+              }
+          ]
+      };
+
+      // Define form data
+      const formData = new URLSearchParams({
+          'key': 'JF****g',
+          'txnid': 'jYhbOYH9o4',
+          'amount': '10',
+          'productinfo': 'Product_info',
+          'firstname': 'Ashish',
+          'lastname': 'Test',
+          'email': 'test@example.com',
+          'phone': '9876543210',
+          'furl': 'http://pp30admin.payu.in/test_response',
+          'surl': 'http://pp30admin.payu.in/test_response',
+          'api_version': '19',
+          'hash': 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
+          'cart_details': JSON.stringify(cartDetails)
+      });
+
+      try {
+          console.log('Making request to:', url);
+          console.log('Cart details:', cartDetails);
+          
+          const response = await fetch(url, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+                  'Cookie': 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
+              },
+              body: formData
+          });
+
+          console.log('Response status:', response.status);
+          console.log('Response headers:', response.headers);
+
+          // Check if response is successful
+          if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}, statusText: ${response.statusText}`);
+          }
+
+          const data = await response.text();
+          console.log('Success! Response data:', data);
+          
+          return {
+              success: true,
+              status: response.status,
+              data: data
+          };
+
+      } catch (error) {
+          console.error('Request failed:', error);
+          
+          return {
+              success: false,
+              error: error.message
+          };
+      }
   }
-```
+
+  // Call the function
+  makePayURequest()
+      .then(result => {
+          if (result.success) {
+              console.log('Payment request completed successfully');
+          } else {
+              console.log('Payment request failed:', result.error);
+          }
+      });
+
+  ```
+  ```python
+  import requests
+  import json
+
+  # Define the URL
+  url = "https://test.payu.in/_payment"
+
+  # Define headers
+  headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Cookie': 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
+  }
+
+  # Define the cart details as a dictionary first, then convert to JSON string
+  cart_details = {
+      "amount": 55000,
+      "items": 2,
+      "surcharges": 10,
+      "pre_discount": 5,
+      "sku_details": [
+          {
+              "sku_id": "smartphone234",
+              "sku_name": "Smartphone",
+              "amount_per_sku": "45000",
+              "quantity": 1,
+              "offer_key": None,
+              "offer_auto_apply": True
+          },
+          {
+              "sku_id": "smartwatch132",
+              "sku_name": "Smartwatch",
+              "amount_per_sku": "10000",
+              "quantity": 1,
+              "offer_key": ["flat500@2022"],
+              "offer_auto_apply": False
+          }
+      ]
+  }
+
+  # Define form data
+  data = {
+      'key': 'JF****g',
+      'txnid': 'jYhbOYH9o4',
+      'amount': '10',
+      'productinfo': 'Product_info',
+      'firstname': 'Ashish',
+      'lastname': 'Test',
+      'email': 'test@example.com',
+      'phone': '9876543210',
+      'furl': 'http://pp30admin.payu.in/test_response',
+      'surl': 'http://pp30admin.payu.in/test_response',
+      'api_version': '19',
+      'hash': 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
+      'cart_details': json.dumps(cart_details)
+  }
+
+  # Make the request
+  response = requests.post(url, headers=headers, data=data)
+  print("Status Code:", response.status_code)
+  print("Response:", response.text)
+
+  ```
+  ```php
+  <?php
+  // For Laravel or similar frameworks
+  use Illuminate\Support\Facades\Http;
+  use Illuminate\Support\Facades\Log;
+
+  class PayUService 
+  {
+      private $apiUrl;
+      private $timeout;
+
+      public function __construct() 
+      {
+          $this->apiUrl = config('payu.api_url', 'https://test.payu.in/_payment');
+          $this->timeout = config('payu.timeout', 30);
+      }
+
+      public function processPayment(array $paymentData, array $cartDetails): array 
+      {
+          try {
+              // Add cart details as JSON
+              $formData = array_merge($paymentData, [
+                  'cart_details' => json_encode($cartDetails, JSON_UNESCAPED_SLASHES)
+              ]);
+
+              Log::info('PayU Payment Request', [
+                  'txnid' => $paymentData['txnid'] ?? 'N/A',
+                  'amount' => $paymentData['amount'] ?? 'N/A'
+              ]);
+
+              // Make HTTP request using Laravel's HTTP client
+              $response = Http::timeout($this->timeout)
+                  ->withHeaders([
+                      'Content-Type' => 'application/x-www-form-urlencoded',
+                      'Cookie' => 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
+                  ])
+                  ->asForm()
+                  ->post($this->apiUrl, $formData);
+
+              Log::info('PayU Payment Response', [
+                  'status' => $response->status(),
+                  'txnid' => $paymentData['txnid'] ?? 'N/A'
+              ]);
+
+              if ($response->successful()) {
+                  return [
+                      'success' => true,
+                      'status_code' => $response->status(),
+                      'response' => $response->body(),
+                      'transaction_id' => $paymentData['txnid'] ?? null
+                  ];
+              } else {
+                  throw new \Exception("HTTP Error: " . $response->status());
+              }
+
+          } catch (\Exception $e) {
+              Log::error('PayU Payment Failed', [
+                  'error' => $e->getMessage(),
+                  'txnid' => $paymentData['txnid'] ?? 'N/A'
+              ]);
+
+              return [
+                  'success' => false,
+                  'error' => $e->getMessage(),
+                  'transaction_id' => $paymentData['txnid'] ?? null
+              ];
+          }
+      }
+  }
+
+  // Usage in Laravel Controller
+  class PaymentController extends Controller 
+  {
+      protected $payuService;
+
+      public function __construct(PayUService $payuService) 
+      {
+          $this->payuService = $payuService;
+      }
+
+      public function processPayment(Request $request) 
+      {
+          $paymentData = [
+              'key' => 'JF****g',
+              'txnid' => 'jYhbOYH9o4',
+              'amount' => '10',
+              'productinfo' => 'Product_info',
+              'firstname' => 'Ashish',
+              'lastname' => 'Test',
+              'email' => 'test@example.com',
+              'phone' => '9876543210',
+              'furl' => 'http://pp30admin.payu.in/test_response',
+              'surl' => 'http://pp30admin.payu.in/test_response',
+              'api_version' => '19',
+              'hash' => 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184'
+          ];
+
+          $cartDetails = [
+              "amount" => 55000,
+              "items" => 2,
+              "surcharges" => 10,
+              "pre_discount" => 5,
+              "sku_details" => [
+                  [
+                      "sku_id" => "smartphone234",
+                      "sku_name" => "Smartphone",
+                      "amount_per_sku" => "45000",
+                      "quantity" => 1,
+                      "offer_key" => null,
+                      "offer_auto_apply" => true
+                  ],
+                  [
+                      "sku_id" => "smartwatch132",
+                      "sku_name" => "Smartwatch",
+                      "amount_per_sku" => "10000",
+                      "quantity" => 1,
+                      "offer_key" => ["flat500@2022"],
+                      "offer_auto_apply" => false
+                  ]
+              ]
+          ];
+
+          $result = $this->payuService->processPayment($paymentData, $cartDetails);
+
+          return response()->json($result);
+      }
+  }
+  ?>
+
+  ```
+  ```java
+  import java.io.*;
+  import java.net.HttpURLConnection;
+  import java.net.URL;
+  import java.net.URLEncoder;
+  import java.nio.charset.StandardCharsets;
+  import java.util.HashMap;
+  import java.util.Map;
+  import java.util.StringJoiner;
+
+  public class PayURequest {
+      public static void main(String[] args) throws IOException {
+          String url = "https://test.payu.in/_payment";
+          
+          // Cart details JSON string
+          String cartDetails = "{\n" +
+              "  \"amount\": 55000,\n" +
+              "  \"items\": 2,\n" +
+              "  \"surcharges\": 10,\n" +
+              "  \"pre_discount\": 5,\n" +
+              "  \"sku_details\": [\n" +
+              "    {\n" +
+              "      \"sku_id\": \"smartphone234\",\n" +
+              "      \"sku_name\": \"Smartphone\",\n" +
+              "      \"amount_per_sku\": \"45000\",\n" +
+              "      \"quantity\": 1,\n" +
+              "      \"offer_key\": null,\n" +
+              "      \"offer_auto_apply\": true\n" +
+              "    },\n" +
+              "    {\n" +
+              "      \"sku_id\": \"smartwatch132\",\n" +
+              "      \"sku_name\": \"Smartwatch\",\n" +
+              "      \"amount_per_sku\": \"10000\",\n" +
+              "      \"quantity\": 1,\n" +
+              "      \"offer_key\": [\"flat500@2022\"],\n" +
+              "      \"offer_auto_apply\": false\n" +
+              "    }\n" +
+              "  ]\n" +
+              "}";
+
+          // Prepare form data
+          Map<String, String> parameters = new HashMap<>();
+          parameters.put("key", "JF****g");
+          parameters.put("txnid", "jYhbOYH9o4");
+          parameters.put("amount", "10");
+          parameters.put("productinfo", "Product_info");
+          parameters.put("firstname", "Ashish");
+          parameters.put("lastname", "Test");
+          parameters.put("email", "test@example.com");
+          parameters.put("phone", "9876543210");
+          parameters.put("furl", "http://pp30admin.payu.in/test_response");
+          parameters.put("surl", "http://pp30admin.payu.in/test_response");
+          parameters.put("api_version", "19");
+          parameters.put("hash", "e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184");
+          parameters.put("cart_details", cartDetails);
+
+          // Build URL-encoded string
+          StringJoiner sj = new StringJoiner("&");
+          for (Map.Entry<String, String> entry : parameters.entrySet()) {
+              sj.add(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" +
+                     URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
+          }
+          byte[] postData = sj.toString().getBytes(StandardCharsets.UTF_8);
+
+          // Create connection
+          URL obj = new URL(url);
+          HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+          
+          // Set request method and headers
+          connection.setRequestMethod("POST");
+          connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+          connection.setRequestProperty("Cookie", "PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e");
+          connection.setRequestProperty("Content-Length", String.valueOf(postData.length));
+          connection.setDoOutput(true);
+
+          // Send request
+          try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
+              wr.write(postData);
+          }
+
+          // Read response
+          int responseCode = connection.getResponseCode();
+          BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+          String inputLine;
+          StringBuilder response = new StringBuilder();
+
+          while ((inputLine = in.readLine()) != null) {
+              response.append(inputLine);
+          }
+          in.close();
+
+          System.out.println("Response Code: " + responseCode);
+          System.out.println("Response: " + response.toString());
+      }
+  }
+
+  ```
+  ```csharp
+  using System;
+  using System.Collections.Generic;
+  using System.Net.Http;
+  using System.Text;
+  using System.Threading.Tasks;
+  using Newtonsoft.Json;
+
+  class Program
+  {
+      static async Task Main(string[] args)
+      {
+          var client = new HttpClient();
+          var url = "https://test.payu.in/_payment";
+
+          // Define cart details
+          var cartDetails = new
+          {
+              amount = 55000,
+              items = 2,
+              surcharges = 10,
+              pre_discount = 5,
+              sku_details = new[]
+              {
+                  new
+                  {
+                      sku_id = "smartphone234",
+                      sku_name = "Smartphone",
+                      amount_per_sku = "45000",
+                      quantity = 1,
+                      offer_key = (string)null,
+                      offer_auto_apply = true
+                  },
+                  new
+                  {
+                      sku_id = "smartwatch132",
+                      sku_name = "Smartwatch",
+                      amount_per_sku = "10000",
+                      quantity = 1,
+                      offer_key = new[] { "flat500@2022" },
+                      offer_auto_apply = false
+                  }
+              }
+          };
+
+          // Prepare form data
+          var formData = new List<KeyValuePair<string, string>>
+          {
+              new KeyValuePair<string, string>("key", "JF****g"),
+              new KeyValuePair<string, string>("txnid", "jYhbOYH9o4"),
+              new KeyValuePair<string, string>("amount", "10"),
+              new KeyValuePair<string, string>("productinfo", "Product_info"),
+              new KeyValuePair<string, string>("firstname", "Ashish"),
+              new KeyValuePair<string, string>("lastname", "Test"),
+              new KeyValuePair<string, string>("email", "test@example.com"),
+              new KeyValuePair<string, string>("phone", "9876543210"),
+              new KeyValuePair<string, string>("furl", "http://pp30admin.payu.in/test_response"),
+              new KeyValuePair<string, string>("surl", "http://pp30admin.payu.in/test_response"),
+              new KeyValuePair<string, string>("api_version", "19"),
+              new KeyValuePair<string, string>("hash", "e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184"),
+              new KeyValuePair<string, string>("cart_details", JsonConvert.SerializeObject(cartDetails))
+          };
+
+          var formContent = new FormUrlEncodedContent(formData);
+
+          // Set headers
+          client.DefaultRequestHeaders.Add("Cookie", "PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e");
+
+          try
+          {
+              var response = await client.PostAsync(url, formContent);
+              var responseContent = await response.Content.ReadAsStringAsync();
+              
+              Console.WriteLine($"Status Code: {response.StatusCode}");
+              Console.WriteLine($"Response: {responseContent}");
+          }
+          catch (Exception ex)
+          {
+              Console.WriteLine($"Error: {ex.Message}");
+          }
+      }
+  }
+
+  ```
+
+  <br />
+
+  #### cart\_details object in sample request
+
+  ```json
+  "cart_details": {
+      "amount": 55000,
+      "items": 2,
+      "surcharges": 10,
+      "pre_discount": 5,
+      "sku_details": [
+        {
+          "sku_id": "smartphone234",
+          "sku_name": "Smartphone",
+          "amount_per_sku": "45000",
+          "quantity": 1,
+          "offer_key": null,
+          "offer_auto_apply": true
+        },
+        {
+          "sku_id": "smartwatch132",
+          "sku_name": "Smartwatch",
+          "amount_per_sku": "10000",
+          "quantity": 1,
+          "offer_key": [
+            "flat500@2022"
+          ],
+          "offer_auto_apply": false
+        }
+      ]
+    }
+  ```
 </Accordion>
 
 #### Step 2: Check the PayU response
+
 <Accordion title="Sample response" icon="fa-terminal">
-**Success scenario**
+  **Success scenario**
 
-The **cart_details** JSON Object in the response (sample):
+  The **cart\_details** JSON Object in the response (sample):
 
-```
-{"cart_details": {
-    "id": "18",
-    "payu_id": "999000000000983",
-    "total_items": "2",
-    "total_cart_amount": "55000",
-    "offer_applied": null,
-    "offer_availed": null,
-    "instant_discount": "1000",
-    "cashback_discount": "500",
-    "total_discount": "1500",
-    "net_cart_amount": "54000",
-    "created_at": null,
-    "updated_at": null,
-    "sku_details": [
-      {
-        "id": "35",
-        "cart_id": "18",
-        "payu_id": "999000000000983",
-        "mid": "180012",
-        "sku_id": "smartphone234",
-        "sku_name": "Smartphone",
-        "amount_per_sku": "45000.00",
-        "quantity": "1",
-        "amount_before_discount": "45000",
-        "discount": "1000",
-        "amount_after_discount": "44000",
-        "offer_key": null,
-        "offer_status": null,
-        "offer_type": null,
-        "created_at": null,
-        "updated_at": null
-      },
-      {
-        "id": "36",
-        "cart_id": "18",
-        "payu_id": "999000000000983",
-        "mid": "180012",
-        "sku_id": "smartwatch132",
-        "sku_name": "Smartwatch",
-        "amount_per_sku": "10000.00",
-        "quantity": "1",
-        "amount_before_discount": "10000.00",
-        "discount": "500",
-        "amount_after_discount": "10000.00",
-        "offer_key": null,
-        "offer_status": null,
-        "offer_type": null,
-        "created_at": null,
-        "updated_at": null
-      }
-    ]
-  }}
-```
+  ```
+  {"cart_details": {
+      "id": "18",
+      "payu_id": "999000000000983",
+      "total_items": "2",
+      "total_cart_amount": "55000",
+      "offer_applied": null,
+      "offer_availed": null,
+      "instant_discount": "1000",
+      "cashback_discount": "500",
+      "total_discount": "1500",
+      "net_cart_amount": "54000",
+      "created_at": null,
+      "updated_at": null,
+      "sku_details": [
+        {
+          "id": "35",
+          "cart_id": "18",
+          "payu_id": "999000000000983",
+          "mid": "180012",
+          "sku_id": "smartphone234",
+          "sku_name": "Smartphone",
+          "amount_per_sku": "45000.00",
+          "quantity": "1",
+          "amount_before_discount": "45000",
+          "discount": "1000",
+          "amount_after_discount": "44000",
+          "offer_key": null,
+          "offer_status": null,
+          "offer_type": null,
+          "created_at": null,
+          "updated_at": null
+        },
+        {
+          "id": "36",
+          "cart_id": "18",
+          "payu_id": "999000000000983",
+          "mid": "180012",
+          "sku_id": "smartwatch132",
+          "sku_name": "Smartwatch",
+          "amount_per_sku": "10000.00",
+          "quantity": "1",
+          "amount_before_discount": "10000.00",
+          "discount": "500",
+          "amount_after_discount": "10000.00",
+          "offer_key": null,
+          "offer_status": null,
+          "offer_type": null,
+          "created_at": null,
+          "updated_at": null
+        }
+      ]
+    }}
+  ```
 
-**Failure scenarios**
+  **Failure scenarios**
 
-For a list of error messages for the failure scenarios, refer to [Error Codes for Offers Integration](doc:error-codes-for-offers-integration).
+  For a list of error messages for the failure scenarios, refer to [Error Codes for Offers Integration](doc:error-codes-for-offers-integration).
 </Accordion>
 
 #### Step 3: Verify Payment
