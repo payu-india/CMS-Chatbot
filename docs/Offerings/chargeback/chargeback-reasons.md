@@ -5,7 +5,11 @@ hidden: false
 metadata:
   robots: index
 ---
-This part of the document explains the various close reasons involved while closing a case in Chargeback lifecycle.
+This part of the document explains the various close reasons involved while closing a case in the Chargeback lifecycle.
+
+The chargeback reasons listed in the following table can be found on Chargeback home as in the following screenshot:
+
+<Image align="center" border={true} src="https://files.readme.io/bbdb23e8578c403f1d6349e3d24cd083339e743b7c824ffa0086812b20198535-chargeback_close_reasons.png" className="border" />
 
 | Close Reason             | Details                                                                                                                                                                                              |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -20,4 +24,3 @@ This part of the document explains the various close reasons involved while clos
 | Delivered                | The product is accepted to have been delivered to the customer                                                                                                                                       |
 | Refunded                 | The entire chargeback amount has already been refunded by the merchant to the customer                                                                                                               |
 | Partially Refunded       | Partial chargeback amount has already been refunded by the merchant to the customer                                                                                                                  |
-
