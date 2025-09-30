@@ -5,7 +5,9 @@ hidden: false
 metadata:
   robots: index
 ---
-<br />
+The chargeback types are used while processing a chargeback. You can find the chargeback type in the Chargeback home as in the following screenshot:
+
+<Image align="center" border={true} src="https://files.readme.io/fc20984bfb1fb7e4d72948c8747e513a90034ea10e1015e2b6e7bb2d154e0d07-chargeback_type_highlighted.png" className="border" />
 
 | Chargeback Type | Details                                                                                                                                                                                             |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -14,4 +16,3 @@ metadata:
 | Arbitration     | With the pre-arbitration case, If the acquirer rejects the pre-arbitration case then the issuer can escalate the case to an arbitration case                                                        |
 | Compliance      | These are compliance case requests which are raised by regulatory authorities for information. Also used if the issuer has no option to raise a chargeback since the chargeback window has expired. |
 | Good Faith      | The chargeback is handled outside the official chargeback channel that involves the card network.                                                                                                   |
-
