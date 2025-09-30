@@ -360,7 +360,7 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        098450845
+        INV123456
       </td>
     </tr>
 
@@ -496,7 +496,7 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'udf2=' \
 --data-urlencode 'udf3=' \
 --data-urlencode 'udf4=' \
---data-urlencode 'udf5=invoice_num_1234' \
+--data-urlencode 'udf5=INV123456' \
 --data-urlencode 'firstname=sudhanshu' \
 --data-urlencode 'user_credentials=T58CQx:sudhanshu' \
 --data-urlencode 'lastname=kr' \
