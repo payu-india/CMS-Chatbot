@@ -1,5 +1,5 @@
 ---
-title: Offers Integration APIs
+title: Offers API Integration
 excerpt: ''
 deprecated: false
 hidden: false
