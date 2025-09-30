@@ -12,16 +12,13 @@ next:
 ---
 When your customer wants to opt for the Cardless EMI option, you can use the EMI APIs to check the customer’s eligibility and get the EMI amount, interest, processing fee, or No-Cost EMI and tenure. If the customer is eligible, you can post the Cardless EMI transaction.
 
-## Step 1: Check the cardless EMI eligibility
 
-After collecting the customer’s mobile number and the amount to be paid, check the Cardless EMI eligibility based on the customer’s mobile using the **Get Checkout Details API** (get_checkout_details) API. For more information, refer to [Get Checkout Details API](ref:get_checkout_details#check-customer-eligibility)
 
 ## Step 2: Initiate the payment
-
 Post the following additional parameters for using the Cardless EMI. Check the response when you try enter the values in API Reference. For complete list of parameters, refer to [Collect Payment API - EMI](ref:_payment_merchant_hosted_emi) for the complete list parameters with **Try It** experience.
 
-# Fixed Parameter Table
-
+## Request Parameters
+<Accordion title="Request parameters" icon="fa-info-circle">
 <HTMLBlock>{`
 <table>
   <thead>
@@ -192,10 +189,14 @@ Post the following additional parameters for using the Cardless EMI. Check the r
 >     * The next four-characters should be any number from 0 to 9.
 >     * The last(tenth) character should be any upper case alphabet.   It should not contain any white spaces.
 
+</Accordion>
+
+
+
 <HashingRequestParameters />
 
 ### Sample request
-
+<Accordion title="Sample request" icon="fa-info-circle">
 ```curl
 curl -X POST "https://test.payu.in/_payment-H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d"key=JP***g&txnid=EaE4ZO3vU4iPsp&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=EMI&bankcode=EMI03&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=1234&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=undefined&store_card_token=1234 4567 2456 3566&storecard_token_type=1&additional_info={“last4Digits”: “1234”, “tavv”: “ABCDEFGH”,”trid”:”1234567890”, “tokenRefNo”:”abcde123456”}&hash=fc3206829a6b4f8e300aeefb8f91add568b83dc90d01383a8e16553cc9600a3aefd4be2e370d32f0315ef1b9f28740515a9556b55abfefa7b54b434f894c9304"
 ```
@@ -770,13 +771,13 @@ namespace PayUCardlessEmiIntegration
 }
 
 ```
+</Accordion>
+
+
 
 ## Step 3: Check the response from PayU
 
-<ReverseHashing />
-
-### Sample response
-
+<Accordion title="Sample response" icon="fa-info-circle">
 ```
 Array
 (
@@ -829,3 +830,6 @@ Array
     [cardnum] =>XXXXXXXXXXXX1234
 )
 ```
+
+</Accordion>
+
