@@ -93,7 +93,7 @@ A simple server-generated redirect that sends customers from your site/app to th
 Follow the below steps to complete the integration:
 
 <Callout icon="📘" theme="info">
-  **Reference**: For **Try-It** experience on the API Reference with the code in 16 language bindings, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
+  **Reference**: For **Try-It** experience on the API Reference with the sample code in 16 language bindings, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 </Callout>
 
 <Accordion title="Step 1.1: Prepare the request parameters" icon="fa-list-check">
