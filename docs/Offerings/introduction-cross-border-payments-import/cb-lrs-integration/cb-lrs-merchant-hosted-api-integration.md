@@ -5,13 +5,13 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU’s **\_payment** API supports LRS implementation using the following parameters:
+PayU’s **_payment** API supports LRS implementation using the following parameters:
 
-* lrs\_service\_type
-* lrs\_mandatory\_limit\_declaration
-* lrs\_tnc
-* lrs\_tcs\_declaration\_under\_limit
-* buyer\_type\_business (optional)
+* lrs_service_type
+* lrs_mandatory_limit_declaration
+* lrs_tnc
+* lrs_tcs_declaration_under_limit
+* buyer_type_business (optional)
 
 The steps to integrate involves:
 
@@ -52,7 +52,7 @@ https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
   <tbody>
     <tr>
       <td>
-        pan\_number
+        pan_number
         `mandatory`
       </td>
 
@@ -173,7 +173,7 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
     <tr>
       <td>
-        api\_name
+        api_name
       </td>
 
       <td>
@@ -196,11 +196,11 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"79c0d918a  
-                                                                                                                        4f4661cb9cb  
-                                                                                                                        17d96d24ac1  
-                                                                                                                        cf04b6013d50  
-                                                                                                                        4cc766ac5235  
-                                                                                                                        380bfc0d5"`
+                                                                                                                                4f4661cb9cb  
+                                                                                                                                17d96d24ac1  
+                                                                                                                                cf04b6013d50  
+                                                                                                                                4cc766ac5235  
+                                                                                                                                380bfc0d5"`
       </td>
     </tr>
 
@@ -234,7 +234,7 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
     <tr>
       <td>
-        http\_status
+        http_status
       </td>
 
       <td>
@@ -248,7 +248,7 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
     <tr>
       <td>
-        client\_id
+        client_id
       </td>
 
       <td>
@@ -257,18 +257,18 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"195ab95fa  
-                                                                                                                        4700eeaaf38  
-                                                                                                                        b7f5b538d29  
-                                                                                                                        79f0f281e0  
-                                                                                                                        a4eaedca1a  
-                                                                                                                        a675b79b3  
-                                                                                                                        31a2"`
+                                                                                                                                4700eeaaf38  
+                                                                                                                                b7f5b538d29  
+                                                                                                                                79f0f281e0  
+                                                                                                                                a4eaedca1a  
+                                                                                                                                a675b79b3  
+                                                                                                                                31a2"`
       </td>
     </tr>
 
     <tr>
       <td>
-        created\_at
+        created_at
       </td>
 
       <td>
@@ -282,7 +282,7 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
     <tr>
       <td>
-        updated\_at
+        updated_at
       </td>
 
       <td>
@@ -296,7 +296,7 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
     <tr>
       <td>
-        client\_name
+        client_name
       </td>
 
       <td>
@@ -365,13 +365,13 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-         JPg\*\*\*\*f
+         JPg****f
       </td>
     </tr>
 
     <tr>
       <td>
-        txnid\
+        txnid
         `mandatory`
       </td>
 
@@ -400,7 +400,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        productinfo\
+        productinfo
         `mandatory`
       </td>
 
@@ -415,7 +415,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        firstname\
+        firstname
         `mandatory`
       </td>
 
@@ -430,7 +430,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        lastname\
+        lastname
         `mandatory`
       </td>
 
@@ -445,7 +445,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        email\
+        email
         `mandatory`
       </td>
 
@@ -460,7 +460,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        phone\
+        phone
         `mandatory`
       </td>
 
@@ -475,15 +475,15 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        address1\
+        address1
         `mandatory`
       </td>
 
       <td>
-        `String` The first line of the billing address.\
+        `String` The first line of the billing address.
         H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai
 
-        * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * _Note_*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -493,7 +493,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        address2\
+        address2
         `mandatory`
       </td>
 
@@ -508,7 +508,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        city\
+        city
         `mandatory`
       </td>
 
@@ -523,7 +523,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        state\
+        state
         `mandatory`
       </td>
 
@@ -538,7 +538,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        country\
+        country
         `mandatory`
       </td>
 
@@ -553,13 +553,13 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        zipcode\
+        zipcode
         `mandatory`
       </td>
 
       <td>
-        `String` Billing address zip code is mandatory for the cardless EMI option.\
-        \`Character Limit-20
+        `String` Billing address zip code is mandatory for the cardless EMI option.
+        `Character Limit-20
       </td>
 
       <td>
@@ -569,7 +569,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        pg\
+        pg
         `mandatory for seamless/s2s flow`
       </td>
 
@@ -584,7 +584,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        bankcode\
+        bankcode
         `mandatory for seamless/s2s flow`
       </td>
 
@@ -599,7 +599,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        ccnum\
+        ccnum
         `mandatory for cards`
       </td>
 
@@ -614,7 +614,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        ccname\
+        ccname
         `mandatory for cards`
       </td>
 
@@ -629,7 +629,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        ccvv\
+        ccvv
         `mandatory for cards`
       </td>
 
@@ -644,7 +644,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        ccexpmon\
+        ccexpmon
         `mandatory for cards`
       </td>
 
@@ -659,7 +659,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        ccexpyr\
+        ccexpyr
         `mandatory for cards`
       </td>
 
@@ -674,7 +674,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        surl\
+        surl
         `mandatory`
       </td>
 
@@ -689,7 +689,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        furl\
+        furl
         `mandatory`
       </td>
 
@@ -704,8 +704,8 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        udf1\
-        `conditional`
+        udf1
+        `mandatory for LRS S2S transaction`
       </td>
 
       <td>
@@ -713,14 +713,14 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        AELPR\*\*\*\*E
+        AELPR****E
       </td>
     </tr>
 
     <tr>
       <td>
-        udf3\
-        `conditional`
+        udf3
+        `mandatory for LRS S2S transaction`
       </td>
 
       <td>
@@ -734,7 +734,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        udf4\
+        udf4
         `mandatory for payment aggregators`
       </td>
 
@@ -749,7 +749,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        udf5\
+        udf5
         `mandatory`
       </td>
 
@@ -758,30 +758,32 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        098450845
+        INV123456
       </td>
     </tr>
 
     <tr>
       <td>
-        buyer\_type\_business\
-        `mandatory for CB payments`
+        buyer_type_business
+        `mandatory for cross-border transactions`
       </td>
 
       <td>
         This parameter is used to identify whether it is a business-to-business transaction.  If 1 is posted, it is a B2B transaction.
+
+        In case of B2B, no other LRS specific parameters (listed below) need to be sent, as B2B transactions are outside the scope of the regulation.
       </td>
 
       <td>
-        1
+        0
       </td>
     </tr>
 
     <tr>
       <td>
-        lrs\_mandatory\_limit\_declaration
+        lrs_mandatory_limit_declaration
 
-        `mandatory for LRS transactions `
+        `mandatory for LRS transactions`
       </td>
 
       <td>
@@ -801,8 +803,8 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        lrs\_tnc\
-        `mandatory for LRS transaxctions`
+        lrs_tnc
+        `mandatory for LRS transactions`
       </td>
 
       <td>
@@ -820,8 +822,8 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        lrs\_tcs\_declaration\_under\_limit\
-        `mandatory for LRS transactions `
+        lrs_tcs_declaration_under_limit
+        `conditinal for LRS transactions `
       </td>
 
       <td>
@@ -837,7 +839,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        lrs\_service\_type\
+        lrs_service_type
         `mandatory for LRS transactions`
       </td>
 
@@ -852,7 +854,7 @@ The following parameters (mandatory) must be posted using any of the following s
   </tbody>
 </Table>
 
-#### lrs\_service\_type parameter values
+#### lrs_service_type parameter values
 
 <HTMLBlock>{`
 <HTMLBlock>{\`
@@ -952,7 +954,7 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'udf2=' \
 --data-urlencode 'udf3=' \
 --data-urlencode 'udf4=' \
---data-urlencode 'udf5=' \
+--data-urlencode 'udf5=INV123456' \
 --data-urlencode 'ccnum=5506900480000008' \
 --data-urlencode 'ccexpyr=2025' \
 --data-urlencode 'ccexpmon=09' \
@@ -970,11 +972,11 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'state=UP' \
 --data-urlencode 'country=IND' \
 --data-urlencode 'zipcode=122018' \
---data-urlencode 'buyer_type_business=1' \
---data-urlencode 'lrs_mandatory_limit_declaration=I declare that the remittance is within my annual LRS limit' \
---data-urlencode 'lrs_tnc=I agree to the terms and conditions for LRS transactions' \
---data-urlencode 'lrs_tcs_declaration_under_limit=I declare that this transaction is under the specified limit' \
---data-urlencode 'lrs_service_type=0'
+--data-urlencode 'buyer_type_business=0' \
+--data-urlencode 'lrs_mandatory_limit_declaration=1' \
+--data-urlencode 'lrs_tnc=1' \
+--data-urlencode 'lrs_tcs_declaration_under_limit=1' \
+--data-urlencode 'lrs_service_type=travel'
 ```
 
 ## Step 3: Check response from PayU
