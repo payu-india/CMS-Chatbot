@@ -12,6 +12,10 @@ next:
 ---
 When your customer wants to opt for the Cardless EMI option, you can use the EMI APIs to check the customer’s eligibility and get the EMI amount, interest, processing fee, or No-Cost EMI and tenure. If the customer is eligible, you can post the Cardless EMI transaction.
 
+## Step 1: Check the cardless EMI eligibility
+
+After collecting the customer’s mobile number and the amount to be paid, check the Cardless EMI eligibility based on the customer’s mobile using the **Get Checkout Details API** (get_checkout_details) API. For more information, refer to [Get Checkout Details API](ref:get_checkout_details#check-customer-eligibility)
+
 ## Step 2: Initiate the payment
 
 Post the following additional parameters for using the Cardless EMI. Check the response when you try enter the values in API Reference. For complete list of parameters, refer to [Collect Payment API - EMI](ref:_payment_merchant_hosted_emi) for the complete list parameters with **Try It** experience.
