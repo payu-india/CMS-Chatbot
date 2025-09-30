@@ -31,7 +31,7 @@ PayU’s Merchant Hosted Checkout allows you to create a custom payment experien
 * **Flexible Integration**: Integrate with a wide range of payment methods, including cards, net banking, wallets, UPI, and more.
 
 <Callout icon="👍" theme="okay">
-  Note: Merchant Hosted Checkout is a specific PayU product with defined features. It’s distinct from simply hosting payment elements on your website. This guide specifically covers the PayU’s Merchant Hosted Checkout product and its associated APIs.
+  **Note**: Merchant Hosted Checkout is a specific PayU product with defined features. It’s distinct from simply hosting payment elements on your website. This guide specifically covers the PayU’s Merchant Hosted Checkout product and its associated APIs.
 </Callout>
 
 ## Workflow and Experience
@@ -166,9 +166,9 @@ Before you begin the integration process, ensure you have the following: 
 * **PCI DSS Compliance**: If you are storing, processing, or transmitting cardholder data, you must comply with the Payment Card Industry Data Security Standard (PCI DSS). This might involve filling the “Self-Assessment Questionnaire A-EP and Attestation of Compliance” form from PCI. If you are using Merchant Hosted Checkout, you will collect card details on your own website and therefore you must be PCI-DSS compliant. 
 * **Webhooks Implementation**: Set up webhooks to receive real-time updates on transaction statuses. Webhooks allow PayU to notify your server about successful payments, failures, and other important events. Confirmed the transaction status on the Server-side, if the callback fail. Use Webhooks for hearing callbacks. For more information, refer to Verify Payment API and Webhooks.
 
-> 🚧 Remember
->
-> If you are using only the UPI and Wallet payment modes with Merchant Hosted checkout, ensure that your website is secure.
+<Callout icon="🚧" theme="warn">
+  **Remember**: If you are using only the UPI and Wallet payment modes with Merchant Hosted checkout, ensure that your website is secure.
+</Callout>
 
 * **Understanding of concepts and technical bandwidth**: You must have an understanding of the following concepts and take care of the technical bandwidth:
   * workflows
