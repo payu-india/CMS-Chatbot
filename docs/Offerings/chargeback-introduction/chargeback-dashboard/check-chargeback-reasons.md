@@ -8,7 +8,9 @@ metadata:
 This section explains how to use the **Reasons** page of the Chargeback dashbaord.  It lists all available reasons in a tabular format. Reason codes help standardize your chargeback responses and maintain consistency in case management.
 
 <Callout icon="📘" theme="info">
-  **Reference**: For understanding the various reasons, refer to [Chargeback Reasons](doc:chargeback-reasons)
+  **Reference**: For understanding the various reasons, types and status, refer to
+
+   [Chargeback Reasons](doc:chargeback-reasons)
 </Callout>
 
 <Image align="center" border={true} src="https://files.readme.io/240245acd8b166a5c93f7988e052667428c8455168e62485d16756fca9865506-charge_dashboard_reasons.png" className="border" />
