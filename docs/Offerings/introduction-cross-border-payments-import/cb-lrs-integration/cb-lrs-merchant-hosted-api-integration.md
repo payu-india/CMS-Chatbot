@@ -1,11 +1,11 @@
 ---
-title: Integrate Merchant Hosted Checkout - CB LRS
+title: Integrate Merchant Hosted Checkout - Cross Border Transaction under LRS
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-PayU’s **_payment** API supports LRS implementation using the following parameters:
+PayU’s **_payment** API supports LRS implementation using the following parameters mandatorily in an S2S transaction:
 
 * lrs_service_type
 * lrs_mandatory_limit_declaration
@@ -420,7 +420,9 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        `String` The first name of the customer.
+        `String` The first name of the customer as on their Permanent Account Number (PAN)
+
+        _Note: This should be validated by PAN Status Check API_
       </td>
 
       <td>
@@ -435,7 +437,9 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        `String` The last name of the customer.
+        `String` The last name of the customer as on their Permanent Account Number (PAN)
+
+        _Note: This should be validated by PAN Status Check API_
       </td>
 
       <td>
@@ -709,7 +713,7 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        `String` The Permanent Account Number of the buyer must be collected in this field. This is required if AD bank request this detail.
+        `String` The Permanent Account Number (PAN) of the buyer must be collected in this field.
       </td>
 
       <td>
@@ -724,7 +728,9 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        `String` The date of birth of the buyer must be collected using this field in the DD-MM-YYYY format. This is required if AD bank request this detail.
+        `String` The date of birth of the buyer must be collected using this field in the DD-MM-YYYY format as on their Permanent Account Number (PAN). 
+
+        _Note: This should be validated by PAN Status Check API_
       </td>
 
       <td>
@@ -950,10 +956,10 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'bankcode=CC' \
 --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
 --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
---data-urlencode 'udf1=' \
+--data-urlencode 'udf1=CYCPD2784G' \
 --data-urlencode 'udf2=' \
---data-urlencode 'udf3=' \
---data-urlencode 'udf4=' \
+--data-urlencode 'udf3=02-02-1980' \
+--data-urlencode 'udf4=XYZ Pvt. Ltd' \
 --data-urlencode 'udf5=INV123456' \
 --data-urlencode 'ccnum=5506900480000008' \
 --data-urlencode 'ccexpyr=2025' \
@@ -965,7 +971,6 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'si=1' \
 --data-urlencode 'firstname=sudhanshu' \
 --data-urlencode 'user_credentials=T58CQx:sudhanshu' \
---data-urlencode 'lastname=kr' \
 --data-urlencode 'address1=308,third floor' \
 --data-urlencode 'address2=testing' \
 --data-urlencode 'city=ggn' \
