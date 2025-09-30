@@ -21,23 +21,3 @@ This part of the document explains the various close reasons involved while clos
 | Refunded                 | The entire chargeback amount has already been refunded by the merchant to the customer                                                                                                               |
 | Partially Refunded       | Partial chargeback amount has already been refunded by the merchant to the customer                                                                                                                  |
 
-## **Chargeback Types**
-
-| Chargeback Type | Details                                                                                                                                                                                             |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Chargeback      | With this chargeback type, the issuer has returned the disputed transaction to the acquirer with the reason                                                                                         |
-| Pre-arb         | If the customer rejects the chargeback then the issuer escalates the chargeback into prearbitration case with relevant documentation                                                                |
-| Arbitration     | With the pre-arbitration case, If the acquirer rejects the pre-arbitration case then the issuer can escalate the case to an arbitration case                                                        |
-| Compliance      | These are compliance case requests which are raised by regulatory authorities for information. Also used if the issuer has no option to raise a chargeback since the chargeback window has expired. |
-| Good Faith      | The chargeback is handled outside the official chargeback channel that involves the card network.                                                                                                   |
-
-## **Chargeback Status**
-
-| Chargeback Status        | Details                                                                                                                                                    |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ME Comm Sent             | New chargeback notification has been submitted to the merchant for his response                                                                            |
-| ME Comm Received         | The merchant has accepted/disputed the chargeback raised with relevant documentation(if applicable)                                                        |
-| Bank Comm Sent           | The chargeback has been submitted to the acquiring bank as a part of the representment package                                                             |
-| Doc Rejected             | The chargeback has been rejected for lack of sufficient documentation for representment                                                                    |
-| Closed in Customer Favor | The chargeback has been closed in the customer favour. The money has been returned to the customer.                                                        |
-| Closed in merchant Favor | The chargeback has been closed in the merchant favour. No money is debited if any money is debited then the same is reversed back to the merchant account. |
