@@ -1,7 +1,7 @@
 ---
 title: Create a Chargeback Webhook
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
