@@ -16,6 +16,7 @@ The following are the sequence of API calls for SDK less Deep-Offer integration:
 2. [Invoke Intent on The Customer’s Device](#step-2-invoke-intent-in-the-customers-device)
 3. [Get Web Service Response](#step-3-get-web-service-response)
 4. [S2S Call Back Response](#step-4-s2s-call-back-response)
+5. [Verify the payment](#step-5-verify-the-payment)
 
 > 👍 Before you begin:
 >
@@ -88,7 +89,7 @@ super.onActivityResult(requestCode, resultCode, data);
 
 ## Step 3: Get Web Service Response
 
-After receiving a successful debit response from the application, you check the transaction status with PayU. Based on the debit request, the transaction should not be marked as success. It has to be marked successful only after checking with PayU servers through the **get\_ws\_response** API and WS Call Response.
+After receiving a successful debit response from the application, you check the transaction status with PayU. Based on the debit request, the transaction should not be marked as success. It has to be marked successful only after checking with PayU servers through the **get_ws_response** API and WS Call Response.
 
 ***
 
@@ -108,7 +109,7 @@ This response would be sent in key/value pair separated by ‘&’ character. In
 unmappedstatus=success&phone=9999999999&txnid=FCDA1R100870163781&hash=84e3 35094bbcb2ddaa0f9a488eb338e143b273765d89c9dfa502402562d0b6f3c7935e28194ca92f7 380be7c84c3695415b106dcf52cb016a15fcf6adc98d724&status=success&curl=https://www. abc.in/payment/handlepayuresposne&firstname=NA&card_no=519619XXXXXX5049&furl= https://www.abc.in/payment/handlepayuresposne&productinfo=2&mode=DC&amount=800.  00&field4=6807112311042810&field3=6807112311042810&field2=838264&field9=SUCC ESS&email=NA&mihpayid=175477248&surl=https://www.ABC.in/payment/handlepayuresp osne&card_hash=9e88cb0573d4a826b61d808c0a870ed4a990682459b0ec9e95ea421e8e47b e8c&field1=42812 
 ```
 
-The parameter list includes: mihpayid, mode, status, key, txnid, amount, productinfo, firstname, lastname, address1, address2, city, state, country, zipcode, email, phone, udf1, udf2, udf3, udf4, udf5, udf6, udf7, udf8, udf9, udf10, card\_token, card\_no, field0, field1, field2, field3, field4, field5, field6, field7, field8, field9, offer, discount, offer\_availed, unmappedstatus, hash, bank\_ref\_no, surl, curl, furl, and card\_hash
+The parameter list includes: mihpayid, mode, status, key, txnid, amount, productinfo, firstname, lastname, address1, address2, city, state, country, zipcode, email, phone, udf1, udf2, udf3, udf4, udf5, udf6, udf7, udf8, udf9, udf10, card_token, card_no, field0, field1, field2, field3, field4, field5, field6, field7, field8, field9, offer, discount, offer_availed, unmappedstatus, hash, bank_ref_no, surl, curl, furl, and card_hash
 
 ### Whitelisting Required
 
@@ -118,3 +119,9 @@ Whitelisting is required at both merchant’s and PayU’s end to establish this
   * 180.179.174.1
   * 180.179.174.2
 * PayU will white list merchant server side IP address that you have provided to PayU.
+
+## Step 5. Verify the payment
+
+<Verify_Payment_Tabs />
+
+ 
