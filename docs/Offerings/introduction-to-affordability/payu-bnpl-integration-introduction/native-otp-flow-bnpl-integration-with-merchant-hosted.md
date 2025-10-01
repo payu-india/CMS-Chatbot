@@ -59,7 +59,6 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
 
 <PaymentAPIEnvironment />
 
-##Request parameters
 ### Request parameters
 
 <Table align={["left","left","left"]}>
@@ -112,7 +111,7 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
 
     <tr>
       <td>
-        amount  
+        amount
         <code>mandatory</code>
       </td>
 
@@ -127,7 +126,7 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
 
     <tr>
       <td>
-        productinfo  
+        productinfo
         <code>mandatory</code>
       </td>
 
@@ -142,7 +141,7 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
 
     <tr>
       <td>
-        firstname  
+        firstname
         <code>mandatory</code>
       </td>
 
@@ -166,11 +165,7 @@ For request parameters and response to perform BNPL Eligibility Check, refer to 
       </td>
 
       <td>
-
-
         [abc@payu.in](mailto:abc@payu.in)
-
-
       </td>
     </tr>
 
@@ -443,9 +438,9 @@ Check the response mentioned in<a href="_payment_merchant_hosted_bnpl" target="_
 
 <HashingRequestParameters />
 
-### Step 3: Check the response from PayU
+## Step 3: Check the response from PayU
 
-#### Sample payment response
+### Sample payment response
 
 ```plaintext
 { 
@@ -461,7 +456,7 @@ Check the response mentioned in<a href="_payment_merchant_hosted_bnpl" target="_
 } 
 ```
 
-#### Handling payment response
+### Handling payment response
 
 This sub-section describes the components of the payment response received with Native OTP or Zero Redirection flow. It contains the **metaData** and **result** JSON as described in this subsection:
 
@@ -685,12 +680,14 @@ The **result** JSON contains the **acsTemplate** with base64 encoding.
   </tbody>
 </Table>
 
-> 📘 Notes:
->
-> To request OTP on a page, you can utilize the URLs in the response itself. There are two URLs to use:
->
-> * otpPostUrl (Merchant Hosted OTP page)
-> * acsTemplate (PayU Hosted OTP page) which acts as a fallback
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  To request OTP on a page, you can utilize the URLs in the response itself. There are two URLs to use:
+
+  * otpPostUrl (Merchant Hosted OTP page)
+  * acsTemplate (PayU Hosted OTP page) which acts as a fallback
+</Callout>
 
 If you are getting a URL in `otpPostUrl`, use `otpPostUrl`, otherwise, you can use `acsTemplate`, which acts as a fallback. In this scenario, use PayU (or WebView or Checkout) OTP page as this is a fallback case.
 
@@ -717,11 +714,11 @@ Hence, for cases where the above response is not successful, it could either be 
 
 On opening the above HTML, you will get a PayU checkout OTP page similar to the following:
 
-<Image align="center" width="512px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/02/word-image-5.png" />
+<Image align="center" border={false} width="512px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/02/word-image-5.png" />
 
 From here, the steps are as in PayU Hosted (non-seamless) or Merchant Hosted or Server-to-Server (seamless) transactions.
 
-#### Handling Failure Response
+### Handling Failure Response
 
 This is a situation where the **_payment** API has a complete failure. Hence, you will be getting ‘failed’ in `txnStatus` and `otpPostUrl` is also not received in the result object.
 
@@ -742,6 +739,6 @@ This is a situation where the **_payment** API has a complete failure. Hence, yo
 
 ***
 
-### Step 4: Submit the OTP
+## Step 4: Submit the OTP
 
 After you have collected the OTP from the customer, the reference ID can be found in the Payment API (**_payment**) response. Submit the OTP that is entered by the customer is submitted along with the reference ID using the [Submit OTP API](ref:submit-otp-to-payu).
