@@ -17,6 +17,7 @@ This is server-to-server integration over the Redirect experience for cards invo
 1. [Initiate payment request with PayU](#step-1-Initiate-payment-request-with-payU)
 2. [Redirect the customer](#step-2-redirect-the-customer)
 3. [Check the response from PayU](#step-3-check-the-response-from-payu)
+4. [Verify payment](#step-4-verify-payment)
 
 <RegisterMerchantPrerequiste />
 
@@ -157,11 +158,9 @@ The merchant initiates PayU with the required transaction mandatory or optional 
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to 
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to
 
         [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards)
-
-
       </td>
 
       <td>
@@ -176,11 +175,11 @@ The merchant initiates PayU with the required transaction mandatory or optional 
       </td>
 
       <td>
-        `String` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to 
+        `String` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to
 
         [Card Number Formats](doc:card-number-formats)
 
-          and display error message on invalid input.
+        and display error message on invalid input.
       </td>
 
       <td>
@@ -647,3 +646,5 @@ The parameters in the response for similar for all the S2S flows. For more infor
     "card_type" :  "VISA" 
 }
 ```
+## Step 4. Verify payment
+<Verify_Payment_Tabs />
