@@ -911,7 +911,7 @@ For a sample response, refer to the [Additional Info for Payment APIs](ref:addl_
 
 5. Verify the payment.
 
-Similar to the payment response, same params can be handled as part of the **Verify Payment** API. For more information, For API reference, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>. For the sample response using the **Verify Payment** API from PayU.
+Similar to the payment response, same params can be handled as part of the **Verify Payment** API or webhooks. For more information, For more information, refer to following tabs.
 
 | Parameter          | Description                                                                                                                                                                                      | **Example** |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
@@ -919,10 +919,12 @@ Similar to the payment response, same params can be handled as part of the **Ver
 | net_amount_debit   | This parameter contains the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 47500.00    |
 | discount           | This parameter contains the offer value provided to the user. This value will specify the offer amount for both Instant discount and Cashback offers.                                            | 2500.00     |
 
+<Verify_Payment_Tabs />
+
+<br />
+
 PayU would refund the exact amount passed by you in the Refund request. For more information, refer to [Refunds for Offers](doc:refunds-for-offers)
 
 <Callout icon="📘" theme="info">
   **Note**: You can enable the **Enforce Offer** flag by requesting your PayU Key Account Manager. If you enable the **Enforce Offer** flag, the best offer out of the all the offers passed will be applied for the customer.
 </Callout>
-
-
