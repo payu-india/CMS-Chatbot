@@ -25,605 +25,614 @@ After you create a SKU-based offer on PayU Dashboard, you can start collecting p
 </Callout>
 
 ### Steps to integrate
-
-1. [Fetch offers](#step-1-fetch-offers)
-2. [Validate offer](#step-2-validate-offer)
-3. [Payment request](#step-3-payment-request)
-4. [Check the response from PayU](#step-4-check-the-response-fro-payU)
-
+     
+     1. [Fetch offers](#step-1-fetch-offers)
+     2. [Validate offer](#step-2-validate-offer)
+     3. [Payment request](#step-3-payment-request)
+     4. [Check the response from PayU](#step-4-check-the-response-fro-payU)
+     
 ## Step 1: Fetch offers
 
-### Additional request parameter skusDetail for SKU
-
-In addition to the request parameters listed in the [Fetch Offers API](ref:fetch-offers-api) section, the **skusDetail** parameter is posted with the following fields are posted in an array:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
-
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        skuAmount
-        `optional`
-      </td>
-
-      <td>
-        `String` The price of one/ single unit of SKU is specified in this field.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        skuId
-        `mandatory`
-      </td>
-
-      <td>
-        `String` The product identifier to select offer is specified in this field.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        quantity 
-        `optional`
-      </td>
-
-      <td>
-        `String` The quantity for the product is specified in this field.****
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        offerKeys
-        `optional`
-      </td>
-
-      <td>
-        `String` The offer keys to filter at SKU-level is specified in this field.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-### skusDetail parameter in sample request
-
-The sample request posted will include the **skusDetail** parameter similar to the following:
-
-```curl
-"skusDetail": [
-    {
-      "skuAmount": 600,
-      "quantity": 3,
-      "skuId": "123",
-      "offerKeys": null
-    }
-```
-
-**Sample response**
-
-```
-"skusDetail": [
-    {
-      "skuAmount": 600,
-      "quantity": 3,
-      "skuId": "123",
-      "offerKeys": null
-    }
-```
-
+<Accordion title="Additional request parameter skusDetail for SKU" icon="fa-code">
+     
+     In addition to the request parameters listed in the [Fetch Offers API](ref:fetch-offers-api) section, the **skusDetail** parameter is posted with the following fields are posted in an array:
+     
+     <Table>
+       <thead>
+         <tr>
+           <th>
+             Field
+           </th>
+     
+           <th>
+             Description
+           </th>
+         </tr>
+       </thead>
+     
+       <tbody>
+         <tr>
+           <td>
+             skuAmount
+             `optional`
+           </td>
+     
+           <td>
+             `String` The price of one/ single unit of SKU is specified in this field.
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             skuId
+             `mandatory`
+           </td>
+     
+           <td>
+             `String` The product identifier to select offer is specified in this field.
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             quantity
+     
+             `optional`
+           </td>
+     
+           <td>
+             `String` The quantity for the product is specified in this field.****
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             offerKeys
+             `optional`
+           </td>
+     
+           <td>
+             `String` The offer keys to filter at SKU-level is specified in this field.
+           </td>
+         </tr>
+       </tbody>
+     </Table>
+     
+</Accordion>
+<Accordion title="skusDetail parameter in sample request" icon="fa-code">
+     
+     The sample request posted will include the **skusDetail** parameter similar to the following:
+     
+     ```curl
+     "skusDetail": [
+         {
+           "skuAmount": 600,
+           "quantity": 3,
+           "skuId": "123",
+           "offerKeys": null
+         }
+     ```
+     
+     **Sample response**
+     
+     ```
+     "skusDetail": [
+         {
+           "skuAmount": 600,
+           "quantity": 3,
+           "skuId": "123",
+           "offerKeys": null
+         }
+     ```
+     
+</Accordion>
 ## Step 2: Validate Offer
 
-### Additional request parameters
-
-In addition to the request parameters listed in  [Validate Offer API](ref:validate-offer-api), the **skusDetail** parameter with **skus** in an JSON array is posted, where each **skus** contain the following fields are posted in an array:
-
-| Field     | Description                                                                                                      |
-| --------- | ---------------------------------------------------------------------------------------------------------------- |
-| autoApply | The flag to specify to automatically apply the offer.                                                            |
-| skuAmount | The price of one/ single unit of SKU is specified in this field.                                                 |
-| offerKeys | The offer keys to filter at SKU-level is specified in this field.                                                |
-| quantity  | The quantity for the product is specified in this field.                                                         |
-| skuId     | The product identifier to select offer is specified in this field. For more information on creating a SKU offer. |
-
-### skusDetail Object in request
-
-```json
-  "skusDetail": {
-    "skus": [
-      {
-      "autoApply": false,
-        "skuAmount": 1000,
-        "offerKeys": [
-          "SummerSpecialOffer2021@q1Bh0jsogwqP"
-        ],
-        "quantity": 1,
-        "skuId": "1"
-      }
-    ]
-  }
-```
-
-### skusDetail Object in response
-
-```json
-        "skusDetail": {
-            "skusDiscountDetail": {
-                "totalCashbackDiscount": null,
-                "totalInstantDiscount": 100,
-                "totalDiscountedAmount": 900
-            },
-            "skus": [
-                {
-                    "skuId": "1",
-                    "quantity": 1,
-                    "name": "One Plus",
-                    "skuAmount": 1000,
-                    "isValid": true,
-                    "autoApply": false,
-                    "discountDetail": {
-                        "offerKey": "SummerSpecialOffer2021@q1Bh0jsogwqP",
-                        "offerType": "INSTANT",
-                        "discount": 100,
-                        "discountedAmount": 900,
-                        "discountType": "PERCENTAGE"
-                    },
-         "offerDetail":{
-         "offerId":10005,
-         "offerKey":"SummerSpecialOffer2021@q1Bh0jsogwqP",
-         "offerType":"INSTANT",
-         "title":"SummerSpecialOffer",
-         "description":"SummerSpecialOffer discount",
-         "validFrom":"2021-07-01 17:02:11",
-         "validTo":"2022-08-05 15:53:16",
-         "tnc":"abc",
-         "tncLink":"abcd",
-         "discountType":"ABSOLUTE",
-         "offerPercentage":null,
-         "maxDiscountPerTxn":100.00,
-         "minTxnAmount":10.00,
-         "maxTxnAmount":25000.00,
-         "status":"ACTIVE",
-         "isNce":false,
-         "disallowTransactionInvalidOffer": false,
-         "isSkuOffer": true,
-         "isSubventedOffer": true
-      }
-```
-
+<Accordion title="Additional request parameters" icon="fa-code">
+     
+     In addition to the request parameters listed in  [Validate Offer API](ref:validate-offer-api), the **skusDetail** parameter with **skus** in an JSON array is posted, where each **skus** contain the following fields are posted in an array:
+     
+     | Field     | Description                                                                                                      |
+     | --------- | ---------------------------------------------------------------------------------------------------------------- |
+     | autoApply | The flag to specify to automatically apply the offer.                                                            |
+     | skuAmount | The price of one/ single unit of SKU is specified in this field.                                                 |
+     | offerKeys | The offer keys to filter at SKU-level is specified in this field.                                                |
+     | quantity  | The quantity for the product is specified in this field.                                                         |
+     | skuId     | The product identifier to select offer is specified in this field. For more information on creating a SKU offer. |
+     
+</Accordion>
+<Accordion title="skusDetail Object in request" icon="fa-code">
+     
+     ```json
+       "skusDetail": {
+         "skus": [
+           {
+           "autoApply": false,
+             "skuAmount": 1000,
+             "offerKeys": [
+               "SummerSpecialOffer2021@q1Bh0jsogwqP"
+             ],
+             "quantity": 1,
+             "skuId": "1"
+           }
+         ]
+       }
+     ```
+     
+</Accordion>
+<Accordion title="skusDetail Object in response" icon="fa-code">
+     
+     ```json
+             "skusDetail": {
+                 "skusDiscountDetail": {
+                     "totalCashbackDiscount": null,
+                     "totalInstantDiscount": 100,
+                     "totalDiscountedAmount": 900
+                 },
+                 "skus": [
+                     {
+                         "skuId": "1",
+                         "quantity": 1,
+                         "name": "One Plus",
+                         "skuAmount": 1000,
+                         "isValid": true,
+                         "autoApply": false,
+                         "discountDetail": {
+                             "offerKey": "SummerSpecialOffer2021@q1Bh0jsogwqP",
+                             "offerType": "INSTANT",
+                             "discount": 100,
+                             "discountedAmount": 900,
+                             "discountType": "PERCENTAGE"
+                         },
+              "offerDetail":{
+              "offerId":10005,
+              "offerKey":"SummerSpecialOffer2021@q1Bh0jsogwqP",
+              "offerType":"INSTANT",
+              "title":"SummerSpecialOffer",
+              "description":"SummerSpecialOffer discount",
+              "validFrom":"2021-07-01 17:02:11",
+              "validTo":"2022-08-05 15:53:16",
+              "tnc":"abc",
+              "tncLink":"abcd",
+              "discountType":"ABSOLUTE",
+              "offerPercentage":null,
+              "maxDiscountPerTxn":100.00,
+              "minTxnAmount":10.00,
+              "maxTxnAmount":25000.00,
+              "status":"ACTIVE",
+              "isNce":false,
+              "disallowTransactionInvalidOffer": false,
+              "isSkuOffer": true,
+              "isSubventedOffer": true
+           }
+     ```
+     
+</Accordion>
 ## Step 3: Payment request
 
-### Additional request parameters for SKU-Based offer
-
-<Callout icon="📘" theme="info">
-  **Reference**: For the checkout flow and list of request parameters required for the Offer integration, refer to [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout).
-</Callout>
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Field**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        cart_details
-        `mandatory for SKU`
-      </td>
-
-      <td>
-        * JSON Object_ The card details is specified in this parameter in a JSON format.
-        * _Note_*: If given null, no cart will be created for the transaction.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cart_details.amount
-        `mandatory`
-      </td>
-
-      <td>
-        * String_ The amount for the SKU-based offer.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cart_details.items
-        `mandatory`
-      </td>
-
-      <td>
-        * String_ The number of the items for the SKU-based offer.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cart_details.surcharges
-        `conditional`
-      </td>
-
-      <td>
-        * String_ Total txn amount is now increased, but the cart_details.amount is lesser, to handle the difference, the additional amount added by the merchant should be passed in surcharges field
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cart_details.pre_discount
-        `conditional`
-      </td>
-
-      <td>
-        * String_ If there are any pre discount given by merchant on their checkout page. Total txn amount is now reduced, but the cart_details.amount is higher, to handle the difference, the discount given by the merchant should be passed in pre_discount field
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cart_details.sku_details
-        `mandatory`
-      </td>
-
-      <td>
-        * JSON Object_ The SKU details is specified in this parameter in a JSON format.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cart_details.sku_details.sku_id
-        `mandatory`
-      </td>
-
-      <td>
-        * String_ This parameter contains the unique identifier for SKU.
-        * _Note_*: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        sku_details.sku_name
-        `mandatory`
-      </td>
-
-      <td>
-        * String _ This parameter contains the SKU name.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        sku_details.quantity
-        `mandatory`
-      </td>
-
-      <td>
-        * String _ The parameter must contain the quantity of SKU added in cart.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        sku_details.amount_per_sku
-        `mandatory`
-      </td>
-
-      <td>
-        * String _ The parameter must contain the per SKU amount.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        sku_details.offer_key
-        `optional`
-      </td>
-
-      <td>
-        * String_ This parameter must contain the Offer Key(s) which can be used for this transaction. |
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        sku_details.offer_auto_apply
-        `optional`
-      </td>
-
-      <td>
-        * String_This parameter contains the flag for when to enable auto application of best offer on this SKU.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-> **Notes**:
->
-> * The following order must be used for hashing:
->   `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
->   For more information on hash generation process, refer to [Hashing Request and Response](ref:generate-hash-merchant-hosted).
-> * If any of the keys is null/not configured, "|" character must be concatenated.
-> * The above hash logic is for _payment API version 10 or later.
-
-### cart_details Object in sample request
-
-```json
-"cart_details": {
-    "amount": 55000,
-    "items": 2,
-    "surcharges":"100",
-    "pre_discount":"10"
-    "sku_details": [
-      {
-        "sku_id": "smartphone234",
-        "sku_name": "Smartphone",
-        "amount_per_sku": "45000",
-        "quantity": 1,
-        "offer_key": null,
-        "offer_auto_apply": true
-      },
-      {
-        "sku_id": "smartwatch132",
-        "sku_name": "Smartwatch",
-        "amount_per_sku": "10000",
-        "quantity": 1,
-        "offer_key": [
-          "flat500@2022"
-        ],
-        "offer_auto_apply": false
-      }
-    ]
-  }
-```
-
-### Sample Request with **cart_details** JSON object:
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
--H "accept: application/json" \
--H "Content-Type: application/x-www-form-urlencoded" \
--d "key=JP***g" \
--d "txnid=ewP8oRopzdHEtC" \
--d "amount=10.00" \
--d "firstname=Ashish" \
--d "email=test@gmail.com" \
--d "phone=9876543210" \
--d "productinfo=iPhone" \
--d "pg=TESTPG" \
--d "bankcode=TESTPGNB" \
--d "surl=https://apiplayground-response.herokuapp.com/" \
--d "furl=https://apiplayground-response.herokuapp.com/" \
--d 'cart_details={
-  "amount": 55000,
-  "items": 2,
-  "surcharges": 10,
-  "pre_discount": 5,
-  "sku_details": [
-    {
-      "sku_id": "smartphone234",
-      "sku_name": "Smartphone",
-      "amount_per_sku": "45000",
-      "quantity": 1,
-      "offer_key": null,
-      "offer_auto_apply": true
-    },
-    {
-      "sku_id": "smartwatch132",
-      "sku_name": "Smartwatch",
-      "amount_per_sku": "10000",
-      "quantity": 1,
-      "offer_key": ["flat500@2022"],
-      "offer_auto_apply": false
-    }
-  ]
-}' \
--d "hash=bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319"
-
-```
-```javascript
-/**
- * PayU Card Payment with Cart Details using Fetch API
- * 
- * IMPORTANT: This should only be executed server-side (e.g., in Node.js), never in the browser,
- * as it contains sensitive payment information.
- */
-
-// Payment endpoint
-const url = 'https://test.payu.in/_payment';
-
-// Cart details object
-const cartDetails = {
-  amount: 55000,
-  items: 2,
-  surcharges: 10,
-  pre_discount: 5,
-  sku_details: [
-    {
-      sku_id: "smartphone234",
-      sku_name: "Smartphone",
-      amount_per_sku: "45000",
-      quantity: 1,
-      offer_key: null,
-      offer_auto_apply: true
-    },
-    {
-      sku_id: "smartwatch132",
-      sku_name: "Smartwatch",
-      amount_per_sku: "10000",
-      quantity: 1,
-      offer_key: ["flat500@2022"],
-      offer_auto_apply: false
-    }
-  ]
-};
-
-// Form data parameters
-const formData = new URLSearchParams();
-formData.append('key', 'JP***g');
-formData.append('txnid', 'ewP8oRopzdHEtC');
-formData.append('amount', '10.00');
-formData.append('firstname', 'Ashish');
-formData.append('email', 'test@gmail.com');
-formData.append('phone', '9876543210');
-formData.append('productinfo', 'iPhone');
-formData.append('pg', 'TESTPG');
-formData.append('bankcode', 'TESTPGNB');
-formData.append('surl', 'https://apiplayground-response.herokuapp.com/');
-formData.append('furl', 'https://apiplayground-response.herokuapp.com/');
-// Add cart details as JSON string
-formData.append('cart_details', JSON.stringify(cartDetails));
-formData.append('hash', 'bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319');
-
-// Request options
-const requestOptions = {
-  method: 'POST',
-  headers: {
-    'accept': 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded'
-  },
-  body: formData
-};
-
-// Execute the request
-fetch(url, requestOptions)
-  .then(response => {
-    console.log('Status Code:', response.status);
-    return response.text(); // or response.json() if you're sure it returns JSON
-  })
-  .then(data => {
-    console.log('Response:', data);
-    // Process payment response here
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-```
-```python
-import urllib.request
-import urllib.parse
-import json
-from typing import Dict, Any
-
-def process_card_payment_with_cart_details() -> Dict[str, Any]:
-    """
-    Process card payment with cart details using PayU's Merchant Hosted Checkout
-    
-    IMPORTANT: This is a server-side function. Never expose payment details to client-side code.
-    
-    Returns:
-        Dictionary with response from PayU API
-    """
-    # API endpoint
-    url = "https://test.payu.in/_payment"
-    
-    # Cart details object
-    cart_details = {
-        "amount": 55000,
-        "items": 2,
-        "surcharges": 10,
-        "pre_discount": 5,
-        "sku_details": [
-            {
-                "sku_id": "smartphone234",
-                "sku_name": "Smartphone",
-                "amount_per_sku": "45000",
-                "quantity": 1,
-                "offer_key": None,
-                "offer_auto_apply": True
-            },
-            {
-                "sku_id": "smartwatch132",
-                "sku_name": "Smartwatch",
-                "amount_per_sku": "10000",
-                "quantity": 1,
-                "offer_key": ["flat500@2022"],
-                "offer_auto_apply": False
-            }
-        ]
-    }
-    
-    # Prepare the form data
-    payload = {
-        "key": "JP***g",
-        "txnid": "ewP8oRopzdHEtC",
-        "amount": "10.00",
-        "firstname": "Ashish",
-        "email": "test@gmail.com",
-        "phone": "9876543210",
-        "productinfo": "iPhone",
-        "pg": "TESTPG",
-        "bankcode": "TESTPGNB",
-        "surl": "https://apiplayground-response.herokuapp.com/",
-        "furl": "https://apiplayground-response.herokuapp.com/",
-        # Add cart details as JSON string
-        "cart_details": json.dumps(cart_details),
-        "hash": "bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319"
-    }
-    
-    # Convert dictionary to URL-encoded form data
-    data = urllib.parse.urlencode(payload).encode('utf-8')
-    
-    # Set headers
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
-    
-    # Create a request object
-    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
-    
-    try:
-        # Send the request and get the response
-        with urllib.request.urlopen(req) as response:
-            response_data = response.read().decode('utf-8')
-            
-            # Process and return response
-            return {
-                "status_code": response.getcode(),
-                "response": response_data
-            }
-            
-    except urllib.error.HTTPError as e:
-        # Handle HTTP errors
-        error_data = e.read().decode('utf-8')
-        return {
-            "status_code": e.code,
-            "error": e.reason,
-            "response": error_data
-        }
-        
-    except Exception as e:
-        # Handle other exceptions
-        return {
-            "status_code": 500,
-            "error": str(e),
-            "response": "An error occurred during payment processing"
-        }
-
+<Accordion title="Additional request parameters for SKU-Based offer" icon="fa-code">
+     
+     <Callout icon="📘" theme="info">
+       **Reference**: For the checkout flow and list of request parameters required for the Offer integration, refer to [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout).
+     </Callout>
+     
+     <Table>
+       <thead>
+         <tr>
+           <th>
+             **Field**
+           </th>
+     
+           <th>
+             **Description**
+           </th>
+         </tr>
+       </thead>
+     
+       <tbody>
+         <tr>
+           <td>
+             cart_details
+             `mandatory for SKU`
+           </td>
+     
+           <td>
+             * JSON Object_ The card details is specified in this parameter in a JSON format.
+             * _Note_*: If given null, no cart will be created for the transaction.
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             cart_details.amount
+             `mandatory`
+           </td>
+     
+           <td>
+             * String_ The amount for the SKU-based offer.
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             cart_details.items
+             `mandatory`
+           </td>
+     
+           <td>
+             * String_ The number of the items for the SKU-based offer.
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             cart_details.surcharges
+             `conditional`
+           </td>
+     
+           <td>
+             * String_ Total txn amount is now increased, but the cart_details.amount is lesser, to handle the difference, the additional amount added by the merchant should be passed in surcharges field
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             cart_details.pre_discount
+             `conditional`
+           </td>
+     
+           <td>
+             * String_ If there are any pre discount given by merchant on their checkout page. Total txn amount is now reduced, but the cart_details.amount is higher, to handle the difference, the discount given by the merchant should be passed in pre_discount field
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             cart_details.sku_details
+             `mandatory`
+           </td>
+     
+           <td>
+             * JSON Object_ The SKU details is specified in this parameter in a JSON format.
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             cart_details.sku_details.sku_id
+             `mandatory`
+           </td>
+     
+           <td>
+             * String_ This parameter contains the unique identifier for SKU.
+             * _Note_*: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             sku_details.sku_name
+             `mandatory`
+           </td>
+     
+           <td>
+             * String _ This parameter contains the SKU name.
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             sku_details.quantity
+             `mandatory`
+           </td>
+     
+           <td>
+             * String _ The parameter must contain the quantity of SKU added in cart.
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             sku_details.amount_per_sku
+             `mandatory`
+           </td>
+     
+           <td>
+             * String _ The parameter must contain the per SKU amount.
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             sku_details.offer_key
+             `optional`
+           </td>
+     
+           <td>
+             * String_ This parameter must contain the Offer Key(s) which can be used for this transaction. |
+           </td>
+         </tr>
+     
+         <tr>
+           <td>
+             sku_details.offer_auto_apply
+             `optional`
+           </td>
+     
+           <td>
+             * String_This parameter contains the flag for when to enable auto application of best offer on this SKU.
+           </td>
+         </tr>
+       </tbody>
+     </Table>
+     
+     > **Notes**:
+     >
+     > * The following order must be used for hashing:
+     >   `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
+     >   For more information on hash generation process, refer to [Hashing Request and Response](ref:generate-hash-merchant-hosted).
+     > * If any of the keys is null/not configured, "|" character must be concatenated.
+     > * The above hash logic is for _payment API version 10 or later.
+     
+</Accordion>
+<Accordion title="cart_details Object in sample request" icon="fa-code">
+     
+     ```json
+     "cart_details": {
+         "amount": 55000,
+         "items": 2,
+         "surcharges":"100",
+         "pre_discount":"10"
+         "sku_details": [
+           {
+             "sku_id": "smartphone234",
+             "sku_name": "Smartphone",
+             "amount_per_sku": "45000",
+             "quantity": 1,
+             "offer_key": null,
+             "offer_auto_apply": true
+           },
+           {
+             "sku_id": "smartwatch132",
+             "sku_name": "Smartwatch",
+             "amount_per_sku": "10000",
+             "quantity": 1,
+             "offer_key": [
+               "flat500@2022"
+             ],
+             "offer_auto_apply": false
+           }
+         ]
+       }
+     ```
+     
+</Accordion>
+<Accordion title="Sample Request with **cart_details** JSON object:" icon="fa-code">
+     
+     ```curl
+     curl -X POST "https://test.payu.in/_payment" \
+     -H "accept: application/json" \
+     -H "Content-Type: application/x-www-form-urlencoded" \
+     -d "key=JP***g" \
+     -d "txnid=ewP8oRopzdHEtC" \
+     -d "amount=10.00" \
+     -d "firstname=Ashish" \
+     -d "email=test@gmail.com" \
+     -d "phone=9876543210" \
+     -d "productinfo=iPhone" \
+     -d "pg=TESTPG" \
+     -d "bankcode=TESTPGNB" \
+     -d "surl=https://apiplayground-response.herokuapp.com/" \
+     -d "furl=https://apiplayground-response.herokuapp.com/" \
+     -d 'cart_details={
+       "amount": 55000,
+       "items": 2,
+       "surcharges": 10,
+       "pre_discount": 5,
+       "sku_details": [
+         {
+           "sku_id": "smartphone234",
+           "sku_name": "Smartphone",
+           "amount_per_sku": "45000",
+           "quantity": 1,
+           "offer_key": null,
+           "offer_auto_apply": true
+         },
+         {
+           "sku_id": "smartwatch132",
+           "sku_name": "Smartwatch",
+           "amount_per_sku": "10000",
+           "quantity": 1,
+           "offer_key": ["flat500@2022"],
+           "offer_auto_apply": false
+         }
+       ]
+     }' \
+     -d "hash=bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319"
+     
+     ```
+     ```javascript
+     /**
+      * PayU Card Payment with Cart Details using Fetch API
+      * 
+      * IMPORTANT: This should only be executed server-side (e.g., in Node.js), never in the browser,
+      * as it contains sensitive payment information.
+      */
+     
+     // Payment endpoint
+     const url = 'https://test.payu.in/_payment';
+     
+     // Cart details object
+     const cartDetails = {
+       amount: 55000,
+       items: 2,
+       surcharges: 10,
+       pre_discount: 5,
+       sku_details: [
+         {
+           sku_id: "smartphone234",
+           sku_name: "Smartphone",
+           amount_per_sku: "45000",
+           quantity: 1,
+           offer_key: null,
+           offer_auto_apply: true
+         },
+         {
+           sku_id: "smartwatch132",
+           sku_name: "Smartwatch",
+           amount_per_sku: "10000",
+           quantity: 1,
+           offer_key: ["flat500@2022"],
+           offer_auto_apply: false
+         }
+       ]
+     };
+     
+     // Form data parameters
+     const formData = new URLSearchParams();
+     formData.append('key', 'JP***g');
+     formData.append('txnid', 'ewP8oRopzdHEtC');
+     formData.append('amount', '10.00');
+     formData.append('firstname', 'Ashish');
+     formData.append('email', 'test@gmail.com');
+     formData.append('phone', '9876543210');
+     formData.append('productinfo', 'iPhone');
+     formData.append('pg', 'TESTPG');
+     formData.append('bankcode', 'TESTPGNB');
+     formData.append('surl', 'https://apiplayground-response.herokuapp.com/');
+     formData.append('furl', 'https://apiplayground-response.herokuapp.com/');
+     // Add cart details as JSON string
+     formData.append('cart_details', JSON.stringify(cartDetails));
+     formData.append('hash', 'bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319');
+     
+     // Request options
+     const requestOptions = {
+       method: 'POST',
+       headers: {
+         'accept': 'application/json',
+         'Content-Type': 'application/x-www-form-urlencoded'
+       },
+       body: formData
+     };
+     
+     // Execute the request
+     fetch(url, requestOptions)
+       .then(response => {
+         console.log('Status Code:', response.status);
+         return response.text(); // or response.json() if you're sure it returns JSON
+       })
+       .then(data => {
+         console.log('Response:', data);
+         // Process payment response here
+       })
+       .catch(error => {
+         console.error('Error:', error);
+       });
+     
+     ```
+     ```python
+     import urllib.request
+     import urllib.parse
+     import json
+     from typing import Dict, Any
+     
+     def process_card_payment_with_cart_details() -> Dict[str, Any]:
+         """
+         Process card payment with cart details using PayU's Merchant Hosted Checkout
+         
+         IMPORTANT: This is a server-side function. Never expose payment details to client-side code.
+         
+         Returns:
+             Dictionary with response from PayU API
+         """
+         # API endpoint
+         url = "https://test.payu.in/_payment"
+         
+         # Cart details object
+         cart_details = {
+             "amount": 55000,
+             "items": 2,
+             "surcharges": 10,
+             "pre_discount": 5,
+             "sku_details": [
+                 {
+                     "sku_id": "smartphone234",
+                     "sku_name": "Smartphone",
+                     "amount_per_sku": "45000",
+                     "quantity": 1,
+                     "offer_key": None,
+                     "offer_auto_apply": True
+                 },
+                 {
+                     "sku_id": "smartwatch132",
+                     "sku_name": "Smartwatch",
+                     "amount_per_sku": "10000",
+                     "quantity": 1,
+                     "offer_key": ["flat500@2022"],
+                     "offer_auto_apply": False
+                 }
+             ]
+         }
+         
+         # Prepare the form data
+         payload = {
+             "key": "JP***g",
+             "txnid": "ewP8oRopzdHEtC",
+             "amount": "10.00",
+             "firstname": "Ashish",
+             "email": "test@gmail.com",
+             "phone": "9876543210",
+             "productinfo": "iPhone",
+             "pg": "TESTPG",
+             "bankcode": "TESTPGNB",
+             "surl": "https://apiplayground-response.herokuapp.com/",
+             "furl": "https://apiplayground-response.herokuapp.com/",
+             # Add cart details as JSON string
+             "cart_details": json.dumps(cart_details),
+             "hash": "bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319"
+         }
+         
+         # Convert dictionary to URL-encoded form data
+         data = urllib.parse.urlencode(payload).encode('utf-8')
+         
+         # Set headers
+         headers = {
+             "accept": "application/json",
+             "Content-Type": "application/x-www-form-urlencoded"
+         }
+         
+         # Create a request object
+         req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+         
+         try:
+             # Send the request and get the response
+             with urllib.request.urlopen(req) as response:
+                 response_data = response.read().decode('utf-8')
+                 
+                 # Process and return response
+                 return {
+                     "status_code": response.getcode(),
+                     "response": response_data
+                 }
+                 
+         except urllib.error.HTTPError as e:
+             # Handle HTTP errors
+             error_data = e.read().decode('utf-8')
+             return {
+                 "status_code": e.code,
+                 "error": e.reason,
+                 "response": error_data
+             }
+             
+         except Exception as e:
+             # Handle other exceptions
+             return {
+                 "status_code": 500,
+                 "error": str(e),
+                 "response": "An error occurred during payment processing"
+             }
+     
+</Accordion>
 # Example usage
 if __name__ == "__main__":
     result = process_card_payment_with_cart_details()
@@ -1091,65 +1100,259 @@ namespace PayUCardIntegration
 
 You need to look for the skusDetail object in the response. For the complete response, refer to [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted).
 
-### Success scenario
-
-The skusDetail JSON in the following sample response:
-
-```
-{"cart_details": {
-    "id": "18",
-    "payu_id": "999000000000983",
-    "total_items": "2",
-    "total_cart_amount": "55000",
-    "offer_applied": null,
-    "offer_availed": null,
-    "instant_discount": "1000",
-    "cashback_discount": "500",
-    "total_discount": "1500",
-    "net_cart_amount": "54000",
-    "created_at": null,
-    "updated_at": null,
-    "sku_details": [
-      {
-        "id": "35",
-        "cart_id": "18",
-        "payu_id": "999000000000983",
-        "mid": "180012",
-        "sku_id": "smartphone234",
-        "sku_name": "Smartphone",
-        "amount_per_sku": "45000.00",
-        "quantity": "1",
-        "amount_before_discount": "45000",
-        "discount": "1000",
-        "amount_after_discount": "44000",
-        "offer_key": null,
-        "offer_status": null,
-        "offer_type": null,
-        "created_at": null,
-        "updated_at": null
-      },
-      {
-        "id": "36",
-        "cart_id": "18",
-        "payu_id": "999000000000983",
-        "mid": "180012",
-        "sku_id": "smartwatch132",
-        "sku_name": "Smartwatch",
-        "amount_per_sku": "10000.00",
-        "quantity": "1",
-        "amount_before_discount": "10000.00",
-        "discount": "500",
-        "amount_after_discount": "10000.00",
-        "offer_key": null,
-        "offer_status": null,
-        "offer_type": null,
-        "created_at": null,
-        "updated_at": null
-      }
-    ]
-  }}
-```
-
+<Accordion title="Success scenario" icon="fa-code">
+     
+     The skusDetail JSON in the following sample response:
+     
+     ```
+     {"cart_details": {
+         "id": "18",
+         "payu_id": "999000000000983",
+         "total_items": "2",
+         "total_cart_amount": "55000",
+         "offer_applied": null,
+         "offer_availed": null,
+         "instant_discount": "1000",
+         "cashback_discount": "500",
+         "total_discount": "1500",
+         "net_cart_amount": "54000",
+         "created_at": null,
+         "updated_at": null,
+         "sku_details": [
+           {
+             "id": "35",
+             "cart_id": "18",
+             "payu_id": "999000000000983",
+             "mid": "180012",
+             "sku_id": "smartphone234",
+             "sku_name": "Smartphone",
+             "amount_per_sku": "45000.00",
+             "quantity": "1",
+             "amount_before_discount": "45000",
+             "discount": "1000",
+             "amount_after_discount": "44000",
+             "offer_key": null,
+             "offer_status": null,
+             "offer_type": null,
+             "created_at": null,
+             "updated_at": null
+           },
+           {
+             "id": "36",
+             "cart_id": "18",
+             "payu_id": "999000000000983",
+             "mid": "180012",
+             "sku_id": "smartwatch132",
+             "sku_name": "Smartwatch",
+             "amount_per_sku": "10000.00",
+             "quantity": "1",
+             "amount_before_discount": "10000.00",
+             "discount": "500",
+             "amount_after_discount": "10000.00",
+             "offer_key": null,
+             "offer_status": null,
+             "offer_type": null,
+             "created_at": null,
+             "updated_at": null
+           }
+         ]
+       }}
+     ```
+     
+</Accordion>
 ## Step 5: Verify the payment
 
 Verify the payment using the **Verify Payment** API. For the sample response using the **Verify Payment** API from PayU involving offers, refer to <a href="addl-info-general-apis#sample-response" target="_blank">Additional Info for General APIsI</a>.
+Verify the payment using the **Verify Payment** API. For the sample response using the **Verify Payment** API from PayU involving offers, refer to <a href="addl-info-general-apis#sample-response" target="_blank">Additional Info for General APIsI</a>.
+      **Environment**
+
+      |                        |                                                                                                              |
+      | :--------------------- | :----------------------------------------------------------------------------------------------------------- |
+      | Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
+      | Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
+
+      > Note: The hash logic for Verify Payment API is:
+      > `sha512(key|command|var1|salt)
+sha512`
+
+      <Accordion title="Sample request" icon="fa-code">
+        ```curl
+        curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
+        --header 'Content-Type: application/x-www-form-urlencoded' \
+        --data-urlencode 'key=JP***g' \
+        --data-urlencode 'command=verify_payment' \
+        --data-urlencode 'var1=IhfgcZnXR4o4nB' \
+        --data-urlencode 'hash=<<calculated_hash_here>>'
+        ```
+      </Accordion>
+
+      <Accordion title="Sample response" icon="fa-reply">
+        <br />
+
+        ```json Success Response
+        If credit card payment is made, the response is similar to the following:
+        {
+        "status": 1,
+        "msg": "1 out of 1 Transactions Fetched Successfully",
+        "transaction_details": {
+           "1733900931584": {
+               "mihpayid": "21820644083",
+               "request_id": null,
+               "bank_ref_num": null,
+               "amt": "1.00",
+               "transaction_amount": "1.00",
+               "txnid": "1733900931584",
+               "additional_charges": "0.00",
+               "productinfo": "Macbook Pro",
+               "firstname": "Abc",
+               "bankcode": "MAST",
+               "udf1": "udf1",
+               "udf2": "udf2",
+               "udf3": "udf3",
+               "udf4": "udf4",
+               "udf5": "udf5",
+               "field2": null,
+               "field9": "OTP/ATM page expired due to no user action",
+               "error_code": "E1602",
+               "addedon": "2024-12-11 12:43:03",
+               "payment_source": "payu",
+               "card_type": "MAST",
+               "error_Message": "Bank was unable to authenticate.",
+               "net_amount_debit": "0.00",
+               "disc": "0.00",
+               "mode": "DC",
+               "PG_TYPE": "DC-PG",
+               "card_no": "XXXXXXXXXXXX7596",
+               "status": "failure",
+               "unmappedstatus": "dropped",
+               "Merchant_UTR": null,
+               "Settled_At": null,
+               "cardhash": "095d184331be367bb92aa3eeecb57d0728de96cc598dd563d407982d75021149",
+               "name_on_card": null,
+               "card_token": "4e97156bc2d6320cdfe15",
+               "field4": null,
+               "threeDSVersion": "2.2.0",
+               "offerAvailed": null
+           }
+        }
+        }
+        ```
+        ```json Failure Response
+
+        If txnID is not found, the response is similar to the following
+        {
+            "status":0,
+            "msg":"0 out of 1 Transactions Fetched Successfully",
+              "transaction_details":
+              {	
+        						"IhfgcZnXR4o4nB":
+                {
+        								"mihpayid":"Not Found",
+                    "status":"Not Found"
+                  }
+        						}
+        }
+        ```
+      </Accordion>
+
+      <Accordion title="Response parameters" icon="fa-list">
+        <Table align={["left","left","left"]}>
+          <thead>
+            <tr>
+              <th style={{ textAlign: "left" }}>
+                **Parameter**
+              </th>
+
+              <th style={{ textAlign: "left" }}>
+                **Description**
+              </th>
+
+              <th style={{ textAlign: "left" }}>
+                **Example**
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                status
+              </td>
+
+              <td style={{ textAlign: "left" }}>
+                This parameter returns the status of web service call. The status can be any of the following:
+
+                * 0 - If web service call failed.
+                * 1 - If web service call succeeded
+              </td>
+
+              <td style={{ textAlign: "left" }}>
+                0
+              </td>
+            </tr>
+
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                msg
+              </td>
+
+              <td style={{ textAlign: "left" }}>
+                This parameter returns the reason string.
+              </td>
+
+              <td style={{ textAlign: "left" }}>
+                For example, any of the following messages are displayed:
+
+                * Parameter missing
+                * Token is empty
+                * Amount is empty
+                * Transaction not exists
+              </td>
+            </tr>
+
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                transaction\_details
+              </td>
+
+              <td style={{ textAlign: "left" }}>
+                This parameter contains the response in a JSON format. For more information refer to [JSON fields description for transaction\_details parameter ](#json-field-description-for-transaction_details-parameter).
+              </td>
+
+              <td style={{ textAlign: "left" }} />
+            </tr>
+
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                request\_id
+              </td>
+
+              <td style={{ textAlign: "left" }}>
+                PayU Request ID for a request in a Transaction. For example, a transaction can have a refund request.
+              </td>
+
+              <td style={{ textAlign: "left" }}>
+                7800456
+              </td>
+            </tr>
+
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                bank\_ref\_num
+              </td>
+
+              <td style={{ textAlign: "left" }}>
+                This parameter returns the bank reference number. If the bank provides after a successful action.
+              </td>
+
+              <td style={{ textAlign: "left" }}>
+                204519474956
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+
+        To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
+      </Accordion>
+
+</Accordion>
