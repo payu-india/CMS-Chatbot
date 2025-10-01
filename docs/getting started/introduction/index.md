@@ -163,6 +163,4 @@ If you’re on Shopify, WooCommerce, Magento, or similar platforms, use our read
 | **Mobile SDKs**                                | Low to medium depending on type of checkout solution opted | Dependent on type of checkout solution opted | Medium (native customization)                         | Native Android/iOS/Hybrid apps                                  |
 | **eCommerce Plugins**                          | Very Low                                                   | No                                           | Minimal                                               | Shopify, WooCommerce, Magento or any eCommerce plugin merchants |
 
-***
-
-✅ This way, merchants can first **read the summary**, then **scan the table** to decide quickly.
+<br />
