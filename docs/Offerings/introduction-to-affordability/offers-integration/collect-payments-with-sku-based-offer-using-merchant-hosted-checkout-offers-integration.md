@@ -24,13 +24,14 @@ After you create a SKU-based offer on PayU Dashboard, you can start collecting p
   **Note**: For payment journey of instant discount offers using Merchant Hosted Checkout, refer to [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout).
 </Callout>
 
-### Steps to integrate
+<Accordion title="Steps to integrate" icon="fa-code">
      
      1. [Fetch offers](#step-1-fetch-offers)
      2. [Validate offer](#step-2-validate-offer)
      3. [Payment request](#step-3-payment-request)
      4. [Check the response from PayU](#step-4-check-the-response-fro-payU)
      
+</Accordion>
 ## Step 1: Fetch offers
 
 <Accordion title="Additional request parameter skusDetail for SKU" icon="fa-code">
@@ -1162,8 +1163,21 @@ You need to look for the skusDetail object in the response. For the complete res
 </Accordion>
 ## Step 5: Verify the payment
 
-Verify the payment using the **Verify Payment** API. For the sample response using the **Verify Payment** API from PayU involving offers, refer to <a href="addl-info-general-apis#sample-response" target="_blank">Additional Info for General APIsI</a>.
-Verify the payment using the **Verify Payment** API. For the sample response using the **Verify Payment** API from PayU involving offers, refer to <a href="addl-info-general-apis#sample-response" target="_blank">Additional Info for General APIsI</a>.
+  <p>Upon receiving the response, we recommend performing a reconciliation step to validate all transaction details.\
+  You can verify your payments using either of the following methods:</p>
+
+  <br />
+
+  <Tabs>
+    <Tab title="1. Verify using Webhooks">
+      Configure the webhooks to monitor the status of payments.\
+      Webhooks enable a server to communicate with another server by sending an HTTP callback or message.\
+      These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.
+
+      👉 For more details, refer to [Webhooks for Payments](https://docs.payu.in/reference/webhooks). <br />
+    </Tab>
+
+    <Tab title="2. Verify using Verify Payments API">
       **Environment**
 
       |                        |                                                                                                              |
@@ -1172,8 +1186,7 @@ Verify the payment using the **Verify Payment** API. For the sample response usi
       | Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
       > Note: The hash logic for Verify Payment API is:
-      > `sha512(key|command|var1|salt)
-sha512`
+      > `sha512(key|command|var1|salt) sha512`
 
       <Accordion title="Sample request" icon="fa-code">
         ```curl
@@ -1354,5 +1367,6 @@ sha512`
 
         To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
       </Accordion>
-
+    </Tab>
+  </Tabs>
 </Accordion>
