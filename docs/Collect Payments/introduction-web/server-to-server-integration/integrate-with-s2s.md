@@ -584,8 +584,12 @@ Next Steps
 
 ### Response Parameters
 
-> 📘 Note:
->
-> The response contains a combination of the following JSON objects (**metaData**, **result**, and binData) based on the use case used in S2S, and the fields in each of them are described in the following tables.
+<Callout icon="📘" theme="info">
+  **Note**: The response contains a combination of the following JSON objects (**metaData**, **result**, and binData) based on the use case used in S2S, and the fields in each of them are described in the following tables.
+</Callout>
 
 Collect the response in the  [Collect Payment API - Server-to-Server](ref:_payment_s2s_classic_integration)  under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters,  refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+
+## Verify Payment
+
+<Verify_Payment_Tabs />
