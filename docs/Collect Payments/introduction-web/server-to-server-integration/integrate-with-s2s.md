@@ -590,6 +590,6 @@ Next Steps
 
 Collect the response in the  [Collect Payment API - Server-to-Server](ref:_payment_s2s_classic_integration)  under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters,  refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
-## Verify Payment
+## Verify the payment
 
 <Verify_Payment_Tabs />
