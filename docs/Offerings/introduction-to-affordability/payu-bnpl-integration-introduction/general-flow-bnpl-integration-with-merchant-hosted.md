@@ -181,7 +181,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
   <br />
 </Accordion>
 
-## Verify the payment
+## Step 4: Verify the payment
 
 <p>Upon receiving the response, we recommend performing a reconciliation step to validate all transaction details.\
 You can verify your payments using either of the following methods:</p>
