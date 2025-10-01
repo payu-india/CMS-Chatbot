@@ -925,4 +925,4 @@ PayU would refund the exact amount passed by you in the Refund request. For more
   **Note**: You can enable the **Enforce Offer** flag by requesting your PayU Key Account Manager. If you enable the **Enforce Offer** flag, the best offer out of the all the offers passed will be applied for the customer.
 </Callout>
 
-<br />
+
