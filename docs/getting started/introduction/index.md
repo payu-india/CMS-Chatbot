@@ -43,64 +43,6 @@ A payment gateway is a technology used by merchants to accept debit or credit ca
 >
 > * It is recommended to follow the **Integration Checklist** for checkout or SDK integrations to ensure that your integration is complete before making your integration live.
 
-## Collect Payments
-
-* <Anchor label="No Code Solutions" target="_blank" href="https://docs.payu.in/docs/introduction-no-code-payments-integration">No Code Solutions</Anchor>
-* <Anchor label="PayU Hosted Checkout" target="_blank" href="doc:prebuilt-checkout-payu-hosted">PayU Hosted Checkout</Anchor>
-* <Anchor label="Merchant Hosted Checkout" target="_blank" href="doc:custom-checkout-merchant-hosted">Merchant Hosted Checkout</Anchor>
-* <Anchor label="Server-to-Server" target="_blank" href="doc:server-to-server-integration">Server-to-Server</Anchor>
-* <Anchor label="CommercePro Checkout" target="_blank" href="doc:checkout-express">CommercePro Checkout</Anchor>
-* [Checkout Plus](doc:checkout-plus-integration)
-* **Mobile SDK**: For more information, refer to any of the following based on your integration:
-  * <Anchor label="Explore Android SDKs" target="_blank" href="doc:explore-android-sdks">Explore Android SDKs</Anchor>
-  * <Anchor label="Explore iOS SDKs" target="_blank" href="doc:explore-ios-sdks">Explore iOS SDKs</Anchor>
-  * <Anchor label="Explore React Native SDKs" target="_blank" href="doc:explore-reactnative-sdks">Explore React Native SDKs</Anchor>
-  * <Anchor label="Explore Flutter SDKs" target="_blank" href="doc:flutter-sdk-introduction">Explore Flutter SDKs</Anchor>
-  * <Anchor label="Explore Cordova CheckoutPro SDK" target="_blank" href="doc:cordova-sdk-introduction">Explore Cordova CheckoutPro SDK</Anchor>
-* **eCommerce Plugins**: For more information, refer to  <Anchor label="Plugins - Introduction" target="_blank" href="https://docs.payu.in/docs/ecommerce-platform-plugins/">Plugins - Introduction</Anchor>
-
-# Offerings
-
-* [Affordability & Loyalty](https://docs.payu.in/docs/introduction-to-affordability)
-  * [EMI](https://docs.payu.in/docs/emi-api-integration)
-  * [Offers Dashboard](https://docs.payu.in/docs/offers-dashboard)
-  * [Offers Integration APIs](https://docs.payu.in/docs/offers-integration)
-  * [BNPL Integration](https://docs.payu.in/docs/payu-bnpl-integration-introduction)
-  * [Loyalty Edge](https://docs.payu.in/docs/loyalty-edge-introduction)
-  * [Affordability Widget](https://docs.payu.in/docs/affordability-suite)
-* [Subscripions or Recurring Payments](https://docs.payu.in/docs/introduction-recurring-payments-integration)
-* [International Payments](https://docs.payu.in/docs/introduction-dynamic-currency-conversion)
-* [Pre-Authorize Payments](https://docs.payu.in/docs/auth-and-capture-pre-authorize-credit-card-payments)
-* [Cross-Border Payments](https://docs.payu.in/docs/introduction-cross-border-payments-import)
-* [Split Settlements](https://docs.payu.in/docs/split-settlments)
-* [Tokenization or Save Cards](https://docs.payu.in/docs/introduction-save-cards)
-* [Third-Party Verification (TPV)](https://docs.payu.in/docs/introduction-to-payu-tpv)
-* [Recommendation Engine](https://docs.payu.in/docs/recommendation-engine)
-* [Refunds](https://docs.payu.in/docs/introduction-refunds)
-
-# MCP
-
-Communicate with the PayU Payments APIs using Model Context Protocol and collection payments. For more information, refer to [PayU MCP](https://docs.payu.in/docs/payu-mcp-server/).
-
-# Partnership and Payouts
-
-* **Partner Integration**: For more information, refer to [Partner - Introduction](https://docs.payu.in/docs/payu-partner-program-overview#/)
-* **Payouts**: For more information, refer to [Payouts - Introduction](https://docs.payu.in/docs/introduction-to-payouts/)
-
-# Wallets
-
-* [Merchant Wallets](https://docs.payu.in/docs/introduction-to-merchant-wallet/)
-
-# Bill Payments
-
-* [Connect Agent API Integration](https://docs.payu.in/docs/connect-agent-api-integration)
-* [Recharge API Integration](https://docs.payu.in/docs/recharge-api-integration)
-
-# Developer resources
-
-* **Merchant Key and Salt**:  Before starting your integration, check your key and salt in the Dashboard. For more information, refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy) .
-* **Test Card, UPI, Wallet, etc**:  For the card, EMI, UPI, wallet, BNPL details to test the integration, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).
-
 <br />
 
 # 💳 Collect Payments on Your Website
@@ -163,4 +105,64 @@ If you’re on Shopify, WooCommerce, Magento, or similar platforms, use our read
 | **Mobile SDKs**                                | Low to medium depending on type of checkout solution opted | Dependent on type of checkout solution opted | Medium (native customization)                         | Native Android/iOS/Hybrid apps                                  |
 | **eCommerce Plugins**                          | Very Low                                                   | No                                           | Minimal                                               | Shopify, WooCommerce, Magento or any eCommerce plugin merchants |
 
-<br />
+***
+
+# 🎁 Offerings
+
+Enhance your checkout and customer experience with PayU’s extended offerings:
+
+* [**Affordability & Loyalty**](https://docs.payu.in/docs/introduction-to-affordability)
+  * [EMI](https://docs.payu.in/docs/emi-api-integration)
+  * [Offers Dashboard](https://docs.payu.in/docs/offers-dashboard)
+  * [Offers Integration APIs](https://docs.payu.in/docs/offers-integration)
+  * [BNPL Integration](https://docs.payu.in/docs/payu-bnpl-integration-introduction)
+  * [Loyalty Edge](https://docs.payu.in/docs/loyalty-edge-introduction)
+  * [Affordability Widget](https://docs.payu.in/docs/affordability-suite)
+
+* [**Subscriptions / Recurring Payments**](https://docs.payu.in/docs/introduction-recurring-payments-integration)
+
+* [**International Payments**](https://docs.payu.in/docs/introduction-dynamic-currency-conversion)
+
+* [**Pre-Authorize Payments**](https://docs.payu.in/docs/auth-and-capture-pre-authorize-credit-card-payments)
+
+* [**Cross-Border Payments**](https://docs.payu.in/docs/introduction-cross-border-payments-import)
+
+* [**Merchant Wallets**](https://docs.payu.in/docs/introduction-to-merchant-wallet/)
+
+* [**Split Settlements**](https://docs.payu.in/docs/split-settlments)
+
+* [**Tokenization / Save Cards**](https://docs.payu.in/docs/introduction-save-cards)
+
+* [**Third-Party Verification (TPV)**](https://docs.payu.in/docs/introduction-to-payu-tpv)
+
+* [**Recommendation Engine**](https://docs.payu.in/docs/recommendation-engine)
+
+* [**Refunds**](https://docs.payu.in/docs/introduction-refunds)
+
+***
+
+# 🔗 MCP (Model Context Protocol)
+
+Communicate with the PayU Payments APIs using **Model Context Protocol** to collect payments.
+➡️ Learn more: [PayU MCP](https://docs.payu.in/docs/payu-mcp-server/).
+
+***
+
+# 🤝 Partnership & Payouts
+
+* **Partner Integration** → [Partner - Introduction](https://docs.payu.in/docs/payu-partner-program-overview#/)
+* **Payouts** → [Payouts - Introduction](https://docs.payu.in/docs/introduction-to-payouts/)
+
+***
+
+# 🧾 Bill Payments
+
+* [Connect Agent API Integration](https://docs.payu.in/docs/connect-agent-api-integration)
+* [Recharge API Integration](https://docs.payu.in/docs/recharge-api-integration)
+
+***
+
+# 🛠 Developer Resources
+
+* **Merchant Key & Salt** → [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy)
+* **Test Credentials** (Card, UPI, Wallet, BNPL) → [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets)
