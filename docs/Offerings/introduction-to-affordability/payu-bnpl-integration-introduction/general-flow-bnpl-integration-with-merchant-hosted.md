@@ -21,25 +21,28 @@ next:
 This section describes the general steps to integrate <Glossary>BNPL</Glossary>.
 
 ## Steps to Integrate
-  1. <a href="#step-1-check-the-bnpl-eligibility">Check the BNPL eligibility</a>
-  2. <a href="#step-2-initiate-the-payment">Initiate the payment</a>
-  3. <a href="#step-3-check-the-response-from-payu">Check the response from PayU</a>
 
+1. <a href="#step-1-check-the-bnpl-eligibility">Check the BNPL eligibility</a>
+2. <a href="#step-2-initiate-the-payment">Initiate the payment</a>
+3. <a href="#step-3-check-the-response-from-payu">Check the response from PayU</a>
+4. <a href="#step-4-verify-the-payment">Verify the payment</a>
 
 ## Step 1: Check the BNPL eligibility
-  When your customer makes a payment through BNPL, you can check the `customer’s` eligibility using the <Anchor label="Get Checkout Details API" target="_blank" href="ref:get_checkout_details#check-customer-eligibility">Get Checkout Details API</Anchor>  and then initiate payment.
 
-  > 🚧 Minimum amount for BNPL transaction
-  >
-  > The minimum amount for BNPL transactions shall vary for each bank, so you need to check with the banks for the minimum amount.
+When your customer makes a payment through BNPL, you can check the `customer’s` eligibility using the <Anchor label="Get Checkout Details API" target="_blank" href="ref:get_checkout_details#check-customer-eligibility">Get Checkout Details API</Anchor>  and then initiate payment.
 
-  For request parameters and response to perform BNPL Eligibility Check, refer to <Anchor label="Get Checkout Details API" target="_blank" href="ref:get_checkout_details">Get Checkout Details API</Anchor>.
+> 🚧 Minimum amount for BNPL transaction
+>
+> The minimum amount for BNPL transactions shall vary for each bank, so you need to check with the banks for the minimum amount.
 
+For request parameters and response to perform BNPL Eligibility Check, refer to <Anchor label="Get Checkout Details API" target="_blank" href="ref:get_checkout_details">Get Checkout Details API</Anchor>.
 
 ## Step 2: Initiate the payment
-  You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code based on the desired BNPL for the **bankcode** parameter is posted. For API reference, refer to <a href="_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API</a> under API Reference.
 
-  `<PaymentAPIEnvironment />`
+You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code based on the desired BNPL for the **bankcode** parameter is posted. For API reference, refer to <a href="_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API</a> under API Reference.
+
+`<PaymentAPIEnvironment />`
+
 <Accordion title="Post Request Syntax & Composition" icon="fa-database">
   ```html
   <body>
@@ -178,7 +181,7 @@ This section describes the general steps to integrate <Glossary>BNPL</Glossary>.
   <br />
 </Accordion>
 
-## Verify Payment
+## Verify the payment
 
 <p>Upon receiving the response, we recommend performing a reconciliation step to validate all transaction details.\
 You can verify your payments using either of the following methods:</p>
