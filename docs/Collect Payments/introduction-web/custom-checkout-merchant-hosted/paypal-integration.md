@@ -25,11 +25,11 @@ You can accept payments within the transaction limits of your PayU account. Disc
 1. Customer is redirected to PayU Payment page.
 2. Customer selects the **Wallets** option.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/429e564-payu_payment_pagE_wallets_list.png" />
+<Image align="center" border={true} src="https://files.readme.io/429e564-payu_payment_pagE_wallets_list.png" className="border" />
 
 3. Customer selects the **Paypal** option.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/44bffcc-payu_payment_paypal_page.png" />
+<Image align="center" border={true} src="https://files.readme.io/44bffcc-payu_payment_paypal_page.png" className="border" />
 
 4. Customer selects the preferred currency and clicks **PayPal**.
 
@@ -64,7 +64,7 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
   **Reference**: For the complete list of parameters (with **Try It** experience ) and response, refer to <a href="https://docs.payu.in/reference/_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
 </Callout>
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -84,7 +84,7 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
   <tbody>
     <tr>
       <td>
-        pg 
+        pg
         **mandatory**
       </td>
 
@@ -197,8 +197,4 @@ Array
 
 ### Step 2: Verify the payment
 
-Verify the transaction details using the Verification APIs. For API reference, refer to [Verify Payment API](ref:verify_payment_api) under API Reference.
-
-> 📘 Tip
->
-> The transaction ID that you posted in Step 1 with PayU must be used here.
+<Verify_Payment_Tabs />
