@@ -1186,7 +1186,8 @@ You need to look for the skusDetail object in the response. For the complete res
       | Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
       > Note: The hash logic for Verify Payment API is:
-      > `sha512(key|command|var1|salt) sha512`
+      > `sha512(key|command|var1|salt)
+sha512`
 
       <Accordion title="Sample request" icon="fa-code">
         ```curl
