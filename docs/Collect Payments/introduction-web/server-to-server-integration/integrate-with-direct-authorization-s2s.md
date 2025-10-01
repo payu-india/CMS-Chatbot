@@ -9,12 +9,13 @@ metadata:
 next:
   description: ''
 ---
-PayU enables merchants to process direct authorization for pre-authenticated transactions (external MPI/3DSS). This section describes how to integrate with PayU’s direct authorization flow.
+PayU enables merchants to process direct authorization for pre-authenticated transactions (external MPI/3DSS). This section describes how to integrate with PayU’s direct authorization flow. This part of the document also includes the 
 
 ### Steps to Integrate
 
 1. [Post the Parameters to PayU](#step-1-post-the-parameters-to-payu)
 2. [Check Response from PayU](#step-2-check-response-from-payu)
+3. [Verify the payment](#step-3-verify-the-payment)
 
 <RegisterMerchantPrerequiste />
 
@@ -144,6 +145,10 @@ The formatted response is similar to the following:
 }
 ```
 
+## Step 3. Verify the payment
+
+<Verify_Payment_Tabs />
+
 ## 3DS Secure 2.0 Transaction
 
 ### Request Parameter for 3DS Secure 2.0 Transaction
@@ -221,3 +226,5 @@ curl --location 'https://test.payu.in/_payment' \
     }
 }'
 ```
+
+<br />
