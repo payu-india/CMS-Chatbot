@@ -18,6 +18,7 @@ In UPI Collect, the sequence of APIs is called to follow for redirection less ex
 2. [Initiate the payment to PayU](#step-2-initiate-the-payment-to-payu)
 3. [Check UPI Transaction Status](#step-3-check-upi-transaction-status)
 4. [S2S Call Back Response](#step-4-check-the-s2s-callback-response)
+5. [Verify the payment](#step-5-verify-the-payment)
 
 <RegisterMerchantPrerequiste />
 
@@ -190,11 +191,7 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
       </td>
 
       <td>
-
-
         [hello@payu.in](mailto:hello@payu.in)
-
-
       </td>
     </tr>
 
@@ -577,3 +574,9 @@ eyJzdGF0dXMiOiJzdWNjZXNzIiwicmVzdWx0Ijp7Im1paHBheWlkIjoiNzYwMTI2NTU4NSIsIm1vZGUi
 ```plaintext
 {"result":null,"status":"failed","error":"E1617","message":"Invalid vpa"}
 ```
+
+## Step 5. Verify the payment
+
+<Verify_Payment_Tabs />
+
+<br />
