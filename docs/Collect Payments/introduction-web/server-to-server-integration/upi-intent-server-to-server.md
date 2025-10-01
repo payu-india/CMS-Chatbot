@@ -16,6 +16,7 @@ The following steps allow you to integrate the server-to-server UPI intent:
 2. [Invoke UPI Intent on customer’s device](#step-2-invoke-upi-intent-on-customers-device)
 3. [Check UPI transaction status](#step-3-check-upi-transaction-status)
 4. [PayU sends Server-to-Server callback response](#step-4-payu-sends-server-to-server-callback-response)
+5. [Verify the payment](#step-5-verify-the-payment)
 
 <RegisterMerchantPrerequiste />
 
@@ -51,9 +52,8 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
 
 For the complete list of parameters, refer to <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
 
-
 <Table align={["left","left","left"]}>
-    <thead>
+  <thead>
     <tr>
       <th>
         Parameter
@@ -84,6 +84,9 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
         * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
       </td>
 
+      <td>
+
+      </td>
     </tr>
 
     <tr>
@@ -172,11 +175,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
       </td>
 
       <td>
-
-
         [hello@payu.in](mailto:hello@payu.in)
-
-
       </td>
     </tr>
 
@@ -194,7 +193,8 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
         Teja
       </td>
     </tr>
-<tr>
+
+    <tr>
       <td>
         <p>pg<br /><code>mandatory</code></p>
       </td>
@@ -222,28 +222,34 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
       </td>
     </tr>
 
-<tr>
-  <td>
-    <p>surl<br/><code>mandatory</code></p>
-</td>
-  <td>
-     <p><strong>String</strong> Success URL(surl) – It must contain the URL on which PayU will redirect the final response if the transaction is successful.</p>
-</td>
-  <td>
-     <p><a href="https://apiplayground-response.herokuapp.com/">https://apiplayground-response.herokuapp.com/</a></p>
-</td>
-</tr>
-<tr>
-  <td>
-     <p>furl<br/><code>mandatory</code></p>
-  </td>
-  <td>
-     <p><code>String</code> Failure URL (furl) – It must contain the URL on which PayU will redirect the final response in case of failure.</p>
-  </td>
-  <td>
-     <p><a href="https://apiplayground-response.herokuapp.com/">https://apiplayground-response.herokuapp.com/</a></p>
-  </td>
-</tr>
+    <tr>
+      <td>
+        <p>surl<br /><code>mandatory</code></p>
+      </td>
+
+      <td>
+        <p><strong>String</strong> Success URL(surl) – It must contain the URL on which PayU will redirect the final response if the transaction is successful.</p>
+      </td>
+
+      <td>
+        <p><a href="https://apiplayground-response.herokuapp.com/">[https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)</a></p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <p>furl<br /><code>mandatory</code></p>
+      </td>
+
+      <td>
+        <p><code>String</code> Failure URL (furl) – It must contain the URL on which PayU will redirect the final response in case of failure.</p>
+      </td>
+
+      <td>
+        <p><a href="https://apiplayground-response.herokuapp.com/">[https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)</a></p>
+      </td>
+    </tr>
+
     <tr>
       <td>
         address1
@@ -493,11 +499,9 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
       </td>
 
       <td>
-        `String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to  
+        `String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to
 
         [Generate Hash](doc:hashing-request-and-response)
-
-
       </td>
 
       <td>
@@ -577,3 +581,9 @@ The parameter list format is similar to the following:
 ```plaintext
 mihpayid,mode,status,key,txnid,amount,productinfo,firstname,lastname,address1,address2,city,state,country,zipcode,email,phone,udf1,udf2,udf3,udf4,udf5,udf6,udf7,udf8,udf9,udf10,card_token,card_no,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9,offer,discou nt,offer_availed,unmappedstatus,hash,bank_ref_no,surl,curl,furl,card_hash
 ```
+
+## Step 5. Verify the payment
+
+<Verify_Payment_Tabs />
+
+<br />
