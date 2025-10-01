@@ -1,8 +1,9 @@
 ---
 title: BNPL Link and Pay
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Buy Now Pay Later (BNPL) Link and Pay
   description: >-
@@ -21,10 +22,8 @@ metadata:
     - PayU BNPL Link and Pay
     - Deferred Payment Link and Pay
   robots: index
-next:
-  description: ''
 ---
-<Glossary>BNPL</Glossary> like Lazypay and Simpl allow your customers to checkout in "Click and Pay Later" with no hidden charges, while you get paid upfront. 
+<Glossary>BNPL</Glossary> like Lazypay and Simpl allow your customers to checkout in "Click and Pay Later" with no hidden charges, while you get paid upfront.
 
 You can integrate with PayU’s Pay Later stack to enable the one-click checkout feature on the payment page, across BNPLs that support link and pay flow.
 
@@ -44,14 +43,14 @@ You can integrate with PayU’s Pay Later stack to enable the one-click checkout
 
 > 📘 Note:
 >
-> * PayU will extend this solution for other payment options within BNPL and be expanded to wallet partners shortly. 
+> * PayU will extend this solution for other payment options within BNPL and be expanded to wallet partners shortly.
 > * The same integration will enable you to integrate all such supported payment options.
 
 ## Customer Journey
 
 The customer journey involves the First-time User and Repeat User flows:
 
-![](https://files.readme.io/8358f4e-image.png)
+<Image border={false} src="https://files.readme.io/8358f4e-image.png" />
 
 The following steps demonstrate how Rahul (for example) makes his first transaction using Pay Later on your website or mobile app (let’s call it Demoshop):
 
