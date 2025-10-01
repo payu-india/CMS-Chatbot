@@ -15,6 +15,7 @@ next:
 1. [Initiate Payment](#step-1-Initiate-payment)
 2. [Check UPI Transaction Status](#step-2-check-upi-transaction-status)
 3. [PayU Sends S2S Call Back Response](#step-3-payu-sends-s2s-callback-response)
+4. [Verify the payment](#step-4-verify-payment)
 
 > 👍 Before you begin:
 >
@@ -334,3 +335,9 @@ Whitelisting is required at both merchant’s and PayU’s end to establish this
   * 180.179.174.1
   * 180.179.174.2
 * PayU will white list merchant server side IP address that you have provided to PayU.
+
+## Step 4. Verify the payment
+
+<Verify_Payment_Tabs />
+
+<br />
