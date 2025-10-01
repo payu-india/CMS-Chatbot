@@ -18,7 +18,7 @@ The S2S decoupled flow for cards involves the following steps for the **redirect
 2. [Redirect the customer](#step-2-redriect-the-customer)
 3. [Authorize (charge) the Payment](#step-3-authorize-charge-the-payment)
 4. [Check the response from PayU](#step-4-check-the-response-from-payu)
-5. [Verify payment](#step-5-verify-payment)
+5. [Verify payment](#step-5-verify-the-payment)
 
 <RegisterMerchantPrerequiste />
 
@@ -737,6 +737,6 @@ The formatted JSON response is similar to the following:
 }
 ```
 
-## Step 5. Verify payment
+## Step 5. Verify the payment
 
 <Verify_Payment_Tabs />
