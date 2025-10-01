@@ -17,7 +17,7 @@ This is server-to-server integration over the Redirect experience for cards invo
 1. [Initiate payment request with PayU](#step-1-Initiate-payment-request-with-payU)
 2. [Redirect the customer](#step-2-redirect-the-customer)
 3. [Check the response from PayU](#step-3-check-the-response-from-payu)
-4. [Verify payment](#step-4-verify-payment)
+4. [Verify the payment](#step-4-verify-the-payment)
 
 <RegisterMerchantPrerequiste />
 
@@ -646,5 +646,7 @@ The parameters in the response for similar for all the S2S flows. For more infor
     "card_type" :  "VISA" 
 }
 ```
-## Step 4. Verify payment
+
+## Step 4. Verify the payment
+
 <Verify_Payment_Tabs />
