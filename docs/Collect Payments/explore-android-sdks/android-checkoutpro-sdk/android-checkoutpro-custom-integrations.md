@@ -538,7 +538,7 @@ payUCheckoutProConfig.enableSslDialog = true //true/false
 
 . The error message is shown as received from the SSL error description
 
-<Image align="center" width="200px" src="https://files.readme.io/c19a750-MicrosoftTeams-image_8.png" />
+<Image align="center" border={false} width="200px" src="https://files.readme.io/c19a750-MicrosoftTeams-image_8.png" />
 
 ### Hide the Toolbar in the Custom Browser (CB)
 
