@@ -1329,7 +1329,7 @@ Create a list of custom notes that you want to pass to the CheckoutPro SDK. For 
 ```
 
 </Accordion>
-### Step 2: Pass Custom Note List to SDK
+<Accordion title="Step 2: Pass Custom Note List to SDK" icon="fa-code">
 
 To pass the custom note list created in the above section to the SDK. Create a `PayUCheckoutProConfig` object and set the `CustomNoteDetails` similar to the following code block:
 
@@ -1340,7 +1340,7 @@ payUCheckoutProConfig.setCustomNoteDetails("");
 ```Text Kotlin
 val checkoutProConfig = PayUCheckoutProConfig()  
 checkoutProConfig.customNoteDetails = customNote
-```
+</Accordion>```
 
 ### Additional SDK Offerings
 
