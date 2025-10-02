@@ -29,23 +29,22 @@ PayU allows merchants to create offers for specific Products/SKUs in the cart an
 4. [Step 4: Set SKU Details](https://docs.payu.in/docs/create-sku-based-offers-for-android-checkout-pro#step-4-set-sku-details)
 5. [Step 5: Generate Hash](https://docs.payu.in/docs/create-sku-based-offers-for-android-checkout-pro#generate-hash)
 
-## Step 1: Update dependencies
-
+<Accordion title="Step 1: Update dependencies" icon="fa-code">
 Add below dependency in your app level gradle file.
 
 ```
 implementation 'in.payu:payu-checkout-pro:2.2.1'
 ```
+</Accordion>
 
-## Step 2: Initialise the SDK
-
+<Accordion title="Step 2: Initialise the SDK" icon="fa-code">
 > 🚧 Make sure you integrate with CheckoutPro SDK for Android
 >
 > Refer to [Android CheckoutPro Integration Steps](doc:android-checkoutpro-integration-steps) integrate Checkout Pro in App.
+</Accordion>
 
-## Step 3: Create SKU Details
-
-Initalise Object of SKU details with vaild SKU’s.
+<Accordion title="Step 3: Create SKU Details" icon="fa-code">
+Initalise Object of SKU details with vaild SKU's.
 
 ```kotlin kotlin
 SkuDetails: It contains below properties
@@ -66,11 +65,11 @@ skuAmount: "<Amount of product>"
 quantity: "<total quantity of product>"
 offerKeys: "<Optional - Provide offer keys only if want to restrict offer for mention products, else set null>"
 
- 
+ 
 ```
+</Accordion>
 
-## Step 4: Set SKU Details
-
+<Accordion title="Step 4: Set SKU Details" icon="fa-code">
 Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to `PayUPaymentParams`.
 
 ```kotlin kotlin
@@ -96,9 +95,9 @@ PayUPaymentParams.Builder()
 > 🚧 Keep in mind
 >
 > if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities skuAmount of each item.
+</Accordion>
 
-## Step 5: Generate Hash
-
+<Accordion title="Step 5: Generate Hash" icon="fa-code">
 This integration requires dynamic hashes. We will get hash string in map again `CP_HASH_STRING `key in generateHash.  We need to send this string to server and append salt there, after appending salt convert string to sha512 hash and return back to SDK.
 
 ```kotlin kotlin
@@ -106,3 +105,4 @@ public void generateHash(@NotNull HashMap map, @NotNull PayUHashGenerationListen
 }
 
 ```
+</Accordion>
