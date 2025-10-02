@@ -13,25 +13,24 @@ next:
 The following steps allow you to integrate the server-to-server UPI intent:
 
 1. [Initiate payment](#step-1-initiate-payment)
-2. [Invoke UPI Intent on customer’s device](#step-2-invoke-upi-intent-on-customers-device)
+2. [Invoke UPI Intent on customer's device](#step-2-invoke-upi-intent-on-customers-device)
 3. [Check UPI transaction status](#step-3-check-upi-transaction-status)
 4. [PayU sends Server-to-Server callback response](#step-4-payu-sends-server-to-server-callback-response)
 5. [Verify the payment](#step-5-verify-the-payment)
 
 <RegisterMerchantPrerequiste />
 
-### Intent Flow Diagram
-
+<Accordion title="Intent Flow Diagram" icon="fa-code">
 The following diagram depicts the UPI intent flow from server to server:
 
 <Image border={false} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/UPI-Intent-Process-Flow-1024x511.png" />
+</Accordion>
 
 ***
 
 ## Step 1: Initiate payment
 
-### Environment
-
+<Accordion title="Environment" icon="fa-code">
 <PaymentAPIEnvironment />
 
 The **_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
@@ -47,9 +46,9 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
 > * If you are using this for their application, then the Generic Intent, and Specific Intent, can be invoked.
 > * If you are using this for your Mobile Web, then only Generic Intent can be invoked. To invoke App specific intents on the mobile web, the libraries have to be added separately. PayU offers the same for GPay Intent through the Mobile web. Refer to the GPay Seamless Integration Document for the same.
 > * User VPA is not required for this flow.
+</Accordion>
 
-### Request parameters
-
+<Accordion title="Request parameters" icon="fa-code">
 For the complete list of parameters, refer to <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
 
 <Table align={["left","left","left"]}>
@@ -96,7 +95,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
       </td>
 
       <td>
-        `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,&, ‘).
+        `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,&, ').
       </td>
 
       <td>
@@ -474,7 +473,7 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
       </td>
 
       <td>
-        For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum’s expected for major apps:
+        For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum's expected for major apps:
 
         * phonepe
         * googlepay
@@ -514,26 +513,27 @@ For the complete list of parameters, refer to <a href="https://docs.payu.in/refe
 > 📘 Support queries:
 >
 > For any issues or queries related to UPI integration, send an email to [integration@payu.in](mailto:integration@payu.in).
+</Accordion>
 
-### Response for S2S request
-
+<Accordion title="Response for S2S request" icon="fa-code">
 Collect the response in the  [UPI Collection - S2S](ref:_payment_s2s_upi_collection). under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs.](ref:addl_info-payment-apis#response-for-initial-server-to-server-request)
 
-#### Using the IntentURIData value in response
-
+<Accordion title="Using the IntentURIData value in response" icon="fa-code">
 The **IntentURIData** parameter returns the URI in the response. For example, it contains the first debit amount .
 
 > 📘 Notes:
 >
 > * Every time there is a change, you need to incorporate the changes to avoid breaking the transactions.
-> * The **tid** value which is passed in the intent URI acts as a validation check at NPCI’s end which do not allow duplicate transaction.
-> * The tr value not necessary and it is a payU_id. It can be any reference id for PayU’s internal reconciliation.
+> * The **tid** value which is passed in the intent URI acts as a validation check at NPCI's end which do not allow duplicate transaction.
+> * The tr value not necessary and it is a payU_id. It can be any reference id for PayU's internal reconciliation.
+</Accordion>
+</Accordion>
 
-## Step 2: Invoke UPI Intent on customer’s device
+## Step 2: Invoke UPI Intent on customer's device
 
-You need to invoke intent in the customer’s mobile device using the merchant VPA URL. Make sure that only this merchant VPA is embedded in the intent call since this helps to track the status of the transaction.
+You need to invoke intent in the customer's mobile device using the merchant VPA URL. Make sure that only this merchant VPA is embedded in the intent call since this helps to track the status of the transaction.
 
-Open the UPI Intent as per the NPCI Guidelines. Merchants can also open any specific app instead of making the Generic Intent call. For example, Google Pay, PhonePe, etc. This URL can then be fired using an Intent or a hyperlink which would open an Intent tray with a list of available supporting apps on the user’s mobile device. The following sample UPI Deep Link URL and the format used for creating the URL:
+Open the UPI Intent as per the NPCI Guidelines. Merchants can also open any specific app instead of making the Generic Intent call. For example, Google Pay, PhonePe, etc. This URL can then be fired using an Intent or a hyperlink which would open an Intent tray with a list of available supporting apps on the user's mobile device. The following sample UPI Deep Link URL and the format used for creating the URL:
 
 **Sample URL** (with values from the above sample JSON):
 
@@ -551,7 +551,7 @@ Where the description of the parameters used in the URL is as described in the f
 
 | **Parameter** | **Description**                                                                                   |
 | ------------- | ------------------------------------------------------------------------------------------------- |
-| merchantVpa   | As received in JSON response in key merchantVPA’                                                  |
+| merchantVpa   | As received in JSON response in key merchantVPA'                                                  |
 | merchantName  | As received in JSON response in key merchantName.                                                 |
 | referenceId   | As received in JSON response in key referenceId.                                                  |
 | amount        | Amount of transaction. This must be the same as the amount passed to the **initiatePayment** API. |
@@ -560,7 +560,7 @@ Where the description of the parameters used in the URL is as described in the f
 
 ## Step 3: Check UPI transaction status
 
-Check the UPI transaction status using the **Verify Payment API** (verify_payment) API. For more information, refer to  <a href="verify_payment_api" target="_blank"> Verify Payment API</a>.
+Check the UPI transaction status using the **Verify Payment API** (verify_payment) API. For more information, refer to  <a href="verify_payment_api" target="_blank"> Verify Payment API</a>.
 
 ***
 
@@ -568,8 +568,7 @@ Check the UPI transaction status using the **Verify Payment API** (verify_payme
 
 PayU can also send a server-to-server callback response whenever the transaction status gets updated.
 
-### Implementation
-
+<Accordion title="Implementation" icon="fa-code">
 The server-to-server response would be sent by PayU on a pre-set URL, which has to be provided by you. PayU will configure it at your back end. This response would be sent in key/value pair separated by the ampersand (&) character. In case any parameter is not used, we would send it back to you with an empty string. The sample response is similar to the following:
 
 ```plaintext
@@ -581,9 +580,10 @@ The parameter list format is similar to the following:
 ```plaintext
 mihpayid,mode,status,key,txnid,amount,productinfo,firstname,lastname,address1,address2,city,state,country,zipcode,email,phone,udf1,udf2,udf3,udf4,udf5,udf6,udf7,udf8,udf9,udf10,card_token,card_no,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9,offer,discou nt,offer_availed,unmappedstatus,hash,bank_ref_no,surl,curl,furl,card_hash
 ```
+</Accordion>
 
 ## Step 5. Verify the payment
 
 <Verify_Payment_Tabs />
 
-<br />
+
