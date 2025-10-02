@@ -23,86 +23,80 @@ PayU allows merchants to create offers for specific Products/SKUs in the cart an
 
 # Steps to integrate
 
-1. [Step 1: Update depencies](https://docs.payu.in/docs/create-sku-based-offers-for-android-checkout-pro#step-1-update-dependencies)
-2. [Step 2: Initialise the SDK](https://docs.payu.in/docs/create-sku-based-offers-for-android-checkout-pro#step-2-initialise-the-sdk)
-3. [Step 3: Create SKU Details](https://docs.payu.in/docs/create-sku-based-offers-for-android-checkout-pro#step-3-create-sku-details)
-4. [Step 4: Set SKU Details](https://docs.payu.in/docs/create-sku-based-offers-for-android-checkout-pro#step-4-set-sku-details)
-5. [Step 5: Generate Hash](https://docs.payu.in/docs/create-sku-based-offers-for-android-checkout-pro#generate-hash)
-
 <Accordion title="Step 1: Update dependencies" icon="fa-code">
-Add below dependency in your app level gradle file.
+  Add below dependency in your app level gradle file.
 
-```
-implementation 'in.payu:payu-checkout-pro:2.2.1'
-```
+  ```
+  implementation 'in.payu:payu-checkout-pro:2.2.1'
+  ```
 </Accordion>
 
 <Accordion title="Step 2: Initialise the SDK" icon="fa-code">
-> 🚧 Make sure you integrate with CheckoutPro SDK for Android
->
-> Refer to [Android CheckoutPro Integration Steps](doc:android-checkoutpro-integration-steps) integrate Checkout Pro in App.
+  > 🚧 Make sure you integrate with CheckoutPro SDK for Android
+  >
+  > Refer to [Android CheckoutPro Integration Steps](doc:android-checkoutpro-integration-steps) integrate Checkout Pro in App.
 </Accordion>
 
 <Accordion title="Step 3: Create SKU Details" icon="fa-code">
-Initalise Object of SKU details with vaild SKU's.
+  Initalise Object of SKU details with vaild SKU's.
 
-```kotlin kotlin
-SkuDetails: It contains below properties
-SkuDetails(val skus: List<SKU>)
-skus: "<ArrayList of SKU>"
+  ```kotlin kotlin
+  SkuDetails: It contains below properties
+  SkuDetails(val skus: List<SKU>)
+  skus: "<ArrayList of SKU>"
 
-SKU(
-    val quantity: Int,
-    val skuAmount: String,
-    val skuId: String,
-    val skuName: String,
-    var offerKeys:ArrayList<String>?=null
-)
+  SKU(
+      val quantity: Int,
+      val skuAmount: String,
+      val skuId: String,
+      val skuName: String,
+      var offerKeys:ArrayList<String>?=null
+  )
 
-skuId: "<Product Id which you use when creating offer on dashboard >"
-skuName: "<Name of product>"
-skuAmount: "<Amount of product>"
-quantity: "<total quantity of product>"
-offerKeys: "<Optional - Provide offer keys only if want to restrict offer for mention products, else set null>"
+  skuId: "<Product Id which you use when creating offer on dashboard >"
+  skuName: "<Name of product>"
+  skuAmount: "<Amount of product>"
+  quantity: "<total quantity of product>"
+  offerKeys: "<Optional - Provide offer keys only if want to restrict offer for mention products, else set null>"
 
- 
-```
+   
+  ```
 </Accordion>
 
 <Accordion title="Step 4: Set SKU Details" icon="fa-code">
-Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to `PayUPaymentParams`.
+  Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to `PayUPaymentParams`.
 
-```kotlin kotlin
-PayUPaymentParams.Builder()
-        .setAmount(<String>)  
-        .setIsProduction(<Boolean>)  //set is to true for Production and false for UAT
-        .setProductInfo(<String>)   
-        .setKey(<String>)      
-        .setPhone(<String>)      
-        .setTransactionId(<String>)  
-        .setFirstName(<String>) 
-        .setEmail(<String>) 
-        .setSurl(<String>) //Pass your own surl your
-        .setFurl(<String>) //Pass your own furl your
-        .setUserCredential(<String>) // Optional, 
-        .setAdditionalParams(<HashMap<String,Object>>); 
-        .setPayUSIParams(<SiDetails>)// only for SI transaction
-        .setSkuDetails(<SkuDetails>) // create SKU Details as mention above
-        .setUserToken(<String>) // compulsory to fetch offer
-        .build()
-```
+  ```kotlin kotlin
+  PayUPaymentParams.Builder()
+          .setAmount(<String>)  
+          .setIsProduction(<Boolean>)  //set is to true for Production and false for UAT
+          .setProductInfo(<String>)   
+          .setKey(<String>)      
+          .setPhone(<String>)      
+          .setTransactionId(<String>)  
+          .setFirstName(<String>) 
+          .setEmail(<String>) 
+          .setSurl(<String>) //Pass your own surl your
+          .setFurl(<String>) //Pass your own furl your
+          .setUserCredential(<String>) // Optional, 
+          .setAdditionalParams(<HashMap<String,Object>>); 
+          .setPayUSIParams(<SiDetails>)// only for SI transaction
+          .setSkuDetails(<SkuDetails>) // create SKU Details as mention above
+          .setUserToken(<String>) // compulsory to fetch offer
+          .build()
+  ```
 
-> 🚧 Keep in mind
->
-> if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities skuAmount of each item.
+  > 🚧 Keep in mind
+  >
+  > if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities skuAmount of each item.
 </Accordion>
 
 <Accordion title="Step 5: Generate Hash" icon="fa-code">
-This integration requires dynamic hashes. We will get hash string in map again `CP_HASH_STRING `key in generateHash.  We need to send this string to server and append salt there, after appending salt convert string to sha512 hash and return back to SDK.
+  This integration requires dynamic hashes. We will get hash string in map again `CP_HASH_STRING `key in generateHash.  We need to send this string to server and append salt there, after appending salt convert string to sha512 hash and return back to SDK.
 
-```kotlin kotlin
-public void generateHash(@NotNull HashMap map, @NotNull PayUHashGenerationListener hashGenerationListener) { 
-}
+  ```kotlin kotlin
+  public void generateHash(@NotNull HashMap map, @NotNull PayUHashGenerationListener hashGenerationListener) { 
+  }
 
-```
+  ```
 </Accordion>
