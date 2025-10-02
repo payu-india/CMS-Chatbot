@@ -20,13 +20,14 @@ Before you start with the integration, enable the payment methods that you want 
 
 ## SDK Integration
 
-### Step 1: Create a PayU account
+<Accordion title="Step 1: Create a PayU account" icon="fa-code">
 
 First, create a PayU account. For more information, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard).
 
 ***
 
-### Step 2: Include the SDK in your app build.gradle
+</Accordion>
+<Accordion title="Step 2: Include the SDK in your app build.gradle" icon="fa-code">
 
 <Callout icon="❗️" theme="error">
   **Maven Central**: PayU has moved to Maven Central, update your existing dependency with the following configuration:
@@ -92,7 +93,8 @@ compileOptions {
 > tools:replace="android:allowBackup"
 > ```
 
-### Step 3: Build the payment parameters (mandatory step)
+</Accordion>
+<Accordion title="Step 3: Build the payment parameters (mandatory step)" icon="fa-code">
 
 To initiate a payment, your app must send transactional information to the CheckoutPro SDK. To pass this information, create the`payUPaymentParams`object with the payment parameters.
 
@@ -689,7 +691,8 @@ val additionalParamsMap: HashMap = HashMap()
 
 ***
 
-### Step 4: Secure the payment request using Hash
+</Accordion>
+<Accordion title="Step 4: Secure the payment request using Hash" icon="fa-code">
 
 This step is to generate a hash that secures your payment request to PayU.
 
@@ -805,7 +808,8 @@ override fun generateHash(
 
 ***
 
-### Step 5: Initiate the Payment
+</Accordion>
+<Accordion title="Step 5: Initiate the Payment" icon="fa-code">
 
 Initialize the PayUCheckoutPro SDK by submitting the payment parameters prepared in the previous step and a reference to the transaction listener.
 
@@ -822,7 +826,8 @@ PayUCheckoutPro.open(
     payUCheckoutProListener: PayUCheckoutProListener) 
 ```
 
-### Step 6: Handle the Payment Callback
+</Accordion>
+<Accordion title="Step 6: Handle the Payment Callback" icon="fa-code">
 
 Confirm to PayUCheckoutProListener and use these functions to get appropriate callbacks from the SDK:
 
@@ -954,7 +959,8 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
         })
 ```
 
-### Sample Responses
+</Accordion>
+<Accordion title="Sample Responses" icon="fa-code">
 
 > 🚧 Callback response notes:
 >
@@ -1232,13 +1238,15 @@ paymentParam.setUserToken = "";
 
 For more details on Offer Integration, refer to [Integration with PayU Hosted Checkout Integration](https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers)
 
-### MCP Integration
+</Accordion>
+<Accordion title="MCP Integration" icon="fa-code">
 
 <Callout icon="📘" theme="info">
   **Note**: MCP is inbulit in CheckoutPro SDK. Get in touch with your KAMs to enable this feature for your MID.
 </Callout>
 
-### Custom Note Integration
+</Accordion>
+<Accordion title="Custom Note Integration" icon="fa-code">
 
 This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
@@ -1311,7 +1319,8 @@ Create a list of custom notes that you want to pass to the CheckoutPro SDK. For 
         } 
 ```
 
-### Step 2: Pass Custom Note List to SDK
+</Accordion>
+<Accordion title="Step 2: Pass Custom Note List to SDK" icon="fa-code">
 
 To pass the custom note list created in the above section to the SDK. Create a `PayUCheckoutProConfig` object and set the `CustomNoteDetails` similar to the following code block:
 
@@ -1324,7 +1333,8 @@ val checkoutProConfig = PayUCheckoutProConfig()
 checkoutProConfig.customNoteDetails = customNote
 ```
 
-### Additional SDK Offerings
+</Accordion>
+<Accordion title="Additional SDK Offerings" icon="fa-code">
 
 If you want to add features like **Native OTP**, **Gpay InApp**, **PhonePe Inapp**, and **Ola Money** in our PayUCheckoutPro SDK, then please refer to the below [Add-on SDKs](doc:android-checkoutpro-addonsdks)
 
@@ -1338,6 +1348,7 @@ You can make test payments using one of the payment methods configured at the Ch
 >
 > The UPI in-app and UPI intent flow is not available in the Test mode.
 
+</Accordion>
 ## Test the Integration
 
 <TestingChecklist />
@@ -1348,7 +1359,7 @@ You can make test payments using one of the payment methods configured at the Ch
 
 You can make test payments using one of the payment methods configured at the Checkout.
 
-### Test credentials for supported payment methods
+<Accordion title="Test credentials for supported payment methods" icon="fa-code">
 
 Following are the payment methods supported in PayU Test mode.
 
@@ -1409,11 +1420,12 @@ You can use the following wallets and their corresponding credentials to test wa
 
 <EMITestWallets />
 
+</Accordion>
 ## Go-live Checklist
 
 Ensure these steps before you deploy the integration in a live environment.
 
-### Collect Live payments
+<Accordion title="Collect Live payments" icon="fa-code">
 
 After testing the integration end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
@@ -1423,11 +1435,13 @@ After testing the integration end-to-end, once you are confident that the integr
 
 <ProductionKeyAndSaltProcedure />
 
-### Checklist 2: Configure setIsProduction()
+</Accordion>
+<Accordion title="Checklist 2: Configure setIsProduction()" icon="fa-code">
 
 Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
 
-### Checklist 3:- Configure your SURL/FURL
+</Accordion>
+<Accordion title="Checklist 3:- Configure your SURL/FURL" icon="fa-code">
 
 PayU recommends you to design, your own SURL and FURL.
 
@@ -1435,7 +1449,8 @@ Refer the link to [Handling SURL and FURL](https://docs.payu.in/docs/handling-re
 
 > 🚧 We are not recommended to go live with PayU SURL and FURL.
 
-### Checklist 4:- Remove/comment meta -data code from manifest file :-
+</Accordion>
+<Accordion title="Checklist 4:- Remove/comment meta -data code from manifest file :-" icon="fa-code">
 
 #### For Android
 
@@ -1449,10 +1464,14 @@ You must be comment/remove the below metadata code from the manifest file to use
 </appliction>
 ```
 
-### Checklist 5: Configure verify payment method
+</Accordion>
+<Accordion title="Checklist 5: Configure verify payment method" icon="fa-code">
 
 Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
 
-### Checklist 6: Configure Webhook
+</Accordion>
+<Accordion title="Checklist 6: Configure Webhook" icon="fa-code">
 
 We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
+
+</Accordion>
