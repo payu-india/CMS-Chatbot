@@ -2,7 +2,7 @@
 title: Go-live Checklist
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
@@ -10,11 +10,10 @@ metadata:
 next:
   description: ''
 ---
-Ensure these steps before you deploy the integration in a live environment. 
+Ensure these steps before you deploy the integration in a live environment.
 
-## Collect Live Payments
-
-After [testing the integration](https://docs.payu.in/docs/reactnative-checkoutpro-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers. 
+<Accordion title="Collect Live Payments" icon="fa-code">
+After [testing the integration](https://docs.payu.in/docs/reactnative-checkoutpro-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
 > 🚧 Watch Out!
 >
@@ -22,12 +21,11 @@ After [testing the integration](https://docs.payu.in/docs/reactnative-checkoutpr
 
 <ProductionKeyAndSaltProcedure />
 
-### Checklist 2: Configure environment() parameter
-
+<Accordion title="Checklist 2: Configure environment() parameter" icon="fa-code">
 Set the value of the `environment()`to `0` in the payment integration code. This enables the integration to accept live payments.
+</Accordion>
 
-### Checklist 4:- Remove/comment meta -data code from manifest file :-
-
+<Accordion title="Checklist 4:- Remove/comment meta -data code from manifest file :-" icon="fa-code">
 #### For Android
 
 You must be comment/remove the below metadata code from the manifest file to use the UPI Collect flow on Production env:-
@@ -39,11 +37,14 @@ You must be comment/remove the below metadata code from the manifest file to use
 <meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
 </appliction>
 ```
+</Accordion>
 
-### Checklist 5: Configure verify payment method
-
+<Accordion title="Checklist 5: Configure verify payment method" icon="fa-code">
 Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
+</Accordion>
 
-### Checklist 6: Configure Webhook
-
+<Accordion title="Checklist 6: Configure Webhook" icon="fa-code">
 We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
+</Accordion>
+
+</Accordion>
