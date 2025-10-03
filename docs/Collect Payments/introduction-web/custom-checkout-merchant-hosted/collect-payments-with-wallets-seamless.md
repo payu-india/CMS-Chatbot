@@ -18,216 +18,140 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 **Steps to Integrate**
 
-1. [Initiate the payment with PayU](#step-1-initiate-the-payment-with-payu)
-2. [Check response from PayU](#step-2-check-response-from-payu)
-3. [Verify Payment](#step-3-verify-the-payment)
-
 <RegisterMerchantPrerequiste />
 
 <Accordion title="Step 1: Initiate the payment with PayU" icon="fa-code">
+  **Post Request Syntax & Composition**
 
+  ```html
+  <body>
+  <form action='https://test.payu.in/_payment' method='post'>
+  <input type="hidden" name="key" value="JP***g" />
+  <input type="hidden" name="txnid" value="t6svtqtjRdl34W" />
+  <input type="hidden" name="productinfo" value="iPhone" />
+  <input type="hidden" name="amount" value="10" />
+  <input type="hidden" name="email" value="test@gmail.com" />
+  <input type="hidden" name="firstname" value="Ashish" />
+  <input type="hidden" name="lastname" value="Kumar" />
+  <input type="hidden" name="pg" value="CASH" />
+  <input type="hidden" name="bankcode" value="PAYTM" />
+  <input type="hidden" name="surl" value="your own success url" />
+  <input type="hidden" name="furl" value="your own failure url" />
+  <input type="hidden" name="phone" value="9988776655" />
+  <input type="hidden" name="hash" value="eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972" />
+  <input type="submit" value="submit"> </form>
+  </body>
+  </html>
+  ```
 
-**Post Request Syntax & Composition**
+  > 📘 Note
+  >
+  > The above HTML code block is for Merchant Checkout integration on the Wallet call for the test environment.
 
-```html
-<body>
-<form action='https://test.payu.in/_payment' method='post'>
-<input type="hidden" name="key" value="JP***g" />
-<input type="hidden" name="txnid" value="t6svtqtjRdl34W" />
-<input type="hidden" name="productinfo" value="iPhone" />
-<input type="hidden" name="amount" value="10" />
-<input type="hidden" name="email" value="test@gmail.com" />
-<input type="hidden" name="firstname" value="Ashish" />
-<input type="hidden" name="lastname" value="Kumar" />
-<input type="hidden" name="pg" value="CASH" />
-<input type="hidden" name="bankcode" value="PAYTM" />
-<input type="hidden" name="surl" value="your own success url" />
-<input type="hidden" name="furl" value="your own failure url" />
-<input type="hidden" name="phone" value="9988776655" />
-<input type="hidden" name="hash" value="eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972" />
-<input type="submit" value="submit"> </form>
-</body>
-</html>
-```
+  ### Request parameters
 
-> 📘 Note
->
-> The above HTML code block is for Merchant Checkout integration on the Wallet call for the test environment.
+  The following parameters vary for the Wallet payment mode in the **Collect Payment** API (**\_payment** API).
 
-### Request parameters
+  **Environment**
 
-The following parameters vary for the Wallet payment mode in the **Collect Payment** API (**_payment** API).
+  |                            |                                                                     |
+  | :------------------------- | :------------------------------------------------------------------ |
+  | **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+  | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-**Environment**
+  <Callout icon="📘" theme="info">
+    **Reference**: For the **Try It** experience and response, refer to [Collect Payment API - Merchant Hosted Checkout](doc:_payment_merchant_hosted) under API Reference.
+  </Callout>
 
-|                            |                                                                         |
-| :------------------------- | :---------------------------------------------------------------------- |
-| **Test Environment**       | https://test.payu.in/_payment                                           |
-| **Production Environment** | https://secure.payu.in/_payment                                         |
+  | Parameter               | Description                                                                                                                                                                                                                                       | Example                                                    |
+  | :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------- |
+  | key `mandatory`         | String - Merchant key provided by PayU during onboarding.                                                                                                                                                                                         | JP\*\*\*g                                                  |
+  | txnid `mandatory`       | String - The transaction ID is a reference number for a specific order that is generated by the merchant.                                                                                                                                         | ypl938459435                                               |
+  | amount `mandatory`      | String - The payment amount for the transaction.                                                                                                                                                                                                  | 10.00                                                      |
+  | productinfo `mandatory` | String - A brief description of the product.                                                                                                                                                                                                      | iPhone                                                     |
+  | firstname `mandatory`   | String - The first name of the customer.                                                                                                                                                                                                          | Ashish                                                     |
+  | email `mandatory`       | String - The email address of the customer.                                                                                                                                                                                                       | [abc@payu.in](mailto:abc@payu.in)                          |
+  | phone `mandatory`       | String - The phone number of the customer.                                                                                                                                                                                                        | 9876543210                                                 |
+  | pg `mandatory`          | String - It defines the payment category using the Merchant Hosted Checkout integration. For a Wallet payment, "CASH" must be specified in the pg parameter.                                                                                      | CASH                                                       |
+  | bankcode `mandatory`    | String - The merchant must post this parameter with the corresponding payment option's bank code value in it. For all the supported wallets, refer to Wallet Codes to understand exact value which needs to be passed against bankcode parameter. | PAYTM                                                      |
+  | furl `mandatory`        | String - The success URL, which is the page PayU will redirect to if the transaction is successful.                                                                                                                                               | [https://example.com/success](https://example.com/success) |
+  | surl `mandatory`        | String - The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                                   | [https://example.com/failure](https://example.com/failure) |
+  | hash `mandatory`        | String - It is the hash calculated by the merchant. The hash calculation logic is: sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT)                                                        | calculated\_hash\_value                                    |
 
-<Callout icon="📘" theme="info">
-  **Reference**: For the **Try It** experience and response, refer to [Collect Payment API - Merchant Hosted Checkout](doc:_payment_merchant_hosted) under API Reference.
-</Callout>
+  <HashingRequestParameters />
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>key `mandatory`</td>
-      <td>String - Merchant key provided by PayU during onboarding.</td>
-      <td>JP***g</td>
-    </tr>
-    <tr>
-      <td>txnid `mandatory`</td>
-      <td>String - The transaction ID is a reference number for a specific order that is generated by the merchant.</td>
-      <td>ypl938459435</td>
-    </tr>
-    <tr>
-      <td>amount `mandatory`</td>
-      <td>String - The payment amount for the transaction.</td>
-      <td>10.00</td>
-    </tr>
-    <tr>
-      <td>productinfo `mandatory`</td>
-      <td>String - A brief description of the product.</td>
-      <td>iPhone</td>
-    </tr>
-    <tr>
-      <td>firstname `mandatory`</td>
-      <td>String - The first name of the customer.</td>
-      <td>Ashish</td>
-    </tr>
-    <tr>
-      <td>email `mandatory`</td>
-      <td>String - The email address of the customer.</td>
-      <td>abc@payu.in</td>
-    </tr>
-    <tr>
-      <td>phone `mandatory`</td>
-      <td>String - The phone number of the customer.</td>
-      <td>9876543210</td>
-    </tr>
-    <tr>
-      <td>pg `mandatory`</td>
-      <td>String - It defines the payment category using the Merchant Hosted Checkout integration. For a Wallet payment, "CASH" must be specified in the pg parameter.</td>
-      <td>CASH</td>
-    </tr>
-    <tr>
-      <td>bankcode `mandatory`</td>
-      <td>String - The merchant must post this parameter with the corresponding payment option's bank code value in it. For all the supported wallets, refer to Wallet Codes to understand exact value which needs to be passed against bankcode parameter.</td>
-      <td>PAYTM</td>
-    </tr>
-    <tr>
-      <td>furl `mandatory`</td>
-      <td>String - The success URL, which is the page PayU will redirect to if the transaction is successful.</td>
-      <td>https://example.com/success</td>
-    </tr>
-    <tr>
-      <td>surl `mandatory`</td>
-      <td>String - The Failure URL, which is the page PayU will redirect to if the transaction is failed.</td>
-      <td>https://example.com/failure</td>
-    </tr>
-    <tr>
-      <td>hash `mandatory`</td>
-      <td>String - It is the hash calculated by the merchant. The hash calculation logic is: sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)</td>
-      <td>calculated_hash_value</td>
-    </tr>
-  </tbody>
-</Table>
+  ### Sample request
 
-<HashingRequestParameters />
-
-### Sample request
-
-```curl
-curl -X POST "https://test.payu.in/_payment"  -H "accept: application/json"  -H "Content-Type: application/x-www-form-urlencoded"  -d "key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=cash&bankcode=paytm&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
-```
-
-
+  ```curl
+  curl -X POST "https://test.payu.in/_payment"  -H "accept: application/json"  -H "Content-Type: application/x-www-form-urlencoded"  -d "key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=cash&bankcode=paytm&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
+  ```
 </Accordion>
 
 <Accordion title="Step 2: Check response from PayU" icon="fa-code">
+  <ReverseHashing />
 
+  ### Sample response (parsed)
 
-<ReverseHashing />
-
-### Sample response (parsed)
-
-```
-Array
-(
-    [mihpayid] => 403993715527518775
-    [mode] => CASH
-    [status] => success
-    [unmappedstatus] => captured
-    [key] => J*****g
-    [txnid] => HC13glcAkssIkl
-    [amount] => 10.00
-    [discount] => 0.00
-    [net_amount_debit] => 10
-    [addedon] => 2022-10-21 17:45:24
-    [productinfo] => iPhone
-    [firstname] => Ashish
-    [lastname] => 
-    [address1] => 
-    [address2] => 
-    [city] => 
-    [state] => 
-    [country] => 
-    [zipcode] => 
-    [email] => test@gmail.com
-    [phone] => 9876543210
-    [udf1] => 
-    [udf2] => 
-    [udf3] => 
-    [udf4] => 
-    [udf5] => 
-    [udf6] => 
-    [udf7] => 
-    [udf8] => 
-    [udf9] => 
-    [udf10] => 
-    [hash] => 007435a716982c7f5eec5cff95701f65eb1bdbff8f852e461224e3b5e17126ad26bb3a3ffdb95cded6a87d3515fe86fc58925cad024595a4a6825adfed2dc436
-    [field1] => 
-    [field2] => 
-    [field3] => 
-    [field4] => 
-    [field5] => 
-    [field6] => 
-    [field7] => 
-    [field8] => 
-    [field9] => Transaction Completed Successfully
-    [payment_source] => payu
-    [PG_TYPE] => CASH-PG
-    [bank_ref_num] => 540898ed-72e7-40a8-a96e-f17de621cbb4
-    [bankcode] => CASH
-    [error] => E000
-    [error_Message] => No Error
-    [splitInfo] => {"splitStatus":"splitNotReceived","splitSegments":[]}
-)
-```
-
-
+  ```
+  Array
+  (
+      [mihpayid] => 403993715527518775
+      [mode] => CASH
+      [status] => success
+      [unmappedstatus] => captured
+      [key] => J*****g
+      [txnid] => HC13glcAkssIkl
+      [amount] => 10.00
+      [discount] => 0.00
+      [net_amount_debit] => 10
+      [addedon] => 2022-10-21 17:45:24
+      [productinfo] => iPhone
+      [firstname] => Ashish
+      [lastname] => 
+      [address1] => 
+      [address2] => 
+      [city] => 
+      [state] => 
+      [country] => 
+      [zipcode] => 
+      [email] => test@gmail.com
+      [phone] => 9876543210
+      [udf1] => 
+      [udf2] => 
+      [udf3] => 
+      [udf4] => 
+      [udf5] => 
+      [udf6] => 
+      [udf7] => 
+      [udf8] => 
+      [udf9] => 
+      [udf10] => 
+      [hash] => 007435a716982c7f5eec5cff95701f65eb1bdbff8f852e461224e3b5e17126ad26bb3a3ffdb95cded6a87d3515fe86fc58925cad024595a4a6825adfed2dc436
+      [field1] => 
+      [field2] => 
+      [field3] => 
+      [field4] => 
+      [field5] => 
+      [field6] => 
+      [field7] => 
+      [field8] => 
+      [field9] => Transaction Completed Successfully
+      [payment_source] => payu
+      [PG_TYPE] => CASH-PG
+      [bank_ref_num] => 540898ed-72e7-40a8-a96e-f17de621cbb4
+      [bankcode] => CASH
+      [error] => E000
+      [error_Message] => No Error
+      [splitInfo] => {"splitStatus":"splitNotReceived","splitSegments":[]}
+  )
+  ```
 </Accordion>
 
 <Accordion title="Step 3: Verify the payment" icon="fa-code">
-
-
-<Verify_Payment_Tabs />
-
-
+  <Verify_Payment_Tabs />
 </Accordion>
 
 <Accordion title="Recommended integrations for Wallets" icon="fa-code">
-
-
-* **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
-* **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer) and [Offers](doc:offers-integration).
-
+  * **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
+  * **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer) and [Offers](doc:offers-integration).
 </Accordion>
