@@ -2,7 +2,7 @@
 title: 1. SDK Integration Steps - iOS Native OTP Assist
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
