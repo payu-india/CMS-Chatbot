@@ -24,24 +24,90 @@ PayU supports the following debit cards and credit cards:
 
 If you are storing or transmitting cardholder data, you must fill the “[Self-Assessment Questionnaire A-EP and Attestation of Compliance](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf)” form. For more information on Save Cards API integration, refer to PayU Save Cards API Integration docs.
 
-### Steps to Integrate
-
-1. [Validate the card type](#step-1-validate-the-card-type)
-2. [Initiate the payment to PayU](#step-2-initiate-the-payment-to-payu)
-3. [Check the response from PayU](#step-3-check-response-from-payu)
-4. [Verify the payment](#step-4-verify-the-payment)
 
 <RegisterMerchantPrerequiste />
 
-## Step 1: Validate the card type
 
-When customers use debit cards or credit cards on your website, you can validate the card type with the first six digits. Use the **check_isDomestic** API (known as BIN API) to validate the type of card. For more information, refer to  <Anchor label="BIN APIs" target="_blank" href="ref:bin-apis">BIN APIs</Anchor>.
+<Accordion title="Step 1: Validate the card type" icon="fa-code">
 
-After the customer enters the card number, you can validate the first six digits with the **check_isDomestic** API. For more information, refer to <Anchor label="Check is Domestic API" target="_blank" href="ref:check_is_domestic_api">Check is Domestic API</Anchor>.
+When customers use debit cards or credit cards on your website, you can validate the card type with the first six digits. Use the **getBinInfo** API (known as BIN API) to validate the type of card. For more information, refer to  <Anchor label="BIN APIs" target="_blank" href="ref:get_bin_info_api">BIN APIs</Anchor>.
 
-## Step 2: Initiate the payment to PayU
 
-### Post Request Syntax & Composition
+| Environment            | URL                                                                                                  |
+| :--------------------- | :--------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/merchant/postservice?form=2](https://test.payu.in/merchant/postservice?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2) |
+
+
+<Accordion title="Sample request" icon="fa-code">
+  ## For Single Card
+
+  The following values are specified in the var1, var2, and var5 for this scenario:
+
+  * var1 = 1
+  * var2 = 512345
+  * var5 = 1
+
+  ```bash
+  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=JP***g&command=getBinInfo&var1=2&var2=512345&var3=&var4=&var5=1&hash=df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
+  ```
+
+  > 📘 **Note**
+  >
+  > When querying multiple cards, make sure to set the appropriate values for var3 (start index) and var4 (offset).
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
+  ### Success Scenario
+  ```php
+  Array
+  (
+      [status] => 1
+      [data] => Array
+          (
+              [bins_data] => Array
+                  (
+                      [issuing_bank] => HDFC
+                      [bin] => 512345
+                      [category] => creditcard
+                      [card_type] => MAST
+                      [is_domestic] => 1
+                      [is_atmpin_card] => 1
+                      [is_otp_on_the_fly] => 1
+                      [is_zero_redirect_supported] => 1
+                      [is_si_supported] => 0
+                  )
+          )
+  )
+  ```
+
+  > 📘 **Note**
+  >
+  > Ensure that the value of the **is\_otp\_on\_the\_fly** parameter is 1. Only if the value is 1, you can fetch the card details with the Native OTP support.
+
+
+  ## Failure Scenarios
+
+  **If BIN is not passed with var2 when requesting for single BIN details (var1=1):**
+
+  ```php
+  Array
+  (
+      [status] => 0
+      [data] => Invalid bin passed in var2
+  )
+  ```
+</Accordion>
+
+
+</Accordion>
+
+<Accordion title="Step 2: Initiate the payment to PayU" icon="fa-code">
+
+<Accordion title="Post Request Syntax & Composition" icon="fa-code">
 
 Post Request Syntax & Composition for Cards
 
@@ -75,7 +141,8 @@ Post Request Syntax & Composition for Cards
   **Note**: The above code block is for Merchant Checkout integration on the credit card call for the test environment.
 </Callout>
 
-### Request Parameters
+</Accordion>
+<Accordion title="Request Parameters" icon="fa-code">
 
 Post the following parameters for the card payment to PayU using the Merchant Hosted integration.
 
@@ -535,8 +602,9 @@ Post the following parameters for the card payment to PayU using the Merchant Ho
 </Table>
 
 <HashingRequestParameters />
-
-### Sample request
+</Accordion>
+</Accordion>
+<Accordion title="Sample request" icon="fa-code">
 
 ```curl
 # IMPORTANT: This is a server-side call, never execute this client-side
@@ -1052,7 +1120,7 @@ namespace PayUIntegration
 
 ```
 
-### Sample request for saved card
+<Accordion title="Sample request for saved card" icon="fa-code">
 
 <Accordion title="Request parameters" icon="fa-info-table">
   <HTMLBlock>{`
@@ -1575,11 +1643,13 @@ curl -X POST "https://test.payu.in/_payment" \
 
 <br />
 
-## Step 3: Check response from PayU
+</Accordion>
+
+<Accordion title="Step 3: Check response from PayU" icon="fa-code">
 
 <ReverseHashing />
 
-### Sample response (parsed)
+<Accordion title="Sample response (parsed)" icon="fa-code">
 
 * Success scenario
 
@@ -1700,349 +1770,26 @@ Array
 
 <br />
 
-## Step 4: Verify the Payment
-
-Verify the transaction details using the Verification APIs. For more information, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> under API Reference.
-
-<Callout icon="📘" theme="info">
-  **Tip**: The transaction ID that you posted in Step 1 with PayU must be used here.
-</Callout>
-
-**Environment**
-
-|                        |                                                                                                              |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
-| Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
-
-<Accordion title="Sample request" icon="fa-code">
-  ```curl
-  curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JP***g' \
-  --data-urlencode 'command=verify_payment' \
-  --data-urlencode 'var1=IhfgcZnXR4o4nB' \
-  --data-urlencode 'hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
-  ```
+</Accordion>
 </Accordion>
 
-<Accordion title="Sample response" icon="fa-reply">
-  * If credit card payment is made, the response is similar to the following:
+<Accordion title="Step 4: Verify the Payment" icon="fa-code">
 
-  ```plaintext
-  {
-      "status": 1,
-      "msg": "1 out of 1 Transactions Fetched Successfully",
-      "transaction_details": {
-          "1733900931584": {
-              "mihpayid": "21820644083",
-              "request_id": null,
-              "bank_ref_num": null,
-              "amt": "1.00",
-              "transaction_amount": "1.00",
-              "txnid": "1733900931584",
-              "additional_charges": "0.00",
-              "productinfo": "Macbook Pro",
-              "firstname": "Abc",
-              "bankcode": "MAST",
-              "udf1": "udf1",
-              "udf2": "udf2",
-              "udf3": "udf3",
-              "udf4": "udf4",
-              "udf5": "udf5",
-              "field2": null,
-              "field9": "OTP/ATM page expired due to no user action",
-              "error_code": "E1602",
-              "addedon": "2024-12-11 12:43:03",
-              "payment_source": "payu",
-              "card_type": "MAST",
-              "error_Message": "Bank was unable to authenticate.",
-              "net_amount_debit": "0.00",
-              "disc": "0.00",
-              "mode": "DC",
-              "PG_TYPE": "DC-PG",
-              "card_no": "XXXXXXXXXXXX7596",
-              "status": "failure",
-              "unmappedstatus": "dropped",
-              "Merchant_UTR": null,
-              "Settled_At": null,
-              "cardhash": "095d184331be367bb92aa3eeecb57d0728de96cc598dd563d407982d75021149",
-              "name_on_card": null,
-              "card_token": "4e97156bc2d6320cdfe15",
-              "field4": null,
-              "threeDSVersion": "2.2.0",
-              "offerAvailed": null
-          }
-      }
-  }
-  ```
+<Verify_Payment_Tabs />
 
-  * Offer availed on cart level
-
-  ```
-  {
-      "status": 1,
-      "msg": "1 out of 1 Transactions Fetched Successfully",
-      "transaction_details": {
-          "1036-f0cf85f2": {
-              "mihpayid": "21564143078",
-              "request_id": "",
-              "bank_ref_num": "431998369241",
-              "amt": "2.00",
-              "transaction_amount": "2.00",
-              "txnid": "1036-f0cf85f2",
-              "additional_charges": "0.00",
-              "productinfo": "EXPRESS",
-              "firstname": "guest",
-              "bankcode": "TEZOMNI",
-              "udf1": "Magento2",
-              "udf2": "",
-              "udf3": "",
-              "udf4": "",
-              "udf5": "qs8rbc1ng2hmqtakk381en6j2p",
-              "field2": "114390824407",
-              "field9": "SUCCESS|Completed Using Callback",
-              "error_code": "E000",
-              "addedon": "2024-11-14 16:06:40",
-              "payment_source": "express",
-              "card_type": null,
-              "error_Message": "NO ERROR",
-              "net_amount_debit": 2.00,
-              "disc": "0.00",
-              "mode": "UPI",
-              "PG_TYPE": "UPI-PG",
-              "card_no": "",
-              "status": "success",
-              "unmappedstatus": "captured",
-              "Merchant_UTR": null,
-              "Settled_At": "0000-00-00 00:00:00",
-              "App_Name": "GooglePay",
-              "card_token": null,
-              "field4": null,
-              "offerAvailed": null,
-              "cart_details": {
-                  "id": "2446425",
-                  "payu_id": "21564143078",
-                  "total_items": "1",
-                  "total_cart_amount": "2.00",
-                  "offer_applied": null,
-                  "offer_availed": null,
-                  "offer_auto_apply": "0",
-                  "instant_discount": "0.00",
-                  "cashback_discount": "0.00",
-                  "total_discount": "0.00",
-                  "net_cart_amount": "2.00",
-                  "created_at": "2024-11-14 16:06:40",
-                  "updated_at": "2024-11-14 16:06:40",
-                  "sku_details": [
-                      {
-                          "id": "3468748",
-                          "cart_id": "2446425",
-                          "payu_id": "21564143078",
-                          "mid": "2",
-                          "sku_id": "Sample Sofa Design-Red",
-                          "sku_name": "Sample Sofa Designtest?=!name",
-                          "amount_per_sku": "2.00",
-                          "quantity": "1",
-                          "amount_before_discount": "2.00",
-                          "discount": "0.00",
-                          "amount_after_discount": "2.00",
-                          "offer_applied": null,
-                          "offer_availed": null,
-                          "offer_status": null,
-                          "offer_type": null,
-                          "offer_auto_apply": "0",
-                          "is_nce": "0",
-                          "failure_reason": null,
-                          "created_at": "2024-11-14 16:06:40",
-                          "updated_at": "2024-11-14 16:06:40",
-                          "offer_title": null,
-                          "offer_description": null,
-                          "instant_discount": null,
-                          "cashback_discount": null,
-                          "offers_raw_response": null,
-                          "raw_response": null
-                      }
-                  ]
-              }
-          }
-      }
-  }
-  ```
-
-  * Offer availed at Transaction level
-
-  ```
-  {
-      "status": 1,
-      "msg": "1 out of 1 Transactions Fetched Successfully",
-      "transaction_details": {
-          "1725950872187": {
-              "mihpayid": "20911942990",
-              "request_id": null,
-              "bank_ref_num": null,
-              "amt": "9900.00",
-              "transaction_amount": "10000.00",
-              "txnid": "1725950872187",
-              "additional_charges": "0.00",
-              "productinfo": "Macbook Pro",
-              "firstname": "Abc",
-              "bankcode": "MAST",
-              "udf1": "udf1",
-              "udf2": "udf2",
-              "udf3": "udf3",
-              "udf4": "udf4",
-              "udf5": "udf5",
-              "field2": null,
-              "field9": "You have reached credit card load limit. Please use other payment options to continue.",
-              "error_code": "E4936",
-              "addedon": "2024-09-10 12:18:20",
-              "payment_source": "payu",
-              "card_type": "MAST",
-              "error_Message": "Bank was unable to authenticate.",
-              "net_amount_debit": "0.00",
-              "disc": "100.00",
-              "mode": "DC",
-              "PG_TYPE": "DC-PG",
-              "card_no": "XXXXXXXXXXXX9528",
-              "status": "failure",
-              "unmappedstatus": "failed",
-              "Merchant_UTR": null,
-              "Settled_At": null,
-              "cardhash": "31056eb2112b68cdc90896f1953ca26605bb525249096172c178881bcd45ac93",
-              "name_on_card": null,
-              "card_token": null,
-              "field4": null,
-              "offerApplied": "LoadTest1@m3phN7YptAA6",
-              "offerAvailed": "LoadTest1@m3phN7YptAA6",
-              "transactionOffer": "{"offer_data":[{"offer_key":"LoadTest1@m3phN7YptAA6","discount":100,"offer_type":"INSTANT","isNoCost":false,"flag_to_fail":false,"status":"SUCCESS","failure_code":null,"failure_reason":"Offer Applied Successfully","offer_description":"Load Test 1","offer_title":"Load Test 1","record_type":"OFFER","parent_offer_key":null,"offer_category":null,"isDpEmi":false}],"discount_data":{"total_discount":100,"cashback_discount":0,"instant_discount":100,"total_nce_discount":0,"instant_nce_discount":0,"cashback_nce_discount":0,"gstSubventedViaOffer":false,"downPaymentAmount":0}}",
-              "offerType": "instant",
-              "offerLevel": "TRANSACTION_LEVEL"
-          }
-      }
-  }
-  ```
-
-  #### Failure Responses
-
-  * If txnID is not found, the response is similar to the following:
-
-  ```plaintext
-  {
-  "status":0,"msg":"0 out of 1 Transactions Fetched
-
-  Successfully","transaction_details":{"IhfgcZnXR4o4nB":{"mihpayid":"Not Found","status":"Not Found"}}
-  }
-  ```
 </Accordion>
 
-<Accordion title="Response parameters" icon="fa-list">
-  <Table align={["left","left","left"]}>
-    <thead>
-      <tr>
-        <th style={{ textAlign: "left" }}>
-          **Parameter**
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          **Description**
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          **Example**
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          status
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter returns the status of web service call. The status can be any of the following:
-
-          * 0 - If web service call failed.
-          * 1 - If web service call succeeded
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          0
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          msg
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter returns the reason string.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          For example, any of the following messages are displayed:
-
-          * Parameter missing
-          * Token is empty
-          * Amount is empty
-          * Transaction not exists
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          transaction\_details
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the response in a JSON format. For more information refer to [JSON fields description for transaction\_details parameter ](#json-field-description-for-transaction_details-parameter).
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          request\_id
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          PayU Request ID for a request in a Transaction. For example, a transaction can have a refund request.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          7800456
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          bank\_ref\_num
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter returns the bank reference number. If the bank provides after a successful action.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          204519474956
-        </td>
-      </tr>
-    </tbody>
-  </Table>
-
-  To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 </Accordion>
 
-## Recommended Integrations for Cards
+<Accordion title="Recommended Integrations for Cards" icon="fa-code">
 
 * **Save Cards**: Save cards and expedite the next payment from your customers with a better success rate. For more information, refer to [Save Cards](doc:introduction-save-cards).
 * **Recurring Payments**: Enable recurring payments or subscriptions for cards. For more information, refer to [Recurring Payments](doc:introduction-recurring-payments-integration).
 * **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Offers Dashboard](doc:offers-dashboard) or [Offers Integration APIs](doc:offers-integration).
 
-## Handling Guest Checkout Transactions
+</Accordion>
+
+<Accordion title="Handling Guest Checkout Transactions" icon="fa-code">
 
 Guest Checkout is a valuable feature that can provided be enabled for your e-commerce websites. It allows your customers to make purchases without the need to sign in or create a user account. This streamlined process benefits one-time or occasional shoppers, as it eliminates the registration step, leading to faster transactions and enhanced customer satisfaction.
 
@@ -2056,11 +1803,12 @@ There are three scenarios with Alternative ID:
 
 <Image align="center" border={false} width="900px" src="https://files.readme.io/f84108124634526cf547dac1d59ff3272600f8cfd26f486baba8425033ddf5c8-Guest-checkout-alt-id-implementation-methods.png" />
 
-### Scenario 1: Provision & processes guest transaction with PayU
+<Accordion title="Scenario 1: Provision & processes guest transaction with PayU" icon="fa-code">
 
 No changes required in the **_payment** request used to collect payments.
 
-### Scenario 2: Provision Alt ID outside PayU and use PayU to Process Transaction
+</Accordion>
+<Accordion title="Scenario 2: Provision Alt ID outside PayU and use PayU to Process Transaction" icon="fa-code">
 
 #### Request parameters
 
@@ -2277,7 +2025,8 @@ curl --location 'http://local.secure.payu.in/_payment' \
 --data-urlencode 'hash={{hash}}' \
 ```
 
-### Sample response
+</Accordion>
+<Accordion title="Sample response" icon="fa-code">
 
 > 📘 Notes:
 >
@@ -2351,15 +2100,19 @@ Array
 
 <br />
 
-### Scenario 3: Provision Alt ID from PayU
+</Accordion>
+<Accordion title="Scenario 3: Provision Alt ID from PayU" icon="fa-code">
 
 The Provision Alt ID API is used to provision Alt ID from PayU, but process transaction outside PayU. For more information, refer to [Provision Alt ID API](ref:provision-alt-id-api).
 
-## Handling 3DS Secure 2.0 Transaction
+</Accordion>
+</Accordion>
+
+<Accordion title="Handling 3DS Secure 2.0 Transaction" icon="fa-code">
 
 PayU supports 3DS Secure 2.0 transaction with Merchant Hosted Checkout integration. This section provides the information relevant to 3DS Secure 2.0 transaction.
 
-### Request Parameters for 3DS Secure 2.0 Transaction
+<Accordion title="Request Parameters for 3DS Secure 2.0 Transaction" icon="fa-code">
 
 You must include the `threeDS2RequestData` parameter along with the regular Collect Payment API for cards.
 
@@ -2513,7 +2266,8 @@ in the following JSON format for 3DS Secure 2.0 support for cards:
 | timeZone     | This field contains the time zone code where the payment is accepted.                       | 273              |
 | ip           | This should include the IP address of the device from which the browser is accessed.        | 10.248.2.71      |
 
-### Sample cURL Request with 3DS Secure 2.0
+</Accordion>
+<Accordion title="Sample cURL Request with 3DS Secure 2.0" icon="fa-code">
 
 The sample cURL request with 3DS Secure 2.0:
 
@@ -2554,10 +2308,13 @@ curl --location 'https://test.payu.in/_payment' \
     }
 }'
 ```
-## Handling 3DS Secure 2.0 Transaction
+</Accordion>
+</Accordion>
+
+<Accordion title="Handling 3DS Secure 2.0 Transaction" icon="fa-code">
 PayU supports 3DS Secure 2.0 transaction with Merchant Hosted Checkout integration. This section provides the information relevant to 3DS Secure 2.0 transaction.
 
-### Request Parameters for 3DS Secure 2.0 Transaction
+<Accordion title="Request Parameters for 3DS Secure 2.0 Transaction" icon="fa-code">
 
 You must include the `threeDS2RequestData` parameter along with the regular Collect Payment API for cards.
 
@@ -2711,7 +2468,8 @@ in the following JSON format for 3DS Secure 2.0 support for cards:
 | timeZone     | This field contains the time zone code where the payment is accepted.                       | 273              |
 | ip           | This should include the IP address of the device from which the browser is accessed.        | 10.248.2.71      |
 
-### Sample cURL Request with 3DS Secure 2.0
+</Accordion>
+<Accordion title="Sample cURL Request with 3DS Secure 2.0" icon="fa-code">
 
 The sample cURL request with 3DS Secure 2.0:
 
@@ -2752,3 +2510,6 @@ curl --location 'https://test.payu.in/_payment' \
     }
 }'
 ```
+
+</Accordion>
+</Accordion>
