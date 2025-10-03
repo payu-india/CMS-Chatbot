@@ -57,89 +57,86 @@ let createRequest = PayUCreateRequest()
   <Tab title="Net Banking">
     To pay using NetBanking, you need to configure the Net Banking parameters, for instance:
 
-```Text Objective-C
-self.paymentParamForPassing.beneficiaryAccountNumbers = @"123456789";
-self.paymentParamForPassing.bankCode = @"AXNBTPV"; //BankCode
-```
-```Text Swift
-paymentParamForPassing.beneficiaryAccountNumbers = "123456789"
-paymentParamForPassing.bankCode = "AXNBTPV" //BankCode
-```
+    ```Text Objective-C
+    self.paymentParamForPassing.beneficiaryAccountNumbers = @"123456789";
+    self.paymentParamForPassing.bankCode = @"AXNBTPV"; //BankCode
+    ```
+    ```Text Swift
+    paymentParamForPassing.beneficiaryAccountNumbers = "123456789"
+    paymentParamForPassing.bankCode = "AXNBTPV" //BankCode
+    ```
 
-After setting the above parameters, you can get the request by using the createRequestWithPaymentParam method similar to the following code snippet:
+    After setting the above parameters, you can get the request by using the createRequestWithPaymentParam method similar to the following code snippet:
 
-```objectivec Objective-C
-self.createRequest = [PayUCreateRequest new];
-[self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_NET_BANKING withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
-    if (error == nil) {
-        //It is good to go state. You can use request parameter in webview to open Payment Page
+    ```objectivec Objective-C
+    self.createRequest = [PayUCreateRequest new];
+    [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_NET_BANKING withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
+        if (error == nil) {
+            //It is good to go state. You can use request parameter in webview to open Payment Page
+        }
+        else{
+            //Something went wrong with Parameter, error contains the error Message string
+        }
+    }];
+    ```
+    ```swift Swift
+    createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_NET_BANKING, withCompletionBlock: { request, postParam, error in
+    if error == nil {
+    //It is good to go state. You can use request parameter in webview to open Payment Page
+    } else {
+    //Something went wrong with Parameter, error contains the error Message string
     }
-    else{
-        //Something went wrong with Parameter, error contains the error Message string
-    }
-}];
-```
-```swift Swift
-createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_NET_BANKING, withCompletionBlock: { request, postParam, error in
-if error == nil {
-//It is good to go state. You can use request parameter in webview to open Payment Page
-} else {
-//Something went wrong with Parameter, error contains the error Message string
-}
-})
-```
-
+    })
+    ```
   </Tab>
 
-  <Tab title="Second Tab">
+  <Tab title="UPI">
     To pay using UPI, you need to configure the UPI parameters, for instance:
 
-```objectivec Objective-C
-// For single account number
-self.paymentParamForPassing.beneficiaryAccountNumbers = @"123456789";
-// For multiple account number
-self.paymentParamForPassing.beneficiaryAccountNumbers = @"123456789|54321234|98765673|34767988";
-// Set BankCode
-self.paymentParamForPassing.bankCode = @"UPITPV"; // UPITPV or TEZTPV
-// Set VPA
-self.paymentParamForPassing.vpa = @"umang@axis";
-```
-```swift Swift
-createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_UPI, withCompletionBlock: { request, postParam, error in
-if error == nil {
-//It is good to go state. You can use request parameter in webview to open Payment Page
-} else {
-//Something went wrong with Parameter, error contains the error Message string
-}
-})
-```
-
-After configuring the above parameters, you can get the request by using the `createRequestWithPaymentParam `method, for instance.
-
-```objectivec Objective-C
-self.createRequest = [PayUCreateRequest new];
-[self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_UPI withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
-    if (error == nil) {
-        //It is good to go state. You can use request parameter in webview to open Payment Page
+    ```objectivec Objective-C
+    // For single account number
+    self.paymentParamForPassing.beneficiaryAccountNumbers = @"123456789";
+    // For multiple account number
+    self.paymentParamForPassing.beneficiaryAccountNumbers = @"123456789|54321234|98765673|34767988";
+    // Set BankCode
+    self.paymentParamForPassing.bankCode = @"UPITPV"; // UPITPV or TEZTPV
+    // Set VPA
+    self.paymentParamForPassing.vpa = @"umang@axis";
+    ```
+    ```swift Swift
+    createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_UPI, withCompletionBlock: { request, postParam, error in
+    if error == nil {
+    //It is good to go state. You can use request parameter in webview to open Payment Page
+    } else {
+    //Something went wrong with Parameter, error contains the error Message string
     }
-    else{
-        //Something went wrong with Parameter, error contains the error Message string
+    })
+    ```
+
+    After configuring the above parameters, you can get the request by using the `createRequestWithPaymentParam `method, for instance.
+
+    ```objectivec Objective-C
+    self.createRequest = [PayUCreateRequest new];
+    [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_UPI withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
+        if (error == nil) {
+            //It is good to go state. You can use request parameter in webview to open Payment Page
+        }
+        else{
+            //Something went wrong with Parameter, error contains the error Message string
+        }
+    }];
+    ```
+    ```swift Swift
+    createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_UPI, withCompletionBlock: { request, postParam, error in
+    if error == nil {
+    //It is good to go state. You can use request parameter in webview to open Payment Page
+    } else {
+    //Something went wrong with Parameter, error contains the error Message string
     }
-}];
-```
-```swift Swift
-createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_UPI, withCompletionBlock: { request, postParam, error in
-if error == nil {
-//It is good to go state. You can use request parameter in webview to open Payment Page
-} else {
-//Something went wrong with Parameter, error contains the error Message string
-}
-})
-```
+    })
+    ```
   </Tab>
 </Tabs>
-
-
 
 ## Step 3: Handle response
 
