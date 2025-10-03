@@ -10,6 +10,8 @@ metadata:
 next:
   description: ''
 ---
+## Prerequisites
+
 Before you start with the advanced integration with PayUCheckoutPro, the payUCheckoutProConfig the object needs to be passed with payUPaymentParams in the openCheckoutScreen method of PayUBizSdk. Sample code for can be 1.
 
 ```javascript React.js
@@ -19,8 +21,6 @@ var paymentObject = {
 }
 PayUBizSdk.openCheckoutScreen(paymentObject);
 ```
-
-***
 
 ## Change theme
 
