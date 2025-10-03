@@ -22,20 +22,18 @@ You can make test payments using one of the payment methods configured at the Ch
 
 <TestCardsCallout />
 
-## Test credentials for supported payment methods
-
+<Accordion title="Test credentials for supported payment methods" icon="fa-code">
 Following are the payment methods supported in PayU Test mode.
 
-### Test credentials for Net Banking
-
+<Accordion title="Test credentials for Net Banking" icon="fa-code">
 Use the following credentials to test the Net Banking integration:
 
 * **user name:** payu
 * **password**: payu
 * **OTP**: 123456
+</Accordion>
 
-### Test VPA for UPI
-
+<Accordion title="Test VPA for UPI" icon="fa-code">
 > ❗️ Callout
 >
 > The UPI in-app and UPI intent flow is not available in the Test mode.
@@ -66,17 +64,20 @@ You can add the below metadata under the application tag in the manifest file to
 <meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> <!-- Comment in case of Production -->
 </application>
 ```
+</Accordion>
 
-### Test cards for EMI
-
+<Accordion title="Test cards for EMI" icon="fa-code">
 You can use the following Debit and Credit cards to test EMI integration.
 
 <EMITestCards />
 
 <br />
+</Accordion>
 
-### Test wallets
-
+<Accordion title="Test wallets" icon="fa-code">
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
 <EMITestWallets />
+</Accordion>
+
+</Accordion>
