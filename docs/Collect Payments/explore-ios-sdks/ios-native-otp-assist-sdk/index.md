@@ -27,8 +27,8 @@ The Native OTP Assist SDK gives you the following key capabilities:
     The Native OTP SDK is offered via CocoaPods. To add the SDK to your app project, include the SDK framework in your `podfile`.
 
     `// make sure to add below-mentioned line to use dynamic frameworksuse_frameworks!​
-            // Add this to include our SDK
-            pod 'PayUIndia-NativeOtpAssist'`
+                    // Add this to include our SDK
+                    pod 'PayUIndia-NativeOtpAssist'`
 
     Install dependency using pod `installcommand `in `terminalNext`, add the following imports in the class where you need to initiate a payment:
 
@@ -80,7 +80,7 @@ The Native OTP Assist SDK gives you the following key capabilities:
     > Every transaction (payment or non-payment) needs a hash by the merchant before sending the transaction details to PayU. This is required for PayU to validate the authenticity of the transaction. This should be done on your server.
 
     ***
-  </Accordion>
+
 
   <Accordion title="Create postData" icon="fa-code">
     To initiate a payment, your app will need to send transactional information to the Checkout Pro SDK. To pass this information, build a payment parameter object similar to the following code snippet:
@@ -205,20 +205,21 @@ The Native OTP Assist SDK gives you the following key capabilities:
     | issuerPostData       | You need to load `issuerUrl` to the Webview along with this `issuerPostdata` string. Ex: `webView.postUrl`(`issuerUrl, issuerPostData.toByteArray()`) |
     | acsTemplate          | If` issuerUr`l is empty, you need to load acsTemplate to the Webview. Ex: `webView.loadData`(`acsTemplate, "text/html", "UTF-8"`);                    |
 
+    <Accordion title="Error codes" icon="fa-code">
+      | Error Code | Description                                              |
+      | :--------- | :------------------------------------------------------- |
+      | 1001       | No Internet                                              |
+      | 1002       | Network timeout, please verify with your server.         |
+      | 1003       | Gateway timeout, please verify with your server.         |
+      | 1004       | The user canceled it, please verify with your server.    |
+      | 1005       | Something went wrong, please verify with your server.    |
+      | 1006       | The bank page timed out, please verify with your server. |
 
-  <Accordion title="Error codes" icon="fa-code">
-    | Error Code | Description                                              |
-    | :--------- | :------------------------------------------------------- |
-    | 1001       | No Internet                                              |
-    | 1002       | Network timeout, please verify with your server.         |
-    | 1003       | Gateway timeout, please verify with your server.         |
-    | 1004       | The user canceled it, please verify with your server.    |
-    | 1005       | Something went wrong, please verify with your server.    |
-    | 1006       | The bank page timed out, please verify with your server. |
-
-    ***
+      ***
   </Accordion>
-</Accordion>
+    </Accordion>
+  </Accordion>
+
   <Accordion title="Step 4: Verify the transaction" icon="fa-code">
     After you get the response from SDK, make sure to confirm it with the PayU server.
 
@@ -227,22 +228,21 @@ The Native OTP Assist SDK gives you the following key capabilities:
     </Callout>
 
     <Accordion title="Implementation of Verify Payment API" icon="fa-code">
+      Since you already have the txnID (Order ID generated at your end) value for such cases, you simply need to execute the verify\_payment API with the necessary input parameters. The output would return you the transaction status in the `status` key and various other parameters also. For more information, refer to the <Anchor label="Verify Payment Status " target="_blank" href="ref:verify_payment_api">Verify Payment Status </Anchor>API.
 
-    Since you already have the txnID (Order ID generated at your end) value for such cases, you simply need to execute the verify\_payment API with the necessary input parameters. The output would return you the transaction status in the `status` key and various other parameters also. For more information, refer to the <Anchor label="Verify Payment Status " target="_blank" href="ref:verify_payment_api">Verify Payment Status </Anchor>API.
+      Endpoint URL: [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2)
 
-    Endpoint URL: [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2)
+      **Sample Request**
 
-    **Sample Request**
-
-    ```curl Curl
-    curl --location --request POST '{{Url}}' \
-    --header 'Content-Type: application/x-www-form-urlencoded' \
-    --data-urlencode 'key={merchantKey}' \
-    --data-urlencode 'command=verify_payment' \
-    --data-urlencode 'hash=c6febddfaaf6986dd8bd982d3769f856ab149e4de92dbad995c8df808ffcfbcb2c227a3fae38b69eb39ad7b6ce4e06e6b12289f70cc500cea5a2cda449c7dcba' \
-    --data-urlencode 'var1=Txn1234'
-    ```
-</Accordion>
+      ```curl Curl
+      curl --location --request POST '{{Url}}' \
+      --header 'Content-Type: application/x-www-form-urlencoded' \
+      --data-urlencode 'key={merchantKey}' \
+      --data-urlencode 'command=verify_payment' \
+      --data-urlencode 'hash=c6febddfaaf6986dd8bd982d3769f856ab149e4de92dbad995c8df808ffcfbcb2c227a3fae38b69eb39ad7b6ce4e06e6b12289f70cc500cea5a2cda449c7dcba' \
+      --data-urlencode 'var1=Txn1234'
+      ```
+    </Accordion>
   </Accordion>
 </Accordion>
 
