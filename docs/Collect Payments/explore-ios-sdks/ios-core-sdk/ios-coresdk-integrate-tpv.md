@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-<Callout icon="📘">
+<Callout icon="📘" theme="info">
   **Note**: For TPV transactions, you need to have a different `merchantID`. Contact your key account manager for the same.
 </Callout>
 
@@ -53,9 +53,9 @@ To get a request, create an object of the class `PayUCreateRequest`` as below. T
 let createRequest = PayUCreateRequest()
 ```
 
-### Net Banking
-
-To pay using NetBanking, you need to configure the Net Banking parameters, for instance:
+<Tabs>
+  <Tab title="Net Banking">
+    To pay using NetBanking, you need to configure the Net Banking parameters, for instance:
 
 ```Text Objective-C
 self.paymentParamForPassing.beneficiaryAccountNumbers = @"123456789";
@@ -89,9 +89,10 @@ if error == nil {
 })
 ```
 
-### UPI
+  </Tab>
 
-To pay using UPI, you need to configure the UPI parameters, for instance:
+  <Tab title="Second Tab">
+    To pay using UPI, you need to configure the UPI parameters, for instance:
 
 ```objectivec Objective-C
 // For single account number
@@ -135,6 +136,10 @@ if error == nil {
 }
 })
 ```
+  </Tab>
+</Tabs>
+
+
 
 ## Step 3: Handle response
 
