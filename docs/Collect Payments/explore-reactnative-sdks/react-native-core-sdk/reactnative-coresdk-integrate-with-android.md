@@ -21,28 +21,16 @@ next:
 ---
 To integrate React Native Code SDK on Android, follow these steps:
 
-1. [Installation](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#step-1-installation)
-2. [Generate payment hash](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#step-2-generate-payment-hash)
-3. [Build the Payment Parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#step-3-build-the-payment-parameters)
-   * [Set Net Banking params for payment](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#set-net-banking-params-for-payment)
-   * [Set Card payment parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#set-card-payment-parameters)
-   * [Set Wallet payment parameters](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#set-wallet-payment-parameters)
-4. [Make payment](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#step-4-make-payment)
-5. [Register listeners](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#step-5-register-listeners)
-6. [Check the response](https://docs.payu.in/docs/reactnative-coresdk-integrate-with-android#step-6-check-the-response)
-
-## Step 1: Installation
-
-React Native SDK for PayU’s Core PG is offered through Node Package Manager (NPM). Run the following command to install PayU Core PG SDK for React:
+<Accordion title="Step 1: Installation" icon="fa-code">
+React Native SDK for PayU's Core PG is offered through Node Package Manager (NPM). Run the following command to install PayU Core PG SDK for React:
 
 ```
 npm i payu-core-pg-react 
 ```
 
-### Setup Command
-
+<Accordion title="Setup Command" icon="fa-code">
 ```
-git clone https://github.com/payu-intrepos/payu-core-pg-react.git payuSdkExample
+git clone [https://github.com/payu-intrepos/payu-core-pg-react.git](https://github.com/payu-intrepos/payu-core-pg-react.git) payuSdkExample
   cd payuSdkExample
   npm i
   cd example
@@ -50,11 +38,12 @@ git clone https://github.com/payu-intrepos/payu-core-pg-react.git payuSdkExample
   react-native start
   react-native run-android
 ```
+</Accordion>
 
 ***
+</Accordion>
 
-## Step 2: Generate payment hash
-
+<Accordion title="Step 2: Generate payment hash" icon="fa-code">
 Generate the payment hash and pass the hash in the JSON `payUPaymentParams.hashes.payment` parameter similar to the following code snippet:
 
 ```
@@ -74,9 +63,9 @@ To learn more about sash generation, see Hash Generation.
 </Callout>
 
 ***
+</Accordion>
 
-## Step 3: Build the Payment Parameters
-
+<Accordion title="Step 3: Build the Payment Parameters" icon="fa-code">
 To initiate a payment, your app needs to send Transactional Information to the Custom Browser SDK. Build the payUPaymentParams object with the mandatory parameters as shown in the following code snippet:
 
 ```javascript React.js
@@ -114,8 +103,7 @@ To initiate a payment, your app needs to send Transactional Information to the C
 
 Build parameters for different payment methods:
 
-### Set Net Banking params for payment
-
+<Accordion title="Set Net Banking params for payment" icon="fa-code">
 To build the mandatory parameters to integrate Net Banking as a payment Method in JSON, use the following code snippet:
 
 ```javascript React.js
@@ -124,9 +112,9 @@ var params={
         bankcode:<String>, // ex: ICIB,AXIB 
   }
 ```
+</Accordion>
 
-### Set Card payment parameters
-
+<Accordion title="Set Card payment parameters" icon="fa-code">
 To build the mandatory parameters to integrate Cards as a payment Method in JSON, use the following code snippet:
 
 ```javascript React.js
@@ -142,9 +130,9 @@ var params={
         user_credentials: <String>, // "user:password"
   }
 ```
+</Accordion>
 
-### Set Wallet payment parameters
-
+<Accordion title="Set Wallet payment parameters" icon="fa-code">
 To build the mandatory parameters to integrate wallets as a payment Method in JSON, use the following code snippet:
 
 ```javascript React.js
@@ -153,11 +141,12 @@ var params={
         bankcode: <String>, // Payu provide Wallet Id (ex: AMON) 
   }
 ```
+</Accordion>
 
 ***
+</Accordion>
 
-## Step 4: Make payment
-
+<Accordion title="Step 4: Make payment" icon="fa-code">
 Use the following code snippet to start a payment:
 
 ```javascript React.js
@@ -179,9 +168,9 @@ Payment Mode <String> , // CC(CARD), CASH(WALLET), NB (NET BANKING)
 ```
 
 ***
+</Accordion>
 
-## Step 5: Register listeners
-
+<Accordion title="Step 5: Register listeners" icon="fa-code">
 Register event listener (`DeviceEventEmitter` for this SDK)to capture the response of the transaction from Custom Browser SDK. Use the following code snippet to register the listener:
 
 ```javascript React.js
@@ -191,9 +180,9 @@ DeviceEventEmitter.addListener("CBListener",(event)=>{
 ```
 
 ***
+</Accordion>
 
-## Step 6: Check the response
-
+<Accordion title="Step 6: Check the response" icon="fa-code">
 This is what a sample response from the Custom Browser SDK looks like:
 
 ```javascript React.js
@@ -205,3 +194,4 @@ This is what a sample response from the Custom Browser SDK looks like:
   errorCode: <String>, //conditional
 }
 ```
+</Accordion>
