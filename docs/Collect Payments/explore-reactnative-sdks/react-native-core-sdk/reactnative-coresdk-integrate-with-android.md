@@ -21,6 +21,8 @@ next:
 ---
 To integrate React Native Code SDK on Android, follow these steps:
 
+## SDK Integration Steps
+
 <Accordion title="Step 1: Installation" icon="fa-code">
 React Native SDK for PayU's Core PG is offered through Node Package Manager (NPM). Run the following command to install PayU Core PG SDK for React:
 
@@ -195,3 +197,5 @@ This is what a sample response from the Custom Browser SDK looks like:
 }
 ```
 </Accordion>
+
+## Testing and Go-live
