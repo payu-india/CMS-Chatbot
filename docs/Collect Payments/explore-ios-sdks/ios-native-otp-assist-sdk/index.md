@@ -10,13 +10,13 @@ metadata:
 next:
   description: ''
 ---
-The OTP Assist SDK provides a complete authentication flow for card transactions. It offers to capture OTP in the merchant app without any redirection to the bank’s 3Dsecure/ACS page. This means that there’s one less point of failure in the checkout process and a faster completion rate for transactions. The OTP Assist SDK will auto-read and submit OTP on behalf of the user.
+The OTP Assist SDK provides a complete authentication flow for card transactions. It offers to capture OTP in the merchant app without any redirection to the bank's 3Dsecure/ACS page. This means that there's one less point of failure in the checkout process and a faster completion rate for transactions. The OTP Assist SDK will auto-read and submit OTP on behalf of the user.
 
 <Accordion title="Features" icon="fa-code">
 The Native OTP Assist SDK gives you the following key capabilities:
 
 * Read OTP on the merchant app without redirecting to the bank page, for eligible bins.
-* If the bin is not eligible, then it will redirect to the bank’s 3d-secure/ACS page.
+* If the bin is not eligible, then it will redirect to the bank's 3d-secure/ACS page.
 * Support for Android native SMS permission, as well as Google Consent API.
 </Accordion>
 
@@ -51,7 +51,7 @@ import PayUNativeOtpAssist
 In order to receive all the crashes related to our SDKs, add the below-mentioned line to your AppDelegate's `didFinishLaunchingWithOptions`.
 
 **CrashReporter**
-In order to receive all the crashes related to our SDKs, add the below-mentioned line to your AppDelegate’s `didFinishLaunchingWithOptions`.
+In order to receive all the crashes related to our SDKs, add the below-mentioned line to your AppDelegate's `didFinishLaunchingWithOptions`.
 
 ```Text Objective-C
 [PayUOtpAssist start];
@@ -86,7 +86,7 @@ For detailed information on hash generation, refer to [Hash Generation](doc:set-
 
 To initiate a payment, your app will need to send transactional information to the Checkout Pro SDK. To pass this information, build a payment parameter object similar to the following code snippet:
 
-> **Note**: TransactionId can’t have a special character and not more than 25 characters.
+> **Note**: TransactionId can't have a special character and not more than 25 characters.
 
 ```Text Objective-C
 PayUPaymentParam *paymentParam = [[PayUPaymentParam alloc] initWithKey:<#(NSString * _Nonnull)#>
@@ -123,7 +123,6 @@ let paymentParam = PayUPaymentParam(key: <#T##String#>,
                                     surl: <#T##String#>,
                                     furl: <#T##String#>,
                                     environment: <#T##Environment#> /*.production or .test*/)
-
 paymentParam.hashes = PayUHashes()
 paymentParam.hashes?.paymentHash = <#T##SHA512 HashString#>
 let ccdc = CCDC()
@@ -135,7 +134,7 @@ ccdc.txnS2SFlow = <#T##String#> //"4" for transactions on native otp assist
 ccdc.nameOnCard = <#T##String#>
 ccdc.shouldSaveCard = <#T##String#>
 paymentParam.paymentOption = ccdc
-paymentParam.userCredential = <#T##String#> // For saving and fetching user’s saved card
+paymentParam.userCredential = <#T##String#> // For saving and fetching user's saved card
 ```
 
 > 📘 Note
@@ -176,7 +175,7 @@ The list of the callback function provided by PayUOtpAssistCallback class:
   1. `errorCode`: Error Code
   2. `errorMessage`: Error Description
 
-* `fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest):` Boolean – It’s an optional callback, override when you want to handle the Bank page redirection flow. You just need to change the return value to false. You can also open CustomBrowser in fallback scenarios. The following code snippet is used to open the CustomBrowser. For more information on using CustomBrowser, refer to [iOS CustomBrowser SDK](doc:ios-custombrowser-sdk).
+* `fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest):` Boolean – It's an optional callback, override when you want to handle the Bank page redirection flow. You just need to change the return value to false. You can also open CustomBrowser in fallback scenarios. The following code snippet is used to open the CustomBrowser. For more information on using CustomBrowser, refer to [iOS CustomBrowser SDK](doc:ios-custombrowser-sdk).
 
 ```Text Swift
 fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest) : Boolean {
@@ -203,9 +202,9 @@ You will get `PayUAcsRequest on shouldHandleFallback(`) callback. whether you wi
 
 | PayUAcsRequest field | Description                                                                                                                                           |
 | :------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| issuerUrl            | It’s the Bank/ACS page Url.                                                                                                                           |
+| issuerUrl            | It's the Bank/ACS page Url.                                                                                                                           |
 | issuerPostData       | You need to load `issuerUrl` to the Webview along with this `issuerPostdata` string. Ex: `webView.postUrl`(`issuerUrl, issuerPostData.toByteArray()`) |
-| acsTemplate          | If` issuerUr`l is empty, you need to load acsTemplate to the Webview. Ex: `webView.loadData`(`acsTemplate, “text/html”, “UTF-8”`);                    |
+| acsTemplate          | If` issuerUr`l is empty, you need to load acsTemplate to the Webview. Ex: `webView.loadData`(`acsTemplate, "text/html", "UTF-8"`);                    |
 
 ### Error codes
 
