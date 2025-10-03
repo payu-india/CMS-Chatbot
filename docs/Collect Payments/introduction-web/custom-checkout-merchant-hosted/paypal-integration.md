@@ -51,70 +51,47 @@ This section describes the request parameters with sampe request and response to
 
 ### Step 1: Initiate the payment with PayU
 
-Along the request parameters listed in the [Collect Payments using Merchant Hosted Checkout > Wallets](ref:_payment_merchant_hosted_wallets), you need use the following **bankcode** with the **pg** as CASH.
-
-**Environment**
-
-|                            |                                                                         |
-| :------------------------- | :---------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
+Along the request parameters listed in the [Collect Payments using Merchant Hosted Checkout > Wallets](ref:_payment_merchant_hosted_wallets), you need use the following **bankcode** with the **pg** as PAYPAL.
 
 <Callout icon="📘" theme="info">
-  **Reference**: For the complete list of parameters (with **Try It** experience ) and response, refer to <a href="https://docs.payu.in/reference/_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
+  **Reference**: For the **Try It** experience ), refer to <a href="https://docs.payu.in/reference/_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
 </Callout>
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
+<Accordion title="Request parameters" icon="fa-code">
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-      <th>
-        **Description**
-      </th>
+  | Parameter                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Example                                                                                        |
+  | :----------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
+  | key <br /> `mandatory`         | String - This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to Generate Merchant Key and Salt.                                                                                                                                                                                                                                                                                               | 8488225                                                                                        |
+  | txnid <br /> `mandatory`       | varchar - This parameter is known as Transaction ID (or OrderID). It is the order reference number generated at your (Merchant's) end. It is an identifier which you(merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of same Transaction ID again would fail. Hence, it is essential that you post us a unique transaction ID for every new transaction. | fd3e847h2                                                                                      |
+  | amount <br /> `mandatory`      | float - This parameter should contain the payment amount of the particular transaction. Note: Type-cast the amount to float type                                                                                                                                                                                                                                                                                                                            | 10                                                                                             |
+  | productinfo <br /> `mandatory` | varchar - This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice).                                                                                                                                                                                                                                                                                           | T-shirt                                                                                        |
+  | firstname <br /> `mandatory`   | varchar - This parameter must contain the first name of the customer.                                                                                                                                                                                                                                                                                                                                                                                       | Ankit                                                                                          |
+  | email <br /> `mandatory`       | varchar - This parameter must contain the email of the customer                                                                                                                                                                                                                                                                                                                                                                                             | [test@gmail.com](mailto:test@gmail.com)                                                        |
+  | phone `mandatory`              | integer - Merchant needs to take the customer's GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.                                                                                                                                                                                                                                                           | 9876543210                                                                                     |
+  | pg <br /> `mandatory`          | string - It defines the payment category using the Merchant Hosted Checkout integration. For a Wallet payment, "**PAYPAL**" must be specified in the **pg** parameter.                                                                                                                                                                                                                                                                                                                                                                  | PAYPAL |
+  | bankcode <br /> `mandatory`    | string - The merchant must post  **PAYPAL** as the value for this parameter.                                                                                                                                                                                                                                                                                                                                                                                 | PAYPAL |
+  | surl <br /> `mandatory`        | The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                     | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
+  | furl <br /> `mandatory`        | The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                         | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
+  | hash <br /> `mandatory`        | string - The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|SALT) For more information, refer to Generate Hash.                                                                                                                                                                              | calculated\_hash\_value                                                                        |
+  | lastname <br /> `optional`     | string - The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                     | Kumar                                                                                          |
+  | address1 <br /> `optional`     | string - The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                             | 123 Main St                                                                                    |
+  | address2 <br /> `optional`     | string - The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                            | Apt 4B                                                                                         |
+  | city <br /> `optional`         | string - The city where your customer resides as part of the billing address.                                                                                                                                                                                                                                                                                                                                                                               | Mumbai                                                                                         |
+  | state <br /> `optional`        | string - The state where your customer resides as part of the billing address.                                                                                                                                                                                                                                                                                                                                                                              | Maharashtra                                                                                    |
+  | country <br /> `optional`      | string - The country where your customer resides.                                                                                                                                                                                                                                                                                                                                                                                                           | India                                                                                          |
+  | zipcode <br /> `optional`      | string - Billing address zip code is mandatory for the cardless EMI option.                                                                                                                                                                                                                                                                                                                                                                                 | 400001                                                                                         |
+  | udf1 <br /> `optional`         | string - This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                     | custom\_data\_1                                                                                |
+  | udf2 <br /> `optional`         | string - This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                     | custom\_data\_2                                                                                |
+  | udf3 <br /> `optional`         | string - This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                     | custom\_data\_3                                                                                |
+  | udf4 <br /> `optional`         | string - This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                     | custom\_data\_4                                                                                |
+  | udf5 <br /> `optional`         | string - This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                     | custom\_data\_5                                                                                |
+</Accordion>
 
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        pg <br/>
-        `mandatory`
-      </td>
-
-      <td>
-        _String_ It defines the payment category using the Merchant Hosted Checkout integration. For a Wallet payment, "**PAYPAL**" must be specified in the **pg** parameter.
-      </td>
-
-      <td>
-        PAYPAL
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankcode  <br/> `mandatory`
-      </td>
-
-      <td>
-        _String_ The merchant must post  **PAYPAL** as the value for this parameter.
-      </td>
-
-      <td>
-        PAYPAL
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-#### Sample request
-
+<Accordion title="Sample request" icon="fa-code">
 ```curl
 curl -X \
 POST "
@@ -123,9 +100,9 @@ https://test.payu.in/_payment-H
 "Content-Type: application/x-www-form-urlencoded" -d"key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=PAYPAL&bankcode=PAYPAL&surl=
 https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
 ```
+</Accordion>
 
-#### Sample response
-
+<Accordion title="Sample response" icon="fa-code">
 You must look for the following:
 
 * PG_TYPE:  PAYPAL-PG
@@ -187,6 +164,7 @@ Array
     [splitInfo] => {"splitStatus":"splitNotReceived","splitSegments":[]}
 )
 ```
+</Accordion>
 
 > 📘 Note:
 >
