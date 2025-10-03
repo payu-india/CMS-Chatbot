@@ -18,13 +18,14 @@ Before you start with the integration, enable the payment methods that you want 
 >
 > You can download the Go web SDK from the following GitHub link: [https://github.com/payu-india/web-sdk-go](https://github.com/payu-india/web-sdk-go)
 
-## Create a PayU account
+<Accordion title="Create a PayU account" icon="fa-code">
 
 First, create a PayU account. See [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard).
 
 ***
 
-## Install the SDK
+</Accordion>
+<Accordion title="Install the SDK" icon="fa-code">
 
 To install the PayU GO SDK using go get , run the following command:
 
@@ -32,9 +33,8 @@ To install the PayU GO SDK using go get , run the following command:
 go get github.com/payu-india/web-sdk-go
 ```
 
-***
-
-## Build the PayU object
+</Accordion>
+<Accordion title="Build the PayU object" icon="fa-code">
 
 Use the following sample code for creating an instance of the PayU Object:
 
@@ -49,5 +49,4 @@ payuClient, err := payu.NewClient(
   <ENVIRONMENT>,                
 ) 
 ```
-
-***
+</Accordion>
