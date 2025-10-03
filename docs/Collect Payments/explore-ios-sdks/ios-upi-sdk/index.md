@@ -80,7 +80,7 @@ You can integrate PayUIndia-PG-SDK with your app or SDK using the following meth
 
 ***
 
-## Step 2: Integrate UPICore
+### Step 2: Integrate UPICore
 
 You can integrate UPICollet and UPIIntent with your own UI using UPICore.
 
