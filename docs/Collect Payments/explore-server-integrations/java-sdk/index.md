@@ -352,12 +352,9 @@ Before you start with the integration, enable the payment methods that you want 
   ```
 </Accordion>
 
-<Accordion title="Test and Go-live" icon="fa-code">
+## Test and Go-live
   <Test_your_integration />
 
   <br />
 
   <Go_Live_Checklist />
-</Accordion>
-
-<br />
