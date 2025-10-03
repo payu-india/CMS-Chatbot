@@ -1,20 +1,19 @@
 ---
 title: 3. Go-live checklist
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
-Ensure these steps before you deploy the integration in a live environment. 
+Ensure these steps before you deploy the integration in a live environment.
 
 ## Collect Live payments
 
-After testing the integration end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers. 
+After testing the integration end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
 > 🚧 Watch Out!
 >
@@ -26,7 +25,7 @@ To generate the live merchant key and salt:
 
 1. Log in to the  [PayU Dashboard](https://onboarding.payu.in/) and switch to **Live Mode** on the menu.
 2. Navigate to **Developers** → **API Keys** tab.
-3. Copy the key and salt using the **copy** button. 
+3. Copy the key and salt using the **copy** button.
 4. Replace the Test key and salt with the Production key and salt in the payment integration code and start accepting actual payments.
 
 ### Checklist 2: Configure setIsProduction()
@@ -35,7 +34,7 @@ Set the value of the `setIsProduction()`to `true` in the payment integration cod
 
 ### Checklist 3: Configure verify payment method
 
-Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error. 
+Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
 
 ### Checklist 4: Configure Webhook
 
