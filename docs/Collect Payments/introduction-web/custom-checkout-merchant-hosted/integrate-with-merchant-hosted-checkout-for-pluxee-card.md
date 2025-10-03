@@ -20,10 +20,6 @@ This section describes the parameters required to collect payments using the Plu
 
 ### Steps to Integrate:
 
-1. [Post the payment request to PayU](#step-1-post-payment-request-to-payu)
-2. [Check response from PayU](#step-2-check-response-from-payu)
-3. [Verify the payment](#step-3-verify-the-payment)
-
 <RegisterMerchantPrerequiste />
 
 <br />
@@ -31,156 +27,141 @@ This section describes the parameters required to collect payments using the Plu
 ***
 
 <Accordion title="Sodexo with Merchant Hosted Checkout Integration Workflow" icon="fa-code">
+  The following describes the characteristics and workflow involved using Merchant Hosted Checkout with Pluxee:
 
+  * The existing **\_payment** API used to initiate payments for online transactions will be used to initiate seamless payments for Pluxee payment option.
+  * For Sodexo payment option mode or PG is **MC** and Ibibo\_code or bankcodeis **SODEXO**.
+  * In case customer provides the consent to save the card details with merchant on their check-out page:
+    * Merchant should pass **save\_sodexo\_card** parameter value as **1** when initiating the transaction using **\_payment** API.
+    * After the transaction is processed and successful, for saved card transactions, Sodexo will share the sourceId with PayU and PayU will share this **sourceId** with merchant in the field3 parameter.
 
-The following describes the characteristics and workflow involved using Merchant Hosted Checkout with Pluxee:
+  > **Note**: Merchant is not allowed to store the complete card number or card expiry or card CVV details entered by the customer, even if customer provides permission to store the card.
 
-* The existing **_payment** API used to initiate payments for online transactions will be used to initiate seamless payments for Pluxee payment option.
-* For Sodexo payment option mode or PG is **MC** and Ibibo_code or bankcodeis **SODEXO**.
-* In case customer provides the consent to save the card details with merchant on their check-out page:
-  * Merchant should pass **save_sodexo_card** parameter value as **1** when initiating the transaction using **_payment** API.
-  * After the transaction is processed and successful, for saved card transactions, Sodexo will share the sourceId with PayU and PayU will share this **sourceId** with merchant in the field3 parameter.
-
-> **Note**: Merchant is not allowed to store the complete card number or card expiry or card CVV details entered by the customer, even if customer provides permission to store the card.
-
-* Merchant can also initiate transaction using source ID for repeat transactions where customer has provided permission to save the card during the first transaction. In this case, merchant should pass sourceId value in **source_id** parameter in the **_payment** API at the time of transaction initiation.
-* In case **source_id** parameter is passed, PayU will directly initiate the transaction using this sourceId.
-* Merchants are recommended to use the **check_balance** API for checking the Sodexo card balance. This will provide better experience to customers as available balance can be displayed up-front to customer and can have better SRT as scenarios where balance is less than transaction amount can be stopped at the checkout page itself.
-
-
+  * Merchant can also initiate transaction using source ID for repeat transactions where customer has provided permission to save the card during the first transaction. In this case, merchant should pass sourceId value in **source\_id** parameter in the **\_payment** API at the time of transaction initiation.
+  * In case **source\_id** parameter is passed, PayU will directly initiate the transaction using this sourceId.
+  * Merchants are recommended to use the **check\_balance** API for checking the Sodexo card balance. This will provide better experience to customers as available balance can be displayed up-front to customer and can have better SRT as scenarios where balance is less than transaction amount can be stopped at the checkout page itself.
 </Accordion>
 
 <Accordion title="Step 1: Post the payment request to PayU" icon="fa-code">
+  Customers will select the **Pluxee** payment option on your website and enter the Pluxee card details and the amount will be based on the goods or services added to the cart.
 
+  **Environment**
 
-Customers will select the **Pluxee** payment option on your website and enter the Pluxee card details and the amount will be based on the goods or services added to the cart.
+  |                            |                                                                     |
+  | :------------------------- | :------------------------------------------------------------------ |
+  | **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+  | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-**Environment**
+  Post the following additional parameters for the Pluxee card integration.
 
-|                            |                                                                         |
-| :------------------------- | :---------------------------------------------------------------------- |
-| **Test Environment**       | https://test.payu.in/_payment                                           |
-| **Production Environment** | https://secure.payu.in/_payment                                         |
+  | Parameter                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | **Example**                                                |
+  | :---------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------- |
+  | key `mandatory`               | String - Merchant key provided by PayU during onboarding.                                                                                                                                                                                                                                                                                                                                                                                                                                   | JP\*\*\*g                                                  |
+  | txnid `mandatory`             | String - The transaction ID is a reference number for a specific order that is generated by the merchant.                                                                                                                                                                                                                                                                                                                                                                                   | bvRCCBO4YiGGHE                                             |
+  | amount `mandatory`            | String - The payment amount for the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                            | 10.00                                                      |
+  | productinfo `mandatory`       | String - A brief description of the product.                                                                                                                                                                                                                                                                                                                                                                                                                                                | iPhone                                                     |
+  | firstname `mandatory`         | String - The first name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Ashish                                                     |
+  | email `mandatory`             | String - The email address of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                 | [test@gmail.com](mailto:test@gmail.com)                    |
+  | phone `mandatory`             | String - The phone number of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 9876543210                                                 |
+  | pg `mandatory`                | String - It defines the payment category that the merchant wants the customer to see by default on the PayU's payment page. In this example, "MC" must be specified.                                                                                                                                                                                                                                                                                                                        | MC                                                         |
+  | bankcode `mandatory`          | String - Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For Sodexo card, specify SODEXO in this parameter.                                                                                                                                                                                                                                                         | SODEXO                                                     |
+  | ccnum `mandatory`             | String - This parameter must contain the 16-digit Sodexo card number. PayU recommends the following best practices: When you collect the customer's credit card details, you can validate the card number using the LUHN algorithm. For more information, refer to Card Number Formats. While validating the card number entered by the customer, if the card number is invalid, PayU recommends you display an error message and re-enter the card number.                                 | 5123456789012346                                           |
+  | ccname `mandatory`            | String - This parameter must contain the name on card – as entered by the customer for the transaction.                                                                                                                                                                                                                                                                                                                                                                                     | Ashish Kumar                                               |
+  | ccvv `mandatory`              | String - Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API.                                                                                                                                                                                                                                                                                                                                                          | 123                                                        |
+  | ccexpmon `mandatory`          | String - This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.                                                                                                                                                          | 10                                                         |
+  | ccexpyr `mandatory`           | String - This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.                                                                                                                                                                                                                                                                                                                                                    | 2021                                                       |
+  | save\_sodexo\_card `optional` | This parameter is used to specify the flag to save the Sodexo card along with the payment. Specify any of the following values: 0 - Do not save the Sodexo card. 1 - Save the Sodexo card details.                                                                                                                                                                                                                                                                                          | 1                                                          |
+  | source\_id `optional`         | String - This parameter is used to make payment for Sodexo card saved by the merchant earlier. Here, card details need not to be shared by merchant.                                                                                                                                                                                                                                                                                                                                        | source\_12345                                              |
+  | is\_check\_balance `optional` | String - This parameter is used to specify the flag to check the Sodexo card balance and then the payment amount posted if the Sodexo card has sufficient balance. Specify any of the following values: 0 - Do not check the Sodexo card balance before making the payment transaction. 1 - Check the Sodexo card balance and then post the payment transaction if the card has sufficient balance. Note: This parameter must be used only for saved cards along with source\_id parameter. | 1                                                          |
+  | furl `mandatory`              | String - The success URL, which is the page PayU will redirect to if the transaction is successful.                                                                                                                                                                                                                                                                                                                                                                                         | [https://example.com/success](https://example.com/success) |
+  | surl `mandatory`              | String - The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                                                                                                                                                                                                                                                                             | [https://example.com/failure](https://example.com/failure) |
+  | hash `mandatory`              | String - It is the hash calculated by the merchant. The hash calculation logic is: sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT)                                                                                                                                                                                                                                                                                                  | calculated\_hash\_value                                    |
+  | address1 `optional`           | String - The first line of the billing address. Notes: For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. Mandatory for Cross-Border payments.                                                                                                                                                                                                                      | 123 Main St                                                |
+  | address2 `optional`           | String - The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                            | Apt 4B                                                     |
+  | city `optional`               | String - The city where your customer resides as part of the billing address. Note: Mandatory for Cross-Border payments.                                                                                                                                                                                                                                                                                                                                                                    | Mumbai                                                     |
+  | state `optional`              | String - The state where your customer resides as part of the billing address. Note: Mandatory for Cross-Border payments.                                                                                                                                                                                                                                                                                                                                                                   | Maharashtra                                                |
+  | country `optional`            | String - The country where your customer resides. Note: Mandatory for Cross-Border payments.                                                                                                                                                                                                                                                                                                                                                                                                | India                                                      |
+  | zipcode `optional`            | String - Billing address zip code is mandatory for the cardless EMI option. Character Limit-20. Note: Mandatory for Cross-Border payments.                                                                                                                                                                                                                                                                                                                                                  | 400001                                                     |
+  | udf1 `optional`               | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. For Cross-Border payments: Mandatory if AD bank request this detail. This parameter must include the Permanent Account Number (PAN) of the buyer must be collected in this field.                                                                                                       | ABCDE1234F                                                 |
+  | udf2 `optional`               | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.                                                                                                                                                                                                                                                                                         | custom\_data\_2                                            |
+  | udf3 `optional`               | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. For Cross-Border payments: If AD bank request this detail. This parameter must include the date of birth of the buyer must be collected using this field in the DD-MM-YYYY format.                                                                                                                                                                                          | 15-01-1990                                                 |
+  | udf4 `optional`               | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. For Cross-Border payments: Mandatory for payment aggregators. This parameter must include end merchant legal entity name.                                                                                                                                                                                                                                                   | Merchant Corp Ltd                                          |
+  | udf5 `optional`               | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. For Cross-Border payments: This parameter must include The invoice ID or invoice number must be collected using this field.                                                                                                                                                                                                                                                 | INV\_2024\_001                                             |
 
-Post the following additional parameters for the Pluxee card integration.
+  PayU marks the transaction status based on the response received from the bank. PayU communicates the success URL to you if the payment is successful. Verify the authenticity of the hash value before accepting or rejecting the invoice order. For the list of parameters in the response body for the PayU Hosted integration, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted) under API Reference.
 
-| Parameter | Description | **Example** |
-| :-------- | :---------- | :---------- |
-| key `mandatory` | String - Merchant key provided by PayU during onboarding. | JP***g |
-| txnid `mandatory` | String - The transaction ID is a reference number for a specific order that is generated by the merchant. | bvRCCBO4YiGGHE |
-| amount `mandatory` | String - The payment amount for the transaction. | 10.00 |
-| productinfo `mandatory` | String - A brief description of the product. | iPhone |
-| firstname `mandatory` | String - The first name of the customer. | Ashish |
-| email `mandatory` | String - The email address of the customer. | test@gmail.com |
-| phone `mandatory` | String - The phone number of the customer. | 9876543210 |
-| pg `mandatory` | String - It defines the payment category that the merchant wants the customer to see by default on the PayU's payment page. In this example, "MC" must be specified. | MC |
-| bankcode `mandatory` | String - Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For Sodexo card, specify SODEXO in this parameter. | SODEXO |
-| ccnum `mandatory` | String - This parameter must contain the 16-digit Sodexo card number. PayU recommends the following best practices: When you collect the customer's credit card details, you can validate the card number using the LUHN algorithm. For more information, refer to Card Number Formats. While validating the card number entered by the customer, if the card number is invalid, PayU recommends you display an error message and re-enter the card number. | 5123456789012346 |
-| ccname `mandatory` | String - This parameter must contain the name on card – as entered by the customer for the transaction. | Ashish Kumar |
-| ccvv `mandatory` | String - Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API. | 123 |
-| ccexpmon `mandatory` | String - This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. | 10 |
-| ccexpyr `mandatory` | String - This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits. | 2021 |
-| save_sodexo_card `optional` | This parameter is used to specify the flag to save the Sodexo card along with the payment. Specify any of the following values: 0 - Do not save the Sodexo card. 1 - Save the Sodexo card details. | 1 |
-| source_id `optional` | String - This parameter is used to make payment for Sodexo card saved by the merchant earlier. Here, card details need not to be shared by merchant. | source_12345 |
-| is_check_balance `optional` | String - This parameter is used to specify the flag to check the Sodexo card balance and then the payment amount posted if the Sodexo card has sufficient balance. Specify any of the following values: 0 - Do not check the Sodexo card balance before making the payment transaction. 1 - Check the Sodexo card balance and then post the payment transaction if the card has sufficient balance. Note: This parameter must be used only for saved cards along with source_id parameter. | 1 |
-| furl `mandatory` | String - The success URL, which is the page PayU will redirect to if the transaction is successful. | https://example.com/success |
-| surl `mandatory` | String - The Failure URL, which is the page PayU will redirect to if the transaction is failed. | https://example.com/failure |
-| hash `mandatory` | String - It is the hash calculated by the merchant. The hash calculation logic is: sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT) | calculated_hash_value |
-| address1 `optional` | String - The first line of the billing address. Notes: For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. Mandatory for Cross-Border payments. | 123 Main St |
-| address2 `optional` | String - The second line of the billing address. | Apt 4B |
-| city `optional` | String - The city where your customer resides as part of the billing address. Note: Mandatory for Cross-Border payments. | Mumbai |
-| state `optional` | String - The state where your customer resides as part of the billing address. Note: Mandatory for Cross-Border payments. | Maharashtra |
-| country `optional` | String - The country where your customer resides. Note: Mandatory for Cross-Border payments. | India |
-| zipcode `optional` | String - Billing address zip code is mandatory for the cardless EMI option. Character Limit-20. Note: Mandatory for Cross-Border payments. | 400001 |
-| udf1 `optional` | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. For Cross-Border payments: Mandatory if AD bank request this detail. This parameter must include the Permanent Account Number (PAN) of the buyer must be collected in this field. | ABCDE1234F |
-| udf2 `optional` | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. | custom_data_2 |
-| udf3 `optional` | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. For Cross-Border payments: If AD bank request this detail. This parameter must include the date of birth of the buyer must be collected using this field in the DD-MM-YYYY format. | 15-01-1990 |
-| udf4 `optional` | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. For Cross-Border payments: Mandatory for payment aggregators. This parameter must include end merchant legal entity name. | Merchant Corp Ltd |
-| udf5 `optional` | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. For Cross-Border payments: This parameter must include The invoice ID or invoice number must be collected using this field. | INV_2024_001 |
+  ### Sample request
 
-PayU marks the transaction status based on the response received from the bank. PayU communicates the success URL to you if the payment is successful. Verify the authenticity of the hash value before accepting or rejecting the invoice order. For the list of parameters in the response body for the PayU Hosted integration, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted) under API Reference.
+  ```curl
+  curl -X POST "https://test.payu.in/_payment"  -H "accept: application/json"  -H "Content-Type: application/x-www-form-urlencoded"  -d "key=JP***g&txnid=bvRCCBO4YiGGHE&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=MC&bankcode=SODEXO&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=637513XXXXXX9318&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=Ashish&hash=ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64"
+  ```
 
-### Sample request
-
-```curl
-curl -X POST "https://test.payu.in/_payment"  -H "accept: application/json"  -H "Content-Type: application/x-www-form-urlencoded"  -d "key=JP***g&txnid=bvRCCBO4YiGGHE&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=MC&bankcode=SODEXO&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=637513XXXXXX9318&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=Ashish&hash=ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64"
-```
-
-<HashingRequestParameters />
-
-
+  <HashingRequestParameters />
 </Accordion>
 
 <Accordion title="Step 2: Check response from PayU" icon="fa-code">
+  <ReverseHashing />
 
+  ### Sample response (parsed)
 
-<ReverseHashing />
-
-### Sample response (parsed)
-
-```
-Array
-(
-    [mihpayid] => 403993715524069222
-    [mode] => MC
-    [status] => success
-    [unmappedstatus] => captured
-    [key] => JF***g
-    [txnid] => EaE4ZO3vU4iPsp
-    [amount] => 10.00
-    [cardCategory] => domestic
-    [discount] => 0.00
-    [net_amount_debit] => 10
-    [addedon] => 2022-10-08 19:37:19
-    [productinfo] => iPhone
-    [firstname] => Ashish
-    [lastname] => 
-    [address1] => 
-    [address2] => 
-    [city] => 
-    [state] => 
-    [country] => 
-    [zipcode] => 
-    [email] => test@gmail.com
-    [phone] => 9876543210
-    [udf1] => 
-    [udf2] => 
-    [udf3] => 
-    [udf4] => 
-    [udf5] => 
-    [udf6] => 
-    [udf7] => 
-    [udf8] => 
-    [udf9] => 
-    [udf10] => 
-    [hash] => ed99957adb08fea56c907b88e8d158a79c3562c67f96c298461509826f77a7ae9e88b2a176b3234c25f50bcd451271728719656f3bb59c13a52bebabc468615a
-    [field1] => 0608273386032718000015
-    [field2] => 986987
-    [field3] => 10.00
-    [field4] => 403993715524069222
-    [field5] => 100
-    [field6] => 02
-    [field7] => AUTHPOSITIVE
-    [field8] => 
-    [field9] => Transaction is Successful
-    [payment_source] => payu
-    [PG_TYPE] => MC-PG
-    [bank_ref_num] => 0608273386032718000015
-    [bankcode] => SODEXO
-    [error] => E000
-    [error_Message] => No Error
-    [name_on_card] => Ashish
-    [cardnum] => 637513XXXXXX3104
-   [cardhash] => This field is no longer supported in postback params.
-)
-```
-
-
+  ```
+  Array
+  (
+      [mihpayid] => 403993715524069222
+      [mode] => MC
+      [status] => success
+      [unmappedstatus] => captured
+      [key] => JF***g
+      [txnid] => EaE4ZO3vU4iPsp
+      [amount] => 10.00
+      [cardCategory] => domestic
+      [discount] => 0.00
+      [net_amount_debit] => 10
+      [addedon] => 2022-10-08 19:37:19
+      [productinfo] => iPhone
+      [firstname] => Ashish
+      [lastname] => 
+      [address1] => 
+      [address2] => 
+      [city] => 
+      [state] => 
+      [country] => 
+      [zipcode] => 
+      [email] => test@gmail.com
+      [phone] => 9876543210
+      [udf1] => 
+      [udf2] => 
+      [udf3] => 
+      [udf4] => 
+      [udf5] => 
+      [udf6] => 
+      [udf7] => 
+      [udf8] => 
+      [udf9] => 
+      [udf10] => 
+      [hash] => ed99957adb08fea56c907b88e8d158a79c3562c67f96c298461509826f77a7ae9e88b2a176b3234c25f50bcd451271728719656f3bb59c13a52bebabc468615a
+      [field1] => 0608273386032718000015
+      [field2] => 986987
+      [field3] => 10.00
+      [field4] => 403993715524069222
+      [field5] => 100
+      [field6] => 02
+      [field7] => AUTHPOSITIVE
+      [field8] => 
+      [field9] => Transaction is Successful
+      [payment_source] => payu
+      [PG_TYPE] => MC-PG
+      [bank_ref_num] => 0608273386032718000015
+      [bankcode] => SODEXO
+      [error] => E000
+      [error_Message] => No Error
+      [name_on_card] => Ashish
+      [cardnum] => 637513XXXXXX3104
+     [cardhash] => This field is no longer supported in postback params.
+  )
+  ```
 </Accordion>
 
 <Accordion title="Step 3: Verify the Payment" icon="fa-code">
-
-
-<Verify_Payment_Tabs />
-
+  <Verify_Payment_Tabs />
 </Accordion>
