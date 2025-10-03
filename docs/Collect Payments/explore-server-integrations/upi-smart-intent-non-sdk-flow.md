@@ -16,11 +16,12 @@ metadata:
 next:
   description: ''
 ---
-The Non SDK implementation for finding the UPI supported application in the customer's device. The following steps will help you first find the application installed in the customer’s device supporting smart intent.
+The Non SDK implementation for finding the UPI supported application in the customer's device. The following steps will help you first find the application installed in the customer's device supporting smart intent.
 
 You can use PayU APIs to initiate the transaction and get the Intent payment URI which includes payment details required for the PSP app customer will select for payment. After completion of payment by the customer, you can verify the transaction using the **Verify Payment** API. The following steps are required to enable Smart Intent-based UPI payment in your application.
 
-## Step 1: Update Manifest File
+<Accordion title="Step 1: Update Manifest File" icon="fa-code">
+
 
 Add package ids in your apps manifest file to allow your application to access apps installed on the customer's device. This is required for Android 11 and above.
 
@@ -74,7 +75,11 @@ Add package ids in your apps manifest file to allow your application to access a
 
 <br />
 
-## Step 2: Fetch the List of UPI and Smart Intent Supported Apps
+
+</Accordion>
+
+<Accordion title="Step 2: Fetch the List of UPI and Smart Intent Supported Apps" icon="fa-code">
+
 
 You need to get the list of UPI and smart intent supported applications installed in the device.
 
@@ -119,13 +124,21 @@ private fun getSmartIntentUPIApps(context: Context?):ArrayList<HashMap<String,St
 
 <br />
 
-## Step 3: Get Intent URI
+
+</Accordion>
+
+<Accordion title="Step 3: Get Intent URI" icon="fa-code">
+
 
 Use the **_payment** API to get Intent URI and transaction details for the UPI app selected by the customer. For more information, refer to <Anchor label="Collect Payment API > PayU Hosted Checkout" target="_blank" href="ref:_payment_payu_hosted_checkout">Collect Payment API > PayU Hosted Checkout</Anchor>.
 
-## Step 4: Start Activity
 
-Start activity using package id and Intent URI. After the intent UI you get from the **_payment** API, you need to add “upi://pay“ as a prefix.
+</Accordion>
+
+<Accordion title="Step 4: Start Activity" icon="fa-code">
+
+
+Start activity using package id and Intent URI. After the intent UI you get from the **_payment** API, you need to add "upi://pay" as a prefix.
 
 ```java
 fun makePayment(packageName: String,mActivity: Activity,intentUri:String) {
@@ -139,7 +152,11 @@ fun makePayment(packageName: String,mActivity: Activity,intentUri:String) {
     }
 ```
 
-## Step 5: Get Callback
+
+</Accordion>
+
+<Accordion title="Step 5: Get Callback" icon="fa-code">
+
 
 Get a callback in `onActivityResult` for the status of the transaction. Refer to <Anchor label="Verify Payment" target="_blank" href="ref:verify_payment_api">Verify Payment</Anchor> API to get the final status of the transaction.
 
@@ -155,3 +172,5 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
       }
 }
 ```
+
+</Accordion>
