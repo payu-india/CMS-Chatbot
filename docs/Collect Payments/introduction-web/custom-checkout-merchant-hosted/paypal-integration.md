@@ -84,8 +84,8 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
   <tbody>
     <tr>
       <td>
-        pg
-        **mandatory**
+        pg <br/>
+        `mandatory`
       </td>
 
       <td>
@@ -99,7 +99,7 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
 
     <tr>
       <td>
-        bankcode **mandatory**
+        bankcode  <br/> `mandatory`
       </td>
 
       <td>
