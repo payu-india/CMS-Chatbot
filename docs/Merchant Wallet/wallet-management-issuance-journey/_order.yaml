@@ -1,8 +1,8 @@
 - api-integration-for-wallet-management
+- redemption-using-payu-pg-integration
 - pay-hosted-checkout-merchant-integration-merchant-wallet
 - merchant-hosted-checkout-integration-merchant-wallet
 - sdk-based-integration-merchant-wallet
-- redemption-using-payu-pg-integration
 - semi-closed-loop-wallet-integration
 - closed-loop-wallet-management
 - register-you-customer-intregration-clw
