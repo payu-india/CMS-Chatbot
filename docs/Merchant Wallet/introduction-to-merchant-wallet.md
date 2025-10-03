@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Merchant Wallet
 excerpt: ''
 deprecated: false
 hidden: false
