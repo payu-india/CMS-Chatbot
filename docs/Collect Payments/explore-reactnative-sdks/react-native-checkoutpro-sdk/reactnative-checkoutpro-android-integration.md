@@ -24,12 +24,6 @@ next:
 ---
 To integrate with the CheckoutPro mobile SDK for Android:
 
-* Include the SDK in your app project
-* ​Build the payment parameters​
-* ​Initiate the payment​
-* ​Handle the payment completion​
-* Generate Hash
-
 <Accordion title="Step 1: Include the SDK in your app project" icon="fa-code">
   The CheckoutPro SDK is offered through npm.
 
@@ -306,87 +300,88 @@ To integrate with the CheckoutPro mobile SDK for Android:
     | PaymentParamConstant.walletUrn              | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                                  |
   </Accordion>
 
-<Accordion title="For split Payments details (Optional)" icon="fa-code">
-  For a split payment transaction, create a JSON string with the split payment parameters as shown below:
+  <Accordion title="For split Payments details (Optional)" icon="fa-code">
+    For a split payment transaction, create a JSON string with the split payment parameters as shown below:
 
-  JSON Request Structure of splitInfo Field
-  Here is a sample JSON structure for the splitPaymentDetails field:
+    JSON Request Structure of splitInfo Field
+    Here is a sample JSON structure for the splitPaymentDetails field:
 
-  ```
-  {  
-     "type":"absolute",  
-     "splitInfo":{  
-        "P**\*_Y":{  
-           "aggregatorSubTxnId":"9a70ea0155268101001ba",  
-           "aggregatorSubAmt":"50",  
-           "aggregatorCharges":"20"  
-        },  
-        "P_**K":{  
-           "aggregatorSubTxnId":"9a70ea0155268101001bb",  
-           "aggregatorSubAmt":"30"  
-        }  
-     }  
-  }
-  ```
+    ```
+    {  
+       "type":"absolute",  
+       "splitInfo":{  
+          "P**\*_Y":{  
+             "aggregatorSubTxnId":"9a70ea0155268101001ba",  
+             "aggregatorSubAmt":"50",  
+             "aggregatorCharges":"20"  
+          },  
+          "P_**K":{  
+             "aggregatorSubTxnId":"9a70ea0155268101001bb",  
+             "aggregatorSubAmt":"30"  
+          }  
+       }  
+    }
+    ```
 
-  Then create an object of the PayUPaymentParam class and set the splitPaymentDetails property of the object to the JSON string you created in the earlier step.
+    Then create an object of the PayUPaymentParam class and set the splitPaymentDetails property of the object to the JSON string you created in the earlier step.
 
-  ```
-  splitPaymentDetails = '<pass the splitPayment Json Data>';
-  ```
+    ```
+    splitPaymentDetails = '<pass the splitPayment Json Data>';
+    ```
 
-  Kindly refer to the below link for more details about the [Split During Transaction](https://docs.payu.in/reference/split-during-transaction-using-_payment)
+    Kindly refer to the below link for more details about the [Split During Transaction](https://docs.payu.in/reference/split-during-transaction-using-_payment)
 
-  The payment parameters and additional parameters can be passed using the following code snippet:
+    The payment parameters and additional parameters can be passed using the following code snippet:
 
-  ```Text React.js
-  var payUPaymentParams = {
-      key: "Merchant key",
-      transactionId: "Transaction Id",
-      amount: "Transaction amount",
-      productInfo: "product Info",
-      firstName: "Customer firstName",
-      email: "Customer email",
-      phone: "Customer phone",
-      ios_surl: "Success Url for iOS",
-      ios_furl: "Failure Url for iOS",
-      android_surl: "Success Url for Android",
-      android_furl: "Failure Url for Android",
-      environment: "0 or 1",//<0 for Production/1 for Staging>
-      userCredential: "key:CustomerID",
-      userToken: "<pass the User Token>", //Optional, Only use for Offer
-      additionalCharges:"CC:10,NB:20,SBIB:15", //Optional, Only use if want to take addional charges from user
-      percentageAdditionalCharges:"CC:10,NB:20,SBIB:15", //Optional, Only use if want to take addional charges dynamically from user
-      additionalParam: {
-          udf1: "user defined value 1",
-          udf2: "user defined value 2",
-          udf3: "user defined value 3",
-          udf4: "user defined value 4",
-          udf5: "user defined value 5",
-          payment_related_details_for_mobile_sdk: "payment_related_details_for_mobile_sdk hash",
-          vas_for_mobile_sdk: "vas_for_mobile_sdk hash",
-          payment: "Payment Hash",
-          walletUrn: "<walletUrn>"
-      },
-      splitPaymentDetails: splitPaymentData, // //Optional, Only use for Split Payment
-      payUSIParams: {
-        isFreeTrial:true,
-      	billingAmount:'10',
-      	billingInterval:'1',
-      	paymentStartDate:'2023-04-20',
-      	paymentEndDate:'2023-04-30',
-        billingCycle:"DAILY", //Can be any of  YEARLY | MONTHLY | WEEKLY | DAILY | ONCE | ADHOC
-      	remarks:'Test SI transcaction',
-      	billingCurrency:'INR'
-      }
-  }
-  ```
+    ```Text React.js
+    var payUPaymentParams = {
+        key: "Merchant key",
+        transactionId: "Transaction Id",
+        amount: "Transaction amount",
+        productInfo: "product Info",
+        firstName: "Customer firstName",
+        email: "Customer email",
+        phone: "Customer phone",
+        ios_surl: "Success Url for iOS",
+        ios_furl: "Failure Url for iOS",
+        android_surl: "Success Url for Android",
+        android_furl: "Failure Url for Android",
+        environment: "0 or 1",//<0 for Production/1 for Staging>
+        userCredential: "key:CustomerID",
+        userToken: "<pass the User Token>", //Optional, Only use for Offer
+        additionalCharges:"CC:10,NB:20,SBIB:15", //Optional, Only use if want to take addional charges from user
+        percentageAdditionalCharges:"CC:10,NB:20,SBIB:15", //Optional, Only use if want to take addional charges dynamically from user
+        additionalParam: {
+            udf1: "user defined value 1",
+            udf2: "user defined value 2",
+            udf3: "user defined value 3",
+            udf4: "user defined value 4",
+            udf5: "user defined value 5",
+            payment_related_details_for_mobile_sdk: "payment_related_details_for_mobile_sdk hash",
+            vas_for_mobile_sdk: "vas_for_mobile_sdk hash",
+            payment: "Payment Hash",
+            walletUrn: "<walletUrn>"
+        },
+        splitPaymentDetails: splitPaymentData, // //Optional, Only use for Split Payment
+        payUSIParams: {
+          isFreeTrial:true,
+        	billingAmount:'10',
+        	billingInterval:'1',
+        	paymentStartDate:'2023-04-20',
+        	paymentEndDate:'2023-04-30',
+          billingCycle:"DAILY", //Can be any of  YEARLY | MONTHLY | WEEKLY | DAILY | ONCE | ADHOC
+        	remarks:'Test SI transcaction',
+        	billingCurrency:'INR'
+        }
+    }
+    ```
 
-  For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
+    For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
 
-  ***
+    ***
+  </Accordion>
 </Accordion>
-</Accordion>
+
 <Accordion title="Step 3: Initiate the payment" icon="fa-code">
   Initialize and launch the Checkout Pro SDK by calling the following code snippet:
 
