@@ -29,8 +29,7 @@ PayU allows merchants to create offers for specific Products/SKUs in the cart an
 4. [Step 4: Set SKU Details](https://docs.payu.in/docs/ios_checkoutpro-offers_integration#step-4-set-sku-details)
 5. [Step 5: Generate Hash](https://docs.payu.in/docs/ios_checkoutpro-offers_integration#step-5-generate-the-hash)
 
-## Step 1: Update dependencies
-
+<Accordion title="Step 1: Update dependencies" icon="fa-code">
 Add the following dependencies:
 
 * **Cocoapods**: Use PayUIndia-CheckoutPro version 7.5.1.
@@ -44,16 +43,16 @@ pod 'PayUIndia-CheckoutPro'
 ```
 .package(name: "PayUIndia-CheckoutPro", url: "https://github.com/payu-intrepos/PayUCheckoutPro-iOS", from: "7.5.1")
 ```
+</Accordion>
 
-## Step 2: Initialise the SDK
-
+<Accordion title="Step 2: Initialise the SDK" icon="fa-code">
 > 🚧 Make sure you integrate with CheckoutPro SDK for iOS
 >
 > For step to integrate Checkoutpro in App, refer to [Checkout Pro Integration Steps](ios-checkoutprosdk-integration-steps)
+</Accordion>
 
-## Step 3: Create SKU Details
-
-Initalise Object of Sku details with vaild SKU’s.
+<Accordion title="Step 3: Create SKU Details" icon="fa-code">
+Initalise Object of Sku details with vaild SKU's.
 
 ```swift
 PayUSkuDetails: It contains below properties
@@ -74,11 +73,10 @@ skuAmount: "<Amount of product>"
 quantity: "<total quantity of product>"
 offerKeys: "<Optional - Provide offer keys only if want to restrict offer for mention products, else set null>"
 
- 
+ 
 ```
 
-### Step 4: Set SKU Details
-
+<Accordion title="Step 4: Set SKU Details" icon="fa-code">
 Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to PayUPaymentParams.
 
 ```swift
@@ -96,12 +94,14 @@ let paymentParam = PayUPaymentParam(key: <String>,
 paymentParam.skuDetail = <create SKU Details as mention above and provide here>
 ```
 
-<Callout icon="📘">
+<Callout icon="📘" theme="info">
   **Note**: If you are adding details of SKU offers, the amount passed in `PayUPaymentParam` must be equal to the sum of quantities * `skuAmount` of each item.
 </Callout>
+</Accordion>
 
-## Step 5: Generate the hash
+</Accordion>
 
+<Accordion title="Step 5: Generate the hash" icon="fa-code">
 This integration requires dynamic hashes. You must get hash string in map again `HashConstant.hashString` key in `generateHash`.  You need to send this string to server and append salt there, after appending salt convert string to sha512 hash and return back to SDK.
 
 ```swift
@@ -121,3 +121,4 @@ func generateHash(for param: DictOfString, onCompletion: @escaping PayUHashGener
     onCompletion([hashName : hashFetchedFromServer])
 }
 ```
+</Accordion>
