@@ -20,13 +20,10 @@ To integrate with EFTNET:
 
 ### Steps to Integrate
 
-1. [Initiate the payment with PayU](#step-1-initiate-the-payment-with-payu)
-2. [Check response from PayU](#step-2-check-response-from-payu)
-3. [Verify the payment](#step-3-verify-the-payment)
-
 <RegisterMerchantPrerequiste />
 
-## Step 1: Initiate the payment with PayU
+<Accordion title="Step 1: Initiate the payment with PayU" icon="fa-code">
+
 
 ### Post request syntax & composition
 
@@ -40,11 +37,11 @@ To integrate with EFTNET:
 <input type="hidden" name="email" value="test@gmail.com" />
 <input type="hidden" name="firstname" value="Ashish" />
 <input type="hidden" name="lastname" value="Kumar" />
-<input type="hidden" name="pg" value=“NEFTRTGS” />
+<input type="hidden" name="pg" value="NEFTRTGS" />
 <input type="hidden" name="bankcode" value="EFTAXIS" />
 <input type="hidden" name="surl" value="your own success url" />
 <input type="hidden" name="furl" value="your own failure url" />
-<input type="hidden" name="phone" value="9988776655” />
+<input type="hidden" name="phone" value="9988776655" />
 <input type="hidden" name="hash" value="eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972" />
 <input type="submit" value="submit"> </form>
 </body>
@@ -82,375 +79,139 @@ The following parameters vary for the EFTNEFT payment mode in the **Collect Paym
 
 |                            |                                                                         |
 | :------------------------- | :---------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
+| **Test Environment**       | https://test.payu.in/_payment                                           |
+| **Production Environment** | https://secure.payu.in/_payment                                         |
 
 ### Request parameters
 
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Example</th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
-      <td>
-        <Glossary>key</Glossary> `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to
-
-        [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-
-        .
-      </td>
-
-      <td>
-        8488225
-      </td>
+      <td>key `mandatory`</td>
+      <td>String - This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to Generate Merchant Key and Salt.</td>
+      <td>8488225</td>
     </tr>
-
     <tr>
-      <td>
-        txnid
-        `mandatory`
-      </td>
-
-      <td>
-        `varchar` This parameter is known as Transaction ID (or OrderID). It is the order reference number generated at your (Merchant's) end. It is an identifier which you(merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of same Transaction ID again would fail. Hence, it is essential that you post us a unique transaction ID for every new transaction (Please make sure that the transaction ID being sent to us hasn't been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID').
-      </td>
-
-      <td>
-        fd3e847h2
-      </td>
+      <td>txnid `mandatory`</td>
+      <td>varchar - This parameter is known as Transaction ID (or OrderID). It is the order reference number generated at your (Merchant's) end. It is an identifier which you(merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of same Transaction ID again would fail. Hence, it is essential that you post us a unique transaction ID for every new transaction.</td>
+      <td>fd3e847h2</td>
     </tr>
-
     <tr>
-      <td>
-        amount
-        `mandatory`
-      </td>
-
-      <td>
-        `float` This parameter should contain the payment amount of the particular transaction.
-        **Note**: Type-cast the amount to float type
-      </td>
-
-      <td>
-        10
-      </td>
+      <td>amount `mandatory`</td>
+      <td>float - This parameter should contain the payment amount of the particular transaction. Note: Type-cast the amount to float type</td>
+      <td>10</td>
     </tr>
-
     <tr>
-      <td>
-        productinfo
-        `mandatory`
-      </td>
-
-      <td>
-        `varchar` This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice).
-      </td>
-
-      <td>
-        T-shirt
-      </td>
+      <td>productinfo `mandatory`</td>
+      <td>varchar - This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice).</td>
+      <td>T-shirt</td>
     </tr>
-
     <tr>
-      <td>
-        firstname `mandatory`
-      </td>
-
-      <td>
-        `varchar` This parameter must contain the first name of the customer.
-      </td>
-
-      <td>
-        Ankit
-      </td>
+      <td>firstname `mandatory`</td>
+      <td>varchar - This parameter must contain the first name of the customer.</td>
+      <td>Ankit</td>
     </tr>
-
     <tr>
-      <td>
-        email `mandatory`
-      </td>
-
-      <td>
-        `varchar` This parameter must contain the email of the customer)
-      </td>
-
-      <td>
-        [test@gmail.com](mailto:test@gmail.com)
-      </td>
+      <td>email `mandatory`</td>
+      <td>varchar - This parameter must contain the email of the customer</td>
+      <td>test@gmail.com</td>
     </tr>
-
     <tr>
-      <td>
-        phone `mandatory`
-      </td>
-
-      <td>
-        `integer` Merchant needs to take the customer's GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.
-      </td>
-
-      <td>
-
-      </td>
+      <td>phone `mandatory`</td>
+      <td>integer - Merchant needs to take the customer's GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.</td>
+      <td>9876543210</td>
     </tr>
-
     <tr>
-      <td>
-        <Glossary>pg</Glossary> `mandatory`
-      </td>
-
-      <td>
-        `string` The payment gateway is specified in this parameter. For EFTNET,  specifiy **EFTNET**.
-      </td>
-
-      <td>
-        NEFTRTGS
-      </td>
+      <td>pg `mandatory`</td>
+      <td>string - The payment gateway is specified in this parameter. For EFTNET, specify NEFTRTGS.</td>
+      <td>NEFTRTGS</td>
     </tr>
-
     <tr>
-      <td>
-        <Glossary>bankcode</Glossary> `mandatory`
-      </td>
-
-      <td>
-        `string` Each payment option is identified with a unique bank code at PayU.
-      </td>
-
-      <td>
-        EFTAXIS
-      </td>
+      <td>bankcode `mandatory`</td>
+      <td>string - Each payment option is identified with a unique bank code at PayU.</td>
+      <td>EFTAXIS</td>
     </tr>
-
     <tr>
-      <td>
-        surl `mandatory`
-      </td>
-
-      <td>
-        The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.
-      </td>
-
-      <td>
-        [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
-      </td>
+      <td>surl `mandatory`</td>
+      <td>The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.</td>
+      <td>https://apiplayground-response.herokuapp.com/</td>
     </tr>
-
     <tr>
-      <td>
-        furl `mandatory`
-      </td>
-
-      <td>
-        The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.
-      </td>
-
-      <td>
-        [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
-      </td>
+      <td>furl `mandatory`</td>
+      <td>The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.</td>
+      <td>https://apiplayground-response.herokuapp.com/</td>
     </tr>
-
     <tr>
-      <td>
-        <Glossary>hash</Glossary> `mandatory`
-      </td>
-
-      <td>
-        `string` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash:
-
-        `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||||SALT)`
-
-        For more information, refer to [Generate Hash](doc:hashing-request-and-response).
-      </td>
-
-      <td>
-
-      </td>
+      <td>hash `mandatory`</td>
+      <td>string - The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||||SALT) For more information, refer to Generate Hash.</td>
+      <td>calculated_hash_value</td>
     </tr>
-
     <tr>
-      <td>
-        lastname `optional`
-      </td>
-
-      <td>
-        `string` The last name of the customer.
-      </td>
-
-      <td>
-
-      </td>
+      <td>lastname `optional`</td>
+      <td>string - The last name of the customer.</td>
+      <td>Kumar</td>
     </tr>
-
     <tr>
-      <td>
-        address1 `optional`
-      </td>
-
-      <td>
-        `string` The first line of the billing address.
-      </td>
-
-      <td>
-
-      </td>
+      <td>address1 `optional`</td>
+      <td>string - The first line of the billing address.</td>
+      <td>123 Main St</td>
     </tr>
-
     <tr>
-      <td>
-        address2 `optional`
-      </td>
-
-      <td>
-        `string` The second line of the billing address.
-      </td>
-
-      <td>
-
-      </td>
+      <td>address2 `optional`</td>
+      <td>string - The second line of the billing address.</td>
+      <td>Apt 4B</td>
     </tr>
-
     <tr>
-      <td>
-        city `optional`
-      </td>
-
-      <td>
-        `string` The city where your customer resides as part of the billing address.
-      </td>
-
-      <td>
-
-      </td>
+      <td>city `optional`</td>
+      <td>string - The city where your customer resides as part of the billing address.</td>
+      <td>Mumbai</td>
     </tr>
-
     <tr>
-      <td>
-        state `optional`
-      </td>
-
-      <td>
-        `string` The state where your customer resides as part of the billing address,
-      </td>
-
-      <td>
-
-      </td>
+      <td>state `optional`</td>
+      <td>string - The state where your customer resides as part of the billing address.</td>
+      <td>Maharashtra</td>
     </tr>
-
     <tr>
-      <td>
-        country `optional`
-      </td>
-
-      <td>
-        `string` The country where your customer resides.
-      </td>
-
-      <td>
-
-      </td>
+      <td>country `optional`</td>
+      <td>string - The country where your customer resides.</td>
+      <td>India</td>
     </tr>
-
     <tr>
-      <td>
-        zipcode `optional`
-      </td>
-
-      <td>
-        `string` Billing address zip code is mandatory for the cardless EMI option.
-      </td>
-
-      <td>
-
-      </td>
+      <td>zipcode `optional`</td>
+      <td>string - Billing address zip code is mandatory for the cardless EMI option.</td>
+      <td>400001</td>
     </tr>
-
     <tr>
-      <td>
-        udf1
-      </td>
-
-      <td>
-        `string` This parameter has been made for you to keep any information corresponding to the transaction.
-      </td>
-
-      <td>
-
-      </td>
+      <td>udf1 `optional`</td>
+      <td>string - This parameter has been made for you to keep any information corresponding to the transaction.</td>
+      <td>custom_data_1</td>
     </tr>
-
     <tr>
-      <td>
-        udf2 `optional`
-      </td>
-
-      <td>
-        `string` This parameter has been made for you to keep any information corresponding to the transaction.
-      </td>
-
-      <td>
-
-      </td>
+      <td>udf2 `optional`</td>
+      <td>string - This parameter has been made for you to keep any information corresponding to the transaction.</td>
+      <td>custom_data_2</td>
     </tr>
-
     <tr>
-      <td>
-        udf3
-      </td>
-
-      <td>
-        `string` This parameter has been made for you to keep any information corresponding to the transaction.
-      </td>
-
-      <td>
-
-      </td>
+      <td>udf3 `optional`</td>
+      <td>string - This parameter has been made for you to keep any information corresponding to the transaction.</td>
+      <td>custom_data_3</td>
     </tr>
-
     <tr>
-      <td>
-        udf4 `optional`
-      </td>
-
-      <td>
-        `string` This parameter has been made for you to keep any information corresponding to the transaction.
-      </td>
-
-      <td>
-
-      </td>
+      <td>udf4 `optional`</td>
+      <td>string - This parameter has been made for you to keep any information corresponding to the transaction.</td>
+      <td>custom_data_4</td>
     </tr>
-
     <tr>
-      <td>
-        udf5
-      </td>
-
-      <td>
-        `string` This parameter has been made for you to keep any information corresponding to the transaction.
-      </td>
-
-      <td>
-
-      </td>
+      <td>udf5 `optional`</td>
+      <td>string - This parameter has been made for you to keep any information corresponding to the transaction.</td>
+      <td>custom_data_5</td>
     </tr>
   </tbody>
 </Table>
@@ -460,493 +221,14 @@ The following parameters vary for the EFTNEFT payment mode in the **Collect Paym
 ### Sample request
 
 ```curl
-curl -X \
- POST "https://test.payu.in/_payment-H "accept: application/json" -H \
- "Content-Type: application/x-www-form-urlencoded" -d"key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=NEFTRTGS&bankcode=EFTAXIS&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
-```
-```javascript
-/**
- * PayU NEFT/RTGS Payment Integration using Fetch API
- * 
- * IMPORTANT: This should only be executed server-side (e.g., in Node.js), never in the browser,
- * as it contains sensitive payment information.
- */
-
-// Payment endpoint
-const url = 'https://test.payu.in/_payment';
-
-// Form data parameters
-const formData = new URLSearchParams();
-formData.append('key', 'J****g');                 // Replace with your actual merchant key
-formData.append('txnid', 'aI1UM19ONxLgPz');      // Transaction ID (unique for each transaction)
-formData.append('amount', '10.00');              // Payment amount
-formData.append('firstname', 'Ashish');          // Customer's name
-formData.append('email', 'test@gmail.com');      // Customer's email
-formData.append('phone', '9876543210');          // Customer's phone number
-formData.append('productinfo', 'iPhone');        // Product information
-formData.append('pg', 'NEFTRTGS');               // Payment gateway (NEFT/RTGS)
-formData.append('bankcode', 'EFTAXIS');          // Bank code (Axis Bank NEFT)
-formData.append('surl', 'https://apiplayground-response.herokuapp.com/'); // Success URL
-formData.append('furl', 'https://apiplayground-response.herokuapp.com/'); // Failure URL
-formData.append('hash', '6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa'); // Security hash
-
-// Request options
-const requestOptions = {
-  method: 'POST',
-  headers: {
-    'accept': 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded'
-  },
-  body: formData
-};
-
-// Execute the request
-fetch(url, requestOptions)
-  .then(response => {
-    console.log('Status Code:', response.status);
-    return response.text(); // or response.json() if you're sure it returns JSON
-  })
-  .then(data => {
-    console.log('Response:', data);
-    // Process payment response here
-    // Typically, for NEFT/RTGS, you'll get bank details to show to the customer
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-```
-```python
-import urllib.request
-import urllib.parse
-import json
-from typing import Dict, Any
-
-def process_neft_payment() -> Dict[str, Any]:
-    """
-    Process NEFT/RTGS payment using PayU's Merchant Hosted Checkout
-    
-    IMPORTANT: This is a server-side function. Never expose payment details to client-side code.
-    
-    Returns:
-        Dictionary with response from PayU API
-    """
-    # API endpoint
-    url = "https://test.payu.in/_payment"
-    
-    # Prepare the form data
-    payload = {
-        "key": "J****g",                   # Replace with your actual merchant key
-        "txnid": "aI1UM19ONxLgPz",         # Transaction ID (unique for each transaction)
-        "amount": "10.00",                 # Payment amount
-        "firstname": "Ashish",             # Customer's name
-        "email": "test@gmail.com",         # Customer's email
-        "phone": "9876543210",             # Customer's phone number
-        "productinfo": "iPhone",           # Product information
-        "pg": "NEFTRTGS",                  # Payment gateway (NEFT/RTGS)
-        "bankcode": "EFTAXIS",             # Bank code (Axis Bank NEFT)
-        "surl": "https://apiplayground-response.herokuapp.com/", # Success URL
-        "furl": "https://apiplayground-response.herokuapp.com/", # Failure URL
-        "hash": "6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa" # Security hash
-    }
-    
-    # Convert dictionary to URL-encoded form data
-    data = urllib.parse.urlencode(payload).encode('utf-8')
-    
-    # Set headers
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
-    
-    # Create a request object
-    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
-    
-    try:
-        # Send the request and get the response
-        with urllib.request.urlopen(req) as response:
-            response_data = response.read().decode('utf-8')
-            
-            # Process and return response
-            return {
-                "status_code": response.getcode(),
-                "response": response_data
-            }
-            
-    except urllib.error.HTTPError as e:
-        # Handle HTTP errors
-        error_data = e.read().decode('utf-8')
-        return {
-            "status_code": e.code,
-            "error": e.reason,
-            "response": error_data
-        }
-        
-    except Exception as e:
-        # Handle other exceptions
-        return {
-            "status_code": 500,
-            "error": str(e),
-            "response": "An error occurred during payment processing"
-        }
-
-# Example usage
-if __name__ == "__main__":
-    result = process_neft_payment()
-    print(f"Status Code: {result['status_code']}")
-    if 'error' in result:
-        print(f"Error: {result['error']}")
-    print(f"Response: {result['response']}")
-    # For NEFT/RTGS, display the bank details to the customer for making the transfer
-
-```
-```php
-<?php
-/**
- * Process NEFT/RTGS payment using PayU's Merchant Hosted Checkout
- * 
- * IMPORTANT: This is a server-side function. Never expose payment details to client-side code.
- * 
- * @return array Response from PayU API
- */
-function processNeftPayment() {
-    // API endpoint
-    $url = "https://test.payu.in/_payment";
-    
-    // Prepare the form data
-    $payload = [
-        "key" => "J****g",                    // Replace with your actual merchant key
-        "txnid" => "aI1UM19ONxLgPz",          // Transaction ID (unique for each transaction)
-        "amount" => "10.00",                  // Payment amount
-        "firstname" => "Ashish",              // Customer's name
-        "email" => "test@gmail.com",          // Customer's email
-        "phone" => "9876543210",              // Customer's phone number
-        "productinfo" => "iPhone",            // Product information
-        "pg" => "NEFTRTGS",                   // Payment gateway (NEFT/RTGS)
-        "bankcode" => "EFTAXIS",              // Bank code (Axis Bank NEFT)
-        "surl" => "https://apiplayground-response.herokuapp.com/", // Success URL
-        "furl" => "https://apiplayground-response.herokuapp.com/", // Failure URL
-        "hash" => "6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa" // Security hash
-    ];
-    
-    // Initialize cURL session
-    $ch = curl_init($url);
-    
-    // Set cURL options
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        "accept: application/json",
-        "Content-Type: application/x-www-form-urlencoded"
-    ]);
-    
-    // For additional security in production
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-    
-    // Execute the request
-    $response = curl_exec($ch);
-    $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    $error = curl_error($ch);
-    $errno = curl_errno($ch);
-    
-    // Close cURL session
-    curl_close($ch);
-    
-    // Handle response
-    if ($errno) {
-        return [
-            "status_code" => 500,
-            "error" => $error,
-            "response" => "cURL Error: " . $error
-        ];
-    }
-    
-    return [
-        "status_code" => $statusCode,
-        "response" => $response
-    ];
-}
-
-// Example usage
-$result = processNeftPayment();
-echo "Status Code: " . $result["status_code"] . "\n";
-if (isset($result["error"])) {
-    echo "Error: " . $result["error"] . "\n";
-}
-echo "Response: " . $result["response"] . "\n";
-// For NEFT/RTGS, display the bank details to the customer for making the transfer
-?>
-
-```
-```java
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringJoiner;
-
-/**
- * PayU NEFT/RTGS Payment Processor for Merchant Hosted Checkout
- * 
- * IMPORTANT: This is a server-side implementation. Never expose payment details to client-side code.
- */
-public class PayUNeftPaymentProcessor {
-    
-    // API endpoint
-    private static final String PAYU_TEST_URL = "https://test.payu.in/_payment";
-    
-    /**
-     * Process NEFT/RTGS payment through PayU
-     * @return PaymentResponse containing status and response data
-     */
-    public PaymentResponse processNeftPayment() {
-        try {
-            // Initialize URL
-            URL url = new URL(PAYU_TEST_URL);
-            
-            // Prepare form parameters
-            Map<String, String> params = new HashMap<>();
-            params.put("key", "J****g");                    // Replace with your actual merchant key
-            params.put("txnid", "aI1UM19ONxLgPz");          // Transaction ID (unique for each transaction)
-            params.put("amount", "10.00");                  // Payment amount
-            params.put("firstname", "Ashish");              // Customer's name
-            params.put("email", "test@gmail.com");          // Customer's email
-            params.put("phone", "9876543210");              // Customer's phone number
-            params.put("productinfo", "iPhone");            // Product information
-            params.put("pg", "NEFTRTGS");                   // Payment gateway (NEFT/RTGS)
-            params.put("bankcode", "EFTAXIS");              // Bank code (Axis Bank NEFT)
-            params.put("surl", "https://apiplayground-response.herokuapp.com/"); // Success URL
-            params.put("furl", "https://apiplayground-response.herokuapp.com/"); // Failure URL
-            params.put("hash", "6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"); // Security hash
-            
-            // Convert parameters to URL-encoded form data
-            StringJoiner formData = new StringJoiner("&");
-            for (Map.Entry<String, String> entry : params.entrySet()) {
-                formData.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + 
-                             URLEncoder.encode(entry.getValue(), "UTF-8"));
-            }
-            byte[] postData = formData.toString().getBytes(StandardCharsets.UTF_8);
-            
-            // Configure connection
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("accept", "application/json");
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            conn.setRequestProperty("Content-Length", String.valueOf(postData.length));
-            conn.setDoOutput(true);
-            conn.setConnectTimeout(5000);
-            conn.setReadTimeout(15000);
-            
-            // Send request
-            try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
-                dos.write(postData);
-                dos.flush();
-            }
-            
-            // Get response
-            int responseCode = conn.getResponseCode();
-            
-            // Read response data
-            StringBuilder response = new StringBuilder();
-            try (BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(
-                        responseCode >= 400 ? conn.getErrorStream() : conn.getInputStream(), 
-                        StandardCharsets.UTF_8))) {
-                        
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
-                }
-            }
-            
-            return new PaymentResponse(responseCode, response.toString(), null);
-            
-        } catch (IOException e) {
-            // Handle exception
-            return new PaymentResponse(500, null, "Error: " + e.getMessage());
-        }
-    }
-    
-    /**
-     * Payment response wrapper class
-     */
-    public static class PaymentResponse {
-        private final int statusCode;
-        private final String response;
-        private final String error;
-        
-        public PaymentResponse(int statusCode, String response, String error) {
-            this.statusCode = statusCode;
-            this.response = response;
-            this.error = error;
-        }
-        
-        public int getStatusCode() {
-            return statusCode;
-        }
-        
-        public String getResponse() {
-            return response;
-        }
-        
-        public String getError() {
-            return error;
-        }
-        
-        public boolean isSuccess() {
-            return statusCode >= 200 && statusCode < 300;
-        }
-    }
-    
-    // Example usage
-    public static void main(String[] args) {
-        PayUNeftPaymentProcessor processor = new PayUNeftPaymentProcessor();
-        PaymentResponse result = processor.processNeftPayment();
-        
-        System.out.println("Status Code: " + result.getStatusCode());
-        if (result.isSuccess()) {
-            System.out.println("Response: " + result.getResponse());
-            // For NEFT/RTGS, display the bank details to the customer for making the transfer
-        } else {
-            System.out.println("Error: " + result.getError());
-        }
-    }
-}
-
-```
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Text;
-
-namespace PayUNeftIntegration
-{
-    /// <summary>
-    /// PayU NEFT/RTGS Payment Processor for Merchant Hosted Checkout
-    /// 
-    /// IMPORTANT: This is a server-side implementation. Never expose payment details to client-side code.
-    /// </summary>
-    public class PayUNeftPaymentProcessor
-    {
-        // API endpoint
-        private const string PayuTestUrl = "https://test.payu.in/_payment";
-        
-        /// <summary>
-        /// Process NEFT/RTGS payment through PayU
-        /// </summary>
-        /// <returns>PaymentResponse containing status and response data</returns>
-        public async Task<PaymentResponse> ProcessNeftPaymentAsync()
-        {
-            try
-            {
-                // Prepare form parameters
-                var formData = new Dictionary<string, string>
-                {
-                    { "key", "J****g" },                     // Replace with your actual merchant key
-                    { "txnid", "aI1UM19ONxLgPz" },           // Transaction ID (unique for each transaction)
-                    { "amount", "10.00" },                   // Payment amount
-                    { "firstname", "Ashish" },               // Customer's name
-                    { "email", "test@gmail.com" },           // Customer's email
-                    { "phone", "9876543210" },               // Customer's phone number
-                    { "productinfo", "iPhone" },             // Product information
-                    { "pg", "NEFTRTGS" },                    // Payment gateway (NEFT/RTGS)
-                    { "bankcode", "EFTAXIS" },               // Bank code (Axis Bank NEFT)
-                    { "surl", "https://apiplayground-response.herokuapp.com/" }, // Success URL
-                    { "furl", "https://apiplayground-response.herokuapp.com/" }, // Failure URL
-                    { "hash", "6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa" } // Security hash
-                };
-                
-                // Create HttpClient with timeout
-                using (var httpClient = new HttpClient())
-                {
-                    httpClient.Timeout = TimeSpan.FromSeconds(30);
-                    
-                    // Convert form data to content
-                    var content = new FormUrlEncodedContent(formData);
-                    
-                    // Add headers
-                    content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-www-form-urlencoded");
-                    httpClient.DefaultRequestHeaders.Add("accept", "application/json");
-                    
-                    // Send POST request
-                    var response = await httpClient.PostAsync(PayuTestUrl, content);
-                    
-                    // Get response content
-                    var responseContent = await response.Content.ReadAsStringAsync();
-                    
-                    return new PaymentResponse(
-                        (int)response.StatusCode,
-                        responseContent,
-                        null
-                    );
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle exception
-                return new PaymentResponse(
-                    500,
-                    null,
-                    $"Error: {ex.Message}"
-                );
-            }
-        }
-        
-        /// <summary>
-        /// Payment response wrapper class
-        /// </summary>
-        public class PaymentResponse
-        {
-            public int StatusCode { get; }
-            public string Response { get; }
-            public string Error { get; }
-            
-            public PaymentResponse(int statusCode, string response, string error)
-            {
-                StatusCode = statusCode;
-                Response = response;
-                Error = error;
-            }
-            
-            public bool IsSuccess => StatusCode >= 200 && StatusCode < 300;
-        }
-    }
-    
-    // Example usage
-    class Program
-    {
-        static async Task Main(string[] args)
-        {
-            var processor = new PayUNeftPaymentProcessor();
-            var result = await processor.ProcessNeftPaymentAsync();
-            
-            Console.WriteLine($"Status Code: {result.StatusCode}");
-            if (result.IsSuccess)
-            {
-                Console.WriteLine($"Response: {result.Response}");
-                // For NEFT/RTGS, display the bank details to the customer for making the transfer
-            }
-            else
-            {
-                Console.WriteLine($"Error: {result.Error}");
-            }
-        }
-    }
-}
-
+curl -X POST "https://test.payu.in/_payment"  -H "accept: application/json"  -H "Content-Type: application/x-www-form-urlencoded"  -d "key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=NEFTRTGS&bankcode=EFTAXIS&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
 ```
 
-## Step 2: Check response from PayU
+
+</Accordion>
+
+<Accordion title="Step 2: Check response from PayU" icon="fa-code">
+
 
 <ReverseHashing />
 
@@ -954,6 +236,12 @@ namespace PayUNeftIntegration
   **Note on Response**: For security reasons, the sample response or URL is not included here.
 </Callout>
 
-## Step 3: Verify the payment
+
+</Accordion>
+
+<Accordion title="Step 3: Verify the payment" icon="fa-code">
+
 
 <Verify_Payment_Tabs />
+
+</Accordion>
