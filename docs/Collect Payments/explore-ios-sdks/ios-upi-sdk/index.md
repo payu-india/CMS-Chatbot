@@ -311,7 +311,7 @@ After the payment is made, you should get the response in your payment completio
 ```
 
 ***
-</Accordion>
+
 
 <Accordion title="Make Payment through UPICore" icon="fa-code">
 1. **UPI Collect Flow**: Validate VPA with `paymentparam`, it will give you a callback once it has verified VPA in the completion block.
@@ -356,6 +356,7 @@ PayUThirdPartyManager.makePayment(withApp: <PayUSupportedIntentApp>, withIntentM
 ```
 
 You will get the Socket model using the`PayUPersistentStore.getSocketConnectionModel()`.
+   </Accordion>
 </Accordion>
 
 <Accordion title="Test the Integration" icon="fa-code">
@@ -370,7 +371,6 @@ You can make test payments using one of the payment methods configured at the Ch
 ***
 
 <TestCardsCallout />
-</Accordion>
 
 <Accordion title="Test credentials for supported payment methods" icon="fa-code">
 Following are the payment methods supported in PayU Test mode.
@@ -541,10 +541,10 @@ You can use the following wallets and their corresponding credentials to test wa
   </tbody>
 </Table>
 </Accordion>
+</Accordion>
 
 <Accordion title="Go-live Checklist" icon="fa-code">
 Ensure these steps before you deploy the integration in a live environment.
-</Accordion>
 
 <Accordion title="Collect Live Payments" icon="fa-code">
 After [testing the integration](https://docs.payu.in/docs/ios-upisdk-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
@@ -566,4 +566,5 @@ Configure the Verify payment method to fetch the payment status. We strongly rec
 
 <Accordion title="Checklist 4: Configure Webhook" icon="fa-code">
 We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
+</Accordion>
 </Accordion>
