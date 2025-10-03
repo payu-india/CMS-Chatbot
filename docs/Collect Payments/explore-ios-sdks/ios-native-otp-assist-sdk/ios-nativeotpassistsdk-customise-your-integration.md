@@ -1,14 +1,13 @@
 ---
 title: Customise your Integration
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The Native OTP Assist SDK provides several customization options allowing you to make the SDK closer to the look & feel of your app and work as per your business requirements.
 
