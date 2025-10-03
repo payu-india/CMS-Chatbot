@@ -10,8 +10,7 @@ metadata:
 next:
   description: ''
 ---
-## Prerequisites
-
+<Accordion title="Prerequisites" icon="fa-code">
 > ❗️ Before you begin
 >
 > * To download iOS SDK through CocoaPod, refer to CocoaPods Integration.
@@ -19,8 +18,7 @@ next:
 >   i. Download latest SDK version and unzip it.
 >   ii. Unzip Release-Universal, now drag and drop the content of unzipped file into Sample App
 
-### Step 1: Initial set up
-
+<Accordion title="Step 1: Initial set up" icon="fa-code">
 To perform the initial setup:
 
 1. Download the latest SDK version from the following location and unzip it: [https://github.com/payu-intrepos/iOS-SDK/releases](https://github.com/payu-intrepos/iOS-SDK/releases)
@@ -81,7 +79,7 @@ paymentParamForPassing.offerKey = "offertest@1411"
 //You don't need to set udf1-5 in case you are not using them email and firstname can be empty strings "" if you don't want to use them For store user card feature you need to set userCredentials
 ```
 
-> **Note**: You don’t need to set the udf1 – udf5 parameters. In case you are not using them, the email and firstname parameters can be empty strings (“”).
+> **Note**: You don't need to set the udf1 – udf5 parameters. In case you are not using them, the email and firstname parameters can be empty strings ("").
 
 5. Set `paymentParamForPassing.userCredentials` to store the user card:
 
@@ -128,9 +126,9 @@ paymentParamForPassing.hashes.offerHash = "1e99fdb59bd91c1a85624104c0fcfae34d7fc
 ```
 
 ***
+</Accordion>
 
-### Step 2: Generate URL request for payment
-
+<Accordion title="Step 2: Generate URL request for payment" icon="fa-code">
 To generate an URL request (and post parameters), you need to create an object as `createRequest `of the PayUCreateRequest class as shown in the following code block:
 
 ```swift Swift
@@ -143,9 +141,11 @@ let createRequest = PayUCreateRequest()
 The callbacks give your URLRequest as well as post parameters (NSString format). You can use these post parameters to initialize the Custom Browser Instance.
 
 The following payment types are supported by SDK, and additional parameters are supported. The additional parameters that can be configured in the createRequest object created earlier are described in the following sections:
+</Accordion>
 
-## Credit Card/Debit Card Integration
+</Accordion>
 
+<Accordion title="Credit Card/Debit Card Integration" icon="fa-code">
 To pay using a credit card or debit card, perform the following steps.
 
 1. Set the following credit card parameters:
@@ -191,9 +191,9 @@ createRequest().createRequest(withPaymentParam: paymentParamForPassing, forPayme
 ```
 
 <br />
+</Accordion>
 
-## Stored Card Integration
-
+<Accordion title="Stored Card Integration" icon="fa-code">
 To pay using a stored card, perform the following steps.
 
 1. Set the stored card parameter similar to the following code snippet:
@@ -235,9 +235,9 @@ createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPayment
     }
 }];
 ```
+</Accordion>
 
-## Tokenized Card Payments
-
+<Accordion title="Tokenized Card Payments" icon="fa-code">
 To pay using a stored card, perform the following steps.
 
 1. Set the stored card parameter similar to the following code snippet:
@@ -279,9 +279,9 @@ createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPayment
     }
 }];
 ```
+</Accordion>
 
-## Net Banking Integration
-
+<Accordion title="Net Banking Integration" icon="fa-code">
 To pay using Net Banking, perform the following steps.
 
 1. Set the Net Banking parameter as follows:
@@ -316,9 +316,9 @@ if error == nil {
 ```
 
 <br />
+</Accordion>
 
-## Cash Card Integration
-
+<Accordion title="Cash Card Integration" icon="fa-code">
 To pay using a Cash Card, perform the following steps
 
 1. Set the cashcard parameter as follows:
@@ -353,17 +353,16 @@ if error == nil {
        }
     }];
 ```
+</Accordion>
 
-## EMI Payment
-
+<Accordion title="EMI Payment" icon="fa-code">
 The section describes the following methods to collect payments with EMI:
 
 * [EMI](#emi)
 * [Cardless EMI](#cardless-emi)
 * [Subvention EMI](#subvention-emi)
 
-### EMI
-
+<Accordion title="EMI" icon="fa-code">
 To pay using EMI, perform the following steps.
 
 1. Set the EMI parameter for instance:
@@ -408,9 +407,9 @@ if error == nil {
 }
 })
 ```
+</Accordion>
 
-### Cardless EMI
-
+<Accordion title="Cardless EMI" icon="fa-code">
 To Pay using CardlessEMI, you need to set a parameter similar to the following code snippet:
 
 ```objectivec Objective-C
@@ -424,9 +423,9 @@ paymentParamForPassing.bankCode = "ZESTMON" //BankID
 paymentParamForPassing.isCardlessEMI = true
 paymentParamForPassing.phoneNumber = "99999999"
 ```
+</Accordion>
 
-### Subvention EMI
-
+<Accordion title="Subvention EMI" icon="fa-code">
 To pay using Subvention EMI, perform the following steps.
 
 1. Set the value of the `subventionAmount` parameter of `paymentParams`:
@@ -469,13 +468,15 @@ createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPayment
 <Callout icon="📘" theme="info">
   **Hashing algorithm of a subvention transaction**: If subventionAmount is passed, the hash formula for payment hash will be similar to the following algorithm: `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|SubventionAmount)`
 </Callout>
+</Accordion>
 
-### Fetch a List of No-Cost EMI-supporting banks
+<Accordion title="Fetch a List of No-Cost EMI-supporting banks" icon="fa-code">
+Pass the value for the subventionEligibility parameter as "all" in the Fetch Payment Option WebService. For more information refer to Web Services for Core.
+</Accordion>
 
-Pass the value for the subventionEligibility parameter as “all” in the Fetch Payment Option WebService. For more information refer to Web Services for Core.
+</Accordion>
 
-## LazyPay BNPL Integration
-
+<Accordion title="LazyPay BNPL Integration" icon="fa-code">
 To pay using LazyPay (BNPL), perform the following steps.
 
 1. Set the Notify URL to the HTTPS Callback URL of the merchant where notification of transaction status will be sent on completion of a transaction.
@@ -510,9 +511,9 @@ if error == nil {
 }
 })
 ```
+</Accordion>
 
-## TWID Pay BNPL Integration
-
+<Accordion title="TWID Pay BNPL Integration" icon="fa-code">
 To pay using TWID Pay:
 
 1. Create the post data with `CASH_CARD_TWID`:
@@ -533,9 +534,9 @@ paymentParamForPassing.bankCode = CASH_CARD_TWID //BankCode
 ```swift Swift
 paymentParamForPassing.twidCustomerHash = "Twid customer hash"
 ```
+</Accordion>
 
-## Pluxee Card Integration
-
+<Accordion title="Pluxee Card Integration" icon="fa-code">
 To pay using Pluxee card:
 
 1. Create the post data with the`PAYMENT_PG_SODEXO `:
@@ -580,7 +581,7 @@ createRequest().createRequest(withPaymentParam: paymentParamForPassing, forPayme
 })
 ```
 
-The successful or failed payment response is sent by PayU.
+The successful or failed payment response is sent by PayU. 
 
 3. Get the Sodexo source id in the field3 param of PayuResponse, which can be used to show and get stored Sodexo card details and also can be used for initiating payment.
 
@@ -593,9 +594,9 @@ The successful or failed payment response is sent by PayU.
 ```
 
 <br />
+</Accordion>
 
-## Test the Integration
-
+<Accordion title="Test the Integration" icon="fa-code">
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 You can make test payments using one of the payment methods configured at the Checkout.
@@ -608,8 +609,7 @@ You can make test payments using one of the payment methods configured at the Ch
 
 <TestCardsCallout />
 
-### Test credentials for supported payment methods
-
+<Accordion title="Test credentials for supported payment methods" icon="fa-code">
 Following are the payment methods supported in PayU Test mode.
 
 #### Test credentials for Net Banking
@@ -779,13 +779,14 @@ You can use the following wallets and their corresponding credentials to test wa
 </Table>
 
 <br />
+</Accordion>
 
-## Go-live Checklist
+</Accordion>
 
+<Accordion title="Go-live Checklist" icon="fa-code">
 Ensure these steps before you deploy the integration in a live environment.
 
-### Collect Live Payments
-
+<Accordion title="Collect Live Payments" icon="fa-code">
 After[testing the integration](https://docs.payu.in/docs/ios-coresdk-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
 > 🚧 Watch Out!
@@ -793,23 +794,26 @@ After[testing the integration](https://docs.payu.in/docs/ios-coresdk-test-integr
 > Ensure that you are using the production merchant key and salt generated in the live mode.
 
 <ProductionKeyAndSaltProcedure />
+</Accordion>
 
-### Checklist 2: Configure environment
-
+<Accordion title="Checklist 2: Configure environment" icon="fa-code">
 Set the value of the `environment`to `test/production` in the payment integration code. This enables the integration to accept live payments.
+</Accordion>
 
-### Checklist 3: Configure your SURL/FURL
-
+<Accordion title="Checklist 3: Configure your SURL/FURL" icon="fa-code">
 PayU recommends you to design, your own SURL and FURL.
 
 Refer the Link to [Handle SURL and FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios).
 
 > 🚧 We are not recommended to go live with PayU SURL and FURL.
+</Accordion>
 
-### Checklist 4: Configure verify payment method
-
+<Accordion title="Checklist 4: Configure verify payment method" icon="fa-code">
 Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
+</Accordion>
 
-### Checklist 5: Configure Webhook
-
+<Accordion title="Checklist 5: Configure Webhook" icon="fa-code">
 We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
+</Accordion>
+
+</Accordion>
