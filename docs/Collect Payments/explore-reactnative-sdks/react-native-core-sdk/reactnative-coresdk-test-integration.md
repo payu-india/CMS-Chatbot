@@ -2,7 +2,9 @@
 title: Test the Integration
 excerpt: Use the Test mode to check if the integration is working as expected.
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: >-
@@ -16,8 +18,6 @@ metadata:
     - PayU React Native Core Mobile Integration Test
     - React Native CheckoutPro SDK Integration Testing
   robots: index
-next:
-  description: ''
 ---
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
@@ -60,7 +60,7 @@ For Testing the UPI Collect flow, Please follow the below steps:- 
 2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
 3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
 
-[https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn\_id>
+[https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn_id>
 
 #### For Android
 
