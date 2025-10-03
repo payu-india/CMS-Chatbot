@@ -22,9 +22,9 @@ The Native OTP Assist SDK gives you the following key capabilities:
 
 <Accordion title="Integration Steps" icon="fa-code">
 The iOS Native OTP Assist SDK integration involves the following steps:
+</Accordion>
 
-### Step 1: Include the SDK
-
+<Accordion title="Step 1: Include the SDK" icon="fa-code">
 The Native OTP SDK is offered via CocoaPods. To add the SDK to your app project, include the SDK framework in your `podfile`.
 
 `// make sure to add below-mentioned line to use dynamic frameworksuse_frameworks!​
@@ -71,9 +71,9 @@ You can integrate PayUIndia-NativeOtpAssist with your app or SDK with the follow
 `.package(name: "PayUIndia-NativeOtpAssist", url: "https://github.com/payu-intrepos/PayUNativeOtpAssist-iOS", from: "2.0.0")`
 
 ***
+</Accordion>
 
-### Step 2: Generate payment hash
-
+<Accordion title="Step 2: Generate payment hash" icon="fa-code">
 For detailed information on hash generation, refer to [Hash Generation](doc:set-up-the-payment-hashes).
 
 > ❗️ Callout
@@ -81,9 +81,9 @@ For detailed information on hash generation, refer to [Hash Generation](doc:set-
 > Every transaction (payment or non-payment) needs a hash by the merchant before sending the transaction details to PayU. This is required for PayU to validate the authenticity of the transaction. This should be done on your server.
 
 ***
+</Accordion>
 
-### Create postData
-
+<Accordion title="Create postData" icon="fa-code">
 To initiate a payment, your app will need to send transactional information to the Checkout Pro SDK. To pass this information, build a payment parameter object similar to the following code snippet:
 
 > **Note**: TransactionId can't have a special character and not more than 25 characters.
@@ -142,9 +142,9 @@ paymentParam.userCredential = <#T##String#> // For saving and fetching user's sa
 > Use Core SDK library to generate payment post data.
 
 ***
+</Accordion>
 
-### Step 3: Initiate payment
-
+<Accordion title="Step 3: Initiate payment" icon="fa-code">
 Initialize the Native OTP Assist SDK by providing the PayUOtpAssistConfig object having the`postdata `and reference to the `PayUOtpAssistCallback` to listen to the SDK events.
 
 ```Text Objective-C
@@ -205,9 +205,9 @@ You will get `PayUAcsRequest on shouldHandleFallback(`) callback. whether you wi
 | issuerUrl            | It's the Bank/ACS page Url.                                                                                                                           |
 | issuerPostData       | You need to load `issuerUrl` to the Webview along with this `issuerPostdata` string. Ex: `webView.postUrl`(`issuerUrl, issuerPostData.toByteArray()`) |
 | acsTemplate          | If` issuerUr`l is empty, you need to load acsTemplate to the Webview. Ex: `webView.loadData`(`acsTemplate, "text/html", "UTF-8"`);                    |
+</Accordion>
 
-### Error codes
-
+<Accordion title="Error codes" icon="fa-code">
 | Error Code | Description                                              |
 | :--------- | :------------------------------------------------------- |
 | 1001       | No Internet                                              |
@@ -218,9 +218,9 @@ You will get `PayUAcsRequest on shouldHandleFallback(`) callback. whether you wi
 | 1006       | The bank page timed out, please verify with your server. |
 
 ***
+</Accordion>
 
-### Step 4: Verify the transaction
-
+<Accordion title="Step 4: Verify the transaction" icon="fa-code">
 After you get the response from SDK, make sure to confirm it with the PayU server.
 
 <Callout icon="🚧" theme="warn">
@@ -257,9 +257,9 @@ You can make test payments using one of the payment methods configured at the Ch
 ***
 
 <TestCardsCallout />
+</Accordion>
 
-### Test credentials for supported payment methods
-
+<Accordion title="Test credentials for supported payment methods" icon="fa-code">
 Following are the payment methods supported in PayU Test mode.
 
 #### Test credentials for Net Banking
@@ -431,9 +431,9 @@ You can use the following wallets and their corresponding credentials to test wa
 
 <Accordion title="Go-live Checklist" icon="fa-code">
 Ensure these steps before you deploy the integration in a live environment.
+</Accordion>
 
-### Collect Live Payments
-
+<Accordion title="Collect Live Payments" icon="fa-code">
 After [testing the integration](https://docs.payu.in/docs/ios-nativeotpassistsdk-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
 > 🚧 Watch Out!
@@ -441,16 +441,16 @@ After [testing the integration](https://docs.payu.in/docs/ios-nativeotpassistsdk
 > Ensure that you are using the production merchant key and salt generated in the live mode.
 
 <ProductionKeyAndSaltProcedure />
+</Accordion>
 
-### Checklist 2: Configure setIsProduction()
-
+<Accordion title="Checklist 2: Configure setIsProduction()" icon="fa-code">
 Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
+</Accordion>
 
-### Checklist 3: Configure verify payment method
-
+<Accordion title="Checklist 3: Configure verify payment method" icon="fa-code">
 Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
+</Accordion>
 
-### Checklist 4: Configure Webhook
-
+<Accordion title="Checklist 4: Configure Webhook" icon="fa-code">
 We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
 </Accordion>
