@@ -372,11 +372,11 @@ You can make test payments using one of the payment methods configured at the Ch
 
 <TestCardsCallout />
 
-## Test credentials for supported payment methods
+### Test credentials for supported payment methods
 
 Following are the payment methods supported in PayU Test mode.
 
-### Test credentials for Net Banking
+#### Test credentials for Net Banking
 
 Use the following credentials to test the Net Banking integration:
 
@@ -384,7 +384,7 @@ Use the following credentials to test the Net Banking integration:
 * **password**: payu
 * **OTP**: 123456
 
-### Test VPA for UPI
+#### Test VPA for UPI
 
 You can use either of the following VPAs to test your UPI-related integration:
 
@@ -395,7 +395,7 @@ You can use either of the following VPAs to test your UPI-related integration:
 >
 > The UPI in-app and UPI intent flow is not available in the Test mode.
 
-### Test cards for EMI
+#### Test cards for EMI
 
 You can use the following Debit and Credit cards to test Emi integration.
 
@@ -475,7 +475,7 @@ You can use the following Debit and Credit cards to test Emi integration.
   </tbody>
 </Table>
 
-### Test Wallets
+#### Test Wallets
 
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
