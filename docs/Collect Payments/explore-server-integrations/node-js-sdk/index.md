@@ -27,3 +27,13 @@ The following features are supported in the NodeJS SDK:
 * Get information on eligible payment options and PG/BANK downtime details.
 * Check the customer’s eligibility for EMI and get the amount according to the EMI interest.
 * Create/Expire invoice link through the function.
+
+## Steps to Integrate
+
+<br />
+
+## Test and Go-live
+
+<Test_your_integration />
+
+<Go_Live_Checklist />
