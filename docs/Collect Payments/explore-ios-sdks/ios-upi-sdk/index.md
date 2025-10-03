@@ -25,17 +25,16 @@ metadata:
 next:
   description: ''
 ---
-PayU’s UPI SDK is a framework for integrating UPI payments in your app in an easy, efficient, and stable way. The following types of payments are currently supported:
+PayU's UPI SDK is a framework for integrating UPI payments in your app in an easy, efficient, and stable way. The following types of payments are currently supported:
 
 * Intent payments* (Make UPI payments by transitioning users from your app to UPI app like Google Pay/PhonePe )
 
-> **Note**: ‘intent’ as in Android, not in iOS. Using this word here due to its widespread understanding across domains.)
+> **Note**: 'intent' as in Android, not in iOS. Using this word here due to its widespread understanding across domains.)
 
 * UPI Collect Payments.
 * Google Pay fallback options (If Google Pay is not installed on iOS device). It can use Google Pay registered mobile number instead of VPA for UPI collect payments.
 
-## UPI SDK frameworks
-
+<Accordion title="UPI SDK frameworks" icon="fa-code">
 PayU provides the following UPI modular SDKs that perform different functions related to UPI Payments:
 
 * **PayU UPI Core SDK**: This contains all APIs, Error Codes, Response Handlers etc. With this SDK alone, you can make intent payments. If you want to make UPI Collect payments also, either you can use PayU UPI SDK (given below) to collect VPA from the user or pass Core SDK the required parameters. Core SDK contains only one UI Screen, the final loader page. On this screen, we fetch the payment response from PayU.UPI Core SDK internally uses sockets to fetch payment responses as quickly as possible.
@@ -44,19 +43,19 @@ PayU provides the following UPI modular SDKs that perform different functions re
 The following dependencies (automatically added if integrated via Cocoapods) are required:
 
 * **PayU Networking**: This is used by CoreSDK to handle network requests.
+</Accordion>
 
-## Unique features of UPI SDK
-
+<Accordion title="Unique features of UPI SDK" icon="fa-code">
 There is no WebView involved in any payment flow. Every payment flow is completely API based and super quick.
 Make intent Payments on iOS just like Android. The PSP app (PhonePe/Google Pay etc.) does not automatically switches the user to your app. User manually comes back to your app)
 Hassle-free integration
+</Accordion>
 
-## SDK Integration Steps
-
+<Accordion title="SDK Integration Steps" icon="fa-code">
 The iOS Native OTP Assist SDK integration involves the following steps:
+</Accordion>
 
-### Step 1: Integrate Cocapods
-
+<Accordion title="Step 1: Integrate Cocapods" icon="fa-code">
 Add the following lines to your Podfile:
 
 ```
@@ -79,9 +78,9 @@ You can integrate PayUIndia-PG-SDK with your app or SDK using the following meth
 ```
 
 ***
+</Accordion>
 
-### Step 2: Integrate UPICore
-
+<Accordion title="Step 2: Integrate UPICore" icon="fa-code">
 You can integrate UPICollet and UPIIntent with your own UI using UPICore.
 
 #### Cocoapods integration
@@ -108,9 +107,9 @@ Using `Package.Swift`, add the following line in `Package.swift `dependencies:
 ```
 
 ***
+</Accordion>
 
-### Step 3: Make UPI Payments
-
+<Accordion title="Step 3: Make UPI Payments" icon="fa-code">
 #### Configure Mandatory Payment Parameters
 
 1. Set environment to test or production. You can also set the debugging level to get logs from the SDK.
@@ -179,7 +178,7 @@ Helper.showAlert(String(describing: error.rawValue), onController: self)
 ﻿
 ```
 
-* **backPressed**: If the user has not yet initiated the transaction, and when the user presses the back button from the UPI payment options page, this callback is triggered. You can dismiss SDK’s UI screen here.
+* **backPressed**: If the user has not yet initiated the transaction, and when the user presses the back button from the UPI payment options page, this callback is triggered. You can dismiss SDK's UI screen here.
 
 ```swift Swift
 PayUUPICore.shared.backPressed = {[weak self] in
@@ -187,7 +186,7 @@ self?.navigationController?.popToRootViewController(animated: true)
 }
 ```
 
-* **onEnteringVPA**: For validating the VPA entered by the user, we need to hit PayU’s validate VPA API. This API needs a hash. In this callback, you will get the VPA entered by the user. Use this value to generate the required hash. When the hash is received from your server, send us the updated post params with the new hash.
+* **onEnteringVPA**: For validating the VPA entered by the user, we need to hit PayU's validate VPA API. This API needs a hash. In this callback, you will get the VPA entered by the user. Use this value to generate the required hash. When the hash is received from your server, send us the updated post params with the new hash.
 
 ```swift Swift
 PayUUPICore.shared.onEnteringVPA = {[weak self] vpa, completion in
@@ -210,10 +209,10 @@ completion(.failure(.noInternet()))
 
 To fetch hashes and save them in the `paymentParams` object:
 
-1. Configure the hashes property in paymentParams. Hashes authenticates that API request originates from the original source to avoid a “Man-in-the-middle attack.” Property hashes are of the PayUHashes type.
+1. Configure the hashes property in paymentParams. Hashes authenticates that API request originates from the original source to avoid a "Man-in-the-middle attack." Property hashes are of the PayUHashes type.
 2. Define the following PayUHashes properties used for a distinct API call.
    1. `paymentRelatedDetailsForMobileSDKHash`: This is required to get available UPI payment options from which payment can be made.
-   2. `paymentHash`: This is required to create transactions at PayU’s end.
+   2. `paymentHash`: This is required to create transactions at PayU's end.
    3. `validateVPAHash`: This is required by `validateVPA` API in UPI collect flow to check if provided VPA is registered with a bank account and is active or not. Not required in intent transactions.
 3. Provide the first two hashes before asking SDK to initiate the payment. Hashes must be generated only on your server as it needs a secret key (also known as salt). Your app must never contain salt.
 4. Command and var1 values for generating `paymentRelatedDetailsForMobileSDKHash` & `validateVPAHash` are described in the following table. For generating hashes on your server, refer to [Hash Generation](https://docs.payu.in/docs/set-up-the-payment-hashes/).
@@ -223,7 +222,7 @@ To fetch hashes and save them in the `paymentParams` object:
 | paymentRelatedDetailsForMobileSDKHash | payment_related_details_for_mobile_sdk | value of the `userCredentials `(You have set it in paymentParams) |
 | validateVPAHash                       | validateVPA                            | VPA string of your user                                           |
 
-5. Call the following method of the PayUAPI class to get all available payment options to “Merchant”:
+5. Call the following method of the PayUAPI class to get all available payment options to "Merchant":
 
 ```swift Swift
 class func getUPIPaymentOptions(withPaymentParams params: PayUPaymentParams,
@@ -246,9 +245,9 @@ PayUAPI.getUPIPaymentOptions(withPaymentParams: self.paymentParams!, completion:
 ```
 
 ***
+</Accordion>
 
-### Step 4: Process Payment
-
+<Accordion title="Step 4: Process Payment" icon="fa-code">
 With the PayUUPIPaymentOptions object received in Step 5 of Fetch Hashes, you can populate relevant UPI options on your checkout screen. As stated at the beginning of this section, you have the following options to make a payment:
 
 * Intent
@@ -257,7 +256,7 @@ With the PayUUPIPaymentOptions object received in Step 5 of Fetch Hashes, you ca
 
 Inside intent key of the PayUUPIPaymentOptions object, you get an array of objects of the type `PayUSupportedIntentApp`. These are essentially the apps that are supported by the SDK for intent payments.
 
-1. Query the SDK for payment options available for the “Current User” based on factors like if Bank/Payment-Service-Provider(PSP) apps are installed on the current user’s device or not using the code similar to the following:
+1. Query the SDK for payment options available for the "Current User" based on factors like if Bank/Payment-Service-Provider(PSP) apps are installed on the current user's device or not using the code similar to the following:
 
 ```swift Swift
  public class func canUseIntent(forApp app: PayUSupportedIntentApp,
@@ -270,7 +269,7 @@ Inside intent key of the PayUUPIPaymentOptions object, you get an array of objec
 Based on your priority and availability of payment options for the current user, you can order the payment options on your checkout page.
 
 <Callout icon="📘" theme="info">
-  **Note**: The `canUseGpayOmni` and `canUseGpayCollect` methods provide you fallback options of the Google Pay intent app, which have approximately 10% more success rate when compared to general UPI collect payments. This implies that if your user does not have the Google Pay app installed, you can still show the Google Pay option on your checkout, and PayU will display these two fallback options upon Google Pay selection by the user. Google Pay omnichannel payment option takes the user’s phone number for UPI collect payment.
+  **Note**: The `canUseGpayOmni` and `canUseGpayCollect` methods provide you fallback options of the Google Pay intent app, which have approximately 10% more success rate when compared to general UPI collect payments. This implies that if your user does not have the Google Pay app installed, you can still show the Google Pay option on your checkout, and PayU will display these two fallback options upon Google Pay selection by the user. Google Pay omnichannel payment option takes the user's phone number for UPI collect payment.
 </Callout>
 
 2. Create an instance of PayUIntentPaymentVC and follow data to it if the user selects the intent app option.
@@ -312,9 +311,9 @@ After the payment is made, you should get the response in your payment completio
 ```
 
 ***
+</Accordion>
 
-### Make Payment through UPICore
-
+<Accordion title="Make Payment through UPICore" icon="fa-code">
 1. **UPI Collect Flow**: Validate VPA with `paymentparam`, it will give you a callback once it has verified VPA in the completion block.
 
 ```
@@ -357,9 +356,9 @@ PayUThirdPartyManager.makePayment(withApp: <PayUSupportedIntentApp>, withIntentM
 ```
 
 You will get the Socket model using the`PayUPersistentStore.getSocketConnectionModel()`.
+</Accordion>
 
-## Test the Integration
-
+<Accordion title="Test the Integration" icon="fa-code">
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 You can make test payments using one of the payment methods configured at the Checkout.
@@ -371,9 +370,9 @@ You can make test payments using one of the payment methods configured at the Ch
 ***
 
 <TestCardsCallout />
+</Accordion>
 
-### Test credentials for supported payment methods
-
+<Accordion title="Test credentials for supported payment methods" icon="fa-code">
 Following are the payment methods supported in PayU Test mode.
 
 #### Test credentials for Net Banking
@@ -541,12 +540,13 @@ You can use the following wallets and their corresponding credentials to test wa
     </tr>
   </tbody>
 </Table>
+</Accordion>
 
-## Go-live Checklist
+<Accordion title="Go-live Checklist" icon="fa-code">
 Ensure these steps before you deploy the integration in a live environment.
+</Accordion>
 
-### Collect Live Payments
-
+<Accordion title="Collect Live Payments" icon="fa-code">
 After [testing the integration](https://docs.payu.in/docs/ios-upisdk-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
 > 🚧 Watch Out!
@@ -554,16 +554,16 @@ After [testing the integration](https://docs.payu.in/docs/ios-upisdk-test-integr
 > Ensure that you are using the production merchant key and salt generated in the live mode.
 
 <ProductionKeyAndSaltProcedure />
+</Accordion>
 
-### Checklist 2: Configure setIsProduction()
-
+<Accordion title="Checklist 2: Configure setIsProduction()" icon="fa-code">
 Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
+</Accordion>
 
-### Checklist 3: Configure verify payment method
-
+<Accordion title="Checklist 3: Configure verify payment method" icon="fa-code">
 Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
+</Accordion>
 
-### Checklist 4: Configure Webhook
-
+<Accordion title="Checklist 4: Configure Webhook" icon="fa-code">
 We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
- 
+</Accordion>
