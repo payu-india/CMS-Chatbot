@@ -2,7 +2,7 @@
 title: 1. SDK Integration Steps - iOS UPI
 excerpt: This section describes the technical integration of iOS UPI SDK with the app.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: iOS UPI SDK Integration Steps
   description: >-
