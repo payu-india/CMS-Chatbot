@@ -2,7 +2,7 @@
 title: Closed-Loop Wallet Management APIs
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: 'Closed-Loop Management APIs '
   description: ''
