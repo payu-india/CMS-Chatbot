@@ -156,11 +156,11 @@ You can make test payments using one of the payment methods configured at the Ch
 
 <TestCardsCallout />
 
-## Test credentials for supported payment methods
+### Test credentials for supported payment methods
 
 Following are the payment methods supported in PayU Test mode.
 
-### Test credentials for Net Banking
+#### Test credentials for Net Banking
 
 Use the following credentials to test the Net Banking integration:
 
@@ -168,7 +168,7 @@ Use the following credentials to test the Net Banking integration:
 * **password**: payu
 * **OTP**: 123456
 
-### Test VPA for UPI
+#### Test VPA for UPI
 
 You can use either of the following VPAs to test your UPI-related integration:
 
@@ -179,7 +179,7 @@ You can use either of the following VPAs to test your UPI-related integration:
 >
 > The UPI in-app and UPI intent flow is not available in the Test mode.
 
-### Test cards for EMI
+#### Test cards for EMI
 
 You can use the following Debit and Credit cards to test Emi integration.
 
@@ -259,7 +259,7 @@ You can use the following Debit and Credit cards to test Emi integration.
   </tbody>
 </Table>
 
-### Test wallets
+#### Test wallets
 
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
@@ -328,4 +328,26 @@ You can use the following wallets and their corresponding credentials to test wa
 
 ## Go-live Checklist
 
-<br />
+Ensure these steps before you deploy the integration in a live environment.
+
+### Collect Live Payments
+
+After [testing the integration](https://docs.payu.in/docs/ios-olamoneysdk-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
+
+> 🚧 Watch Out!
+>
+> Ensure that you are using the production merchant key and salt generated in the live mode.
+
+<ProductionKeyAndSaltProcedure />
+
+### Checklist 2: Configure setIsProduction()
+
+Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
+
+### Checklist 3: Configure verify payment method
+
+Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
+
+### Checklist 4: Configure Webhook
+
+We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
