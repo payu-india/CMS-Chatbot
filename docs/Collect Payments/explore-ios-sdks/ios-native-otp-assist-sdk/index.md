@@ -20,15 +20,15 @@ The Native OTP Assist SDK gives you the following key capabilities:
 * If the bin is not eligible, then it will redirect to the bank's 3d-secure/ACS page.
 * Support for Android native SMS permission, as well as Google Consent API.
 
-<Accordion title="Integration Steps" icon="fa-code">
+<Accordion title="Integration Steps" icon="fa-gear">
   The iOS Native OTP Assist SDK integration involves the following steps:
 
   <Accordion title="Step 1: Include the SDK" icon="fa-code">
     The Native OTP SDK is offered via CocoaPods. To add the SDK to your app project, include the SDK framework in your `podfile`.
 
     `// make sure to add below-mentioned line to use dynamic frameworksuse_frameworks!​
-                    // Add this to include our SDK
-                    pod 'PayUIndia-NativeOtpAssist'`
+                            // Add this to include our SDK
+                            pod 'PayUIndia-NativeOtpAssist'`
 
     Install dependency using pod `installcommand `in `terminalNext`, add the following imports in the class where you need to initiate a payment:
 
@@ -81,142 +81,141 @@ The Native OTP Assist SDK gives you the following key capabilities:
 
     ***
 
+    <Accordion title="Create postData" icon="fa-code">
+      To initiate a payment, your app will need to send transactional information to the Checkout Pro SDK. To pass this information, build a payment parameter object similar to the following code snippet:
 
-  <Accordion title="Create postData" icon="fa-code">
-    To initiate a payment, your app will need to send transactional information to the Checkout Pro SDK. To pass this information, build a payment parameter object similar to the following code snippet:
+      > **Note**: TransactionId can't have a special character and not more than 25 characters.
 
-    > **Note**: TransactionId can't have a special character and not more than 25 characters.
+      ```Text Objective-C
+      PayUPaymentParam *paymentParam = [[PayUPaymentParam alloc] initWithKey:<#(NSString * _Nonnull)#>
+                                                               transactionId:<#(NSString * _Nonnull)#>
+                                                                      amount:<#(NSString * _Nonnull)#>
+                                                                 productInfo:<#(NSString * _Nonnull)#>
+                                                                   firstName:<#(NSString * _Nonnull)#>
+                                                                       email:<#(NSString * _Nonnull)#>
+                                                                       phone:<#(NSString * _Nonnull)#>
+                                                                        surl:<#(NSString * _Nonnull)#>
+                                                                        furl:<#(NSString * _Nonnull)#>
+                                                                 environment:<#(enum Environment)#> /*EnvironmentProduction or EnvironmentTest*/];
+      paymentParam.hashes = [PayUHashes new];
+      paymentParam.hashes.paymentHash = <#T##SHA512 HashString#>;
+      CCDC *ccdc = [CCDC new];
+      ccdc.cardNumber = <#T##String#>;
+      ccdc.expiryYear = <#T##String#>;
+      ccdc.expiryMonth = <#T##String#>;
+      ccdc.cvv = <#T##String#>;
+      ccdc.txnS2SFlow = <#T##String#>; //"4" for transactions on native otp assist
+      ccdc.nameOnCard = <#T##String#>;
+      ccdc.shouldSaveCard = <#T##String#>;
+      paymentParam.paymentOption = ccdc;
+      paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use saved 
+      ```
+      ```Text Swift
+      let paymentParam = PayUPaymentParam(key: <#T##String#>,
+                                          transactionId: <#T##String#>,
+                                          amount: <#T##String#>,
+                                          productInfo: <#T##String#>,
+                                          firstName: <#T##String#>,
+                                          email: <#T##String#>,
+                                          phone: <#T##String#>,
+                                          surl: <#T##String#>,
+                                          furl: <#T##String#>,
+                                          environment: <#T##Environment#> /*.production or .test*/)
+      paymentParam.hashes = PayUHashes()
+      paymentParam.hashes?.paymentHash = <#T##SHA512 HashString#>
+      let ccdc = CCDC()
+      ccdc.cardNumber = <#T##String#>
+      ccdc.expiryYear = <#T##String#>
+      ccdc.expiryMonth = <#T##String#>
+      ccdc.cvv = <#T##String#>
+      ccdc.txnS2SFlow = <#T##String#> //"4" for transactions on native otp assist
+      ccdc.nameOnCard = <#T##String#>
+      ccdc.shouldSaveCard = <#T##String#>
+      paymentParam.paymentOption = ccdc
+      paymentParam.userCredential = <#T##String#> // For saving and fetching user's saved card
+      ```
 
-    ```Text Objective-C
-    PayUPaymentParam *paymentParam = [[PayUPaymentParam alloc] initWithKey:<#(NSString * _Nonnull)#>
-                                                             transactionId:<#(NSString * _Nonnull)#>
-                                                                    amount:<#(NSString * _Nonnull)#>
-                                                               productInfo:<#(NSString * _Nonnull)#>
-                                                                 firstName:<#(NSString * _Nonnull)#>
-                                                                     email:<#(NSString * _Nonnull)#>
-                                                                     phone:<#(NSString * _Nonnull)#>
-                                                                      surl:<#(NSString * _Nonnull)#>
-                                                                      furl:<#(NSString * _Nonnull)#>
-                                                               environment:<#(enum Environment)#> /*EnvironmentProduction or EnvironmentTest*/];
-    paymentParam.hashes = [PayUHashes new];
-    paymentParam.hashes.paymentHash = <#T##SHA512 HashString#>;
-    CCDC *ccdc = [CCDC new];
-    ccdc.cardNumber = <#T##String#>;
-    ccdc.expiryYear = <#T##String#>;
-    ccdc.expiryMonth = <#T##String#>;
-    ccdc.cvv = <#T##String#>;
-    ccdc.txnS2SFlow = <#T##String#>; //"4" for transactions on native otp assist
-    ccdc.nameOnCard = <#T##String#>;
-    ccdc.shouldSaveCard = <#T##String#>;
-    paymentParam.paymentOption = ccdc;
-    paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use saved 
-    ```
-    ```Text Swift
-    let paymentParam = PayUPaymentParam(key: <#T##String#>,
-                                        transactionId: <#T##String#>,
-                                        amount: <#T##String#>,
-                                        productInfo: <#T##String#>,
-                                        firstName: <#T##String#>,
-                                        email: <#T##String#>,
-                                        phone: <#T##String#>,
-                                        surl: <#T##String#>,
-                                        furl: <#T##String#>,
-                                        environment: <#T##Environment#> /*.production or .test*/)
-    paymentParam.hashes = PayUHashes()
-    paymentParam.hashes?.paymentHash = <#T##SHA512 HashString#>
-    let ccdc = CCDC()
-    ccdc.cardNumber = <#T##String#>
-    ccdc.expiryYear = <#T##String#>
-    ccdc.expiryMonth = <#T##String#>
-    ccdc.cvv = <#T##String#>
-    ccdc.txnS2SFlow = <#T##String#> //"4" for transactions on native otp assist
-    ccdc.nameOnCard = <#T##String#>
-    ccdc.shouldSaveCard = <#T##String#>
-    paymentParam.paymentOption = ccdc
-    paymentParam.userCredential = <#T##String#> // For saving and fetching user's saved card
-    ```
-
-    > 📘 Note
-    >
-    > Use Core SDK library to generate payment post data.
-
-    ***
-  </Accordion>
-
-  <Accordion title="Step 3: Initiate payment" icon="fa-code">
-    Initialize the Native OTP Assist SDK by providing the PayUOtpAssistConfig object having the`postdata `and reference to the `PayUOtpAssistCallback` to listen to the SDK events.
-
-    ```Text Objective-C
-    [PayUCheckoutPro openOn:self paymentParam:paymentParam config:<#(PayUOtpAssistConfig * _Nullable)#> delegate:self];
-    ```
-    ```Text Swift
-    PayUOtpAssist.open(
-                        parentVC: self,
-                        paymentParam: paymentParam,
-                        config: <#T##PayUOtpAssistConfig?#>,
-                        delegate: self
-      )
-    ```
-
-    <Callout icon="📘" theme="info">
-      **Note**: Initiate payment must be on the Main thread.
-    </Callout>
-
-    #### Callbacks
-
-    The list of the callback function provided by PayUOtpAssistCallback class:
-
-    * `fun onPaymentSuccess(merchantResponse: String?, payUResponse: String?)`– Called when payment succeeds. merchantResponse:
-
-    * `fun onPaymentFailure(merchantResponse: String?, payUResponse: String?)`– Called when a payment fails.
-
-    * `fun onError(errorCode: String?, errorMessage: String?`)- Called when we got some error where,
-      1. `errorCode`: Error Code
-      2. `errorMessage`: Error Description
-
-    * `fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest):` Boolean – It's an optional callback, override when you want to handle the Bank page redirection flow. You just need to change the return value to false. You can also open CustomBrowser in fallback scenarios. The following code snippet is used to open the CustomBrowser. For more information on using CustomBrowser, refer to [iOS CustomBrowser SDK](doc:ios-custombrowser-sdk).
-
-    ```Text Swift
-    fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest) : Boolean {
-
-    val customBrowserConfig = CustomBrowserConfig(merchantKey, txnId)
-       
-      //Set the issuerUrl and issuerPostData to open in WebView for otp assist redirection to bank page
-      if (!payUAcsRequest?.issuerUrl.isNullOrEmpty() && !payUAcsRequest?.issuerPostData.isNullOrEmpty()) {
-        customBrowserConfig.postURL = payUAcsRequest?.issuerUrl
-        customBrowserConfig.payuPostData = payUAcsRequest?.issuerPostData
-
-    }else if (!payUAcsRequest?.acsTemplate.isNullOrEmpty()){
-        customBrowserConfig.htmlData = payUAcsRequest?.acsTemplate
-    }else {
-        //Set the first url to open in WebView
-        customBrowserConfig.postURL = url
-        customBrowserConfig.payuPostData = payuConfig.data
-    }
-    return false
-    }
-    ```
-
-    You will get `PayUAcsRequest on shouldHandleFallback(`) callback. whether you will get `issuerUrl` and `issuerPostData` or acsTemplate on `PayUAcsRequest` acsTemplate is the HTML string that you need to load to the Webview.
-
-    | PayUAcsRequest field | Description                                                                                                                                           |
-    | :------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | issuerUrl            | It's the Bank/ACS page Url.                                                                                                                           |
-    | issuerPostData       | You need to load `issuerUrl` to the Webview along with this `issuerPostdata` string. Ex: `webView.postUrl`(`issuerUrl, issuerPostData.toByteArray()`) |
-    | acsTemplate          | If` issuerUr`l is empty, you need to load acsTemplate to the Webview. Ex: `webView.loadData`(`acsTemplate, "text/html", "UTF-8"`);                    |
-
-    <Accordion title="Error codes" icon="fa-code">
-      | Error Code | Description                                              |
-      | :--------- | :------------------------------------------------------- |
-      | 1001       | No Internet                                              |
-      | 1002       | Network timeout, please verify with your server.         |
-      | 1003       | Gateway timeout, please verify with your server.         |
-      | 1004       | The user canceled it, please verify with your server.    |
-      | 1005       | Something went wrong, please verify with your server.    |
-      | 1006       | The bank page timed out, please verify with your server. |
+      > 📘 Note
+      >
+      > Use Core SDK library to generate payment post data.
 
       ***
-  </Accordion>
+    </Accordion>
+
+    <Accordion title="Step 3: Initiate payment" icon="fa-code">
+      Initialize the Native OTP Assist SDK by providing the PayUOtpAssistConfig object having the`postdata `and reference to the `PayUOtpAssistCallback` to listen to the SDK events.
+
+      ```Text Objective-C
+      [PayUCheckoutPro openOn:self paymentParam:paymentParam config:<#(PayUOtpAssistConfig * _Nullable)#> delegate:self];
+      ```
+      ```Text Swift
+      PayUOtpAssist.open(
+                          parentVC: self,
+                          paymentParam: paymentParam,
+                          config: <#T##PayUOtpAssistConfig?#>,
+                          delegate: self
+        )
+      ```
+
+      <Callout icon="📘" theme="info">
+        **Note**: Initiate payment must be on the Main thread.
+      </Callout>
+
+      #### Callbacks
+
+      The list of the callback function provided by PayUOtpAssistCallback class:
+
+      * `fun onPaymentSuccess(merchantResponse: String?, payUResponse: String?)`– Called when payment succeeds. merchantResponse:
+
+      * `fun onPaymentFailure(merchantResponse: String?, payUResponse: String?)`– Called when a payment fails.
+
+      * `fun onError(errorCode: String?, errorMessage: String?`)- Called when we got some error where,
+        1. `errorCode`: Error Code
+        2. `errorMessage`: Error Description
+
+      * `fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest):` Boolean – It's an optional callback, override when you want to handle the Bank page redirection flow. You just need to change the return value to false. You can also open CustomBrowser in fallback scenarios. The following code snippet is used to open the CustomBrowser. For more information on using CustomBrowser, refer to [iOS CustomBrowser SDK](doc:ios-custombrowser-sdk).
+
+      ```Text Swift
+      fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest) : Boolean {
+
+      val customBrowserConfig = CustomBrowserConfig(merchantKey, txnId)
+         
+        //Set the issuerUrl and issuerPostData to open in WebView for otp assist redirection to bank page
+        if (!payUAcsRequest?.issuerUrl.isNullOrEmpty() && !payUAcsRequest?.issuerPostData.isNullOrEmpty()) {
+          customBrowserConfig.postURL = payUAcsRequest?.issuerUrl
+          customBrowserConfig.payuPostData = payUAcsRequest?.issuerPostData
+
+      }else if (!payUAcsRequest?.acsTemplate.isNullOrEmpty()){
+          customBrowserConfig.htmlData = payUAcsRequest?.acsTemplate
+      }else {
+          //Set the first url to open in WebView
+          customBrowserConfig.postURL = url
+          customBrowserConfig.payuPostData = payuConfig.data
+      }
+      return false
+      }
+      ```
+
+      You will get `PayUAcsRequest on shouldHandleFallback(`) callback. whether you will get `issuerUrl` and `issuerPostData` or acsTemplate on `PayUAcsRequest` acsTemplate is the HTML string that you need to load to the Webview.
+
+      | PayUAcsRequest field | Description                                                                                                                                           |
+      | :------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+      | issuerUrl            | It's the Bank/ACS page Url.                                                                                                                           |
+      | issuerPostData       | You need to load `issuerUrl` to the Webview along with this `issuerPostdata` string. Ex: `webView.postUrl`(`issuerUrl, issuerPostData.toByteArray()`) |
+      | acsTemplate          | If` issuerUr`l is empty, you need to load acsTemplate to the Webview. Ex: `webView.loadData`(`acsTemplate, "text/html", "UTF-8"`);                    |
+
+      <Accordion title="Error codes" icon="fa-code">
+        | Error Code | Description                                              |
+        | :--------- | :------------------------------------------------------- |
+        | 1001       | No Internet                                              |
+        | 1002       | Network timeout, please verify with your server.         |
+        | 1003       | Gateway timeout, please verify with your server.         |
+        | 1004       | The user canceled it, please verify with your server.    |
+        | 1005       | Something went wrong, please verify with your server.    |
+        | 1006       | The bank page timed out, please verify with your server. |
+
+        ***
+      </Accordion>
     </Accordion>
   </Accordion>
 
@@ -407,4 +406,54 @@ The Native OTP Assist SDK gives you the following key capabilities:
   <Accordion title="Checklist 4: Configure Webhook" icon="fa-code">
     We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
   </Accordion>
+</Accordion>
+
+<Accordion title="Customize your Integration" icon="fa-gear">
+The Native OTP Assist SDK provides several customization options allowing you to make the SDK closer to the look & feel of your app and work as per your business requirements.
+
+<Accordion title="Update merchant logo" icon="fa-code">
+You can display your brand logo in the PayU Native OTP Assist SDK to reinforce trust and branding. To set a logo in the SDK, you need to pass the drawable ID of the logo image resource from your app.
+
+```Text Objective-C
+let config = PayUOtpAssistConfig()
+config.merchantLogo = #imageLiteral(resourceName: "logo")
+```
+
+***
+</Accordion>
+
+<Accordion title="Change theme colour" icon="fa-code">
+Our SDK allows you to change the theme color, and you need to set this primary color in your color file.
+
+```
+let config = PayUOtpAssistConfig()
+config.themeColor = #colorLiteral(red: 0.01960784314, green: 0.231372549, blue: 0.7568627451, alpha: 1)
+```
+
+***
+</Accordion>
+
+<Accordion title="Change Waiting for OTP timeout" icon="fa-code">
+PayU will wait for a specified time for the OTP, after which the SDK falls back to the manual OTP screen. The default time is 30 seconds; you may change it to any other duration. PayU recommends you configure the timeout to less than 60 seconds for a better user experience.
+
+```Text Objective-C
+let config = PayUOtpAssistConfig()
+config.merchantResponseTimeout = 10000 // In milliseconds
+```
+
+</Accordion>
+
+<Accordion title="Disable Auto-Submit OTP flag" icon="fa-code">
+Merchant can enable/disable the auto-submit OTP flow using the following flag. The default value is set to true.
+
+```Text Objective-C
+let config = PayUOtpAssistConfig()
+config.shouldShowMerchantSummary = true
+```
+
+</Accordion>
+
+<Accordion title="Card BIN eligibility check" icon="fa-code">
+You can check the card whether your card bin eligible or not for the OTP on the Merchant App.
+</Accordion>
 </Accordion>
