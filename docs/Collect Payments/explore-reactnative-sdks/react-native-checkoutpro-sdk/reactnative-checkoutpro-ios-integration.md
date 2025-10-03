@@ -22,20 +22,10 @@ metadata:
 next:
   description: ''
 ---
-To integrate with the CheckoutPro mobile SDK:
+To integrate with the CheckoutPro mobile SDK for React Native:
 
-* Include the SDK in your app project​
-* Set up the payment hashes​
-* ​Build the payment parameters​
-* ​Initiate the payment​
-* ​Handle the payment completion​
-* Customization
-
-***
-
-## Step 1: Include the SDK in your app project
-
-CheckoutPro is a dynamic framework. If you are not using ‘use_frameworks!’, add the following entries at the end of your `podfile`:
+<Accordion title="Step 1: Include the SDK in your app project" icon="fa-code">
+CheckoutPro is a dynamic framework. If you are not using 'use_frameworks!', add the following entries at the end of your `podfile`:
 
 ```
 $dynamic_framework = ['PayUAssetLibraryKit', 'PayUBizCoreKit', 'PayUCheckoutProBaseKit', 'PayUCheckoutProKit', 'PayUCustomBrowser', 'PayULoggerKit', 'PayUNetworkingKit', 'PayUUPICoreKit', 'Socket.IO-Client-Swift', 'Starscream']
@@ -59,13 +49,12 @@ pod install
 ```
 
 ***
+</Accordion>
 
-## Step 2: Set up Payment hashes
-
+<Accordion title="Step 2: Set up Payment hashes" icon="fa-code">
 This step describes how to pass the static and dynamic hashes. For detailed information, refer to Hash Generation.
 
-### Pass Static Hashes
-
+<Accordion title="Pass Static Hashes" icon="fa-code">
 To pass static hashes during integration, use the following code snippet:
 
 ```Text React.js
@@ -81,9 +70,9 @@ var payUPaymentParams = {
     }
 }
 ```
+</Accordion>
 
-### Passing dynamic hashes
-
+<Accordion title="Passing dynamic hashes" icon="fa-code">
 To pass dynamic hashes, the merchant will receive a call on the generateHash method. In the method parameter, you will receive a dictionary or hashMap, then extract the value of hashString from that. Pass that value to the server to append the Salt at the end and generate the sha512 hash over it. The server gives that hash back to your app, and the app will pass that hash to PayU through a callback mechanism. For passing dynamic hashes during integration, use the following code snippet:
 
 ```javascript React.js
@@ -103,9 +92,11 @@ generateHash = (e) => {
 ```
 
 ***
+</Accordion>
 
-## Step 3: Build the payment parameters
+</Accordion>
 
+<Accordion title="Step 3: Build the payment parameters" icon="fa-code">
 To initiate a payment, your app needs to send transactional information to the Checkout Pro SDK.
 
 <Table align={["left","left"]}>
@@ -173,7 +164,7 @@ To initiate a payment, your app needs to send transactional information to the C
       </td>
 
       <td>
-        `String` Customer’s first name.
+        `String` Customer's first name.
       </td>
     </tr>
 
@@ -184,7 +175,7 @@ To initiate a payment, your app needs to send transactional information to the C
       </td>
 
       <td>
-        `String` Customer’s email id.
+        `String` Customer's email id.
       </td>
     </tr>
 
@@ -195,7 +186,7 @@ To initiate a payment, your app needs to send transactional information to the C
       </td>
 
       <td>
-        `String` Customer’s phone number, **Max character limit** : 10 Digits
+        `String` Customer's phone number, **Max character limit** : 10 Digits
       </td>
     </tr>
 
@@ -208,8 +199,8 @@ To initiate a payment, your app needs to send transactional information to the C
       <td>
         `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
 
-        * *Note**: This field is applicable for iOS integration
-        * *Sample URL**: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+        * _Note_*: This field is applicable for iOS integration
+        * _Sample URL_*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
       </td>
     </tr>
 
@@ -222,8 +213,8 @@ To initiate a payment, your app needs to send transactional information to the C
       <td>
         `String` When the transaction fails, PayU will load this URL and pass the transaction response.
 
-        * *Note**: This field is applicable for iOS integration
-        * *Sample URL**: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+        * _Note_*: This field is applicable for iOS integration
+        * _Sample URL_*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
       </td>
     </tr>
 
@@ -236,7 +227,7 @@ To initiate a payment, your app needs to send transactional information to the C
       <td>
         `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
 
-        * *Note**: This field is applicable for Android integration
+        * _Note_*: This field is applicable for Android integration
       </td>
     </tr>
 
@@ -294,8 +285,7 @@ To initiate a payment, your app needs to send transactional information to the C
 
 For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/ios-standing-instructions-parameters).
 
-### Additional parameters
-
+<Accordion title="Additional parameters" icon="fa-code">
 The additional parameters (optional) that can be passed to SDK are udf` `parameters, static hashes, and other parameters. For more details on Static Hash generation and passing them, refer to [Generate Hashes](https://docs.payu.in/docs/ios-checkoutpro-generate-hash). The following is a list of parameters that can be passed in additional parameters:
 
 | Parameter                                 | Description                                                                                                                                                              |
@@ -353,9 +343,11 @@ var payUPaymentParams = {
 ```
 
 ***
+</Accordion>
 
-## Step 4: Initiate the payment
+</Accordion>
 
+<Accordion title="Step 4: Initiate the payment" icon="fa-code">
 Initialize and launch the Checkout Pro SDK by calling the following code snippet:
 
 ```javascript React.js
@@ -369,9 +361,9 @@ PayUBizSdk.openCheckoutScreen(paymentObject);
 ```
 
 ***
+</Accordion>
 
-## Step 5: Handle the payment completion
-
+<Accordion title="Step 5: Handle the payment completion" icon="fa-code">
 To get the callbacks for payment-related statuses, create a NativeEventEmitter object and subscribe to the below events.
 
 ```javascript React.js
@@ -423,11 +415,10 @@ this.generateHash.remove();
 ```
 
 ***
+</Accordion>
 
-## Step 6: Customization (optional)
-
-### For UPI Intent
-
+<Accordion title="Step 6: Customization (optional)" icon="fa-code">
+<Accordion title="For UPI Intent" icon="fa-code">
 Currently, PayU supports only PhonePe and GooglePay through Intent. Add the query schemes in `info.plist`.
 
 ```Text XML
@@ -440,7 +431,10 @@ Currently, PayU supports only PhonePe and GooglePay through Intent. Add the quer
 <string>credpay</string>
 </array>
 ```
+</Accordion>
 
-## Distributing your app (App Store / Ad-hoc)
+</Accordion>
 
+<Accordion title="Distributing your app (App Store / Ad-hoc)" icon="fa-code">
 What you get by default is a fat framework that allows you to test your app seamlessly on the device and simulator. But before archiving your app, you need to remove simulator slices from the framework. For detailed information on archiving your app with PayUChekoutPro, refer to [Releasing the app](https://docs.payu.in/docs/ios-releasing-the-app-to-the-app-store).
+</Accordion>
