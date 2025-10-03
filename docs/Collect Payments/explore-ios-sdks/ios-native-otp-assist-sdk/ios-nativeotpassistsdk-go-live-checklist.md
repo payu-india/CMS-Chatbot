@@ -2,7 +2,7 @@
 title: 3. Go-live Checklist
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
