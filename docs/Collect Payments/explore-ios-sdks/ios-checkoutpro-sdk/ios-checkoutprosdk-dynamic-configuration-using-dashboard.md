@@ -37,7 +37,7 @@ Use the latest version of the Checkout Pro SDK and add/update the config on the 
 * Primary Dark (Applied only in Android SDK)
 * Base Text Color
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/84e6265-Screenshot_2023-08-11_at_12.37.19_AM.png" />
+<Image align="center" border={true} src="https://files.readme.io/84e6265-Screenshot_2023-08-11_at_12.37.19_AM.png" className="border" />
 
 ### Advance
 
@@ -51,9 +51,11 @@ Use the latest version of the Checkout Pro SDK and add/update the config on the 
 * Waiting for OTP Timeout (Applied only in Android SDK)
 * Payment Modes Sort Order
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/3bd6f67-Screenshot_2023-08-11_at_12.38.27_AM.png" />
+<Image align="center" border={true} src="https://files.readme.io/3bd6f67-Screenshot_2023-08-11_at_12.38.27_AM.png" className="border" />
 
-> 📘 Remember:
->
-> * The local configuration will be updated with the dashboard configuration. So, if you face any difference between local and dashboard configuration try to update the dashboard configuration.
-> * To start using dynamic config use the latest version of SDK 1.8.5. Also, if you are using PayU OTP assist SDK please update its version to 1.2.2.
+<Callout icon="📘" theme="info">
+  **Remember**:
+
+  * The local configuration will be updated with the dashboard configuration. So, if you face any difference between local and dashboard configuration try to update the dashboard configuration.
+  * To start using dynamic config use the latest version of SDK 1.8.5. Also, if you are using PayU OTP assist SDK please update its version to 1.2.2.
+</Callout>
