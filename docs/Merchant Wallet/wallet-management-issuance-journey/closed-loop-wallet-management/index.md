@@ -75,18 +75,11 @@ For Transaction Amount > Wallet Balance:
 
 Closed loop wallet management involves the following APIs:
 
-﻿[Register Customer API](): This API will be required by the merchants to register the customer for wallet.
-
-﻿[Retrieve Customer Record API](): This API will be required by Merchants to fetch customer details and balance present in the customer wallet.
-
-﻿[Update Profile API](): This API will be used to update the customer profile details.
-
-﻿[Load API](): To load the money in the wallet post receiving success of the transaction.
-
-﻿[Unload API](): To spend the money from the wallet.
-
-﻿[Check Status API](): This will be required to check status of the load API used in the top-up journey.
-
-﻿[Statement Inquiry API](): This API can be used to fetch wallet transaction data between specific range.
-
-﻿[Change Card Status API](): This API used to change the card status of the card number of the customer.
+* ﻿[Register Customer API](): This API will be required by the merchants to register the customer for wallet.
+* ﻿[Retrieve Customer Record API](): This API will be required by Merchants to fetch customer details and balance present in the customer wallet.
+* ﻿[Update Profile API](): This API will be used to update the customer profile details.
+* ﻿[Load API](): To load the money in the wallet post receiving success of the transaction.
+* ﻿[Unload API](): To spend the money from the wallet.
+* ﻿[Check Status API](): This will be required to check status of the load API used in the top-up journey.
+* ﻿[Statement Inquiry API](): This API can be used to fetch wallet transaction data between specific range.
+* ﻿[Change Card Status API](): This API used to change the card status of the card number of the customer.
