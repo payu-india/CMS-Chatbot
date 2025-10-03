@@ -32,6 +32,6 @@ Semi-Closed or Open Loop Wallet/Card can be used at websites/app where the issui
 * [Delete Beneficiary API](ref:delete-beneficiary-api): This API is used for deletion of beneficiary.
 * [Fund Transfer API](ref:fund-transfer-api): This API is used to transfer funds.
 
-> 📘 Note:
->
-> If card is permanently blocked, it can’t be unblocked using the **Unblock Card** API.
+<Callout icon="📘" theme="info">
+  **Note**: If card is permanently blocked, it can’t be unblocked using the **Unblock Card** API.
+</Callout>
