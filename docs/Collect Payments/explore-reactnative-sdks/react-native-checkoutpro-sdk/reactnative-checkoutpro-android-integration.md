@@ -30,29 +30,27 @@ To integrate with the CheckoutPro mobile SDK for Android:
 * ​Handle the payment completion​
 * Generate Hash
 
-## Step 1: Include the SDK in your app project
-
+<Accordion title="Step 1: Include the SDK in your app project" icon="fa-code">
 The CheckoutPro SDK is offered through npm.
 
 Add the following entries to include CheckoutPro SDK in your app:
 
-### Install the SDK
-
+<Accordion title="Install the SDK" icon="fa-code">
 ```
 npm install payu-non-seam-less-react --save
 react-native link payu-non-seam-less-react
 ```
+</Accordion>
 
-### Import the SDK in your payment component
-
+<Accordion title="Import the SDK in your payment component" icon="fa-code">
 Add the following imports in the class where you need to initiate a payment:
 
 ```Text React
 import PayUBizSdk from 'payu-non-seam-less-react';
 ```
+</Accordion>
 
-### Update Root build.gradle
-
+<Accordion title="Update Root build.gradle" icon="fa-code">
 Add the repository details for SDK dependencies under `allprojects` in `android/build.gradle`::
 
 ```
@@ -64,13 +62,14 @@ allprojects {
   }
 }
 ```
+</Accordion>
 
-## Step 2: Build the payment parameters
+</Accordion>
 
+<Accordion title="Step 2: Build the payment parameters" icon="fa-code">
 To initiate a payment, your app needs to send transactional information to the Checkout Pro SDK.
 
-### Payment parameters
-
+<Accordion title="Payment parameters" icon="fa-code">
 <Table align={["left","left"]}>
   <thead>
     <tr>
@@ -137,7 +136,7 @@ To initiate a payment, your app needs to send transactional information to the C
       </td>
 
       <td>
-        `String` Customer’s first name
+        `String` Customer's first name
       </td>
     </tr>
 
@@ -148,7 +147,7 @@ To initiate a payment, your app needs to send transactional information to the C
       </td>
 
       <td>
-        `String` Customer’s email id
+        `String` Customer's email id
       </td>
     </tr>
 
@@ -159,7 +158,7 @@ To initiate a payment, your app needs to send transactional information to the C
       </td>
 
       <td>
-        `String` Customer’s phone number. **Max character limit** : 10 Digits
+        `String` Customer's phone number. **Max character limit** : 10 Digits
       </td>
     </tr>
 
@@ -291,9 +290,9 @@ To initiate a payment, your app needs to send transactional information to the C
 > The sample URLs mentioned in **surl** and **furl** are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed.
 
 For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
+</Accordion>
 
-### Additional parameters (Optional)
-
+<Accordion title="Additional parameters (Optional)" icon="fa-code">
 The additional parameters that are optional that can be passed to SDK are udf parameters, static hashes, and other parameters. For more details on Static Hash generation and passing them, refer to [generate hashes](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk). The following is a list of parameters that can be passed in additional parameters:
 
 | Parameter                                 | Description                                                                                                                                                                         |
@@ -306,9 +305,11 @@ The additional parameters that are optional that can be passed to SDK are udf pa
 | Static hashes                             | `String` The static hashes is specified in this parameter. For more information, refer to [Hash Generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) section. |
 | PayUCheckoutProConstants.SODEX_OSOURC_EID | `String` Sodexo Source ID, Merchant can store it from the third field of PayU response.                                                                                             |
 | PaymentParamConstant.walletUrn            | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                                  |
+</Accordion>
 
-## For split Payments details (Optional)
+</Accordion>
 
+<Accordion title="For split Payments details (Optional)" icon="fa-code">
 For a split payment transaction, create a JSON string with the split payment parameters as shown below:
 
 JSON Request Structure of splitInfo Field
@@ -387,9 +388,9 @@ var payUPaymentParams = {
 For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
 
 ***
+</Accordion>
 
-## Step 3: Initiate the payment
-
+<Accordion title="Step 3: Initiate the payment" icon="fa-code">
 Initialize and launch the Checkout Pro SDK by calling the following code snippet:
 
 ```javascript React.js
@@ -403,9 +404,9 @@ PayUBizSdk.openCheckoutScreen(paymentObject);
 ```
 
 ***
+</Accordion>
 
-## Step 4: Handle Payment Completion (Callbacks)
-
+<Accordion title="Step 4: Handle Payment Completion (Callbacks)" icon="fa-code">
 To get the callbacks for payment-related statuses, create a NativeEventEmitter object and subscribe to the following events.
 
 ```javascript React.js
@@ -460,13 +461,12 @@ this.generateHash.remove();
 ***
 
 ***
+</Accordion>
 
-## Step 5: Generate Hash (Dynamic Hash Generation)
-
+<Accordion title="Step 5: Generate Hash (Dynamic Hash Generation)" icon="fa-code">
 This step describes how to pass the dynamic hashes. For detailed information, refer to [Hash Generation](doc:generate-dynamic-hash-react).
 
-### Passing dynamic hashes
-
+<Accordion title="Passing dynamic hashes" icon="fa-code">
 To pass dynamic hashes, the merchant will receive a call on the generateHash method. In the method parameter, you will receive a dictionary or hashMap, then extract the value of hashString from that. Pass that value to the server to append the Salt at the end and generate the sha512 hash over it. The server gives that hash back to your app, and the app will pass that hash to PayU through a callback mechanism. For passing dynamic hashes during integration, use the following code snippet:
 
 ```javascript React.js
@@ -486,6 +486,9 @@ generateHash = (e) => {
 ```
 
 ***
+</Accordion>
+
+</Accordion>
 
 <Callout icon="📘" theme="info">
   **Notes:**
