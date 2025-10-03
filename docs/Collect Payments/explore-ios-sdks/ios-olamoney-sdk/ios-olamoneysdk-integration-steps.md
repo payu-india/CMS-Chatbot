@@ -91,9 +91,9 @@ paymentParams?.offerKey = "cardnumber@8370,cardnumbers2@8380,for particular bins
 4. Fetch hashes and save them in the `paymentParams` object
    * You need to set the hashes property in `paymentParams`. Hashes ensure that requests are untampered. This helps in ensuring the security of the transaction. Property hashes are of the type `PayUOMHashes`.
 
-> 📘 Note
->
-> Hashes must be generated only on your server. Your secret key (also known as salt) must never be included in your app.For more information, refer to [Set up Payment Hashes](doc:set-up-the-payment-hashes).
+<Callout icon="📘" theme="info">
+  **Note**: Hashes must be generated only on your server. Your secret key (also known as salt) must never be included in your app.For more information, refer to [Set up Payment Hashes](doc:set-up-the-payment-hashes).
+</Callout>
 
 * PayUHashes has two properties. Each of these three is used for a distinct API call. The two properties are as follows:
   `paymentHash`: This is required to create transactions at PayU’s end.
@@ -107,13 +107,13 @@ paymentParams?.offerKey = "cardnumber@8370,cardnumbers2@8380,for particular bins
 
 5. After setting the value of hashes in paymentParams, call the following method of the PayUOMCore class to check whether the user is eligible to pay through Ola Money (Postpaid and Wallet):
 
-```Text Node
+```node Node
 public func checkEligibility(params: PayUOMPaymentParams, completion:@escaping(_ status: Bool, _ response: PayUOMEligibilityModel?, _ error: Error?) -> Void)
 ```
 
 6. You will get a response of the type Result with the value of type PayUOMEligibilityModel in the response’s success param. The sample code snippet is similar to the following:
 
-```Text Node
+```node Node
 PayUOMCore.shared.checkEligibility(params: self.paymentParams!, completion: { [unowned self] status, response, error in
 DispatchQueue.main.async {
 self.makePaymentButton.isEnabled = status
