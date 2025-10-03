@@ -12,16 +12,15 @@ next:
 ---
 The OTP Assist SDK provides a complete authentication flow for card transactions. It offers to capture OTP in the merchant app without any redirection to the bank’s 3Dsecure/ACS page. This means that there’s one less point of failure in the checkout process and a faster completion rate for transactions. The OTP Assist SDK will auto-read and submit OTP on behalf of the user.
 
-## Features
-
+<Accordion title="Features" icon="fa-code">
 The Native OTP Assist SDK gives you the following key capabilities:
 
 * Read OTP on the merchant app without redirecting to the bank page, for eligible bins.
 * If the bin is not eligible, then it will redirect to the bank’s 3d-secure/ACS page.
 * Support for Android native SMS permission, as well as Google Consent API.
+</Accordion>
 
-## Integration Steps
-
+<Accordion title="Integration Steps" icon="fa-code">
 The iOS Native OTP Assist SDK integration involves the following steps:
 
 ### Step 1: Include the SDK
@@ -245,9 +244,9 @@ curl --location --request POST '{{Url}}' \
 --data-urlencode 'hash=c6febddfaaf6986dd8bd982d3769f856ab149e4de92dbad995c8df808ffcfbcb2c227a3fae38b69eb39ad7b6ce4e06e6b12289f70cc500cea5a2cda449c7dcba' \
 --data-urlencode 'var1=Txn1234'
 ```
+</Accordion>
 
-## Testing the Integration
-
+<Accordion title="Testing the Integration" icon="fa-code">
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 You can make test payments using one of the payment methods configured at the Checkout.
@@ -429,3 +428,30 @@ You can use the following wallets and their corresponding credentials to test wa
     </tr>
   </tbody>
 </Table>
+</Accordion>
+
+<Accordion title="Go-live Checklist" icon="fa-code">
+Ensure these steps before you deploy the integration in a live environment.
+
+### Collect Live Payments
+
+After [testing the integration](https://docs.payu.in/docs/ios-nativeotpassistsdk-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
+
+> 🚧 Watch Out!
+>
+> Ensure that you are using the production merchant key and salt generated in the live mode.
+
+<ProductionKeyAndSaltProcedure />
+
+### Checklist 2: Configure setIsProduction()
+
+Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
+
+### Checklist 3: Configure verify payment method
+
+Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
+
+### Checklist 4: Configure Webhook
+
+We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
+</Accordion>
