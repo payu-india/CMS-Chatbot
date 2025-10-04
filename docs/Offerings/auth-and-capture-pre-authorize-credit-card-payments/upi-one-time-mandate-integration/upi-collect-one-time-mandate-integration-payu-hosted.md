@@ -295,9 +295,11 @@ curl --request POST  
 
 ## Step 2: Check the response from PayU
 
-On receiving valid request over PayU’s payment interface (_payment), PayU returns J
+On receiving valid request over PayU’s payment interface (_payment), PayU returns:
 
-```curl
+### Sample response
+
+```text
 mihpayid=6MAESTROMAESTRO5&mode=UPI&status=success&key=travelibibo&txnid=8286f8e3954bf669c02e&amount=10000.00&addedon=2024-04-22 15:48:45&productinfo=Product Info&firstname=CARDHOLDERXXXXXXXXNAME-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test@example.com&"phone":"##########"&udf1=&udf2=&udf3=&udf4=Created&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=sur***@icici&field2=&field3=sur***icici&field4=ICICI Test Vpa&field5=3159219e58ed45eda39e8914b998401a@icici&field6=rambo|_mobilenum_&field7=00|APPROVED OR COMPLETED SUCCESSFULLY&field8=&field9=APPROVED OR COMPLETED SUCCESSFULLY|Completed Using Callback&payment_source=payuPureS2S&PG_TYPE=UPI-PG&error=E000&error_Message=No Error&net_amount_debit=10000&discount=0.00&unmappedstatus=auth&hash=3ca863c1c8148baa13891f6e8e124c07f909d9fa14d6757acc01b08b736c35bbdae9845fa445cdaf22fb190f717285d0d09c02508bbfe081b4833eaf5637ec03&bank_ref_no=410901015475&bank_ref_num=410901015475&bankcode=UPI&surl=http://local.admin.payu.in/test_response&curl=http://local.admin.payu.in/test_response&furl=http://local.admin.payu.in/test_response 
 ```
 
@@ -367,7 +369,6 @@ furl: http://local.admin.payu.in/test_response
 To capture a pre-authorized payment, use the following command. After the API command is successful, the transaction would be captured and settled to you.=
 
 ### Request parameters
-# Fixed Request Parameters Table
 
 <HTMLBlock>{`
 <table>
@@ -452,7 +453,9 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 
 ### Step 4: Check Transaction Status
 
-To check the status of the transaction, use the verify_payment API. For more information, refer to [Verify Payment API](ref:verify_payment_api).
+<Verify_Payment_Tabs />
+
+<br />
 
 <Callout icon="👍" theme="okay">
   **Reference**: For cancelling pre-auth payments, refer to [Cancel a Pre-Authorized Transaction API](ref:cancel-a-pre-authorized-transaction).
