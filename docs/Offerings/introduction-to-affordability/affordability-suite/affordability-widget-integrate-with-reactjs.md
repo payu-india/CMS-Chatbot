@@ -17,11 +17,11 @@ You can natively integrate affordability widget on you webpage that you have bui
 * Create a React Component using PayU’s ready to use code snippet
 * Import the React component on your product page
 
-## Step 1: Create a React component
+### Step 1: Create a React component
 
 PayU provides you with a ready to use code snippet that you can use to create the Affordability Widget component. Copy and paste the following code snippet in a file to create the affordability widget component and name it as `AffordabilityWidget.jsx`
 
-```Text React
+```javascript React JS
 import React, { useEffect } from "react";
 
 function AffordabilityWidget({key,amount}) {
@@ -56,11 +56,11 @@ export default AffordabilityWidget;
 
 ***
 
-## Step 2: Import the React component on your product page
+### Step 2: Import the React component on your product page
 
 Import the component that you created in step 1 by specifying the location of the component and add it on your product page to indicate where the affordability widget should appear (e.g. below product price).
 
-```Text React
+```javascript React JS
 import React from "react";
 import AffordabilityWidget from <location of component>
 
