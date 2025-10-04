@@ -32,7 +32,7 @@ The Loyalty Rewards on PayU Dashboard provides the following features:
 
 Steps to launch a loyalty program using PayU Dashboard:
 
-## Setup Loyalty
+## Step 1. Setup Loyalty
 
 The _Set-up Loyalty_ page is designed to help you configure the loyalty programs by setting up how points are branded, and redeemed. It includes options for defining point naming, branding visuals, redemption rules, and allowing for a tailored loyalty experience that aligns with the merchant's brand and objectives.
 
@@ -98,7 +98,7 @@ The _Step 3: Earn Configuration_ page of  _Set-up Loyalty_ wizard is displayed.
 
 12. Click **Save & Publish**.
 
-## Create a New Campaign
+## Step 2. Create a New Campaign
 
 To set up a campaign:
 
@@ -281,11 +281,7 @@ The _Payment options_ page is displayed.
 9. Click **Save & Next**.
 10. Click **Publish** to go live with the campaign.
 
-## Manage Loyalty Edge Campaigns
-
-You can check or update the details of an existing campaign and customer transactions as a result of a campaign as described in the following sections:
-
-### View Campaign Transactions
+## Step 3: View Campaign Transactions
 
 To view the transactions due to campaign:
 
@@ -304,6 +300,10 @@ The campaign details are displayed.
    * Use the **Filter** drop-down menu to filter the transactions.
    * Use the **Calendar** drop-down menu to view the transactions for a period.
    * Search using the transaction ID, order ID or phone number in the **Search** field.
+
+## Manage Loyalty Edge Campaigns
+
+You can check or update the details of an existing campaign and customer transactions as a result of a campaign as described in the following sections:
 
 ### Update Campaign Details
 
