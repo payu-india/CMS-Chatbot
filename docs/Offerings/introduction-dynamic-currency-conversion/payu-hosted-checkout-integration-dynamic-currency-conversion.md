@@ -123,7 +123,7 @@ PayU marks the transaction status based on the response received from the bank. 
     <tr>
       <td>hash <code>mandatory</code></td>
       <td><code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br><code>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code></td>
-      <td>05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072</td>
+      <td>05a397501918ec5c36ae52<br/>daa3b3e49b43e986b86940e10<br/>9d060076e467c3ea7536617df742<br/>0e0e6863dced8c5b45f9ff<br/>f15c13bdf0335512c05f0210b31b072</td>
     </tr>
     <tr>
       <td>address1 <code>optional</code></td>
