@@ -182,7 +182,7 @@ Subscription” interface or uses PayU’s dashboard to do the same. In this ste
 
 ### Sample notification response format for SUBSCRIPTION_COMPLETED_HTTP
 
-```
+```json
 {
   "merchantId": "YQeVda",
   "subscriptionId": "5c99ef2e3114ad37b5193add",
