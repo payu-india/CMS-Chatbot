@@ -336,9 +336,7 @@ When you initiate a pre-auth transaction request:
 
 To capture a pre-authorized payment, use the following command. After the API command is successful, the transaction would be captured and settled to you.
 
-### Request parameters
-# Fixed Request Parameters Table
-
+<Accordion title="Request parameters" icon="fa-code">
 <HTMLBlock>{`
 <table>
   <thead>
@@ -382,9 +380,9 @@ To capture a pre-authorized payment, use the following command. After the API co
   </tbody>
 </table>
 `}</HTMLBlock>
+</Accordion>
 
-### Sample request
-
+<Accordion title="Sample request" icon="fa-code">
 ```
 curl --location --request POST 'https://info.payu.in/merchant/postservice.php?form=2' \   
  --header 'Content-Type: application/x-www-form-urlencoded' \   
@@ -395,10 +393,9 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
  --form 'var2="authorizeTransaction123"' \   
  --form 'var3="1"'  
 
- 
 ```
-
-### Sample response
+</Accordion>
+<Accordion title="Sample response" icon="fa-code">
 
 ```
 {
@@ -419,7 +416,7 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
   }
 }
 ```
-
+</Accordion>
 ## Step 4: Verify the payment
 <Verify_Payment_Tabs />
 
