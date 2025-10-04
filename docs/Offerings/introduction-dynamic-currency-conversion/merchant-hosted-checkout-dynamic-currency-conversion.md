@@ -32,6 +32,11 @@ This section describes how to integrate Dynamic Currency Conversion with Merchan
   **Note**: You need to contact your PayU Key Account Manager to enable Dynamic Currency Conversion.
 </Callout>
 
+<Callout icon="📘" theme="info">
+  **Reference**: For the list of supported currencies, <a href="https://docs.payu.in/docs/supported-currencies-for-international-payments/" target="_blank">Supported Currencies for International Payments</a>. 
+</Callout>
+
+
 > 👍 Before you begin:
 >
 > Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
@@ -96,7 +101,6 @@ Check if the card number of the customer is international or domestic using the 
 ## Step 2: Post the parameters to PayU
 
 Make the transaction request with the payment details provided by the customer to PayU. For international payments, the _payment request remains the same and no extra parameters required. For Try-It experience, refer to <a href="_payment_merchant_hosted" target="_blank">Collect Payments API</a>. 
-
 <Callout icon="📘" theme="info">
   **Note**: It is recommended to collect the customer’s e-mail address, phone, address, city, state, and country and then post those details along with the payment request with PayU. This will help in checking the risk of the transaction based on these data.
 </Callout>
