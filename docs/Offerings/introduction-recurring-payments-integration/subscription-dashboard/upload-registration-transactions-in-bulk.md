@@ -34,444 +34,444 @@ This section describes the procedure to upload the registration transactions in 
 * Download the sample file as in below [procedure](#procedure) (Steps 1 to 5) and update it to include the data to be uploaded.
 * Ensure that all mandatory fields in the file are filled with the correct details. The columns in the Excel sheet for upload are described in the following table:
 
-<Accordion title="Columns in Excel sheet for uploading transactions in bulk" icon="fa-info-circle">
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Column Name
-      </th>
-
-      <th>
-        Field Type (Mandatory/ Optional)
-      </th>
-
-      <th>
-        Character Limit
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        Amount
-      </td>
-
-      <td>
-        Mandatory
-      </td>
-
-      <td>
-        No Limit
-        **Note**: In case the FreeTrial value = 1, the amount needs to be Rs 2
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Invoice Id
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        16 (Should be unique)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Merchant Ref Id
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        50 (should be unique and to support - "^[A-Za-z0-9@#().+_;\-\[\]]*$" )
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Product Description
-      </td>
-
-      <td>
-        Mandatory
-      </td>
-
-      <td>
-        255
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Customer Name
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        255
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Customer Email
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        Basic email validations
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Customer Phone Number
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        Basic phone number validations
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Validation Period
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        No max limit. Should be numeric 
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Time Unit
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        The default value is D (days). Other supported values = M (minutes), H (hours)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Sendsms
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        Supported value = 0, 1 or empty 
-
-        * _Note_*: To send a SMS, the following is required:
-        * Phone number must be specified
-        * **Sendsms**column = 1
-        * **Notify via SMS** check box specified in Step 7  is selected
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Sendemail
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        Supported value = 0, 1 or empty
-
-        * _Note_*: To send an email, the following is required:
-        * Email ID must be specified
-        * **Sendemail** column = 1
-        * **Notify via Email** check box specified in Step 7  is selected
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Customer Address
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        255
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Cutomer City
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        255
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Customer State
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        255
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Customer Country
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        255
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Zip code
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        255
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Udf 1
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        255
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Udf 2
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        255
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Udf 3
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        255
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Udf 4
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        255
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Udf 5
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        255
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        IsSiEnabled
-      </td>
-
-      <td>
-        Mandatory
-      </td>
-
-      <td>
-        Supported value = 0, 1 or empty. If the value = 1 only then SI bulk upload link will be generated and the SI-related parameters will be  mandatory
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Billing amount
-      </td>
-
-      <td>
-        Mandatory (if isSienabled =1)
-      </td>
-
-      <td>
-        Minimum value = 1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Billing cycle
-      </td>
-
-      <td>
-        Mandatory (if isSienabled =1)
-      </td>
-
-      <td>
-        Value should be monthly, daily, weekly, adhoc, yearly
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Billing interval
-      </td>
-
-      <td>
-        Mandatory   a. if isSienabled =1  b. if billing cycle ≠ adhoc
-      </td>
-
-      <td>
-        For adhoc cycle, it is not mandatory, for other billing cycles, it is mandatory
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Start date
-      </td>
-
-      <td>
-        Mandatory (if isSienabled =1)
-      </td>
-
-      <td>
-        DD/MM/YYYY format
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        End date
-      </td>
-
-      <td>
-        Mandatory (if isSienabled =1)
-      </td>
-
-      <td>
-        DD/MM/YYYY format
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Payment Method
-      </td>
-
-      <td>
-        Mandatory (if isSienabled =1)
-      </td>
-
-      <td>
-        `creditcard|debitcard|upi|enach`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        FreeTrial
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        Acceptable Values: 0 or 1.
-        **Note**: In case the FreeTrial value = 1, the amount needs to be Rs 2
-      </td>
-    </tr>
-  </tbody>
-</Table>
+<Accordion title="Description of Columns in Excel sheet for uploading transactions in bulk" icon="fa-info-table">
+  <Table align={["left","left","left"]}>
+    <thead>
+      <tr>
+        <th style={{ textAlign: "left" }}>
+          Column Name
+        </th>
+
+        <th style={{ textAlign: "left" }}>
+          Field Type (Mandatory/ Optional)
+        </th>
+
+        <th style={{ textAlign: "left" }}>
+          Character Limit
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Amount
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Mandatory
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          No Limit
+          **Note**: In case the FreeTrial value = 1, the amount needs to be Rs 2
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Invoice Id
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          16 (Should be unique)
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Merchant Ref Id
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          50 (should be unique and to support - "^\[A-Za-z0-9@#().+\_;-\[]]\*$" )
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Product Description
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Mandatory
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          255
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Customer Name
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          255
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Customer Email
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Basic email validations
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Customer Phone Number
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Basic phone number validations
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Validation Period
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          No max limit. Should be numeric 
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Time Unit
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          The default value is D (days). Other supported values = M (minutes), H (hours)
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Sendsms
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Supported value = 0, 1 or empty 
+
+          * *Note*\*: To send a SMS, the following is required:
+          * Phone number must be specified
+          * **Sendsms**column = 1
+          * **Notify via SMS** check box specified in Step 7  is selected
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Sendemail
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Supported value = 0, 1 or empty
+
+          * *Note*\*: To send an email, the following is required:
+          * Email ID must be specified
+          * **Sendemail** column = 1
+          * **Notify via Email** check box specified in Step 7  is selected
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Customer Address
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          255
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Cutomer City
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          255
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Customer State
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          255
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Customer Country
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          255
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Zip code
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          255
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Udf 1
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          255
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Udf 2
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          255
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Udf 3
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          255
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Udf 4
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          255
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Udf 5
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          255
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          IsSiEnabled
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Mandatory
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Supported value = 0, 1 or empty. If the value = 1 only then SI bulk upload link will be generated and the SI-related parameters will be  mandatory
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Billing amount
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Mandatory (if isSienabled =1)
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Minimum value = 1
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Billing cycle
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Mandatory (if isSienabled =1)
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Value should be monthly, daily, weekly, adhoc, yearly
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Billing interval
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Mandatory   a. if isSienabled =1  b. if billing cycle ≠ adhoc
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          For adhoc cycle, it is not mandatory, for other billing cycles, it is mandatory
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Start date
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Mandatory (if isSienabled =1)
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          DD/MM/YYYY format
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          End date
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Mandatory (if isSienabled =1)
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          DD/MM/YYYY format
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Payment Method
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Mandatory (if isSienabled =1)
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `creditcard|debitcard|upi|enach`
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          FreeTrial
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Acceptable Values: 0 or 1.
+          **Note**: In case the FreeTrial value = 1, the amount needs to be Rs 2
+        </td>
+      </tr>
+    </tbody>
+  </Table>
 </Accordion>
 
 * Ensure that your bulk upload files are in the CSV format, as this is the only supported file type. 
