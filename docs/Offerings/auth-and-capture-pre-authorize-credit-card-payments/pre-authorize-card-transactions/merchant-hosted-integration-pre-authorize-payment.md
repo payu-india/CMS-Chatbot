@@ -29,6 +29,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
 The **pre_authorize** parameter as specified is used to pre-authorize payments using the Merchant Hosted Checkout integration with the **_payment** API.
 
+<Accordion title="Request parameters" icon="fa-code">
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -130,11 +131,7 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
       </td>
 
       <td>
-
-
         [ashish@abccorp.com](mailto:ashish@abccorp.com)
-
-
       </td>
     </tr>
 
@@ -174,7 +171,7 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to <a href="https://docs.payu.in/docs/card-type-codes-and-supported-banks-for-cards" target="_blank"> Card Type Codes and Supported Banks for Cards</a>.
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to <a href="https://docs.payu.in/docs/card-type-codes-and-supported-banks-for-cards" target="_blank"> Card Type Codes and Supported Banks for Cards</a>.
       </td>
 
       <td>
@@ -232,7 +229,7 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
       </td>
 
       <td>
-        `String` This parameter must contain the card’s expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
+        `String` This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
       </td>
 
       <td>
@@ -247,7 +244,7 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
       </td>
 
       <td>
-        `String` This parameter must contain the card’s expiry year – as entered by the customer for the transaction. It must be of four digits.
+        `String` This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.
       </td>
 
       <td>
@@ -485,42 +482,21 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
     </tr>
   </tbody>
 </Table>
+</Accordion>
 
 <HashingRequestParameters />
 
-### Sample request
-
+<Accordion title="Sample request" icon="fa-code">
 ```curl
-curl --request POST \
-     --url 'https://test.payu.in/_payment?form=2' \
-     --header 'Content-Type: application/x-www-form-urlencoded' \
-     --header 'accept: text/plain' \
-     --data key=JPM7Fg \
-     --data pg=CC \
-     --data bankcode=CC \
-     --data pre_authorize=1 \
-     --data surl=https://test-payment-middleware.payu.in/simulatorResponse \
-     --data furl=https://test-payment-middleware.payu.in/simulatorResponse \
-     --data txnid=ypskjfdaaksdjfh \
-     --data amount=10000 \
-     --data productinfo=iPhone \
-     --data firstname=Ashish \
-     --data email=ashish@gmail.com \
-     --data phone=9889XXXXXX \
-     --data ccnum=512*******012346 \
-     --data ccname=Ashish \
-     --data ccexpmon=11 \
-     --data ccexpyr=2025 \
-     --data ccvv=123 \
-     --data hash=d99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced
+curl --request POST      --url 'https://test.payu.in/_payment?form=2'      --header 'Content-Type: application/x-www-form-urlencoded'      --header 'accept: text/plain'      --data key=JPM7Fg      --data pg=CC      --data bankcode=CC      --data pre_authorize=1      --data surl=https://test-payment-middleware.payu.in/simulatorResponse      --data furl=https://test-payment-middleware.payu.in/simulatorResponse      --data txnid=ypskjfdaaksdjfh      --data amount=10000      --data productinfo=iPhone      --data firstname=Ashish      --data email=ashish@gmail.com      --data phone=9889XXXXXX      --data ccnum=512*******012346      --data ccname=Ashish      --data ccexpmon=11      --data ccexpyr=2025      --data ccvv=123      --data hash=d99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced
 ```
+</Accordion>
 
 ## Step 2: Check the response from PayU
 
 <ReverseHashing />
 
-### Sample response
-
+<Accordion title="Sample response" icon="fa-code">
 The formatted sample response body is similar to the following, and you need to look for the following parameters:
 
 * PG_TYPE: CC PG
@@ -579,9 +555,10 @@ The formatted sample response body is similar to the following, and you need to 
   "error_Message": "No Error",
   "cardnum": "XXXXXXXXXXXX2346",
   "cardhash": "This field is no longer supported in postback params.",
-  "splitInfo": "{\"splitStatus\":\"splitNotReceived\",\"splitSegments\":[]}"
+  "splitInfo": "{"splitStatus":"splitNotReceived","splitSegments":[]}"
 }
 ```
+</Accordion>
 
 ## Step 3: Capture a Pre-authorized payment
 
@@ -594,8 +571,7 @@ To capture a pre-authorized payment, use the following command. After the API co
 | Test Environment       | [https://test.payu.in/merchant/postservice?form=2](https://test.payu.in/merchant/postservice?form=2) |
 | Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2) |
 
-### Sample request
-
+<Accordion title="Sample request" icon="fa-code">
 ```curl
 curl --location --request POST 'https://info.payu.in/merchant/postservice.php?form=2' \ 
 --header 'Content-Type: application/x-www-form-urlencoded' \ 
@@ -606,9 +582,9 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 --form 'var2="authorizeTransaction123"' \ 
 --form 'var3="1"' 
 ```
+</Accordion>
 
-### Sample response
-
+<Accordion title="Sample response" icon="fa-code">
 ```plaintext
 { 
     "status": 1, 
@@ -617,126 +593,22 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
     "bank_ref_num": "Bank Reference Number" 
 } 
 ```
+</Accordion>
 
 ## Step 3: Check Action Status
 
-* To check the status of the transaction, use the **verify_payment** API.  For more information, refer to [Verify Payment API](ref:verify_payment_api)
-* To check the status of the Auth Request and then Capture Request sent, use the **check_action_status** API. For more information,  refer to  [Check Refund Status API with Request ID](ref:check_action_status_api_with_request_id).
-
-> 📘 Note:
->
-> * The **unamappedstatus** to **auth** can be checked using thje [Verify Payment API](ref:verify_payment_api) and in callback response in the Transaction callback.
-> * If you want to cancel or refund a pre-authorized payment, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
-
-### Sample response
-
-#### Failure scenario
-
-```
-{ 
-    "status": 1, 
-    "msg": "1 out of 1 Transactions Fetched Successfully", 
-    "transaction_details": { 
-        "18315176038": { 
-            "12806028149": { 
-                "mihpayid": "18315176038", 
-                "bank_ref_num": "6969235068376733806127", 
-                "request_id": "12806028149", 
-                "amt": "2.00", 
-                "mode": "CC", 
-                "action": "auth", 
-                "token": "", 
-                "status": "SUCCESS", // Auth is successful 
-                "bank_arn": null, 
-                "settlement_id": null, 
-                "amount_settled": null, 
-                "UTR_no": null, 
-                "value_date": null, 
-                "refund_mode": "-" 
-            }, 
-            "12806028151": { 
-                "mihpayid": "18315176038", 
-                "bank_ref_num": null, 
-                "request_id": "12806028151", 
-                "amt": "1.00", 
-                "mode": "CC", 
-                "action": "capture", 
-                "token": "Cap_18315176038_01", 
-                "status": "QUEUED", // Capture is in queue statue  
-                "bank_arn": null, 
-                "settlement_id": null, 
-                "amount_settled": null, 
-                "UTR_no": null, 
-                "value_date": null, 
-                "refund_mode": "-" 
-            } 
-        } 
-    } 
-```
-
-#### Success scenario
-
-```
-{ 
-    "status": 1, 
-    "msg": "1 out of 1 Transactions Fetched Successfully", 
-    "transaction_details": { 
-        "18283829909": { 
-            "12781896792": { 
-                "mihpayid": "18283829909", 
-                "bank_ref_num": "6966342376826003206121", 
-                "request_id": "12781896792", 
-                "amt": "1031.00", 
-                "mode": "CC", 
-                "action": "auth", 
-                "token": "", 
-                "status": "SUCCESS", 
-                "bank_arn": null, 
-                "settlement_id": null, 
-                "amount_settled": null, 
-                "UTR_no": null, 
-                "value_date": null, 
-                "refund_mode": "-" 
-            }, 
-            "12781896793": { 
-                "mihpayid": "18283829909", 
-                "bank_ref_num": "6969233152136917105030", 
-                "request_id": "12781896793", 
-                "amt": "426.00", 
-                "mode": "CC", 
-                "action": "capture", 
-                "token": "PZT2310070446VG2VC01", 
-                "status": "success", // Auth is successful 
-                "bank_arn": null, 
-                "settlement_id": "202310111115", 
-                "amount_settled": "418.7100", 
-                "UTR_no": null, 
-                "value_date": null, 
-                "refund_mode": "-" 
-            }, 
-            "12806008126": { 
-                "mihpayid": "18283829909", 
-                "bank_ref_num": null, 
-                "request_id": "12806008126", 
-                "amt": "605.00", 
-                "mode": "CC", 
-                "action": "cancel", 
-                "token": "825816e28afb809be802c7b", 
-                "status": "SUCCESS", // Capture is successful 
-                "bank_arn": null, 
-                "settlement_id": null, 
-                "amount_settled": null, 
-                "UTR_no": null, 
-                "value_date": null, 
-                "refund_mode": "-" 
-            } 
-        } 
-    } 
-} 
-```
-
-<Callout icon="👍" theme="okay">
-  **Reference**: For cancelling pre-auth payments, refer to [Cancel a Pre-Authorized Transaction API](ref:cancel-a-pre-authorized-transaction).
-</Callout>
+<Verify_Payment_Tabs />
 
 <br />
+
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * The **unamappedstatus** to **auth** can be checked using thje <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> and in callback response in the Transaction callback.
+  * To check the status of the Auth Request and then Capture Request sent, use the **check_action_status** API. For more information,  refer to  <Anchor label="Check Refund Status API with Request ID" target="_blank" href="ref:check_action_status_api_with_request_id">Check Refund Status API with Request ID</Anchor>.
+  * If you want to cancel or refund a pre-authorized payment, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
+</Callout>
+
+<Callout icon="👍" theme="okay">
+  **Reference**: For cancelling pre-auth payments, refer to <Anchor label="Cancel a Pre-Authorized Transaction API" target="_blank" href="ref:cancel-a-pre-authorized-transaction">Cancel a Pre-Authorized Transaction API</Anchor>.
+</Callout>
