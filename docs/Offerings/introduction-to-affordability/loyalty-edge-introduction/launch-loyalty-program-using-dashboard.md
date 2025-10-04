@@ -284,6 +284,10 @@ The _Payment options_ page is displayed.
 9. Click **Save & Next**.
 10. Click **Publish** to go live with the campaign.
 
+## Manage Loyalty Edge Campaigns
+
+You can check or update the details of an existing campaign and customer transactions as a result of a campaign as described in the following sections:
+
 ### View Campaign Transactions
 
 To view the transactions due to campaign:
@@ -303,10 +307,6 @@ The campaign details are displayed.
    * Use the **Filter** drop-down menu to filter the transactions.
    * Use the **Calendar** drop-down menu to view the transactions for a period.
    * Search using the transaction ID, order ID or phone number in the **Search** field.
-
-## Manage Loyalty Edge Campaigns
-
-You can check or update the details of an existing campaign and customer transactions as a result of a campaign as described in the following sections:
 
 ### Update Campaign Details
 
