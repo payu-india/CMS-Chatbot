@@ -262,35 +262,35 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 </Table>
 
 <Accordion title="Hashing" icon="fa-code">
-You must hash the request parameters using the following hash logic:
+  You must hash the request parameters using the following hash logic:
 
-```
-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
-```
+  ```
+  sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+  ```
 
-For more information, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
+  For more information, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
-```
-curl --request POST   
+  ```
+  curl --request POST   
 
---url https://test.payu.in/_payment   
---header 'accept: text/plain'   
---header 'content-type: application/x-www-form-urlencoded'   
---data key=JPM7Fg   
---data txnid=aso6787   
---data siDetails="{"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"}"   
---data pre_authorize=1 \  
---data amount=100.00   
---data productinfo=iPhone   
---data firstname=Ashish   
---data email=ashish@abc.com   
---data phone=9876543210   
---data surl=https://apiplayground-response.herokuapp.com/   
---data furl=https://apiplayground-response.herokuapp.com/   
---data hash=8e8de8a3cf2ba999e16c0ffdb63a645074af4ad1aa0a8d66d81555a119c004e1791173fe6199084f256623664b250d3aeb50fc2c4cfc155e729d8811a157c98b  
-```
+  --url https://test.payu.in/_payment   
+  --header 'accept: text/plain'   
+  --header 'content-type: application/x-www-form-urlencoded'   
+  --data key=JPM7Fg   
+  --data txnid=aso6787   
+  --data siDetails="{"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"}"   
+  --data pre_authorize=1 \  
+  --data amount=100.00   
+  --data productinfo=iPhone   
+  --data firstname=Ashish   
+  --data email=ashish@abc.com   
+  --data phone=9876543210   
+  --data surl=https://apiplayground-response.herokuapp.com/   
+  --data furl=https://apiplayground-response.herokuapp.com/   
+  --data hash=8e8de8a3cf2ba999e16c0ffdb63a645074af4ad1aa0a8d66d81555a119c004e1791173fe6199084f256623664b250d3aeb50fc2c4cfc155e729d8811a157c98b  
+  ```
 </Accordion>
 
 ## Step 2: Check the response from PayU
@@ -298,70 +298,70 @@ curl --request POST
 On receiving valid request over PayU's payment interface (_payment), PayU returns:
 
 <Accordion title="Sample response" icon="fa-code">
-```text
-mihpayid=6MAESTROMAESTRO5&mode=UPI&status=success&key=travelibibo&txnid=8286f8e3954bf669c02e&amount=10000.00&addedon=2024-04-22 15:48:45&productinfo=Product Info&firstname=CARDHOLDERXXXXXXXXNAME-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test@example.com&"phone":"##########"&udf1=&udf2=&udf3=&udf4=Created&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=sur***@icici&field2=&field3=sur***icici&field4=ICICI Test Vpa&field5=3159219e58ed45eda39e8914b998401a@icici&field6=rambo|_mobilenum_&field7=00|APPROVED OR COMPLETED SUCCESSFULLY&field8=&field9=APPROVED OR COMPLETED SUCCESSFULLY|Completed Using Callback&payment_source=payuPureS2S&PG_TYPE=UPI-PG&error=E000&error_Message=No Error&net_amount_debit=10000&discount=0.00&unmappedstatus=auth&hash=3ca863c1c8148baa13891f6e8e124c07f909d9fa14d6757acc01b08b736c35bbdae9845fa445cdaf22fb190f717285d0d09c02508bbfe081b4833eaf5637ec03&bank_ref_no=410901015475&bank_ref_num=410901015475&bankcode=UPI&surl=http://local.admin.payu.in/test_response&curl=http://local.admin.payu.in/test_response&furl=http://local.admin.payu.in/test_response 
-```
+  ```text
+  mihpayid=6MAESTROMAESTRO5&mode=UPI&status=success&key=travelibibo&txnid=8286f8e3954bf669c02e&amount=10000.00&addedon=2024-04-22 15:48:45&productinfo=Product Info&firstname=CARDHOLDERXXXXXXXXNAME-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test@example.com&"phone":"##########"&udf1=&udf2=&udf3=&udf4=Created&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=sur***@icici&field2=&field3=sur***icici&field4=ICICI Test Vpa&field5=3159219e58ed45eda39e8914b998401a@icici&field6=rambo|_mobilenum_&field7=00|APPROVED OR COMPLETED SUCCESSFULLY&field8=&field9=APPROVED OR COMPLETED SUCCESSFULLY|Completed Using Callback&payment_source=payuPureS2S&PG_TYPE=UPI-PG&error=E000&error_Message=No Error&net_amount_debit=10000&discount=0.00&unmappedstatus=auth&hash=3ca863c1c8148baa13891f6e8e124c07f909d9fa14d6757acc01b08b736c35bbdae9845fa445cdaf22fb190f717285d0d09c02508bbfe081b4833eaf5637ec03&bank_ref_no=410901015475&bank_ref_num=410901015475&bankcode=UPI&surl=http://local.admin.payu.in/test_response&curl=http://local.admin.payu.in/test_response&furl=http://local.admin.payu.in/test_response 
+  ```
 
-The formatted response is similar to the file:
+  The formatted response is similar to the file:
 
-```
-# PayU Hosted Checkout Response (v1)
+  ```
+  # PayU Hosted Checkout Response (v1)
 
-mihpayid: 6MAESTROMAESTRO5
-mode: UPI
-status: success
-key: travelibibo
-txnid: 8286f8e3954bf669c02e
-amount: 10000.00
-addedon: 2024-04-22 15:48:45
-productinfo: Product Info
-firstname: CARDHOLDERXXXXXXXXNAME-Admin
-lastname: 
-address1: 
-address2: 
-city: 
-state: 
-country: 
-zipcode: 
-email: test@example.com
-phone: ##########
-udf1: 
-udf2: 
-udf3: 
-udf4: Created
-udf5: 
-udf6: 
-udf7: 
-udf8: 
-udf9: 
-udf10: 
-card_token: 
-card_no: 
-field0: 
-field1: sur***@icici
-field2: 
-field3: sur***@icici
-field4: ICICI Test Vpa
-field5: 3159219e58ed45eda39e8914b998401a@icici
-field6: rambo|_mobilenum_
-field7: 00|APPROVED OR COMPLETED SUCCESSFULLY
-field8: 
-field9: APPROVED OR COMPLETED SUCCESSFULLY|Completed Using Callback
-payment_source: payuPureS2S
-PG_TYPE: UPI-PG
-error: E000
-error_Message: No Error
-net_amount_debit: 10000
-discount: 0.00
-unmappedstatus: auth
-hash: 3ca863c1c8148baa13891f6e8e124c07f909d9fa14d6757acc01b08b736c35bbdae9845fa445cdaf22fb190f717285d0d09c02508bbfe081b4833eaf5637ec03
-bank_ref_no: 410901015475
-bank_ref_num: 410901015475
-bankcode: UPI
-surl: http://local.admin.payu.in/test_response
-curl: http://local.admin.payu.in/test_response
-furl: http://local.admin.payu.in/test_response
-```
+  mihpayid: 6MAESTROMAESTRO5
+  mode: UPI
+  status: success
+  key: travelibibo
+  txnid: 8286f8e3954bf669c02e
+  amount: 10000.00
+  addedon: 2024-04-22 15:48:45
+  productinfo: Product Info
+  firstname: CARDHOLDERXXXXXXXXNAME-Admin
+  lastname: 
+  address1: 
+  address2: 
+  city: 
+  state: 
+  country: 
+  zipcode: 
+  email: test@example.com
+  phone: ##########
+  udf1: 
+  udf2: 
+  udf3: 
+  udf4: Created
+  udf5: 
+  udf6: 
+  udf7: 
+  udf8: 
+  udf9: 
+  udf10: 
+  card_token: 
+  card_no: 
+  field0: 
+  field1: sur***@icici
+  field2: 
+  field3: sur***@icici
+  field4: ICICI Test Vpa
+  field5: 3159219e58ed45eda39e8914b998401a@icici
+  field6: rambo|_mobilenum_
+  field7: 00|APPROVED OR COMPLETED SUCCESSFULLY
+  field8: 
+  field9: APPROVED OR COMPLETED SUCCESSFULLY|Completed Using Callback
+  payment_source: payuPureS2S
+  PG_TYPE: UPI-PG
+  error: E000
+  error_Message: No Error
+  net_amount_debit: 10000
+  discount: 0.00
+  unmappedstatus: auth
+  hash: 3ca863c1c8148baa13891f6e8e124c07f909d9fa14d6757acc01b08b736c35bbdae9845fa445cdaf22fb190f717285d0d09c02508bbfe081b4833eaf5637ec03
+  bank_ref_no: 410901015475
+  bank_ref_num: 410901015475
+  bankcode: UPI
+  surl: http://local.admin.payu.in/test_response
+  curl: http://local.admin.payu.in/test_response
+  furl: http://local.admin.payu.in/test_response
+  ```
 </Accordion>
 
 ## Step 3: Capture a pre-authorized payment
@@ -369,94 +369,93 @@ furl: http://local.admin.payu.in/test_response
 To capture a pre-authorized payment, use the following command. After the API command is successful, the transaction would be captured and settled to you.=
 
 <Accordion title="Request parameters" icon="fa-code">
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>key <code>mandatory</code></td>
-      <td>This parameter is the unique Merchant Key provided by PayU for your merchant account. The Merchant Key acts as the unique identifier (primary key) to identify a Merchant Account in our database.</td>
-      <td>YbfVda</td>
-    </tr>
-    <tr>
-      <td>command <code>mandatory</code></td>
-      <td>For initiating a capture transaction, the value of the parameter will be passed as <strong>capture_transaction</strong></td>
-      <td>capture_transaction</td>
-    </tr>
-    <tr>
-      <td>hash <code>mandatory</code></td>
-      <td>This parameter must contain the hash value to be calculated at merchant end. Hash logic for this API is:<br><code>sha512(key|command|var1|salt)</code></td>
-      <td>5fcf2d7c2b...</td>
-    </tr>
-    <tr>
-      <td>var1 <code>mandatory</code></td>
-      <td>This parameter must contain the payuId that was generated by PayU as part of pre-authorize operation.</td>
-      <td>403993715523409521</td>
-    </tr>
-    <tr>
-      <td>var2 <code>mandatory</code></td>
-      <td>This parameter contains the token, that is, merchant unique reference number.</td>
-      <td>TXN123456789</td>
-    </tr>
-    <tr>
-      <td>var3 <code>mandatory</code></td>
-      <td>This parameter must contain the amount to be captured.</td>
-      <td>100.00</td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+  <HTMLBlock>{`
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>key <code>mandatory</code></td>
+          <td>This parameter is the unique Merchant Key provided by PayU for your merchant account. The Merchant Key acts as the unique identifier (primary key) to identify a Merchant Account in our database.</td>
+          <td>YbfVda</td>
+        </tr>
+        <tr>
+          <td>command <code>mandatory</code></td>
+          <td>For initiating a capture transaction, the value of the parameter will be passed as <strong>capture_transaction</strong></td>
+          <td>capture_transaction</td>
+        </tr>
+        <tr>
+          <td>hash <code>mandatory</code></td>
+          <td>This parameter must contain the hash value to be calculated at merchant end. Hash logic for this API is:<br><code>sha512(key|command|var1|salt)</code></td>
+          <td>5fcf2d7c2b...</td>
+        </tr>
+        <tr>
+          <td>var1 <code>mandatory</code></td>
+          <td>This parameter must contain the payuId that was generated by PayU as part of pre-authorize operation.</td>
+          <td>403993715523409521</td>
+        </tr>
+        <tr>
+          <td>var2 <code>mandatory</code></td>
+          <td>This parameter contains the token, that is, merchant unique reference number.</td>
+          <td>TXN123456789</td>
+        </tr>
+        <tr>
+          <td>var3 <code>mandatory</code></td>
+          <td>This parameter must contain the amount to be captured.</td>
+          <td>100.00</td>
+        </tr>
+      </tbody>
+    </table>
+  `}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
-```
-curl --location --request POST 'https://info.payu.in/merchant/postservice.php?form=2' \   
- --header 'Content-Type: application/x-www-form-urlencoded' \   
- --form 'key="JF***g"' \   
- --form 'command="capture_transaction"' \   
- --form 'hash="67411736ab98c59522492a12751a6015c41b87764019f9dc14052690c2c7af9095d31002fc109dcf3596c2f38792d56db6f6207b1989010f2adf51c144fa3019"' \   
- --form 'var1="15246574846"' \   
- --form 'var2="authorizeTransaction123"' \   
- --form 'var3="1"'  
+  ```
+  curl --location --request POST 'https://info.payu.in/merchant/postservice.php?form=2' \   
+   --header 'Content-Type: application/x-www-form-urlencoded' \   
+   --form 'key="JF***g"' \   
+   --form 'command="capture_transaction"' \   
+   --form 'hash="67411736ab98c59522492a12751a6015c41b87764019f9dc14052690c2c7af9095d31002fc109dcf3596c2f38792d56db6f6207b1989010f2adf51c144fa3019"' \   
+   --form 'var1="15246574846"' \   
+   --form 'var2="authorizeTransaction123"' \   
+   --form 'var3="1"'  
 
- 
-```
+   
+  ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-code">
-```
-{
-  "msg": "Transaction Processed successfully",
-  "status": 1,
-  "result": {
-    "payuid": 613345678912399031,
-    "txnId": "upiAuthCapture_12",
-    "amount": 10000.00,
-    "merchantId": 3,
-    "authpayuid": "3975",
-    "status": "in progress",
-    "mode": "UPIOTM",
-    "bankRefNumber": "410700457030",
-    "payerVpa": "surya@icici",
-    "field5": "3159219e58ed45eda39e8914b998401a@icici",
-    "field9": "0|Transaction Successful"
+  ```
+  {
+    "msg": "Transaction Processed successfully",
+    "status": 1,
+    "result": {
+      "payuid": 613345678912399031,
+      "txnId": "upiAuthCapture_12",
+      "amount": 10000.00,
+      "merchantId": 3,
+      "authpayuid": "3975",
+      "status": "in progress",
+      "mode": "UPIOTM",
+      "bankRefNumber": "410700457030",
+      "payerVpa": "surya@icici",
+      "field5": "3159219e58ed45eda39e8914b998401a@icici",
+      "field9": "0|Transaction Successful"
+    }
   }
-}
-```
+  ```
 </Accordion>
 
-<Accordion title="Step 4: Check Transaction Status" icon="fa-code">
-<Verify_Payment_Tabs />
+## Step 4: Check Transaction Status
+  <Verify_Payment_Tabs />
 
-<br />
+  <br />
 
-<Callout icon="👍" theme="okay">
-  **Reference**: For cancelling pre-auth payments, refer to [Cancel a Pre-Authorized Transaction API](ref:cancel-a-pre-authorized-transaction).
-</Callout>
-</Accordion>
+  <Callout icon="👍" theme="okay">
+    **Reference**: For cancelling pre-auth payments, refer to [Cancel a Pre-Authorized Transaction API](ref:cancel-a-pre-authorized-transaction).
+  </Callout>
