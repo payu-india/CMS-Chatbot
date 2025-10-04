@@ -13,9 +13,9 @@ next:
 Integrate the Affordability Widget to display affordable payment options and offers before checkout,
 influencing purchase decisions and improving conversions. To learn more about the features and benefits of PayU Affordability Widget, see Introduction to Affordability Widget.
 
-## Integration steps
+<Accordion title="Integration steps" icon="fa-code">
 
-### Step 1: Embed the JavaScript file into your website
+<Accordion title="Step 1: Embed the JavaScript file into your website" icon="fa-code">
 
 Copy the following snippet and add it to the head section of your website:
 
@@ -26,7 +26,8 @@ Copy the following snippet and add it to the head section of your website:
 
 ***
 
-### Step 2: Add placeholder for the Widget
+</Accordion>
+<Accordion title="Step 2: Add placeholder for the Widget" icon="fa-code">
 
 Add the following HTML element with the below id on your webpage as a placeholder to
 indicate where the affordability widget should appear.
@@ -37,7 +38,8 @@ indicate where the affordability widget should appear.
 
 ***
 
-### Step 3: Initiate the Widget
+</Accordion>
+<Accordion title="Step 3: Initiate the Widget" icon="fa-code">
 
 Use the following snippet inside the header section of your Webpage.
 
@@ -51,7 +53,7 @@ window.onload = function() {
 }
 ```
 
-<Table align={["left","left"]}>
+<Table align="left">
   <thead>
     <tr>
       <th>
@@ -90,9 +92,12 @@ window.onload = function() {
 
 ***
 
-## Customize the Widget
+</Accordion>
 
-### Display specific affordability options available for a customer
+</Accordion>
+<Accordion title="Customize the Widget" icon="fa-code">
+
+<Accordion title="Display specific affordability options available for a customer" icon="fa-code">
 
 By default, the Affordability widget displays an exhaustive list of all affordability options supported by PayU. But your customer might just want see the affordability options for which they are eligible.
 
@@ -109,13 +114,14 @@ To display specific affordability options available for a customer, pass the use
 
 | Parameter    | Description                                                                                                                      |         |        |       |        |
 | :----------- | :------------------------------------------------------------------------------------------------------------------------------- | :------ | :----- | :---- | :----- |
-| mobileNumber | `String` The customer’s phone number.                                                                                            |         |        |       |        |
+| mobileNumber | `String` The customer's phone number.                                                                                            |         |        |       |        |
 | timeStamp    | `String` The timestamp of the request. Example format : Mon, 14 Feb 2022 13:06:14 GMT                                            |         |        |       |        |
-| token        | `String` An hash token to uniquely identify the request. To create the token, use the following algorithm: `SHA512 (merchantKey\ | amount\ | phone\ | date\ | salt)` |
+| token        | `String` An hash token to uniquely identify the request. To create the token, use the following algorithm: `SHA512 (merchantKey| amount| phone| date| salt)` |
 
 ***
 
-### Display SKU based offers in the widget
+</Accordion>
+<Accordion title="Display SKU based offers in the widget" icon="fa-code">
 
 The skusDetail is an optional key that you can add to the affordability widget to display the SKU based offers on your checkout page. The skusDetail key accepts an array of objects as the value. If you want to display offers for one or more SKUs, you can either send a single or an array of objects as the value of the skusDetail key.
 
@@ -142,7 +148,8 @@ To display SKU based offers you must pass the id of the sku as the value of the 
 
 ***
 
-### Customize the Display Color of the Widget
+</Accordion>
+<Accordion title="Customize the Display Color of the Widget" icon="fa-code">
 
 The styleConfig is an optional section that you can use to customise the color of specific UI elements of the affordability widget, such as:
 
@@ -160,7 +167,10 @@ The styleConfig is an optional section that you can use to customise the color o
 
 ***
 
-## Sample Code
+</Accordion>
+
+</Accordion>
+<Accordion title="Sample Code" icon="fa-code">
 
 ```json Javascript
 window.onload = function() {
@@ -193,3 +203,4 @@ window.onload = function() {
   payuAffordability.init(widgetConfig);
 }
 ```
+</Accordion>
