@@ -40,16 +40,16 @@ The following diagram depicts the steps involved in the end-to-end integration p
 
 ***
 
-### Steps to Integrate:
-
+<Accordion title="Steps to Integrate:" icon="fa-code">
 1. [Make the transaction request to PayU and check the response from PayU](#step-1-make-the-transaction-request-to-payu-and-check-the-response)
 2. [Verify the payment](#step-2-verify-the-payment)
+</Accordion>
 
 ***
 
 ## Step 1: Make the transaction request to PayU and check the response
 
-With the **POST REQUEST**, the customer will be redirected to the PayU’s payment page. The customer now selects the credit card payment option on PayU’s page and clicks the Pay Now button. PayU redirects the customer to the chosen payment method. The customer enters an international credit card number, and PayU displays the conversion. For the description of the request and response parameters, refer to Response Parameters section of [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
+With the **POST REQUEST**, the customer will be redirected to the PayU's payment page. The customer now selects the credit card payment option on PayU's page and clicks the Pay Now button. PayU redirects the customer to the chosen payment method. The customer enters an international credit card number, and PayU displays the conversion. For the description of the request and response parameters, refer to Response Parameters section of [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 
 PayU marks the transaction status based on the response received from the bank. PayU provides the final transaction response string to the merchant through a POST RESPONSE. The parameters in this response are covered in the subsequent sections.
 
@@ -61,10 +61,9 @@ PayU marks the transaction status based on the response received from the bank. 
 >
 > * For DCC eligible transactions, no changes are required in the existing integration of Query transactions or Refund transactions. In case of refunds, the merchant can initiate refunds in INR (original amount and currency) only. PayU will internally convert the same into the final amount and currency charged to the consumer using the FX rate, which was applied on the date of sale.
 > * There is no change required in handling the response from PayU as the response parameters are similar to the regular transaction
-> * It is recommended to collect the customer’s e-mail address, phone, address, city, state, and country and then post those details along with the payment request with PayU. This will help in checking the risk of the transaction based on these data.
+> * It is recommended to collect the customer's e-mail address, phone, address, city, state, and country and then post those details along with the payment request with PayU. This will help in checking the risk of the transaction based on these data.
 
-### Request parameters
-
+<Accordion title="Request parameters" icon="fa-code">
 <HTMLBlock>{`
 <table>
   <thead>
@@ -183,9 +182,9 @@ PayU marks the transaction status based on the response received from the bank. 
   </tbody>
 </table>
 `}</HTMLBlock>
+</Accordion>
 
-### Sample request
-
+<Accordion title="Sample request" icon="fa-code">
 ```
 curl -X POST "https://test.payu.in/_payment"
 -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d
@@ -196,9 +195,9 @@ https://apiplayground-response.herokuapp.com/
 &furl=https://apiplayground-response.herokuapp.com
 &hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
 ```
+</Accordion>
 
-### Sample response
-
+<Accordion title="Sample response" icon="fa-code">
 ```
 Array
 (
@@ -255,9 +254,8 @@ Array
     [cardhash] => This field is no longer supported in postback params.
 )
 ```
+</Accordion>
 
 ## Step 2: Verify the payment
 
 <Verify_Payment_Tabs />
-
-<br />
