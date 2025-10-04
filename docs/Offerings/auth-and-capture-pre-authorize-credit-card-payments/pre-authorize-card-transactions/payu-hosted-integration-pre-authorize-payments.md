@@ -12,13 +12,13 @@ next:
 ---
 The **pre_authorize** parameter is used to pre-authorize payments using the PayU Hosted Checkout integration with the **_payment** API.
 
-> 📘 Note:
->
-> You need to activate the Pre-Authorize Payments before you start using this integration. Contact your PayU Key Account Manager (KAM) to activate Pre-Authorize Payments.
+<Callout icon="📘" theme="info">
+  **Note**: You need to activate the Pre-Authorize Payments before you start using this integration. Contact your PayU Key Account Manager (KAM) to activate Pre-Authorize Payments.
+</Callout>
 
 ## Step 1: Post the pre-auth transaction request
 
-Post the additional parameters for using the Pre-Auth. For complete list of parameters, refer to <Anchor label="Pre-Authorize Payment" target="_blank" href="ref:pre_authorize_payment">Pre-Authorize Payment</Anchor> for the complete list parameters with **Try It** experience.
+The **pre_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **_payment** API. For **Try-It** experience, refer to <Anchor label="Pre-Authorize Payment" target="_blank" href="ref:pre_authorize_payment">Pre-Authorize Payment</Anchor> for the complete list parameters with **Try It** experience.
 
 **Environment**
 
@@ -27,7 +27,6 @@ Post the additional parameters for using the Pre-Auth. For complete list of para
 | **Test Environment**       | [https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | [https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
-The **pre_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **_payment** API.
 
 <HTMLBlock>{`
 <table>
@@ -170,8 +169,7 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
 
 <br />
 
-### Hashing
-
+<Accordion title="Hashing" icon="fa-code">
 You must hash the request parameters using the following hash logic:
 
 ```
@@ -179,9 +177,9 @@ sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||
 ```
 
 For more information, refer to [Generate Hash](doc:generate-hash-payu-hosted).
+</Accordion>
 
-### Sample request
-
+<Accordion title="Sample request" icon="fa-code">
 ```curl
 curl -X POST "https://test.payu.in/_payment
 -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d
@@ -192,13 +190,13 @@ https://apiplayground-response.herokuapp.com/
 &furl=https://apiplayground-response.herokuapp.com/
 &pre_authorize=1&hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
 ```
+</Accordion>
 
 ## Step 2: Check the response from PayU
 
 <ReverseHashing />
 
-### Sample response
-
+<Accordion title="Sample response" icon="fa-code">
 By default, the response in HTML format. The formatted sample response body is similar to the following, and you need to look for the following parameters:
 
 * PG_TYPE: CC PG
@@ -259,6 +257,7 @@ cardnum: 411111XXXXXX1111
 cardhash: This field is no longer supported in postback params.
 
 ```
+</Accordion>
 
 ## Step 3: Capture a Pre-authorized payment
 
@@ -266,13 +265,12 @@ To capture a pre-authorized payment, use the following command. After the API co
 
 **Environment**
 
-|                        |                                                                                                              |
+|                        |                                                                                                              |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------ |
 | Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
 | Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
 
-### Sample request
-
+<Accordion title="Sample request" icon="fa-code">
 ```curl
 curl --location --request POST 'https://info.payu.in/merchant/postservice.php?form=2' \ 
 --header 'Content-Type: application/x-www-form-urlencoded' \ 
@@ -283,10 +281,10 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 --form 'var2="authorizeTransaction123"' \ 
 --form 'var3="1"' 
 ```
+</Accordion>
 
-### Sample response
-
-```plaintext
+<Accordion title="Sample response" icon="fa-code">
+```json
 { 
     "status": 1, 
     "msg": "Capture Request Queued", 
@@ -294,22 +292,24 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
     "bank_ref_num": "Bank Reference Number" 
 } 
 ```
+</Accordion>
 
 ## Step 3: Check Action Status
 
 * To check the status of the transaction, use the **verify_payment** API.  For more information, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>
 * To check the status of the Auth Request and then Capture Request sent, use the **check_action_status** API. For more information,  refer to  <Anchor label="Check Refund Status API with Request ID" target="_blank" href="ref:check_action_status_api_with_request_id">Check Refund Status API with Request ID</Anchor>.
 
-> 📘 Note:
->
-> * The **unamappedstatus** to **auth** can be checked using thje <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> and in callback response in the Transaction callback.
-> * If you want to cancel or refund a pre-authorized payment, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
+<Callout icon="📘" theme="info">
+  **Notes**:
 
-### Sample response
+  * The **unamappedstatus** to **auth** can be checked using thje <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> and in callback response in the Transaction callback.
+  * If you want to cancel or refund a pre-authorized payment, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
+</Callout>
 
+<Accordion title="Sample response" icon="fa-code">
 #### Failure scenario
 
-```
+```json
 { 
 
     "status": 1, 
@@ -391,7 +391,7 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 
 #### Success scenario
 
-```
+```json
 { 
     "status": 1, 
     "msg": "1 out of 1 Transactions Fetched Successfully", 
@@ -450,6 +450,7 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 
 } 
 ```
+</Accordion>
 
 <br />
 
