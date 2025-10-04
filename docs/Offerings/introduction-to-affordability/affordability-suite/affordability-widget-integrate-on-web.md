@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-Integrate the Affordability Widget to display affordable payment options and offers before checkout,\
+Integrate the Affordability Widget to display affordable payment options and offers before checkout,
 influencing purchase decisions and improving conversions. To learn more about the features and benefits of PayU Affordability Widget, see Introduction to Affordability Widget.
 
 ## Integration steps
@@ -19,7 +19,7 @@ influencing purchase decisions and improving conversions. To learn more about th
 
 Copy the following snippet and add it to the head section of your website:
 
-```Text HTML
+```html HTML
 <!-- Add script in head -->
 <script defer src="https://jssdk.payu.in/widget/affordability-widget.min.js"></script>
 ```
@@ -28,10 +28,10 @@ Copy the following snippet and add it to the head section of your website:
 
 ### Step 2: Add placeholder for the Widget
 
-Add the following HTML element with the below id on your webpage as a placeholder to\
+Add the following HTML element with the below id on your webpage as a placeholder to
 indicate where the affordability widget should appear.
 
-```Text HTML
+```html HTML
 <div id="payuWidget"> </div> 
 ```
 
@@ -39,9 +39,9 @@ indicate where the affordability widget should appear.
 
 ### Step 3: Initiate the Widget
 
- Use the following snippet inside the header section of your Webpage.
+Use the following snippet inside the header section of your Webpage.
 
-```Text Javascript
+```javascript Javascript
 window.onload = function() {
   const widgetConfig = {
       "key": {key},
@@ -98,7 +98,7 @@ By default, the Affordability widget displays an exhaustive list of all affordab
 
 To display specific affordability options available for a customer, pass the userDetails object with the following parameters in widgetConfig:
 
-```Text JSON
+```json JSON
 "userDetails": {                        
         "mobileNumber": {mobile number},     
         "token": {token},                    
@@ -107,11 +107,11 @@ To display specific affordability options available for a customer, pass the use
 
 ```
 
-| Parameter    | Description                                                                                                                                                      |
-| :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mobileNumber | `String` The customer’s phone number.                                                                                                                            |
-| timeStamp    | `String` The timestamp of the request. Example format : Mon, 14 Feb 2022 13:06:14 GMT                                                                            |
-| token        | `String` An hash token to uniquely identify the request. To create the token, use the following algorithm: `SHA512 (merchantKey\\|amount\\|phone\\|date\\|salt)` |
+| Parameter    | Description                                                                                                                      |         |        |       |        |
+| :----------- | :------------------------------------------------------------------------------------------------------------------------------- | :------ | :----- | :---- | :----- |
+| mobileNumber | `String` The customer’s phone number.                                                                                            |         |        |       |        |
+| timeStamp    | `String` The timestamp of the request. Example format : Mon, 14 Feb 2022 13:06:14 GMT                                            |         |        |       |        |
+| token        | `String` An hash token to uniquely identify the request. To create the token, use the following algorithm: `SHA512 (merchantKey\ | amount\ | phone\ | date\ | salt)` |
 
 ***
 
@@ -125,7 +125,7 @@ To display SKU based offers you must pass the id of the sku as the value of the 
 >
 > If you do not pass a value for the skuAmount key, the amount of the product will be displayed as the Sku amount on the widget.
 
-```Text JSON
+```json JSON
 "skusDetail": [
         {                     
           "skuId": {sku1Id},              
@@ -150,7 +150,7 @@ The styleConfig is an optional section that you can use to customise the color o
 * **darkColor**: to customise the colors of the buttons on the L1 (the first screen of the widget) and L2 (expanded view of the widget) screen.
 * **backgroundColor**: if the background color of you web page is not white then this key can be used to customise the background color of the widget and the text on the L1 screen will be adjusted accordingly.
 
-```Text JSON
+```json JSON
 "styleConfig": {                     
         "lightColor": #FFFCF3,            
         "darkColor": #FFC915,
@@ -162,7 +162,7 @@ The styleConfig is an optional section that you can use to customise the color o
 
 ## Sample Code
 
-```Text Javascript
+```json Javascript
 window.onload = function() {
   const widgetConfig = {
       "key": {key},
