@@ -18,6 +18,6 @@ The Payment Consent Transaction API for Zion is same in Recurring Payments. The 
   * [Cards Recurring Payment Consent Transaction](https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction)
   * [UPI Recurring Payment Consent Transaction](https://docs.payu.in/reference/upi-recurring-payment-consent-transaction)
 
-> 📘 Reference:
->
-> The bankcode for Zion integration is same as in Recurring Payment integration. For a list of bankcode, refer to [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments).
+<Callout icon="📘" theme="info">
+  **Reference**: The bankcode for Zion integration is same as in Recurring Payment integration. For a list of bankcode, refer to [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments).
+</Callout>
