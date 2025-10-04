@@ -34,6 +34,7 @@ This section describes the procedure to upload the registration transactions in 
 * Download the sample file as in below [procedure](#procedure) (Steps 1 to 5) and update it to include the data to be uploaded.
 * Ensure that all mandatory fields in the file are filled with the correct details. The columns in the Excel sheet for upload are described in the following table:
 
+<Accordion title="Columns in Excel sheet for uploading transactions in bulk" icon="fa-info-circle">
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -91,7 +92,7 @@ This section describes the procedure to upload the registration transactions in 
       </td>
 
       <td>
-        50 (should be unique and to support - "^\[A-Za-z0-9@#().+\_;\\-\\\[\\]]\*$" )
+        50 (should be unique and to support - "^[A-Za-z0-9@#().+_;\-\[\]]*$" )
       </td>
     </tr>
 
@@ -191,7 +192,7 @@ This section describes the procedure to upload the registration transactions in 
       <td>
         Supported value = 0, 1 or empty 
 
-        * *Note*\*: To send a SMS, the following is required:
+        * _Note_*: To send a SMS, the following is required:
         * Phone number must be specified
         * **Sendsms**column = 1
         * **Notify via SMS** check box specified in Step 7  is selected
@@ -210,7 +211,7 @@ This section describes the procedure to upload the registration transactions in 
       <td>
         Supported value = 0, 1 or empty
 
-        * *Note*\*: To send an email, the following is required:
+        * _Note_*: To send an email, the following is required:
         * Email ID must be specified
         * **Sendemail** column = 1
         * **Notify via Email** check box specified in Step 7  is selected
@@ -451,7 +452,7 @@ This section describes the procedure to upload the registration transactions in 
       </td>
 
       <td>
-        `creditcard\|debitcard\|upi\|enach`
+        `creditcard|debitcard|upi|enach`
       </td>
     </tr>
 
@@ -465,12 +466,13 @@ This section describes the procedure to upload the registration transactions in 
       </td>
 
       <td>
-        Acceptable Values: 0 or 1.\
+        Acceptable Values: 0 or 1.
         **Note**: In case the FreeTrial value = 1, the amount needs to be Rs 2
       </td>
     </tr>
   </tbody>
 </Table>
+</Accordion>
 
 * Ensure that your bulk upload files are in the CSV format, as this is the only supported file type. 
 * The upload file size should not exceed 5 MB to ensure smooth processing. 
@@ -481,13 +483,13 @@ This section describes the procedure to upload the registration transactions in 
 1. Login to the Merchant Dashboard. For more information, refer to [Log in to Dashboard](https://docs.payu.in/docs/log-in-to-dashboard). 
 2. Navigate to **Subscriptions.** 
 
-The *Subscriptions Overview* page is displayed on the right-pane. 
+The _Subscriptions Overview_ page is displayed on the right-pane. 
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/b6a07fd76749d355187ca08a22fdbba9ed1b34147b404b8584e1270e99886f6d-bulk_upload_button.png" />
+<Image align="center" border={true} src="https://files.readme.io/b6a07fd76749d355187ca08a22fdbba9ed1b34147b404b8584e1270e99886f6d-bulk_upload_button.png" className="border" />
 
 3. Click **Bulk Upload** at the top-right corner. 
 
-The *Bulk Upload* pop-up page is displayed. 
+The _Bulk Upload_ pop-up page is displayed. 
 
 ![](https://files.readme.io/16f626114a4d368f0a1b88113810cadf8875f013df740549c2d14af9f94a9cab-Screenshot_2024-09-16_at_11.03.44_AM.png) 
 
@@ -523,4 +525,4 @@ After your file is successfully uploaded, a message similar to the following scr
 
 A record is added with the status as “Partially Processed” to the **Registration** tab sub-tab under the **Bulk Upload** tab similar to the following screenshot. 
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/35cc9bc263042e23420dafde87d37f6b212ecce5fd7d6547a4c471e1c5aba69f-bulk_upload_listing.png" />
+<Image align="center" border={true} src="https://files.readme.io/35cc9bc263042e23420dafde87d37f6b212ecce5fd7d6547a4c471e1c5aba69f-bulk_upload_listing.png" className="border" />
