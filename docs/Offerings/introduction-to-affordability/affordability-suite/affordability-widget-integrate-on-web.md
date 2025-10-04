@@ -13,7 +13,7 @@ next:
 Integrate the Affordability Widget to display affordable payment options and offers before checkout,
 influencing purchase decisions and improving conversions. To learn more about the features and benefits of PayU Affordability Widget, see Introduction to Affordability Widget.
 
-<Accordion title="Integration steps" icon="fa-code">
+## Integration steps
 
 <Accordion title="Step 1: Embed the JavaScript file into your website" icon="fa-code">
 
@@ -24,7 +24,6 @@ Copy the following snippet and add it to the head section of your website:
 <script defer src="https://jssdk.payu.in/widget/affordability-widget.min.js"></script>
 ```
 
-***
 
 </Accordion>
 <Accordion title="Step 2: Add placeholder for the Widget" icon="fa-code">
@@ -94,8 +93,7 @@ window.onload = function() {
 
 </Accordion>
 
-</Accordion>
-<Accordion title="Customize the Widget" icon="fa-code">
+## Customize the Widget
 
 <Accordion title="Display specific affordability options available for a customer" icon="fa-code">
 
@@ -164,11 +162,6 @@ The styleConfig is an optional section that you can use to customise the color o
         "backgroundColor": #FFFFFF
       }
 ```
-
-***
-
-</Accordion>
-
 </Accordion>
 <Accordion title="Sample Code" icon="fa-code">
 
