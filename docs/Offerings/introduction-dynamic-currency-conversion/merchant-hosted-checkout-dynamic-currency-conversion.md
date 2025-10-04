@@ -47,7 +47,51 @@ This section describes how to integrate Dynamic Currency Conversion with Merchan
 
 ## Step 1: Check the card BIN
 
-Check if the card number of the customer is international or domestic using the **Check is Domestic** API. This is to avoid payment failure and validation of the card BIN. For more information, refer to [Check is Domestic API](ref:check_is_domestic_api) under API Reference.
+Check if the card number of the customer is international or domestic using the **Check is Domestic** API. This is to avoid payment failure and validation of the card BIN. For Try-It experience for the **Check is Domestic** API, refer to [Check is Domestic API](ref:check_is_domestic_api) under API Reference.
+
+**Environment**
+
+| Environment            | URL                                                                                                          |
+| :--------------------- | :----------------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2)         |
+
+<Accordion title="Sample request" icon="fa-code">
+  ```bash
+  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=JP***g&command=check_isDomestic&var1=462273&hash=df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
+  ```
+
+  **Example Values:**
+
+  * `var1` (first six digit of the card): 512345
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
+  ## If the card is domestic
+
+  ```json
+  {
+    "isDomestic": "Y",
+    "issuingBank": "SCB",
+    "cardType": "VISA",
+    "cardCategory": "CC"
+  }
+  ```
+
+  ## If the card is international
+
+  ```json
+  {
+    "isDomestic": "N",
+    "issuingBank": "UNKNOWN",
+    "cardType": "Unknown",
+    "cardCategory": "CC"
+  }
+  ```
+</Accordion>
 
 ## Step 2: Post the parameters to PayU
 
