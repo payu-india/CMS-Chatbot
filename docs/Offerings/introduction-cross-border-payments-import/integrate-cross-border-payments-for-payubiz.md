@@ -2,7 +2,7 @@
 title: Integrate Import for PayUBiz
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Integrate Import for PayUBiz or Cross-Border Import for PayUBiz Integration
   description: >-
