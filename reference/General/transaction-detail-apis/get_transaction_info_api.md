@@ -6,6 +6,8 @@ api:
   operationId: GetTransactionInfo
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Get Transaction Details API
   description: >-
@@ -19,8 +21,6 @@ metadata:
     - get transaction information API
     - ' Get Transaction Information API'
   robots: index
-next:
-  description: ''
 ---
 The **Get Transaction Info** API (get_transaction_info) can take input as the exact time in terms of minutes and seconds the output would be in the same format as [get\_Transaction\_Details](ref:get_transaction_details_api) API output.
 
