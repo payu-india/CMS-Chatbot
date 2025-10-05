@@ -1,11 +1,12 @@
 ---
 title: Get BIN Info API
-excerpt: ''
 api:
   file: bin-info-8.json
   operationId: GetBinInfoAPI
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Get BIN Info API
   description: >-
@@ -19,8 +20,6 @@ metadata:
     - ' BIN Info'
     - ' Card BIN Information'
   robots: index
-next:
-  description: ''
 ---
 The **Get BIN Info** API or **getBinInfo** API is used to determine the following for a single card or multiple cards:
 
