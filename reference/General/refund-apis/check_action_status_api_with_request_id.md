@@ -35,12 +35,7 @@ In **check_action_status** API, you need to input this Request ID to get the cur
   <RefundStates />
 </Accordion>
 
-## Environment
-
-| Environment            | URL                                                                                                          |
-| :--------------------- | :----------------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
-| Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
+<GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
