@@ -28,13 +28,82 @@ Merchant Hosted or S2S (Seamless) integration has to be done as per the standard
 
 ## Step 1: Validate VPA
 
-When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API. For more information, refer to [Validate VPA Handle API](ref:validate_vpa_api).
+When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API. For Try-It experience, refer to [Validate VPA Handle API](ref:validate_vpa_api).
 
-***
+<Accordion title="Sample request" icon="fa-code">
+  **Validate VPA**
+
+  ```curl
+  curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=validateVPA&var1=9999999999@upi&hash=75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
+  ```
+
+  **Validate VPA for Recurring Payment**
+
+  ```curl
+  curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=validateVPA&var1=9999999999@upi&var2={"validateAutoPayVPA":"1"}&hash=75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
+  ```
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
+  **Success scenario**
+
+  if successfully validated:
+
+  ```plaintext
+  {
+     "status":"SUCCESS",
+     "vpa":"9999999999@upi",
+     "isVPAValid":1,
+     "isAutoPayVPAValid":1,
+     "isAutoPayBankValid":"NA",
+     "payerAccountName":"ABC"
+  }
+  ```
+
+  > 📘 Notes:
+  >
+  > * The **payerAccountName** parameter can be empty or NA or will have a payer name based on the value given by the bank.
+  > * If both **isVPAValid** and **isAutoPayVPAValid** is 1, you must initiate payment for Recurring Payments.
+  > * Ignore the **isAutoPayBankValid** parameter in the response.
+
+  **Failure scenarios**
+
+  * If invalid VPA, the response is similar to the following:
+
+  ```plaintext
+  {
+   "status":"SUCCESS","vpa":"abc@upi","isVPAValid":0,"payerAccountName":"NA"
+  }  
+  ```
+
+  * Invalid VPA but handle supporting SI (Autopay):
+
+  ```plaintext
+  {
+   "status":"SUCCESS","vpa":"abc@upi","isVPAValid":0,"isAutoPayVPAValid":1,"isAutoPayBankValid":"NA","payerAccountName":"NA"
+  }
+  ```
+
+  * Customer valid but handle not supporting SI (Autopay):
+
+  ```plaintext
+  {
+    "status":"SUCCESS","vpa":"xyz@freecharge","isVPAValid":1,"isAutoPayVPAValid":0,"isAutoPayBankValid":"NA","payerAccountName":"XYZ"
+  }
+  ```
+
+  * Neither customer valid nor handle supporting Autopay:
+
+  ```plaintext
+  {
+    "status":"SUCCESS","vpa":"xyz@freecharge","isVPAValid":0,"isAutoPayVPAValid":0,"isAutoPayBankValid":"NA","payerAccountName":"NA"
+  }
+  ```
+</Accordion>
 
 ## Step 2: Post the parameters to PayU
 
-With the following parameters, make the transaction request with the customer’s bank account number to the PayU using the Collect Payment (**\_payment**) API.
+With the following parameters, make the transaction request with the customer’s bank account number to the PayU using the Collect Payment (**_payment**) API.
 
 **Environment**
 
@@ -43,7 +112,7 @@ With the following parameters, make the transaction request with the customer’
 | **Test Environment**       | [https://test.payu.in/\_payment>](https://test.payu.in/_payment%3E)     |
 | **Production Environment** | [https://secure.payu.in/\_payment>](https://secure.payu.in/_payment%3E) |
 
-### Request parameters
+<Accordion title="Request parameters" icon="fa-table">
 
 <HTMLBlock>{`
 <Table align={["left","left","left"]}>
@@ -462,7 +531,7 @@ With the following parameters, make the transaction request with the customer’
 </Table>
 `}</HTMLBlock>
 
-#### beneficiarydetail JSON object fields
+<Accordion title="beneficiarydetail JSON object fields" icon="fa-code">
 
 It must contain the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter. For example:
 
@@ -470,8 +539,8 @@ It must contain the list of account numbers and the ifscCode key with the list o
 {"beneficiaryAccountNumber":"002001600674|00000031957292212|00000035955239352|00000035955239352",  
 "ifscCode":"KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"}
 ```
-
-#### Checksum Logic for Hash
+</Accordion>
+<Accordion title="Checksum Logic for Hash" icon="fa-code">
 
 The following hash logic must be used for the parameters posted:
 
@@ -483,11 +552,12 @@ The following hash logic must be used for the parameters posted:
 > key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3
 > |udf4|udf5||||||beneficiarydetail|SALT
 > ```
+</Accordion>
+</Accordion>
 
 ## Step 3: Check the response from PayU
 
-### Hash Validation Logic for Payment Response (Reverse Hashing)
-
+<Accordion title="Hash Validation Logic for Payment Response (Reverse Hashing)" icon="fa-code">
 While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
 
 The order of the parameters is similar to the following code block:
@@ -495,32 +565,12 @@ The order of the parameters is similar to the following code block:
 ```
 sha512(SALT|beneficiarydetail|status||||||udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
 ```
-
-### Response parameters
-
-The following table describes the parameters in the response from PayU:
-
-| **Param Name**   | **Description**                                                                                                                                                                                                                                                                                                          |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| mihpayid         | It is a unique reference number created for each transaction at PayU’s end. You must note this transaction ID as this will be used as a reference for all the future actions on this transaction like Inquiry or Refund.                                                                                                 |
-| merchantid       | It is the unique ID of the merchant.                                                                                                                                                                                                                                                                                     |
-| txnid            | This parameter would contain the transaction ID value posted by the merchant during the transaction request.                                                                                                                                                                                                             |
-| transaction\_fee | The transaction fee for the TPV transaction. For Net Banking, INR 10 is charged by default.                                                                                                                                                                                                                              |
-| discount         | The discount amount given by bank on the transaction fee (if any).                                                                                                                                                                                                                                                       |
-| amount           | The net amount after discount (if any) is displayed in this parameter. For Net Banking, INR 10 is charged by default.                                                                                                                                                                                                    |
-| paymentgatewayid | The payment gateway identifier for the bank sending the response.                                                                                                                                                                                                                                                        |
-| pg               | The payment gateway used for the transaction. In case of UPI, it is “UPI.”                                                                                                                                                                                                                                               |
-| status           | This parameter gives the status of the transaction as either success, failed or pending. Possible values: success, failure, pending If the value of the ‘status’ parameter is ’success’, the transaction is successful. If the value of ‘status’ is ‘failure’ or ‘pending’, must be treated as a failed transaction only |
-| PG\_Type         | The bankcode (as in Merchant Hosted Checkout integration) of the bank is returned in the parameter.                                                                                                                                                                                                                      |
-| key              | This parameter contains the merchant key for the merchant’s account at PayU. It would be the same as the key used while the transaction request is being posted from the merchant’s end to PayU.                                                                                                                         |
-| riskactionStr    | This parameter contains risk action (if any) taken on the account holder.                                                                                                                                                                                                                                                |
-| addedon          | The transaction timestamp is returned in this parameter.                                                                                                                                                                                                                                                                 |
-
+</Accordion>
 > 📘 Store the mihpayid and txnid parameter values in response:
 >
 > PayU recommends you to make provisions to store the **mihpayid** and **txnid** parameter values (in the response) in your server as proof that TPV has been completed for a customer.
 
-### Sample response
+<Accordion title="Sample response" icon="fa-code">
 
 The formatted response from PayU:
 
@@ -577,7 +627,7 @@ Array
 )
 
 ```
+</Accordion>
 
-> 📘 Verify payment:
->
-> PayU recommends you. to verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>.
+## Verify the payment
+<Verify_Payment_Tabs />
