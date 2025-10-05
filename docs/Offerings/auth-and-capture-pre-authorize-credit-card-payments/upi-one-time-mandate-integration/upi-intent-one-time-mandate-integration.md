@@ -17,7 +17,9 @@ The **pre_authorize** parameter is used for pre-authorize payments using the sea
 
 ## Step 1: Post the Pre-Auth transaction request
 
-Post the additional parameters for with the Pre-Authorization using the Merchant Hosted Checkout. For API reference, refer to any of the following based on integration
+Post the additional parameters for with the Pre-Authorization using the Merchant Hosted Checkout. 
+
+### Request parameters
 
 **Environment**
 
@@ -347,7 +349,9 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 
 ### Step 4: Check Transaction Status
 
-To check the status of the transaction, use the verify_payment API. For more information, refer to [Verify Payment API](ref:verify_payment_api).
+<Verify_Payment_Tabs />
+
+<br />
 
 <Callout icon="👍" theme="okay">
   **Reference**: For cancelling pre-auth payments, refer to [Cancel a Pre-Authorized Transaction API](ref:cancel-a-pre-authorized-transaction).
