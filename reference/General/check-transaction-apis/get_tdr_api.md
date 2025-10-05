@@ -1,11 +1,12 @@
 ---
 title: Get TDR API
-excerpt: ''
 api:
   file: general-33.json
   operationId: get_TDR
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Get TDR API
   description: >-
@@ -19,8 +20,6 @@ metadata:
     - get_TDR command
     - get_TDR API Command
   robots: index
-next:
-  description: ''
 ---
 The Get TDR API (**get_TDR** API) is used to get the Transaction Discount Rate (TDR) value of a transaction with PayU. It is a simple API for which you need to provide the PayU ID of the transaction as input and the TDR value is returned in the output, var1 is Payu id (mihpayid) of the transaction.
 
