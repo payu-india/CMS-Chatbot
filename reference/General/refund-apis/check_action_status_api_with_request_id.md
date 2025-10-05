@@ -6,6 +6,8 @@ api:
   operationId: check_action_status(1st_usage)
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Check Refund Status API with Request ID
   description: >-
@@ -18,14 +20,13 @@ metadata:
     - ' Using Request ID to Check Refund Status API'
   robots: index
 next:
-  description: ''
   pages:
-    - type: endpoint
-      slug: refund_transaction_api
+    - slug: refund_transaction_api
       title: Refund Transaction API
-    - type: endpoint
-      slug: check_action_status_api_with_payu_id
+      type: endpoint
+    - slug: check_action_status_api_with_payu_id
       title: Check Refund Status API with PayU ID
+      type: endpoint
 ---
 Whenever the **cancel_refund_transaction** API is executed successfully to cancel a transaction, a Request ID is returned in the output parameters for that particular request. For more information on the cancel_refund_transaction API, refer to Refund Transaction.
 
