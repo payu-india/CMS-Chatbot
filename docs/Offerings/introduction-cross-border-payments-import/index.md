@@ -34,9 +34,9 @@ PayU Cross-Border Payments – Import Integration facilitates overseas sellers t
 
 This is as per the [RBI guideline](https://rbi.org.in/Scripts/NotificationUser.aspx?Id=12561\&Mode=0) -RBI/2023-24/80
 
-> 📘 Note:
->
-> RBI monitors cross-border payments with the support of AD banks. Hence, there are guidelines to be followed by AD Bank and PayU.
+<Callout icon="📘" theme="info">
+  **Note**: RBI monitors cross-border payments with the support of AD banks. Hence, there are guidelines to be followed by AD Bank and PayU.
+</Callout>
 
 ## Advantages
 
