@@ -29,22 +29,13 @@ next:
       slug: refund_transaction_api
       title: Refund Transaction API
 ---
-# Check Action Status API (PayUID)
-
-The **check\_action\_status** API has another usage too. For a particular PayUID, it returns any of the following the states:
+The **check_action_status** API has another usage too. For a particular PayUID, it returns any of the following the states:
 
 <Accordion title="Refund states" icon="fa-hourglass">
   <RefundStates />
 </Accordion>
 
-<br />
-
-## Environment
-
-| Environment            | URL                                                                                                          |
-| :--------------------- | :----------------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
-| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2)         |
+<GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
