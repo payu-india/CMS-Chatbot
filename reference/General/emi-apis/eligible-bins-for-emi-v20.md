@@ -2,7 +2,7 @@
 title: Eligible BINs for EMI API v2.0
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: EMI Eligibility Check API v2.0
   description: >-
