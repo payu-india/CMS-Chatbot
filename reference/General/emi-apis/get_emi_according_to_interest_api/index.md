@@ -22,6 +22,8 @@ next:
 ---
 The **Get EMI Amount According to Interest** API (**getEmiAmountAccordingToInterest** API) is used to get the EMI interest bank rates for all the enabled EMIs.
 
+<GENERALAPIsEnvironment />
+
 ## Sample request
 
 ```bash
