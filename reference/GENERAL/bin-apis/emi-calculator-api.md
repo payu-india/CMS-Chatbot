@@ -5,8 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
-<br />
-
 You can use this API to display the EMI plans along with all offers on the checkout page. This API may also be used to display the EMI plans on Product Page or any other screen the merchant may deem fit. You can use it for the following:
 
 * Fetch EMI plans: You can use this API to fetch EMI Amounts, rate of interest, total amount to be paid across eligible banks.
