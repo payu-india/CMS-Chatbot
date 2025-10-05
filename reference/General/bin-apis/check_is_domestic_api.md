@@ -31,12 +31,7 @@ The **Check is Domestic** or **Card BIN** API is used to detect whether a partic
 * Card category such as Credit/Debit, etc.
 * var1 is bin number which is the first 6 digits of a Credit/Debit card.
 
-## Environment
-
-| Environment            | URL                                                                                                          |
-| :--------------------- | :----------------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
-| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2)         |
+<GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
