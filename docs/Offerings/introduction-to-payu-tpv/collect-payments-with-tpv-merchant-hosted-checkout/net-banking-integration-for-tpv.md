@@ -628,5 +628,6 @@ Array
 ```
 </Accordion>
 
-
+## Verify the payment
+<Verify_Payment_Tabs />
 
