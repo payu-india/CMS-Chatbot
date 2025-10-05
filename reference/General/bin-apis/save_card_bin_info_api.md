@@ -31,12 +31,7 @@ The **Save Card BIN** API helps you determine whether CVV needs to be collected 
 
 HTTP Method: **POST**
 
-## Environment
-
-| Environment                | URL                                                                                  |
-| :------------------------- | :----------------------------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/issuing-bank/v1/bin](https://test.payu.in/issuing-bank/v1/bin) |
-| **Production Environment** | [https://info.payu.in/issuing-bank/v1/bin](https://info.payu.in/issuing-bank/v1/bin) |
+<GENERALAPIsEnvironment />
 
 ## Request headers
 
@@ -104,9 +99,9 @@ The request header contains the following fields:
         * **username**: The merchant key of the merchant.
         * **algorithm**: This must have the value as **hmac-sha256** that is used for this API
         * **headers**: This must have the value as **date digest**
-        * **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:
-          * **signing\_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
-          * **merchant\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)  | hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=" |
+        * **signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:
+          * **signing_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
+          * **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)  | hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=" |
       </td>
 
       <td>
@@ -293,7 +288,6 @@ The response involves the following parameters and the **result** parameter cont
 ### result parameter JSON details
 
 The **result** parameter contains the result in a JSON format and the fields in the JSON are described in the following table:
-
 
 ## Sample response
 
