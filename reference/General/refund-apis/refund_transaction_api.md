@@ -1,11 +1,12 @@
 ---
 title: Refund Transaction API
-excerpt: ''
 api:
   file: cancel_refund_tranasaction-10.json
   operationId: cancel_refund_transaction
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Refund Transaction API
   description: >-
@@ -18,8 +19,6 @@ metadata:
     - ' Cancel a Refund API'
     - ' API for Refund Transaction'
   robots: index
-next:
-  description: ''
 ---
 The Refund Transaction API (**cancel_refund_transaction**) can be used for the following purposes:
 
