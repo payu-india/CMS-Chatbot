@@ -19,9 +19,6 @@ The **pre_authorize** parameter is used for pre-authorize payments using the sea
 
 Post the additional parameters for with the Pre-Authorization using the Merchant Hosted Checkout. For API reference, refer to any of the following based on integration
 
-* [UPI OTM for PayU Hosted Integration](https://docs.payu.in/reference/upi-one-time-mandate-transaction-api-payu-hosted)
-* [UPI OTM for Merchant Hosted Integration](https://docs.payu.in/reference/_payment-upi-one-time-mandate-transaction-api)
-
 **Environment**
 
 |                            |                                                                         |
