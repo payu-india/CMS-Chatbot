@@ -10,27 +10,22 @@ metadata:
 next:
   description: ''
 ---
-This section describes the **\_payment** API contract for getting split info of the parent transaction in the Aggregator flow.
+This section describes the **_payment** API contract for getting split info of the parent transaction in the Aggregator flow.
 
-**Environment**
-
-|                            |                                   |
-| :------------------------- | :-------------------------------- |
-| **Test Environment**       | \<https://test.payu.in/_payment>   |
-| **Production Environment** | \<https://secure.payu.in/_payment> |
+<PaymentAPIEnvironment />
 
 New parameter (**splitRequest**) merchant needs to post in the payment request.
 
 > 📘 Notes:
-> 
-> - Total **aggregatorSubAmt** must be equal to transaction amount posted by merchant.
-> - Merchant key posted in split request must belong to parent key.
-> - Transactions are not allowed on child merchant accounts or child merchant keys.
-> - You must specify two decimal places for each split, but ensure the sum of percentage of all splits is equal to 100 or sum of split amount is equal to transaction amount.
+>
+> * Total **aggregatorSubAmt** must be equal to transaction amount posted by merchant.
+> * Merchant key posted in split request must belong to parent key.
+> * Transactions are not allowed on child merchant accounts or child merchant keys.
+> * You must specify two decimal places for each split, but ensure the sum of percentage of all splits is equal to 100 or sum of split amount is equal to transaction amount.
 
-## splitRequest parameter to be included with \_payment API
+## splitRequest parameter to be included with _payment API
 
-The **splitRequest** parameter  must be included in the **\_payment** API along with the regular parameters.  The following are the request parameters used for split settlements:
+The **splitRequest** parameter  must be included in the **_payment** API along with the regular parameters.  The following are the request parameters used for split settlements:
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -219,15 +214,14 @@ The **splitRequest** parameter  must be included in the **\_payment** API along 
 </table>
 `}</HTMLBlock>
 
-
 ### JSON Request structure of splitRequest parameter
 
 The sample JSON structure for the **splitRequest** field:
 
 > 📘 **Notes**:
-> 
-> - For the **absolute** type split, you must ensure that the sum of the amount of all splits is equal to the parent transaction amount.
-> - For the percentage type split, you must ensure that the sum of the percentage of all splits is equal to 100. You can use any number of decimal places for each split, but ensure the sum of the percentage of all splits is equal to 100.
+>
+> * For the **absolute** type split, you must ensure that the sum of the amount of all splits is equal to the parent transaction amount.
+> * For the percentage type split, you must ensure that the sum of the percentage of all splits is equal to 100. You can use any number of decimal places for each split, but ensure the sum of the percentage of all splits is equal to 100.
 
 ```plaintext
 {
@@ -286,7 +280,6 @@ The following fields are included in the **splitRequest** parameter in a JSON fo
 </table>
 `}</HTMLBlock>
 
-
 ## Hashing request
 
 Added as extra parameter in the calculation of hash in case of providing Split Request at time of payment. This parameter will be at the end of the hash pattern. and required while sending Split Request at time of payment.
@@ -294,7 +287,7 @@ Added as extra parameter in the calculation of hash in case of providing Split R
 You need to generate a string using certain parameters and apply the SHA-512 algorithm to this string. For more information on hashing, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
 
 > 📘 Note:
-> 
+>
 > Ensure that you use pipe (|) character between these parameters as mentioned in the following code block.
 
 The parameter order is in the following code block`:`
@@ -323,13 +316,13 @@ sha512(SALT|status|splitInfo||||||udf5|udf4|udf3|udf2|udf1|email|firstname|produ
 
 If a Parent Merchant has two child merchants: Merchant A (Key: `P****Y`) and Merchant B (Key: `P***K`). If a customer buys two products from each of the merchants and involves the following:
 
-- Merchant **A** (Product Cost: 60)
-- Merchant **B** (Product Cost: 40)
-- Customer paid **Cost: 100** on PayU Gateway.
+* Merchant **A** (Product Cost: 60)
+* Merchant **B** (Product Cost: 40)
+* Customer paid **Cost: 100** on PayU Gateway.
 
 The following cases can occur:
 
-- **Case 1:**Merchant wants the commission amount from Merchant A (Commission amount: 15) and B (Commission Amount: 10).
+* **Case 1:**Merchant wants the commission amount from Merchant A (Commission amount: 15) and B (Commission Amount: 10).
 
 So In the final, Merchant wants to settle Amount: 45 to Merchant A and Amount: 30 to Merchant B and Amount: 25 to self account (parent part).
 
@@ -353,7 +346,7 @@ The split JSON Structure for the above scenarios is similar to the following:
 }
 ```
 
-- **Case 2:** Merchant wants the commission amount from Merchant A (Commission amount: 15) and Nothing from Merchant B (Commission Amount: 0).
+* **Case 2:** Merchant wants the commission amount from Merchant A (Commission amount: 15) and Nothing from Merchant B (Commission Amount: 0).
 
 So, the merchant wants to settle an amount: 45 to Merchant A and amount: 40 to Merchant B and an amount: 15 to self account (parent part).
 
@@ -376,7 +369,7 @@ The split JSON Structure for the above scenario is similar to the following:
 }
 ```
 
-- **Case 3:** Merchant does not want any commission amount from Child Merchant A (Commission amount: 0) and B (Commission Amount: 0).
+* **Case 3:** Merchant does not want any commission amount from Child Merchant A (Commission amount: 0) and B (Commission Amount: 0).
 
 So In the final, Merchant wants to settle Amount: 60 to child merchant **A** and Amount: 40 to Child Merchant **B** and Amount: 0 to Self account (Parent Part).
 
@@ -402,8 +395,8 @@ The split JSON Structure for the above scenario is similar to the following:
 
 You may choose to settle 100% for a single child. In such cases, you can pass zero (0) in the child’s key and 100% amount for others. For example, in the following JSON structure:
 
-- The amount is Rs.10 for **aggregatorSubAmt**.
-- The amount of Rs.0 (or no amount settlement) for **aggregatorCharges**
+* The amount is Rs.10 for **aggregatorSubAmt**.
+* The amount of Rs.0 (or no amount settlement) for **aggregatorCharges**
 
 ```plaintext
 {
@@ -438,9 +431,9 @@ A sample value in JSON format for the **splitInfo** parameter:
 ```
 
 > 📘 Refunds for Split Transactions:
-> 
-> You must include the var8 parameter similar to the following JSON array format with the refund details of split where **child\_merchant\_key\_x** must be substituted with the child merchant key. For more information, refer to  [Refund Transaction API > Other request parameters](ref:refund_transaction_api#other-request-parameters)
-> 
+>
+> You must include the var8 parameter similar to the following JSON array format with the refund details of split where **child_merchant_key_x** must be substituted with the child merchant key. For more information, refer to  [Refund Transaction API > Other request parameters](ref:refund_transaction_api#other-request-parameters)
+>
 > ```plaintext
 > {
 >    "child_merchant_key_1":{
