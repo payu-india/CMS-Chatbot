@@ -21,7 +21,7 @@ metadata:
 next:
   description: ''
 ---
-The Refund Transaction API (**cancel\_refund\_transaction**) can be used for the following purposes:
+The Refund Transaction API (**cancel_refund_transaction**) can be used for the following purposes:
 
 * **Cancel** a transaction that is in '`auth`' state at the moment
 * **Refund** a transaction that is in a '`captured`' state at the moment
@@ -34,12 +34,7 @@ In this API:
 * **var2** should contain the Token ID (unique token from the merchant)
 * **var3** parameter should contain the amount that needs to be refunded
 
-**Environment**
-
-|                        |                                                                                                              |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
-| Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
+<GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
   ### Simple sample request
