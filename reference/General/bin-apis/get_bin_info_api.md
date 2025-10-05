@@ -35,12 +35,7 @@ You can fetch cards details with the following specific feature-level informatio
 * Complete BIN list having ATM PIN support is required
 * Complete BIN list with OTP-on-the-fly support (IVR) is required
 
-## Environment
-
-| Environment            | URL                                                                                                  |
-| :--------------------- | :--------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/merchant/postservice?form=2](https://test.payu.in/merchant/postservice?form=2) |
-| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2) |
+<GENERALAPIsEnvironment />
 
 <Accordion title="BIN API Use Cases" icon="fa-info-circle">
   The following table shows different use cases for BIN (Bank Identification Number) lookup system, with various parameters (var1-var5) and their corresponding descriptions. The empty backticks (\`\`) in var2 for some rows likely represent empty or null values for that parameter.
