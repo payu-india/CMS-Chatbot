@@ -6,6 +6,8 @@ api:
   operationId: check_action_status(2ndusage)
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Check Refund Status API with PayU ID
   description: >-
@@ -20,14 +22,13 @@ metadata:
     - ' Using PayU ID to Check Refund Status API'
   robots: index
 next:
-  description: ''
   pages:
-    - type: endpoint
-      slug: check_action_status_api_with_request_id
+    - slug: check_action_status_api_with_request_id
       title: Check Refund Status API with Request ID
-    - type: endpoint
-      slug: refund_transaction_api
+      type: endpoint
+    - slug: refund_transaction_api
       title: Refund Transaction API
+      type: endpoint
 ---
 The **check_action_status** API has another usage too. For a particular PayUID, it returns any of the following the states:
 
