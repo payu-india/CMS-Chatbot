@@ -1,11 +1,12 @@
 ---
 title: Check Payment API
-excerpt: ''
 api:
   file: general-35.json
   operationId: CheckPaymentAPI
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: >-
@@ -19,8 +20,6 @@ metadata:
     - ' Check Payment Status using PayU ID'
     - ' PayU ID payment status'
   robots: index
-next:
-  description: ''
 ---
 The Check Payment (**check_payment**) API functions similar to the [Verify Payment API](ref:verify_payment_api). However, the input parameter in this API is the PayUID or mihpayuID generated at PayU's Server unlike **verify_payment** API where the input parameter is the TxnID (Transaction ID generated at merchant's server). It returns all the parameters for a given transaction.
 
