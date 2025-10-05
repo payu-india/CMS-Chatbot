@@ -1,11 +1,12 @@
 ---
 title: Get Transaction Details API
-excerpt: ''
 api:
   file: get-transaction-details-7.json
   operationId: GetTransactionDetails
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Get Transaction Details API
   description: >-
@@ -17,8 +18,6 @@ metadata:
     - get_Transaction_Details command
     - Get Transaction Details API
   robots: index
-next:
-  description: ''
 ---
 The Get Transaction Details **(get_Transaction_Details)** API works based on input as two dates (initial and final), between which the transaction details are needed. The output consists of the status of the API (success or failure) and all the transaction details in an array format.
 
