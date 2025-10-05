@@ -1,11 +1,12 @@
 ---
 title: Get All Refunds from Transaction IDs API
-excerpt: ''
 api:
   file: get-all-refunds-for-txnid-3.json
   operationId: GetAllRefundsfromTransactionIDs
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Get All Refunds for a Transaction IDs API
   description: >-
@@ -18,8 +19,6 @@ metadata:
     - ' Get All Refunds from Transaction IDs'
     - ' Get All Refunds API'
   robots: index
-next:
-  description: ''
 ---
 The **Get All Refunds for a Transaction ID** API (getAllRefundsFromTxnIds) command is used to retrieve the status of all the refund requests fired for a particular Transaction ID. The output of this API provides the request ID, and the PG used the status of a refund request and the creation of refund date information. It returns any of the following the states:
 
