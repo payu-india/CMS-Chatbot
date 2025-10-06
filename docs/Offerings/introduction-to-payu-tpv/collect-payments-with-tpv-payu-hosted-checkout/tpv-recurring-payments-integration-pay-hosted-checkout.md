@@ -20,22 +20,15 @@ The customer journey involves three key steps:
 
 1. **Checkout Initiation**: Customer begins the payment process on the merchant's checkout page
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/8ba8dec2112adc3f7050be48a91a43cec39eb6256de01c1a4c1cca3c1d36f5e5-tpv_si_step1.png" />
+<Image align="center" border={true} src="https://files.readme.io/8ba8dec2112adc3f7050be48a91a43cec39eb6256de01c1a4c1cca3c1d36f5e5-tpv_si_step1.png" className="border" />
 
 2. **PayU Redirect**: Customer is redirected to PayU's hosted checkout page for payment completion
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/d2ac062dd599380f3d3a78e0158436c08750f4c13ea7be50326eba3d6e5a1994-tpv_si_step2.png" />
+<Image align="center" border={true} src="https://files.readme.io/d2ac062dd599380f3d3a78e0158436c08750f4c13ea7be50326eba3d6e5a1994-tpv_si_step2.png" className="border" />
 
 3. **Payment Processing**: Customer completes the payment using their preferred payment method (Net Banking or UPI)
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/a3c1a3190a1aff209b493e606bef503a5f71f58d7647e77aa9ca9cbb429996e8-tpv_si_step3.png" />
-
-## Environment
-
-| Environment    | URL                               |
-| -------------- | --------------------------------- |
-| **Test**       | `https://test.payu.in/_payment`   |
-| **Production** | `https://secure.payu.in/_payment` |
+<Image align="center" border={true} src="https://files.readme.io/a3c1a3190a1aff209b493e606bef503a5f71f58d7647e77aa9ca9cbb429996e8-tpv_si_step3.png" className="border" />
 
 ## Step 1: Create Transaction with Beneficiary and SI Details
 
@@ -45,8 +38,14 @@ Create a transaction request with the required beneficiary details and Standing 
 
 Submit the transaction parameters to PayU's payment gateway using the appropriate environment URL.
 
-### Request parameters
+**Environment**
 
+| Environment    | URL                               |
+| -------------- | --------------------------------- |
+| **Test**       | `https://test.payu.in/_payment`   |
+| **Production** | `https://secure.payu.in/_payment` |
+
+<Accordion title="Request parameters" icon="fa-code">
 <HTMLBlock>{`
 <table>
 <thead>
@@ -126,20 +125,20 @@ Submit the transaction parameters to PayU's payment gateway using the appropriat
 </table>
 `}</HTMLBlock>
 
-#### Hash calculation
+<Accordion title="Hash calculation" icon="fa-code">
+If UDF parameters are defined in the hash calculation, the same UDF fields must be included in the request sent to PayU.  
 
-If UDF parameters are defined in the hash calculation, the same UDF fields must be included in the request sent to PayU.  
+`sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5| |||||beneficiarydetail|SALT)`  
 
-`sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5| |||||beneficiarydetail|SALT)`  
+WithOut UDF Parameters.  
 
-WithOut UDF Parameters.  
-
-`sha512(key|txnid|amount|productinfo|firstname|email|||||||||||beneficiarydetail|SAL T)`  
+`sha512(key|txnid|amount|productinfo|firstname|email|||||||||||beneficiarydetail|SAL T)`  
 
 Replace SALT with the salt value provided during onboarding.
+</Accordion>
+</Accordion>
 
-### Beneficiary Detail JSON Structure
-
+<Accordion title="Beneficiary Detail JSON Structure" icon="fa-code">
 ```json
 {"beneficiaryName": "Sachin Tendulkar|Nitin Jaisingh|Somya|Nikita","beneficiaryAccountNumber": "1211450021|002001600674|1234673939|87669286932","beneficiaryAccountType": "SAVINGS|SAVINGS|CURRENT|CURRENT","beneficiaryIfscCode": "ICIC0000046|HDFC0000726|ICIC0000046|SBIN0098292","verificationMode": "DEBIT_CARD|NET_BANKING| |AADHAR"} 
 ```
@@ -182,9 +181,9 @@ Replace SALT with the salt value provided during onboarding.
     </tbody>
 </table>
 `}</HTMLBlock>
+</Accordion>
 
-### Standing Instruction (SI) Details JSON Structure
-
+<Accordion title="Standing Instruction (SI) Details JSON Structure" icon="fa-code">
 ```json
 {
     "billingAmount": "100.00",
@@ -195,13 +194,13 @@ Replace SALT with the salt value provided during onboarding.
     "billingInterval": "1"
 }
 ```
+</Accordion>
 
-### Sample request
-
+<Accordion title="Sample request" icon="fa-code">
 ```bash
-curl --location 'https://test.payu.in/_payment' \
---data 'key=JPg***r&txnid=ypl938459435&amount=100&productinfo=Test Product&firstname=John&email=john@example.com&phone=9999999999&beneficiarydetail={"beneficiaryName":"John Doe","beneficiaryAccountNumber":"002001600674","ifscCode":"KTKB0000046"}&si_details={"billingAmount":"100.00","billingCurrency":"INR","billingCycle":"monthly"}&surl=https://www.yoursurl.com&furl=https://www.yourfailureurl.com&hash=generated_hash_value'
+curl --location 'https://test.payu.in/_payment' --data 'key=JPg***r&txnid=ypl938459435&amount=100&productinfo=Test Product&firstname=John&email=john@example.com&phone=9999999999&beneficiarydetail={"beneficiaryName":"John Doe","beneficiaryAccountNumber":"002001600674","ifscCode":"KTKB0000046"}&si_details={"billingAmount":"100.00","billingCurrency":"INR","billingCycle":"monthly"}&surl=https://www.yoursurl.com&furl=https://www.yourfailureurl.com&hash=generated_hash_value'
 ```
+</Accordion>
 
 ## Step 3: Handle and Validate Response
 
@@ -223,8 +222,7 @@ Process the response from PayU and perform reverse hash validation to ensure tra
 > sha512(SALT|status|||||||||||email|firstname|productinfo|amount|txnid|key)
 > ```
 
-### Response parameters
-
+<Accordion title="Response parameters" icon="fa-code">
 | Parameter        | Description                                                          | Example                               |
 | ---------------- | -------------------------------------------------------------------- | ------------------------------------- |
 | `mihpayid`       | Unique reference number created for the transaction on PayU's system | `"99995401486671"`                    |
@@ -237,9 +235,9 @@ Process the response from PayU and perform reverse hash validation to ensure tra
 | `error_Message`  | Description of any errors                                            | `"Transaction failed"`                |
 | `payment_source` | Indicates the payment source                                         | `"payu"`                              |
 | `hash`           | Hash provided in the response for validation                         | Generated hash string                 |
+</Accordion>
 
-### Net Banking transaction
-
+<Accordion title="Net Banking transaction" icon="fa-code">
 ```php
 Array(
     [mihpayid] => 99995401486671
@@ -252,9 +250,9 @@ Array(
     [payment_source] => payu
 )
 ```
+</Accordion>
 
-### UPI transaction
-
+<Accordion title="UPI transaction" icon="fa-code">
 ```php
 Array(
     [mihpayid] => 99995401486672
@@ -267,9 +265,9 @@ Array(
     [payment_source] => payu
 )
 ```
+</Accordion>
 
-### Sample webhook response
-
+<Accordion title="Sample webhook response" icon="fa-code">
 **Net Banking webhook:**
 
 ```
@@ -281,3 +279,7 @@ mihpayid=99995401486671&mode=NB&status=success&key=merchant_key&txnid=4245248agh
 ```
 amount=100.00&PG_TYPE=UPI-COLLECT&payment_source=payu&bankcode=UPITPV&mihpayid=99995401486672&status=success&hash=validation_hash
 ```
+
+<br />
+</Accordion>
+
