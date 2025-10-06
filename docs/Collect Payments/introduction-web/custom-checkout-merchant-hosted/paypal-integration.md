@@ -58,10 +58,10 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
 </Callout>
 
 <Accordion title="Request parameters" icon="fa-code">
-|                            |                                                                     |
-| :------------------------- | :------------------------------------------------------------------ |
-| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
-| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+  |                            |                                                                     |
+  | :------------------------- | :------------------------------------------------------------------ |
+  | **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+  | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
   | Parameter                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Example                                                                                        |
   | :----------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
@@ -72,8 +72,8 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
   | firstname <br /> `mandatory`   | varchar - This parameter must contain the first name of the customer.                                                                                                                                                                                                                                                                                                                                                                                       | Ankit                                                                                          |
   | email <br /> `mandatory`       | varchar - This parameter must contain the email of the customer                                                                                                                                                                                                                                                                                                                                                                                             | [test@gmail.com](mailto:test@gmail.com)                                                        |
   | phone `mandatory`              | integer - Merchant needs to take the customer's GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.                                                                                                                                                                                                                                                           | 9876543210                                                                                     |
-  | pg <br /> `mandatory`          | string - It defines the payment category using the Merchant Hosted Checkout integration. For a Wallet payment, "**PAYPAL**" must be specified in the **pg** parameter.                                                                                                                                                                                                                                                                                                                                                                  | PAYPAL |
-  | bankcode <br /> `mandatory`    | string - The merchant must post  **PAYPAL** as the value for this parameter.                                                                                                                                                                                                                                                                                                                                                                                 | PAYPAL |
+  | pg <br /> `mandatory`          | string - It defines the payment category using the Merchant Hosted Checkout integration. For a Wallet payment, "**PAYPAL**" must be specified in the **pg** parameter.                                                                                                                                                                                                                                                                                      | PAYPAL                                                                                         |
+  | bankcode <br /> `mandatory`    | string - The merchant must post  **PAYPAL** as the value for this parameter.                                                                                                                                                                                                                                                                                                                                                                                | PAYPAL                                                                                         |
   | surl <br /> `mandatory`        | The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                     | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
   | furl <br /> `mandatory`        | The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                         | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
   | hash <br /> `mandatory`        | string - The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|SALT) For more information, refer to Generate Hash.                                                                                                                                                                              | calculated\_hash\_value                                                                        |
@@ -92,78 +92,14 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
-```curl
-curl -X \
-POST "
-https://test.payu.in/_payment-H
-"accept: application/json" -H \
-"Content-Type: application/x-www-form-urlencoded" -d"key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=PAYPAL&bankcode=PAYPAL&surl=
-https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
-```
-</Accordion>
-
-<Accordion title="Sample response" icon="fa-code">
-You must look for the following:
-
-* PG_TYPE:  PAYPAL-PG
-* bankcode: PAYPAL
-* field4: Amount collected in the foreign currency
-* field5: Foreign currency used
-* net_amount_debit: Amount debited in INR
-
-```
-Array
-(
-    [mihpayid] => 403993715527518775
-    [mode] => PAYPAL
-    [status] => success
-    [unmappedstatus] => captured
-    [key] => J*****g
-    [txnid] => HC13glcAkssIkl
-    [amount] => 10.00
-    [discount] => 0.00
-    [net_amount_debit] => 10
-    [addedon] => 2022-10-21 17:45:24
-    [productinfo] => iPhone
-    [firstname] => Ashish
-    [lastname] => 
-    [address1] => 
-    [address2] => 
-    [city] => 
-    [state] => 
-    [country] => US
-    [zipcode] => 
-    [email] => test@gmail.com
-    [phone] => 9876543210
-    [udf1] => 
-    [udf2] => 
-    [udf3] => 
-    [udf4] => 
-    [udf5] => 
-    [udf6] => 
-    [udf7] => 
-    [udf8] => 
-    [udf9] => 
-    [udf10] => 
-    [hash] => 007435a716982c7f5eec5cff95701f65eb1bdbff8f852e461224e3b5e17126ad26bb3a3ffdb95cded6a87d3515fe86fc58925cad024595a4a6825adfed2dc436
-    [field1] => 
-    [field2] => 
-    [field3] => MCP8405944934679133147
-    [field4] => 0.12
-    [field5] => USD
-    [field6] => 
-    [field7] => 
-    [field8] => 
-    [field9] => Transaction Completed Successfully
-    [payment_source] => payu
-    [PG_TYPE] => PAYPAL-PG
-    [bank_ref_num] => 540898ed-72e7-40a8-a96e-f17de621cbb4
-    [bankcode] => PAYPAL
-    [error] => E000
-    [error_Message] => No Error
-    [splitInfo] => {"splitStatus":"splitNotReceived","splitSegments":[]}
-)
-```
+  ```curl
+  curl -X \
+  POST "
+  https://test.payu.in/_payment-H
+  "accept: application/json" -H \
+  "Content-Type: application/x-www-form-urlencoded" -d"key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=PAYPAL&bankcode=PAYPAL&surl=
+  https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
+  ```
 </Accordion>
 
 > 📘 Note:
@@ -173,6 +109,72 @@ Array
 > * [Refunds Dashboard](doc:refunds-dashboard)
 > * [Refund Transaction API](ref:refund_transaction_api)
 
-### Step 2: Verify the payment
+### Step 2: Check the response from PayU
+<Accordion title="Sample response" icon="fa-code">
+  You must look for the following:
+
+  * PG\_TYPE:  PAYPAL-PG
+  * bankcode: PAYPAL
+  * field4: Amount collected in the foreign currency
+  * field5: Foreign currency used
+  * net\_amount\_debit: Amount debited in INR
+
+  ```
+  Array
+  (
+      [mihpayid] => 403993715527518775
+      [mode] => PAYPAL
+      [status] => success
+      [unmappedstatus] => captured
+      [key] => J*****g
+      [txnid] => HC13glcAkssIkl
+      [amount] => 10.00
+      [discount] => 0.00
+      [net_amount_debit] => 10
+      [addedon] => 2022-10-21 17:45:24
+      [productinfo] => iPhone
+      [firstname] => Ashish
+      [lastname] => 
+      [address1] => 
+      [address2] => 
+      [city] => 
+      [state] => 
+      [country] => US
+      [zipcode] => 
+      [email] => test@gmail.com
+      [phone] => 9876543210
+      [udf1] => 
+      [udf2] => 
+      [udf3] => 
+      [udf4] => 
+      [udf5] => 
+      [udf6] => 
+      [udf7] => 
+      [udf8] => 
+      [udf9] => 
+      [udf10] => 
+      [hash] => 007435a716982c7f5eec5cff95701f65eb1bdbff8f852e461224e3b5e17126ad26bb3a3ffdb95cded6a87d3515fe86fc58925cad024595a4a6825adfed2dc436
+      [field1] => 
+      [field2] => 
+      [field3] => MCP8405944934679133147
+      [field4] => 0.12
+      [field5] => USD
+      [field6] => 
+      [field7] => 
+      [field8] => 
+      [field9] => Transaction Completed Successfully
+      [payment_source] => payu
+      [PG_TYPE] => PAYPAL-PG
+      [bank_ref_num] => 540898ed-72e7-40a8-a96e-f17de621cbb4
+      [bankcode] => PAYPAL
+      [error] => E000
+      [error_Message] => No Error
+      [splitInfo] => {"splitStatus":"splitNotReceived","splitSegments":[]}
+  )
+  ```
+</Accordion>
+
+
+### Step 3: Verify the payment
 
 <Verify_Payment_Tabs />
