@@ -683,23 +683,24 @@ The iOS 3DS SDK integration involves the following steps:
       )
       ```
     </Accordion>
-      3. Implement `PayU3DS2Delegate`. It contains the following methods:
-         * func `onPaymentSuccess`(successResponse: Any): It will contain success response. This will be a JSON Object, parse response as per your need.
-         * func `onPaymentFailure`(failureResponse: Any): It will contain failure response. This will be a JSON Object, parse response as per your need.
-         * func `onPaymentCancel`(isTxnInitiated: Bool): It will tell if payment was cancelled.
-         * func `onError`(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
-         * func `generateHash`(for param: \[String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion): Merchant will get map with type of hash and hash string as value of map.
-           They have to sign that string using salt to create hash value and pass that in completion
-           param: this contains 3 keys:
-         * **hashName**: command name
-         * **hashString**: hash string with out salt
-         * **postSalt**: needs to add after salt
-
-      You need to create hash on your server using hashString + salt + postSalt and SHA512 algorithm.
-
-      4. Implement `PayU3DS2HashGenerationCompletion`. This contains `hashDict` parameter
-         hashDict: pass a dictionary which contains hashName as key and hash as value
   </Accordion>
+    3. Implement `PayU3DS2Delegate`. It contains the following methods:
+       * func `onPaymentSuccess`(successResponse: Any): It will contain success response. This will be a JSON Object, parse response as per your need.
+       * func `onPaymentFailure`(failureResponse: Any): It will contain failure response. This will be a JSON Object, parse response as per your need.
+       * func `onPaymentCancel`(isTxnInitiated: Bool): It will tell if payment was cancelled.
+       * func `onError`(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
+       * func `generateHash`(for param: \[String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion): Merchant will get map with type of hash and hash string as value of map.
+         They have to sign that string using salt to create hash value and pass that in completion
+         param: this contains 3 keys:
+       * **hashName**: command name
+       * **hashString**: hash string with out salt
+       * **postSalt**: needs to add after salt
+
+    You need to create hash on your server using hashString + salt + postSalt and SHA512 algorithm.
+
+    4. Implement `PayU3DS2HashGenerationCompletion`. This contains `hashDict` parameter
+       hashDict: pass a dictionary which contains hashName as key and hash as value
+
 </Accordion>
 
 <Accordion title="Error Codes" icon="fa-code">
@@ -859,9 +860,9 @@ The iOS 3DS SDK integration involves the following steps:
         </tr>
       </tbody>
     </Table>
-
+</Accordion>
     <Go_Live_Checklist />
 
     <br />
-  </Accordion>
+
 </Accordion>
