@@ -26,6 +26,7 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
 
 <RegisterMerchantPrerequiste />
 
+**Steps to Integrate**
 <Cards columns={4}>
   <Card title="1. Validate the card type" href="#step-1-valiadate-the-card-type" target="_blank">
     Validate the card type using the card BIN API>
@@ -61,7 +62,7 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
     <br />
   </Card>
 
-  <Card title="3DS Secure 2.0 Transactions" href="#step-2-initiate-the-payment-to-payu" target="_blank">
+  <Card title="3DS Secure 2.0 Transactions" href="#handling-3ds-secure-2-0-transaction" target="_blank">
     For handling 3DS Secure 2.0 transaction, you need to include additional parameters
 
     <br />
