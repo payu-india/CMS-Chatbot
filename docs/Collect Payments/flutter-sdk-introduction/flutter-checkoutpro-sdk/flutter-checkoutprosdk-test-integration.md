@@ -2,7 +2,7 @@
 title: 2. Test the Integration
 excerpt: Use the Test mode to check if the integration is working as expected.
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
