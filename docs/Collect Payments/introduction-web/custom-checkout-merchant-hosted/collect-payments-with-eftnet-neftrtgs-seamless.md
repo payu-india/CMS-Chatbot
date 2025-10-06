@@ -73,23 +73,23 @@ To integrate with EFTNET:
 </Accordion>
 
 <Accordion title="Optional configuration for challan" icon="fa-code">
+  PayU provides an optional **Back to Merchant** button on the payment challan of a NEFT/RTGS payment. This button enables your customer to go back to the merchant portal once the transaction is done.
 
-PayU provides an optional **Back to Merchant** button on the payment challan of a NEFT/RTGS payment. This button enables your customer to go back to the merchant portal once the transaction is done.
+  In this scenario, if a customer clicks on **Back to Merchant** button the merchant will receive the response on the furl shared in the <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>.
 
-In this scenario, if a customer clicks on **Back to Merchant** button the merchant will receive the response on the furl shared in the [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted).
+  *Sample challan of a NEFT/RTGS transaction*
 
-_Sample challan of a NEFT/RTGS transaction_
-
-<img
-  src="https://files.readme.io/4f959a8-neftrtgs_challan.jpeg"
-  alt=""
-  style={{
+  <img
+    src="https://files.readme.io/4f959a8-neftrtgs_challan.jpeg"
+    alt=""
+    style={{
     display: "block",
     margin: "0 auto",
     width: "400px"
   }}
-/>
+  />
 </Accordion>
+
 <Accordion title="Request parameters" icon="fa-table">
   The following parameters vary for the EFTNEFT payment mode in the **Collect Payment**API (**\_payment** API).
 
