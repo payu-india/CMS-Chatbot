@@ -84,3 +84,9 @@ static Map createPayUPPIParams() {
 ### Step 3: Hashing
 
 PayU will get hash string in map "hashString" key and hash name "hashName" in generateHash.  You need to send this string to server and append salt there, after appending salt convert string to sha512 hash and return back to sdk in `hashGenerated`  as  `Map`.
+
+## Sample app
+
+You can download the sample app for Virtual Card integration on Flutter SDK from the following Github location:
+
+https://github.com/payu-intrepos/PPIManagerFlutter
