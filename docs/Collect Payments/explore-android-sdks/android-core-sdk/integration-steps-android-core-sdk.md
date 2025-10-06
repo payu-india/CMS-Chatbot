@@ -191,11 +191,10 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 ## Step 5: Generate request for payment
 
 <Accordion title="Credit / Debit Card" icon="fa-code">
-  
   To pay using a credit card or debit card, perform the following steps.
-  
+
   1. Set the following credit card parameters:
-  
+
   ```Text Java
   mPaymentParams.setCardNumber(cardNumber);
   mPaymentParams.setCardName(cardName);
@@ -204,9 +203,9 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
   mPaymentParams.setExpiryYear(expiryYear);// YYYY
   mPaymentParams.setCvv(cvv);
   ```
-  
+
   2. Get the request by using the `createRequestWithPaymentParam` method as follows:
-  
+
   ```Text Java
    try {
            mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.CC).getPaymentPostParams();
@@ -214,14 +213,13 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
               e.printStackTrace();
        }
   ```
-  
 </Accordion>
+
 <Accordion title="Store Credit / Debit card" icon="fa-code">
-  
   To Pay using StoredCard, perform the following steps.
-  
+
   1. Set the StoredCard parameter similar to the following code snippet:
-  
+
   ```Text Java
   mPaymentParams.setCardNumber(cardNumber);
   mPaymentParams.setCardName(cardName);
@@ -233,9 +231,9 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
   mPaymentParam.setUserCredentials(userCredentials);
   mPaymentParam.setStoreCard(1);
   ```
-  
+
   2. Get the request by using the `PaymentPostParams` method as follows:
-  
+
   ```Text Java
    try {
            mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.CC).getPaymentPostParams();
@@ -243,27 +241,24 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
               e.printStackTrace();
        }
   ```
-  
 </Accordion>
+
 <Accordion title="Tokenization" icon="fa-code">
-  
   <Accordion title="Card Tokenization with PayU" icon="fa-code">
-    
     1. For Cards tokenized with PayU platform merchant needs to pass the below parameters.
-    
+
     ```Text Java
     mPaymentParams.setCvv(cvv); // pass the correct cvv
     mPaymentParam.setCardToken(cardtoken); // pass the store card token
     mPaymentParams.setCardTokenType(0); //it should be passed as 0
     ```
-    
+
     2. After setting the above parameters, you can get the request by using the`createRequestWithPaymentParam`.
-    
   </Accordion>
+
   <Accordion title="Third Party-Card Tokenization" icon="fa-code">
-    
     1. For cards tokenized outside the PayU platform merchant needs to pass the below parameters.
-    
+
     ```Text Java
     mPaymentParams.setCardTokenType(1); //it should be passed as 1
     TokenizedCardAdditionalParam additionalParam = new TokenizedCardAdditionalParam();
@@ -273,23 +268,22 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
     additionalParam.setTokenRefNo("1234"); //tokenRefNo -> will be given by tokenisation partner
     mPaymentParams.setTokenizedCardAdditionalParam(additionalParam);
     ```
-    
+
     2. After setting the above parameters, you can get the request by using the`createRequestWithPaymentParam`.
-    
   </Accordion>
 </Accordion>
+
 <Accordion title="Net Banking" icon="fa-code">
-  
   To pay using NetBanking, perform the following steps.
-  
+
   1. Set the NetBanking parameter as follows:
-  
+
   ```Text Java
   mPaymentParams.setBankCode(bankCode);
   ```
-  
+
   2. Get the request by using the `PaymentPostParams` method as follows:
-  
+
   ```Text Java
   try {
               mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.NB).getPaymentPostParams();
@@ -297,12 +291,11 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
               e.printStackTrace();
           }
   ```
-  
 </Accordion>
+
 <Accordion title="Recurring Payments in NetBanking" icon="fa-code">
-  
   For recurring payments in Net Banking, you need to collect the following details:
-  
+
   ```Text Java
   BeneficiaryDetails beneficiaryDetails = new BeneficiaryDetails();
   beneficiaryDetails.setBeneficiaryName("John Doe");
@@ -312,24 +305,22 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
   SIParams siParams = new SIParams();
   siParams.setBeneficiarydetail(beneficiaryDetails);
   ```
-  
 </Accordion>
+
 <Accordion title="Beneficiary Details Parameters Definition" icon="fa-code">
-  
   | Parameter                  | Description                                                                                                          |
   | :------------------------- | :------------------------------------------------------------------------------------------------------------------- |
   | Beneficiary Name           | `String` Account Holder Beneficiary name.                                                                            |
   | Beneficiary Account Number | `String` Account number of Beneficiary.                                                                              |
   | Beneficiary Account Type   | `Enum of BeneficiaryAccountType` Accepted values are BeneficiaryAccountType.SAVINGS, BeneficiaryAccountType.CURRENT. |
   | Beneficiary IFSC           | `String` Valid IFSC.                                                                                                 |
-  
 </Accordion>
+
 <Accordion title="EMI" icon="fa-code">
-  
   To pay using EMI, perform the following steps.
-  
+
   1. Set the EMI parameter for instance:
-  
+
   ```Text Java
   mPaymentParams.setCardNumber(“5123456789012346”); 
   mPaymentParams.setNameOnCard(“test”); 
@@ -338,9 +329,9 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
   mPaymentParams.setCvv(“123”); 
   mPaymentParams.setBankCode(“EMI03”); 
   ```
-  
+
   2. Get the request by using the `PaymentPostParams` method as follows:
-  
+
   ```
   try {
        mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.EMI).getPaymentPostParams();
@@ -348,24 +339,23 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
         e.printStackTrace();
      }
   ```
-  
 </Accordion>
+
 <Accordion title="Cardless EMI" icon="fa-code">
-  
   For doing CardLess EMI transactions, `setCardLess `must be set to true along with setting the bank code in the payment parameters similar to the following code snippet:
-  
+
   ```Text Java
   mPaymentParams.setBankCode("ZESTMON"); //For Zestmoney CardLess EMI
   ```
-  
+
   For the Zestmoney CardLess EMI transactions, the phone number must also be set in payment parameters similar to the following code snippet:
-  
+
   ```Text Java
   mPaymentParams.setPhone("9000000000");
   ```
-  
+
   2. Get the request by using the `PaymentPostParams` method as follows:
-  
+
   ```
   try {
        mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.EMI).getPaymentPostParams();
@@ -373,12 +363,11 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
         e.printStackTrace();
      }
   ```
-  
 </Accordion>
+
 <Accordion title="No-Cost EMI" icon="fa-code">
-  
   For posting No-Cost EMI transactions, the subvention amount needs to be sent along with the above EMI parameters similar to the following code snippet:
-  
+
   ```Text Java
   mPaymentParams.setCardNumber(“5123456789012346”); 
   mPaymentParams.setNameOnCard(“test”); 
@@ -388,31 +377,29 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
   mPaymentParams.setBankCode(“EMI03”); 
   mPaymentParams.setSubventionAmount(“4000”);
   ```
-  
+
   > 📘 Hash Formula
   >
   > If the subvention amount is passed, the hash formula for payment hash will be similar to the following
   >
   > sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|SubventionAmount)
-  
+
   <Accordion title="Fetch a List of No-Cost EMI-supporting banks" icon="fa-code">
-    
     To get a list of No-Cost EMI supporting banks, pass var2 as “all” in the Merchant Web Service for GetPaymentRelatedDetailsTask. For more information refer to [Web Services for Core](doc:ios-coresdk-web-services).
-    
   </Accordion>
 </Accordion>
+
 <Accordion title="Cash card" icon="fa-code">
-  
   To pay using a CashCard, perform the following steps
-  
+
   1. Set the cashcard parameter as follows:
-  
+
   ```Text Java
   mPaymentParams.setBankCode(bankCode);
   ```
-  
+
   2. Get the request by using the `PaymentPostParams` method as follows:
-  
+
   ```Text Java
    try {
               mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.CASH).getPaymentPostParams();
@@ -420,25 +407,24 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
               e.printStackTrace();
           }
   ```
-  
 </Accordion>
+
 <Accordion title="UPI" icon="fa-code">
-  
   To pay using a UPI, perform the following steps
-  
+
   1. Set the VPA parameter as follows:
-  
+
   ```Text Java
   mPaymentParams.setVpa(virtualPaymentAddress);
   ```
-  
+
   You need to validate the following for the virtual payment address (VPA):
-  
+
   * VPA length should be less than or equal to 50 characters
-  * Regex for VPA: value.match(/^([A-Za-z0-9.])+@[A-Za-z0-9]+$/)
-  
+  * Regex for VPA: value.match(/^(\[A-Za-z0-9.])+@\[A-Za-z0-9]+$/)
+
   2. Get the request by using the `PaymentPostParams` method as follows:
-  
+
   ```
   try {
        mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.UPI).getPaymentPostParams();
@@ -446,20 +432,19 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
        e.printStackTrace();
    }
   ```
-  
 </Accordion>
+
 <Accordion title="LazyPay" icon="fa-code">
-  
   To pay using LazyPay, perform the following steps.
-  
+
   1. Notify(callback) the URL of the merchant where notification of transaction status will be sent on completion of the transaction. It should be HTTPS.
-  
+
   ```Text Java
   mPaymentParams.setNotifyURL(<Merchant Callback Url>);
   ```
-  
+
   2. Get the request by using the `PaymentPostParams` method as follows:
-  
+
   ```Text Java
   try{
       mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.LAZYPAY).getPaymentPostParams();
@@ -468,31 +453,29 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
         e.printStackTrace(); 
   }
   ```
-  
 </Accordion>
+
 <Accordion title="TwidPay" icon="fa-code">
-  
-  1. To Pay using TwidPay, create the post data with PayuConstants.PAY_BY_REWARDS.
-  
+  1. To Pay using TwidPay, create the post data with PayuConstants.PAY\_BY\_REWARDS.
+
   ```java
    try {
              mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.PAY_BY_REWARDS).getPaymentPostParams();
           }        } catch (Exception e) {
               e.printStackTrace();
-  
+
   ```
-  
+
   2. After a successful payment, you will get the Twid customer hash in field5 params of PayuResponse, which would use for the next transaction to skip authentication.
-  
+
   ```java Java
   mPaymentParams.setTwidCustomerHash("Twid customer hash");
   ```
-  
 </Accordion>
+
 <Accordion title="Sodexo" icon="fa-code">
-  
-  1. To pay using Sodexo, create the post data with PAYMENT_PG_SODEXO:
-  
+  1. To pay using Sodexo, create the post data with PAYMENT\_PG\_SODEXO:
+
   ```java Java
   mPaymentParams.setCardNumber(cardNumber);
   mPaymentParams.setCardName(cardName);
@@ -501,9 +484,9 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
   mPaymentParams.setExpiryYear(expiryYear);// YYYY  
   mPaymentParams.setCvv(cvv);
   ```
-  
+
   2. After setting the above parameters, you can get the request by using the`PaymentPostParams` method similar to the following code snippet:
-  
+
   ```java
     try {
               mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.SODEXO).getPaymentPostParams();
@@ -511,15 +494,16 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
               e.printStackTrace();
           }
   ```
-  
+
   After a successful payment, you would get the Sodexo source ID in the field3 param of PayU response, which can be used to show and get stored Sodexo card details and also can be used for initiating payment.
-  
+
   ```java Java
   mPaymentParams.setsodexoSourceId("srcid123");
   ```
-  
 </Accordion>
-## Test the Integration
+
+## Test the Integration and Go-Live
+<Accordion title="Test the Integration" icon="fa-code">
 
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
@@ -534,52 +518,48 @@ You can make test payments using one of the payment methods configured at the Ch
 <TestCardsCallout />
 
 <Accordion title="Test credentials for supported payment methods" icon="fa-code">
-  
   Following are the payment methods supported in PayU Test mode.
-  
 </Accordion>
+
 <Accordion title="Test Credential for Card" icon="fa-code">
-  
   | Card Number      | Expiry | CVV | OTP    |
   | :--------------- | :----- | :-- | :----- |
   | 5123456789012346 | 05/25  | 123 | 123456 |
-  
 </Accordion>
+
 <Accordion title="Test credentials for Net Banking" icon="fa-code">
-  
   Use the following credentials to test the Net Banking integration:
-  
+
   * **user name:** payu
   * **password**: payu
   * **OTP**: 123456
-  
 </Accordion>
+
 <Accordion title="Test VPA for UPI" icon="fa-code">
-  
   > ❗️ Callout
   >
   > The UPI in-app and UPI intent flow is not available in the Test mode.
-  
+
   You can use either of the following VPAs to test your UPI-related integration:
-  
+
   * [anything@payu](anything@payu)
   * [9999999999@payu.in](mailto:9999999999@payu.in)
-  
+
   For Testing the UPI Collect flow, Please follow the below steps:-
-  
+
   1. Once you enter the VPA click on the verify button and proceed to pay.
   2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
   3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
-     [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn_id>
-  
+     [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn\_id>
+
   **For Android**
-  
+
   You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
-  
+
   <Callout icon="🚧" theme="warn">
     **Remove code from manifest**: Ensure to remove the code from the manifest file before going live.
   </Callout>
-  
+
   ```Text XML
   <application>
   <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
@@ -587,49 +567,18 @@ You can make test payments using one of the payment methods configured at the Ch
   <meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
   </appliction>
   ```
-  
+
   <Accordion title="Test cards for EMI" icon="fa-code">
-    
     You can use the following Debit and Credit cards to test EMI integration.
-    
+
     <EMITestCards />
-    
   </Accordion>
+
   <Accordion title="Test Wallets" icon="fa-code">
-    
     You can use the following wallets and their corresponding credentials to test wallet integration.
-    
+
     <EMITestWallets />
-    
   </Accordion>
 </Accordion>
-## Go-live Checklist
-
-Ensure these steps before you deploy the integration in a live environment.
-
-<Accordion title="Collect Live payments" icon="fa-code">
-  
-  After testing the integration end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
-  
-  <Callout icon="🚧" theme="warn">
-    **Generate Production Key and Salt**: Ensure that you are using the production merchant key and salt generated in the live mode. For more information, refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy).
-  </Callout>
-  
-  <ProductionKeyAndSaltProcedure />
-  
 </Accordion>
-<Accordion title="Checklist 2: Configure setIsProduction()" icon="fa-code">
-  
-  Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
-  
-</Accordion>
-<Accordion title="Checklist 3: Configure verify payment method" icon="fa-code">
-  
-  Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
-  
-</Accordion>
-<Accordion title="Checklist 4: Configure Webhook" icon="fa-code">
-  
-  We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
-  
-</Accordion>
+<Go_Live_Checklist />
