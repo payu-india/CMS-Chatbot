@@ -23,7 +23,7 @@ A custom payment experience where you collect payment details on your own websit
 
 <Image align="center" border={false} src="https://files.readme.io/bf87f75f97171660faf61fe526357dd3ff6a141aec0f849d4d2d08d18cec0d98-neft_icon.jpg" />
 
-<Image align="center" border={false} src="https://files.readme.io/0a4bb0ba9604b82f7b75dbb4e40756e8674ec644ba5743d54420678f91579694-sodexo_icon.jpg" />
+<Image align="center" border={false} src="https://files.readme.io/cacf8d7607e6eacc203e8eebb88e3f33ea4a6483af8c2f79f338659f04762e94-sodexo_icon.png" />
 
 The PayU Merchant Hosted (Custom Checkout) integration involves the following steps:
 
