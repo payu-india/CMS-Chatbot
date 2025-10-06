@@ -18,10 +18,11 @@ Collect payments using EFTNET (NEFT/RTGS) with Merchant Hosted Checkout integrat
 
 To integrate with EFTNET:
 
-### Steps to Integrate
+**Steps to Integrate**
+
 <Cards columns={3}>
   <Card title="1. Initiate the Payment to PayU" href="#step-1-initiate-the-payment-to-payu" target="_blank">
-    Initiate the payment to PayU with pg=MC and bankcode=SODEXO
+    Initiate the payment to PayU with pg= NEFTRTGS and bankcode= \<based on the bank>
 
     <br />
   </Card>
@@ -42,6 +43,7 @@ To integrate with EFTNET:
 <RegisterMerchantPrerequiste />
 
 ## Step 1: Initiate the payment to PayU
+
 <Accordion title="Post request syntax & composition" icon="fa-code">
   ```html
   <body>
@@ -69,26 +71,26 @@ To integrate with EFTNET:
     **Note**: The sample HTML code mentioned above is for Merchant Checkout integration with the NEFT/RTGS payment method call for the test environment.
   </Callout>
 </Accordion>
-  ### Optional configuration
 
-  PayU provides an optional **Back to Merchant** button on the payment challan of a NEFT/RTGS payment. This button enables your customer to go back to the merchant portal once the transaction is done.
+### Optional configuration
 
-  In this scenario, if a customer clicks on **Back to Merchant** button the merchant will receive the response on the furl shared in the [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted).
+PayU provides an optional **Back to Merchant** button on the payment challan of a NEFT/RTGS payment. This button enables your customer to go back to the merchant portal once the transaction is done.
 
-  *Sample challan of a NEFT/RTGS transaction*
+In this scenario, if a customer clicks on **Back to Merchant** button the merchant will receive the response on the furl shared in the [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted).
 
-  <img
-    src="https://files.readme.io/4f959a8-neftrtgs_challan.jpeg"
-    alt=""
-    style={{
+_Sample challan of a NEFT/RTGS transaction_
+
+<img
+  src="https://files.readme.io/4f959a8-neftrtgs_challan.jpeg"
+  alt=""
+  style={{
     display: "block",
     margin: "0 auto",
     width: "400px"
   }}
-  />
+/>
 
 <Accordion title="Request parameters" icon="fa-table">
-
   The following parameters vary for the EFTNEFT payment mode in the **Collect Payment**API (**\_payment** API).
 
   **Environment**
@@ -98,7 +100,6 @@ To integrate with EFTNET:
   | **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
   | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-  <Accordion title="Request parameters" icon="fa-code">
     | Parameter                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Example                                                                                        |
     | :----------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
     | key <br /> `mandatory`         | String - This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to Generate Merchant Key and Salt.                                                                                                                                                                                                                                                                                               | 8488225                                                                                        |
@@ -126,23 +127,24 @@ To integrate with EFTNET:
     | udf4 <br /> `optional`         | string - This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                     | custom\_data\_4                                                                                |
     | udf5 <br /> `optional`         | string - This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                     | custom\_data\_5                                                                                |
 
-  <HashingRequestParameters />
+    <HashingRequestParameters />
   </Accordion>
+
   <Accordion title="Sample request" icon="fa-code">
+    ```curl
+    curl -X POST "https://test.payu.in/_payment"  -H "accept: application/json"  -H "Content-Type: application/x-www-form-urlencoded"  -d "key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=NEFTRTGS&bankcode=EFTAXIS&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
+    ```
+  </Accordion>
 
-  ```curl
-  curl -X POST "https://test.payu.in/_payment"  -H "accept: application/json"  -H "Content-Type: application/x-www-form-urlencoded"  -d "key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=NEFTRTGS&bankcode=EFTAXIS&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
-  ```
-</Accordion>
+  ## Step 2: Check response from PayU
 
-## Step 2: Check response from PayU
   <ReverseHashing />
 
   <Callout icon="📘" theme="info">
     **Note on Response**: For security reasons, the sample response or URL is not included here.
   </Callout>
-</Accordion>
+
 
 ## Step 3: Verify the payment
-  <Verify_Payment_Tabs />
 
+<Verify_Payment_Tabs />
