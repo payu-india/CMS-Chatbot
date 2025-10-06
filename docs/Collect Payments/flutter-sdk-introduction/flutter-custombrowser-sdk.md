@@ -44,12 +44,12 @@ This document describes how to integrate Custom Browser SDK with Flutter.
 
 To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
 
-1. [Include the SDK in your app](https://docs.payu.in/docs/1-integration-steps#step-1-include-the-sdk-in-your-app)
-2. [Initialise the SDK ](https://docs.payu.in/docs/1-integration-steps#step-2-sdk-initialisation)
-3. [Implement Callback protocol](https://docs.payu.in/docs/1-integration-steps#step-3-callback-protocol-implementation)
-4. [Set up payment hashes](https://docs.payu.in/docs/1-integration-steps#step-4-setup-payment-hashes)
-5. [Generate the payment parameters](https://docs.payu.in/docs/1-integration-steps#payment-parameters)
-6. [Initiate payment](https://docs.payu.in/docs/1-integration-steps#step-6-initiate-payment)
+1. [Include the SDK in your app](#step-1-include-the-sdk-in-your-app)
+2. [Initialise the SDK ](#step-2-sdk-initialisation)
+3. [Implement Callback protocol](#step-3-callback-protocol-implementation)
+4. [Set up payment hashes](#step-4-setup-payment-hashes)
+5. [Generate the payment parameters](#payment-parameters)
+6. [Initiate payment](#step-6-initiate-payment)
 
 ### Step 1: Include the SDK in your app
 
