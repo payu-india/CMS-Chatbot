@@ -31,15 +31,14 @@ You can customize the following in the Checkout page:
 You can append the parameter names in your transaction request to opt for all or some of the payment modes.
 
 <Accordion title="Enforce payment customization" icon="fa-code">
-  
-  Parameter name: **enforce_paymethod**
-  
+  Parameter name: **enforce\_paymethod**
+
   This parameter allows you to customize the payment options for each transaction. You can enforce specific payment modes, cards scheme, and specific banks under Net Banking using this method.
-  
+
   You need to include the necessary payment options in this parameter and POST them to PayU at the transaction time. All the categories and sub-categories have specific values that need to be included in this string.
-  
+
   The categories and sub-categories are as follows:
-  
+
   | Category    | Sub-category                              |
   | :---------- | :---------------------------------------- |
   | Credit Card | MasterCard, Amex, Diners, etc.            |
@@ -48,56 +47,54 @@ You can append the parameter names in your transaction request to opt for all or
   | EMI         | CITI 3 Months EMI, HFC 6 Months EMI, etc. |
   | Wallet      | Airtel Money, YPay, ITZ, Cash Card, etc.  |
   | UPI         | GooglePay, PhonePe, UPI, etc.             |
-  
+
   To enforce complete categories, use the values as described in the following table:
-  
-  | Category    | Value of enforced_payment |
-  | :---------- | :------------------------ |
-  | Credit Card | creditcard                |
-  | Debit Card  | debitcard                 |
-  | Net Banking | netbanking                |
-  | NEFT/RTGS   | neftrtgs                  |
-  | EMI         | emi                       |
-  | UPI         | upi                       |
-  | Wallet      | cashcard                  |
-  | Sodexo      | SODEXO                    |
-  | BNPL        | bnpl                      |
-  | QR          | qr                        |
-  
+
+  | Category    | Value of enforced\_payment |
+  | :---------- | :------------------------- |
+  | Credit Card | creditcard                 |
+  | Debit Card  | debitcard                  |
+  | Net Banking | netbanking                 |
+  | NEFT/RTGS   | neftrtgs                   |
+  | EMI         | emi                        |
+  | UPI         | upi                        |
+  | Wallet      | cashcard                   |
+  | Sodexo      | SODEXO                     |
+  | BNPL        | bnpl                       |
+  | QR          | qr                         |
+
   To enforce sub-categories, use the respective bank codes for them. Contact PayU Support or at help.payu.in to get the respective bank codes.
-  
+
   <Callout icon="📘" theme="info">
     **Note**: Ensure that you are using the delimiter as pipe (|) character between the values in these examples.
   </Callout>
-  
 </Accordion>
+
 <Accordion title="Usage examples" icon="fa-code">
-  
   #### creditcard|debitcard
-  
+
   All the credit card and debit card options are displayed (as the whole category is enforced). The rest of the categories will not be displayed, that is, EMI, cash card, credit card, debit card, etc. – as they are not being mentioned in the string.
-  
+
   #### creditcard|netbanking|cashcard
-  
+
   All the credit card, Net Banking, and cash card options are displayed (as the whole category is enforced for these).
-  
+
   <Callout icon="📘" theme="info">
     **Note**: Ensure you use this parameter only after testing properly as an incorrect string will lead to undesirable payment options being displayed.
   </Callout>
-  
+
   For an example procedure on how to enforce payment with a credit card, refer to Enforce Payment with Credit Card.
-  
 </Accordion>
+
 <Accordion title="Hide Specific Payment Modes" icon="fa-code">
-  
-  **Parameter name : drop_category**
-  
-  The **drop_category** parameter can be used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
-  
-  If 30 Net Banking options are available and you want to drop two of those net banking options (that is, do not display those two options on the PayU page), the **drop_category** parameter can be used effectively.
-  
+  **Parameter name : drop\_category**
+
+  The **drop\_category** parameter can be used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
+
+  If 30 Net Banking options are available and you want to drop two of those net banking options (that is, do not display those two options on the PayU page), the **drop\_category** parameter can be used effectively.
+
   To drop the whole category, use the following values:
-  
+
   | Category    | Category Value |
   | :---------- | :------------- |
   | Credit Card | CC             |
@@ -108,33 +105,32 @@ You can append the parameter names in your transaction request to opt for all or
   | Wallet      | CASH           |
   | BNPL        | BNPL           |
   | Sodexo      | SODEXO         |
-  
+
   To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration).
-  
 </Accordion>
+
 <Accordion title="Checkout customization examples" icon="fa-code">
-  
-  **drop_category – DC|VISA|MAST**
-  
+  **drop\_category – DC|VISA|MAST**
+
   In this example:
-  
+
   * For the debit card category, only Visa and Master Card options will be dropped, so they are not displayed on the PayU page.
   * All other active payment options are displayed.
-  
-  **drop_category – CC|AMEX, DC|VISA, EMI|EMI6**
-  
+
+  **drop\_category – CC|AMEX, DC|VISA, EMI|EMI6**
+
   In this example:
-  
+
   * For the credit card category, only the AMEX option is dropped and not displayed on the PayU page.
   * In the debit card category, only the VISA option would be dropped.
   * In the EMI category, only HDFC 6 months EMI option (bank code – EMI6) will be dropped.
   * All the other active payment options will be displayed on the PayU page.
-  
+
   <Callout icon="📘" theme="info">
     **Note**: Use this parameter only after proper testing as an incorrect string will display undesirable payment modes.
   </Callout>
-  
 </Accordion>
+
 ## Change the Language
 
 To change the display language in PayU Hosted Checkout, add the `language` parameter to the payment request API call. The following video shows how vernacular support can improve your business:
@@ -248,10 +244,9 @@ You are redirected to the PayPal page similar to the following screenshot.
 <Image align="center" border={true} width="320px" src="https://files.readme.io/32522a2-paypal_details_thanks_signup.png" className="border" />
 
 <Accordion title="Disable Checkout payment modes" icon="fa-code">
-  
   Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
-  
 </Accordion>
+
 ## Configure Checkout Settings
 
 You can customize your customer-facing checkout page that is displayed when you are using PayU Hosted Checkout integration. For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
@@ -327,116 +322,3 @@ To update your brand settings:
 <Callout icon="📘" theme="info">
   **Note**: While you configure each field above on the ,  you can see the preview in the right pane. For example, if you add or update the brand logo URL, it will be updated in the right pane preview.
 </Callout>
-
-## Enable Pluxee Card on Checkout
-
-Pay Hosted Checkout (non-seamless) integration provides you to collect payments from customers using Pluxee (earlier Sodexo BRS) meal card on specific merchant categories such as restaurants, groceries etc.
-
-<Callout icon="📘" theme="info">
-  **Note**: PayU supports only PayU Hosted Checkout (non-seamless) and Merchant Hosted Checkout integration (seamless) using this API. Server-to-Server (S2S) integration is not be supported for Sodexo.
-</Callout>
-
-This section describes the parameters required to collect payments using the Pluxee card with PayU Hosted Checkout integration (using the **_payment** API) with parameters to enforce only the Pluxee card in the **mealcard** category or hide it.
-
-***
-
-<Accordion title="Steps to Integrate:" icon="fa-code">
-  
-  1. [Post the transaction request to PayU](#step-1-post-the-transaction-request-to-payu)
-  2. [Customer submits payment details on PayU Page](#step-2-customer-submits-payment-details-on-payu-page)
-  3. [Check the response from PayU](#step-3-check-the-response-from-payu)
-  
-</Accordion>
-## Pluxee using PayU Hosted Integration workflow
-
-The following describe the characteristics and workflow involved using PayU Hosted Checkout Integration with Pluxee:
-
-* The existing **_payment** API used to initiate payments for online transactions will be used to initiate payments for Pluxee payment option.
-* In case the merchant wants to enforce Pluxee payment option on our check out page, **enforce_paymethod** value should be passed as **SODEXO**.
-* In case merchant wants to drop the Pluxee payment option under the **mealcard** category on the PayU checkout page, then **drop_category** value should be passed as **MC|SODEXO**. In case the **entire mealcard category** need to be dropped, then value should be passed as **MC**. Currently, PayU only supports the Sodexo payment option in the **mealcard** category.
-
-For more information enforcing or hiding Pluxee payment option, refer to [Collect Payment API - PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout).
-
-<Accordion title="Workflow on PayU Payment Page" icon="fa-code">
-  
-  1. Merchant initiates payment & redirects the customer to PayU's check out page to choose a payment option of their choice.
-  2. Customer selects the Pluxee payment option available on the PayU's check out page & either enters new card details or selects already saved Pluxee card.
-  3. In case customer want's to use an already saved Pluxee card, PayU will only allow that, provided the balance available in the card is greater than or equal to transaction amount.
-  4. The customer is then re-directed to Pluxee ACS page, where the customer can enter the PIN and complete the payment.
-  5. Once PayU receives a successful confirmation from Sodexo, we will provide a confirmation to merchant via webhook or merchant can use our status check API to fetch the transaction status.
-  
-</Accordion>
-## Step 1: Post the transaction request to PayU
-
-The parameters for the Sodexo card remain the same for as mentioned in the [Collect Payment API - PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout).
-
-#### Enforcing Sodexo Card payment
-
-If you wish to enforce the Sodexo card payment and hide other cards, you can use the following parameters and other PayU Hosted Checkout parameters according to your requirements.
-
-| **Parameter**     | **Description**                                                                                                                                               | **Example** |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| enforce_paymethod | This parameter allows you to customize the payment options for each individual transaction. To enforce Sodexo card as the payment method, specify **SODEXO**. | SODEXO      |
-
-#### Dropping the Sodexo Card payment
-
-If you wish to hide the Sodexo card payment in the **mealcard** category, you can use the following parameters and other PayU Hosted Checkout parameters according to your requirements.
-
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        drop_category
-        **optional**
-      </td>
-
-      <td>
-        This parameter is used to customize the payment options for each individual transaction. To drop the Sodexo card payment with PayU Hosted Checkout integration, specify **mealcard|SODEXO**.
-      </td>
-
-      <td>
-        mealcard|SODEXO
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Note**: Currently, PayU India only supports the Sodexo payment option under the **mealcard** category.
-
-#### Sample request
-
-For a sample request, refer to [Collect Payment API - PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout) under API Reference.
-
-***
-
-<Accordion title="Step 2: Customer submits payment details on PayU page" icon="fa-code">
-  
-  The customer selects the Sodexo payment option on PayU's page.
-  
-  After the customer selects the **Sodexo** payment mode, PayU gets the Sodexo card details from the customer.
-  
-  The customer performs the authorization or authentication process on the bank's login page, and the bank communicates the success or failure response back to PayU.
-  
-</Accordion>
-<Accordion title="Step 3: Check the response from PayU" icon="fa-code">
-  
-  PayU marks the transaction status based on the response received from the bank. PayU communicates the success URL to you if the payment is successful. Verify the authenticity of the hash value before accepting or rejecting the invoice order. For the list of parameters in the response body for the PayU Hosted integration, refer to [Collect Payment API - PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout) under API Reference.
-  
-  ***
-</Accordion>
