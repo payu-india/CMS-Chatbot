@@ -68,7 +68,7 @@ Collect payments using Net Banking with Merchant Hosted Checkout integration as 
 </Accordion>
 
 <Accordion title="Request parameters" icon="fa-code">
-  The following parameters vary for the NetBanking payment mode in the **Collect Payment** API (**\_payment** API).
+  The pg and bankcode parameters vary for the NetBanking payment mode in the **Collect Payment** API (**\_payment** API).
 
   **Environment**
 
@@ -78,7 +78,7 @@ Collect payments using Net Banking with Merchant Hosted Checkout integration as 
   | **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
   <Callout icon="📘" theme="info">
-    **Reference**: For the complete list of parameters and response, refer to <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="ref:_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor> under API Reference.
+    **Reference**: For the Try-IT experience, refer to <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="https://docs.payu.in/reference/payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor> under API Reference.
   </Callout>
 
   | Parameter                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                              | Example                           |
