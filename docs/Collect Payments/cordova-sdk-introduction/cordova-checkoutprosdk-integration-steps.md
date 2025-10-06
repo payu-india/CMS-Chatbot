@@ -29,7 +29,7 @@ The Cordova Checkout SDK integration involves the following steps:
   **Note**: You can do iOS specific customization during integration. For more information, refer to [iOS-specific Integration customization (Optional)](#ios-specific-integration-customization-optional).
 </Callout>
 
-## Step 1: Include the Cordova plugin in your app project
+<Accordion title="Step 1: Include the Cordova plugin in your app project" icon="fa-code">
 
 The PayUCheckoutPro for Cordova plugin is offered through npm. To Include the Cordova Plugin in your app project:
 
@@ -54,7 +54,8 @@ cordova plugin add cordova-payu-checkoutpro
 cordova build 
 ```
 
-## Step 2: Set up Callback
+</Accordion>
+<Accordion title="Step 2: Set up Callback" icon="fa-code">
 
 Include the following callbacks and methods in your Cordova app to receive callbacks from the CheckOutPro SDK:
 
@@ -104,9 +105,8 @@ function onError(response) {
 }
 ```
 
-***
-
-## Step 3: Build the payment parameters
+</Accordion>
+<Accordion title="Step 3: Build the payment parameters" icon="fa-code">
 
 Your app needs to send transactional information to the CheckoutPro SDK to initiate a payment. Build the transactional information using the following code snippet:
 
@@ -176,9 +176,8 @@ var siParamObject = {
   **Note**: For more details on Standing Instructions parameters, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
 </Callout>
 
-***
-
-## Step 4: Set up payment hashes
+</Accordion>
+<Accordion title="Step 4: Set up payment hashes" icon="fa-code">
 
 This step describes how to pass the dynamic hashes. For detailed information, refer to [Generate Hash](doc:generate-dynamic-hash-cordova).
 
@@ -216,9 +215,8 @@ function generateHash(response) {
 
 The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. The CheckoutPro SDK requires two types of hashes. For more information on the two types of hashes, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) for CheckoutPro SDK.
 
-***
-
-## Step 5: Initiate the payment
+</Accordion>
+<Accordion title="Step 5: Initiate the payment" icon="fa-code">
 
 Initialize and launch the Checkout Pro SDK by calling the following code snippet:
 
@@ -233,9 +231,8 @@ cordova.plugins.PayUCheckoutProCordova.openCheckoutScreen(
 );
 ```
 
-***
-
-## Step 6: Update AndroidManifest.xml
+</Accordion>
+<Accordion title="Step 6: Update AndroidManifest.xml" icon="fa-code">
 
 To automatically fill OTP on bank pages, SDK requires `the RECEIVE_SMS` permission. Add the following code snippet to your `AndroidManifest.xml` like below.
 
@@ -243,9 +240,8 @@ To automatically fill OTP on bank pages, SDK requires `the RECEIVE_SMS` permissi
 <uses-permission android:name="android.permission.RECEIVE_SMS" />
 ```
 
-***
-
-## iOS-specific Integration customization (Optional)
+</Accordion>
+<Accordion title="iOS-specific Integration customization (Optional)" icon="fa-code">
 
 * **UPI Intent**: Currently, PayU supports only PhonePe, Paytm, and GooglePay through Intent. Add the following query schemes in the `info.plist`.
 
@@ -267,6 +263,7 @@ To automatically fill OTP on bank pages, SDK requires `the RECEIVE_SMS` permissi
 
 ***
 
+</Accordion>
 ## Step 6: Distributing your app (App Store / Ad-hoc)
 
 What you get by default is a fat framework that allows you to test your app seamlessly on the device and simulator. But before archiving your app, you need to remove simulator slices from the framework. For detailed information on archiving your app with PayUChekoutPro, refer to [Releasing Apple App Store](https://docs.payu.in/docs/ios-releasing-the-app-to-the-app-store).
