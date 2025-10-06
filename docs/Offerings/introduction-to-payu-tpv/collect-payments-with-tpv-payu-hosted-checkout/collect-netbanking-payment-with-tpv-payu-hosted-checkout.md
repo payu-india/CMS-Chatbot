@@ -13,6 +13,8 @@ For Net Banking integration, you need to post transaction details to PayU with b
 Create a transaction by including a JSON object with beneficiary details (account numbers and IFSC codes). You can include up to four accounts for validation.
 
 ## Step 2: Post the parameters to PayU
+
+<Accordion title="Request parameters" icon="fa-code">
 **Environment**
 The following environments are available for TPV integration:
 
@@ -20,9 +22,6 @@ The following environments are available for TPV integration:
 | -------------------------- | ------------------------------------------------------------------- |
 | **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
-
-
-### Request parameters
 
 <HTMLBlock>{`
 <table class="request-parameters-table">
@@ -108,8 +107,7 @@ The following environments are available for TPV integration:
 >
 > Replace `SALT` with the salt value provided during onboarding.
 
-#### beneficiarydetail JSON Object Fields
-
+<Accordion title="beneficiarydetail JSON Object Fields" icon="fa-code">
 The `beneficiarydetail` parameter should be a JSON object with the following structure:
 
 <Table align={["left","left","left"]}>
@@ -184,9 +182,10 @@ The `beneficiarydetail` parameter should be a JSON object with the following str
 ## Step 3: Check the response from PayU
 
 After posting the parameters, PayU will return a response with transaction details.
+</Accordion>
+</Accordion>
 
-### Hash Validation Logic for payment response (Reverse Hashing)
-
+<Accordion title="Hash Validation Logic for payment response (Reverse Hashing)" icon="fa-code">
 To validate the authenticity of the response, you can calculate the reverse hash using:
 
 ```
@@ -196,9 +195,9 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 > 📘 beneficiarydetail parameter not required in reverse hashing:
 >
 > The `beneficiarydetail` parameter is not required when calculating the reverse hash.
+</Accordion>
 
-### Response parameters
-
+<Accordion title="Response parameters" icon="fa-code">
 | Param Name       | Description                                                                                                                    |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | mihpayid         | It is a unique reference number created for each transaction at PayU's end.                                                    |
@@ -219,9 +218,9 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 <Callout icon="📘" theme="info">
   **Store the mihpayid and txnid parameter values in response**: Make sure to store the `mihpayid` and `txnid` parameter values from the response for future reference and reconciliation.
 </Callout>
+</Accordion>
 
-### Sample response
-
+<Accordion title="Sample response" icon="fa-code">
 ```
 Array
 (
@@ -236,3 +235,9 @@ Array
     [error_Message] => No Error
 )
 ```
+
+## Step 4: Verify the payment
+
+<Verify_Payment_Tabs />
+</Accordion>
+
