@@ -22,7 +22,7 @@ The OPGSP (Online Payment Gateway Service Providers) Integration is the process 
 
 * **What are the requirements for integrating with PayU for cross-border payments?**
 
-To integrate with PayU for cross-border payments, you will need to have a website or online store that is capable of accepting payments through the PayU payment gateway and follow the RBI guidelines. For more information on RBI guidelines, refer to [RBI Guidelines for Cross-Border Payments](https://devguide.payu.in/cross-border-payments-import/cross-border-payments-import-introduction/rbi-guidelines-for-opgsp/).
+To integrate with PayU for cross-border payments, you will need to have a website or online store that is capable of accepting payments through the PayU payment gateway and follow the RBI guidelines. For more information on RBI guidelines, refer to [RBI Guidelines](doc:rbi-guidelines-for-cross-border-payments).
 
 * **What currencies does PayU accept for Cross-Border Payments?**
 
@@ -52,7 +52,7 @@ If you do not have a merchant account, you will need to create an account on the
 
 * **By when we can update the UDFs if the invoice number was not available before the successful payment?**
 
-The Invoice ID needs to be shared with the ICICI bank on the same day of the transaction to initiate settlements with the merchant. Hence, if the Invoice ID is not available at the time of the transaction, it is mandatory to be passed through the [UDF Update API](https://devguide.payu.in/cross-border-payments-import/udf-update-api/) or [Invoice Upload API](https://devguide.payu.in/cross-border-payments-import/invoice-upload-api/) on the same day (IST).\
+The Invoice ID needs to be shared with the ICICI bank on the same day of the transaction to initiate settlements with the merchant. Hence, if the Invoice ID is not available at the time of the transaction, it is mandatory to be passed through the [UDF Update API](https://devguide.payu.in/cross-border-payments-import/udf-update-api/) or [Invoice Upload API](https://devguide.payu.in/cross-border-payments-import/invoice-upload-api/) on the same day (IST).
 The invoice file must be shared with PayU within 10 days of the transaction since the bank requires the same as per the Govt and RBI guidelines.
 
 * **Which payment modes for which PayU supports cross-border payments?**
@@ -83,7 +83,7 @@ If a merchant are shipping multiple physical goods through various vendors on an
 
 UDFs are the user-defined fields used for the specific purpose in the cross-border import payment flows to collect the various buyer's information such as:
 
-* invoice\_id (UDF5 - mandatory)
+* invoice_id (UDF5 - mandatory)
 * buyer's PAN (UDF1 - optional)
 * buyer's DOB (UDF3 - optional)
 * buyer's Import Export Code or IE Code (UDF4 - optional)
