@@ -46,89 +46,94 @@ Hash = sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|u
 
 ## Step 2: Make Payment
 
-### Net Banking
-
-To pay using Net Banking, you need to pass payment params along with the following additional parameters:
-
-```Text Java
-mPaymentParams.setBeneficiaryAccountNumber("123456789");
-mPaymentParams.setIfscCode("SBIN000700");
-mPaymentParams.setBankCode("AXNBTPV");
-```
-```Text Kotlin
-mPaymentParams.beneficiaryAccountNumber = "123456789"
-mPaymentParams.ifscCode = "SBIN000700"
-mPaymentParams.bankCode = "AXNBTPV"
-```
-
-After setting the above parameters, you can get the payment post parameters using the following code snippet:
-
-```Text Node
-
-BeneficiaryDetails beneficiaryDetails = new BeneficiaryDetails();
-beneficiaryDetails.setBeneficiaryName("John Doe");
-beneficiaryDetails.setBeneficiaryAccountNumber("51234567890");
-beneficiaryDetails.setBeneficiaryAccountType(BeneficiaryAccountType.SAVINGS);
-beneficiaryDetails.setBeneficiaryIfsc("ICIC0006621")
-SIParams siParams = new SIParams();
-siParams.setBeneficiarydetail(beneficiaryDetails);
-```
-
-### UPI
-
-‌To pay using UPI, you need to pass beneficiary account number parameters similar to the following code snippet:
-
-```Text JAVA
-// For single account number 
-mPaymentParams.setBeneficiaryAccountNumber("123456789");
-mPaymentParams.setIfscCode("SBIN000700");
-
-// For multiple account numbers
-mPaymentParams.setBeneficiaryAccountNumber("123456789|23456782|1234567");  
-mPaymentParams.setIfscCode("SBIN000700|KTKN2937492|ICIC0002522");
-```
-```Text Kotlin
-// For single account number 
-mPaymentParams.beneficiaryAccountNumber = "123456789"
-mPaymentParams.ifscCode = "SBIN000700"
-
-// For multiple account numbers
-mPaymentParams.beneficiaryAccountNumber = "123456789|23456782|1234567"  
-mPaymentParams.ifscCode = "SBIN000700|KTKN2937492|ICIC0002522"
-```
-
-### UPI collect
-
-After setting the above parameters for a UPI Collect transaction, you can get the payment post parameters using the following code snippet:
-
-```Text JAVA
-‌     try {
-            mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.UPITPV).getPaymentPostParams();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }‌
-```
-```Text Kotlin
-     try {
-            mPostData = PaymentPostParams(mPaymentParams, PayuConstants.UPI).paymentPostParams
-        } catch (Exception e) {
-            e.printStackTrace();
-        }‌
-```
-
-### TEZ
-
-```Text JAVA
-‌     try {
-            mPostData = new PaymentPostParams(mPaymentParams,  PayuConstants.TEZTPV).getPaymentPostParams();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-```
-```Text Kotlin
-     try {
-            mPostData = PaymentPostParams(mPaymentParams, PayuConstants.TEZ).paymentPostParams  
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-```
+<Accordion title="Net Banking" icon="fa-code">
+  
+  To pay using Net Banking, you need to pass payment params along with the following additional parameters:
+  
+  ```Text Java
+  mPaymentParams.setBeneficiaryAccountNumber("123456789");
+  mPaymentParams.setIfscCode("SBIN000700");
+  mPaymentParams.setBankCode("AXNBTPV");
+  ```
+  ```Text Kotlin
+  mPaymentParams.beneficiaryAccountNumber = "123456789"
+  mPaymentParams.ifscCode = "SBIN000700"
+  mPaymentParams.bankCode = "AXNBTPV"
+  ```
+  
+  After setting the above parameters, you can get the payment post parameters using the following code snippet:
+  
+  ```Text Node
+  
+  BeneficiaryDetails beneficiaryDetails = new BeneficiaryDetails();
+  beneficiaryDetails.setBeneficiaryName("John Doe");
+  beneficiaryDetails.setBeneficiaryAccountNumber("51234567890");
+  beneficiaryDetails.setBeneficiaryAccountType(BeneficiaryAccountType.SAVINGS);
+  beneficiaryDetails.setBeneficiaryIfsc("ICIC0006621")
+  SIParams siParams = new SIParams();
+  siParams.setBeneficiarydetail(beneficiaryDetails);
+  ```
+  
+</Accordion>
+<Accordion title="UPI" icon="fa-code">
+  
+  ‌To pay using UPI, you need to pass beneficiary account number parameters similar to the following code snippet:
+  
+  ```Text JAVA
+  // For single account number 
+  mPaymentParams.setBeneficiaryAccountNumber("123456789");
+  mPaymentParams.setIfscCode("SBIN000700");
+  
+  // For multiple account numbers
+  mPaymentParams.setBeneficiaryAccountNumber("123456789|23456782|1234567");  
+  mPaymentParams.setIfscCode("SBIN000700|KTKN2937492|ICIC0002522");
+  ```
+  ```Text Kotlin
+  // For single account number 
+  mPaymentParams.beneficiaryAccountNumber = "123456789"
+  mPaymentParams.ifscCode = "SBIN000700"
+  
+  // For multiple account numbers
+  mPaymentParams.beneficiaryAccountNumber = "123456789|23456782|1234567"  
+  mPaymentParams.ifscCode = "SBIN000700|KTKN2937492|ICIC0002522"
+  ```
+  
+</Accordion>
+<Accordion title="UPI collect" icon="fa-code">
+  
+  After setting the above parameters for a UPI Collect transaction, you can get the payment post parameters using the following code snippet:
+  
+  ```Text JAVA
+  ‌     try {
+              mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.UPITPV).getPaymentPostParams();
+          } catch (Exception e) {
+              e.printStackTrace();
+          }‌
+  ```
+  ```Text Kotlin
+       try {
+              mPostData = PaymentPostParams(mPaymentParams, PayuConstants.UPI).paymentPostParams
+          } catch (Exception e) {
+              e.printStackTrace();
+          }‌
+  ```
+  
+</Accordion>
+<Accordion title="TEZ" icon="fa-code">
+  
+  ```Text JAVA
+  ‌     try {
+              mPostData = new PaymentPostParams(mPaymentParams,  PayuConstants.TEZTPV).getPaymentPostParams();
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+  ```
+  ```Text Kotlin
+       try {
+              mPostData = PaymentPostParams(mPaymentParams, PayuConstants.TEZ).paymentPostParams  
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+  ```
+  
+</Accordion>
