@@ -20,7 +20,7 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 <Cards columns={3}>
   <Card title="1. Initiate the Payment to PayU" href="#step-1-initiate-the-payment-to-payu" target="_blank">
-    Initiate the payment to PayU with pg=NEFT and bankcode=\<based on bank>
+    Initiate the payment to PayU with pg=CASH and bankcode=\<based on bank>
 
     <br />
   </Card>
