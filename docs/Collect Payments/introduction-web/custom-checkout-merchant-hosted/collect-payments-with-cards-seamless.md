@@ -52,6 +52,21 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
   <br />
 </Cards>
 
+**Handling Transacations**
+<Cards columns={2}>
+  <Card title="Guest Checkout Transactions" href="#step-1-valiadate-the-card-type" target="_blank">
+    For handling Guest Checkout transaction, you need to include additional parameters
+
+    <br />
+  </Card>
+
+  <Card title="3DS Secure 2.0 Transactions" href="#step-2-initiate-the-payment-to-payu" target="_blank">
+    For handling 3DS Secure 2.0 transaction, you need to include additional parameters
+
+    <br />
+  </Card>
+</Cards>
+
 <Accordion title="Step 1: Validate the card type" icon="fa-code">
   When customers use debit cards or credit cards on your website, you can validate the card type with the first six digits. Use the **getBinInfo** API (known as BIN API) to validate the type of card. For more information, refer to  <Anchor label="BIN APIs" target="_blank" href="ref:get_bin_info_api">BIN APIs</Anchor>.
 
