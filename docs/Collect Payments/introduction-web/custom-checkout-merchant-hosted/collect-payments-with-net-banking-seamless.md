@@ -16,19 +16,19 @@ Collect payments using Net Banking with Merchant Hosted Checkout integration as 
 
 <Cards columns={3}>
   <Card title="1. Initiate the Payment to PayU" href="#step-1--initiate-the-payment-to-payu" target="_blank">
-    Integrate pre-built checkout solution
+    Initiate the payment to PayU with pg=NEFT and bankcode=\<based on bank>
 
     <br />
   </Card>
 
   <Card title="2. Check response from PayU" href="#step-2-check-response-from-payu">
-    Test the integration by making a test transaction
+    Check the response from PayU
 
     <br />
   </Card>
 
   <Card title="3. Verify the payment" href="#step-3-verify-the-payment">
-    Follow the production checklist to go live
+    Verify the payment using verify_payment and monitor using webhooks
   </Card>
 
   <br />
