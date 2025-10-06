@@ -15,7 +15,7 @@ Create a transaction by including a JSON object with beneficiary details (accoun
 
 ## Step 2: Post the parameters to PayU
 
-<Accordion title="Request parameters" icon="fa-code">
+<Accordion title="Request parameters" icon="fa-table">
 ***Environment**
 
 The following environments are available for TPV integration:
