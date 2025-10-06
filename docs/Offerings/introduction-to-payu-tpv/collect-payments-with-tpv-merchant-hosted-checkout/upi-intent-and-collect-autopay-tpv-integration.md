@@ -19,7 +19,7 @@ The Third-Party Verification (TPV) functionality is now being added to the UPI A
 > * Currently, PayU supports UPI Autopay only with Seamless integration.
 > * Contact your PayU Key Account Manager (KAM) or [PayU Support ](https://help.payu.in)to activate this feature.
 
-### Use Cases
+## Use Cases
 
 Merchants have use cases, which requires the transactions to be allowed only for selected accounts only. These accounts are provided by the customer before hand (during customer registration on merchant platform). Few merchant use cases are:
 
@@ -28,9 +28,13 @@ Merchants have use cases, which requires the transactions to be allowed only for
 
 However, as part of UPI, customer has the flexibility to link multiple accounts under the same VPA and on run-time, change the account for authorisation. So using TPV services, merchant makes sure that customer authorises the transaction using pre-registered accounts only.
 
+## Steps to Integrate
+
+Refer any of the following tabs based on the Intent or Collect Autopay Flow integration:
+
 <Tabs>
   <Tab title="Intent Autopay TPV">
-    ### Workflow
+    ### Intent Autopay Workflow
 
     The merchant initiates the call to PayU with SI details, **bankcode** as **INTTPV**, and account number + IFSC details. PayU then initiates a mandate call to the bank, including all the SI and account-related parameters. The bank responds to PayU with a reference-Id, which PayU passes to the merchant in an Intent URL. When the customer authorizes the transaction, the bank will validate the account. If the account details match, a success message will be sent to PayU. However, if the account details do not match, Bank will pass validation error to PayU. Internally, Bank will cancel the mandate that has been setup on customer’s account.
 
@@ -49,7 +53,7 @@ However, as part of UPI, customer has the flexibility to link multiple accounts 
     <Accordion title="Step 1: Validate VPA" icon="fa-code">
       When your customer makes payment through UPI, you can validate the customer's Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API.  For Try-It experience of **validateVpa** API, refer to <Anchor label="Validate VPA Handle API" target="_blank" href="ref:validate_vpa_api">Validate VPA Handle API</Anchor>.
 
-<GENERALAPIsEnvironment />
+      <GENERALAPIsEnvironment />
 
       <Accordion title="Sample request" icon="fa-code">
         **Validate VPA**
@@ -305,7 +309,7 @@ However, as part of UPI, customer has the flexibility to link multiple accounts 
   </Tab>
 
   <Tab title="Collect Autopay TPV">
-    ### Workflow
+    ### Collect Autopay Workflow
 
     The merchant initiates the call to PayU with SI details, **bankcode** as **UPITPV**, and account number + IFSC details. PayU then initiates a mandate call with all the SI and account-related parameters to the bank. After the customer authorizes the mandate, the bank will validate the account. If the account details match, only then will the success notification be sent to PayU. However, if the account details do not match, Bank will pass validation error to PayU. Internally, Bank will cancel the mandate that has been setup on customer’s account.
 
@@ -315,9 +319,9 @@ However, as part of UPI, customer has the flexibility to link multiple accounts 
     > **PayU Hosted Checkout note supported** Currently, PayU supports UPI Collect Autopay TPV Integration with Seamless integration only.
 
     <Accordion title="Step 1: Validate VPA" icon="fa-code">
-        When your customer makes payment through UPI, you can validate the customer's Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API.  For Try-It experience of **validateVpa** API, refer to <Anchor label="Validate VPA Handle API" target="_blank" href="ref:validate_vpa_api">Validate VPA Handle API</Anchor>.
+      When your customer makes payment through UPI, you can validate the customer's Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API.  For Try-It experience of **validateVpa** API, refer to <Anchor label="Validate VPA Handle API" target="_blank" href="ref:validate_vpa_api">Validate VPA Handle API</Anchor>.
 
-<GENERALAPIsEnvironment />
+      <GENERALAPIsEnvironment />
 
       <Accordion title="Sample request" icon="fa-code">
         **Validate VPA**
