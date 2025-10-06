@@ -9,7 +9,14 @@ For UPI integration, you need to post transaction details to PayU with beneficia
 
 The request parameters for UPI integration are the same as Net-Banking integration. The `beneficiarydetail` parameter should include the UPI beneficiary details.
 
-### Environment
+## Step 1: Create transaction with beneficiary details
+
+Create a transaction by including a JSON object with beneficiary details (account numbers and IFSC codes). You can include up to 4 accounts for validation.
+
+## Step 2: Post the parameters to PayU
+
+<Accordion title="Request parameters" icon="fa-code">
+***Environment**
 
 The following environments are available for TPV integration:
 
@@ -17,14 +24,6 @@ The following environments are available for TPV integration:
 | -------------------------- | ------------------------------------------------------------------- |
 | **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
-
-## Step 1: Create transaction with beneficiary details
-
-Create a transaction by including a JSON object with beneficiary details (account numbers and IFSC codes). You can include up to 4 accounts for validation.
-
-## Step 2: Post the parameters to PayU
-
-### Request parameters
 
 <HTMLBlock>{`
 <table class="request-parameters-table">
@@ -111,9 +110,9 @@ beneficiarydetail|SALT)</td>
 > ```
 >
 > Replace `SALT` with the salt value provided during onboarding.
+</Accordion>
 
-### beneficiarydetail JSON object fields
-
+<Accordion title="beneficiarydetail JSON object fields" icon="fa-code">
 The `beneficiarydetail` parameter should be a JSON object with the following structure:
 
 <Table align={["left","left","left"]}>
@@ -184,13 +183,13 @@ The `beneficiarydetail` parameter should be a JSON object with the following str
 > * The `beneficiarydetail` parameter must be included in the hash calculation.
 > * The format should be exactly as shown in the hash formula above.
 > * Replace SALT with the salt value provided to you during onboarding.
+</Accordion>
 
 ## Step 3: Check the response from PayU
 
 After posting the parameters, PayU will return a response with transaction details.
 
-### Hash Validation Logic for payment response (Reverse Hashing)
-
+<Accordion title="Hash Validation Logic for payment response (Reverse Hashing)" icon="fa-code">
 To validate the authenticity of the response, you can calculate the reverse hash using:
 
 ```
@@ -200,15 +199,15 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 > 📘 beneficiarydetail parameter not required in reverse hashing:
 >
 > The `beneficiarydetail` parameter is not required when calculating the reverse hash.
+</Accordion>
 
-### Response parameters
-
+<Accordion title="Response parameters" icon="fa-code">
 | Param Name       | Description                                                                                                                    |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | mihpayid         | It is a unique reference number created for each transaction at PayU's end.                                                    |
 | merchantid       | It is the unique ID of the merchant.                                                                                           |
 | txnid            | Transaction ID provided by the merchant during the transaction request.                                                        |
-| transaction\_fee | Transaction fee for this transaction (e.g., fixed fee of INR 10 for Net Banking).                                              |
+| transaction_fee  | Transaction fee for this transaction (e.g., fixed fee of INR 10 for Net Banking).                                              |
 | discount         | The discount/cashback amount provided by the bank, if applicable.                                                              |
 | amount           | The amount after discount (if any).                                                                                            |
 | paymentgatewayid | Identifier for the payment gateway/bank sending the response.                                                                  |
@@ -218,14 +217,14 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 | addedon          | Timestamp of the transaction (e.g., 2023-02-01 12:01:22).                                                                      |
 | bankcode         | Bank code used in the transaction.                                                                                             |
 | error            | Error code (e.g., "E000" indicates no error).                                                                                  |
-| error\_Message   | Description of any errors encountered.                                                                                         |
+| error_Message    | Description of any errors encountered.                                                                                         |
 
 > 📘 Store the mihpayid and txnid parameter values in response:
 >
 > Make sure to store the `mihpayid` and `txnid` parameter values from the response for future reference and reconciliation.
+</Accordion>
 
-### Sample response
-
+<Accordion title="Sample response" icon="fa-code">
 ```
 Array
 (
@@ -235,8 +234,16 @@ Array
     [amount] => 100.00
     [addedon] => 2025-01-28 18:36:35
     [productinfo] => Product Info
-    [hash] => e9272f99eace0c7803834e94dd88f0b9d05f1e95cd86c84c7ef8e5670a39bf1ccde2222ed7e73c2a0e60eb8cd8d5457e0ebdef0d01c1c04c7d5bc20b8a2d4901
+    [hash] => e9272f99eace0c7803834e94dd88f0b9d05f1e95cd86c84c7ef8e5670a39bf1ccde2222ed7e73c2a0e60eb8cd8d5457e0ebdef0d01c1c04c7d5b20b8a2d4901
     [bankcode] => SBITPV
     [error_Message] => No Error
 )
 ```
+</Accordion>
+
+
+<details>
+  <summary>Step 4: Verify the payment</summary>
+
+  <Verify_Payment_Tabs />
+</details>
