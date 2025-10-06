@@ -4,7 +4,7 @@ excerpt: >-
   This section describes how to set up the Convenience Fee for your
   transactions.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
