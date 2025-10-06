@@ -9,21 +9,7 @@ metadata:
 
 A custom payment experience where you collect payment details on your own website and securely process them through PayU's APIs. Unlike the hosted solution, you have complete control over the UI/UX while PayU handles the secure payment processing. You pass order details, customer information, payment method-specific parameters (pg, bankcode), and a server-generated SHA-512 hash for integrity.
 
-<Image align="center" border={false} src="https://files.readme.io/1f792ebae03e452e754b9d1cf24c20aa418f64ff16ff60d875dedbca50595479-cards_icon.jpg" />
 
-<Image align="center" border={false} src="https://files.readme.io/5502490a82288eb8787bf81dc023ede806938cd540812f3ecdf022ea6e8c435b-netbankng_icon.jpg" />
-
-<Image align="center" border={false} src="https://files.readme.io/5ffcdb1346fcca21e28403b3a977bf37173ea26123a18219b0a68604863661a4-upi_icon.jpg" />
-
-<Image align="center" border={false} src="https://files.readme.io/94a34047e589e3bc24c04d9c6453dd3012dd04438cec1e593ea43cd208354da3-wallets_icon.jpg" />
-
-<Image align="center" border={false} src="https://files.readme.io/c06a7440a3c1aacb53438f037f85bcc6e707cd9816c5cfcd7c2aa8513eae2500-emi_icon.jpg" />
-
-<Image align="center" border={false} src="https://files.readme.io/cf2dea0bbe5f41336b561e78bed1daac4a80d6f268e6bbb925fa0cfadedddd16-bnpl_icon.jpg" />
-
-<Image align="center" border={false} src="https://files.readme.io/bf87f75f97171660faf61fe526357dd3ff6a141aec0f849d4d2d08d18cec0d98-neft_icon.jpg" />
-
-<Image align="center" border={false} src="https://files.readme.io/cacf8d7607e6eacc203e8eebb88e3f33ea4a6483af8c2f79f338659f04762e94-sodexo_icon.png" />
 
 The PayU Merchant Hosted (Custom Checkout) integration involves the following steps:
 
@@ -97,31 +83,31 @@ Follow the below steps to complete the integration:
 
   <Cards columns={3}>
     <Card>
-      [![Net Banking](https://files.readme.io/852ff36002aae339313722c8832cc7b5443c1bf7e5ca47571e9dd6971d51a2ae-netbanking_icon.png)](https://docs.payu.in/reference/get_net_banking_status_api/)
+      [![Net Banking](https://files.readme.io/5502490a82288eb8787bf81dc023ede806938cd540812f3ecdf022ea6e8c435b-netbankng_icon.jpg)](https://docs.payu.in/reference/get_net_banking_status_api/)
     </Card>
 
     <Card>
-      [![Cards](https://files.readme.io/049c1e19c22dc0dee8f0f2b0a7facd89231c96a6b86d188af824cf1e87154d8e-cards_icon.png)](https://docs.payu.in/reference/check_is_domestic_api/)
+      [![Cards](https://files.readme.io/1f792ebae03e452e754b9d1cf24c20aa418f64ff16ff60d875dedbca50595479-cards_icon.jpg)](https://docs.payu.in/reference/check_is_domestic_api/)
     </Card>
 
     <Card>
-      [![UPI](https://files.readme.io/f5fe8045de9902d7ed2d1bb0a31568151638acaba086331df01826e0a4ebe1f2-upi_icon.png)](https://docs.payu.in/reference/validate_vpa_api/)
+      [![UPI](https://files.readme.io/5ffcdb1346fcca21e28403b3a977bf37173ea26123a18219b0a68604863661a4-upi_icon.jpg")](https://docs.payu.in/reference/validate_vpa_api/)
     </Card>
 
     <Card>
-      ![Wallets](https://files.readme.io/0af7178db0a6130d39fb7b5270109e4251b0fd1b1455e54a936f29c145a97c87-wallets_icon.png)
+      ![Wallets](https://files.readme.io/94a34047e589e3bc24c04d9c6453dd3012dd04438cec1e593ea43cd208354da3-wallets_icon.jpg)
     </Card>
 
     <Card>
-      [![EMI](https://files.readme.io/e32726065ea0eb0243a5c47583c54908d2f0732ea259206bae93f113f5284d52-emi_icon.png)](https://docs.payu.in/reference/eligible-bins-for-emi-v20/)
+      [![EMI](https://files.readme.io/c06a7440a3c1aacb53438f037f85bcc6e707cd9816c5cfcd7c2aa8513eae2500-emi_icon.jpg)](https://docs.payu.in/reference/eligible-bins-for-emi-v20/)
     </Card>
 
     <Card>
-      [![BNPL](https://files.readme.io/04bb870171161dcaaa5363972d8d0277441ed578ce84d3c62c7bda91a421643d-bnpl_icon.png)](https://docs.payu.in/reference/get_checkout_details/)
+      [![BNPL](https://files.readme.io/cf2dea0bbe5f41336b561e78bed1daac4a80d6f268e6bbb925fa0cfadedddd16-bnpl_icon.jpg)](https://docs.payu.in/reference/get_checkout_details/)
     </Card>
 
     <Card>
-      ![NEFT](https://files.readme.io/9392c375fc2fccecae588e5c287466be6cda1b0f039ace7a6f4139959e991189-neft_icon.png)
+      ![NEFT](https://files.readme.io/bf87f75f97171660faf61fe526357dd3ff6a141aec0f849d4d2d08d18cec0d98-neft_icon.jpg)
     </Card>
   </Cards>
 
@@ -132,77 +118,77 @@ Follow the below steps to complete the integration:
   The following are the common request parameters applicable for all the payment modes with Merchant Hosted Checkout integration:
 
   <HTMLBlock>{`
-                                    <table>
-                                    <thead>
-                                    <tr>
-                                    <th style="width: 10%;">Parameter</th>
-                                    <th style="width: 75%; white-space: normal; word-break: break-word;">Type & Description</th>
-                                    <th style="width: 15%;">Example</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                    <td>key<br><code>mandatory</code></td>
-                                    <td style="white-space: normal; word-break: break-word;"><code>String</code> Merchant key provided by PayU during onboarding.</td>
-                                    <td>JPG****.k</td>
-                                    </tr>
-                                    <tr>
-                                    <td>txnid<br><code>mandatory</code></td>
-                                    <td style="white-space: normal; word-break: break-word;"><code>String (25 characters)</code> The transaction ID is a reference number for a specific order generated by the merchant.</td>
-                                    <td>ypl938459435</td>
-                                    </tr>
-                                    <tr>
-                                    <td>amount<br><code>mandatory</code></td>
-                                    <td style="white-space: normal; word-break: break-word;"><code>Float</code> The payment amount for the transaction.</td>
-                                    <td>10.00</td>
-                                    </tr>
-                                    <tr>
-                                    <td>productinfo<br><code>mandatory</code></td>
-                                    <td style="white-space: normal; word-break: break-word;"><code>String (100 characters)</code> A brief description of the product.</td>
-                                    <td>iPhone</td>
-                                    </tr>
-                                    <tr>
-                                    <td>firstname<br><code>mandatory</code></td>
-                                    <td style="white-space: normal; word-break: break-word;"><code>String (60 characters for production, 20 characters for test environment)</code> The first name of the customer.</td>
-                                    <td>Ashish</td>
-                                    </tr>
-                                    <tr>
-                                    <td>email<br><code>mandatory</code></td>
-                                    <td style="white-space: normal; word-break: break-word;"><code>String (50 characters)</code> The email address of the customer.</td>
-                                    <td>test@payu.in</td>
-                                    </tr>
-                                    <tr>
-                                    <td>phone<br><code>mandatory</code></td>
-                                    <td style="white-space: normal; word-break: break-word;"><code>String (50 characters)</code> The phone number of the customer.</td>
-                                    <td>9876543210</td>
-                                    </tr>
-                                    <tr>
-                                    <td>pg<br><code>mandatory</code></td>
-                                    <td style="white-space: normal; word-break: break-word;"><code>String</code> Payment gateway/method identifier. <strong>This is the key difference from hosted checkout.</strong></td>
-                                    <td>CC, NB, UPI, CASH</td>
-                                    </tr>
-                                    <tr>
-                                    <td>bankcode<br><code>conditional</code></td>
-                                    <td style="white-space: normal; word-break: break-word;"><code>String</code> Bank or payment provider specific code. Required for specific payment methods.</td>
-                                    <td>HDFC, PAYTM, UPI</td>
-                                    </tr>
-                                    <tr>
-                                    <td>surl<br><code>mandatory</code></td>
-                                    <td style="white-space: normal; word-break: break-word;"><code>String (50 characters)</code> The success URL, which is the page PayU will redirect to if the transaction is successful.</td>
-                                    <td>https://yoursite.com/success</td>
-                                    </tr>
-                                    <tr>
-                                    <td>furl<br><code>mandatory</code></td>
-                                    <td style="white-space: normal; word-break: break-word;"><code>String (50 characters)</code> The failure URL, which is the page PayU will redirect to if the transaction fails.</td>
-                                    <td>https://yoursite.com/failure</td>
-                                    </tr>
-                                    <tr>
-                                    <td>hash<br><code>mandatory</code></td>
-                                    <td style="white-space: normal; word-break: break-word;"><code>String</code> It is the hash calculated by the merchant using SHA-512.</td>
-                                    <td>[computed hash]</td>
-                                    </tr>
-                                    </tbody>
-                                    </table>
+                                        <table>
+                                        <thead>
+                                        <tr>
+                                        <th style="width: 10%;">Parameter</th>
+                                        <th style="width: 75%; white-space: normal; word-break: break-word;">Type & Description</th>
+                                        <th style="width: 15%;">Example</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                        <td>key<br><code>mandatory</code></td>
+                                        <td style="white-space: normal; word-break: break-word;"><code>String</code> Merchant key provided by PayU during onboarding.</td>
+                                        <td>JPG****.k</td>
+                                        </tr>
+                                        <tr>
+                                        <td>txnid<br><code>mandatory</code></td>
+                                        <td style="white-space: normal; word-break: break-word;"><code>String (25 characters)</code> The transaction ID is a reference number for a specific order generated by the merchant.</td>
+                                        <td>ypl938459435</td>
+                                        </tr>
+                                        <tr>
+                                        <td>amount<br><code>mandatory</code></td>
+                                        <td style="white-space: normal; word-break: break-word;"><code>Float</code> The payment amount for the transaction.</td>
+                                        <td>10.00</td>
+                                        </tr>
+                                        <tr>
+                                        <td>productinfo<br><code>mandatory</code></td>
+                                        <td style="white-space: normal; word-break: break-word;"><code>String (100 characters)</code> A brief description of the product.</td>
+                                        <td>iPhone</td>
+                                        </tr>
+                                        <tr>
+                                        <td>firstname<br><code>mandatory</code></td>
+                                        <td style="white-space: normal; word-break: break-word;"><code>String (60 characters for production, 20 characters for test environment)</code> The first name of the customer.</td>
+                                        <td>Ashish</td>
+                                        </tr>
+                                        <tr>
+                                        <td>email<br><code>mandatory</code></td>
+                                        <td style="white-space: normal; word-break: break-word;"><code>String (50 characters)</code> The email address of the customer.</td>
+                                        <td>test@payu.in</td>
+                                        </tr>
+                                        <tr>
+                                        <td>phone<br><code>mandatory</code></td>
+                                        <td style="white-space: normal; word-break: break-word;"><code>String (50 characters)</code> The phone number of the customer.</td>
+                                        <td>9876543210</td>
+                                        </tr>
+                                        <tr>
+                                        <td>pg<br><code>mandatory</code></td>
+                                        <td style="white-space: normal; word-break: break-word;"><code>String</code> Payment gateway/method identifier. <strong>This is the key difference from hosted checkout.</strong></td>
+                                        <td>CC, NB, UPI, CASH</td>
+                                        </tr>
+                                        <tr>
+                                        <td>bankcode<br><code>conditional</code></td>
+                                        <td style="white-space: normal; word-break: break-word;"><code>String</code> Bank or payment provider specific code. Required for specific payment methods.</td>
+                                        <td>HDFC, PAYTM, UPI</td>
+                                        </tr>
+                                        <tr>
+                                        <td>surl<br><code>mandatory</code></td>
+                                        <td style="white-space: normal; word-break: break-word;"><code>String (50 characters)</code> The success URL, which is the page PayU will redirect to if the transaction is successful.</td>
+                                        <td>https://yoursite.com/success</td>
+                                        </tr>
+                                        <tr>
+                                        <td>furl<br><code>mandatory</code></td>
+                                        <td style="white-space: normal; word-break: break-word;"><code>String (50 characters)</code> The failure URL, which is the page PayU will redirect to if the transaction fails.</td>
+                                        <td>https://yoursite.com/failure</td>
+                                        </tr>
+                                        <tr>
+                                        <td>hash<br><code>mandatory</code></td>
+                                        <td style="white-space: normal; word-break: break-word;"><code>String</code> It is the hash calculated by the merchant using SHA-512.</td>
+                                        <td>[computed hash]</td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
   `}</HTMLBlock>
 
   ### Payment mode integration
@@ -211,35 +197,35 @@ Follow the below steps to complete the integration:
 
   <Cards columns={3}>
     <Card>
-      [![Net Banking Integration](https://files.readme.io/852ff36002aae339313722c8832cc7b5443c1bf7e5ca47571e9dd6971d51a2ae-netbanking_icon.png)](https://docs.payu.in/docs/collect-payments-with-net-banking-seamless)
+      [![Net Banking Integration](https://files.readme.io/5502490a82288eb8787bf81dc023ede806938cd540812f3ecdf022ea6e8c435b-netbankng_icon.jpg)](https://docs.payu.in/docs/collect-payments-with-net-banking-seamless)
     </Card>
 
     <Card>
-      [![Cards Integration](https://files.readme.io/049c1e19c22dc0dee8f0f2b0a7facd89231c96a6b86d188af824cf1e87154d8e-cards_icon.png)](https://docs.payu.in/docs/collect-payments-with-cards-seamless)
+      [![Cards Integration](https://files.readme.io/1f792ebae03e452e754b9d1cf24c20aa418f64ff16ff60d875dedbca50595479-cards_icon.jpg)](https://docs.payu.in/docs/collect-payments-with-cards-seamless)
     </Card>
 
     <Card>
-      [![UPI Integration](https://files.readme.io/f5fe8045de9902d7ed2d1bb0a31568151638acaba086331df01826e0a4ebe1f2-upi_icon.png)](https://docs.payu.in/docs/collect-payments-with-upi-seamless)
+      [![UPI Integration](https://files.readme.io/5ffcdb1346fcca21e28403b3a977bf37173ea26123a18219b0a68604863661a4-upi_icon.jpg)](https://docs.payu.in/docs/collect-payments-with-upi-seamless)
     </Card>
 
     <Card>
-      [![Wallets Integration](https://files.readme.io/0af7178db0a6130d39fb7b5270109e4251b0fd1b1455e54a936f29c145a97c87-wallets_icon.png)](https://docs.payu.in/docs/collect-payments-with-wallets-seamless)
+      [![Wallets Integration](https://files.readme.io/94a34047e589e3bc24c04d9c6453dd3012dd04438cec1e593ea43cd208354da3-wallets_icon.jpg)](https://docs.payu.in/docs/collect-payments-with-wallets-seamless)
     </Card>
 
     <Card>
-      [![EMI Integration](https://files.readme.io/e32726065ea0eb0243a5c47583c54908d2f0732ea259206bae93f113f5284d52-emi_icon.png)](https://docs.payu.in/docs/collect-payments-with-emi-seamless)
+      [![EMI Integration](https://files.readme.io/c06a7440a3c1aacb53438f037f85bcc6e707cd9816c5cfcd7c2aa8513eae2500-emi_icon.jpg")](https://docs.payu.in/docs/collect-payments-with-emi-seamless)
     </Card>
 
     <Card>
-      [![BNPL Integration](https://files.readme.io/04bb870171161dcaaa5363972d8d0277441ed578ce84d3c62c7bda91a421643d-bnpl_icon.png)](https://docs.payu.in/docs/collect-payments-with-bnpl)
+      [![BNPL Integration](https://files.readme.io/cf2dea0bbe5f41336b561e78bed1daac4a80d6f268e6bbb925fa0cfadedddd16-bnpl_icon.jpg)](https://docs.payu.in/docs/collect-payments-with-bnpl)
     </Card>
 
     <Card>
-      [![Pluxee Card Integration](https://files.readme.io/9392c375fc2fccecae588e5c287466be6cda1b0f039ace7a6f4139959e991189-neft_icon.png)](https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless)
+      [![Pluxee Card Integration](https://files.readme.io/cacf8d7607e6eacc203e8eebb88e3f33ea4a6483af8c2f79f338659f04762e94-sodexo_icon.png)](https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless)
     </Card>
 
     <Card>
-      [![EFTNET (NEFT/RTGS) Integration](https://files.readme.io/9392c375fc2fccecae588e5c287466be6cda1b0f039ace7a6f4139959e991189-neft_icon.png)](https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless)
+      [![EFTNET (NEFT/RTGS) Integration](https://files.readme.io/bf87f75f97171660faf61fe526357dd3ff6a141aec0f849d4d2d08d18cec0d98-neft_icon.jpg)](https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless)
     </Card>
   </Cards>
 
