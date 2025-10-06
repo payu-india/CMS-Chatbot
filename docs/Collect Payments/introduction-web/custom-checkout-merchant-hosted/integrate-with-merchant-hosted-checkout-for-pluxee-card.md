@@ -13,23 +13,24 @@ next:
 This section describes the parameters required to collect payments using the Pluxee card with Merchant Hosted Checkout integration (using **_payment** API) with a sample request and response.
 
 <Callout icon="📘" theme="info">
-  Note: Before you use the **_payment** API to collect a payment, it is recommended to use the [Fetch Balance API](ref:fetch-balance-api-sodexo) (**check_balance** API) to check the Pluxee card balance and display it on the checkout page for the customer.
+  **Note**: Before you use the **_payment** API to collect a payment, it is recommended to use the <Anchor label="Fetch Balance API" target="_blank" href="https://docs.payu.in/reference/fetch-balance-api-sodexo">Fetch Balance API</Anchor> (**check_balance** API) to check the Pluxee card balance and display it on the checkout page for the customer.
 </Callout>
 
 ## Sodexo with Merchant Hosted Checkout Integration Workflow
-  The following describes the characteristics and workflow involved using Merchant Hosted Checkout with Pluxee:
 
-  * The existing **\_payment** API used to initiate payments for online transactions will be used to initiate seamless payments for Pluxee payment option.
-  * For Sodexo payment option mode or PG is **MC** and Ibibo\_code or bankcodeis **SODEXO**.
-  * In case customer provides the consent to save the card details with merchant on their check-out page:
-    * Merchant should pass **save\_sodexo\_card** parameter value as **1** when initiating the transaction using **\_payment** API.
-    * After the transaction is processed and successful, for saved card transactions, Sodexo will share the sourceId with PayU and PayU will share this **sourceId** with merchant in the field3 parameter.
+The following describes the characteristics and workflow involved using Merchant Hosted Checkout with Pluxee:
 
-  > **Note**: Merchant is not allowed to store the complete card number or card expiry or card CVV details entered by the customer, even if customer provides permission to store the card.
+* The existing **_payment** API used to initiate payments for online transactions will be used to initiate seamless payments for Pluxee payment option.
+* For Sodexo payment option mode or PG is **MC** and Ibibo_code or bankcodeis **SODEXO**.
+* In case customer provides the consent to save the card details with merchant on their check-out page:
+  * Merchant should pass **save_sodexo_card** parameter value as **1** when initiating the transaction using **_payment** API.
+  * After the transaction is processed and successful, for saved card transactions, Sodexo will share the sourceId with PayU and PayU will share this **sourceId** with merchant in the field3 parameter.
 
-  * Merchant can also initiate transaction using source ID for repeat transactions where customer has provided permission to save the card during the first transaction. In this case, merchant should pass sourceId value in **source\_id** parameter in the **\_payment** API at the time of transaction initiation.
-  * In case **source\_id** parameter is passed, PayU will directly initiate the transaction using this sourceId.
-  * Merchants are recommended to use the **check\_balance** API for checking the Sodexo card balance. This will provide better experience to customers as available balance can be displayed up-front to customer and can have better SRT as scenarios where balance is less than transaction amount can be stopped at the checkout page itself.
+> **Note**: Merchant is not allowed to store the complete card number or card expiry or card CVV details entered by the customer, even if customer provides permission to store the card.
+
+* Merchant can also initiate transaction using source ID for repeat transactions where customer has provided permission to save the card during the first transaction. In this case, merchant should pass sourceId value in **source_id** parameter in the **_payment** API at the time of transaction initiation.
+* In case **source_id** parameter is passed, PayU will directly initiate the transaction using this sourceId.
+* Merchants are recommended to use the **check_balance** API for checking the Sodexo card balance. This will provide better experience to customers as available balance can be displayed up-front to customer and can have better SRT as scenarios where balance is less than transaction amount can be stopped at the checkout page itself.
 
 ## Steps to Integrate:
 
@@ -103,7 +104,7 @@ Customers will select the **Pluxee** payment option on your website and enter th
   | udf4 `optional`               | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. For Cross-Border payments: Mandatory for payment aggregators. This parameter must include end merchant legal entity name.                                                                                                                                                                                                                                                   | Merchant Corp Ltd                                          |
   | udf5 `optional`               | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. For Cross-Border payments: This parameter must include The invoice ID or invoice number must be collected using this field.                                                                                                                                                                                                                                                 | INV\_2024\_001                                             |
 
-  PayU marks the transaction status based on the response received from the bank. PayU communicates the success URL to you if the payment is successful. Verify the authenticity of the hash value before accepting or rejecting the invoice order. For the list of parameters in the response body for the PayU Hosted integration, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted) under API Reference.
+  PayU marks the transaction status based on the response received from the bank. PayU communicates the success URL to you if the payment is successful. Verify the authenticity of the hash value before accepting or rejecting the invoice order. For the list of parameters in the response body for the PayU Hosted integration, refer to <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>.
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
