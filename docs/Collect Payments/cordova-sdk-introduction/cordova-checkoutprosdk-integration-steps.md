@@ -1,5 +1,5 @@
 ---
-title: 1. Integration Steps
+title: Steps to Integrate
 excerpt: ''
 deprecated: false
 hidden: false
