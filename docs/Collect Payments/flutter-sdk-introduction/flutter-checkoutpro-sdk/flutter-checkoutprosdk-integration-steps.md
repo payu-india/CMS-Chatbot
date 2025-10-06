@@ -1,7 +1,7 @@
 ---
 title: 1. Integration Steps
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
