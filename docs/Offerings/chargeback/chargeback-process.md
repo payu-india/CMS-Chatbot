@@ -18,7 +18,7 @@ Merchant receives a chargeback alert from PayU via dashboard and email. The deta
 * "Reply Before" deadline (the date by which you must act)
 
 <Callout icon="📘" theme="info">
-  **Reference**: For more information, refer to [View a Case Details](doc:view-a-case-details).
+  **Reference**: For more information on how to view a case details for the above, refer to [View a Case Details](doc:view-a-case-details-charageback).
 </Callout>
 
 <Callout icon="❗️" theme="error">
