@@ -18,7 +18,6 @@ You can accept payments within the transaction limits of your PayU account. Disc
 * [Benefits](#benefits)
 * [Steps to Integrate](#steps-to-integrate)
 
-
 ## Customer journey
 
 1. Customer is redirected to PayU Payment page.
@@ -45,10 +44,27 @@ Incorporating PayU into your Checkout system offers several benefits:
 * Currency Conversion: Facilitate currency conversions from INR to your customers' preferred currencies.
 
 ## Steps to Integrate
+<Cards columns={3}>
+  <Card title="1. Initiate the Payment to PayU" href="#step-1-initiate-the-payment-to-payu" target="_blank">
+    Initiate the payment to PayU with pg=PAYPAL and bankcode=PAYPAL
 
+    <br />
+  </Card>
 
+  <Card title="2. Check response from PayU" href="#step-2-check-response-from-payu">
+    Check the response from PayU
 
-### Step 1: Initiate the payment with PayU
+    <br />
+  </Card>
+
+  <Card title="3. Verify the payment" href="#step-3-verify-the-payment">
+    Verify the payment using verify\_payment and monitor using webhooks
+  </Card>
+
+  <br />
+</Cards>
+
+### Step 1: Initiate the payment to PayU
 
 Along the request parameters listed in the [Collect Payments using Merchant Hosted Checkout > Wallets](ref:_payment_merchant_hosted_wallets), you need use the following **bankcode** with the **pg** as PAYPAL.
 
