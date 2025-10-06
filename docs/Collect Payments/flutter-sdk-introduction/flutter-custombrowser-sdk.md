@@ -28,16 +28,18 @@ This document describes how to integrate Custom Browser SDK with Flutter.
 
 ## Compatibility
 
-### Android
+<Accordion title="Android" icon="fa-code">
 
 * Min SDK Version: 21
 * Compile SDK Version: 31
 * Kotlin 1.6.10
 
-### iOS
+</Accordion>
+<Accordion title="iOS" icon="fa-code">
 
 * iOS version 11
 
+</Accordion>
 ## SDK Integration
 
 <br />
@@ -51,7 +53,7 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
 5. [Generate the payment parameters](#payment-parameters)
 6. [Initiate payment](#step-6-initiate-payment)
 
-### Step 1: Include the SDK in your app
+<Accordion title="Step 1: Include the SDK in your app" icon="fa-code">
 
 The CustomBrowser SDK for Flutter is offered through Fluter Pub.dev
 
@@ -70,7 +72,8 @@ import 'package:payubiz_cb_flutter/PayUCBConstantKeys.dart';
   ```
 </Callout>
 
-### Step 2: SDK initialisation
+</Accordion>
+<Accordion title="Step 2: SDK initialisation" icon="fa-code">
 
 Declare PayuCustomBrowserFlutter instance and initialise the object.
 
@@ -91,7 +94,8 @@ class _MyAppState extends State<MyApp> implements PayUCustomBrowserProtocol {
 >
 > If you are developing for iOS, ensure that your minimum deployment target is iOS 11.
 
-## Step 3: Callback/ Protocol implementation
+</Accordion>
+<Accordion title="Step 3: Callback/ Protocol implementation" icon="fa-code">
 
 * Implement protocol at class level and override it’s methods to get hash generation and transaction callbacks.
 
@@ -142,7 +146,8 @@ String parsePayUResponse(Map response){
 }
 ```
 
-### Step 4: Set up Payment Hashes
+</Accordion>
+<Accordion title="Step 4: Set up Payment Hashes" icon="fa-code">
 
 Hash is required to authenticate the request and to make sure MiTM has not happened while data was travelling over the network. You have to set the hash in hash parameter during creation of payment params.  Use the following format to generate the hash:
 
@@ -160,7 +165,8 @@ Here is a sample hash logic with sample value of the parameters for your referen
 
 `smsplus|1695662774012|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||  {"beneficiaryAccountNumber":"1234567890","ifscCode":"IFSC0000024"}|1b1b0`
 
-### Step 5: Generate the Payment Parameters
+</Accordion>
+<Accordion title="Step 5: Generate the Payment Parameters" icon="fa-code">
 
 Set up the payment parameters for the SDK to initiate a transaction request. Use the following sample code for a quick integration:
 
@@ -486,7 +492,8 @@ Set up the payment parameters for the SDK to initiate a transaction request. Use
   </tbody>
 </Table>
 
-### Credit / Debit Card
+</Accordion>
+<Accordion title="Credit / Debit Card" icon="fa-code">
 
 To pay using a credit card or debit card, perform the following steps.
 
@@ -512,7 +519,7 @@ PayUTestCredentials.ccexpmon + //Here you can pass your ExpMonth 05
 PayUTestCredentials.ccname ;
 ```
 
-#### Store Credit / Debit card
+<Accordion title="Store Credit / Debit card" icon="fa-code">
 
 To Pay using StoredCard, perform the following steps.
 
@@ -533,7 +540,8 @@ PayUTestCredentials.ccname +
 PayUTestCredentials.storedCard + // storedCard value should be 1
 ```
 
-#### Card Tokenization with PayU
+</Accordion>
+<Accordion title="Card Tokenization with PayU" icon="fa-code">
 
 For cards tokenized with the PayU platform merchant needs to pass the below parameters
 
@@ -546,7 +554,8 @@ PayUTestCredentials.storeCardToken + // pass the store card token
 PayUTestCredentials.storecardTokenType+ // storecardTokenType value should be 0
 ```
 
-#### Third Party-Card Tokenization
+</Accordion>
+<Accordion title="Third Party-Card Tokenization" icon="fa-code">
 
 For cards tokenized outside the PayU platform merchant needs to pass the below parameters.
 
@@ -571,7 +580,9 @@ PayUTestCredentials.addtionalDetails;   // {
 
 ```
 
-### SI Payment
+</Accordion>
+</Accordion>
+<Accordion title="SI Payment" icon="fa-code">
 
 ```d Dart
 PayUPaymentParamKey.si_details: {
@@ -587,7 +598,7 @@ PayUSIParamsKeys.is_free_trial: "0", // 1 | 0 (true | false)
 PayUSIParamsKeys.si: "1"
 ```
 
-#### Recurring Payments in NetBanking
+<Accordion title="Recurring Payments in NetBanking" icon="fa-code">
 
 ```d Dart
 PayUSIParamsKeys.beneficiarydetail: {
@@ -601,7 +612,9 @@ PayUSIParamsKeys.beneficiarydetail: {
     }
 ```
 
-### Step 6: Initiate Payment
+</Accordion>
+</Accordion>
+<Accordion title="Step 6: Initiate Payment" icon="fa-code">
 
 Initialise and launch the SDK by calling the following code snippet:
 
@@ -609,6 +622,7 @@ Initialise and launch the SDK by calling the following code snippet:
 payUCustomBrowserFlutterPlugin.openCB(params: <PayU Payment Params>);
 ```
 
+</Accordion>
 ## Test the Integration
 
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
@@ -633,17 +647,18 @@ You can make test payments using one of the payment methods configured at the Ch
 
 You can make test payments using one of the payment methods configured at the Checkout.
 
-### Test credentials for supported payment methods
+<Accordion title="Test credentials for supported payment methods" icon="fa-code">
 
 Following are the payment methods supported in PayU Test mode.
 
-#### Test Credential for Card
+<Accordion title="Test Credential for Card" icon="fa-code">
 
 | Card Number      | Expiry | CVV | OTP    |
 | :--------------- | :----- | :-- | :----- |
 | 5123456789012346 | 05/25  | 123 | 123456 |
 
-#### Test credentials for Net Banking
+</Accordion>
+<Accordion title="Test credentials for Net Banking" icon="fa-code">
 
 Use the following credentials to test the Net Banking integration:
 
@@ -651,7 +666,8 @@ Use the following credentials to test the Net Banking integration:
 * **password**: payu
 * **OTP**: 123456
 
-#### Test VPA for UPI
+</Accordion>
+<Accordion title="Test VPA for UPI" icon="fa-code">
 
 You can use either of the following VPAs to test your UPI-related integration:
 
@@ -764,7 +780,8 @@ You can use the following Debit and Credit cards to test Emi integration.
   </tbody>
 </Table>
 
-#### Test wallets
+</Accordion>
+<Accordion title="Test wallets" icon="fa-code">
 
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
@@ -831,11 +848,13 @@ You can use the following wallets and their corresponding credentials to test wa
   </tbody>
 </Table>
 
+</Accordion>
+</Accordion>
 ## Go-live Checklist
 
 Ensure these steps before you deploy the integration in a live environment.
 
-### Collect Live Payments
+<Accordion title="Collect Live Payments" icon="fa-code">
 
 After [testing the integration](https://docs.payu.in/docs/flutter-checkoutprosdk-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
@@ -845,11 +864,13 @@ After [testing the integration](https://docs.payu.in/docs/flutter-checkoutprosdk
 
 <ProductionKeyAndSaltProcedure />
 
-### Checklist 2: Configure environment() parameter
+</Accordion>
+<Accordion title="Checklist 2: Configure environment() parameter" icon="fa-code">
 
 Set the value of the `environment`to `0` in the payment integration code. This enables the integration to accept live payments.
 
-### Checklist 3:- Configure your SURL/FURL
+</Accordion>
+<Accordion title="Checklist 3:- Configure your SURL/FURL" icon="fa-code">
 
 PayU recommends you design or use your own SURL and FURL after testing is completed.
 
@@ -857,9 +878,10 @@ Refer to the link below for Handling SURL and FURL doc details.
 
 > 🚧 We are not recommended to go live with PayU SURL and FURL.
 
-### Checklist 4:- Remove/comment meta -data code from manifest file :-
+</Accordion>
+<Accordion title="Checklist 4:- Remove/comment meta -data code from manifest file :-" icon="fa-code">
 
-#### For Android
+<Accordion title="For Android" icon="fa-code">
 
 You must be comment/remove the below metadata code from the manifest file to use the UPI Collect flow on Production env:-
 
@@ -871,14 +893,18 @@ You must be comment/remove the below metadata code from the manifest file to use
 </appliction>
 ```
 
-### Checklist 5: Configure verify payment method
+</Accordion>
+</Accordion>
+<Accordion title="Checklist 5: Configure verify payment method" icon="fa-code">
 
 Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
 
-### Checklist 6: Configure Webhook
+</Accordion>
+<Accordion title="Checklist 6: Configure Webhook" icon="fa-code">
 
 PayU recommends you to configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
 
+</Accordion>
 ## Sample app
 
 The sample app for Flutter Custom Browser SDK can be found in the following Github location:
