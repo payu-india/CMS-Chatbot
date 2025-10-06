@@ -1,5 +1,5 @@
 ---
-title: Chargeback Reasons
+title: Chargeback Closure Reasons
 deprecated: false
 hidden: false
 metadata:
