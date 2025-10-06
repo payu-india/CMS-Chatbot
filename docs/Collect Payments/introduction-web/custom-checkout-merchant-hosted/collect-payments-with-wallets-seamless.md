@@ -18,7 +18,25 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 **Steps to Integrate**
 
-<br />
+<Cards columns={3}>
+  <Card title="1. Initiate the Payment to PayU" href="#step-1-initiate-the-payment-to-payu" target="_blank">
+    Initiate the payment to PayU with pg=NEFT and bankcode=\<based on bank>
+
+    <br />
+  </Card>
+
+  <Card title="2. Check response from PayU" href="#step-2-check-response-from-payu">
+    Check the response from PayU
+
+    <br />
+  </Card>
+
+  <Card title="3. Verify the payment" href="#step-3-verify-the-payment">
+    Verify the payment using verify\_payment and monitor using webhooks
+  </Card>
+
+  <br />
+</Cards>
 
 <RegisterMerchantPrerequiste />
 
