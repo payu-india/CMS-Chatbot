@@ -31,10 +31,12 @@ This section describes the parameters required to collect payments using the Plu
   * In case **source\_id** parameter is passed, PayU will directly initiate the transaction using this sourceId.
   * Merchants are recommended to use the **check\_balance** API for checking the Sodexo card balance. This will provide better experience to customers as available balance can be displayed up-front to customer and can have better SRT as scenarios where balance is less than transaction amount can be stopped at the checkout page itself.
 </Accordion>
+
 ## Steps to Integrate:
+
 <Cards columns={3}>
   <Card title="1. Initiate the Payment to PayU" href="#step-1-initiate-the-payment-to-payu" target="_blank">
-    Initiate the payment to PayU with pg=NEFT and bankcode=\<based on bank>
+    Initiate the payment to PayU with pg=MC and bankcode=SODEXO
 
     <br />
   </Card>
@@ -55,14 +57,15 @@ This section describes the parameters required to collect payments using the Plu
 <RegisterMerchantPrerequiste />
 
 ## Step 1: Initiate the payment to PayU
-  Customers will select the **Pluxee** payment option on your website and enter the Pluxee card details and the amount will be based on the goods or services added to the cart.
 
-  **Environment**
+Customers will select the **Pluxee** payment option on your website and enter the Pluxee card details and the amount will be based on the goods or services added to the cart.
 
-  |                            |                                                                     |
-  | :------------------------- | :------------------------------------------------------------------ |
-  | **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
-  | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+**Environment**
+
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 <Accordion title="Request parameters" icon="fa-table">
   Post the following request parameters for the Pluxee card integration.
@@ -103,8 +106,8 @@ This section describes the parameters required to collect payments using the Plu
 
   PayU marks the transaction status based on the response received from the bank. PayU communicates the success URL to you if the payment is successful. Verify the authenticity of the hash value before accepting or rejecting the invoice order. For the list of parameters in the response body for the PayU Hosted integration, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted) under API Reference.
 </Accordion>
-<Accordion title="Sample request" icon="fa-code">
 
+<Accordion title="Sample request" icon="fa-code">
   ```curl
   curl -X POST "https://test.payu.in/_payment"  -H "accept: application/json"  -H "Content-Type: application/x-www-form-urlencoded"  -d "key=JP***g&txnid=bvRCCBO4YiGGHE&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=MC&bankcode=SODEXO&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=637513XXXXXX9318&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=Ashish&hash=ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64"
   ```
@@ -113,10 +116,10 @@ This section describes the parameters required to collect payments using the Plu
 </Accordion>
 
 ## Step 2: Check response from PayU
-  <ReverseHashing />
+
+<ReverseHashing />
 
 <Accordion title="Sample response (parsed)" icon="fa-code">
-
   ```
   Array
   (
@@ -176,4 +179,5 @@ This section describes the parameters required to collect payments using the Plu
 </Accordion>
 
 ## Step 3: Verify the payment
-  <Verify_Payment_Tabs />
+
+<Verify_Payment_Tabs />
