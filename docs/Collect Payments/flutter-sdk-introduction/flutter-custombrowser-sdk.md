@@ -467,7 +467,6 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
       </tr>
     </tbody>
   </Table>
-</Accordion>
 
 <Accordion title="Credit / Debit Card" icon="fa-code">
   To pay using a credit card or debit card, perform the following steps.
@@ -567,21 +566,22 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
     PayUSIParamsKeys.is_free_trial: "0", // 1 | 0 (true | false)
     PayUSIParamsKeys.si: "1"
     ```
-    </Accordion>
-    <Accordion title="Recurring Payments in NetBanking" icon="fa-code">
-      ```d Dart
-      PayUSIParamsKeys.beneficiarydetail: {
-            PayUSIBeneDetailsKeys.beneficiaryAccountNumber:
-            PayUTestCredentials.accountNumber,
-            PayUSIBeneDetailsKeys.beneficiary_ifsc:
-            PayUTestCredentials.accountIFSC,
-            PayUSIBeneDetailsKeys.beneficiaryName: 'Name',
-            PayUSIBeneDetailsKeys.beneficiaryAccountType:
-            "0" // 1 for CURRENT ,0 for Saving
-          }
-      ```
   </Accordion>
 
+  <Accordion title="Recurring Payments in NetBanking" icon="fa-code">
+    ```d Dart
+    PayUSIParamsKeys.beneficiarydetail: {
+          PayUSIBeneDetailsKeys.beneficiaryAccountNumber:
+          PayUTestCredentials.accountNumber,
+          PayUSIBeneDetailsKeys.beneficiary_ifsc:
+          PayUTestCredentials.accountIFSC,
+          PayUSIBeneDetailsKeys.beneficiaryName: 'Name',
+          PayUSIBeneDetailsKeys.beneficiaryAccountType:
+          "0" // 1 for CURRENT ,0 for Saving
+        }
+    ```
+  </Accordion>
+</Accordion>
 </Accordion>
 
 <Accordion title="Step 6: Initiate Payment" icon="fa-code">
@@ -814,6 +814,10 @@ Ensure these steps before you deploy the integration in a live environment.
 <Accordion title="Checklist 6: Configure Webhook" icon="fa-code">
   PayU recommends you to configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
 </Accordion>
+
+<Go_Live_Checklist />
+
+<br />
 
 ## Sample app
 
