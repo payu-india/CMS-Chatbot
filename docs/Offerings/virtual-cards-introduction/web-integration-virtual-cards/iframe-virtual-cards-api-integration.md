@@ -63,11 +63,11 @@ Add the following meta-tag & JS script in the HTML header section of your websit
  <script src="https://jssdk.payu.in/ppi/ppi.min.js"></script>`
 ```
 
-> 📘
->
-> Test Script
->
-> Replace the script mentioned in the earlier code snippet with [https://jssdk-uat.payu.in/ppi/ppi.min.js](https://jssdk-uat.payu.in/bolt/bolt.min.js) to test the integration.
+<Callout icon="📘" theme="info">
+  Test Script
+
+  Replace the script mentioned in the earlier code snippet with [https://jssdk-uat.payu.in/ppi/ppi.min.js](https://jssdk-uat.payu.in/bolt/bolt.min.js) to test the integration.
+</Callout>
 
 ## Step 4: Pass request objects
 
@@ -120,6 +120,6 @@ $(document).on('click', '#submit', function() {
 });
 ```
 
-> 📘 Note:
->
-> Here, when your customer clicks on the card button (#submit), this code triggers the `ppi.launch()` function that passes the parameters along with the `responseHandler()` and `catchException()`functions as arguments.
+<Callout icon="📘" theme="info">
+  **Note**: Here, when your customer clicks on the card button (#submit), this code triggers the `ppi.launch()` function that passes the parameters along with the `responseHandler()` and `catchException()`functions as arguments.
+</Callout>
