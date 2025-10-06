@@ -28,12 +28,14 @@ This document describes how to integrate Custom Browser SDK with Flutter.
 
 ## Compatibility
 
-\###Android
+### Android
 
 * Min SDK Version: 21
 * Compile SDK Version: 31
 * Kotlin 1.6.10
-  \###iOS
+
+### iOS
+
 * iOS version 11
 
 ## SDK Integration
