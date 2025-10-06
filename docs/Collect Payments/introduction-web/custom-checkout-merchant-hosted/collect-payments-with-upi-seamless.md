@@ -27,7 +27,7 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
   </Card>
 
   <Card title="2. Initiate the Payment to PayU" href="#step-2-initiate-the-payment-to-payu" target="_blank">
-    Initiate the payment to PayU with pg=CC and bankcode=CC
+    Initiate the payment to PayU with pg=UPI and bankcode=UPI
 
     <br />
   </Card>
