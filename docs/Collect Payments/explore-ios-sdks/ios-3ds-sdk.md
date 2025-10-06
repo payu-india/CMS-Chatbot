@@ -60,7 +60,7 @@ During the integration, refer the [Generate Static Hash](doc:generate-static-has
 
 The iOS 3DS SDK integration involves the following steps:
 
-### Step 1: Install the SDK in your app project
+<Accordion title="Step 1: Install the SDK in your app project" icon="fa-code">
 
 The 3DS2 SDK is offered via CocoaPods. To add the SDK to your app project, include the SDK framework in your pod file using the pod install command in terminal.
 
@@ -94,7 +94,8 @@ The 3DS2 SDK is offered via CocoaPods. To add the SDK to your app project, inclu
 
 ***
 
-### Step 2: Initialise the SDK
+</Accordion>
+<Accordion title="Step 2: Initialise the SDK" icon="fa-code">
 
 <Accordion title="Step 2.1: Initialise" icon="fa-code">
   Initialise SDK before invoking any de-coupled functionality
@@ -256,7 +257,8 @@ The 3DS2 SDK is offered via CocoaPods. To add the SDK to your app project, inclu
 
 ***
 
-### Step 3: Device Details(PArq)
+</Accordion>
+<Accordion title="Step 3: Device Details(PArq)" icon="fa-code">
 
 To obtain device information to initiate an authentication request, use the method below.
 
@@ -295,7 +297,8 @@ Now these device details can be used to initiate an authentication request with 
 
 Once the authentication request has been initiated and a response has been received, then same is used to initiate a challenge which basically means opening a UI screen to do user authentication.
 
-### Step 4:  3DS 2.0 Challenge Initiation
+</Accordion>
+<Accordion title="Step 4:  3DS 2.0 Challenge Initiation" icon="fa-code">
 
 Call the function below to start the challenge.
 
@@ -402,7 +405,8 @@ Cast response to String. If value is "Y" that means challenge is successfully ex
   > 🚧 Call RESEND action after 10 seconds.
 </Accordion>
 
-### Step 5: Bin Info API Details
+</Accordion>
+<Accordion title="Step 5: Bin Info API Details" icon="fa-code">
 
 Merchant must use the following procedure. This api will give info about whether the bin is supported on 3DS 1 or 3DS 2 and whether information can be routed through 3DS SDK. If no, then merchant can initiate a non native transaction. Merchant has to pass below parameters.
 
@@ -452,7 +456,8 @@ Please refer below class for success response structure:
 )
 ```
 
-### Step 6:  Initiate Payment through PayU
+</Accordion>
+<Accordion title="Step 6:  Initiate Payment through PayU" icon="fa-code">
 
 Call the following method to initiate payment through PayU and we will return success or failure callback post transaction completion.
 
@@ -514,9 +519,10 @@ paymentParam.cardinfo = cardDetails // PayU3DS2CardInfo with card details
 
 ```
 
-### PaymentParams Parameter Example
+</Accordion>
+<Accordion title="PaymentParams Parameter Example" icon="fa-code">
 
-#### Basic Payment Parameters
+<Accordion title="Basic Payment Parameters" icon="fa-code">
 
 The PaymentParams object contains key fields required for initiating a payment request with PayU. These parameters are critical for identifying the transaction, the customer, and the product.
 
@@ -585,7 +591,8 @@ let siInfo = PayU3DS2SIParams(billingAmount: "1",
 paymentParam.siParam = siInfo  // Add Subscription details to the payment parameters
 ```
 
-#### Card Tokenization
+</Accordion>
+<Accordion title="Card Tokenization" icon="fa-code">
 
 Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
 
@@ -634,7 +641,8 @@ paymentParam.bankCode = "EMIIC3"
 paymentParam.pgCode = "EMI"                
 ```
 
-#### Start Redirection Flow
+</Accordion>
+<Accordion title="Start Redirection Flow" icon="fa-code">
 
 To authenticate the transaction using PayU's 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
 
@@ -740,7 +748,9 @@ PayU3DS2.startRedirectionFlow(vc: <#T##UIViewController#>, params: <#T##[String 
   </tbody>
 </Table>
 
-### Sample Code
+</Accordion>
+</Accordion>
+<Accordion title="Sample Code" icon="fa-code">
 
 ```
 val params = ["acsTemplate": data, "autoRead":"true", "autoSubmit":"true","surl":"https://cbjs.payu.in/sdk/success","furl":"https://cbjs.payu.in/sdk/failure","merchantResponseTimeout":"2000"]
@@ -788,7 +798,8 @@ You need to create hash on your server using hashString + salt + postSalt and SH
 4. Implement `PayU3DS2HashGenerationCompletion`. This contains `hashDict` parameter
    hashDict: pass a dictionary which contains hashName as key and hash as value
 
-### Error Codes
+</Accordion>
+<Accordion title="Error Codes" icon="fa-code">
 
 | Code | Description                                                                   |
 | :--- | :---------------------------------------------------------------------------- |
@@ -825,11 +836,12 @@ You can make test payments using one of the payment methods configured at the Ch
 
 <TestCardsCallout />
 
-### Test credentials for supported payment methods
+</Accordion>
+<Accordion title="Test credentials for supported payment methods" icon="fa-code">
 
 Following are the payment methods supported in PayU Test mode.
 
-#### Test credentials for Net Banking
+<Accordion title="Test credentials for Net Banking" icon="fa-code">
 
 Use the following credentials to test the Net Banking integration:
 
@@ -837,7 +849,8 @@ Use the following credentials to test the Net Banking integration:
 * **password**: payu
 * **OTP**: 123456
 
-#### Test VPA for UPI
+</Accordion>
+<Accordion title="Test VPA for UPI" icon="fa-code">
 
 You can use either of the following VPAs to test your UPI-related integration:
 
@@ -848,7 +861,9 @@ You can use either of the following VPAs to test your UPI-related integration:
 >
 > The UPI in-app and UPI intent flow is not available in the Test mode.
 
-### Test cards for EMI
+</Accordion>
+</Accordion>
+<Accordion title="Test cards for EMI" icon="fa-code">
 
 You can use the following Debit and Credit cards to test Emi integration.
 
@@ -928,7 +943,7 @@ You can use the following Debit and Credit cards to test Emi integration.
   </tbody>
 </Table>
 
-#### Test Wallets
+<Accordion title="Test Wallets" icon="fa-code">
 
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
@@ -998,3 +1013,6 @@ You can use the following wallets and their corresponding credentials to test wa
 <Go_Live_Checklist />
 
 <br />
+
+</Accordion>
+</Accordion>
