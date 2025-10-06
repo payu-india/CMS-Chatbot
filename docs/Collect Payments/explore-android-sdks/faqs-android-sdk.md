@@ -438,7 +438,7 @@ To fix this problem, use the following code block in your **styles.xml** file:
 
 After adding the _PayUCheckoutPro_ SDK gradle dependency, if the build error similar to the following is received, include the parameter as indicated (after the error screenshot):
 
-<Image border={false} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/09/image-11-1024x84.png" />
+<Image align="center" border={false} src="https://files.readme.io/cc69622a5272a649cbe36381aed4ec5e391ed71704966ae3a05feb8a3aba1924-android-faq_error1.png" />
 
 Add the following parameter in the \<application> tag of your app’s **AndroidManifest.xml** file.
 
