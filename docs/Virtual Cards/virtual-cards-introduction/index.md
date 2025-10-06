@@ -1,5 +1,5 @@
 ---
-title: Virtual Cards Introduction
+title: Introduction
 deprecated: false
 hidden: false
 metadata:
