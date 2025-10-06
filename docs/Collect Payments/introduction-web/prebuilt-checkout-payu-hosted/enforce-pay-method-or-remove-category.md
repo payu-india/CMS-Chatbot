@@ -100,7 +100,7 @@ To drop the whole category, use the following values:
 | BNPL        | BNPL           |
 | Sodexo      | SODEXO         |
 
-To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration).
+To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to <Anchor label="Bank and Card Codes for Integration" target="_blank" href="https://docs.payu.in/docs/bank-and-card-codes-for-integration">Bank and Card Codes for Integration</Anchor>.
 
 ## Checkout customization examples
 
