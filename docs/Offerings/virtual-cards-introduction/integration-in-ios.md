@@ -108,3 +108,9 @@ func generateHash(
 <Callout icon="📘" theme="info">
   Reference: For more information on Static Hashing, refer to <Anchor label="Generate Static Hash" target="_blank" href="https://docs.payu.in/docs/generate-static-hash-ios">Generate Static Hash</Anchor>.
 </Callout>
+
+## Sample app
+
+You can download the sample app for the Virtual Card integration on the iOS SDK platform from the following Github location:
+
+https://github.com/payu-intrepos/PPIManageriOS
