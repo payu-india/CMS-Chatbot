@@ -99,7 +99,7 @@ Before any wallet operation, check the current balance using the Retrieve Custom
   </Accordion>
 </Accordion>
 
-<Accordion title="Request Body Parameters" icon="fa-code">
+<Accordion title="Request Body Parameters" icon="fa-table">
   <HTMLBlock>{`
           <table>
             <thead>
@@ -192,7 +192,7 @@ If the wallet balance is insufficient, initiate a PG Load transaction to enable 
 * **API Endpoint (Test)**: `https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1`
 * **Method**: `PATCH`
 
-<Accordion title="Request Headers" icon="fa-code">
+<Accordion title="Request Headers" icon="fa-table">
   \<Accordion title="Header Authentication Parameters" icon="fa-info-circle">
   This API uses HMAC-SHA512 authentication on the header.
 
@@ -245,7 +245,7 @@ If the wallet balance is insufficient, initiate a PG Load transaction to enable 
           `}\</HTMLBlock>
 </Accordion>
 
-<Accordion title="Request Body Parameters" icon="fa-code">
+<Accordion title="Request Body Parameters" icon="fa-table">
   <HTMLBlock>{`
           <table>
             <thead>
@@ -389,7 +389,7 @@ Use the PG Load Enquiry API to verify the status of the load transaction.
   `}</HTMLBlock>
 </Accordion>
 
-<Accordion title="Request Body Parameters" icon="fa-code">
+<Accordion title="Request Body Parameters" icon="fa-table">
   <HTMLBlock>{`
           <table>
             <thead>
