@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-PayU provides GPR cards as a solution for PayU partners. This offering includes a comprehensive suite of features such as Min-KYC, Full-KYC, Card Management and Limit Management. 
+PayU provides GPR cards as a solution for PayU partners. This offering includes a comprehensive suite of features such as Min-KYC, Full-KYC, Card Management and Limit Management.
 
 To achieve PCI DSS compliance, merchants can utilize the PayU Card Management SDK solution for both Web and Mobile platforms.
 
@@ -85,9 +85,9 @@ fetch(url, {
             } else if (response.ok || response.status === 302) { // Extract the Location header for redirection const redirectUrl = response.url; if (redirectUrl) { window.location.href = redirectUrl; } } else { console.error('Error occurred:', response.status); } }).catch(error => { console.error('Network error:', error); });
 ```
 
-> 📘 Note:
->
-> Date and json request string in hash and post request must be identical.
+<Callout icon="📘" theme="info">
+  **Note**: Date and json request string in hash and post request must be identical.
+</Callout>
 
 ## Step 3: Add meta-tags & scripts in the HTML header
 
@@ -98,11 +98,9 @@ Add the following meta-tag & JS script in the HTML header section of your websit
  <script src="https://jssdk.payu.in/ppi/ppi.min.js"></script>`
 ```
 
-> 📘
->
-> Test Script
->
-> Replace the script mentioned in the earlier code snippet with [https://jssdk-uat.payu.in/ppi/ppi.min.js](https://jssdk-uat.payu.in/bolt/bolt.min.js) to test the integration.
+<Callout icon="📘" theme="info">
+  **Test Script**: Replace the script mentioned in the earlier code snippet with [https://jssdk-uat.payu.in/ppi/ppi.min.js](https://jssdk-uat.payu.in/bolt/bolt.min.js) to test the integration.
+</Callout>
 
 ## Step 4: Pass request objects
 
@@ -155,6 +153,6 @@ $(document).on('click', '#submit', function() {
 });
 ```
 
-> 📘 Note:
->
-> Here, when your customer clicks on the card button (#submit), this code triggers the `ppi.launch()` function that passes the parameters along with the `responseHandler()` and `catchException()`functions as arguments.
+<Callout icon="📘" theme="info">
+  **Note**: Here, when your customer clicks on the card button (#submit), this code triggers the `ppi.launch()` function that passes the parameters along with the `responseHandler()` and `catchException()`functions as arguments.
+</Callout>
