@@ -133,7 +133,7 @@ In this example:
 
 ## Change the Language
 
-To change the display language in PayU Hosted Checkout, add the `language` parameter to the payment request API call. The following video shows how vernacular support can improve your business:
+To change the display language in PayU Hosted Checkout, add the `language` parameter to the payment request API call. 
 
 The `display_lang` parameter should be set to one of the following values (same as corresponding language spelling):
 
@@ -249,7 +249,7 @@ Contact your PayU Key Account Manager to remove a payment mode from the Checkout
 
 ## Configure Checkout Settings
 
-You can customize your customer-facing checkout page that is displayed when you are using PayU Hosted Checkout integration. For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
+You can customize your customer-facing checkout page that is displayed when you are using PayU Hosted Checkout integration. For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted).
 
 To update your brand settings:
 
@@ -349,7 +349,7 @@ The following describe the characteristics and workflow involved using PayU Host
 * In case the merchant wants to enforce Pluxee payment option on our check out page, **enforce_paymethod** value should be passed as **SODEXO**.
 * In case merchant wants to drop the Pluxee payment option under the **mealcard** category on the PayU checkout page, then **drop_category** value should be passed as **MC|SODEXO**. In case the **entire mealcard category** need to be dropped, then value should be passed as **MC**. Currently, PayU only supports the Sodexo payment option in the **mealcard** category.
 
-For more information enforcing or hiding Pluxee payment option, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
+For more information enforcing or hiding Pluxee payment option, refer to [Collect Payment API - PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout)
 
 ### Workflow on PayU Payment Page
 
@@ -361,7 +361,7 @@ For more information enforcing or hiding Pluxee payment option, refer to [Collec
 
 ## Step 1: Post the transaction request to PayU
 
-The parameters for the Sodexo card remain the same for as mentioned in the [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
+The parameters for the Sodexo card remain the same for as mentioned in the [Collect Payment API - PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout).
 
 #### Enforcing Sodexo Card payment
 
@@ -414,7 +414,7 @@ If you wish to hide the Sodexo card payment in the **mealcard** category, you ca
 
 #### Sample request
 
-For a sample request, refer to  [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout). under API Reference..
+For a sample request, refer to  [Collect Payment API - PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout). under API Reference..
 
 ***
 
