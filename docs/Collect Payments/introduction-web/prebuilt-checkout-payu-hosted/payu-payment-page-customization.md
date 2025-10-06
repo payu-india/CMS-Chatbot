@@ -25,7 +25,7 @@ You can customize the following in the Checkout page:
 ## Enforce Pay Method or Remove Category
 
 <Callout icon="📘" theme="info">
-  **Note**: Before implementing on your Production environment, PayU strongly recommends you to enforce the payment parameters described in this section on the Test environment.
+ **Note**: Before implementing on your Production environment, PayU strongly recommends you to enforce the payment parameters described in this section on the Test environment.
 </Callout>
 
 You can append the parameter names in your transaction request to opt for all or some of the payment modes.
@@ -182,7 +182,7 @@ You can enable the following modes if you are eligible using Dashboard:
 
 The following procedures describes how to enable payment mode or a feature.
 
-## Enable a payment method
+<Accordion title="Enable a payment method" icon="fa-table">
 
 To configure the Dashboard to enable payment method:
 
@@ -207,8 +207,8 @@ To configure the Dashboard to enable payment method:
 4. Click **Proceed** to activate.
 
    A confirmation message is displayed.
-
-## Activate PayPal wallet
+</Accordion>
+<Accordion title="Activate PayPal wallet" icon="fa-table">
 
 To activate PayPal wallet and start collecting payments with PayPal:
 
@@ -245,11 +245,12 @@ You are redirected to the PayPal page similar to the following screenshot.
 
 <Image align="center" border={true} width="320px" src="https://files.readme.io/32522a2-paypal_details_thanks_signup.png" className="border" />
 
-<Accordion title="Disable Checkout payment modes" icon="fa-code">
-  Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
-</Accordion>
+<Callout icon="📘" theme="info">
+**Note**:  Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
+</Callout>
 
-## Configure Checkout Settings
+</Accordion>
+<Accordion title="Configure Checkout Settings" icon="fa-table">
 
 You can customize your customer-facing checkout page that is displayed when you are using PayU Hosted Checkout integration. For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
 
@@ -324,3 +325,4 @@ To update your brand settings:
 <Callout icon="📘" theme="info">
   **Note**: While you configure each field above on the ,  you can see the preview in the right pane. For example, if you add or update the brand logo URL, it will be updated in the right pane preview.
 </Callout>
+</Accordion>
