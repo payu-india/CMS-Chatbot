@@ -20,7 +20,7 @@ Collect payments using Net Banking with Merchant Hosted Checkout integration as 
 
 <RegisterMerchantPrerequiste />
 
-<Accordion title="Step 1: Initiate the payment to PayU" icon="fa-code">
+## Step 1: Initiate the payment to PayU
   <Accordion title="Post request syntax & composition" icon="fa-code">
     Post Request Syntax & Composition for Net Banking
 
@@ -333,9 +333,9 @@ Collect payments using Net Banking with Merchant Hosted Checkout integration as 
 
     ```
   </Accordion>
-</Accordion>
 
-<Accordion title="Step 2: Check response from PayU" icon="fa-code">
+
+## Step 2: Check response from PayU
   <ReverseHashing />
 
   <Accordion title="Sample response (parsed)" icon="fa-code">
@@ -392,17 +392,17 @@ Collect payments using Net Banking with Merchant Hosted Checkout integration as 
     )
     ```
   </Accordion>
-</Accordion>
 
-<Accordion title="Step 3: Verify the payment" icon="fa-code">
-<Verify_Payment_Tabs />
-</Accordion>
 
-<Accordion title="Check Net Banking health" icon="fa-code">
+## Step 3: Verify the payment
+  <Verify_Payment_Tabs />
+
+
+## Check Net Banking health
   You can check whether the Net Banking server is up and running using the **getNetBankingStatus** API. If the Net Banking server is down for a bank, you can inform your customers that the Net Banking server is down. For more information on the **getNetBankingStatus** API, refer to getNetBankingStatus.
-</Accordion>
 
-<Accordion title="Recommended integrations for Net Banking" icon="fa-code">
+
+## Recommended integrations for Net Banking" icon="fa-code">
   * **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
   * **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer) and [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
-</Accordion>
+
