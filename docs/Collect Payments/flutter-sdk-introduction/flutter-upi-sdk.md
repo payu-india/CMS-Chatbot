@@ -51,12 +51,12 @@ For intent transactions, we delegate the transaction process to an external app 
 
 To integrate the Flutter UPI SDK, perform the following steps:
 
-1. [Step 1: Include the Flutter UPI SDK in Your App](https://docs.payu.in/docs/integration-steps-flutterupi#step-1-include-the-sdk-in-your-app)
-2. [Step 2: Intialise the Flutter SDK](https://docs.payu.in/docs/integration-steps-flutterupi#step-2-sdk-initialisation)
-3. [Step 3: Implement the Callback protocol](https://docs.payu.in/docs/integration-steps-flutterupi#step-3-implement-the-callback-protocol)
-4. [Step 4: Setup Payment Hashes](https://docs.payu.in/docs/integration-steps-flutterupi#step-4-setup-payment-hashes)
-5. [Step 5: Generate Payment Params](https://docs.payu.in/docs/integration-steps-flutterupi#step-4-setup-payment-hashes)
-6. [Step 6: Initiate Payment](https://docs.payu.in/docs/integration-steps-flutterupi#step-6-initiate-the-payment)
+1. [Step 1: Include the Flutter UPI SDK in Your App](#step-1-include-the-sdk-in-your-app)
+2. [Step 2: Intialise the Flutter SDK](#step-2-sdk-initialisation)
+3. [Step 3: Implement the Callback protocol](#step-3-implement-the-callback-protocol)
+4. [Step 4: Setup Payment Hashes](#step-4-setup-payment-hashes)
+5. [Step 5: Generate Payment Params](#step-4-setup-payment-hashes)
+6. [Step 6: Initiate Payment](#step-6-initiate-the-payment)
 
 ## Step 1: Include the SDK in your App
 
