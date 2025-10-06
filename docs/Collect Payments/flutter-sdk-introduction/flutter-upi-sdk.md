@@ -38,12 +38,11 @@ For intent transactions, we delegate the transaction process to an external app 
 ## Compatibility
 
 <Accordion title="Android" icon="fa-code">
-  
   * Min SDK Version: 21
   * Compile SDK Version: 31+
   * Kotlin 1.6.10
-  
 </Accordion>
+
 ## iOS
 
 * iOS version: 11
@@ -60,35 +59,33 @@ To integrate the Flutter UPI SDK, perform the following steps:
 6. [Step 6: Initiate Payment](#step-6-initiate-the-payment)
 
 <Accordion title="Step 1: Include the SDK in your App" icon="fa-code">
-  
   The UPI SDK for Flutter is offered through Flutter` pub.dev.` To add the SDK plugin use the following dependency in your app:
-  
+
   ```
   //Add plugin in your app 
   $ flutter pub add payu_upi_flutter
-  
+
   //Import UPI Plugin in your dart code
   import 'package:payu_upi_flutter/payu_upi_flutter.dart'; 
   ```
-  
+
   <Callout icon="📘" theme="info">
     **Note**: If you are developing for iOS, Install the pod using the following command inside “ios” folder.
-  
+
     ```
     //Install payu dependencies in your ios project. 
     $ pod install 
     ```
   </Callout>
-  
 </Accordion>
+
 <Accordion title="Step 2: Initialize Flutter SDK" icon="fa-code">
-  
   Declare the `PayUUpiFlutter` instance and initialize the object.
-  
+
   ```d Dart
   class _MyAppState extends State<MyApp> implements PayUUPIProtocol {
       late PayUUpiFlutter payUUpiFlutter;
-  
+
     @override
     void initState() {
       super.initState();
@@ -96,13 +93,13 @@ To integrate the Flutter UPI SDK, perform the following steps:
     }
   }
   ```
-  
+
   <Callout icon="📘" theme="info">
     **Note**: If you are developing for iOS, make sure your minimum deployment target is iOS 11.
   </Callout>
-  
 </Accordion>
-## Step 3: Implement the Callback protocol
+
+<Accordion title="Implement the Callback protocol" icon="fa-code">
 
 1. Implement PayUPIProtocol to receive hash and transaction callback.
 
@@ -177,17 +174,16 @@ String parsePayUResponse(Map response){
   return eventResponse != null ? eventResponse.toString() : "";
 }
 ```
-
+</Accordion>
 <Accordion title="Step 4: Setup Payment Hashes" icon="fa-code">
-  
   <Callout icon="🚧" theme="warn">
     **Warning**: Always generate the hash at your backend to ensure security.
   </Callout>
-  
+
   Hash is required to authenticate the request and to make sure MiTM has not happened while data was traveling over the network. You have to set the hash in the hash parameter during the creation of payment parameters.  Use the following format to generate the hash:
-  
+
   `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)`
-  
+
   > 📘 TPV Hash
   >
   > For TPV transactions, use the following format to generate the hash:
@@ -195,26 +191,25 @@ String parsePayUResponse(Map response){
   > `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)`
   >
   > The **beneficiarydetail** parameter value will be at last or the last value to be appended.`{"beneficiaryAccountNumber":<Account No>,"ifscCode":<IFSC>}`
-  
+
   Here is a sample hash value for your reference:
-  
+
   `smsplus|1695662774012|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||  {"beneficiaryAccountNumber":"1234567890","ifscCode":"IFSC0000024"}|1b1b0`
-  
+
   > 📘 SI Hash
   >
   > For SI Trasnaction, use the following format to generate the hash :-
   >
-  > SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)
+  > SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si\_details|SALT)
   >
   > Here is sample hash value for reference :-
   >
   > `3TnMpV|PayU_1752232075823|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||\{"paymentStartDate":"2025-07-28","paymentEndDate":"2028-08-28","billingAmount":"100.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"billingRule":"MAX"}|g0nGFe03`
-  
 </Accordion>
+
 <Accordion title="Step 5: Generate Payment Parameters" icon="fa-code">
-  
   Set up the payment parameters for the SDK to initiate a transaction request. Use the following sample code for a quick integration:
-  
+
   ```d Dart
   var additionalParam = {
     PayUAdditionalParamKeys.udf1: <user defined value 1>,
@@ -248,7 +243,7 @@ String parsePayUResponse(Map response){
   	// intent_app parameter used for IOS only
     intent_app : <String>, //scheme name for the specific UPI intent (i.e. 'phonepe') // 
   };
-  
+
   var si_params = {
       "is_free_trial": "0",
       "si": '1',
@@ -266,276 +261,267 @@ String parsePayUResponse(Map response){
       }
     };
   ```
-  
+
   <Accordion title="Payment Parameters" icon="fa-code">
-    
     <Table align={["left","left","left"]}>
       <thead>
         <tr>
-          <th>
+          <th style={{ textAlign: "left" }}>
             Parameter
           </th>
-    
-          <th>
+
+          <th style={{ textAlign: "left" }}>
             Description
           </th>
-    
-          <th>
+
+          <th style={{ textAlign: "left" }}>
             Notes
           </th>
         </tr>
       </thead>
-    
+
       <tbody>
         <tr>
-          <td>
+          <td style={{ textAlign: "left" }}>
             key
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String` This parameter must contain your merchant key received from PayU.
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             Cannot be null or empty
           </td>
         </tr>
-    
+
         <tr>
-          <td>
-            transaction_id
+          <td style={{ textAlign: "left" }}>
+            transaction\_id
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String` It should be unique for each transaction.
           </td>
-    
-          <td>
-            Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: -_/
+
+          <td style={{ textAlign: "left" }}>
+            Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: -\_/
           </td>
         </tr>
-    
+
         <tr>
-          <td>
+          <td style={{ textAlign: "left" }}>
             amount
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String` Total transaction amount.
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             Cannot be null or empty and should be a valid double-stringified example: “100.0”
           </td>
         </tr>
-    
+
         <tr>
-          <td>
-            product_info
+          <td style={{ textAlign: "left" }}>
+            product\_info
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String`Product information.
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             Cannot be null or empty
           </td>
         </tr>
-    
+
         <tr>
-          <td>
-            first_name
+          <td style={{ textAlign: "left" }}>
+            first\_name
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String` Customer’s first name
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             Cannot be null or empty
           </td>
         </tr>
-    
+
         <tr>
-          <td>
+          <td style={{ textAlign: "left" }}>
             email
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String` Customer’s email id
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             Cannot be null or empty
           </td>
         </tr>
-    
+
         <tr>
-          <td>
+          <td style={{ textAlign: "left" }}>
             phone
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String` Customer’s phone number.
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             There should be a valid phone number
           </td>
         </tr>
-    
+
         <tr>
-          <td>
-            ios_surl
+          <td style={{ textAlign: "left" }}>
+            ios\_surl
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
-    
-            * _Note_*: This field is applicable for iOS integration
+
+            * *Note*\*: This field is applicable for iOS integration
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             Should be a valid URL
           </td>
         </tr>
-    
+
         <tr>
-          <td>
-            ios_furl
+          <td style={{ textAlign: "left" }}>
+            ios\_furl
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String` When the transaction fails, PayU will load this URL and pass the transaction response.
-            No****te: This field is applicable for iOS integration
+            No\*\*\*\*te: This field is applicable for iOS integration
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             Should be a valid URL
           </td>
         </tr>
-    
+
         <tr>
-          <td>
-            android_surl
+          <td style={{ textAlign: "left" }}>
+            android\_surl
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
-    
-            * _Note_*: This field is applicable for Android integration
+
+            * *Note*\*: This field is applicable for Android integration
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             Should be a valid URL
           </td>
         </tr>
-    
+
         <tr>
-          <td>
-            android_furl
+          <td style={{ textAlign: "left" }}>
+            android\_furl
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String` When the transaction fails, PayU will load this URL and pass the transaction response.
             When the transaction is a success, PayU will load this URL and pass the transaction response.
-    
-            * _Note_*: This field is applicable for Android integration
+
+            * *Note*\*: This field is applicable for Android integration
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             Should be a valid URL
           </td>
         </tr>
-    
+
         <tr>
-          <td>
+          <td style={{ textAlign: "left" }}>
             environment
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String` Environment of SDK
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             "0" for Production and "1" for Test
           </td>
         </tr>
-    
+
         <tr>
-          <td>
-            user_credentials
+          <td style={{ textAlign: "left" }}>
+            user\_credentials
             `mandatory`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String`User bank account number for TPV transaction.
           </td>
-    
-          <td>
-    
-          </td>
+
+          <td style={{ textAlign: "left" }} />
         </tr>
-    
+
         <tr>
-          <td>
-            beneficiary_ifsc
+          <td style={{ textAlign: "left" }}>
+            beneficiary\_ifsc
             `no`
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             `String` IFSC of bank account for TPV transaction.
           </td>
-    
-          <td>
-    
-          </td>
+
+          <td style={{ textAlign: "left" }} />
         </tr>
-    
+
         <tr>
-          <td>
-            beneficiary_account_number
+          <td style={{ textAlign: "left" }}>
+            beneficiary\_account\_number
           </td>
-    
-          <td>
+
+          <td style={{ textAlign: "left" }}>
             Users bank account number for TPV transaction.
           </td>
-    
-          <td>
-    
-          </td>
+
+          <td style={{ textAlign: "left" }} />
         </tr>
       </tbody>
     </Table>
-    
   </Accordion>
 </Accordion>
+
 <Accordion title="Step 6: Initiate the payment" icon="fa-code">
-  
   Initialise and launch the SDK by calling the following code snippet:
-  
+
   ```d Dart
   payUUpiFlutter.makeUPIPayment(params: <PayU Payment Params>);
   ```
-  
 </Accordion>
+
 <Accordion title="Step 7: VPA validation" icon="fa-code">
-  
   Initialise and launch the Flutter UPI SDK by calling the following code snippet to validate the VPA
-  
+
   ```d Dart
     validateVPA() async {
       // ignore: prefer_interpolation_to_compose_strings
@@ -555,11 +541,10 @@ String parsePayUResponse(Map response){
       showAlertDialog(context, "Validate VPA", "$data");
     }
   ```
-  
+
   <Accordion title="Response" icon="fa-code">
-    
     The sample response of a VPA validation request is similar to the following:
-    
+
     ```json JSON
     {
       "status": "SUCCESS",
@@ -570,24 +555,22 @@ String parsePayUResponse(Map response){
       "isAutoPayBankValid": "NA"
     }
     ```
-    
   </Accordion>
 </Accordion>
+
 <Accordion title="Step 8: List the UPI apps" icon="fa-code">
-  
   Initialise and launch the Flutter UPI SDK by calling the following code snippet to get the list of UPI apps installed on Android and iOS devices
-  
+
   ```d Dart
     intentApps() async {
       var data = await payUUpiFlutter.intentApps();
       showAlertDialog(context, "intentApps", "$data");
     }
   ```
-  
+
   <Accordion title="Response" icon="fa-code">
-    
     Here is how a sample response of UPI list request looks like:
-    
+
     ```json JSON
     {
       "data": {
@@ -596,13 +579,12 @@ String parsePayUResponse(Map response){
       }
     }
     ```
-    
   </Accordion>
 </Accordion>
+
 <Accordion title="For IOS, UPI Intent (Mandatory)" icon="fa-code">
-  
   For fetch the Installed UPI apps, Kindly add the query schemes in the`info.plist`:
-  
+
   ```Text Info.plist Code for Intent
   	<key>LSApplicationQueriesSchemes</key>
   	<array>
@@ -614,10 +596,10 @@ String parsePayUResponse(Map response){
   		<string>credpay</string>
   	</array>
   ```
-  
+
   <br />
-  
 </Accordion>
+
 ## Test the Integration
 
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
@@ -645,30 +627,28 @@ You can make test payments using one of the payment methods configured at the Ch
 <TestCardsCallout />
 
 <Accordion title="Test credentials for supported payment methods" icon="fa-code">
-  
   Following are the payment methods supported in PayU Test mode.
-  
+
   <Accordion title="Test VPA for UPI" icon="fa-code">
-    
     You can use either of the following VPAs to test your UPI-related integration:
-    
+
     * [anything@payu](anything@payu)
     * [9999999999@payu.in](mailto:9999999999@payu.in)
-    
+
     For Testing the UPI Collect flow, Please follow the below steps:- 
-    
+
     1. Once you enter the VPA click on the verify button and proceed to pay.
     2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
     3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
-    
-    [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn_id>
-    
+
+    [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn\_id>
+
     **For Android**
-    
+
     You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
-    
+
     > 🚧 Ensure to remove the code from the manifest file before going live.
-    
+
     ```Text xml
     <application>
     <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
@@ -676,18 +656,17 @@ You can make test payments using one of the payment methods configured at the Ch
     <meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
     </appliction>
     ```
-    
   </Accordion>
+
   <Accordion title="Test UPI Intent/InApp flow" icon="fa-code">
-    
     > ❗️ Callout
     >
     > The UPI in-app and UPI intent flow is not available in the Test mode.
-    
+
     <br />
-    
   </Accordion>
 </Accordion>
+
 ## Sample app
 
 The sample app for Flutter UPI SDK can be found in the following Github location:
