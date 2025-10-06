@@ -58,7 +58,7 @@ To integrate the Flutter UPI SDK, perform the following steps:
 5. [Step 5: Generate Payment Params](#step-4-setup-payment-hashes)
 6. [Step 6: Initiate Payment](#step-6-initiate-the-payment)
 
-## Step 1: Include the SDK in your App
+### Step 1: Include the SDK in your App
 
 The UPI SDK for Flutter is offered through Flutter` pub.dev.` To add the SDK plugin use the following dependency in your app:
 
@@ -70,16 +70,16 @@ $ flutter pub add payu_upi_flutter
 import 'package:payu_upi_flutter/payu_upi_flutter.dart'; 
 ```
 
-> 📘 Note:
->
-> If you are developing for iOS, Install the pod using the following command inside “ios” folder.
->
-> ```
-> //Install payu dependencies in your ios project. 
-> $ pod install 
-> ```
+<Callout icon="📘" theme="info">
+  **Note**: If you are developing for iOS, Install the pod using the following command inside “ios” folder.
 
-## Step 2: Initialize Flutter SDK
+  ```
+  //Install payu dependencies in your ios project. 
+  $ pod install 
+  ```
+</Callout>
+
+### Step 2: Initialize Flutter SDK
 
 Declare the `PayUUpiFlutter` instance and initialize the object.
 
@@ -175,7 +175,7 @@ String parsePayUResponse(Map response){
 }
 ```
 
-## Step 4: Setup Payment Hashes
+### Step 4: Setup Payment Hashes
 
 <Callout icon="🚧" theme="warn">
   **Warning**: Always generate the hash at your backend to ensure security.
@@ -207,7 +207,7 @@ Here is a sample hash value for your reference:
 >
 > `3TnMpV|PayU_1752232075823|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||\{"paymentStartDate":"2025-07-28","paymentEndDate":"2028-08-28","billingAmount":"100.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"billingRule":"MAX"}|g0nGFe03`
 
-## Step 5: Generate Payment Parameters
+### Step 5: Generate Payment Parameters
 
 Set up the payment parameters for the SDK to initiate a transaction request. Use the following sample code for a quick integration:
 
@@ -263,7 +263,7 @@ var si_params = {
   };
 ```
 
-### Payment Parameters
+#### Payment Parameters
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -517,7 +517,7 @@ var si_params = {
   </tbody>
 </Table>
 
-## Step 6: Initiate the payment
+### Step 6: Initiate the payment
 
 Initialise and launch the SDK by calling the following code snippet:
 
@@ -525,7 +525,7 @@ Initialise and launch the SDK by calling the following code snippet:
 payUUpiFlutter.makeUPIPayment(params: <PayU Payment Params>);
 ```
 
-## Step 7: VPA validation
+### Step 7: VPA validation
 
 Initialise and launch the Flutter UPI SDK by calling the following code snippet to validate the VPA
 
@@ -549,7 +549,7 @@ Initialise and launch the Flutter UPI SDK by calling the following code snippet 
   }
 ```
 
-### Response
+#### Response
 
 The sample response of a VPA validation request is similar to the following:
 
@@ -564,7 +564,7 @@ The sample response of a VPA validation request is similar to the following:
 }
 ```
 
-## Step 8: List the UPI apps
+### Step 8: List the UPI apps
 
 Initialise and launch the Flutter UPI SDK by calling the following code snippet to get the list of UPI apps installed on Android and iOS devices
 
@@ -575,7 +575,7 @@ Initialise and launch the Flutter UPI SDK by calling the following code snippet 
   }
 ```
 
-### Response
+#### Response
 
 Here is how a sample response of UPI list request looks like:
 
@@ -673,39 +673,6 @@ You can add the below metadata under the application tag in the manifest file to
 
 <br />
 
-## Go-live Checklist
-
-Ensure these steps before you deploy the integration in a live environment.
-
-### Collect Live Payments
-
-After [testing the integration](https://docs.payu.in/docs/flutter-checkoutprosdk-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
-
-> 🚧 Watch Out!
->
-> Ensure that you are using the production merchant key and salt generated in the live mode.
-
-<ProductionKeyAndSaltProcedure />
-
-### Checklist 2: Configure setIsProduction()
-
-Set the value of the `environment()`to `true` in the payment integration code. This enables the integration to accept live payments.
-
-### Checklist 3:- Configure your SURL/FURL
-
-PayU recommends you design or use your own SURL and FURL after testing is completed.
-
-Refer to the link below for Handling SURL and FURL doc details.
-
-> 🚧 We are not recommended to go live with PayU SURL and FURL.
-
-### Checklist 4: Configure verify payment method
-
-Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
-
-### Checklist 5: Configure Webhook
-
-We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
 
 ## Sample app
 
