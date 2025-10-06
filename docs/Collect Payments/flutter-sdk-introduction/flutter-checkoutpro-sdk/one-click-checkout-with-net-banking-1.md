@@ -2,7 +2,7 @@
 title: One-click checkout with Net Banking
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
