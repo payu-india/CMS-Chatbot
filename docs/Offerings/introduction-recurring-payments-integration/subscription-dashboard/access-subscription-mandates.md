@@ -33,11 +33,10 @@ The **Mandates** tab on the Subscriptions Dashboard allows you to view all manda
 
 This part of the document includes the following sections:
 
-* [Filter Subscription Mandates](doc:filter-subscription-mandates)
-* [View a Mandate Details](doc:view-a-mandate-details)
-* [View a Mandate Activity](doc:view-a-mandate-activity)
-* [View Payments Received for a Mandate](doc:view-payments-received-for-a-mandate)
-* [Download Memo for a Bounced Transaction](doc:download-memo-for-bounced-transaction)
+* [Filter and View a Mandate Details](https://docs.payu.in/docs/access-subscription-mandates?isFramePreview=true#filter-and-view-a-mandate-details)
+* [View a Mandate Activity](https://docs.payu.in/docs/access-subscription-mandates?isFramePreview=true#view-a-mandate-activity)
+* [View Payments Received for a Mandate](https://docs.payu.in/docs/access-subscription-mandates?isFramePreview=true#view-payments-received-for-a-mandate)
+* [Download a Memo for a Bounced Transacton](https://docs.payu.in/docs/access-subscription-mandates?isFramePreview=true#download-a-memo-for-a-bounced-transacton)
 
 <Callout icon="📘" theme="info">
   **Reference**: You can perform the following for mandates on Subscriptions Dashboard similar to Transactions Dashboard:
@@ -85,7 +84,9 @@ The _Subscription Details_ page is displayed with the **Details** sub-tab select
 <Image align="center" border={true} src="https://files.readme.io/a646071eadc9c2384deb59f1a0d8b8fbe55d28e541ceb9144dfd4ad3cd066d1e-dashboard-subscription-mandate-details.png" className="border" />
 
 <br />
+
 ## View a Mandate Activity
+
 The **Activity** sub-tab allows you to review a chronological timeline of all actions and events for a specific mandate. It displays key details at the top, including the amount, PayU ID/UMRN Number, and Merchant Transaction ID. Shows the payment mode used (Cards, Net Banking, or UPI). Provides a comprehensive view of the mandate’s history and progress. Also, it provides the following information:
 
 * **Chronological Activity Log**: View all actions in the order they occurred. Step-by-step record of events since the mandate’s creation.
@@ -110,8 +111,11 @@ The _Subscription Details_ page is displayed with the **Details** tab selected.
 The **Activity** su-tab is displayed with the mandate activity similar to the following screenshot.
 
 <Image align="center" border={true} src="https://files.readme.io/56dd5b9e20bdc31cc86291a903807813a3d25e7816a97374bb7d3c685ba9c861-dashboard-subscription-mandate-activity.png" className="border" />
-<br/>
+
+<br />
+
 ## View Payments Received for a Mandate
+
 The **Payments** sub-tab allows you to manage and review all recurring transactions linked to a mandate. You can filter, search, and download transaction details, ensuring you have a clear view of recurring transactions. This sub-tab provides the following to filter, search or sort:
 
 * **Status-Based Filtering**: Filter transactions by status (Recurring Success or Recurring Failed).
@@ -133,8 +137,10 @@ The **Payments** tab is displayed with the payments received the for selected ma
 
 <Image align="center" border={true} src="https://files.readme.io/340d1cf5bbcbf24ac74a125cafe5239933b0c8ffa93b617560e6228fd725b956-dashboard-subscriptions-mandate-activity-pymts.png" className="border" />
 
-<br/>
+<br />
+
 ## Download a Memo for a Bounced Transacton
+
 For eNACH transactions that have failed, you can download a Bounce Memo.
 
 To download a memo for failed transaction:
