@@ -36,16 +36,16 @@ Supported payment options
 
 * Credit Card/Debit Card/Stored Card(Use PayuConstants.CC)
 * NetBanking (Use PayUConstants.NB)
-* NEFT/RTGS(Use PayUConstants.NEFT\_RTGS)
+* NEFT/RTGS(Use PayUConstants.NEFT_RTGS)
 * EMI (Use PayUConstants.EMI)
 * No Cost EMI (Use PayUConstants.EMI)
 * Cash Cards/Wallets (Use PayUConstants.CASH)
-* Intent (Use PayUConstants.UPI\_INTENT)
+* Intent (Use PayUConstants.UPI_INTENT)
 * UPI (Use PayUConstants.UPI)
 * Google Pay (Use PayUConstants.TEZ)
-* PhonePe (Use PayUConstants.PHONEPE\_INTENT)
+* PhonePe (Use PayUConstants.PHONEPE_INTENT)
 * LazyPay (Use PayUConstants.LAZYPAY)
-* TwidPay (Use PayUConstants.PAY\_BY\_REWARDS)
+* TwidPay (Use PayUConstants.PAY_BY_REWARDS)
 * Sodexo (Use PayUConstants.SODEXO)
 * Offer
 
@@ -55,13 +55,7 @@ Supported payment options
 * Compile SDK Version: 31 and above
 * Kotlin version: 1.6.10
 
-## Recommended Integration Workflow
-
-1. [Integration Steps](https://docs.payu.in/docs/android-coresdk-integration-steps)
-2. [Test the Integration](https://docs.payu.in/docs/android-coresdk-test-the-integration)
-3. [Go-live Checklist](https://docs.payu.in/docs/android-coresdk-go-live-checklist)
-
-After you integrate with the above steps, you can use the APIs listed in the following to integrate web services or TPV integration:
+For the recommended integration workflow, refer to [Integration Steps](https://docs.payu.in/docs/android-coresdk-integration-steps). After you integrate with the above steps, you can use the APIs listed in the following to integrate web services or TPV integration:
 
 * [Web Services for Core SDK](https://docs.payu.in/docs/web-services-for-android-core-sdk)
 * [TPV with Android Core SDK](https://docs.payu.in/docs/android-coresdk-tpv-integration)
