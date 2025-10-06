@@ -92,7 +92,7 @@ For an example procedure on how to enforce payment with a credit card, refer to 
 
 The **drop_category** parameter can be used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
 
-If 30 Net Banking options are available and you want to drop two of those net banking options (that is, do not display those two options on the PayU page), the **drop_category** parameter can be used effectively.
+If 30 Net Banking options are available and you want to drop two of those net banking options (that is, do not display those two options on the PayU page), the **drop_category** parameter can be used effectively.
 
 To drop the whole category, use the following values:
 
@@ -133,7 +133,7 @@ In this example:
 
 ## Change the Language
 
-To change the display language in PayU Hosted Checkout, add the `language` parameter to the payment request API call. 
+To change the display language in PayU Hosted Checkout, add the `language` parameter to the payment request API call. The following video shows how vernacular support can improve your business:
 
 The `display_lang` parameter should be set to one of the following values (same as corresponding language spelling):
 
@@ -154,7 +154,7 @@ curl -X POST "https://test.payu.in/_payment" \
   -d "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&display_lang=Hindi&hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
 ```
 
-The PayU payment page is displayed with the display language as “Hindi” similar to the following screenshot:
+The PayU payment page is displayed with the display language as "Hindi" similar to the following screenshot:
 
 <Image border={false} src="https://files.readme.io/3aae0ef-hindipage.png" />
 
@@ -192,7 +192,7 @@ To configure the Dashboard to enable payment method:
 
 2. Select any of the payment method tab that you wish to configure.
 
-   If you are eligible for the payment method, the **Activate Now** button is displayed. For example, the **Activate Now** button is enabled in the **International Payments** tab similar to the following screenshot:
+   If you are eligible for the payment method, the **Activate Now** button is displayed. For example, the **Activate Now** button is enabled in the **International Payments** tab.
 
 <Image align="center" border={true} width="722px" src="https://files.readme.io/87d81fd-Screenshot_2024-07-19_at_10.35.59_AM.png" className="border" />
 
@@ -249,13 +249,13 @@ Contact your PayU Key Account Manager to remove a payment mode from the Checkout
 
 ## Configure Checkout Settings
 
-You can customize your customer-facing checkout page that is displayed when you are using PayU Hosted Checkout integration. For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted).
+You can customize your customer-facing checkout page that is displayed when you are using PayU Hosted Checkout integration. For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
 
 To update your brand settings:
 
 1. Navigate to **Dashboard > Settings > Checkout Settings.**
 
-   The _Set up your brand_ page is displayed.
+   The _Set up your brand_ page is displayed.
 
 <Image align="center" border={true} src="https://files.readme.io/eb8cf99-Screenshot_2024-07-19_at_10.43.53_AM.png" className="border" />
 
@@ -267,51 +267,42 @@ To update your brand settings:
       <th>
         Field
       </th>
-
       <th>
         Description
       </th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
       <td>
         Brand Logo
       </td>
-
       <td>
         Enter the location or URL of the brand logo.
 
-        * _Note_*: You need to that the size of the logo image is 90×90 and format of the logo image is PNG
+        **Note**: You need to that the size of the logo image is 90×90 and format of the logo image is PNG
       </td>
     </tr>
-
     <tr>
       <td>
         Secondary Color
       </td>
-
       <td>
         Click the color chooser to choose the color theme for the checkout page.
       </td>
     </tr>
-
     <tr>
       <td>
         Language
       </td>
-
       <td>
-        Select the language from the  **Language** drop-down list that has to be displayed on the Checkout page.
+        Select the language from the **Language** drop-down list that has to be displayed on the Checkout page.
       </td>
     </tr>
-
     <tr>
       <td>
         Owner Signature
       </td>
-
       <td>
         Click **Select the file from your library** to select the signature file and click **Upload** to complete the action.
       </td>
@@ -331,7 +322,7 @@ Pay Hosted Checkout (non-seamless) integration provides you to collect payments 
   **Note**: PayU supports only PayU Hosted Checkout (non-seamless) and Merchant Hosted Checkout integration (seamless) using this API. Server-to-Server (S2S) integration is not be supported for Sodexo.
 </Callout>
 
-This section describes the parameters required to collect payments using the Pluxee card with PayU Hosted Checkout integration (using the  **_payment** API) with parameters to enforce only the Pluxee card in the **mealcard** category or hide it.
+This section describes the parameters required to collect payments using the Pluxee card with PayU Hosted Checkout integration (using the **_payment** API) with parameters to enforce only the Pluxee card in the **mealcard** category or hide it.
 
 ***
 
@@ -349,13 +340,13 @@ The following describe the characteristics and workflow involved using PayU Host
 * In case the merchant wants to enforce Pluxee payment option on our check out page, **enforce_paymethod** value should be passed as **SODEXO**.
 * In case merchant wants to drop the Pluxee payment option under the **mealcard** category on the PayU checkout page, then **drop_category** value should be passed as **MC|SODEXO**. In case the **entire mealcard category** need to be dropped, then value should be passed as **MC**. Currently, PayU only supports the Sodexo payment option in the **mealcard** category.
 
-For more information enforcing or hiding Pluxee payment option, refer to [Collect Payment API - PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout)
+For more information enforcing or hiding Pluxee payment option, refer to [Collect Payment API - PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout).
 
 ### Workflow on PayU Payment Page
 
-1. Merchant initiates payment & redirects the customer to PayU’s check out page to choose a payment option of their choice.
-2. Customer selects the Pluxee payment option available on the PayU’s check out page & either enters new card details or selects already saved Pluxee card.
-3. In case customer want’s to use an already saved Pluxee card, PayU will only allow that, provided the balance available in the card is greater than or equal to transaction amount.
+1. Merchant initiates payment & redirects the customer to PayU's check out page to choose a payment option of their choice.
+2. Customer selects the Pluxee payment option available on the PayU's check out page & either enters new card details or selects already saved Pluxee card.
+3. In case customer want's to use an already saved Pluxee card, PayU will only allow that, provided the balance available in the card is greater than or equal to transaction amount.
 4. The customer is then re-directed to Pluxee ACS page, where the customer can enter the PIN and complete the payment.
 5. Once PayU receives a successful confirmation from Sodexo, we will provide a confirmation to merchant via webhook or merchant can use our status check API to fetch the transaction status.
 
@@ -381,28 +372,23 @@ If you wish to hide the Sodexo card payment in the **mealcard** category, you ca
       <th>
         **Parameter**
       </th>
-
       <th>
         **Description**
       </th>
-
       <th>
         **Example**
       </th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
       <td>
         drop_category
         **optional**
       </td>
-
       <td>
         This parameter is used to customize the payment options for each individual transaction. To drop the Sodexo card payment with PayU Hosted Checkout integration, specify **mealcard|SODEXO**.
       </td>
-
       <td>
         mealcard|SODEXO
       </td>
@@ -410,26 +396,24 @@ If you wish to hide the Sodexo card payment in the **mealcard** category, you ca
   </tbody>
 </Table>
 
-|Currently, PayU India only supports the Sodexo payment option under the **mealcard** category.
+**Note**: Currently, PayU India only supports the Sodexo payment option under the **mealcard** category.
 
 #### Sample request
 
-For a sample request, refer to  [Collect Payment API - PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout). under API Reference..
+For a sample request, refer to [Collect Payment API - PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout) under API Reference.
 
 ***
 
 ### Step 2: Customer submits payment details on PayU page
 
-The customer selects the Sodexo payment option on PayU’s page.
-
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/10/Screenshot-2022-10-28-at-12.14.55-PM-837x1024.png" />
+The customer selects the Sodexo payment option on PayU's page.
 
 After the customer selects the **Sodexo** payment mode, PayU gets the Sodexo card details from the customer.
 
-The customer performs the authorization or authentication process on the bank’s login page, and the bank communicates the success or failure response back to PayU.
+The customer performs the authorization or authentication process on the bank's login page, and the bank communicates the success or failure response back to PayU.
 
 ### Step 3: Check the response from PayU
 
-PayU marks the transaction status based on the response received from the bank. PayU communicates the success URL to you if the payment is successful. Verify the authenticity of the hash value before accepting or rejecting the invoice order. For the list of parameters in the response body for the PayU Hosted integration, refer to~~ Collect Payments with PayU Hosted Checkout~~ under API Reference.
+PayU marks the transaction status based on the response received from the bank. PayU communicates the success URL to you if the payment is successful. Verify the authenticity of the hash value before accepting or rejecting the invoice order. For the list of parameters in the response body for the PayU Hosted integration, refer to [Collect Payment API - PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout) under API Reference.
 
 ***
