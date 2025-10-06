@@ -593,8 +593,8 @@ To integrate the Flutter UPI SDK, perform the following steps:
   <br />
 </Accordion>
 
-## Test the Integration
-
+## Test the Integration and Go-Live
+<Accordion title="Test the integration" icon="fa-code">
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 > 🚧 Callout
@@ -659,6 +659,9 @@ You can make test payments using one of the payment methods configured at the Ch
     <br />
   </Accordion>
 </Accordion>
+</Accordion>
+
+<Go_Live_Checklist />
 
 ## Sample app
 
