@@ -4,7 +4,7 @@ excerpt: >-
   Add a recommendation engine on your checkout page for a superior payment
   experience.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
