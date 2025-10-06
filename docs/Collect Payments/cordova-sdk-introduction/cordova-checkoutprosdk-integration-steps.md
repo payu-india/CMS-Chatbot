@@ -25,15 +25,9 @@ next:
 ---
 The Cordova Checkout SDK integration involves the following steps:
 
-1. [Include the Cordova Plugin in your app project](https://docs.payu.in/docs/cordova-checkoutprosdk-integration-steps#include-the-cordova-plugin-in-your-app-project)
-2. [Setup Callback](https://docs.payu.in/docs/cordova-checkoutprosdk-integration-steps#setup-callback)
-3. [Build the payment parameters](https://docs.payu.in/docs/cordova-checkoutprosdk-integration-steps#build-the-payment-parameters)
-4. [Setup payment hashes](https://docs.payu.in/docs/cordova-checkoutprosdk-integration-steps#setup-payment-hashes)
-5. [Initiate the Payment](https://docs.payu.in/docs/cordova-checkoutprosdk-integration-steps#initiate-the-payment)
-6. [Add the following in AndroidManifest.xml](https://docs.payu.in/docs/cordova-checkoutprosdk-integration-steps#add-the-following-in-androidmanifestxml)
-7. [Distributing your app (App Store / Ad-hoc)](https://docs.payu.in/docs/cordova-checkoutprosdk-integration-steps#distributing-your-app-app-store--ad-hoc)
-
-You can do iOS specific customization during integration. For more information, refer to [iOS-specific Integration customization (Optional)](https://docs.payu.in/docs/cordova-checkoutprosdk-integration-steps#ios-specific-integration-customization-optional).
+<Callout icon="📘" theme="info">
+  **Note**: You can do iOS specific customization during integration. For more information, refer to [iOS-specific Integration customization (Optional)](#ios-specific-integration-customization-optional).
+</Callout>
 
 ## Step 1: Include the Cordova plugin in your app project
 
@@ -213,7 +207,7 @@ function generateHash(response) {
 }
 ```
 
-<Callout icon="📘">
+<Callout icon="📘" theme="info">
   **Notes**:
 
   * You need the following type of hashes to be generated at your backend: v1 Hash, v2 Hashes, MCP Lookup, and Post Salt Hash.
@@ -224,7 +218,7 @@ The CheckoutPro SDK uses hashes to ensure the security of the transaction and pr
 
 ***
 
-## Step 4: Initiate the payment
+## Step 5: Initiate the payment
 
 Initialize and launch the Checkout Pro SDK by calling the following code snippet:
 
@@ -241,7 +235,7 @@ cordova.plugins.PayUCheckoutProCordova.openCheckoutScreen(
 
 ***
 
-## Step 5: Update AndroidManifest.xml
+## Step 6: Update AndroidManifest.xml
 
 To automatically fill OTP on bank pages, SDK requires `the RECEIVE_SMS` permission. Add the following code snippet to your `AndroidManifest.xml` like below.
 
