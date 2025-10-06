@@ -84,3 +84,8 @@ override fun generateHash(map: HashMap<String, String?>, hashGenerationOnePayUJK
 }
 ```
 
+## Sample app
+
+You can download the the sample app for Virtual Card integration for Android SDK from the following Github location:
+
+https://github.com/payu-intrepos/PPIManagerAndroid
