@@ -40,7 +40,7 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 <RegisterMerchantPrerequiste />
 
-## Step 1: Initiate the payment with PayU" icon
+## Step 1: Initiate the payment to PayU
 
 <Accordion title="Post Request Syntax & Composition" icon="fa-code">
   ```html
