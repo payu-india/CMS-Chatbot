@@ -553,43 +553,45 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
     ```
   </Accordion>
 
-<Accordion title="SI Payment" icon="fa-code">
-  ```d Dart
-  PayUPaymentParamKey.si_details: {
-        PayUSIParamsKeys.billingAmount: "1.00",
-        PayUSIParamsKeys.billingCurrency: "INR",
-        PayUSIParamsKeys.billingCycle:
-        "DAILY", // YEARLY | MONTHLY | WEEKLY | DAILY | ONCE | ADHOC
-        PayUSIParamsKeys.billingInterval: "1",
-        PayUSIParamsKeys.paymentEndDate: "2023-12-12", // YYYY-MM-DD
-        PayUSIParamsKeys.paymentStartDate: "2022-12-12" // YYYY-MM-DD
-      }
-  PayUSIParamsKeys.is_free_trial: "0", // 1 | 0 (true | false)
-  PayUSIParamsKeys.si: "1"
-  ```
-
-  <Accordion title="Recurring Payments in NetBanking" icon="fa-code">
+  <Accordion title="SI Payment" icon="fa-code">
     ```d Dart
-    PayUSIParamsKeys.beneficiarydetail: {
-          PayUSIBeneDetailsKeys.beneficiaryAccountNumber:
-          PayUTestCredentials.accountNumber,
-          PayUSIBeneDetailsKeys.beneficiary_ifsc:
-          PayUTestCredentials.accountIFSC,
-          PayUSIBeneDetailsKeys.beneficiaryName: 'Name',
-          PayUSIBeneDetailsKeys.beneficiaryAccountType:
-          "0" // 1 for CURRENT ,0 for Saving
+    PayUPaymentParamKey.si_details: {
+          PayUSIParamsKeys.billingAmount: "1.00",
+          PayUSIParamsKeys.billingCurrency: "INR",
+          PayUSIParamsKeys.billingCycle:
+          "DAILY", // YEARLY | MONTHLY | WEEKLY | DAILY | ONCE | ADHOC
+          PayUSIParamsKeys.billingInterval: "1",
+          PayUSIParamsKeys.paymentEndDate: "2023-12-12", // YYYY-MM-DD
+          PayUSIParamsKeys.paymentStartDate: "2022-12-12" // YYYY-MM-DD
         }
+    PayUSIParamsKeys.is_free_trial: "0", // 1 | 0 (true | false)
+    PayUSIParamsKeys.si: "1"
     ```
+    </Accordion>
+    <Accordion title="Recurring Payments in NetBanking" icon="fa-code">
+      ```d Dart
+      PayUSIParamsKeys.beneficiarydetail: {
+            PayUSIBeneDetailsKeys.beneficiaryAccountNumber:
+            PayUTestCredentials.accountNumber,
+            PayUSIBeneDetailsKeys.beneficiary_ifsc:
+            PayUTestCredentials.accountIFSC,
+            PayUSIBeneDetailsKeys.beneficiaryName: 'Name',
+            PayUSIBeneDetailsKeys.beneficiaryAccountType:
+            "0" // 1 for CURRENT ,0 for Saving
+          }
+      ```
   </Accordion>
+
 </Accordion>
-</Accordion>
+
 <Accordion title="Step 6: Initiate Payment" icon="fa-code">
   Initialise and launch the SDK by calling the following code snippet:
 
   ```d Dart
   payUCustomBrowserFlutterPlugin.openCB(params: <PayU Payment Params>);
- ```
- </Accordion>
+  ```
+</Accordion>
+
 ## Test the Integration
 
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
