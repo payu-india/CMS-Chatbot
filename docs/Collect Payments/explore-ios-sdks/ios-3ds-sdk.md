@@ -812,6 +812,7 @@ You need to create hash on your server using hashString + salt + postSalt and SH
 | 503  | Error while creating transaction to generate device details, please try again |
 
 ## Test the Integration and Go-Live
+
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 You can make test payments using one of the payment methods configured at the Checkout.
@@ -993,3 +994,7 @@ You can use the following wallets and their corresponding credentials to test wa
     </tr>
   </tbody>
 </Table>
+
+<Go_Live_Checklist />
+
+<br />
