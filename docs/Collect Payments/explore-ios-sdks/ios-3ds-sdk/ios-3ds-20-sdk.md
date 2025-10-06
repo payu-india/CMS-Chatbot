@@ -12,212 +12,199 @@ next:
 ---
 The iOS 3DS SDK integration involves the following steps:
 
-1. [Install the SDK in your app project](https://docs.payu.in/docs/ios-3ds-20-sdk#step-1-install-the-sdk-in-your-app-project)
-2. [Initialise the SDK](https://docs.payu.in/docs/ios-3ds-20-sdk#step-2-initialise-the-sdk)
-   1. [Initialise](https://docs.payu.in/docs/ios-3ds-20-sdk#step-21-initialise)
-   2. [UI Customisation](https://docs.payu.in/docs/ios-3ds-20-sdk#step-22-ui-customisation)
-   3. [3DS Warnings](https://docs.payu.in/docs/ios-3ds-20-sdk#step-23-3ds-warnings)
-3. [Device Details(PArq)](https://docs.payu.in/docs/ios-3ds-20-sdk#step-3-device-detailsparq)
-4. [3DS 2.0 Challenge Initiation](https://docs.payu.in/docs/ios-3ds-20-sdk#step-4--3ds-20-challenge-initiation)
-   1. [Challenge UI Handling (Optional)](https://docs.payu.in/docs/ios-3ds-20-sdk#step-41-challenge-ui-handling-optional)
-   2. [Challenge Action Handing](https://docs.payu.in/docs/ios-3ds-20-sdk#step-42-challenge-action-handing)
-5. [Bin Info API Details](https://docs.payu.in/docs/ios-3ds-20-sdk#step-5-bin-info-api-details)
-
 ## Step 1: Install the SDK in your app project
 
 The 3DS2 SDK is offered via CocoaPods. To add the SDK to your app project, include the SDK framework in your pod file using the pod install command in terminal.
 
-### CocoaPods Integration
+<Accordion title="CocoaPods Integration" icon="fa-code">
+  ```
+  //make sure to add below-mentioned line to use dynamic frameworks
 
-```
-//make sure to add below-mentioned line to use dynamic frameworks
+  use_frameworks!
 
-use_frameworks!
+  // Add this to include our SDK
+  pod 'PayUIndia-3DS2-SDK'
+  ```
+</Accordion>
 
-// Add this to include our SDK
-pod 'PayUIndia-3DS2-SDK'
-```
+<Accordion title="Swift Package Manager Integration" icon="fa-code">
+  You can integrate 3DS2 SDK with your app or SDK using SPM with following methods:
 
-### Swift Package Manager Integration
+  * **Using Xcode**: Navigate to File > Add Package menu and add the following package:
+  * **Using Package.Swift**: Add the following line in the Package.swift dependencies:
 
-You can integrate 3DS2 SDK with your app or SDK using SPM with following methods:
+  ```
+  .package(name: "PayUIndia-3DS2-SDK", url: "https://github.com/payu-intrepos/PayU3DS2SDK-iOS", from: "1.3.1")
+  ```
 
-* **Using Xcode**: Navigate to File > Add Package menu and add the following package:
-* **Using Package.Swift**: Add the following line in the Package.swift dependencies:
+  * **Import**: Add the following imports in the class where you need to initiate a payment using 3DS2.
 
-```
-.package(name: "PayUIndia-3DS2-SDK", url: "https://github.com/payu-intrepos/PayU3DS2SDK-iOS", from: "1.3.1")
-```
-
-* **Import**: Add the following imports in the class where you need to initiate a payment using 3DS2.
-
-```
-import PayU3DS2Kit
-```
+  ```
+  import PayU3DS2Kit
+  ```
+</Accordion>
 
 ***
 
 ## Step 2: Initialise the SDK
 
-### Step 2.1: Initialise
+<Accordion title="Step 2.1: Initialise" icon="fa-code">
+  Initialise SDK before invoking any de-coupled functionality
 
-Initialise SDK before invoking any de-coupled functionality
+  > 📘 Remember
+  >
+  > Initialisation of SDK is mandatory if merchant is utilising PayU 3DS 2.0 for de-couple functionality. Call initialise before every transaction.
 
-> 📘 Remember
->
-> Initialisation of SDK is mandatory if merchant is utilising PayU 3DS 2.0 for de-couple functionality. Call initialise before every transaction.
-
-```
-    PayU3DS2.initialise(
-        key: String,
-        requestId: String,
-        config: PayU3DS2Config,
-        completion: @escaping PayU3DS2Completion
-    )
-```
-
-**This method accepts four parameters**:
-
-* **Key**: The unique merchant key.
-* **RequestId**: Unique request ID.
-* **PayU3DS2Config**: It contains below properties:
-
-```
-PayU3DS2Config: It contains below properties
-var config = PayU3DS2Config()
-
-config.uiCustomisation = "set UI customisation object, refer below section of UI Customisation"
-config.isProduction = "set environment where you want to test, true for production and false for sandbox"
-config.fallback3DS1 = true //default value false, send true to complete payment on bank page in case of any failure
-config.autoSubmit = false //Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
-config.initialiseTimeoutTimer = 5 //provide time in seconds, for waiting for merchant response
-config.supportedUIMode = ArrayList<String> //to show own UI, currently accepted value = 01. Pass this if you want to create own UI and follow step 4.1 and 4.2
-
-// Can also set progress indicator
-config.setDefaultProgressLoader(showDefaultLoader: true, defaultProgressLoaderColor: "HexColor") //to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode
-
-//To customise UI with your content please pass these configurations
-config.enableCustomizedOtpUIFlow = true
-config.enableTxnTimeoutTimer = true //pass as true to show timer for page timeout
-config.merchantName = "merchant name" 
-config.amount = "txn amount"
-
-config.acsContentConfig = PayU3DS2ACSContentConfig()
-config.acsContentConfig?.submitButtonTitle = "Submit Button Title"
-config.acsContentConfig?.resendButtonTitle = "Resend Button Title"
-config.acsContentConfig?.otpContent =  "OTP has been sent to your registered mobile number"  //you can set this value to as per your need
-
-config.acsContentConfig?.resendInfoContent =  "OTP has been resent to your registered mobile number" //you can set this value to as per your need
-
-config.acsContentConfig?.maxResendInfoContent =  "Limit has been exceeded to send OTP. Please retry with latest OTP or initiate a new payment" //you can set this value to as per your need
-
-
-```
-
-* **Completion**:  PayU3DS2Completion -  This is a Closure/Callback where you will receive response after Initialisation done. It contains PayU3DS2Response which will have below properties.
-
-```
-PayU3DS2Response:
-status: Int = -1 //If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
-errorMessage: String? // error message with details what went wrong.
-result: Any? Success response with details. Please refer below class for response structure:
-
-class PayU3DS2DeviceWarning(
-    var id: String
-    var message: String
-    var severity: PayU3DS2DeviceSeverity 
-)
-PayU3DS2DeviceSeverity expected values:
- low, 
- medium, 
- high
-```
-
-***
-
-### Step 2.2: UI Customisation
-
-**PayU3DS2UICustomisation** - Below are the details of views that can be customised.
-
-#### Button customisation
-
-```
-var buttonCustomisation = PayU3DS2ButtonCustomisation(
-        textFontColor: String?, //HEX CODE
-        textFontSize: Int,
-        backgroundColor: String?,
-        cornerRadius: Int,
-        resendButtonTextFontColor: String? //HEX CODE
-    )
-Ex:
-PayU3DS2ButtonCustomisation(
-        textFontColor: "#ffffff",
-        textFontSize: 17,
-        backgroundColor: "#25272C",
-        cornerRadius: 10,
-        resendButtonTextFontColor: "#25272C"
-    )
-```
-
-#### Label customisation
-
-```
-var labelCustomisation = PayU3DS2LabelCustomisation(
-        textFontColor: String?, //HEX CODE
-        textFontSize: Int,
-        headingTextColor: String?, //HEX CODE
-        headingTextFontSize: Int
-    )
-```
-
-#### Toolbar customisation
-
-```
-var toolbarCustomisation = PayU3DS2ToolBarCustomisation(
-        textFontColor: String?, //HEXCODE
-        textFontSize: Int,
-        backgroundColor: String?, //HEXCODE
-        buttonText: String?, 
-        headerText: String?
-    )
-```
-
-#### TextBox Customisation:
-
-```
-var textBoxCustomisation = PayU3DS2TextBoxCustomisation(
-        textFontColor: String?, //HEXCODE
-        textFontSize: Int,
-        borderColor: String?, //HEXCODE
-        borderWidth: Int,
-        cornerRadius: Int
-    )
-```
-
-#### UI Customisation
-
-```
-var uiCustomisation = PayU3DS2UICustomisation(
-        buttonCustomisation: PayU3DS2ButtonCustomisation?,
-        labelCustomisation: PayU3DS2LabelCustomisation?,
-        textBoxCustomisation: PayU3DS2TextBoxCustomisation?,
-        toolbarCustomisation: PayU3DS2ToolBarCustomisation?,
-        fontFamilyCustomisation: PayU3DS2FontFamilyCustomisation?
-    )
-```
-
-#### Font Customisation:
-
-```
- var fontFamilyCustomisation = PayU3DS2FontFamilyCustomisation(
-            headerFontFamily: String?, // Set Font Family Name, example: "Roboto-Medium"
-            subTextFontFamily: String?// Set Font Family Name, example: "Roboto-Regular"
+  ```
+      PayU3DS2.initialise(
+          key: String,
+          requestId: String,
+          config: PayU3DS2Config,
+          completion: @escaping PayU3DS2Completion
       )
-```
+  ```
 
-### Step 2.3: 3DS Warnings
+  **This method accepts four parameters**:
 
-The result for device security checks like rootedDevice, isDebuggable, isEmulator and is OS Supported will be provided in result of init as given in above code example for the completion callback. It is left with the requestor app to handle the warnings as per the requirement.
+  * **Key**: The unique merchant key.
+  * **RequestId**: Unique request ID.
+  * **PayU3DS2Config**: It contains below properties:
+
+  ```
+  PayU3DS2Config: It contains below properties
+  var config = PayU3DS2Config()
+
+  config.uiCustomisation = "set UI customisation object, refer below section of UI Customisation"
+  config.isProduction = "set environment where you want to test, true for production and false for sandbox"
+  config.fallback3DS1 = true //default value false, send true to complete payment on bank page in case of any failure
+  config.autoSubmit = false //Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
+  config.initialiseTimeoutTimer = 5 //provide time in seconds, for waiting for merchant response
+  config.supportedUIMode = ArrayList<String> //to show own UI, currently accepted value = 01. Pass this if you want to create own UI and follow step 4.1 and 4.2
+
+  // Can also set progress indicator
+  config.setDefaultProgressLoader(showDefaultLoader: true, defaultProgressLoaderColor: "HexColor") //to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode
+
+  //To customise UI with your content please pass these configurations
+  config.enableCustomizedOtpUIFlow = true
+  config.enableTxnTimeoutTimer = true //pass as true to show timer for page timeout
+  config.merchantName = "merchant name" 
+  config.amount = "txn amount"
+
+  config.acsContentConfig = PayU3DS2ACSContentConfig()
+  config.acsContentConfig?.submitButtonTitle = "Submit Button Title"
+  config.acsContentConfig?.resendButtonTitle = "Resend Button Title"
+  config.acsContentConfig?.otpContent =  "OTP has been sent to your registered mobile number"  //you can set this value to as per your need
+
+  config.acsContentConfig?.resendInfoContent =  "OTP has been resent to your registered mobile number" //you can set this value to as per your need
+
+  config.acsContentConfig?.maxResendInfoContent =  "Limit has been exceeded to send OTP. Please retry with latest OTP or initiate a new payment" //you can set this value to as per your need
+
+
+  ```
+
+  * **Completion**:  PayU3DS2Completion -  This is a Closure/Callback where you will receive response after Initialisation done. It contains PayU3DS2Response which will have below properties.
+
+  ```
+  PayU3DS2Response:
+  status: Int = -1 //If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
+  errorMessage: String? // error message with details what went wrong.
+  result: Any? Success response with details. Please refer below class for response structure:
+
+  class PayU3DS2DeviceWarning(
+      var id: String
+      var message: String
+      var severity: PayU3DS2DeviceSeverity 
+  )
+  PayU3DS2DeviceSeverity expected values:
+   low, 
+   medium, 
+   high
+  ```
+</Accordion>
+
+<Accordion title="Step 2.2: UI Customisation" icon="fa-code">
+  **PayU3DS2UICustomisation** - Below are the details of views that can be customised.
+
+  #### Button customisation
+
+  ```
+  var buttonCustomisation = PayU3DS2ButtonCustomisation(
+          textFontColor: String?, //HEX CODE
+          textFontSize: Int,
+          backgroundColor: String?,
+          cornerRadius: Int,
+          resendButtonTextFontColor: String? //HEX CODE
+      )
+  Ex:
+  PayU3DS2ButtonCustomisation(
+          textFontColor: "#ffffff",
+          textFontSize: 17,
+          backgroundColor: "#25272C",
+          cornerRadius: 10,
+          resendButtonTextFontColor: "#25272C"
+      )
+  ```
+
+  #### Label customisation
+
+  ```
+  var labelCustomisation = PayU3DS2LabelCustomisation(
+          textFontColor: String?, //HEX CODE
+          textFontSize: Int,
+          headingTextColor: String?, //HEX CODE
+          headingTextFontSize: Int
+      )
+  ```
+
+  #### Toolbar customisation
+
+  ```
+  var toolbarCustomisation = PayU3DS2ToolBarCustomisation(
+          textFontColor: String?, //HEXCODE
+          textFontSize: Int,
+          backgroundColor: String?, //HEXCODE
+          buttonText: String?, 
+          headerText: String?
+      )
+  ```
+
+  #### TextBox Customisation:
+
+  ```
+  var textBoxCustomisation = PayU3DS2TextBoxCustomisation(
+          textFontColor: String?, //HEXCODE
+          textFontSize: Int,
+          borderColor: String?, //HEXCODE
+          borderWidth: Int,
+          cornerRadius: Int
+      )
+  ```
+
+  #### UI Customisation
+
+  ```
+  var uiCustomisation = PayU3DS2UICustomisation(
+          buttonCustomisation: PayU3DS2ButtonCustomisation?,
+          labelCustomisation: PayU3DS2LabelCustomisation?,
+          textBoxCustomisation: PayU3DS2TextBoxCustomisation?,
+          toolbarCustomisation: PayU3DS2ToolBarCustomisation?,
+          fontFamilyCustomisation: PayU3DS2FontFamilyCustomisation?
+      )
+  ```
+
+  #### Font Customisation:
+
+  ```
+   var fontFamilyCustomisation = PayU3DS2FontFamilyCustomisation(
+              headerFontFamily: String?, // Set Font Family Name, example: "Roboto-Medium"
+              subTextFontFamily: String?// Set Font Family Name, example: "Roboto-Regular"
+        )
+  ```
+</Accordion>
+
+<Accordion title="Step 2.3: 3DS Warnings" icon="fa-code">
+  The result for device security checks like rootedDevice, isDebuggable, isEmulator and is OS Supported will be provided in result of init as given in above code example for the completion callback. It is left with the requestor app to handle the warnings as per the requirement.
+</Accordion>
 
 ***
 
@@ -287,85 +274,85 @@ result: It will contain success response.
 Cast response to String. If value is "Y" that means challenge is successfully executed else it is failed.
 ```
 
-### Step 4.1: Challenge UI Handling (Optional)
+<Accordion title="Step 4.1: Challenge UI Handling (Optional)" icon="fa-code">
+  If you have passed supportedUIMode = \["01"] parameter in config, you will receive below response in callback:
 
-If you have passed supportedUIMode = ["01"] parameter in config, you will receive below response in callback:
+  ```
+  fun onSuccess(response: Any): It will contain success response.
+  fun onError(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
 
-```
-fun onSuccess(response: Any): It will contain success response.
-fun onError(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
+  Cast response to HeadlessData.
 
-Cast response to HeadlessData.
+  class PayU3DS2HeadlessData {
+      var acsRenderingType: String?
+      var acsTransactionID: String?
+      var challengeAddInfo: String?
+      var challengeInfoHeader: String?
+      var challengeInfoLabel: String?
+      var challengeInfoText: String?
+      var challengeInfoTextIndicator: String?
+      var challengeSelectInfo: [[String: String]]?
+      var expandInfoLabel: String?
+      var expandInfoText: String?
+      var issuerImage: PayU3DS2ImageDetails?
+      var networkImage: PayU3DS2ImageDetails?
+      var resendInformationLabel: String? //If it null then do not show resend button
+      var submitAuthenticationLabel: String?
+      var whyInfoLabel: String?
+      var whyInfoText: String?
+      var whitelistingInfoText: String?
+      var threeDSServerTransID: String?
+  }
 
-class PayU3DS2HeadlessData {
-    var acsRenderingType: String?
-    var acsTransactionID: String?
-    var challengeAddInfo: String?
-    var challengeInfoHeader: String?
-    var challengeInfoLabel: String?
-    var challengeInfoText: String?
-    var challengeInfoTextIndicator: String?
-    var challengeSelectInfo: [[String: String]]?
-    var expandInfoLabel: String?
-    var expandInfoText: String?
-    var issuerImage: PayU3DS2ImageDetails?
-    var networkImage: PayU3DS2ImageDetails?
-    var resendInformationLabel: String? //If it null then do not show resend button
-    var submitAuthenticationLabel: String?
-    var whyInfoLabel: String?
-    var whyInfoText: String?
-    var whitelistingInfoText: String?
-    var threeDSServerTransID: String?
-}
+  class ImageDetails(
+      var mediumQualityURL: String?,
+      var highQualityURL: String?,
+      var extraHighQualityURL: String?
+  )
+  ```
+</Accordion>
 
-class ImageDetails(
-    var mediumQualityURL: String?,
-    var highQualityURL: String?,
-    var extraHighQualityURL: String?
-)
-```
+<Accordion title="Step 4.2: Challenge Action Handing" icon="fa-code">
+  There are three actions that you have show to user on OTP page:
 
-### Step 4.2: Challenge Action Handing
+  1. RESEND
+  2. SUBMIT
+  3. CANCEL
 
-There are three actions that you have show to user on OTP page:
+  To execute these methods call below method:
 
-1. RESEND
-2. SUBMIT
-3. CANCEL
+  ```
+  func action(
+          acsActionType: PayU3DS2ACSActionType,
+          challengeInputParams: PayU3DS2ACSActionParams,
+          completion: @escaping PayU3DS2Completion
+      )
 
-To execute these methods call below method:
+  This method accepts 3 parameters, details are below:
+  1. PayU3DS2ACSActionType: action user took, accepted values are SUBMIT, RESEND, CANCEL
+  2. PayU3DS2ACSActionParams: It contains parameters to execute action passed. This contains 3 parameters.
+   2.1 acsTransactionID //string. Value recieved in step 4.1
+   2.2 acsRenderingType //string. Value recieved in step 4.1
+   2.3 challengeData //string. OTP value, to be passed in case of SUBMIT action.
+  3. PayU3DS2Completion: Closure consists of 1 parameter:
+  PayU3DS2Response: Three items are in the response:
+  status: If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
+  errorMessage: Error message with details what went wrong.
+  result: It will contain success response.
 
-```
-func action(
-        acsActionType: PayU3DS2ACSActionType,
-        challengeInputParams: PayU3DS2ACSActionParams,
-        completion: @escaping PayU3DS2Completion
-    )
+  Cast result to PayU3DS2ACSResponse.
+  class PayU3DS2ACSResponse(
+          var message: String,
+          var acsActionType: PayU3DS2ACSActionType,
+          var headlessData: PayU3DS2HeadlessData
+  )
+  //message: status message.
+  //acsActionType: Action passed during invocation of this method
+  //headlessData: This bean contains data related to network and issuer image url etc. Refer section 4.1.
+  ```
 
-This method accepts 3 parameters, details are below:
-1. PayU3DS2ACSActionType: action user took, accepted values are SUBMIT, RESEND, CANCEL
-2. PayU3DS2ACSActionParams: It contains parameters to execute action passed. This contains 3 parameters.
- 2.1 acsTransactionID //string. Value recieved in step 4.1
- 2.2 acsRenderingType //string. Value recieved in step 4.1
- 2.3 challengeData //string. OTP value, to be passed in case of SUBMIT action.
-3. PayU3DS2Completion: Closure consists of 1 parameter:
-PayU3DS2Response: Three items are in the response:
-status: If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
-errorMessage: Error message with details what went wrong.
-result: It will contain success response.
-
-Cast result to PayU3DS2ACSResponse.
-class PayU3DS2ACSResponse(
-        var message: String,
-        var acsActionType: PayU3DS2ACSActionType,
-        var headlessData: PayU3DS2HeadlessData
-)
-//message: status message.
-//acsActionType: Action passed during invocation of this method
-//headlessData: This bean contains data related to network and issuer image url etc. Refer section 4.1.
-```
-
-> 🚧 Call RESEND action after 10 seconds.
+  > 🚧 Call RESEND action after 10 seconds.
+</Accordion>
 
 ## Step 5: Bin Info API Details
 
@@ -567,7 +554,7 @@ paymentParam.cardinfo = cardDetails
 
 #### Third-Party Card Tokenization
 
-If the card has been tokenized outside of PayU’s platform (via a third-party service), you need to provide additional tokenization information.
+If the card has been tokenized outside of PayU's platform (via a third-party service), you need to provide additional tokenization information.
 
 ```swift
 let cardDetails = PayU3DS2CardInfo()
@@ -601,7 +588,7 @@ paymentParam.pgCode = "EMI"
 
 ## Start Redirection Flow
 
-To authenticate the transaction using PayU’s 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
+To authenticate the transaction using PayU's 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
 
 ```
 PayU3DS2.startRedirectionFlow(vc: <#T##UIViewController#>, params: <#T##[String : Any]#>, delegate: <#T##any PayU3DS2Delegate#>)
@@ -755,23 +742,23 @@ You need to create hash on your server using hashString + salt + postSalt and SH
 
 ## Step 7: Error Codes
 
-|     |                                                                               |
-| :-- | :---------------------------------------------------------------------------- |
-| 0   | Success                                                                       |
-| 1   | Fail/ Invalid params                                                          |
-| 2   | Error while creating transaction to generate device details, please try again |
-| 3   | Time out                                                                      |
-| 4   | Challenge protocol error                                                      |
-| 5   | User cancelled the transaction                                                |
-| 6   | Runtime Error                                                                 |
-| 12  | Action params null for headless flow                                          |
-| 14  | Resend OTP limit exceeded                                                     |
-| 15  | The OTP code you entered is incorrect                                         |
-| 17  | Transaction failed                                                            |
-| 105 | Hash cannot be nil                                                            |
-| 106 | Card not supported on 3DS 2.0                                                 |
-| 107 | Card scheme not supported                                                     |
-| 108 | Hash incorrect                                                                |
-| 109 | Invalid ACS UI Type                                                           |
-| 500 | Something went wrong                                                          |
-| 503 | Error while creating transaction to generate device details, please try again |
+| Code | Description                                                                   |
+| :--- | :---------------------------------------------------------------------------- |
+| 0    | Success                                                                       |
+| 1    | Fail/ Invalid params                                                          |
+| 2    | Error while creating transaction to generate device details, please try again |
+| 3    | Time out                                                                      |
+| 4    | Challenge protocol error                                                      |
+| 5    | User cancelled the transaction                                                |
+| 6    | Runtime Error                                                                 |
+| 12   | Action params null for headless flow                                          |
+| 14   | Resend OTP limit exceeded                                                     |
+| 15   | The OTP code you entered is incorrect                                         |
+| 17   | Transaction failed                                                            |
+| 105  | Hash cannot be nil                                                            |
+| 106  | Card not supported on 3DS 2.0                                                 |
+| 107  | Card scheme not supported                                                     |
+| 108  | Hash incorrect                                                                |
+| 109  | Invalid ACS UI Type                                                           |
+| 500  | Something went wrong                                                          |
+| 503  | Error while creating transaction to generate device details, please try again |
