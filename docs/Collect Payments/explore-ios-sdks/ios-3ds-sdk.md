@@ -61,958 +61,807 @@ During the integration, refer the [Generate Static Hash](doc:generate-static-has
 The iOS 3DS SDK integration involves the following steps:
 
 <Accordion title="Step 1: Install the SDK in your app project" icon="fa-code">
+  The 3DS2 SDK is offered via CocoaPods. To add the SDK to your app project, include the SDK framework in your pod file using the pod install command in terminal.
 
-The 3DS2 SDK is offered via CocoaPods. To add the SDK to your app project, include the SDK framework in your pod file using the pod install command in terminal.
+  <Accordion title="CocoaPods Integration" icon="fa-code">
+    ```
+    //make sure to add below-mentioned line to use dynamic frameworks
 
-<Accordion title="CocoaPods Integration" icon="fa-code">
-  ```
-  //make sure to add below-mentioned line to use dynamic frameworks
+    use_frameworks!
 
-  use_frameworks!
+    // Add this to include our SDK
+    pod 'PayUIndia-3DS2-SDK'
+    ```
+  </Accordion>
 
-  // Add this to include our SDK
-  pod 'PayUIndia-3DS2-SDK'
-  ```
+  <Accordion title="Swift Package Manager Integration" icon="fa-code">
+    You can integrate 3DS2 SDK with your app or SDK using SPM with following methods:
+
+    * **Using Xcode**: Navigate to File > Add Package menu and add the following package:
+    * **Using Package.Swift**: Add the following line in the Package.swift dependencies:
+
+    ```
+    .package(name: "PayUIndia-3DS2-SDK", url: "https://github.com/payu-intrepos/PayU3DS2SDK-iOS", from: "1.3.1")
+    ```
+
+    * **Import**: Add the following imports in the class where you need to initiate a payment using 3DS2.
+
+    ```
+    import PayU3DS2Kit
+    ```
+  </Accordion>
+
+  ***
 </Accordion>
 
-<Accordion title="Swift Package Manager Integration" icon="fa-code">
-  You can integrate 3DS2 SDK with your app or SDK using SPM with following methods:
-
-  * **Using Xcode**: Navigate to File > Add Package menu and add the following package:
-  * **Using Package.Swift**: Add the following line in the Package.swift dependencies:
-
-  ```
-  .package(name: "PayUIndia-3DS2-SDK", url: "https://github.com/payu-intrepos/PayU3DS2SDK-iOS", from: "1.3.1")
-  ```
-
-  * **Import**: Add the following imports in the class where you need to initiate a payment using 3DS2.
-
-  ```
-  import PayU3DS2Kit
-  ```
-</Accordion>
-
-***
-
-</Accordion>
 <Accordion title="Step 2: Initialise the SDK" icon="fa-code">
+  <Accordion title="Step 2.1: Initialise" icon="fa-code">
+    Initialise SDK before invoking any de-coupled functionality
 
-<Accordion title="Step 2.1: Initialise" icon="fa-code">
-  Initialise SDK before invoking any de-coupled functionality
+    > 📘 Remember
+    >
+    > Initialisation of SDK is mandatory if merchant is utilising PayU 3DS 2.0 for de-couple functionality. Call initialise before every transaction.
 
-  > 📘 Remember
-  >
-  > Initialisation of SDK is mandatory if merchant is utilising PayU 3DS 2.0 for de-couple functionality. Call initialise before every transaction.
-
-  ```
-      PayU3DS2.initialise(
-          key: String,
-          requestId: String,
-          config: PayU3DS2Config,
-          completion: @escaping PayU3DS2Completion
-      )
-  ```
-
-  **This method accepts four parameters**:
-
-  * **Key**: The unique merchant key.
-  * **RequestId**: Unique request ID.
-  * **PayU3DS2Config**: It contains below properties:
-
-  ```
-  PayU3DS2Config: It contains below properties
-  var config = PayU3DS2Config()
-
-  config.uiCustomisation = "set UI customisation object, refer below section of UI Customisation"
-  config.isProduction = "set environment where you want to test, true for production and false for sandbox"
-  config.fallback3DS1 = true //default value false, send true to complete payment on bank page in case of any failure
-  config.autoSubmit = false //Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
-  config.initialiseTimeoutTimer = 5 //provide time in seconds, for waiting for merchant response
-  config.supportedUIMode = ArrayList<String> //to show own UI, currently accepted value = 01. Pass this if you want to create own UI and follow step 4.1 and 4.2
-
-  // Can also set progress indicator
-  config.setDefaultProgressLoader(showDefaultLoader: true, defaultProgressLoaderColor: "HexColor") //to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode
-
-  //To customise UI with your content please pass these configurations
-  config.enableCustomizedOtpUIFlow = true
-  config.enableTxnTimeoutTimer = true //pass as true to show timer for page timeout
-  config.merchantName = "merchant name" 
-  config.amount = "txn amount"
-
-  config.acsContentConfig = PayU3DS2ACSContentConfig()
-  config.acsContentConfig?.submitButtonTitle = "Submit Button Title"
-  config.acsContentConfig?.resendButtonTitle = "Resend Button Title"
-  config.acsContentConfig?.otpContent =  "OTP has been sent to your registered mobile number"  //you can set this value to as per your need
-
-  config.acsContentConfig?.resendInfoContent =  "OTP has been resent to your registered mobile number" //you can set this value to as per your need
-
-  config.acsContentConfig?.maxResendInfoContent =  "Limit has been exceeded to send OTP. Please retry with latest OTP or initiate a new payment" //you can set this value to as per your need
-
-
-  ```
-
-  * **Completion**:  PayU3DS2Completion -  This is a Closure/Callback where you will receive response after Initialisation done. It contains PayU3DS2Response which will have below properties.
-
-  ```
-  PayU3DS2Response:
-  status: Int = -1 //If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
-  errorMessage: String? // error message with details what went wrong.
-  result: Any? Success response with details. Please refer below class for response structure:
-
-  class PayU3DS2DeviceWarning(
-      var id: String
-      var message: String
-      var severity: PayU3DS2DeviceSeverity 
-  )
-  PayU3DS2DeviceSeverity expected values:
-   low, 
-   medium, 
-   high
-  ```
-</Accordion>
-
-<Accordion title="Step 2.2: UI Customisation" icon="fa-code">
-  **PayU3DS2UICustomisation** - Below are the details of views that can be customised.
-
-  #### Button customisation
-
-  ```
-  var buttonCustomisation = PayU3DS2ButtonCustomisation(
-          textFontColor: String?, //HEX CODE
-          textFontSize: Int,
-          backgroundColor: String?,
-          cornerRadius: Int,
-          resendButtonTextFontColor: String? //HEX CODE
-      )
-  Ex:
-  PayU3DS2ButtonCustomisation(
-          textFontColor: "#ffffff",
-          textFontSize: 17,
-          backgroundColor: "#25272C",
-          cornerRadius: 10,
-          resendButtonTextFontColor: "#25272C"
-      )
-  ```
-
-  #### Label customisation
-
-  ```
-  var labelCustomisation = PayU3DS2LabelCustomisation(
-          textFontColor: String?, //HEX CODE
-          textFontSize: Int,
-          headingTextColor: String?, //HEX CODE
-          headingTextFontSize: Int
-      )
-  ```
-
-  #### Toolbar customisation
-
-  ```
-  var toolbarCustomisation = PayU3DS2ToolBarCustomisation(
-          textFontColor: String?, //HEXCODE
-          textFontSize: Int,
-          backgroundColor: String?, //HEXCODE
-          buttonText: String?, 
-          headerText: String?
-      )
-  ```
-
-  #### TextBox Customisation:
-
-  ```
-  var textBoxCustomisation = PayU3DS2TextBoxCustomisation(
-          textFontColor: String?, //HEXCODE
-          textFontSize: Int,
-          borderColor: String?, //HEXCODE
-          borderWidth: Int,
-          cornerRadius: Int
-      )
-  ```
-
-  #### UI Customisation
-
-  ```
-  var uiCustomisation = PayU3DS2UICustomisation(
-          buttonCustomisation: PayU3DS2ButtonCustomisation?,
-          labelCustomisation: PayU3DS2LabelCustomisation?,
-          textBoxCustomisation: PayU3DS2TextBoxCustomisation?,
-          toolbarCustomisation: PayU3DS2ToolBarCustomisation?,
-          fontFamilyCustomisation: PayU3DS2FontFamilyCustomisation?
-      )
-  ```
-
-  #### Font Customisation:
-
-  ```
-   var fontFamilyCustomisation = PayU3DS2FontFamilyCustomisation(
-              headerFontFamily: String?, // Set Font Family Name, example: "Roboto-Medium"
-              subTextFontFamily: String?// Set Font Family Name, example: "Roboto-Regular"
+    ```
+        PayU3DS2.initialise(
+            key: String,
+            requestId: String,
+            config: PayU3DS2Config,
+            completion: @escaping PayU3DS2Completion
         )
-  ```
+    ```
+
+    **This method accepts four parameters**:
+
+    * **Key**: The unique merchant key.
+    * **RequestId**: Unique request ID.
+    * **PayU3DS2Config**: It contains below properties:
+
+    ```
+    PayU3DS2Config: It contains below properties
+    var config = PayU3DS2Config()
+
+    config.uiCustomisation = "set UI customisation object, refer below section of UI Customisation"
+    config.isProduction = "set environment where you want to test, true for production and false for sandbox"
+    config.fallback3DS1 = true //default value false, send true to complete payment on bank page in case of any failure
+    config.autoSubmit = false //Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
+    config.initialiseTimeoutTimer = 5 //provide time in seconds, for waiting for merchant response
+    config.supportedUIMode = ArrayList<String> //to show own UI, currently accepted value = 01. Pass this if you want to create own UI and follow step 4.1 and 4.2
+
+    // Can also set progress indicator
+    config.setDefaultProgressLoader(showDefaultLoader: true, defaultProgressLoaderColor: "HexColor") //to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode
+
+    //To customise UI with your content please pass these configurations
+    config.enableCustomizedOtpUIFlow = true
+    config.enableTxnTimeoutTimer = true //pass as true to show timer for page timeout
+    config.merchantName = "merchant name" 
+    config.amount = "txn amount"
+
+    config.acsContentConfig = PayU3DS2ACSContentConfig()
+    config.acsContentConfig?.submitButtonTitle = "Submit Button Title"
+    config.acsContentConfig?.resendButtonTitle = "Resend Button Title"
+    config.acsContentConfig?.otpContent =  "OTP has been sent to your registered mobile number"  //you can set this value to as per your need
+
+    config.acsContentConfig?.resendInfoContent =  "OTP has been resent to your registered mobile number" //you can set this value to as per your need
+
+    config.acsContentConfig?.maxResendInfoContent =  "Limit has been exceeded to send OTP. Please retry with latest OTP or initiate a new payment" //you can set this value to as per your need
+
+
+    ```
+
+    * **Completion**:  PayU3DS2Completion -  This is a Closure/Callback where you will receive response after Initialisation done. It contains PayU3DS2Response which will have below properties.
+
+    ```
+    PayU3DS2Response:
+    status: Int = -1 //If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
+    errorMessage: String? // error message with details what went wrong.
+    result: Any? Success response with details. Please refer below class for response structure:
+
+    class PayU3DS2DeviceWarning(
+        var id: String
+        var message: String
+        var severity: PayU3DS2DeviceSeverity 
+    )
+    PayU3DS2DeviceSeverity expected values:
+     low, 
+     medium, 
+     high
+    ```
+  </Accordion>
+
+  <Accordion title="Step 2.2: UI Customisation" icon="fa-code">
+    **PayU3DS2UICustomisation** - Below are the details of views that can be customised.
+
+    #### Button customisation
+
+    ```
+    var buttonCustomisation = PayU3DS2ButtonCustomisation(
+            textFontColor: String?, //HEX CODE
+            textFontSize: Int,
+            backgroundColor: String?,
+            cornerRadius: Int,
+            resendButtonTextFontColor: String? //HEX CODE
+        )
+    Ex:
+    PayU3DS2ButtonCustomisation(
+            textFontColor: "#ffffff",
+            textFontSize: 17,
+            backgroundColor: "#25272C",
+            cornerRadius: 10,
+            resendButtonTextFontColor: "#25272C"
+        )
+    ```
+
+    #### Label customisation
+
+    ```
+    var labelCustomisation = PayU3DS2LabelCustomisation(
+            textFontColor: String?, //HEX CODE
+            textFontSize: Int,
+            headingTextColor: String?, //HEX CODE
+            headingTextFontSize: Int
+        )
+    ```
+
+    #### Toolbar customisation
+
+    ```
+    var toolbarCustomisation = PayU3DS2ToolBarCustomisation(
+            textFontColor: String?, //HEXCODE
+            textFontSize: Int,
+            backgroundColor: String?, //HEXCODE
+            buttonText: String?, 
+            headerText: String?
+        )
+    ```
+
+    #### TextBox Customisation:
+
+    ```
+    var textBoxCustomisation = PayU3DS2TextBoxCustomisation(
+            textFontColor: String?, //HEXCODE
+            textFontSize: Int,
+            borderColor: String?, //HEXCODE
+            borderWidth: Int,
+            cornerRadius: Int
+        )
+    ```
+
+    #### UI Customisation
+
+    ```
+    var uiCustomisation = PayU3DS2UICustomisation(
+            buttonCustomisation: PayU3DS2ButtonCustomisation?,
+            labelCustomisation: PayU3DS2LabelCustomisation?,
+            textBoxCustomisation: PayU3DS2TextBoxCustomisation?,
+            toolbarCustomisation: PayU3DS2ToolBarCustomisation?,
+            fontFamilyCustomisation: PayU3DS2FontFamilyCustomisation?
+        )
+    ```
+
+    #### Font Customisation:
+
+    ```
+     var fontFamilyCustomisation = PayU3DS2FontFamilyCustomisation(
+                headerFontFamily: String?, // Set Font Family Name, example: "Roboto-Medium"
+                subTextFontFamily: String?// Set Font Family Name, example: "Roboto-Regular"
+          )
+    ```
+  </Accordion>
+
+  <Accordion title="Step 2.3: 3DS Warnings" icon="fa-code">
+    The result for device security checks like rootedDevice, isDebuggable, isEmulator and is OS Supported will be provided in result of init as given in above code example for the completion callback. It is left with the requestor app to handle the warnings as per the requirement.
+  </Accordion>
+
+  ***
 </Accordion>
 
-<Accordion title="Step 2.3: 3DS Warnings" icon="fa-code">
-  The result for device security checks like rootedDevice, isDebuggable, isEmulator and is OS Supported will be provided in result of init as given in above code example for the completion callback. It is left with the requestor app to handle the warnings as per the requirement.
-</Accordion>
-
-***
-
-</Accordion>
 <Accordion title="Step 3: Device Details(PArq)" icon="fa-code">
-
-To obtain device information to initiate an authentication request, use the method below.
-
-```
-PayU3DS2.extractDeviceDetails(cardData: PayU3DS2CardData) -> PayU3DS2Response
-
-val cardData = PayU3DS2CardData(PayU3DS2CardScheme.mastercard, "2.2.0")
-
-PayU3DS2CardScheme expected values:
- visa,
- mastercard
-
-The second parameter is threeDSVersion. Pass the messageVersion value received in binInfo API. 
-```
-
-**PayU3DS2Response**: Three items are in the response
-
-```
-status: If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
-errorMessage: Error message with details what went wrong.
-result: Success response with details. Please refer below class for response structure:
-
-class PayU3DS2PArqResponse(
-    val sdkAppID: String,
-    val sdkEncData: String,
-    val crv: String,
-    val kty: String,
-    val x: String,
-    val y: String,
-    val sdkTransID: String,
-    val sdkReferenceNumber: String
-)
-```
-
-Now these device details can be used to initiate an authentication request with us or any other aggregator.
-
-Once the authentication request has been initiated and a response has been received, then same is used to initiate a challenge which basically means opening a UI screen to do user authentication.
-
-</Accordion>
-<Accordion title="Step 4:  3DS 2.0 Challenge Initiation" icon="fa-code">
-
-Call the function below to start the challenge.
-
-```
-PayU3DS2.initiateChallenge(challengeParameter: PayU3DS2ChallengeParameter,
-        completion: @escaping PayU3DS2Completion)
-var challengeParameter = PayU3DS2ChallengeParameter(acsSignedContent: String,
-                                                    acsRefNumber: String, 
-                                                    acsTransactionID: String,
-                                                    threeDSServerTransactionID: String)
-
-```
-
-Before invoking this method, generate the authentication request through any aggregator and pass the above defined challenge parameters to initiate challenge.
-
-* PayU3DS2Completion: Closure consists of 1 parameter:
-
-```
-PayU3DS2Response: Three items are in the response:
-status: If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
-errorMessage: Error message with details what went wrong.
-result: It will contain success response.
-
-Cast response to String. If value is "Y" that means challenge is successfully executed else it is failed.
-```
-
-<Accordion title="Step 4.1: Challenge UI Handling (Optional)" icon="fa-code">
-  If you have passed supportedUIMode = \["01"] parameter in config, you will receive below response in callback:
+  To obtain device information to initiate an authentication request, use the method below.
 
   ```
-  fun onSuccess(response: Any): It will contain success response.
-  fun onError(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
+  PayU3DS2.extractDeviceDetails(cardData: PayU3DS2CardData) -> PayU3DS2Response
 
-  Cast response to HeadlessData.
+  val cardData = PayU3DS2CardData(PayU3DS2CardScheme.mastercard, "2.2.0")
 
-  class PayU3DS2HeadlessData {
-      var acsRenderingType: String?
-      var acsTransactionID: String?
-      var challengeAddInfo: String?
-      var challengeInfoHeader: String?
-      var challengeInfoLabel: String?
-      var challengeInfoText: String?
-      var challengeInfoTextIndicator: String?
-      var challengeSelectInfo: [[String: String]]?
-      var expandInfoLabel: String?
-      var expandInfoText: String?
-      var issuerImage: PayU3DS2ImageDetails?
-      var networkImage: PayU3DS2ImageDetails?
-      var resendInformationLabel: String? //If it null then do not show resend button
-      var submitAuthenticationLabel: String?
-      var whyInfoLabel: String?
-      var whyInfoText: String?
-      var whitelistingInfoText: String?
-      var threeDSServerTransID: String?
-  }
+  PayU3DS2CardScheme expected values:
+   visa,
+   mastercard
 
-  class ImageDetails(
-      var mediumQualityURL: String?,
-      var highQualityURL: String?,
-      var extraHighQualityURL: String?
+  The second parameter is threeDSVersion. Pass the messageVersion value received in binInfo API. 
+  ```
+
+  **PayU3DS2Response**: Three items are in the response
+
+  ```
+  status: If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
+  errorMessage: Error message with details what went wrong.
+  result: Success response with details. Please refer below class for response structure:
+
+  class PayU3DS2PArqResponse(
+      val sdkAppID: String,
+      val sdkEncData: String,
+      val crv: String,
+      val kty: String,
+      val x: String,
+      val y: String,
+      val sdkTransID: String,
+      val sdkReferenceNumber: String
   )
   ```
+
+  Now these device details can be used to initiate an authentication request with us or any other aggregator.
+
+  Once the authentication request has been initiated and a response has been received, then same is used to initiate a challenge which basically means opening a UI screen to do user authentication.
 </Accordion>
 
-<Accordion title="Step 4.2: Challenge Action Handing" icon="fa-code">
-  There are three actions that you have show to user on OTP page:
-
-  1. RESEND
-  2. SUBMIT
-  3. CANCEL
-
-  To execute these methods call below method:
+<Accordion title="Step 4:  3DS 2.0 Challenge Initiation" icon="fa-code">
+  Call the function below to start the challenge.
 
   ```
-  func action(
-          acsActionType: PayU3DS2ACSActionType,
-          challengeInputParams: PayU3DS2ACSActionParams,
-          completion: @escaping PayU3DS2Completion
-      )
+  PayU3DS2.initiateChallenge(challengeParameter: PayU3DS2ChallengeParameter,
+          completion: @escaping PayU3DS2Completion)
+  var challengeParameter = PayU3DS2ChallengeParameter(acsSignedContent: String,
+                                                      acsRefNumber: String, 
+                                                      acsTransactionID: String,
+                                                      threeDSServerTransactionID: String)
 
-  This method accepts 3 parameters, details are below:
-  1. PayU3DS2ACSActionType: action user took, accepted values are SUBMIT, RESEND, CANCEL
-  2. PayU3DS2ACSActionParams: It contains parameters to execute action passed. This contains 3 parameters.
-   2.1 acsTransactionID //string. Value recieved in step 4.1
-   2.2 acsRenderingType //string. Value recieved in step 4.1
-   2.3 challengeData //string. OTP value, to be passed in case of SUBMIT action.
-  3. PayU3DS2Completion: Closure consists of 1 parameter:
+  ```
+
+  Before invoking this method, generate the authentication request through any aggregator and pass the above defined challenge parameters to initiate challenge.
+
+  * PayU3DS2Completion: Closure consists of 1 parameter:
+
+  ```
   PayU3DS2Response: Three items are in the response:
   status: If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
   errorMessage: Error message with details what went wrong.
   result: It will contain success response.
 
-  Cast result to PayU3DS2ACSResponse.
-  class PayU3DS2ACSResponse(
-          var message: String,
-          var acsActionType: PayU3DS2ACSActionType,
-          var headlessData: PayU3DS2HeadlessData
-  )
-  //message: status message.
-  //acsActionType: Action passed during invocation of this method
-  //headlessData: This bean contains data related to network and issuer image url etc. Refer section 4.1.
+  Cast response to String. If value is "Y" that means challenge is successfully executed else it is failed.
   ```
 
-  > 🚧 Call RESEND action after 10 seconds.
-</Accordion>
+  <Accordion title="Step 4.1: Challenge UI Handling (Optional)" icon="fa-code">
+    If you have passed supportedUIMode = \["01"] parameter in config, you will receive below response in callback:
 
-</Accordion>
-<Accordion title="Step 5: Bin Info API Details" icon="fa-code">
+    ```
+    fun onSuccess(response: Any): It will contain success response.
+    fun onError(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
 
-Merchant must use the following procedure. This api will give info about whether the bin is supported on 3DS 1 or 3DS 2 and whether information can be routed through 3DS SDK. If no, then merchant can initiate a non native transaction. Merchant has to pass below parameters.
+    Cast response to HeadlessData.
 
-```
-PayU3DS2.cardBinInfo(
-        cardBinInfoRequest: PayU3DS2CardBinInfoRequest,
-        delegate: PayU3DS2HashDelegate,
-        completion: @escaping PayU3DS2Completion
-    ) 
-Please refer below code to create cardBinInfoRequest object:
-val cardBinInfoRequest = PayU3DS2CardBinInfoRequest(cardDetails: "enter card number or network Token", isSI: true) //set second parameter to true if txn is for standing instructions, card details cannot be null
-```
+    class PayU3DS2HeadlessData {
+        var acsRenderingType: String?
+        var acsTransactionID: String?
+        var challengeAddInfo: String?
+        var challengeInfoHeader: String?
+        var challengeInfoLabel: String?
+        var challengeInfoText: String?
+        var challengeInfoTextIndicator: String?
+        var challengeSelectInfo: [[String: String]]?
+        var expandInfoLabel: String?
+        var expandInfoText: String?
+        var issuerImage: PayU3DS2ImageDetails?
+        var networkImage: PayU3DS2ImageDetails?
+        var resendInformationLabel: String? //If it null then do not show resend button
+        var submitAuthenticationLabel: String?
+        var whyInfoLabel: String?
+        var whyInfoText: String?
+        var whitelistingInfoText: String?
+        var threeDSServerTransID: String?
+    }
 
-* **cardBinInfoRequest**: It contains two parameters cardDetails, isSI.
-* **PayU3DS2HashDelegate**: This API need sha512 hash and this delegate will call to pass hash using generateHash functions.
-
-In this, if messageVersion is anything that starts with 2., then it is supported on 3DS 2 else if it starts with 1., then it is supported on 3DS1.
-
-```
-func generateHash(for param: [String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion) 
-//Merchant will get map with type of hash and hash string as value of map.
-      They have to sign that string using salt to create hash value and pass that in completion
- param: this contains 3 keys 
- hashName - command name
- hashString - hash string with out salt
- postSalt - needs to add after salt
- need to create hash on your server using hashString + salt + postSalt and SHA512 algo
- PayU3DS2HashGenerationCompletion: this contains hashDict parameter
- HashDict: pass a dictionary which contains hashName as key and hash as value
-
-PayU3DS2Completion: contains PayU3DS2Response.
-PayU3DS2Response: Three items are in the response:
-status: If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
-errorMessage: Error message with details what went wrong.
-result: It will contain success response. Please refer below class for response structure:
-Please refer below class for success response structure:
- class PayU3DS2BinInfoResponse(
-    val issuingBank: String
-    val bin: String,
-    val category: String,
-    val cardType: String,
-    val isDomestic: String,
-    val isAtmPinCard: String,
-    val isSiSupported: String,
-    val isOtpOnTheFly: String,
-    val messageVersion: String
-)
-```
-
-</Accordion>
-<Accordion title="Step 6:  Initiate Payment through PayU" icon="fa-code">
-
-Call the following method to initiate payment through PayU and we will return success or failure callback post transaction completion.
-
-1. Use the following `PayU3DS2.initiatePayment` method to initiate payment:
-
-```
- PayU3DS2.initiatePayment(
-        vc: UIViewController,
-        config: PayU3DS2Config,
-        paymentParams: PayU3DS2PaymentParam,
-        delegate: PayU3DS2Delegate
+    class ImageDetails(
+        var mediumQualityURL: String?,
+        var highQualityURL: String?,
+        var extraHighQualityURL: String?
     )
-```
+    ```
+  </Accordion>
 
-2. You have to pass the following parameters:
-   * **vc**: Parent ViewController Object
-   * **config**: It contains multiple properties.
-   * **paymentParams**: Merchant to create payment param object and pass it which will contains info like: cardDeatails, SI details etc. Refer the following sample code for `paymentParams`:
+  <Accordion title="Step 4.2: Challenge Action Handing" icon="fa-code">
+    There are three actions that you have show to user on OTP page:
 
-```
- let paymentParam = PayU3DS2PaymentParam(
-     key: "<Your Key issued by PayU>",
-     transactionId: "<Transaction Id>",
-     amount: "<Transaction Amount>",
-     productInfo: "<Product Description>",
-     firstName: "<Customer First Name>",
-     email: "<Customer Email>",
-     phone: "9876543210",
-     surl: "<Success URL>",
-     furl: "<Failure URL>"
- )
- 
- let udfs = PayU3DS2UserDefines() 
- udfs.udf1 = "<User Defined Fields>"
- udfs.udf2 = "<User Defined Fields>"
- udfs.udf3 = "<User Defined Fields>"
- udfs.udf4 = "<User Defined Fields>"
- udfs.udf5 = "<User Defined Fields>"
- paymentParam.udfs = udfs
+    1. RESEND
+    2. SUBMIT
+    3. CANCEL
 
- var cardDetails =  PayU3DS2CardInfo()
- cardDetails.cardNumber = "<cardNumber>"
- cardDetails.cardName = "<cardName>"
- cardDetails.nameOnCard = "<cardholderName>"
- cardDetails.expiryMonth = "<expiryMonth>"// MM
- cardDetails.expiryYear = "<expiryYear>"// YYYY
- cardDetails.cvv = "<cvv>"
-Note: To make payment using another payment aggregator vault saved card.
-cardDetails.networkToken = "<networkToken>"
-paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","trid" : "40020003934", "tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
-paymentParam.cardTokenTpe = "1" //if passing networkToken otherwise value = 0 if you will pass cardToken
+    To execute these methods call below method:
 
-Note: To make payment using PayU vault saved card.
-cardDetails.cardToken = "<cardToken>"
+    ```
+    func action(
+            acsActionType: PayU3DS2ACSActionType,
+            challengeInputParams: PayU3DS2ACSActionParams,
+            completion: @escaping PayU3DS2Completion
+        )
 
-paymentParam.cardinfo = cardDetails // PayU3DS2CardInfo with card details
+    This method accepts 3 parameters, details are below:
+    1. PayU3DS2ACSActionType: action user took, accepted values are SUBMIT, RESEND, CANCEL
+    2. PayU3DS2ACSActionParams: It contains parameters to execute action passed. This contains 3 parameters.
+     2.1 acsTransactionID //string. Value recieved in step 4.1
+     2.2 acsRenderingType //string. Value recieved in step 4.1
+     2.3 challengeData //string. OTP value, to be passed in case of SUBMIT action.
+    3. PayU3DS2Completion: Closure consists of 1 parameter:
+    PayU3DS2Response: Three items are in the response:
+    status: If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
+    errorMessage: Error message with details what went wrong.
+    result: It will contain success response.
 
+    Cast result to PayU3DS2ACSResponse.
+    class PayU3DS2ACSResponse(
+            var message: String,
+            var acsActionType: PayU3DS2ACSActionType,
+            var headlessData: PayU3DS2HeadlessData
+    )
+    //message: status message.
+    //acsActionType: Action passed during invocation of this method
+    //headlessData: This bean contains data related to network and issuer image url etc. Refer section 4.1.
+    ```
 
-
-```
-
+    > 🚧 Call RESEND action after 10 seconds.
+  </Accordion>
 </Accordion>
-<Accordion title="PaymentParams Parameter Example" icon="fa-code">
 
-<Accordion title="Basic Payment Parameters" icon="fa-code">
+<Accordion title="Step 5: Bin Info API Details" icon="fa-code">
+  Merchant must use the following procedure. This api will give info about whether the bin is supported on 3DS 1 or 3DS 2 and whether information can be routed through 3DS SDK. If no, then merchant can initiate a non native transaction. Merchant has to pass below parameters.
 
-The PaymentParams object contains key fields required for initiating a payment request with PayU. These parameters are critical for identifying the transaction, the customer, and the product.
+  ```
+  PayU3DS2.cardBinInfo(
+          cardBinInfoRequest: PayU3DS2CardBinInfoRequest,
+          delegate: PayU3DS2HashDelegate,
+          completion: @escaping PayU3DS2Completion
+      ) 
+  Please refer below code to create cardBinInfoRequest object:
+  val cardBinInfoRequest = PayU3DS2CardBinInfoRequest(cardDetails: "enter card number or network Token", isSI: true) //set second parameter to true if txn is for standing instructions, card details cannot be null
+  ```
 
-```kotlin
- let paymentParam = PayU3DS2PaymentParam(
-     key: "<Your Key issued by PayU>",
-     transactionId: "<Transaction Id>",
-     amount: "<Transaction Amount>",
-     productInfo: "<Product Description>",
-     firstName: "<Customer First Name>",
-     email: "<Customer Email>",
-     phone: "9876543210",
-     surl: "<Success URL>",
-     furl: "<Failure URL>"
- )
-```
+  * **cardBinInfoRequest**: It contains two parameters cardDetails, isSI.
+  * **PayU3DS2HashDelegate**: This API need sha512 hash and this delegate will call to pass hash using generateHash functions.
 
-**Credit/Debit Card Payment**
+  In this, if messageVersion is anything that starts with 2., then it is supported on 3DS 2 else if it starts with 1., then it is supported on 3DS1.
 
-To process payments using a credit or debit card, the following parameters need to be included in the PaymentParams object..
+  ```
+  func generateHash(for param: [String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion) 
+  //Merchant will get map with type of hash and hash string as value of map.
+        They have to sign that string using salt to create hash value and pass that in completion
+   param: this contains 3 keys 
+   hashName - command name
+   hashString - hash string with out salt
+   postSalt - needs to add after salt
+   need to create hash on your server using hashString + salt + postSalt and SHA512 algo
+   PayU3DS2HashGenerationCompletion: this contains hashDict parameter
+   HashDict: pass a dictionary which contains hashName as key and hash as value
 
-```swift Swift
-let cardDetails = PayU3DS2CardInfo()
+  PayU3DS2Completion: contains PayU3DS2Response.
+  PayU3DS2Response: Three items are in the response:
+  status: If status is 0, it implies the function was successfully executed, and you should check the result object, else there was a problem with the function's execution; you should check the error message.
+  errorMessage: Error message with details what went wrong.
+  result: It will contain success response. Please refer below class for response structure:
+  Please refer below class for success response structure:
+   class PayU3DS2BinInfoResponse(
+      val issuingBank: String
+      val bin: String,
+      val category: String,
+      val cardType: String,
+      val isDomestic: String,
+      val isAtmPinCard: String,
+      val isSiSupported: String,
+      val isOtpOnTheFly: String,
+      val messageVersion: String
+  )
+  ```
+</Accordion>
+
+<Accordion title="Step 6:  Initiate Payment through PayU" icon="fa-code">
+  Call the following method to initiate payment through PayU and we will return success or failure callback post transaction completion.
+
+  1. Use the following `PayU3DS2.initiatePayment` method to initiate payment:
+
+  ```
+   PayU3DS2.initiatePayment(
+          vc: UIViewController,
+          config: PayU3DS2Config,
+          paymentParams: PayU3DS2PaymentParam,
+          delegate: PayU3DS2Delegate
+      )
+  ```
+
+  2. You have to pass the following parameters:
+     * **vc**: Parent ViewController Object
+     * **config**: It contains multiple properties.
+     * **paymentParams**: Merchant to create payment param object and pass it which will contains info like: cardDeatails, SI details etc. Refer the following sample code for `paymentParams`:
+
+  ```
+   let paymentParam = PayU3DS2PaymentParam(
+       key: "<Your Key issued by PayU>",
+       transactionId: "<Transaction Id>",
+       amount: "<Transaction Amount>",
+       productInfo: "<Product Description>",
+       firstName: "<Customer First Name>",
+       email: "<Customer Email>",
+       phone: "9876543210",
+       surl: "<Success URL>",
+       furl: "<Failure URL>"
+   )
+   
+   let udfs = PayU3DS2UserDefines() 
+   udfs.udf1 = "<User Defined Fields>"
+   udfs.udf2 = "<User Defined Fields>"
+   udfs.udf3 = "<User Defined Fields>"
+   udfs.udf4 = "<User Defined Fields>"
+   udfs.udf5 = "<User Defined Fields>"
+   paymentParam.udfs = udfs
+
+   var cardDetails =  PayU3DS2CardInfo()
    cardDetails.cardNumber = "<cardNumber>"
    cardDetails.cardName = "<cardName>"
    cardDetails.nameOnCard = "<cardholderName>"
    cardDetails.expiryMonth = "<expiryMonth>"// MM
    cardDetails.expiryYear = "<expiryYear>"// YYYY
-	 cardDetails.cvv = "<cvv>"
+   cardDetails.cvv = "<cvv>"
+  Note: To make payment using another payment aggregator vault saved card.
+  cardDetails.networkToken = "<networkToken>"
+  paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","trid" : "40020003934", "tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
+  paymentParam.cardTokenTpe = "1" //if passing networkToken otherwise value = 0 if you will pass cardToken
 
-paymentParam.cardinfo = cardDetails
-```
+  Note: To make payment using PayU vault saved card.
+  cardDetails.cardToken = "<cardToken>"
 
-**Store Credit/Debit Card**
+  paymentParam.cardinfo = cardDetails // PayU3DS2CardInfo with card details
 
-To store the card for future transactions (such as recurring payments), the StoreCard option should be enabled. This allows the card to be saved securely for later use..
 
-```
- var cardDetails =  PayU3DS2CardInfo()
- cardDetails.cardNumber = "<cardNumber>"
- cardDetails.cardName = "<cardName>"
- cardDetails.nameOnCard = "<cardholderName>"
- cardDetails.expiryMonth = "<expiryMonth>"// MM
- cardDetails.expiryYear = "<expiryYear>"// YYYY
- cardDetails.cvv = "<cvv>"
- 
-paymentParam.userCredential = "ol4Spy:7879357664"
-paymentParam.shouldSavedCard = true
-paymentParam.cardinfo = cardDetails
-```
 
-**Recurring Payments via Card**
+  ```
 
-For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
+<Accordion title="PaymentParams Parameter Example" icon="fa-code">
+  <Accordion title="Basic Payment Parameters" icon="fa-code">
+    The PaymentParams object contains key fields required for initiating a payment request with PayU. These parameters are critical for identifying the transaction, the customer, and the product.
 
-```
-let siInfo = PayU3DS2SIParams(billingAmount: "1",
-                                                 paymentStartDate: paymentStartDate,
-                                                 paymentEndDate: paymentEndDate ,
-                                                 billingCycle: .monthly,
-                                                 billingInterval: 1)
-    siInfo.isFreeTrial = true
-    siInfo.billingLimit = "ON"
-    siInfo.billingRule = "MAX"
-	
-paymentParam.siParam = siInfo  // Add Subscription details to the payment parameters
-```
+    ```kotlin
+     let paymentParam = PayU3DS2PaymentParam(
+         key: "<Your Key issued by PayU>",
+         transactionId: "<Transaction Id>",
+         amount: "<Transaction Amount>",
+         productInfo: "<Product Description>",
+         firstName: "<Customer First Name>",
+         email: "<Customer Email>",
+         phone: "9876543210",
+         surl: "<Success URL>",
+         furl: "<Failure URL>"
+     )
+    ```
 
-</Accordion>
-<Accordion title="Card Tokenization" icon="fa-code">
+    **Credit/Debit Card Payment**
 
-Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
+    To process payments using a credit or debit card, the following parameters need to be included in the PaymentParams object..
 
-**Card Tokenization with PayU**
+    ```swift Swift
+    let cardDetails = PayU3DS2CardInfo()
+       cardDetails.cardNumber = "<cardNumber>"
+       cardDetails.cardName = "<cardName>"
+       cardDetails.nameOnCard = "<cardholderName>"
+       cardDetails.expiryMonth = "<expiryMonth>"// MM
+       cardDetails.expiryYear = "<expiryYear>"// YYYY
+    	 cardDetails.cvv = "<cvv>"
 
-To make payments using a previously saved card, you need to pass both the network token and the card token..
+    paymentParam.cardinfo = cardDetails
+    ```
 
-```swift
-let cardDetails = PayU3DS2CardInfo()
-cardinfo.cardToken = "5595337480792395"
-cardinfo.networkToken = "5595337480792395"
-paymentParam.cardinfo = cardDetails
-```
+    **Store Credit/Debit Card**
 
-**Third-Party Card Tokenization**
+    To store the card for future transactions (such as recurring payments), the StoreCard option should be enabled. This allows the card to be saved securely for later use..
 
-If the card has been tokenized outside of PayU's platform (via a third-party service), you need to provide additional tokenization information.
+    ```
+     var cardDetails =  PayU3DS2CardInfo()
+     cardDetails.cardNumber = "<cardNumber>"
+     cardDetails.cardName = "<cardName>"
+     cardDetails.nameOnCard = "<cardholderName>"
+     cardDetails.expiryMonth = "<expiryMonth>"// MM
+     cardDetails.expiryYear = "<expiryYear>"// YYYY
+     cardDetails.cvv = "<cvv>"
+     
+    paymentParam.userCredential = "ol4Spy:7879357664"
+    paymentParam.shouldSavedCard = true
+    paymentParam.cardinfo = cardDetails
+    ```
 
-```swift
-let cardDetails = PayU3DS2CardInfo()
-        cardinfo.expiryMonth = "04"
-        cardinfo.expiryYear = "2028"
-        cardinfo.networkToken = "5595337480792395"
+    **Recurring Payments via Card**
 
-paymentParam.cardTokenType = "1"
-paymentParam.cardinfo = cardinfo
-paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","trid" : "40020003934", "tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
+    For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
 
-```
+    ```
+    let siInfo = PayU3DS2SIParams(billingAmount: "1",
+                                                     paymentStartDate: paymentStartDate,
+                                                     paymentEndDate: paymentEndDate ,
+                                                     billingCycle: .monthly,
+                                                     billingInterval: 1)
+        siInfo.isFreeTrial = true
+        siInfo.billingLimit = "ON"
+        siInfo.billingRule = "MAX"
+    	
+    paymentParam.siParam = siInfo  // Add Subscription details to the payment parameters
+    ```
+  </Accordion>
 
-**EMI**
+  <Accordion title="Card Tokenization" icon="fa-code">
+    Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
 
-To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
+    **Card Tokenization with PayU**
 
-```
-var cardDetails =  PayU3DS2CardInfo()
- cardDetails.cardNumber = "<cardNumber>"
- cardDetails.cardName = "<cardName>"
- cardDetails.nameOnCard = "<cardholderName>"
- cardDetails.expiryMonth = "<expiryMonth>"// MM
- cardDetails.expiryYear = "<expiryYear>"// YYYY
- cardDetails.cvv = "<cvv>"
- 
-paymentParam.cardinfo = cardDetails                       
-paymentParam.bankCode = "EMIIC3"
-paymentParam.pgCode = "EMI"                
-```
+    To make payments using a previously saved card, you need to pass both the network token and the card token..
 
-</Accordion>
-<Accordion title="Start Redirection Flow" icon="fa-code">
+    ```swift
+    let cardDetails = PayU3DS2CardInfo()
+    cardinfo.cardToken = "5595337480792395"
+    cardinfo.networkToken = "5595337480792395"
+    paymentParam.cardinfo = cardDetails
+    ```
 
-To authenticate the transaction using PayU's 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
+    **Third-Party Card Tokenization**
 
-```
-PayU3DS2.startRedirectionFlow(vc: <#T##UIViewController#>, params: <#T##[String : Any]#>, delegate: <#T##any PayU3DS2Delegate#>)
-```
+    If the card has been tokenized outside of PayU's platform (via a third-party service), you need to provide additional tokenization information.
 
-**Parameters**
+    ```swift
+    let cardDetails = PayU3DS2CardInfo()
+            cardinfo.expiryMonth = "04"
+            cardinfo.expiryYear = "2028"
+            cardinfo.networkToken = "5595337480792395"
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+    paymentParam.cardTokenType = "1"
+    paymentParam.cardinfo = cardinfo
+    paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","trid" : "40020003934", "tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
+    ```
 
-  <tbody>
-    <tr>
-      <td>
-        **vc**
-      </td>
+    **EMI**
 
-      <td>
-        Pass the current `self` instance where the WebView will be launched.
-      </td>
-    </tr>
+    To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
 
-    <tr>
-      <td>
-        **params**
-      </td>
+    ```
+    var cardDetails =  PayU3DS2CardInfo()
+     cardDetails.cardNumber = "<cardNumber>"
+     cardDetails.cardName = "<cardName>"
+     cardDetails.nameOnCard = "<cardholderName>"
+     cardDetails.expiryMonth = "<expiryMonth>"// MM
+     cardDetails.expiryYear = "<expiryYear>"// YYYY
+     cardDetails.cvv = "<cvv>"
+     
+    paymentParam.cardinfo = cardDetails                       
+    paymentParam.bankCode = "EMIIC3"
+    paymentParam.pgCode = "EMI"                
+    ```
+  </Accordion>
 
-      <td>
-        A map containing key-value pairs for configuration. Valid keys include:
-      </td>
-    </tr>
+  <Accordion title="Start Redirection Flow" icon="fa-code">
+    To authenticate the transaction using PayU's 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
 
-    <tr>
-      <td>
+    ```
+    PayU3DS2.startRedirectionFlow(vc: <#T##UIViewController#>, params: <#T##[String : Any]#>, delegate: <#T##any PayU3DS2Delegate#>)
+    ```
 
-      </td>
+    **Parameters**
 
-      <td>
-        * `APIConstants.ACS_TEMPLATE` — Contains the ACS template.
-      </td>
-    </tr>
+    | Parameter    | Description                                                                        |
+    | ------------ | ---------------------------------------------------------------------------------- |
+    | **vc**       | Pass the current `self` instance where the WebView will be launched.               |
+    | **params**   | A map containing key-value pairs for configuration. Valid keys include:            |
+    |              | \* `APIConstants.ACS_TEMPLATE` — Contains the ACS template.                        |
+    |              | - `APIConstants.AUTO_READ` — Pass `true` to enable auto-reading of the data.       |
+    |              | \* `APIConstants.AUTO_SUBMIT` — Pass `true` to enable auto-submission of the form. |
+    |              | - `APIConstants.SURL` — Success URL to redirect after successful payment.          |
+    |              | \* `APIConstants.FURL` — Failure URL to redirect after failed payment.             |
+    | **callback** | Callback interface to receive the payment status: success, failure, or error.      |
+  </Accordion>
 
-    <tr>
-      <td>
-
-      </td>
-
-      <td>
-        * `APIConstants.AUTO_READ` — Pass `true` to enable auto-reading of the data.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-
-      <td>
-        * `APIConstants.AUTO_SUBMIT` — Pass `true` to enable auto-submission of the form.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-
-      <td>
-        * `APIConstants.SURL` — Success URL to redirect after successful payment.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-
-      <td>
-        * `APIConstants.FURL` — Failure URL to redirect after failed payment.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **callback**
-      </td>
-
-      <td>
-        Callback interface to receive the payment status: success, failure, or error.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-</Accordion>
-</Accordion>
 <Accordion title="Sample Code" icon="fa-code">
+  ```
+  val params = ["acsTemplate": data, "autoRead":"true", "autoSubmit":"true","surl":"https://cbjs.payu.in/sdk/success","furl":"https://cbjs.payu.in/sdk/failure","merchantResponseTimeout":"2000"]
 
-```
-val params = ["acsTemplate": data, "autoRead":"true", "autoSubmit":"true","surl":"https://cbjs.payu.in/sdk/success","furl":"https://cbjs.payu.in/sdk/failure","merchantResponseTimeout":"2000"]
+  startRedirectionFlow(
+      vc: <#T##UIViewController#>, 
+    	params: <#T##[String : Any]#>, 
+  		delegate: <#T##any PayU3DS2Delegate#> {
+          func onPaymentSuccess(successResponse: Any?) {
+              // Handle success
+          }
+          func onPaymentFailure(failureResponse: Any?) {
+              // Handle failure
+          }
+          func onError(errorCode: Int, errorMessage: String) {
+              // Handle error
+          }
+  				func onPaymentCancel(isTxnInitiated: Bool) {
+            // Handle erro
+          }
+  				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
+            // Handle erro
+          }
+  				func generateHash(for param: [String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion) {
+            //// Handle Hash
+  				}	
+      }
+  )
+  ```
 
-startRedirectionFlow(
-    vc: <#T##UIViewController#>, 
-  	params: <#T##[String : Any]#>, 
-		delegate: <#T##any PayU3DS2Delegate#> {
-        func onPaymentSuccess(successResponse: Any?) {
-            // Handle success
-        }
-        func onPaymentFailure(failureResponse: Any?) {
-            // Handle failure
-        }
-        func onError(errorCode: Int, errorMessage: String) {
-            // Handle error
-        }
-				func onPaymentCancel(isTxnInitiated: Bool) {
-          // Handle erro
-        }
-				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
-          // Handle erro
-        }
-				func generateHash(for param: [String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion) {
-          //// Handle Hash
-				}	
-    }
-)
-```
+  3. Implement `PayU3DS2Delegate`. It contains the following methods:
+     * func `onPaymentSuccess`(successResponse: Any): It will contain success response. This will be a JSON Object, parse response as per your need.
+     * func `onPaymentFailure`(failureResponse: Any): It will contain failure response. This will be a JSON Object, parse response as per your need.
+     * func `onPaymentCancel`(isTxnInitiated: Bool): It will tell if payment was cancelled.
+     * func `onError`(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
+     * func `generateHash`(for param: \[String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion): Merchant will get map with type of hash and hash string as value of map.
+       They have to sign that string using salt to create hash value and pass that in completion
+       param: this contains 3 keys:
+     * **hashName**: command name
+     * **hashString**: hash string with out salt
+     * **postSalt**: needs to add after salt
 
-3. Implement `PayU3DS2Delegate`. It contains the following methods:
-   * func `onPaymentSuccess`(successResponse: Any): It will contain success response. This will be a JSON Object, parse response as per your need.
-   * func `onPaymentFailure`(failureResponse: Any): It will contain failure response. This will be a JSON Object, parse response as per your need.
-   * func `onPaymentCancel`(isTxnInitiated: Bool): It will tell if payment was cancelled.
-   * func `onError`(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
-   * func `generateHash`(for param: [String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion): Merchant will get map with type of hash and hash string as value of map.
-     They have to sign that string using salt to create hash value and pass that in completion
-     param: this contains 3 keys:
-   * **hashName**: command name
-   * **hashString**: hash string with out salt
-   * **postSalt**: needs to add after salt
+  You need to create hash on your server using hashString + salt + postSalt and SHA512 algorithm.
 
-You need to create hash on your server using hashString + salt + postSalt and SHA512 algorithm.
-
-4. Implement `PayU3DS2HashGenerationCompletion`. This contains `hashDict` parameter
-   hashDict: pass a dictionary which contains hashName as key and hash as value
-
+  4. Implement `PayU3DS2HashGenerationCompletion`. This contains `hashDict` parameter
+     hashDict: pass a dictionary which contains hashName as key and hash as value
+</Accordion>
+</Accordion>
 </Accordion>
 <Accordion title="Error Codes" icon="fa-code">
+  | Code | Description                                                                   |
+  | :--- | :---------------------------------------------------------------------------- |
+  | 0    | Success                                                                       |
+  | 1    | Fail/ Invalid params                                                          |
+  | 2    | Error while creating transaction to generate device details, please try again |
+  | 3    | Time out                                                                      |
+  | 4    | Challenge protocol error                                                      |
+  | 5    | User cancelled the transaction                                                |
+  | 6    | Runtime Error                                                                 |
+  | 12   | Action params null for headless flow                                          |
+  | 14   | Resend OTP limit exceeded                                                     |
+  | 15   | The OTP code you entered is incorrect                                         |
+  | 17   | Transaction failed                                                            |
+  | 105  | Hash cannot be nil                                                            |
+  | 106  | Card not supported on 3DS 2.0                                                 |
+  | 107  | Card scheme not supported                                                     |
+  | 108  | Hash incorrect                                                                |
+  | 109  | Invalid ACS UI Type                                                           |
+  | 500  | Something went wrong                                                          |
+  | 503  | Error while creating transaction to generate device details, please try again |
 
-| Code | Description                                                                   |
-| :--- | :---------------------------------------------------------------------------- |
-| 0    | Success                                                                       |
-| 1    | Fail/ Invalid params                                                          |
-| 2    | Error while creating transaction to generate device details, please try again |
-| 3    | Time out                                                                      |
-| 4    | Challenge protocol error                                                      |
-| 5    | User cancelled the transaction                                                |
-| 6    | Runtime Error                                                                 |
-| 12   | Action params null for headless flow                                          |
-| 14   | Resend OTP limit exceeded                                                     |
-| 15   | The OTP code you entered is incorrect                                         |
-| 17   | Transaction failed                                                            |
-| 105  | Hash cannot be nil                                                            |
-| 106  | Card not supported on 3DS 2.0                                                 |
-| 107  | Card scheme not supported                                                     |
-| 108  | Hash incorrect                                                                |
-| 109  | Invalid ACS UI Type                                                           |
-| 500  | Something went wrong                                                          |
-| 503  | Error while creating transaction to generate device details, please try again |
+  ## Test the Integration and Go-Live
 
-## Test the Integration and Go-Live
+  After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
-After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
+  You can make test payments using one of the payment methods configured at the Checkout.
 
-You can make test payments using one of the payment methods configured at the Checkout.
+  <UPIIntentCallout />
 
-<UPIIntentCallout />
+  <TestingChecklist />
 
-<TestingChecklist />
+  ***
 
-***
-
-<TestCardsCallout />
-
+  <TestCardsCallout />
 </Accordion>
+
 <Accordion title="Test credentials for supported payment methods" icon="fa-code">
+  Following are the payment methods supported in PayU Test mode.
 
-Following are the payment methods supported in PayU Test mode.
+  <Accordion title="Test credentials for Net Banking" icon="fa-code">
+    Use the following credentials to test the Net Banking integration:
 
-<Accordion title="Test credentials for Net Banking" icon="fa-code">
+    * **user name:** payu
+    * **password**: payu
+    * **OTP**: 123456
+  </Accordion>
 
-Use the following credentials to test the Net Banking integration:
+  <Accordion title="Test VPA for UPI" icon="fa-code">
+    You can use either of the following VPAs to test your UPI-related integration:
 
-* **user name:** payu
-* **password**: payu
-* **OTP**: 123456
+    * [anything@payu](anything@payu)
+    * [9999999999@payu.in](mailto:9999999999@payu.in)
 
+    > ❗️ Callout
+    >
+    > The UPI in-app and UPI intent flow is not available in the Test mode.
+  </Accordion>
 </Accordion>
-<Accordion title="Test VPA for UPI" icon="fa-code">
 
-You can use either of the following VPAs to test your UPI-related integration:
-
-* [anything@payu](anything@payu)
-* [9999999999@payu.in](mailto:9999999999@payu.in)
-
-> ❗️ Callout
->
-> The UPI in-app and UPI intent flow is not available in the Test mode.
-
-</Accordion>
-</Accordion>
 <Accordion title="Test cards for EMI" icon="fa-code">
+  You can use the following Debit and Credit cards to test Emi integration.
 
-You can use the following Debit and Credit cards to test Emi integration.
+  |              |                                         |
+  | :----------- | :-------------------------------------- |
+  | Kotak DC EMI | 1. **Card Number**: 4706-1378-0509-9594 |
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
+  2. **Expiry**: any future date (mm/yy)
+  3. **CVV**: 123
+  4. **OTP**: 111111
+  5. **Name**: Any name
+  6. **Mobile Number**: 9123412345 (mandatory for EMI) |
+     \| AXIS DC EMI  | 1) **Card Number**: 4011-5100-0000-0007
 
-      </th>
+  2) **Expiry**: any future date (mm/yy)
+  3) **CVV**: 123
+  4) **OTP**: 111111
+  5) **Name**: Any name
+  6) **Mobile Number**: 9123412345 (mandatory for EMI) |
+     \| HDFC CC EMI  | 1. **Card Number**: 4453-3410-65876437
 
-      <th>
+  2. **Expiry**: any future date (mm/yy)
+  3. **CVV**: 123
+  4. **OTP**: 111111
+  5. **Name**: Any name
+  6. **Mobile Number**: 9123412345 (mandatory for EMI)  |
+     \| ICICI CC EMI | 1) **Card Number**: 4453-3410-65876437
 
-      </th>
-    </tr>
-  </thead>
+  2) **Expiry**: any future date (mm/yy)
+  3) **CVV**: 123
+  4) **OTP**: 111111
+  5) **Name**: Any name
+  6) **Mobile Number**: 9123412345 (mandatory for EMI)  |
 
-  <tbody>
-    <tr>
-      <td>
-        Kotak DC EMI
-      </td>
+  <Accordion title="Test Wallets" icon="fa-code">
+    You can use the following wallets and their corresponding credentials to test wallet integration.
 
-      <td>
-        1. **Card Number**: 4706-1378-0509-9594
-        2. **Expiry**: any future date (mm/yy)
-        3. **CVV**: 123
-        4. **OTP**: 111111
-        5. **Name**: Any name
-        6. **Mobile Number**: 9123412345 (mandatory for EMI)
-      </td>
-    </tr>
+    <Table align={["left","left","left"]}>
+      <thead>
+        <tr>
+          <th style={{ textAlign: "left" }}>
+            Wallet
+          </th>
 
-    <tr>
-      <td>
-        AXIS DC EMI
-      </td>
+          <th style={{ textAlign: "left" }}>
+            Mobile Number
+          </th>
 
-      <td>
-        1. **Card Number**: 4011-5100-0000-0007
-        2. **Expiry**: any future date (mm/yy)
-        3. **CVV**: 123
-        4. **OTP**: 111111
-        5. **Name**: Any name
-        6. **Mobile Number**: 9123412345 (mandatory for EMI)
-      </td>
-    </tr>
+          <th style={{ textAlign: "left" }}>
+            OTP
+          </th>
+        </tr>
+      </thead>
 
-    <tr>
-      <td>
-        HDFC CC EMI
-      </td>
+      <tbody>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            PayTM
+          </td>
 
-      <td>
-        1. **Card Number**: 4453-3410-65876437
-        2. **Expiry**: any future date (mm/yy)
-        3. **CVV**: 123
-        4. **OTP**: 111111
-        5. **Name**: Any name
-        6. **Mobile Number**: 9123412345 (mandatory for EMI)
-      </td>
-    </tr>
+          <td style={{ textAlign: "left" }}>
+            7777777777
+          </td>
 
-    <tr>
-      <td>
-        ICICI CC EMI
-      </td>
+          <td style={{ textAlign: "left" }}>
+            888888
+          </td>
+        </tr>
 
-      <td>
-        1. **Card Number**: 4453-3410-65876437
-        2. **Expiry**: any future date (mm/yy)
-        3. **CVV**: 123
-        4. **OTP**: 111111
-        5. **Name**: Any name
-        6. **Mobile Number**: 9123412345 (mandatory for EMI)
-      </td>
-    </tr>
-  </tbody>
-</Table>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            PhonePe
+          </td>
 
-<Accordion title="Test Wallets" icon="fa-code">
+          <td style={{ textAlign: "left" }}>
+            Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: [https://developer.phonepe.com/v1/docs/setting-up-test-account](https://developer.phonepe.com/v1/docs/setting-up-test-account)
+            Download the app and register your mobile number and follow the instructions as described in the above PhonePe docs.
+          </td>
 
-You can use the following wallets and their corresponding credentials to test wallet integration.
+          <td style={{ textAlign: "left" }}>
+            NA
+          </td>
+        </tr>
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Wallet
-      </th>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            AmazonPay
+          </td>
 
-      <th>
-        Mobile Number
-      </th>
+          <td style={{ textAlign: "left" }}>
+            You can test using your original Amazon account details.
+          </td>
 
-      <th>
-        OTP
-      </th>
-    </tr>
-  </thead>
+          <td style={{ textAlign: "left" }} />
+        </tr>
+      </tbody>
+    </Table>
 
-  <tbody>
-    <tr>
-      <td>
-        PayTM
-      </td>
+    <Go_Live_Checklist />
 
-      <td>
-        7777777777
-      </td>
-
-      <td>
-        888888
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        PhonePe
-      </td>
-
-      <td>
-        Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: [https://developer.phonepe.com/v1/docs/setting-up-test-account](https://developer.phonepe.com/v1/docs/setting-up-test-account)
-        Download the app and register your mobile number and follow the instructions as described in the above PhonePe docs.
-      </td>
-
-      <td>
-        NA
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        AmazonPay
-      </td>
-
-      <td>
-        You can test using your original Amazon account details.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-<Go_Live_Checklist />
-
-<br />
-
-</Accordion>
+    <br />
+  </Accordion>
 </Accordion>
