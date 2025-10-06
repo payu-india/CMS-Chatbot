@@ -28,24 +28,15 @@ Merchants have use cases, which requires the transactions to be allowed only for
 
 However, as part of UPI, customer has the flexibility to link multiple accounts under the same VPA and on run-time, change the account for authorisation. So using TPV services, merchant makes sure that customer authorises the transaction using pre-registered accounts only.
 
-### Collect Autopay TPV Flow
-
-The merchant initiates the call to PayU with SI details, **bankcode** as **UPITPV**, and account number + IFSC details. PayU then initiates a mandate call with all the SI and account-related parameters to the bank. After the customer authorizes the mandate, the bank will validate the account. If the account details match, only then will the success notification be sent to PayU. However, if the account details do not match, Bank will pass validation error to PayU. Internally, Bank will cancel the mandate that has been setup on customer’s account.
-
-To integrate the UPI Collect Autopay TPV Flow, refer to [UPI Collect Autopay TPV Integration](doc:upi-collect-autopay-tpv-integration).
-
-### Intent Autopay TPV Flow
-
+<Tabs>
+  <Tab title="Intent Autopay TPV">
+### Workflow
 The merchant initiates the call to PayU with SI details, **bankcode** as **INTTPV**, and account number + IFSC details. PayU then initiates a mandate call to the bank, including all the SI and account-related parameters. The bank responds to PayU with a reference-Id, which PayU passes to the merchant in an Intent URL. When the customer authorizes the transaction, the bank will validate the account. If the account details match, a success message will be sent to PayU. However, if the account details do not match, Bank will pass validation error to PayU. Internally, Bank will cancel the mandate that has been setup on customer’s account.
-
-To integrate the UPI Collect Intent TPV Flow, refer to [UPI Intent Autopay TPV Integration](doc:upi-intent-autopay-tpv-integration).
 
 <Callout icon="📘" theme="info">
   **Note**: Validation is done only in the registration step of the mandate. If the account matches, rest of the journey for UPI Autopay will remain as-is.
 </Callout>
-
-## Intent Flow
-
+  </Tab>
 ### Prerequisites
 
 S2S (Seamless) integration has to be done as per the standard kit. For more information, refer to [UPI Integrations - S2S](doc:upi-integrations-s2s).
@@ -201,25 +192,13 @@ On receiving valid request over PayU's payment interface (_payment), PayU return
    "result":{}
 }
 ```
+## Step 3. Verify the payment
 
-<br />
+<Verify_Payment_Tabs />
 
-<Callout icon="📘" theme="info">
-  **Verify payment**: PayU recommends you to verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>.
-</Callout>
-
-### Webhook response
-
-You can also expose a webhook and needs to request Integration team PayU team to configure the same against "ws_online_response" parameter. If this webhook is configured, merchant will receive above response object over HTTP form post method similar to the following:
-
-```
-mihpayid=700010006211076&mode=UPI&status=success&key=275Q84&txnid=11w2f611dbab9179f1ee89&amount=10.00&addedon=2020-08-21+02%3A11%3A08&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=Executed+Callback&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=https%3A%2F%2Fwww.hdfc.co.in&field1=aastha%40hdfcbank&field2=HDFAD4C6BC943154ABAE0535CB2E20A7369&field3=aastha%40hdfcbank&field4=Aaaaaasthaaaa&field5=ad5626305e96efaae0535db2e20aa960%40hdfcbank&field6=HDFC0002373%7C50100101672620&field7=MD200%7CMandate+Request+Pending&field8=&field9=Recurrence+Payment+Success%7CCompleted+Using+Callback&payment_source=sist&PG_TYPE=HDFCU+SI&error=E000&error_Message=No+Error&net_amount_debit=10&unmappedstatus=captured&hash=f8be95fee8e73b8bdc0d22ee6627cc59237d4d69046db1b86580b1107affcf8fd471743f94101b4fdd7f2184d8eb35bbbb95c77728189d50227629e75851a498&bank_ref_no=023402045965&bank_ref_num=023402045965&bankcode=UPI&surl=https%3A%2F%2Fbizcheckouttest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Fbizcheckouttest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Fbizcheckouttest.payu.in%2Fadmin%2Ftest_response
-```
-
-<br />
-
-## Collect Flow
-
+  <Tab title="Collect Autopay TPV">
+### Workflow
+The merchant initiates the call to PayU with SI details, **bankcode** as **UPITPV**, and account number + IFSC details. PayU then initiates a mandate call with all the SI and account-related parameters to the bank. After the customer authorizes the mandate, the bank will validate the account. If the account details match, only then will the success notification be sent to PayU. However, if the account details do not match, Bank will pass validation error to PayU. Internally, Bank will cancel the mandate that has been setup on customer’s account.
 > 📘 **Prerequisites**:
 >
 > S2S (Seamless) integration has to be done as per the standard kit. For more information, refer to [UPI Integrations - S2S](doc:upi-integrations-s2s).
@@ -361,3 +340,12 @@ On receiving valid request over PayU's payment interface (_payment), PayU return
 ## Step 4. Verify the payment
 
 <Verify_Payment_Tabs />
+
+
+  </Tab>
+</Tabs>
+
+
+
+
+
