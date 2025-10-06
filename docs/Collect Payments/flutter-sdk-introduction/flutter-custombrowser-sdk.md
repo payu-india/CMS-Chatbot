@@ -552,7 +552,6 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
 
     ```
   </Accordion>
-</Accordion>
 
 <Accordion title="SI Payment" icon="fa-code">
   ```d Dart
@@ -583,15 +582,14 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
     ```
   </Accordion>
 </Accordion>
-
+</Accordion>
 <Accordion title="Step 6: Initiate Payment" icon="fa-code">
   Initialise and launch the SDK by calling the following code snippet:
 
   ```d Dart
   payUCustomBrowserFlutterPlugin.openCB(params: <PayU Payment Params>);
-  ```
-</Accordion>
-
+ ```
+ </Accordion>
 ## Test the Integration
 
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
