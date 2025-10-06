@@ -17,9 +17,6 @@ next:
 ---
 You can collect payments from your mobile apps by opening the the PayU checkout form in a WebView. This allows you to reuse your PayU Hosted Checkout integration and get started quickly.
 
-* [Configure WebView and Chrome Custom Tab for Android](https://docs.payu.in/docs/webview-integration-in-android)
-* [Configure WebView and SafariViewController for iOS](https://docs.payu.in/docs/webview-integration-in-ios)
-
 ## Configure Webview and Chrome Custom Tab for Android
 
 <Accordion title="Add WebView configurations" icon="fa-code">
@@ -366,50 +363,51 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 </Accordion>
 
 ## Webview Integration on iOS
-  <Accordion title="Create postData for Payment" icon="fa-code">
-    Build a string with the payment parameters and pass it as postData. See Collect Payment API to learn more about the payment parameters.
 
-    ```plaintext
-     
-    "key=xxxxxx&txnid=1686124341291&amount=1.0&firstname=John&productinfo=PayU&email=testUser@gmail.com&phone=7879311111&surl=https://payu.herokuapp.com/success&furl=https://payu.herokuapp.com/failure&hash=8e083ea3ec9c8d50ea9c77e157e95f91701f720c7a67f6b26bafd9c4bfd879b1c38e807285de77807ad9d5281ad56c7bf0faeb2b45a8b2f80f635a242a0fa054"
-    ```
+<Accordion title="Create postData for Payment" icon="fa-code">
+  Build a string with the payment parameters and pass it as postData. See Collect Payment API to learn more about the payment parameters.
 
-    **Note:** We recommend that you compute the hash at your server so to prevent cyber attackers from tampering your requests.
-  </Accordion>
+  ```plaintext
+   
+  "key=xxxxxx&txnid=1686124341291&amount=1.0&firstname=John&productinfo=PayU&email=testUser@gmail.com&phone=7879311111&surl=https://payu.herokuapp.com/success&furl=https://payu.herokuapp.com/failure&hash=8e083ea3ec9c8d50ea9c77e157e95f91701f720c7a67f6b26bafd9c4bfd879b1c38e807285de77807ad9d5281ad56c7bf0faeb2b45a8b2f80f635a242a0fa054"
+  ```
 
-  <Accordion title="Load PayU checkout form in WebView" icon="fa-code">
-    Make a POST request to PayU endpoint by creating a URLRequest object and set its httpMethod property to "POST".
+  **Note:** We recommend that you compute the hash at your server so to prevent cyber attackers from tampering your requests.
+</Accordion>
 
-    Build a postString with the payment parameters and set the `httpBody` property of the URLRequest object to the postString. Set the `javaScriptCanOpenWindowsAutomatically` property of the webView object to `true` to allow the webView object to open new windows automatically. Finally load the `URLRequest` object in the webView.
+<Accordion title="Load PayU checkout form in WebView" icon="fa-code">
+  Make a POST request to PayU endpoint by creating a URLRequest object and set its httpMethod property to "POST".
 
-    ```swift
-    webView.navigationDelegate = self  
-    webView.customUserAgent = userAgent // if youb are setting custom agent, please make sure mentioning correct one
-    var request = URLRequest(url: URL(string: "https://secure.payu.in/_payment") !)
-    request.httpMethod = "POST"
-    let postString = "key=******&txnid=9sbcsjhsf9637&productinfo=iPhoneXS&amount=1&email=admin%40gmail.com&firstname=John&lastname=&surl=https%3A%2F%2Fpayu.herokuapp.com%2Fios_success&furl=https%3A%2F%2Fpayu.herokuapp.com%2Fios_failure&hash=3547411bc86e1a96bbb9985debc8786b14f43b2a7604f08a82420d2d0336f708dfa54734332c91418400bbfdf6249761567e3281d28589a8c6748ce40e367fb5"
-    request.httpBody = postString.data(using: .utf8)
-    webView.configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
-    webView.load(request)
-    ```
-  </Accordion>
+  Build a postString with the payment parameters and set the `httpBody` property of the URLRequest object to the postString. Set the `javaScriptCanOpenWindowsAutomatically` property of the webView object to `true` to allow the webView object to open new windows automatically. Finally load the `URLRequest` object in the webView.
 
-  <Accordion title="Display alert message (Optional)" icon="fa-code">
-    Add the following configuration to display an alert message when user clicks on the back button on the browser:
+  ```swift
+  webView.navigationDelegate = self  
+  webView.customUserAgent = userAgent // if youb are setting custom agent, please make sure mentioning correct one
+  var request = URLRequest(url: URL(string: "https://secure.payu.in/_payment") !)
+  request.httpMethod = "POST"
+  let postString = "key=******&txnid=9sbcsjhsf9637&productinfo=iPhoneXS&amount=1&email=admin%40gmail.com&firstname=John&lastname=&surl=https%3A%2F%2Fpayu.herokuapp.com%2Fios_success&furl=https%3A%2F%2Fpayu.herokuapp.com%2Fios_failure&hash=3547411bc86e1a96bbb9985debc8786b14f43b2a7604f08a82420d2d0336f708dfa54734332c91418400bbfdf6249761567e3281d28589a8c6748ce40e367fb5"
+  request.httpBody = postString.data(using: .utf8)
+  webView.configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
+  webView.load(request)
+  ```
+</Accordion>
 
-    ```swift
-     func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping(Bool) - > Void) {
-         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {
-             (action) in completionHandler(true)
-         }))
-         alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {
-             (action) in completionHandler(false)
-         }))
-         present(alertController, animated: true, completion: nil)
-     }
-    ```
-  </Accordion>
+<Accordion title="Display alert message (Optional)" icon="fa-code">
+  Add the following configuration to display an alert message when user clicks on the back button on the browser:
+
+  ```swift
+   func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping(Bool) - > Void) {
+       let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+       alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+           (action) in completionHandler(true)
+       }))
+       alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {
+           (action) in completionHandler(false)
+       }))
+       present(alertController, animated: true, completion: nil)
+   }
+  ```
+</Accordion>
 
 <Accordion title="UPI intent for WebView – iOS" icon="fa-code">
   To support UPI intent in WebView:
