@@ -608,7 +608,9 @@ Initialise and launch the SDK by calling the following code snippet:
 ```d Dart
 payUCustomBrowserFlutterPlugin.openCB(params: <PayU Payment Params>);
 ```
+
 ## Test the Integration
+
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 You can make test payments using one of the payment methods configured at the Checkout.
@@ -828,7 +830,9 @@ You can use the following wallets and their corresponding credentials to test wa
     </tr>
   </tbody>
 </Table>
+
 ## Go-live Checklist
+
 Ensure these steps before you deploy the integration in a live environment.
 
 ### Collect Live Payments
@@ -873,4 +877,10 @@ Configure the Verify payment method to fetch the payment status. We strongly rec
 
 ### Checklist 6: Configure Webhook
 
-We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
+PayU recommends you to configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
+
+## Sample app
+
+The sample app for Flutter Custom Browser SDK can be found in the following Github location:
+
+[https://github.com/payu-intrepos/PayUCustomBrowser-Flutter.git](https://github.com/payu-intrepos/PayUCustomBrowser-Flutter.git)
