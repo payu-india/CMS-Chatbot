@@ -15,7 +15,7 @@ Collect payments using Net Banking with Merchant Hosted Checkout integration as 
 **The Net Banking with Merchant Hosted Checkout integration involves the following steps:**
 
 <Cards columns={3}>
-  <Card title="1. Initiate the Payment to PayU" href="#step-1--initiate-the-payment-to-payu" target="_blank">
+  <Card title="1. Initiate the Payment to PayU" href="#step-1-initiate-the-payment-to-payu" target="_blank">
     Initiate the payment to PayU with pg=NEFT and bankcode=\<based on bank>
 
     <br />
@@ -28,12 +28,11 @@ Collect payments using Net Banking with Merchant Hosted Checkout integration as 
   </Card>
 
   <Card title="3. Verify the payment" href="#step-3-verify-the-payment">
-    Verify the payment using verify_payment and monitor using webhooks
+    Verify the payment using verify\_payment and monitor using webhooks
   </Card>
 
   <br />
 </Cards>
-
 
 <RegisterMerchantPrerequiste />
 
