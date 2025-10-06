@@ -15,9 +15,8 @@ This section provides a reference for the following Web Service APIs for Android
 ## Prerequisite steps
 
 <Accordion title="Step 1: Initialise web service" icon="fa-code">
-  
   Create an object of MerchantWebService with any of the supported API commands.
-  
+
   ```java JAVA
   MerchantWebService merchantWebService = new MerchantWebService();
   merchantWebService.setKey(merchantKey); // Merchant key
@@ -25,42 +24,40 @@ This section provides a reference for the following Web Service APIs for Android
   merchantWebService.setVar1(<Pass var 1 value>) // Pass the var1 calue
   merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use the below formula
   ```
-  
+
   For more information on Web Service hash generation, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
-  
+
   <Callout icon="📘" theme="info">
     **Generate Hash for MerchantWebService**: To generate Hash refer to Hash Generation, use the following algorithm:
-  
+
     `sha512(key|command|var1|salt)`
-  
+
     where
-  
+
     key= "Your Key"
-  
+
     command= \<"Api Commands"> // Pass Command Name
-  
+
     var1= \<"default"> // Pass the var1 value
-  
+
     salt= "Your SALT"
   </Callout>
-  
 </Accordion>
+
 <Accordion title="Step 2: Create Merchant web service PostData" icon="fa-code">
-  
   ```java JAVA
   PostData postData = new MerchantWebServicePostParams(merchantWebService).getMerchantWebServicePostParams();
   if (postData.getCode() == PayuErrors.NO_ERROR) {
   payuConfig.setData(postData.getResult());
   }
   ```
-  
+
   <Callout icon="📘" theme="info">
     **Troubleshoot Postdata code errors**: If the PostData code snippet (above) is returning errors, check the data point set in merchantWebService.
   </Callout>
-  
 </Accordion>
+
 <Accordion title="Commands" icon="fa-code">
-  
   | Commands                                 | Description                                                           | Task                                                                                                                                            | Listener                                   |
   | ---------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
   | `PAYMENT_RELATED_DETAILS_FOR_MOBILE_SDK` | To get all enabled payment options                                    | `GetPaymentRelatedDetailsTask payuTask = GetPaymentRelatedDetailsTask(this); payuTask.execute(payuConfig);`                                     | PaymentRelatedDetailsListener              |
@@ -78,8 +75,8 @@ This section provides a reference for the following Web Service APIs for Android
   | `DELETE_PAYMENT_INSTRUMENT`              | To delete the stored card of the user                                 | `DeleteTokenisedCardTask deleteTokenisedCardTask = DeleteTokenisedCardTask(this); deleteTokenisedCardTask.execute(payuConfig);`                 | DeleteTokenisedCardApiListener             |
   | `GET_PAYMENT_DETAILS`                    | To get details of the stored card to make payment on another PG       | `GetTokenisedCardDetailsTask getTokenisedCardDetailsTask = GetTokenisedCardDetailsTask(this); getTokenisedCardDetailsTask.execute(payuConfig);` | GetTokenisedCardDetailsApiListener         |
   | `CHECK_BALANCE`                          | To get info about Sodexo saved Card                                   | `CheckBalanceTask checkBalanceTask= CheckBalanceTask(this); checkBalanceTask.execute(payuConfig);`                                              | CheckBalanceListener                       |
-  
 </Accordion>
+
 ## Enable Payment Options
 
 This API is used enable multiple payment options on your checkout page.
@@ -93,20 +90,18 @@ This API is used enable multiple payment options on your checkout page.
 </Callout>
 
 <Accordion title="Step 1: Execute GetPaymentRelatedDetailsTask" icon="fa-code">
-  
   This class is used to get payment-related details. It takes an instance of a class that implements the `PaymentRelatedDetailsListener` interface as input.
-  
+
   ```node Node
   GetPaymentRelatedDetailsTask paymentRelatedDetailsForMobileSdkTask = new GetPaymentRelatedDetailsTask(this);
   ```
-  
+
   The `PaymentRelatedDetailsListener` interface has an abstract method called `onPaymentRelatedDetailsResponse()`. This method is called when the payment-related details are received.
-  
 </Accordion>
+
 <Accordion title="Step 2: Get Response using onPaymentRelatedDetailsResponse()" icon="fa-code">
-  
   Get response to determine the availability of various payment options (UPI, Google Pay, PhonePe, LazyPay, and Generic Intent) similar to the following code snippet:
-  
+
   ```node Node
   @Override
   public void onPaymentRelatedDetailsResponse(PayuResponse payuResponse) {
@@ -133,19 +128,19 @@ This API is used enable multiple payment options on your checkout page.
   }
   }
   ```
-  
+
   This method is called when the payment-related details are received. This method takes a `PayuResponse` object as input. The `PayuResponse` object contains the payment-related details.
-  
+
   The `onPaymentRelatedDetailsResponse()` method can be used to check if the following payment options are available:
-  
+
   * UPI
   * Google Pay
   * PhonePe Intent
   * LazyPay
   * Generic Intent
   * The `onPaymentRelatedDetailsResponse()` method can also be used to fetch the list of SI banks if SI payments are enabled.
-  
 </Accordion>
+
 ## Get Checkout Details API
 
 The **Get Check Out Details** API provides information on the bank down status, tax info, and offers enabled on a merchant key. You can call this API is similar to other Web Services. The only difference is that it requires a JSON in var1 as in the following code block:
@@ -173,9 +168,8 @@ The **Get Check Out Details** API provides information on the bank down status, 
 Where the `requestId` is a unique random number passed in the request.
 
 <Accordion title="Step 1: Create the var1" icon="fa-code">
-  
   Mobile SDK has a Utility class to create a JSON, as explained above. The implementation is similar to the following code snippet:
-  
+
   ```Text JAVA
     Usecase.Builder usecase = new Usecase.Builder()
     .setCheckCustomerEligibility(true)
@@ -202,56 +196,52 @@ Where the `requestId` is a unique random number passed in the request.
               .setTransactionDetails(transactionDetails)
               .build().prepareJSON();
   ```
-  
-  After getting var1, pass that in Merchant Web Service with the command as PayuConstants.GET_CHECKOUT_DETAILS.
-  
+
+  After getting var1, pass that in Merchant Web Service with the command as PayuConstants.GET\_CHECKOUT\_DETAILS.
 </Accordion>
+
 <Accordion title="Step 2: Get API response" icon="fa-code">
-  
   PayuResponse is received in the `onCheckoutDetailsResponse()` callback method of `CheckoutDetailsListener` as mentioned in the API Commands Supported table.
-  
 </Accordion>
+
 <Accordion title="Get additional charges, bank down status, and offers" icon="fa-code">
-  
   Additional Charges are returned in the PaymentDetails object for each payment option. The following example code snippet is for fetching Additional Charges for Net Banking:
-  
+
   ```java Java
   //if netbanking is available on merchant key
   if(payuResponse.isNetBanksAvailable()){
   ArrayList<PaymentDetails> netbanks = payuResponse.getNetbanks();
   }
   ```
-  
+
   * Additional Charge is available inside each `PaymentDetails` object and can be accessed using the `paymentDetails.getAdditionalCharge()` method
   * Similarly, bank health is available inside each `PaymentDetails` object and can be accessed using the `paymentDetails.isBankDown()` method.
   * For Offers, An `ArrayList<PayuOffer>` is available inside each `PaymentDetails` object. To get the offers list, use the `paymentDetails.getOfferDetailsList()`.
-  
 </Accordion>
+
 <Accordion title="Get tax info" icon="fa-code">
-  
   Tax is not applied on individual Net Banking or card schemes but instead applied at the payment mode level for all CC(Credit Card), DC(Debit Card), NB(Net Banking), Wallets, etc. So, to fetch the Tax Specification, use the following code block:
-  
+
   ```java Java
   if(payuResponse.isTaxSpecificationAvailable())
   TaxSpecification taxSpecification = payuResponse.getTaxSpecification();
-  
+
   taxSpecification.getCcTaxValue() //tax applicable on CC transactions
   taxSpecification.getDcTaxValue() //tax applicable on DC transactions
   taxSpecification.getNbTaxValue() //tax applicable on NB transactions
   taxSpecification.getCashTaxValue() //tax applicable on Wallet transactions
   ...
   ```
-  
 </Accordion>
+
 ## Lookup API
 
 The **Lookup** API is used when integrating Multi-Currency Payments on Android Core SDK.
 
 <Accordion title="Step 1: Create request" icon="fa-code">
-  
   The Lookup API needs a JSON request. Product type needs to be passed either as DCC or MCP. DCC means Direct Currency Conversion, that is, it returns the conversion prices for card currency only. To get all enabled currencies on Merchant Access Key and their conversion prices, use product type as MCP. For DCC, cardBin is mandatory, but cardBin is not required for MCP.
   The following example is a request for DCC as the product type:
-  
+
   ```json JSON
   {
      "merchantAccessKey":"E5ABOXOWAAZNXB6JEF5Z",
@@ -265,9 +255,9 @@ The **Lookup** API is used when integrating Multi-Currency Payments on Android C
      "signature":"be5a56667354d9e2ea5ea1c6af78b0afc1894eb2"
   }
   ```
-  
+
   To create the Lookup API request as above, use the LookupApiRequestBuilder class similar to the following code block:
-  
+
   ```Text JAVA
   String postData = new LookupRequest.LookupApiRequestBuilder()
                   .setAmount("10000.00")
@@ -290,9 +280,9 @@ The **Lookup** API is used when integrating Multi-Currency Payments on Android C
                   .setSignature(hash)
                   .build().prepareJSON()
   ```
-  
+
   The following example request is for MCP as the product type.
-  
+
   ```Text JSON
   {
      "merchantAccessKey":"E5ABOXOWAAZNXB6JEF5Z",
@@ -305,9 +295,9 @@ The **Lookup** API is used when integrating Multi-Currency Payments on Android C
      "signature":"be5a56667354d9e2ea5ea1c6af78b0afc1894eb2"
   }
   ```
-  
+
   To create the Lookup API request for MCP, use the LookupApiRequestBuilder class similar to the following code block:
-  
+
   ```Text JAVA
   String postData = new LookupRequest.LookupApiRequestBuilder()
                   .setAmount("10000.00")
@@ -328,7 +318,7 @@ The **Lookup** API is used when integrating Multi-Currency Payments on Android C
                   .setSignature(hash)
                   .build().prepareJSON()
   ```
-  
+
   | Parameter Name      | Description                                                                                                           |
   | :------------------ | :-------------------------------------------------------------------------------------------------------------------- |
   | Amount              | Transaction Amount                                                                                                    |
@@ -338,9 +328,9 @@ The **Lookup** API is used when integrating Multi-Currency Payments on Android C
   | Merchant OrderId    | A unique request id for Lookup API request                                                                            |
   | Product Type        | Use MCP to get all enabled currency on Merchant Access Key or DCC to get direct currency conversion for card currency |
   | Signature           | Hmac SHA1 hash created with formula explained below                                                                   |
-  
+
   To calculate signature, create the `HmacSHA1` hash of the following data:
-  
+
   ```
   Signature =HMAC-SHA1(data, key);
   Data = baseCurrency+merchantOrderId+baseAmount
@@ -351,12 +341,11 @@ The **Lookup** API is used when integrating Multi-Currency Payments on Android C
   baseAmount = "10000.00"
   hashString = INROBE-JU89-13151-11010000.00
   ```
-  
 </Accordion>
+
 <Accordion title="Step 2: Call LookupTask" icon="fa-code">
-  
   Here, this is an object of a class that implements `LookupApiListener`. The following is a signature of LookupApiListener:
-  
+
   ```java Java
   public interface LookupApiListener {
       void onLookupApiResponse(PayuResponse payuResponse);
@@ -367,12 +356,11 @@ The **Lookup** API is used when integrating Multi-Currency Payments on Android C
       fun onLookupApiResponse(payuResponse: PayuResponse?)   
   }
   ```
-  
 </Accordion>
+
 <Accordion title="Step 3: Get LookUp API response" icon="fa-code">
-  
   After you execute LookupTask, the `onLookupApiResponse` callback method is called:
-  
+
   ```java Java
   @Override
   public void onLookupApiResponse(PayuResponse payuResponse){    
@@ -388,8 +376,8 @@ The **Lookup** API is used when integrating Multi-Currency Payments on Android C
       val lookupDetails = payuResponse.lookupDetails
       }
   ```
-  
 </Accordion>
+
 ## VAS API
 
 The VAS API is used to get the list of down Net Banking and card BIN that is down.
@@ -399,9 +387,8 @@ The VAS API is used to get the list of down Net Banking and card BIN that is dow
 </Callout>
 
 <Accordion title="Step 1: Call ValueAddedServiceTask" icon="fa-code">
-  
   Integrate this API by calling the `ValueAddedServiceTask` method:
-  
+
   ```java Java
   MerchantWebService merchantWebService = new MerchantWebService();
   merchantWebService.setKey(merchantKey);
@@ -411,12 +398,11 @@ The VAS API is used to get the list of down Net Banking and card BIN that is dow
   merchantWebService.setVar3(PayuConstants.DEFAULT);
   merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use the below formula
   ```
-  
 </Accordion>
+
 <Accordion title="Step 2: Get onValueAddedServiceApiResponse" icon="fa-code">
-  
   After you execute `ValueAddedServiceTask`, the `onValueAddedServiceApiResponse` callback method is called:
-  
+
   ```java Java
     @Override
       public void onValueAddedServiceApiResponse(PayuResponse payuResponse) {
@@ -428,8 +414,8 @@ The VAS API is used to get the list of down Net Banking and card BIN that is dow
           }
       }
   ```
-  
 </Accordion>
+
 ## Eligible Bins for EMI API
 
 The **Eligible BINs for EMI** API fetches a list of eligible Bins for EMI corresponding to each Bank name along with minimum amount. 
@@ -443,9 +429,8 @@ The **Eligible BINs for EMI** API fetches a list of eligible Bins for EMI corres
 </Callout>
 
 <Accordion title="Step 1: Set parameters" icon="fa-code">
-  
   Set the parameters similar to the following snippet:
-  
+
   ```java Java
   MerchantWebService merchantWebService = new MerchantWebService();
   merchantWebService.setKey(merchantKey);
@@ -454,20 +439,19 @@ The **Eligible BINs for EMI** API fetches a list of eligible Bins for EMI corres
   merchantWebService.setVar2(cardBin); // The first 6/8/9 digits of card number or network token.
   merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use the below formula
   ```
-  
 </Accordion>
+
 <Accordion title="Step 2: Handle the response" icon="fa-code">
-  
   Handle the API response for eligible bins for EMI and log the raw response for debugging or informational purposes.
-  
+
   ```java Java
   @Override
    public void onEligibleBinsForEMIApiResponse(PayuResponse payuResponse) {
       Log.d(TAG, "onEligibleBinsForEMIApiResponse: " + payuResponse.getRawResponse());
   }
   ```
-  
 </Accordion>
+
 ## Get EMI According to Interest API
 
 **Get EMI According to Interest** API is used to get information to get details related to EMI such as EMI amount, tenure in month, interest rate, etc.
@@ -481,7 +465,6 @@ The **Eligible BINs for EMI** API fetches a list of eligible Bins for EMI corres
 </Callout>
 
 <Accordion title="Step 1: Set parameters" icon="fa-code">
-  
   ```java Java
   MerchantWebService merchantWebService = new MerchantWebService();
   merchantWebService.setKey(merchantKey);
@@ -489,26 +472,24 @@ The **Eligible BINs for EMI** API fetches a list of eligible Bins for EMI corres
   merchantWebService.setVar1(amount); // The amount that must be converted to EMI.
   merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use the below formula
   ```
-  
 </Accordion>
+
 <Accordion title="Step 2: Handle response" icon="fa-code">
-  
   ```java Java
   @Override
   public void onGetEmiAmountAccordingToInterestApiResponse(PayuResponse payuResponse) {
       Log.d(TAG, "onGetEmiAmountAccordingToInterestApiResponse: " + payuResponse.getRawResponse());
   }
   ```
-  
 </Accordion>
+
 ## Get Transaction Info API
 
 The **Get Transaction Info** API is used to extract the transaction details between two given time periods.
 
 <Accordion title="Step 1: Set parameters" icon="fa-code">
-  
   The API takes the input as two dates and the time (initial and final) between which the transaction details are needed. The output would consist of the status of the API (success or failed) and all the transaction details in an array format. Set startTime and endTime in the payment params as described in the following code block:
-  
+
   ```Text Java
   MerchantWebService merchantWebService = new MerchantWebService();
   merchantWebService.setKey(merchantKey);
@@ -517,25 +498,23 @@ The **Get Transaction Info** API is used to extract the transaction details betw
   merchantWebService.setVar2(endDate); // The end Time (till when the transaction details are needed).
   merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use the below formula
   ```
-  
 </Accordion>
+
 <Accordion title="Step 2: Handle response" icon="fa-code">
-  
   ```Text Java
   @Override
   public void onGetTransactionApiListener(PayuResponse payuResponse) {
       Log.d(TAG, "onGetTransactionApiListener: " + payuResponse.getRawResponse());
   }
   ```
-  
 </Accordion>
+
 ## Verify Payment API
 
-## Overview
 
 The Android SDK provides a wrapper for the Verify Payment API that allows your mobile application to reconcile transactions with PayU's database securely. This integration is essential for Android developers implementing PayU payment functionality in their apps.
 
-## Why Use Verify Payment in Your Android App
+### Why Use Verify Payment in Your Android App
 
 When implementing payments in your Android application, transaction responses may occasionally fail to reach your app due to network issues or user interactions (like app switching or device issues). The Verify Payment feature ensures your app can confirm transaction statuses directly with PayU's servers, preventing discrepancies in payment records.
 
@@ -543,18 +522,17 @@ When implementing payments in your Android application, transaction responses ma
   **Android Developer Note:**: Implementing this verification step in your Android payment flow protects your application from potential payment status tampering and ensures a reliable payment experience for your users.
 </Callout>
 
-## Android Implementation
+### Android Implementation
 
 <Accordion title="Step 1: Configure the Verify Payment Request" icon="fa-code">
-  
   In your Android payment handling class, implement the Verify Payment API using the MerchantWebService provided by the PayU Android SDK:
-  
+
   ```java
   // Import the required PayU Android SDK classes
   import com.payu.india.Model.PayuResponse;
   import com.payu.india.Payu.PayuConstants;
   import com.payu.india.Payu.PayuMerchantWebService;
-  
+
   // In your payment verification method
   private void verifyTransactionStatus(String transactionId) {
       MerchantWebService merchantWebService = new MerchantWebService();
@@ -576,12 +554,11 @@ When implementing payments in your Android application, transaction responses ma
       merchantWebService.postWebServiceRequest(this);
   }
   ```
-  
 </Accordion>
+
 <Accordion title="Step 2: Implement the Response Handler" icon="fa-code">
-  
   Add the response handler in your Activity or Fragment that implements PayuResponseListener:
-  
+
   ```java
   @Override
   public void onVerifyPaymentResponse(PayuResponse payuResponse) {
@@ -602,29 +579,26 @@ When implementing payments in your Android application, transaction responses ma
       }
   }
   ```
-  
 </Accordion>
+
 <Accordion title="Best Practices for Android Implementation" icon="fa-code">
-  
   1. **Always verify after receiving payment notifications** - Implement the verification call in your app's payment completion handler
   2. **Handle timeouts appropriately** - Set reasonable timeouts for verification requests to avoid blocking your app's UI
   3. **Implement proper error handling** - Create user-friendly error messages for different verification failure scenarios
   4. **Store verification results** - Cache verification results locally to reduce unnecessary API calls
   5. **Background processing** - Consider using WorkManager for verification to ensure it completes even if the app is closed
-  
 </Accordion>
+
 <Accordion title="Troubleshooting Android Integration" icon="fa-code">
-  
   <Accordion title="Common Issues:" icon="fa-code">
-    
     * **Hash calculation errors**: Ensure your hash generation uses the correct format and encoding
     * **Network connectivity**: Implement proper retry logic for intermittent network failures
     * **Transaction ID format**: Verify that transaction IDs are correctly formatted when sending multiple IDs
-    
+
     For additional support with Android SDK integration, refer to the complete PayU Android SDK documentation or contact PayU mobile developer support.
-    
   </Accordion>
 </Accordion>
+
 ## Get BIN Info API
 
 The **Get Bin Info** API is used to get the following using the BIN number, that is, the first six digits of a credit card or debit card:
@@ -638,7 +612,6 @@ The **Get Bin Info** API is used to get the following using the BIN number, that
 This API is used to get the card BIN details. For this API, you need to set the following parameter in the payment params similar to the following code block:
 
 <Accordion title="Step 1: Create Post Request" icon="fa-code">
-  
   ```java Java
   MerchantWebService merchantWebService = new MerchantWebService();
   merchantWebService.setKey(merchantKey); // Merchant key
@@ -648,17 +621,16 @@ This API is used to get the card BIN details. For this API, you need to set the 
   merchantWebService.setVar5("<pass card BIN Number>") // Pass card BIN Number
   merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use the below formula
   ```
-  
 </Accordion>
+
 <Accordion title="Step 2: Get onBinInfoApiResponse" icon="fa-code">
-  
   ```java Java
   @Override
   public void onBinInfoApiResponse(PayuResponse payuResponse) {
   }
   ```
-  
 </Accordion>
+
 ## Get Card Information API
 
 The **Get Card Information** (Check is Domestic) API is used to get if the card (passed in cardBin info API) is domestic or international. This API returns the following parameters:
@@ -671,7 +643,6 @@ The **Get Card Information** (Check is Domestic) API is used to get if the card 
 For this API, you need to set the following parameter in the payment params similar to the following code block:
 
 <Accordion title="Step 1: Create Post Request" icon="fa-code">
-  
   ```java Java
   MerchantWebService merchantWebService = new MerchantWebService();
   merchantWebService.setKey(merchantKey); // Merchant key
@@ -679,36 +650,33 @@ For this API, you need to set the following parameter in the payment params simi
   merchantWebService.setVar1("<pass the card Bin number>")
   merchantWebService.setHash(<Api Command Hash>) // Pass the Hash value, and use the below formula
   ```
-  
 </Accordion>
+
 <Accordion title="Step 2: Get onGetCardInformationResponse" icon="fa-code">
-  
   ```java Java
   @Override
   public void onGetCardInformationResponse(PayuResponse payuResponse) {
      Log.d(TAG, "onGetCardInformationResponse: " + payuResponse.getRawResponse());
   }
   ```
-  
 </Accordion>
+
 <Accordion title="Offer APIs" icon="fa-code">
-  
   The following APIs used for offers with Android Core SDK:
-  
+
   * [Fetch Offer Details](#fetch-offer-details)
   * [Validate Offer Details](#validate-offer-details)
-  
 </Accordion>
+
 <Accordion title="Fetch Offer Details" icon="fa-code">
-  
   Use this API to fetch the offer list available for the merchant.
-  
+
   To integrate this API call the fetchOfferDetails pass the requestData as parameters as shown in the code snippet below:
-  
+
   ```java Java
   payuConfig = new PayuConfig();
   payuConfig.setEnvironment(PayuConstants.STAGING_ENV);
-  
+
   V2ApiTask v2ApiTask = new V2ApiTask(merchantKey, payuConfig);
   FetchOfferApiRequest fetchOfferApiRequest = new FetchOfferApiRequest.Builder().setAmount(100.00).setUserToken("56789067890").build();
   v2ApiTask.getOffers(fetchOfferApiRequest, new HashGenerationListener() {
@@ -730,25 +698,24 @@ For this API, you need to set the following parameter in the payment params simi
       }
   });
   ```
-  
 </Accordion>
+
 <Accordion title="Validate Offer API" icon="fa-code">
-  
   Use this API to validate the offer for the merchants.
-  
+
   To integrate this API call the method  validateOfferDetails and pass the requestData as parameters as shown in the code snippet below:
-  
+
   ```java Java
   List<String> offerKey = new ArrayList<>();
   offerKey.add("<pass the offer key>");
-  
+
   PaymentDetailsForOffer paymentDetailsForOffer = new PaymentDetailsForOffer.Builder().setPaymentCode("CC").setCardNumber("5123456789012346").setCategory("CREDITCARD").build();
-  
+
   UserDetailsForOffer userDetailsForOffer = new UserDetailsForOffer.Builder().setUserToken("56789067890").build();
-  
+
   payuConfig = new PayuConfig();
   payuConfig.setEnvironment(PayuConstants.STAGING_ENV);
-  
+
   V2ApiTask v2ApiTask = new V2ApiTask(merchantKey, payuConfig);
   ValidateOfferRequest validateOfferRequest = new ValidateOfferRequest.Builder().setAmount("100.00").setOfferKey(offerKey).setPaymentDetails(paymentDetailsForOffer).setuserDetails(userDetailsForOffer).setAutoApply(false).build();
   v2ApiTask.validateOffers(validateOfferRequest, new HashGenerationListener() {
@@ -770,14 +737,13 @@ For this API, you need to set the following parameter in the payment params simi
       }
   });
   ```
-  
 </Accordion>
+
 ## Check Balance API
 
 The **Check Balance** API can be used to fetch detail of the Sodexo card with the source ID.
 
 <Accordion title="Step 1: Set parameters" icon="fa-code">
-  
   ```java Java
   MerchantWebService merchantWebService = new MerchantWebService();
   merchantWebService.setKey(merchantKey);
@@ -785,20 +751,19 @@ The **Check Balance** API can be used to fetch detail of the Sodexo card with th
   merchantWebService.setVar1(sodexoSourceId); // This parameter must contain the Sodexo Source ID
   merchantWebService.setHash(HashGenerationUtils.generateHashFromSDK(hashData, salt));        
   ```
-  
 </Accordion>
+
 <Accordion title="Step 2: Handle response" icon="fa-code">
-  
   ```java Java
   @Override
     public void onCheckBalanceResponse(PayuResponse payuResponse) {
       Log.d(TAG, "onCheckBalanceResponse: " + payuResponse.getRawResponse());
   }
   ```
-  
+
   ***
-  
 </Accordion>
+
 ## Tokenized Payment APIs
 
 You can store and get stored card details from the vault. The tokenized payments for Android Core SDK includes the following APIs:
@@ -808,9 +773,8 @@ You can store and get stored card details from the vault. The tokenized payments
 * [Delete Tokenized Stored Cards API](#delete-tokenized-stored-cards-api)
 
 <Accordion title="Get Tokenized Stored Cards API" icon="fa-code">
-  
   The **Get Tokenized Stored Cards** API is helpful in getting all the stored cards for a particular user. For this API, you need to set the`userCredentials` in the payment params similar to the following:
-  
+
   ```java Java
   MerchantWebService merchantWebService = new MerchantWebService();
   merchantWebService.setKey("<pass the merchant key>");
@@ -818,21 +782,20 @@ You can store and get stored card details from the vault. The tokenized payments
   merchantWebService.setVar1(user_credentials); //In var1, pass the user_credential
   merchantWebService.setHash("<pass the hash value>"); 
   ```
-  
+
   To integrate this API call the `getTokenizedStoredCards` method similar to the following:
-  
+
   ```Text Java
   @Override
   public void onGetTokenisedCardResponse(PayuResponse payuResponse) {
           
   }
   ```
-  
 </Accordion>
+
 <Accordion title="Get Tokenized Stored Card Details API" icon="fa-code">
-  
   The **Get Tokenized Stored Card Details** API is used to get details of the stored card to make payment on another PG.
-  
+
   ```Text Java
   MerchantWebService merchantWebService = new MerchantWebService();
   merchantWebService.setKey("<pass the merchant key>");
@@ -841,19 +804,18 @@ You can store and get stored card details from the vault. The tokenized payments
   merchantWebService.setVar2("<cardToken>"); //In var2, pass the cardToken to get the saved card details
   merchantWebService.setHash("<pass the hash value>"); 
   ```
-  
+
   ```Text Java
   @Override
   public void onTokenisedCardDetailsResponse(PayuResponse payuResponse) {
           
   }
   ```
-  
 </Accordion>
+
 <Accordion title="Delete Tokenized Stored Cards API" icon="fa-code">
-  
   The **Delete Tokenized Stored Cards** API is helpful in deleting stored cards.
-  
+
   ```java Java
   MerchantWebService merchantWebService = new MerchantWebService();
   merchantWebService.setKey("<pass the merchant key>");
@@ -862,14 +824,13 @@ You can store and get stored card details from the vault. The tokenized payments
   merchantWebService.setVar2("<cardToken>"); //In var2, pass the cardToken to delete the saved card details
   merchantWebService.setHash("<pass the hash value>"); 
   ```
-  
+
   To integrate this API call the `deleteTokenizedStoredCard` method similar to the following:
-  
+
   ```java Java
   @Override
   public void onDeleteTokenisedCardResponse(PayuResponse payuResponse) {
-  
+
   }
   ```
-  
 </Accordion>
