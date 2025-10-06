@@ -592,7 +592,8 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
   ```
 </Accordion>
 
-## Test the Integration
+## Test the Integration and Go-live
+  <Accordion title="Test the integration" icon="fa-code">
 
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
@@ -766,58 +767,9 @@ You can make test payments using one of the payment methods configured at the Ch
     </Table>
   </Accordion>
 </Accordion>
-
-## Go-live Checklist
-
-Ensure these steps before you deploy the integration in a live environment.
-
-<Accordion title="Collect Live Payments" icon="fa-code">
-  After [testing the integration](https://docs.payu.in/docs/flutter-checkoutprosdk-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
-
-  > 🚧 Watch Out!
-  >
-  > Ensure that you are using the production merchant key and salt generated in the live mode.
-
-  <ProductionKeyAndSaltProcedure />
-</Accordion>
-
-<Accordion title="Checklist 2: Configure environment() parameter" icon="fa-code">
-  Set the value of the `environment`to `0` in the payment integration code. This enables the integration to accept live payments.
-</Accordion>
-
-<Accordion title="Checklist 3:- Configure your SURL/FURL" icon="fa-code">
-  PayU recommends you design or use your own SURL and FURL after testing is completed.
-
-  Refer to the link below for Handling SURL and FURL doc details.
-
-  > 🚧 We are not recommended to go live with PayU SURL and FURL.
-</Accordion>
-
-<Accordion title="Checklist 4:- Remove/comment meta -data code from manifest file :-" icon="fa-code">
-  <Accordion title="For Android" icon="fa-code">
-    You must be comment/remove the below metadata code from the manifest file to use the UPI Collect flow on Production env:-
-
-    ```Text XML
-    <application>
-    <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
-    <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
-    <meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
-    </appliction>
-    ```
-  </Accordion>
-</Accordion>
-
-<Accordion title="Checklist 5: Configure verify payment method" icon="fa-code">
-  Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
-</Accordion>
-
-<Accordion title="Checklist 6: Configure Webhook" icon="fa-code">
-  PayU recommends you to configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
 </Accordion>
 
 <Go_Live_Checklist />
-
-<br />
 
 ## Sample app
 
