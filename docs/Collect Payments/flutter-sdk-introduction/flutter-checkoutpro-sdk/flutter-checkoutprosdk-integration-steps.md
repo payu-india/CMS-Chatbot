@@ -31,7 +31,7 @@ To integrate PayU CheckoutPro with Flutter SDK:
 
 For IOS, refer to iOS Specific Integration and check Distributing Your App (App Store/ Ad-hoc) to deploy your application. For more information, refer to [Explore iOS SDKs](doc:explore-ios-sdks)
 
-### Step 1: Include the SDK in your app project
+<Accordion title="Step 1: Include the SDK in your app project" icon="fa-code">
 
 The CheckoutPro SDK for Flutter is offered through Flutter `pub.dev`
 
@@ -47,7 +47,8 @@ import 'package:payu_checkoutpro_flutter/PayUConstantKeys.dart';
 
 ***
 
-### Step2: Initialize PayU Checkout Pro Flutter object
+</Accordion>
+<Accordion title="Step2: Initialize PayU Checkout Pro Flutter object" icon="fa-code">
 
 * Create PayUCheckout Pro Flutter instance.
   ```d Dart
@@ -66,7 +67,8 @@ _checkoutPro = PayUCheckoutProFlutter(this);
 
 > Note: Make sure your minimum deployment target is iOS 11.
 
-### Step3: Setup PayU Checkout Pro protocol
+</Accordion>
+<Accordion title="Step3: Setup PayU Checkout Pro protocol" icon="fa-code">
 
 * Implement Checkout Pro protocol methods to get hash generation callback and transaction status callback from Checkout Pro SDK: `class MyClass extends SupeprClass implements PayUCheckoutProProtocol`
 * Implement the following methods in your class to get a callback from the SDK.
@@ -104,11 +106,12 @@ _checkoutPro = PayUCheckoutProFlutter(this);
 
 ***
 
-### Step4: Setup payment hashes
+</Accordion>
+<Accordion title="Step4: Setup payment hashes" icon="fa-code">
 
 This step describes how to pass the static and dynamic hashes. For detailed information, refer to [Generate Hash](doc:generate-dynamic-hash-flutter).
 
-#### Pass static hashes
+<Accordion title="Pass static hashes" icon="fa-code">
 
 To pass static hashes during integration, use the following code snippet:
 
@@ -131,7 +134,8 @@ var payUPaymentParams = {
 } 
 ```
 
-#### Pass dynamic hashes
+</Accordion>
+<Accordion title="Pass dynamic hashes" icon="fa-code">
 
 To pass dynamic hashes, the merchant will receive a call on the generateHash method. In the method parameter, you will receive a dictionary or hashMap, then extract the value of hashString from that. Pass that value to the server to append the Salt at the end and generate the sha512 hash over it. The server gives that hash back to your app, and the app will pass that hash to PayU through a callback mechanism.
 
@@ -176,11 +180,13 @@ hash = <Get SHA512Hash from Backend with <hashStringWithoutSalt > + <merchantSal
 
 ***
 
-### Step 5: Build the payment parameters
+</Accordion>
+</Accordion>
+<Accordion title="Step 5: Build the payment parameters" icon="fa-code">
 
 To initiate the payment, your app needs to send transactional information to the Checkout Pro SDK.
 
-#### Payment parameters
+<Accordion title="Payment parameters" icon="fa-code">
 
 <Table align={["left","left"]}>
   <thead>
@@ -358,7 +364,8 @@ To initiate the payment, your app needs to send transactional information to the
 
 For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
 
-#### Additional Parameters (Optional)
+</Accordion>
+<Accordion title="Additional Parameters (Optional)" icon="fa-code">
 
 The additional parameters that are optional that can be passed for the SDK are udf parameters, static hashes, and other parameters. For more details on Static Hash generation and passing them, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk). The following is a list of parameters that can be passed in additional parameters:
 
@@ -452,7 +459,9 @@ var siParams = {
 
 ***
 
-### Step 6: Initiate payment
+</Accordion>
+</Accordion>
+<Accordion title="Step 6: Initiate payment" icon="fa-code">
 
 Initialize and launch the Checkout Pro SDK by calling the following code snippet:
 
@@ -466,7 +475,8 @@ payUCheckoutProConfig: <payUConfigParams>,
 
 ***
 
-### Step 7: Configure AndroidManifest.xml
+</Accordion>
+<Accordion title="Step 7: Configure AndroidManifest.xml" icon="fa-code">
 
 To automatically fill OTP on bank pages, SDK requires the RECEIVE_SMS permission, configure the AndroidManifest.xml by adding receive sms permission as shown below.
 
@@ -476,7 +486,8 @@ To automatically fill OTP on bank pages, SDK requires the RECEIVE_SMS permission
 
 ***
 
-### IOS specific integration
+</Accordion>
+<Accordion title="IOS specific integration" icon="fa-code">
 
 Flutter SDK offers a few optional customizations for IOS as mentioned below:
 
@@ -507,6 +518,105 @@ Currently, PayU supports only PhonePe and GooglePay through Intent. Add the quer
 
 ***
 
-### Distributing your app (App Store / Ad-hoc)
+</Accordion>
+<Accordion title="Distributing your app (App Store / Ad-hoc)" icon="fa-code">
 
 What you get by default is a fat framework that allows you to test your app seamlessly on the device and simulator. But before archiving your app, you need to remove simulator slices from the framework. For detailed information on archiving your app with PayU ChekoutPro, refer to [Releasing Apple App Store](https://docs.payu.in/docs/ios-releasing-the-app-to-the-app-store).
+
+## Test the Integration and Go-live
+
+</Accordion>
+<Accordion title="Test the integration" icon="fa-code">
+
+<br />
+
+After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
+
+> 🚧 Callout
+>
+> The UPI in-app and UPI intent flow is not available in the Test mode.
+
+> 👍 Testing checklist
+>
+> Things to remember while testing an integration:
+>
+> 1. To test the integration make sure that you are making a transaction call to the test endpoint.
+> 2. Use your test key and salt for the transaction requests. See [Genearate Test Key and Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt).
+> 3. Set the value of the `environment` parameters to `1`.
+
+***
+
+<TestCardsCallout />
+
+You can make test payments using one of the payment methods configured at the Checkout.
+
+<Accordion title="Test credentials for supported payment methods" icon="fa-code">
+
+Following are the payment methods supported in PayU Test mode.
+
+<Accordion title="Test Credential for Card" icon="fa-code">
+
+| Card Number      | Expiry | CVV | OTP    |
+| :--------------- | :----- | :-- | :----- |
+| 5123456789012346 | 05/25  | 123 | 123456 |
+
+</Accordion>
+<Accordion title="Test credentials for Net Banking" icon="fa-code">
+
+Use the following credentials to test the Net Banking integration:
+
+* **user name:** payu
+* **password**: payu
+* **OTP**: 123456
+
+</Accordion>
+<Accordion title="Test VPA for UPI" icon="fa-code">
+
+You can use either of the following VPAs to test your UPI-related integration:
+
+* [anything@upi](anything@upi)
+* [9999999999@upi](mailto:9999999999@payu.in)
+
+For Testing the UPI Collect flow, Please follow the below steps:- 
+
+1. Once you enter the VPA click on the verify button and proceed to pay.
+2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
+3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
+
+[https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)`<Txn_id>`
+
+**For Android**
+
+You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
+
+> 🚧 Ensure to remove the code from the manifest file before going live.
+
+```Text xml
+<application>
+<meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
+<meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
+<meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
+</application>
+```
+
+</Accordion>
+<Accordion title="Test cards for EMI" icon="fa-code">
+
+You can use the following Debit and Credit cards to test EMI integration.
+
+<EMITestCards />
+
+</Accordion>
+<Accordion title="Test Wallets" icon="fa-code">
+
+You can use the following wallets and their corresponding credentials to test wallet integration.
+
+<EMITestWallets />
+
+<Go_Live_Checklist />
+
+<br />
+
+</Accordion>
+</Accordion>
+</Accordion>
