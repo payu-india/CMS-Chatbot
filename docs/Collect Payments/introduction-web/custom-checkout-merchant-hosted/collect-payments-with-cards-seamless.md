@@ -25,6 +25,31 @@ PayU supports the following debit cards and credit cards:
 If you are storing or transmitting cardholder data, you must fill the “[Self-Assessment Questionnaire A-EP and Attestation of Compliance](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf)” form. For more information on Save Cards API integration, refer to PayU Save Cards API Integration docs.
 
 <RegisterMerchantPrerequiste />
+<Cards columns={4}>
+  <Card title="1. Validate the card type" href="#step-1-valiadate-the-card-type" target="_blank">
+    Validate the card type using the card BIN API>
+
+    <br />
+  </Card>
+
+  <Card title="2. Initiate the Payment to PayU" href="#step-2-initiate-the-payment-to-payu" target="_blank">
+    Initiate the payment to PayU with pg=NEFT and bankcode=\<based on bank>
+
+    <br />
+  </Card>
+
+  <Card title="3. Check response from PayU" href="#step-3-check-response-from-payu">
+    Check the response from PayU
+
+    <br />
+  </Card>
+
+  <Card title="4. Verify the payment" href="#step-4-verify-the-payment">
+    Verify the payment using verify\_payment and monitor using webhooks
+  </Card>
+
+  <br />
+</Cards>
 
 <Accordion title="Step 1: Validate the card type" icon="fa-code">
   When customers use debit cards or credit cards on your website, you can validate the card type with the first six digits. Use the **getBinInfo** API (known as BIN API) to validate the type of card. For more information, refer to  <Anchor label="BIN APIs" target="_blank" href="ref:get_bin_info_api">BIN APIs</Anchor>.
@@ -562,1047 +587,1048 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
     <HashingRequestParameters />
   </Accordion>
 
-<Accordion title="Sample request" icon="fa-code">
-  ```curl
-  # IMPORTANT: This is a server-side call, never execute this client-side
-  # Replace placeholders with actual values
-  # In production: Use environment variables for sensitive values
-
-  curl -X POST "https://test.payu.in/_payment" \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    -d "key=YOUR_MERCHANT_KEY" \
-    -d "txnid=TXN_12345" \
-    -d "amount=1000.00" \
-    -d "productinfo=Product+Description" \
-    -d "firstname=Customer+Name" \
-    -d "email=customer@example.com" \
-    -d "phone=9988776655" \
-    -d "pg=CC" \
-    -d "bankcode=CC" \
-    -d "ccnum=CARD_NUMBER" \
-    -d "ccexpmon=MM" \
-    -d "ccexpyr=YY" \
-    -d "ccvv=CVV" \
-    -d "ccname=NAME_ON_CARD" \
-    -d "surl=https://yourwebsite.com/success" \
-    -d "furl=https://yourwebsite.com/failure" \
-    -d "hash=HASH_GENERATED_ON_SERVER"
-  ```
-  ```python
-  import urllib.request
-  import urllib.parse
-  import json
-  import os
-  from typing import Dict, Any
-
-  def process_payment(payment_data: Dict[str, Any]) -> Dict[str, Any]:
-      """
-      Process payment using PayU's Merchant Hosted Checkout
-      
-      IMPORTANT: This is a server-side function. Never expose card details to client-side code.
-      This handles sensitive card data and requires PCI DSS compliance.
-      
-      Args:
-          payment_data: Dictionary containing payment information
-          
-      Returns:
-          Dictionary with response from PayU API
-      """
-      # API endpoint - Use different URLs for test/production environments
-      url = "https://test.payu.in/_payment"  # Test URL
-      # url = "https://secure.payu.in/_payment"  # Production URL
-      
-      # Prepare the form data with proper URL encoding
-      # In production: Get merchant_key and hash from secure environment variables
-      payload = {
-          "key": "YOUR_MERCHANT_KEY",           # Replace with actual merchant key
-          "txnid": "TXN_12345",                 # Generate unique transaction ID
-          "amount": "1000.00",                  # Amount to be charged
-          "productinfo": "Product Description", # Description of product/service
-          "firstname": "Customer Name",         # Customer's first name
-          "email": "customer@example.com",      # Customer's email
-          "phone": "9988776655",                # Customer's phone number
-          "pg": "CC",                           # Payment gateway (CC for credit card)
-          "bankcode": "CC",                     # Bank code (CC for credit card)
-          
-          # SENSITIVE DATA - Handle with care according to PCI DSS requirements
-          "ccnum": "CARD_NUMBER",               # Credit card number
-          "ccexpmon": "MM",                     # Expiry month (2 digits)
-          "ccexpyr": "YY",                      # Expiry year (2 digits)
-          "ccvv": "CVV",                        # Card verification value
-          "ccname": "NAME_ON_CARD",             # Name on the card
-          
-          # Success and failure URLs
-          "surl": "https://yourwebsite.com/success",  # Success callback URL
-          "furl": "https://yourwebsite.com/failure",  # Failure callback URL
-          
-          # Hash is generated on server using specific algorithm provided by PayU
-          # See PayU documentation for the exact hash generation logic
-          "hash": "HASH_GENERATED_ON_SERVER",   # Security hash
-      }
-      
-      # Convert dictionary to URL-encoded form data
-      data = urllib.parse.urlencode(payload).encode('utf-8')
-      
-      # Set headers
-      headers = {
-          "Content-Type": "application/x-www-form-urlencoded"
-      }
-      
-      # Create a request object
-      req = urllib.request.Request(url, data=data, headers=headers, method="POST")
-      
-      try:
-          # Send the request and get the response
-          with urllib.request.urlopen(req) as response:
-              response_data = response.read().decode('utf-8')
-              
-              # In production, implement proper response handling and logging
-              # (but never log full card details)
-              return {
-                  "status_code": response.getcode(),
-                  "response": response_data
-              }
-              
-      except urllib.error.HTTPError as e:
-          # Handle HTTP errors
-          error_data = e.read().decode('utf-8')
-          return {
-              "status_code": e.code,
-              "error": e.reason,
-              "response": error_data
-          }
-          
-      except Exception as e:
-          # Handle other exceptions
-          return {
-              "status_code": 500,
-              "error": str(e),
-              "response": "An error occurred during the payment process"
-          }
-
-  # Example usage:
-  # payment_result = process_payment(payment_data)
-  # print(f"Status: {payment_result['status_code']}")
-  # Process the response appropriately
-
-  ```
-  ```php
-  <?php
-  /**
-   * Process payment using PayU's Merchant Hosted Checkout
-   * 
-   * IMPORTANT: This is a server-side function. Never expose card details to client-side code.
-   * This handles sensitive card data and requires PCI DSS compliance.
-   * 
-   * @param array $paymentData Payment information
-   * @return array Response from PayU API
-   */
-  function processPayment($paymentData = []) {
-      // API endpoint - Use different URLs for test/production environments
-      $url = "https://test.payu.in/_payment"; // Test URL
-      // $url = "https://secure.payu.in/_payment"; // Production URL
-      
-      // Prepare the form data
-      // In production: Get merchant_key and hash from secure environment variables
-      $payload = [
-          "key" => "YOUR_MERCHANT_KEY",           // Replace with actual merchant key
-          "txnid" => "TXN_12345",                 // Generate unique transaction ID
-          "amount" => "1000.00",                  // Amount to be charged
-          "productinfo" => "Product Description", // Description of product/service
-          "firstname" => "Customer Name",         // Customer's first name
-          "email" => "customer@example.com",      // Customer's email
-          "phone" => "9988776655",                // Customer's phone number
-          "pg" => "CC",                           // Payment gateway (CC for credit card)
-          "bankcode" => "CC",                     // Bank code (CC for credit card)
-          
-          // SENSITIVE DATA - Handle with care according to PCI DSS requirements
-          "ccnum" => "CARD_NUMBER",               // Credit card number
-          "ccexpmon" => "MM",                     // Expiry month (2 digits)
-          "ccexpyr" => "YY",                      // Expiry year (2 digits)
-          "ccvv" => "CVV",                        // Card verification value
-          "ccname" => "NAME_ON_CARD",             // Name on the card
-          
-          // Success and failure URLs
-          "surl" => "https://yourwebsite.com/success", // Success callback URL
-          "furl" => "https://yourwebsite.com/failure", // Failure callback URL
-          
-          // Hash is generated on server using specific algorithm provided by PayU
-          // See PayU documentation for the exact hash generation logic
-          "hash" => "HASH_GENERATED_ON_SERVER",   // Security hash
-      ];
-      
-      // Initialize cURL session
-      $ch = curl_init($url);
-      
-      // Set cURL options
-      curl_setopt($ch, CURLOPT_POST, true);
-      curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, [
-          "Content-Type: application/x-www-form-urlencoded"
-      ]);
-      
-      // For additional security in production
-      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-      curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-      
-      // Execute the request
-      $response = curl_exec($ch);
-      $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-      $error = curl_error($ch);
-      $errno = curl_errno($ch);
-      
-      // Close cURL session
-      curl_close($ch);
-      
-      // Handle response
-      if ($errno) {
-          return [
-              "status_code" => 500,
-              "error" => $error,
-              "response" => "cURL Error: " . $error
-          ];
-      }
-      
-      // In production, implement proper response handling and logging
-      // (but never log full card details)
-      return [
-          "status_code" => $status_code,
-          "response" => $response
-      ];
-  }
-
-  // Example usage:
-  // $paymentResult = processPayment($paymentData);
-  // echo "Status: " . $paymentResult["status_code"];
-  // Process the response appropriately
-  ?>
-
-  ```
-  ```java
-  import java.io.BufferedReader;
-  import java.io.DataOutputStream;
-  import java.io.IOException;
-  import java.io.InputStreamReader;
-  import java.net.HttpURLConnection;
-  import java.net.URL;
-  import java.net.URLEncoder;
-  import java.nio.charset.StandardCharsets;
-  import java.util.HashMap;
-  import java.util.Map;
-  import java.util.StringJoiner;
-
-  /**
-   * PayU Payment Processor for Merchant Hosted Checkout
-   * 
-   * IMPORTANT: This is a server-side implementation. Never expose card details to client-side code.
-   * This handles sensitive card data and requires PCI DSS compliance.
-   */
-  public class PayUPaymentProcessor {
-      
-      // API endpoints - Use different URLs for test/production environments
-      private static final String TEST_URL = "https://test.payu.in/_payment";
-      private static final String PROD_URL = "https://secure.payu.in/_payment";
-      
-      /**
-       * Process payment using PayU Merchant Hosted Checkout
-       * 
-       * @return PaymentResponse containing status and response data
-       */
-      public PaymentResponse processPayment() {
-          try {
-              // Use test URL (change to PROD_URL in production)
-              URL url = new URL(TEST_URL);
-              
-              // Prepare form parameters
-              // In production: Get merchant_key and hash from secure environment variables
-              Map<String, String> params = new HashMap<>();
-              params.put("key", "YOUR_MERCHANT_KEY");           // Replace with actual merchant key
-              params.put("txnid", "TXN_12345");                 // Generate unique transaction ID
-              params.put("amount", "1000.00");                  // Amount to be charged
-              params.put("productinfo", "Product Description"); // Description of product/service
-              params.put("firstname", "Customer Name");         // Customer's first name
-              params.put("email", "customer@example.com");      // Customer's email
-              params.put("phone", "9988776655");                // Customer's phone number
-              params.put("pg", "CC");                           // Payment gateway (CC for credit card)
-              params.put("bankcode", "CC");                     // Bank code (CC for credit card)
-              
-              // SENSITIVE DATA - Handle with care according to PCI DSS requirements
-              params.put("ccnum", "CARD_NUMBER");               // Credit card number
-              params.put("ccexpmon", "MM");                     // Expiry month (2 digits)
-              params.put("ccexpyr", "YY");                      // Expiry year (2 digits)
-              params.put("ccvv", "CVV");                        // Card verification value
-              params.put("ccname", "NAME_ON_CARD");             // Name on the card
-              
-              // Success and failure URLs
-              params.put("surl", "https://yourwebsite.com/success"); // Success callback URL
-              params.put("furl", "https://yourwebsite.com/failure"); // Failure callback URL
-              
-              // Hash is generated on server using specific algorithm provided by PayU
-              // See PayU documentation for the exact hash generation logic
-              params.put("hash", "HASH_GENERATED_ON_SERVER");   // Security hash
-              
-              // Convert parameters to URL-encoded form data
-              StringJoiner formData = new StringJoiner("&");
-              for (Map.Entry<String, String> entry : params.entrySet()) {
-                  formData.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + 
-                               URLEncoder.encode(entry.getValue(), "UTF-8"));
-              }
-              byte[] postData = formData.toString().getBytes(StandardCharsets.UTF_8);
-              
-              // Configure connection
-              HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-              conn.setRequestMethod("POST");
-              conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-              conn.setRequestProperty("Content-Length", String.valueOf(postData.length));
-              conn.setDoOutput(true);
-              conn.setConnectTimeout(5000);
-              conn.setReadTimeout(15000);
-              
-              // Send request
-              try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
-                  dos.write(postData);
-                  dos.flush();
-              }
-              
-              // Get response
-              int responseCode = conn.getResponseCode();
-              
-              // Read response data
-              StringBuilder response = new StringBuilder();
-              try (BufferedReader reader = new BufferedReader(
-                      new InputStreamReader(
-                          responseCode >= 400 ? conn.getErrorStream() : conn.getInputStream(), 
-                          StandardCharsets.UTF_8))) {
-                          
-                  String line;
-                  while ((line = reader.readLine()) != null) {
-                      response.append(line);
-                  }
-              }
-              
-              // In production, implement proper response handling and logging
-              // (but never log full card details)
-              return new PaymentResponse(responseCode, response.toString(), null);
-              
-          } catch (IOException e) {
-              // Handle exception
-              return new PaymentResponse(500, null, "Error: " + e.getMessage());
-          }
-      }
-      
-      /**
-       * Payment response wrapper class
-       */
-      public static class PaymentResponse {
-          private final int statusCode;
-          private final String response;
-          private final String error;
-          
-          public PaymentResponse(int statusCode, String response, String error) {
-              this.statusCode = statusCode;
-              this.response = response;
-              this.error = error;
-          }
-          
-          public int getStatusCode() {
-              return statusCode;
-          }
-          
-          public String getResponse() {
-              return response;
-          }
-          
-          public String getError() {
-              return error;
-          }
-          
-          public boolean isSuccess() {
-              return statusCode >= 200 && statusCode < 300;
-          }
-      }
-      
-      // Example usage:
-      public static void main(String[] args) {
-          PayUPaymentProcessor processor = new PayUPaymentProcessor();
-          PaymentResponse result = processor.processPayment();
-          
-          System.out.println("Status Code: " + result.getStatusCode());
-          if (result.isSuccess()) {
-              System.out.println("Response: " + result.getResponse());
-          } else {
-              System.out.println("Error: " + result.getError());
-          }
-      }
-  }
-
-  ```
-  ```csharp
-  using System;
-  using System.Collections.Generic;
-  using System.Net.Http;
-  using System.Threading.Tasks;
-  using System.Text;
-
-  namespace PayUIntegration
-  {
-      /// <summary>
-      /// PayU Payment Processor for Merchant Hosted Checkout
-      /// 
-      /// IMPORTANT: This is a server-side implementation. Never expose card details to client-side code.
-      /// This handles sensitive card data and requires PCI DSS compliance.
-      /// </summary>
-      public class PayUPaymentProcessor
-      {
-          // API endpoints - Use different URLs for test/production environments
-          private const string TestUrl = "https://test.payu.in/_payment";
-          private const string ProdUrl = "https://secure.payu.in/_payment";
-          
-          /// <summary>
-          /// Process payment using PayU Merchant Hosted Checkout
-          /// </summary>
-          /// <returns>PaymentResponse containing status and response data</returns>
-          public async Task<PaymentResponse> ProcessPaymentAsync()
-          {
-              try
-              {
-                  // Use test URL (change to ProdUrl in production)
-                  string url = TestUrl;
-                  
-                  // Prepare form parameters
-                  // In production: Get merchant_key and hash from secure environment variables
-                  var formData = new Dictionary<string, string>
-                  {
-                      { "key", "YOUR_MERCHANT_KEY" },           // Replace with actual merchant key
-                      { "txnid", "TXN_12345" },                 // Generate unique transaction ID
-                      { "amount", "1000.00" },                  // Amount to be charged
-                      { "productinfo", "Product Description" }, // Description of product/service
-                      { "firstname", "Customer Name" },         // Customer's first name
-                      { "email", "customer@example.com" },      // Customer's email
-                      { "phone", "9988776655" },                // Customer's phone number
-                      { "pg", "CC" },                           // Payment gateway (CC for credit card)
-                      { "bankcode", "CC" },                     // Bank code (CC for credit card)
-                      
-                      // SENSITIVE DATA - Handle with care according to PCI DSS requirements
-                      { "ccnum", "CARD_NUMBER" },               // Credit card number
-                      { "ccexpmon", "MM" },                     // Expiry month (2 digits)
-                      { "ccexpyr", "YY" },                      // Expiry year (2 digits)
-                      { "ccvv", "CVV" },                        // Card verification value
-                      { "ccname", "NAME_ON_CARD" },             // Name on the card
-                      
-                      // Success and failure URLs
-                      { "surl", "https://yourwebsite.com/success" }, // Success callback URL
-                      { "furl", "https://yourwebsite.com/failure" }, // Failure callback URL
-                      
-                      // Hash is generated on server using specific algorithm provided by PayU
-                      // See PayU documentation for the exact hash generation logic
-                      { "hash", "HASH_GENERATED_ON_SERVER" }    // Security hash
-                  };
-                  
-                  // Create HttpClient with timeout
-                  using (var httpClient = new HttpClient())
-                  {
-                      httpClient.Timeout = TimeSpan.FromSeconds(30);
-                      
-                      // Convert form data to content
-                      var content = new FormUrlEncodedContent(formData);
-                      
-                      // Send POST request
-                      var response = await httpClient.PostAsync(url, content);
-                      
-                      // Get response content
-                      var responseContent = await response.Content.ReadAsStringAsync();
-                      
-                      // In production, implement proper response handling and logging
-                      // (but never log full card details)
-                      return new PaymentResponse(
-                          (int)response.StatusCode,
-                          responseContent,
-                          null
-                      );
-                  }
-              }
-              catch (Exception ex)
-              {
-                  // Handle exception
-                  return new PaymentResponse(
-                      500,
-                      null,
-                      $"Error: {ex.Message}"
-                  );
-              }
-          }
-          
-          /// <summary>
-          /// Payment response wrapper class
-          /// </summary>
-          public class PaymentResponse
-          {
-              public int StatusCode { get; }
-              public string Response { get; }
-              public string Error { get; }
-              
-              public PaymentResponse(int statusCode, string response, string error)
-              {
-                  StatusCode = statusCode;
-                  Response = response;
-                  Error = error;
-              }
-              
-              public bool IsSuccess => StatusCode >= 200 && StatusCode < 300;
-          }
-      }
-      
-      // Example usage:
-      public class Program
-      {
-          public static async Task Main(string[] args)
-          {
-              var processor = new PayUPaymentProcessor();
-              var result = await processor.ProcessPaymentAsync();
-              
-              Console.WriteLine($"Status Code: {result.StatusCode}");
-              if (result.IsSuccess)
-              {
-                  Console.WriteLine($"Response: {result.Response}");
-              }
-              else
-              {
-                  Console.WriteLine($"Error: {result.Error}");
-              }
-          }
-      }
-  }
-
-  ```
-</Accordion>
-
-<Accordion title="Sample request for saved card" icon="fa-code">
-  <Accordion title="Request parameters" icon="fa-info-table">
-    <HTMLBlock>{`
-                                              <Table>
-                                                <thead>
-                                                  <tr>
-                                                    <th>
-                                                      Parameter
-                                                    </th>
-
-                                                    <th>
-                                                      Description
-                                                    </th>
-
-                                                    <th>
-                                                      Example
-                                                    </th>
-                                                  </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                  <tr>
-                                                    <td>
-                                                      <Glossary>key</Glossary>
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The merchant <Glossary>key</Glossary> is a unique identifier for a merchant account in PayU's database.
-                                                    </td>
-
-                                                    <td>
-                                                      Your Test Key
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      api_version
-                                                      <br/><code>optional</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The API version for this API.
-                                                    </td>
-
-                                                    <td>
-                                                      1
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      txnid
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The transaction ID is a reference number for a specific order that is generated by the merchant. It is used to track the order and must be unique. PayU's system will not accept duplicate transaction IDs.
-                                                    </td>
-
-                                                    <td>
-                                                      s7hhDQVWvbhBdN
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      amount
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> This field should contain the payment amount for the transaction. If you want to use the cardless EMI option, the amount must be at least Rs. 8000
-                                                    </td>
-
-                                                    <td>
-                                                      10.00
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      productinfo
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> It should be a string containing a brief description of the product.\`\`\`
-
-                                                      Character Limit-100
-                                                      \`\`\`
-                                                    </td>
-
-                                                    <td>
-                                                      iPhone
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      firstname
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The first name of the customer.\`\`\`
-
-                                                      Character Limit-60
-                                                      \`\`\`
-                                                    </td>
-
-                                                    <td>
-                                                      Ashish
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      email
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The email of the customer.\`\`\`
-
-                                                      Character Limit-50
-                                                      \`\`\`
-                                                    </td>
-
-                                                    <td>
-                                                      [test@gmail.com](mailto:test@gmail.com)
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      phone
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The phone number of the customer.  
-
-                                                      * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
-                                                    </td>
-
-                                                    <td>
-                                                      9876543210
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      lastname
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The last name of the customer.\`\`\`
-
-                                                      Character Limit-60
-                                                      \`\`\`
-                                                    </td>
-
-                                                    <td>
-                                                      Verma
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      address1
-                                                      <br/><code>optional</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The first line of the billing address.\`\`\`
-
-                                                      Character Limit-100
-                                                      \`\`\`
-                                                    </td>
-
-                                                    <td>
-                                                      H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      address2
-                                                      <br/><code>optional</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The second line of the billing address.<code>Character Limit-100</code>
-                                                    </td>
-
-                                                    <td>
-                                                      34 Saikripa-Estate, Tilak Nagar
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      city
-                                                      <br/><code>optional</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The city where your customer resides as part of the billing address.
-                                                    </td>
-
-                                                    <td>
-                                                      Mumbai
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      state
-                                                      <br/><code>optional</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The state where your customer resides as part of the billing address,
-                                                    </td>
-
-                                                    <td>
-                                                      Maharashtra
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      country
-                                                      <br/><code>optional</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The country where your customer resides.<code>Character Limit-50</code>
-                                                    </td>
-
-                                                    <td>
-                                                      India
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      zipcode
-                                                      <br/><code>optional</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> Billing address zip code is mandatory for the cardless EMI option.\`\`\`
-
-                                                      Character Limit-20
-                                                      \`\`\`
-                                                    </td>
-
-                                                    <td>
-                                                      400004
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      surl
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.
-                                                    </td>
-
-                                                    <td>
-                                                      [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      furl
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.
-                                                    </td>
-
-                                                    <td>
-                                                      [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      hash
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
-                                                    </td>
-
-                                                    <td>
-                                                      <code>eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972</code>
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      <Glossary>pg</Glossary>
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> The pg parameter determines which payment tabs will be displayed. Here, use 'CC' as the value.
-                                                    </td>
-
-                                                    <td>
-                                                      CC
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      <Glossary>bankcode</Glossary>
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. 
-                                                    </td>
-
-                                                    <td>
-                                                      AMEX
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      udf1 - udf5
-                                                      <br/><code>optional</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
-                                                      <code>Character Limit-255</code>
-                                                    </td>
-
-                                                    <td>
-                                                      Payment Preference, Shipping Method, Shipping Address1, Shipping City, Shipping Zip Code, etc.
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      ccnum
-                                                      <br/><code>optional</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>varchar</code> This parameter must contain the 13 to 19-digit card number for credit or debit cards in general. 
-                                                    </td>
-
-                                                    <td>
-                                                      512***6789012346
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      ccname
-                                                      <br/><code>optional</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>varchar</code> It is the customer's name on card.
-                                                    </td>
-
-                                                    <td>
-                                                      Ashish
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      ccvv
-                                                      <br/><code>optional</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>varchar</code> This parameter must contain the CVV number of the card – as entered by the customer for the transaction.
-                                                    </td>
-
-                                                    <td>
-                                                      123
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      ccexpmon
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>integer</code> This parameter must contain the network token expiry month.
-                                                    </td>
-
-                                                    <td>
-                                                      10
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      ccexpyr
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>integer</code> This parameter must contain the network token expiry year.
-                                                    </td>
-
-                                                    <td>
-                                                      2022
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      store_card_token
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>varchar</code> This must include the Network token generated at your end.
-                                                    </td>
-
-                                                    <td>
-                                                      1234 4567 2456 3566
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      storecard_token_type
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>integer</code> This parameter is used to specify the store card token type. For this scenario, you must include 1.
-                                                    </td>
-
-                                                    <td>
-                                                      1
-                                                    </td>
-                                                  </tr>
-
-                                                  <tr>
-                                                    <td>
-                                                      additional_info
-                                                      <br/><code>mandatory</code>
-                                                    </td>
-
-                                                    <td>
-                                                      <code>varchar</code> This parameter will contain the additional information in the following JSON format:
-                                                      {"last4Digits": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}  
-                                                    </td>
-
-                                                    <td>
-                                                      {"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}
-                                                    </td>
-                                                  </tr>
-                                                </tbody>
-                                              </Table>
-    `}</HTMLBlock>
-  </Accordion>
-
-  <Accordion title="Collect Payment with Saved Card" icon="fa-code">
+  <Accordion title="Sample request" icon="fa-code">
     ```curl
+    # IMPORTANT: This is a server-side call, never execute this client-side
+    # Replace placeholders with actual values
+    # In production: Use environment variables for sensitive values
+
     curl -X POST "https://test.payu.in/_payment" \
-      -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
-      -d "key=YourMerchantKey" \
-      -d "txnid=NT_TXN_1234567890" \
-      -d "amount=250.00" \
-      -d "productinfo=Premium Subscription Plan" \
-      -d "firstname=John" \
-      -d "lastname=Doe" \
-      -d "email=john.doe@example.com" \
-      -d "phone=9876543210" \
-      -d "surl=https://yourwebsite.com/payment/success" \
-      -d "furl=https://yourwebsite.com/payment/failure" \
+      -d "key=YOUR_MERCHANT_KEY" \
+      -d "txnid=TXN_12345" \
+      -d "amount=1000.00" \
+      -d "productinfo=Product+Description" \
+      -d "firstname=Customer+Name" \
+      -d "email=customer@example.com" \
+      -d "phone=9988776655" \
       -d "pg=CC" \
-      -d "bankcode=VISA" \
-      -d "ccexpmon=12" \
-      -d "ccexpyr=2025" \
-      -d "ccname=John Doe" \
-      -d "store_card_token=4111111111111111" \
-      -d "storecard_token_type=1" \
-      -d "additional_info={\"last4Digits\":\"1111\",\"TAVV\":\"ABCD1234EFGH5678\",\"trid\":\"987654321012345\",\"tokenRefNo\":\"TKN_REF_12345678\"}" \
-      -d "api_version=1" \
-      -d "address1=123 Business District" \
-      -d "address2=Tech Park Avenue" \
-      -d "city=Bangalore" \
-      -d "state=Karnataka" \
-      -d "country=India" \
-      -d "zipcode=560001" \
-      -d "udf1=Premium_Plan" \
-      -d "udf2=Monthly_Billing" \
-      -d "udf3=Customer_ID_789" \
-      -d "udf4=" \
-      -d "udf5=" \
-      -d "hash=b5c6d8e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9"
+      -d "bankcode=CC" \
+      -d "ccnum=CARD_NUMBER" \
+      -d "ccexpmon=MM" \
+      -d "ccexpyr=YY" \
+      -d "ccvv=CVV" \
+      -d "ccname=NAME_ON_CARD" \
+      -d "surl=https://yourwebsite.com/success" \
+      -d "furl=https://yourwebsite.com/failure" \
+      -d "hash=HASH_GENERATED_ON_SERVER"
+    ```
+    ```python
+    import urllib.request
+    import urllib.parse
+    import json
+    import os
+    from typing import Dict, Any
+
+    def process_payment(payment_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Process payment using PayU's Merchant Hosted Checkout
+        
+        IMPORTANT: This is a server-side function. Never expose card details to client-side code.
+        This handles sensitive card data and requires PCI DSS compliance.
+        
+        Args:
+            payment_data: Dictionary containing payment information
+            
+        Returns:
+            Dictionary with response from PayU API
+        """
+        # API endpoint - Use different URLs for test/production environments
+        url = "https://test.payu.in/_payment"  # Test URL
+        # url = "https://secure.payu.in/_payment"  # Production URL
+        
+        # Prepare the form data with proper URL encoding
+        # In production: Get merchant_key and hash from secure environment variables
+        payload = {
+            "key": "YOUR_MERCHANT_KEY",           # Replace with actual merchant key
+            "txnid": "TXN_12345",                 # Generate unique transaction ID
+            "amount": "1000.00",                  # Amount to be charged
+            "productinfo": "Product Description", # Description of product/service
+            "firstname": "Customer Name",         # Customer's first name
+            "email": "customer@example.com",      # Customer's email
+            "phone": "9988776655",                # Customer's phone number
+            "pg": "CC",                           # Payment gateway (CC for credit card)
+            "bankcode": "CC",                     # Bank code (CC for credit card)
+            
+            # SENSITIVE DATA - Handle with care according to PCI DSS requirements
+            "ccnum": "CARD_NUMBER",               # Credit card number
+            "ccexpmon": "MM",                     # Expiry month (2 digits)
+            "ccexpyr": "YY",                      # Expiry year (2 digits)
+            "ccvv": "CVV",                        # Card verification value
+            "ccname": "NAME_ON_CARD",             # Name on the card
+            
+            # Success and failure URLs
+            "surl": "https://yourwebsite.com/success",  # Success callback URL
+            "furl": "https://yourwebsite.com/failure",  # Failure callback URL
+            
+            # Hash is generated on server using specific algorithm provided by PayU
+            # See PayU documentation for the exact hash generation logic
+            "hash": "HASH_GENERATED_ON_SERVER",   # Security hash
+        }
+        
+        # Convert dictionary to URL-encoded form data
+        data = urllib.parse.urlencode(payload).encode('utf-8')
+        
+        # Set headers
+        headers = {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+        
+        # Create a request object
+        req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+        
+        try:
+            # Send the request and get the response
+            with urllib.request.urlopen(req) as response:
+                response_data = response.read().decode('utf-8')
+                
+                # In production, implement proper response handling and logging
+                # (but never log full card details)
+                return {
+                    "status_code": response.getcode(),
+                    "response": response_data
+                }
+                
+        except urllib.error.HTTPError as e:
+            # Handle HTTP errors
+            error_data = e.read().decode('utf-8')
+            return {
+                "status_code": e.code,
+                "error": e.reason,
+                "response": error_data
+            }
+            
+        except Exception as e:
+            # Handle other exceptions
+            return {
+                "status_code": 500,
+                "error": str(e),
+                "response": "An error occurred during the payment process"
+            }
+
+    # Example usage:
+    # payment_result = process_payment(payment_data)
+    # print(f"Status: {payment_result['status_code']}")
+    # Process the response appropriately
 
     ```
+    ```php
+    <?php
+    /**
+     * Process payment using PayU's Merchant Hosted Checkout
+     * 
+     * IMPORTANT: This is a server-side function. Never expose card details to client-side code.
+     * This handles sensitive card data and requires PCI DSS compliance.
+     * 
+     * @param array $paymentData Payment information
+     * @return array Response from PayU API
+     */
+    function processPayment($paymentData = []) {
+        // API endpoint - Use different URLs for test/production environments
+        $url = "https://test.payu.in/_payment"; // Test URL
+        // $url = "https://secure.payu.in/_payment"; // Production URL
+        
+        // Prepare the form data
+        // In production: Get merchant_key and hash from secure environment variables
+        $payload = [
+            "key" => "YOUR_MERCHANT_KEY",           // Replace with actual merchant key
+            "txnid" => "TXN_12345",                 // Generate unique transaction ID
+            "amount" => "1000.00",                  // Amount to be charged
+            "productinfo" => "Product Description", // Description of product/service
+            "firstname" => "Customer Name",         // Customer's first name
+            "email" => "customer@example.com",      // Customer's email
+            "phone" => "9988776655",                // Customer's phone number
+            "pg" => "CC",                           // Payment gateway (CC for credit card)
+            "bankcode" => "CC",                     // Bank code (CC for credit card)
+            
+            // SENSITIVE DATA - Handle with care according to PCI DSS requirements
+            "ccnum" => "CARD_NUMBER",               // Credit card number
+            "ccexpmon" => "MM",                     // Expiry month (2 digits)
+            "ccexpyr" => "YY",                      // Expiry year (2 digits)
+            "ccvv" => "CVV",                        // Card verification value
+            "ccname" => "NAME_ON_CARD",             // Name on the card
+            
+            // Success and failure URLs
+            "surl" => "https://yourwebsite.com/success", // Success callback URL
+            "furl" => "https://yourwebsite.com/failure", // Failure callback URL
+            
+            // Hash is generated on server using specific algorithm provided by PayU
+            // See PayU documentation for the exact hash generation logic
+            "hash" => "HASH_GENERATED_ON_SERVER",   // Security hash
+        ];
+        
+        // Initialize cURL session
+        $ch = curl_init($url);
+        
+        // Set cURL options
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "Content-Type: application/x-www-form-urlencoded"
+        ]);
+        
+        // For additional security in production
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        
+        // Execute the request
+        $response = curl_exec($ch);
+        $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $error = curl_error($ch);
+        $errno = curl_errno($ch);
+        
+        // Close cURL session
+        curl_close($ch);
+        
+        // Handle response
+        if ($errno) {
+            return [
+                "status_code" => 500,
+                "error" => $error,
+                "response" => "cURL Error: " . $error
+            ];
+        }
+        
+        // In production, implement proper response handling and logging
+        // (but never log full card details)
+        return [
+            "status_code" => $status_code,
+            "response" => $response
+        ];
+    }
 
-    <br />
+    // Example usage:
+    // $paymentResult = processPayment($paymentData);
+    // echo "Status: " . $paymentResult["status_code"];
+    // Process the response appropriately
+    ?>
+
+    ```
+    ```java
+    import java.io.BufferedReader;
+    import java.io.DataOutputStream;
+    import java.io.IOException;
+    import java.io.InputStreamReader;
+    import java.net.HttpURLConnection;
+    import java.net.URL;
+    import java.net.URLEncoder;
+    import java.nio.charset.StandardCharsets;
+    import java.util.HashMap;
+    import java.util.Map;
+    import java.util.StringJoiner;
+
+    /**
+     * PayU Payment Processor for Merchant Hosted Checkout
+     * 
+     * IMPORTANT: This is a server-side implementation. Never expose card details to client-side code.
+     * This handles sensitive card data and requires PCI DSS compliance.
+     */
+    public class PayUPaymentProcessor {
+        
+        // API endpoints - Use different URLs for test/production environments
+        private static final String TEST_URL = "https://test.payu.in/_payment";
+        private static final String PROD_URL = "https://secure.payu.in/_payment";
+        
+        /**
+         * Process payment using PayU Merchant Hosted Checkout
+         * 
+         * @return PaymentResponse containing status and response data
+         */
+        public PaymentResponse processPayment() {
+            try {
+                // Use test URL (change to PROD_URL in production)
+                URL url = new URL(TEST_URL);
+                
+                // Prepare form parameters
+                // In production: Get merchant_key and hash from secure environment variables
+                Map<String, String> params = new HashMap<>();
+                params.put("key", "YOUR_MERCHANT_KEY");           // Replace with actual merchant key
+                params.put("txnid", "TXN_12345");                 // Generate unique transaction ID
+                params.put("amount", "1000.00");                  // Amount to be charged
+                params.put("productinfo", "Product Description"); // Description of product/service
+                params.put("firstname", "Customer Name");         // Customer's first name
+                params.put("email", "customer@example.com");      // Customer's email
+                params.put("phone", "9988776655");                // Customer's phone number
+                params.put("pg", "CC");                           // Payment gateway (CC for credit card)
+                params.put("bankcode", "CC");                     // Bank code (CC for credit card)
+                
+                // SENSITIVE DATA - Handle with care according to PCI DSS requirements
+                params.put("ccnum", "CARD_NUMBER");               // Credit card number
+                params.put("ccexpmon", "MM");                     // Expiry month (2 digits)
+                params.put("ccexpyr", "YY");                      // Expiry year (2 digits)
+                params.put("ccvv", "CVV");                        // Card verification value
+                params.put("ccname", "NAME_ON_CARD");             // Name on the card
+                
+                // Success and failure URLs
+                params.put("surl", "https://yourwebsite.com/success"); // Success callback URL
+                params.put("furl", "https://yourwebsite.com/failure"); // Failure callback URL
+                
+                // Hash is generated on server using specific algorithm provided by PayU
+                // See PayU documentation for the exact hash generation logic
+                params.put("hash", "HASH_GENERATED_ON_SERVER");   // Security hash
+                
+                // Convert parameters to URL-encoded form data
+                StringJoiner formData = new StringJoiner("&");
+                for (Map.Entry<String, String> entry : params.entrySet()) {
+                    formData.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + 
+                                 URLEncoder.encode(entry.getValue(), "UTF-8"));
+                }
+                byte[] postData = formData.toString().getBytes(StandardCharsets.UTF_8);
+                
+                // Configure connection
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestProperty("Content-Length", String.valueOf(postData.length));
+                conn.setDoOutput(true);
+                conn.setConnectTimeout(5000);
+                conn.setReadTimeout(15000);
+                
+                // Send request
+                try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
+                    dos.write(postData);
+                    dos.flush();
+                }
+                
+                // Get response
+                int responseCode = conn.getResponseCode();
+                
+                // Read response data
+                StringBuilder response = new StringBuilder();
+                try (BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(
+                            responseCode >= 400 ? conn.getErrorStream() : conn.getInputStream(), 
+                            StandardCharsets.UTF_8))) {
+                            
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                }
+                
+                // In production, implement proper response handling and logging
+                // (but never log full card details)
+                return new PaymentResponse(responseCode, response.toString(), null);
+                
+            } catch (IOException e) {
+                // Handle exception
+                return new PaymentResponse(500, null, "Error: " + e.getMessage());
+            }
+        }
+        
+        /**
+         * Payment response wrapper class
+         */
+        public static class PaymentResponse {
+            private final int statusCode;
+            private final String response;
+            private final String error;
+            
+            public PaymentResponse(int statusCode, String response, String error) {
+                this.statusCode = statusCode;
+                this.response = response;
+                this.error = error;
+            }
+            
+            public int getStatusCode() {
+                return statusCode;
+            }
+            
+            public String getResponse() {
+                return response;
+            }
+            
+            public String getError() {
+                return error;
+            }
+            
+            public boolean isSuccess() {
+                return statusCode >= 200 && statusCode < 300;
+            }
+        }
+        
+        // Example usage:
+        public static void main(String[] args) {
+            PayUPaymentProcessor processor = new PayUPaymentProcessor();
+            PaymentResponse result = processor.processPayment();
+            
+            System.out.println("Status Code: " + result.getStatusCode());
+            if (result.isSuccess()) {
+                System.out.println("Response: " + result.getResponse());
+            } else {
+                System.out.println("Error: " + result.getError());
+            }
+        }
+    }
+
+    ```
+    ```csharp
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Text;
+
+    namespace PayUIntegration
+    {
+        /// <summary>
+        /// PayU Payment Processor for Merchant Hosted Checkout
+        /// 
+        /// IMPORTANT: This is a server-side implementation. Never expose card details to client-side code.
+        /// This handles sensitive card data and requires PCI DSS compliance.
+        /// </summary>
+        public class PayUPaymentProcessor
+        {
+            // API endpoints - Use different URLs for test/production environments
+            private const string TestUrl = "https://test.payu.in/_payment";
+            private const string ProdUrl = "https://secure.payu.in/_payment";
+            
+            /// <summary>
+            /// Process payment using PayU Merchant Hosted Checkout
+            /// </summary>
+            /// <returns>PaymentResponse containing status and response data</returns>
+            public async Task<PaymentResponse> ProcessPaymentAsync()
+            {
+                try
+                {
+                    // Use test URL (change to ProdUrl in production)
+                    string url = TestUrl;
+                    
+                    // Prepare form parameters
+                    // In production: Get merchant_key and hash from secure environment variables
+                    var formData = new Dictionary<string, string>
+                    {
+                        { "key", "YOUR_MERCHANT_KEY" },           // Replace with actual merchant key
+                        { "txnid", "TXN_12345" },                 // Generate unique transaction ID
+                        { "amount", "1000.00" },                  // Amount to be charged
+                        { "productinfo", "Product Description" }, // Description of product/service
+                        { "firstname", "Customer Name" },         // Customer's first name
+                        { "email", "customer@example.com" },      // Customer's email
+                        { "phone", "9988776655" },                // Customer's phone number
+                        { "pg", "CC" },                           // Payment gateway (CC for credit card)
+                        { "bankcode", "CC" },                     // Bank code (CC for credit card)
+                        
+                        // SENSITIVE DATA - Handle with care according to PCI DSS requirements
+                        { "ccnum", "CARD_NUMBER" },               // Credit card number
+                        { "ccexpmon", "MM" },                     // Expiry month (2 digits)
+                        { "ccexpyr", "YY" },                      // Expiry year (2 digits)
+                        { "ccvv", "CVV" },                        // Card verification value
+                        { "ccname", "NAME_ON_CARD" },             // Name on the card
+                        
+                        // Success and failure URLs
+                        { "surl", "https://yourwebsite.com/success" }, // Success callback URL
+                        { "furl", "https://yourwebsite.com/failure" }, // Failure callback URL
+                        
+                        // Hash is generated on server using specific algorithm provided by PayU
+                        // See PayU documentation for the exact hash generation logic
+                        { "hash", "HASH_GENERATED_ON_SERVER" }    // Security hash
+                    };
+                    
+                    // Create HttpClient with timeout
+                    using (var httpClient = new HttpClient())
+                    {
+                        httpClient.Timeout = TimeSpan.FromSeconds(30);
+                        
+                        // Convert form data to content
+                        var content = new FormUrlEncodedContent(formData);
+                        
+                        // Send POST request
+                        var response = await httpClient.PostAsync(url, content);
+                        
+                        // Get response content
+                        var responseContent = await response.Content.ReadAsStringAsync();
+                        
+                        // In production, implement proper response handling and logging
+                        // (but never log full card details)
+                        return new PaymentResponse(
+                            (int)response.StatusCode,
+                            responseContent,
+                            null
+                        );
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle exception
+                    return new PaymentResponse(
+                        500,
+                        null,
+                        $"Error: {ex.Message}"
+                    );
+                }
+            }
+            
+            /// <summary>
+            /// Payment response wrapper class
+            /// </summary>
+            public class PaymentResponse
+            {
+                public int StatusCode { get; }
+                public string Response { get; }
+                public string Error { get; }
+                
+                public PaymentResponse(int statusCode, string response, string error)
+                {
+                    StatusCode = statusCode;
+                    Response = response;
+                    Error = error;
+                }
+                
+                public bool IsSuccess => StatusCode >= 200 && StatusCode < 300;
+            }
+        }
+        
+        // Example usage:
+        public class Program
+        {
+            public static async Task Main(string[] args)
+            {
+                var processor = new PayUPaymentProcessor();
+                var result = await processor.ProcessPaymentAsync();
+                
+                Console.WriteLine($"Status Code: {result.StatusCode}");
+                if (result.IsSuccess)
+                {
+                    Console.WriteLine($"Response: {result.Response}");
+                }
+                else
+                {
+                    Console.WriteLine($"Error: {result.Error}");
+                }
+            }
+        }
+    }
+
+    ```
+  </Accordion>
+
+  <Accordion title="Sample request for saved card" icon="fa-code">
+    <Accordion title="Request parameters" icon="fa-info-table">
+      <HTMLBlock>{`
+                                                          <Table>
+                                                            <thead>
+                                                              <tr>
+                                                                <th>
+                                                                  Parameter
+                                                                </th>
+
+                                                                <th>
+                                                                  Description
+                                                                </th>
+
+                                                                <th>
+                                                                  Example
+                                                                </th>
+                                                              </tr>
+                                                            </thead>
+
+                                                            <tbody>
+                                                              <tr>
+                                                                <td>
+                                                                  <Glossary>key</Glossary>
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The merchant <Glossary>key</Glossary> is a unique identifier for a merchant account in PayU's database.
+                                                                </td>
+
+                                                                <td>
+                                                                  Your Test Key
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  api_version
+                                                                  <br/><code>optional</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The API version for this API.
+                                                                </td>
+
+                                                                <td>
+                                                                  1
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  txnid
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The transaction ID is a reference number for a specific order that is generated by the merchant. It is used to track the order and must be unique. PayU's system will not accept duplicate transaction IDs.
+                                                                </td>
+
+                                                                <td>
+                                                                  s7hhDQVWvbhBdN
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  amount
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> This field should contain the payment amount for the transaction. If you want to use the cardless EMI option, the amount must be at least Rs. 8000
+                                                                </td>
+
+                                                                <td>
+                                                                  10.00
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  productinfo
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> It should be a string containing a brief description of the product.\`\`\`
+
+                                                                  Character Limit-100
+                                                                  \`\`\`
+                                                                </td>
+
+                                                                <td>
+                                                                  iPhone
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  firstname
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The first name of the customer.\`\`\`
+
+                                                                  Character Limit-60
+                                                                  \`\`\`
+                                                                </td>
+
+                                                                <td>
+                                                                  Ashish
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  email
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The email of the customer.\`\`\`
+
+                                                                  Character Limit-50
+                                                                  \`\`\`
+                                                                </td>
+
+                                                                <td>
+                                                                  [test@gmail.com](mailto:test@gmail.com)
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  phone
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The phone number of the customer.  
+
+                                                                  * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+                                                                </td>
+
+                                                                <td>
+                                                                  9876543210
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  lastname
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The last name of the customer.\`\`\`
+
+                                                                  Character Limit-60
+                                                                  \`\`\`
+                                                                </td>
+
+                                                                <td>
+                                                                  Verma
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  address1
+                                                                  <br/><code>optional</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The first line of the billing address.\`\`\`
+
+                                                                  Character Limit-100
+                                                                  \`\`\`
+                                                                </td>
+
+                                                                <td>
+                                                                  H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  address2
+                                                                  <br/><code>optional</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The second line of the billing address.<code>Character Limit-100</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  34 Saikripa-Estate, Tilak Nagar
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  city
+                                                                  <br/><code>optional</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The city where your customer resides as part of the billing address.
+                                                                </td>
+
+                                                                <td>
+                                                                  Mumbai
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  state
+                                                                  <br/><code>optional</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The state where your customer resides as part of the billing address,
+                                                                </td>
+
+                                                                <td>
+                                                                  Maharashtra
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  country
+                                                                  <br/><code>optional</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The country where your customer resides.<code>Character Limit-50</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  India
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  zipcode
+                                                                  <br/><code>optional</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> Billing address zip code is mandatory for the cardless EMI option.\`\`\`
+
+                                                                  Character Limit-20
+                                                                  \`\`\`
+                                                                </td>
+
+                                                                <td>
+                                                                  400004
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  surl
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.
+                                                                </td>
+
+                                                                <td>
+                                                                  [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  furl
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.
+                                                                </td>
+
+                                                                <td>
+                                                                  [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  hash
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972</code>
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  <Glossary>pg</Glossary>
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> The pg parameter determines which payment tabs will be displayed. Here, use 'CC' as the value.
+                                                                </td>
+
+                                                                <td>
+                                                                  CC
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  <Glossary>bankcode</Glossary>
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. 
+                                                                </td>
+
+                                                                <td>
+                                                                  AMEX
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  udf1 - udf5
+                                                                  <br/><code>optional</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
+                                                                  <code>Character Limit-255</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  Payment Preference, Shipping Method, Shipping Address1, Shipping City, Shipping Zip Code, etc.
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  ccnum
+                                                                  <br/><code>optional</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>varchar</code> This parameter must contain the 13 to 19-digit card number for credit or debit cards in general. 
+                                                                </td>
+
+                                                                <td>
+                                                                  512***6789012346
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  ccname
+                                                                  <br/><code>optional</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>varchar</code> It is the customer's name on card.
+                                                                </td>
+
+                                                                <td>
+                                                                  Ashish
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  ccvv
+                                                                  <br/><code>optional</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>varchar</code> This parameter must contain the CVV number of the card – as entered by the customer for the transaction.
+                                                                </td>
+
+                                                                <td>
+                                                                  123
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  ccexpmon
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>integer</code> This parameter must contain the network token expiry month.
+                                                                </td>
+
+                                                                <td>
+                                                                  10
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  ccexpyr
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>integer</code> This parameter must contain the network token expiry year.
+                                                                </td>
+
+                                                                <td>
+                                                                  2022
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  store_card_token
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>varchar</code> This must include the Network token generated at your end.
+                                                                </td>
+
+                                                                <td>
+                                                                  1234 4567 2456 3566
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  storecard_token_type
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>integer</code> This parameter is used to specify the store card token type. For this scenario, you must include 1.
+                                                                </td>
+
+                                                                <td>
+                                                                  1
+                                                                </td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>
+                                                                  additional_info
+                                                                  <br/><code>mandatory</code>
+                                                                </td>
+
+                                                                <td>
+                                                                  <code>varchar</code> This parameter will contain the additional information in the following JSON format:
+                                                                  {"last4Digits": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}  
+                                                                </td>
+
+                                                                <td>
+                                                                  {"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}
+                                                                </td>
+                                                              </tr>
+                                                            </tbody>
+                                                          </Table>
+      `}</HTMLBlock>
+    </Accordion>
+
+    <Accordion title="Collect Payment with Saved Card" icon="fa-code">
+      ```curl
+      curl -X POST "https://test.payu.in/_payment" \
+        -H "accept: application/json" \
+        -H "Content-Type: application/x-www-form-urlencoded" \
+        -d "key=YourMerchantKey" \
+        -d "txnid=NT_TXN_1234567890" \
+        -d "amount=250.00" \
+        -d "productinfo=Premium Subscription Plan" \
+        -d "firstname=John" \
+        -d "lastname=Doe" \
+        -d "email=john.doe@example.com" \
+        -d "phone=9876543210" \
+        -d "surl=https://yourwebsite.com/payment/success" \
+        -d "furl=https://yourwebsite.com/payment/failure" \
+        -d "pg=CC" \
+        -d "bankcode=VISA" \
+        -d "ccexpmon=12" \
+        -d "ccexpyr=2025" \
+        -d "ccname=John Doe" \
+        -d "store_card_token=4111111111111111" \
+        -d "storecard_token_type=1" \
+        -d "additional_info={\"last4Digits\":\"1111\",\"TAVV\":\"ABCD1234EFGH5678\",\"trid\":\"987654321012345\",\"tokenRefNo\":\"TKN_REF_12345678\"}" \
+        -d "api_version=1" \
+        -d "address1=123 Business District" \
+        -d "address2=Tech Park Avenue" \
+        -d "city=Bangalore" \
+        -d "state=Karnataka" \
+        -d "country=India" \
+        -d "zipcode=560001" \
+        -d "udf1=Premium_Plan" \
+        -d "udf2=Monthly_Billing" \
+        -d "udf3=Customer_ID_789" \
+        -d "udf4=" \
+        -d "udf5=" \
+        -d "hash=b5c6d8e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9"
+
+      ```
+
+      <br />
+    </Accordion>
   </Accordion>
 </Accordion>
-</Accordion>
+
 <Accordion title="Step 3: Check response from PayU" icon="fa-code">
   <ReverseHashing />
 
@@ -1765,162 +1791,162 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
     </Callout>
 
     <HTMLBlock>{`
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Parameter</th>
-                      <th>Description</th>
-                      <th>Example</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>key <code>mandatory</code></td>
-                      <td><code>String</code> Merchant key provided by PayU during onboarding.</td>
-                      <td>JP***g</td>
-                    </tr>
-                    <tr>
-                      <td>txnid <code>mandatory</code></td>
-                      <td><code>String</code> The transaction ID is a reference number for a specific</br> order that is generated by the merchant.</td>
-                      <td>ashdfu72634</td>
-                    </tr>
-                    <tr>
-                      <td>amount <code>mandatory</code></td>
-                      <td><code>String</code> The payment amount for the transaction.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>productinfo <code>mandatory</code></td>
-                      <td><code>String</code> A brief description of the product.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>firstname <code>mandatory</code></td>
-                      <td><code>String</code> The first name of the customer.</td>
-                      <td>Ashish</td>
-                    </tr>
-                    <tr>
-                      <td>email <code>mandatory</code></td>
-                      <td><code>String</code> The email address of the customer.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>phone <code>mandatory</code></td>
-                      <td><code>String</code> The phone number of the customer.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>pg <code>mandatory</code></td>
-                      <td><code>String</code> The pg parameter determines which payment tabs will</br> be displayed on the PayU page. For cards, 'CC' will be the value.</td>
-                      <td>CC</td>
-                    </tr>
-                    <tr>
-                      <td>bankcode <code>mandatory</code></td>
-                      <td><code>String</code> Each payment option is identified with a unique bank code</br> at PayU. The merchant must post this parameter with the corresponding payment option's</br> bank code value in it. For more information, refer to Card Type Codes and Supported Banks for Cards.</td>
-                      <td>AMEX</td>
-                    </tr>
-                    <tr>
-                      <td>ccname <code>mandatory</code></td>
-                      <td><code>String</code> This parameter must contain the name on card – as entered by the customer for the transaction.</td>
-                      <td>Ashish Kumar</td>
-                    </tr>
-                    <tr>
-                      <td>ccvv <code>mandatory</code></td>
-                      <td><code>String</code> Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API.</td>
-                      <td>123</td>
-                    </tr>
-                    <tr>
-                      <td>ccexpmon <code>mandatory</code></td>
-                      <td><code>String</code> This parameter must contain the card's expiry month or Alt ID expiry month for guest checkout – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. For VISA cards,</br> Plain card's expiry month need to be posted this parameter.</td>
-                      <td>10</td>
-                    </tr>
-                    <tr>
-                      <td>ccexpyr <code>mandatory</code></td>
-                      <td><code>String</code> This parameter must contain the card's expiry</br> year or Alt ID expiry year for guest checkout – as entered by the</br> customer for the transaction. It must be of four digits. For VISA cards,</br> Plain card's expiry year need to be posted this parameter.</td>
-                      <td>2021</td>
-                    </tr>
-                    <tr>
-                      <td>alt_id <code>mandatory</code></td>
-                      <td><code>String</code> This parameter must contain Alt ID for the guest checkout.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>furl <code>mandatory</code></td>
-                      <td><code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>surl <code>mandatory</code></td>
-                      <td><code>String</code> The Failure URL, which is the page PayU will redirect to if the transaction is failed.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>hash <code>mandatory</code></td>
-                      <td><code>String</code> It is the hash calculated by the merchant.</br> The hash calculation logic is: </br><code>sha512(key|txnid|amount|productinfo|firstname|</br>email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>additional_info <code>mandatory</code></td>
-                      <td><code>JSON</code> The fields which are included in this JSON.</br> For more information, refer to <a href="#additional_info-json-sample-and-field-description">additional_info JSON sample and field description</a>></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>address1 <code>optional</code></td>
-                      <td><code>String</code> The first line of the billing address.</br> For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>address2 <code>optional</code></td>
-                      <td><code>String</code> The second line of the billing address.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>city <code>optional</code></td>
-                      <td><code>String</code> The city where your customer resides as part of the billing address.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>state <code>optional</code></td>
-                      <td><code>String</code> The state where your customer resides as part of the billing address.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>country <code>optional</code></td>
-                      <td><code>String</code> The country where your customer resides.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>zipcode <code>optional</code></td>
-                      <td><code>String</code> Billing address zip code is mandatory for the cardless EMI option. Character Limit-20</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>udf1 <code>optional</code></td>
-                      <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>udf2 <code>optional</code></td>
-                      <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>udf3 <code>optional</code></td>
-                      <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>udf4 <code>optional</code></td>
-                      <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>udf5 <code>optional</code></td>
-                      <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Parameter</th>
+                              <th>Description</th>
+                              <th>Example</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>key <code>mandatory</code></td>
+                              <td><code>String</code> Merchant key provided by PayU during onboarding.</td>
+                              <td>JP***g</td>
+                            </tr>
+                            <tr>
+                              <td>txnid <code>mandatory</code></td>
+                              <td><code>String</code> The transaction ID is a reference number for a specific</br> order that is generated by the merchant.</td>
+                              <td>ashdfu72634</td>
+                            </tr>
+                            <tr>
+                              <td>amount <code>mandatory</code></td>
+                              <td><code>String</code> The payment amount for the transaction.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>productinfo <code>mandatory</code></td>
+                              <td><code>String</code> A brief description of the product.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>firstname <code>mandatory</code></td>
+                              <td><code>String</code> The first name of the customer.</td>
+                              <td>Ashish</td>
+                            </tr>
+                            <tr>
+                              <td>email <code>mandatory</code></td>
+                              <td><code>String</code> The email address of the customer.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>phone <code>mandatory</code></td>
+                              <td><code>String</code> The phone number of the customer.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>pg <code>mandatory</code></td>
+                              <td><code>String</code> The pg parameter determines which payment tabs will</br> be displayed on the PayU page. For cards, 'CC' will be the value.</td>
+                              <td>CC</td>
+                            </tr>
+                            <tr>
+                              <td>bankcode <code>mandatory</code></td>
+                              <td><code>String</code> Each payment option is identified with a unique bank code</br> at PayU. The merchant must post this parameter with the corresponding payment option's</br> bank code value in it. For more information, refer to Card Type Codes and Supported Banks for Cards.</td>
+                              <td>AMEX</td>
+                            </tr>
+                            <tr>
+                              <td>ccname <code>mandatory</code></td>
+                              <td><code>String</code> This parameter must contain the name on card – as entered by the customer for the transaction.</td>
+                              <td>Ashish Kumar</td>
+                            </tr>
+                            <tr>
+                              <td>ccvv <code>mandatory</code></td>
+                              <td><code>String</code> Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API.</td>
+                              <td>123</td>
+                            </tr>
+                            <tr>
+                              <td>ccexpmon <code>mandatory</code></td>
+                              <td><code>String</code> This parameter must contain the card's expiry month or Alt ID expiry month for guest checkout – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. For VISA cards,</br> Plain card's expiry month need to be posted this parameter.</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>ccexpyr <code>mandatory</code></td>
+                              <td><code>String</code> This parameter must contain the card's expiry</br> year or Alt ID expiry year for guest checkout – as entered by the</br> customer for the transaction. It must be of four digits. For VISA cards,</br> Plain card's expiry year need to be posted this parameter.</td>
+                              <td>2021</td>
+                            </tr>
+                            <tr>
+                              <td>alt_id <code>mandatory</code></td>
+                              <td><code>String</code> This parameter must contain Alt ID for the guest checkout.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>furl <code>mandatory</code></td>
+                              <td><code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>surl <code>mandatory</code></td>
+                              <td><code>String</code> The Failure URL, which is the page PayU will redirect to if the transaction is failed.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>hash <code>mandatory</code></td>
+                              <td><code>String</code> It is the hash calculated by the merchant.</br> The hash calculation logic is: </br><code>sha512(key|txnid|amount|productinfo|firstname|</br>email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>additional_info <code>mandatory</code></td>
+                              <td><code>JSON</code> The fields which are included in this JSON.</br> For more information, refer to <a href="#additional_info-json-sample-and-field-description">additional_info JSON sample and field description</a>></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>address1 <code>optional</code></td>
+                              <td><code>String</code> The first line of the billing address.</br> For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>address2 <code>optional</code></td>
+                              <td><code>String</code> The second line of the billing address.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>city <code>optional</code></td>
+                              <td><code>String</code> The city where your customer resides as part of the billing address.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>state <code>optional</code></td>
+                              <td><code>String</code> The state where your customer resides as part of the billing address.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>country <code>optional</code></td>
+                              <td><code>String</code> The country where your customer resides.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>zipcode <code>optional</code></td>
+                              <td><code>String</code> Billing address zip code is mandatory for the cardless EMI option. Character Limit-20</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>udf1 <code>optional</code></td>
+                              <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>udf2 <code>optional</code></td>
+                              <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>udf3 <code>optional</code></td>
+                              <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>udf4 <code>optional</code></td>
+                              <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>udf5 <code>optional</code></td>
+                              <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
     `}</HTMLBlock>
 
     <Callout icon="📘" theme="info">
@@ -2062,117 +2088,117 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
     </Callout>
 
     <HTMLBlock>{`
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Parameter</th>
-                      <th>Description</th>
-                      <th>Example</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>key<br/><code>mandatory</code></td>
-                      <td>Merchant key provided by PayU during onboarding. Data type: <code>string</code>.</td>
-                      <td>JF****g</td>
-                    </tr>
-                    <tr>
-                      <td>txnid<br/><code>mandatory</code></td>
-                      <td>The transaction ID is a reference number for a specific order that is generated by the merchant. Data type: <code>string</code>.</td>
-                      <td>jYhbOYH9o4</td>
-                    </tr>
-                    <tr>
-                      <td>amount<br/><code>mandatory</code></td>
-                      <td>The payment amount for the transaction. Data type: <code>string</code>.</td>
-                      <td>10</td>
-                    </tr>
-                    <tr>
-                      <td>productinfo<br/><code>mandatory</code></td>
-                      <td>A brief description of the product. Data type: <code>string</code>.</td>
-                      <td>Product_info</td>
-                    </tr>
-                    <tr>
-                      <td>firstname<br/><code>mandatory</code></td>
-                      <td>The first name of the customer. Data type: <code>string</code>.</td>
-                      <td>Ashish</td>
-                    </tr>
-                    <tr>
-                      <td>lastname<br/><code>optional</code></td>
-                      <td>The last name of the customer. Data type: <code>string</code>.</td>
-                      <td>Test</td>
-                    </tr>
-                    <tr>
-                      <td>email<br/><code>mandatory</code></td>
-                      <td>The email address of the customer. Data type: <code>string</code>.</td>
-                      <td>test@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>phone<br/><code>mandatory</code></td>
-                      <td>The phone number of the customer. Data type: <code>string</code>.</td>
-                      <td>9876543210</td>
-                    </tr>
-                    <tr>
-                      <td>pg<br/><code>mandatory</code></td>
-                      <td>The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value. Data type: <code>string</code>.</td>
-                      <td>CC</td>
-                    </tr>
-                    <tr>
-                      <td>bankcode<br/><code>mandatory</code></td>
-                      <td>Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. Data type: <code>string</code>.</td>
-                      <td>CC</td>
-                    </tr>
-                    <tr>
-                      <td>ccnum<br/><code>mandatory</code></td>
-                      <td>Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Data type: <code>string</code>.</td>
-                      <td>4012000000002004</td>
-                    </tr>
-                    <tr>
-                      <td>ccname<br/><code>mandatory</code></td>
-                      <td>This parameter must contain the name on card – as entered by the customer for the transaction. Data type: <code>string</code>.</td>
-                      <td>Test User</td>
-                    </tr>
-                    <tr>
-                      <td>ccvv<br/><code>mandatory</code></td>
-                      <td>Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API. Data type: <code>string</code>.</td>
-                      <td>123</td>
-                    </tr>
-                    <tr>
-                      <td>ccexpmon<br/><code>mandatory</code></td>
-                      <td>This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. Data type: <code>string</code>.</td>
-                      <td>06</td>
-                    </tr>
-                    <tr>
-                      <td>ccexpyr<br/><code>mandatory</code></td>
-                      <td>This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits. Data type: <code>string</code>.</td>
-                      <td>2024</td>
-                    </tr>
-                    <tr>
-                      <td>surl<br/><code>mandatory</code></td>
-                      <td>The success URL, which is the page PayU will redirect to if the transaction is successful. Data type: <code>string</code>.</td>
-                      <td>http://pp30admin.payu.in/</br>test_response</td>
-                    </tr>
-                    <tr>
-                      <td>furl<br/><code>mandatory</code></td>
-                      <td>The failure URL, which is the page PayU will redirect to if the transaction is failed. Data type: <code>string</code>.</td>
-                      <td>http://pp30admin.payu.in/</br>test_response</td>
-                    </tr>
-                    <tr>
-                      <td>hash<br/><code>mandatory</code></td>
-                      <td>It is the hash calculated by the merchant. The hash calculation logic is: sha512(key|txnid|amount|productinfo|firstname|email</br>|udf1|udf2|udf3|udf4|udf5||||||SALT). Data type: <code>string</code>.</td>
-                      <td>e5b286a9c8545038de9</br>d4e4ee4d8a2fd02</br>e821015aff7e0323</br>807ba174997d8643f9</br>aa174981385e3e4dfe60</br>b918650806ccb97b3e8e3</br>471e1985ecadefd0184</td>
-                    </tr>
-                    <tr>
-                      <td>txn_s2s_flow<br/><code>optional</code></td>
-                      <td>Server-to-server transaction flow parameter that indicates the type of transaction processing flow to be used. Data type: <code>string</code>.</td>
-                      <td>4</td>
-                    </tr>
-                    <tr>
-                      <td>threeDS2RequestData<br/><code>optional</code></td>
-                      <td>JSON object containing 3DS2 authentication data including browser information, user agent, screen dimensions, timezone, and other parameters required for 3D Secure 2.0 authentication. Data type: <code>object</code>.</td>
-                      <td>Refer to #threeds2requestdata-json-format</td>
-                    </tr>
-                  </tbody>
-                </table>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Parameter</th>
+                              <th>Description</th>
+                              <th>Example</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>key<br/><code>mandatory</code></td>
+                              <td>Merchant key provided by PayU during onboarding. Data type: <code>string</code>.</td>
+                              <td>JF****g</td>
+                            </tr>
+                            <tr>
+                              <td>txnid<br/><code>mandatory</code></td>
+                              <td>The transaction ID is a reference number for a specific order that is generated by the merchant. Data type: <code>string</code>.</td>
+                              <td>jYhbOYH9o4</td>
+                            </tr>
+                            <tr>
+                              <td>amount<br/><code>mandatory</code></td>
+                              <td>The payment amount for the transaction. Data type: <code>string</code>.</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>productinfo<br/><code>mandatory</code></td>
+                              <td>A brief description of the product. Data type: <code>string</code>.</td>
+                              <td>Product_info</td>
+                            </tr>
+                            <tr>
+                              <td>firstname<br/><code>mandatory</code></td>
+                              <td>The first name of the customer. Data type: <code>string</code>.</td>
+                              <td>Ashish</td>
+                            </tr>
+                            <tr>
+                              <td>lastname<br/><code>optional</code></td>
+                              <td>The last name of the customer. Data type: <code>string</code>.</td>
+                              <td>Test</td>
+                            </tr>
+                            <tr>
+                              <td>email<br/><code>mandatory</code></td>
+                              <td>The email address of the customer. Data type: <code>string</code>.</td>
+                              <td>test@example.com</td>
+                            </tr>
+                            <tr>
+                              <td>phone<br/><code>mandatory</code></td>
+                              <td>The phone number of the customer. Data type: <code>string</code>.</td>
+                              <td>9876543210</td>
+                            </tr>
+                            <tr>
+                              <td>pg<br/><code>mandatory</code></td>
+                              <td>The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value. Data type: <code>string</code>.</td>
+                              <td>CC</td>
+                            </tr>
+                            <tr>
+                              <td>bankcode<br/><code>mandatory</code></td>
+                              <td>Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. Data type: <code>string</code>.</td>
+                              <td>CC</td>
+                            </tr>
+                            <tr>
+                              <td>ccnum<br/><code>mandatory</code></td>
+                              <td>Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Data type: <code>string</code>.</td>
+                              <td>4012000000002004</td>
+                            </tr>
+                            <tr>
+                              <td>ccname<br/><code>mandatory</code></td>
+                              <td>This parameter must contain the name on card – as entered by the customer for the transaction. Data type: <code>string</code>.</td>
+                              <td>Test User</td>
+                            </tr>
+                            <tr>
+                              <td>ccvv<br/><code>mandatory</code></td>
+                              <td>Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API. Data type: <code>string</code>.</td>
+                              <td>123</td>
+                            </tr>
+                            <tr>
+                              <td>ccexpmon<br/><code>mandatory</code></td>
+                              <td>This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. Data type: <code>string</code>.</td>
+                              <td>06</td>
+                            </tr>
+                            <tr>
+                              <td>ccexpyr<br/><code>mandatory</code></td>
+                              <td>This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits. Data type: <code>string</code>.</td>
+                              <td>2024</td>
+                            </tr>
+                            <tr>
+                              <td>surl<br/><code>mandatory</code></td>
+                              <td>The success URL, which is the page PayU will redirect to if the transaction is successful. Data type: <code>string</code>.</td>
+                              <td>http://pp30admin.payu.in/</br>test_response</td>
+                            </tr>
+                            <tr>
+                              <td>furl<br/><code>mandatory</code></td>
+                              <td>The failure URL, which is the page PayU will redirect to if the transaction is failed. Data type: <code>string</code>.</td>
+                              <td>http://pp30admin.payu.in/</br>test_response</td>
+                            </tr>
+                            <tr>
+                              <td>hash<br/><code>mandatory</code></td>
+                              <td>It is the hash calculated by the merchant. The hash calculation logic is: sha512(key|txnid|amount|productinfo|firstname|email</br>|udf1|udf2|udf3|udf4|udf5||||||SALT). Data type: <code>string</code>.</td>
+                              <td>e5b286a9c8545038de9</br>d4e4ee4d8a2fd02</br>e821015aff7e0323</br>807ba174997d8643f9</br>aa174981385e3e4dfe60</br>b918650806ccb97b3e8e3</br>471e1985ecadefd0184</td>
+                            </tr>
+                            <tr>
+                              <td>txn_s2s_flow<br/><code>optional</code></td>
+                              <td>Server-to-server transaction flow parameter that indicates the type of transaction processing flow to be used. Data type: <code>string</code>.</td>
+                              <td>4</td>
+                            </tr>
+                            <tr>
+                              <td>threeDS2RequestData<br/><code>optional</code></td>
+                              <td>JSON object containing 3DS2 authentication data including browser information, user agent, screen dimensions, timezone, and other parameters required for 3D Secure 2.0 authentication. Data type: <code>object</code>.</td>
+                              <td>Refer to #threeds2requestdata-json-format</td>
+                            </tr>
+                          </tbody>
+                        </table>
     `}</HTMLBlock>
 
     #### threeDS2RequestData JSON format
@@ -2262,117 +2288,117 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
     </Callout>
 
     <HTMLBlock>{`
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Parameter</th>
-                      <th>Description</th>
-                      <th>Example</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>key<br/><code>mandatory</code></td>
-                      <td>Merchant key provided by PayU during onboarding. Data type: <code>string</code>.</td>
-                      <td>JF****g</td>
-                    </tr>
-                    <tr>
-                      <td>txnid<br/><code>mandatory</code></td>
-                      <td>The transaction ID is a reference number for a specific order that is generated by the merchant. Data type: <code>string</code>.</td>
-                      <td>jYhbOYH9o4</td>
-                    </tr>
-                    <tr>
-                      <td>amount<br/><code>mandatory</code></td>
-                      <td>The payment amount for the transaction. Data type: <code>string</code>.</td>
-                      <td>10</td>
-                    </tr>
-                    <tr>
-                      <td>productinfo<br/><code>mandatory</code></td>
-                      <td>A brief description of the product. Data type: <code>string</code>.</td>
-                      <td>Product_info</td>
-                    </tr>
-                    <tr>
-                      <td>firstname<br/><code>mandatory</code></td>
-                      <td>The first name of the customer. Data type: <code>string</code>.</td>
-                      <td>Ashish</td>
-                    </tr>
-                    <tr>
-                      <td>lastname<br/><code>optional</code></td>
-                      <td>The last name of the customer. Data type: <code>string</code>.</td>
-                      <td>Test</td>
-                    </tr>
-                    <tr>
-                      <td>email<br/><code>mandatory</code></td>
-                      <td>The email address of the customer. Data type: <code>string</code>.</td>
-                      <td>test@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>phone<br/><code>mandatory</code></td>
-                      <td>The phone number of the customer. Data type: <code>string</code>.</td>
-                      <td>9876543210</td>
-                    </tr>
-                    <tr>
-                      <td>pg<br/><code>mandatory</code></td>
-                      <td>The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value. Data type: <code>string</code>.</td>
-                      <td>CC</td>
-                    </tr>
-                    <tr>
-                      <td>bankcode<br/><code>mandatory</code></td>
-                      <td>Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. Data type: <code>string</code>.</td>
-                      <td>CC</td>
-                    </tr>
-                    <tr>
-                      <td>ccnum<br/><code>mandatory</code></td>
-                      <td>Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Data type: <code>string</code>.</td>
-                      <td>4012000000002004</td>
-                    </tr>
-                    <tr>
-                      <td>ccname<br/><code>mandatory</code></td>
-                      <td>This parameter must contain the name on card – as entered by the customer for the transaction. Data type: <code>string</code>.</td>
-                      <td>Test User</td>
-                    </tr>
-                    <tr>
-                      <td>ccvv<br/><code>mandatory</code></td>
-                      <td>Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API. Data type: <code>string</code>.</td>
-                      <td>123</td>
-                    </tr>
-                    <tr>
-                      <td>ccexpmon<br/><code>mandatory</code></td>
-                      <td>This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. Data type: <code>string</code>.</td>
-                      <td>06</td>
-                    </tr>
-                    <tr>
-                      <td>ccexpyr<br/><code>mandatory</code></td>
-                      <td>This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits. Data type: <code>string</code>.</td>
-                      <td>2024</td>
-                    </tr>
-                    <tr>
-                      <td>surl<br/><code>mandatory</code></td>
-                      <td>The success URL, which is the page PayU will redirect to if the transaction is successful. Data type: <code>string</code>.</td>
-                      <td>http://pp30admin.payu.in/</br>test_response</td>
-                    </tr>
-                    <tr>
-                      <td>furl<br/><code>mandatory</code></td>
-                      <td>The failure URL, which is the page PayU will redirect to if the transaction is failed. Data type: <code>string</code>.</td>
-                      <td>http://pp30admin.payu.in/</br>test_response</td>
-                    </tr>
-                    <tr>
-                      <td>hash<br/><code>mandatory</code></td>
-                      <td>It is the hash calculated by the merchant. The hash calculation logic is: sha512(key|txnid|amount|productinfo|firstname|email</br>|udf1|udf2|udf3|udf4|udf5||||||SALT). Data type: <code>string</code>.</td>
-                      <td>e5b286a9c8545038de9</br>d4e4ee4d8a2fd02</br>e821015aff7e0323</br>807ba174997d8643f9</br>aa174981385e3e4dfe60</br>b918650806ccb97b3e8e3</br>471e1985ecadefd0184</td>
-                    </tr>
-                    <tr>
-                      <td>txn_s2s_flow<br/><code>optional</code></td>
-                      <td>Server-to-server transaction flow parameter that indicates the type of transaction processing flow to be used. Data type: <code>string</code>.</td>
-                      <td>4</td>
-                    </tr>
-                    <tr>
-                      <td>threeDS2RequestData<br/><code>optional</code></td>
-                      <td>JSON object containing 3DS2 authentication data including browser information, user agent, screen dimensions, timezone, and other parameters required for 3D Secure 2.0 authentication. Data type: <code>object</code>.</td>
-                      <td>Refer to #threeds2requestdata-json-format</td>
-                    </tr>
-                  </tbody>
-                </table>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Parameter</th>
+                              <th>Description</th>
+                              <th>Example</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>key<br/><code>mandatory</code></td>
+                              <td>Merchant key provided by PayU during onboarding. Data type: <code>string</code>.</td>
+                              <td>JF****g</td>
+                            </tr>
+                            <tr>
+                              <td>txnid<br/><code>mandatory</code></td>
+                              <td>The transaction ID is a reference number for a specific order that is generated by the merchant. Data type: <code>string</code>.</td>
+                              <td>jYhbOYH9o4</td>
+                            </tr>
+                            <tr>
+                              <td>amount<br/><code>mandatory</code></td>
+                              <td>The payment amount for the transaction. Data type: <code>string</code>.</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>productinfo<br/><code>mandatory</code></td>
+                              <td>A brief description of the product. Data type: <code>string</code>.</td>
+                              <td>Product_info</td>
+                            </tr>
+                            <tr>
+                              <td>firstname<br/><code>mandatory</code></td>
+                              <td>The first name of the customer. Data type: <code>string</code>.</td>
+                              <td>Ashish</td>
+                            </tr>
+                            <tr>
+                              <td>lastname<br/><code>optional</code></td>
+                              <td>The last name of the customer. Data type: <code>string</code>.</td>
+                              <td>Test</td>
+                            </tr>
+                            <tr>
+                              <td>email<br/><code>mandatory</code></td>
+                              <td>The email address of the customer. Data type: <code>string</code>.</td>
+                              <td>test@example.com</td>
+                            </tr>
+                            <tr>
+                              <td>phone<br/><code>mandatory</code></td>
+                              <td>The phone number of the customer. Data type: <code>string</code>.</td>
+                              <td>9876543210</td>
+                            </tr>
+                            <tr>
+                              <td>pg<br/><code>mandatory</code></td>
+                              <td>The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value. Data type: <code>string</code>.</td>
+                              <td>CC</td>
+                            </tr>
+                            <tr>
+                              <td>bankcode<br/><code>mandatory</code></td>
+                              <td>Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. Data type: <code>string</code>.</td>
+                              <td>CC</td>
+                            </tr>
+                            <tr>
+                              <td>ccnum<br/><code>mandatory</code></td>
+                              <td>Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Data type: <code>string</code>.</td>
+                              <td>4012000000002004</td>
+                            </tr>
+                            <tr>
+                              <td>ccname<br/><code>mandatory</code></td>
+                              <td>This parameter must contain the name on card – as entered by the customer for the transaction. Data type: <code>string</code>.</td>
+                              <td>Test User</td>
+                            </tr>
+                            <tr>
+                              <td>ccvv<br/><code>mandatory</code></td>
+                              <td>Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API. Data type: <code>string</code>.</td>
+                              <td>123</td>
+                            </tr>
+                            <tr>
+                              <td>ccexpmon<br/><code>mandatory</code></td>
+                              <td>This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. Data type: <code>string</code>.</td>
+                              <td>06</td>
+                            </tr>
+                            <tr>
+                              <td>ccexpyr<br/><code>mandatory</code></td>
+                              <td>This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits. Data type: <code>string</code>.</td>
+                              <td>2024</td>
+                            </tr>
+                            <tr>
+                              <td>surl<br/><code>mandatory</code></td>
+                              <td>The success URL, which is the page PayU will redirect to if the transaction is successful. Data type: <code>string</code>.</td>
+                              <td>http://pp30admin.payu.in/</br>test_response</td>
+                            </tr>
+                            <tr>
+                              <td>furl<br/><code>mandatory</code></td>
+                              <td>The failure URL, which is the page PayU will redirect to if the transaction is failed. Data type: <code>string</code>.</td>
+                              <td>http://pp30admin.payu.in/</br>test_response</td>
+                            </tr>
+                            <tr>
+                              <td>hash<br/><code>mandatory</code></td>
+                              <td>It is the hash calculated by the merchant. The hash calculation logic is: sha512(key|txnid|amount|productinfo|firstname|email</br>|udf1|udf2|udf3|udf4|udf5||||||SALT). Data type: <code>string</code>.</td>
+                              <td>e5b286a9c8545038de9</br>d4e4ee4d8a2fd02</br>e821015aff7e0323</br>807ba174997d8643f9</br>aa174981385e3e4dfe60</br>b918650806ccb97b3e8e3</br>471e1985ecadefd0184</td>
+                            </tr>
+                            <tr>
+                              <td>txn_s2s_flow<br/><code>optional</code></td>
+                              <td>Server-to-server transaction flow parameter that indicates the type of transaction processing flow to be used. Data type: <code>string</code>.</td>
+                              <td>4</td>
+                            </tr>
+                            <tr>
+                              <td>threeDS2RequestData<br/><code>optional</code></td>
+                              <td>JSON object containing 3DS2 authentication data including browser information, user agent, screen dimensions, timezone, and other parameters required for 3D Secure 2.0 authentication. Data type: <code>object</code>.</td>
+                              <td>Refer to #threeds2requestdata-json-format</td>
+                            </tr>
+                          </tbody>
+                        </table>
     `}</HTMLBlock>
 
     #### threeDS2RequestData JSON format
