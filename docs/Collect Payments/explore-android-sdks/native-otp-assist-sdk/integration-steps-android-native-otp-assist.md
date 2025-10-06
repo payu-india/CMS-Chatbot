@@ -18,15 +18,13 @@ next:
 ---
 The Android Native OTP Assist SDK integration involves the following steps:
 
-## SDK Integration
+## Step 1. SDK Integration
 
 Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard** > **Settings** > **Payment methods**. Cards, UPI, and other payment methods are enabled by default, and PayU recommends you to enable other payment methods that are relevant to you.
 
 ### Step 1: Create a PayU account
 
 First, create a PayU account. For more information, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard).
-
-***
 
 ### Step 2: Include the SDK in your application
 
@@ -38,7 +36,7 @@ implementation 'in.payu:native-otp-assist:1.6.2'
 
 ### Step 3: Set up payment hash and post data
 
-### Generate payment hash
+#### Generate payment hash
 
 For more information on the generation of Payment Hash, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
@@ -160,7 +158,9 @@ Webhook is a server-to-server callback. Once this feature is activated for merch
 
 Also, you can verify payment through polling, the transaction status after the SDK callback from your backend. For more information, refer to [Verify Payment API](https://docs.payu.in/docs/web-services-for-android-core-sdk#verify-payment-api).
 
-## Test the Integration
+## Step 2. Test the Integration and Go-Live
+
+### Test the Integration
 
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
@@ -174,7 +174,7 @@ You can make test payments using one of the payment methods configured at the Ch
 
 <TestCardsCallout />
 
-### Test credentials for supported payment methods
+#### Test credentials for supported payment methods
 
 Following are the payment methods supported in PayU Test mode.
 
@@ -186,7 +186,7 @@ Use the following credentials to test the Net Banking integration:
 * **password**: payu
 * **OTP**: 123456
 
-#### Test VPA for UPI
+**Test VPA for UPI**
 
 You can use either of the following VPAs to test your UPI-related integration:
 
@@ -197,7 +197,7 @@ You can use either of the following VPAs to test your UPI-related integration:
 >
 > The UPI in-app and UPI intent flow is not available in the Test mode.
 
-#### Test cards for EMI
+**Test cards for EMI**
 
 You can use the following Debit and Credit cards to test Emi integration.
 
@@ -277,7 +277,7 @@ You can use the following Debit and Credit cards to test Emi integration.
   </tbody>
 </Table>
 
-#### Test wallets
+**Test wallets**
 
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
@@ -344,30 +344,6 @@ You can use the following wallets and their corresponding credentials to test wa
   </tbody>
 </Table>
 
-## Go-live Checklist
+<Go_Live_Checklist />
 
-Ensure these steps before you deploy the integration in a live environment.
-
-### Collect live payments
-
-After testing the Integration the integration end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
-
-<Callout icon="🚧" theme="warn">
-  **Watch Out**: Ensure that you are using the production merchant key and salt generated in the live mode.
-</Callout>
-
-<ProductionKeyAndSaltProcedure />
-
-### Checklist 2: Configure setIsProduction()
-
-Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
-
-### Checklist 3: Configure verify payment method
-
-Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
-
-### Checklist 4: Configure Webhook
-
-We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
-
-During the integration, refer the [Generate Static Hash](doc:generate-static-hash-android-sdk-pro) for hash generation details.
+<br />
