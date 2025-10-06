@@ -8,8 +8,12 @@ metadata:
 ---
 For Net Banking integration, you need to post transaction details to PayU with bank account details for validation.
 
-### Environment
+## Step 1: Create transaction with beneficiary details
 
+Create a transaction by including a JSON object with beneficiary details (account numbers and IFSC codes). You can include up to four accounts for validation.
+
+## Step 2: Post the parameters to PayU
+**Environment**
 The following environments are available for TPV integration:
 
 |                            |                                                                     |
@@ -17,11 +21,6 @@ The following environments are available for TPV integration:
 | **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-## Step 1: Create transaction with beneficiary details
-
-Create a transaction by including a JSON object with beneficiary details (account numbers and IFSC codes). You can include up to four accounts for validation.
-
-## Step 2: Post the parameters to PayU
 
 ### Request parameters
 
@@ -109,7 +108,7 @@ Create a transaction by including a JSON object with beneficiary details (accoun
 >
 > Replace `SALT` with the salt value provided during onboarding.
 
-### beneficiarydetail JSON Object Fields
+#### beneficiarydetail JSON Object Fields
 
 The `beneficiarydetail` parameter should be a JSON object with the following structure:
 
@@ -205,7 +204,7 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 | mihpayid         | It is a unique reference number created for each transaction at PayU's end.                                                    |
 | merchantid       | It is the unique ID of the merchant.                                                                                           |
 | txnid            | Transaction ID provided by the merchant during the transaction request.                                                        |
-| transaction\_fee | Transaction fee for this transaction (e.g., fixed fee of INR 10 for Net Banking).                                              |
+| transaction_fee  | Transaction fee for this transaction (e.g., fixed fee of INR 10 for Net Banking).                                              |
 | discount         | The discount/cashback amount provided by the bank, if applicable.                                                              |
 | amount           | The amount after discount (if any).                                                                                            |
 | paymentgatewayid | Identifier for the payment gateway/bank sending the response.                                                                  |
@@ -215,11 +214,11 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 | addedon          | Timestamp of the transaction (e.g., 2023-02-01 12:01:22).                                                                      |
 | bankcode         | Bank code used in the transaction.                                                                                             |
 | error            | Error code (e.g., "E000" indicates no error).                                                                                  |
-| error\_Message   | Description of any errors encountered.                                                                                         |
+| error_Message    | Description of any errors encountered.                                                                                         |
 
-> 📘 Store the mihpayid and txnid parameter values in response:
->
-> Make sure to store the `mihpayid` and `txnid` parameter values from the response for future reference and reconciliation.
+<Callout icon="📘" theme="info">
+  **Store the mihpayid and txnid parameter values in response**: Make sure to store the `mihpayid` and `txnid` parameter values from the response for future reference and reconciliation.
+</Callout>
 
 ### Sample response
 
