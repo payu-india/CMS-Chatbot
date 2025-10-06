@@ -23,8 +23,8 @@ You can collect payments from customers with leading wallets using the Merchant 
 <RegisterMerchantPrerequiste />
 
 ## Step 1: Initiate the payment with PayU" icon
-<Accordion title="  **Post Request Syntax & Composition**" icon="fa-code">
 
+<Accordion title="Post Request Syntax & Composition" icon="fa-code">
   ```html
   <body>
   <form action='https://test.payu.in/_payment' method='post'>
@@ -50,8 +50,8 @@ You can collect payments from customers with leading wallets using the Merchant 
   >
   > The above HTML code block is for Merchant Checkout integration on the Wallet call for the test environment.
 </Accordion>
-<Accordion title="Request parameters" icon="fa-table">
 
+<Accordion title="Request parameters" icon="fa-table">
   The following parameters vary for the Wallet payment mode in the **Collect Payment** API (**\_payment** API).
 
   **Environment**
@@ -84,17 +84,16 @@ You can collect payments from customers with leading wallets using the Merchant 
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-table">
-
   ```curl
   curl -X POST "https://test.payu.in/_payment"  -H "accept: application/json"  -H "Content-Type: application/x-www-form-urlencoded"  -d "key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=cash&bankcode=paytm&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
   ```
 </Accordion>
 
 ## Step 2: Check response from PayU
-  <ReverseHashing />
+
+<ReverseHashing />
 
 <Accordion title="Sample response" icon="fa-table">
-
   ```
   Array
   (
@@ -151,9 +150,10 @@ You can collect payments from customers with leading wallets using the Merchant 
 </Accordion>
 
 ## Step 3: Verify the payment
-  <Verify_Payment_Tabs />
 
+<Verify_Payment_Tabs />
 
 ## Recommended integrations for Wallets
-  * **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
-  * **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer) and [Offers](doc:offers-integration).
+
+* **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
+* **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer) and [Offers](doc:offers-integration).
