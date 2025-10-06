@@ -56,6 +56,7 @@ The Flutter UPI SDK integration involves the following steps:
 3. [Go-live Checklist](https://docs.payu.in/docs/go-live-checklist-flutterupi)
 
 ## SDK Integration
+
 To integrate the Flutter UPI SDK, perform the following steps:
 
 1. [Step 1: Include the Flutter UPI SDK in Your App](https://docs.payu.in/docs/integration-steps-flutterupi#step-1-include-the-sdk-in-your-app)
@@ -612,7 +613,9 @@ For fetch the Installed UPI apps, Kindly add the query schemes in the`info.plist
 ```
 
 <br />
+
 ## Test the Integration
+
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 > 🚧 Callout
@@ -677,7 +680,9 @@ You can add the below metadata under the application tag in the manifest file to
 > The UPI in-app and UPI intent flow is not available in the Test mode.
 
 <br />
+
 ## Go-live Checklist
+
 Ensure these steps before you deploy the integration in a live environment.
 
 ### Collect Live Payments
@@ -709,3 +714,9 @@ Configure the Verify payment method to fetch the payment status. We strongly rec
 ### Checklist 5: Configure Webhook
 
 We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
+
+## Sample app
+
+The sample app for Flutter UPI SDK can be found in the following Github location:
+
+[https://github.com/payu-intrepos/PayU-UPI-Flutter.git](https://github.com/payu-intrepos/PayU-UPI-Flutter.git)
