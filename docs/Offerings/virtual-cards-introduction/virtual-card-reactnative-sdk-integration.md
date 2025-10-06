@@ -1,5 +1,5 @@
 ---
-title: ReactNative SDK Integration
+title: React Native SDK Integration
 deprecated: false
 hidden: false
 link:
@@ -7,8 +7,6 @@ link:
 metadata:
   robots: index
 ---
-<br />
-
 You can integrate Virtual card using `payu-ppi-react` SDK in React Native. This section describes the procedure to integrate Virtual Card using React-Native SDK.
 
 ## Overview
@@ -43,7 +41,6 @@ npm i payu-ppi-react@1.0.0-alpha.2
 ### or with yarn
 yarn add payu-ppi-react@1.0.0-alpha.2
 ```
-
 
 ### React Native Autolinking
 
