@@ -1,5 +1,5 @@
 ---
-title: Integrate WebView For Mobile Apps (Checkout Plus)
+title: Integrate WebView for Mobile Apps (Checkout Plus)
 excerpt: ''
 deprecated: false
 hidden: true
