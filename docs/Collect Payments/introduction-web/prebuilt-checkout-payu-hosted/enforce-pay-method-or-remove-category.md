@@ -5,7 +5,7 @@ excerpt: >-
   suit your requirements. You can opt for all or some payment modes according to
   their requirements.
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
