@@ -132,9 +132,8 @@ In this example:
 </Callout>
 
 ## Change the Language
-To change the display language in PayU Hosted Checkout, add the `language` parameter to the payment request API call. The following video shows how vernacular support can improve your business:
 
-<Embed url="https://www.youtube.com/watch?v=7UCT0jFbB90" href="https://www.youtube.com/watch?v=7UCT0jFbB90" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252F7UCT0jFbB90%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253D7UCT0jFbB90%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252F7UCT0jFbB90%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
+To change the display language in PayU Hosted Checkout, add the `language` parameter to the payment request API call. The following video shows how vernacular support can improve your business:
 
 The `display_lang` parameter should be set to one of the following values (same as corresponding language spelling):
 
@@ -158,7 +157,9 @@ curl -X POST "https://test.payu.in/_payment" \
 The PayU payment page is displayed with the display language as “Hindi” similar to the following screenshot:
 
 <Image border={false} src="https://files.readme.io/3aae0ef-hindipage.png" />
+
 ## Configure Checkout Payment Methods
+
 By default, the following payment methods are enabled for merchants on PayU Payment page (with PayU Hosted Checkout integration):
 
 * NetBanking
@@ -247,6 +248,7 @@ You are redirected to the PayPal page similar to the following screenshot.
 Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
 
 ## Configure Checkout Settings
+
 You can customize your customer-facing checkout page that is displayed when you are using PayU Hosted Checkout integration. For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
 
 To update your brand settings:
@@ -322,6 +324,7 @@ To update your brand settings:
 </Callout>
 
 ## Enable Pluxee Card on Checkout
+
 Pay Hosted Checkout (non-seamless) integration provides you to collect payments from customers using Pluxee (earlier Sodexo BRS) meal card on specific merchant categories such as restaurants, groceries etc.
 
 <Callout icon="📘" theme="info">
