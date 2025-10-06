@@ -51,13 +51,6 @@ For intent transactions, we delegate the transaction process to an external app 
 
 To integrate the Flutter UPI SDK, perform the following steps:
 
-1. [Step 1: Include the Flutter UPI SDK in Your App](#step-1-include-the-sdk-in-your-app)
-2. [Step 2: Intialise the Flutter SDK](#step-2-sdk-initialisation)
-3. [Step 3: Implement the Callback protocol](#step-3-implement-the-callback-protocol)
-4. [Step 4: Setup Payment Hashes](#step-4-setup-payment-hashes)
-5. [Step 5: Generate Payment Params](#step-4-setup-payment-hashes)
-6. [Step 6: Initiate Payment](#step-6-initiate-the-payment)
-
 <Accordion title="Step 1: Include the SDK in your App" icon="fa-code">
   The UPI SDK for Flutter is offered through Flutter` pub.dev.` To add the SDK plugin use the following dependency in your app:
 
@@ -99,82 +92,82 @@ To integrate the Flutter UPI SDK, perform the following steps:
   </Callout>
 </Accordion>
 
-<Accordion title="Implement the Callback protocol" icon="fa-code">
+<Accordion title="Step 3. Implement the Callback protocol" icon="fa-code">
+  1. Implement PayUPIProtocol to receive hash and transaction callback.
 
-1. Implement PayUPIProtocol to receive hash and transaction callback.
+  ```d Dart
+  class _MyAppState extends State<MyApp> implements PayUUPIProtocol 
+  ```
 
-```d Dart
-class _MyAppState extends State<MyApp> implements PayUUPIProtocol 
-```
+  2. Implement the following methods in your class to receive the callbacks.
 
-2. Implement the following methods in your class to receive the callbacks.
+  ```d Dart
+  @override
+  onPayUUPIMakePayment(Map response) {
 
-```d Dart
-@override
-onPayUUPIMakePayment(Map response) {
+    String eventType = response[PayUEventType.eventType];
+    switch(eventType) { 
+        case PayUEventType.onPaymentSuccess: { 
+             String eventResponse = parsePayUResponse(response);
+             //handle PayU response 
+        } 
+        break; 
+        case PayUEventType.onPaymentFailure: { 
+             String eventResponse = parsePayUResponse(response);
+             //handle PayU response
+        } 
+        break; 
 
-  String eventType = response[PayUEventType.eventType];
-  switch(eventType) { 
-      case PayUEventType.onPaymentSuccess: { 
-           String eventResponse = parsePayUResponse(response);
-           //handle PayU response 
-      } 
-      break; 
-      case PayUEventType.onPaymentFailure: { 
-           String eventResponse = parsePayUResponse(response);
-           //handle PayU response
-      } 
-      break; 
+        case PayUEventType.onErrorReceived: { 
+             String eventResponse = parsePayUResponse(response);
+             //handle PayU response
+        } 
+        break; 
+      
+        case PayUEventType.onPaymentTerminate: 
+        {  
+             String eventResponse = parsePayUResponse(response);
+             //handle PayU response
+        } 
+        break; 
+      
+        default: { 
+             //handle unknown events
+         } 
+        break; 
+    } 
+  }
 
-      case PayUEventType.onErrorReceived: { 
-           String eventResponse = parsePayUResponse(response);
-           //handle PayU response
-      } 
-      break; 
-    
-      case PayUEventType.onPaymentTerminate: 
-      {  
-           String eventResponse = parsePayUResponse(response);
-           //handle PayU response
-      } 
-      break; 
-    
-      default: { 
-           //handle unknown events
-       } 
-      break; 
-  } 
-}
+  @override
+  onPayUUPIValidateVPA(Map response) {
+     String eventType = response[PayUEventType.eventType];
+    switch(eventType) { 
+        case PayUEventType.onValidateSuccess: { 
+             String eventResponse = parsePayUResponse(response);
+             //handle PayU response
+        } 
+        break; 
+      
+        case PayUEventType.onErrorReceived: { 
+             String eventResponse = parsePayUResponse(response);
+             //handle PayU response
+        } 
+        break; 
+      
+        default: { 
+             //handle unknown events
+         } 
+        break; 
+    } 
+  }
 
-@override
-onPayUUPIValidateVPA(Map response) {
-   String eventType = response[PayUEventType.eventType];
-  switch(eventType) { 
-      case PayUEventType.onValidateSuccess: { 
-           String eventResponse = parsePayUResponse(response);
-           //handle PayU response
-      } 
-      break; 
-    
-      case PayUEventType.onErrorReceived: { 
-           String eventResponse = parsePayUResponse(response);
-           //handle PayU response
-      } 
-      break; 
-    
-      default: { 
-           //handle unknown events
-       } 
-      break; 
-  } 
-}
-
-String parsePayUResponse(Map response){
-  var eventResponse = response[PayUEventType.eventResponse];
-  return eventResponse != null ? eventResponse.toString() : "";
-}
-```
+  String parsePayUResponse(Map response){
+    var eventResponse = response[PayUEventType.eventResponse];
+    return eventResponse != null ? eventResponse.toString() : "";
+  }
+  ```
 </Accordion>
+
 <Accordion title="Step 4: Setup Payment Hashes" icon="fa-code">
   <Callout icon="🚧" theme="warn">
     **Warning**: Always generate the hash at your backend to ensure security.
