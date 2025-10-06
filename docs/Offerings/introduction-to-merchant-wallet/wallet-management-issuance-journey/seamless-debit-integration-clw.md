@@ -30,52 +30,52 @@ Before any wallet operation, check the current balance using the Retrieve Custom
     This API uses HMAC-SHA512 authentication on the header.
 
     <HTMLBlock>{`
-                <table class="api-parameters">
-                  <thead>
-                    <tr>
-                      <th scope="col">Parameter</th>
-                      <th scope="col">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <strong>walletIdentifier</strong><br />
-                        <span class="required-badge">mandatory</span>
-                      </td>
-                      <td>
-                        <code>String</code> Program Type (e.g., CLW)
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>date</strong><br />
-                        <span class="required-badge">mandatory</span>
-                      </td>
-                      <td>
-                        <code>String</code> GMT formatted date (e.g., Thu, 17 Feb 2022 08:17:59 GMT)
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Authorization</strong><br />
-                        <span class="required-badge">mandatory</span>
-                      </td>
-                      <td>
-                        <code>String</code> HMAC-SHA512-based authentication token
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Content-Type</strong><br />
-                        <span class="required-badge">mandatory</span>
-                      </td>
-                      <td>
-                        <code>String</code> application/json
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                        <table class="api-parameters">
+                          <thead>
+                            <tr>
+                              <th scope="col">Parameter</th>
+                              <th scope="col">Description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <strong>walletIdentifier</strong><br />
+                                <span class="required-badge">mandatory</span>
+                              </td>
+                              <td>
+                                <code>String</code> Program Type (e.g., CLW)
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <strong>date</strong><br />
+                                <span class="required-badge">mandatory</span>
+                              </td>
+                              <td>
+                                <code>String</code> GMT formatted date (e.g., Thu, 17 Feb 2022 08:17:59 GMT)
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <strong>Authorization</strong><br />
+                                <span class="required-badge">mandatory</span>
+                              </td>
+                              <td>
+                                <code>String</code> HMAC-SHA512-based authentication token
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <strong>Content-Type</strong><br />
+                                <span class="required-badge">mandatory</span>
+                              </td>
+                              <td>
+                                <code>String</code> application/json
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
     `}</HTMLBlock>
 
     <Callout icon="↩️" theme="default">
@@ -101,52 +101,52 @@ Before any wallet operation, check the current balance using the Retrieve Custom
 
 <Accordion title="Request Body Parameters" icon="fa-code">
   <HTMLBlock>{`
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-            <th>Example</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>messageCode <code>mandatory</code></td>
-            <td><code>Integer</code> - Numeric identifier for the API</td>
-            <td>1930</td>
-          </tr>
-          <tr>
-            <td>clientTxnId <code>mandatory</code></td>
-            <td><code>String</code> - Unique transaction ID</td>
-            <td>BALANCE_CHK_001</td>
-          </tr>
-          <tr>
-            <td>requestDateTime <code>mandatory</code></td>
-            <td><code>String</code> - Local timestamp in YYYYMMDDHHMMSS format</td>
-            <td>20230822183015</td>
-          </tr>
-          <tr>
-            <td>customerMobile <code>optional</code></td>
-            <td><code>String</code> - Customer mobile with country code (at least one customer identifier is required)</td>
-            <td>919876543210</td>
-          </tr>
-          <tr>
-            <td>customerId <code>optional</code></td>
-            <td><code>String</code> - Unique customer identifier (at least one customer identifier is required)</td>
-            <td>CUST_001</td>
-          </tr>
-          <tr>
-            <td>emailId <code>optional</code></td>
-            <td><code>String</code> - Customer email address (at least one customer identifier is required)</td>
-            <td>john@example.com</td>
-          </tr>
-          <tr>
-            <td>urn <code>optional</code></td>
-            <td><code>String</code> - Unique wallet reference number (at least one customer identifier is required)</td>
-            <td>12345678901</td>
-          </tr>
-        </tbody>
-      </table>
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>messageCode <code>mandatory</code></td>
+                <td><code>Integer</code> - Numeric identifier for the API</td>
+                <td>1930</td>
+              </tr>
+              <tr>
+                <td>clientTxnId <code>mandatory</code></td>
+                <td><code>String</code> - Unique transaction ID</td>
+                <td>BALANCE_CHK_001</td>
+              </tr>
+              <tr>
+                <td>requestDateTime <code>mandatory</code></td>
+                <td><code>String</code> - Local timestamp in YYYYMMDDHHMMSS format</td>
+                <td>20230822183015</td>
+              </tr>
+              <tr>
+                <td>customerMobile <code>optional</code></td>
+                <td><code>String</code> - Customer mobile with country code (at least one customer identifier is required)</td>
+                <td>919876543210</td>
+              </tr>
+              <tr>
+                <td>customerId <code>optional</code></td>
+                <td><code>String</code> - Unique customer identifier (at least one customer identifier is required)</td>
+                <td>CUST_001</td>
+              </tr>
+              <tr>
+                <td>emailId <code>optional</code></td>
+                <td><code>String</code> - Customer email address (at least one customer identifier is required)</td>
+                <td>john@example.com</td>
+              </tr>
+              <tr>
+                <td>urn <code>optional</code></td>
+                <td><code>String</code> - Unique wallet reference number (at least one customer identifier is required)</td>
+                <td>12345678901</td>
+              </tr>
+            </tbody>
+          </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -182,132 +182,132 @@ Before any wallet operation, check the current balance using the Retrieve Custom
   }
   ```
 </Accordion>
-  > **📘 Note**: Store the available balance to determine if additional funds need to be loaded before making a purchase.
 
-  ## Step 2: Load Money to Wallet (if required)
+> **📘 Note**: Store the available balance to determine if additional funds need to be loaded before making a purchase.
 
-  If the wallet balance is insufficient, initiate a PG Load transaction to enable the customer to add funds.
+## Step 2: Load Money to Wallet (if required)
 
-  * **API Endpoint (Test)**: `https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1`
-  * **Method**: `PATCH`
+If the wallet balance is insufficient, initiate a PG Load transaction to enable the customer to add funds.
 
+* **API Endpoint (Test)**: `https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1`
+* **Method**: `PATCH`
 
 <Accordion title="Request Headers" icon="fa-code">
   \<Accordion title="Header Authentication Parameters" icon="fa-info-circle">
   This API uses HMAC-SHA512 authentication on the header.
 
   \<HTMLBlock>\{`   \<table class="api-parameters">
-        \<thead>
-          \<tr>
-            \<th scope="col">Parameter\</th>
-            \<th scope="col">Description\</th>
-          \</tr>
-        \</thead>
-        \<tbody>
-          \<tr>
-            \<td>
-              \<strong>walletIdentifier\</strong>\<br />
-              \<span class="required-badge">mandatory\</span>
-            \</td>
-            \<td>
-              \<code>String\</code> Program Type (e.g., CLW)
-            \</td>
-          \</tr>
-          \<tr>
-            \<td>
-              \<strong>date\</strong>\<br />
-              \<span class="required-badge">mandatory\</span>
-            \</td>
-            \<td>
-              \<code>String\</code> GMT formatted date (e.g., Thu, 17 Feb 2022 08:17:59 GMT)
-            \</td>
-          \</tr>
-          \<tr>
-            \<td>
-              \<strong>Authorization\</strong>\<br />
-              \<span class="required-badge">mandatory\</span>
-            \</td>
-            \<td>
-              \<code>String\</code> HMAC-SHA512-based authentication token
-            \</td>
-          \</tr>
-          \<tr>
-            \<td>
-              \<strong>Content-Type\</strong>\<br />
-              \<span class="required-badge">mandatory\</span>
-            \</td>
-            \<td>
-              \<code>String\</code> application/json
-            \</td>
-          \</tr>
-        \</tbody>
-      \</table>
-      `}\</HTMLBlock>
+            \<thead>
+              \<tr>
+                \<th scope="col">Parameter\</th>
+                \<th scope="col">Description\</th>
+              \</tr>
+            \</thead>
+            \<tbody>
+              \<tr>
+                \<td>
+                  \<strong>walletIdentifier\</strong>\<br />
+                  \<span class="required-badge">mandatory\</span>
+                \</td>
+                \<td>
+                  \<code>String\</code> Program Type (e.g., CLW)
+                \</td>
+              \</tr>
+              \<tr>
+                \<td>
+                  \<strong>date\</strong>\<br />
+                  \<span class="required-badge">mandatory\</span>
+                \</td>
+                \<td>
+                  \<code>String\</code> GMT formatted date (e.g., Thu, 17 Feb 2022 08:17:59 GMT)
+                \</td>
+              \</tr>
+              \<tr>
+                \<td>
+                  \<strong>Authorization\</strong>\<br />
+                  \<span class="required-badge">mandatory\</span>
+                \</td>
+                \<td>
+                  \<code>String\</code> HMAC-SHA512-based authentication token
+                \</td>
+              \</tr>
+              \<tr>
+                \<td>
+                  \<strong>Content-Type\</strong>\<br />
+                  \<span class="required-badge">mandatory\</span>
+                \</td>
+                \<td>
+                  \<code>String\</code> application/json
+                \</td>
+              \</tr>
+            \</tbody>
+          \</table>
+          `}\</HTMLBlock>
 </Accordion>
 
 <Accordion title="Request Body Parameters" icon="fa-code">
   <HTMLBlock>{`
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-            <th>Example</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>clientTxnId <code>mandatory</code></td>
-            <td><code>String</code> - Unique transaction ID (alphanumeric, max 14 characters)</td>
-            <td>Reload_V3_1234</td>
-          </tr>
-          <tr>
-            <td>requestDateTime <code>mandatory</code></td>
-            <td><code>String</code> - Timestamp in YYYYMMDDHHMMSS format</td>
-            <td>20230822183015</td>
-          </tr>
-          <tr>
-            <td>customerId <code>optional</code></td>
-            <td><code>String</code> - Unique customer ID (auto-generated if not passed)</td>
-            <td>89342546</td>
-          </tr>
-          <tr>
-            <td>customerMobile <code>mandatory</code></td>
-            <td><code>String</code> - Customer mobile with country code</td>
-            <td>919876543210</td>
-          </tr>
-          <tr>
-            <td>loadAmount <code>mandatory</code></td>
-            <td><code>String</code> - Amount to be loaded (minimum 1.00)</td>
-            <td>500.00</td>
-          </tr>
-          <tr>
-            <td>emailId <code>optional</code></td>
-            <td><code>String</code> - Customer email address</td>
-            <td>john@example.com</td>
-          </tr>
-          <tr>
-            <td>firstName <code>optional</code></td>
-            <td><code>String</code> - Customer first name</td>
-            <td>John</td>
-          </tr>
-          <tr>
-            <td>lastName <code>optional</code></td>
-            <td><code>String</code> - Customer last name</td>
-            <td>Doe</td>
-          </tr>
-          <tr>
-            <td>successUrl <code>mandatory</code></td>
-            <td><code>String</code> - URL for successful transaction redirect</td>
-            <td>https://merchant.com/success</td>
-          </tr>
-          <tr>
-            <td>failureUrl <code>mandatory</code></td>
-            <td><code>String</code> - URL for failed transaction redirect</td>
-            <td>https://merchant.com/failure</td>
-          </tr>
-        </tbody>
-      </table>
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>clientTxnId <code>mandatory</code></td>
+                <td><code>String</code> - Unique transaction ID (alphanumeric, max 14 characters)</td>
+                <td>Reload_V3_1234</td>
+              </tr>
+              <tr>
+                <td>requestDateTime <code>mandatory</code></td>
+                <td><code>String</code> - Timestamp in YYYYMMDDHHMMSS format</td>
+                <td>20230822183015</td>
+              </tr>
+              <tr>
+                <td>customerId <code>optional</code></td>
+                <td><code>String</code> - Unique customer ID (auto-generated if not passed)</td>
+                <td>89342546</td>
+              </tr>
+              <tr>
+                <td>customerMobile <code>mandatory</code></td>
+                <td><code>String</code> - Customer mobile with country code</td>
+                <td>919876543210</td>
+              </tr>
+              <tr>
+                <td>loadAmount <code>mandatory</code></td>
+                <td><code>String</code> - Amount to be loaded (minimum 1.00)</td>
+                <td>500.00</td>
+              </tr>
+              <tr>
+                <td>emailId <code>optional</code></td>
+                <td><code>String</code> - Customer email address</td>
+                <td>john@example.com</td>
+              </tr>
+              <tr>
+                <td>firstName <code>optional</code></td>
+                <td><code>String</code> - Customer first name</td>
+                <td>John</td>
+              </tr>
+              <tr>
+                <td>lastName <code>optional</code></td>
+                <td><code>String</code> - Customer last name</td>
+                <td>Doe</td>
+              </tr>
+              <tr>
+                <td>successUrl <code>mandatory</code></td>
+                <td><code>String</code> - URL for successful transaction redirect</td>
+                <td>https://merchant.com/success</td>
+              </tr>
+              <tr>
+                <td>failureUrl <code>mandatory</code></td>
+                <td><code>String</code> - URL for failed transaction redirect</td>
+                <td>https://merchant.com/failure</td>
+              </tr>
+            </tbody>
+          </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -345,73 +345,75 @@ Before any wallet operation, check the current balance using the Retrieve Custom
   }
   ```
 </Accordion>
-  ## Step 3: Check PG Load Status
 
-  Use the PG Load Enquiry API to verify the status of the load transaction.
+## Step 3: Check PG Load Status
 
-  * **API Endpoint (Test)**: `https://apitest.payu.in/loyalty-points/ppi/payment/pg-load-enquiry/v1`
-  * **Method**: `POST`
+Use the PG Load Enquiry API to verify the status of the load transaction.
+
+* **API Endpoint (Test)**: `https://apitest.payu.in/loyalty-points/ppi/payment/pg-load-enquiry/v1`
+* **Method**: `POST`
 
 <Accordion title="Request Headers" icon="fa-code">
   <HTMLBlock>{`
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-            <th>Example</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>walletIdentifier <code>mandatory</code></td>
-            <td><code>String</code> - Program type</td>
-            <td>CLW</td>
-          </tr>
-          <tr>
-            <td>date <code>mandatory</code></td>
-            <td><code>String</code> - GMT-formatted date</td>
-            <td>Wed, 12 Jun 2024 08:53:43 GMT</td>
-          </tr>
-          <tr>
-            <td>Authorization <code>mandatory</code></td>
-            <td><code>String</code> - HMAC-SHA512-based authentication token</td>
-            <td>HMAC token</td>
-          </tr>
-          <tr>
-            <td>Content-Type <code>mandatory</code></td>
-            <td><code>String</code> - Request content type</td>
-            <td>application/json</td>
-          </tr>
-        </tbody>
-      </table>
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>walletIdentifier <code>mandatory</code></td>
+                <td><code>String</code> - Program type</td>
+                <td>CLW</td>
+              </tr>
+              <tr>
+                <td>date <code>mandatory</code></td>
+                <td><code>String</code> - GMT-formatted date</td>
+                <td>Wed, 12 Jun 2024 08:53:43 GMT</td>
+              </tr>
+              <tr>
+                <td>Authorization <code>mandatory</code></td>
+                <td><code>String</code> - HMAC-SHA512-based authentication token</td>
+                <td>HMAC token</td>
+              </tr>
+              <tr>
+                <td>Content-Type <code>mandatory</code></td>
+                <td><code>String</code> - Request content type</td>
+                <td>application/json</td>
+              </tr>
+            </tbody>
+          </table>
   `}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Request Body Parameters" icon="fa-code">
   <HTMLBlock>{`
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-            <th>Example</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>clientTxnId <code>mandatory</code></td>
-            <td><code>String</code> - Original transaction ID from PG Load request</td>
-            <td>Reload_V3_1234</td>
-          </tr>
-          <tr>
-            <td>requestDateTime <code>mandatory</code></td>
-            <td><code>String</code> - Timestamp in YYYYMMDDHHMMSS format</td>
-            <td>20230822183015</td>
-          </tr>
-        </tbody>
-      </table>
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>clientTxnId <code>mandatory</code></td>
+                <td><code>String</code> - Original transaction ID from PG Load request</td>
+                <td>Reload_V3_1234</td>
+              </tr>
+              <tr>
+                <td>requestDateTime <code>mandatory</code></td>
+                <td><code>String</code> - Timestamp in YYYYMMDDHHMMSS format</td>
+                <td>20230822183015</td>
+              </tr>
+            </tbody>
+          </table>
   `}</HTMLBlock>
+</Accordion>
 
   ## Step 4: Collect Payment - Seamless Debit Transaction
 
@@ -420,26 +422,25 @@ Before any wallet operation, check the current balance using the Retrieve Custom
   * **API Endpoint (Test)**: `https://test.payu.in/_payment`
   * **API Endpoint (Production)**: `https://secure.payu.in/_payment`
   * **Method**: `POST`
-</Accordion>
 
 <Accordion title="Request Headers" icon="fa-code">
   <HTMLBlock>{`
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-            <th>Example</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Content-Type <code>mandatory</code></td>
-            <td><code>String</code> - Request content type</td>
-            <td>application/x-www-form-urlencoded</td>
-          </tr>
-        </tbody>
-      </table>
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Content-Type <code>mandatory</code></td>
+                <td><code>String</code> - Request content type</td>
+                <td>application/x-www-form-urlencoded</td>
+              </tr>
+            </tbody>
+          </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -448,118 +449,118 @@ Before any wallet operation, check the current balance using the Retrieve Custom
 
   <Accordion title="Encrypted Parameter" icon="fa-code">
     <HTMLBlock>{`
-            <table>
-              <thead>
-                <tr>
-                  <th>Parameter</th>
-                  <th>Description</th>
-                  <th>Example</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>encdata <code>mandatory</code></td>
-                  <td><code>String</code> - Encrypted request body containing all transaction parameters</td>
-                  <td>h/0YSUd9jKOQ8+2Dc3Phr4s7vxyz123...</td>
-                </tr>
-              </tbody>
-            </table>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Parameter</th>
+                          <th>Description</th>
+                          <th>Example</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>encdata <code>mandatory</code></td>
+                          <td><code>String</code> - Encrypted request body containing all transaction parameters</td>
+                          <td>h/0YSUd9jKOQ8+2Dc3Phr4s7vxyz123...</td>
+                        </tr>
+                      </tbody>
+                    </table>
     `}</HTMLBlock>
   </Accordion>
 
   <Accordion title="Decrypted Parameters (inside encdata)" icon="fa-code">
     <HTMLBlock>{`
-            <table>
-              <thead>
-                <tr>
-                  <th>Parameter</th>
-                  <th>Description</th>
-                  <th>Example</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>txnId <code>mandatory</code></td>
-                  <td><code>String</code> - Unique transaction ID generated by merchant (max 25 characters)</td>
-                  <td>56882</td>
-                </tr>
-                <tr>
-                  <td>key <code>mandatory</code></td>
-                  <td><code>String</code> - Merchant key provided by PayU (max 50 characters)</td>
-                  <td>KPQwN8</td>
-                </tr>
-                <tr>
-                  <td>productinfo <code>mandatory</code></td>
-                  <td><code>String</code> - Brief product description (max 100 characters)</td>
-                  <td>iPhone</td>
-                </tr>
-                <tr>
-                  <td>Customer_id <code>optional</code></td>
-                  <td><code>String</code> - Unique customer ID (max 50 characters, alternative to walleturn)</td>
-                  <td>89342546</td>
-                </tr>
-                <tr>
-                  <td>walleturn <code>optional</code></td>
-                  <td><code>String</code> - Wallet URN from balance check (11 digits, alternative to Customer_id)</td>
-                  <td>70000000008</td>
-                </tr>
-                <tr>
-                  <td>firstName <code>mandatory</code></td>
-                  <td><code>String</code> - Customer first name (max 60 characters)</td>
-                  <td>Sourav</td>
-                </tr>
-                <tr>
-                  <td>lastName <code>optional</code></td>
-                  <td><code>String</code> - Customer last name (max 60 characters)</td>
-                  <td>Mishra</td>
-                </tr>
-                <tr>
-                  <td>phone <code>mandatory</code></td>
-                  <td><code>String</code> - Customer phone with ISD code (max 15 digits)</td>
-                  <td>919988776655</td>
-                </tr>
-                <tr>
-                  <td>email <code>mandatory</code></td>
-                  <td><code>String</code> - Customer email address (max 50 characters)</td>
-                  <td>sourav.mishra@gmail.com</td>
-                </tr>
-                <tr>
-                  <td>ws_online_response <code>mandatory</code></td>
-                  <td><code>String</code> - Success URL for transaction response (max 255 characters)</td>
-                  <td>https://success.url.com</td>
-                </tr>
-                <tr>
-                  <td>ws_failure_response <code>mandatory</code></td>
-                  <td><code>String</code> - Failure URL for transaction response (max 255 characters)</td>
-                  <td>https://failure.url.com</td>
-                </tr>
-                <tr>
-                  <td>amount <code>mandatory</code></td>
-                  <td><code>String</code> - Amount in paise (₹4.10 = 410)</td>
-                  <td>4100</td>
-                </tr>
-                <tr>
-                  <td>pg <code>mandatory</code></td>
-                  <td><code>String</code> - Payment gateway type for closed-loop wallet</td>
-                  <td>CLW</td>
-                </tr>
-                <tr>
-                  <td>txn_s2s_flow <code>mandatory</code></td>
-                  <td><code>String</code> - Constant value for seamless debit</td>
-                  <td>4</td>
-                </tr>
-                <tr>
-                  <td>bankcode <code>mandatory</code></td>
-                  <td><code>String</code> - Merchant-specific bank code</td>
-                  <td>PAY</td>
-                </tr>
-                <tr>
-                  <td>hash <code>mandatory</code></td>
-                  <td><code>String</code> - SHA512 hash for request verification</td>
-                  <td>6e640b...</td>
-                </tr>
-              </tbody>
-            </table>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Parameter</th>
+                          <th>Description</th>
+                          <th>Example</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>txnId <code>mandatory</code></td>
+                          <td><code>String</code> - Unique transaction ID generated by merchant (max 25 characters)</td>
+                          <td>56882</td>
+                        </tr>
+                        <tr>
+                          <td>key <code>mandatory</code></td>
+                          <td><code>String</code> - Merchant key provided by PayU (max 50 characters)</td>
+                          <td>KPQwN8</td>
+                        </tr>
+                        <tr>
+                          <td>productinfo <code>mandatory</code></td>
+                          <td><code>String</code> - Brief product description (max 100 characters)</td>
+                          <td>iPhone</td>
+                        </tr>
+                        <tr>
+                          <td>Customer_id <code>optional</code></td>
+                          <td><code>String</code> - Unique customer ID (max 50 characters, alternative to walleturn)</td>
+                          <td>89342546</td>
+                        </tr>
+                        <tr>
+                          <td>walleturn <code>optional</code></td>
+                          <td><code>String</code> - Wallet URN from balance check (11 digits, alternative to Customer_id)</td>
+                          <td>70000000008</td>
+                        </tr>
+                        <tr>
+                          <td>firstName <code>mandatory</code></td>
+                          <td><code>String</code> - Customer first name (max 60 characters)</td>
+                          <td>Sourav</td>
+                        </tr>
+                        <tr>
+                          <td>lastName <code>optional</code></td>
+                          <td><code>String</code> - Customer last name (max 60 characters)</td>
+                          <td>Mishra</td>
+                        </tr>
+                        <tr>
+                          <td>phone <code>mandatory</code></td>
+                          <td><code>String</code> - Customer phone with ISD code (max 15 digits)</td>
+                          <td>919988776655</td>
+                        </tr>
+                        <tr>
+                          <td>email <code>mandatory</code></td>
+                          <td><code>String</code> - Customer email address (max 50 characters)</td>
+                          <td>sourav.mishra@gmail.com</td>
+                        </tr>
+                        <tr>
+                          <td>ws_online_response <code>mandatory</code></td>
+                          <td><code>String</code> - Success URL for transaction response (max 255 characters)</td>
+                          <td>https://success.url.com</td>
+                        </tr>
+                        <tr>
+                          <td>ws_failure_response <code>mandatory</code></td>
+                          <td><code>String</code> - Failure URL for transaction response (max 255 characters)</td>
+                          <td>https://failure.url.com</td>
+                        </tr>
+                        <tr>
+                          <td>amount <code>mandatory</code></td>
+                          <td><code>String</code> - Amount in paise (₹4.10 = 410)</td>
+                          <td>4100</td>
+                        </tr>
+                        <tr>
+                          <td>pg <code>mandatory</code></td>
+                          <td><code>String</code> - Payment gateway type for closed-loop wallet</td>
+                          <td>CLW</td>
+                        </tr>
+                        <tr>
+                          <td>txn_s2s_flow <code>mandatory</code></td>
+                          <td><code>String</code> - Constant value for seamless debit</td>
+                          <td>4</td>
+                        </tr>
+                        <tr>
+                          <td>bankcode <code>mandatory</code></td>
+                          <td><code>String</code> - Merchant-specific bank code</td>
+                          <td>PAY</td>
+                        </tr>
+                        <tr>
+                          <td>hash <code>mandatory</code></td>
+                          <td><code>String</code> - SHA512 hash for request verification</td>
+                          <td>6e640b...</td>
+                        </tr>
+                      </tbody>
+                    </table>
     `}</HTMLBlock>
 
     <Callout icon="📘" theme="info">
