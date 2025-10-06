@@ -25,7 +25,7 @@ You can customize the following in the Checkout page:
 ## Enforce Pay Method or Remove Category
 
 <Callout icon="📘" theme="info">
- **Note**: Before implementing on your Production environment, PayU strongly recommends you to enforce the payment parameters described in this section on the Test environment.
+  **Note**: Before implementing on your Production environment, PayU strongly recommends you to enforce the payment parameters described in this section on the Test environment.
 </Callout>
 
 You can append the parameter names in your transaction request to opt for all or some of the payment modes.
@@ -160,7 +160,7 @@ The PayU payment page is displayed with the display language as "Hindi" similar 
 
 <Image border={false} src="https://files.readme.io/3aae0ef-hindipage.png" />
 
-## Configure Checkout Payment Methods
+## Configure Checkout Payment Methods and Settings
 
 By default, the following payment methods are enabled for merchants on PayU Payment page (with PayU Hosted Checkout integration):
 
@@ -183,146 +183,144 @@ You can enable the following modes if you are eligible using Dashboard:
 The following procedures describes how to enable payment mode or a feature.
 
 <Accordion title="Enable a payment method" icon="fa-table">
+  To configure the Dashboard to enable payment method:
 
-To configure the Dashboard to enable payment method:
+  1. Navigate to **Dashboard > Settings > Payment Methods.**
 
-1. Navigate to **Dashboard > Settings > Payment Methods.**
+     The *Manage Payment Methods* page is displayed with **Debit Card** tab selected by default.
 
-   The _Manage Payment Methods_ page is displayed with **Debit Card** tab selected by default.
+  <Image align="center" border={true} src="https://files.readme.io/30b21d8-Screenshot_2024-07-19_at_10.34.10_AM.png" width="722px" />
 
-<Image align="center" border={true} width="722px" src="https://files.readme.io/30b21d8-Screenshot_2024-07-19_at_10.34.10_AM.png" className="border" />
+  2. Select any of the payment method tab that you wish to configure.
 
-2. Select any of the payment method tab that you wish to configure.
+     If you are eligible for the payment method, the **Activate Now** button is displayed. For example, the **Activate Now** button is enabled in the **International Payments** tab.
 
-   If you are eligible for the payment method, the **Activate Now** button is displayed. For example, the **Activate Now** button is enabled in the **International Payments** tab.
+  <Image align="center" border={true} src="https://files.readme.io/87d81fd-Screenshot_2024-07-19_at_10.35.59_AM.png" width="722px" />
 
-<Image align="center" border={true} width="722px" src="https://files.readme.io/87d81fd-Screenshot_2024-07-19_at_10.35.59_AM.png" className="border" />
+  3. Click **Activate Now**.
 
-3. Click **Activate Now**.
+     A pop-up dialog box is displayed similar to the following screenshot and this will vary according to the payment method:
 
-   A pop-up dialog box is displayed similar to the following screenshot and this will vary according to the payment method:
+  <Image align="center" src="https://files.readme.io/6d9c81f-Screenshot_2024-07-19_at_10.37.45_AM.png" width="622px" />
 
-<Image align="center" border={false} width="622px" src="https://files.readme.io/6d9c81f-Screenshot_2024-07-19_at_10.37.45_AM.png" />
+  4. Click **Proceed** to activate.
 
-4. Click **Proceed** to activate.
-
-   A confirmation message is displayed.
+     A confirmation message is displayed.
 </Accordion>
+
 <Accordion title="Activate PayPal wallet" icon="fa-table">
+  To activate PayPal wallet and start collecting payments with PayPal:
 
-To activate PayPal wallet and start collecting payments with PayPal:
+  1. Follow the steps as in [Enable a payment method](#enable-a-payment-method).
+  2. Click **Link PayPal account**.
 
-1. Follow the steps as in [Enable a payment method](#enable-a-payment-method).
-2. Click **Link PayPal account**.
+  You are redirected to the PayPal page similar to the following screenshot.
 
-You are redirected to the PayPal page similar to the following screenshot.
+  <Image align="center" border={true} src="https://files.readme.io/15f4290-Screenshot_2024-03-14_at_2.22.56_PM.png" width="320px" />
 
-<Image align="center" border={true} width="320px" src="https://files.readme.io/15f4290-Screenshot_2024-03-14_at_2.22.56_PM.png" className="border" />
+  3. Enter your email address that you want to use in future with PayPal.
 
-3. Enter your email address that you want to use in future with PayPal.
+  <Image align="center" border={true} src="https://files.readme.io/fc21647-Screenshot_2024-03-14_at_2.23.12_PM.png" width="320px" />
 
-<Image align="center" border={true} width="320px" src="https://files.readme.io/fc21647-Screenshot_2024-03-14_at_2.23.12_PM.png" className="border" />
+  4. Select your country as **India**.
+  5. Click **Next**.
+  6. Enter the password to create the account.
 
-4. Select your country as **India**.
-5. Click **Next**.
-6. Enter the password to create the account.
+  <Image align="center" src="https://files.readme.io/c498645-Screenshot_2024-03-14_at_2.23.36_PM.png" width="320px" />
 
-<Image align="center" border={false} width="320px" src="https://files.readme.io/c498645-Screenshot_2024-03-14_at_2.23.36_PM.png" />
+  7. Select your nature of your business and PAN details, name to displayed on statement and website URL as required and click **Next**.
 
-7. Select your nature of your business and PAN details, name to displayed on statement and website URL as required and click **Next**.
+  <Image align="center" border={true} src="https://files.readme.io/5d0d968-Screenshot_2024-03-14_at_5.07.28_PM.png" width="320px" />
 
-<Image align="center" border={true} width="320px" src="https://files.readme.io/5d0d968-Screenshot_2024-03-14_at_5.07.28_PM.png" className="border" />
+  8. Enter your name, date of birth and contact details.
 
-8. Enter your name, date of birth and contact details.
+  <Image align="center" border={true} src="https://files.readme.io/e137009-paypal_name_dob.png" width="320px" />
 
-<Image align="center" border={true} width="320px" src="https://files.readme.io/e137009-paypal_name_dob.png" className="border" />
+  9. Scroll down and enter the business contact phone number and primary
 
-9. Scroll down and enter the business contact phone number and primary
+  <Image align="center" border={true} src="https://files.readme.io/2e3e74f-paypal_details_mobile_currency.png" width="320px" />
 
-<Image align="center" border={true} width="320px" src="https://files.readme.io/2e3e74f-paypal_details_mobile_currency.png" className="border" />
+  10. Click **Next**.
 
-10. Click **Next**.
+  <Image align="center" border={true} src="https://files.readme.io/32522a2-paypal_details_thanks_signup.png" width="320px" />
 
-<Image align="center" border={true} width="320px" src="https://files.readme.io/32522a2-paypal_details_thanks_signup.png" className="border" />
-
-<Callout icon="📘" theme="info">
-**Note**:  Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
-</Callout>
-
+  <Callout icon="📘" theme="info">
+    **Note**:  Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
+  </Callout>
 </Accordion>
+
 <Accordion title="Configure Checkout Settings" icon="fa-table">
+  You can customize your customer-facing checkout page that is displayed when you are using PayU Hosted Checkout integration. For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
 
-You can customize your customer-facing checkout page that is displayed when you are using PayU Hosted Checkout integration. For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
+  To update your brand settings:
 
-To update your brand settings:
+  1. Navigate to **Dashboard > Settings > Checkout Settings.**
 
-1. Navigate to **Dashboard > Settings > Checkout Settings.**
+     The *Set up your brand* page is displayed.
 
-   The _Set up your brand_ page is displayed.
+  <Image align="center" border={true} src="https://files.readme.io/eb8cf99-Screenshot_2024-07-19_at_10.43.53_AM.png" />
 
-<Image align="center" border={true} src="https://files.readme.io/eb8cf99-Screenshot_2024-07-19_at_10.43.53_AM.png" className="border" />
+  2. Select or enter the details as described in the following table:
 
-2. Select or enter the details as described in the following table:
+  <Table align={["left","left"]}>
+    <thead>
+      <tr>
+        <th>
+          Field
+        </th>
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
+    <tbody>
+      <tr>
+        <td>
+          Brand Logo
+        </td>
 
-  <tbody>
-    <tr>
-      <td>
-        Brand Logo
-      </td>
+        <td>
+          Enter the location or URL of the brand logo.
 
-      <td>
-        Enter the location or URL of the brand logo.
+          **Note**: You need to that the size of the logo image is 90×90 and format of the logo image is PNG
+        </td>
+      </tr>
 
-        **Note**: You need to that the size of the logo image is 90×90 and format of the logo image is PNG
-      </td>
-    </tr>
+      <tr>
+        <td>
+          Secondary Color
+        </td>
 
-    <tr>
-      <td>
-        Secondary Color
-      </td>
+        <td>
+          Click the color chooser to choose the color theme for the checkout page.
+        </td>
+      </tr>
 
-      <td>
-        Click the color chooser to choose the color theme for the checkout page.
-      </td>
-    </tr>
+      <tr>
+        <td>
+          Language
+        </td>
 
-    <tr>
-      <td>
-        Language
-      </td>
+        <td>
+          Select the language from the **Language** drop-down list that has to be displayed on the Checkout page.
+        </td>
+      </tr>
 
-      <td>
-        Select the language from the **Language** drop-down list that has to be displayed on the Checkout page.
-      </td>
-    </tr>
+      <tr>
+        <td>
+          Owner Signature
+        </td>
 
-    <tr>
-      <td>
-        Owner Signature
-      </td>
+        <td>
+          Click **Select the file from your library** to select the signature file and click **Upload** to complete the action.
+        </td>
+      </tr>
+    </tbody>
+  </Table>
 
-      <td>
-        Click **Select the file from your library** to select the signature file and click **Upload** to complete the action.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-<Callout icon="📘" theme="info">
-  **Note**: While you configure each field above on the ,  you can see the preview in the right pane. For example, if you add or update the brand logo URL, it will be updated in the right pane preview.
-</Callout>
+  <Callout icon="📘" theme="info">
+    **Note**: While you configure each field above on the ,  you can see the preview in the right pane. For example, if you add or update the brand logo URL, it will be updated in the right pane preview.
+  </Callout>
 </Accordion>
