@@ -17,8 +17,7 @@ You can accept payments within the transaction limits of your PayU account. Disc
 * [Customer journey](#customer-journey)
 * [Benefits](#benefits)
 * [Steps to Integrate](#steps-to-integrate)
-  * [Step 1: Initiate the payment with PayU](https://docs.payu.in/docs/paypal-integration#step-1-initiate-the-payment-with-payu)
-  * [Step 2: Verify the payment](#step-2-verify-the-payment)
+
 
 ## Customer journey
 
@@ -47,7 +46,7 @@ Incorporating PayU into your Checkout system offers several benefits:
 
 ## Steps to Integrate
 
-This section describes the request parameters with sampe request and response to integrate the Paypal.
+
 
 ### Step 1: Initiate the payment with PayU
 
@@ -110,6 +109,7 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
 > * [Refund Transaction API](ref:refund_transaction_api)
 
 ### Step 2: Check the response from PayU
+
 <Accordion title="Sample response" icon="fa-code">
   You must look for the following:
 
@@ -173,7 +173,6 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
   )
   ```
 </Accordion>
-
 
 ### Step 3: Verify the payment
 
