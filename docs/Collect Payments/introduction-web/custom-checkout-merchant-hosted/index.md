@@ -62,8 +62,8 @@ PayU’s Merchant Hosted Checkout allows you to create a custom payment experien
 
 Merchant Hosted Checkout supports a wide range of payment methods: 
 
-* **Credit Cards and Debit Cards**: Visa, Mastercard, American Express, etc. For more information, refer to [Cards Integration](https://docs.payu.in/docs/collect-payments-with-cards-seamless).
-* **Net Banking**: Collect payments through Net Banking using PayU’s Merchant Hosted Checkout integration. Merchants should always send both customer account no and customer IFSC Code in Request. For more information, refer to [Net Banking Integration](https://docs.payu.in/docs/collect-payments-with-net-banking-seamless).
+* **Credit Cards and Debit Cards**: Visa, Mastercard, American Express, etc. For more information, refer to [Cards Integration](https://docs.payu.in/docs/collect-payments-with-cards-seamless`).
+* **Net Banking**: Collect payments through Net Banking using PayU’s Merchant Hosted Checkout integration. Merchants should always send both customer account no and customer IFSC Code in Request. For more information, refer to [Net Banking Integration](doc:collect-payments-with-net-banking-seamless)
 * **Wallets**: Integrate with popular wallets like Paytm, PhonePe, and others.   For more information, refer to [Wallets Integration](doc:collect-payments-with-wallets-seamless).
 * **UPI**: Collect payments via UPI using the customer’s UPI ID.  For more information, [UPI Integration](https://docs.payu.in/docs/collect-payments-with-upi-seamless).
 * **EMI (Equated Monthly Installments)**: Offer customers the option to pay in instalments. For more information, refer to [EMI Integration](https://docs.payu.in/docs/collect-payments-with-emi-seamless).
