@@ -47,14 +47,6 @@ For intent transactions, we delegate the transaction process to an external app 
 
 * iOS version: 11
 
-## Integration Steps
-
-The Flutter UPI SDK integration involves the following steps:
-
-1. [Integration Steps](https://docs.payu.in/docs/integration-steps-flutterupi)
-2. [Test the Integration](https://docs.payu.in/docs/test-the-integration-flutterupi)
-3. [Go-live Checklist](https://docs.payu.in/docs/go-live-checklist-flutterupi)
-
 ## SDK Integration
 
 To integrate the Flutter UPI SDK, perform the following steps:
