@@ -15,9 +15,9 @@ In order to initiate payments for partners, Whatsapp needs to use the access tok
 The following steps allow you to integrate the server-to-server UPI intent:
 
 1. [Initiate payment request](#step-1-initiate-payment-request)
-2. [Invoke UPI Intent on customer’s device](https://https://docs.payu.in/reference/upi-s2s-partner-integration-api/docs/whatsapp-refund-status-api#step-2-invoke-upi-intent-on-customers-device)
-3. [Verify payment](https://https://docs.payu.in/reference/upi-s2s-partner-integration-api/docs/whatsapp-refund-status-api#step-3-verify-payment-api)
-4. [PayU sends Server-to-Server callback response](https://https://docs.payu.in/reference/upi-s2s-partner-integration-api/docs/whatsapp-refund-status-api#step-4-payu-sends-server-to-server-call-back-response)
+2. [Invoke UPI Intent on customer’s device](#step-2-invoke-upi-intent-on-customers-device)
+3. [Verify payment](#step-3-verify-payment)
+4. [PayU sends Server-to-Server callback response](#step-4-payu-sends-server-to-server-call-back-response)
 
 ## Step 1: Initiate payment request
 
