@@ -78,7 +78,7 @@ Collect payments using Net Banking with Merchant Hosted Checkout integration as 
   | **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
   <Callout icon="📘" theme="info">
-    **Reference**: For the Try-IT experience, refer to <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="https://docs.payu.in/reference/payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor> under API Reference.
+    **Reference**: For the Try-IT experience, refer to <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor> under API Reference.
   </Callout>
 
   | Parameter                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                              | Example                           |
