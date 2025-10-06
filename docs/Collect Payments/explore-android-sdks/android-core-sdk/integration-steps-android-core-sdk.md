@@ -37,6 +37,8 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
 Create an object of PaymentParams, put all the obtained parameters in it by using its default set methods and setHash to paymentHash.
 
+<Accordion title="PaymentParams object" icon="fa-code">
+
 ```Text Java
 PaymentParams mPaymentParams = new PaymentParams();
 mPaymentParams.setKey(merchantKey);
@@ -61,6 +63,7 @@ mPaymentParams.setHash("<pass the payment Hash>");
 ```
 ```Text Kotlin
 ```
+</Accordion>
 
 > * Transaction ID should be kept unique for each transaction and not more than 25 characters.
 > * udf1 to udf5 are options params where you can pass additional information related to transaction. If you don't want to use it, then send them as empty string like, udf1=""
@@ -72,8 +75,9 @@ mPaymentParams.setHash("<pass the payment Hash>");
 > * For offers `mPaymentParams.setOfferKey`("your_offer_key")
 > * For any other payment default param (like phone and others) mPaymentParams.setPhone("your_number")
 
-## Step 4: Hash generation
 
+
+## Step 4: Hash generation
 > 📘 Generate Hash from Server
 >
 > It is recommended to generate hash from server only. Keep your key and salt in server side hash generation code. For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
@@ -82,7 +86,7 @@ The following approach for generating hash is not recommended. However, this app
 
 * if your server-side hash generation code is not completely setup. While going live, this approach for hash generation
 * should not be used.
-
+<Accordion title="Hash generation code" icon="fa-code">
 ```
 /******************************
  * Client hash generation
@@ -187,7 +191,7 @@ payuHashes.setDeleteCardHash();
 payuHashes.setPaymentHash();
 mPaymentParams.setHash(payuHashes.getPaymentHash());
 ```
-
+</Accordion>
 ## Step 5: Generate request for payment
 
 <Accordion title="Credit / Debit Card" icon="fa-code">
