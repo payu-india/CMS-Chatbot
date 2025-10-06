@@ -1,5 +1,5 @@
 ---
-title: Integration Steps - Android Core SDK
+title: Integration Steps
 excerpt: ''
 deprecated: false
 hidden: false
