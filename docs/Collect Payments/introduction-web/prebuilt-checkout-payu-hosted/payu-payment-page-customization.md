@@ -16,11 +16,9 @@ After you complete PayU Hosted Checkout integration, you will be able to see the
 
 You can customize the following in the Checkout page:
 
-* [Enforce Pay Method or Remove Category](https://docs.payu.in/docs/enforce-pay-method-or-remove-category)
-* [Change the Language](https://docs.payu.in/docs/changing-the-language)
-* [Configure Checkout Settings](doc:configure-checkout-settings)
-* [Configure Checkout Payment Methods](doc:checkout-payment-modes)
-* [Enable Pluxee on Checkout](https://docs.payu.in/docs/integrate-with-payu-hosted-checkout-sodexo)
+* [Enforce Pay Method or Remove Category](#enforce-pay-method-or-remove-category)
+* [Change the Language](#changing-the-language)
+* [Configure Payment Method and Checkout Settings](#configure-checkout-payment-methods-and-settings)
 
 ## Enforce Pay Method or Remove Category
 
