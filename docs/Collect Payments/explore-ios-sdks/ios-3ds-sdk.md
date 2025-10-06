@@ -513,195 +513,195 @@ The iOS 3DS SDK integration involves the following steps:
 
   ```
 
-<Accordion title="PaymentParams Parameter Example" icon="fa-code">
-  <Accordion title="Basic Payment Parameters" icon="fa-code">
-    The PaymentParams object contains key fields required for initiating a payment request with PayU. These parameters are critical for identifying the transaction, the customer, and the product.
+  <Accordion title="PaymentParams Parameter Example" icon="fa-code">
+    <Accordion title="Basic Payment Parameters" icon="fa-code">
+      The PaymentParams object contains key fields required for initiating a payment request with PayU. These parameters are critical for identifying the transaction, the customer, and the product.
 
-    ```kotlin
-     let paymentParam = PayU3DS2PaymentParam(
-         key: "<Your Key issued by PayU>",
-         transactionId: "<Transaction Id>",
-         amount: "<Transaction Amount>",
-         productInfo: "<Product Description>",
-         firstName: "<Customer First Name>",
-         email: "<Customer Email>",
-         phone: "9876543210",
-         surl: "<Success URL>",
-         furl: "<Failure URL>"
-     )
-    ```
+      ```kotlin
+       let paymentParam = PayU3DS2PaymentParam(
+           key: "<Your Key issued by PayU>",
+           transactionId: "<Transaction Id>",
+           amount: "<Transaction Amount>",
+           productInfo: "<Product Description>",
+           firstName: "<Customer First Name>",
+           email: "<Customer Email>",
+           phone: "9876543210",
+           surl: "<Success URL>",
+           furl: "<Failure URL>"
+       )
+      ```
 
-    **Credit/Debit Card Payment**
+      **Credit/Debit Card Payment**
 
-    To process payments using a credit or debit card, the following parameters need to be included in the PaymentParams object..
+      To process payments using a credit or debit card, the following parameters need to be included in the PaymentParams object..
 
-    ```swift Swift
-    let cardDetails = PayU3DS2CardInfo()
+      ```swift Swift
+      let cardDetails = PayU3DS2CardInfo()
+         cardDetails.cardNumber = "<cardNumber>"
+         cardDetails.cardName = "<cardName>"
+         cardDetails.nameOnCard = "<cardholderName>"
+         cardDetails.expiryMonth = "<expiryMonth>"// MM
+         cardDetails.expiryYear = "<expiryYear>"// YYYY
+      	 cardDetails.cvv = "<cvv>"
+
+      paymentParam.cardinfo = cardDetails
+      ```
+
+      **Store Credit/Debit Card**
+
+      To store the card for future transactions (such as recurring payments), the StoreCard option should be enabled. This allows the card to be saved securely for later use..
+
+      ```
+       var cardDetails =  PayU3DS2CardInfo()
        cardDetails.cardNumber = "<cardNumber>"
        cardDetails.cardName = "<cardName>"
        cardDetails.nameOnCard = "<cardholderName>"
        cardDetails.expiryMonth = "<expiryMonth>"// MM
        cardDetails.expiryYear = "<expiryYear>"// YYYY
-    	 cardDetails.cvv = "<cvv>"
+       cardDetails.cvv = "<cvv>"
+       
+      paymentParam.userCredential = "ol4Spy:7879357664"
+      paymentParam.shouldSavedCard = true
+      paymentParam.cardinfo = cardDetails
+      ```
 
-    paymentParam.cardinfo = cardDetails
-    ```
+      **Recurring Payments via Card**
 
-    **Store Credit/Debit Card**
+      For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
 
-    To store the card for future transactions (such as recurring payments), the StoreCard option should be enabled. This allows the card to be saved securely for later use..
+      ```
+      let siInfo = PayU3DS2SIParams(billingAmount: "1",
+                                                       paymentStartDate: paymentStartDate,
+                                                       paymentEndDate: paymentEndDate ,
+                                                       billingCycle: .monthly,
+                                                       billingInterval: 1)
+          siInfo.isFreeTrial = true
+          siInfo.billingLimit = "ON"
+          siInfo.billingRule = "MAX"
+      	
+      paymentParam.siParam = siInfo  // Add Subscription details to the payment parameters
+      ```
+    </Accordion>
 
-    ```
-     var cardDetails =  PayU3DS2CardInfo()
-     cardDetails.cardNumber = "<cardNumber>"
-     cardDetails.cardName = "<cardName>"
-     cardDetails.nameOnCard = "<cardholderName>"
-     cardDetails.expiryMonth = "<expiryMonth>"// MM
-     cardDetails.expiryYear = "<expiryYear>"// YYYY
-     cardDetails.cvv = "<cvv>"
-     
-    paymentParam.userCredential = "ol4Spy:7879357664"
-    paymentParam.shouldSavedCard = true
-    paymentParam.cardinfo = cardDetails
-    ```
+    <Accordion title="Card Tokenization" icon="fa-code">
+      Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
 
-    **Recurring Payments via Card**
+      **Card Tokenization with PayU**
 
-    For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
+      To make payments using a previously saved card, you need to pass both the network token and the card token..
 
-    ```
-    let siInfo = PayU3DS2SIParams(billingAmount: "1",
-                                                     paymentStartDate: paymentStartDate,
-                                                     paymentEndDate: paymentEndDate ,
-                                                     billingCycle: .monthly,
-                                                     billingInterval: 1)
-        siInfo.isFreeTrial = true
-        siInfo.billingLimit = "ON"
-        siInfo.billingRule = "MAX"
-    	
-    paymentParam.siParam = siInfo  // Add Subscription details to the payment parameters
-    ```
+      ```swift
+      let cardDetails = PayU3DS2CardInfo()
+      cardinfo.cardToken = "5595337480792395"
+      cardinfo.networkToken = "5595337480792395"
+      paymentParam.cardinfo = cardDetails
+      ```
+
+      **Third-Party Card Tokenization**
+
+      If the card has been tokenized outside of PayU's platform (via a third-party service), you need to provide additional tokenization information.
+
+      ```swift
+      let cardDetails = PayU3DS2CardInfo()
+              cardinfo.expiryMonth = "04"
+              cardinfo.expiryYear = "2028"
+              cardinfo.networkToken = "5595337480792395"
+
+      paymentParam.cardTokenType = "1"
+      paymentParam.cardinfo = cardinfo
+      paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","trid" : "40020003934", "tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
+
+      ```
+
+      **EMI**
+
+      To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
+
+      ```
+      var cardDetails =  PayU3DS2CardInfo()
+       cardDetails.cardNumber = "<cardNumber>"
+       cardDetails.cardName = "<cardName>"
+       cardDetails.nameOnCard = "<cardholderName>"
+       cardDetails.expiryMonth = "<expiryMonth>"// MM
+       cardDetails.expiryYear = "<expiryYear>"// YYYY
+       cardDetails.cvv = "<cvv>"
+       
+      paymentParam.cardinfo = cardDetails                       
+      paymentParam.bankCode = "EMIIC3"
+      paymentParam.pgCode = "EMI"                
+      ```
+    </Accordion>
+
+    <Accordion title="Start Redirection Flow" icon="fa-code">
+      To authenticate the transaction using PayU's 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
+
+      ```
+      PayU3DS2.startRedirectionFlow(vc: <#T##UIViewController#>, params: <#T##[String : Any]#>, delegate: <#T##any PayU3DS2Delegate#>)
+      ```
+
+      **Parameters**
+
+      | Parameter    | Description                                                                        |
+      | ------------ | ---------------------------------------------------------------------------------- |
+      | **vc**       | Pass the current `self` instance where the WebView will be launched.               |
+      | **params**   | A map containing key-value pairs for configuration. Valid keys include:            |
+      |              | \* `APIConstants.ACS_TEMPLATE` — Contains the ACS template.                        |
+      |              | - `APIConstants.AUTO_READ` — Pass `true` to enable auto-reading of the data.       |
+      |              | \* `APIConstants.AUTO_SUBMIT` — Pass `true` to enable auto-submission of the form. |
+      |              | - `APIConstants.SURL` — Success URL to redirect after successful payment.          |
+      |              | \* `APIConstants.FURL` — Failure URL to redirect after failed payment.             |
+      | **callback** | Callback interface to receive the payment status: success, failure, or error.      |
+    </Accordion>
+
+    <Accordion title="Sample Code" icon="fa-code">
+      ```
+      val params = ["acsTemplate": data, "autoRead":"true", "autoSubmit":"true","surl":"https://cbjs.payu.in/sdk/success","furl":"https://cbjs.payu.in/sdk/failure","merchantResponseTimeout":"2000"]
+
+      startRedirectionFlow(
+          vc: <#T##UIViewController#>, 
+        	params: <#T##[String : Any]#>, 
+      		delegate: <#T##any PayU3DS2Delegate#> {
+              func onPaymentSuccess(successResponse: Any?) {
+                  // Handle success
+              }
+              func onPaymentFailure(failureResponse: Any?) {
+                  // Handle failure
+              }
+              func onError(errorCode: Int, errorMessage: String) {
+                  // Handle error
+              }
+      				func onPaymentCancel(isTxnInitiated: Bool) {
+                // Handle erro
+              }
+      				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
+                // Handle erro
+              }
+      				func generateHash(for param: [String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion) {
+                //// Handle Hash
+      				}	
+          }
+      )
+      ```
+    </Accordion>
+      3. Implement `PayU3DS2Delegate`. It contains the following methods:
+         * func `onPaymentSuccess`(successResponse: Any): It will contain success response. This will be a JSON Object, parse response as per your need.
+         * func `onPaymentFailure`(failureResponse: Any): It will contain failure response. This will be a JSON Object, parse response as per your need.
+         * func `onPaymentCancel`(isTxnInitiated: Bool): It will tell if payment was cancelled.
+         * func `onError`(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
+         * func `generateHash`(for param: \[String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion): Merchant will get map with type of hash and hash string as value of map.
+           They have to sign that string using salt to create hash value and pass that in completion
+           param: this contains 3 keys:
+         * **hashName**: command name
+         * **hashString**: hash string with out salt
+         * **postSalt**: needs to add after salt
+
+      You need to create hash on your server using hashString + salt + postSalt and SHA512 algorithm.
+
+      4. Implement `PayU3DS2HashGenerationCompletion`. This contains `hashDict` parameter
+         hashDict: pass a dictionary which contains hashName as key and hash as value
   </Accordion>
-
-  <Accordion title="Card Tokenization" icon="fa-code">
-    Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
-
-    **Card Tokenization with PayU**
-
-    To make payments using a previously saved card, you need to pass both the network token and the card token..
-
-    ```swift
-    let cardDetails = PayU3DS2CardInfo()
-    cardinfo.cardToken = "5595337480792395"
-    cardinfo.networkToken = "5595337480792395"
-    paymentParam.cardinfo = cardDetails
-    ```
-
-    **Third-Party Card Tokenization**
-
-    If the card has been tokenized outside of PayU's platform (via a third-party service), you need to provide additional tokenization information.
-
-    ```swift
-    let cardDetails = PayU3DS2CardInfo()
-            cardinfo.expiryMonth = "04"
-            cardinfo.expiryYear = "2028"
-            cardinfo.networkToken = "5595337480792395"
-
-    paymentParam.cardTokenType = "1"
-    paymentParam.cardinfo = cardinfo
-    paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","trid" : "40020003934", "tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
-
-    ```
-
-    **EMI**
-
-    To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
-
-    ```
-    var cardDetails =  PayU3DS2CardInfo()
-     cardDetails.cardNumber = "<cardNumber>"
-     cardDetails.cardName = "<cardName>"
-     cardDetails.nameOnCard = "<cardholderName>"
-     cardDetails.expiryMonth = "<expiryMonth>"// MM
-     cardDetails.expiryYear = "<expiryYear>"// YYYY
-     cardDetails.cvv = "<cvv>"
-     
-    paymentParam.cardinfo = cardDetails                       
-    paymentParam.bankCode = "EMIIC3"
-    paymentParam.pgCode = "EMI"                
-    ```
-  </Accordion>
-
-  <Accordion title="Start Redirection Flow" icon="fa-code">
-    To authenticate the transaction using PayU's 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
-
-    ```
-    PayU3DS2.startRedirectionFlow(vc: <#T##UIViewController#>, params: <#T##[String : Any]#>, delegate: <#T##any PayU3DS2Delegate#>)
-    ```
-
-    **Parameters**
-
-    | Parameter    | Description                                                                        |
-    | ------------ | ---------------------------------------------------------------------------------- |
-    | **vc**       | Pass the current `self` instance where the WebView will be launched.               |
-    | **params**   | A map containing key-value pairs for configuration. Valid keys include:            |
-    |              | \* `APIConstants.ACS_TEMPLATE` — Contains the ACS template.                        |
-    |              | - `APIConstants.AUTO_READ` — Pass `true` to enable auto-reading of the data.       |
-    |              | \* `APIConstants.AUTO_SUBMIT` — Pass `true` to enable auto-submission of the form. |
-    |              | - `APIConstants.SURL` — Success URL to redirect after successful payment.          |
-    |              | \* `APIConstants.FURL` — Failure URL to redirect after failed payment.             |
-    | **callback** | Callback interface to receive the payment status: success, failure, or error.      |
-  </Accordion>
-
-<Accordion title="Sample Code" icon="fa-code">
-  ```
-  val params = ["acsTemplate": data, "autoRead":"true", "autoSubmit":"true","surl":"https://cbjs.payu.in/sdk/success","furl":"https://cbjs.payu.in/sdk/failure","merchantResponseTimeout":"2000"]
-
-  startRedirectionFlow(
-      vc: <#T##UIViewController#>, 
-    	params: <#T##[String : Any]#>, 
-  		delegate: <#T##any PayU3DS2Delegate#> {
-          func onPaymentSuccess(successResponse: Any?) {
-              // Handle success
-          }
-          func onPaymentFailure(failureResponse: Any?) {
-              // Handle failure
-          }
-          func onError(errorCode: Int, errorMessage: String) {
-              // Handle error
-          }
-  				func onPaymentCancel(isTxnInitiated: Bool) {
-            // Handle erro
-          }
-  				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
-            // Handle erro
-          }
-  				func generateHash(for param: [String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion) {
-            //// Handle Hash
-  				}	
-      }
-  )
-  ```
-
-  3. Implement `PayU3DS2Delegate`. It contains the following methods:
-     * func `onPaymentSuccess`(successResponse: Any): It will contain success response. This will be a JSON Object, parse response as per your need.
-     * func `onPaymentFailure`(failureResponse: Any): It will contain failure response. This will be a JSON Object, parse response as per your need.
-     * func `onPaymentCancel`(isTxnInitiated: Bool): It will tell if payment was cancelled.
-     * func `onError`(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
-     * func `generateHash`(for param: \[String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion): Merchant will get map with type of hash and hash string as value of map.
-       They have to sign that string using salt to create hash value and pass that in completion
-       param: this contains 3 keys:
-     * **hashName**: command name
-     * **hashString**: hash string with out salt
-     * **postSalt**: needs to add after salt
-
-  You need to create hash on your server using hashString + salt + postSalt and SHA512 algorithm.
-
-  4. Implement `PayU3DS2HashGenerationCompletion`. This contains `hashDict` parameter
-     hashDict: pass a dictionary which contains hashName as key and hash as value
 </Accordion>
-</Accordion>
-</Accordion>
+
 <Accordion title="Error Codes" icon="fa-code">
   | Code | Description                                                                   |
   | :--- | :---------------------------------------------------------------------------- |
