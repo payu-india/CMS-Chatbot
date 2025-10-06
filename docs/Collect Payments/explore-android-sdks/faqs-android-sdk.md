@@ -54,7 +54,7 @@ The PayU payment page’s look and feel can be customized using CSS stylesheets 
 
 * **Can I integrate PayU Checkout Pro SDK with my own payment gateway or payment service provider?**
 
-Yes, PayU Checkout Pro SDK can be integrated with any payment gateway or service provider. You can use the SDK to capture and process payment information and then send it to their own backend system for processing. For more information, refer to [Customized Integration with PayUCheckoutPro](https://devguide.payu.in/mobile-sdk-android/payu-checkout-pro/customized-integration-for-android/).
+Yes, PayU Checkout Pro SDK can be integrated with any payment gateway or service provider. You can use the SDK to capture and process payment information and then send it to their own backend system for processing. For more information, refer to [Customized Integration with PayUCheckoutPro](https://docs.payu.in/docs/android-checkoutpro-custom-integrations).
 
 * **How can I implement custom payment methods or gateways not supported by PayU Checkout Pro SDK?**
 
@@ -92,7 +92,7 @@ Yes, you can change the order of payment modes displayed on the PayU Payment pag
 * **Dashboard**: [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy).
 * **Can I customize the PayU CheckoutPro for Mobile SDK UI to match my app’s design?**
 
-Yes, PayU CheckoutPro for Mobile SDK provides a customizable UI that allows you to adjust the look and feel of the payment gateway to match your app’s design. For more information, refer to [Dynamic Configuration using Dashboard](https://devguide.payu.in/mobile-sdk-android/payu-checkout-pro/dynamic-configuration-in-checkout-pro-sdk/).
+Yes, PayU CheckoutPro for Mobile SDK provides a customizable UI that allows you to adjust the look and feel of the payment gateway to match your app’s design. For more information, refer to [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy#/).
 
 * **What is Dynamic configuration in PayU Checkout Pro SDK for Android?**
 
@@ -111,7 +111,7 @@ For more information, refer to [Dynamic Configuration using Dashboard](https://d
 
 * **How can I use Dynamic Configuration in PayU Checkout Pro SDK for Android?**
 
-To use dynamic configuration, you can log in to the PayU Dashboard and update the relevant settings in the Checkout Pro section. The SDK will automatically fetch the updated settings and apply them to the payment flow. For more information, refer to [Dynamic Configuration using Dashboard](https://devguide.payu.in/mobile-sdk-android/payu-checkout-pro/dynamic-configuration-in-checkout-pro-sdk/).
+To use dynamic configuration, you can log in to the PayU Dashboard and update the relevant settings in the Checkout Pro section. The SDK will automatically fetch the updated settings and apply them to the payment flow. For more information, refer to [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy#/).
 
 * **Can I update payment methods dynamically using the PayU Dashboard**?
 
@@ -151,7 +151,7 @@ To configure the PayU Mobile Android SDK to use a custom browser, you need to im
 
 * **What are the advantages of using a CustomBrowser for payment processing?**
 
-Using a custom browser for payment processing provides a more seamless payment experience for the user, as the payment screens can be customized to match the look and feel of the app. For more information, refer to [Integration with CustomBrowser](https://devguide.payu.in/mobile-sdk-android/custom-browser/integration-with-custom-browser/).
+Using a custom browser for payment processing provides a more seamless payment experience for the user, as the payment screens can be customized to match the look and feel of the app. For more information, refer to [Integration with CustomBrowser](https://docs.payu.in/docs/custom-browser-sdk#/).
 
 * **How does the CustomBrowser affect the security of payment processing?**
 
@@ -161,7 +161,7 @@ CustomBrowser does not affect the security of the payment processing, as the SDK
 
 * **What is a convenience fee in the context of payment processing?**
 
-A convenience fee is an additional fee charged to customers for the convenience of using a particular payment method. It is often used to cover the costs of processing credit card payments, which can be more expensive for merchants than other payment methods. For more information, refer to [Convenience Fee Integration for Android](https://devguide.payu.in/mobile-sdk-android/payu-checkout-pro/convenience-fee-integration/).
+A convenience fee is an additional fee charged to customers for the convenience of using a particular payment method. It is often used to cover the costs of processing credit card payments, which can be more expensive for merchants than other payment methods. For more information, refer to [Convenience Fee Integration for Android](https://docs.payu.in/docs/android-checkoutpro-setupconveniencefee#/).
 
 * **How can I integrate a convenience fee using PayU Checkout Pro SDK for iOS?**
 
@@ -438,7 +438,7 @@ To fix this problem, use the following code block in your **styles.xml** file:
 
 After adding the _PayUCheckoutPro_ SDK gradle dependency, if the build error similar to the following is received, include the parameter as indicated (after the error screenshot):
 
-![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/09/image-11-1024x84.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/09/image-11-1024x84.png" />
 
 Add the following parameter in the \<application> tag of your app’s **AndroidManifest.xml** file.
 
