@@ -35,19 +35,21 @@ PayU's UPI SDK is a framework for integrating UPI payments in your app in an eas
 * Google Pay fallback options (If Google Pay is not installed on iOS device). It can use Google Pay registered mobile number instead of VPA for UPI collect payments.
 
 ## UPI SDK frameworks
-  PayU provides the following UPI modular SDKs that perform different functions related to UPI Payments:
 
-  * **PayU UPI Core SDK**: This contains all APIs, Error Codes, Response Handlers etc. With this SDK alone, you can make intent payments. If you want to make UPI Collect payments also, either you can use PayU UPI SDK (given below) to collect VPA from the user or pass Core SDK the required parameters. Core SDK contains only one UI Screen, the final loader page. On this screen, we fetch the payment response from PayU.UPI Core SDK internally uses sockets to fetch payment responses as quickly as possible.
-  * **PayU UPI SDK**: This contains the UI screen screens and related resources to support UPI collection payment in a hassle-free way. You might find it useful to save time in creating checkout screens for UPI Collect.
+PayU provides the following UPI modular SDKs that perform different functions related to UPI Payments:
 
-  The following dependencies (automatically added if integrated via Cocoapods) are required:
+* **PayU UPI Core SDK**: This contains all APIs, Error Codes, Response Handlers etc. With this SDK alone, you can make intent payments. If you want to make UPI Collect payments also, either you can use PayU UPI SDK (given below) to collect VPA from the user or pass Core SDK the required parameters. Core SDK contains only one UI Screen, the final loader page. On this screen, we fetch the payment response from PayU.UPI Core SDK internally uses sockets to fetch payment responses as quickly as possible.
+* **PayU UPI SDK**: This contains the UI screen screens and related resources to support UPI collection payment in a hassle-free way. You might find it useful to save time in creating checkout screens for UPI Collect.
 
-  * **PayU Networking**: This is used by CoreSDK to handle network requests.
+The following dependencies (automatically added if integrated via Cocoapods) are required:
+
+* **PayU Networking**: This is used by CoreSDK to handle network requests.
 
 ## Unique features of UPI SDK
-  There is no WebView involved in any payment flow. Every payment flow is completely API based and super quick.
-  Make intent Payments on iOS just like Android. The PSP app (PhonePe/Google Pay etc.) does not automatically switches the user to your app. User manually comes back to your app)
-  Hassle-free integration
+
+There is no WebView involved in any payment flow. Every payment flow is completely API based and super quick.
+Make intent Payments on iOS just like Android. The PSP app (PhonePe/Google Pay etc.) does not automatically switches the user to your app. User manually comes back to your app)
+Hassle-free integration
 
 <Accordion title="SDK Integration Steps" icon="fa-code">
   The iOS Native OTP Assist SDK integration involves the following steps:
@@ -518,3 +520,7 @@ PayU's UPI SDK is a framework for integrating UPI payments in your app in an eas
     We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
   </Accordion>
 </Accordion>
+
+<br />
+## Sample app
+To download a sample iOS app with UPI Integration, navigate to the following URL: [https://github.com/payu-intrepos/payu-upi-ios-sdk](https://github.com/payu-intrepos/payu-upi-ios-sdk)
