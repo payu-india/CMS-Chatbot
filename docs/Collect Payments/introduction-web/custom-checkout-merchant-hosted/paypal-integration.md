@@ -44,6 +44,7 @@ Incorporating PayU into your Checkout system offers several benefits:
 * Currency Conversion: Facilitate currency conversions from INR to your customers' preferred currencies.
 
 ## Steps to Integrate
+
 <Cards columns={3}>
   <Card title="1. Initiate the Payment to PayU" href="#step-1-initiate-the-payment-to-payu" target="_blank">
     Initiate the payment to PayU with pg=PAYPAL and bankcode=PAYPAL
@@ -66,7 +67,7 @@ Incorporating PayU into your Checkout system offers several benefits:
 
 ### Step 1: Initiate the payment to PayU
 
-Along the request parameters listed in the [Collect Payments using Merchant Hosted Checkout > Wallets](ref:_payment_merchant_hosted_wallets), you need use the following **bankcode** with the **pg** as PAYPAL.
+You need use **bankcode** as PAYPAL with the **pg** as PAYPAL.
 
 <Callout icon="📘" theme="info">
   **Reference**: For the **Try It** experience ), refer to <a href="https://docs.payu.in/reference/_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
@@ -121,9 +122,8 @@ Along the request parameters listed in the [Collect Payments using Merchant Host
 >
 > Ensure your PayPal account maintains sufficient funds before initiating a refund. Refunds can be initiated either through the PayU Dashboard or the **Refund Transasction** API. Refunded amounts are deducted from your PayPal account and credited to your customer's PayPal account. For more information, refer to:
 >
-> * [Refunds Dashboard](doc:refunds-dashboard)
-> * [Refund Transaction API](ref:refund_transaction_api)
-
+> * <Anchor label="Refunds Dashboard" target="_blank" href="https://docs.payu.in/docs/refunds-dashboard">Refunds Dashboard</Anchor>.
+> * <Anchor label="Refunds Transaction API" target="_blank" href="https://docs.payu.in/reference/refund_transaction_api">Refunds Transaction API</Anchor>.
 ### Step 2: Check the response from PayU
 
 <Accordion title="Sample response" icon="fa-code">
