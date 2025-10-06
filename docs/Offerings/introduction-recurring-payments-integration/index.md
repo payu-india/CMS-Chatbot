@@ -51,7 +51,6 @@ PayU offers the following methods to implement subscriptions for your customers:
 
 * [Using API Integration](doc:using-api-integration-recurring-payments)
 * [Using Zion Subscription Automation](doc:using-zion-subscription-automation-platform)
-* [Using PayUBiz Dashboard](doc:recurring-payments-using-payubiz-dashboard)
 
 <Callout icon="📘" theme="info">
   **Note**: You need to enable Subscription for your PayU account after choosing the model that suits you. Contact your PayU Key Account Manager to facilitate Subscription.
