@@ -1,5 +1,5 @@
 ---
-title: 1. Integration Steps
+title: Steps to Integrate
 deprecated: false
 hidden: false
 link:
@@ -17,7 +17,7 @@ metadata:
     - Mobile Flutter SDK Basic Integration with Checkout Pro
   robots: index
 ---
-## SDK Integration steps
+## Step 1: SDK Integration
 
 To integrate PayU CheckoutPro with Flutter SDK:
 
@@ -511,8 +511,7 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
   What you get by default is a fat framework that allows you to test your app seamlessly on the device and simulator. But before archiving your app, you need to remove simulator slices from the framework. For detailed information on archiving your app with PayU ChekoutPro, refer to [Releasing Apple App Store](https://docs.payu.in/docs/ios-releasing-the-app-to-the-app-store).
 </Accordion>
 
-## Test the Integration and Go-live
-
+## Step 2. Test the Integration and Go-live
 
 <Accordion title="Test the integration" icon="fa-code">
   After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
@@ -592,10 +591,9 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
 
       <EMITestWallets />
 
-
-
       <br />
     </Accordion>
   </Accordion>
 </Accordion>
-      <Go_Live_Checklist />
+
+<Go_Live_Checklist />
