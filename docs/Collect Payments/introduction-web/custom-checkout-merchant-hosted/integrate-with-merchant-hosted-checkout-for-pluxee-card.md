@@ -16,7 +16,7 @@ This section describes the parameters required to collect payments using the Plu
   Note: Before you use the **_payment** API to collect a payment, it is recommended to use the [Fetch Balance API](ref:fetch-balance-api-sodexo) (**check_balance** API) to check the Pluxee card balance and display it on the checkout page for the customer.
 </Callout>
 
-<Accordion title="Sodexo with Merchant Hosted Checkout Integration Workflow" icon="fa-code">
+## Sodexo with Merchant Hosted Checkout Integration Workflow
   The following describes the characteristics and workflow involved using Merchant Hosted Checkout with Pluxee:
 
   * The existing **\_payment** API used to initiate payments for online transactions will be used to initiate seamless payments for Pluxee payment option.
@@ -30,7 +30,6 @@ This section describes the parameters required to collect payments using the Plu
   * Merchant can also initiate transaction using source ID for repeat transactions where customer has provided permission to save the card during the first transaction. In this case, merchant should pass sourceId value in **source\_id** parameter in the **\_payment** API at the time of transaction initiation.
   * In case **source\_id** parameter is passed, PayU will directly initiate the transaction using this sourceId.
   * Merchants are recommended to use the **check\_balance** API for checking the Sodexo card balance. This will provide better experience to customers as available balance can be displayed up-front to customer and can have better SRT as scenarios where balance is less than transaction amount can be stopped at the checkout page itself.
-</Accordion>
 
 ## Steps to Integrate:
 
