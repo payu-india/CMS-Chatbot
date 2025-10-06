@@ -290,7 +290,7 @@ When your customer has an account on your shopping website, they may store their
         <td style={{ textAlign: "left" }}>
           `JSON` This parameter must contain the following information in JSON format. For more information, refer to
 
-          [Handling 3DS Secure 2.0 Transaction](doc:handling-3ds-secure-20-transaction)
+          [Handling 3DS Secure 2.0 Transaction](https://docs.payu.in/docs/collect-payments-with-cards-seamless#/handling-guest-checkout-transactions)
 
           .
         </td>
@@ -1020,7 +1020,8 @@ When your customer has an account on your shopping website, they may store their
 > This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sending the card transaction request in the form of authentication.
 
 <Accordion title="Additional request parameters" icon="fa-database">
-Along the parameters listed in the [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted_emi), include the following additional request parameters in your collect payment request with PayU. Check the response when you try enter the values in API Reference.
+  Along the parameters listed in the [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted_emi), include the following additional request parameters in your collect payment request with PayU. Check the response when you try enter the values in API Reference.
+
   <Table align={["left","left","left"]}>
     <thead>
       <tr>
@@ -1580,7 +1581,9 @@ You need to look for the following parameters in the response:
   )
   ```
 </Accordion>
+
 ## Step 5: Verify the payment
+
 Verify the transaction details using the Verification APIs. For more information, refer to <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> under API Reference.
 
 <Callout icon="📘" theme="info">
@@ -1655,7 +1658,6 @@ Verify the transaction details using the Verification APIs. For more information
       }
   }
   ```
-
 
   #### Failure Responses
 
