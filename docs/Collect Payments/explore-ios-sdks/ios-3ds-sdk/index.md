@@ -514,9 +514,9 @@ paymentParam.cardinfo = cardDetails // PayU3DS2CardInfo with card details
 
 ```
 
-## PaymentParams Parameter Example
+### PaymentParams Parameter Example
 
-### Basic Payment Parameters
+#### Basic Payment Parameters
 
 The PaymentParams object contains key fields required for initiating a payment request with PayU. These parameters are critical for identifying the transaction, the customer, and the product.
 
@@ -534,7 +534,7 @@ The PaymentParams object contains key fields required for initiating a payment r
  )
 ```
 
-#### Credit/Debit Card Payment
+**Credit/Debit Card Payment**
 
 To process payments using a credit or debit card, the following parameters need to be included in the PaymentParams object..
 
@@ -550,7 +550,7 @@ let cardDetails = PayU3DS2CardInfo()
 paymentParam.cardinfo = cardDetails
 ```
 
-#### Store Credit/Debit Card
+**Store Credit/Debit Card**
 
 To store the card for future transactions (such as recurring payments), the StoreCard option should be enabled. This allows the card to be saved securely for later use..
 
@@ -568,7 +568,7 @@ paymentParam.shouldSavedCard = true
 paymentParam.cardinfo = cardDetails
 ```
 
-#### Recurring Payments via Card
+**Recurring Payments via Card**
 
 For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
 
@@ -585,11 +585,11 @@ let siInfo = PayU3DS2SIParams(billingAmount: "1",
 paymentParam.siParam = siInfo  // Add Subscription details to the payment parameters
 ```
 
-### Card Tokenization
+#### Card Tokenization
 
 Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
 
-#### Card Tokenization with PayU
+**Card Tokenization with PayU**
 
 To make payments using a previously saved card, you need to pass both the network token and the card token..
 
@@ -600,7 +600,7 @@ cardinfo.networkToken = "5595337480792395"
 paymentParam.cardinfo = cardDetails
 ```
 
-#### Third-Party Card Tokenization
+**Third-Party Card Tokenization**
 
 If the card has been tokenized outside of PayU's platform (via a third-party service), you need to provide additional tokenization information.
 
@@ -616,7 +616,7 @@ paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YI
 
 ```
 
-#### EMI
+**EMI**
 
 To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
 
@@ -634,7 +634,7 @@ paymentParam.bankCode = "EMIIC3"
 paymentParam.pgCode = "EMI"                
 ```
 
-## Start Redirection Flow
+#### Start Redirection Flow
 
 To authenticate the transaction using PayU's 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
 
@@ -642,7 +642,7 @@ To authenticate the transaction using PayU's 3DS2 redirection flow, use the star
 PayU3DS2.startRedirectionFlow(vc: <#T##UIViewController#>, params: <#T##[String : Any]#>, delegate: <#T##any PayU3DS2Delegate#>)
 ```
 
-### Parameters
+**Parameters**
 
 <Table>
   <thead>
@@ -788,7 +788,7 @@ You need to create hash on your server using hashString + salt + postSalt and SH
 4. Implement `PayU3DS2HashGenerationCompletion`. This contains `hashDict` parameter
    hashDict: pass a dictionary which contains hashName as key and hash as value
 
-## Error Codes
+### Error Codes
 
 | Code | Description                                                                   |
 | :--- | :---------------------------------------------------------------------------- |
@@ -810,4 +810,3 @@ You need to create hash on your server using hashString + salt + postSalt and SH
 | 109  | Invalid ACS UI Type                                                           |
 | 500  | Something went wrong                                                          |
 | 503  | Error while creating transaction to generate device details, please try again |
-
