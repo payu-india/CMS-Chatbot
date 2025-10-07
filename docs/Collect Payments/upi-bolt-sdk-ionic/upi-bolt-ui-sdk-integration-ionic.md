@@ -19,6 +19,8 @@ PayU UPI Bolt SDK offers a simpler and more efficient payment experience for mer
 
 ## iOS Integration
 
+<Accordion title="Sample code" icon="fa-code">
+
 **Step 1**: Add the following to your project:
 
 ```bash
@@ -40,538 +42,532 @@ Add `$(PROJECT_DIR)/Frameworks` under **Framework Search Path** (if Xcode doesn'
 pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
 ```
 
-<Accordion title="Android Integration" icon="fa-code">
-
-**Step 1**: Add the following permissions in the `AndroidManifest.xml`:
-
-```xml
-<uses-permission android:name="android.permission.SEND_SMS"/>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-<uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-```
-
-**Step 2**: Include the library dependencies in `build.gradle`:
-
-```gradle
-implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.1-dev4'
-implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
-```
-
-**Step 3**: Add AAR file:
-Place `SecureComponent-release-prod_05062024_9d3904ab.aar` under `<your_project>/android/app/libs`.
-
 </Accordion>
+
+<Accordion title="Android Integration" icon="fa-code">
+  **Step 1**: Add the following permissions in the `AndroidManifest.xml`:
+
+  ```xml
+  <uses-permission android:name="android.permission.SEND_SMS"/>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  ```
+
+  **Step 2**: Include the library dependencies in `build.gradle`:
+
+  ```gradle
+  implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.1-dev4'
+  implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
+  ```
+
+  **Step 3**: Add AAR file:
+  Place `SecureComponent-release-prod_05062024_9d3904ab.aar` under `<your_project>/android/app/libs`.
+</Accordion>
+
 ## SDK Methods and Configurations
 
 <Accordion title="Initialize SDK" icon="fa-code">
+  **Import the Plugin**
 
-**Import the Plugin**
+  ```javascript
+  import { PayUUPIBoltUICapacitorPlugin } from 'payu-upi-bolt-ui-capacitor';
+  ```
 
-```javascript
-import { PayUUPIBoltUICapacitorPlugin } from 'payu-upi-bolt-ui-capacitor';
-```
+  **Configuration Parameters**
 
-**Configuration Parameters**
+  <HTMLBlock>{`
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            merchantName<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Merchant's name.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            merchantKey<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Merchant key provided by PayU.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            phone<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Customer's phone number for registration.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            email<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Customer email address.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            refId<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Unique reference ID for tracking the transaction.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            pluginTypes<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>Array&lt;String&gt;</code><br/>
+            Supported plugin types (e.g., AXIS, HDFC, BHIM).
+          </td>
+        </tr>
+        <tr>
+          <td>
+            clientId<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Unique client ID.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            issuingBanks<br/>
+            <code>optional</code>
+          </td>
+          <td>
+            <code>Array&lt;String&gt;</code><br/>
+            List of issuing banks supported (e.g., AXIS or HDFC).
+          </td>
+        </tr>
+        <tr>
+          <td>
+            excludedBanksIINs<br/>
+            <code>optional</code>
+          </td>
+          <td>
+            <code>Array&lt;String&gt;</code><br/>
+            List of banks to exclude using IIN values.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            isProduction<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>Boolean</code><br/>
+            Environment configuration: true for production, false for staging.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  `}</HTMLBlock>
 
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        merchantName<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Merchant's name.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        merchantKey<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Merchant key provided by PayU.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        phone<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Customer's phone number for registration.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        email<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Customer email address.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        refId<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Unique reference ID for tracking the transaction.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        pluginTypes<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>Array&lt;String&gt;</code><br/>
-        Supported plugin types (e.g., AXIS, HDFC, BHIM).
-      </td>
-    </tr>
-    <tr>
-      <td>
-        clientId<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Unique client ID.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        issuingBanks<br/>
-        <code>optional</code>
-      </td>
-      <td>
-        <code>Array&lt;String&gt;</code><br/>
-        List of issuing banks supported (e.g., AXIS or HDFC).
-      </td>
-    </tr>
-    <tr>
-      <td>
-        excludedBanksIINs<br/>
-        <code>optional</code>
-      </td>
-      <td>
-        <code>Array&lt;String&gt;</code><br/>
-        List of banks to exclude using IIN values.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        isProduction<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>Boolean</code><br/>
-        Environment configuration: true for production, false for staging.
-      </td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+  **Sample Code**
 
-**Sample Code**
+  ```javascript
+  const config = {
+    merchantName: "<merchantName>",
+    merchantKey: "<merchantKey>",
+    phone: "<phone>",
+    email: "<email>",
+    refId: "<refId>",
+    pluginTypes: ["<pluginType>"],
+    clientId: "<clientId>",
+    issuingBanks: ["<issuingBanks>"],
+    excludedBanksIINs: ["<excludedBanksIIN>"],
+    isProduction: <isProduction>,
+  };
 
-```javascript
-const config = {
-  merchantName: "<merchantName>",
-  merchantKey: "<merchantKey>",
-  phone: "<phone>",
-  email: "<email>",
-  refId: "<refId>",
-  pluginTypes: ["<pluginType>"],
-  clientId: "<clientId>",
-  issuingBanks: ["<issuingBanks>"],
-  excludedBanksIINs: ["<excludedBanksIIN>"],
-  isProduction: <isProduction>,
-};
+  // Initialize the SDK
+  PayUUPIBoltUICapacitorPlugin.initSDK({ config: JSON.stringify(config) });
 
-// Initialize the SDK
-PayUUPIBoltUICapacitorPlugin.initSDK({ config: JSON.stringify(config) });
-
-// Clear SDK Instance
-PayUUPIBoltUICapacitorPlugin.reset();
-```
-
+  // Clear SDK Instance
+  PayUUPIBoltUICapacitorPlugin.reset();
+  ```
 </Accordion>
+
 <Accordion title="Clear SDK Cache" icon="fa-code">
+  ```javascript
+  PayUUPIBoltUICapacitorPlugin.clearCache({ pg: "<pg>" });
+  ```
 
-```javascript
-PayUUPIBoltUICapacitorPlugin.clearCache({ pg: "<pg>" });
-```
+  **Request Parameters**
 
-**Request Parameters**
-
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        pg<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Payment Gateway.
-      </td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
-
+  <HTMLBlock>{`
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            pg<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Payment Gateway.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  `}</HTMLBlock>
 </Accordion>
+
 <Accordion title="Plugin Registration Status" icon="fa-code">
-
-```javascript
-PayUUPIBoltUICapacitorPlugin.isRegistered({ pg: "<pg>" });
-```
-
+  ```javascript
+  PayUUPIBoltUICapacitorPlugin.isRegistered({ pg: "<pg>" });
+  ```
 </Accordion>
+
 <Accordion title="UPI Management" icon="fa-code">
+  ```javascript
+  PayUUPIBoltUICapacitorPlugin.openUPIManagement({ screenType: "<screenType>" });
+  ```
 
-```javascript
-PayUUPIBoltUICapacitorPlugin.openUPIManagement({ screenType: "<screenType>" });
-```
+  **Request Parameters**
 
-**Request Parameters**
-
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        screenType<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Specifies the type of management screen. Valid values:<br/>
-        • ALL<br/>
-        • TRANSACTIONHISTORY<br/>
-        • MANAGEUPIACCOUNTS<br/>
-        • DISPUTE<br/>
-        • DEREGISTERUPI
-      </td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
-
+  <HTMLBlock>{`
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            screenType<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Specifies the type of management screen. Valid values:<br/>
+            • ALL<br/>
+            • TRANSACTIONHISTORY<br/>
+            • MANAGEUPIACCOUNTS<br/>
+            • DISPUTE<br/>
+            • DEREGISTERUPI
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  `}</HTMLBlock>
 </Accordion>
+
 <Accordion title="Register and Pay" icon="fa-code">
+  **Payment Parameters**
 
-**Payment Parameters**
+  <HTMLBlock>{`
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            amount<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Transaction amount.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            productInfo<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Information about the product or service.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            firstName<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Customer's first name.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            surl<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Android success URL.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            furl<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Android failure URL.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            ios_surl<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            iOS success URL.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            ios_furl<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            iOS failure URL.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            initiationMode<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Mode of initiation (e.g., "10").
+          </td>
+        </tr>
+        <tr>
+          <td>
+            purpose<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Purpose code (e.g., "00").
+          </td>
+        </tr>
+        <tr>
+          <td>
+            txnId<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Unique transaction ID.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            udf1 - udf6<br/>
+            <code>optional</code>
+          </td>
+          <td>
+            <code>Any</code><br/>
+            User-defined fields for additional transaction metadata.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            isCCTxnEnabled<br/>
+            <code>optional</code>
+          </td>
+          <td>
+            <code>Boolean</code><br/>
+            Enables card fallback if supported – true or false.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  `}</HTMLBlock>
 
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        amount<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Transaction amount.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        productInfo<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Information about the product or service.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        firstName<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Customer's first name.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        surl<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Android success URL.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        furl<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Android failure URL.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        ios_surl<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        iOS success URL.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        ios_furl<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        iOS failure URL.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        initiationMode<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Mode of initiation (e.g., "10").
-      </td>
-    </tr>
-    <tr>
-      <td>
-        purpose<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Purpose code (e.g., "00").
-      </td>
-    </tr>
-    <tr>
-      <td>
-        txnId<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Unique transaction ID.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        udf1 - udf6<br/>
-        <code>optional</code>
-      </td>
-      <td>
-        <code>Any</code><br/>
-        User-defined fields for additional transaction metadata.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        isCCTxnEnabled<br/>
-        <code>optional</code>
-      </td>
-      <td>
-        <code>Boolean</code><br/>
-        Enables card fallback if supported – true or false.
-      </td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+  **Sample Code**
 
-**Sample Code**
+  ```javascript
+  const paymentParams = {
+    amount: "<amount>",
+    productInfo: "<productInfo>",
+    firstName: "<firstName>",
+    surl: "<successUrl>",
+    furl: "<failureUrl>",
+    ios_surl: "<iosSuccessUrl>",
+    ios_furl: "<iosFailureUrl>",
+    initiationMode: "<initiationMode>",
+    purpose: "<purpose>",
+    txnId: "<txnId>",
+    isCCTxnEnabled: <trueOrFalse>,
+  };
 
-```javascript
-const paymentParams = {
-  amount: "<amount>",
-  productInfo: "<productInfo>",
-  firstName: "<firstName>",
-  surl: "<successUrl>",
-  furl: "<failureUrl>",
-  ios_surl: "<iosSuccessUrl>",
-  ios_furl: "<iosFailureUrl>",
-  initiationMode: "<initiationMode>",
-  purpose: "<purpose>",
-  txnId: "<txnId>",
-  isCCTxnEnabled: <trueOrFalse>,
-};
-
-PayUUPIBoltUICapacitorPlugin.registerAndPay({ paymentParams: JSON.stringify(paymentParams)});
-```
-
+  PayUUPIBoltUICapacitorPlugin.registerAndPay({ paymentParams: JSON.stringify(paymentParams)});
+  ```
 </Accordion>
+
 <Accordion title="Hash Generation" icon="fa-code">
+  **Hash Parameters**
 
-**Hash Parameters**
+  <HTMLBlock>{`
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            hashString<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            String to be signed dynamically.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            hashName<br/>
+            <code>mandatory</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Indicates the type of hash.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            postSalt<br/>
+            <code>optional</code>
+          </td>
+          <td>
+            <code>String</code><br/>
+            Additional salt that can be appended to the hash if provided.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  `}</HTMLBlock>
 
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        hashString<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        String to be signed dynamically.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        hashName<br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Indicates the type of hash.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        postSalt<br/>
-        <code>optional</code>
-      </td>
-      <td>
-        <code>String</code><br/>
-        Additional salt that can be appended to the hash if provided.
-      </td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+  **Sample Code**
 
-**Sample Code**
-
-```javascript
-const handleHashGeneration = async (map) => {
-  const hashData = map.hashString;
-  const hashName = map.hashName;
-  // Fetch hash from your server
-  const hash = <fetch_hash_from_server>;
-  const hashMap = {
-    hashName: hashName,
-    [hashName]: hash
-  };
-  PayUUPIBoltUICapacitorPlugin.hashGenerated({ hashData: JSON.stringify(hashMap) });
-};
-```
-
-</Accordion>
-<Accordion title="Listener Implementation" icon="fa-code">
-
-**Setup Event Listeners**
-
-```javascript
-import { useEffect } from 'react';
-import { Plugins } from '@capacitor/core';
-
-useEffect(() => {
-  const listeners = [];
-  
-  const addListener = (eventName, handler) => {
-    const listener = Plugins.PayUUPIBoltUICapacitorPlugin.addListener(eventName, handler);
-    listeners.push(listener);
-  };
-
-  // Success handler
-  const handleSuccess = (data) => {
-    console.log('Payment Success:', data);
-    // Handle success logic here
-  };
-
-  // Failure handler
-  const handleFailure = (data) => {
-    console.log('Payment Failure:', data);
-    // Handle failure logic here
-  };
-
-  // Hash generation handler
+  ```javascript
   const handleHashGeneration = async (map) => {
     const hashData = map.hashString;
     const hashName = map.hashName;
-    const postSalt = map.postSalt || "";
-    
-    // Generate hash on your server
-    const hash = await fetchHashFromServer(hashData, hashName, postSalt);
-    
+    // Fetch hash from your server
+    const hash = <fetch_hash_from_server>;
     const hashMap = {
       hashName: hashName,
       [hashName]: hash
     };
-    
-    PayUUPIBoltUICapacitorPlugin.hashGenerated({ 
-      hashData: JSON.stringify(hashMap) 
-    });
+    PayUUPIBoltUICapacitorPlugin.hashGenerated({ hashData: JSON.stringify(hashMap) });
   };
-
-  // Register listeners
-  addListener('onPayUSuccess', handleSuccess);
-  addListener('onPayUFailure', handleFailure);
-  addListener('generateHash', handleHashGeneration);
-
-  // Cleanup listeners on component unmount
-  return () => {
-    listeners.forEach(listener => listener.remove());
-  };
-}, []);
-```
-
+  ```
 </Accordion>
+
+<Accordion title="Listener Implementation" icon="fa-code">
+  **Setup Event Listeners**
+
+  ```javascript
+  import { useEffect } from 'react';
+  import { Plugins } from '@capacitor/core';
+
+  useEffect(() => {
+    const listeners = [];
+    
+    const addListener = (eventName, handler) => {
+      const listener = Plugins.PayUUPIBoltUICapacitorPlugin.addListener(eventName, handler);
+      listeners.push(listener);
+    };
+
+    // Success handler
+    const handleSuccess = (data) => {
+      console.log('Payment Success:', data);
+      // Handle success logic here
+    };
+
+    // Failure handler
+    const handleFailure = (data) => {
+      console.log('Payment Failure:', data);
+      // Handle failure logic here
+    };
+
+    // Hash generation handler
+    const handleHashGeneration = async (map) => {
+      const hashData = map.hashString;
+      const hashName = map.hashName;
+      const postSalt = map.postSalt || "";
+      
+      // Generate hash on your server
+      const hash = await fetchHashFromServer(hashData, hashName, postSalt);
+      
+      const hashMap = {
+        hashName: hashName,
+        [hashName]: hash
+      };
+      
+      PayUUPIBoltUICapacitorPlugin.hashGenerated({ 
+        hashData: JSON.stringify(hashMap) 
+      });
+    };
+
+    // Register listeners
+    addListener('onPayUSuccess', handleSuccess);
+    addListener('onPayUFailure', handleFailure);
+    addListener('generateHash', handleHashGeneration);
+
+    // Cleanup listeners on component unmount
+    return () => {
+      listeners.forEach(listener => listener.remove());
+    };
+  }, []);
+  ```
+</Accordion>
+
 ## Error Codes and Messages
 
 **Response Codes**
@@ -632,6 +628,8 @@ useEffect(() => {
 ## SMS Hash Generation for Android OTP Auto-Read
 
 To enable OTP auto-read functionality on Android, you need to generate an SMS hash for your application. Copy the following `AppSignatureHelper` class to your Android project:
+
+<Accordion title="Sample Code to Enable OTP auto-read functionality on Android" icon="fa-code">
 
 ```java
 package com.payu.upipluginsampleapp;
@@ -724,3 +722,5 @@ for (String signature : appSignatures) {
 <Callout icon="📘" theme="info">
   **Note**: Share the generated SMS hash with PayU team for configuration to enable OTP auto-read functionality.
 </Callout>
+
+</Accordion>
