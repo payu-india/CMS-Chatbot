@@ -12,7 +12,6 @@ next:
 ---
 PayU UPI Bolt SDK offers a simpler and more efficient payment experience for merchants. It eliminates any third-party redirection, enhances the success rate, and improves the overall customer experience by reducing drop-offs.
 
-
 ## Prerequisites
 
 • **iOS Deployment Target**: iOS 17 and above
@@ -29,10 +28,10 @@ npm add payu-upi-bolt-ui-capacitor@0.0.1-alpha.4
 **Step 2**: Set the minimum development target to **iOS 13 or higher**.
 
 **Step 3**: Include the following `xcframework` files provided by PayU during onboarding:
-• `NPCI - CommonLibrary.xcframework`  
+• `NPCI - CommonLibrary.xcframework`
 • `AXIS - OlivePayLibrary.xcframework`
 
-**Step 4**: Modify Build Settings:  
+**Step 4**: Modify Build Settings:
 Add `$(PROJECT_DIR)/Frameworks` under **Framework Search Path** (if Xcode doesn't add it automatically).
 
 **Step 5**: Include additional dependencies in the `podfile`:
@@ -41,7 +40,7 @@ Add `$(PROJECT_DIR)/Frameworks` under **Framework Search Path** (if Xcode doesn'
 pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
 ```
 
-### Android Integration
+<Accordion title="Android Integration" icon="fa-code">
 
 **Step 1**: Add the following permissions in the `AndroidManifest.xml`:
 
@@ -62,12 +61,13 @@ implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.1-dev4'
 implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
 ```
 
-**Step 3**: Add AAR file:  
+**Step 3**: Add AAR file:
 Place `SecureComponent-release-prod_05062024_9d3904ab.aar` under `<your_project>/android/app/libs`.
 
+</Accordion>
 ## SDK Methods and Configurations
 
-### Initialize SDK
+<Accordion title="Initialize SDK" icon="fa-code">
 
 **Import the Plugin**
 
@@ -213,7 +213,8 @@ PayUUPIBoltUICapacitorPlugin.initSDK({ config: JSON.stringify(config) });
 PayUUPIBoltUICapacitorPlugin.reset();
 ```
 
-### Clear SDK Cache
+</Accordion>
+<Accordion title="Clear SDK Cache" icon="fa-code">
 
 ```javascript
 PayUUPIBoltUICapacitorPlugin.clearCache({ pg: "<pg>" });
@@ -244,13 +245,15 @@ PayUUPIBoltUICapacitorPlugin.clearCache({ pg: "<pg>" });
 </table>
 `}</HTMLBlock>
 
-### Plugin Registration Status
+</Accordion>
+<Accordion title="Plugin Registration Status" icon="fa-code">
 
 ```javascript
 PayUUPIBoltUICapacitorPlugin.isRegistered({ pg: "<pg>" });
 ```
 
-### UPI Management
+</Accordion>
+<Accordion title="UPI Management" icon="fa-code">
 
 ```javascript
 PayUUPIBoltUICapacitorPlugin.openUPIManagement({ screenType: "<screenType>" });
@@ -286,7 +289,8 @@ PayUUPIBoltUICapacitorPlugin.openUPIManagement({ screenType: "<screenType>" });
 </table>
 `}</HTMLBlock>
 
-### Register and Pay
+</Accordion>
+<Accordion title="Register and Pay" icon="fa-code">
 
 **Payment Parameters**
 
@@ -443,7 +447,8 @@ const paymentParams = {
 PayUUPIBoltUICapacitorPlugin.registerAndPay({ paymentParams: JSON.stringify(paymentParams)});
 ```
 
-### Hash Generation
+</Accordion>
+<Accordion title="Hash Generation" icon="fa-code">
 
 **Hash Parameters**
 
@@ -506,7 +511,8 @@ const handleHashGeneration = async (map) => {
 };
 ```
 
-### Listener Implementation
+</Accordion>
+<Accordion title="Listener Implementation" icon="fa-code">
 
 **Setup Event Listeners**
 
@@ -565,6 +571,7 @@ useEffect(() => {
 }, []);
 ```
 
+</Accordion>
 ## Error Codes and Messages
 
 **Response Codes**
@@ -714,4 +721,6 @@ for (String signature : appSignatures) {
 }
 ```
 
-> 📘 **Note**: Share the generated SMS hash with PayU team for configuration to enable OTP auto-read functionality.
+<Callout icon="📘" theme="info">
+  **Note**: Share the generated SMS hash with PayU team for configuration to enable OTP auto-read functionality.
+</Callout>
