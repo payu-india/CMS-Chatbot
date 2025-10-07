@@ -98,7 +98,7 @@ For Net Banking, there are three methods to authenticate:
 2. Debit Card Number with an OTP
 3. Aadhaar number with an OTP
 
-You can use Recurring Payment API or bulk upload on PayUBiz Dashboard. For more information, refer to the following sections:
+You can use Recurring Payment API or bulk upload on PayU Dashboard. For more information, refer to the following sections:
 
 * [Recurring Payment Transaction API](ref:recurring_payment_api) for Recurring Payment API.
 * [Using PayU Dashboard](https://docs.payu.in/docs/subscription-dashboard/) for payment links using PayU Dashboard.
