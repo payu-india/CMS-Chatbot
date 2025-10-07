@@ -101,7 +101,7 @@ For Net Banking, there are three methods to authenticate:
 You can use Recurring Payment API or bulk upload on PayUBiz Dashboard. For more information, refer to the following sections:
 
 * [Recurring Payment Transaction API](ref:recurring_payment_api) for Recurring Payment API.
-* [Using PayUBiz Dashboard](doc:recurring-payments-using-payubiz-dashboard) for bulk upload of payment links using PayUBiz Dashboard.
+* [Using PayU Dashboard](https://docs.payu.in/docs/subscription-dashboard/) for payment links using PayU Dashboard.
 
 For the list of banks supported for the Net Banking recurring platform and their bank codes, refer to [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments) .
 
