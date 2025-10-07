@@ -11,10 +11,10 @@ Chargeback webhooks provide real-time notifications about important chargeback e
 * Chargeback status is changed
 * Chargeback amount is changed
 
-To create webhooks using Dashboard, refer to [Create a Chargeback Webhook](doc:create-a-chargeback-webhook) > [Using Dashboard](doc:create-a-chargeback-webhook#using-dashboard). To update or delete an existing webhook, refer to:
+To create webhooks using Dashboard, refer to [Create a Chargeback Webhook](https://docs.payu.in/docs/create-a-chargeback-webhook) > [Using Dashboard](https://docs.payu.in/docs/create-a-chargeback-webhook#using-dashboard). To update or delete an existing webhook, refer to any of the following:
 
-* [Update a Webhook](doc:update-a-webhook)
-* [Delete a Webhook](doc:delete-a-webhook-on-dashboard)
+* [Update a Webhook](https://docs.payu.in/docs/update-a-webhook)
+* [Delete a Webhook](https://docs.payu.in/docs/delete-a-webhook-on-dashboard)
 
 ## Understanding payload
 
@@ -43,7 +43,7 @@ When a chargeback event occurs, PayU will send a POST request to your configured
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | type        | Type of transaction  and merchant must include the value as **payments** only.                                                                                   |
 | event       | Event type and the merchant must the include the value as **dispute** only.                                                                                      |
-| reason_code | Reason for the chargeback. For the list of reason codes, refer to [Reason codes for chargebacks](reason-codes-for-chargebacks).                                  |
+| reason_code | Reason for the chargeback. For the list of reason codes, refer to [Reason codes for chargebacks](https://docs.payu.in/docs/webhooks-for-chargeback#reason-codes-for-chargebacks).                                  |
 | created_at  | Timestamp when the chargeback was created                                                                                                                        |
 | updated_at  | Timestamp when the chargeback was last updated                                                                                                                   |
 | mid         | PayU Merchant ID                                                                                                                                                 |
@@ -52,7 +52,7 @@ When a chargeback event occurs, PayU will send a POST request to your configured
 | cb_type     | Type of chargeback (for example, "RBI/BO", that is, Reserve Bank of India/Banking Operations)                                                                    |
 | due_date    | Due date for the chargeback resolution                                                                                                                           |
 | cb_amount   | Amount involved in the chargeback                                                                                                                                |
-| cb_status   | Current status of the chargeback. For the possible chargeback status values, refer to [cb\_status field values description](#cb_status-field-values-description) |
+| cb_status   | Current status of the chargeback. For the possible chargeback status values, refer to [cb\_status field values description](https://docs.payu.in/docs/webhooks-for-chargeback#cb_status-field-values-description) |
 
 ### cb_status field values description
 
