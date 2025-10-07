@@ -14,9 +14,9 @@ Integrate PayU with PayPal wallets to facilitate international payments. PayPal 
 
 You can accept payments within the transaction limits of your PayU account. Discover more about alternative payment methods and their respective transaction limits. This section describes the following:
 
-* [Customer journey](#customer-journey)
-* [Benefits](#benefits)
-* [Steps to Integrate](#steps-to-integrate)
+* [Customer journey](https://docs.payu.in/docs/paypal-integration#customer-journey)
+* [Benefits](https://docs.payu.in/docs/paypal-integration#benefits)
+* [Steps to Integrate](https://docs.payu.in/docs/paypal-integration#steps-to-integrate)
 
 ## Customer journey
 
@@ -124,6 +124,7 @@ You need use **bankcode** as PAYPAL with the **pg** as PAYPAL.
 >
 > * <Anchor label="Refunds Dashboard" target="_blank" href="https://docs.payu.in/docs/refunds-dashboard">Refunds Dashboard</Anchor>.
 > * <Anchor label="Refunds Transaction API" target="_blank" href="https://docs.payu.in/reference/refund_transaction_api">Refunds Transaction API</Anchor>.
+
 ### Step 2: Check the response from PayU
 
 <Accordion title="Sample response" icon="fa-code">
