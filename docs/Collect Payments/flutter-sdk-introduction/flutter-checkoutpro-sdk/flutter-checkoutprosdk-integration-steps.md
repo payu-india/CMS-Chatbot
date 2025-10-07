@@ -20,15 +20,6 @@ metadata:
 ## Step 1: SDK Integration
 
 To integrate PayU CheckoutPro with Flutter SDK:
-
-* [Step 1: Include the SDK in your app project](https://docs.payu.in/docs/flutter-checkoutprosdk-integration-steps#step-1-include-the-sdk-in-your-app-project)
-* [Step 2: Initialize PayU Checkout Pro Flutter object](https://docs.payu.in/docs/flutter-checkoutprosdk-integration-steps#step2-initialize-payu-checkout-pro-flutter-object)
-* [Step 3: Setup PayU Checkout Pro protocol](https://docs.payu.in/docs/flutter-checkoutprosdk-integration-steps#step3-setup-payu-checkout-pro-protocol)
-* [Step 4: Setup payment hashes](https://docs.payu.in/docs/flutter-checkoutprosdk-integration-steps#step4-setup-payment-hashes)
-* [Step 5: Build the Payment Parameters](https://docs.payu.in/docs/flutter-checkoutprosdk-integration-steps#step-5-build-the-payment-parameters)
-* [Step 6: Initiate payment](https://docs.payu.in/docs/flutter-checkoutprosdk-integration-steps#step-6-initiate-payment)
-* [Step 7: Configure AndroidManifest.xml](https://docs.payu.in/docs/flutter-checkoutprosdk-integration-steps#step-7-configure-androidmanifestxml)
-
 For IOS, refer to iOS Specific Integration and check Distributing Your App (App Store/ Ad-hoc) to deploy your application. For more information, refer to [Explore iOS SDKs](doc:explore-ios-sdks)
 
 <Accordion title="Step 1: Include the SDK in your app project" icon="fa-code">
