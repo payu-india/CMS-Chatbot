@@ -27,8 +27,8 @@ The Native OTP Assist SDK gives you the following key capabilities:
     The Native OTP SDK is offered via CocoaPods. To add the SDK to your app project, include the SDK framework in your `podfile`.
 
     `// make sure to add below-mentioned line to use dynamic frameworksuse_frameworks!​
-                                    // Add this to include our SDK
-                                    pod 'PayUIndia-NativeOtpAssist'`
+                                            // Add this to include our SDK
+                                            pod 'PayUIndia-NativeOtpAssist'`
 
     Install dependency using pod `installcommand `in `terminalNext`, add the following imports in the class where you need to initiate a payment:
 
@@ -246,7 +246,8 @@ The Native OTP Assist SDK gives you the following key capabilities:
 </Accordion>
 
 <Accordion title="Step 2. Test the Integration and Go-Live" icon="fa-code">
-### Test the integration
+  ### Test the integration
+
   After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
   You can make test payments using one of the payment methods configured at the Checkout.
@@ -381,5 +382,5 @@ The Native OTP Assist SDK gives you the following key capabilities:
       </tbody>
     </Table>
   </Accordion>
-</Accordion>
 <Go_Live_Checklist />
+</Accordion>
