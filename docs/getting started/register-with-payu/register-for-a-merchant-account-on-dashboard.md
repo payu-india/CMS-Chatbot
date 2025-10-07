@@ -18,12 +18,13 @@ next:
 ---
 To integrate your website with PayU products and access PayU Dashboard, you require a merchant account. This section describes the procedure to register as a merchant.
 
-> 📘 Notes:
->
-> * After you register, PayU takes upto two days to validate your website (specified during registration). After your website is validated, you can get your Production merchant Key and Salt for integration. For more information, refer to [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
-> * The Test merchant key and Salt can be accessed immediately after you register. For more information, refer to [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt).
->
->
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * After you register, PayU takes upto two days to validate your website (specified during registration). After your website is validated, you can get your Production merchant Key and Salt for integration. For more information, refer to [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+
+  * The Test merchant key and Salt can be accessed immediately after you register. For more information, refer to [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt).
+</Callout>
 
 To register for a merchant account:
 
@@ -33,7 +34,7 @@ To register for a merchant account:
 
 The _Create your PayU account_ page is displayed.
 
-<Image align="center" src="https://files.readme.io/2bbcb2c-register1.png" />
+<Image align="center" border={false} src="https://files.readme.io/2bbcb2c-register1.png" />
 
 2. Provide the details for the following fields:
 
