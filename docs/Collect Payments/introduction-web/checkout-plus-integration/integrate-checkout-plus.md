@@ -15,7 +15,7 @@ PayU Checkout Plus is the most convenient way to collect payment on your website
 <Callout icon="📘" theme="info">
   **Note**: The Checkout Plus integration is not recommended for the app browsers. For example, WebView, Chrome Custom tab, etc. Although there is Redirection Web Checkout which can be integrated. For more information, refer to following:
 
-  * Redirection Web Checkout: [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted) .
+  * Redirection-based Web Checkout: [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted) .
   * [Webview configurations](https://docs.payu.in/docs/integrate-webview-for-mobile-apps-checkout-plus/)
 </Callout>
 
