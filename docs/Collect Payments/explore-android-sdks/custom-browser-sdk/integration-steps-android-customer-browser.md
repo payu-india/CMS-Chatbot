@@ -19,9 +19,9 @@ next:
 ---
 The Android Customer Browser integration involves the following steps:
 
-## SDK Integration 
+## SDK Integration
 
-Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard** > **Settings** > **Payment methods**. PayU enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you. For more information, refer to [Configure Checkout Payment Methods](doc:checkout-payment-modes).
+Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard** > **Settings** > **Payment methods**. PayU enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you. For more information, refer to <Anchor label="Configure Checkout Payment Methods" target="_blank" href="https://docs.payu.in/docs/payu-payment-page-customization#configure-checkout-payment-methods-and-settings">Configure Checkout Payment Methods</Anchor>.
 
 ### Step 1: Create a PayU account
 
@@ -226,6 +226,7 @@ udf4=udf4&udf1=udf1&udf2=udf2&sdk_platform=[{"name":"PayUCheckoutPro","platform"
 For the supported payment method, refer to [Supported Payment Methods](doc:android-coresdk-supported-payment-method).
 
 ## Test the Integration
+
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 You can make test payments using one of the payment methods configured at the Checkout.
@@ -269,7 +270,7 @@ For Testing the UPI Collect flow, Please follow the below steps:- 
 
 [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn_id>
 
-**For Android*
+*_For Android_
 
 You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
 
@@ -434,6 +435,7 @@ You can use the following wallets and their corresponding credentials to test wa
 </Table>
 
 ## Go-live Checklist
+
 Ensure these steps before you deploy the integration in a live environment.
 
 ### Collect Live payments
