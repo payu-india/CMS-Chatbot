@@ -12,9 +12,9 @@ next:
 ---
 PayU supports merchant wallet integrations with following SDKs:
 
-1. [Android SDK](https://docs.payu.in/docs/android-checkoutpro-closedloopwallet)
-2. [iOS SDK](https://docs.payu.in/docs/ios-checkoutpro-closedloopwallet)
-3. [React Native](https://docs.payu.in/docs/reactnative-checkoutpro-integrate-with-closed-looped-wallet)
+* [Android SDK](https://docs.payu.in/docs/sdk-based-integration-merchant-wallet?isFramePreview=true#android-sdk)
+* [iOS SDK](https://docs.payu.in/docs/sdk-based-integration-merchant-wallet?isFramePreview=true#ios-sdk)
+* [React-Native](https://docs.payu.in/docs/sdk-based-integration-merchant-wallet?isFramePreview=true#react-native)
 
 ## Android SDK
 
