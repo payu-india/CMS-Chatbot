@@ -42,7 +42,7 @@ PayU allows merchants to create offers for specific Products/SKUs in the cart an
 <Accordion title="Step 2: Initialise the SDK" icon="fa-code">
   > 🚧 Make sure you integrate with CheckoutPro SDK for iOS
   >
-  > For step to integrate Checkoutpro in App, refer to [Checkout Pro Integration Steps](ios-checkoutprosdk-integration-steps)
+  > For step to integrate Checkoutpro in App, refer to [Checkout Pro Integration Steps](https://docs.payu.in/docs/ios-checkout-pro-sdk-integration-steps/)
 </Accordion>
 
 <Accordion title="Step 3: Create SKU Details" icon="fa-code">
