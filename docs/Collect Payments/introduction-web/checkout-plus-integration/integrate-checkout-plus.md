@@ -12,12 +12,12 @@ next:
 ---
 PayU Checkout Plus is the most convenient way to collect payment on your website. Add the inline JS script to your website’s header section, then call the bolt.launch() function and pass the transaction data objects when your customers click the payment button. PayU will take care of the payment and returns to your page when it is done.
 
-> 📘 Notes:
->
-> The Checkout Plus integration is not recommended for the app browsers. For example, WebView, Chrome Custom tab, etc. Although there is Redirection Web Checkout which can be integrated. For more information, refer to following:
->
-> * Redirection Web Checkout: [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted) .
-> * [Webview configurations](https://docs.payu.in/docs/integrate-webview-for-mobile-apps-checkout-plus/)
+<Callout icon="📘" theme="info">
+  **Note**: The Checkout Plus integration is not recommended for the app browsers. For example, WebView, Chrome Custom tab, etc. Although there is Redirection Web Checkout which can be integrated. For more information, refer to following:
+
+  * Redirection Web Checkout: [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted) .
+  * [Webview configurations](https://docs.payu.in/docs/integrate-webview-for-mobile-apps-checkout-plus/)
+</Callout>
 
 ***
 
