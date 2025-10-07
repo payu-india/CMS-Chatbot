@@ -7,7 +7,7 @@ name: Go_Live_Checklist
   Ensure these steps before you deploy the integration in a live environment.
 
   <Accordion title="Collect Live Payments" icon="fa-code">
-    After [testing the integration](https://docs.payu.in/docs/reactnative-checkoutpro-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
+    After testing the integration end-to-end, after you are sure that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
     > 🚧 Watch Out!
     >
