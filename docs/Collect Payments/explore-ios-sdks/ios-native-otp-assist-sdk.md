@@ -382,5 +382,4 @@ The Native OTP Assist SDK gives you the following key capabilities:
     </Table>
   </Accordion>
 </Accordion>
-### Go-Live Checklist
 <Go_Live_Checklist />
