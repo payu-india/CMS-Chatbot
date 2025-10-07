@@ -1,17 +1,16 @@
 ---
 title: UDF Update API
-excerpt: ''
 api:
   file: opgsp-invoice-4.json
   operationId: udf_update-OPGSP
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The **UDF Update** API is used to update the UDF1-UDF5 values of a transaction. UDFs are the user-defined fields which are posted from the merchant to PayU. This API is specifically used to update the values in these fields in the PayU database. The return parameters are the updated UDF values of the transaction.
 
