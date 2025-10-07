@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-Before starting Web Checkout integration or integrating your website with PayU products, you need to generate your API key and Salt using the PayU Merchant Dashboard. 
+Before starting Web Checkout integration or integrating your website with PayU products, you need to generate your API key and Salt using the PayU Merchant Dashboard.
 
 ## Before you Begin
 
@@ -41,7 +41,6 @@ The _Developers_ page is displayed similar to the following screenshot. The valu
 
 * **key**: The API key that you must use for all payment requests.
 * **Salt-32 bit**: The Salt, v1 is the 32-character string that you must use to generate a hash and further post the hash along with parameters when posting a payment request with PayU.
-* **Salt-256 bit**: The Salt, v2 that you must use to generate a hash and further post the hash along with parameters when posting a payment request with PayU.
 
 > 📘 Note:
 >
