@@ -19,7 +19,7 @@ The PayU Merchant Chargeback Dashboard is an integrated system designed to help 
 * Be assigned the 'Chargeback' role or be a super user
 * Log in to the PayU merchant panel
 
-For more information on getting started, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account).
+For more information on getting started, refer to <Anchor label="Register for a Merchant Account" target="_blank" href="https://docs.payu.in/update/docs/register-for-a-merchant-account-on-dashboard/">Register for a Merchant Account</Anchor>.
 
 ## Filter Chargebacks
 
