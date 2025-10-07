@@ -12,22 +12,6 @@ next:
 ---
 You can perform the following after completing the basic integration:
 
-* [Change the theme](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#change-the-theme)
-* [Set merchant logo](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#set-merchant-logo)
-* [Set merchant name](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#set-merchant-name)
-* [Hide Checkout screen Back button Dialog box](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#hide-checkout-screen-back-button-dialog-box)
-* [Hide Back button dialog box after payment initialisation](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#hide-back-button-dialog-box-after-payment-initialisation)
-* [Auto Select OTP](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#auto-select-otp)
-* [Set merchant response timeout](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#set-merchant-response-timeout)
-* [Review order](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#review-order)
-* [Additional payment options on the Checkout screen](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#additional-payment-options-on-the-checkout-screen)
-* [Configure checkout payment modes order](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#configure-checkout-payment-modes-order)
-* [Offers](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#offers)
-* [Native OTP Assist](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#native-otp-assist)
-* [Custom Note integration](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#custom-note-integration)
-* [Enforced payment modes](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#enforced-payment-modes)
-* [Android specific configurations](https://docs.payu.in/docs/cordova-checkoutprosdk-advance-integrations#android-specific-configurations)
-
 > 🚧 Callout
 >
 > Before you begin with the advanced integration with PayUCheckoutPro, the payUCheckoutProConfig object needs to be passed with payUPaymentParams in the openCheckoutScreen method of `PayUBizSdk`. You can use the following sample code snippet:
@@ -58,7 +42,7 @@ var payUCheckoutProConfig = {
 
 ## Set merchant logo
 
-You can customize the logo to personalize the checkout screen. 
+You can customize the logo to personalize the checkout screen.
 
 **For iOS**: Save the image in the images assets of your app and pass the assets name in merchantLogo.
 
@@ -174,9 +158,9 @@ var payUCheckoutProConfig = {
 
 ## Configure checkout payment modes order
 
-Default payment modes order on the checkout screen as in the following code block: Card, NetBanking, UPI, and Wallets. 
+Default payment modes order on the checkout screen as in the following code block: Card, NetBanking, UPI, and Wallets.
 
-You can specify the checkout payment options order. For this, the merchant needs to provide a list of payment modes. Checkout order will be the order of items in the list. If not all payment modes’ order is mentioned in the list, all other payment modes will be displayed in their default order as shown above. 
+You can specify the checkout payment options order. For this, the merchant needs to provide a list of payment modes. Checkout order will be the order of items in the list. If not all payment modes’ order is mentioned in the list, all other payment modes will be displayed in their default order as shown above.
 
 The following code snippet is used to order the payment modes on the L1 screen.
 
@@ -196,7 +180,7 @@ var payUCheckoutProConfig = {
 
 ***
 
-The resulting payment order on the initial Checkout screen will be: 
+The resulting payment order on the initial Checkout screen will be:
 
 * Cards (Credit or Debit)
 * Net Banking
@@ -234,7 +218,7 @@ var payUPaymentParams = {
 
 This sub-section describes how to integrate custom notes in PayUCheckoutPro SDK. To integrate custom notes in PayUCheckoutPro SDK:
 
-### Step 1: Create a Custom Note list
+<Accordion title="Step 1: Create a Custom Note list" icon="fa-code">
 
 Create a list of custom notes that you want to pass to the CheckoutPro SDK. Pass `custom_note` and `custom_note_category` parameters for each custom note.
 
@@ -264,7 +248,8 @@ var customNotes = [
 
 ***
 
-### Step 2: Add in PayUCheckout config
+</Accordion>
+<Accordion title="Step 2: Add in PayUCheckout config" icon="fa-code">
 
 ```
 var payUCheckoutProConfig = {
@@ -274,11 +259,12 @@ var payUCheckoutProConfig = {
 
 ***
 
+</Accordion>
 ## Enforced payment modes
 
-You can directly open a specific payment mode like NB, WALLET, UPI, CARD, etc in SDK. Create an enforce list similar to the following code block to enforce payment modes: 
+You can directly open a specific payment mode like NB, WALLET, UPI, CARD, etc in SDK. Create an enforce list similar to the following code block to enforce payment modes:
 
-### Step 1: Create an enforced payment list
+<Accordion title="Step 1: Create an enforced payment list" icon="fa-code">
 
 For each enforced payment, the`payment_type`  and `enforce_ibiboCode` parameters need to be passed.
 
@@ -288,7 +274,8 @@ var enforcePaymentList = [
 ];
 ```
 
-### Step 2: Add in PayU Checkout config
+</Accordion>
+<Accordion title="Step 2: Add in PayU Checkout config" icon="fa-code">
 
 ```
 var payUCheckoutProConfig = {
@@ -298,9 +285,10 @@ enforcePaymentList: enforcePaymentList,
 
 ***
 
+</Accordion>
 ## Android specific configurations
 
-### Runtime SMS permission
+<Accordion title="Runtime SMS permission" icon="fa-code">
 
 You can set this flag to false if they do not want CheckoutPro SDK to ask for runtime SMS permission on the bank OTP page. The default value is true.
 
@@ -310,7 +298,8 @@ var payUCheckoutProConfig = {
 }
 ```
 
-### Auto Approve OTP
+</Accordion>
+<Accordion title="Auto Approve OTP" icon="fa-code">
 
 You can choose to automatically approve OTP flow on the bank page with the flag specified in the following code block. The default value is false.
 
@@ -321,7 +310,8 @@ var payUCheckoutProConfig = {
 
 ```
 
-### Hide the toolbar in the Custom Browser (CB)
+</Accordion>
+<Accordion title="Hide the toolbar in the Custom Browser (CB)" icon="fa-code">
 
 You can choose to hide the toolbar on CB. The CB toolbar is displayed by default.
 
@@ -331,3 +321,5 @@ var payUCheckoutProConfig = {
 }
 
 ```
+
+</Accordion>
