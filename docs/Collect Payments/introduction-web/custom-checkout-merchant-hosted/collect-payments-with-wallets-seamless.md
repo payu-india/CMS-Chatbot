@@ -20,7 +20,7 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 <Cards columns={3}>
   <Card title="1. Initiate the Payment to PayU" href="https://docs.payu.in/docs/collect-payments-with-wallets-seamless#step-1-initiate-the-payment-to-payu" target="_blank">
-    Initiate the payment to PayU with pg=CASH and bankcode=\<based on bank>
+    Initiate the payment to PayU with pg=CASH and bankcode=\<based on wallet provider>
 
     <br />
   </Card>
