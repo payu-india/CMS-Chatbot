@@ -20,15 +20,15 @@ The Native OTP Assist SDK gives you the following key capabilities:
 * If the bin is not eligible, then it will redirect to the bank's 3d-secure/ACS page.
 * Support for Android native SMS permission, as well as Google Consent API.
 
-<Accordion title="Integration Steps" icon="fa-gear">
+<Accordion title="Step 1. SDK Integration" icon="fa-gear">
   The iOS Native OTP Assist SDK integration involves the following steps:
 
   <Accordion title="Step 1: Include the SDK" icon="fa-code">
     The Native OTP SDK is offered via CocoaPods. To add the SDK to your app project, include the SDK framework in your `podfile`.
 
     `// make sure to add below-mentioned line to use dynamic frameworksuse_frameworks!​
-                            // Add this to include our SDK
-                            pod 'PayUIndia-NativeOtpAssist'`
+                                    // Add this to include our SDK
+                                    pod 'PayUIndia-NativeOtpAssist'`
 
     Install dependency using pod `installcommand `in `terminalNext`, add the following imports in the class where you need to initiate a payment:
 
@@ -245,7 +245,8 @@ The Native OTP Assist SDK gives you the following key capabilities:
   </Accordion>
 </Accordion>
 
-<Accordion title="Testing the Integration" icon="fa-code">
+<Accordion title="Step 2. Test the Integration and Go-Live" icon="fa-code">
+### Test the integration
   After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
   You can make test payments using one of the payment methods configured at the Checkout.
@@ -381,79 +382,5 @@ The Native OTP Assist SDK gives you the following key capabilities:
     </Table>
   </Accordion>
 </Accordion>
-
-<Accordion title="Go-live Checklist" icon="fa-code">
-  Ensure these steps before you deploy the integration in a live environment.
-
-  <Accordion title="Collect Live Payments" icon="fa-code">
-    After [testing the integration](https://docs.payu.in/docs/ios-nativeotpassistsdk-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
-
-    > 🚧 Watch Out!
-    >
-    > Ensure that you are using the production merchant key and salt generated in the live mode.
-
-    <ProductionKeyAndSaltProcedure />
-  </Accordion>
-
-  <Accordion title="Checklist 2: Configure setIsProduction()" icon="fa-code">
-    Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
-  </Accordion>
-
-  <Accordion title="Checklist 3: Configure verify payment method" icon="fa-code">
-    Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
-  </Accordion>
-
-  <Accordion title="Checklist 4: Configure Webhook" icon="fa-code">
-    We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
-  </Accordion>
-</Accordion>
-
-<Accordion title="Customize your Integration" icon="fa-gear">
-The Native OTP Assist SDK provides several customization options allowing you to make the SDK closer to the look & feel of your app and work as per your business requirements.
-
-<Accordion title="Update merchant logo" icon="fa-code">
-You can display your brand logo in the PayU Native OTP Assist SDK to reinforce trust and branding. To set a logo in the SDK, you need to pass the drawable ID of the logo image resource from your app.
-
-```Text Objective-C
-let config = PayUOtpAssistConfig()
-config.merchantLogo = #imageLiteral(resourceName: "logo")
-```
-
-***
-</Accordion>
-
-<Accordion title="Change theme colour" icon="fa-code">
-Our SDK allows you to change the theme color, and you need to set this primary color in your color file.
-
-```
-let config = PayUOtpAssistConfig()
-config.themeColor = #colorLiteral(red: 0.01960784314, green: 0.231372549, blue: 0.7568627451, alpha: 1)
-```
-
-***
-</Accordion>
-
-<Accordion title="Change Waiting for OTP timeout" icon="fa-code">
-PayU will wait for a specified time for the OTP, after which the SDK falls back to the manual OTP screen. The default time is 30 seconds; you may change it to any other duration. PayU recommends you configure the timeout to less than 60 seconds for a better user experience.
-
-```Text Objective-C
-let config = PayUOtpAssistConfig()
-config.merchantResponseTimeout = 10000 // In milliseconds
-```
-
-</Accordion>
-
-<Accordion title="Disable Auto-Submit OTP flag" icon="fa-code">
-Merchant can enable/disable the auto-submit OTP flow using the following flag. The default value is set to true.
-
-```Text Objective-C
-let config = PayUOtpAssistConfig()
-config.shouldShowMerchantSummary = true
-```
-
-</Accordion>
-
-<Accordion title="Card BIN eligibility check" icon="fa-code">
-You can check the card whether your card bin eligible or not for the OTP on the Merchant App.
-</Accordion>
-</Accordion>
+### Go-Live Checklist
+<Go_Live_Checklist />
