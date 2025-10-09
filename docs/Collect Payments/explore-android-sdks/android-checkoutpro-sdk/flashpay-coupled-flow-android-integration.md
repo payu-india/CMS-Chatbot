@@ -580,14 +580,14 @@ fun mfaRegistrationstatus(status: Boolean)
 
 ### Callback Method Descriptions
 
-| Method                  | Description                                                                                                                                                                            |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                    |
-| `onPaymentFailure`      | Called when payment fails. t will contain a failure response. This will be a JSON Object, parse response as per your need                                                              |
-| `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                       |
-| `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                           |
-| `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.  https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk |
-| `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                               |
+| Method                  | Description                                                                                                                                                                                                                                                       |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                                                                                               |
+| `onPaymentFailure`      | Called when payment fails. t will contain a failure response. This will be a JSON Object, parse response as per your need                                                                                                                                         |
+| `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                                                                                                  |
+| `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                      |
+| `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk |
+| `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                          |
 
 ### Hash Generation
 
