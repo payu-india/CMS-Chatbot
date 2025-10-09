@@ -227,8 +227,6 @@ var mPaymentParams =  PaymentParams();
         mPaymentParams.expiryMonth = "<expiryMonth>"// MM
         mPaymentParams.expiryYear = "<expiryYear>"// YYYY
         mPaymentParams.cvv = "<cvv>"
-        mpaymentParams.storeCard = if (true) 1 else 0
-
 ```
 
 ### Required payment parameters
@@ -507,17 +505,27 @@ var mPaymentParams =  PaymentParams();
   </tbody>
 </Table>
 
-To make payment using saved card, pass both network token and card token:
+To store the card, pass both userCredentials and storeCard
 
 ```
-        mpaymentParams.userCredentials = "XXXX:XXXX"
-        mpaymentParams.networkToken = <Network Token>
-        mpaymentParams.cardToken = <Card Token>
+     mpaymentParams.userCredentials = "XXXX:XXXX"
+     mpaymentParams.storeCard = 1 or 0 
+
+```
+
+To make payment using stored card, pass userCredentials, network token and card token:
+
+```
+      mpaymentParams.userCredentials = "XXXX:XXXX"
+      mpaymentParams.networkToken = <Network Token>
+      mpaymentParams.cardToken = <Card Token>
 ```
 
 > 📘 Saved Card Payments
 >
 > Requires both `networkToken` and `cardToken` under `mPaymentParams` for saved card-related transactions.
+
+<br />
 
 ## 2.3 PayU3DS2PaymentCallback
 
