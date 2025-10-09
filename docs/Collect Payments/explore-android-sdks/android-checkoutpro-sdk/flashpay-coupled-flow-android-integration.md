@@ -253,7 +253,7 @@ var mPaymentParams =  PaymentParams();
   <tbody>
     <tr>
       <td>
-        `key`
+        key `mandatory`
       </td>
 
       <td>
@@ -267,7 +267,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        `amount`
+        amount`mandatory`
       </td>
 
       <td>
@@ -283,7 +283,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        `productInfo`
+        productInfo`mandatory`
       </td>
 
       <td>
@@ -299,7 +299,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        `firstName`
+        firstName `mandatory`
       </td>
 
       <td>
@@ -315,7 +315,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        `email`
+        email`mandatory`
       </td>
 
       <td>
@@ -329,7 +329,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        `txnId`
+        txnId`mandatory`
       </td>
 
       <td>
@@ -343,7 +343,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        `surl`
+        surl `surl`
       </td>
 
       <td>
@@ -362,7 +362,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        `furl`
+        furl `furl`
       </td>
 
       <td>
@@ -432,6 +432,76 @@ var mPaymentParams =  PaymentParams();
 
       <td>
         123
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf1
+      </td>
+
+      <td>
+        `String` User-defined field, Merchant can store their customer ID, etc.	
+      </td>
+
+      <td>
+        udf1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf2
+      </td>
+
+      <td>
+        `String` User-defined field, Merchant can store their customer ID, etc.	
+      </td>
+
+      <td>
+        udf1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf3
+      </td>
+
+      <td>
+        `String` User-defined field, Merchant can store their customer ID, etc.	
+      </td>
+
+      <td>
+        udf1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf4
+      </td>
+
+      <td>
+        `String` User-defined field, Merchant can store their customer ID, etc.	
+      </td>
+
+      <td>
+        udf1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf5
+      </td>
+
+      <td>
+        `String` User-defined field, Merchant can store their customer ID, etc.	
+      </td>
+
+      <td>
+        udf1
       </td>
     </tr>
   </tbody>
