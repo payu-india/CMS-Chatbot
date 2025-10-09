@@ -36,7 +36,7 @@ fun initiatePayment(
 
 | Parameter       | Description                                               |
 | --------------- | --------------------------------------------------------- |
-| `activity`      | Current activity context                                  |
+| `activity`      | This parameter contains the AppCompatActivity reference.  |
 | `config`        | Configuration object for customizing the FlashPay SDK     |
 | `paymentParams` | Payment-related details object                            |
 | `callback`      | Callback for payment success, failure, cancellation, etc. |
@@ -89,21 +89,18 @@ config.acsContentConfig = acsContentConfig
 
 #### Configuration properties
 
-| Property                    | Description                                    |
-| :-------------------------- | :--------------------------------------------- |
-| `isProduction`              | true for production, false for sandbox         |
-| `autoRead`                  | Auto-read OTP. The default value is "false".   |
-| `autoSubmit`                | Auto-submit OTP. The default value is "false". |
-| `enableMFAViaBiometric`     | Biometric registration after payment success   |
-| `enableCustomizedOtpUIFlow` | Customized OTP UI                              |
-| `enableTxnTimeoutTimer`     | Enable timeout timer for pages                 |
+| Property                    | Description                                                                                                                                                                                    |
+| :-------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `isProduction`              | `Boolean` Set environment where you want to test: `true` for the Production environment `false` for the Test environment                                                                       |
+| `autoRead`                  | `Boolean` Set the values as `true` to allow auto-read OTP and fill in the OTP field. By default, the value is `false`.                                                                         |
+| `autoSubmit`                | `Boolean` Set the values as `true` to submit the OTP automatically without any user interaction. By default, the value is `false`.                                                             |
+| `enableMFAViaBiometric`     | `Boolean` If set `true`, users will receive an option to enable biometric authentication during payment via OTP. The biometric registration process starts after the payment success callback. |
+| `enableCustomizedOtpUIFlow` | `Boolean` To customise UI with your content please pass as true                                                                                                                                |
+| `enableTxnTimeoutTimer`     | `Boolean` pass as true to show timer for page timeout                                                                                                                                          |
 
 #### Configuration Notes
 
-* **autoRead**: Set to `true` to allow auto-read OTP and auto-fill it in the OTP field. Defaults to `false`.
-* **autoSubmit**: Set to `true` to submit OTP automatically without user interaction. Defaults to `false`.
 * **setDefaultProgressLoader**: Customize via `config.setDefaultProgressLoader(true, "HexColor")`. This replaces the full-page loader with a default small loader.
-* **enableMFAViaBiometric**: If set `true`, users will receive an option to enable biometric authentication during payment via OTP. The biometric registration process starts after the payment success callback.
 
 ## UI customization
 
