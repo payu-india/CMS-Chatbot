@@ -347,7 +347,7 @@ var mPaymentParams =  PaymentParams();
       <td>
         `String`  When the transaction is successful, PayU will load this URL and pass the transaction response.
 
-        Sample SURL for testing*: https://cbjs.payu.in/sdk/success
+        Sample SURL for testing*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
         Note*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
       </td>
 
@@ -366,7 +366,7 @@ var mPaymentParams =  PaymentParams();
       <td>
         `String` When the transaction fails, PayU will load this URL and pass the transaction response.
 
-        Sample FURL for testing*: https://cbjs.payu.in/sdk/failure
+        Sample FURL for testing*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
         Note*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
       </td>
 
@@ -439,7 +439,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        `String` User-defined field, Merchant can store their customer ID, etc.	
+        `String` User-defined field, Merchant can store their customer ID, etc.
       </td>
 
       <td>
@@ -453,7 +453,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        `String` User-defined field, Merchant can store their customer ID, etc.	
+        `String` User-defined field, Merchant can store their customer ID, etc.
       </td>
 
       <td>
@@ -467,7 +467,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        `String` User-defined field, Merchant can store their customer ID, etc.	
+        `String` User-defined field, Merchant can store their customer ID, etc.
       </td>
 
       <td>
@@ -481,7 +481,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        `String` User-defined field, Merchant can store their customer ID, etc.	
+        `String` User-defined field, Merchant can store their customer ID, etc.
       </td>
 
       <td>
@@ -495,11 +495,11 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        `String` User-defined field, Merchant can store their customer ID, etc.	
+        `String` User-defined field, Merchant can store their customer ID, etc.
       </td>
 
       <td>
-        udf4
+        udf5
       </td>
     </tr>
   </tbody>
@@ -527,82 +527,12 @@ To make payment using stored card, pass userCredentials, network token and card 
 
 <br />
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameters
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        userCredentials
-      </td>
-
-      <td>
-        `String` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save_user_cards API. The format of the value is  _merchant key:user ID_
-        	
-      </td>
-
-      <td>
-        a:b
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        storeCard
-      </td>
-
-      <td>
-        `integer`  This is an existing field, where the card token flag is passed by merchant. The values for this field can be:
-      </td>
-
-      <td>
-        1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        networkToken
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cardToken
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameters      | Description                                                                                                                                                                                                                               | Example |
+| :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ |
+| userCredentials | `String` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save_user_cards API. The format of the value is  _merchant key:user ID_ | a:b     |
+| storeCard       | `integer`  This is an existing field, where the card token flag is passed by merchant. The values for this field can be:                                                                                                                  | 1       |
+| networkToken    |                                                                                                                                                                                                                                           |         |
+| cardToken       |                                                                                                                                                                                                                                           |         |
 
 ## 2.3 PayU3DS2PaymentCallback
 
