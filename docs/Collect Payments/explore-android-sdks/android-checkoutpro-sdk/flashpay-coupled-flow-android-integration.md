@@ -527,10 +527,12 @@ To make payment using stored card, pass userCredentials, network token and card 
 
 <br />
 
-| Parameters | Description | Example |
-| :--------- | :---------- | :------ |
-|            |             |         |
-|            |             |         |
+| Parameters      | Description | Example |
+| :-------------- | :---------- | :------ |
+| userCredentials |             |         |
+| storeCard       |             |         |
+| networkToken    |             |         |
+| cardToken       |             |         |
 
 ## 2.3 PayU3DS2PaymentCallback
 
