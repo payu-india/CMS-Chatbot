@@ -60,6 +60,7 @@ config.setDefaultProgressLoader(true, "HexColor") //to show default loader inste
 
 config.enableMFAViaBiometric = true // if set to true, then during payment via OTP, there will an option to enable biometric authentication. 
 // If selected, the biometric registration process will start after payment success callback is triggered. 
+config.authenticateOnly = Pass this as true if you want to authenticate only using PayU. By default we will authorize.
 ```
 
 #### Customise UI with your content
