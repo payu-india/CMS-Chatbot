@@ -136,7 +136,6 @@ This iframe will remain hidden until the SDK is launched, and can be reused for 
   id="payuppiFrame"
   name="payuppiFrame"
   class="iFrameContainer"
-  style="visibility: hidden;"
 ></iframe>
 ```
 
