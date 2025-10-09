@@ -381,7 +381,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        `cardNumber`
+        cardNumber
       </td>
 
       <td>
@@ -395,7 +395,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        `expiryMonth`
+        expiryMonth
       </td>
 
       <td>
@@ -409,7 +409,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        `expiryYear`
+        expiryYear
       </td>
 
       <td>
@@ -423,7 +423,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        `cvv`
+        cvv
       </td>
 
       <td>
