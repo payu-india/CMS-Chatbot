@@ -525,7 +525,89 @@ To make payment using stored card, pass userCredentials, network token and card 
 >
 > Requires both `networkToken` and `cardToken` under `mPaymentParams` for saved card-related transactions.
 
-<br />
+\<Table align=\{\["left","left","left"]}>
+&#x20; \<thead>
+&#x20;   \<tr>
+&#x20;     \<th style=\{\{ textAlign: "left" }}>
+&#x20;       Parameter
+&#x20;     \</th>
+
+&#x20;     \<th style=\{\{ textAlign: "left" }}>
+&#x20;       Description
+&#x20;     \</th>
+
+&#x20;     \<th style=\{\{ textAlign: "left" }}>
+&#x20;       Example
+&#x20;     \</th>
+&#x20;   \</tr>
+&#x20; \</thead>
+
+&#x20; \<tbody>
+&#x20;   \<tr>
+&#x20;     \<td style=\{\{ textAlign: "left" }}>
+&#x20;       userCredentials
+&#x20;     \</td>
+
+&#x20;     \<td style=\{\{ textAlign: "left" }}>
+&#x20;       \`String\` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save\_user\_cards API. The format of the value is \<merchant key>:\<user ID>
+&#x20;     \</td>
+
+&#x20;     \<td style=\{\{ textAlign: "left" }}>
+&#x20;       	&#x9;
+&#x20;       a:b
+
+&#x20;       &#x9;
+&#x20;     \</td>
+&#x20;   \</tr>
+
+&#x20;   \<tr>
+&#x20;     \<td style=\{\{ textAlign: "left" }}>
+&#x20;       storeCard
+&#x20;     \</td>
+
+&#x20;     \<td style=\{\{ textAlign: "left" }}>
+&#x20;       \`Integer\`This is an existing field, where the card token flag is passed by merchant. The values for this field can be:
+&#x20;       0 – Consent was not provided by customer
+&#x20;       1 – Consent was provided by customer
+&#x20;       If the consent is provided by the customer, the value is passed as 1.
+&#x20;     \</td>
+
+&#x20;     \<td style=\{\{ textAlign: "left" }}>
+&#x20;       1
+&#x20;     \</td>
+&#x20;   \</tr>
+
+&#x20;   \<tr>
+&#x20;     \<td style=\{\{ textAlign: "left" }}>
+&#x20;       networkToken
+&#x20;     \</td>
+
+&#x20;     \<td style=\{\{ textAlign: "left" }}>
+&#x20;       \`String\` A network token is a tokenized representation of a card provided by the card network (e.g., Visa, Mastercard). It is used for processing payments at the network level and is required for certain API processes like binInfo API 1. Network tokens are typically used when a non-DI (Direct Integration) payment gateway .
+
+&#x20;     \</td>
+
+&#x20;     \<td style=\{\{ textAlign: "left" }}>
+
+&#x20;     \</td>
+&#x20;   \</tr>
+
+&#x20;   \<tr>
+&#x20;     \<td style=\{\{ textAlign: "left" }}>
+&#x20;       cardToken
+&#x20;     \</td>
+
+&#x20;     \<td style=\{\{ textAlign: "left" }}>
+&#x20;       \`String\`A card token is a merchant-specific tokenized representation of a card. It is often used to store card information securely without exposing sensitive details. Merchants can store these tokens themselves or with a payment service provider like PayU.
+
+&#x20;     \</td>
+
+&#x20;     \<td style=\{\{ textAlign: "left" }}>
+
+&#x20;     \</td>
+&#x20;   \</tr>
+&#x20; \</tbody>
+\</Table>
 
 ## 2.3 PayU3DS2PaymentCallback
 
