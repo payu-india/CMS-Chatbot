@@ -123,3 +123,92 @@ $(document).on('click', '#submit', function() {
 <Callout icon="📘" theme="info">
   **Note**: Here, when your customer clicks on the card button (#submit), this code triggers the `ppi.launch()` function that passes the parameters along with the `responseHandler()` and `catchException()`functions as arguments.
 </Callout>
+
+# 🧩 Setting Up a Custom IFrame Container
+
+To ensure a stable integration with resize iframe, merchants are advised to create their own reusable iframe container.
+This iframe will remain hidden until the SDK is launched, and can be reused for subsequent transactions.
+
+#### Container HTML
+
+```javascript
+<iframe
+  id="payuppiFrame"
+  name="payuppiFrame"
+  class="iFrameContainer"
+  style="visibility: hidden;"
+></iframe>
+```
+
+#### Container CSS
+
+```javascript
+.iFrameContainer {
+  width: 100%;
+  height: 80%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  visibility: hidden; /* initially hidden */
+  min-height: 50vh;
+  z-index: 10000;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+```
+
+#### Note:
+
+The iframe should be present in your page markup before SDK initialization.
+The SDK will use this iframe to render the payment or OTP view when useExistingIFrame is set to true.
+
+### Passing the IFrame Reuse Parameter
+
+When initializing your iframe request, include the useExistingIFrame parameter as true.
+This ensures that the SDK uses your existing container instead of creating a new iframe.
+
+```javascript
+function getIframeRequest() {
+  const date = new Date();
+  const header = getAuthHeader(date);
+  return {
+    data: header[1],
+    Authorization: header[0],
+    Date: date.toUTCString(),
+    useExistingIFrame: true // enables iframe reuse
+  };
+}
+
+```
+
+Before launching the SDK, make the iframe visible:
+
+```javascript
+const iframe = document.getElementById("payuppiFrame");
+if (iframe) {
+  iframe.style.visibility = "visible";
+}
+window.ppi.launch(getIframeRequest(), handlers);
+```
+
+### Handling Callbacks and Hiding the IFrame
+
+After the SDK flow completes or the user cancels the operation, hide the iframe again.
+This keeps your UI clean and ensures a smooth re-launch experience for future transactions.
+
+```javascript
+var handlers = {
+  onCancel: function () {
+    console.log("Transaction cancelled by user");
+    const iframe = document.getElementById("payuppiFrame");
+    if (iframe) iframe.style.visibility = "hidden";
+  },
+  catchException: function (error) {
+    console.log("Exception:", error);
+    const iframe = document.getElementById("payuppiFrame");
+    if (iframe) iframe.style.visibility = "hidden";
+  }
+};
+```
