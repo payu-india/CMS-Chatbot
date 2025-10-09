@@ -19,7 +19,7 @@ implementation 'in.payu:threeds-sdk:1.1.1-SNAPSHOT'
 
 ### Payment initialization method
 
-Call the following `initiatePayment` method to initiate payment through us and we will return success or failure callback post transaction completion. This method will internally call Authentication request (/\_payment), collect device detail, call binInfo API, present the native OTP screen and do the authorization too.
+Call the following `initiatePayment` method to initiate payment through us and we will return success or failure callback post transaction completion. This method will internally call Authentication request (/_payment), collect device detail, call binInfo API, present the native OTP screen and do the authorization too.
 
 Use the `initiatePayment` method:
 
@@ -235,20 +235,203 @@ var mPaymentParams =  PaymentParams();
 
 ### Required payment parameters
 
-| Parameter     | Description             |
-| ------------- | ----------------------- |
-| `key`         | Your Key issued by PayU |
-| `amount`      | Transaction Amount      |
-| `productInfo` | Product Description     |
-| `firstName`   | Customer First Name     |
-| `email`       | Customer Email          |
-| `txnId`       | Transaction ID          |
-| `surl`        | Success URL             |
-| `furl`        | Failure URL             |
-| `cardNumber`  | Card Number             |
-| `expiryMonth` | Expiry MM               |
-| `expiryYear`  | Expiry YYYY             |
-| `cvv`         | CVV                     |
+<Table align={[null,null,"left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `key`
+      </td>
+
+      <td>
+        Your Key issued by PayU
+      </td>
+
+      <td>
+        "sms***"
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `amount`
+      </td>
+
+      <td>
+        Transaction Amount
+      </td>
+
+      <td>
+        100.0
+
+        <br />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `productInfo`
+      </td>
+
+      <td>
+        Product Description
+      </td>
+
+      <td>
+        "ProductInfo"
+
+        <br />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `firstName`
+      </td>
+
+      <td>
+        Customer First Name
+      </td>
+
+      <td>
+        "Firstname"
+
+        <br />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `email`
+      </td>
+
+      <td>
+        Customer Email
+      </td>
+
+      <td>
+        "test@payu.in"
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `txnId`
+      </td>
+
+      <td>
+        Transaction ID
+      </td>
+
+      <td>
+        4567890
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `surl`
+      </td>
+
+      <td>
+        Success URL
+      </td>
+
+      <td>
+        The Surl that you have configured
+
+        <br />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `furl`
+      </td>
+
+      <td>
+        Failure URL
+      </td>
+
+      <td>
+        The Furl that you have configured
+
+        <br />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `cardNumber`
+      </td>
+
+      <td>
+        Card Number
+      </td>
+
+      <td>
+        4080546540192009
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `expiryMonth`
+      </td>
+
+      <td>
+        Expiry MM
+      </td>
+
+      <td>
+        12
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `expiryYear`
+      </td>
+
+      <td>
+        Expiry YYYY
+      </td>
+
+      <td>
+        2025
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `cvv`
+      </td>
+
+      <td>
+        CVV
+      </td>
+
+      <td>
+        123
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 To make payment using saved card, pass both network token and card token:
 
