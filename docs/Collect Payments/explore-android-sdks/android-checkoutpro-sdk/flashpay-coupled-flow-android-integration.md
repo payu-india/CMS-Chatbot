@@ -343,7 +343,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        surl `surl`
+        surl `mandatory`
       </td>
 
       <td>
@@ -362,7 +362,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        furl `furl`
+        furl `mandatory`
       </td>
 
       <td>
@@ -437,7 +437,7 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        udf1
+        udf1 `optional`
       </td>
 
       <td>
@@ -450,50 +450,50 @@ var mPaymentParams =  PaymentParams();
     </tr>
 
     <tr>
+      <td>
+        udf2`optional`
+      </td>
+
+      <td>
+        `String` User-defined field, Merchant can store their customer ID, etc.	
+      </td>
+
       <td>
         udf2
       </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf3`optional`
+      </td>
 
       <td>
         `String` User-defined field, Merchant can store their customer ID, etc.	
       </td>
 
-      <td>
-        udf1
-      </td>
-    </tr>
-
-    <tr>
       <td>
         udf3
       </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf4`optional`
+      </td>
 
       <td>
         `String` User-defined field, Merchant can store their customer ID, etc.	
       </td>
 
-      <td>
-        udf1
-      </td>
-    </tr>
-
-    <tr>
       <td>
         udf4
       </td>
-
-      <td>
-        `String` User-defined field, Merchant can store their customer ID, etc.	
-      </td>
-
-      <td>
-        udf1
-      </td>
     </tr>
 
     <tr>
       <td>
-        udf5
+        udf5`optional`
       </td>
 
       <td>
@@ -501,7 +501,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        udf1
+        udf4
       </td>
     </tr>
   </tbody>
