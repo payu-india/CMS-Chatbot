@@ -527,12 +527,83 @@ To make payment using stored card, pass userCredentials, network token and card 
 
 <br />
 
-| Parameters      | Description                                                                                                                                                                                                                               | Example |
-| :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ |
-| userCredentials | `String` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save_user_cards API. The format of the value is  _merchant key:user ID_ | a:b     |
-| storeCard       | `integer`  This is an existing field, where the card token flag is passed by merchant. The values for this field can be:                                                                                                                  | 1       |
-| networkToken    |                                                                                                                                                                                                                                           |         |
-| cardToken       |                                                                                                                                                                                                                                           |         |
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameters
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        userCredentials
+      </td>
+
+      <td>
+        `String` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save_user_cards API. The format of the value is  _merchant key:user ID_
+      </td>
+
+      <td>
+        a:b
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        storeCard
+      </td>
+
+      <td>
+        `integer`  This is an existing field, where the card token flag is passed by merchant. The values for this field can be:
+      </td>
+
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        networkToken
+      </td>
+
+      <td>
+        `String` A network token is a tokenized representation of a card provided by the card network (e.g., Visa, Mastercard). It is used for processing payments at the network level and is required for certain API processes like binInfo API 1. Network tokens are typically used when a non-DI (Direct Integration) payment gateway .
+
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardToken
+      </td>
+
+      <td>
+        `String` A card token is a merchant-specific tokenized representation of a card. It is often used to store card information securely without exposing sensitive details. Merchants can store these tokens themselves or with a payment service provider like PayU.
+
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## 2.3 PayU3DS2PaymentCallback
 
