@@ -29,10 +29,11 @@ Merchants outside India, who are willing to serve Indian consumers without estab
 
 PayU **Cross-Border Payments – Import** Integration facilitates overseas sellers to collect payments from buyers in India and transfer the funds to the overseas seller:
 
-* In their desired currency (100+)
+* In their desired currency (100+ options)
 * With T+2 settlement time
 
-This is as per the [RBI guideline](https://rbi.org.in/Scripts/NotificationUser.aspx?Id=12561\&Mode=0) -RBI/2023-24/80
+This is as per the [RBI guidelines for Payment Aggregators - Cross Border](https://rbi.org.in/Scripts/NotificationUser.aspx?Id=12896\&Mode=0) - RBI/DPSS/2025-26/141
+CO.DPSS.POLC.No.S-633/02-14-008/2025-26
 
 <Callout icon="📘" theme="info">
   **Note**: RBI monitors cross-border payments with the support of AD banks. Hence, there are guidelines to be followed by AD Bank and PayU.
