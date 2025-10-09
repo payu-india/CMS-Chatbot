@@ -566,11 +566,11 @@ To make payment using stored card, pass userCredentials, network token and card 
       </td>
 
       <td>
-
+        `integer`  This is an existing field, where the card token flag is passed by merchant. The values for this field can be:
       </td>
 
       <td>
-
+        1
       </td>
     </tr>
 
