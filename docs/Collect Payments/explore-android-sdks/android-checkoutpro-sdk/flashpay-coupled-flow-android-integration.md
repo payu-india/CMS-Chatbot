@@ -217,14 +217,12 @@ var mPaymentParams =  PaymentParams();
         mPaymentParams.txnId = "<Transaction Id>"
         mPaymentParams.surl = "<Success URL>"
         mPaymentParams.furl = "<Failure URL>"
-        mPaymentParams.termUrl = "<Term URL>"
         mPaymentParams.udf1 = "<User Defined Fields>"
         mPaymentParams.udf2 = "<User Defined Fields>"
         mPaymentParams.udf3 = "<User Defined Fields>"
         mPaymentParams.udf4 = "<User Defined Fields>"
         mPaymentParams.udf5 = "<User Defined Fields>"
         mPaymentParams.cardNumber = "<cardNumber>"
-        mPaymentParams.cardName = "<cardName>"
         mPaymentParams.nameOnCard = "<cardholderName>"
         mPaymentParams.expiryMonth = "<expiryMonth>"// MM
         mPaymentParams.expiryYear = "<expiryYear>"// YYYY
@@ -259,7 +257,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        Your Key issued by PayU
+        `String` This parameter must contain your merchant key received from PayU.
       </td>
 
       <td>
@@ -273,7 +271,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        Transaction Amount
+        `String` Total transaction amount.
       </td>
 
       <td>
@@ -289,7 +287,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        Product Description
+        `String`  Information about the product.
       </td>
 
       <td>
@@ -305,7 +303,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        Customer First Name
+        `String` Customer's First Name
       </td>
 
       <td>
@@ -321,11 +319,11 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        Customer Email
+        `String` Customer's Email ID
       </td>
 
       <td>
-        "test@payu.in"
+        "[test@payu.in](mailto:test@payu.in)"
       </td>
     </tr>
 
@@ -335,7 +333,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        Transaction ID
+        `String`  It should be unique for each transaction. Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "_,$,%,&, etc"
       </td>
 
       <td>
@@ -349,7 +347,10 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        Success URL
+        `String`  When the transaction is successful, PayU will load this URL and pass the transaction response.
+
+        Sample SURL for testing*: https://cbjs.payu.in/sdk/success
+        Note*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
       </td>
 
       <td>
@@ -365,7 +366,10 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        Failure URL
+        `String` When the transaction fails, PayU will load this URL and pass the transaction response.
+
+        Sample FURL for testing*: https://cbjs.payu.in/sdk/failure
+        Note*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
       </td>
 
       <td>
@@ -381,7 +385,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        Card Number
+        `String` Card Number
       </td>
 
       <td>
@@ -395,7 +399,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        Expiry MM
+        `String` Expiry MM
       </td>
 
       <td>
@@ -409,7 +413,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        Expiry YYYY
+        `String` Expiry YYYY
       </td>
 
       <td>
@@ -423,7 +427,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        CVV
+        `String` CVV
       </td>
 
       <td>
