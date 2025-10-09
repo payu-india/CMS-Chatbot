@@ -551,7 +551,7 @@ To make payment using stored card, pass userCredentials, network token and card 
       </td>
 
       <td>
-        `String` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save_user_cards API. The format of the value is merchant key:user ID
+        `String` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save_user_cards API. The format of the value is  _merchant key:user ID_
         	
       </td>
 
