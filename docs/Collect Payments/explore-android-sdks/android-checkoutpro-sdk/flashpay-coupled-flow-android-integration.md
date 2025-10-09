@@ -226,7 +226,10 @@ var mPaymentParams =  PaymentParams();
         mPaymentParams.nameOnCard = "<cardholderName>"
         mPaymentParams.expiryMonth = "<expiryMonth>"// MM
         mPaymentParams.expiryYear = "<expiryYear>"// YYYY
-        mPaymentParams.cvv = "<cvv>"
+mPaymentParams.cvv = "<cvv>"
+mPaymentParams.partnerWebhookSuccess = "url"
+mPaymentParams.partnerWebhookFailure = "url"
+
 ```
 
 ### Required payment parameters
