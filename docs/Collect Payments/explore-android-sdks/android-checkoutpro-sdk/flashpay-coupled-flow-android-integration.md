@@ -226,9 +226,9 @@ var mPaymentParams =  PaymentParams();
         mPaymentParams.nameOnCard = "<cardholderName>"
         mPaymentParams.expiryMonth = "<expiryMonth>"// MM
         mPaymentParams.expiryYear = "<expiryYear>"// YYYY
-mPaymentParams.cvv = "<cvv>"
-mPaymentParams.partnerWebhookSuccess = "url"
-mPaymentParams.partnerWebhookFailure = "url"
+        mPaymentParams.cvv = "<cvv>"
+				mPaymentParams.partnerWebhookSuccess = "url"
+				mPaymentParams.partnerWebhookFailure = "url"
 
 ```
 
@@ -503,6 +503,34 @@ mPaymentParams.partnerWebhookFailure = "url"
 
       <td>
         udf5
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        partnerWebhookSuccess `optional`
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        partnerWebhookFailure `optional`
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+
       </td>
     </tr>
   </tbody>
