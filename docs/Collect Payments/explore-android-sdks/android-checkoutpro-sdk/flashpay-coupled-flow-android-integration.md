@@ -525,6 +525,13 @@ To make payment using stored card, pass userCredentials, network token and card 
 >
 > Requires both `networkToken` and `cardToken` under `mPaymentParams` for saved card-related transactions.
 
+<br />
+
+| Parameters | Description | Example |
+| :--------- | :---------- | :------ |
+|            |             |         |
+|            |             |         |
+
 ## 2.3 PayU3DS2PaymentCallback
 
 Callback methods during the transaction:
