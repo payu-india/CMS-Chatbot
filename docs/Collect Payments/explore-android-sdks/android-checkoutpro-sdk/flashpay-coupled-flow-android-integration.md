@@ -512,7 +512,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        String`  When the transaction is successful, PayU will load this URL and pass the transaction response.
+        `String`When the transaction is successful, PayU will load this URL and pass the transaction response.
       </td>
 
       <td>
@@ -526,7 +526,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        String`  When the transaction is failed, PayU will load this URL and pass the transaction response.
+        `String` When the transaction is failed, PayU will load this URL and pass the transaction response.
       </td>
 
       <td>
