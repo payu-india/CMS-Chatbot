@@ -516,7 +516,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-
+        The success URL that you have configured
       </td>
     </tr>
 
@@ -530,7 +530,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-
+        The Failure URL that you have configured
       </td>
     </tr>
   </tbody>
