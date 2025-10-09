@@ -25,12 +25,12 @@ metadata:
 next:
   description: ''
 ---
-Merchants outside India, who are willing to serve Indian consumers without establishment entities in India can opt-in. The settlement will be done directly by PayU through AD banks in the merchant’s native currency. The payment methods supported for cross-border payments are cards, Net Banking and UPI.
+Merchants outside India, who are willing to serve Indian consumers without establishment entities in India can collect payments from Indian customers. The settlement will be done to an offshore account directly by PayU through AD banks in the merchant’s native currency. The payment methods supported for cross-border payments are Cards (Debit & Credit), Net Banking and UPI.
 
-PayU Cross-Border Payments – Import Integration facilitates overseas sellers to collect payments from buyers in India and transfer the funds to the overseas seller:
+PayU **Cross-Border Payments – Import** Integration facilitates overseas sellers to collect payments from buyers in India and transfer the funds to the overseas seller:
 
-* In their native currency
-* With lesser settlement time
+* In their desired currency (100+)
+* With T+2 settlement time
 
 This is as per the [RBI guideline](https://rbi.org.in/Scripts/NotificationUser.aspx?Id=12561\&Mode=0) -RBI/2023-24/80
 
@@ -45,7 +45,7 @@ The advantages for the overseas merchant include: 
 * International merchants are looking at simplified market entry into India. They want partners who can eliminate operational complexities by operating through local merchants of record with knowledge of the Indian market. 
 * Merchants are looking to tap the Indian eCommerce market by offering them the majority of the local payment methods like Net Banking, Rupay cards, and local card processing with higher transaction success rates. 
 
-Merchants cannot sell products for more than Rs.2.5 lakhs per transaction.
+Merchants cannot sell products / services for more than Rs. 850,000 (8.5 Lacs) per transaction.
 
 * Every transaction must be accompanied by a copy of the (digital) invoice. 
 * Every transaction must be accompanied by a copy of the AWB once the product(s) has been shipped. 
