@@ -527,12 +527,82 @@ To make payment using stored card, pass userCredentials, network token and card 
 
 <br />
 
-| Parameters      | Description | Example |
-| :-------------- | :---------- | :------ |
-| userCredentials |             |         |
-| storeCard       |             |         |
-| networkToken    |             |         |
-| cardToken       |             |         |
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameters
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        userCredentials
+      </td>
+
+      <td>
+        `String` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save_user_cards API. The format of the value is 
+        	
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        storeCard
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        networkToken
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardToken
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## 2.3 PayU3DS2PaymentCallback
 
