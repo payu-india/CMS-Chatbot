@@ -245,65 +245,26 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   </Accordion>
 </Accordion>
 
-<Accordion title="Step 3: Set up the payment hashes" icon="fa-code">
-  PayU uses hashes to ensure the integrity and security of the transaction.
+<Accordion title="Step 3: Generate the hash" icon="fa-code">
+  This integration requires dynamic hashes. You must get hash string in map again `HashConstant.hashString` key in `generateHash`.  You need to send this string to server and append salt there, after appending salt convert string to sha512 hash and return back to SDK.
 
-  <Accordion title="Getting Hash Data to calculate hash" icon="fa-code">
-    In order to authenticate a payment request and to ensure the data security of the payment request, PayU requires hash values to be calculated.
+  ```swift
+  /// Use this function to provide hashes
+  /// - Parameters:
+  ///   - param: Dictionary that contains key as HashConstant.hashName & HashConstant.hashString
+  ///   - onCompletion: Once you fetch the hash from server, pass that hash with key as param[HashConstant.hashName]
+  func generateHash(for param: DictOfString, onCompletion: @escaping PayUHashGenerationCompletion) {
+      // Send this string to your backend and append the salt at the end and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
+      let hashStringWithoutSalt = param[HashConstant.hashString] ?? ""
+      // Or you can send below string hashName to your backend and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
+      let hashName = param[HashConstant.hashName] ?? ""
 
-    ```Text Swift
-    /// Use this function to provide hashes
-    /// - Parameters:
-    ///   - param: Dictionary that contains key as HashConstant.hashName & HashConstant.hashString
-    ///   - onCompletion: Once you fetch the hash from server, pass that hash with key as param[HashConstant.hashName]
-    func generateHash(for param: DictOfString, onCompletion: @escaping PayUHashGenerationCompletion) {
-        // Send this string to your backend and append the salt at the end and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
-        let hashStringWithoutSalt = param[HashConstant.hashString] ?? ""
-        // Or you can send below string hashName to your backend and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
-        let hashName = param[HashConstant.hashName] ?? ""
-
-        // Set the hash in below string which is fetched from your server
-        let hashFetchedFromServer = <String>
-        
-        onCompletion([hashName : hashFetchedFromServer])
-    }
-    ```
-    ```Text Objective-C
-    /// Use this function to provide hashes
-    /// @param param NSDictionary that contains key as HashConstant.hashName & HashConstant.hashString
-    /// @param onCompletion Once you fetch the hash from server, pass that hash with key as param[HashConstant.hashName]
-    - (void)generateHashFor:(NSDictionary<NSString *, NSString *> * _Nonnull)param onCompletion:(void (^ _Nonnull)(NSDictionary<NSString *, NSString *> * _Nonnull))onCompletion {
-        // Send below string hashStringWithoutSalt to your backend and append the salt at the end and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
-        NSString *hashStringWithoutSalt = [param objectForKey:HashConstant.hashString];
-        // Or you can send below string hashName to your backend and send the sha512 back to us, do not calculate the hash at your client side, for security is reasons, hash has to be calculated at the server side
-        NSString * hashName = [param objectForKey:HashConstant.hashName];
-        
-        // Set the hash in below string which is fetched from your server
-        NSString *hashFetchedFromServer = <#(NSString)#>;
-        
-        NSDictionary *hashResponseDict = [NSDictionary dictionaryWithObjectsAndKeys:hashFetchedFromServer, hashName, nil];
-        onCompletion(hashResponseDict);
-    }
-    ```
-
-               **param ->** Dictionary that contains key as **HashConstant.hashName** & **HashConstant.hashString**
-
-    **onCompletion ->** Once you fetch the **hash** from server, pass that hash with key as **param\[HashConstant.hashName]**
-
-    ### Getting Hash Data to calculate hash
-
-    Checkout Pro SDK will give a callback in `generateHash`**()** method whenever any hash is needed by it. Merchant need to calculate that hash and pass back to the SDK. Below is the process of doing so:
-
-    To extract hash string and hash name from dictionary received in generateHash() method, use below keys -
-
-    **HashConstant.hashString ->** This will contain complete hash string excluding salt. Merchant can append their salt at end of hash string to calculate the hash.
-
-    **HashConstant.hashName ->** This will contain hash name.
-
-    ### Passing generated hash to SDK
-
-    Prepare a dictionary, where key should be **param\[HashConstant.hashName]** and value should be generated **hash** value and pass this dictionary in **onCompletion()**
-  </Accordion>
+      // Set the hash in below string which is fetched from your server
+      let hashFetchedFromServer = <#T##String#>
+      
+      onCompletion([hashName : hashFetchedFromServer])
+  }
+  ```
 </Accordion>
 
 <Accordion title="Step 4: Initiate the payment" icon="fa-code">
@@ -522,126 +483,126 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     ```
   </Accordion>
 
-    <Accordion title="UPI Collect/Intent payments" icon="fa-code">
-      ```Text Success
-      {
-        "txnid": "iOS240117183850",
-        "address1": "",
-        "udf1": "udf11",
-        "furl": "https://cbjs.payu.in/sdk/failure",
-        "address2": "",
-        "field6": "NA!NA!NA!NA",
-        "lastname": "",
-        "zipcode": "",
-        "status": "success",
-        "offer_key": null,
-        "udf5": "udf55",
-        "city": "",
-        "udf9": "",
-        "field2": "87768967657",
-        "udf4": "udf44",
-        "field7": "APPROVED OR COMPLETED SUCCESSFULLY|00",
-        "addedon": "2024-01-17 18:39:13",
-        "state": "",
-        "field0": "",
-        "udf6": "",
-        "card_no": "",
-        "discount": "0.00",
-        "udf10": "",
-        "hash": "44161a41207d4bc29ad802ecd6e06f0b350930fa539675bdd24ba8321e22972d2d12fee84a02af549717a5e52fd93db56be5f1c89388eaf2a2740b20491f8bac",
-        "field4": "",
-        "mode": "UPI",
-        "bank_ref_num": "401789868507",
-        "field9": "SUCCESS|Completed Using Callback",
-        "offer_availed": null,
-        "udf3": "udf33",
-        "payment_source": "payuPureS2S",
-        "key": "smsplus",
-        "productinfo": "Nokia",
-        "field1": "",
-        "bank_ref_no": "401789868507",
-        "mihpayid": 18978067105,
-        "field8": "Phone Pe",
-        "country": "",
-        "curl": "https://cbjs.payu.in/sdk/failure",
-        "bankcode": "INTENT",
-        "udf2": "udf22",
-        "field3": "8700908382@ybl",
-        "phone": "9999999999",
-        "email": "umang@arya.com",
-        "net_amount_debit": 1,
-        "amount": "1.00",
-        "firstname": "Umang",
-        "field5": "PPPL18978067105170124183913",
-        "card_token": "",
-        "unmappedstatus": "captured",
-        "surl": "https://cbjs.payu.in/sdk/success",
-        "udf8": "",
-        "error": "E000",
-        "error_Message": "No Error",
-        "udf7": "",
-        "PG_TYPE": "UPI-PG"
-      }
-      ```
-      ```Text Failure
-      {
-        "address2": "",
-        "field0": "",
-        "field1": "",
-        "udf9": "",
-        "udf1": "udf11",
-        "hash": "f995befdf65dacf0b71db83a94776efe9154ab9f0c5a378f4f07821fd61088a6f0a9cedbbf273df9048df64c4a4adb071701e9b2136e0b3e60f3c30e21aaa1ca",
-        "txnid": "iOS220706164103",
-        "field3": "",
-        "mode": "UPI",
-        "field5": "",
-        "surl": "https://payu.herokuapp.com/ios_success",
-        "udf7": "",
-        "bankcode": "TEZ",
-        "amount": "1.00",
-        "udf5": "udf55",
-        "additionalCharges": "0.59",
-        "bank_ref_no": null,
-        "payment_source": "payuPureS2S",
-        "zipcode": "",
-        "firstname": "Umang",
-        "lastname": "",
-        "net_amount_debit": 0,
-        "productinfo": "Nokia",
-        "city": "",
-        "udf2": "udf22",
-        "mihpayid": 15463188898,
-        "email": "umang@arya.com",
-        "field4": "",
-        "state": "",
-        "phone": "9876543210",
-        "furl": "https://payu.herokuapp.com/ios_failure",
-        "curl": "https://payu.herokuapp.com/ios_failure",
-        "card_token": "",
-        "PG_TYPE": "UPI-PG",
-        "field6": "",
-        "addedon": "2022-07-06 16:41:28",
-        "udf6": "",
-        "udf8": "",
-        "bank_ref_num": null,
-        "field7": "",
-        "udf10": "",
-        "error": "E308",
-        "field2": "",
-        "udf3": "udf33",
-        "card_no": "",
-        "field9": "P|PENDING|Completed Using Verify API",
-        "field8": "INTENT",
-        "unmappedstatus": "failed",
-        "key": "3TnMpV",
-        "udf4": "udf44",
-        "country": "",
-        "status": "failure",
-        "address1": "",
-        "error_Message": "Transaction Failed at bank end."
-      }
-      ```
-    </Accordion>
+  <Accordion title="UPI Collect/Intent payments" icon="fa-code">
+    ```Text Success
+    {
+      "txnid": "iOS240117183850",
+      "address1": "",
+      "udf1": "udf11",
+      "furl": "https://cbjs.payu.in/sdk/failure",
+      "address2": "",
+      "field6": "NA!NA!NA!NA",
+      "lastname": "",
+      "zipcode": "",
+      "status": "success",
+      "offer_key": null,
+      "udf5": "udf55",
+      "city": "",
+      "udf9": "",
+      "field2": "87768967657",
+      "udf4": "udf44",
+      "field7": "APPROVED OR COMPLETED SUCCESSFULLY|00",
+      "addedon": "2024-01-17 18:39:13",
+      "state": "",
+      "field0": "",
+      "udf6": "",
+      "card_no": "",
+      "discount": "0.00",
+      "udf10": "",
+      "hash": "44161a41207d4bc29ad802ecd6e06f0b350930fa539675bdd24ba8321e22972d2d12fee84a02af549717a5e52fd93db56be5f1c89388eaf2a2740b20491f8bac",
+      "field4": "",
+      "mode": "UPI",
+      "bank_ref_num": "401789868507",
+      "field9": "SUCCESS|Completed Using Callback",
+      "offer_availed": null,
+      "udf3": "udf33",
+      "payment_source": "payuPureS2S",
+      "key": "smsplus",
+      "productinfo": "Nokia",
+      "field1": "",
+      "bank_ref_no": "401789868507",
+      "mihpayid": 18978067105,
+      "field8": "Phone Pe",
+      "country": "",
+      "curl": "https://cbjs.payu.in/sdk/failure",
+      "bankcode": "INTENT",
+      "udf2": "udf22",
+      "field3": "8700908382@ybl",
+      "phone": "9999999999",
+      "email": "umang@arya.com",
+      "net_amount_debit": 1,
+      "amount": "1.00",
+      "firstname": "Umang",
+      "field5": "PPPL18978067105170124183913",
+      "card_token": "",
+      "unmappedstatus": "captured",
+      "surl": "https://cbjs.payu.in/sdk/success",
+      "udf8": "",
+      "error": "E000",
+      "error_Message": "No Error",
+      "udf7": "",
+      "PG_TYPE": "UPI-PG"
+    }
+    ```
+    ```Text Failure
+    {
+      "address2": "",
+      "field0": "",
+      "field1": "",
+      "udf9": "",
+      "udf1": "udf11",
+      "hash": "f995befdf65dacf0b71db83a94776efe9154ab9f0c5a378f4f07821fd61088a6f0a9cedbbf273df9048df64c4a4adb071701e9b2136e0b3e60f3c30e21aaa1ca",
+      "txnid": "iOS220706164103",
+      "field3": "",
+      "mode": "UPI",
+      "field5": "",
+      "surl": "https://payu.herokuapp.com/ios_success",
+      "udf7": "",
+      "bankcode": "TEZ",
+      "amount": "1.00",
+      "udf5": "udf55",
+      "additionalCharges": "0.59",
+      "bank_ref_no": null,
+      "payment_source": "payuPureS2S",
+      "zipcode": "",
+      "firstname": "Umang",
+      "lastname": "",
+      "net_amount_debit": 0,
+      "productinfo": "Nokia",
+      "city": "",
+      "udf2": "udf22",
+      "mihpayid": 15463188898,
+      "email": "umang@arya.com",
+      "field4": "",
+      "state": "",
+      "phone": "9876543210",
+      "furl": "https://payu.herokuapp.com/ios_failure",
+      "curl": "https://payu.herokuapp.com/ios_failure",
+      "card_token": "",
+      "PG_TYPE": "UPI-PG",
+      "field6": "",
+      "addedon": "2022-07-06 16:41:28",
+      "udf6": "",
+      "udf8": "",
+      "bank_ref_num": null,
+      "field7": "",
+      "udf10": "",
+      "error": "E308",
+      "field2": "",
+      "udf3": "udf33",
+      "card_no": "",
+      "field9": "P|PENDING|Completed Using Verify API",
+      "field8": "INTENT",
+      "unmappedstatus": "failed",
+      "key": "3TnMpV",
+      "udf4": "udf44",
+      "country": "",
+      "status": "failure",
+      "address1": "",
+      "error_Message": "Transaction Failed at bank end."
+    }
+    ```
+  </Accordion>
 </Accordion>
 
 ## Test the Integration
