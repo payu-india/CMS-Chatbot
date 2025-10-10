@@ -54,11 +54,11 @@ The PayU payment page’s look and feel can be customized using CSS stylesheets 
 
 * **Can I integrate PayU Checkout Pro SDK with my own payment gateway or payment service provider?**
 
-Yes, PayU Checkout Pro SDK can be integrated with any payment gateway or service provider. You can use the SDK to capture and process payment information and then send it to their own backend system for processing. For more information, refer to [Customized Integration with PayUCheckoutPro](https://docs.payu.in/docs/android-checkoutpro-custom-integrations).
+Yes, PayU Checkout Pro SDK can be integrated with any payment gateway or service provider. You can use the SDK to capture and process payment information and then send it to their own backend system for processing. For more information, refer to [Customize your Integration](https://docs.payu.in/docs/android-checkoutpro-custom-integrations).
 
 * **How can I implement custom payment methods or gateways not supported by PayU Checkout Pro SDK?**
 
-Custom payment methods or gateways can be implemented using the PayU Custom Checkout SDK. This SDK provides a flexible and extensible framework for integrating with any payment method or gateway. For more information, refer to [Customized Integration with PayUCheckoutPro](https://docs.payu.in/docs/android-checkoutpro-custom-integrations).
+Custom payment methods or gateways can be implemented using the PayU Custom Checkout SDK. This SDK provides a flexible and extensible framework for integrating with any payment method or gateway. For more information, refer to [Customize Your Integration](https://docs.payu.in/docs/android-checkoutpro-custom-integrations).
 
 * **Can I implement custom payment flows using PayU Checkout Pro SDK?**
 
@@ -88,7 +88,7 @@ No, PayU SDKs does not support <Glossary>SSL Pinning</Glossary> due to business 
 
 Yes, you can change the order of payment modes displayed on the PayU Payment page by PayU either using SDK manually or using Dashboard. For more information, refer to:
 
-* **Manually**: [Customized Integration with PayUCheckoutPro](https://docs.payu.in/docs/android-checkoutpro-custom-integrations) > [Set Checkout Payment Modes Order](https://docs.payu.in/docs/android-checkoutpro-custom-integrations#set-checkout-payment-modes-order).
+* **Manually**: [Customize Your Integration](https://docs.payu.in/docs/android-checkoutpro-custom-integrations) > [Set Checkout Payment Modes Order](https://docs.payu.in/docs/android-checkoutpro-custom-integrations#set-checkout-payment-modes-order).
 * **Dashboard**: [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy).
 * **Can I customize the PayU CheckoutPro for Mobile SDK UI to match my app’s design?**
 
@@ -319,7 +319,7 @@ PayU Android SDK supports PhonePe transactions for making payments, requesting p
 
 * **What is the difference between PayU CheckoutPro and Non-Seamless?**
 
-**PayU CheckoutPro** and **Non-Seamless** integration are the same. For more information, refer to the [PayU Android SDK Integration docs.](https://docs.payu.in/docs/android-checkoutpro-integration-steps).
+**PayU CheckoutPro** and **Non-Seamless** integration are the same. For more information, refer to the (Explore Android SDKs)[https://docs.payu.in/docs/explore-android-sdks/]
 
 * **Why do we need so many hashes?**
 
