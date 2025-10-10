@@ -42,7 +42,6 @@ import CBWrapper from  'payu-custom-browser-react';
 pod install
 ```
 
-***
 
 ## Step 2: Build the payment parameters
 
@@ -80,7 +79,6 @@ var payUPaymentParams = {
 
 For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/ios-standing-instructions-parameters).
 
-***
 
 ## Step 3: Generate payment hash
 
@@ -89,8 +87,6 @@ For hash generation testing salt needs to be put in the HASH generation method. 
 <Callout icon="📘" theme="info">
   **Note**: Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
 </Callout>
-
-***
 
 ## Step 4: Make payment
 
@@ -113,7 +109,6 @@ Request Data <Map>, //payment params defined above
   );
 ```
 
-***
 
 ## Step 5: Register listeners
 
@@ -127,7 +122,7 @@ eventEmitter.addListener("CBListener",(event)=>{
     })
 ```
 
-### Response
+<Accordion title="Response" icon="fa-code">
 
 ```json JSON
 {
@@ -138,3 +133,4 @@ eventEmitter.addListener("CBListener",(event)=>{
   "errorCode": <String>, //conditional
 }
 ```
+</Accordion>
