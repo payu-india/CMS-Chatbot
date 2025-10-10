@@ -403,17 +403,17 @@ PG SDK is not mandatory to make payments with CustomBrowser. You can create `Pos
 
 * **How to switch the environment from Testing to Production in PayU SDK?**
 
-Refer to the sample app. You need to change the value of the environment variable accordingly for testing or production, in MainActivity in the sample app. Refer following code snippet**:**
+Refer to the . You need to change the value of the environment variable accordingly for testing or production, in MainActivity in the sample app. Refer following code snippet**:**
 
-Node
-
+```node
 int env = PayuConstants.PRODUCTION_ENV; _//for production_
 
 int env = PayuConstants.STAGING_ENV; _//for testing_
+```
 
 Remove the following metadata from the manifest file:
 
-```plaintext
+```xml
 <meta-data
      android:name="payu_web_service_url"
      android:value="https://test.payu.in" />
@@ -426,7 +426,7 @@ Remove the following metadata from the manifest file:
 
 To fix this problem, use the following code block in your **styles.xml** file:
 
-```plaintext
+```xml
  <style name="cb_approve_otp" parent="android:Widget.Button">
         <item name="android:textSize">@dimen/cb_fourteenScaled</item>
         <item name="android:textColor">#FFFFFF</item>
@@ -448,7 +448,7 @@ tools:replace="android:theme"
 
 * **When I was compiling my Android implementation, the following exception occurred in the compiler:**
 
-```plaintext
+```java
 Task :app:compileDebugJavaWithJavac FAILED
 An exception has occurred in the compiler (1.8.0_301). Please file a bug against the Java compiler via the Java bug reporting page (http://bugreport.java.com) after checking the Bug Database (http://bugs.java.com) for duplicates. Include your program and the following diagnostic in your report. Thank you.
 java.lang.AssertionError: annotationType(): unrecognized Attribute name MODULE (class com.sun.tools.javac.util.UnsharedNameTable$NameImpl)
