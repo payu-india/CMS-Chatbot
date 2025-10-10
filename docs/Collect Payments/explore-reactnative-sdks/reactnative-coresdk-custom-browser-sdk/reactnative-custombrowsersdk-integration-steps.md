@@ -19,34 +19,36 @@ next:
 ---
 The React Native Custom Browser SDK integration involves the following steps:
 
-1. [Installation](https://docs.payu.in/docs/reactnative-custombrowsersdk-integration-steps#step-1-installation)
-2. [Build the payment parameters](https://docs.payu.in/docs/reactnative-custombrowsersdk-integration-steps#step-2-build-the-payment-parameters)
-3. [Generate payment hash](https://docs.payu.in/docs/reactnative-custombrowsersdk-integration-steps#step-3-generate-payment-hash)
-4. [Make payment](https://docs.payu.in/docs/reactnative-custombrowsersdk-integration-steps#step-4-make-payment)
-5. [Register listeners](https://docs.payu.in/docs/reactnative-custombrowsersdk-integration-steps#step-5-register-listeners)
-
 ## Step 1: Installation
 
 The PayU Custom Browser SDK for React Native is offered through NPM:
 
-**For Android**: To add the PayU CB plugin to your app run the following dependency in the root folder of your React native app:
+<Tabs>
+<Tab value="android" label="Android">
+
+To add the PayU CB plugin to your app run the following dependency in the root folder of your React native app:
 
 ```
 npm install payu-custom-browser-react
 import CBWrapper from  'payu-custom-browser-react'; 
 ```
 
-**For iOS**: Install the pod using the following command.  Make sure your minimum deployment target is iOS 11.
+</Tab>
+<Tab value="ios" label="iOS">
+
+Install the pod using the following command. Make sure your minimum deployment target is iOS 11.
 
 ```
 pod install
 ```
 
+</Tab>
+</Tabs>
 
 ## Step 2: Build the payment parameters
 
 To initiate a payment, your app needs to send transactional information to the Custom Browser SDK. Build the payUPaymentParams object with the mandatory parameters as shown in the following code snippet:
-
+<Accordion title="Sample code" icon="fa-code">
 ```javascript React.js
 var payUPaymentParams = {
       payu_payment_params: {
@@ -76,9 +78,8 @@ var payUPaymentParams = {
   }
 }
 ```
-
+</Accordion>
 For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/ios-standing-instructions-parameters).
-
 
 ## Step 3: Generate payment hash
 
@@ -91,7 +92,7 @@ For hash generation testing salt needs to be put in the HASH generation method. 
 ## Step 4: Make payment
 
 Use the code snippet mentioned below to make the payment:
-
+<Accordion title="Sample code" icon="fa-code">
 ```javascript React.js
 CBWrapper.openCB(
 Request Data <Map>, //payment params defined above
@@ -108,12 +109,11 @@ Request Data <Map>, //payment params defined above
       }
   );
 ```
-
-
+</Accordion>
 ## Step 5: Register listeners
 
 Register Listener (in this case) Emitter to get the Response from Custom Browser SDK:
-
+<Accordion title="Sample code" icon="fa-code">
 ```javascript React.js
 import {NativeEventEmitter} from 'react-native';
 const eventEmitter=new NativeEventEmitter(CBWrapper);
@@ -121,16 +121,16 @@ eventEmitter.addListener("CBListener",(event)=>{
      
     })
 ```
+</Accordion>
 
 <Accordion title="Response" icon="fa-code">
-
-```json JSON
-{
-  "eveneType": <String>, (onPaymentFailure | onPaymentTerminate | onPaymentTerminate | onCBErrorReceived | onBackButton | onBackApprove | onBackDismiss)
-  "payuResult": <String>, //conditional
-  "merchantResponse": <String>, //conditional
-  "errorMessage":<String>,
-  "errorCode": <String>, //conditional
-}
-```
+  ```json JSON
+  {
+    "eveneType": <String>, (onPaymentFailure | onPaymentTerminate | onPaymentTerminate | onCBErrorReceived | onBackButton | onBackApprove | onBackDismiss)
+    "payuResult": <String>, //conditional
+    "merchantResponse": <String>, //conditional
+    "errorMessage":<String>,
+    "errorCode": <String>, //conditional
+  }
+  ```
 </Accordion>
