@@ -626,7 +626,7 @@ hashGenerationListener.onHashGenerated(hashMap)
 
 It has a boolean parameter to determine the biometric registration status success/failure.
 
-```
+```kotlin
 fun mfaRegistrationstatus(status: Boolean)
 ```
 
