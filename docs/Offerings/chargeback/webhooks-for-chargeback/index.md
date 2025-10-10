@@ -113,25 +113,25 @@ If you're not receiving webhook notifications:
 
 ## FAQs
 
-### Does txn_id field in the webhook refer to mihpayid or our txnid?
+#### Does txn_id field in the webhook refer to mihpayid or our txnid?
 
 This is PayuID,
 
-### On new status dispute, is the amount already booked from merchant account?
+#### On new status dispute, is the amount already booked from merchant account?
 
 Dependent on the merchant risk score & contract, Merchant accounts are marked as Upfront-Debit or No-Upfront-Debit. So when a new dispute is raised:
 
 * For upfront-debit, the dispute amount will be debited when the dispute (in new Status) is created.
 * For no-upfront-debit, the dispute amount will be debited only after the dispute is closed in the customer's favor.
 
-### When is the amount charged from the merchant account?
+#### When is the amount charged from the merchant account?
 
 Refer to the [previous FAQ](https://docs.payu.in/docs/webhooks-for-chargeback#on-new-status-dispute-is-the-amount-already-booked-from-merchant-account).
 
-### Does Closed Customer Favour mean the amount is debited from merchant account?
+#### Does Closed Customer Favour mean the amount is debited from merchant account?
 
 Yes, refer to[ above FAQ](https://docs.payu.in/docs/webhooks-for-chargeback#on-new-status-dispute-is-the-amount-already-booked-from-merchant-account).
 
-### Do Closed in Merchant Favour / Closed under Fraud Liability mean the amount is reversed to merchant account?
+#### Do Closed in Merchant Favour / Closed under Fraud Liability mean the amount is reversed to merchant account?
 
 If the amount is upfront debit merchant then the money will be reversed. Else there is no debit on the merchant account.
