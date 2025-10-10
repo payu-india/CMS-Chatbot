@@ -130,7 +130,7 @@ Refer to the [previous FAQ](https://docs.payu.in/docs/webhooks-for-chargeback#on
 
 ### Does Closed Customer Favour mean the amount is debited from merchant account?
 
-Yes, refer to 
+Yes, refer to[ above FAQ](https://docs.payu.in/docs/webhooks-for-chargeback#on-new-status-dispute-is-the-amount-already-booked-from-merchant-account).
 
 ### Do Closed in Merchant Favour / Closed under Fraud Liability mean the amount is reversed to merchant account?
 
