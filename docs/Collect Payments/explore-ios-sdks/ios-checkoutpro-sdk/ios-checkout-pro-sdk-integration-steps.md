@@ -68,10 +68,10 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     In order to receive all the crashes related to our SDKs, add the following line to your AppDelegate `didFinishLaunchingWithOptions` method:
 
     ```swift Swift
-    PayUDontUseThisClass.integrateCrashReporter()
+    PayUCheckoutPro.start()
     ```
     ```objectivec Objective-C
-    [PayUDontUseThisClass integrateCrashReporter];
+    [PayUCheckoutPro start];
     ```
   </Accordion>
 </Accordion>
@@ -79,6 +79,39 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 <Accordion title="Step 2: Build the payment parameters (mandatory step)" icon="fa-code">
   <Accordion title="Step 2.1: Basic Integration" icon="fa-code">
     PayU SDK needs certain inputs from the merchant app to authenticate and initiate a transaction.
+```Text Swift
+let paymentParam = PayUPaymentParam(key: <String>,
+                                    transactionId: <String>,
+                                    amount: <String>,
+                                    productInfo: <String>,
+                                    firstName: <String>,
+                                    email: <String>,
+                                    phone: <String>,
+                                    surl: <String>,//Pass your own surl
+                                    furl: <String>,//Pass your own furl
+                                    environment: <Environment> /*.production or .test*/)
+                                    
+paymentParam.userCredential = <String> // For saving and fetching user’s saved card
+```
+```Text Onjective-C
+PayUPaymentParam *paymentParam = [[PayUPaymentParam alloc] initWithKey:<#(NSString * _Nonnull)#>
+                                                         transactionId:<#(NSString * _Nonnull)#>
+                                                                amount:<#(NSString * _Nonnull)#>
+                                                           productInfo:<#(NSString * _Nonnull)#>
+                                                             firstName:<#(NSString * _Nonnull)#>
+                                                                 email:<#(NSString * _Nonnull)#>
+                                                                 phone:<#(NSString * _Nonnull)#>
+                                                                  surl:<#(NSString * _Nonnull)#>
+                                                                  furl:<#(NSString * _Nonnull)#>
+                                                           environment:<#(enum Environment)#> /*EnvironmentProduction or EnvironmentTest*/];
+
+paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use saved card
+```
+> 📘 Notes:
+>
+> * The URL used in **surl** and **furl** are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed.
+> * Kindly refer the below to[Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+> * The **TransactionId** parameter cannot have a special character and not more than 25 characters.
 
     <Accordion title="Mandatory parameters" icon="fa-code">
       Use the following table to pass the mandatory parameters in the PayU SDK:
@@ -95,35 +128,28 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       | surl          | Success URL - where the customer is redirected after a successful payment                                                                              | Yes      |
       | furl          | Failure URL - where the customer is redirected after an unsuccessful/failed payment                                                                    | Yes      |
       | environment   | The environment in which the transaction is initiated. For TEST transactions, use PayUTestEnvironment. For LIVE transactions, use PayUProdEnvironment. | Yes      |
+The code block for passing the parameters is similar to the following:
 
-      ```swift Swift
-      let payUPaymentParams = PayUPaymentParamsBuilder()
-          .setKey("MERCHANT_KEY")
-          .setTransactionId("TRANSACTION_ID")  
-          .setAmount("10")
-          .setProductInfo("PRODUCT_INFO")
-          .setFirstName("FIRSTNAME")
-          .setEmail("EMAIL")
-          .setPhone("1234567890")
-          .setSurl("SUCCESS_URL")
-          .setFurl("FAILURE_URL")
-          .setEnvironment(PayUTestEnvironment) // PayUProdEnvironment
-          .build()
-      ```
-      ```objectivec Objective-C
-      PayUPaymentParamsBuilder *paymentParamsBuilder = [PayUPaymentParamsBuilder new];
-      [paymentParamsBuilder setKey:@"MERCHANT_KEY"];
-      [paymentParamsBuilder setTransactionId:@"TRANSACTION_ID"];
-      [paymentParamsBuilder setAmount:@"10"];
-      [paymentParamsBuilder setProductInfo:@"PRODUCT_INFO"];
-      [paymentParamsBuilder setFirstName:@"FIRSTNAME"];
-      [paymentParamsBuilder setEmail:@"EMAIL"];
-      [paymentParamsBuilder setPhone:@"1234567890"];
-      [paymentParamsBuilder setSurl:@"SUCCESS_URL"];
-      [paymentParamsBuilder setFurl:@"FAILURE_URL"];
-      [paymentParamsBuilder setEnvironment:PayUTestEnvironment]; // PayUProdEnvironment
-      PayUPaymentParams *payUPaymentParams = [paymentParamsBuilder build];
-      ```
+If you required any value in the response then pass the below value
+
+```Text Swift
+paymentParam.additionalParam[PaymentParamConstant.udf1] = <String>
+paymentParam.additionalParam[PaymentParamConstant.udf2] = <String>
+paymentParam.additionalParam[PaymentParamConstant.udf3] = <String>
+paymentParam.additionalParam[PaymentParamConstant.udf4] = <String>
+paymentParam.additionalParam[PaymentParamConstant.udf5] = <String>
+paymentParam.additionalParam[PaymentParamConstant.walletURN] = <String>  // Required for Amul Wallet
+```
+```Text Objective-C
+paymentParam.additionalParam = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                    <#(NSString)#>, PaymentParamConstant.udf1,
+                                    <#(NSString)#>, PaymentParamConstant.udf2,
+                                    <#(NSString)#>, PaymentParamConstant.udf3,
+                                    <#(NSString)#>, PaymentParamConstant.udf4,
+                                    <#(NSString)#>, PaymentParamConstant.udf5,
+                                    <#(NSString)#>, PaymentParamConstant.walletURN,
+                                    nil];
+```
     </Accordion>
   </Accordion>
 
@@ -132,118 +158,92 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     Use the following sample code:
 
-    ```swift Swift
-    let payUSIDetailsBuilder = PayUSIDetailsBuilder()
-        .setBillingAmount("100")
-        .setBillingInterval(PayUBillingInterval.monthly)
-        .setPaymentStartDate(date)
-        .setPaymentEndDate(date)
-        .setBillingCycle("50")
-        .setRemarks("Test SI Transaction")
-        .setBillingRule(PayUBillingRule.max)
-        .build()
+```Text Swift
+ let siInfo = PayUSIParams(billingAmount: <String>,
+                           paymentStartDate: <Date>,
+                           paymentEndDate: <Date>,
+                           billingCycle: <PayUBillingCycle>,
+                           billingInterval: <NSNumber>)
 
-    let payUPaymentParams = PayUPaymentParamsBuilder()
-        .setKey("MERCHANT_KEY")
-        .setTransactionId("TRANSACTION_ID")  
-        .setAmount("10")
-        .setProductInfo("PRODUCT_INFO")
-        .setFirstName("FIRSTNAME")
-        .setEmail("EMAIL")
-        .setPhone("1234567890")
-        .setSurl("SUCCESS_URL")
-        .setFurl("FAILURE_URL")
-        .setEnvironment(PayUTestEnvironment)
-        .setPayUSIDetails(payUSIDetailsBuilder)
-        .build()
-    ```
+            siInfo.billingLimit = <PayuBillingLimit>
+            siInfo.billingRule = <PayuBillingRule>
+            
+            paymentParam.siParam = siInfo
+```
+```Text Onjective-C
+paymentParam.siParams = siParam;
+```
+
   </Accordion>
 
   <Accordion title="Step 2.3:For UPI One Time Mandate Payments (Optional)" icon="fa-code">
     For UPI One Time Mandate (OTM) payments, use the following parameters:
 
-    ```swift Swift
-    let payUUPIOTMDetailsBuilder = PayUUPIOTMDetailsBuilder()
-        .setNotificationUrl("NOTIFICATION_URL")
-        .setOtmType(PayUOTMType.opt_in)
-        .build()
+```Text Swift
+ let siInfo = PayUSIParams(billingAmount: <String>,
+                           paymentStartDate: <Date>,
+                           isPreAuthTxn:<Bool>)
+            
+            paymentParam.siParam = siInfo
+ #isPreAuthTxn must be true for OTM transactions
+```
+```Text Onjective-C
+paymentParam.siParams = siParam;
+```
 
-    let payUPaymentParams = PayUPaymentParamsBuilder()
-        .setKey("MERCHANT_KEY")
-        .setTransactionId("TRANSACTION_ID")  
-        .setAmount("10")
-        .setProductInfo("PRODUCT_INFO")
-        .setFirstName("FIRSTNAME")
-        .setEmail("EMAIL")
-        .setPhone("1234567890")
-        .setSurl("SUCCESS_URL")
-        .setFurl("FAILURE_URL")
-        .setEnvironment(PayUTestEnvironment)
-        .setPayUUPIOTMDetails(payUUPIOTMDetailsBuilder)
-        .build()
-    ```
   </Accordion>
 
-<Accordion title="Step 2.4: For Split Payments details (Optional)" icon="fa-code">
-  Split payments allow you to distribute the payment amount between a parent merchant and sub-merchants.
+  <Accordion title="Step 2.4: For Split Payments details (Optional)" icon="fa-code">
+    Split payments allow you to distribute the payment amount between a parent merchant and sub-merchants.
 
-  <Accordion title="JSON request structure of splitInfo field" icon="fa-code">
-    ```json
-    {
-      "type": "absolute",
-      "splitInfo": {
-        "merchant_05Apr16_126800": {
-          "aggregatorSubTxnId": "aggregatorSubTxnId1",
-          "aggregatorSubAmt": "50"
-        },
-        "merchant_05Apr16_780908": {
-          "aggregatorSubTxnId": "aggregatorSubTxnId2", 
-          "aggregatorSubAmt": "30"
+    <Accordion title="JSON request structure of splitInfo field" icon="fa-code">
+      ```json
+      {
+        "type": "absolute",
+        "splitInfo": {
+          "merchant_05Apr16_126800": {
+            "aggregatorSubTxnId": "aggregatorSubTxnId1",
+            "aggregatorSubAmt": "50"
+          },
+          "merchant_05Apr16_780908": {
+            "aggregatorSubTxnId": "aggregatorSubTxnId2", 
+            "aggregatorSubAmt": "30"
+          }
         }
       }
-    }
-    ```
+      ```
 
-    Example implementation:
+      Example implementation:
+```Text Swift
+paymentParam.splitPaymentDetails = ""
+```
+```Text Objective-C
+paymentParam.splitPaymentDetails = @"";
+```
+    </Accordion>
 
-    ```swift Swift
-    let payUPaymentParams = PayUPaymentParamsBuilder()
-        .setKey("MERCHANT_KEY")
-        .setTransactionId("TRANSACTION_ID")  
-        .setAmount("100")
-        .setProductInfo("PRODUCT_INFO")
-        .setFirstName("FIRSTNAME")
-        .setEmail("EMAIL")
-        .setPhone("1234567890")
-        .setSurl("SUCCESS_URL")
-        .setFurl("FAILURE_URL")
-        .setEnvironment(PayUTestEnvironment)
-        .setSplitPaymentsDetails("SPLIT_PAYMENTS_DETAILS_JSON")
-        .build()
-    ```
-  </Accordion>
+    <Accordion title="Step 2.4:For Additional Charges" icon="fa-code">
+      Additional charges can be applied to transactions:
 
-  <Accordion title="Step 2.4:For Additional Charges" icon="fa-code">
-    Additional charges can be applied to transactions:
-
-    ```swift Swift
-    let payUPaymentParams = PayUPaymentParamsBuilder()
-        .setKey("MERCHANT_KEY")
-        .setTransactionId("TRANSACTION_ID")  
-        .setAmount("100")
-        .setProductInfo("PRODUCT_INFO")
-        .setFirstName("FIRSTNAME")
-        .setEmail("EMAIL")
-        .setPhone("1234567890")
-        .setSurl("SUCCESS_URL")
-        .setFurl("FAILURE_URL")
-        .setEnvironment(PayUTestEnvironment)
-        .setAdditionalCharges("ADDITIONAL_CHARGES_JSON")
-        .build()
-    ```
+      ```swift Swift
+      let payUPaymentParams = PayUPaymentParamsBuilder()
+          .setKey("MERCHANT_KEY")
+          .setTransactionId("TRANSACTION_ID")  
+          .setAmount("100")
+          .setProductInfo("PRODUCT_INFO")
+          .setFirstName("FIRSTNAME")
+          .setEmail("EMAIL")
+          .setPhone("1234567890")
+          .setSurl("SUCCESS_URL")
+          .setFurl("FAILURE_URL")
+          .setEnvironment(PayUTestEnvironment)
+          .setAdditionalCharges("ADDITIONAL_CHARGES_JSON")
+          .build()
+      ```
+    </Accordion>
   </Accordion>
 </Accordion>
-</Accordion>
+
 <Accordion title="Step 3: Set up the payment hashes" icon="fa-code">
   PayU uses hashes to ensure the integrity and security of the transaction.
 
