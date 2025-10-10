@@ -103,9 +103,9 @@ config.acsContentConfig = acsContentConfig
 
 * **setDefaultProgressLoader**: Customize via `config.setDefaultProgressLoader(true, "HexColor")`. This replaces the full-page loader with a default small loader.
 
-## UI customization
+## UI Customization
 
-### Button customization
+### Button Customization
 
 ```kotlin
 var buttonCustomisation = ButtonCustomisation.Builder()
@@ -131,7 +131,7 @@ var labelCustomisation = LabelCustomisation.Builder()
     .build()
 ```
 
-### Toolbar customization
+### Toolbar Customization
 
 ```kotlin
 var toolbarCustomisation = ToolbarCustomisation.Builder()
@@ -144,7 +144,7 @@ var toolbarCustomisation = ToolbarCustomisation.Builder()
     .build()
 ```
 
-### TextBox customization
+### TextBox Customization
 
 ```kotlin
 var textBoxCustomisation = TextBoxCustomisation.Builder()
@@ -157,7 +157,7 @@ var textBoxCustomisation = TextBoxCustomisation.Builder()
     .build()
 ```
 
-### Bottom Sheet customization
+### Bottom Sheet Customization
 
 ```kotlin
 var bottomSheetCustomisation = BottomSheetCustomisation.Builder()
@@ -172,7 +172,7 @@ var bottomSheetCustomisation = BottomSheetCustomisation.Builder()
     .build()
 ```
 
-### Font customization
+### Font Customization
 
 ```kotlin
 val fontFamilyCustomisation = FontFamilyCustomisation.Builder()
@@ -181,7 +181,7 @@ val fontFamilyCustomisation = FontFamilyCustomisation.Builder()
     .build()
 ```
 
-### UI customization integration
+### UI Customization integration
 
 ```kotlin
 var uiCustomisation = UICustomisation.Builder()
@@ -534,6 +534,8 @@ var mPaymentParams =  PaymentParams();
   </tbody>
 </Table>
 
+**Store Card**
+
 To store the card, pass both userCredentials and storeCard
 
 ```
@@ -562,6 +564,18 @@ To make payment using stored card, pass userCredentials, network token and card 
 | storeCard       | `integer`  This is an existing field, where the card token flag is passed by merchant. The values for this field can be:                                                                                                                                                                                                             | 1        |
 | networkToken    | `String` A network token is a tokenized representation of a card provided by the card network (e.g., Visa, Mastercard). It is used for processing payments at the network level and is required for certain API processes like binInfo API 1. Network tokens are typically used when a non-DI (Direct Integration) payment gateway . | abcdefgh |
 | cardToken       | `String` A card token is a merchant-specific tokenized representation of a card. It is often used to store card information securely without exposing sensitive details. Merchants can store these tokens themselves or with a payment service provider like PayU.                                                                   | abcdefgh |
+
+<br />
+
+**EMI**
+To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
+
+```Text EMI
+mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., EMI03)
+mPaymentParams.setPg("EMI")                         // Set payment gateway to EMI
+```
+
+<br />
 
 ## 2.3 PayU3DS2PaymentCallback
 
