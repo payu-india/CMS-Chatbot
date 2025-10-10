@@ -115,7 +115,7 @@ If you're not receiving webhook notifications:
 
 ### Does txn_id field in the webhook refer to mihpayid or our txnid?
 
-This is PayuID
+This is PayuID,
 
 ### On new status dispute, is the amount already booked from merchant account?
 
@@ -126,11 +126,11 @@ Dependent on the merchant risk score & contract, Merchant accounts are marked as
 
 ### When is the amount charged from the merchant account?
 
-Refer to previous question on 
+Refer to the [previous FAQ](https://docs.payu.in/docs/webhooks-for-chargeback#on-new-status-dispute-is-the-amount-already-booked-from-merchant-account).
 
 ### Does Closed Customer Favour mean the amount is debited from merchant account?
 
-Yes. Refer above for details.
+Yes, refer to 
 
 ### Do Closed in Merchant Favour / Closed under Fraud Liability mean the amount is reversed to merchant account?
 
