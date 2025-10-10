@@ -23,8 +23,6 @@ To choose the right products (API Integration) for your business, you need to co
 
 PayU India offers following products to choose from:
 
-Here's the HTML content converted to markdown format:
-
 * Web Checkout
   * Choose between Prebuilt Web Checkout (PayU Hosted Checkout), Custom Checkout (Merchant Hosted Checkout) or Low Code Web SDK integration based on your resources and time to integrate as described in Collect Payment from your website. With your Web Checkout integration, you can opt-in for the following PayU products:
     * [Subscription or Recurring Payments](doc:introduction-recurring-payments-integration)
