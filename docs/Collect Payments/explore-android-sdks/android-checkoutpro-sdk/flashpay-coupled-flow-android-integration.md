@@ -11,7 +11,7 @@ FlashPay solution primarily offers a single comprehensive SDK which is equipped 
 
 Add the following dependency in your app-level gradle file:
 
-```gradle
+```groovy
 implementation 'in.payu:threeds-sdk:1.1.1-SNAPSHOT'
 ```
 
@@ -67,7 +67,7 @@ config.authenticateOnly = true //Pass this as true if you want to authenticate o
 
 To customise UI with your content,  pass these configurations:
 
-```
+```kotlin
 config.enableCustomizedOtpUIFlow = true //To customise UI with your content please pass as true
 config.enableTxnTimeoutTimer = true //pass as true to show timer for page timeout
 config.merchantName = "merchant name" // pass merchant name with customised OTP Flow
@@ -538,7 +538,7 @@ var mPaymentParams =  PaymentParams();
 
 To store the card, pass both userCredentials and storeCard
 
-```
+```kotlin Kotlin
      mpaymentParams.userCredentials = "XXXX:XXXX"
      mpaymentParams.storeCard = 1 or 0 
 
@@ -546,7 +546,7 @@ To store the card, pass both userCredentials and storeCard
 
 To make payment using stored card, pass userCredentials, network token and card token:
 
-```
+```kotlin
       mpaymentParams.userCredentials = "XXXX:XXXX"
       mpaymentParams.networkToken = <Network Token>
       mpaymentParams.cardToken = <Card Token>
@@ -570,7 +570,7 @@ To make payment using stored card, pass userCredentials, network token and card 
 **EMI**
 To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
 
-```Text EMI
+```kotlin Kotlin
 mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., EMI03)
 mPaymentParams.setPg("EMI")                         // Set payment gateway to EMI
 ```
@@ -592,14 +592,14 @@ fun mfaRegistrationstatus(status: Boolean)
 
 ### Callback Method Descriptions
 
-| Method                  | Description                                                                                                                                                                                                                                                       |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                                                                                               |
-| `onPaymentFailure`      | Called when payment fails. t will contain a failure response. This will be a JSON Object, parse response as per your need                                                                                                                                         |
-| `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                                                                                                  |
-| `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                      |
-| `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk |
-| `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                          |
+| Method                  | Description                                                                                                                                                                                                                                                                                                                        |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                                                                                                                                                                |
+| `onPaymentFailure`      | Called when payment fails. t will contain a failure response. This will be a JSON Object, parse response as per your need                                                                                                                                                                                                          |
+| `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                                                                                                                                                                   |
+| `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                                                                                       |
+| `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the [https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) |
+| `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                                                                                           |
 
 ### Hash Generation
 
