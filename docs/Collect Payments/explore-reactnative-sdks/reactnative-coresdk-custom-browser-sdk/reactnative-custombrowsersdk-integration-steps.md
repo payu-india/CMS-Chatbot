@@ -21,6 +21,8 @@ The React Native Custom Browser SDK integration involves the following steps:
 
 ## Step 1: Installation
 
+The PayU Custom Browser SDK for React Native is offered through NPM:
+
 <Tabs>
   <Tab title="Android">
     To add the PayU CB plugin to your app run the following dependency in the root folder of your React native app:
@@ -40,7 +42,7 @@ The React Native Custom Browser SDK integration involves the following steps:
   </Tab>
 </Tabs>
 
-The PayU Custom Browser SDK for React Native is offered through NPM:
+<br />
 
 ## Step 2: Build the payment parameters
 
