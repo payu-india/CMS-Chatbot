@@ -9,15 +9,29 @@ FlashPay solution primarily offers a single comprehensive SDK which is equipped 
 
 ## 1. Gradle changes
 
+<br />
+
+PayU SDK offers the following methods to integrate with 3DS 2.0:
+
+*  **SDK Integration**: Min SDK Version is v21 Compile SDK Version is v31 or later
+* **Maven Dependency URL** Use the following code snippet in your app’s build.gradle file:
+
 Add the following dependency in your app-level gradle file:
 
 ```groovy
-implementation 'in.payu:threeds-sdk:1.1.1-SNAPSHOT'
+implementation 'in.payu:threeds-sdk:1.1.2-SNAPSHOT'
 ```
+
+* Use our SDK for a complete transaction:
+  * Collecting device details
+  * Invoking an authentication request through our 3DS Server
+  * Invoking challenge
+  * Completing authorization through PayU
+  * Use our SDK for collecting device details and to render challenge screens.
 
 ## 2. Installation
 
-### Payment initialization method
+### Payment initialisation method
 
 Call the following `initiatePayment` method to initiate payment through us and we will return success or failure callback post transaction completion. This method will internally call Authentication request (/_payment), collect device detail, call binInfo API, present the native OTP screen and do the authorization too.
 
@@ -34,12 +48,12 @@ fun initiatePayment(
 
 ### Parameters for initiatePayment
 
-| Parameter       | Description                                               |
-| --------------- | --------------------------------------------------------- |
-| `activity`      | This parameter contains the AppCompatActivity reference.  |
-| `config`        | Configuration object for customizing the FlashPay SDK     |
-| `paymentParams` | Payment-related details object                            |
-| `callback`      | Callback for payment success, failure, cancellation, etc. |
+| Parameter       | Description                                                                                                                                      |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `activity`      | This parameter contains the AppCompatActivity reference.                                                                                         |
+| `config`        | Configuration object for customizing the FlashPay SDK                                                                                            |
+| `paymentParams` | Payment-related details object. Merchants have to create the payment param object and pass it which will contain info such as cardDeatails, etc. |
+| `callback`      | Callback for payment success, failure, cancellation, etc.                                                                                        |
 
 ### 2.1 PayU3DS2Config
 
