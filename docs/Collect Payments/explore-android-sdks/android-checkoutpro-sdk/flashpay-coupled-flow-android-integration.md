@@ -592,16 +592,28 @@ fun mfaRegistrationstatus(status: Boolean)
 
 ### Callback Method Descriptions
 
-| Method                  | Description                                                                                                                                                                                                                                                                                                                        |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                                                                                                                                                                |
-| `onPaymentFailure`      | Called when payment fails. t will contain a failure response. This will be a JSON Object, parse response as per your need                                                                                                                                                                                                          |
-| `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                                                                                                                                                                   |
-| `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                                                                                       |
-| `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the [https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) |
-| `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                                                                                           |
+| Method                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                                                                                                                                                                                                                                                                            |
+| `onPaymentFailure`      | Called when payment fails. t will contain a failure response. This will be a JSON Object, parse response as per your need                                                                                                                                                                                                                                                                                                                      |
+| `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                                                                                                                                                                                                   |
+| `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the <Anchor label="https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk" target="_blank" href="https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk">https\://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk</Anchor> |
+| `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                                                                                                                                                                                                       |
 
 ### Hash Generation
+
+You will receive a call on the generateHash method of PayU3DS2PaymentCallback.
+
+In the method parameter, you will receive a dictionary or hashMap, and extract the value of hashString from that. Pass that value to the server, and now the server will append salt at the end and generate sha512 hash over it. The server will give that hash back to your app, and the app will provide that hash to PayU through a callback mechanism.
+
+In the map, you have to check for the following keys to generate a hash:
+
+* hashString
+* hashName
+* postSalt
+
+  At the end of that hashString, append your salt and use the SHA-512 algorithm on that final string to generate a hash.
 
 Example for creating a hash in the `generateHash` callback:
 
@@ -621,6 +633,12 @@ hashGenerationListener.onHashGenerated(hashMap)
 >
 > * Append your `salt` to the `hashString` and use SHA-512 to generate the hash
 > * If `postSalt` is provided, append it to the hashString after adding salt before hashing
+
+> 📘 Callout
+>
+>
+> If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algorithm on that final string to generate hash.
+> There is no need to know the formula for dynamic hashes because PayU SDK gives you the string containing all the required parameters. Your server has to append salt at the end and generate sha512 hash over it.
 
 ### MFA registration status
 
