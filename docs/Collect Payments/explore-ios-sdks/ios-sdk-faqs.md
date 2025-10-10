@@ -10,10 +10,9 @@ metadata:
 next:
   description: ''
 ---
-
 ## PayU Checkout Pro
 
-#### What are the customization options available for PayU Checkout Pro SDK for iOS?**
+#### What are the customization options available for PayU Checkout Pro SDK for iOS?
 
 **Answer**: PayU offers the following customization options:
 
