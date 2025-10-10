@@ -57,7 +57,7 @@ git clone https://github.com/payu-intrepos/payu-core-pg-react.git payuSdkExample
 
 Generate the payment hash and pass the hash in the JSON payUPaymentParams.hashes.payment parameter as shown below:
 
-```javascript
+```javascript React.js
 {
   payUPaymentParams: {
     hashes:{
