@@ -223,24 +223,18 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       ```
     </Accordion>
 
-    <Accordion title="Step 2.4:For Additional Charges" icon="fa-code">
+    <Accordion title="Step 2.5:For Additional Charges" icon="fa-code">
       Additional charges can be applied to transactions:
 
-      ```swift Swift
-      let payUPaymentParams = PayUPaymentParamsBuilder()
-          .setKey("MERCHANT_KEY")
-          .setTransactionId("TRANSACTION_ID")  
-          .setAmount("100")
-          .setProductInfo("PRODUCT_INFO")
-          .setFirstName("FIRSTNAME")
-          .setEmail("EMAIL")
-          .setPhone("1234567890")
-          .setSurl("SUCCESS_URL")
-          .setFurl("FAILURE_URL")
-          .setEnvironment(PayUTestEnvironment)
-          .setAdditionalCharges("ADDITIONAL_CHARGES_JSON")
-          .build()
-      ```
+    ```Text Swift
+paymentParam.additionalCharges = "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55"
+paymentParam.percentageAdditionalCharges = "CC:50,SBIB:100,DINR:100,DC:25,NB:50"
+```
+```Text Objective-C
+paymentParam.additionalCharges = @"CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
+paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50";
+```
+
     </Accordion>
   </Accordion>
 </Accordion>
