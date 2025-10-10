@@ -239,8 +239,8 @@ var mPaymentParams =  PaymentParams();
         mPaymentParams.expiryMonth = "<expiryMonth>"// MM
         mPaymentParams.expiryYear = "<expiryYear>"// YYYY
         mPaymentParams.cvv = "<cvv>"
-        mPaymentParams.partnerWebhookSuccess = "url"
-        mPaymentParams.partnerWebhookFailure = "url"
+        mPaymentParams.partnerWebhookSuccess = "<Webhook Success  URL>"
+        mPaymentParams.partnerWebhookFailure = "<Webhook Failure  URL>"
 
 ```
 
@@ -524,7 +524,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        `String`When the transaction is successful, PayU will send webhook response in this URL and pass the transaction response.  https://docs.payu.in/docs/webhooks#/
+        `String`When the transaction is successful, PayU will send webhook response in this URL and pass the transaction response.  [https://docs.payu.in/docs/webhooks#/](https://docs.payu.in/docs/webhooks#/)
       </td>
 
       <td>
@@ -538,7 +538,7 @@ var mPaymentParams =  PaymentParams();
       </td>
 
       <td>
-        `String` When the transaction is failed,  PayU will send webhook response in this URL and pass the transaction response. https://docs.payu.in/docs/webhooks#/
+        `String` When the transaction is failed,  PayU will send webhook response in this URL and pass the transaction response. [https://docs.payu.in/docs/webhooks#/](https://docs.payu.in/docs/webhooks#/)
       </td>
 
       <td>
