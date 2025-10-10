@@ -113,10 +113,6 @@ If you're not receiving webhook notifications:
 
 ## FAQs
 
-#### Does txn_id field in the webhook refer to mihpayid or our txnid?
-
-This is PayuID,
-
 #### On new status dispute, is the amount already booked from merchant account?  OR **When is the amount charged from the merchant account?** OR **Does Closed Customer Favour mean the amount is debited from merchant account?**
 
 Dependent on the merchant risk score & contract, Merchant accounts are marked as Upfront-Debit or No-Upfront-Debit. So when a new dispute is raised:
