@@ -27,16 +27,16 @@ The Native OTP Assist SDK gives you the following key capabilities:
     The Native OTP SDK is offered via CocoaPods. To add the SDK to your app project, include the SDK framework in your `podfile`.
 
     `// make sure to add below-mentioned line to use dynamic frameworksuse_frameworks!​
-                                            // Add this to include our SDK
-                                            pod 'PayUIndia-NativeOtpAssist'`
+                                                    // Add this to include our SDK
+                                                    pod 'PayUIndia-NativeOtpAssist'`
 
     Install dependency using pod `installcommand `in `terminalNext`, add the following imports in the class where you need to initiate a payment:
 
-    ```objectivec Objective-C
-    #import <PayUNativeOtpAssist/PayUNativeOtpAssist.h>
-    ```
     ```swift Swift
     import PayUNativeOtpAssist
+    ```
+    ```objectivec Objective-C
+    #import <PayUNativeOtpAssist/PayUNativeOtpAssist.h>
     ```
 
     > 📘 Compatibilty
@@ -52,12 +52,13 @@ The Native OTP Assist SDK gives you the following key capabilities:
     **CrashReporter**
     In order to receive all the crashes related to our SDKs, add the below-mentioned line to your AppDelegate's `didFinishLaunchingWithOptions`.
 
-    ```Text Objective-C
-    [PayUOtpAssist start];
-    ```
-    ```Text Swift
+    ```swift Swift
     PayUOtpAssist.start()
     ```
+    ```objectivec Objective-C
+    [PayUOtpAssist start];
+    ```
+
 
     #### Swift Package Manager integration
 
@@ -86,31 +87,7 @@ The Native OTP Assist SDK gives you the following key capabilities:
 
       > **Note**: TransactionId can't have a special character and not more than 25 characters.
 
-      ```Text Objective-C
-      PayUPaymentParam *paymentParam = [[PayUPaymentParam alloc] initWithKey:<#(NSString * _Nonnull)#>
-                                                               transactionId:<#(NSString * _Nonnull)#>
-                                                                      amount:<#(NSString * _Nonnull)#>
-                                                                 productInfo:<#(NSString * _Nonnull)#>
-                                                                   firstName:<#(NSString * _Nonnull)#>
-                                                                       email:<#(NSString * _Nonnull)#>
-                                                                       phone:<#(NSString * _Nonnull)#>
-                                                                        surl:<#(NSString * _Nonnull)#>
-                                                                        furl:<#(NSString * _Nonnull)#>
-                                                                 environment:<#(enum Environment)#> /*EnvironmentProduction or EnvironmentTest*/];
-      paymentParam.hashes = [PayUHashes new];
-      paymentParam.hashes.paymentHash = <#T##SHA512 HashString#>;
-      CCDC *ccdc = [CCDC new];
-      ccdc.cardNumber = <#T##String#>;
-      ccdc.expiryYear = <#T##String#>;
-      ccdc.expiryMonth = <#T##String#>;
-      ccdc.cvv = <#T##String#>;
-      ccdc.txnS2SFlow = <#T##String#>; //"4" for transactions on native otp assist
-      ccdc.nameOnCard = <#T##String#>;
-      ccdc.shouldSaveCard = <#T##String#>;
-      paymentParam.paymentOption = ccdc;
-      paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use saved 
-      ```
-      ```Text Swift
+      ```swift Swift
       let paymentParam = PayUPaymentParam(key: <#T##String#>,
                                           transactionId: <#T##String#>,
                                           amount: <#T##String#>,
@@ -133,6 +110,30 @@ The Native OTP Assist SDK gives you the following key capabilities:
       ccdc.shouldSaveCard = <#T##String#>
       paymentParam.paymentOption = ccdc
       paymentParam.userCredential = <#T##String#> // For saving and fetching user's saved card
+      ```
+      ```objectivec Objective-C
+      PayUPaymentParam *paymentParam = [[PayUPaymentParam alloc] initWithKey:<#(NSString * _Nonnull)#>
+                                                               transactionId:<#(NSString * _Nonnull)#>
+                                                                      amount:<#(NSString * _Nonnull)#>
+                                                                 productInfo:<#(NSString * _Nonnull)#>
+                                                                   firstName:<#(NSString * _Nonnull)#>
+                                                                       email:<#(NSString * _Nonnull)#>
+                                                                       phone:<#(NSString * _Nonnull)#>
+                                                                        surl:<#(NSString * _Nonnull)#>
+                                                                        furl:<#(NSString * _Nonnull)#>
+                                                                 environment:<#(enum Environment)#> /*EnvironmentProduction or EnvironmentTest*/];
+      paymentParam.hashes = [PayUHashes new];
+      paymentParam.hashes.paymentHash = <#T##SHA512 HashString#>;
+      CCDC *ccdc = [CCDC new];
+      ccdc.cardNumber = <#T##String#>;
+      ccdc.expiryYear = <#T##String#>;
+      ccdc.expiryMonth = <#T##String#>;
+      ccdc.cvv = <#T##String#>;
+      ccdc.txnS2SFlow = <#T##String#>; //"4" for transactions on native otp assist
+      ccdc.nameOnCard = <#T##String#>;
+      ccdc.shouldSaveCard = <#T##String#>;
+      paymentParam.paymentOption = ccdc;
+      paymentParam.userCredential = <#(NSString)#>; // For saving and fetching use saved 
       ```
 
       > 📘 Note
@@ -175,7 +176,7 @@ The Native OTP Assist SDK gives you the following key capabilities:
 
       * `fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest):` Boolean – It's an optional callback, override when you want to handle the Bank page redirection flow. You just need to change the return value to false. You can also open CustomBrowser in fallback scenarios. The following code snippet is used to open the CustomBrowser. For more information on using CustomBrowser, refer to [iOS CustomBrowser SDK](doc:ios-custombrowser-sdk).
 
-      ```Text Swift
+      ```swift Swift
       fun shouldHandleFallback(payUAcsRequest: PayUAcsRequest) : Boolean {
 
       val customBrowserConfig = CustomBrowserConfig(merchantKey, txnId)
@@ -382,5 +383,6 @@ The Native OTP Assist SDK gives you the following key capabilities:
       </tbody>
     </Table>
   </Accordion>
-<Go_Live_Checklist />
+
+  <Go_Live_Checklist />
 </Accordion>
