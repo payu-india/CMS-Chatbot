@@ -239,8 +239,8 @@ var mPaymentParams =  PaymentParams();
         mPaymentParams.expiryMonth = "<expiryMonth>"// MM
         mPaymentParams.expiryYear = "<expiryYear>"// YYYY
         mPaymentParams.cvv = "<cvv>"
-				mPaymentParams.partnerWebhookSuccess = "url"
-				mPaymentParams.partnerWebhookFailure = "url"
+        mPaymentParams.partnerWebhookSuccess = "url"
+        mPaymentParams.partnerWebhookFailure = "url"
 
 ```
 
