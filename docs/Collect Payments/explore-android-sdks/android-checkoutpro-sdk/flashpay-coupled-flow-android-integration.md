@@ -582,7 +582,7 @@ To make payment using stored card, pass userCredentials, network token and card 
 <br />
 
 **EMI**
-To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI".  Refer to [emi-codes](https://docs.payu.in/docs/emi-codes)
+To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI".  Refer to [EMI Codes](https://docs.payu.in/docs/emi-codes)
 
 ```kotlin Kotlin
 mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., EMI03)
