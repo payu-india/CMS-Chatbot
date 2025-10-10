@@ -385,6 +385,14 @@ next:
 
     2. Get the request by using the `createRequestWithPaymentParam` method for instance.
 
+    ```swift Swift
+    createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_EMI, withCompletionBlock: { request, postParam, error in
+    if error == nil {
+    //It is good to go state. You can use request parameter in webview to open Payment Page
+    } else {
+    //Something went wrong with Parameter, error contains the error Message string
+    }
+    })
     ```objectivec Objective-C
     self.createRequest = [PayUCreateRequest new];
     [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_EMI withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
@@ -397,21 +405,11 @@ next:
         }
     }];
     ```
-    ```swift Swift
-    createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_EMI, withCompletionBlock: { request, postParam, error in
-    if error == nil {
-    //It is good to go state. You can use request parameter in webview to open Payment Page
-    } else {
-    //Something went wrong with Parameter, error contains the error Message string
-    }
-    })
-    ```
   </Accordion>
 
   <Accordion title="Cardless EMI" icon="fa-code">
     To Pay using CardlessEMI, you need to set a parameter similar to the following code snippet:
 
-   
     ```swift Swift
     paymentParamForPassing.bankCode = "ZESTMON" //BankID
     paymentParamForPassing.isCardlessEMI = true
