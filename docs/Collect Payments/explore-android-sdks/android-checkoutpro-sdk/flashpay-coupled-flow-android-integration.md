@@ -60,7 +60,7 @@ config.setDefaultProgressLoader(true, "HexColor") //to show default loader inste
 
 config.enableMFAViaBiometric = true // if set to true, then during payment via OTP, there will an option to enable biometric authentication. 
 // If selected, the biometric registration process will start after payment success callback is triggered. 
-config.authenticateOnly = Pass this as true if you want to authenticate only using PayU. By default we will authorize.
+config.authenticateOnly = true //Pass this as true if you want to authenticate only using PayU. By default we will authorize.
 ```
 
 #### Customise UI with your content
@@ -68,10 +68,10 @@ config.authenticateOnly = Pass this as true if you want to authenticate only usi
 To customise UI with your content,  pass these configurations:
 
 ```
-config.enableCustomizedOtpUIFlow = true
+config.enableCustomizedOtpUIFlow = true //To customise UI with your content please pass as true
 config.enableTxnTimeoutTimer = true //pass as true to show timer for page timeout
-config.merchantName = "merchant name"
-config.amount = "txn amount"
+config.merchantName = "merchant name" // pass merchant name with customised OTP Flow
+config.amount = "txn amount" // pass transaction amount with customised OTP Flow
 ```
 
 #### ACS content configurations
