@@ -143,18 +143,17 @@ This iframe will remain hidden until the SDK is launched, and can be reused for 
 
 ```javascript
 .iFrameContainer {
-  width: 100%;
-  height: 80%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  visibility: hidden; /* initially hidden */
-  min-height: 50vh;
-  z-index: 10000;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+    display:block;
+    position:fixed;
+    visibility:hidden;
+    width:100%;
+    height:80%;
+    min-height:90vh;
+    left:0;
+    bottom:0;
+    z-index:10000;
+    overflow:hidden;
+    background: rgba(255, 255, 255, 1) none repeat scroll 0 0;
 }
 ```
 
