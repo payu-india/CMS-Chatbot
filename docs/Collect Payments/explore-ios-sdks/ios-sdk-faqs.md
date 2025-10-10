@@ -27,7 +27,7 @@ next:
 
 **Answer**: The PayU payment page's look and feel can be customized using PayU Dashboard or customiseUIWithPrimaryColor config. Merchants can customize the page's layout, fonts, colors, and other visual elements to match their branding. For more information, refer to any of the following:
 
-* Configuring using Dashboard
+* [Using Dashboard
 * Advanced Integration for iOS > Change Theme
 
 ***
