@@ -25,36 +25,37 @@ next:
 ---
 The React Native UPI SDK integration involves the following steps:
 
-1. [Installation](https://docs.payu.in/docs/reactnative-upisdk-integration-steps#step-1-installation)
-2. [Build the payment parameters](https://docs.payu.in/docs/reactnative-upisdk-integration-steps#step-2-build-the-payment-parameters)
-3. [Generate payment hash](https://docs.payu.in/docs/reactnative-upisdk-integration-steps#step-3-generate-payment-hash)
-4. [Payment request post data (Intent flow)](https://docs.payu.in/docs/reactnative-upisdk-integration-steps#step-4-payment-request-post-data-intent-flow)
-5. [Payment request post data (Generic Intent flow)](https://docs.payu.in/docs/reactnative-upisdk-integration-steps#step-5-payment-request-post-data-generic-intent-flow)
-6. [Payment request post data (Collect flow)](https://docs.payu.in/docs/reactnative-upisdk-integration-steps#step-6-payment-request-post-data-collect-flow)
-7. [Make payment](https://docs.payu.in/docs/reactnative-upisdk-integration-steps#step-7-make-payment)
-8. [VPA validation](https://docs.payu.in/docs/reactnative-upisdk-integration-steps#step-8-vpa-validation)
-9. [List the UPI apps](https://docs.payu.in/docs/reactnative-upisdk-integration-steps#step-9-list-the-upi-apps)
-
-## Step 1: Installation
+<Accordion title="Step 1: Installation" icon="fa-code">
 
 The PayU UPI SDK for React Native is offered through npm.
 
-**For Android**: To add the PayU UPI plugin to your app run the following dependency in the root folder of your React native app:
 
-```
-npm install payu-upi-react --save
-import PayUUPI from 'payu-upi-react'
-```
+<Tabs>
+  <Tab title="Android">
+    To add the PayU UPI plugin to your app run the following dependency in the root folder of your React native app:
 
-**For iOS:** Install the pod using the following command. Make sure your minimum deployment target is iOS 11.
 
-```
-pod install
-```
+    ```
+    npm install payu-upi-react --save
+    import PayUUPI from 'payu-upi-react'
+    ```
 
-***
+  </Tab>
 
-## Step 2: Build the payment parameters
+  <Tab title="iOS">
+    Install the pod using the following command. Make sure your minimum deployment target is iOS 11.
+
+
+    ```
+    pod install
+    ```
+
+    ***
+
+  </Tab>
+</Tabs>
+</Accordion>
+<Accordion title="Step 2: Build the payment parameters" icon="fa-code">
 
 To initiate a payment, your app needs to send transactional information to the UPI SDK. Build the payUPaymentParams object with the mandatory parameters as shown in the following code snippet:
 
@@ -118,7 +119,8 @@ For details on Standing Instructions parameters, refer to [PayU Standing Instruc
 
 ***
 
-## Step 3: Generate payment hash
+</Accordion>
+<Accordion title="Step 3: Generate payment hash" icon="fa-code">
 
 Generate the payment hash and pass the hash in the JSON `payUPaymentParams.hashes.payment` parameter or in `payUPaymentParams.hashes.validate_vpa `as shown below:
 
@@ -141,7 +143,8 @@ For hash generation logic refer to G[enerate Hash](https://docs.payu.in/docs/has
 
 ***
 
-## Step 4: Payment request post data (Intent flow)
+</Accordion>
+<Accordion title="Step 4: Payment request post data (Intent flow)" icon="fa-code">
 
 Build Mandatory parameters for UPI intent flow in JSON as shown in the code snippet below:
 
@@ -172,7 +175,8 @@ var params={
 
 ***
 
-## Step 5: Payment request post data (Generic Intent flow)
+</Accordion>
+<Accordion title="Step 5: Payment request post data (Generic Intent flow)" icon="fa-code">
 
 <Callout icon="📘" theme="info">
   **Note**: Generic Intent Flow is only supported for Android
@@ -206,7 +210,8 @@ var params={
 
 ***
 
-## Step 6: Payment request post data (Collect flow)
+</Accordion>
+<Accordion title="Step 6: Payment request post data (Collect flow)" icon="fa-code">
 
 Build Mandatory parameters for Collect flow in JSON as shown in the code snippet below:
 
@@ -238,9 +243,10 @@ var params={
 
 ***
 
-## Step 7: Make payment
+</Accordion>
+<Accordion title="Step 7: Make payment" icon="fa-code">
 
-### (Launch with Activity)
+<Accordion title="(Launch with Activity)" icon="fa-code">
 
 Use the code snippet mentioned below to make the payment:
 
@@ -255,7 +261,8 @@ PayUUPI.makeUPIPayment(params,
     );
 ```
 
-### (Launch with Fragment)
+</Accordion>
+<Accordion title="(Launch with Fragment)" icon="fa-code">
 
 Use the code snippet mentioned below to make the payment:
 
@@ -272,7 +279,9 @@ PayUUPI.makeUPIPaymentSeamless(params,
 
 ***
 
-## Step 8: VPA validation
+</Accordion>
+</Accordion>
+<Accordion title="Step 8: VPA validation" icon="fa-code">
 
 Initialise and launch the React Native UPI SDK by calling the following code snippet to validate the VPA:
 
@@ -288,7 +297,7 @@ PayUUPI.validateVPA(
     );
 ```
 
-### Response
+<Accordion title="Response" icon="fa-code">
 
 The sample response of a VPA validation request is similar to the following:
 
@@ -305,7 +314,9 @@ The sample response of a VPA validation request is similar to the following:
 
 ***
 
-## Step 9: List the UPI apps
+</Accordion>
+</Accordion>
+<Accordion title="Step 9: List the UPI apps" icon="fa-code">
 
 Initialise and launch the UPI SDK by calling the following code snippet to get the list of UPI apps installed on Android and iOS devices:
 
@@ -315,7 +326,7 @@ PayUUPI.intentApps((intentApps) => {
       });
 ```
 
-### Response
+<Accordion title="Response" icon="fa-code">
 
 Here is how a sample response of UPI list request looks like:
 
@@ -328,7 +339,8 @@ Here is how a sample response of UPI list request looks like:
 }
 ```
 
-### For IOS, UPI Intent (Mandatory)
+</Accordion>
+<Accordion title="For IOS, UPI Intent (Mandatory)" icon="fa-code">
 
 For fetch the Installed UPI apps, Kindly add the query schemes in the`info.plist`:
 
@@ -342,3 +354,6 @@ For fetch the Installed UPI apps, Kindly add the query schemes in the`info.plist
 		<string>credpay</string>
 	</array>
 ```
+
+</Accordion>
+</Accordion>
