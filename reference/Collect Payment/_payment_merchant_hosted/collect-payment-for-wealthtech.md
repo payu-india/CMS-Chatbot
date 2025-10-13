@@ -518,4 +518,39 @@ curl -i 'https://test.payu.in/_payment' \
 }
 ```
 
-<br />
+## Recurring payments
+
+## Sample response
+
+### Success scenario
+
+```json
+{
+  "status": 1,
+  "message": "Transaction Processed successfully",
+  "details": {
+    "48101c0c-5265-4c2a-b6d0-e6e73d42809e": {
+      "authpayuid": "999990000005920",
+      "transactionid": "48101c0c-5265-4c2a-b6d0-e6e73d42809e",
+      "amount": "500.00",
+      "user_credentials": "o0dEBA:11b341595c...",
+      "card_token": "195748c0f4ec4b3093af",
+      "payuid": "999990000006473",
+      "status": "captured",
+      "udf1": "Y",
+      "field9": "Transaction is Successful"
+    }
+  }
+}
+```
+
+### Failure scenario
+
+```json
+{
+  "status": 0,
+  "message": "Invalid Parameter: mf_partner must be less than or equal to 4 characters."
+}
+```
+
+***
