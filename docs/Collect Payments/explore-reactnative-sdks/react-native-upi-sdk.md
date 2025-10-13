@@ -45,9 +45,11 @@ For intent transactions, we delegate the transaction process to an external app 
 * Compile SDK Version: 31+
 * Kotlin 1.6.10
 
-## iOS
+### iOS
 
 * iOS version: 11
+
+## SDK Integration
 
 The React Native UPI SDK integration involves the following steps:
 
