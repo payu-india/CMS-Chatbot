@@ -34,7 +34,8 @@ This section provides API details for _payment  API used for collecting WealthTe
   <tbody>
     <tr>
       <td>
-        key **`mandatory`**
+        key 
+        `mandatory`
       </td>
 
       <td>
@@ -48,7 +49,8 @@ This section provides API details for _payment  API used for collecting WealthTe
 
     <tr>
       <td>
-        txnid **`mandatory`**
+        txnid 
+        `mandatory`
       </td>
 
       <td>
@@ -62,7 +64,7 @@ This section provides API details for _payment  API used for collecting WealthTe
 
     <tr>
       <td>
-        api_version **`mandatory`**
+        api_version `mandatory`
       </td>
 
       <td>
@@ -76,7 +78,7 @@ This section provides API details for _payment  API used for collecting WealthTe
 
     <tr>
       <td>
-        salt_version **`mandatory`**
+        salt_version `mandatory`
       </td>
 
       <td>
@@ -198,7 +200,7 @@ This section provides API details for _payment  API used for collecting WealthTe
       </td>
 
       <td>
-        `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to ###[ Wealth Tech object (wtParams) fields Description](#wealth-tech-object-wtParams-fields-description).
+        `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](#wealth-tech-object-wtParams-fields-description).
       </td>
 
       <td>
