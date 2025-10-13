@@ -1,11 +1,11 @@
 ---
 title: PayU India API Environment
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
-This section consolidates all environment details you need before integrating any PayU India API. 
+This section consolidates all environment details you need before integrating any PayU India API.
 
 ## Environment Types
 
@@ -16,22 +16,20 @@ PayU provides two primary environments:
 
 > **Important:** Always use matching credentials and endpoints for your target environment.
 
-***
-
 ## Payment APIs (Web Checkout & Hosted Checkout)
 
 These APIs handle payment collection via redirect or embedded forms.
 
 <PaymentAPIEnvironment />
 
-### Authentication
+#### Authentication
 
 | Environment    | Credential Type          | How to Obtain                               |
 | -------------- | ------------------------ | ------------------------------------------- |
 | **Test**       | Test Merchant Key & Salt | Generate via [Test Credentials Guide](#)    |
 | **Production** | Live Merchant Key & Salt | Available after KYC completion in Dashboard |
 
-### Quick Code Examples
+#### Quick Code Examples
 
 ```
 
@@ -54,6 +52,13 @@ const salt     = 'YOUR_LIVE_SALT';
 These APIs support transaction verification, settlements, BIN and health check.
 
 <GENERALAPIsEnvironment />
+
+#### Authentication
+
+| Environment    | Credential Type          | How to Obtain                               |
+| -------------- | ------------------------ | ------------------------------------------- |
+| **Test**       | Test Merchant Key & Salt | Generate via [Test Credentials Guide](#)    |
+| **Production** | Live Merchant Key & Salt | Available after KYC completion in Dashboard |
 
 ### Payouts APIs
 
