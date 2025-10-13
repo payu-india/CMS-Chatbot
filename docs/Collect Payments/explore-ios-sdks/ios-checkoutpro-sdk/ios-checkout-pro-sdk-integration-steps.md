@@ -598,6 +598,8 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   </Accordion>
 </Accordion>
 
-##Test the integration and Go-Live
-<IOS_Test_the_Integration /> 
+## Test the integration and Go-Live
+
+<IOS_Test_the_Integration />
+
 <IOS_Go_Live />
