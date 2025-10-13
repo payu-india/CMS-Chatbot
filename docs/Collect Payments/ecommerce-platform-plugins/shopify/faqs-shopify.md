@@ -50,4 +50,4 @@ Yes, that understanding is correct. We will need to onboard them via KAM assiste
 
 #### Since the PACB plugin will not be available on Shopify marketplace, we will have to separately provide the plug-ins & APIs to such merchants. Also, it cannot be self-discovery by merchants?
 
-Yes, we can provide APIs and links separately. I will get a PayU Dev Docs article created for Shopify merchants which can be shared with prospective merchants. Self-discovery can also happen, as the payment methods listings are not geo-specific, and irrespective of the store location, all payment providers are visible. However, self-signups cannot happen fully due to the international phone number limitation.
+Yes, PayU can help you in this regard. Contact your PayU key account manager (KAM).
