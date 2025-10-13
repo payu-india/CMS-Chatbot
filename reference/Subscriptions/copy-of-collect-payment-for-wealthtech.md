@@ -1,11 +1,11 @@
 ---
-title: 'Copy of Collect Payment for WealthTech '
+title: 'Recurring Payments for WealthTech '
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-This section provides API details for _payment  API used for collecting WealthTech payments, specifically designed for mutual fund transaction processing. The API introduces new parameters and validation rules to support wealth management payment flows.
+This section provides **_payment**  API details used for collecting WealthTech recurring payments, specifically designed for mutual fund transaction processing. 
 
 * **Method**: `POST`
 * **Content-Type**: `application/x-www-form-urlencoded`
@@ -34,7 +34,7 @@ This section provides API details for _payment  API used for collecting WealthTe
   <tbody>
     <tr>
       <td>
-        key 
+        key
         `mandatory`
       </td>
 
@@ -49,7 +49,7 @@ This section provides API details for _payment  API used for collecting WealthTe
 
     <tr>
       <td>
-        txnid 
+        txnid
         `mandatory`
       </td>
 
@@ -138,7 +138,7 @@ This section provides API details for _payment  API used for collecting WealthTe
     <tr>
       <td>
         email `
-                        mandatory`
+                                mandatory`
       </td>
 
       <td>
@@ -168,7 +168,7 @@ This section provides API details for _payment  API used for collecting WealthTe
     <tr>
       <td>
         hash `
-                        mandatory`
+                                mandatory`
       </td>
 
       <td>
