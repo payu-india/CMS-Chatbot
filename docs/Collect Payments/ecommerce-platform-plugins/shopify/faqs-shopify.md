@@ -1,7 +1,7 @@
 ---
 title: FAQS - Shopify
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
