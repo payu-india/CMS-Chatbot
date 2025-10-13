@@ -179,3 +179,7 @@ The React Native Custom Browser SDK integration involves the following steps:
 <Accordion title="Go-live Checklist" icon="fa-gear">
   <ReactNative_Go_Live />
 </Accordion>
+
+## Sample app
+The sample application for integration with React-Native CustomBrowser SDK :
+[https://github.com/payu-intrepos/payu-core-pg-react.git](https://github.com/payu-intrepos/payu-core-pg-react.git)
