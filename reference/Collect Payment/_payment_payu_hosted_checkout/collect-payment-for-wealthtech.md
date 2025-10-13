@@ -200,7 +200,7 @@ This section provides API details for _payment  API used for collecting WealthTe
       </td>
 
       <td>
-        `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](#wealth-tech-object-wtParams-fields-description).
+        `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech/#wealth-tech-object-wtParams-fields-description).
       </td>
 
       <td>
