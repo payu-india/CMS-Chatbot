@@ -437,115 +437,11 @@ To integrate with the CheckoutPro mobile SDK for React Native:
     What you get by default is a fat framework that allows you to test your app seamlessly on the device and simulator. But before archiving your app, you need to remove simulator slices from the framework. For detailed information on archiving your app with PayUChekoutPro, refer to [Releasing the app](https://docs.payu.in/docs/ios-releasing-the-app-to-the-app-store).
   </Accordion>
 </Accordion>
+
 <Accordion title="Test the Integration" icon="fa-gear">
-  After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
-
-  You can make test payments using one of the payment methods configured at the Checkout.
-
-  <UPIIntentCallout />
-
-  <TestingChecklist />
-
-  ***
-
-  <TestCardsCallout />
-
-  <Accordion title="Test credentials for supported payment methods" icon="fa-code">
-    Following are the payment methods supported in PayU Test mode.
-
-    <Accordion title="Test credentials for Net Banking" icon="fa-code">
-      Use the following credentials to test the Net Banking integration:
-
-      * **user name:** payu
-      * **password**: payu
-      * **OTP**: 123456
-    </Accordion>
-
-    <Accordion title="Test VPA for UPI" icon="fa-code">
-      > ❗️ Callout
-      >
-      > The UPI in-app and UPI intent flow is not available in the Test mode.
-
-      You can use either of the following VPAs to test your UPI-related integration:
-
-      * [anything@upi](anything@upi)
-      * [9999999999@upi](mailto:9999999999@upi)
-
-      For Testing the UPI Collect flow, Please follow the below steps:-
-
-      1. Once you enter the VPA click on the verify button and proceed to pay.
-      2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
-      3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
-
-      [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/) `<Txn_id>`
-
-      #### For Android
-
-      You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
-
-      > 🚧 Ensure to remove the code from the manifest file before going live.
-
-      ```xml
-      <application>
-      <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> <!-- set the value to false for production environment -->
-      <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> <!-- Comment in case of Production -->
-      <meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> <!-- Comment in case of Production -->
-      </application>
-      ```
-    </Accordion>
-
-    <Accordion title="Test cards for EMI" icon="fa-code">
-      You can use the following Debit and Credit cards to test EMI integration.
-
-      <EMITestCards />
-
-      <br />
-    </Accordion>
-
-    <Accordion title="Test wallets" icon="fa-code">
-      You can use the following wallets and their corresponding credentials to test wallet integration.
-
-      <EMITestWallets />
-    </Accordion>
-  </Accordion>
+<ReactNative_Test_the_Integration />
 </Accordion>
+
 <Accordion title="Go-live Checklist" icon="fa-gear">
-Ensure these steps before you deploy the integration in a live environment.
-
-<Accordion title="Collect Live Payments" icon="fa-code">
-After [testing the integration](https://docs.payu.in/docs/reactnative-checkoutpro-test-integration) end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
-
-> 🚧 Watch Out!
->
-> Ensure that you are using the production merchant key and salt generated in the live mode.
-
-<ProductionKeyAndSaltProcedure />
-
-<Accordion title="Checklist 2: Configure environment() parameter" icon="fa-code">
-Set the value of the `environment()`to `0` in the payment integration code. This enables the integration to accept live payments.
-</Accordion>
-
-<Accordion title="Checklist 4:- Remove/comment meta -data code from manifest file :-" icon="fa-code">
-#### For Android
-
-You must be comment/remove the below metadata code from the manifest file to use the UPI Collect flow on Production env:-
-
-```Text XML
-<application>
-<meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
-<meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
-<meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
-</appliction>
-```
-</Accordion>
-
-<Accordion title="Checklist 5: Configure verify payment method" icon="fa-code">
-Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
-</Accordion>
-
-<Accordion title="Checklist 6: Configure Webhook" icon="fa-code">
-We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
-</Accordion>
-
-</Accordion>
+<ReactNative_Go_Live />
 </Accordion>
