@@ -137,4 +137,12 @@ Register Listener (in this case) Emitter to get the Response from Custom Browser
     "errorCode": <String>, //conditional
   }
   ```
+## Test the Integration and Go-Live 
+</Accordion>
+<Accordion title="Test the Integration" icon="fa-gear">
+<ReactNative_Test_the_Integration />
+</Accordion>
+
+<Accordion title="Go-live Checklist" icon="fa-gear">
+<ReactNative_Go_Live />
 </Accordion>
