@@ -19,7 +19,7 @@ next:
 ---
 The React Native Custom Browser SDK integration involves the following steps:
 
-## Step 1: Installation
+<Accordion title="Step 1: Installation" icon="fa-code">
 
 The PayU Custom Browser SDK for React Native is offered through NPM:
 
@@ -44,7 +44,8 @@ The PayU Custom Browser SDK for React Native is offered through NPM:
 
 <br />
 
-## Step 2: Build the payment parameters
+</Accordion>
+<Accordion title="Step 2: Build the payment parameters" icon="fa-code">
 
 To initiate a payment, your app needs to send transactional information to the Custom Browser SDK. Build the payUPaymentParams object with the mandatory parameters as shown in the following code snippet:
 
@@ -82,7 +83,8 @@ To initiate a payment, your app needs to send transactional information to the C
 
 For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/ios-standing-instructions-parameters).
 
-## Step 3: Generate payment hash
+</Accordion>
+<Accordion title="Step 3: Generate payment hash" icon="fa-code">
 
 For hash generation testing salt needs to be put in the HASH generation method. For more information, refer to [Generate Hash](doc:generate-dynamic-hash-react).
 
@@ -90,7 +92,8 @@ For hash generation testing salt needs to be put in the HASH generation method. 
   **Note**: Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
 </Callout>
 
-## Step 4: Make payment
+</Accordion>
+<Accordion title="Step 4: Make payment" icon="fa-code">
 
 Use the code snippet mentioned below to make the payment:
 
@@ -113,7 +116,8 @@ Use the code snippet mentioned below to make the payment:
   ```
 </Accordion>
 
-## Step 5: Register listeners
+</Accordion>
+<Accordion title="Step 5: Register listeners" icon="fa-code">
 
 Register Listener (in this case) Emitter to get the Response from Custom Browser SDK:
 
@@ -137,12 +141,16 @@ Register Listener (in this case) Emitter to get the Response from Custom Browser
     "errorCode": <String>, //conditional
   }
   ```
-## Test the Integration and Go-Live 
+
+  ## Test the Integration and Go-Live
 </Accordion>
+
 <Accordion title="Test the Integration" icon="fa-gear">
-<ReactNative_Test_the_Integration />
+  <ReactNative_Test_the_Integration />
 </Accordion>
 
 <Accordion title="Go-live Checklist" icon="fa-gear">
-<ReactNative_Go_Live />
+  <ReactNative_Go_Live />
+</Accordion>
+
 </Accordion>
