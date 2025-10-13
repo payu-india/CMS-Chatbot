@@ -1,7 +1,7 @@
 ---
 title: 'Collect Payment for WealthTech '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
