@@ -14,230 +14,40 @@ This section provides API details for _payment  API used for collecting WealthTe
 
 ## Request Parameters
 
-| Parameter                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Example                                                                                        |
-| :---------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
-| key<br />`mandatory`                            | `String` This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).                                                                                                                                                                                                                                                                                                                                                                                                                        | 8488225                                                                                        |
-| txnid<br />`mandatory`                          | `varchar` This parameter is known as Transaction ID (or OrderID). It is the order reference number generated at your (Merchant's) end. It is an identifier which you(merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of same Transaction ID again would fail. Hence, it is essential that you post us a unique transaction ID for every new transaction (Please make sure that the transaction ID being sent to us hasn't been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID'). | fd3e847h2                                                                                      |
-| amount<br />`mandatory`                         | `float` This parameter should contain the payment amount of the particular transaction. Note: Type-cast the amount to float type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | 10                                                                                             |
-| productinfo<br />`mandatory`                    | `varchar` This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice).                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | T-shirt                                                                                        |
-| firstname<br />`mandatory`                      | `varchar` This parameter must contain the first name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Ankit                                                                                          |
-| email<br />`mandatory`                          | `varchar` This parameter must contain the email of the customer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | [test@gmail.com](mailto:test@gmail.com)                                                        |
-| phone<br />`mandatory`                          | `integer` Merchant needs to take the customer's GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.                                                                                                                                                                                                                                                                                                                                                                                                                                            | 9876543210                                                                                     |
-| pg<br />`mandatory`                             | `string` This parameter contains the payment method to be enabled to collect payment from your customer. For the list of payment methods and their codes, refer to [Payment Mode Codes](doc:payment-mode-codes). For Net Banking, use NB.                                                                                                                                                                                                                                                                                                                                                                                                    | NB                                                                                             |
-| bankcode<br />`mandatory`                       | `string` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bankcodes for Net Banking, refer to [Net Banking Codes](doc:net-banking-codes).                                                                                                                                                                                                                                                                                                                                                             | AXIB                                                                                           |
-| surl<br />`mandatory`                           | `string` The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                             | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
-| furl<br />`mandatory`                           | `string` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                                 | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
-| hash<br />`mandatory`                           | `string` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT) For more information, refer to [Generate Hash](doc:hashing-request-and-response).                                                                                                                                                                                                                                                                                                                         | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                       |
-| lastname<br />`optional`                        | `string` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                         |
-| address1<br />`optional`                        | `string` The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                |
-| address2<br />`optional`                        | `string` The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Apartment 4B                                                                                   |
-| city<br />`optional`                            | `string` The city where your customer resides as part of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Mumbai                                                                                         |
-| state<br />`optional`                           | `string` The state where your customer resides as part of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Maharashtra                                                                                    |
-| country<br />`optional`                         | `string` The country where your customer resides.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | India                                                                                          |
-| zipcode<br />`optional`                         | `string` Billing address zip code is mandatory for the cardless EMI option.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 400001                                                                                         |
-| udf1<br />`mandatory for Cross-Border Payments` | `string` This parameter has been made for you to keep any information corresponding to the transaction. **Note**: This parameter must contain buyer's PAN number for Cross-Border Payments.                                                                                                                                                                                                                                                                                                                                                                                                                                                  | ABCDE1234F                                                                                     |
-| udf2<br />`optional`                            | `string` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 1                                                                              |
-| udf3<br />`mandatory for Cross-Border Payments` | `string` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | GSTIN123456                                                                                    |
-| udf4<br />`optional`                            | `string` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 2                                                                              |
-| udf5<br />`optional`                            | `string` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 3                                                                              |
+## ✅ **Updated Markdown Table with `<br/>` Tags**
 
-Perfect! ✨ Now each parameter name is on its own line, followed by the mandatory/optional status on the next line, making the table much more readable and organized.
+Here's the updated markdown table with `<br/>` tags added between the parameter names and their mandatory/optional status:
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+| Parameter | Description | Example |
+| :-------- | :---------- | :------ |
+| key<br/>`mandatory` | `String` This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard). | 8488225 |
+| txnid<br/>`mandatory` | `Varchar` This parameter is known as Transaction ID (or OrderID). It is the order reference number generated at your (Merchant's) end. It is an identifier which you(merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of same Transaction ID again would fail. Hence, it is essential that you post us a unique transaction ID for every new transaction (Please make sure that the transaction ID being sent to us hasn't been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID'). | fd3e847h2 |
+| amount<br/>`mandatory` | `float` This parameter should contain the payment amount of the particular transaction. Note: Type-cast the amount to float type | 10 |
+| productinfo<br/>`mandatory` | `Varchar` This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice). | T-shirt |
+| firstname<br/>`mandatory` | `Varchar` This parameter must contain the first name of the customer. | Ankit |
+| email<br/>`mandatory` | `Varchar` This parameter must contain the email of the customer | test@gmail.com |
+| phone<br/>`mandatory` | `Integer` Merchant needs to take the customer's GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request. | 9876543210 |
+| pg<br/>`mandatory` | `String` This parameter contains the payment method to be enabled to collect payment from your customer. For the list of payment methods and their codes, refer to [Payment Mode Codes](doc:payment-mode-codes). For Net Banking, use NB. | NB |
+| bankcode<br/>`mandatory` | `string` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bankcodes for Net Banking, refer to [Net Banking Codes](doc:net-banking-codes). | AXIB |
+| surl<br/>`mandatory` | `string` The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there. | https://apiplayground-response.herokuapp.com/ |
+| furl<br/>`mandatory` | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there. | https://apiplayground-response.herokuapp.com/ |
+|api_version <br/> `mandatory`|API version must be posted as `21`|21|
+| hash<br/>`mandatory` | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT) For more information, refer to [Generate Hash](doc:hashing-request-and-response). | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0 |
+|more_info<br/>mandatory for Wealth Tech|`JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech/#wealth-tech-object-wtParams-fields-description).|Refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech/#wealth-tech-object-wtParams-fields-description)|
+| lastname<br/>`optional` | `String` The last name of the customer. | Sharma |
+| address1<br/>`optional` | `String` The first line of the billing address. | 123 Main Street |
+| address2<br/>`optional` | `String` The second line of the billing address. | Apartment 4B |
+| city<br/>`optional` | `String` The city where your customer resides as part of the billing address. | Mumbai |
+| state<br/>`optional` | `String` The state where your customer resides as part of the billing address. | Maharashtra |
+| country<br/>`optional` | `String` The country where your customer resides. | India |
+| zipcode<br/>`optional` | `String` Billing address zip code is mandatory for the cardless EMI option. | 400001 |
+| udf1<br/>`mandatory for Cross-Border Payments` | `String` This parameter has been made for you to keep any information corresponding to the transaction. **Note**: This parameter must contain buyer's PAN number for Cross-Border Payments. | ABCDE1234F |
+| udf2<br/>`optional` | `string` This parameter has been made for you to keep any information corresponding to the transaction. | Additional Info 1 |
+| udf3<br/>`mandatory for Cross-Border Payments` | `String` This parameter has been made for you to keep any information corresponding to the transaction. | GSTIN123456 |
+| udf4<br/>`optional` | `String` This parameter has been made for you to keep any information corresponding to the transaction. | Additional Info 2 |
+| udf5<br/>`optional` | `String` This parameter has been made for you to keep any information corresponding to the transaction. | Additional Info 3 |
+|additional_charges<br/>`optional`|`String` Collect additional charges for the transaction. For example, platform fee|10.00|
 
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        key
-        `mandatory`
-      </td>
-
-      <td>
-        `string` - PayU provided unique API key
-      </td>
-
-      <td>
-        `"KOEfPI"`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnid
-        `mandatory`
-      </td>
-
-      <td>
-        `string` - Unique transaction identifier
-      </td>
-
-      <td>
-        `"7f41f520f71b"`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        api_version `mandatory`
-      </td>
-
-      <td>
-        `integer` - API version number
-      </td>
-
-      <td>
-        `21`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        salt_version `mandatory`
-      </td>
-
-      <td>
-        `integer` - Salt version for hash calculation
-      </td>
-
-      <td>
-        `1`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount
-        `mandatory`
-      </td>
-
-      <td>
-        `numeric` - Transaction amount in paise
-      </td>
-
-      <td>
-        `50000`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productinfo
-        `mandatory`
-      </td>
-
-      <td>
-        `string` - Product information
-      </td>
-
-      <td>
-        `"Mutual Fund Investment"`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstname
-        `mandatory`
-      </td>
-
-      <td>
-        `string` - Customer first name
-      </td>
-
-      <td>
-        `"John"`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email `
-                                mandatory`
-      </td>
-
-      <td>
-        `string` - Customer email address
-      </td>
-
-      <td>
-        `"john@example.com"`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone
-        `mandatory`
-      </td>
-
-      <td>
-        `string` - Customer phone number
-      </td>
-
-      <td>
-        `"9876543210"`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        hash `
-                                mandatory`
-      </td>
-
-      <td>
-        `string` - SHA-512 secured hash for request validation. the
-      </td>
-
-      <td>
-        `"fbc07b5517029..."`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        additional_charges `optional`
-      </td>
-
-      <td>
-        `string` - Additional charges/fees
-      </td>
-
-      <td>
-        `"CC:100
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        more_info
-      </td>
-
-      <td>
-        
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-  </tbody>
-</Table>
 
 ### Wealth Tech object (wtParams) fields Description
 
