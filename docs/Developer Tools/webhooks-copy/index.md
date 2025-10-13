@@ -5,33 +5,33 @@ excerpt: >-
   Subscriptions, and Payouts
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
-WebHooks (aka Web callback or Reverse APIs) are one of the most popular and efficient way in which one application sends information to another application when specific events occurs. 
+WebHooks (aka Web callback or Reverse APIs) are one of the most popular and efficient way in which one application sends information to another application when specific events occurs.
 
 #### Example
 
-Assume that you have you have added an Webhook endpoint to recive notification for a `payment.success `event, PayU will send you a notification everytime a payment is successful. 
+Assume that you have you have added an Webhook endpoint to recive notification for a `payment.success `event, PayU will send you a notification everytime a payment is successful.
 
 ## Webhook Vs API
 
-A Webhook sends you information only when specific events occur whereas an API sends you information when you request for it. 
+A Webhook sends you information only when specific events occur whereas an API sends you information when you request for it.
 
 #### Example
 
-If you want to know whether an user has purchased a product on your ecommerce website, using APIs, you need to keep polling a specific API every few seconds untill a purchase is made. However, if you have created an Webhooks to listen to `payment.successful` events, you will receive a realtime notification as soon as a payment is made. 
+If you want to know whether an user has purchased a product on your ecommerce website, using APIs, you need to keep polling a specific API every few seconds untill a purchase is made. However, if you have created an Webhooks to listen to `payment.successful` events, you will receive a realtime notification as soon as a payment is made.
 
 ## When to use PayU Webhooks
 
 You can use PayU Webhooks to recieve a callback on your URL whenever a specific event occurs. When these events occurs, PayU sends an HTTP POST request with a JSON payload on the Webhook's configured endpoint.
 
-* You can create Webhooks from PayU Dashboard and configure separate Webhooks URL for LIVE or TEST mode. Know more about creating Webhooks. 
-* An Webhook created in the TEST mode of PayU dashboard receives events for test transactions. Know more about testing your Webhooks. 
+* You can create Webhooks from PayU Dashboard and configure separate Webhooks URL for LIVE or TEST mode. Know more about creating Webhooks.
+* An Webhook created in the TEST mode of PayU dashboard receives events for test transactions. Know more about testing your Webhooks.
 
 ## Webhook Security
 
