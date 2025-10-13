@@ -413,11 +413,9 @@ These parameters are included within the `more_info` field as a JSON array under
   </tbody>
 </Table>
 
-***
+## Response Parameters
 
-## **Response Parameters**
-
-### **Successful Response Fields**
+### Success scenario
 
 | Parameter                       | Description                                                                       | Example                                  |
 | ------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------- |
@@ -477,9 +475,7 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|
 
 ***
 
-## **Request Examples**
-
-### **Sample cURL Request**
+## Sample Request
 
 ```bash
 curl -i 'https://test.payu.in/_payment' \
@@ -488,7 +484,7 @@ curl -i 'https://test.payu.in/_payment' \
 --data-raw 'hash=fbc07b5517029242fd97b982816eb372d6501c1...&key=KOEfPI&txnid=7f41f520f71b&api_version=21&amount=50000&productinfo=Mutual Fund&firstname=John&email=john@example.com&phone=9876543210'
 ```
 
-### **Sample JSON Payload Structure**
+### Sample JSON Payload Structure
 
 ```json
 {
@@ -521,42 +517,5 @@ curl -i 'https://test.payu.in/_payment' \
   }
 }
 ```
-
-***
-
-## Sample response
-
-### Success scenario
-
-```json
-{
-  "status": 1,
-  "message": "Transaction Processed successfully",
-  "details": {
-    "48101c0c-5265-4c2a-b6d0-e6e73d42809e": {
-      "authpayuid": "999990000005920",
-      "transactionid": "48101c0c-5265-4c2a-b6d0-e6e73d42809e",
-      "amount": "500.00",
-      "user_credentials": "o0dEBA:11b341595c...",
-      "card_token": "195748c0f4ec4b3093af",
-      "payuid": "999990000006473",
-      "status": "captured",
-      "udf1": "Y",
-      "field9": "Transaction is Successful"
-    }
-  }
-}
-```
-
-### Failure scenario
-
-```json
-{
-  "status": 0,
-  "message": "Invalid Parameter: mf_partner must be less than or equal to 4 characters."
-}
-```
-
-***
 
 <br />
