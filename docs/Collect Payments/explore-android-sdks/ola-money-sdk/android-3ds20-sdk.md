@@ -28,7 +28,7 @@ next:
 ---
 Power native experience on the new 3DS 2.0 protocol for card transactions. Less latent, highly customisable, highest uptime with option to fallback in case of failures. Going forward from October 2023, only through a certified 3DS SDK can a merchant power native experience on app.
 
-## Benefits & features​
+<Accordion title="Benefits & features​" icon="fa-code">
 
 * Power native experiences on cards through our native SDK​
 * Offers bin eligibility api to route transactions through 3DS1 or 3DS2​
@@ -40,9 +40,10 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 * Highest uptime through multiple 3DS Server in future.​
 * Compliant EMVCO certified 3DS SDK with more control across the whole customer journey.​
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/5013bc0-Screenshot_2023-10-16_at_11.45.39_AM.png" />
+<Image align="center" border={true} src="https://files.readme.io/5013bc0-Screenshot_2023-10-16_at_11.45.39_AM.png" className="border" />
 
-## Integration
+</Accordion>
+<Accordion title="Integration" icon="fa-code">
 
 PayU SDK offers the following methods to integrate with 3DS 2.0:
 
@@ -63,7 +64,8 @@ implementation 'in.payu:threeds-sdk:1.1.2'
   * Completing authorization through PayU
 * Use our SDK for collecting device details and to render challenge screens.
 
-## Using PayU implementation
+</Accordion>
+<Accordion title="Using PayU implementation" icon="fa-code">
 
 Call the method to initiate payment through us and we will return a success or failure callback post-transaction completion.
 
@@ -168,7 +170,7 @@ You have to pass the following parameters:
   </tbody>
 </Table>
 
-### Sample code for callback - generateHash
+<Accordion title="Sample code for callback - generateHash" icon="fa-code">
 
 ```kotlin
 if (map.containsKey("hashString") && map.containsKey("hashName")) {
@@ -198,11 +200,13 @@ if (map.containsKey("hashString") && map.containsKey("hashName")) {
 
 ```
 
-<br />
 
-## Decoupled Flow
 
-### Step 1:Initialise SDK
+</Accordion>
+</Accordion>
+<Accordion title="Decoupled Flow" icon="fa-code">
+
+<Accordion title="Step 1:Initialise SDK" icon="fa-code">
 
 Initialization of SDK is required if the merchant is utilizing PayU 3DS 2.0 for Decoupled functionality. For more information on properties, refer to \<\<Description of Properties in Initialization>>.
 
@@ -224,7 +228,7 @@ PayU3DS2.initialise(
 | RequestId         | Unique request ID for the transaction. |
 | AppCompatActivity | Required to initialise SDK.            |
 
-#### GUI customisation
+<Accordion title="GUI customisation" icon="fa-code">
 
 The following components can be customized:
 
@@ -277,7 +281,8 @@ var uiCustomisation = UICustomisation.Builder()
                       .build()
 ```
 
-#### Supported Font Type Details
+</Accordion>
+<Accordion title="Supported Font Type Details" icon="fa-code">
 
 ```kotlin Kotlin
 enum class FontName { 
@@ -286,7 +291,8 @@ enum class FontName {
 }
 ```
 
-#### PayU3DS2Response:
+</Accordion>
+<Accordion title="PayU3DS2Response:" icon="fa-code">
 
 The response includes the following parameters:
 
@@ -339,7 +345,9 @@ enum class DeviceSeverity {
 }
 ```
 
-### Step 2: Device details(PArq)
+</Accordion>
+</Accordion>
+<Accordion title="Step 2: Device details(PArq)" icon="fa-code">
 
 To obtain device information to initiate an authentication request:
 
@@ -404,7 +412,8 @@ Now, these device details can be used to initiate an authentication request with
 
 After the authentication request has been initiated and a response has been received, the same is used to initiate a challenge which basically means opening a UI screen to do user authentication.
 
-### Step 3: 3DS 2.0 Challenge Initiation
+</Accordion>
+<Accordion title="Step 3: 3DS 2.0 Challenge Initiation" icon="fa-code">
 
 Call the following function to start the challenge:
 
@@ -453,9 +462,11 @@ fun onError(errorCode: Int, errorMessage: String) //It will contain failure reas
 //Cast response to String. If value is "Y" that means challenge is successfully executed else it is failed.
 ```
 
-## PaymentParams Parameter Example
+</Accordion>
+</Accordion>
+<Accordion title="PaymentParams Parameter Example" icon="fa-code">
 
-### Basic Payment Parameters
+<Accordion title="Basic Payment Parameters" icon="fa-code">
 
 The PaymentParams object contains key fields required for initiating a payment request with PayU. These parameters are critical for identifying the transaction, the customer, and the product.
 
@@ -476,7 +487,7 @@ mPaymentParams.udf4 = "<User Defined Fields>"         // User-defined field 4
 mPaymentParams.udf5 = "<User Defined Fields>"         // User-defined field 5
 ```
 
-#### Credit/Debit Card Payment
+<Accordion title="Credit/Debit Card Payment" icon="fa-code">
 
 To process payments using a credit or debit card, the following parameters need to be included in the PaymentParams object..
 
@@ -489,7 +500,8 @@ mPaymentParams.expiryYear = "<expiryYear>"          // Card expiry year (YYYY)
 mPaymentParams.cvv = "<cvv>"                        // CVV code on the back of the card
 ```
 
-#### Store Credit/Debit Card
+</Accordion>
+<Accordion title="Store Credit/Debit Card" icon="fa-code">
 
 To store the card for future transactions (such as recurring payments), the StoreCard option should be enabled. This allows the card to be saved securely for later use..
 
@@ -505,7 +517,8 @@ mPaymentParam.setUserCredentials(userCredentials);
 mPaymentParam.setStoreCard(1);
 ```
 
-#### Recurring Payments via Card
+</Accordion>
+<Accordion title="Recurring Payments via Card" icon="fa-code">
 
 For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
 
@@ -531,11 +544,13 @@ fun getSIDetails(): SIParams {
 mPaymentParams.siParams = getSIDetails() // Add subscription details to the payment parameters
 ```
 
-### Card Tokenization
+</Accordion>
+</Accordion>
+<Accordion title="Card Tokenization" icon="fa-code">
 
 Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
 
-#### Card Tokenization with PayU
+<Accordion title="Card Tokenization with PayU" icon="fa-code">
 
 To make payments using a previously saved card, you need to pass both the network token and the card token..
 
@@ -544,7 +559,8 @@ To make payments using a previously saved card, you need to pass both the networ
  cardDetails.cardToken = "<cardToken>"
 ```
 
-#### Third-Party Card Tokenization
+</Accordion>
+<Accordion title="Third-Party Card Tokenization" icon="fa-code">
 
 If the card has been tokenized outside of PayU’s platform (via a third-party service), you need to provide additional tokenization information.
 
@@ -566,7 +582,8 @@ mPaymentParams.cardTokenType = 1               // Type of tokenization (e.g., 1 
 mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token details
 ```
 
-#### EMI
+</Accordion>
+<Accordion title="EMI" icon="fa-code">
 
 To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
 
@@ -580,7 +597,10 @@ mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., 
 mPaymentParams.setPg("EMI")                         // Set payment gateway to EMI
 ```
 
-## Start Redirection Flow
+</Accordion>
+</Accordion>
+</Accordion>
+<Accordion title="Start Redirection Flow" icon="fa-code">
 
 To authenticate the transaction using PayU’s 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
 
@@ -593,7 +613,7 @@ fun startRedirectionFlow(
 )
 ```
 
-### Parameters
+<Accordion title="Parameters" icon="fa-code">
 
 <Table>
   <thead>
@@ -701,7 +721,8 @@ fun startRedirectionFlow(
   </tbody>
 </Table>
 
-### Sample Code
+</Accordion>
+<Accordion title="Sample Code" icon="fa-code">
 
 ```kotlin
 val params = mapOf(
@@ -744,7 +765,9 @@ startRedirectionFlow(
 )
 ```
 
-## Hash Generation
+</Accordion>
+</Accordion>
+<Accordion title="Hash Generation" icon="fa-code">
 
 You will receive a call on the generateHash method of PayU3DS2PaymentCallback.
 
@@ -763,7 +786,8 @@ At the end of that hashString, append your salt and use the SHA-512 algorithm on
 > * If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algorithm on that final string to generate hash.
 > * There is no need to know the formula for dynamic hashes because PayU SDK gives you the string containing all the required parameters. Your server has to append salt at the end and generate sha512 hash over it.
 
-## Error codes
+</Accordion>
+<Accordion title="Error codes" icon="fa-code">
 
 | Code | Description                      |
 | :--- | :------------------------------- |
@@ -782,3 +806,4 @@ At the end of that hashString, append your salt and use the SHA-512 algorithm on
 | 108  | Hash incorrect                   |
 | 500  | Something went wrong             |
 | 504  | Gateway timeout                  |
+</Accordion>
