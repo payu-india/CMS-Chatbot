@@ -29,7 +29,7 @@ This must contain the header with token you get using the Get Token API in the f
 | Parameter  | Description                                                                                                                                                   | Example                              |
 | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------- |
 | identifier | The identifier that was received in response when you used the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api). | 6f92dad0-4446-4465-bfea-17f587e973d4 |
-| value      | The value that was received in response when you used the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api) .     | 1                                    |
+| value      | Dependent on response received from the Read Reasons API, the Value(evidence) to be submitted for accepting the chargeback, for a particular reason code(UUID), should be text. This is plain Text. For more information, refer to [Read Reasons API](ref:read-reasons-api) .     | 1                                    |
 
 ## Sample request
 
