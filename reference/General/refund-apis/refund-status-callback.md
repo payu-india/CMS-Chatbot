@@ -1,10 +1,12 @@
 ---
 title: Refund Status Callback
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
+If you configure the refund event URL on the PayU Dashboard. you will receive the final status. For
+
 ## Success Response
 
 ```
