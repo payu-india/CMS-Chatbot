@@ -45,7 +45,30 @@ This section provides **_payment**  API details used for payment consent WealthT
 | additional_charges<br />`optional`              | `String` Collect additional charges for the transaction. For example, platform fee                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 10.00                                                                                                                                                                       |
 
 ### Wealth Tech object (wtParams) fields Description
+####Sample JSON
+### Sample JSON Payload Structure
+```json
+  "more_info": {
+    "wtParams": [
+      {
+        "type": "mutual_fund",
+        "plan": "GD",
+        "amount": "50000",
+        "option": "G",
+        "scheme": "LT",
+        "receipt": "77407",
+        "mf_member_id": "123445",
+        "mf_user_id": "77407",
+        "mf_partner": "cams",
+        "mf_investment_type": "L",
+        "mf_amc_code": "UTB"
+      }
+    ]
+  }
+```
 
+
+#### Field descriptions
 These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
 
 <Table align={["left","left","left"]}>
@@ -246,7 +269,14 @@ These parameters are included within the `more_info` field as a JSON array under
     </tr>
   </tbody>
 </Table>
+## Sample Request
 
+```bash
+curl -i 'https://test.payu.in/_payment' \
+-H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+-H 'content-type: application/x-www-form-urlencoded' \
+--data-raw 'hash=fbc07b5517029242fd97b982816eb372d6501c1...&key=KOEfPI&txnid=7f41f520f71b&api_version=21&amount=50000&productinfo=Mutual Fund&firstname=John&email=john@example.com&phone=9876543210'
+```
 ## Response Parameters
 
 ### Success scenario
@@ -307,52 +337,6 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|
 3. Apply SHA-512 hashing to the concatenated string
 4. Use the resulting hash as the `hash` parameter
 
-***
-
-## Sample Request
-
-```bash
-curl -i 'https://test.payu.in/_payment' \
--H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
--H 'content-type: application/x-www-form-urlencoded' \
---data-raw 'hash=fbc07b5517029242fd97b982816eb372d6501c1...&key=KOEfPI&txnid=7f41f520f71b&api_version=21&amount=50000&productinfo=Mutual Fund&firstname=John&email=john@example.com&phone=9876543210'
-```
-
-### Sample JSON Payload Structure
-
-```json
-{
-  "hash": "fbc07b5517029242fd97b982816eb372d6501c1...",
-  "key": "KOEfPI",
-  "txnid": "7f41f520f71b",
-  "api_version": "21",
-  "salt_version": "1",
-  "amount": "50000",
-  "productinfo": "Mutual Fund Investment",
-  "firstname": "John",
-  "email": "john@example.com",
-  "phone": "9876543210",
-  "more_info": {
-    "wtParams": [
-      {
-        "type": "mutual_fund",
-        "plan": "GD",
-        "amount": "50000",
-        "option": "G",
-        "scheme": "LT",
-        "receipt": "77407",
-        "mf_member_id": "123445",
-        "mf_user_id": "77407",
-        "mf_partner": "cams",
-        "mf_investment_type": "L",
-        "mf_amc_code": "UTB"
-      }
-    ]
-  }
-}
-```
-
-## Recurring payments
 
 ## Sample response
 
