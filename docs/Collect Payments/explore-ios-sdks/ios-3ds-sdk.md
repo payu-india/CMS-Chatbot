@@ -684,23 +684,23 @@ The iOS 3DS SDK integration involves the following steps:
       ```
     </Accordion>
   </Accordion>
-    3. Implement `PayU3DS2Delegate`. It contains the following methods:
-       * func `onPaymentSuccess`(successResponse: Any): It will contain success response. This will be a JSON Object, parse response as per your need.
-       * func `onPaymentFailure`(failureResponse: Any): It will contain failure response. This will be a JSON Object, parse response as per your need.
-       * func `onPaymentCancel`(isTxnInitiated: Bool): It will tell if payment was cancelled.
-       * func `onError`(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
-       * func `generateHash`(for param: \[String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion): Merchant will get map with type of hash and hash string as value of map.
-         They have to sign that string using salt to create hash value and pass that in completion
-         param: this contains 3 keys:
-       * **hashName**: command name
-       * **hashString**: hash string with out salt
-       * **postSalt**: needs to add after salt
 
-    You need to create hash on your server using hashString + salt + postSalt and SHA512 algorithm.
+  3. Implement `PayU3DS2Delegate`. It contains the following methods:
+     * func `onPaymentSuccess`(successResponse: Any): It will contain success response. This will be a JSON Object, parse response as per your need.
+     * func `onPaymentFailure`(failureResponse: Any): It will contain failure response. This will be a JSON Object, parse response as per your need.
+     * func `onPaymentCancel`(isTxnInitiated: Bool): It will tell if payment was cancelled.
+     * func `onError`(errorCode: Int, errorMessage: String): It will contain failure reason code and reason.
+     * func `generateHash`(for param: \[String: String], onCompletion: @escaping PayU3DS2HashGenerationCompletion): Merchant will get map with type of hash and hash string as value of map.
+       They have to sign that string using salt to create hash value and pass that in completion
+       param: this contains 3 keys:
+     * **hashName**: command name
+     * **hashString**: hash string with out salt
+     * **postSalt**: needs to add after salt
 
-    4. Implement `PayU3DS2HashGenerationCompletion`. This contains `hashDict` parameter
-       hashDict: pass a dictionary which contains hashName as key and hash as value
+  You need to create hash on your server using hashString + salt + postSalt and SHA512 algorithm.
 
+  4. Implement `PayU3DS2HashGenerationCompletion`. This contains `hashDict` parameter
+     hashDict: pass a dictionary which contains hashName as key and hash as value
 </Accordion>
 
 <Accordion title="Error Codes" icon="fa-code">
@@ -724,145 +724,9 @@ The iOS 3DS SDK integration involves the following steps:
   | 109  | Invalid ACS UI Type                                                           |
   | 500  | Something went wrong                                                          |
   | 503  | Error while creating transaction to generate device details, please try again |
-
+</Accordion>
   ## Test the Integration and Go-Live
 
-  After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
+<IOS_Test_the_Integration />
 
-  You can make test payments using one of the payment methods configured at the Checkout.
-
-  <UPIIntentCallout />
-
-  <TestingChecklist />
-
-  ***
-
-  <TestCardsCallout />
-</Accordion>
-
-<Accordion title="Test credentials for supported payment methods" icon="fa-code">
-  Following are the payment methods supported in PayU Test mode.
-
-  <Accordion title="Test credentials for Net Banking" icon="fa-code">
-    Use the following credentials to test the Net Banking integration:
-
-    * **user name:** payu
-    * **password**: payu
-    * **OTP**: 123456
-  </Accordion>
-
-  <Accordion title="Test VPA for UPI" icon="fa-code">
-    You can use either of the following VPAs to test your UPI-related integration:
-
-    * [anything@payu](anything@payu)
-    * [9999999999@payu.in](mailto:9999999999@payu.in)
-
-    > ❗️ Callout
-    >
-    > The UPI in-app and UPI intent flow is not available in the Test mode.
-  </Accordion>
-</Accordion>
-
-<Accordion title="Test cards for EMI" icon="fa-code">
-  You can use the following Debit and Credit cards to test Emi integration.
-
-  |              |                                         |
-  | :----------- | :-------------------------------------- |
-  | Kotak DC EMI | 1. **Card Number**: 4706-1378-0509-9594 |
-
-  2. **Expiry**: any future date (mm/yy)
-  3. **CVV**: 123
-  4. **OTP**: 111111
-  5. **Name**: Any name
-  6. **Mobile Number**: 9123412345 (mandatory for EMI) |
-     \| AXIS DC EMI  | 1) **Card Number**: 4011-5100-0000-0007
-
-  2) **Expiry**: any future date (mm/yy)
-  3) **CVV**: 123
-  4) **OTP**: 111111
-  5) **Name**: Any name
-  6) **Mobile Number**: 9123412345 (mandatory for EMI) |
-     \| HDFC CC EMI  | 1. **Card Number**: 4453-3410-65876437
-
-  2. **Expiry**: any future date (mm/yy)
-  3. **CVV**: 123
-  4. **OTP**: 111111
-  5. **Name**: Any name
-  6. **Mobile Number**: 9123412345 (mandatory for EMI)  |
-     \| ICICI CC EMI | 1) **Card Number**: 4453-3410-65876437
-
-  2) **Expiry**: any future date (mm/yy)
-  3) **CVV**: 123
-  4) **OTP**: 111111
-  5) **Name**: Any name
-  6) **Mobile Number**: 9123412345 (mandatory for EMI)  |
-
-  <Accordion title="Test Wallets" icon="fa-code">
-    You can use the following wallets and their corresponding credentials to test wallet integration.
-
-    <Table align={["left","left","left"]}>
-      <thead>
-        <tr>
-          <th style={{ textAlign: "left" }}>
-            Wallet
-          </th>
-
-          <th style={{ textAlign: "left" }}>
-            Mobile Number
-          </th>
-
-          <th style={{ textAlign: "left" }}>
-            OTP
-          </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            PayTM
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            7777777777
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            888888
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            PhonePe
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: [https://developer.phonepe.com/v1/docs/setting-up-test-account](https://developer.phonepe.com/v1/docs/setting-up-test-account)
-            Download the app and register your mobile number and follow the instructions as described in the above PhonePe docs.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            NA
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            AmazonPay
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            You can test using your original Amazon account details.
-          </td>
-
-          <td style={{ textAlign: "left" }} />
-        </tr>
-      </tbody>
-    </Table>
-</Accordion>
-    <Go_Live_Checklist />
-
-    <br />
-
-</Accordion>
+<IOS_Go_Live />
