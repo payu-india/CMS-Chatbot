@@ -1,7 +1,7 @@
 ---
 name: IOS_Test_the_Integration
 ---
-<br />
+<Accordion title="Test the Integration" icon="fa-info-circle">
 
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
@@ -49,3 +49,4 @@ You can use the following Debit and Credit cards to test EMI integration.
 You can use the following wallets and their corresponding credentials to test wallet integration.
 
 <EMITestWallets />
+</Accordion>
