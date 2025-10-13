@@ -12,9 +12,9 @@ next:
 ---
 PayU allows you to create and manage the following types of Webhooks:
 
-- Payment webhooks - Allows you to receive realtime notification for various events associated with Payments
-- Payout Webhooks - Allows you to receive realtime notification for various events associated with Payouts.
-- Subscription Webhooks - Allows you to receive realtime notification for various events associated with Subscriptions
+* Payment webhooks - Allows you to receive realtime notification for various events associated with Payments
+* Payout Webhooks - Allows you to receive realtime notification for various events associated with Payouts.
+* Subscription Webhooks - Allows you to receive realtime notification for various events associated with Subscriptions
 
 ## Payment Webhooks
 
@@ -51,13 +51,9 @@ Following are the list of events that are currently supported for payouts:
 | `transfer_success`               | Signal that a Penny with name match verification has been successful. |
 | `smart_send_expired`             | Triggered to notify about the Smart Send link expiration.             |
 
-### Create Payout Webhook
-
 ## Subscription Webhooks
 
 ### Subscription Events
-
-### Create a Subscription Webhook
 
 | Webhook Types          | Description                                                                                  | Events & Payloads             |
 | :--------------------- | :------------------------------------------------------------------------------------------- | :---------------------------- |
