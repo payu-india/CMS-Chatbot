@@ -226,15 +226,14 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     <Accordion title="Step 2.5:For Additional Charges" icon="fa-code">
       Additional charges can be applied to transactions:
 
-    ```Text Swift
-paymentParam.additionalCharges = "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55"
-paymentParam.percentageAdditionalCharges = "CC:50,SBIB:100,DINR:100,DC:25,NB:50"
-```
-```Text Objective-C
-paymentParam.additionalCharges = @"CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
-paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50";
-```
-
+      ```Text Swift
+      paymentParam.additionalCharges = "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55"
+      paymentParam.percentageAdditionalCharges = "CC:50,SBIB:100,DINR:100,DC:25,NB:50"
+      ```
+      ```Text Objective-C
+      paymentParam.additionalCharges = @"CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
+      paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50";
+      ```
     </Accordion>
   </Accordion>
 </Accordion>
@@ -745,7 +744,7 @@ paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50
   Implement payment verification on your backend:
 
   ```swift Swift
-  // Always verify payment status from your backend using PayU's verify API
+  // Always verify payment status from your backend using PayU's verify payment API
   // Do not rely solely on the mobile response for order fulfillment
   ```
 
