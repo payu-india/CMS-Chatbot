@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-This section provides API details for PayU's WealthTech Payment  API, specifically designed for mutual fund transaction processing. The API introduces new parameters and validation rules to support wealth management payment flows.
+This section provides API details for _payment  API used for collecting WealthTech payments, specifically designed for mutual fund transaction processing. The API introduces new parameters and validation rules to support wealth management payment flows.
 
 * **Method**: `POST`
 * **Content-Type**: `application/x-www-form-urlencoded`
@@ -136,7 +136,7 @@ This section provides API details for PayU's WealthTech Payment  API, specifical
     <tr>
       <td>
         email `
-                mandatory`
+                        mandatory`
       </td>
 
       <td>
@@ -166,7 +166,7 @@ This section provides API details for PayU's WealthTech Payment  API, specifical
     <tr>
       <td>
         hash `
-                mandatory`
+                        mandatory`
       </td>
 
       <td>
