@@ -14,7 +14,9 @@ PayU provides two primary environments:
 * **Test Environment (Sandbox)**: For development, testing, and integration validation
 * **Production Environment (Live)**: For processing real payments and transactions
 
-> **Important:** Always use matching credentials and endpoints for your target environment.
+<Callout icon="📘" theme="info">
+  **Important:** Always use matching credentials and endpoints for your target environment.
+</Callout>
 
 ## Payment APIs (Web Checkout & Hosted Checkout)
 
