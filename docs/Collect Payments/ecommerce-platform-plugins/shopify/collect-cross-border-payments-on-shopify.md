@@ -1,7 +1,7 @@
 ---
 title: Collect Cross-Border Payments on Shopify
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
