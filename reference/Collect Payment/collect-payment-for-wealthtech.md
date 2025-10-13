@@ -14,6 +14,10 @@ This section provides API details for _payment  API used for collecting WealthTe
 
 ## Request Parameters
 
+## ✅ **Updated Markdown Table with `<br/>` Tags**
+
+Here's the updated markdown table with `<br/>` tags added between the parameter names and their mandatory/optional status:
+
 | Parameter                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Example                                                                                                                                                                     |
 | :---------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key<br />`mandatory`                            | `String` This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).                                                                                                                                                                                                                                                                                                                                                                                                                        | 8488225                                                                                                                                                                     |
@@ -45,7 +49,27 @@ This section provides API details for _payment  API used for collecting WealthTe
 | additional_charges<br />`optional`              | `String` Collect additional charges for the transaction. For example, platform fee                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 10.00                                                                                                                                                                       |
 
 ### Wealth Tech object (wtParams) fields Description
-
+#### Sample JSON
+``` 
+"more_info": {
+    "wtParams": [
+      {
+        "type": "mutual_fund",
+        "plan": "GD",
+        "amount": "50000",
+        "option": "G",
+        "scheme": "LT",
+        "receipt": "77407",
+        "mf_member_id": "123445",
+        "mf_user_id": "77407",
+        "mf_partner": "cams",
+        "mf_investment_type": "L",
+        "mf_amc_code": "UTB"
+      }
+    ]
+  }
+```
+#### Fields description
 These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
 
 <Table align={["left","left","left"]}>
@@ -247,6 +271,15 @@ These parameters are included within the `more_info` field as a JSON array under
   </tbody>
 </Table>
 
+## Sample Request
+
+```bash
+curl -i 'https://test.payu.in/_payment' \
+-H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+-H 'content-type: application/x-www-form-urlencoded' \
+--data-raw 'hash=fbc07b5517029242fd97b982816eb372d6501c1...&key=KOEfPI&txnid=7f41f520f71b&api_version=21&amount=50000&productinfo=Mutual Fund&firstname=John&email=john@example.com&phone=9876543210'
+```
+
 ## Response Parameters
 
 ### Success scenario
@@ -309,82 +342,3 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|
 
 ***
 
-## Sample Request
-
-```bash
-curl -i 'https://test.payu.in/_payment' \
--H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
--H 'content-type: application/x-www-form-urlencoded' \
---data-raw 'hash=fbc07b5517029242fd97b982816eb372d6501c1...&key=KOEfPI&txnid=7f41f520f71b&api_version=21&amount=50000&productinfo=Mutual Fund&firstname=John&email=john@example.com&phone=9876543210'
-```
-
-### Sample JSON Payload Structure
-
-```json
-{
-  "hash": "fbc07b5517029242fd97b982816eb372d6501c1...",
-  "key": "KOEfPI",
-  "txnid": "7f41f520f71b",
-  "api_version": "21",
-  "salt_version": "1",
-  "amount": "50000",
-  "productinfo": "Mutual Fund Investment",
-  "firstname": "John",
-  "email": "john@example.com",
-  "phone": "9876543210",
-  "more_info": {
-    "wtParams": [
-      {
-        "type": "mutual_fund",
-        "plan": "GD",
-        "amount": "50000",
-        "option": "G",
-        "scheme": "LT",
-        "receipt": "77407",
-        "mf_member_id": "123445",
-        "mf_user_id": "77407",
-        "mf_partner": "cams",
-        "mf_investment_type": "L",
-        "mf_amc_code": "UTB"
-      }
-    ]
-  }
-}
-```
-
-## Recurring payments
-
-## Sample response
-
-### Success scenario
-
-```json
-{
-  "status": 1,
-  "message": "Transaction Processed successfully",
-  "details": {
-    "48101c0c-5265-4c2a-b6d0-e6e73d42809e": {
-      "authpayuid": "999990000005920",
-      "transactionid": "48101c0c-5265-4c2a-b6d0-e6e73d42809e",
-      "amount": "500.00",
-      "user_credentials": "o0dEBA:11b341595c...",
-      "card_token": "195748c0f4ec4b3093af",
-      "payuid": "999990000006473",
-      "status": "captured",
-      "udf1": "Y",
-      "field9": "Transaction is Successful"
-    }
-  }
-}
-```
-
-### Failure scenario
-
-```json
-{
-  "status": 0,
-  "message": "Invalid Parameter: mf_partner must be less than or equal to 4 characters."
-}
-```
-
-***
