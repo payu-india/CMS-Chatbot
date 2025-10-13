@@ -166,7 +166,7 @@ For file upload fields (identified by `tag_type: "file_tag"` in the system):
       </td>
 
       <td>
-        Base64 encoded file content.
+        Dependent on response received from the Read Reasons API, the Value(evidence) to be submitted for accepting/contesting the chargeback, for a particular reason code(UUID), should be text(plain text), image(png ,jpeg/jpg) or file(doc,docx,pdf). This is Base-64 encoded.
       </td>
     </tr>
 
