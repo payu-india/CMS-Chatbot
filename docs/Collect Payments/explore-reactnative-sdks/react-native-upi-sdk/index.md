@@ -365,3 +365,17 @@ The React Native UPI SDK integration involves the following steps:
   </Accordion>
 </Accordion>
 
+## Test the Integration and Go-Live
+
+<Accordion title="Test the Integration" icon="fa-gear">
+  <ReactNative_Test_the_Integration />
+</Accordion>
+
+<Accordion title="Go-live Checklist" icon="fa-gear">
+  <ReactNative_Go_Live />
+</Accordion>
+
+## Sample app
+
+The sample application for integration with React-Native UPI SDK :
+
