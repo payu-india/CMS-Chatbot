@@ -378,4 +378,4 @@ The React Native UPI SDK integration involves the following steps:
 ## Sample app
 
 The sample application for integration with React-Native UPI SDK :
-
+[https://github.com/payu-intrepos/payu-core-pg-react.git](https://github.com/payu-intrepos/payu-core-pg-react.git)
