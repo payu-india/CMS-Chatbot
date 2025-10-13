@@ -663,50 +663,6 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   </Accordion>
 </Accordion>
 
-<Accordion title="Test credentials for supported payment methods" icon="fa-code">
-  <Accordion title="Test cards for EMI" icon="fa-code">
-    For testing EMI transactions:
-
-    **EMI Test Cards:**
-
-    * **HDFC**: 4444333322221111
-    * **ICICI**: 5123456789012346
-    * **SBI**: 4000111122223331
-
-    All EMI test cards use:
-
-    * **CVV**: 123
-    * **Expiry**: 12/25
-  </Accordion>
-
-  <Accordion title="Test credentials for Net Banking" icon="fa-code">
-    **Net Banking Test Credentials:**
-
-    * **SBI**: Use any valid account number
-    * **HDFC**: Use any valid customer ID
-    * **ICICI**: Use any valid user ID
-    * **Axis**: Use any valid user ID
-
-    For all banks, use any password for testing.
-  </Accordion>
-
-  <Accordion title="Test VPA for UPI" icon="fa-code">
-    **UPI Test VPAs:**
-
-    * Success: `success@payu`
-    * Failure: `failure@payu`
-    * Pending: `pending@payu`
-  </Accordion>
-
-  <Accordion title="Test wallets" icon="fa-code">
-    **Wallet Test Credentials:**
-
-    * **Paytm**: Use mobile number 7777777777
-    * **PhonePe**: Use mobile number 9999999999
-    * **Amazon Pay**: Use mobile number 8888888888
-
-    Use OTP: 123456 for all wallet testing.
-  </Accordion>
-</Accordion>
-
+##Test the integration and Go-Live
+<IOS_Test_the_Integration /> 
 <IOS_Go_Live />
