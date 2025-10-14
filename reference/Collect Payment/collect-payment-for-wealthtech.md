@@ -92,7 +92,7 @@ These parameters are included within the `more_info` field as a JSON array under
   <tbody>
     <tr>
       <td>
-        type <br/>
+        type <br />
         `mandatory`
       </td>
 
@@ -107,7 +107,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        amount <br/>
+        amount <br />
         `mandatory`
       </td>
 
@@ -122,7 +122,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        receipt <br/>
+        receipt <br />
         `mandatory`
       </td>
 
@@ -137,7 +137,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_member_id <br/>
+        mf_member_id <br />
         `mandatory`
       </td>
 
@@ -152,7 +152,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_user_id <br/>
+        mf_user_id <br />
         `mandatory`
       </td>
 
@@ -167,7 +167,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_partner <br/>
+        mf_partner <br />
         `mandatory`
       </td>
 
@@ -182,7 +182,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_investment_type <br/> `mandatory`
+        mf_investment_type <br /> `mandatory`
       </td>
 
       <td>
@@ -196,7 +196,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        plan <br/>
+        plan <br />
         `optional`
       </td>
 
@@ -226,7 +226,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        option <br/>
+        option <br />
         `optional`
       </td>
 
@@ -241,7 +241,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        scheme <br/>
+        scheme <br />
         `optional`
       </td>
 
@@ -256,7 +256,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_amc_code <br/>
+        mf_amc_code <br />
         `optional`
       </td>
 
@@ -288,6 +288,105 @@ curl -i 'https://test.payu.in/_payment' \
   --data-urlencode 'phone=9876543210' \
   --data-urlencode 'more_info={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
 
+```
+
+## Sample response
+
+### Response Handling
+
+After the customer completes or abandons the payment, PayU POSTs back to your return URL with URL-encoded fields (form post). This payload includes the transaction status, txnid, mihpayid, and a hash you must verify (reverse hashing) before trusting the result.
+
+Sample surl/furl payload:
+
+```json Success
+mihpayid=403993715531077182
+mode=CC
+status=success
+unmappedstatus=captured
+key=JPM7Fg
+txnid=TXN12345
+amount=1000.00
+productinfo=Pro Plan
+firstname=Aditi
+email=aditi@example.com
+phone=9999999999
+udf1=
+...
+udf5=
+PG_TYPE=CC-PG
+bankcode=CC
+bank_ref_num=896193988312194700
+field1=...
+field9=Transaction is Successful
+hash=<response_hash>
+```
+```json Failure
+mihpayid=403993715531077182
+mode=CC
+status=failure
+unmappedstatus=failed
+key=JPM7Fg
+txnid=TXN12345
+amount=1000.00
+productinfo=Pro Plan
+firstname=Aditi
+email=aditi@example.com
+phone=9999999999
+udf1=
+...
+udf5=
+PG_TYPE=CC-PG
+bankcode=CC
+bank_ref_num=
+field1=
+field2=
+...
+field9=Transaction Failed
+error=E000
+error_Message=Bank was unable to authenticate
+hash=<response_hash>
+```
+
+### Response verification using reverse hashing
+
+Verify the response received above by recomputing SHA-512 using the reverse sequence:
+
+```json
+sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+```
+
+* Compare the computed digest to hash from the POST payload (**case-sensitive**).
+* Trust the result only if t
+
+### Using Verify Payment API
+After you collect payment using **_payment** API, you get the response from PayU. You must use the txnid (transaction) parameter in the response with *Verify Payment* API to get the payment status. For more information, refer to [Verify Payment API](verify_payment_api). You will get the following sample response for success/failure scenarios.
+#### Success scenario
+```json
+{
+  "status": 1,
+  "message": "Transaction Processed successfully",
+  "details": {
+    "48101c0c-5265-4c2a-b6d0-e6e73d42809e": {
+      "authpayuid": "999990000005920",
+      "transactionid": "48101c0c-5265-4c2a-b6d0-e6e73d42809e",
+      "amount": "500.00",
+      "user_credentials": "o0dEBA:11b341595c...",
+      "card_token": "195748c0f4ec4b3093af",
+      "payuid": "999990000006473",
+      "status": "captured",
+      "udf1": "Y",
+      "field9": "Transaction is Successful"
+    }
+  }
+}
+```
+
+#### Failure scenario
+```json
+{
+  "status": 0,
+  "message": "Invalid Parameter: mf_partner must be less than or equal to 4 characters."
+}
 ```
 
 ## Response Parameters
