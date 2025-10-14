@@ -6,12 +6,12 @@ api:
   operationId: refresh_token
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 This API is used to generate a refresh token to obtain a renewed access token using client ID.
 
@@ -21,10 +21,10 @@ This API is used to generate a refresh token to obtain a renewed access token us
 
 **Environment**
 
-|                |                                                          |
-| :------------- | :------------------------------------------------------- |
-| **Test**       | https://uat-accounts.payu.in/oauth/token.                |
-| **Production** | \<[https://accounts.payu.in>](https://accounts.payu.in>) |
+|                |                                                                                       |
+| :------------- | :------------------------------------------------------------------------------------ |
+| **Test**       | [https://uat-accounts.payu.in/oauth/token](https://uat-accounts.payu.in/oauth/token). |
+| **Production** | \<[https://accounts.payu.in>](https://accounts.payu.in>)                              |
 
 <details>
   <summary>Sample request</summary>
