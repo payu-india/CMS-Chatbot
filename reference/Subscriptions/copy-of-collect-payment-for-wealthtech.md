@@ -29,7 +29,7 @@ This section provides **_payment**  API details used for payment consent WealthT
 | furl<br />`mandatory`                           | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                                 | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                              |
 | api_version <br /> `mandatory`                  | API version must be posted as `21`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 21                                                                                                                                                                          |
 | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT) For more information, refer to [Generate Hash](doc:hashing-request-and-response).                                                                                                                                                                                                                                                                                                                         | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                                    |
-| more_info<br />mandatory for Wealth Tech        | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech/#wealth-tech-object-wtParams-fields-description).                                                                                                                                                                                                                                                                                                                   | Refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech/#wealth-tech-object-wtParams-fields-description) |
+| more_info<br/>`mandatory for Wealth Tech`        | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech/#wealth-tech-object-wtParams-fields-description).                                                                                                                                                                                                                                                                                                                   | Refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech/#wealth-tech-object-wtParams-fields-description) |
 | lastname<br />`optional`                        | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                                      |
 | address1<br />`optional`                        | `String` The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                             |
 | address2<br />`optional`                        | `String` The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Apartment 4B                                                                                                                                                                |
@@ -45,8 +45,11 @@ This section provides **_payment**  API details used for payment consent WealthT
 | additional_charges<br />`optional`              | `String` Collect additional charges for the transaction. For example, platform fee                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 10.00                                                                                                                                                                       |
 
 ### Wealth Tech object (wtParams) fields Description
-####Sample JSON
+
+#### Sample JSON
+
 ### Sample JSON Payload Structure
+
 ```json
   "more_info": {
     "wtParams": [
@@ -67,8 +70,8 @@ This section provides **_payment**  API details used for payment consent WealthT
   }
 ```
 
-
 #### Field descriptions
+
 These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
 
 <Table align={["left","left","left"]}>
@@ -91,11 +94,11 @@ These parameters are included within the `more_info` field as a JSON array under
   <tbody>
     <tr>
       <td>
-        type
+        type <br/>
         `mandatory`
       </td>
 
-      <td>
+      <td> 
         `string` - Transaction type, must be "mutual_fund"
       </td>
 
@@ -106,7 +109,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        amount
+        amount <br/>
         `mandatory`
       </td>
 
@@ -121,7 +124,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        receipt
+        receipt <br/>
         `mandatory`
       </td>
 
@@ -136,7 +139,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_member_id
+        mf_member_id <br/>
         `mandatory`
       </td>
 
@@ -151,7 +154,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_user_id
+        mf_user_id <br/>
         `mandatory`
       </td>
 
@@ -166,7 +169,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_partner
+        mf_partner <br/>
         `mandatory`
       </td>
 
@@ -181,7 +184,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_investment_type `mandatory`
+        mf_investment_type <br/> `mandatory`
       </td>
 
       <td>
@@ -195,7 +198,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        plan
+        plan <br/>
         `optional`
       </td>
 
@@ -210,7 +213,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        folio
+        folio <br/>
         `optional`
       </td>
 
@@ -225,7 +228,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        option
+        option <br/>
         `optional`
       </td>
 
@@ -240,7 +243,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        scheme
+        scheme <br/>
         `optional`
       </td>
 
@@ -255,7 +258,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_amc_code
+        mf_amc_code <br/>
         `optional`
       </td>
 
@@ -269,6 +272,7 @@ These parameters are included within the `more_info` field as a JSON array under
     </tr>
   </tbody>
 </Table>
+
 ## Sample Request
 
 ```bash
@@ -277,6 +281,7 @@ curl -i 'https://test.payu.in/_payment' \
 -H 'content-type: application/x-www-form-urlencoded' \
 --data-raw 'hash=fbc07b5517029242fd97b982816eb372d6501c1...&key=KOEfPI&txnid=7f41f520f71b&api_version=21&amount=50000&productinfo=Mutual Fund&firstname=John&email=john@example.com&phone=9876543210'
 ```
+
 ## Response Parameters
 
 ### Success scenario
@@ -336,7 +341,6 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|
 2. Append the salt at the end
 3. Apply SHA-512 hashing to the concatenated string
 4. Use the resulting hash as the `hash` parameter
-
 
 ## Sample response
 
