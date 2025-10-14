@@ -4,7 +4,7 @@ excerpt: >-
   Create WebHooks to get notified about events related to Payments, Refunds,
   Subscriptions, and Payouts
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
