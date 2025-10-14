@@ -277,9 +277,19 @@ These parameters are included within the `more_info` field as a JSON array under
 
 ```bash
 curl -i 'https://test.payu.in/_payment' \
--H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
--H 'content-type: application/x-www-form-urlencoded' \
---data-raw 'hash=fbc07b5517029242fd97b982816eb372d6501c1...&key=KOEfPI&txnid=7f41f520f71b&api_version=21&amount=50000&productinfo=Mutual Fund&firstname=John&email=john@example.com&phone=9876543210'
+  -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+  -H 'content-type: application/x-www-form-urlencoded' \
+  --data-urlencode 'hash=fbc07b5517029242fd97b982816eb372d6501c1...' \
+  --data-urlencode 'key=KOEfPI' \
+  --data-urlencode 'txnid=7f41f520f71b' \
+  --data-urlencode 'api_version=21' \
+  --data-urlencode 'amount=50000' \
+  --data-urlencode 'productinfo=Mutual Fund' \
+  --data-urlencode 'firstname=John' \
+  --data-urlencode 'email=john@example.com' \
+  --data-urlencode 'phone=9876543210' \
+  --data-urlencode 'more_info={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
+
 ```
 
 ## Response Parameters
