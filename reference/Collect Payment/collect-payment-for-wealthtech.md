@@ -14,10 +14,6 @@ This section provides API details for _payment  API used for collecting WealthTe
 
 ## Request Parameters
 
-## ✅ **Updated Markdown Table with `<br/>` Tags**
-
-Here's the updated markdown table with `<br/>` tags added between the parameter names and their mandatory/optional status:
-
 | Parameter                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Example                                                                                                                                                                     |
 | :---------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key<br />`mandatory`                            | `String` This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).                                                                                                                                                                                                                                                                                                                                                                                                                        | 8488225                                                                                                                                                                     |
@@ -49,8 +45,10 @@ Here's the updated markdown table with `<br/>` tags added between the parameter 
 | additional_charges<br />`optional`              | `String` Collect additional charges for the transaction. For example, platform fee                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 10.00                                                                                                                                                                       |
 
 ### Wealth Tech object (wtParams) fields Description
+
 #### Sample JSON
-``` 
+
+```
 "more_info": {
     "wtParams": [
       {
@@ -69,7 +67,9 @@ Here's the updated markdown table with `<br/>` tags added between the parameter 
     ]
   }
 ```
+
 #### Fields description
+
 These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
 
 <Table align={["left","left","left"]}>
@@ -341,4 +341,3 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|
 4. Use the resulting hash as the `hash` parameter
 
 ***
-
