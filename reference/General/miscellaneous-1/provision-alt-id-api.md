@@ -24,7 +24,8 @@ HTTP Method: **POST**
 
 | Environment | URL                                                                      |
 | ----------- | ------------------------------------------------------------------------ |
-| Production  | [https://apitest.payu.in/card/altid](https://apitest.payu.in/card/altid) |
+| Test        | [https://apitest.payu.in/card/altid](https://apitest.payu.in/card/altid) |
+| Production  | https://api.payu.in/card/altid                                           |
 
 ## Request Headers
 
@@ -121,9 +122,9 @@ Where the above format includes the following:
 * **username**: The merchant key of the merchant.
 * **algorithm**: This must have the value as **hmac-sha256** that is used for this API
 * **headers**: This must have the value as **date digest**
-* **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:
-  * **signing\_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
-  * **merchant\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+* **signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:
+  * **signing_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
+  * **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)
 
 The following sample Java code contains the logic used to encrypt as described in the above table:
 
