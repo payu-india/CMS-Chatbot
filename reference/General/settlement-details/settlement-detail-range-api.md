@@ -17,7 +17,12 @@ next:
 ---
 Settlement Details Range API provides transaction level data for a given date or date range. This API returns paginated response for the given input page and page size.
 
-<GENERALAPIsEnvironment />
+**Environment**
+
+|                        |                                           |
+| :--------------------- | :---------------------------------------- |
+| Test Environment       | https://apitest.payu.in/settlement/range/ |
+| Production Environment | https://info.payu.in/settlement/range/    |
 
 ## Request parameters
 
