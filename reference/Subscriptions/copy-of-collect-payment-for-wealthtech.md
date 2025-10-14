@@ -46,7 +46,44 @@ This section provides **_payment**  API details used for payment consent WealthT
 | udf4<br />`optional`                            | `String` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 2                                                                                                                                                    |
 | udf5<br />`optional`                            | `String` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 3                                                                                                                                                    |
 | additional_charges<br />`optional`              | `String` Collect additional charges for the transaction. For example, platform fee                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 10.00                                                                                                                                                                |
+<Accordion title="Validation Rules" icon="fa-code">
 
+<Accordion title="Mandatory Field Validations" icon="fa-code">
+
+* **type**: Must always be `"mutual_fund"`
+* **amount**: Must match the overall order amount and be in paise
+* **receipt**: Must be unique across transactions
+* **mf_member_id**: Must be numeric with length between 5-20 characters
+* **mf_user_id**: Maximum 10 characters allowed
+* **mf_partner**: Must be one of: `"cams"`, `"kfin"`, `"bse"`, `"nse"`
+* **mf_investment_type**: Only `"L"` (Lump Sum) or `"S"` (SIP) allowed
+
+</Accordion>
+<Accordion title="Optional Field Validations" icon="fa-code">
+
+* **mf_amc_code**: Maximum 5 characters
+* **receipt**: Maximum 25 characters for SIP registration ID
+
+***
+
+</Accordion>
+</Accordion>
+<Accordion title="Hash Calculation" icon="fa-code">
+
+The hash is calculated using SHA-512 algorithm with the following field sequence:
+
+```
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt
+```
+
+<Accordion title="Hash Generation Steps" icon="fa-code">
+
+1. Concatenate fields in the specified order using pipe (|) separator
+2. Append the salt at the end
+3. Apply SHA-512 hashing to the concatenated string
+4. Use the resulting hash as the `hash` parameter
+</Accordion>
+</Accordion>
 ### Wealth Tech object (wtParams) fields Description
 
 #### Sample JSON
@@ -430,6 +467,41 @@ After you collect payment using **_payment** API, you get the response from PayU
 
 ***
 
+## **Validation Rules**
+
+### **Mandatory Field Validations**
+
+* **type**: Must always be `"mutual_fund"`
+* **amount**: Must match the overall order amount and be in paise
+* **receipt**: Must be unique across transactions
+* **mf_member_id**: Must be numeric with length between 5-20 characters
+* **mf_user_id**: Maximum 10 characters allowed
+* **mf_partner**: Must be one of: `"cams"`, `"kfin"`, `"bse"`, `"nse"`
+* **mf_investment_type**: Only `"L"` (Lump Sum) or `"S"` (SIP) allowed
+
+### **Optional Field Validations**
+
+* **mf_amc_code**: Maximum 5 characters
+* **receipt**: Maximum 25 characters for SIP registration ID
+
+***
+
+## **Hash Calculation**
+
+The hash is calculated using SHA-512 algorithm with the following field sequence:
+
+```
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt
+```
+
+### **Hash Generation Steps**
+
+1. Concatenate fields in the specified order using pipe (|) separator
+2. Append the salt at the end
+3. Apply SHA-512 hashing to the concatenated string
+4. Use the resulting hash as the `hash` parameter
+
+## Sample response
 
 ### Success scenario
 
