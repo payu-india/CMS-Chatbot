@@ -140,7 +140,7 @@
     "/token": {
       "parameters": []
     },
-    "/": {
+    "/oauth/token/": {
       "post": {
         "tags": [
           "Tokens"
