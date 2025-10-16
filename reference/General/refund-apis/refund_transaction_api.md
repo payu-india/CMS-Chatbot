@@ -60,7 +60,7 @@ In this API:
 
   **1. On successful processing from PayU:**
 
-  ```plaintext
+  ```json
   Array 
   (
         [status] => 1
@@ -73,7 +73,7 @@ In this API:
 
   **2. On successful processing for captured transactions:**
 
-  ```plaintext
+  ```json
   Array 
   (
        [status] => 1
@@ -86,7 +86,7 @@ In this API:
 
   **3. On successful processing for auth transactions:**
 
-  ```plaintext
+  ```json
   Array 
   (
       [status] => 1
@@ -110,7 +110,7 @@ In this API:
 
   **2. If amount is missing:**
 
-  ```plaintext
+  ```json
   Array 
   (
       [status] => 0
@@ -120,7 +120,7 @@ In this API:
 
   **3. If the transaction is not found:**
 
-  ```plaintext
+  ```json
   Array 
   (
       [status] => 0
@@ -130,7 +130,7 @@ In this API:
 
   **4. If failed to refund:**
 
-  ```plaintext
+  ```json
   Array 
   (
       [status] => 0
@@ -140,7 +140,7 @@ In this API:
 
   **5. If capture is done on the same day:**
 
-  ```plaintext
+  ```json
   Array 
   (
       [status] => 1
@@ -153,7 +153,7 @@ In this API:
 
   **6. If the token is invalid:**
 
-  ```plaintext
+  ```json
   Array
   (
       [status] => 0
@@ -163,7 +163,7 @@ In this API:
 
   **7. If failed to cancel a transaction:**
 
-  ```plaintext
+  ```json
   Array 
   (
       [status] => 0
@@ -177,7 +177,7 @@ In this API:
   >
   > **1. For Regular Merchants:**
   >
-  > ```plaintext
+  > ```json
   > Array
   > (
   >     [status] => 1
