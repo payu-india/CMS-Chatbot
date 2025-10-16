@@ -44,7 +44,7 @@ The **Get All Refunds for a Transaction ID** API (getAllRefundsFromTxnIds) comma
 
   On successful processing from PayU, the response is similar to the following:
 
-  ```plaintext
+  ```json
   {
         "status": 1,
         "msg": "Refunds fetched successfully.",
