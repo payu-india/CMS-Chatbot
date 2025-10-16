@@ -34,6 +34,10 @@ You can fetch cards details with the following specific feature-level informatio
 * Complete BIN list having ATM PIN support is required
 * Complete BIN list with OTP-on-the-fly support (IVR) is required
 
+<Callout icon="📘" theme="info">
+  **Use 9-digit BIN for more accuracy**: It is highly recommended to utilize a 9-digit BIN for more accuracy, as banks are transitioning from 6-digit BINs to an 8-9 digit BIN range. PayU will provide the corresponding available BIN within the response.
+</Callout>
+
 <GENERALAPIsEnvironment />
 
 <Accordion title="BIN API Use Cases" icon="fa-info-circle">
@@ -264,7 +268,7 @@ You can fetch cards details with the following specific feature-level informatio
   | Parameter | Reference                                                                                                                                                                                                                                                                                    |
   | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | **key**   | For more information on how to generate the Key and Salt, refer to any of the following: • **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard) • **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt) |
-  | **hash**  | Hash logic for this API is: sha512(key\|command\|var1\|salt) sha512                                                                                                                                                                                                                          |
+  | **hash**  | Hash logic for this API is: sha512(key\\\|command\\\|var1\\\|salt) sha512                                                                                                                                                                                                                    |
 
   ## Request Parameters Description
 
