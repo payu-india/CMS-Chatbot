@@ -35,7 +35,10 @@ You can fetch cards details with the following specific feature-level informatio
 * Complete BIN list with OTP-on-the-fly support (IVR) is required
 
 <Callout icon="📘" theme="info">
-  **Use 9-digit BIN for more accuracy**: It is highly recommended to utilize a 9-digit BIN for more accuracy, as banks are transitioning from 6-digit BINs to an 8-9 digit BIN range. PayU will provide the corresponding available BIN within the response.
+  **Notes**:
+
+  * **Use 9-digit BIN for more accuracy**: It is highly recommended to utilize a 9-digit BIN for more accuracy, as banks are transitioning from 6-digit BINs to an 8-9 digit BIN range. PayU will provide the corresponding available BIN within the response.
+  * If you are posting a 9 or 8-digit BIN in the request, it is possible that a 8 or 6-digit corresponding BIN might be returned in the response.
 </Callout>
 
 <GENERALAPIsEnvironment />
