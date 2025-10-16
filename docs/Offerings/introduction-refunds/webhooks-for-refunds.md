@@ -8,7 +8,7 @@ metadata:
 Configure chargeback webhooks to automatically receive instant notifications when refunds status has changed. This section describes how to create and configure refund webhooks using any of the following to receive automated notifications.
 
 <Callout icon="📘" theme="info">
-  **Prerequiistes**: Before configuring a chargeback webhook, ensure that:
+  **Prerequiistes**: Before configuring a refund event webhook, ensure that:
 
   * You have access to your PayU merchant dashboard
   * You have a server endpoint ready to receive webhook notifications
