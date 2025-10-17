@@ -9,8 +9,8 @@ The **Regenerate Token** API for Chargeback allows users to regenerate authentic
 
 **Environment**
 
-|            |                                             |
-| :--------- | :------------------------------------------ |
+|            |                                              |
+| :--------- | :------------------------------------------- |
 | Production | \<Optimus endpoint>/api/v1/tokens/regenerate |
 
 <Callout icon="📘" theme="info">
@@ -19,7 +19,7 @@ The **Regenerate Token** API for Chargeback allows users to regenerate authentic
 
 ## Request header
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -39,8 +39,8 @@ The **Regenerate Token** API for Chargeback allows users to regenerate authentic
   <tbody>
     <tr>
       <td>
-        X-Optimus-API-Key <br/>
-         <code>mandatory</code> 
+        X-Optimus-API-Key <br />
+        <code>mandatory</code>
       </td>
 
       <td>
@@ -54,8 +54,8 @@ The **Regenerate Token** API for Chargeback allows users to regenerate authentic
 
     <tr>
       <td>
-        Content-Type<br/>
-        <code>mandatory</code> 
+        Content-Type<br />
+        <code>mandatory</code>
       </td>
 
       <td>
@@ -131,10 +131,6 @@ curl --location 'http://localhost:3000/api/v1/tokens/regenerate' \
 
 * 401 Unauthorized:  **Missing or invalid API key**
 
-| Parameter | Description                                                           | Example         |
-| --------- | --------------------------------------------------------------------- | --------------- |
-| errors    | <code>string</code> - Error message indicating authentication failure | "Invalid Token" |
-
 ```json
 {
   "errors": "Invalid Token"
@@ -154,13 +150,6 @@ curl --location 'http://localhost:3000/api/v1/tokens/regenerate' \
 | <h3>Failure scnario</h3>  |                                                                                         |                                            |
 | error                     | <code>string</code> - Error type identifier                                             | "Invalid expiry date format"               |
 | message                   | <code>string</code> - Detailed error description                                        | "Expiry date must be in YYYY-MM-DD format" |
-
-### Notes
-
-* The `expires_at` date must be a future date
-* The API key used for authentication will be replaced by the newly generated token
-* The old API key will become invalid after successful token regeneration
-* All timestamps in responses are provided in the server's local timezone
 
 ## HTTP Status Codes
 
