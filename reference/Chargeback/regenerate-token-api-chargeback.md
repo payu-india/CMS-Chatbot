@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-The **Regenerate Token** API for Chargeback allows users to regenerate authentication tokens with a specified expiration date. This endpoint is part of the Optimus platform and provides a secure way to refresh API tokens while maintaining authentication integrity.
+The **Regenerate Token** API for Chargeback allows you to regenerate authentication tokens with a specified expiration date. This endpoint is part of the Optimus platform and provides a secure way to refresh API tokens while maintaining authentication integrity.
 
 **Environment**
 
