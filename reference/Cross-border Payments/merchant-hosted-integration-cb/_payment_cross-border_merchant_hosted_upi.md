@@ -13,7 +13,7 @@ metadata:
 next:
   description: ''
 ---
-PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to [UPI Handles](doc:upi-handles). The **buyer\_type\_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
+PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to [UPI Handles](doc:upi-handles). The **buyer_type_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
 
 After the payment is complete, you must use the [Invoice Upload API](ref:invoice_upload_api) to upload the invoices for banks processing.
 
@@ -25,10 +25,10 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
 
 ## Environment
 
-| Environment                | URL                                                                 |
-| :------------------------- | :------------------------------------------------------------------ |
-| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
-| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+| Environment                | URL                                                                |
+| :------------------------- | :----------------------------------------------------------------- |
+| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
 <details>
   <summary>Sample request</summary>
@@ -118,14 +118,14 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
   For a comprehensive list of all parameters and their descriptions,  refer to the following:
 </details>
 
-> 📘 **Reference**
->
-> For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+<Callout icon="📘" theme="info">
+  **Reference:** For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+</Callout>
 
-> 🚧 **Testing UPI**
->
-> You can test UPI only with the anything\@payu or [9999999999@payu.in](mailto:9999999999@payu.in) as VPA.
+<Callout icon="🚧" theme="warn">
+  **Testing UPI:** You can test UPI only with the anything@payu or [9999999999@payu.in](mailto:9999999999@payu.in) as VPA.
+</Callout>
 
-> ❗️ **Error handling**
->
-> If any error message is displayed with an error code, refer to the [Error Codes](ref:error-codes) section to understand the reason for these error codes.
+<Callout icon="❗️" theme="error">
+  **Error handling:** If any error message is displayed with an error code, refer to the [Error Codes](ref:error-codes) section to understand the reason for these error codes.
+</Callout>
