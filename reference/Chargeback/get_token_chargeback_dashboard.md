@@ -19,7 +19,7 @@ This section provides procedure to generate token on the Chargeback Dashboard. T
 * [Contest Chargeback API](https://docs.payu.in/reference/contest-chargeback-api)
 
 <Callout icon="📘" theme="info">
-  **Note**: Use the **Regenerate Token** API to regenerate token. For more information, refer to [Regenerate Token API - Chargeback](ref:regenerate-token-api-chargeback).
+  **Note**: Use the **Regenerate Token** API to regenerate token after you generate the token as described in this section. For more information, refer to [Regenerate Token API - Chargeback](ref:regenerate-token-api-chargeback).
 </Callout>
 
 To get token on Chargeback Dashboard:
@@ -31,13 +31,13 @@ To get token on Chargeback Dashboard:
 
 <Image align="center" border={true} src="https://files.readme.io/a905273f816f4ad559487b592866f77ac7bcd16b921e08e2de1da752621f2fa7-chargeback_dashboard_profile_menu.png" className="border" />
 
-   The _User Profile_ page is displayed with the tokens generated in the bottom.
+The _User Profile_ page is displayed with the tokens generated in the bottom.
 
 <Image align="center" border={true} src="https://files.readme.io/dd666556acda33488f8b648b71eabdcb736908c8eeea86349d43ca95f911e99b-chargeback_dashboard_profile_page.png" className="border" />
 
 1. Click the add button against the **Tokens** as in the above screenshot.
 
-   The _Add new token_ pop-up page is displayed. 
+   The _Add new token_ pop-up page is displayed.
 
 <Image align="center" border={true} width="450px" src="https://files.readme.io/13aef9cebf985a271533c6f025017a82cf46b3049cd3de7b2c1d4268e441a6de-chargeback_add_new_token.png" className="border" />
 
