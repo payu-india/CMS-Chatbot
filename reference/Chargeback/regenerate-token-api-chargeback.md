@@ -1,7 +1,7 @@
 ---
 title: Regenerate Token API - Chargeback
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
