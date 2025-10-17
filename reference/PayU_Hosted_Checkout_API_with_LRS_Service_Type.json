@@ -1,1 +1,162 @@
-{"swagger":"2.0","info":{"title":"PayU Hosted Checkout API","description":"API specification for PayU Hosted Checkout where payment method selection and card details are captured on PayU's side.","version":"1.0.0"},"host":"test.payu.in","basePath":"/","schemes":["https"],"paths":{"/payment":{"post":{"summary":"Process a payment","description":"Process a payment using PayU Hosted Checkout. For Liberalised Remittance Scheme (LRS) transactions, use the UDF fields and lrs_service_type as described in parameter descriptions.","consumes":["application/x-www-form-urlencoded"],"produces":["application/json"],"parameters":[{"name":"key","in":"formData","description":"Merchant key provided by PayU during onboarding.","required":true,"type":"string"},{"name":"txnid","in":"formData","description":"The transaction ID is a reference number for the transaction.","required":true,"type":"string"},{"name":"amount","in":"formData","description":"The payment amount for the transaction.","required":true,"type":"string"},{"name":"productinfo","in":"formData","description":"A brief description of the product.","required":true,"type":"string"},{"name":"firstname","in":"formData","description":"The first name of the customer.","required":true,"type":"string"},{"name":"surl","in":"formData","description":"The success URL, which is the page PayU will redirect to after a successful payment.","required":true,"type":"string"},{"name":"furl","in":"formData","description":"The Failure URL, which is the page PayU will redirect to after a failed payment.","required":true,"type":"string"},{"name":"email","in":"formData","description":"The email address of the customer.","required":true,"type":"string"},{"name":"hash","in":"formData","description":"The hash calculated by the merchant for secure transactions.","required":true,"type":"string"},{"name":"phone","in":"formData","description":"The phone number of the customer.","required":false,"type":"string"},{"name":"lastname","in":"formData","description":"The last name of the customer.","required":false,"type":"string"},{"name":"buyer_type_business","in":"formData","description":"This parameter is used to identify whether it is a business-to-business transaction.","required":false,"type":"string"},{"name":"curl","in":"formData","description":"The Cancel URL, which is the page PayU will redirect to if the customer cancels the payment.","required":false,"type":"string"},{"name":"udf1","in":"formData","description":"The Permanent Account Number (PAN) of the customer. Mandatory for LRS transactions as per RBI guidelines.","required":false,"type":"string"},{"name":"udf2","in":"formData","description":"User-defined field 2 for storing additional information about the transaction.","required":false,"type":"string"},{"name":"udf3","in":"formData","description":"Date of Birth of the customer in DD-MM-YYYY format. Mandatory for LRS transactions as per RBI guidelines.","required":false,"type":"string"},{"name":"udf4","in":"formData","description":"Passport Number of the customer. Mandatory for international transactions under LRS.","required":false,"type":"string"},{"name":"udf5","in":"formData","description":"Purpose Code for the remittance as per RBI LRS guidelines. For example, S0305 for education-related payments.","required":false,"type":"string"},{"name":"lrs_service_type","in":"formData","description":"The LRS service type determines the TCS (Tax Collected at Source) rate based on the nature of the cross-border transaction. Accepted values: education_loan, education_non_loan, medical, travel, others.","required":false,"type":"string"}],"responses":{"200":{"description":"Successful response - Customer will be redirected to payment page"},"400":{"description":"Bad request - Request parameters are invalid"}}}}}}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PayU Hosted Checkout API",
+    "description": "API specification for PayU Hosted Checkout where payment method selection and card details are captured on PayU's side.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/payment": {
+      "post": {
+        "summary": "Process a payment",
+        "description": "Process a payment using PayU Hosted Checkout. For Liberalised Remittance Scheme (LRS) transactions, use the UDF fields and lrs_service_type as described in parameter descriptions.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "description": "Merchant key provided by PayU during onboarding.",
+                    "type": "string"
+                  },
+                  "txnid": {
+                    "description": "The transaction ID is a reference number for the transaction.",
+                    "type": "string"
+                  },
+                  "amount": {
+                    "description": "The payment amount for the transaction.",
+                    "type": "string"
+                  },
+                  "productinfo": {
+                    "description": "A brief description of the product.",
+                    "type": "string"
+                  },
+                  "firstname": {
+                    "description": "The first name of the customer.",
+                    "type": "string"
+                  },
+                  "surl": {
+                    "description": "The success URL, which is the page PayU will redirect to after a successful payment.",
+                    "type": "string"
+                  },
+                  "furl": {
+                    "description": "The Failure URL, which is the page PayU will redirect to after a failed payment.",
+                    "type": "string"
+                  },
+                  "email": {
+                    "description": "The email address of the customer.",
+                    "type": "string"
+                  },
+                  "hash": {
+                    "description": "The hash calculated by the merchant for secure transactions.",
+                    "type": "string"
+                  },
+                  "phone": {
+                    "description": "The phone number of the customer.",
+                    "type": "string"
+                  },
+                  "lastname": {
+                    "description": "The last name of the customer.",
+                    "type": "string"
+                  },
+                  "address1": {
+                    "type": "string",
+                    "description": "This parameter must contain door number, street and area part of customer address."
+                  },
+                  "state": {
+                    "type": "string",
+                    "description": "This parameter must contain state part of customer address."
+                  },
+                  "country": {
+                    "type": "string",
+                    "description": "This parameter must contain country part of customer address and must be \"IN\" (for India).",
+                    "enum": [
+                      "IN"
+                    ]
+                  },
+                  "zipcode": {
+                    "type": "string",
+                    "description": "This parameter must contain zip or PIN code part of customer address."
+                  },
+                  "buyer_type_business": {
+                    "description": "This parameter is used to identify whether it is a business-to-business transaction.",
+                    "type": "string",
+                    "enum": [
+                      "0",
+                      "1"
+                    ]
+                  },
+                  "lrs_service_type": {
+                    "description": "The LRS service type determines the TCS (Tax Collected at Source) rate based on the nature of the cross-border transaction. Accepted values: education_loan, education_non_loan, medical, travel, others.",
+                    "type": "string"
+                  },
+                  "curl": {
+                    "description": "The Cancel URL, which is the page PayU will redirect to if the customer cancels the payment.",
+                    "type": "string"
+                  },
+                  "udf1": {
+                    "description": "The Permanent Account Number (PAN) of the customer. Mandatory for LRS transactions as per RBI guidelines.",
+                    "type": "string"
+                  },
+                  "udf2": {
+                    "description": "User-defined field 2 for storing additional information about the transaction.",
+                    "type": "string"
+                  },
+                  "udf3": {
+                    "description": "Date of Birth of the customer in DD-MM-YYYY format. Mandatory for LRS transactions as per RBI guidelines.",
+                    "type": "string"
+                  },
+                  "udf4": {
+                    "description": "Passport Number of the customer. Mandatory for international transactions under LRS.",
+                    "type": "string"
+                  },
+                  "udf5": {
+                    "description": "Purpose Code for the remittance as per RBI LRS guidelines. For example, S0305 for education-related payments.",
+                    "type": "string"
+                  },
+                  "adddress2": {
+                    "type": "string",
+                    "description": "This parameter must contain any other part of address, which was not included in address1."
+                  }
+                },
+                "required": [
+                  "key",
+                  "txnid",
+                  "amount",
+                  "productinfo",
+                  "firstname",
+                  "surl",
+                  "furl",
+                  "email",
+                  "hash",
+                  "lastname",
+                  "buyer_type_business",
+                  "lrs_service_type",
+                  "address1",
+                  "state",
+                  "zipcode",
+                  "country"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response - Customer will be redirected to payment page"
+          },
+          "400": {
+            "description": "Bad request - Request parameters are invalid"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://test.payu.in"
+    }
+  ]
+}
