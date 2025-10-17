@@ -13,13 +13,13 @@ metadata:
 next:
   description: ''
 ---
-You can collect payments from customers with leading cards using the Merchant Hosted integration for Cross Border Payments. The **buyer\_type\_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
+You can collect payments from customers with leading cards using the Merchant Hosted integration for Cross Border Payments. The **buyer_type_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
 
 After the payment is complete, you must use the [Invoice Upload API](ref:invoice_upload_api) to upload the invoices for banks processing.
 
-> 📘 Note:
->
-> PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team ([integration@pay.in](mailto:integration@pay.in)).
+<Callout icon="📘" theme="info">
+  **Note**: PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team ([integration@pay.in](mailto:integration@pay.in)).
+</Callout>
 
 <PaymentAPIEnvironment />
 
