@@ -1,7 +1,7 @@
 - get_token_chargeback_dashboard
+- regenerate-token-api-chargeback
 - read-chargeback-api
 - read-reasons-api
 - accept-chargeback-api
 - accept-contest-chargeback-api
 - contest-chargeback-api
-- regenerate-token-api-chargeback
