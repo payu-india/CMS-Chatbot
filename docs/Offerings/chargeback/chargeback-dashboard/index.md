@@ -23,7 +23,7 @@ For more information on getting started, refer to <Anchor label="Register for a 
 
 ## Filter Chargebacks
 
-To filter the dates from the **Chargeback To** and **Chargeback From** fields, use the calendar view:
+To filter the dates on Chargebacks dashboard:
 
 1. Navigate to the Chargeback dashboard.
    * Log in to PayU Dashboard.
@@ -33,7 +33,9 @@ To filter the dates from the **Chargeback To** and **Chargeback From** fields, u
 
 <Image align="center" border={true} src="https://files.readme.io/be62517293a9c1574046e96ed0565658547ea12dc73580530e9ee6f3b0ea8828-dashboard_home_chargeback_selection.png" className="border" />
 
-2. Click to select the desired date range. Use **Previous** and **Next** to select the desired month.
+2. Select the date from the **Chargeback Date (From)** and **Chargeback Date (To)** fields, Use the calendar view and select the date.
+<Image align="center" border={true} src="https://files.readme.io/be62517293a9c1574046e96ed0565658547ea12dc73580530e9ee6f3b0ea8828-dashboard_home_chargeback_selection.png" className="border" />
+3. Click to select the desired date range. Use **Previous** and **Next** to select the desired month.
 
 The following fields help you to perform different actions such as:
 
