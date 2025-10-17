@@ -18,7 +18,7 @@ next:
 
 | Bank Name               | Bank Code | Tenure    | Interest Rate | Min Amount | Max Amount      | Processing Fee | Min Processing Fee |
 | ----------------------- | --------- | --------- | ------------- | ---------- | --------------- | -------------- | ------------------ |
-| RBL Bank                | EMIRBL12  | 12 Months | 18%           | Rs. 3,000  | N/A             | 1.5%           | Rs. 150            |
+| RBL Bank                | EMIRBL12  | 12 Months | 17%           | Rs. 2,000  | N/A             | 1.5%           | Rs. 150            |
 | Standard Chartered Bank | EMISCB12  | 12 Months | 15%           | Rs. 2,500  | N/A             | 1%             | Rs. 150            |
 | Kotak Mahindra Bank     | EMIK12    | 12 Months | 16%           | Rs. 2,500  | N/A             | Rs. 249        | Rs. 150            |
 | ICICI Bank              | EMIIC12   | 12 Months | 15.99%        | Rs. 1,500  | N/A             | Rs. 199        | Rs. 150            |
