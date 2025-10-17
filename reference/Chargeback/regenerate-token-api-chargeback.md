@@ -8,7 +8,7 @@ metadata:
 The **Regenerate Token** API for Chargeback allows you to regenerate authentication tokens with a specified expiration date. This endpoint is part of the Optimus platform and provides a secure way to refresh API tokens while maintaining authentication integrity.
 
 <Callout icon="📘" theme="info">
-  **Note**: Use the **Get Token** API to generate token. For more information, refer to [Get Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard)
+  **Note**: The **Regenerate Token** API is used to regenerate only. Use the Chargeback Dashboard to easily generate token for the first time. For more information, refer to [Generate Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard)
 </Callout>
 
 **Environment**
