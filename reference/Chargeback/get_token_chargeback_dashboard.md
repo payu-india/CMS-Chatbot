@@ -24,7 +24,7 @@ This section provides procedure to generate token on the Chargeback Dashboard. T
 
 To get token on Chargeback Dashboard:
 
-1. 1. Navigate to the Chargeback dashboard.
+1. Navigate to the Chargeback dashboard.
    * Log in to PayU Dashboard.
    * Select **Chargeback** on the menu or left-pane.
 2. Click the user profile drop-down menu and then click your profile photo on the top-right.
@@ -35,17 +35,17 @@ The _User Profile_ page is displayed with the tokens generated in the bottom.
 
 <Image align="center" border={true} src="https://files.readme.io/dd666556acda33488f8b648b71eabdcb736908c8eeea86349d43ca95f911e99b-chargeback_dashboard_profile_page.png" className="border" />
 
-1. Click the add button against the **Tokens** as in the above screenshot.
+3. Click the add button against the **Tokens** as in the above screenshot.
 
    The _Add new token_ pop-up page is displayed.
 
 <Image align="center" border={true} width="450px" src="https://files.readme.io/13aef9cebf985a271533c6f025017a82cf46b3049cd3de7b2c1d4268e441a6de-chargeback_add_new_token.png" className="border" />
 
-1. Enter a descriptive name for the token in the **Name** field.
-2. Select an expiry date in the **Expires at** field using the calendar button.
-3. Click **generate**.
-4. Copy the generated token for use in API calls.
-5. Click **Submit**.
+4. Enter a descriptive name for the token in the **Name** field.
+5. Select an expiry date in the **Expires at** field using the calendar button.
+6. Click **generate**.
+7. Copy the generated token for use in API calls.
+8. Click **Submit**.
 
 ## Troubleshooting
 
