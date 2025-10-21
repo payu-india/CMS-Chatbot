@@ -15,8 +15,8 @@ The chargeback involves the following steps:
 
 The Chargeback is supported for the following:
 
-*  Cards
-* Card-Not-Present (COP) transactions 
+* Cards
+* Card-Not-Present (<Glossary>CNP</Glossary>) transactions
 * Net Banking
 * UPI
 * Wallets
