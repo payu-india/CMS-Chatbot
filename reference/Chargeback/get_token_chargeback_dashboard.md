@@ -2,7 +2,7 @@
 title: Generate Token on Chargeback Dashboard
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
