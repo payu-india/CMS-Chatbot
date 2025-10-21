@@ -11,6 +11,18 @@ The chargeback involves the following steps:
 
 <Image align="center" border={false} width="550px" src="https://files.readme.io/37be493-untitled.png" />
 
+## Chargeback Support
+
+The Chargeback is supported for the following:
+
+*  Cards
+* Card-Not-Present (COP) transactions 
+* Net Banking
+* UPI
+* Wallets
+* Apple Pay
+* Cross-Border Payments (OPGSP)
+
 ## PayU Chargeback process
 
 1. PayU receives chargeback notification from Acquiring bank.​
@@ -18,9 +30,9 @@ The chargeback involves the following steps:
 3. PayU verifies the documents against the chargeback raised and shares​ the same with the acquiring bank.​
 4. If merchant does not provide response before the **Reply date**, ​ the acquiring bank will close the case in favour of the customer.​
 
-You can handle the chargebacks using Chargeback APIs or PayU Dashboard > Chargeback. This part of the document includes the following: 
+You can handle the chargebacks using Chargeback APIs or PayU Dashboard > Chargeback. This part of the document includes the following:
 
-* [Chargeback Dashboard](doc:chargeback-dashboard) 
+* [Chargeback Dashboard](doc:chargeback-dashboard)
 * [Webhooks for Chargeback](doc:webhooks-for-chargeback)
 
 For Chargeback APIs, refer to the following under API Reference:
