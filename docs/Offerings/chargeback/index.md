@@ -18,9 +18,13 @@ The Chargeback is supported for the following:
 * Cards
 * Card-Not-Present (<Glossary>CNP</Glossary>) transactions
 * Net Banking
+* EMI
+  * Cards
+  * UPI
 * UPI
 * Wallets
-* Apple Pay
+  * 
+  * Apple Pay
 * Cross-Border Payments (OPGSP)
 
 ## PayU Chargeback process
