@@ -22,10 +22,21 @@ The Chargeback is supported for the following:
   * Cards
   * UPI
 * UPI
-* Wallets
-  * 
-  * Apple Pay
 * Cross-Border Payments (OPGSP)
+* Wallets
+  * PayTM
+  * Freecharge
+  * Amazon Pay
+  *  Airtel Money
+  * Oxigen
+  * Ola Money
+  * Jio Money
+  * ItzCash
+  * HDFC PayZapp
+  * Yes Bank
+  * MobiKwik
+  * PhonePe
+  * Apple Pay
 
 ## PayU Chargeback process
 
