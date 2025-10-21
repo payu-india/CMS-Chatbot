@@ -14,6 +14,10 @@ The **Read Chargeback** API responds with the all the chargebacks corresponding 
 
 <ChargebackEnvironment />
 
+<Callout icon="📘" theme="info">
+  **Generate Token**: Use the Chargeback Dashboard to easily generate token in the Chargeback Dashboard. For more information, refer to [Generate Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard).
+</Callout>
+
 ## Request parameters
 
 ## Without date
@@ -163,10 +167,10 @@ curl --location 'https://bankportal.payu.in/api/v1/chargebacks?from_date=20-02-2
 
 ### data JSON field descriptions
 
-| Feild      | Description                                                                                                                                                                |
-| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| id         | This parameter contains the  chargeback ID.                                                                                                                                |
-| type       | The parameter contains the **chargebacks** as type.                                                                                                                        |
+| Feild      | Description                                                                                                                                                                 |
+| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id         | This parameter contains the  chargeback ID.                                                                                                                                 |
+| type       | The parameter contains the **chargebacks** as type.                                                                                                                         |
 | attributes | This parameter contains the chargeback details in a JSON format. For more information, refer to  [attributes JSON field descriptions](#attributes-json-field-descriptions). |
 
 ### attributes JSON field descriptions
