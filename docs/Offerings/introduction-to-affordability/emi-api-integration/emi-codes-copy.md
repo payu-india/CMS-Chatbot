@@ -12,8 +12,7 @@ metadata:
 next:
   description: ''
 ---
-value
-"<h2 class=\""heading heading-2 header-scroll\"" align=\""\""> <div class=\""heading-anchor anchor waypoint\"" id=\""credit-card-emi-codes\""></div> <div class=\""heading-text\""> <div id=\""section-credit-card-emi-codes\"" class=\""heading-anchor_backwardsCompatibility\""></div>Credit Card EMI Codes </div> <a aria-label=\""Skip link to Credit Card EMI Codes\"" class=\""heading-anchor-icon fa fa-anchor\"" href=\""#credit-card-emi-codes\""></a> </h2> <div class=\""rdmd-table\""> <div class=\""rdmd-table-inner\""> <table> <thead> <tr> <th>Bank Name</th> <th>bank_code</th> <th>Tenure</th> <th>Interest Rate</th> <th>Min. Amt.</th> <th>Max. Amt</th> <th>Default Processing Fee</th> <th>Min. Processing Fee</th> </tr> </thead> <tbody><tr>
+<h2 class=\""heading heading-2 header-scroll\"" align=\""\""> <div class=\""heading-anchor anchor waypoint\"" id=\""credit-card-emi-codes\""></div> <div class=\""heading-text\""> <div id=\""section-credit-card-emi-codes\"" class=\""heading-anchor_backwardsCompatibility\""></div>Credit Card EMI Codes </div> <a aria-label=\""Skip link to Credit Card EMI Codes\"" class=\""heading-anchor-icon fa fa-anchor\"" href=\""#credit-card-emi-codes\""></a> </h2> <div class=\""rdmd-table\""> <div class=\""rdmd-table-inner\""> <table> <thead> <tr> <th>Bank Name</th> <th>bank_code</th> <th>Tenure</th> <th>Interest Rate</th> <th>Min. Amt.</th> <th>Max. Amt</th> <th>Default Processing Fee</th> <th>Min. Processing Fee</th> </tr> </thead> <tbody><tr>
                                             <td>HDFC Bank</td>
                                             <td>EMI12</td>
                                             <td>12 Months</td>
@@ -11768,4 +11767,4 @@ value
                                             <td>No-Cost EMI Only</td>
                                             <td>13499</td>
                                             <td>90000</td>
-                                    </tr></tbody> </table> </div> </div>"
+                                    </tr></tbody> </table> </div> </div>
