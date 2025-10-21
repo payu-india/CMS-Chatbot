@@ -33,7 +33,7 @@ next:
       slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
 ---
-This section provides the request parameters, sample request and response for a Cards Recurring Payment \<\<glossary:Consent transaction>>.
+This section provides the request parameters, sample request and response for a Cards Recurring Payment.
 
 > 📘 Note:
 >
@@ -43,10 +43,10 @@ HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                                                         |
-| :--------------------- | :---------------------------------------------------------------------- |
-| Test Environment       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
-| Production Environment | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
+|                        |                                                                        |
+| :--------------------- | :--------------------------------------------------------------------- |
+| Test Environment       | \<[https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
+| Production Environment | \<[https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
 
 **Content Type**: application/x-www-form-urlencoded
 
