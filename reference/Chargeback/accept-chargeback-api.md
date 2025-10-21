@@ -16,6 +16,10 @@ HTTP Method: **PATCH**
 | Test       | [https://chbuat.payu.in/api/v1/chargebacks](https://chbuat.payu.in/api/v1/chargebacks)         |
 | Production | [https://bankportal.payu.in/api/v1/chargebacks](https://bankportal.payu.in/api/v1/chargebacks) |
 
+<Callout icon="📘" theme="info">
+  **Generate Token**: Use the Chargeback Dashboard to easily generate token in the Chargeback Dashboard. For more information, refer to [Generate Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard).
+</Callout>
+
 ## Request parameters
 
 This must contain the header with token you get using the Get Token API in the following format:
@@ -26,10 +30,10 @@ This must contain the header with token you get using the Get Token API in the f
 
 **Form data**
 
-| Parameter  | Description                                                                                                                                                   | Example                              |
-| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------- |
-| identifier | The identifier that was received in response when you used the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api). | 6f92dad0-4446-4465-bfea-17f587e973d4 |
-| value      | Dependent on response received from the Read Reasons API, the Value(evidence) to be submitted for accepting the chargeback, for a particular reason code(UUID), should be text. This is plain Text. For more information, refer to [Read Reasons API](ref:read-reasons-api) .     | 1                                    |
+| Parameter  | Description                                                                                                                                                                                                                                                                   | Example                              |
+| :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------- |
+| identifier | The identifier that was received in response when you used the **Read Reasons** API. For more information, refer to [Read Reasons API](ref:read-reasons-api).                                                                                                                 | 6f92dad0-4446-4465-bfea-17f587e973d4 |
+| value      | Dependent on response received from the Read Reasons API, the Value(evidence) to be submitted for accepting the chargeback, for a particular reason code(UUID), should be text. This is plain Text. For more information, refer to [Read Reasons API](ref:read-reasons-api) . | 1                                    |
 
 ## Sample request
 
