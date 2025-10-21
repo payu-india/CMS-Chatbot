@@ -16,10 +16,6 @@ HTTP Method: **PATCH**
 
 <ChargebackEnvironment />
 
-<Callout icon="📘" theme="info">
-  **Generate Token**: Use the Chargeback Dashboard to easily generate token in the Chargeback Dashboard. For more information, refer to [Generate Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard).
-</Callout>
-
 ## Request parameters
 
 ### Request header
@@ -29,7 +25,15 @@ HTTP Method: **PATCH**
 | `X-Optimus-API-Key` | Merchant authentication key     |
 | `Content-Type`      | Must be set to application/json |
 
-This must contain the header with token you get using the Get Token API in the following format:
+This must contain the header with token you get using the Chargeback Dashboard in the following format:
+
+<Callout icon="📘" theme="info">
+  **Generate Token**: Use the Chargeback Dashboard to easily generate token in the Chargeback Dashboard. For more information, refer to [Generate Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard).
+</Callout>
+
+```
+\--header 'X-Optimus-API-Key: <Bearer token>'
+```
 
 ```
 \--header 'X-Optimus-API-Key: <Bearer token>'
