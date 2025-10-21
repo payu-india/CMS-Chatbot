@@ -18,7 +18,11 @@ HTTP Method: **PATCH**
 
 ## Request parameters
 
-This must contain the header with token you get using the Get Token API in the following format:
+This must contain the header with token you get using the Chargeback Dashboard in the following format:
+
+<Callout icon="📘" theme="info">
+  **Generate Token**: Use the Chargeback Dashboard to easily generate token in the Chargeback Dashboard. For more information, refer to [Generate Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard).
+</Callout>
 
 ```
 \--header 'X-Optimus-API-Key: <Bearer token>'
@@ -98,7 +102,7 @@ This must contain the header with token you get using the Get Token API in the f
       </td>
 
       <td>
-        Dependent on response received from the **Read Reasons** API, the Value(evidence) to be submitted for contesting the chargeback, for a particular reason code(UUID), image(png ,jpeg/jpg) or file(doc,docx,pdf). Currently, this is not encoded.. For more information, refer to [Read Reasons API](ref:read-reasons-api). 
+        Dependent on response received from the **Read Reasons** API, the Value(evidence) to be submitted for contesting the chargeback, for a particular reason code(UUID), image(png ,jpeg/jpg) or file(doc,docx,pdf). Currently, this is not encoded.. For more information, refer to [Read Reasons API](ref:read-reasons-api).
       </td>
 
       <td>
