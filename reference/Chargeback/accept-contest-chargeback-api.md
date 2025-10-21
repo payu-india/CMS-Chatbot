@@ -16,6 +16,10 @@ HTTP Method: **PATCH**
 
 <ChargebackEnvironment />
 
+<Callout icon="📘" theme="info">
+  **Generate Token**: Use the Chargeback Dashboard to easily generate token in the Chargeback Dashboard. For more information, refer to [Generate Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard).
+</Callout>
+
 ## Request parameters
 
 ### Request header
