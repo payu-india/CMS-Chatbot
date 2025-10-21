@@ -14,13 +14,13 @@ The **Read Reason** API lists all the reasons required for the merchant to provi
 
 <ChargebackEnvironment />
 
-<Callout icon="📘" theme="info">
-  **Generate Token**: Use the Chargeback Dashboard to easily generate token in the Chargeback Dashboard. For more information, refer to [Generate Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard).
-</Callout>
-
 ## Request parameters
 
 This must contain the header with token you get using the Get Token API in the following format:
+
+<Callout icon="📘" theme="info">
+  **Generate Token**: Use the Chargeback Dashboard to easily generate token in the Chargeback Dashboard. For more information, refer to [Generate Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard).
+</Callout>
 
 ```
 \--header 'X-Optimus-API-Key: <Bearer token>'
