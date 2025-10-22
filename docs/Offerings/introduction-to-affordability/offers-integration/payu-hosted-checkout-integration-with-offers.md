@@ -51,7 +51,7 @@ With the PayU Hosted Checkout integration, the entire payment experience is cont
   3. Customer is shown the applicable offers on the checkout page for that transaction.
   4. Customer will have the option to apply the offer. If the offer is applicable to a specific payment option, the customer will be redirected to the specific payment option.
 
-<Image align="center" border={false} src="https://files.readme.io/725ae934c0f2c2d875989729a29e2c38c7d8f6984b68f03bc0044f09562c37d0-instant_discount_offer_integration.png" />
+  <Image align="center" src="https://files.readme.io/725ae934c0f2c2d875989729a29e2c38c7d8f6984b68f03bc0044f09562c37d0-instant_discount_offer_integration.png" />
 
   The PayU Hosted Checkout page for specific payment option on Mobile is similar to the following screenshot:
 
@@ -553,29 +553,30 @@ This section describes the customer workflow with an SKU-based offer on the PayU
 </Callout>
 
 ### Customer journey
+  <Image align="center" src="https://files.readme.io/d1810659921a390f7e5f6f3dc8cd314876c7a0f68a6f15819de7c72f601509be-sku_based_offer_sample_step1.png" />
 
 <Accordion title="Customer journey" icon="fa-times-circle">
   After your customer selects the items from your website (for example, mobile online shopping), the customer is redirected to the PayU page for payment and involves the following steps:
 
   1. Select **Offers** at the top-right corner.
 
-<Image align="center" border={false} src="https://files.readme.io/d1810659921a390f7e5f6f3dc8cd314876c7a0f68a6f15819de7c72f601509be-sku_based_offer_sample_step1.png" />
+
 
   All the offers for the products in the shopping cart (if any) are listed.
 
-<Image align="center" border={false} src="https://files.readme.io/b1984bec41045b6b8368526afddf38613f865973af4b191c67db448533ff3447-sku_based_offer_sample_step1a.png" />
+  <Image align="center" src="https://files.readme.io/b1984bec41045b6b8368526afddf38613f865973af4b191c67db448533ff3447-sku_based_offer_sample_step1a.png" />
 
   2. Select the **Product Offers** tab.
 
      The **Product Offers** tab is displayed on the *Offer & Discount* page.
 
-<Image align="center" border={false} src="https://files.readme.io/125790b4a8e0c940e5d749db3da58b0fba2a8221162a8743bd79c36e737db3f7-sku_based_offer_sample_step2.png" />
+  <Image align="center" src="https://files.readme.io/125790b4a8e0c940e5d749db3da58b0fba2a8221162a8743bd79c36e737db3f7-sku_based_offer_sample_step2.png" />
 
   3. Apply an offer using the **Use Offer** button for the offer you wish to apply.
 
      The *Offer Applied!* pop-up page is displayed.
 
-<Image align="center" border={false} src="https://files.readme.io/0b8210a58d2e248f80943709b73cb961eb1f19a9b28b56e4af59d241b881375b-sku_based_offer_sample_step3.png" />
+  <Image align="center" src="https://files.readme.io/0b8210a58d2e248f80943709b73cb961eb1f19a9b28b56e4af59d241b881375b-sku_based_offer_sample_step3.png" />
 
   4. Click **Thanks.**
 
