@@ -13,8 +13,13 @@ Native OTP Flow is a method of capturing transaction OTPs that happens on the me
 
 You can enable Native OTP flow in EMI payments and collect payments. Currently, Native OTP can be enabled for the following types of EMI payments:
 
-* [Debit Card](#debit-card-emi)
-* [Cardless EMI](#cardless-emi)
+* Debit Card
+
+<br />
+
+* Cardless EMI
+
+<br />
 
 <Callout icon="📘" theme="info">
   **Note**: If you don’t have EMI enabled, try requesting using Dashboard. For more information, refer to [Configure Checkout Settings](doc:checkout-payment-modes). If you could not request through Dashboard, contact your PayU Key Account Manager or PayU Support.
