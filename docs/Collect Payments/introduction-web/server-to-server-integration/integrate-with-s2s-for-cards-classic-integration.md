@@ -31,7 +31,7 @@ This is server-to-server integration over the Redirect experience for cards invo
     <br />
   </Card>
 
-  <Card title="4. Verify the payment" href="#step-4-verify-the-payment" target="_blank">
+  <Card title="4. Verify the payment" href="https://docs.payu.in/docs/integrate-with-s2s-for-cards-classic-integration#step-4-verify-the-payment">
     Verify the payment status using PayU's verification API and implement webhook monitoring
 
     <br />
