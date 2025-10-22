@@ -34,16 +34,16 @@ PayU 3DS SDK offers two types of solutions for transaction processing:
 
 #### CocoaPods Integration
 
-1. Add the following line to use dynamic frameworks in your Podfile:
+1. Add the following line to use dynamic frameworks in your Podfile.
 
 ```ruby
 use_frameworks!
-pod 'PayUIndia-3DS2-SDK'
 ```
 
 2. Install the dependencies using the command:
 
 ```bash
+pod 'PayUIndia-3DS2-SDK', '3.0.0.alpha.1'
 pod install
 ```
 
@@ -62,7 +62,7 @@ pod install
 1. Add the following line in the `Package.swift` dependencies:
 
 ```swift
-.package(name: "PayUIndia-3DS2-SDK", url: "https://github.com/payu-intrepos/PayU3DS2SDK-iOS", from: "1.3.0")
+.package(name: "PayUIndia-3DS2-SDK", url: "https://github.com/payu-intrepos/PayU3DS2SDK-iOS", from: "3.0.0.alpha.1")
 ```
 
 #### Import Statement
@@ -213,7 +213,7 @@ PayU3DS2.initiatePayment(
 > * **config**: It contains multiple properties. For more information, refer to [Step 3: UI customization](#step-3-ui-customization).
 > * **paymentParams**: You have to create payment parameter object and pass it which will contains info like: cardDeatails, SI details etc.
 
-1. <br />
+**PayU3DS2PaymentParam**
 
 ```swift
 let paymentParam = PayU3DS2PaymentParam(
@@ -239,8 +239,59 @@ cardDetails.nameOnCard = "John Doe"
 cardDetails.expiryMonth = "01"
 cardDetails.expiryYear = "2025"
 cardDetails.cvv = "123"
+paymentParam.userCredential = "<XXXX:XXXX>"
+
+// For Stored Card with PayU Token
+cardDetails.cardToken = "<Card Token>"
+
+// For Stored Card with Network Token
+cardDetails.networkToken = "<Network Token>"
+cardDetails.cardTokenType = "1"
+
 paymentParam.cardinfo = cardDetails
 ```
+
+**SI Payments**:
+
+```
+let siInfo = PayU3DS2SIParams(
+        billingAmount: String?, // Set billing amount in String
+        paymentStartDate: Date?, // Set start date of SI
+        paymentEndDate: Date?,  // Set end date of SI
+        billingCycle: PayU3DS2BillingCycle, // Set billing cycle of SI
+        billingInterval: Int, // Set billing interval of SI
+        isFreeTrial: Bool, // Set free trail of SI, the default is false
+        remarks: String?, // Set remarks of SI
+        billingLimit: String?, // Set remarks of SI
+        billingRule: String?, // Set remarks of SI
+)
+
+paymentParam.siParam = siInfo
+```
+
+**PayU3DS2BillingCycle**
+
+```
+enum PayU3DS2BillingCycle {
+    case once
+    case daily
+    case weekly
+    case monthly
+    case yearly
+    case adhoc
+}
+
+```
+
+**EMI Transaction:** EMI To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI". Refer to <Anchor label="EMI Codes" target="_blank" href="https://docs.payu.in/docs/emi-codes">EMI Codes</Anchor>
+
+```
+paymentParam.pgCode = "PG_Code" // Set payment gateway to EMI
+paymentParam.bankCode = "<Bank Code>" // Bank code for EMI (e.g., EMI03)
+
+```
+
+<br />
 
 ### Request parameters
 
@@ -262,14 +313,20 @@ paymentParam.cardinfo = cardDetails
 
 > 📘 All the parameters are mandatory
 
-| Parameter     | Description  |
-| ------------- | ------------ |
-| `cardNumber`  | Card number  |
-| `cardName`    | Card name    |
-| `nameOnCard`  | Name on card |
-| `expiryMonth` | Expiry month |
-| `expiryYear`  | Expiry year  |
-| `cvv`         | Card CVV     |
+| Parameter      | Description                                                                                                                                                                                                                                                                                                                 |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cardNumber`   | Card number                                                                                                                                                                                                                                                                                                                 |
+| `cardName`     | Card name                                                                                                                                                                                                                                                                                                                   |
+| `nameOnCard`   | Name on card                                                                                                                                                                                                                                                                                                                |
+| `expiryMonth`  | Expiry month                                                                                                                                                                                                                                                                                                                |
+| `expiryYear`   | Expiry year                                                                                                                                                                                                                                                                                                                 |
+| `cvv`          | Card CVV                                                                                                                                                                                                                                                                                                                    |
+| userCredential | The merchant ID and a unique customer identifier.                                                                                                                                                                                                                                                                           |
+| cardToken      | A card token is a merchant-specific tokenized representation of a card. It is often used to store card information securely without exposing sensitive details. Merchants can store these tokens themselves or with a payment service provider like PayU.                                                                   |
+| networkToken   | A network token is a tokenized representation of a card provided by the card network (e.g., Visa, Mastercard). It is used for processing payments at the network level and is required for certain API processes like binInfo API 1. Network tokens are typically used when a non-DI (Direct Integration) payment gateway . |
+| cardTokenType  | Pass 1 if networkToken is passed                                                                                                                                                                                                                                                                                            |
+
+<br />
 
 ## Delegate methods implementation
 
@@ -308,7 +365,7 @@ func generateHash(for param: [String: String], onCompletion: @escaping PayU3DS2H
 * MFA registration status
 
 ```swift
-func mfaRegistrationstatus(status: Bool)
+func mfaRegistrationstatus(response: Any?)
 ```
 
 ## Error codes
