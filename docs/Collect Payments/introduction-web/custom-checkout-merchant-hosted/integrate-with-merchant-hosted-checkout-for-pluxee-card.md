@@ -62,10 +62,10 @@ Customers will select the **Pluxee** payment option on your website and enter th
 
 **Environment**
 
-|                            |                                                                     |
-| :------------------------- | :------------------------------------------------------------------ |
-| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
-| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+|                            |                                                                    |
+| :------------------------- | :----------------------------------------------------------------- |
+| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
 <Accordion title="Request parameters" icon="fa-table">
   Post the following request parameters for the Pluxee card integration.
@@ -91,7 +91,7 @@ Customers will select the **Pluxee** payment option on your website and enter th
   | is\_check\_balance `optional` | String - This parameter is used to specify the flag to check the Sodexo card balance and then the payment amount posted if the Sodexo card has sufficient balance. Specify any of the following values: 0 - Do not check the Sodexo card balance before making the payment transaction. 1 - Check the Sodexo card balance and then post the payment transaction if the card has sufficient balance. Note: This parameter must be used only for saved cards along with source\_id parameter. | 1                                                          |
   | furl `mandatory`              | String - The success URL, which is the page PayU will redirect to if the transaction is successful.                                                                                                                                                                                                                                                                                                                                                                                         | [https://example.com/success](https://example.com/success) |
   | surl `mandatory`              | String - The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                                                                                                                                                                                                                                                                             | [https://example.com/failure](https://example.com/failure) |
-  | hash `mandatory`              | String - It is the hash calculated by the merchant. The hash calculation logic is: sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT)                                                                                                                                                                                                                                                                                                  | calculated\_hash\_value                                    |
+  | hash `mandatory`              | String - It is the hash calculated by the merchant. The hash calculation logic is: sha512(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|SALT)                                                                                                                                                                                                                                                                  | calculated\_hash\_value                                    |
   | address1 `optional`           | String - The first line of the billing address. Notes: For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. Mandatory for Cross-Border payments.                                                                                                                                                                                                                      | 123 Main St                                                |
   | address2 `optional`           | String - The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                            | Apt 4B                                                     |
   | city `optional`               | String - The city where your customer resides as part of the billing address. Note: Mandatory for Cross-Border payments.                                                                                                                                                                                                                                                                                                                                                                    | Mumbai                                                     |
@@ -111,6 +111,255 @@ Customers will select the **Pluxee** payment option on your website and enter th
   ```curl
   curl -X POST "https://test.payu.in/_payment"  -H "accept: application/json"  -H "Content-Type: application/x-www-form-urlencoded"  -d "key=JP***g&txnid=bvRCCBO4YiGGHE&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=MC&bankcode=SODEXO&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=637513XXXXXX9318&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=Ashish&hash=ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64"
   ```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+data = {
+    "key": "JP***g",
+    "txnid": "bvRCCBO4YiGGHE",
+    "amount": "10.00",
+    "firstname": "Ashish",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "productinfo": "iPhone",
+    "pg": "MC",
+    "bankcode": "SODEXO",
+    "surl": "https://apiplayground-response.herokuapp.com/",
+    "furl": "https://apiplayground-response.herokuapp.com/",
+    "ccnum": "637513XXXXXX9318",
+    "ccexpmon": "05",
+    "ccexpyr": "2022",
+    "ccvv": "123",
+    "ccname": "Ashish",
+    "hash": "ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64"
+}
+
+response = requests.post(url, headers=headers, data=data)
+print(response.status_code)
+print(response.text)
+```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using (var client = new HttpClient())
+        {
+            var url = "https://test.payu.in/_payment";
+            
+            client.DefaultRequestHeaders.Add("accept", "application/json");
+            
+            var formData = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("key", "JP***g"),
+                new KeyValuePair<string, string>("txnid", "bvRCCBO4YiGGHE"),
+                new KeyValuePair<string, string>("amount", "10.00"),
+                new KeyValuePair<string, string>("firstname", "Ashish"),
+                new KeyValuePair<string, string>("email", "test@gmail.com"),
+                new KeyValuePair<string, string>("phone", "9876543210"),
+                new KeyValuePair<string, string>("productinfo", "iPhone"),
+                new KeyValuePair<string, string>("pg", "MC"),
+                new KeyValuePair<string, string>("bankcode", "SODEXO"),
+                new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
+                new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
+                new KeyValuePair<string, string>("ccnum", "637513XXXXXX9318"),
+                new KeyValuePair<string, string>("ccexpmon", "05"),
+                new KeyValuePair<string, string>("ccexpyr", "2022"),
+                new KeyValuePair<string, string>("ccvv", "123"),
+                new KeyValuePair<string, string>("ccname", "Ashish"),
+                new KeyValuePair<string, string>("hash", "ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64")
+            };
+            
+            var formContent = new FormUrlEncodedContent(formData);
+            
+            var response = await client.PostAsync(url, formContent);
+            var responseBody = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+    }
+}
+```
+```javascript
+async function makePayment() {
+    const url = "https://test.payu.in/_payment";
+    
+    const headers = {
+        "accept": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded"
+    };
+    
+    const formData = new URLSearchParams({
+        "key": "JP***g",
+        "txnid": "bvRCCBO4YiGGHE",
+        "amount": "10.00",
+        "firstname": "Ashish",
+        "email": "test@gmail.com",
+        "phone": "9876543210",
+        "productinfo": "iPhone",
+        "pg": "MC",
+        "bankcode": "SODEXO",
+        "surl": "https://apiplayground-response.herokuapp.com/",
+        "furl": "https://apiplayground-response.herokuapp.com/",
+        "ccnum": "637513XXXXXX9318",
+        "ccexpmon": "05",
+        "ccexpyr": "2022",
+        "ccvv": "123",
+        "ccname": "Ashish",
+        "hash": "ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64"
+    });
+    
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: headers,
+            body: formData
+        });
+        
+        const data = await response.text();
+        console.log("Status:", response.status);
+        console.log("Response:", data);
+        
+        return data;
+    } catch (error) {
+        console.error("Error:", error);
+        throw error;
+    }
+}
+
+// Call the function
+makePayment();
+```
+```java
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class PaymentRequest {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        String url = "https://test.payu.in/_payment";
+        
+        Map<String, String> formData = new HashMap<>();
+        formData.put("key", "JP***g");
+        formData.put("txnid", "bvRCCBO4YiGGHE");
+        formData.put("amount", "10.00");
+        formData.put("firstname", "Ashish");
+        formData.put("email", "test@gmail.com");
+        formData.put("phone", "9876543210");
+        formData.put("productinfo", "iPhone");
+        formData.put("pg", "MC");
+        formData.put("bankcode", "SODEXO");
+        formData.put("surl", "https://apiplayground-response.herokuapp.com/");
+        formData.put("furl", "https://apiplayground-response.herokuapp.com/");
+        formData.put("ccnum", "637513XXXXXX9318");
+        formData.put("ccexpmon", "05");
+        formData.put("ccexpyr", "2022");
+        formData.put("ccvv", "123");
+        formData.put("ccname", "Ashish");
+        formData.put("hash", "ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64");
+        
+        String formBody = formData.entrySet()
+            .stream()
+            .map(entry -> entry.getKey() + "=" + entry.getValue())
+            .collect(Collectors.joining("&"));
+        
+        HttpClient client = HttpClient.newHttpClient();
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formBody))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println("Status Code: " + response.statusCode());
+        System.out.println("Response Body: " + response.body());
+    }
+}
+```
+```php
+
+$url = "https://test.payu.in/_payment";
+
+$data = array(
+    'key' => 'JP***g',
+    'txnid' => 'bvRCCBO4YiGGHE',
+    'amount' => '10.00',
+    'firstname' => 'Ashish',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'pg' => 'MC',
+    'bankcode' => 'SODEXO',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'ccnum' => '637513XXXXXX9318',
+    'ccexpmon' => '05',
+    'ccexpyr' => '2022',
+    'ccvv' => '123',
+    'ccname' => 'Ashish',
+    'hash' => 'ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64'
+);
+
+$options = array(
+    'http' => array(
+        'header' => "accept: application/json\r\n" .
+                   "Content-Type: application/x-www-form-urlencoded\r\n",
+        'method' => 'POST',
+        'content' => http_build_query($data)
+    )
+);
+
+$context = stream_context_create($options);
+$response = file_get_contents($url, false, $context);
+
+if ($response === FALSE) {
+    echo "Error occurred";
+} else {
+    echo "Response: " . $response;
+}
+
+// Alternative using cURL
+/*
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+));
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+echo "HTTP Code: " . $httpCode . "\n";
+echo "Response: " . $response;
+*/
+?>
+```
 
   <HashingRequestParameters />
 </Accordion>
