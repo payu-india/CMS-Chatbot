@@ -365,7 +365,25 @@ func generateHash(for param: [String: String], onCompletion: @escaping PayU3DS2H
 * MFA registration status
 
 ```swift
-func mfaRegistrationstatus(response: Any?)
+func mfaRegistrationstatus(response: Any?) // Downcast response to type PayU3DS2MFAResponse
+
+class PayU3DS2MFAResponse {
+    var type: PayU3DS2MFARequestType // Request Type registration or deregistration
+    var status: PayU3DS2MFAStatus // Request Status initiated, success, or error
+    var timeout: Int // Txn Timeout in seconds
+}
+
+enum PayU3DS2MFARequestType {
+    case registration
+    case deregistration
+}
+
+enum PayU3DS2MFAStatus {
+    case initiated
+    case success
+    case error
+}
+
 ```
 
 ## Error codes
