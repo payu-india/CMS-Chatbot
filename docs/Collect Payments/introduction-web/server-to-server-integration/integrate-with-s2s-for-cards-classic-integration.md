@@ -13,19 +13,19 @@ next:
 This is server-to-server integration over the Redirect experience for cards involves the following steps:
 
 <Cards columns={2}>
-  <Card title="1. Initiate payment request with PayU" href="#step-1-initiate-payment-request-with-payu" target="_blank">
+  <Card title="1. Initiate payment request with PayU" href="https://docs.payu.in/docs/integrate-with-s2s-for-cards-classic-integration#step-1-initiate-payment-request-with-payu">
     Create and send a payment request to PayU with all required parameters including merchant details and transaction information
 
     <br />
   </Card>
 
-  <Card title="2. Redirect the customer" href="#step-2-redirect-the-customer" target="_blank">
+  <Card title="2. Redirect the customer" href="https://docs.payu.in/docs/integrate-with-s2s-for-cards-classic-integration#step-2-redirect-the-customer">
     Redirect the customer to PayU's payment page to complete the transaction securely
 
     <br />
   </Card>
 
-  <Card title="3. Check response from PayU" href="#step-3-check-response-from-payu" target="_blank">
+  <Card title="3. Check response from PayU" href="https://docs.payu.in/docs/integrate-with-s2s-for-cards-classic-integration#step-3-check-response-from-payu">
     Handle the response from PayU after the customer completes or cancels the payment
 
     <br />
