@@ -11,6 +11,32 @@ next:
   description: ''
 ---
 This section describes the procedure to integrate CommercePro Checkout using Response Handler in your website and start accepting payments.
+**Steps to integrate**
+<Cards columns={2}>
+  <Card title="Step 1: Load the JS-SDK on the page" href="https://docs.payu.in/?isFramePreview=true#step-1-load-the-js-sdk-on-the-page" target="_blank">
+    Load and initialize the PayU JavaScript SDK on your webpage to enable payment processing capabilities
+
+    <br />
+  </Card>
+
+  <Card title="Step 2: Pass the transaction request object" href="https://docs.payu.in/?isFramePreview=true#step-2-pass-the-transaction-request-object" target="_blank">
+    Configure and pass the transaction request object with all required payment parameters
+
+    <br />
+  </Card>
+
+  <Card title="Step 3: Fetch the response using response handler" href="https://docs.payu.in/?isFramePreview=true#step-3-fetch-the-response-using-response-handler" target="_blank">
+    Implement response handlers to capture and process payment responses from PayU
+
+    <br />
+  </Card>
+
+  <Card title="Step 4: Catch Exceptions" href="https://docs.payu.in/?isFramePreview=true#step-4-catch-exceptions" target="_blank">
+    Handle errors and exceptions that may occur during the payment process
+
+    <br />
+  </Card>
+</Cards>
 
 ## Step 1: Load the JS-SDK on the page
 
