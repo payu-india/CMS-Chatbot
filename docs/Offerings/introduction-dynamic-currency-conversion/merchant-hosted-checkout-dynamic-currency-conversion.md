@@ -29,7 +29,7 @@ next:
 This section describes how to integrate Dynamic Currency Conversion with Merchant Hosted Checkout Integration (Seamless Integration).
 
 <Callout icon="📘" theme="info">
-  **Notes**: 
+  **Notes**:
 
   * You need to contact your PayU Key Account Manager to enable international payments.
   * For the list of supported currencies, <a href="https://docs.payu.in/docs/supported-currencies-for-international-payments/" target="_blank">Supported Currencies for International Payments</a>.
@@ -39,14 +39,31 @@ This section describes how to integrate Dynamic Currency Conversion with Merchan
   **Before you begin**: Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 </Callout>
 
-### Steps to Integrate:
+**Steps to Integrate**
 
-1. [Check the Card BIN](#step-1-check-the-card-bin)
-2. [Post the parameters to PayU](#step-2-post-the-parameters-to-payu)
-3. [Check the response from PayU](#step-3-check-the-payment-response-from-payu)
-4. [Verify the payment](#step-4-verify-the-payment)
+<Cards columns={2}>
+  <Card title="1. Check the Card BIN" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-1-check-the-card-bin">
+    Validate the card Bank Identification Number (BIN) to determine card type and eligibility
 
-***
+    <br />
+  </Card>
+
+  <Card title="2. Post the Parameters to PayU" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-2-post-the-parameters-to-payu">
+    Send the required payment parameters to PayU for transaction processing
+
+    <br />
+  </Card>
+
+  <Card title="3. Check the Response from PayU" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-3-check-the-response-from-payu">
+    Handle and process the response received from PayU after parameter submission
+  </Card>
+
+  <Card title="4. Verify the Payment" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-4-verify-the-payment">
+    Confirm the payment status and ensure successful transaction completion
+
+    <br />
+  </Card>
+</Cards>
 
 ## Step 1: Check the card BIN
 
