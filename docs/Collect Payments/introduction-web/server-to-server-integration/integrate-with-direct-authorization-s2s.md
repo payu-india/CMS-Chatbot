@@ -16,19 +16,19 @@ This part of the document also includes how to integrate using 3DS Secure 2.0 Tr
 **Steps to integrate**
 
 <Cards columns={3}>
-  <Card title="1. Post the Parameters to PayU" href="#step-1-post-the-parameters-to-payu">
+  <Card title="1. Post the Parameters to PayU" href="https://docs.payu.in/docs/integrate-with-direct-authorization-s2s#step-1-post-the-parameters-to-payu">
     Post the required parameters to PayU for direct authorization S2S integration
 
     <br />
   </Card>
 
-  <Card title="2. Check Response from PayU" href="#step-2-check-response-from-payu">
+  <Card title="2. Check Response from PayU" href="https://docs.payu.in/docs/integrate-with-direct-authorization-s2s##step-2-check-response-from-payu">
     Check and handle the response received from PayU after posting parameters
 
     <br />
   </Card>
 
-  <Card title="3. Verify the payment" href="#step-3-verify-the-payment">
+  <Card title="3. Verify the payment" href="https://docs.payu.in/docs/integrate-with-direct-authorization-s2s##step-3-verify-the-payment">
     Verify the payment status and ensure transaction completion
   </Card>
 
