@@ -14,8 +14,6 @@ This section describes the procedure to integrate CommercePro Checkout using Cal
 
 **Steps to integrate**
 
-<br />
-
 <Cards columns={2}>
   <Card title="Step 1: Load the JS-SDK on the page" href="https://docs.payu.in/?isFramePreview=true#step-1-load-the-js-sdk-on-the-page" target="_blank">
     Load and initialize the PayU JavaScript SDK on your webpage to enable payment processing capabilities
