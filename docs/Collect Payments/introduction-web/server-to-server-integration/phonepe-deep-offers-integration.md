@@ -12,7 +12,7 @@ next:
 ---
 The following are the sequence of API calls for SDK-less Deep-Offer integration on PhonePe:
 
-<Cards columns={2}>
+<Cards columns={3}>
   <Card title="1. Initiate S2S Transaction with PayU and Check Response" href="https://docs.payu.in/docs/phonepe-deep-offers-integration#step-1-initiate-s2s-transaction-with-payu-and-check-the-response">
     Initiate server-to-server transaction with PayU and verify the response
 
