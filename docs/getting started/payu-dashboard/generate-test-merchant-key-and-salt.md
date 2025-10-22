@@ -46,7 +46,7 @@ To generate test merchant API key and Salt:
 
 <Image align="center" border={true} width="320px" src="https://files.readme.io/2282abf-dashboard_select_test_mode.png" className="border" />
 
-3. Select **Developer** from the menu on the left-pane and select the **API Details**tab if required.
+3. Select **Developer** from the menu on the left-pane and select the **API Keys** tab if required.
 
 The _Developers_ page is displayed similar to the following screenshot. The values for the following fields are generated automatically (for the first time) and displayed similar to the following screenshot:
 
