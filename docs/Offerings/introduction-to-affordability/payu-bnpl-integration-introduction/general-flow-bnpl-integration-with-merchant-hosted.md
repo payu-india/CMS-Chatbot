@@ -20,12 +20,31 @@ next:
 ---
 This section describes the general steps to integrate <Glossary>BNPL</Glossary>.
 
-## Steps to Integrate
+**Steps to Integrate**
 
-1. <a href="#step-1-check-the-bnpl-eligibility">Check the BNPL eligibility</a>
-2. <a href="#step-2-initiate-the-payment">Initiate the payment</a>
-3. <a href="#step-3-check-the-response-from-payu">Check the response from PayU</a>
-4. <a href="#step-4-verify-the-payment">Verify the payment</a>
+<Cards columns={2}>
+  <Card title="1. Check the BNPL Eligibility" href="https://docs.payu.in/docs/general-flow-bnpl-integration-with-merchant-hosted#step-1-check-the-bnpl-eligibility">
+    Verify customer eligibility for Buy Now Pay Later options before proceeding with the payment
+
+    <br />
+  </Card>
+
+  <Card title="2. Initiate the Payment" href="https://docs.payu.in/docs/general-flow-bnpl-integration-with-merchant-hosted#step-2-initiate-the-payment">
+    Start the BNPL payment process using merchant hosted integration
+
+    <br />
+  </Card>
+
+  <Card title="3. Check the Response from PayU" href="https://docs.payu.in/docs/general-flow-bnpl-integration-with-merchant-hosted#step-3-check-the-response-from-payu">
+    Handle and process the response received from PayU after payment initiation
+  </Card>
+
+  <Card title="4. Verify the Payment" href="https://docs.payu.in/docs/general-flow-bnpl-integration-with-merchant-hosted#step-4-verify-the-payment">
+    Confirm the payment status and ensure successful BNPL transaction completion
+
+    <br />
+  </Card>
+</Cards>
 
 ## Step 1: Check the BNPL eligibility
 
@@ -96,7 +115,7 @@ You need to ensure that **BNPL** for the **pg** parameter and BNPL provider code
   | <Glossary>bankcode</Glossary> `mandatory` | `String` The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bankcodes for BNPL, refer to[BNPL Codes](doc:bnpl-codes).                                       | LAZYPAY                           |
   | `furl mandatory`                          | `String`The success URL, which is the page PayU will redirect to if the transaction is successful.                                                                                                                            |                                   |
   | `surl mandatory`                          | `String`The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                |                                   |
-  | `hash mandatory`                          | `String`It is the hash calculated by the merchant. The hash calculation logic is:&#xA;`sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT)`                               |                                   |
+  | `hash mandatory`                          | `String`It is the hash calculated by the merchant. The hash calculation logic is:&#xA;`sha512(key\\|txnid\\|amount\\|productinfo\\|firstname\\|email\\|udf1\\|udf2\\|udf3\\|udf4\\|udf5\\|\\|\\|\\|\\|\\|SALT)`               |                                   |
   | `address1 optional`                       | `String` The first line of the billing address.**For Fraud Detection**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. |                                   |
   | `address2 optional`                       | `String` The second line of the billing address.                                                                                                                                                                              |                                   |
   | `city optional`                           | `String` The city where your customer resides as part of the billing address.                                                                                                                                                 |                                   |
