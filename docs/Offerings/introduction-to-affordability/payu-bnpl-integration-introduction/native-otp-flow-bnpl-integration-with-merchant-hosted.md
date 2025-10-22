@@ -22,6 +22,38 @@ next:
 ---
 This section describes what is Native OTP flow with benefits and how to implement Native OTP flow when collecting payments using <Glossary>BNPL</Glossary>.
 
+**Steps to integrate**
+
+<Cards columns={3}>
+  <Card title="1. Check the BNPL Eligibility" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-1-check-the-bnpl-eligibility">
+    Verify customer eligibility for Buy Now Pay Later options using PayU hosted checkout
+
+    <br />
+  </Card>
+
+  <Card title="2. Initiate the Payment" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-2-initiate-the-payment">
+    Start the payment process using PayU hosted checkout integration with offers
+
+    <br />
+  </Card>
+
+  <Card title="3. Check the Response from PayU" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-3-check-the-response-from-payu">
+    Handle and process the response received from PayU after payment initiation
+  </Card>
+
+  <Card title="4. Submit the OTP" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-4-submit-the-otp">
+    Submit and validate OTP for authentication in the BNPL payment flow
+
+    <br />
+  </Card>
+
+  <Card title="5. Verify the Payment" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-5-verify-the-payment">
+    Confirm the payment status and ensure successful transaction completion
+
+    <br />
+  </Card>
+</Cards>
+
 ## What is Native OTP flow
 
 In general, the transaction OTP is captured on Bank pages through multiple hops. With Native OTP Flow, it will be triggered and captured on merchants or the PayU Payment page. The customer stays on the merchant’s (or PayU’s) website/app and completes the Card authentication process of entering OTP on the merchant’s (or PayU) website itself, rather than redirecting the user to a 3d-secure page to complete the transaction. This reduces hops, points of failure, or drops in the checkout process hence faster completion of transactions, better experience, and improved success rate so preferred over OTP on Bank’s Page.
