@@ -358,6 +358,122 @@ When your customer makes payment through UPI, you can validate the customer's Vi
   ```curl
       curl -X      POST "https://test.payu.in/_payment" -H      "accept: application/json" -H      "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=xdB9G7qYpfqszo&amount=10&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=UPI&bankcode=UPI&vpa=VPA-anything@payu&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
   ```
+  ```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+data = {
+    "key": "JP***g",
+    "txnid": "xdB9G7qYpfqszo",
+    "amount": "10",
+    "firstname": "PayU User",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "productinfo": "iPhone",
+    "pg": "UPI",
+    "bankcode": "UPI",
+    "vpa": "VPA-anything@payu",
+    "surl": "https://apiplayground-response.herokuapp.com/",
+    "furl": "https://apiplayground-response.herokuapp.com/",
+    "hash": "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
+}
+
+response = requests.post(url, headers=headers, data=data)
+print(response.status_code)
+print(response.text)
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common qw(POST);
+
+my $url = "https://test.payu.in/_payment";
+
+my $ua = LWP::UserAgent->new();
+
+my $response = $ua->request(POST $url,
+    'Accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => [
+        key => 'JP***g',
+        txnid => 'xdB9G7qYpfqszo',
+        amount => '10',
+        firstname => 'PayU User',
+        email => 'test@gmail.com',
+        phone => '9876543210',
+        productinfo => 'iPhone',
+        pg => 'UPI',
+        bankcode => 'UPI',
+        vpa => 'VPA-anything@payu',
+        surl => 'https://apiplayground-response.herokuapp.com/',
+        furl => 'https://apiplayground-response.herokuapp.com/',
+        hash => '649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb'
+    ]
+);
+
+print "Status: " . $response->code . "\n";
+print "Response: " . $response->content . "\n";
+```
+```java
+import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class PayURequest {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        String url = "https://test.payu.in/_payment";
+        
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("key", "JP***g");
+        parameters.put("txnid", "xdB9G7qYpfqszo");
+        parameters.put("amount", "10");
+        parameters.put("firstname", "PayU User");
+        parameters.put("email", "test@gmail.com");
+        parameters.put("phone", "9876543210");
+        parameters.put("productinfo", "iPhone");
+        parameters.put("pg", "UPI");
+        parameters.put("bankcode", "UPI");
+        parameters.put("vpa", "VPA-anything@payu");
+        parameters.put("surl", "https://apiplayground-response.herokuapp.com/");
+        parameters.put("furl", "https://apiplayground-response.herokuapp.com/");
+        parameters.put("hash", "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb");
+        
+        String formData = parameters.entrySet()
+                .stream()
+                .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" + 
+                             URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
+                .collect(Collectors.joining("&"));
+        
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .POST(HttpRequest.BodyPublishers.ofString(formData))
+                .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println("Status Code: " + response.statusCode());
+        System.out.println("Response: " + response.body());
+    }
+}
+   ```
+
 </Accordion>
 
 ## Step 3: Check response from PayU
