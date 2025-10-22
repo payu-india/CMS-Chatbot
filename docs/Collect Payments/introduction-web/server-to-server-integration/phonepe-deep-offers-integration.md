@@ -10,17 +10,43 @@ metadata:
 next:
   description: ''
 ---
-The following are the sequence of API calls for SDK less Deep-Offer integration:
+The following are the sequence of API calls for SDK-less Deep-Offer integration on PhonePe:
 
-1. [Initiate S2S Transaction with PayU and Check Response](#step-1-initiate-s2s-transaction-with-payu-and-check-the-response)
-2. [Invoke Intent on The Customer's Device](#step-2-invoke-intent-in-the-customers-device)
-3. [Get Web Service Response](#step-3-get-web-service-response)
-4. [S2S Call Back Response](#step-4-s2s-call-back-response)
-5. [Verify the payment](#step-5-verify-the-payment)
+<Cards columns={2}>
+  <Card title="1. Initiate S2S Transaction with PayU and Check Response" href="https://docs.payu.in/docs/phonepe-deep-offers-integration#step-1-initiate-s2s-transaction-with-payu-and-check-the-response">
+    Initiate server-to-server transaction with PayU and verify the response
 
-> 👍 Before you begin:
->
-> Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+    <br />
+  </Card>
+
+  <Card title="2. Invoke Intent on The Customer's Device" href="https://docs.payu.in/docs/phonepe-deep-offers-integration#step-2-invoke-intent-in-the-customers-device">
+    Trigger PhonePe intent on the customer's mobile device for payment completion
+
+    <br />
+  </Card>
+
+  <Card title="3. Get Web Service Response" href="https://docs.payu.in/docs/phonepe-deep-offers-integration#step-3-get-web-service-response">
+    Retrieve and process the web service response from PhonePe
+
+    <br />
+  </Card>
+
+  <Card title="4. S2S Call Back Response" href="https://docs.payu.in/docs/phonepe-deep-offers-integration#step-4-s2s-call-back-response">
+    Handle the server-to-server callback response from PayU
+
+    <br />
+  </Card>
+
+  <Card title="5. Verify the payment" href="https://docs.payu.in/docs/phonepe-deep-offers-integration#step-5-verify-the-payment">
+    Verify the payment status and ensure successful transaction completion
+  </Card>
+
+  <br />
+</Cards>
+
+<Callout icon="👍" theme="okay">
+  **Before you begin**: Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+</Callout>
 
 ## Step 1: Initiate S2S transaction with PayU and check the response
 
@@ -64,27 +90,27 @@ Collect the response in the [Collect Payment API - Server-to-Server](ref:_paymen
 After you receive a successful response, with redirect type as Intent and with a redirect URL, then the merchant invokes the Intent in the customer's device.
 
 <Accordion title="Implementation" icon="fa-gear">
+  ```javascript
+  Intent i = new Intent(Intent.ACTION_VIEW); 
+  i.setData(Uri.parse(redirectURL)); 
+  i.setPackage(PHONEPE_PACKAGE_NAME); 
+  startActivityForResult(i, PHONEPE_REQUEST); 
+  ```
 
-```javascript
-Intent i = new Intent(Intent.ACTION_VIEW); 
-i.setData(Uri.parse(redirectURL)); 
-i.setPackage(PHONEPE_PACKAGE_NAME); 
-startActivityForResult(i, PHONEPE_REQUEST); 
-```
+  You have to override on Activity Result to listen to debit result:
 
-You have to override on Activity Result to listen to debit result:
-
-```javascript
-privatestaticfinalintPHONEPE_REQUEST=123; 
-@OverrideprotectedvoidonActivityResult(intrequestCode, intresultCode, Intentdata) 
-{
-super.onActivityResult(requestCode, resultCode, data); 
-  if(requestCode==PHONEPE_REQUEST) 
-  {/*This callback indicates only about completion of flow. Inform your server to make the transaction status call to get the status. Update your app with the success/failure status.*/ 
+  ```javascript
+  privatestaticfinalintPHONEPE_REQUEST=123; 
+  @OverrideprotectedvoidonActivityResult(intrequestCode, intresultCode, Intentdata) 
+  {
+  super.onActivityResult(requestCode, resultCode, data); 
+    if(requestCode==PHONEPE_REQUEST) 
+    {/*This callback indicates only about completion of flow. Inform your server to make the transaction status call to get the status. Update your app with the success/failure status.*/ 
+    } 
   } 
-} 
-```
+  ```
 </Accordion>
+
 ***
 
 ## Step 3: Get Web Service Response
