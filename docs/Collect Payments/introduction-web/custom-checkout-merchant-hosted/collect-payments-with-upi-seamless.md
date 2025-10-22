@@ -473,7 +473,28 @@ public class PayURequest {
     }
 }
    ```
+   ```javascript
+   const url = 'https://test.payu.in/merchant/postservice?form=2';
 
+const data = new URLSearchParams({
+  key: 'JP***g',
+  command: 'validateVPA',
+  var1: '9999999999@upi',
+  hash: '75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+});
+
+const response = await fetch(url, {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  body: data.toString()
+});
+
+const result = await response.json();
+console.log(result);
+  ```
 </Accordion>
 
 ## Step 3: Check response from PayU
