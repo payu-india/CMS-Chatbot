@@ -553,18 +553,15 @@ This section describes the customer workflow with an SKU-based offer on the PayU
 </Callout>
 
 ### Customer journey
-  <Image align="center" src="https://files.readme.io/d1810659921a390f7e5f6f3dc8cd314876c7a0f68a6f15819de7c72f601509be-sku_based_offer_sample_step1.png" />
 
 <Accordion title="Customer journey" icon="fa-times-circle">
   After your customer selects the items from your website (for example, mobile online shopping), the customer is redirected to the PayU page for payment and involves the following steps:
 
   1. Select **Offers** at the top-right corner.
 
-
-
   All the offers for the products in the shopping cart (if any) are listed.
 
-  <Image align="center" src="https://files.readme.io/b1984bec41045b6b8368526afddf38613f865973af4b191c67db448533ff3447-sku_based_offer_sample_step1a.png" />
+<img align="center" src="https://files.readme.io/b1984bec41045b6b8368526afddf38613f865973af4b191c67db448533ff3447-sku_based_offer_sample_step1a.png" width="300" alt="SKU based offer sample step 1a" />
 
   2. Select the **Product Offers** tab.
 
