@@ -14,7 +14,6 @@ After you set up your account in Shopify, you can integrate PayU India as the pa
 
 <Tabs>
   <Tab title="Install PayU Plugin">
-
     This section explains how to install the PayU plugin in Shopify and facilitate payments through PayU.
 
     ## Prerequisites
@@ -40,8 +39,8 @@ After you set up your account in Shopify, you can integrate PayU India as the pa
     • Enter the Merchant Key and Salt (retrieved from the PayU dashboard)
     • Reference guides:
 
-    * Access Production Key and Salt (doc:generate-merchant-key-and-salt-on-payu-dashboard)
-    * Access Test Merchant Key and Salt (doc:generate-test-merchant-key-and-salt)
+    * [Access Production Key and Salt] (https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard)
+    * [Access Test Merchant Key and Salt] (https://docs.payu.in/docs/generate-test-merchant-key-and-salt)
 
     **Step 7:** Activate PayU India
     • Test the integration by enabling **Test Mode**
@@ -53,7 +52,6 @@ After you set up your account in Shopify, you can integrate PayU India as the pa
   </Tab>
 
   <Tab title="Integrate with Shopify using Hyperlink">
-
     This section involves direct integration using a hyperlink that leads to the Shopify PayU India app.
 
     ## Prerequisites
