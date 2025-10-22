@@ -51,7 +51,8 @@ With the PayU Hosted Checkout integration, the entire payment experience is cont
   3. Customer is shown the applicable offers on the checkout page for that transaction.
   4. Customer will have the option to apply the offer. If the offer is applicable to a specific payment option, the customer will be redirected to the specific payment option.
 
-  <Image align="center" src="https://files.readme.io/725ae934c0f2c2d875989729a29e2c38c7d8f6984b68f03bc0044f09562c37d0-instant_discount_offer_integration.png" />
+  <img align="center"
+src="https://files.readme.io/725ae934c0f2c2d875989729a29e2c38c7d8f6984b68f03bc0044f09562c37d0-instant_discount_offer_integration.png" width="300" alt="Instant Discount based offer sample" />
 
   The PayU Hosted Checkout page for specific payment option on Mobile is similar to the following screenshot:
 
@@ -561,19 +562,19 @@ This section describes the customer workflow with an SKU-based offer on the PayU
 
   All the offers for the products in the shopping cart (if any) are listed.
 
-<img align="center" src="https://files.readme.io/b1984bec41045b6b8368526afddf38613f865973af4b191c67db448533ff3447-sku_based_offer_sample_step1a.png" width="300" alt="SKU based offer sample step 1a" />
+  <img align="center" src="https://files.readme.io/b1984bec41045b6b8368526afddf38613f865973af4b191c67db448533ff3447-sku_based_offer_sample_step1a.png" width="300" alt="SKU based offer journey step 1" />
 
   2. Select the **Product Offers** tab.
 
      The **Product Offers** tab is displayed on the *Offer & Discount* page.
 
-  <Image align="center" src="https://files.readme.io/125790b4a8e0c940e5d749db3da58b0fba2a8221162a8743bd79c36e737db3f7-sku_based_offer_sample_step2.png" />
+  <img align="center"  src="https://files.readme.io/125790b4a8e0c940e5d749db3da58b0fba2a8221162a8743bd79c36e737db3f7-sku_based_offer_sample_step2.png" width="300" alt="SKU based offer journey Offers tab" />
 
   3. Apply an offer using the **Use Offer** button for the offer you wish to apply.
 
      The *Offer Applied!* pop-up page is displayed.
 
-  <Image align="center" src="https://files.readme.io/0b8210a58d2e248f80943709b73cb961eb1f19a9b28b56e4af59d241b881375b-sku_based_offer_sample_step3.png" />
+  <img align="center" src="https://files.readme.io/0b8210a58d2e248f80943709b73cb961eb1f19a9b28b56e4af59d241b881375b-sku_based_offer_sample_step3.png" width="300" alt="SKU based offer journey Offers Applied page"/>
 
   4. Click **Thanks.**
 
