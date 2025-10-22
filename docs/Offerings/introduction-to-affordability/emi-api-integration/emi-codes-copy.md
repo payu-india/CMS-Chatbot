@@ -22,12 +22,12 @@ next:
 <tr><td>AU Small Finance Bank</td><td>AUSF12</td><td>12 Months</td><td>14</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>AU Small Finance Bank</td><td>AUSF18</td><td>18 Months</td><td>14</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>AU Small Finance Bank</td><td>AUSF24</td><td>24 Months</td><td>14</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
-<tr><td>Axis Bank</td><td>EMIA3</td><td>3 months</td><td>14</td><td>2500</td><td>1000000</td><td>N/A</td><td>N/A</td></tr>
-<tr><td>Axis Bank</td><td>EMIA6</td><td>6 months</td><td>14</td><td>2500</td><td>1000000</td><td>N/A</td><td>N/A</td></tr>
-<tr><td>Axis Bank</td><td>EMIA9</td><td>9 months</td><td>15</td><td>2500</td><td>1000000</td><td>N/A</td><td>N/A</td></tr>
-<tr><td>Axis Bank</td><td>EMIA12</td><td>12 months</td><td>15</td><td>2500</td><td>1000000</td><td>N/A</td><td>N/A</td></tr>
-<tr><td>Axis Bank</td><td>EMIA18</td><td>18 months</td><td>16</td><td>2500</td><td>1000000</td><td>N/A</td><td>N/A</td></tr>
-<tr><td>Axis Bank</td><td>EMIA24</td><td>24 months</td><td>16</td><td>2500</td><td>1000000</td><td>N/A</td><td>N/A</td></tr>
+<tr><td>Axis Bank</td><td>EMIA3</td><td>3 months</td><td>14</td><td>2500</td><td>1000000</td><td>Rs. 199</td><td>N/A</td></tr>
+<tr><td>Axis Bank</td><td>EMIA6</td><td>6 months</td><td>14</td><td>2500</td><td>1000000</td><td>Rs. 199</td><td>N/A</td></tr>
+<tr><td>Axis Bank</td><td>EMIA9</td><td>9 months</td><td>15</td><td>2500</td><td>1000000</td><td>Rs. 199</td><td>N/A</td></tr>
+<tr><td>Axis Bank</td><td>EMIA12</td><td>12 months</td><td>15</td><td>2500</td><td>1000000</td><td>Rs. 199</td><td>N/A</td></tr>
+<tr><td>Axis Bank</td><td>EMIA18</td><td>18 months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 199</td><td>N/A</td></tr>
+<tr><td>Axis Bank</td><td>EMIA24</td><td>24 months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>BOBCARD</td><td>BOBCC02</td><td>2 Months</td><td>13</td><td>2500</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>BOBCARD</td><td>BOBCC03</td><td>3 Months</td><td>13</td><td>2500</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>BOBCARD</td><td>BOBCC04</td><td>4 Months</td><td>13</td><td>2500</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
