@@ -13,9 +13,7 @@ Native OTP Flow is a method of capturing transaction OTPs that happens on the me
 
 You can enable Native OTP flow in EMI payments and collect payments. Currently, Native OTP can be enabled for the following types of EMI payments:
 
-* Debit Card
-
-<br />
+* **Debit Card**
 
 <Cards columns={3}>
   <Card title="1. Check Pre-EMI Eligibility" href="https://docs.payu.in/update/docs/native-otp-flow-integration#step-1-check-pre-emi-eligibility">
@@ -41,7 +39,31 @@ You can enable Native OTP flow in EMI payments and collect payments. Currently, 
   </Card>
 </Cards>
 
-* Cardless EMI
+* **Cardless EMI**
+
+<Cards columns={3}>
+  <Card title="1. Check Pre-EMI Eligibility" href="https://docs.payu.in/update/docs/native-otp-flow-integration#step-1-check-pre-emi-eligibility-2">
+    Verify customer eligibility for pre-EMI options before initiating the native OTP flow
+
+    <br />
+  </Card>
+
+  <Card title="2. Initiate the Payment Request" href="https://docs.payu.in/update/docs/native-otp-flow-integration#step-2-initiate-the-payment-request-1">
+    Start the payment process using the native OTP flow integration
+
+    <br />
+  </Card>
+
+  <Card title="3. Submit the OTP" href="https://docs.payu.in/update/docs/native-otp-flow-integration#step-3-submit-the-otp-2">
+    Handle OTP submission and validation in the native payment flow
+  </Card>
+
+  <Card title="4. Verify Payment" href="https://docs.payu.in/update/docs/native-otp-flow-integration#step-4-verify-payment-2">
+    Confirm the payment status and ensure successful transaction completion
+
+    <br />
+  </Card>
+</Cards>
 
 <br />
 
