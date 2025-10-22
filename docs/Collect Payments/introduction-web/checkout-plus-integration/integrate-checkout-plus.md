@@ -21,13 +21,27 @@ PayU Checkout Plus is the most convenient way to collect payment on your website
 
 ***
 
-### Steps to integrate
+**Steps to integrate**
 
-1. [Add the inline script in the HTML Header](#step-1-add-meta-tags--scripts-in-the-html-meader)
-2. [Pass the transaction request objects](#step-2-pass-transaction-request-objects)
-3. [Fetch the response using the responseHandler function](#step-3-fetch-the-response-using-responsehandler)
+<Cards columns={3}>
+  <Card title="1. Add the inline script in the HTML Header" href="https://docs.payu.in/?isFramePreview=true#step-1-add-meta-tags--scripts-in-the-html-meader" target="_blank">
+    Add the required meta tags and inline scripts in your HTML header to initialize PayU
 
-***
+    <br />
+  </Card>
+
+  <Card title="2. Pass the transaction request objects" href="https://docs.payu.in/?isFramePreview=true#step-2-pass-transaction-request-objects" target="_blank">
+    Configure and pass the transaction request objects with all necessary payment parameters
+
+    <br />
+  </Card>
+
+  <Card title="3. Fetch the response using the responseHandler function" href="https://docs.payu.in/?isFramePreview=true#step-3-fetch-the-response-using-responsehandler" target="_blank">
+    Implement the responseHandler function to capture and process payment responses
+
+    <br />
+  </Card>
+</Cards>
 
 For more information on handling any errors during a transaction, refer to the [CatchException](https://docs.payu.in/docs/integrate-checkout-plus#catchexception) section of this document.
 
