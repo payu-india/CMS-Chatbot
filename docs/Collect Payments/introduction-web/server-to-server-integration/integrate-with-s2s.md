@@ -40,19 +40,19 @@ The Server-to-Server integration is performed at the server level, that is, your
 **Steps to integrate**
 
 <Cards columns={3}>
-  <Card title="Step 1: Post the parameters to PayU" href="https://docs.payu.in/?isFramePreview=true#step-1-post-the-parameters-to-payu" target="_blank">
+  <Card title="1. Post the parameters to PayU" href="https://docs.payu.in/?isFramePreview=true#step-1-post-the-parameters-to-payu" target="_blank">
     Post the transaction parameters to PayU server to initiate the payment process
 
     <br />
   </Card>
 
-  <Card title="Step 2: Check response from PayU" href="https://docs.payu.in/?isFramePreview=true#step-2-check-response-from-payu" target="_blank">
+  <Card title="2. Check response from PayU" href="https://docs.payu.in/?isFramePreview=true#step-2-check-response-from-payu" target="_blank">
     Check and process the response received from PayU after payment processing
 
     <br />
   </Card>
 
-  <Card title="Step 3: Verify the payment" href="https://docs.payu.in/?isFramePreview=true#step-3-verify-the-payment" target="_blank">
+  <Card title="3. Verify the payment" href="https://docs.payu.in/?isFramePreview=true#step-3-verify-the-payment" target="_blank">
     Verify the payment using verify\_payment and monitor using webhooks
 
     <br />
