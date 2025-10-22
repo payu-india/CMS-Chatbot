@@ -16,10 +16,12 @@ next:
 ---
 When your customer wants to opt for the EMI option with credit cards, you can use EMI APIs to check the customer’s eligibility and get the EMI amount, interest, processing fee, or No-Cost EMI and tenure. If the customer is eligible, you can post the transaction with EMI conversion.
 
-> 📘 Notes:
->
-> * You can create EMI offers using the PayU Dashboard and use them for collecting payments as described in this procedure. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer)
-> * For Server-to-Server integration, CC-EMI works on **txn_s2s_flow=1, 2,** or **4**, whereas, DC-EMI only works on **txn_s2s_flow=1**. The same **base64Decoder** logic will be used to decode the encrypted **acsTemplate** (in case of txn_s2s_flow=4) and post_data (in case of txn_s2s_flow=1 or 2).
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * You can create EMI offers using the PayU Dashboard and use them for collecting payments as described in this procedure. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer)
+  * For Server-to-Server integration, CC-EMI works on **txn_s2s_flow=1, 2,** or **4**, whereas, DC-EMI only works on **txn_s2s_flow=1**. The same **base64Decoder** logic will be used to decode the encrypted **acsTemplate** (in case of txn_s2s_flow=4) and post_data (in case of txn_s2s_flow=1 or 2).
+</Callout>
 
 <Callout icon="🚧" theme="warn">
   **Test Environment Limitation for Tokens (Saved Cards)**: PayU does not support network tokens or issuer tokens in Test Environment, so you cannot try using API Reference for network tokens or issuer tokens.
@@ -46,9 +48,9 @@ When your customer has an account on your shopping website, they may store their
 
 **Environment**
 
-| Test       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
-| ---------- | ------------------------------------------------------------------- |
-| Production | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+| Test       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
+| ---------- | ------------------------------------------------------------------ |
+| Production | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
 ### Using complete card details
 
