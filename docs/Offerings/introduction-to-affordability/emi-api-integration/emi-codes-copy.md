@@ -12,8 +12,7 @@ metadata:
 next:
   description: ''
 ---
-<h2 class="heading heading-2 header-scroll">Credit Card EMI Codes<a aria-label="Skip link to Credit Card EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#credit-card-emi-codes"></a></h2><div class="heading-anchor anchor waypoint" id="credit-card-emi-codes"></div><div id="section-credit-card-emi-codes" class="heading-anchor_backwardsCompatibility"></div><div class="rdmd-table"><div class="rdmd-table-inner"><table><thead><tr><th>Bank Name</th><th>bank_code</th><th>Tenure</th><th>Interest Rate</th><th>Min. Amt.</th><th>Max. Amt</th><th>Default Processing Fee</th><th>Min. Processing Fee</th></tr></thead><tbody>
-<tr>
+<h2 class="heading heading-2 header-scroll">Credit Card EMI Codes<a aria-label="Skip link to Credit Card EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#credit-card-emi-codes"></a></h2><div class="heading-anchor anchor waypoint" id="credit-card-emi-codes"></div><div id="section-credit-card-emi-codes" class="heading-anchor_backwardsCompatibility"></div><div class="rdmd-table"><div class="rdmd-table-inner"><table><thead><tr><th>Bank Name</th><th>bank_code</th><th>Tenure</th><th>Interest Rate</th><th>Min. Amt.</th><th>Max. Amt</th><th>Default Processing Fee</th><th>Min. Processing Fee</th></tr></thead><tbody><tr>
     <td>American Express</td>
     <td>EMAMEX12</td>
     <td>12 months</td>
@@ -23,7 +22,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>American Express</td>
     <td>EMIAMEX3</td>
@@ -34,7 +32,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>American Express</td>
     <td>EMIAMEX6</td>
@@ -45,7 +42,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>American Express</td>
     <td>EMIAMEX9</td>
@@ -56,7 +52,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>AU Small Finance Bank</td>
     <td>AUSF03</td>
@@ -67,7 +62,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>AU Small Finance Bank</td>
     <td>AUSF06</td>
@@ -78,7 +72,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>AU Small Finance Bank</td>
     <td>AUSF09</td>
@@ -89,7 +82,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>AU Small Finance Bank</td>
     <td>AUSF12</td>
@@ -100,7 +92,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>AU Small Finance Bank</td>
     <td>AUSF18</td>
@@ -111,7 +102,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>AU Small Finance Bank</td>
     <td>AUSF24</td>
@@ -122,7 +112,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>EMIA3</td>
@@ -133,7 +122,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>EMIA6</td>
@@ -144,7 +132,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>EMIA9</td>
@@ -155,7 +142,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>EMIA12</td>
@@ -166,7 +152,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>EMIA18</td>
@@ -177,7 +162,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>EMIA24</td>
@@ -188,7 +172,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BOBCARD</td>
     <td>BOBCC02</td>
@@ -199,7 +182,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BOBCARD</td>
     <td>BOBCC03</td>
@@ -210,7 +192,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BOBCARD</td>
     <td>BOBCC04</td>
@@ -221,7 +202,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BOBCARD</td>
     <td>BOBCC05</td>
@@ -232,7 +212,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BOBCARD</td>
     <td>BOBCC06</td>
@@ -243,7 +222,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BOBCARD</td>
     <td>BOBCC07</td>
@@ -254,7 +232,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BOBCARD</td>
     <td>BOBCC08</td>
@@ -265,7 +242,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BOBCARD</td>
     <td>BOBCC09</td>
@@ -276,7 +252,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BOBCARD</td>
     <td>BOBCC12</td>
@@ -287,7 +262,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BOBCARD</td>
     <td>BOBCC18</td>
@@ -298,7 +272,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BOBCARD</td>
     <td>BOBCC24</td>
@@ -309,7 +282,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BOBCARD</td>
     <td>BOBCC36</td>
@@ -320,7 +292,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>CANARA Bank</td>
     <td>CANARA03</td>
@@ -331,7 +302,6 @@ next:
     <td>2%</td>
     <td>Rs. 100</td>
 </tr>
-
 <tr>
     <td>CANARA Bank</td>
     <td>CANARA06</td>
@@ -342,7 +312,6 @@ next:
     <td>2%</td>
     <td>Rs. 100</td>
 </tr>
-
 <tr>
     <td>CANARA Bank</td>
     <td>CANARA09</td>
@@ -353,7 +322,6 @@ next:
     <td>2%</td>
     <td>Rs. 100</td>
 </tr>
-
 <tr>
     <td>CANARA Bank</td>
     <td>CANARA12</td>
@@ -364,7 +332,6 @@ next:
     <td>2%</td>
     <td>Rs. 100</td>
 </tr>
-
 <tr>
     <td>CANARA Bank</td>
     <td>CANARA18</td>
@@ -375,7 +342,6 @@ next:
     <td>2%</td>
     <td>Rs. 100</td>
 </tr>
-
 <tr>
     <td>CANARA Bank</td>
     <td>CANARA24</td>
@@ -386,7 +352,6 @@ next:
     <td>2%</td>
     <td>Rs. 100</td>
 </tr>
-
 <tr>
     <td>Citi-Branded Credit Card</td>
     <td>EMI03</td>
@@ -397,7 +362,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Citi-Branded Credit Card</td>
     <td>EMI06</td>
@@ -408,7 +372,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Citi-Branded Credit Card</td>
     <td>EMI09</td>
@@ -419,7 +382,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Citi-Branded Credit Card</td>
     <td>EMI012</td>
@@ -430,7 +392,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Citi-Branded Credit Card</td>
     <td>EMI018</td>
@@ -441,7 +402,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Citi-Branded Credit Card</td>
     <td>EMI024</td>
@@ -452,7 +412,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>EMI</td>
@@ -463,7 +422,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>EMI6</td>
@@ -474,7 +432,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>EMI9</td>
@@ -485,7 +442,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>EMI12</td>
@@ -496,7 +452,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>EMI18</td>
@@ -507,7 +462,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>EMI24</td>
@@ -518,7 +472,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>EMI36</td>
@@ -529,7 +482,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HSBC Bank</td>
     <td>EMIHS03</td>
@@ -540,7 +492,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HSBC Bank</td>
     <td>EMIHS06</td>
@@ -551,7 +502,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HSBC Bank</td>
     <td>EMIHS09</td>
@@ -562,7 +512,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HSBC Bank</td>
     <td>EMIHS12</td>
@@ -573,7 +522,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HSBC Bank</td>
     <td>EMIHS18</td>
@@ -584,7 +532,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HSBC Bank</td>
     <td>EMIHS24</td>
@@ -595,7 +542,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ICICI Bank</td>
     <td>EMIIC3</td>
@@ -606,7 +552,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ICICI Bank</td>
     <td>EMIIC6</td>
@@ -617,7 +562,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ICICI Bank</td>
     <td>EMIIC9</td>
@@ -628,7 +572,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ICICI Bank</td>
     <td>EMIIC12</td>
@@ -639,7 +582,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ICICI Bank</td>
     <td>EMIIC18</td>
@@ -650,7 +592,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ICICI Bank</td>
     <td>EMIIC24</td>
@@ -661,7 +602,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ICICI Bank</td>
     <td>JUPITR</td>
@@ -672,7 +612,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>IDFC FIRST Bank</td>
     <td>IDFC03</td>
@@ -683,7 +622,6 @@ next:
     <td>1%</td>
     <td>Rs. 99</td>
 </tr>
-
 <tr>
     <td>IDFC FIRST Bank</td>
     <td>IDFC06</td>
@@ -694,7 +632,6 @@ next:
     <td>1%</td>
     <td>Rs. 99</td>
 </tr>
-
 <tr>
     <td>IDFC FIRST Bank</td>
     <td>IDFC09</td>
@@ -705,7 +642,6 @@ next:
     <td>1%</td>
     <td>Rs. 99</td>
 </tr>
-
 <tr>
     <td>IDFC FIRST Bank</td>
     <td>IDFC12</td>
@@ -716,7 +652,6 @@ next:
     <td>1%</td>
     <td>Rs. 99</td>
 </tr>
-
 <tr>
     <td>IndusInd Bank</td>
     <td>EMIIND3</td>
@@ -727,7 +662,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>IndusInd Bank</td>
     <td>EMIIND6</td>
@@ -738,7 +672,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>IndusInd Bank</td>
     <td>EMIIND9</td>
@@ -749,7 +682,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>IndusInd Bank</td>
     <td>EMIIND12</td>
@@ -760,7 +692,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>IndusInd Bank</td>
     <td>EMIIND18</td>
@@ -771,7 +702,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>IndusInd Bank</td>
     <td>EMIIND24</td>
@@ -782,7 +712,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>IndusInd Bank</td>
     <td>EMIIND36</td>
@@ -793,7 +722,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Kotak Mahindra Bank</td>
     <td>EMIK3</td>
@@ -804,7 +732,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Kotak Mahindra Bank</td>
     <td>EMIK6</td>
@@ -815,7 +742,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Kotak Mahindra Bank</td>
     <td>EMIK9</td>
@@ -826,7 +752,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Kotak Mahindra Bank</td>
     <td>EMIK12</td>
@@ -837,7 +762,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Kotak Mahindra Bank</td>
     <td>EMIK18</td>
@@ -848,7 +772,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Kotak Mahindra Bank</td>
     <td>EMIK24</td>
@@ -859,7 +782,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>OneCard</td>
     <td>ONEC03</td>
@@ -870,7 +792,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>OneCard</td>
     <td>ONEC06</td>
@@ -881,7 +802,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>OneCard</td>
     <td>ONEC09</td>
@@ -892,7 +812,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>OneCard</td>
     <td>ONEC12</td>
@@ -903,7 +822,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>OneCard</td>
     <td>ONEC18</td>
@@ -914,7 +832,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>OneCard</td>
     <td>ONEC24</td>
@@ -925,7 +842,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>RBL Bank</td>
     <td>EMIRBL3</td>
@@ -936,7 +852,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>RBL Bank</td>
     <td>EMIRBL6</td>
@@ -947,7 +862,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>RBL Bank</td>
     <td>EMIRBL9</td>
@@ -958,7 +872,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>RBL Bank</td>
     <td>EMIRBL12</td>
@@ -969,7 +882,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>RBL Bank</td>
     <td>EMIRBL18</td>
@@ -980,7 +892,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>RBL Bank</td>
     <td>EMIRBL24</td>
@@ -991,7 +902,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Standard Chartered Bank</td>
     <td>EMISCB3</td>
@@ -1002,7 +912,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Standard Chartered Bank</td>
     <td>EMISCB6</td>
@@ -1013,7 +922,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Standard Chartered Bank</td>
     <td>EMISCB9</td>
@@ -1024,7 +932,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Standard Chartered Bank</td>
     <td>EMISCB12</td>
@@ -1035,7 +942,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Standard Chartered Bank</td>
     <td>EMISCB18</td>
@@ -1046,7 +952,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Standard Chartered Bank</td>
     <td>EMISCB24</td>
@@ -1057,7 +962,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBI03</td>
@@ -1068,7 +972,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBI06</td>
@@ -1079,7 +982,6 @@ next:
     <td>Rs. 99</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBI09</td>
@@ -1090,7 +992,6 @@ next:
     <td>Rs. 99</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBI12</td>
@@ -1101,7 +1002,6 @@ next:
     <td>Rs. 99</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBI18</td>
@@ -1112,7 +1012,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBI24</td>
@@ -1123,7 +1022,6 @@ next:
     <td>Rs. 199</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Yes Bank</td>
     <td>EMIY03</td>
@@ -1134,7 +1032,6 @@ next:
     <td>1 percent</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Yes Bank</td>
     <td>EMIY06</td>
@@ -1145,7 +1042,6 @@ next:
     <td>1 percent</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Yes Bank</td>
     <td>EMIY09</td>
@@ -1156,7 +1052,6 @@ next:
     <td>1 percent</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Yes Bank</td>
     <td>EMIY12</td>
@@ -1167,7 +1062,6 @@ next:
     <td>1 percent</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Yes Bank</td>
     <td>EMIY18</td>
@@ -1178,7 +1072,6 @@ next:
     <td>1 percent</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Yes Bank</td>
     <td>EMIY24</td>
@@ -1189,8 +1082,7 @@ next:
     <td>1 percent</td>
     <td>N/A</td>
 </tr>
-</tbody></table></div></div><br><h2 class="heading heading-2 header-scroll">Debit Card EMI Codes<a aria-label="Skip link to Debit Card EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#debit-card-emi-codes"></a></h2><div class="heading-anchor anchor waypoint" id="debit-card-emi-codes"></div><div id="section-debit-card-emi-codes" class="heading-anchor_backwardsCompatibility"></div><div class="rdmd-table"><div class="rdmd-table-inner"><table><thead><tr><th>Bank Name</th><th>bank_code</th><th>Tenure</th><th>Interest Rate</th><th>Min. Amt.</th><th>Max. Amt.</th><th>Default Processing Fee</th></tr></thead><tbody>
-<tr>
+</tbody></table></div></div><br><h2 class="heading heading-2 header-scroll">Debit Card EMI Codes<a aria-label="Skip link to Debit Card EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#debit-card-emi-codes"></a></h2><div class="heading-anchor anchor waypoint" id="debit-card-emi-codes"></div><div id="section-debit-card-emi-codes" class="heading-anchor_backwardsCompatibility"></div><div class="rdmd-table"><div class="rdmd-table-inner"><table><thead><tr><th>Bank Name</th><th>bank_code</th><th>Tenure</th><th>Interest Rate</th><th>Min. Amt.</th><th>Max. Amt.</th><th>Default Processing Fee</th></tr></thead><tbody><tr>
     <td>Axis Bank</td>
     <td>AXISD03</td>
     <td>3 Months</td>
@@ -1199,7 +1091,6 @@ next:
     <td>100000</td>
     <td>1%</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>AXISD06</td>
@@ -1209,7 +1100,6 @@ next:
     <td>100000</td>
     <td>1%</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>AXISD09</td>
@@ -1219,7 +1109,6 @@ next:
     <td>100000</td>
     <td>1%</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>AXISD12</td>
@@ -1229,7 +1118,6 @@ next:
     <td>100000</td>
     <td>1%</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>AXISD18</td>
@@ -1239,7 +1127,6 @@ next:
     <td>100000</td>
     <td>1%</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>AXISD24</td>
@@ -1249,7 +1136,6 @@ next:
     <td>100000</td>
     <td>1%</td>
 </tr>
-
 <tr>
     <td>Bank of Baroda</td>
     <td>BOBD03</td>
@@ -1259,7 +1145,6 @@ next:
     <td>50000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Bank of Baroda</td>
     <td>BOBD06</td>
@@ -1269,7 +1154,6 @@ next:
     <td>50000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Bank of Baroda</td>
     <td>BOBD09</td>
@@ -1279,7 +1163,6 @@ next:
     <td>50000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Bank of Baroda</td>
     <td>BOBD12</td>
@@ -1289,7 +1172,6 @@ next:
     <td>50000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Bank of Baroda</td>
     <td>BOBD18</td>
@@ -1299,7 +1181,6 @@ next:
     <td>50000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Federal Bank</td>
     <td>FEDED03</td>
@@ -1309,7 +1190,6 @@ next:
     <td>150000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Federal Bank</td>
     <td>FEDED06</td>
@@ -1319,7 +1199,6 @@ next:
     <td>150000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Federal Bank</td>
     <td>FEDED09</td>
@@ -1329,7 +1208,6 @@ next:
     <td>150000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Federal Bank</td>
     <td>FEDED12</td>
@@ -1339,7 +1217,6 @@ next:
     <td>150000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>HDFCD03</td>
@@ -1349,7 +1226,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>HDFCD06</td>
@@ -1359,7 +1235,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>HDFCD09</td>
@@ -1369,7 +1244,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>HDFCD12</td>
@@ -1379,7 +1253,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>HDFCD18</td>
@@ -1389,7 +1262,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>HDFCDC03</td>
@@ -1399,7 +1271,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>HDFCDC06</td>
@@ -1409,7 +1280,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>HDFCDC09</td>
@@ -1419,7 +1289,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>HDFCDC12</td>
@@ -1429,7 +1298,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Bank</td>
     <td>HDFCDC18</td>
@@ -1439,7 +1307,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>ICICI Bank</td>
     <td>ICICID03</td>
@@ -1449,7 +1316,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>ICICI Bank</td>
     <td>ICICID06</td>
@@ -1459,7 +1325,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>ICICI Bank</td>
     <td>ICICID09</td>
@@ -1469,7 +1334,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>ICICI Bank</td>
     <td>ICICID12</td>
@@ -1479,7 +1343,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>Kotak Mahindra Bank</td>
     <td>KOTAKD01</td>
@@ -1489,7 +1352,6 @@ next:
     <td>100000</td>
     <td>Rs. 299</td>
 </tr>
-
 <tr>
     <td>Kotak Mahindra Bank</td>
     <td>KOTAKD02</td>
@@ -1499,7 +1361,6 @@ next:
     <td>100000</td>
     <td>Rs. 299</td>
 </tr>
-
 <tr>
     <td>Kotak Mahindra Bank</td>
     <td>KOTAKD03</td>
@@ -1509,7 +1370,6 @@ next:
     <td>100000</td>
     <td>Rs. 299</td>
 </tr>
-
 <tr>
     <td>Kotak Mahindra Bank</td>
     <td>KOTAKD06</td>
@@ -1519,7 +1379,6 @@ next:
     <td>100000</td>
     <td>Rs. 299</td>
 </tr>
-
 <tr>
     <td>Kotak Mahindra Bank</td>
     <td>KOTAKD09</td>
@@ -1529,7 +1388,6 @@ next:
     <td>100000</td>
     <td>Rs. 299</td>
 </tr>
-
 <tr>
     <td>Kotak Mahindra Bank</td>
     <td>KOTAKD12</td>
@@ -1539,7 +1397,6 @@ next:
     <td>100000</td>
     <td>Rs. 299</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBID03</td>
@@ -1549,7 +1406,6 @@ next:
     <td>200000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBID06</td>
@@ -1559,7 +1415,6 @@ next:
     <td>200000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBID09</td>
@@ -1569,7 +1424,6 @@ next:
     <td>200000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBID12</td>
@@ -1579,7 +1433,6 @@ next:
     <td>200000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBID18</td>
@@ -1589,7 +1442,6 @@ next:
     <td>200000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBID24</td>
@@ -1599,7 +1451,6 @@ next:
     <td>200000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBID30</td>
@@ -1609,7 +1460,6 @@ next:
     <td>200000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>State Bank of India</td>
     <td>SBID36</td>
@@ -1619,8 +1469,7 @@ next:
     <td>200000</td>
     <td>N/A</td>
 </tr>
-</tbody></table></div></div><br><h2 class="heading heading-2 header-scroll">Cardless EMI Codes<a aria-label="Skip link to Cardless EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#cardless-emi-codes"></a></h2><div class="heading-anchor anchor waypoint" id="cardless-emi-codes"></div><div id="section-cardless-emi-codes" class="heading-anchor_backwardsCompatibility"></div><div class="rdmd-table"><div class="rdmd-table-inner"><table><thead><tr><th>Bank Name</th><th>bank_code</th><th>Tenure</th><th>Interest Rate</th><th>Min. Amt.</th><th>Max. Amt.</th><th>Default Processing Fee</th></tr></thead><tbody>
-<tr>
+</tbody></table></div></div><br><h2 class="heading heading-2 header-scroll">Cardless EMI Codes<a aria-label="Skip link to Cardless EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#cardless-emi-codes"></a></h2><div class="heading-anchor anchor waypoint" id="cardless-emi-codes"></div><div id="section-cardless-emi-codes" class="heading-anchor_backwardsCompatibility"></div><div class="rdmd-table"><div class="rdmd-table-inner"><table><thead><tr><th>Bank Name</th><th>bank_code</th><th>Tenure</th><th>Interest Rate</th><th>Min. Amt.</th><th>Max. Amt.</th><th>Default Processing Fee</th></tr></thead><tbody><tr>
     <td>BIMAPAY EMI</td>
     <td>BIMAP03</td>
     <td>3 months</td>
@@ -1629,7 +1478,6 @@ next:
     <td>1000000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BIMAPAY EMI</td>
     <td>BIMAP06</td>
@@ -1639,7 +1487,6 @@ next:
     <td>1000000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BIMAPAY EMI</td>
     <td>BIMAP09</td>
@@ -1649,7 +1496,6 @@ next:
     <td>1000000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BIMAPAY EMI</td>
     <td>BIMAP12</td>
@@ -1659,7 +1505,6 @@ next:
     <td>1000000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>BIMAPAY EMI</td>
     <td>BIMAPAY</td>
@@ -1669,7 +1514,6 @@ next:
     <td>1000000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>HDFC Cardless EMI</td>
     <td>HDFCCL03</td>
@@ -1679,7 +1523,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Cardless EMI</td>
     <td>HDFCCL06</td>
@@ -1689,7 +1532,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Cardless EMI</td>
     <td>HDFCCL09</td>
@@ -1699,7 +1541,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Cardless EMI</td>
     <td>HDFCCL12</td>
@@ -1709,7 +1550,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>HDFC Cardless EMI</td>
     <td>HDFCCL18</td>
@@ -1719,7 +1559,6 @@ next:
     <td>500000</td>
     <td>Rs. 199</td>
 </tr>
-
 <tr>
     <td>Home Credit Ujjwal EMI Card</td>
     <td>HMECDT03</td>
@@ -1729,7 +1568,6 @@ next:
     <td>99999999</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Home Credit Ujjwal EMI Card</td>
     <td>HMECDT06</td>
@@ -1739,7 +1577,6 @@ next:
     <td>99999999</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Home Credit Ujjwal EMI Card</td>
     <td>HMECDT09</td>
@@ -1749,7 +1586,6 @@ next:
     <td>99999999</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Home Credit Ujjwal EMI Card</td>
     <td>HMECDT12</td>
@@ -1759,7 +1595,6 @@ next:
     <td>99999999</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Home Credit Ujjwal EMI Card</td>
     <td>HMECDT18</td>
@@ -1769,7 +1604,6 @@ next:
     <td>99999999</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ICICI Cardless EMI</td>
     <td>ICICIC03</td>
@@ -1779,7 +1613,6 @@ next:
     <td>1000000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ICICI Cardless EMI</td>
     <td>ICICIC06</td>
@@ -1789,7 +1622,6 @@ next:
     <td>1000000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ICICI Cardless EMI</td>
     <td>ICICIC09</td>
@@ -1799,7 +1631,6 @@ next:
     <td>1000000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ICICI Cardless EMI</td>
     <td>ICICIC12</td>
@@ -1809,7 +1640,6 @@ next:
     <td>1000000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>KreditBee</td>
     <td>KBEE03</td>
@@ -1819,7 +1649,6 @@ next:
     <td>14999</td>
     <td>2%</td>
 </tr>
-
 <tr>
     <td>KreditBee</td>
     <td>KBEE06</td>
@@ -1829,7 +1658,6 @@ next:
     <td>99999</td>
     <td>2%</td>
 </tr>
-
 <tr>
     <td>KreditBee</td>
     <td>KBEE09</td>
@@ -1839,7 +1667,6 @@ next:
     <td>200000</td>
     <td>2%</td>
 </tr>
-
 <tr>
     <td>KreditBee</td>
     <td>KBEE12</td>
@@ -1849,7 +1676,6 @@ next:
     <td>200000</td>
     <td>2%</td>
 </tr>
-
 <tr>
     <td>KreditBee</td>
     <td>KBEE18</td>
@@ -1859,7 +1685,6 @@ next:
     <td>200000</td>
     <td>2%</td>
 </tr>
-
 <tr>
     <td>LazyPay EMI</td>
     <td>LPEMI</td>
@@ -1869,7 +1694,6 @@ next:
     <td>100000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>LazyPay EMI</td>
     <td>LPEMI03</td>
@@ -1879,7 +1703,6 @@ next:
     <td>60000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>LazyPay EMI</td>
     <td>LPEMI06</td>
@@ -1889,7 +1712,6 @@ next:
     <td>100000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>LazyPay EMI</td>
     <td>LPEMI09</td>
@@ -1899,7 +1721,6 @@ next:
     <td>100000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>LazyPay EMI</td>
     <td>LPEMI12</td>
@@ -1909,7 +1730,6 @@ next:
     <td>100000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>Liquiloans</td>
     <td>LIQUIL06</td>
@@ -1919,7 +1739,6 @@ next:
     <td>1000000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>SIMPL - Pay in 3</td>
     <td>SMPI03</td>
@@ -1929,7 +1748,6 @@ next:
     <td>N/A</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ZestMoney</td>
     <td>ZEST03</td>
@@ -1939,7 +1757,6 @@ next:
     <td>300000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ZestMoney</td>
     <td>ZEST06</td>
@@ -1949,7 +1766,6 @@ next:
     <td>300000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ZestMoney</td>
     <td>ZEST09</td>
@@ -1959,7 +1775,6 @@ next:
     <td>300000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ZestMoney</td>
     <td>ZEST12</td>
@@ -1969,7 +1784,6 @@ next:
     <td>300000</td>
     <td>N/A</td>
 </tr>
-
 <tr>
     <td>ZestMoney</td>
     <td>ZESTMON</td>
@@ -1979,68 +1793,57 @@ next:
     <td>300000</td>
     <td>N/A</td>
 </tr>
-</tbody></table></div></div><br><h2 class="heading heading-2 header-scroll">UPI CC EMI Codes<a aria-label="Skip link to UPI CC EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#upi-cc-emi-codes"></a></h2><div class="heading-anchor anchor waypoint" id="upi-cc-emi-codes"></div><div id="section-upi-cc-emi-codes" class="heading-anchor_backwardsCompatibility"></div><div class="rdmd-table"><div class="rdmd-table-inner"><table><thead><tr><th>Bank or Institutions</th><th>bankcode</th><th>Tenure</th></tr></thead><tbody>
-<tr>
+</tbody></table></div></div><br><h2 class="heading heading-2 header-scroll">UPI CC EMI Codes<a aria-label="Skip link to UPI CC EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#upi-cc-emi-codes"></a></h2><div class="heading-anchor anchor waypoint" id="upi-cc-emi-codes"></div><div id="section-upi-cc-emi-codes" class="heading-anchor_backwardsCompatibility"></div><div class="rdmd-table"><div class="rdmd-table-inner"><table><thead><tr><th>Bank or Institutions</th><th>bankcode</th><th>Tenure</th></tr></thead><tbody><tr>
     <td>Axis Bank</td>
     <td>INTAX03</td>
     <td>3 Months</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>INTAX06</td>
     <td>6 Months</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>INTAX09</td>
     <td>6 Months</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>INTAX12</td>
     <td>12 Months</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>INTAX24</td>
     <td>24 Months</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>UPIAX03</td>
     <td>3 Months</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>UPIAX06</td>
     <td>6 Months</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>UPIAX09</td>
     <td>9 Months</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>UPIAX12</td>
     <td>12 Months</td>
 </tr>
-
 <tr>
     <td>Axis Bank</td>
     <td>UPIAX24</td>
     <td>24 Months</td>
 </tr>
-</tbody></table></div></div><br><h2 class="heading heading-2 header-scroll">Other EMI Codes<a aria-label="Skip link to Other EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#other-emi-codes"></a></h2><div class="heading-anchor anchor waypoint" id="other-emi-codes"></div><div id="section-other-emi-codes" class="heading-anchor_backwardsCompatibility"></div><div class="rdmd-table"><div class="rdmd-table-inner"><table><thead><tr><th>Bank or Institutions</th><th>bankcode</th><th>Tenure</th><th>Interest Rate</th><th>Min. Amt.</th><th>Max. Amt.</th></tr></thead><tbody>
-<tr>
+</tbody></table></div></div><br><h2 class="heading heading-2 header-scroll">Other EMI Codes<a aria-label="Skip link to Other EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#other-emi-codes"></a></h2><div class="heading-anchor anchor waypoint" id="other-emi-codes"></div><div id="section-other-emi-codes" class="heading-anchor_backwardsCompatibility"></div><div class="rdmd-table"><div class="rdmd-table-inner"><table><thead><tr><th>Bank or Institutions</th><th>bankcode</th><th>Tenure</th><th>Interest Rate</th><th>Min. Amt.</th><th>Max. Amt.</th></tr></thead><tbody><tr>
     <td>Bajaj Finserv EMICard</td>
     <td>BAJFIN02</td>
     <td>2 Months</td>
@@ -2048,7 +1851,6 @@ next:
     <td>2000</td>
     <td>20000</td>
 </tr>
-
 <tr>
     <td>Bajaj Finserv EMICard</td>
     <td>BAJFIN03</td>
@@ -2057,7 +1859,6 @@ next:
     <td>4499</td>
     <td>30000</td>
 </tr>
-
 <tr>
     <td>Bajaj Finserv EMICard</td>
     <td>BAJFIN06</td>
@@ -2066,7 +1867,6 @@ next:
     <td>8999</td>
     <td>60000</td>
 </tr>
-
 <tr>
     <td>Bajaj Finserv EMICard</td>
     <td>BAJFIN08</td>
@@ -2075,7 +1875,6 @@ next:
     <td>11999</td>
     <td>60000</td>
 </tr>
-
 <tr>
     <td>Bajaj Finserv EMICard</td>
     <td>BAJFIN09</td>
@@ -2084,7 +1883,6 @@ next:
     <td>13499</td>
     <td>90000</td>
 </tr>
-
 <tr>
     <td>Bajaj Finserv EMICard</td>
     <td>BAJFIN12</td>
