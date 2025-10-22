@@ -27,6 +27,42 @@ When your customer wants to opt for the EMI option with credit cards, you can us
   **Test Environment Limitation for Tokens (Saved Cards)**: PayU does not support network tokens or issuer tokens in Test Environment, so you cannot try using API Reference for network tokens or issuer tokens.
 </Callout>
 
+**Steps to integrate**
+
+<br />
+
+<Cards columns={3}>
+  <Card title="1. Check the Card EMI Eligibility" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-1-check-the-card-emi-eligibility">
+    Verify if the customer's card is eligible for EMI payments before proceeding
+
+    <br />
+  </Card>
+
+  <Card title="2. Calculate the EMI Interest" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-2-calculate-the-emi-interest">
+    Calculate the EMI interest rates and monthly installment amounts for the transaction
+
+    <br />
+  </Card>
+
+  <Card title="3. Initiate the Payment" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-3-initiate-the-payment">
+    Start the payment process with EMI configuration in Android Checkout Pro
+
+    <br />
+  </Card>
+
+  <Card title="4. Check the PayU Response" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro?#step-4-check-the-payu-response">
+    Handle and process the response received from PayU after payment initiation
+
+    <br />
+  </Card>
+
+  <Card title="5. Verify the Payment" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-5-verify-the-payment">
+    Verify the payment status and ensure successful EMI transaction completion
+  </Card>
+
+  <br />
+</Cards>
+
 ## Step 1: Check the card EMI eligibility
 
 After collecting the customer’s card and the amount to be paid, check the EMI eligibility based on the card BIN from the customer’s credit card number using the **eligibleBINsforEMI** API. For more information on how to use **eligibleBINsforEMI** API, refer to <Anchor label="Eligible BINs for EMI API" target="_blank" href="ref:eligible_bins_for_emi_api">Eligible BINs for EMI API</Anchor>
