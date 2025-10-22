@@ -12,15 +12,41 @@ next:
 ---
 In UPI Collect, the sequence of APIs is called to follow for redirection less experience.
 
-### **Steps to Integrate**
-
-1. [Validate VPA](#step-1-validate-vpa)
-2. [Initiate the payment to PayU](#step-2-initiate-the-payment-to-payu)
-3. [Check UPI Transaction Status](#step-3-check-upi-transaction-status)
-4. [S2S Call Back Response](#step-4-check-the-s2s-callback-response)
-5. [Verify the payment](#step-5-verify-the-payment)
-
 <RegisterMerchantPrerequiste />
+
+**Steps to integrate**
+
+<Cards columns={3}>
+  <Card title="1. Validate VPA" href="https://docs.payu.in/docs/upi-collection-s2s#step-1-validate-vpa">
+    Validate the Virtual Payment Address (VPA) before initiating the UPI transaction
+
+    <br />
+  </Card>
+
+  <Card title="2. Initiate the payment to PayU" href="https://docs.payu.in/docs/upi-collection-s2s#step-2-initiate-the-payment-to-payu">
+    Initiate the UPI payment request to PayU with required parameters
+
+    <br />
+  </Card>
+
+  <Card title="3. Check UPI Transaction Status" href="https://docs.payu.in/docs/upi-collection-s2s#step-3-check-upi-transaction-status">
+    Monitor and check the status of the UPI transaction in real-time
+
+    <br />
+  </Card>
+
+  <Card title="4. S2S Call Back Response" href="https://docs.payu.in/docs/upi-collection-s2s#step-4-check-the-s2s-callback-response">
+    Handle and process the server-to-server callback response from PayU
+
+    <br />
+  </Card>
+
+  <Card title="5. Verify the payment" href="https://docs.payu.in/docs/upi-collection-s2s#step-5-verify-the-payment">
+    Verify the payment status and ensure transaction completion
+  </Card>
+
+  <br />
+</Cards>
 
 ### UPI Content Flow
 
