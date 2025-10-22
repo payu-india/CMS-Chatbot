@@ -16,6 +16,34 @@ The **pre_authorize** parameter is used to pre-authorize payments using the Merc
   **Note**: You need to activate the Pre-Authorize Payments before you start using this integration. Contact your PayU Key Account Manager (KAM) to activate Pre-Authorize Payments.
 </Callout>
 
+**Steps to integrate**
+
+<br />
+
+<Cards columns={2}>
+  <Card title="1. Post the Pre-Auth Transaction Request" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-1-post-the-pre-auth-transaction-request">
+    Submit the pre-authorization transaction request to PayU for payment hold
+
+    <br />
+  </Card>
+
+  <Card title="2. Check the Response from PayU" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-2-check-the-response-from-payu">
+    Handle and process the response received from PayU after pre-auth request submission
+
+    <br />
+  </Card>
+
+  <Card title="3. Capture a Pre-Authorized Payment" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-3-capture-a-pre-authorized-payment">
+    Complete the payment capture process for the pre-authorized transaction
+  </Card>
+
+  <Card title="4. Check Action Status" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-4-check-action-status">
+    Verify the status of the capture action and confirm transaction completion
+
+    <br />
+  </Card>
+</Cards>
+
 ## Step 1: Post the Pre-Auth transaction request
 
 Post the additional parameters for with the Pre-Authorization using the Merchant Hosted Checkout. For complete list of parameters, refer to [Pre-Authorize Payment](ref:pre_authorize_payment) for the complete list parameters with **Try It** experience.
