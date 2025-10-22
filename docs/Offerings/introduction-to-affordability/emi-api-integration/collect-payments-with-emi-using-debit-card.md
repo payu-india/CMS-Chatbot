@@ -30,31 +30,31 @@ The following video explains how Debit Card EMIs will help your business and how
 <br/>
 **Steps to integrate**
 <Cards columns={3}>
-  <Card title="1. Check pre-EMI eligibility for debit card" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro?isFramePreview=true#step-1-check-pre-emi-eligibility-for-debit-card">
+  <Card title="1. Check pre-EMI eligibility for debit card" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-1-check-pre-emi-eligibility-for-debit-card">
     Verify if the debit card is eligible for EMI before proceeding with the transaction
 
     <br />
   </Card>
 
-  <Card title="2. Calculate the EMI interest" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro?isFramePreview=true#step-2-calculate-the-emi-interest">
+  <Card title="2. Calculate the EMI interest" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro?#step-2-calculate-the-emi-interest">
     Calculate the EMI interest rates and payment schedule for the transaction
 
     <br />
   </Card>
 
-  <Card title="3. Post the transaction request and check response" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro?isFramePreview=true#step-3-post-the-transaction-request-and-check-response">
+  <Card title="3. Post the transaction request and check response" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-3-post-the-transaction-request-and-check-response">
     Submit the EMI transaction request to PayU and verify the initial response
 
     <br />
   </Card>
 
-  <Card title="4. Check the PayU response" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro?isFramePreview=true#step-4-check-the-payu-response">
+  <Card title="4. Check the PayU response" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-4-check-the-payu-response">
     Process and handle the response received from PayU after transaction submission
 
     <br />
   </Card>
 
-  <Card title="5. Verify the payment" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro?isFramePreview=true#step-5-verify-the-payment">
+  <Card title="5. Verify the payment" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-5-verify-the-payment">
     Verify the payment status and ensure successful EMI transaction completion
   </Card>
 
