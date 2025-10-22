@@ -12,11 +12,37 @@ next:
 ---
 The following steps allow you to integrate the server-to-server UPI intent:
 
-1. [Initiate payment](#step-1-initiate-payment)
-2. [Invoke UPI Intent on customer's device](#step-2-invoke-upi-intent-on-customers-device)
-3. [Check UPI transaction status](#step-3-check-upi-transaction-status)
-4. [PayU sends Server-to-Server callback response](#step-4-payu-sends-server-to-server-callback-response)
-5. [Verify the payment](#step-5-verify-the-payment)
+<Cards columns={3}>
+  <Card title="1. Initiate payment" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-1-initiate-payment">
+    Initiate the UPI Intent payment request with required parameters
+
+    <br />
+  </Card>
+
+  <Card title="2. Invoke UPI Intent on customer's device" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-2-invoke-upi-intent-on-customers-device">
+    Trigger the UPI Intent on the customer's mobile device to complete payment
+
+    <br />
+  </Card>
+
+  <Card title="3. Check UPI transaction status" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-3-check-upi-transaction-status">
+    Monitor and verify the UPI transaction status after intent invocation
+
+    <br />
+  </Card>
+
+  <Card title="4. PayU sends Server-to-Server callback response" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-4-payu-sends-server-to-server-callback-response">
+    Receive and process the server-to-server callback response from PayU
+
+    <br />
+  </Card>
+
+  <Card title="5. Verify the payment" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-5-verify-the-payment">
+    Verify the payment status and ensure successful transaction completion
+  </Card>
+
+  <br />
+</Cards>
 
 <RegisterMerchantPrerequiste />
 
@@ -34,7 +60,7 @@ The following steps allow you to integrate the server-to-server UPI intent:
 
 <PaymentAPIEnvironment />
 
-The **\_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
+The **_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
 
 This needs to be a server-to-server cURL request. This API is used for both Cards and UPI for generating a new transaction.
 
@@ -514,32 +540,34 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
 </Accordion>
 
 ## Step 2: Invoke UPI Intent on customer's device
+
 <Accordion title="Request parameters" icon="fa-monitor">
-You need to invoke intent in the customer's mobile device using the merchant VPA URL. Make sure that only this merchant VPA is embedded in the intent call since this helps to track the status of the transaction.
+  You need to invoke intent in the customer's mobile device using the merchant VPA URL. Make sure that only this merchant VPA is embedded in the intent call since this helps to track the status of the transaction.
 
-Open the UPI Intent as per the NPCI Guidelines. Merchants can also open any specific app instead of making the Generic Intent call. For example, Google Pay, PhonePe, etc. This URL can then be fired using an Intent or a hyperlink which would open an Intent tray with a list of available supporting apps on the user's mobile device. The following sample UPI Deep Link URL and the format used for creating the URL:
+  Open the UPI Intent as per the NPCI Guidelines. Merchants can also open any specific app instead of making the Generic Intent call. For example, Google Pay, PhonePe, etc. This URL can then be fired using an Intent or a hyperlink which would open an Intent tray with a list of available supporting apps on the user's mobile device. The following sample UPI Deep Link URL and the format used for creating the URL:
 
-**Sample URL** (with values from the above sample JSON):
+  **Sample URL** (with values from the above sample JSON):
 
-```plaintext
-upi://pay?pa=payu@axisbank&pn=SMSPLUS&tr=8312916361&am=10.17
-```
+  ```plaintext
+  upi://pay?pa=payu@axisbank&pn=SMSPLUS&tr=8312916361&am=10.17
+  ```
 
-**Format for UPI Deep Linking URL** (as per NPCI guidelines):
+  **Format for UPI Deep Linking URL** (as per NPCI guidelines):
 
-```plaintext
-"upi://pay?pa=" + merchantVpa + "&pn=" + merchantName + "&tr=" + referenceId + "&am=" + amount 
-```
+  ```plaintext
+  "upi://pay?pa=" + merchantVpa + "&pn=" + merchantName + "&tr=" + referenceId + "&am=" + amount 
+  ```
 
-Where the description of the parameters used in the URL is as described in the following table:
+  Where the description of the parameters used in the URL is as described in the following table:
 
-| **Parameter** | **Description**                                                                                   |
-| ------------- | ------------------------------------------------------------------------------------------------- |
-| merchantVpa   | As received in JSON response in key merchantVPA'                                                  |
-| merchantName  | As received in JSON response in key merchantName.                                                 |
-| referenceId   | As received in JSON response in key referenceId.                                                  |
-| amount        | Amount of transaction. This must be the same as the amount passed to the **initiatePayment** API. |
+  | **Parameter** | **Description**                                                                                   |
+  | ------------- | ------------------------------------------------------------------------------------------------- |
+  | merchantVpa   | As received in JSON response in key merchantVPA'                                                  |
+  | merchantName  | As received in JSON response in key merchantName.                                                 |
+  | referenceId   | As received in JSON response in key referenceId.                                                  |
+  | amount        | Amount of transaction. This must be the same as the amount passed to the **initiatePayment** API. |
 </Accordion>
+
 ***
 
 ## Step 3: Check UPI transaction status
