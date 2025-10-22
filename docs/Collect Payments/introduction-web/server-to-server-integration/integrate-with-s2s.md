@@ -15,10 +15,6 @@ The Server-to-Server integration is performed at the server level, that is, your
   **Note**: You must be **PCI-DSS** certified to use Server-to-Server integration. For more information on PCI-DSS certification, contact your Account Manager at PayU.
 </Callout>
 
-<RegisterMerchantPrerequiste />
-
-<br />
-
 <Accordion title="Integration security" icon="fa-code">
   After receiving a response from PayU, you must calculate the hash again and validate it against the hash that you sent in the request to ensure the transaction is secure. PayU recommends implementing the transaction details APIs and **webhook**/**callbac**k as an extra security measure. You can find more information on this process in the [Transaction Detail APIs](ref:transaction-detail-apis) and [Webhooks](doc:webhooks) documentation.
 
@@ -40,6 +36,28 @@ The Server-to-Server integration is performed at the server level, that is, your
 
   ***
 </Accordion>
+
+**Steps to integrate**
+
+<Cards columns={3}>
+  <Card title="Step 1: Post the parameters to PayU" href="https://docs.payu.in/?isFramePreview=true#step-1-post-the-parameters-to-payu" target="_blank">
+    Post the transaction parameters to PayU server to initiate the payment process
+
+    <br />
+  </Card>
+
+  <Card title="Step 2: Check response from PayU" href="https://docs.payu.in/?isFramePreview=true#step-2-check-response-from-payu" target="_blank">
+    Check and process the response received from PayU after payment processing
+
+    <br />
+  </Card>
+
+  <Card title="Step 3: Verify the payment" href="https://docs.payu.in/?isFramePreview=true#step-3-verify-the-payment" target="_blank">
+    Verify the payment using verify\_payment and monitor using webhooks
+
+    <br />
+  </Card>
+</Cards>
 
 ## Step 1: Post the parameters to PayU
 
