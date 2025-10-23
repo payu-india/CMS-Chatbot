@@ -3,6 +3,8 @@ title: iOS Checkout Pro SDK
 excerpt: A complete checkout solution for Android apps.
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: iOS Checkout Pro SDK
   description: >-
@@ -17,28 +19,32 @@ metadata:
     - IOS CheckoutPro SDK
     - PayU Hosted Checkout SDK for Mobile
   robots: index
-next:
-  description: ''
 ---
-The Checkout Pro SDK provides a complete Mobile Checkout solution for iOS Apps. The Checkout Pro experience allows you to integrate with the PayU PG with minimal integration effort and accept payments faster.
+# iOS Checkout Pro SDK
 
-The Checkout Pro SDK gives you the following key capabilities: 
+Integrate a complete mobile checkout solution into your iOS app with the Checkout Pro SDK. You can accept payments faster with minimal integration effort using our ready-to-use PayU PG integration.
 
-* A complete, ready-to-use native Checkout UI
-* Support for multiple payment options:
+## What You Can Do
+
+With the Checkout Pro SDK, you can:
+
+* **Build checkout flows faster** - Use our complete, native checkout UI out of the box
+* **Accept multiple payment methods:**
   * All major card providers (Amex, Mastercard, Rupay, Visa, and more)
   * Netbanking with 150+ Indian banks
   * UPI Payments (Intent & Collect)
   * Prepaid Wallets
   * Credit Card EMI Payments
   * Recurring Payments
-* Convenience Fee support
-* Offers support
-* LazyPay Support
-* Multi-Currency Payments Support
-* OTP read for faster and improved OTP authentication
-* Customization capabilities to make the SDK your own
+* **Add convenience fees** to your transactions
+* **Apply offers** to increase conversion
+* **Enable LazyPay** for your customers
+* **Support multi-currency payments** for global reach
+* **Speed up OTP authentication** with automatic OTP reading
+* **Customize the SDK** to match your brand
 
-## Compatibility for iOS
+## Compatibility Requirements
 
-* Minimum iOS version: iOS 11
+Ensure your app meets these requirements:
+
+* **Minimum iOS version:** iOS 11 or higher
