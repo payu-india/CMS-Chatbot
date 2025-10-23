@@ -389,14 +389,23 @@ Follow the below steps to complete the integration:
 <Accordion title="Step 1.2: Generate Hash" icon="fa-key">
   Concatenate fields in this exact sequence, then SHA-512:
 
-  ```json
+  ```plaintext
   key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|SALT
   ```
-
   * Use empty strings for missing udf\*.
   * Compute on your server and include the lowercase hex digest as hash.
 
   For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
+### Sample code to implement hashing
+  ```python
+import hashlib
+hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|||||||||||{salt}"
+payment_hash = hashlib.sha512(hash_string.encode()).hexdigest()
+  ```
+  ```php
+$hash_string = $key."|".$txnid."|".$amount."|".$productinfo."|".$firstname."|".$email."|||||||||||".$salt;
+$payment_hash = hash('sha512', $hash_string);
+  ```
 </Accordion>
 
 <Accordion title="Step 1.3: POST the html form (server renders)" icon="fa-code">
