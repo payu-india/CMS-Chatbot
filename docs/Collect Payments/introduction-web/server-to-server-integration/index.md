@@ -45,7 +45,7 @@ The benefits of the S2S flow are:
 
 With the above benefits, there are reduced chances of customers abandoning shopping cart during their shopping experience.
 
-## Which suits your use case
+## Which integration works for you?
 
 | Use Case                          | Description                                  | Integration Type                                                                      |
 | --------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------- |
