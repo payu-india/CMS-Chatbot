@@ -24,8 +24,6 @@ next:
 ---
 The Verify Payment (**verify_payment**) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU's database after you receive the response, where var1 is your transaction ID.
 
-**Environment**
-
 <GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
