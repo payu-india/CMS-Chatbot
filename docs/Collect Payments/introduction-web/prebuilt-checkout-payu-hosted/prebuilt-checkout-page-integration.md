@@ -7,7 +7,7 @@ metadata:
 ---
 ## What you're building
 
-A simple server-generated redirect that sends customers from your site/app to the PayU-hosted payment page, then returns them to your success/failure URLs. You pass payment details & customer fields + a server-generated SHA-512 hash for integrity; PayU handles the payment UI and authentication.
+A simple server-generated redirect that sends customers from your site/app to the PayU-hosted payment page, then returns them to your success/failure URLs. You pass payment details & customer fields + a server-generated <Glossary>SHA</Glossary>-512 hash for integrity; PayU handles the payment UI and authentication.
 
 **The PayU Hosted Checkout integration involves the following steps:**
 
@@ -76,7 +76,8 @@ A simple server-generated redirect that sends customers from your site/app to th
   * Create an <Anchor label="account with PayU" target="_blank" href="https://onboarding.payu.in/app/account/signup">account with PayU</Anchor>
   * Get your key and salt for test and production environment. <Anchor label="Click here to access detail guide on accessing your key and salt " target="_blank" href="https://docs.payu.in/docs/generate-test-merchant-key-and-salt">Click here to access detail guide on accessing your key and salt </Anchor>
   * Keep https success & failure URLs (surl, furl) ready,  reachable from the public internet.
-  * Ability to generate SHA-512 on the server (not recommended to do it in browser).
+  * Ability to generate 
+<Glossary>SHA</Glossary>-512 on the server (not recommended to do it in browser).
 </Callout>
 
 <br />
@@ -387,7 +388,8 @@ Follow the below steps to complete the integration:
 </Accordion>
 
 <Accordion title="Step 1.2: Generate Hash" icon="fa-key">
-  Concatenate fields in this exact sequence, then SHA-512:
+  Concatenate fields in this exact sequence, then 
+<Glossary>SHA</Glossary>-512:
 
   ```plaintext
   key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|SALT
