@@ -32,6 +32,10 @@ PayU 3DS SDK offers two types of solutions for transaction processing:
 
 ### Step 1. Install the SDK in your app project (mandatory)
 
+<Callout icon="📘" theme="info">
+  Minimum supported iOS version :  iOS 13
+</Callout>
+
 #### CocoaPods Integration
 
 1. Add the following line to use dynamic frameworks in your Podfile.
