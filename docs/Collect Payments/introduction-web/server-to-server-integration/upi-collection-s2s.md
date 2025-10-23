@@ -566,7 +566,14 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
   </tbody>
 </Table>
 
-<HashingRequestParameters />
+<Accordion title="Understanding Hashing and sample code" icon="fa-code">
+  <HashingRequestParameters />
+
+  #### Hashing Sample Code
+
+  <HashingSample />
+</Accordion>
+
 
 ## Step 3: Check UPI transaction status
 
