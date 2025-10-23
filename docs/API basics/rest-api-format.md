@@ -17,21 +17,21 @@ next:
 REST API can be accessed by making a server-to-server call on the following PayU URLs:
 
 <Callout icon="📘" theme="info">
-  **Reference**: Refer to the following recipe for a walkthrough of a cURL request for a REST API.=
+  **Reference**: Refer to the following recipe for a walkthrough of a cURL request for a REST API:
 
   <a
     href="https://payu-hosted-checkout.readme.io/v1/recipes/curl-walkthrough"
     id="65084edbb1c590100cf1243e"
     style={{
-      display: "block",
-      backgroundColor: "#018FF4",
-      color: "white",
-      padding: "1rem",
-      borderRadius: "0.5rem",
-      textDecoration: "none",
-      maxWidth: "400px",
-      marginBottom: "1rem",
-    }}
+        display: "block",
+        backgroundColor: "#018FF4",
+        color: "white",
+        padding: "1rem",
+        borderRadius: "0.5rem",
+        textDecoration: "none",
+        maxWidth: "400px",
+        marginBottom: "1rem",
+      }}
   >
     <div style={{ fontSize: "2rem" }}>🦉</div>
     <h3 style={{ margin: "0.5rem 0 0" }}>CURL Walkthrough</h3>
@@ -122,7 +122,7 @@ REST API can be accessed by making a server-to-server call on the following PayU
         This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:
         sha512(key|command|var1|salt) sha512 is the encryption method used.
 
-        * *Note**:  For _payment APIs, refer to [Generate Hash](doc:hashing-request-and-response)
+        * _Note_*:  For _payment APIs, refer to [Generate Hash](doc:hashing-request-and-response)
       </td>
 
       <td>
