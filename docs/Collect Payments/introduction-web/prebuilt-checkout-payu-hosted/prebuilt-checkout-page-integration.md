@@ -95,290 +95,290 @@ Follow the below steps to complete the integration:
   First, you need to collect all the necessary information for the transaction. Below is the list of parameters where some are mandatory and others are optional.
 
   <HTMLBlock>{`
-                                                                                                                                                                                                      <div >
-                                                                                                                                                                                                        <table>
-                                                                                                                                                                                                          <thead>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <th style="width: 10%;">Parameter</th>
-                                                                                                                                                                                                              <th style="width: 75%; white-space: normal; word-break: break-word;">Type & Description</th>
-                                                                                                                                                                                                              <th style="width: 15%;">Example</th>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                          </thead>
-                                                                                                                                                                                                          <tbody>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                key<br>
-                                                                                                                                                                                                                <code>mandatory</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> Merchant key provided by PayU during onboarding.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>JPG****.k</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                txnid<br>
-                                                                                                                                                                                                               <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
+                                                                                                                                                                                                        <div >
+                                                                                                                                                                                                          <table>
+                                                                                                                                                                                                            <thead>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <th style="width: 10%;">Parameter</th>
+                                                                                                                                                                                                                <th style="width: 75%; white-space: normal; word-break: break-word;">Type & Description</th>
+                                                                                                                                                                                                                <th style="width: 15%;">Example</th>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                            </thead>
+                                                                                                                                                                                                            <tbody>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  key<br>
+                                                                                                                                                                                                                  <code>mandatory</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> Merchant key provided by PayU during onboarding.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>JPG****.k</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  txnid<br>
+                                                                                                                                                                                                                 <code class="inline-block rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-800 ring-1 ring-inset ring-red-200">mandatory</code>
 
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The transaction ID is a reference number for a specific order generated by the merchant.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>ypl938459435</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                amount<br>
-                                                                                                                                                                                                                <code>mandatory</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The payment amount for the transaction.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>10.00</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                productinfo<br>
-                                                                                                                                                                                                                <code>mandatory</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> A brief description of the product.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>iPhone</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                firstname<br>
-                                                                                                                                                                                                                <code>mandatory</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The first name of the customer.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>Ashish</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                email<br>
-                                                                                                                                                                                                                <code>mandatory</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The email address of the customer.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                  <a href="mailto:abc@payu.in">abc@payu.in</a>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                phone<br>
-                                                                                                                                                                                                                <code>mandatory</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The phone number of the customer.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td></td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                lastname<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The last name of the customer.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>Kumar</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                surl<br>
-                                                                                                                                                                                                                <code>mandatory</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                  <a href="https://test-payment-middleware.payu.in/simulatorResponse" target="_blank">https://test-payment-middleware.payu.in/simulatorResponse</a>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                furl<br>
-                                                                                                                                                                                                                <code>mandatory</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The failure URL, which is the page PayU will redirect to if the transaction fails.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                  <a href="https://test-payment-middleware.payu.in/simulatorResponse" target="_blank">https://test-payment-middleware.payu.in/simulatorResponse</a>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                hash<br>
-                                                                                                                                                                                                                <code>mandatory</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br>
-                                                                                                                                                                                                                <code>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code><br>
-                                                                                                                                                                                                                Reference: For detailed information on hashing, refer to
-                                                                                                                                                                                                                <a href="generate-hash-payu-hosted" target="_blank">Generate Hash</a>.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td></td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                address1<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The first line of the billing address.<br>
-                                                                                                                                                                                                                Fraud Detection: This information is helpful for fraud detection and chargebacks. Please provide the correct information.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                address2<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The second line of the billing address.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>34 Saikripa-Estate, Tilak Nagar</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                city<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The city where your customer resides as part of the billing address.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>Mumbai</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                state<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The state where your customer resides as part of the billing address.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>Maharashtra</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                country<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> The country where your customer resides.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>India</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                zipcode<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br>
-                                                                                                                                                                                                                Character Limit: 20
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>400004</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                enforced_payment<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> This parameter is to customize the payment options for each transaction. You can enforce specific payment modes, card schemes, and specific banks under Net Banking using this method.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>creditcard|debitcard</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                drop_category<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> This parameter is used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>CC</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                udf1<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>AELPR****E</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                udf2<br>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td></td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                udf3<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>02-02-1980</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                udf4<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>XYZ Pvt. Ltd.</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                udf5<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>098450845</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                custom_note<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> This parameter allows you to display a message on the PayU Payment page. This can be useful if you want to provide additional information to your customers, such as an extra charge for a particular product. The message specified in the custom_note parameter will be displayed below the payment options.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>You will be charged an extra amount of Rs 100 on this transaction</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                              <td>
-                                                                                                                                                                                                                note_category<br>
-                                                                                                                                                                                                                <code>optional</code>
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td style="white-space: normal; word-break: break-word;">
-                                                                                                                                                                                                                <code>String</code> This parameter allows you to specify which payment options the custom_note message will be displayed for. This parameter should contain a comma-separated list of the payment options that you want the custom_note displayed for. Example: "CC, NB" will show the custom_note for Credit Card & Net banking only.
-                                                                                                                                                                                                              </td>
-                                                                                                                                                                                                              <td>CC, NB</td>
-                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                          </tbody>
-                                                                                                                                                                                                        </table>
-                                                                                                                                                                                                      </div>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The transaction ID is a reference number for a specific order generated by the merchant.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>ypl938459435</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  amount<br>
+                                                                                                                                                                                                                  <code>mandatory</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The payment amount for the transaction.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>10.00</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  productinfo<br>
+                                                                                                                                                                                                                  <code>mandatory</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> A brief description of the product.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>iPhone</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  firstname<br>
+                                                                                                                                                                                                                  <code>mandatory</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The first name of the customer.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>Ashish</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  email<br>
+                                                                                                                                                                                                                  <code>mandatory</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The email address of the customer.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                    <a href="mailto:abc@payu.in">abc@payu.in</a>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  phone<br>
+                                                                                                                                                                                                                  <code>mandatory</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The phone number of the customer.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td></td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  lastname<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The last name of the customer.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>Kumar</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  surl<br>
+                                                                                                                                                                                                                  <code>mandatory</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                    <a href="https://test-payment-middleware.payu.in/simulatorResponse" target="_blank">https://test-payment-middleware.payu.in/simulatorResponse</a>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  furl<br>
+                                                                                                                                                                                                                  <code>mandatory</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The failure URL, which is the page PayU will redirect to if the transaction fails.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                    <a href="https://test-payment-middleware.payu.in/simulatorResponse" target="_blank">https://test-payment-middleware.payu.in/simulatorResponse</a>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  hash<br>
+                                                                                                                                                                                                                  <code>mandatory</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br>
+                                                                                                                                                                                                                  <code>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code><br>
+                                                                                                                                                                                                                  Reference: For detailed information on hashing, refer to
+                                                                                                                                                                                                                  <a href="generate-hash-payu-hosted" target="_blank">Generate Hash</a>.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td></td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  address1<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The first line of the billing address.<br>
+                                                                                                                                                                                                                  Fraud Detection: This information is helpful for fraud detection and chargebacks. Please provide the correct information.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  address2<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The second line of the billing address.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>34 Saikripa-Estate, Tilak Nagar</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  city<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The city where your customer resides as part of the billing address.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>Mumbai</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  state<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The state where your customer resides as part of the billing address.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>Maharashtra</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  country<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> The country where your customer resides.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>India</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  zipcode<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br>
+                                                                                                                                                                                                                  Character Limit: 20
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>400004</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  enforced_payment<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> This parameter is to customize the payment options for each transaction. You can enforce specific payment modes, card schemes, and specific banks under Net Banking using this method.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>creditcard|debitcard</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  drop_category<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> This parameter is used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>CC</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  udf1<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>AELPR****E</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  udf2<br>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td></td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  udf3<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>02-02-1980</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  udf4<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>XYZ Pvt. Ltd.</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  udf5<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>098450845</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  custom_note<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> This parameter allows you to display a message on the PayU Payment page. This can be useful if you want to provide additional information to your customers, such as an extra charge for a particular product. The message specified in the custom_note parameter will be displayed below the payment options.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>You will be charged an extra amount of Rs 100 on this transaction</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                              <tr>
+                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                  note_category<br>
+                                                                                                                                                                                                                  <code>optional</code>
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td style="white-space: normal; word-break: break-word;">
+                                                                                                                                                                                                                  <code>String</code> This parameter allows you to specify which payment options the custom_note message will be displayed for. This parameter should contain a comma-separated list of the payment options that you want the custom_note displayed for. Example: "CC, NB" will show the custom_note for Credit Card & Net banking only.
+                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                <td>CC, NB</td>
+                                                                                                                                                                                                              </tr>
+                                                                                                                                                                                                            </tbody>
+                                                                                                                                                                                                          </table>
+                                                                                                                                                                                                        </div>
   `}</HTMLBlock>
 
   <Callout icon="📘" theme="info">
@@ -398,309 +398,8 @@ Follow the below steps to complete the integration:
 
   For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
 
-  ### Sample code to implement hashing
-
-  ```python
-  import hashlib
-  hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|||||||||||{salt}"
-  payment_hash = hashlib.sha512(hash_string.encode()).hexdigest()
-  ```
-  ```javascript
-const paymentParams = {
-    key: 'your_payu_key',
-    txnid: `txn_${Date.now()}`,
-    amount: '499.00',
-    productinfo: 'Pro Plan',
-    firstname: 'Customer Name', 
-    email: 'customer@example.com',
-    salt: 'your_payu_salt'
-};
-const hash = generatePayUHash(paymentParams);
-// Use this hash in your PayU form submission
-  ```
-  ```c#
-
-// C# (.NET) - PayU Hash Generation
-using System;
-using System.Security.Cryptography;
-using System.Text;
-
-public class PayUHashGenerator
-{
-    /// <summary>
-    /// Generate PayU payment hash using SHA-512
-    /// </summary>
-    /// <param name="key">PayU merchant key</param>
-    /// <param name="txnid">Unique transaction ID</param>
-    /// <param name="amount">Payment amount</param>
-    /// <param name="productinfo">Product description</param>
-    /// <param name="firstname">Customer first name</param>
-    /// <param name="email">Customer email</param>
-    /// <param name="salt">PayU salt</param>
-    /// <returns>SHA-512 hash string</returns>
-    public static string GeneratePayUHash(string key, string txnid, string amount,
-                                         string productinfo, string firstname, 
-                                         string email, string salt)
-    {
-        // Build hash string in PayU format
-        string hashString = $"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|||||||||||{salt}";
-        
-        // Generate SHA-512 hash
-        using (SHA512 sha512 = SHA512.Create())
-        {
-            byte[] hashBytes = sha512.ComputeHash(Encoding.UTF8.GetBytes(hashString));
-            
-            // Convert to hex string
-            StringBuilder sb = new StringBuilder();
-            foreach (byte b in hashBytes)
-            {
-                sb.Append(b.ToString("x2"));
-            }
-            
-            return sb.ToString();
-        }
-    }
-    
-    /// <summary>
-    /// Generate PayU response verification hash
-    /// </summary>
-    /// <param name="salt">PayU salt</param>
-    /// <param name="status">Payment status</param>
-    /// <param name="udf5">User defined field 5</param>
-    /// <param name="udf4">User defined field 4</param>
-    /// <param name="udf3">User defined field 3</param>
-    /// <param name="udf2">User defined field 2</param>
-    /// <param name="udf1">User defined field 1</param>
-    /// <param name="email">Customer email</param>
-    /// <param name="firstname">Customer first name</param>
-    /// <param name="productinfo">Product description</param>
-    /// <param name="amount">Payment amount</param>
-    /// <param name="txnid">Transaction ID</param>
-    /// <param name="key">PayU merchant key</param>
-    /// <returns>SHA-512 verification hash</returns>
-    public static string GeneratePayUResponseHash(string salt, string status, 
-                                                 string udf5, string udf4, string udf3, 
-                                                 string udf2, string udf1, string email, 
-                                                 string firstname, string productinfo, 
-                                                 string amount, string txnid, string key)
-    {
-        // Reverse hash format for verification
-        string hashString = $"{salt}|{status}||||||{udf5}|{udf4}|{udf3}|{udf2}|{udf1}|{email}|{firstname}|{productinfo}|{amount}|{txnid}|{key}";
-        
-        using (SHA512 sha512 = SHA512.Create())
-        {
-            byte[] hashBytes = sha512.ComputeHash(Encoding.UTF8.GetBytes(hashString));
-            
-            StringBuilder sb = new StringBuilder();
-            foreach (byte b in hashBytes)
-            {
-                sb.Append(b.ToString("x2"));
-            }
-            
-            return sb.ToString();
-        }
-    }
-}
-
-// Example usage and ASP.NET Core controller
-public class PayUController : Controller
-{
-    private readonly string _payuKey = "JP***g";  // From configuration
-    private readonly string _payuSalt = "your_payu_salt";  // From configuration
-    
-    [HttpPost]
-    public IActionResult InitiatePayment([FromBody] PaymentRequest request)
-    {
-        try
-        {
-            string txnid = $"txn_{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}";
-            
-            string hash = PayUHashGenerator.GeneratePayUHash(
-                _payuKey,
-                txnid,
-                request.Amount.ToString("F2"),
-                request.ProductInfo,
-                request.FirstName,
-                request.Email,
-                _payuSalt
-            );
-            
-            var paymentData = new
-            {
-                key = _payuKey,
-                txnid = txnid,
-                amount = request.Amount.ToString("F2"),
-                productinfo = request.ProductInfo,
-                firstname = request.FirstName,
-                email = request.Email,
-                hash = hash,
-                surl = "https://yourapp.com/payu/success",
-                furl = "https://yourapp.com/payu/failure"
-            };
-            
-            return Ok(paymentData);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Error generating payment hash: {ex.Message}");
-        }
-    }
-    
-    [HttpPost]
-    public IActionResult PaymentResponse([FromForm] PayUResponse response)
-    {
-        try
-        {
-            // Verify the response hash
-            string calculatedHash = PayUHashGenerator.GeneratePayUResponseHash(
-                _payuSalt,
-                response.Status,
-                response.Udf5 ?? "",
-                response.Udf4 ?? "",
-                response.Udf3 ?? "",
-                response.Udf2 ?? "",
-                response.Udf1 ?? "",
-                response.Email,
-                response.FirstName,
-                response.ProductInfo,
-                response.Amount,
-                response.TxnId,
-                _payuKey
-            );
-            
-            if (calculatedHash.Equals(response.Hash, StringComparison.OrdinalIgnoreCase))
-            {
-                if (response.Status == "success")
-                {
-                    // Payment successful - update your database
-                    return View("PaymentSuccess", response);
-                }
-                else
-                {
-                    // Payment failed
-                    return View("PaymentFailure", response);
-                }
-            }
-            else
-            {
-                // Hash mismatch - possible tampering
-                return BadRequest("Invalid response hash");
-            }
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Error processing payment response: {ex.Message}");
-        }
-    }
-}
-
-// Models for API
-public class PaymentRequest
-{
-    public decimal Amount { get; set; }
-    public string ProductInfo { get; set; }
-    public string FirstName { get; set; }
-    public string Email { get; set; }
-}
-
-public class PayUResponse
-{
-    public string Status { get; set; }
-    public string TxnId { get; set; }
-    public string Amount { get; set; }
-    public string ProductInfo { get; set; }
-    public string FirstName { get; set; }
-    public string Email { get; set; }
-    public string Hash { get; set; }
-    public string Udf1 { get; set; }
-    public string Udf2 { get; set; }
-    public string Udf3 { get; set; }
-    public string Udf4 { get; set; }
-    public string Udf5 { get; set; }
-}
-
-// Example console application
-class Program
-{
-    static void Main(string[] args)
-    {
-        string key = "JP***g";  // Your PayU merchant key
-        string txnid = $"txn_{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}";
-        string amount = "499.00";
-        string productinfo = "Pro Plan";
-        string firstname = "Aditi";
-        string email = "test@example.com";
-        string salt = "your_payu_salt";  // Your PayU salt
-        
-        string hash = PayUHashGenerator.GeneratePayUHash(key, txnid, amount, 
-                                                        productinfo, firstname, 
-                                                        email, salt);
-        
-        Console.WriteLine($"Generated Hash: {hash}");
-        Console.WriteLine($"Transaction ID: {txnid}");
-    }
-}
-
-  ```
-  ```java
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.nio.charset.StandardCharsets;
-
-public class PayUHashGenerator {
-    
-    public static String generatePayUHash(String key, String txnid, String amount, 
-                                         String productinfo, String firstname, 
-                                         String email, String salt) {
-        try {
-            // Build hash string in PayU format
-            String hashString = key + "|" + txnid + "|" + amount + "|" + 
-                               productinfo + "|" + firstname + "|" + email + 
-                               "|||||||||||" + salt;
-            
-            // Generate SHA-512 hash
-            MessageDigest digest = MessageDigest.getInstance("SHA-512");
-            byte[] hash = digest.digest(hashString.getBytes(StandardCharsets.UTF_8));
-            
-            // Convert to hex string
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : hash) {
-                String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) {
-                    hexString.append('0');
-                }
-                hexString.append(hex);
-            }
-            
-            return hexString.toString();
-            
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("SHA-512 algorithm not available", e);
-        }
-    }
-    
-    // Example usage
-    public static void main(String[] args) {
-        String key = "JP***g";  // Your PayU merchant key
-        String txnid = "txn_" + System.currentTimeMillis();  // Unique transaction ID
-        String amount = "499.00";
-        String productinfo = "Pro Plan";
-        String firstname = "Aditi";
-        String email = "test@example.com";
-        String salt = "your_payu_salt";  // Your PayU salt
-        
-        String hash = generatePayUHash(key, txnid, amount, productinfo, 
-                                      firstname, email, salt);
-        
-        System.out.println("Generated Hash: " + hash);
-        System.out.println("Transaction ID: " + txnid);
-    }
-}
-  ```
-  ```php
-  $hash_string = $key."|".$txnid."|".$amount."|".$productinfo."|".$firstname."|".$email."|||||||||||".$salt;
-  $payment_hash = hash('sha512', $hash_string);
-  ```
+###Sample Hashing Code
+<HashingSample />
 </Accordion>
 
 <Accordion title="Step 1.3: POST the html form (server renders)" icon="fa-code">
