@@ -44,7 +44,6 @@ The merchant initiates PayU with the required transaction mandatory or optional 
 
 <PaymentAPIEnvironment />
 
-<HashingRequestParameters />
 
 <Accordion title="Request parameters" icon="fa-code">
   | Parameter | Description | **Example** |
@@ -109,7 +108,10 @@ The merchant initiates PayU with the required transaction mandatory or optional 
     \| udf5
     `optional`               | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.                                                                                                                                                                                                                    |                  |
 </Accordion>
-
+<Accordion title="Understanding Hashing and sample code" icon="fa-code">
+<HashingRequestParameters />
+<HashingSample />
+</Accordion>
 <Accordion title="Sample request" icon="fa-code">
   ```curl
   curl --location \
