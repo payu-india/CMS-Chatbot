@@ -29,7 +29,7 @@ Integrate a complete mobile checkout solution into your iOS app with the Checkou
 With the Checkout Pro SDK, you can:
 
 * **Build checkout flows faster** - Use our complete, native checkout UI out of the box
-* **Accept multiple payment methods:**
+* **Accept payment using multiple payment methods:**
   * All major card providers (Amex, Mastercard, Rupay, Visa, and more)
   * Netbanking with 150+ Indian banks
   * UPI Payments (Intent & Collect)
