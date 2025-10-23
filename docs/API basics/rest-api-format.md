@@ -16,29 +16,28 @@ next:
 ---
 REST API can be accessed by making a server-to-server call on the following PayU URLs:
 
-> 📘 Reference:
->
-> Refer to the following recipe for a walkthrough of a cURL request for a REST API.
->
-<a
-  href="https://payu-hosted-checkout.readme.io/v1/recipes/curl-walkthrough"
-  id="65084edbb1c590100cf1243e"
-  style={{
-    display: "block",
-    backgroundColor: "#018FF4",
-    color: "white",
-    padding: "1rem",
-    borderRadius: "0.5rem",
-    textDecoration: "none",
-    maxWidth: "400px",
-    marginBottom: "1rem",
-  }}
->
-  <div style={{ fontSize: "2rem" }}>🦉</div>
-  <h3 style={{ margin: "0.5rem 0 0" }}>CURL Walkthrough</h3>
-  <p style={{ margin: 0 }}>Learn how to make API calls using CURL</p>
-</a>
+<Callout icon="📘" theme="info">
+  **Reference**: Refer to the following recipe for a walkthrough of a cURL request for a REST API.=
 
+  <a
+    href="https://payu-hosted-checkout.readme.io/v1/recipes/curl-walkthrough"
+    id="65084edbb1c590100cf1243e"
+    style={{
+      display: "block",
+      backgroundColor: "#018FF4",
+      color: "white",
+      padding: "1rem",
+      borderRadius: "0.5rem",
+      textDecoration: "none",
+      maxWidth: "400px",
+      marginBottom: "1rem",
+    }}
+  >
+    <div style={{ fontSize: "2rem" }}>🦉</div>
+    <h3 style={{ margin: "0.5rem 0 0" }}>CURL Walkthrough</h3>
+    <p style={{ margin: 0 }}>Learn how to make API calls using CURL</p>
+  </a>
+</Callout>
 
 ## URLs for Test and Production environment
 
@@ -48,18 +47,19 @@ REST API can be accessed by making a server-to-server call on the following PayU
   <tbody>
     <tr>
       <td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>Test</td>
-      <td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>https://test.payu.in/merchant/postservice.php?form=2</td>
+      <td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>[https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2)</td>
     </tr>
+
     <tr>
       <td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>Production</td>
-      <td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>https://info.payu.in/merchant/postservice.php?form=2</td>
+      <td style={{ border: "0.1rem solid rgb(242, 242, 242)", padding: "0.8em" }}>[https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2)</td>
     </tr>
   </tbody>
 </table>
 
 > 📘 Note:
 >
-> The above base URLs are for the General APIs. Refer to the specific API reference page to get the exact endpoints. For the \_payment APIs, refer to any of the following:
+> The above base URLs are for the General APIs. Refer to the specific API reference page to get the exact endpoints. For the _payment APIs, refer to any of the following:
 >
 > * [Collect Payment API for PayU Hosted Checkout integration](ref:_payment_payu_hosted_checkout)
 > * [Collect Payment API for Merchant Hosted Checkout integration](ref:_payment_merchant_hosted)
@@ -109,7 +109,7 @@ REST API can be accessed by making a server-to-server call on the following PayU
       </td>
 
       <td>
-        save\_card
+        save_card
       </td>
     </tr>
 
@@ -122,7 +122,7 @@ REST API can be accessed by making a server-to-server call on the following PayU
         This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:
         sha512(key|command|var1|salt) sha512 is the encryption method used.
 
-        * \*Note\*\*:  For \_payment APIs, refer to [Generate Hash](doc:hashing-request-and-response)
+        * *Note**:  For _payment APIs, refer to [Generate Hash](doc:hashing-request-and-response)
       </td>
 
       <td>
@@ -154,7 +154,7 @@ REST API can be accessed by making a server-to-server call on the following PayU
 
 [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2)
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -205,7 +205,7 @@ REST API can be accessed by making a server-to-server call on the following PayU
 
     <tr>
       <td>
-        transaction\_details
+        transaction_details
       </td>
 
       <td>
@@ -213,13 +213,13 @@ REST API can be accessed by making a server-to-server call on the following PayU
       </td>
 
       <td>
-        mihpayid,request\_id, bank\_ref\_num etc
+        mihpayid,request_id, bank_ref_num etc
       </td>
     </tr>
 
     <tr>
       <td>
-        request\_id
+        request_id
       </td>
 
       <td>
@@ -233,7 +233,7 @@ REST API can be accessed by making a server-to-server call on the following PayU
 
     <tr>
       <td>
-        bank\_ref\_num
+        bank_ref_num
       </td>
 
       <td>
