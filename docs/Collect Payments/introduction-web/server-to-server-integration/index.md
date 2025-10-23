@@ -45,6 +45,15 @@ The benefits of the S2S flow are:
 
 With the above benefits, there are reduced chances of customers abandoning shopping cart during their shopping experience.
 
+## Which suits your use case
+
+| Use Case                          | Description                                  | Integration Type                                                                      |
+| --------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Complete card details control     | Highest level of control, collect CVV/OTP    | [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration) |
+| Card details control, but not OTP | PayU manages the OTP step                    | [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s)                   |
+| Simple card auth with no capture  | Pre-authorize funds for later capture        | [Direct Authorization Integration](doc:integrate-with-direct-authorization-s2s)       |
+| UPI on mobile via deep linking    | Initiates payment in a UPI app on the device | [UPI Intent with S2S Integration](doc:upi-intent-server-to-server)                    |
+
 ## Customer journey
 
 The merchant server hosts the complete data sets necessary to take the customer from your website to the bank’s website and send it directly to the PayU server that operates in the backend. Unlike the Merchant Hosted Checkout integration, your customer will not be redirected to the bank site for OTP. This section describes the customer experience with S2S Flow.
@@ -53,11 +62,11 @@ To get started with Server-to-Server integration, refer to [General Integration]
 
 **Step 1:** The customer completes shopping at your website and initiates a transaction with card credentials.
 
-<Image align="center" className="border" border={true} width="350px" src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-6-576x1024.jpg" />
+<Image align="center" border={true} width="350px" src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-6-576x1024.jpg" className="border" />
 
 **Step 2:** The customer enters the CVV and proceeds to complete the payment.
 
-<Image align="center" className="border" border={true} width="350px" src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-7-576x1024.jpg" />
+<Image align="center" border={true} width="350px" src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-7-576x1024.jpg" className="border" />
 
 **Step 3:** The merchant collects the Bank OTP for authentication where the customer needs to complete the transaction by using the OTP sent by the bank to the registered mobile number.
 
