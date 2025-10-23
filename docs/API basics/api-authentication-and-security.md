@@ -20,7 +20,7 @@ All the requests are accompanied by hash that is appended at the end of the requ
 
 ### Payment API
 
-While posting parameters for an API, the **hash** parameter in each API must contain the hash value to be calculated at your end. You must hash the request parameters using the following hash logic:
+While posting parameters for Collect Payment (**_payment**) API, the **hash** parameter in each API must contain the hash value to be calculated at your end. You must hash the request parameters using the following hash logic:
 
 ```
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
