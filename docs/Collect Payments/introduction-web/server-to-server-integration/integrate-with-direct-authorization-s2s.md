@@ -43,8 +43,8 @@ Initiate an authorization request with the payment details provided post a succe
 
 ### Request parameters
 
-**Environment**
 <PaymentAPIEnvironment />
+
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -314,7 +314,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        txn\_s2s\_flow `mandatory`
+        txn_s2s_flow `mandatory`
       </td>
 
       <td>
@@ -328,11 +328,11 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        authentication\_info `mandatory`
+        authentication_info `mandatory`
       </td>
 
       <td>
-        `JSON` This parameter contains the authentication information in a JSON format for direct authorization. For more information, refer to [authentication\_info JSON object](#authentication_info-json-object)
+        `JSON` This parameter contains the authentication information in a JSON format for direct authorization. For more information, refer to [authentication_info JSON object](#authentication_info-json-object)
       </td>
 
       <td>
@@ -363,7 +363,7 @@ Initiate an authorization request with the payment details provided post a succe
       </td>
 
       <td>
-        `String` The first line of the billing address. \* For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        `String` The first line of the billing address. * For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
       <td>
@@ -521,7 +521,6 @@ Initiate an authorization request with the payment details provided post a succe
     </tr>
   </tbody>
 </Table>
-
 
 <HashingRequestParameters />
 
