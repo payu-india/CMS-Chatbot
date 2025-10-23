@@ -41,9 +41,9 @@ This part of the document also includes how to integrate using 3DS Secure 2.0 Tr
 
 Initiate an authorization request with the payment details provided post a successful authentication via the MPI/3DSS. For the request parameters, refer to [Cards Direct Authorization Flow](ref:_payment_s2s_direct_authorization_flow) .
 
-### Request parameters
-
 <PaymentAPIEnvironment />
+
+### Request parameters
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -522,7 +522,13 @@ Initiate an authorization request with the payment details provided post a succe
   </tbody>
 </Table>
 
-<HashingRequestParameters />
+<Accordion title="Understanding Hashing and sample code" icon="fa-code">
+  <HashingRequestParameters />
+
+  #### Hashing Sample Code
+
+  <HashingSample />
+</Accordion>
 
 ### authentication_info JSON object
 
