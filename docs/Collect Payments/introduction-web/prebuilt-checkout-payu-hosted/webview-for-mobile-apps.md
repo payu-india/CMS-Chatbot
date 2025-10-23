@@ -15,9 +15,37 @@ metadata:
 next:
   description: ''
 ---
-WebView is a component that enables mobile apps to collect payments by loading the PayU checkout form within the app itself, rather than redirecting users to external browsers. It essentially embeds PayU's Hosted Checkout experience inside a WebView container within your mobile app.
+WebView is a component that enables mobile apps to collect payments by loading the PayU checkout form within the app itself, rather than redirecting users to external browsers. It essentially embeds PayU's Hosted Checkout experience inside a WebView container within your mobile app. WebView essentially bridges the gap between web-based payment forms and native mobile app experiences, making payments feel more integrated and professional within your mobile application.
 
 You can collect payments from your mobile apps by opening the the PayU checkout form in a WebView. This allows you to reuse your PayU Hosted Checkout integration and get started quickly.
+
+## Key Characteristics:
+
+1. **Embedded Payment Experience**: Users can complete payments without leaving your app, providing a seamless user experience.
+
+2. **Reuses Existing Integration**: Developers can leverage their existing PayU Hosted Checkout integration, reducing implementation complexity.
+
+3. **Cross-Platform Support**: Available for both Android (using WebView) and iOS (using WKWebView), with platform-specific optimizations.
+
+4. **Comprehensive Payment Methods**: Supports all PayU payment options including:
+   * Credit/Debit cards
+   * UPI payments
+   * Digital wallets
+   * Buy Now Pay Later (BNPL) options
+
+## How It Works
+
+1. **Configure WebView settings** (enable JavaScript, DOM storage, etc.)
+2. **POST payment data** to PayU endpoints with transaction details
+3. **Handle navigation and intents** for UPI apps like Google Pay, PhonePe
+4. **Manage success/failure scenarios** within the app
+
+## Benefits
+
+* **Better User Experience**: No app switching or external browser redirects
+* **Faster Implementation**: Reuse existing PayU integration
+* **Security**: Server-side hash generation for transaction authentication
+* **UPI Intent Support**: Seamless integration with popular payment apps
 
 ## Configure Webview and Chrome Custom Tab for Android
 
