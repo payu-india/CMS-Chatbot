@@ -105,261 +105,270 @@ Customers will select the **Pluxee** payment option on your website and enter th
   | udf5 `optional`               | String - User-defined fields (udf) are used to store any information corresponding to a particular transaction. For Cross-Border payments: This parameter must include The invoice ID or invoice number must be collected using this field.                                                                                                                                                                                                                                                 | INV\_2024\_001                                             |
 
   PayU marks the transaction status based on the response received from the bank. PayU communicates the success URL to you if the payment is successful. Verify the authenticity of the hash value before accepting or rejecting the invoice order. For the list of parameters in the response body for the PayU Hosted integration, refer to <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>.
+
+<Accordion title="Understanding Hashing and sample code" icon="fa-code">
+  <HashingRequestParameters />
+
+  #### Hashing Sample Code
+
+  <HashingSample />
+</Accordion>
+
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
   curl -X POST "https://test.payu.in/_payment"  -H "accept: application/json"  -H "Content-Type: application/x-www-form-urlencoded"  -d "key=JP***g&txnid=bvRCCBO4YiGGHE&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=MC&bankcode=SODEXO&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=637513XXXXXX9318&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=Ashish&hash=ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64"
   ```
-```python
-import requests
+  ```python
+  import requests
 
-url = "https://test.payu.in/_payment"
+  url = "https://test.payu.in/_payment"
 
-headers = {
-    "accept": "application/json",
-    "Content-Type": "application/x-www-form-urlencoded"
-}
+  headers = {
+      "accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+  }
 
-data = {
-    "key": "JP***g",
-    "txnid": "bvRCCBO4YiGGHE",
-    "amount": "10.00",
-    "firstname": "Ashish",
-    "email": "test@gmail.com",
-    "phone": "9876543210",
-    "productinfo": "iPhone",
-    "pg": "MC",
-    "bankcode": "SODEXO",
-    "surl": "https://apiplayground-response.herokuapp.com/",
-    "furl": "https://apiplayground-response.herokuapp.com/",
-    "ccnum": "637513XXXXXX9318",
-    "ccexpmon": "05",
-    "ccexpyr": "2022",
-    "ccvv": "123",
-    "ccname": "Ashish",
-    "hash": "ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64"
-}
+  data = {
+      "key": "JP***g",
+      "txnid": "bvRCCBO4YiGGHE",
+      "amount": "10.00",
+      "firstname": "Ashish",
+      "email": "test@gmail.com",
+      "phone": "9876543210",
+      "productinfo": "iPhone",
+      "pg": "MC",
+      "bankcode": "SODEXO",
+      "surl": "https://apiplayground-response.herokuapp.com/",
+      "furl": "https://apiplayground-response.herokuapp.com/",
+      "ccnum": "637513XXXXXX9318",
+      "ccexpmon": "05",
+      "ccexpyr": "2022",
+      "ccvv": "123",
+      "ccname": "Ashish",
+      "hash": "ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64"
+  }
 
-response = requests.post(url, headers=headers, data=data)
-print(response.status_code)
-print(response.text)
-```
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
+  response = requests.post(url, headers=headers, data=data)
+  print(response.status_code)
+  print(response.text)
+  ```
+  ```csharp
+  using System;
+  using System.Collections.Generic;
+  using System.Net.Http;
+  using System.Threading.Tasks;
 
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        using (var client = new HttpClient())
-        {
-            var url = "https://test.payu.in/_payment";
-            
-            client.DefaultRequestHeaders.Add("accept", "application/json");
-            
-            var formData = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("key", "JP***g"),
-                new KeyValuePair<string, string>("txnid", "bvRCCBO4YiGGHE"),
-                new KeyValuePair<string, string>("amount", "10.00"),
-                new KeyValuePair<string, string>("firstname", "Ashish"),
-                new KeyValuePair<string, string>("email", "test@gmail.com"),
-                new KeyValuePair<string, string>("phone", "9876543210"),
-                new KeyValuePair<string, string>("productinfo", "iPhone"),
-                new KeyValuePair<string, string>("pg", "MC"),
-                new KeyValuePair<string, string>("bankcode", "SODEXO"),
-                new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
-                new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
-                new KeyValuePair<string, string>("ccnum", "637513XXXXXX9318"),
-                new KeyValuePair<string, string>("ccexpmon", "05"),
-                new KeyValuePair<string, string>("ccexpyr", "2022"),
-                new KeyValuePair<string, string>("ccvv", "123"),
-                new KeyValuePair<string, string>("ccname", "Ashish"),
-                new KeyValuePair<string, string>("hash", "ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64")
-            };
-            
-            var formContent = new FormUrlEncodedContent(formData);
-            
-            var response = await client.PostAsync(url, formContent);
-            var responseBody = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine($"Status: {response.StatusCode}");
-            Console.WriteLine($"Response: {responseBody}");
-        }
-    }
-}
-```
-```javascript
-async function makePayment() {
-    const url = "https://test.payu.in/_payment";
-    
-    const headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    };
-    
-    const formData = new URLSearchParams({
-        "key": "JP***g",
-        "txnid": "bvRCCBO4YiGGHE",
-        "amount": "10.00",
-        "firstname": "Ashish",
-        "email": "test@gmail.com",
-        "phone": "9876543210",
-        "productinfo": "iPhone",
-        "pg": "MC",
-        "bankcode": "SODEXO",
-        "surl": "https://apiplayground-response.herokuapp.com/",
-        "furl": "https://apiplayground-response.herokuapp.com/",
-        "ccnum": "637513XXXXXX9318",
-        "ccexpmon": "05",
-        "ccexpyr": "2022",
-        "ccvv": "123",
-        "ccname": "Ashish",
-        "hash": "ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64"
-    });
-    
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: headers,
-            body: formData
-        });
-        
-        const data = await response.text();
-        console.log("Status:", response.status);
-        console.log("Response:", data);
-        
-        return data;
-    } catch (error) {
-        console.error("Error:", error);
-        throw error;
-    }
-}
+  class Program
+  {
+      static async Task Main(string[] args)
+      {
+          using (var client = new HttpClient())
+          {
+              var url = "https://test.payu.in/_payment";
+              
+              client.DefaultRequestHeaders.Add("accept", "application/json");
+              
+              var formData = new List<KeyValuePair<string, string>>
+              {
+                  new KeyValuePair<string, string>("key", "JP***g"),
+                  new KeyValuePair<string, string>("txnid", "bvRCCBO4YiGGHE"),
+                  new KeyValuePair<string, string>("amount", "10.00"),
+                  new KeyValuePair<string, string>("firstname", "Ashish"),
+                  new KeyValuePair<string, string>("email", "test@gmail.com"),
+                  new KeyValuePair<string, string>("phone", "9876543210"),
+                  new KeyValuePair<string, string>("productinfo", "iPhone"),
+                  new KeyValuePair<string, string>("pg", "MC"),
+                  new KeyValuePair<string, string>("bankcode", "SODEXO"),
+                  new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
+                  new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
+                  new KeyValuePair<string, string>("ccnum", "637513XXXXXX9318"),
+                  new KeyValuePair<string, string>("ccexpmon", "05"),
+                  new KeyValuePair<string, string>("ccexpyr", "2022"),
+                  new KeyValuePair<string, string>("ccvv", "123"),
+                  new KeyValuePair<string, string>("ccname", "Ashish"),
+                  new KeyValuePair<string, string>("hash", "ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64")
+              };
+              
+              var formContent = new FormUrlEncodedContent(formData);
+              
+              var response = await client.PostAsync(url, formContent);
+              var responseBody = await response.Content.ReadAsStringAsync();
+              
+              Console.WriteLine($"Status: {response.StatusCode}");
+              Console.WriteLine($"Response: {responseBody}");
+          }
+      }
+  }
+  ```
+  ```javascript
+  async function makePayment() {
+      const url = "https://test.payu.in/_payment";
+      
+      const headers = {
+          "accept": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+      };
+      
+      const formData = new URLSearchParams({
+          "key": "JP***g",
+          "txnid": "bvRCCBO4YiGGHE",
+          "amount": "10.00",
+          "firstname": "Ashish",
+          "email": "test@gmail.com",
+          "phone": "9876543210",
+          "productinfo": "iPhone",
+          "pg": "MC",
+          "bankcode": "SODEXO",
+          "surl": "https://apiplayground-response.herokuapp.com/",
+          "furl": "https://apiplayground-response.herokuapp.com/",
+          "ccnum": "637513XXXXXX9318",
+          "ccexpmon": "05",
+          "ccexpyr": "2022",
+          "ccvv": "123",
+          "ccname": "Ashish",
+          "hash": "ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64"
+      });
+      
+      try {
+          const response = await fetch(url, {
+              method: "POST",
+              headers: headers,
+              body: formData
+          });
+          
+          const data = await response.text();
+          console.log("Status:", response.status);
+          console.log("Response:", data);
+          
+          return data;
+      } catch (error) {
+          console.error("Error:", error);
+          throw error;
+      }
+  }
 
-// Call the function
-makePayment();
-```
-```java
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+  // Call the function
+  makePayment();
+  ```
+  ```java
+  import java.io.IOException;
+  import java.net.URI;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.util.HashMap;
+  import java.util.Map;
+  import java.util.stream.Collectors;
 
-public class PaymentRequest {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        String url = "https://test.payu.in/_payment";
-        
-        Map<String, String> formData = new HashMap<>();
-        formData.put("key", "JP***g");
-        formData.put("txnid", "bvRCCBO4YiGGHE");
-        formData.put("amount", "10.00");
-        formData.put("firstname", "Ashish");
-        formData.put("email", "test@gmail.com");
-        formData.put("phone", "9876543210");
-        formData.put("productinfo", "iPhone");
-        formData.put("pg", "MC");
-        formData.put("bankcode", "SODEXO");
-        formData.put("surl", "https://apiplayground-response.herokuapp.com/");
-        formData.put("furl", "https://apiplayground-response.herokuapp.com/");
-        formData.put("ccnum", "637513XXXXXX9318");
-        formData.put("ccexpmon", "05");
-        formData.put("ccexpyr", "2022");
-        formData.put("ccvv", "123");
-        formData.put("ccname", "Ashish");
-        formData.put("hash", "ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64");
-        
-        String formBody = formData.entrySet()
-            .stream()
-            .map(entry -> entry.getKey() + "=" + entry.getValue())
-            .collect(Collectors.joining("&"));
-        
-        HttpClient client = HttpClient.newHttpClient();
-        
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .header("accept", "application/json")
-            .header("Content-Type", "application/x-www-form-urlencoded")
-            .POST(HttpRequest.BodyPublishers.ofString(formBody))
-            .build();
-        
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Response Body: " + response.body());
-    }
-}
-```
-```php
+  public class PaymentRequest {
+      public static void main(String[] args) throws IOException, InterruptedException {
+          String url = "https://test.payu.in/_payment";
+          
+          Map<String, String> formData = new HashMap<>();
+          formData.put("key", "JP***g");
+          formData.put("txnid", "bvRCCBO4YiGGHE");
+          formData.put("amount", "10.00");
+          formData.put("firstname", "Ashish");
+          formData.put("email", "test@gmail.com");
+          formData.put("phone", "9876543210");
+          formData.put("productinfo", "iPhone");
+          formData.put("pg", "MC");
+          formData.put("bankcode", "SODEXO");
+          formData.put("surl", "https://apiplayground-response.herokuapp.com/");
+          formData.put("furl", "https://apiplayground-response.herokuapp.com/");
+          formData.put("ccnum", "637513XXXXXX9318");
+          formData.put("ccexpmon", "05");
+          formData.put("ccexpyr", "2022");
+          formData.put("ccvv", "123");
+          formData.put("ccname", "Ashish");
+          formData.put("hash", "ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64");
+          
+          String formBody = formData.entrySet()
+              .stream()
+              .map(entry -> entry.getKey() + "=" + entry.getValue())
+              .collect(Collectors.joining("&"));
+          
+          HttpClient client = HttpClient.newHttpClient();
+          
+          HttpRequest request = HttpRequest.newBuilder()
+              .uri(URI.create(url))
+              .header("accept", "application/json")
+              .header("Content-Type", "application/x-www-form-urlencoded")
+              .POST(HttpRequest.BodyPublishers.ofString(formBody))
+              .build();
+          
+          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+          
+          System.out.println("Status Code: " + response.statusCode());
+          System.out.println("Response Body: " + response.body());
+      }
+  }
+  ```
+  ```php
 
-$url = "https://test.payu.in/_payment";
+  $url = "https://test.payu.in/_payment";
 
-$data = array(
-    'key' => 'JP***g',
-    'txnid' => 'bvRCCBO4YiGGHE',
-    'amount' => '10.00',
-    'firstname' => 'Ashish',
-    'email' => 'test@gmail.com',
-    'phone' => '9876543210',
-    'productinfo' => 'iPhone',
-    'pg' => 'MC',
-    'bankcode' => 'SODEXO',
-    'surl' => 'https://apiplayground-response.herokuapp.com/',
-    'furl' => 'https://apiplayground-response.herokuapp.com/',
-    'ccnum' => '637513XXXXXX9318',
-    'ccexpmon' => '05',
-    'ccexpyr' => '2022',
-    'ccvv' => '123',
-    'ccname' => 'Ashish',
-    'hash' => 'ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64'
-);
+  $data = array(
+      'key' => 'JP***g',
+      'txnid' => 'bvRCCBO4YiGGHE',
+      'amount' => '10.00',
+      'firstname' => 'Ashish',
+      'email' => 'test@gmail.com',
+      'phone' => '9876543210',
+      'productinfo' => 'iPhone',
+      'pg' => 'MC',
+      'bankcode' => 'SODEXO',
+      'surl' => 'https://apiplayground-response.herokuapp.com/',
+      'furl' => 'https://apiplayground-response.herokuapp.com/',
+      'ccnum' => '637513XXXXXX9318',
+      'ccexpmon' => '05',
+      'ccexpyr' => '2022',
+      'ccvv' => '123',
+      'ccname' => 'Ashish',
+      'hash' => 'ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64'
+  );
 
-$options = array(
-    'http' => array(
-        'header' => "accept: application/json\r\n" .
-                   "Content-Type: application/x-www-form-urlencoded\r\n",
-        'method' => 'POST',
-        'content' => http_build_query($data)
-    )
-);
+  $options = array(
+      'http' => array(
+          'header' => "accept: application/json\r\n" .
+                     "Content-Type: application/x-www-form-urlencoded\r\n",
+          'method' => 'POST',
+          'content' => http_build_query($data)
+      )
+  );
 
-$context = stream_context_create($options);
-$response = file_get_contents($url, false, $context);
+  $context = stream_context_create($options);
+  $response = file_get_contents($url, false, $context);
 
-if ($response === FALSE) {
-    echo "Error occurred";
-} else {
-    echo "Response: " . $response;
-}
+  if ($response === FALSE) {
+      echo "Error occurred";
+  } else {
+      echo "Response: " . $response;
+  }
 
-// Alternative using cURL
-/*
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'accept: application/json',
-    'Content-Type: application/x-www-form-urlencoded'
-));
+  // Alternative using cURL
+  /*
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'accept: application/json',
+      'Content-Type: application/x-www-form-urlencoded'
+  ));
 
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
+  $response = curl_exec($ch);
+  $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  curl_close($ch);
 
-echo "HTTP Code: " . $httpCode . "\n";
-echo "Response: " . $response;
-*/
-?>
-```
+  echo "HTTP Code: " . $httpCode . "\n";
+  echo "Response: " . $response;
+  */
+  ?>
+  ```
 
   <HashingRequestParameters />
 </Accordion>
