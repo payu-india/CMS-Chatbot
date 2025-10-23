@@ -26,7 +26,7 @@ To use PayU Hosted Checkout, merchants need to integrate the PayU payment gatewa
 
 Once the payment is processed, the customer will be redirected back to the merchant's website where they can view the payment result.
 
-<Image align="center" border={true} src="https://files.readme.io/932f800-payuhosted_wf.png" className="border" />
+<Image align="center" alt="PayU Hosted Checkout Workflow" border={true} src="https://files.readme.io/932f800-payuhosted_wf.png" className="border" />
 
 ## Customer journey
 
@@ -35,16 +35,16 @@ The following sample customer journey is for cards payment mode:
 1. The customer clicks **Pay Now** on merchant website after checkout.
 2. The customer is redirected to _PayU Payment _page.
 
-<Image align="center" border={true} width="622px" src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" className="border" />
+<Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Payment Modes" border={true} width="622px" src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" className="border" />
 
 3. The customer chooses a payment mode from the _PayU Payment _page. For example, **Cards (Debit/Credit)**.
 4. The card details are provided by the customer and clicks **Proceed**.
 
-<Image align="center" border={true} width="622px" src="https://files.readme.io/fd09cbd284ffe7fb3b60d03e2acd8a5a51d850dd1795f1eca9879893b3569603-Screenshot_2024-09-06_at_11.56.40_AM.png" className="border" />
+<Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Card Details page" border={true} width="622px" src="https://files.readme.io/fd09cbd284ffe7fb3b60d03e2acd8a5a51d850dd1795f1eca9879893b3569603-Screenshot_2024-09-06_at_11.56.40_AM.png" className="border" />
 
 A consent message is displayed whether the card the details can be stored.
 
-<Image align="center" border={false} width="622px" src="https://files.readme.io/caa8481-Screenshot_2023-10-05_at_10.37.33_AM.png" />
+<Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Save Card Confirmation" border={false} width="622px" src="https://files.readme.io/caa8481-Screenshot_2023-10-05_at_10.37.33_AM.png" />
 
 5. Customer clicks **Save and Continue**.
 6. The OTP page is displayed where the customer enters OTP sent to the them.
@@ -76,3 +76,14 @@ The following is a list of benefits of PayU Hosted Checkout:
 * Offers zero direction OTP authentication flow for cards with Native OTP.
 * Supports specific and generic intent for UPI payments on mobile web
 * Personalized payment experience (using recommendations) and offers.
+
+## Next Steps
+
+To integrate PayU Hosted Integration on your website or mobile, refer to:
+
+* [Web Integration - PayU Hosted](https://docs.payu.in/docs/prebuilt-checkout-page-integration) using the **Collect Payment **API (**_payment** API),
+* [Integrate WebView for Mobile Apps](https://docs.payu.in/docs/webview-for-mobile-apps) by embedding PayU's Hosted Checkout experience inside a WebView container within your mobile app.
+
+   
+
+<br />
