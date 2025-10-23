@@ -34,7 +34,7 @@ Where, sha512 is the encryption method used here. For more information on SHA, r
 
 ### General APIs
 
-While posting parameters for an API, the **hash** parameter in each API must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below for command based APIs:
+While posting parameters for General APIs, such as **Verify Payment**, **Get BIN Info**, **Refund Transaction**, etc.   the **hash** parameter in each API must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below for command based APIs:
 
 ```plaintext
 sha512(key|command|var1|salt)
