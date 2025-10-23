@@ -127,7 +127,14 @@ To integrate with EFTNET:
   | udf4 <br /> `optional`         | string - This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                     | custom\_data\_4                                                                                |
   | udf5 <br /> `optional`         | string - This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                     | custom\_data\_5                                                                                |
 
+  <Accordion title="Understanding Hashing and sample code" icon="fa-code">
   <HashingRequestParameters />
+
+  #### Hashing Sample Code
+
+  <HashingSample />
+</Accordion>
+
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
