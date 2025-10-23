@@ -15,6 +15,8 @@ metadata:
 next:
   description: ''
 ---
+WebView is a component that enables mobile apps to collect payments by loading the PayU checkout form within the app itself, rather than redirecting users to external browsers. It essentially embeds PayU's Hosted Checkout experience inside a WebView container within your mobile app.
+
 You can collect payments from your mobile apps by opening the the PayU checkout form in a WebView. This allows you to reuse your PayU Hosted Checkout integration and get started quickly.
 
 ## Configure Webview and Chrome Custom Tab for Android
