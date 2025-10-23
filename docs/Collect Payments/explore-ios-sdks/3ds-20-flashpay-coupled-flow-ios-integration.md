@@ -133,19 +133,6 @@ var buttonCustomisation = PayU3DS2ButtonCustomisation(
 )
 ```
 
-For example:
-
-```swift
-PayU3DS2ButtonCustomisation(
-        textFontColor: "#ffffff",
-        textFontSize: 17,
-        backgroundColor: "#25272C",
-        cornerRadius: 10,
-        resendButtonTextFontColor: "#25272C"
-    )
-
-```
-
 ### Label customization
 
 ```swift
@@ -189,6 +176,24 @@ var fontFamilyCustomisation = PayU3DS2FontFamilyCustomisation(
     subTextFontFamily: "Roboto-Regular"
 )
 ```
+
+### UI Customization integration
+
+```
+var uiCustomisation = PayU3DS2UICustomisation(
+        buttonCustomisation: buttonCustomisation,
+        labelCustomisation: labelCustomisation,
+        textBoxCustomisation: textBoxCustomisation,
+        toolbarCustomisation: toolbarCustomisation,
+        fontFamilyCustomisation: fontFamilyCustomisation,
+        textCustomisation: textCustomisation
+    )
+config.uiCustomisation = uiCustomisation
+```
+
+<br />
+
+<br />
 
 > 🚧 3DS Warnings:
 >
@@ -301,34 +306,39 @@ paymentParam.bankCode = "<Bank Code>" // Bank code for EMI (e.g., EMI03)
 
 > 📘 All the parameters are mandatory
 
-| Parameter       | Description                   |
-| --------------- | ----------------------------- |
-| `key`           | Merchant key issued by PayU   |
-| `transactionId` | Unique transaction identifier |
-| `amount`        | Transaction amount            |
-| `productInfo`   | Product description           |
-| `firstName`     | Customer first name           |
-| `email`         | Customer email                |
-| `phone`         | Customer phone number         |
-| `surl`          | Success URL                   |
-| `furl`          | Failure URL                   |
+| Parameter                 | Description                                                             |
+| :------------------------ | :---------------------------------------------------------------------- |
+| key `mandatory`           | Merchant key issued by PayU                                             |
+| transactionId `mandatory` | Unique transaction identifier                                           |
+| amount `mandatory`        | Transaction amount                                                      |
+| productInfo `mandatory`   | Product description                                                     |
+| firstName `mandatory`     | Customer first name                                                     |
+| email `mandatory`         | Customer email                                                          |
+| phone `mandatory`         | Customer phone number                                                   |
+| surl `mandatory`          | Success URL                                                             |
+| furl  `mandatory`         | Failure URL                                                             |
+| udfs.udf1 `optional`      | `String` User-defined field, Merchant can store their customer ID, etc. |
+| udfs.udf2`optional`       | `String` User-defined field, Merchant can store their customer ID, etc. |
+| udfs.udf3`optional`       | `String` User-defined field, Merchant can store their customer ID, etc. |
+| udfs.udf4`optional`       | `String` User-defined field, Merchant can store their customer ID, etc. |
+| udfs.udf5`optional`       | `String` User-defined field, Merchant can store their customer ID, etc. |
 
 ### Card Information
 
 > 📘 All the parameters are mandatory
 
-| Parameter      | Description                                                                                                                                                                                                                                                                                                                 |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cardNumber`   | Card number                                                                                                                                                                                                                                                                                                                 |
-| `cardName`     | Card name                                                                                                                                                                                                                                                                                                                   |
-| `nameOnCard`   | Name on card                                                                                                                                                                                                                                                                                                                |
-| `expiryMonth`  | Expiry month                                                                                                                                                                                                                                                                                                                |
-| `expiryYear`   | Expiry year                                                                                                                                                                                                                                                                                                                 |
-| `cvv`          | Card CVV                                                                                                                                                                                                                                                                                                                    |
-| userCredential | The merchant ID and a unique customer identifier.                                                                                                                                                                                                                                                                           |
-| cardToken      | A card token is a merchant-specific tokenized representation of a card. It is often used to store card information securely without exposing sensitive details. Merchants can store these tokens themselves or with a payment service provider like PayU.                                                                   |
-| networkToken   | A network token is a tokenized representation of a card provided by the card network (e.g., Visa, Mastercard). It is used for processing payments at the network level and is required for certain API processes like binInfo API 1. Network tokens are typically used when a non-DI (Direct Integration) payment gateway . |
-| cardTokenType  | Pass 1 if networkToken is passed                                                                                                                                                                                                                                                                                            |
+| Parameter      | Description                                                                                                                                                                                                                                                                                                                 |    |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :- |
+| `cardNumber`   | Card number                                                                                                                                                                                                                                                                                                                 |    |
+| `cardName`     | Card name                                                                                                                                                                                                                                                                                                                   |    |
+| `nameOnCard`   | Name on card                                                                                                                                                                                                                                                                                                                |    |
+| `expiryMonth`  | Expiry month                                                                                                                                                                                                                                                                                                                |    |
+| `expiryYear`   | Expiry year                                                                                                                                                                                                                                                                                                                 |    |
+| `cvv`          | Card CVV                                                                                                                                                                                                                                                                                                                    |    |
+| userCredential | The merchant ID and a unique customer identifier.                                                                                                                                                                                                                                                                           |    |
+| cardToken      | A card token is a merchant-specific tokenized representation of a card. It is often used to store card information securely without exposing sensitive details. Merchants can store these tokens themselves or with a payment service provider like PayU.                                                                   |    |
+| networkToken   | A network token is a tokenized representation of a card provided by the card network (e.g., Visa, Mastercard). It is used for processing payments at the network level and is required for certain API processes like binInfo API 1. Network tokens are typically used when a non-DI (Direct Integration) payment gateway . |    |
+| cardTokenType  | Pass 1 if networkToken is passed                                                                                                                                                                                                                                                                                            |    |
 
 <br />
 
@@ -389,6 +399,21 @@ enum PayU3DS2MFAStatus {
 }
 
 ```
+
+<br />
+
+### Callback Method Descriptions
+
+<br />
+
+| Method                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                                                                                                                                                                                                                                                                                                                 |
+| `onPaymentFailure`      | Called when payment fails. It will contain a failure response. This will be a JSON Object, parse response as per your need                                                                                                                                                                                                                                                                                                                                                          |
+| `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the <Anchor label="[hash-generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk)" target="_blank" href="https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk">[hash-generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk)</Anchor> |
+| `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                                                                                                                                                                                                                                            |
 
 ## Error codes
 
