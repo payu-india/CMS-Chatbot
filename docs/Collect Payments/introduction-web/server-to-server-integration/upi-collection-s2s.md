@@ -49,526 +49,505 @@ In UPI Collect, the sequence of APIs is called to follow for redirection less ex
 </Cards>
 
 <Accordion title="UPI Content Flow" icon="fa-table">
+  The following diagram illustrates the UPI content process flow from the initiation of the transaction by the customer to the success of payment.
 
-The following diagram illustrates the UPI content process flow from the initiation of the transaction by the customer to the success of payment.
+  ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/UPI-Content-Flow-1024x457.png)
 
-<Image border={false} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/UPI-Content-Flow-1024x457.png" />
+  **UPI Collect Process Steps**
 
-**UPI Collect Process Steps**
+  1. Customer selects UPI from the website or mobile app to make payment through. 
 
-1. Customer selects UPI from the website or mobile app to make payment through. 
+  2. PayU ​pre-fills the VPA address issuer to reduce customer input. ​ 
 
-2. PayU ​pre-fills the VPA address issuer to reduce customer input. ​ 
+  3. PayU verifies the customer’s VPA and shares the customer’s name.  
 
-3. PayU verifies the customer’s VPA and shares the customer’s name.  
+  4. Customer proceeds with the transaction after confirmation 
 
-4. Customer proceeds with the transaction after confirmation 
+     The customer sees a payment screen pre-filled with the amount and your name.  
 
-   The customer sees a payment screen pre-filled with the amount and your name.  
-
-5. Customer accepts the payment to complete the transaction. ​ 
-
-***
-
-## Step 1: Validate VPA
-
-This web service will let you validate VPA if it is a valid VPA or not.
-
-After the customer enters VPA on your website, you need to call this API to check for VPA validation. If VPA is valid, you need to proceed with the next step. For a sample request or response, refer to  <a href="https://docs.payu.in/reference/validate_vpa_api" target="_blank"> Validate VPA</a>.
-
-Collect the response in the  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection</a> under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to <a href="https://docs.payu.in/reference/addl_info-payment-apis#response-for-initial-server-to-server-request" target="_blank"> Additional Info for Payment APIs</a>.
-
-## Step 2: Initiate the payment to PayU
-
-To start with, the request is raised from the Merchant to PayU with the required transaction mandatory/optional parameters. This needs to be a server-to-server curl call request. This API is used for both Cards and UPI for generating a new transaction. Parameters and their descriptions are mentioned below.
-
-For the "Try It" experience, refer to <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection</a>.
-
-**PayU URL Endpoint:**
+  5. Customer accepts the payment to complete the transaction. ​ 
 
 </Accordion>
-<Accordion title="Post parameters" icon="fa-table">
 
-<PaymentAPIEnvironment />
+  ## Step 1: Validate VPA
 
-Some of the parameters are mandatory for S2S integration, and a few are optional. You need to include the following parameters.
+  This web service will let you validate VPA if it is a valid VPA or not.
 
-</Accordion>
+  After the customer enters VPA on your website, you need to call this API to check for VPA validation. If VPA is valid, you need to proceed with the next step. For a sample request or response, refer to  <a href="https://docs.payu.in/reference/validate_vpa_api" target="_blank"> Validate VPA</a>.
+
+  Collect the response in the  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection</a> under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to <a href="https://docs.payu.in/reference/addl_info-payment-apis#response-for-initial-server-to-server-request" target="_blank"> Additional Info for Payment APIs</a>.
+
+  ## Step 2: Initiate the payment to PayU
+
+  To start with, the request is raised from the Merchant to PayU with the required transaction mandatory/optional parameters. This needs to be a server-to-server curl call request. This API is used for both Cards and UPI for generating a new transaction. Parameters and their descriptions are mentioned below.
+
+  For the "Try It" experience, refer to <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection</a>.
+
+  **PayU URL Endpoint:**
+
+  <PaymentAPIEnvironment />
+
+  Some of the parameters are mandatory for S2S integration, and a few are optional. You need to include the following parameters.
+
+
 <Accordion title="Request parameters" icon="fa-table">
-
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        key
-        `mandatory`
-      </td>
-
-      <td>
-        `String` The merchant key provided by PayU must be included.
-
-        * _Reference_*: For more information on how to generate the Key and Salt, refer to any of the following:
-        * **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-        * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnid
-        `mandatory`
-      </td>
-
-      <td>
-        `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,&, ‘).
-      </td>
-
-      <td>
-        1234_abcdedf
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount
-        `mandatory`
-      </td>
-
-      <td>
-        `String` (rounded to two decimal places) This parameter must contain the amount for which QR needs to be generated. The amount should be greater than or equal to Rs.1.00.
-      </td>
-
-      <td>
-        1000
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter must contain the customer phone number (10 characters).
-      </td>
-
-      <td>
-        9876786756
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productinfo
-        `mandatory`
-      </td>
-
-      <td>
-        `String` (alphanumeric) This field must contain the product name. By default, the value is 'storefront' (max. 100 characters).
-      </td>
-
-      <td>
-        iPhone 12
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstname
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter must contain the customer's first name (max. 60 characters).
-      </td>
-
-      <td>
-        Sundar
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter must contain the customer email ID.
-      </td>
-
-      <td>
-        [hello@payu.in](mailto:hello@payu.in)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <p>surl<br /><code>mandatory</code></p>
-      </td>
-
-      <td>
-        <p><strong>String</strong> Success URL (surl) – It must contain the URL to which PayU will redirect the final response if the transaction is successful.</p>
-      </td>
-
-      <td>
-        <p><a href="https://apiplayground-response.herokuapp.com/">[https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)</a></p>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <p>furl<br /><code>mandatory</code></p>
-      </td>
-
-      <td>
-        <p><strong>String</strong> Failure URL (furl) – It must contain the URL to which PayU will redirect the final response in case of failure.</p>
-      </td>
-
-      <td>
-        <p><a href="https://apiplayground-response.herokuapp.com/">[https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)</a></p>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <p>pg<br /><code>mandatory</code></p>
-      </td>
-
-      <td>
-        <p><strong>String</strong> The payment method is specified in this field. For UPI INTENT, specify the parameter value as <strong>UPI</strong>.</p>
-      </td>
-
-      <td>
-        <p>UPI</p>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <p>bankcode<br /><code>mandatory</code></p>
-      </td>
-
-      <td>
-        <p><strong>String</strong> Each payment option is identified with a unique bank code at PayU. For UPI Collect, specify the value as <strong>UPI</strong>.</p>
-      </td>
-
-      <td>
-        <p>UPI</p>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        lastname
-        `optional`
-      </td>
-
-      <td>
-        `String` This parameter must contain the customer last name (maximum 20 characters).
-      </td>
-
-      <td>
-        Teja
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        address1
-        `optional`
-      </td>
-
-      <td>
-        `String` This parameter must contain the first line of customer address (up to 100 characters).
-      </td>
-
-      <td>
-        PayU, Bestech Business Tower, Gurgaon
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        address2
-        `optional`
-      </td>
-
-      <td>
-        `String` This parameter must contain the second line of the customer address (up to 100 characters).
-      </td>
-
-      <td>
-        Sohna Road
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        city
-        `optional`
-      </td>
-
-      <td>
-        `String` This parameter must contain the customer city (max. 50 characters).
-      </td>
-
-      <td>
-        Gurgaon
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        country
-        `optional`
-      </td>
-
-      <td>
-        `String` This parameter must contain the customer's country that is part of the address (max. 50 characters).
-      </td>
-
-      <td>
-        India
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        state
-        `optional`
-      </td>
-
-      <td>
-        String This parameter must contain the customer state that is part of the address (max 50 characters).
-      </td>
-
-      <td>
-        Haryana
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        zipcode
-        `optional`
-      </td>
-
-      <td>
-        `Numeric` This parameter must contain the customer's PIN code (6 digits).
-      </td>
-
-      <td>
-        122018
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf1
-        `optional`
-      </td>
-
-      <td>
-        `String` This parameter can include any custom information in request (up to 255 characters).
-      </td>
-
-      <td>
-        Website order
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf2
-        `optional`
-      </td>
-
-      <td>
-        `String` This parameter can include any custom information in request (up to 255 characters.).
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf3
-        `optional`
-      </td>
-
-      <td>
-        `String` This parameter can include any custom information in request.
-        (up to 255 characters.)
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf4
-        optional
-      </td>
-
-      <td>
-        `String` This parameter can include any custom information in request.
-        (up to 255 characters.)
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf5
-        `optional`
-      </td>
-
-      <td>
-        `String` This parameter can include any custom information in request.
-        (up to 255 characters.)
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        s2s_client_ip
-        `mandatory`
-      </td>
-
-      <td>
-        `Sting` This parameter must have the source IP of the user's device.
-
-        * _Note_*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        s2s_device_info
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter must have the user agent of device.
-
-        * _Note_*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txn_s2s_flow
-        `mandatory`
-      </td>
-
-      <td>
-        `String`This parameter must be posted with the values a **4** for transaction flow.
-      </td>
-
-      <td>
-        4
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        upiAppName
-        `mandatory`
-      </td>
-
-      <td>
-        `String` For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum’s expected for major apps:
-
-        * phonepe
-        * googlepay
-        * paytm
-        * bhim
-        * cred
-        * amazonpay
-        * whatsapp
-        * genericintent – For any other app apart from
-          above
-      </td>
-
-      <td>
-        phonepe
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        vpa
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Virtual Private Address. VPA can first be validated using VPA validate web service. Also, add regex where ‘@’ exists. Example: 8800411088@upi This needs to be passed in case of collect flow of UPI only.
-      </td>
-
-      <td>
-        8800411088@upi
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        hash
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to  <a href="hashing-request-and-response" target="_blank"> Generate Hash</a>.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
+  <Table align={["left","left","left"]}>
+    <thead>
+      <tr>
+        <th style={{ textAlign: "left" }}>
+          Parameter
+        </th>
+
+        <th style={{ textAlign: "left" }}>
+          Description
+        </th>
+
+        <th style={{ textAlign: "left" }}>
+          Example
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          key
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` The merchant key provided by PayU must be included.
+
+          * *Reference*\*: For more information on how to generate the Key and Salt, refer to any of the following:
+          * **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+          * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+        </td>
+
+        <td style={{ textAlign: "left" }} />
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          txnid
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,&, ‘).
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          1234\_abcdedf
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          amount
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` (rounded to two decimal places) This parameter must contain the amount for which QR needs to be generated. The amount should be greater than or equal to Rs.1.00.
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          1000
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          phone
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter must contain the customer phone number (10 characters).
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          9876786756
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          productinfo
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` (alphanumeric) This field must contain the product name. By default, the value is 'storefront' (max. 100 characters).
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          iPhone 12
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          firstname
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter must contain the customer's first name (max. 60 characters).
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Sundar
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          email
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter must contain the customer email ID.
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          [hello@payu.in](mailto:hello@payu.in)
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          <p>surl<br /><code>mandatory</code></p>
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          <p><strong>String</strong> Success URL (surl) – It must contain the URL to which PayU will redirect the final response if the transaction is successful.</p>
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          <p><a href="https://apiplayground-response.herokuapp.com/">[https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)</a></p>
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          <p>furl<br /><code>mandatory</code></p>
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          <p><strong>String</strong> Failure URL (furl) – It must contain the URL to which PayU will redirect the final response in case of failure.</p>
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          <p><a href="https://apiplayground-response.herokuapp.com/">[https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)</a></p>
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          <p>pg<br /><code>mandatory</code></p>
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          <p><strong>String</strong> The payment method is specified in this field. For UPI INTENT, specify the parameter value as <strong>UPI</strong>.</p>
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          <p>UPI</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          <p>bankcode<br /><code>mandatory</code></p>
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          <p><strong>String</strong> Each payment option is identified with a unique bank code at PayU. For UPI Collect, specify the value as <strong>UPI</strong>.</p>
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          <p>UPI</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          lastname
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter must contain the customer last name (maximum 20 characters).
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Teja
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          address1
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter must contain the first line of customer address (up to 100 characters).
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          PayU, Bestech Business Tower, Gurgaon
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          address2
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter must contain the second line of the customer address (up to 100 characters).
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Sohna Road
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          city
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter must contain the customer city (max. 50 characters).
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Gurgaon
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          country
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter must contain the customer's country that is part of the address (max. 50 characters).
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          India
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          state
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          String This parameter must contain the customer state that is part of the address (max 50 characters).
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Haryana
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          zipcode
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `Numeric` This parameter must contain the customer's PIN code (6 digits).
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          122018
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          udf1
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter can include any custom information in request (up to 255 characters).
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          Website order
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          udf2
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter can include any custom information in request (up to 255 characters.).
+        </td>
+
+        <td style={{ textAlign: "left" }} />
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          udf3
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter can include any custom information in request.
+          (up to 255 characters.)
+        </td>
+
+        <td style={{ textAlign: "left" }} />
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          udf4
+          optional
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter can include any custom information in request.
+          (up to 255 characters.)
+        </td>
+
+        <td style={{ textAlign: "left" }} />
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          udf5
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter can include any custom information in request.
+          (up to 255 characters.)
+        </td>
+
+        <td style={{ textAlign: "left" }} />
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          s2s\_client\_ip
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `Sting` This parameter must have the source IP of the user's device.
+
+          * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        </td>
+
+        <td style={{ textAlign: "left" }} />
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          s2s\_device\_info
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter must have the user agent of device.
+
+          * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        </td>
+
+        <td style={{ textAlign: "left" }} />
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          txn\_s2s\_flow
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String`This parameter must be posted with the values a **4** for transaction flow.
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          4
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          upiAppName
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum’s expected for major apps:
+
+          * phonepe
+          * googlepay
+          * paytm
+          * bhim
+          * cred
+          * amazonpay
+          * whatsapp
+          * genericintent – For any other app apart from
+            above
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          phonepe
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          vpa
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` Virtual Private Address. VPA can first be validated using VPA validate web service. Also, add regex where ‘@’ exists. Example: 8800411088\@upi This needs to be passed in case of collect flow of UPI only.
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          8800411088\@upi
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          hash
+          `mandatory`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to  <a href="hashing-request-and-response" target="_blank"> Generate Hash</a>.
+        </td>
+
+        <td style={{ textAlign: "left" }} />
+      </tr>
+    </tbody>
+  </Table>
 </Accordion>
+
 <Accordion title="Understanding Hashing and sample code" icon="fa-code">
   <HashingRequestParameters />
 
@@ -590,30 +569,28 @@ The response to this call would be a base64 encoded JSON containing transaction 
 <ReverseHashing />
 
 <Accordion title="Sample response" icon="fa-table">
+  ```plaintext
+  eyJzdGF0dXMiOiJzdWNjZXNzIiwicmVzdWx0Ijp7Im1paHBheWlkIjoiNzYwMTI2NTU4NSIsIm1vZGUiOiJVUEkiLCJzdGF0dXMiOiJwZW5kaW5nIiwia2V5IjoiTWVyY2hhbnRLZXkiLCJ0eG5pZCI6IjZiMmYzZDY4NWVjMWJiYTdkZDRiIiwiYW1vdW50IjoiMTAuMDAiLCJhZGRlZG9uIjoiMjAxOC0xMS0wMSAxOTo1NjozMiIsInByb2R1Y3RpbmZvIjoiUHJvZHVjdCBJbmZvIiwiZmlyc3RuYW1lIjoiUGF5dS1Vc2VyIiwibGFzdG5hbWUiOiIiLCJhZGRyZXNzMSI6IiIsImFkZHJlc3MyIjoiIiwiY2l0eSI6IiIsInN0YXRlIjoiIiwiY291bnRyeSI6IiIsInppcGNvZGUiOiIiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJwaG9uZSI6IjEyMzQ1Njc4OTAiLCJ1ZGYxIjoiIiwidWRmMiI6IiIsInVkZjMiOiIiLCJ1ZGY0IjoiIiwidWRmNSI6IiIsInVkZjYiOiIiLCJ1ZGY3IjoiIiwidWRmOCI6IiIsInVkZjkiOiIiLCJ1ZGYxMCI6IiIsImNhcmRfdG9rZW4iOiIiLCJjYXJkX25vIjoiIiwiZmllbGQwIjoiIiwiZmllbGQxIjoiYWJjZEB1cGkiLCJmaWVsZDIiOiIiLCJmaWVsZDMiOiIiLCJmaWVsZDQiOiIiLCJmaWVsZDUiOiIiLCJmaWVsZDYiOiIiLCJmaWVsZDciOiIiLCJmaWVsZDgiOiIiLCJmaWVsZDkiOiIiLCJwYXltZW50X3NvdXJjZSI6InBheXVQdXJlUzJTIiwiUEdfVFlQRSI6IkFYSVNVIiwiZXJyb3IiOiJFMDAwIiwiZXJyb3JfTWVzc2FnZSI6Ik5vIEVycm9yIiwibmV0X2Ftb3VudF9kZWJpdCI6IjAiLCJhZGRpdGlvbmFsQ2hhcmdlcyI6IjI5LjUiLCJ1bm1hcHBlZHN0YXR1cyI6ImluIHByb2dyZXNzIiwiaGFzaCI6IjU2NzQ3OGE5ZDUyMzhlZTIyZGFhMDM2ZWMwMjAxMzk0OGY2YjgwNGUzMWNhYzNkYmQyMDc1NmU5ZjFkNDFlMjI4ZTQxYzJkYjcwZmU4ZWRlZmMyNDBiOTQwODZlN2QzN2Y4ZDQ2OTA4MzU4Y2NjNzA4Y2JjNWVlNTJjMjlkYWEwIiwiYmFua19yZWZfbm8iOiJBWEk5MTEwMDAwMDAwMDQ5MTg0NzY2MTU0MTc5OTcwNTY5OCIsImJhbmtfcmVmX251bSI6IkFYSTkxMTAwMDAwMDAwNDkxODQ3NjYxNTQxNzk5NzA1Njk4IiwiYmFua2NvZGUiOiJVUEkiLCJzdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UiLCJjdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UiLCJmdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UifX0
+  ```
 
-```plaintext
-eyJzdGF0dXMiOiJzdWNjZXNzIiwicmVzdWx0Ijp7Im1paHBheWlkIjoiNzYwMTI2NTU4NSIsIm1vZGUiOiJVUEkiLCJzdGF0dXMiOiJwZW5kaW5nIiwia2V5IjoiTWVyY2hhbnRLZXkiLCJ0eG5pZCI6IjZiMmYzZDY4NWVjMWJiYTdkZDRiIiwiYW1vdW50IjoiMTAuMDAiLCJhZGRlZG9uIjoiMjAxOC0xMS0wMSAxOTo1NjozMiIsInByb2R1Y3RpbmZvIjoiUHJvZHVjdCBJbmZvIiwiZmlyc3RuYW1lIjoiUGF5dS1Vc2VyIiwibGFzdG5hbWUiOiIiLCJhZGRyZXNzMSI6IiIsImFkZHJlc3MyIjoiIiwiY2l0eSI6IiIsInN0YXRlIjoiIiwiY291bnRyeSI6IiIsInppcGNvZGUiOiIiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJwaG9uZSI6IjEyMzQ1Njc4OTAiLCJ1ZGYxIjoiIiwidWRmMiI6IiIsInVkZjMiOiIiLCJ1ZGY0IjoiIiwidWRmNSI6IiIsInVkZjYiOiIiLCJ1ZGY3IjoiIiwidWRmOCI6IiIsInVkZjkiOiIiLCJ1ZGYxMCI6IiIsImNhcmRfdG9rZW4iOiIiLCJjYXJkX25vIjoiIiwiZmllbGQwIjoiIiwiZmllbGQxIjoiYWJjZEB1cGkiLCJmaWVsZDIiOiIiLCJmaWVsZDMiOiIiLCJmaWVsZDQiOiIiLCJmaWVsZDUiOiIiLCJmaWVsZDYiOiIiLCJmaWVsZDciOiIiLCJmaWVsZDgiOiIiLCJmaWVsZDkiOiIiLCJwYXltZW50X3NvdXJjZSI6InBheXVQdXJlUzJTIiwiUEdfVFlQRSI6IkFYSVNVIiwiZXJyb3IiOiJFMDAwIiwiZXJyb3JfTWVzc2FnZSI6Ik5vIEVycm9yIiwibmV0X2Ftb3VudF9kZWJpdCI6IjAiLCJhZGRpdGlvbmFsQ2hhcmdlcyI6IjI5LjUiLCJ1bm1hcHBlZHN0YXR1cyI6ImluIHByb2dyZXNzIiwiaGFzaCI6IjU2NzQ3OGE5ZDUyMzhlZTIyZGFhMDM2ZWMwMjAxMzk0OGY2YjgwNGUzMWNhYzNkYmQyMDc1NmU5ZjFkNDFlMjI4ZTQxYzJkYjcwZmU4ZWRlZmMyNDBiOTQwODZlN2QzN2Y4ZDQ2OTA4MzU4Y2NjNzA4Y2JjNWVlNTJjMjlkYWEwIiwiYmFua19yZWZfbm8iOiJBWEk5MTEwMDAwMDAwMDQ5MTg0NzY2MTU0MTc5OTcwNTY5OCIsImJhbmtfcmVmX251bSI6IkFYSTkxMTAwMDAwMDAwNDkxODQ3NjYxNTQxNzk5NzA1Njk4IiwiYmFua2NvZGUiOiJVUEkiLCJzdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UiLCJjdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UiLCJmdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UifX0
-```
+  **Base64 decoded response:**
 
-**Base64 decoded response:**
+  ```plaintext
+  {"status":"success","result":{"mihpayid":"7601265585","mode":"UPI","status":"pending","key":"MerchantKey","txnid":"6b2f3d685ec1bba7dd4b","amount":"10.00","addedon":"2018-11-01
+  19:56:32","productinfo":"ProductInfo","firstname":"PayuUser","lastname":"","address1":"","address2":"","city":"","state":"","country":"","zipcode":"","email":"test@example.com","phone":"1234567890","udf1":"","udf2":"","udf3":"","udf4":"","udf5":"","udf6":"","udf7":"","udf8":"","udf9":"","udf10":"","card_token":"","card_no":"","field0":"","field1":"abcd@upi","field2":"","field3":"","field4":"","field5":"","field6":"","field7":"","field8":"","field9":"","payment_source":"payuPureS2S","PG_TYPE":"AXISU","error":"E000","error_Message":"NoError","net_amount_debit":"0","additionalCharges":"29.5","unmappedstatus":"inprogress","hash":"567478a9d5238ee22daa036ec02013948f6b804e31cac3dbd20756e9f1d41e228e41c2db70fe8edefc240b94086e7d37f8d46908358ccc708cbc5ee52c29daa0","bank_ref_no":"AXI91100000000491847661541799705698","bank_ref_num":"AXI91100000000491847661541799705698","bankcode":"UPI","surl":"https:\/\/admin.payu.in\/test_response","curl":"https:\/\/admin.payu.in\/test_response","furl":"https:\/\/admin.payu.in\/test_response"}}
+  ```
 
-```plaintext
-{"status":"success","result":{"mihpayid":"7601265585","mode":"UPI","status":"pending","key":"MerchantKey","txnid":"6b2f3d685ec1bba7dd4b","amount":"10.00","addedon":"2018-11-01
-19:56:32","productinfo":"ProductInfo","firstname":"PayuUser","lastname":"","address1":"","address2":"","city":"","state":"","country":"","zipcode":"","email":"test@example.com","phone":"1234567890","udf1":"","udf2":"","udf3":"","udf4":"","udf5":"","udf6":"","udf7":"","udf8":"","udf9":"","udf10":"","card_token":"","card_no":"","field0":"","field1":"abcd@upi","field2":"","field3":"","field4":"","field5":"","field6":"","field7":"","field8":"","field9":"","payment_source":"payuPureS2S","PG_TYPE":"AXISU","error":"E000","error_Message":"NoError","net_amount_debit":"0","additionalCharges":"29.5","unmappedstatus":"inprogress","hash":"567478a9d5238ee22daa036ec02013948f6b804e31cac3dbd20756e9f1d41e228e41c2db70fe8edefc240b94086e7d37f8d46908358ccc708cbc5ee52c29daa0","bank_ref_no":"AXI91100000000491847661541799705698","bank_ref_num":"AXI91100000000491847661541799705698","bankcode":"UPI","surl":"https:\/\/admin.payu.in\/test_response","curl":"https:\/\/admin.payu.in\/test_response","furl":"https:\/\/admin.payu.in\/test_response"}}
-```
+  > 📘 Note:
+  >
+  > In case of an invalid VPA, the final result will be a JSON in plain text as follows.
 
-> 📘 Note:
->
-> In case of an invalid VPA, the final result will be a JSON in plain text as follows.
+  ```plaintext
+  {"result":null,"status":"failed","error":"E1617","message":"Invalid vpa"}
+  ```
 
-```plaintext
-{"result":null,"status":"failed","error":"E1617","message":"Invalid vpa"}
-```
+  ## Step 5. Verify the payment
 
-## Step 5. Verify the payment
+  <Verify_Payment_Tabs />
 
-<Verify_Payment_Tabs />
-
-<br />
-
+  <br />
 </Accordion>
