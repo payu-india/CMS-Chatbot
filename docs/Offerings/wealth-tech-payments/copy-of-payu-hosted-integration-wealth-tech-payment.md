@@ -1,5 +1,5 @@
 ---
-title: Copy of PayU Hosted Integration - Wealth Tech Payment
+title: Merchant Hosted Integration - Wealth Tech Payment
 deprecated: false
 hidden: false
 metadata:
