@@ -1,5 +1,5 @@
 ---
-title: Copy of Collect Payment for WealthTech - PayU Hosted Integration
+title: Collect Payment for WealthTech - Merchant Hosted Integration
 deprecated: false
 hidden: true
 metadata:
