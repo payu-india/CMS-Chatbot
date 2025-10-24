@@ -1,5 +1,5 @@
 ---
-title: 'Collect Payment for WealthTech '
+title: Collect Payment for WealthTech - PayU Hosted Integration
 deprecated: false
 hidden: true
 metadata:
