@@ -7,20 +7,14 @@ metadata:
 ---
 This part of the document outlines the integration process for Wealth Tech merchants to implement mutual fund payment flows using PayU's payment infrastructure in compliance with SEBI regulations.
 
-## Regulatory Compliance
+## Regulatory Requirements
 
-**SEBI Requirements:**
-• Payment aggregators must report investment transactions for:
+**SEBI Requirements:** Payment aggregators must report investment transactions for:
 
 * Stock brokers
 * Mutual fund distributors
   • Certain fields are mandatory for regulatory compliance
   • Additional data capture required for exchange/regulatory reporting
-
-**Technical Implementation:**
-• PayU's payment APIs accept extra fields (`wt_params`)
-• Captures additional data needed for AMCs and exchange platforms
-• Ensures compliance with exchange requirements
 
 ## Use Case
 
