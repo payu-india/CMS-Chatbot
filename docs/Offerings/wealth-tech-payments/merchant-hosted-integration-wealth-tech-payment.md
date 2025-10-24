@@ -76,7 +76,6 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
     }
     ```
   </Accordion>
-</Accordion>
 
 <Accordion title="Wealth Tech object (wtParams) fields Description" icon="fa-cog">
   <Accordion title="Sample JSON" icon="fa-code">
@@ -321,6 +320,7 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
         ***
       </Accordion>
     </Accordion>
+  </Accordion>
   </Accordion>
 </Accordion>
 
