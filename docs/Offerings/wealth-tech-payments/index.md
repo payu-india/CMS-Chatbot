@@ -49,4 +49,5 @@ The standardized WealthTech payment flow enables platforms to:
 
 Integrate Wealth Tech with PayU Hosted Checkout or Merchant Hosted Checkout as mentioned in the following sections:
 
-* <br />
+* [PayU Hosted Integration - Wealth Tech Payment](doc:payu-hosted-integration-wealth-tech-payment)
+* [Merchant Hosted Integration - Wealth Tech Payment](doc:merchant-hosted-integration-wealth-tech-payment)
