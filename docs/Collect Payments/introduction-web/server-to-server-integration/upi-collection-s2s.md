@@ -48,7 +48,7 @@ In UPI Collect, the sequence of APIs is called to follow for redirection less ex
   <br />
 </Cards>
 
-### UPI Content Flow
+<Accordion title="UPI Content Flow" icon="fa-table">
 
 The following diagram illustrates the UPI content process flow from the initiation of the transaction by the customer to the success of payment.
 
@@ -86,13 +86,15 @@ For the "Try It" experience, refer to <a href="https://docs.payu.in/reference/_p
 
 **PayU URL Endpoint:**
 
-### Post parameters
+</Accordion>
+<Accordion title="Post parameters" icon="fa-table">
 
 <PaymentAPIEnvironment />
 
 Some of the parameters are mandatory for S2S integration, and a few are optional. You need to include the following parameters.
 
-### Request parameters
+</Accordion>
+<Accordion title="Request parameters" icon="fa-table">
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -566,6 +568,7 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
   </tbody>
 </Table>
 
+</Accordion>
 <Accordion title="Understanding Hashing and sample code" icon="fa-code">
   <HashingRequestParameters />
 
@@ -573,7 +576,6 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
 
   <HashingSample />
 </Accordion>
-
 
 ## Step 3: Check UPI transaction status
 
@@ -587,7 +589,7 @@ The response to this call would be a base64 encoded JSON containing transaction 
 
 <ReverseHashing />
 
-### Sample response
+<Accordion title="Sample response" icon="fa-table">
 
 ```plaintext
 eyJzdGF0dXMiOiJzdWNjZXNzIiwicmVzdWx0Ijp7Im1paHBheWlkIjoiNzYwMTI2NTU4NSIsIm1vZGUiOiJVUEkiLCJzdGF0dXMiOiJwZW5kaW5nIiwia2V5IjoiTWVyY2hhbnRLZXkiLCJ0eG5pZCI6IjZiMmYzZDY4NWVjMWJiYTdkZDRiIiwiYW1vdW50IjoiMTAuMDAiLCJhZGRlZG9uIjoiMjAxOC0xMS0wMSAxOTo1NjozMiIsInByb2R1Y3RpbmZvIjoiUHJvZHVjdCBJbmZvIiwiZmlyc3RuYW1lIjoiUGF5dS1Vc2VyIiwibGFzdG5hbWUiOiIiLCJhZGRyZXNzMSI6IiIsImFkZHJlc3MyIjoiIiwiY2l0eSI6IiIsInN0YXRlIjoiIiwiY291bnRyeSI6IiIsInppcGNvZGUiOiIiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJwaG9uZSI6IjEyMzQ1Njc4OTAiLCJ1ZGYxIjoiIiwidWRmMiI6IiIsInVkZjMiOiIiLCJ1ZGY0IjoiIiwidWRmNSI6IiIsInVkZjYiOiIiLCJ1ZGY3IjoiIiwidWRmOCI6IiIsInVkZjkiOiIiLCJ1ZGYxMCI6IiIsImNhcmRfdG9rZW4iOiIiLCJjYXJkX25vIjoiIiwiZmllbGQwIjoiIiwiZmllbGQxIjoiYWJjZEB1cGkiLCJmaWVsZDIiOiIiLCJmaWVsZDMiOiIiLCJmaWVsZDQiOiIiLCJmaWVsZDUiOiIiLCJmaWVsZDYiOiIiLCJmaWVsZDciOiIiLCJmaWVsZDgiOiIiLCJmaWVsZDkiOiIiLCJwYXltZW50X3NvdXJjZSI6InBheXVQdXJlUzJTIiwiUEdfVFlQRSI6IkFYSVNVIiwiZXJyb3IiOiJFMDAwIiwiZXJyb3JfTWVzc2FnZSI6Ik5vIEVycm9yIiwibmV0X2Ftb3VudF9kZWJpdCI6IjAiLCJhZGRpdGlvbmFsQ2hhcmdlcyI6IjI5LjUiLCJ1bm1hcHBlZHN0YXR1cyI6ImluIHByb2dyZXNzIiwiaGFzaCI6IjU2NzQ3OGE5ZDUyMzhlZTIyZGFhMDM2ZWMwMjAxMzk0OGY2YjgwNGUzMWNhYzNkYmQyMDc1NmU5ZjFkNDFlMjI4ZTQxYzJkYjcwZmU4ZWRlZmMyNDBiOTQwODZlN2QzN2Y4ZDQ2OTA4MzU4Y2NjNzA4Y2JjNWVlNTJjMjlkYWEwIiwiYmFua19yZWZfbm8iOiJBWEk5MTEwMDAwMDAwMDQ5MTg0NzY2MTU0MTc5OTcwNTY5OCIsImJhbmtfcmVmX251bSI6IkFYSTkxMTAwMDAwMDAwNDkxODQ3NjYxNTQxNzk5NzA1Njk4IiwiYmFua2NvZGUiOiJVUEkiLCJzdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UiLCJjdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UiLCJmdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UifX0
@@ -613,3 +615,5 @@ eyJzdGF0dXMiOiJzdWNjZXNzIiwicmVzdWx0Ijp7Im1paHBheWlkIjoiNzYwMTI2NTU4NSIsIm1vZGUi
 <Verify_Payment_Tabs />
 
 <br />
+
+</Accordion>
