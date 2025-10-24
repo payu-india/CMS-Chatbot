@@ -66,29 +66,27 @@ In UPI Collect, the sequence of APIs is called to follow for redirection less ex
      The customer sees a payment screen pre-filled with the amount and your name.  
 
   5. Customer accepts the payment to complete the transaction. ​ 
-
 </Accordion>
 
-  ## Step 1: Validate VPA
+## Step 1: Validate VPA
 
-  This web service will let you validate VPA if it is a valid VPA or not.
+This web service will let you validate VPA if it is a valid VPA or not.
 
-  After the customer enters VPA on your website, you need to call this API to check for VPA validation. If VPA is valid, you need to proceed with the next step. For a sample request or response, refer to  <a href="https://docs.payu.in/reference/validate_vpa_api" target="_blank"> Validate VPA</a>.
+After the customer enters VPA on your website, you need to call this API to check for VPA validation. If VPA is valid, you need to proceed with the next step. For a sample request or response, refer to  <a href="https://docs.payu.in/reference/validate_vpa_api" target="_blank"> Validate VPA</a>.
 
-  Collect the response in the  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection</a> under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to <a href="https://docs.payu.in/reference/addl_info-payment-apis#response-for-initial-server-to-server-request" target="_blank"> Additional Info for Payment APIs</a>.
+Collect the response in the  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection</a> under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to <a href="https://docs.payu.in/reference/addl_info-payment-apis#response-for-initial-server-to-server-request" target="_blank"> Additional Info for Payment APIs</a>.
 
-  ## Step 2: Initiate the payment to PayU
+## Step 2: Initiate the payment to PayU
 
-  To start with, the request is raised from the Merchant to PayU with the required transaction mandatory/optional parameters. This needs to be a server-to-server curl call request. This API is used for both Cards and UPI for generating a new transaction. Parameters and their descriptions are mentioned below.
+To start with, the request is raised from the Merchant to PayU with the required transaction mandatory/optional parameters. This needs to be a server-to-server curl call request. This API is used for both Cards and UPI for generating a new transaction. Parameters and their descriptions are mentioned below.
 
-  For the "Try It" experience, refer to <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection</a>.
+For the "Try It" experience, refer to <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection</a>.
 
-  **PayU URL Endpoint:**
+**PayU URL Endpoint:**
 
-  <PaymentAPIEnvironment />
+<PaymentAPIEnvironment />
 
-  Some of the parameters are mandatory for S2S integration, and a few are optional. You need to include the following parameters.
-
+Some of the parameters are mandatory for S2S integration, and a few are optional. You need to include the following parameters.
 
 <Accordion title="Request parameters" icon="fa-table">
   <Table align={["left","left","left"]}>
@@ -566,7 +564,9 @@ Check the UPI transaction status using the **Verify Payment API** (verify_paym
 
 The response to this call would be a base64 encoded JSON containing transaction ID and other transaction details.
 
-<ReverseHashing />
+<Accordion title="Reverse hashing" icon="fa-info-circle">
+  <ReverseHashing />
+</Accordion>
 
 <Accordion title="Sample response" icon="fa-table">
   ```plaintext
