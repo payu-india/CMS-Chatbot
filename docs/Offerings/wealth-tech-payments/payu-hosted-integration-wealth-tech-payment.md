@@ -74,7 +74,6 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
     }
     ```
   </Accordion>
-</Accordion>
 
 <Accordion title="Wealth Tech object (wtParams) fields Description" icon="fa-cog">
   <Accordion title="Sample JSON" icon="fa-code">
@@ -320,6 +319,7 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
       </Accordion>
     </Accordion>
   </Accordion>
+  </Accordion>
 </Accordion>
 
 <Accordion title="Hash Calculation" icon="fa-key">
@@ -374,371 +374,370 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
   --data-urlencode 'hash=a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0' \
   --data-urlencode 'more_info={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
   ```
-```python
-import requests
+  ```python
+  import requests
 
-# Define the URL and headers
-url = "https://test.payu.in/_payment"
-headers = {
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    'Content-Type': 'application/x-www-form-urlencoded'
-}
+  # Define the URL and headers
+  url = "https://test.payu.in/_payment"
+  headers = {
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      'Content-Type': 'application/x-www-form-urlencoded'
+  }
 
-# Define the form data
-form_data = {
-    'key': 'KOEfPI',
-    'txnid': '7f41f520f71b',
-    'amount': '50000',
-    'productinfo': 'Mutual Fund',
-    'firstname': 'John',
-    'email': 'john@example.com',
-    'phone': '9876543210',
-    'pg': 'NB',
-    'bankcode': 'AXIB',
-    'surl': 'https://apiplayground-response.herokuapp.com/',
-    'furl': 'https://apiplayground-response.herokuapp.com/',
-    'api_version': '21',
-    'hash': 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0',
-    'more_info': '{"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
-}
+  # Define the form data
+  form_data = {
+      'key': 'KOEfPI',
+      'txnid': '7f41f520f71b',
+      'amount': '50000',
+      'productinfo': 'Mutual Fund',
+      'firstname': 'John',
+      'email': 'john@example.com',
+      'phone': '9876543210',
+      'pg': 'NB',
+      'bankcode': 'AXIB',
+      'surl': 'https://apiplayground-response.herokuapp.com/',
+      'furl': 'https://apiplayground-response.herokuapp.com/',
+      'api_version': '21',
+      'hash': 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0',
+      'more_info': '{"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
+  }
 
-try:
-    # Make the POST request
-    response = requests.post(url, headers=headers, data=form_data)
-    
-    # Print response headers and content (equivalent to curl -i)
-    print("Response Headers:")
-    for header, value in response.headers.items():
-        print(f"{header}: {value}")
-    
-    print("\nResponse Content:")
-    print(response.text)
-    
-    print(f"\nStatus Code: {response.status_code}")
-    
-except requests.exceptions.RequestException as e:
-    print(f"Error occurred: {e}")
-```
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+  try:
+      # Make the POST request
+      response = requests.post(url, headers=headers, data=form_data)
+      
+      # Print response headers and content (equivalent to curl -i)
+      print("Response Headers:")
+      for header, value in response.headers.items():
+          print(f"{header}: {value}")
+      
+      print("\nResponse Content:")
+      print(response.text)
+      
+      print(f"\nStatus Code: {response.status_code}")
+      
+  except requests.exceptions.RequestException as e:
+      print(f"Error occurred: {e}")
+  ```
+  ```csharp
+  using System;
+  using System.Collections.Generic;
+  using System.Net.Http;
+  using System.Text;
+  using System.Threading.Tasks;
 
-class Program
-{
-    private static readonly HttpClient client = new HttpClient();
+  class Program
+  {
+      private static readonly HttpClient client = new HttpClient();
 
-    static async Task Main(string[] args)
-    {
-        try
-        {
-            await MakePayURequest();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error occurred: {ex.Message}");
-        }
-    }
+      static async Task Main(string[] args)
+      {
+          try
+          {
+              await MakePayURequest();
+          }
+          catch (Exception ex)
+          {
+              Console.WriteLine($"Error occurred: {ex.Message}");
+          }
+      }
 
-    static async Task MakePayURequest()
-    {
-        var url = "https://test.payu.in/_payment";
-        
-        // Set headers
-        client.DefaultRequestHeaders.Clear();
-        client.DefaultRequestHeaders.Add("Accept", 
-            "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+      static async Task MakePayURequest()
+      {
+          var url = "https://test.payu.in/_payment";
+          
+          // Set headers
+          client.DefaultRequestHeaders.Clear();
+          client.DefaultRequestHeaders.Add("Accept", 
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 
-        // Prepare form data
-        var formParams = new List<KeyValuePair<string, string>>
-        {
-            new KeyValuePair<string, string>("key", "KOEfPI"),
-            new KeyValuePair<string, string>("txnid", "7f41f520f71b"),
-            new KeyValuePair<string, string>("amount", "50000"),
-            new KeyValuePair<string, string>("productinfo", "Mutual Fund"),
-            new KeyValuePair<string, string>("firstname", "John"),
-            new KeyValuePair<string, string>("email", "john@example.com"),
-            new KeyValuePair<string, string>("phone", "9876543210"),
-            new KeyValuePair<string, string>("pg", "NB"),
-            new KeyValuePair<string, string>("bankcode", "AXIB"),
-            new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
-            new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
-            new KeyValuePair<string, string>("api_version", "21"),
-            new KeyValuePair<string, string>("hash", "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0"),
-            new KeyValuePair<string, string>("more_info", 
-                "{\"wtParams\":[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]}")
-        };
+          // Prepare form data
+          var formParams = new List<KeyValuePair<string, string>>
+          {
+              new KeyValuePair<string, string>("key", "KOEfPI"),
+              new KeyValuePair<string, string>("txnid", "7f41f520f71b"),
+              new KeyValuePair<string, string>("amount", "50000"),
+              new KeyValuePair<string, string>("productinfo", "Mutual Fund"),
+              new KeyValuePair<string, string>("firstname", "John"),
+              new KeyValuePair<string, string>("email", "john@example.com"),
+              new KeyValuePair<string, string>("phone", "9876543210"),
+              new KeyValuePair<string, string>("pg", "NB"),
+              new KeyValuePair<string, string>("bankcode", "AXIB"),
+              new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
+              new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
+              new KeyValuePair<string, string>("api_version", "21"),
+              new KeyValuePair<string, string>("hash", "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0"),
+              new KeyValuePair<string, string>("more_info", 
+                  "{\"wtParams\":[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]}")
+          };
 
-        var formContent = new FormUrlEncodedContent(formParams);
+          var formContent = new FormUrlEncodedContent(formParams);
 
-        // Make the POST request
-        HttpResponseMessage response = await client.PostAsync(url, formContent);
+          // Make the POST request
+          HttpResponseMessage response = await client.PostAsync(url, formContent);
 
-        // Print response headers
-        Console.WriteLine("Response Headers:");
-        foreach (var header in response.Headers)
-        {
-            Console.WriteLine($"{header.Key}: {string.Join(", ", header.Value)}");
-        }
+          // Print response headers
+          Console.WriteLine("Response Headers:");
+          foreach (var header in response.Headers)
+          {
+              Console.WriteLine($"{header.Key}: {string.Join(", ", header.Value)}");
+          }
 
-        // Print response content
-        string responseBody = await response.Content.ReadAsStringAsync();
-        Console.WriteLine("\nResponse Content:");
-        Console.WriteLine(responseBody);
-        
-        Console.WriteLine($"\nStatus Code: {response.StatusCode}");
-    }
-}
-```
-```javascript
-async function makePayURequest() {
-    const url = 'https://test.payu.in/_payment';
-    
-    // Prepare form data
-    const formData = new URLSearchParams({
-        'key': 'KOEfPI',
-        'txnid': '7f41f520f71b',
-        'amount': '50000',
-        'productinfo': 'Mutual Fund',
-        'firstname': 'John',
-        'email': 'john@example.com',
-        'phone': '9876543210',
-        'pg': 'NB',
-        'bankcode': 'AXIB',
-        'surl': 'https://apiplayground-response.herokuapp.com/',
-        'furl': 'https://apiplayground-response.herokuapp.com/',
-        'api_version': '21',
-        'hash': 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0',
-        'more_info': JSON.stringify({
-            "wtParams": [{
-                "type": "mutual_fund",
-                "plan": "GD",
-                "amount": "50000",
-                "option": "G",
-                "scheme": "LT",
-                "receipt": "77407",
-                "mf_member_id": "123445",
-                "mf_user_id": "77407",
-                "mf_partner": "cams",
-                "mf_investment_type": "L",
-                "mf_amc_code": "UTB"
-            }]
-        })
-    });
+          // Print response content
+          string responseBody = await response.Content.ReadAsStringAsync();
+          Console.WriteLine("\nResponse Content:");
+          Console.WriteLine(responseBody);
+          
+          Console.WriteLine($"\nStatus Code: {response.StatusCode}");
+      }
+  }
+  ```
+  ```javascript
+  async function makePayURequest() {
+      const url = 'https://test.payu.in/_payment';
+      
+      // Prepare form data
+      const formData = new URLSearchParams({
+          'key': 'KOEfPI',
+          'txnid': '7f41f520f71b',
+          'amount': '50000',
+          'productinfo': 'Mutual Fund',
+          'firstname': 'John',
+          'email': 'john@example.com',
+          'phone': '9876543210',
+          'pg': 'NB',
+          'bankcode': 'AXIB',
+          'surl': 'https://apiplayground-response.herokuapp.com/',
+          'furl': 'https://apiplayground-response.herokuapp.com/',
+          'api_version': '21',
+          'hash': 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0',
+          'more_info': JSON.stringify({
+              "wtParams": [{
+                  "type": "mutual_fund",
+                  "plan": "GD",
+                  "amount": "50000",
+                  "option": "G",
+                  "scheme": "LT",
+                  "receipt": "77407",
+                  "mf_member_id": "123445",
+                  "mf_user_id": "77407",
+                  "mf_partner": "cams",
+                  "mf_investment_type": "L",
+                  "mf_amc_code": "UTB"
+              }]
+          })
+      });
 
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: formData
-    };
+      const requestOptions = {
+          method: 'POST',
+          headers: {
+              'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+              'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: formData
+      };
 
-    try {
-        const response = await fetch(url, requestOptions);
-        
-        // Print response headers
-        console.log('Response Headers:');
-        response.headers.forEach((value, key) => {
-            console.log(`${key}: ${value}`);
-        });
-        
-        // Get and print response content
-        const responseText = await response.text();
-        console.log('\nResponse Content:');
-        console.log(responseText);
-        
-        console.log(`\nStatus Code: ${response.status}`);
-        
-        return response;
-        
-    } catch (error) {
-        console.error('Error occurred:', error);
-        throw error;
-    }
-}
+      try {
+          const response = await fetch(url, requestOptions);
+          
+          // Print response headers
+          console.log('Response Headers:');
+          response.headers.forEach((value, key) => {
+              console.log(`${key}: ${value}`);
+          });
+          
+          // Get and print response content
+          const responseText = await response.text();
+          console.log('\nResponse Content:');
+          console.log(responseText);
+          
+          console.log(`\nStatus Code: ${response.status}`);
+          
+          return response;
+          
+      } catch (error) {
+          console.error('Error occurred:', error);
+          throw error;
+      }
+  }
 
-// Call the function
-makePayURequest()
-    .then(response => {
-        console.log('Request completed successfully');
-    })
-    .catch(error => {
-        console.error('Request failed:', error);
-    });
-```
-```java
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
+  // Call the function
+  makePayURequest()
+      .then(response => {
+          console.log('Request completed successfully');
+      })
+      .catch(error => {
+          console.error('Request failed:', error);
+      });
+  ```
+  ```java
+  import java.io.IOException;
+  import java.net.URI;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.net.URLEncoder;
+  import java.nio.charset.StandardCharsets;
+  import java.time.Duration;
+  import java.util.HashMap;
+  import java.util.Map;
 
-public class PayURequest {
-    
-    public static void main(String[] args) {
-        try {
-            makePayURequest();
-        } catch (Exception e) {
-            System.err.println("Error occurred: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-    
-    public static void makePayURequest() throws IOException, InterruptedException {
-        String url = "https://test.payu.in/_payment";
-        
-        // Prepare form data
-        Map<String, String> formData = new HashMap<>();
-        formData.put("key", "KOEfPI");
-        formData.put("txnid", "7f41f520f71b");
-        formData.put("amount", "50000");
-        formData.put("productinfo", "Mutual Fund");
-        formData.put("firstname", "John");
-        formData.put("email", "john@example.com");
-        formData.put("phone", "9876543210");
-        formData.put("pg", "NB");
-        formData.put("bankcode", "AXIB");
-        formData.put("surl", "https://apiplayground-response.herokuapp.com/");
-        formData.put("furl", "https://apiplayground-response.herokuapp.com/");
-        formData.put("api_version", "21");
-        formData.put("hash", "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0");
-        formData.put("more_info", 
-            "{\"wtParams\":[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]}");
+  public class PayURequest {
+      
+      public static void main(String[] args) {
+          try {
+              makePayURequest();
+          } catch (Exception e) {
+              System.err.println("Error occurred: " + e.getMessage());
+              e.printStackTrace();
+          }
+      }
+      
+      public static void makePayURequest() throws IOException, InterruptedException {
+          String url = "https://test.payu.in/_payment";
+          
+          // Prepare form data
+          Map<String, String> formData = new HashMap<>();
+          formData.put("key", "KOEfPI");
+          formData.put("txnid", "7f41f520f71b");
+          formData.put("amount", "50000");
+          formData.put("productinfo", "Mutual Fund");
+          formData.put("firstname", "John");
+          formData.put("email", "john@example.com");
+          formData.put("phone", "9876543210");
+          formData.put("pg", "NB");
+          formData.put("bankcode", "AXIB");
+          formData.put("surl", "https://apiplayground-response.herokuapp.com/");
+          formData.put("furl", "https://apiplayground-response.herokuapp.com/");
+          formData.put("api_version", "21");
+          formData.put("hash", "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0");
+          formData.put("more_info", 
+              "{\"wtParams\":[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]}");
 
-        // Convert form data to URL encoded string
-        String formBody = formData.entrySet()
-            .stream()
-            .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + 
-                         "=" + URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
-            .reduce((p1, p2) -> p1 + "&" + p2)
-            .orElse("");
+          // Convert form data to URL encoded string
+          String formBody = formData.entrySet()
+              .stream()
+              .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + 
+                           "=" + URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
+              .reduce((p1, p2) -> p1 + "&" + p2)
+              .orElse("");
 
-        // Create HTTP client
-        HttpClient client = HttpClient.newBuilder()
-            .connectTimeout(Duration.ofSeconds(20))
-            .build();
+          // Create HTTP client
+          HttpClient client = HttpClient.newBuilder()
+              .connectTimeout(Duration.ofSeconds(20))
+              .build();
 
-        // Build the request
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .timeout(Duration.ofMinutes(2))
-            .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
-            .header("Content-Type", "application/x-www-form-urlencoded")
-            .POST(HttpRequest.BodyPublishers.ofString(formBody))
-            .build();
+          // Build the request
+          HttpRequest request = HttpRequest.newBuilder()
+              .uri(URI.create(url))
+              .timeout(Duration.ofMinutes(2))
+              .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+              .header("Content-Type", "application/x-www-form-urlencoded")
+              .POST(HttpRequest.BodyPublishers.ofString(formBody))
+              .build();
 
-        // Send the request
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+          // Send the request
+          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        // Print response headers
-        System.out.println("Response Headers:");
-        response.headers().map().forEach((key, value) -> {
-            System.out.println(key + ": " + String.join(", ", value));
-        });
+          // Print response headers
+          System.out.println("Response Headers:");
+          response.headers().map().forEach((key, value) -> {
+              System.out.println(key + ": " + String.join(", ", value));
+          });
 
-        // Print response content
-        System.out.println("\nResponse Content:");
-        System.out.println(response.body());
-        
-        System.out.println("\nStatus Code: " + response.statusCode());
-    }
-}
-```
-```php
-function makePayURequest() {
-    $url = 'https://test.payu.in/_payment';
-    
-    // Prepare form data
-    $formData = array(
-        'key' => 'KOEfPI',
-        'txnid' => '7f41f520f71b',
-        'amount' => '50000',
-        'productinfo' => 'Mutual Fund',
-        'firstname' => 'John',
-        'email' => 'john@example.com',
-        'phone' => '9876543210',
-        'pg' => 'NB',
-        'bankcode' => 'AXIB',
-        'surl' => 'https://apiplayground-response.herokuapp.com/',
-        'furl' => 'https://apiplayground-response.herokuapp.com/',
-        'api_version' => '21',
-        'hash' => 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0',
-        'more_info' => '{"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
-    );
+          // Print response content
+          System.out.println("\nResponse Content:");
+          System.out.println(response.body());
+          
+          System.out.println("\nStatus Code: " + response.statusCode());
+      }
+  }
+  ```
+  ```php
+  function makePayURequest() {
+      $url = 'https://test.payu.in/_payment';
+      
+      // Prepare form data
+      $formData = array(
+          'key' => 'KOEfPI',
+          'txnid' => '7f41f520f71b',
+          'amount' => '50000',
+          'productinfo' => 'Mutual Fund',
+          'firstname' => 'John',
+          'email' => 'john@example.com',
+          'phone' => '9876543210',
+          'pg' => 'NB',
+          'bankcode' => 'AXIB',
+          'surl' => 'https://apiplayground-response.herokuapp.com/',
+          'furl' => 'https://apiplayground-response.herokuapp.com/',
+          'api_version' => '21',
+          'hash' => 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0',
+          'more_info' => '{"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
+      );
 
-    // Initialize cURL
-    $ch = curl_init();
+      // Initialize cURL
+      $ch = curl_init();
 
-    // Set cURL options
-    curl_setopt_array($ch, array(
-        CURLOPT_URL => $url,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POST => true,
-        CURLOPT_POSTFIELDS => http_build_query($formData),
-        CURLOPT_HEADER => true, // Include headers in output (equivalent to -i)
-        CURLOPT_HTTPHEADER => array(
-            'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Content-Type: application/x-www-form-urlencoded'
-        ),
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_SSL_VERIFYPEER => true,
-        CURLOPT_USERAGENT => 'PayU API Client'
-    ));
+      // Set cURL options
+      curl_setopt_array($ch, array(
+          CURLOPT_URL => $url,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_POST => true,
+          CURLOPT_POSTFIELDS => http_build_query($formData),
+          CURLOPT_HEADER => true, // Include headers in output (equivalent to -i)
+          CURLOPT_HTTPHEADER => array(
+              'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+              'Content-Type: application/x-www-form-urlencoded'
+          ),
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_SSL_VERIFYPEER => true,
+          CURLOPT_USERAGENT => 'PayU API Client'
+      ));
 
-    // Execute the request
-    $response = curl_exec($ch);
+      // Execute the request
+      $response = curl_exec($ch);
 
-    // Check for cURL errors
-    if (curl_error($ch)) {
-        $error = curl_error($ch);
-        curl_close($ch);
-        throw new Exception('cURL error: ' . $error);
-    }
+      // Check for cURL errors
+      if (curl_error($ch)) {
+          $error = curl_error($ch);
+          curl_close($ch);
+          throw new Exception('cURL error: ' . $error);
+      }
 
-    // Get response information
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-    
-    curl_close($ch);
+      // Get response information
+      $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+      $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+      
+      curl_close($ch);
 
-    // Separate headers and body
-    $headers = substr($response, 0, $headerSize);
-    $body = substr($response, $headerSize);
+      // Separate headers and body
+      $headers = substr($response, 0, $headerSize);
+      $body = substr($response, $headerSize);
 
-    // Print response
-    echo "Response Headers:\n";
-    echo $headers . "\n";
-    
-    echo "Response Content:\n";
-    echo $body . "\n";
-    
-    echo "Status Code: " . $httpCode . "\n";
+      // Print response
+      echo "Response Headers:\n";
+      echo $headers . "\n";
+      
+      echo "Response Content:\n";
+      echo $body . "\n";
+      
+      echo "Status Code: " . $httpCode . "\n";
 
-    return array(
-        'headers' => $headers,
-        'body' => $body,
-        'status_code' => $httpCode
-    );
-}
+      return array(
+          'headers' => $headers,
+          'body' => $body,
+          'status_code' => $httpCode
+      );
+  }
 
-try {
-    $result = makePayURequest();
-    echo "Request completed successfully\n";
-} catch (Exception $e) {
-    echo "Error occurred: " . $e->getMessage() . "\n";
-}
-```
-
+  try {
+      $result = makePayURequest();
+      echo "Request completed successfully\n";
+  } catch (Exception $e) {
+      echo "Error occurred: " . $e->getMessage() . "\n";
+  }
+  ```
 </Accordion>
 
 ## Step 2: Check Response from PayU
