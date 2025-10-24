@@ -1,8 +1,11 @@
 ---
-title: Collect Payments - Introduction
+title: Collect Payments Introduction
 deprecated: false
 hidden: true
 metadata:
+  title: Collect Payments Introduction
+  keywords:
+    - Collect Payments Introduction
   robots: index
 ---
 PayU provides comprehensive integration options covering all major platforms and use cases. From simple no-code solutions to advanced enterprise integrations, you can choose the most appropriate method based on their technical capabilities, business requirements, and target platforms.
