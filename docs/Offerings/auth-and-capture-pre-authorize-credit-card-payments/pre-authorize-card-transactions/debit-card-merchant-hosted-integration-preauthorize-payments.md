@@ -479,7 +479,7 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
-  curl --request POST      --url 'https://test.payu.in/_payment?form=2'      --header 'Content-Type: application/x-www-form-urlencoded'      --header 'accept: text/plain'      --data key=JPM7Fg      --data pg=CC      --data bankcode=CC      --data pre_authorize=1      --data surl=https://test-payment-middleware.payu.in/simulatorResponse      --data furl=https://test-payment-middleware.payu.in/simulatorResponse      --data txnid=ypskjfdaaksdjfh      --data amount=10000      --data productinfo=iPhone      --data firstname=Ashish      --data email=ashish@gmail.com      --data phone=9889XXXXXX      --data ccnum=512*******012346      --data ccname=Ashish      --data ccexpmon=11      --data ccexpyr=2025      --data ccvv=123      --data hash=d99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced
+  curl --request POST      --url 'https://test.payu.in/_payment?form=2'      --header 'Content-Type: application/x-www-form-urlencoded'      --header 'accept: text/plain'      --data key=JPM7Fg      --data pg=DC      --data bankcode=VISA      --data pre_authorize=1      --data surl=https://test-payment-middleware.payu.in/simulatorResponse      --data furl=https://test-payment-middleware.payu.in/simulatorResponse      --data txnid=ypskjfdaaksdjfh      --data amount=10000      --data productinfo=iPhone      --data firstname=Ashish      --data email=ashish@gmail.com      --data phone=9889XXXXXX      --data ccnum=512*******012346      --data ccname=Ashish      --data ccexpmon=11      --data ccexpyr=2025      --data ccvv=123      --data hash=d99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced
   ```
 </Accordion>
 
@@ -490,14 +490,14 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
 <Accordion title="Sample response" icon="fa-code">
   The formatted sample response body is similar to the following, and you need to look for the following parameters:
 
-  * PG\_TYPE: CC PG
-  * bankcode: CC
+  * PG\_TYPE: DC PG
+  * bankcode: VISA
   * **unamappedstatus: auth**
 
   ```
     {
     "mihpayid": "403993715531065775",
-    "mode": "CC",
+    "mode": "DC",
     "status": "success",
     "unmappedstatus": "captured",
     "key": "JPM7Fg",
@@ -539,9 +539,9 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
     "field8": "AUTHORIZED",
     "field9": "Transaction is Successful",
     "payment_source": "payu",
-    "PG_TYPE": "CC-PG",
+    "PG_TYPE": "DC-PG",
     "bank_ref_num": "261005309469848160",
-    "bankcode": "CC",
+    "bankcode": "VISA",
     "error": "E000",
     "error_Message": "No Error",
     "cardnum": "XXXXXXXXXXXX2346",
