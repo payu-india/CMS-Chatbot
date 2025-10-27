@@ -1,30 +1,30 @@
 ---
-title: Reusable VANs Integration - NEFT
+title: Reusable VANs Integration - EFTNET
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-NEFT is an electronic payment system in India that facilitates secure fund transfers from one bank account to another on a one-to-one basis. A **Reusable Virtual Account Numbers (VANs)** is a unique virtual account assigned to customers or transactions that can be used multiple times for recurring payments, making it convenient for businesses to manage collections efficiently.
+EFTNET (NEFT/RTGS) is an electronic payment system in India that facilitates secure fund transfers from one bank account to another on a one-to-one basis. A **Reusable Virtual Account Number (VAN)** is a unique virtual account assigned to customers or transactions that can be used multiple times for recurring payments, making it convenient for businesses to manage collections efficiently. For more information on NEFT/RTGS seamless integration, refer to [EFTNET (NEFT/RTGS) Integration](doc:collect-payments-with-eftnet-neftrtgs-seamless).
 
-**NEFT (National Electronic Funds Transfer) with Reusable Virtual Account Numbers** is an advanced payment solution that enables seamless fund transfers through the NEFT system while providing businesses with unique VANs for easy payment tracking and reconciliation.
+**EFTNET with Reusable Virtual Account Numbers** is an advanced payment solution that enables seamless fund transfers through the NEFT system while providing businesses with unique VANs for easy payment tracking and reconciliation.
 
 ## Key Features
 
 * Reusable Virtual Accounts
-  * Single VANs for multiple transactions
+  * Single VAN for multiple transactions
   * Eliminates need to create new account numbers for every transaction
-  * Customizable VANs with specific identifiers
+  * Customizable VAN with specific identifiers
 * Seamless Fund Transfers
   * Easy and efficient fund transfers through NEFT system
-  * Real-time tracking and reconciliation of payments
-  * Integration with existing ERP or accounting systems
+  * Real-time tracking with some delay and reconciliation of payments
+  * Integration with existing ERP or accounting systems using web hooks
 * Enhanced Security
   * Secure fund transfers with minimal risk of errors or fraud
   * Actual bank account details are not shared
   * Compliance with security protocols and standards
 * Simplified Reconciliation
-  * Easy matching of incoming payments with invoices or customers
+  * Easy matching of incoming payments with invoices or PayU ID
   * Unique identification for each transaction
   * Automated payment processing capabilities
 
@@ -32,12 +32,12 @@ NEFT is an electronic payment system in India that facilitates secure fund trans
 
 Here's the table converted to a bulleted list with the Feature column in bold formatting:
 
-• **Cost-Effective** - Reduces administrative costs associated with managing multiple accounts
-• **Improved Efficiency** - Speeds up payment process and reduces delays in fund allocation
-• **Enhanced Customer Experience** - Hassle-free payment experience with reusable account numbers
-• **Scalability** - Suitable for businesses of all sizes
-• **Transparency** - Clear visibility into payment flows for better financial management
-• **Error Reduction** - Minimizes errors in payment processing and reconciliation
+*  **Cost-Effective** - Reduces administrative costs associated with managing multiple accounts
+* **Improved Efficiency** - Speeds up payment process and reduces delays in fund allocation
+* **Enhanced Customer Experience** - Hassle-free payment experience with reusable account numbers
+* **Scalability** - Suitable for businesses of all sizes
+* **Transparency** - Clear visibility into payment flows for better financial management
+* **Error Reduction** - Minimizes errors in payment processing and reconciliation
 
 ***
 
@@ -46,8 +46,8 @@ Here's the table converted to a bulleted list with the Feature column in bold fo
 * [Prerequisites](#before-you-start)
 
 1. [Step 1: Initiate the payment with PayU](#step-1-initiate-the-payment-with-payu)
-2. [Step 2: Check response from PayU](#step-2-check-response-from-payu)
-3. [Step 3: Verify the payment](#step-3-verify-the-payment)
+2. [Step 2: Check the challan](#step-2-check-response-from-payu)
+3. [Step 3: Verify payment](#step-3-verify-payment)
 
 * [Optional configurations](#optional-configurations)
 * [Testing](#testing)
@@ -59,13 +59,13 @@ Here's the table converted to a bulleted list with the Feature column in bold fo
 
 * **PayU merchant account** with live credentials
 * **Reusable VAN enabled**: Contact your PayU Key Account Manager (KAM) or PayU Support to enable Reusable VAN - NEFT for your merchant account
-* **Company acronym**: Provide a 7-character acronym of your company name to PayU. This will be prefixed to the customer mobile number to create a unique identifier. For example, if the prefix is "BESPOKE" for "BeSpoke Limited", and customer mobile number is 9881234567, the unique ID becomes "BESPOKE9881234567"
+* **Company acronym**: Provide a 6-character acronym or short-form of your company name to PayU. This will be prefixed to an number to create an unique identifier. For example, if the prefix is "BESPOKE" for "BeSpoke Limited", and customer mobile number is 9881234567, the unique ID becomes "BESPOKE9881234567." 
 
 <Callout icon="📘" theme="info">
   **Notes**:
 
-  * The unique identifier (company prefix + mobile number) must be passed in the `udf1` parameter of the **_payment** API request.
-  * After you make the first collect payment request using _payment API, it will take atleast 15-30 minutes for the bank to register your VAN. Later, the payment is initiated in the next batch of NEFT transactions, which is approximately 15-30 minutes.
+  * The unique identifier (company prefix + mobile number) must be passed in any of the UDF parameters `udf1-udf5` parameter of the **_payment** API request as agreed with PayU initially.
+  * After you make the first collect payment request using _payment API, it will take at least 30 minutes for the bank to register your VAN. Later, the VAN is communicated to the customer in the next batch of, which is approximately 30 minutes.
 </Callout>
 
 ***
@@ -273,15 +273,13 @@ key|txnid|amount|productinfo|firstname|email|||||||||salt
 
 ***
 
-### Step 2: Check response from PayU
+### Step 2: Check the challan
 
-#### Response Handling
+The challan similar to the following screenshot is displayed:
 
-PayU will redirect the customer back to your success or failure URL with the payment response.
+<Image align="center" border={true} src="https://files.readme.io/da32f27d26ab5f9ce150c51f1f74354f941bc88bf8c7267e301b6ea6af5aed27-neft_rtgs_challan.png" className="border" />
 
-#### Hash Verification
-
-Verify the response hash to ensure data integrity:
+<br />
 
 ```php
 <?php
@@ -327,89 +325,9 @@ if (hash_equals($hash, $posted_hash)) {
 
 ***
 
-### Step 3: Verify the payment
+### Step 3: Verify payment
 
-#### Payment Verification API
-
-Use the `verify_payment` API to confirm the transaction status:
-
-```php
-<?php
-function verifyPayment($txnid, $key, $salt) {
-    $command = "verify_payment";
-    $hash_str = $key . '|' . $command . '|' . $txnid . '|' . $salt;
-    $hash = hash('sha512', $hash_str);
-    
-    $r = array(
-        'key' => $key,
-        'command' => $command,
-        'var1' => $txnid,
-        'hash' => $hash
-    );
-    
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://test.payu.in/merchant/postservice.php?form=2",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => http_build_query($r),
-        CURLOPT_HTTPHEADER => array(
-            "cache-control: no-cache",
-            "content-type: application/x-www-form-urlencoded"
-        ),
-    ));
-    
-    $response = curl_exec($curl);
-    curl_close($curl);
-    
-    return json_decode($response, true);
-}
-
-// Usage
-$verification_result = verifyPayment($txnid, $key, $salt);
-?>
-```
-
-#### Verification Response
-
-```json
-{
-  "status": 1,
-  "msg": "1 out of 1 Transactions Fetched Successfully",
-  "transaction_details": {
-    "mihpayid": "403993715518806543",
-    "request_id": "",
-    "bank_ref_num": "670272",
-    "amt": "100.00",
-    "txnid": "TXN123456789",
-    "status": "success",
-    "unmappedstatus": "captured",
-    "mode": "NEFT",
-    "error": "No Error",
-    "error_Message": "No Error",
-    "name_on_card": "",
-    "cardnum": "",
-    "cardhash": "",
-    "amount": "100.00",
-    "product_info": "Reusable VAN Payment",
-    "firstname": "John",
-    "email": "john@example.com",
-    "phone": "9881234567",
-    "udf1": "BESPOKE9881234567",
-    "field2": "",
-    "field9": "",
-    "payment_source": "payu",
-    "PG_TYPE": "NEFTRTGS",
-    "bank_name": "EFTAXIS"
-  }
-}
-```
-
-***
+<Verify_Payment_Tabs />
 
 ## Optional configurations
 
