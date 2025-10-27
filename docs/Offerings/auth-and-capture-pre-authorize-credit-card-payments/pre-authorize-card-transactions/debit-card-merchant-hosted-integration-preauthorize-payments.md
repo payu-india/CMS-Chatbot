@@ -602,6 +602,8 @@ To capture a pre-authorized payment, use the following command. After the API co
   **Reference**: For cancelling pre-auth payments, refer to <Anchor label="Cancel a Pre-Authorized Transaction API" target="_blank" href="ref:cancel-a-pre-authorized-transaction">Cancel a Pre-Authorized Transaction API</Anchor>.
 </Callout>
 
+## Supported List of Banks
+
 PayU tested Debit Card integration for pre-authorize payments with the following banks:
 
 <Callout icon="📘" theme="info">
