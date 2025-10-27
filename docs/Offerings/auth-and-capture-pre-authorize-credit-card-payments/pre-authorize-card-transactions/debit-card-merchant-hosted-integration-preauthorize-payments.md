@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-The **pre_authorize** parameter is used to pre-authorize payments using the Merchant Hosted Checkout integration with the **_payment** API.
+The **pre_authorize** parameter is used to pre-authorize Debit Card payments using the Merchant Hosted Checkout integration with the **_payment** API. This section describes the step-by-step procedure to integrate pre-authorize payments using debit cards.
 
 <Callout icon="📘" theme="info">
   **Note**: You need to activate the Pre-Authorize Payments before you start using this integration. Contact your PayU Key Account Manager (KAM) to activate Pre-Authorize Payments.
