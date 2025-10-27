@@ -379,7 +379,7 @@ Use your test merchant credentials provided by PayU:
 1. **Test unique identifier**: Use format `TESTCO9881234567` (where TESTCO is your test company prefix)
 2. **Test amount**: Use amounts between ₹1.00 to ₹10,000.00
 3. **Test mobile number**: Use valid 10-digit mobile numbers
-4. **Verify response**: Check that `udf1` contains the correct unique identifier
+4. **Verify response**: Check the udf (`udf1-udf5`) to which you passed unique identifier contains the correct unique identifier.
 
 ***
 
@@ -395,9 +395,13 @@ Use your test merchant credentials provided by PayU:
 ### Pre-production Checklist
 
 * [ ] **Reusable VAN enabled** by PayU KAM/Support
-* [ ] **Company prefix confirmed** with PayU (7-character acronym)
+* [ ] **Company prefix confirmed** with PayU (6-character acronym)
 * [ ] **Test all payment scenarios** including success and failure cases
 * [ ] **Hash verification implemented** correctly
 * [ ] **Unique identifier format validated** (prefix + mobile number)
 * [ ] **Payment verification API** integrated and tested
 * [ ] **Error handling** implemented for edge cases
+
+<Callout icon="📘" theme="info">
+  **Note**: You can verify the challan expiry scenarios in the Test environment. For more information, contact [PayU Support](https://help.payu.in).
+</Callout>
