@@ -101,37 +101,61 @@ The **UDF Update** API is used to update the UDF1-UDF5 values of a transaction. 
       "msg": "Invalid Hash."
   }
   ```
+  * If the merchant is not enabled for UDF updates:
+
+  ```JSON
+{
+    "status": "0",
+    "msg": "Update not allowed on provided Field"
+}
+  ```
+  * If no data found in the transaction ID:
+
+  ```JSON
+{
+    "status": "0",
+    "msg": "No Data Found for txnid: 3424"
+}
+  ```
+  * If the merchant is inactive:
+
+  ```JSON
+{
+    "msg": "Merchant is not authorized to use PayU API",
+    "status": 0
+}
+  ```
 </Accordion>
 
 ## Request parameters
 
 <Accordion title="Reference info for request parameters" icon="fa-flask">
   <HTMLBlock>{`
-                            <table>
-                              <thead>
-                                <tr>
-                                  <th><strong>Parameter</strong></th>
-                                  <th><strong>Reference</strong></th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>key</td>
-                                  <td>
-                                    The merchant key provided by PayU while onboarding.<br>
-                                    For more information on how to generate the Key and Salt, refer to any of the following:<br>
-                                    - <strong>Production</strong>: <a href="https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a><br>
-                                    - <strong>Test</strong>: <a href="docs.payu.in/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>hash</td>
-                                  <td>
-                                    Hash logic for payment API is:<br>
-                                    <code>sha512(key|command|var1|salt)</code>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
+                              <table>
+                                <thead>
+                                  <tr>
+                                    <th><strong>Parameter</strong></th>
+                                    <th><strong>Reference</strong></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>key</td>
+                                    <td>
+                                      The merchant key provided by PayU while onboarding.<br>
+                                      For more information on how to generate the Key and Salt, refer to any of the following:<br>
+                                      - <strong>Production</strong>: <a href="https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a><br>
+                                      - <strong>Test</strong>: <a href="docs.payu.in/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>hash</td>
+                                    <td>
+                                      Hash logic for payment API is:<br>
+                                      <code>sha512(key|command|var1|salt)</code>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
   `}</HTMLBlock>
 </Accordion>
