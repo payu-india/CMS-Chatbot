@@ -2,7 +2,7 @@
 title: Prepaid with PayU PG
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
