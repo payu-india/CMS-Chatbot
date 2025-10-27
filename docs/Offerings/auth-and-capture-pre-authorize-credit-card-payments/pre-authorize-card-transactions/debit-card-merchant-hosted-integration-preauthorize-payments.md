@@ -13,6 +13,12 @@ The **pre_authorize** parameter is used to pre-authorize Debit Card payments usi
 
 ### Supported banks for Auth & Capture on Debit Cards
 
+PayU tested Debit Card integration for pre-authorize payments with the following banks:
+
+<Callout icon="📘" theme="info">
+  **Note**: You can integrate with any other banks (not listed here) and if any discrepancies are observed, PayU will support it on a case-by-case basis. To contact PayU support, navigate to PayU Support.
+</Callout>
+
 * HDFC Bank
 * AXIS Bank
 * ICICI Bank
