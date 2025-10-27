@@ -1,1 +1,443 @@
-{"openapi":"3.1.0","info":{"title":"OPGSP Invoice","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://test.payu.in/merchant","variables":{}}],"paths":{"/postservice":{"post":{"tags":["Misc"],"summary":"udf_update-OPGSP","description":"","operationId":"udf_update-OPGSP","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"allOf":[{"$ref":"#/components/schemas/form"},{}]}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/x-www-form-urlencoded","type":"string"}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","var1","hash"],"type":"object","properties":{"key":{"allOf":[{"$ref":"#/components/schemas/key"},{"description":"Merchant key provided by PayU."}]},"command":{"const":"udf_update","type":"string","description":"The API command for this API, that is, udf_update must be specified for this parameter."},"var1":{"type":"string","description":"This field must contain the transaction ID(txnid) of the transaction.","examples":["e5b8663df04581c085f9"]},"hash":{"type":"string","description":"The hash string encryption is specified in this parameter."},"var2":{"type":"integer","description":"This field must contain the udf1 of transaction and must contains the Permanent Account Number of buyer.","contentEncoding":"int32","examples":[8000123]},"var4":{"type":"integer","description":"This field must contain the udf3 of transaction and must contain the date of birth of the buyer in the DD-MM-YYYY format.","contentEncoding":"int32","examples":[434343]},"var6":{"type":"string","description":"This field must contain the udf5 of transaction and must contain the Invoice ID or invoice number.","examples":["INV000000005"]}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"OK","headers":{"Access-Control-Allow-Origin":{"content":{"text/plain":{"schema":{"type":"string","examples":["https://api-playground.payu.in"],"contentMediaType":"text/plain"},"example":"https://api-playground.payu.in"}}},"Content-Security-Policy":{"content":{"text/plain":{"schema":{"type":"string","examples":["object-src 'none'; img-src https: data: *.payubiz.in *.payu.in  *.payumoney.com; frame-ancestors 'self' *.facebook.com payments.np.flydubai.com;"],"contentMediaType":"text/plain"},"example":"object-src 'none'; img-src https: data: *.payubiz.in *.payu.in  *.payumoney.com; frame-ancestors 'self' *.facebook.com payments.np.flydubai.com;"}}},"Date":{"content":{"text/plain":{"schema":{"type":"string","examples":["Tue, 05 Apr 2022 07:35:13 GMT"],"contentMediaType":"text/plain"},"example":"Tue, 05 Apr 2022 07:35:13 GMT"}}},"P3P":{"content":{"text/plain":{"schema":{"type":"string","examples":["CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""],"contentMediaType":"text/plain"},"example":"CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""}}},"Server":{"content":{"text/plain":{"schema":{"type":"string","examples":["PayuBiz"],"contentMediaType":"text/plain"},"example":"PayuBiz"}}},"Strict-Transport-Security":{"content":{"text/plain":{"schema":{"type":"string","examples":["max-age=31536000;includeSubDomains"],"contentMediaType":"text/plain"},"example":"max-age=31536000;includeSubDomains"}}},"X-Content-Type-Options":{"content":{"text/plain":{"schema":{"type":"string","examples":["nosniff"],"contentMediaType":"text/plain"},"example":"nosniff"}}},"X-Frame-Options":{"content":{"text/plain":{"schema":{"type":"string","examples":["sameorigin allow-from https://www.payumoney.com; https://www.goibibobusiness.com; https://www.premiermiles.co.in; https://goibibo.com; https://secure.skype.com; https://www.facebook.com; https://api.payu.in; https://payments.np.flydubai.com"],"contentMediaType":"text/plain"},"example":"sameorigin allow-from https://www.payumoney.com; https://www.goibibobusiness.com; https://www.premiermiles.co.in; https://goibibo.com; https://secure.skype.com; https://www.facebook.com; https://api.payu.in; https://payments.np.flydubai.com"}}},"X-XSS-Protection":{"content":{"text/plain":{"schema":{"type":"string","examples":["1; mode=block"],"contentMediaType":"text/plain"},"example":"1; mode=block"}}},"Content-Length":{"content":{"text/plain":{"schema":{"type":"string","examples":["2"],"contentMediaType":"text/plain"},"example":"2"}}},"Connection":{"content":{"text/plain":{"schema":{"type":"string","examples":["keep-alive"],"contentMediaType":"text/plain"},"example":"keep-alive"}}},"Content-Encoding":{"content":{"text/plain":{"schema":{"type":"string","examples":["gzip"],"contentMediaType":"text/plain"},"example":"gzip"}}},"Vary":{"content":{"text/plain":{"schema":{"type":"string","examples":["Accept-Encoding"],"contentMediaType":"text/plain"},"example":"Accept-Encoding"}}}},"content":{"text/html; charset=UTF-8":{"schema":{"type":"object","examples":[{}],"contentMediaType":"text/html; charset=UTF-8"},"example":{}}}}},"deprecated":false},"parameters":[]}},"components":{"schemas":{"Success-UdfvaluesUpdated":{"title":"Success-UdfvaluesUpdated","required":["status","transaction_id","udf1","udf2","udf3","udf4","udf5"],"type":"object","properties":{"status":{"type":"string"},"transaction_id":{"type":"string"},"udf1":{"type":"string"},"udf2":{"type":"string"},"udf3":{"type":"string"},"udf4":{"type":"string"},"udf5":{"type":"string"}},"examples":[{"status":"UDF values updated","transaction_id":"e5b8663df04581c085f9","udf1":"8000123","udf2":"4334343","udf3":"434343","udf4":"Abcd123","udf5":"INV000000004114"}]},"Failure-Invalidtxnid":{"title":"Failure-Invalidtxnid","required":["status","msg"],"type":"object","properties":{"status":{"type":"integer","contentEncoding":"int32"},"msg":{"type":"string"}},"examples":[{"status":0,"msg":"Invalid TXN ID"}]},"command":{"title":"command","const":"udf_update","type":"string","description":"The API command for this API, that is, udf_update must be specified for this parameter.","examples":["udf_update"]},"Cookie":{"title":"Cookie","const":"application/x-www-form-urlencoded","type":"string"},"form":{"title":"form","const":2,"type":"integer","examples":[2]},"key":{"title":"key","const":"JPM7Fg","type":"string","description":"Merchant key provided by PayU."}}},"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OPGSP Invoice",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/merchant",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/postservice": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "udf_update-OPGSP",
+        "description": "",
+        "operationId": "udf_update-OPGSP",
+        "parameters": [
+          {
+            "name": "form",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/form"
+                },
+                {}
+              ],
+              "type": "number",
+              "default": "2"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/x-www-form-urlencoded",
+              "type": "string",
+              "default": "application/x-www-form-urlencoded"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "key",
+                  "command",
+                  "var1",
+                  "hash"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/key"
+                      },
+                      {
+                        "description": "Merchant key provided by PayU."
+                      }
+                    ]
+                  },
+                  "command": {
+                    "const": "udf_update",
+                    "type": "string",
+                    "description": "The API command for this API, that is, udf_update must be specified for this parameter."
+                  },
+                  "var1": {
+                    "type": "string",
+                    "description": "This field must contain the transaction ID(txnid) of the transaction.",
+                    "examples": [
+                      "e5b8663df04581c085f9"
+                    ]
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "The hash string encryption is specified in this parameter."
+                  },
+                  "var2": {
+                    "type": "integer",
+                    "description": "This field must contain the udf1 of transaction and must contains the Permanent Account Number of buyer.",
+                    "contentEncoding": "int32",
+                    "examples": [
+                      8000123
+                    ]
+                  },
+                  "var4": {
+                    "type": "integer",
+                    "description": "This field must contain the udf3 of transaction and must contain the date of birth of the buyer in the DD-MM-YYYY format.",
+                    "contentEncoding": "int32",
+                    "examples": [
+                      434343
+                    ]
+                  },
+                  "var6": {
+                    "type": "string",
+                    "description": "This field must contain the udf5 of transaction and must contain the Invoice ID or invoice number.",
+                    "examples": [
+                      "INV000000005"
+                    ]
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "https://api-playground.payu.in"
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "https://api-playground.payu.in"
+                  }
+                }
+              },
+              "Content-Security-Policy": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "object-src 'none'; img-src https: data: *.payubiz.in *.payu.in  *.payumoney.com; frame-ancestors 'self' *.facebook.com payments.np.flydubai.com;"
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "object-src 'none'; img-src https: data: *.payubiz.in *.payu.in  *.payumoney.com; frame-ancestors 'self' *.facebook.com payments.np.flydubai.com;"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "Tue, 05 Apr 2022 07:35:13 GMT"
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "Tue, 05 Apr 2022 07:35:13 GMT"
+                  }
+                }
+              },
+              "P3P": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "PayuBiz"
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "PayuBiz"
+                  }
+                }
+              },
+              "Strict-Transport-Security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "max-age=31536000;includeSubDomains"
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "max-age=31536000;includeSubDomains"
+                  }
+                }
+              },
+              "X-Content-Type-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "nosniff"
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "X-Frame-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "sameorigin allow-from https://www.payumoney.com; https://www.goibibobusiness.com; https://www.premiermiles.co.in; https://goibibo.com; https://secure.skype.com; https://www.facebook.com; https://api.payu.in; https://payments.np.flydubai.com"
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "sameorigin allow-from https://www.payumoney.com; https://www.goibibobusiness.com; https://www.premiermiles.co.in; https://goibibo.com; https://secure.skype.com; https://www.facebook.com; https://api.payu.in; https://payments.np.flydubai.com"
+                  }
+                }
+              },
+              "X-XSS-Protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "1; mode=block"
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "1; mode=block"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "2"
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "2"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "keep-alive"
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Content-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "gzip"
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "gzip"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "examples": [
+                        "Accept-Encoding"
+                      ],
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "Accept-Encoding"
+                  }
+                }
+              }
+            },
+            "content": {
+              "text/html; charset=UTF-8": {
+                "schema": {
+                  "type": "object",
+                  "examples": [
+                    {}
+                  ],
+                  "contentMediaType": "text/html; charset=UTF-8"
+                },
+                "example": {}
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "Success-UdfvaluesUpdated": {
+        "title": "Success-UdfvaluesUpdated",
+        "required": [
+          "status",
+          "transaction_id",
+          "udf1",
+          "udf2",
+          "udf3",
+          "udf4",
+          "udf5"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "transaction_id": {
+            "type": "string"
+          },
+          "udf1": {
+            "type": "string"
+          },
+          "udf2": {
+            "type": "string"
+          },
+          "udf3": {
+            "type": "string"
+          },
+          "udf4": {
+            "type": "string"
+          },
+          "udf5": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "status": "UDF values updated",
+            "transaction_id": "e5b8663df04581c085f9",
+            "udf1": "8000123",
+            "udf2": "4334343",
+            "udf3": "434343",
+            "udf4": "Abcd123",
+            "udf5": "INV000000004114"
+          }
+        ]
+      },
+      "Failure-Invalidtxnid": {
+        "title": "Failure-Invalidtxnid",
+        "required": [
+          "status",
+          "msg"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "msg": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "status": 0,
+            "msg": "Invalid TXN ID"
+          }
+        ]
+      },
+      "command": {
+        "title": "command",
+        "const": "udf_update",
+        "type": "string",
+        "description": "The API command for this API, that is, udf_update must be specified for this parameter.",
+        "examples": [
+          "udf_update"
+        ]
+      },
+      "Cookie": {
+        "title": "Cookie",
+        "const": "application/x-www-form-urlencoded",
+        "type": "string"
+      },
+      "form": {
+        "title": "form",
+        "const": 2,
+        "type": "integer",
+        "examples": [
+          2
+        ]
+      },
+      "key": {
+        "title": "key",
+        "const": "JPM7Fg",
+        "type": "string",
+        "description": "Merchant key provided by PayU."
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
