@@ -1,5 +1,5 @@
 ---
-title: Debit Cards - Merchant Hosted Integration
+title: Debit Card - Merchant Hosted Integration
 deprecated: false
 hidden: false
 metadata:
