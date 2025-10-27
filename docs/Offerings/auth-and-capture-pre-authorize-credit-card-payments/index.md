@@ -10,12 +10,23 @@ metadata:
 next:
   description: ''
 ---
-In a basic payment flow, the payable amount from your payment request is authorized and captured immediately during the transaction flow, but sometimes you may want to charge the customer a different amount or extend the period of authorization to capture the payment at later point in time.\
+## What is Auth & Capture
+
+Auth and Capture is a two-step payment processing method that provides greater control and flexibility over transactions:
+
+1. **Authorization** (Auth): Verifies the payment method is valid and reserves funds on the customer's account without immediately charging them
+2. **Capture**: Later transfers the reserved funds from the customer's account to the merchant's account, completing the transaction
+
+PayU supports Auth and Capture on Credit Card and Debit Card payments.
+
+## PayU's offering
+
+In a basic payment flow, the payable amount from your payment request is authorized and captured immediately during the transaction flow, but sometimes you may want to charge the customer a different amount or extend the period of authorization to capture the payment at later point in time.  
 PayU’s pre-authorization (also card authorization, authorization hold or Auth and Capture) product allows merchants two-step card payments so you can temporarily block some amount of funds when a customer places an order (authorization) and then capture the amount later. If the order canceled by the customer within a specific time frame (typically 5-7 days), then you can mark the transaction cancelled and the amount goes back to the consumer’s original payment source instantly.
 
-> 🚧 Remember
->
-> PayU currently supports Pre-authorization (Auth and Capture) for Visa, Mastercard and Amex Credit Cards.
+<Callout icon="🚧" theme="warn">
+  **Remember**: PayU currently supports Pre-authorization (Auth and Capture) for Visa, Mastercard and Amex Credit Cards.
+</Callout>
 
 ## Features
 
@@ -28,7 +39,7 @@ PayU’s pre-authorization (also card authorization, authorization hold or Auth 
 
 The following flow diagrams illustrates the difference between collecting payment without and with Auth and Capture:
 
-<Image align="center" src="https://files.readme.io/2af883b-preauth_workflow.png" />
+<Image align="center" border={false} src="https://files.readme.io/2af883b-preauth_workflow.png" />
 
 * **Pre-authorization** transaction checks the fund availability and holds the required funds on the payer’s card for up to 7 days.
 * A capture request is used to debit the funds from the payer’s card.
