@@ -61,10 +61,12 @@ Here's the table converted to a bulleted list with the Feature column in bold fo
 * **Reusable VAN enabled**: Contact your PayU Key Account Manager (KAM) or PayU Support to enable Reusable VAN - NEFT for your merchant account
 * **Company acronym**: Provide a 7-character acronym of your company name to PayU. This will be prefixed to the customer mobile number to create a unique identifier. For example, if the prefix is "BESPOKE" for "BeSpoke Limited", and customer mobile number is 9881234567, the unique ID becomes "BESPOKE9881234567"
 
-> 📘 Notes
->
-> * The unique identifier (company prefix + mobile number) must be passed in the `udf1` parameter of the **_payment** API request.
-> * After you make the first collect payment request using _payment API, it will take atleast 15-30 minutes for the bank to register your VAN. Later, the payment is initiated in the next batch of NEFT transactions, which is approximately 15-30 minutes.
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * The unique identifier (company prefix + mobile number) must be passed in the `udf1` parameter of the **_payment** API request.
+  * After you make the first collect payment request using _payment API, it will take atleast 15-30 minutes for the bank to register your VAN. Later, the payment is initiated in the next batch of NEFT transactions, which is approximately 15-30 minutes.
+</Callout>
 
 ***
 
