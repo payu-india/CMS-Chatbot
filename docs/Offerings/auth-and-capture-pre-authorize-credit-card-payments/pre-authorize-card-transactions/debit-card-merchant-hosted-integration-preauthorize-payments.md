@@ -178,11 +178,11 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
         </td>
 
         <td style={{ textAlign: "left" }}>
-          `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value.
+          `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For debit cards, 'DC' will be the value.
         </td>
 
         <td style={{ textAlign: "left" }}>
-          CC
+          DC
         </td>
       </tr>
 
