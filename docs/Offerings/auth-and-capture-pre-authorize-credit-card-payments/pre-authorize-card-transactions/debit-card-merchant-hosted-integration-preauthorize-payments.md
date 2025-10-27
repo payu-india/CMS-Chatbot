@@ -11,20 +11,6 @@ The **pre_authorize** parameter is used to pre-authorize Debit Card payments usi
   **Note**: You need to activate the Pre-Authorize Payments before you start using this integration. Contact your PayU Key Account Manager (KAM) to activate Pre-Authorize Payments.
 </Callout>
 
-### Supported banks for Auth & Capture on Debit Cards
-
-PayU tested Debit Card integration for pre-authorize payments with the following banks:
-
-<Callout icon="📘" theme="info">
-  **Note**: You can integrate with any other banks (not listed here) and if any discrepancies are observed, PayU will support it on a case-by-case basis. To contact PayU support, navigate to PayU Support.
-</Callout>
-
-* HDFC Bank
-* AXIS Bank
-* ICICI Bank
-* KOTAK Bank
-* State Bank Of India
-
 **Steps to integrate**
 
 <Cards columns={2}>
@@ -615,3 +601,15 @@ To capture a pre-authorized payment, use the following command. After the API co
 <Callout icon="👍" theme="okay">
   **Reference**: For cancelling pre-auth payments, refer to <Anchor label="Cancel a Pre-Authorized Transaction API" target="_blank" href="ref:cancel-a-pre-authorized-transaction">Cancel a Pre-Authorized Transaction API</Anchor>.
 </Callout>
+
+PayU tested Debit Card integration for pre-authorize payments with the following banks:
+
+<Callout icon="📘" theme="info">
+  **Note**: You can integrate with any other banks (which are not listed below) and if any discrepancies are observed, PayU will support it on a case-by-case basis. To contact PayU support, navigate to <Anchor label="PayU Support" target="_blank" href="https:help.payu.in">PayU Support</Anchor>.
+</Callout>
+
+* HDFC Bank
+* AXIS Bank
+* ICICI Bank
+* KOTAK Bank
+* State Bank Of India
