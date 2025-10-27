@@ -263,13 +263,15 @@ hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{unique
 hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
 ```
 
-#### Hash Calculation
+<br />
 
-The hash string for Reusable VAN - NEFT follows this format:
+<HashingRequestParameters />
 
-```
-key|txnid|amount|productinfo|firstname|email|||||||||salt
-```
+#### Sample hashing code
+
+<HashingSample />
+
+<br />
 
 ***
 
