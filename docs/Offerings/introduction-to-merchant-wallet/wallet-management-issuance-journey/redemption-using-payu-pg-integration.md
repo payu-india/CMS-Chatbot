@@ -18,9 +18,9 @@ The following keys required by merchant:
 2. Key
 3. Salt
 
-> 📘 Note:
->
-> Payment Management includes the customer facing journeys which are during the purchase of a product/service on the merchant.
+<Callout icon="📘" theme="info">
+  **Note**: Payment Management includes the customer facing journeys which are during the purchase of a product/service on the merchant.
+</Callout>
 
 The following docs describe the procedure to integrate using PayU APIs:
 
