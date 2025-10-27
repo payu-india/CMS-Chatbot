@@ -1,5 +1,5 @@
 ---
-title: Customer Redemption Journey
+title: Customer Redemption Journey - CLW
 excerpt: ''
 deprecated: false
 hidden: false
