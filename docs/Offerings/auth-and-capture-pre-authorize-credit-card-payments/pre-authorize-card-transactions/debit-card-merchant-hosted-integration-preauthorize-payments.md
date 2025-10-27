@@ -11,9 +11,15 @@ The **pre_authorize** parameter is used to pre-authorize Debit Card payments usi
   **Note**: You need to activate the Pre-Authorize Payments before you start using this integration. Contact your PayU Key Account Manager (KAM) to activate Pre-Authorize Payments.
 </Callout>
 
-**Steps to integrate**
+### Supported banks for Auth & Capture on Debit Cards
 
-<br />
+* HDFC Bank
+* AXIS Bank
+* ICICI Bank
+* KOTAK Bank
+* State Bank Of India
+
+**Steps to integrate**
 
 <Cards columns={2}>
   <Card title="1. Post the Pre-Auth Transaction Request" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-1-post-the-pre-auth-transaction-request">
