@@ -83,7 +83,9 @@ To configure webhooks for Shopify and share it with PayU support:
 
 <br />
 
-1. Select **Create webhook** from the **Webhooks** page.
+1. Select **Create webhook** from the **Webhooks** page. You need to subscribe to following events:
+   1. Checkout creation
+   2. Checkout update
 
 <Image align="center" border={true} src="https://files.readme.io/0b17ea589a9b6a77fc1d34510463754d4d99115743cbd5c480874156c54b699d-shopify_dashboard_click_create_webhook.png" className="border" />
 
