@@ -1,5 +1,5 @@
 ---
-title: Merchant Hosted Integration
+title: Credit Card - Merchant Hosted Integration
 excerpt: ''
 deprecated: false
 hidden: false
@@ -183,7 +183,7 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
         </td>
 
         <td style={{ textAlign: "left" }}>
-          `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value.
+          `String` The pg parameter determines which payment tabs will be displayed on the PayU page. For credit cards, 'CC' will be the value.
         </td>
 
         <td style={{ textAlign: "left" }}>
