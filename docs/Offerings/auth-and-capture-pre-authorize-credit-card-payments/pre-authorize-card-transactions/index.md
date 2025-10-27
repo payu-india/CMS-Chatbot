@@ -14,7 +14,7 @@ The following sections describe steps to integrate pre-authorize for card paymen
 
 * [PayU Hosted Integration](https://docs.payu.in/docs/payu-hosted-integration-pre-authorize-payments)
 * Merchant Hosted Integration:
-  * [Credit Card - Merchant Hosted Integration](https://docs.payu.in/docs/merchant-hosted-integration-pre-authorize-payment)
+  * [Credit Card - Merchant Hosted Integration](https://docs.payu.in/docs/credit-card-merchant-hosted-integration-pre-authorize-payment)
   * [Debit Card - Merchant Hosted Integration](doc:debit-card-merchant-hosted-integration-preauthorize-payments)
 
 <Callout icon="👍" theme="okay">
