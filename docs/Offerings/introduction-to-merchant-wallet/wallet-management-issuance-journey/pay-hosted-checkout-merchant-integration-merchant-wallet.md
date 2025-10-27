@@ -2,7 +2,7 @@
 title: PayU Hosted Check-out Integration
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
