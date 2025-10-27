@@ -12,7 +12,7 @@ next:
 ---
 ## What is a Merchant wallet?
 
-**Merchant wallet** is a white-labelled prepaid instrument offered to merchant. Merchant can provide this offering to customers for purchasing goods and services.\
+**Merchant wallet** is a white-labelled prepaid instrument offered to merchant. Merchant can provide this offering to customers for purchasing goods and services.  
 Prepaid Payment Instruments (PPIs) are a category of digital payment instruments that facilitate the day-to-day buying/selling, fund transfers, and other financial transactions against the value already stored in them. This value can be stored by various methods of payments like cards etc.
 
 ## Why prepaid?
@@ -62,11 +62,11 @@ The following types of wallet supported by PayU:
 
 Closed-loop wallet is issued by merchants to customers allowing them to purchase goods and services on respective merchant only. Customers can be onboarded seamlessly on a closed loop wallet. It doesn’t come under purview of RBI guidelines and hence doesn’t require any KYC for customer onboarding.
 
-Also, there is no limitation of amount/transactions on this wallet as per compliance (risk limitations can be applied.
+Also, there is no limitation of amount/transactions on this wallet as per compliance (risk limitations can be applied. For more information, refer to [Closed-Loop Wallet Management](doc:closed-loop-wallet-management).
 
 ### Semi-closed loop  or Open-loop wallet/card
 
-Semi-Closed Loop or Open Loop is a prepaid instrument issued to customers no restriction on its usage on any merchant.It is part of RBI guidelines and for any customer to be onboarded, KYC of the customer is required. Limits for amount that can be stored in a wallet of a customer also varies whether it is min KYC or full KYC customer.
+Semi-Closed Loop or Open Loop is a prepaid instrument issued to customers no restriction on its usage on any merchant.It is part of RBI guidelines and for any customer to be onboarded, KYC of the customer is required. Limits for amount that can be stored in a wallet of a customer also varies whether it is min KYC or full KYC customer. For more information, refer to [Semi-Closed or Open Loop Management](doc:api-integration-for-wallet-management).
 
 #### Use cases include:
 
