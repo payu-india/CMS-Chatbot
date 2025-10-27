@@ -25,7 +25,7 @@ The following keys required by merchant:
 The following docs describe the procedure to integrate using PayU APIs:
 
 * [PayU Hosted Check-out Integration](doc:pay-hosted-checkout-merchant-integration-merchant-wallet)
-* [Merchant Hosted Checkout Integration](doc:merchant-hosted-checkout-integration-merchant-wallet)
+* [Seamless Debit Integration - CLW](doc:seamless-debit-integration-clw)
 
 The following sections of [SDK-Based Integration](doc:sdk-based-integration-merchant-wallet) describes the customer of the various Mobile SDK platforms:
 
