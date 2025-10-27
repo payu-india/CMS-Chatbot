@@ -93,7 +93,7 @@ To configure webhooks for Shopify and share it with PayU support:
    * Select **Checkout creation** from the **Event** drop-down list.
    * Select **JSON** from the **Format** drop-down list.
    * Enter the following URL in the **URL** field:  
-     [https://partnerapilayer.payu.in/apilayer/shopify\_app/shopifyWebhook](https://partnerapilayer.payu.in/apilayer/shopify_app/shopifyWebhook)    
+     [https://partnerapilayer.payu.in/apilayer/shopify_app/shopifyWebhook](https://partnerapilayer.payu.in/apilayer/shopify_app/shopifyWebhook)    
 
 <Image align="center" border={true} width="450px" src="https://files.readme.io/be6160585a76882f7018aed6b8ccdb0bb1d3023f8b808d3d58eda414f374b047-shopify_dashboard_add_webhook_page.png" className="border" />
 
@@ -107,4 +107,4 @@ To configure webhooks for Shopify and share it with PayU support:
 
 6. Share the following details with PayU to enable of SKU-based offers. 
    * **MID**: Your MID provided by PayU
-   * **Hash key** : The hash key you copied in Step 7 from Shopify dashboard after creation of checkout webhooks
+   * **The webhook signature** : The hash key you copied in Step 7 from Shopify dashboard after creation of checkout webhooks
