@@ -62,7 +62,9 @@ The _Refund Payment_ pop-up page is displayed.
 1. Enter the amount to be refunded in the **Refund Payment** field.
 2. Click **Send Full Refund**.
 
-**Note**: Refund amount will be reflected in customer’s bank account in 5-6 working days.
+<Callout icon="📘" theme="info">
+  **Note**: Refund amount will be reflected in customer’s bank account in 5-6 working days.
+</Callout>
 
 ## Upload Bulk Refunds using Dashboard
 
