@@ -17,24 +17,21 @@ EFTNET (NEFT/RTGS) is an electronic payment system in India that facilitates sec
   * Customizable VAN with specific identifiers
 * Seamless Fund Transfers
   * Easy and efficient fund transfers through NEFT system
-  * Real-time tracking with some delay and reconciliation of payments
-  * Integration with existing ERP or accounting systems using web hooks
+  * Near real-time tracking and reconciliation of payments
+  * Integration with existing ERP or accounting systems using challans and through web hooks
 * Enhanced Security
   * Secure fund transfers with minimal risk of errors or fraud
   * Actual bank account details are not shared
   * Compliance with security protocols and standards
 * Simplified Reconciliation
-  * Easy matching of incoming payments with invoices or PayU ID
-  * Unique identification for each transaction
-  * Automated payment processing capabilities
+  * Easy matching of incoming payments with invoices of customers
+  * Unique identification for each transaction with PayU ID
 
 ## Benefits
 
-Here's the table converted to a bulleted list with the Feature column in bold formatting:
-
-*  **Cost-Effective** - Reduces administrative costs associated with managing multiple accounts
+* **Cost-Effective** - Reduces administrative costs associated with managing multiple accounts manually
 * **Improved Efficiency** - Speeds up payment process and reduces delays in fund allocation
-* **Enhanced Customer Experience** - Hassle-free payment experience with reusable account numbers
+* **Enhanced Customer Experience** - Hassle-free payment experience with reusable account numbers because customer need to add new beneficiary every time
 * **Scalability** - Suitable for businesses of all sizes
 * **Transparency** - Clear visibility into payment flows for better financial management
 * **Error Reduction** - Minimizes errors in payment processing and reconciliation
@@ -59,13 +56,13 @@ Here's the table converted to a bulleted list with the Feature column in bold fo
 
 * **PayU merchant account** with live credentials
 * **Reusable VAN enabled**: Contact your PayU Key Account Manager (KAM) or PayU Support to enable Reusable VAN - NEFT for your merchant account
-* **Company acronym**: Provide a 6-character acronym or short-form of your company name to PayU. This will be prefixed to an number to create an unique identifier. For example, if the prefix is "BESPOKE" for "BeSpoke Limited", and customer mobile number is 9881234567, the unique ID becomes "BESPOKE9881234567." 
+* **Company acronym**: Provide a 6-character acronym or short-form of your company name to PayU. This will be prefixed to an number to create an alphanumeric unique identifier. For example, if the prefix is "BESPOK" for "BeSpoke Limited", and customer mobile number is 9881234567, the unique ID becomes "BESPOK9881234567."
 
 <Callout icon="📘" theme="info">
   **Notes**:
 
-  * The unique identifier (company prefix + mobile number) must be passed in any of the UDF parameters `udf1-udf5` parameter of the **_payment** API request as agreed with PayU initially.
-  * After you make the first collect payment request using _payment API, it will take at least 30 minutes for the bank to register your VAN. Later, the VAN is communicated to the customer in the next batch of, which is approximately 30 minutes.
+  * The unique identifier (company prefix + mobile number) must be passed in any of the UDF parameters `udf1-udf5` parameter of the **Collect Payment** (**_payment**) API request as agreed with PayU initially.
+  * After you make the first collect payment request using the **Collect Payment** (**_payment**) API, it will take at least 30 minutes for the bank to register your VAN. Later, the VAN is communicated to the customer in the next batch of, which is approximately 30 minutes.
 </Callout>
 
 ***
@@ -271,10 +268,6 @@ hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
 
 <HashingSample />
 
-<br />
-
-***
-
 ### Step 2: Check the challan
 
 The challan similar to the following screenshot is displayed:
@@ -325,8 +318,6 @@ if (hash_equals($hash, $posted_hash)) {
 ?>
 ```
 
-***
-
 ### Step 3: Verify payment
 
 <Verify_Payment_Tabs />
@@ -356,8 +347,6 @@ Include optional parameters for better customer profiling:
 <input type="hidden" name="zipcode" value="400001" />
 ```
 
-***
-
 ## Testing
 
 ### Test Environment
@@ -380,8 +369,6 @@ Use your test merchant credentials provided by PayU:
 2. **Test amount**: Use amounts between ₹1.00 to ₹10,000.00
 3. **Test mobile number**: Use valid 10-digit mobile numbers
 4. **Verify response**: Check the udf (`udf1-udf5`) to which you passed unique identifier contains the correct unique identifier.
-
-***
 
 ## Go live
 
