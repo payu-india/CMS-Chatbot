@@ -148,7 +148,7 @@ To view the refunds for a preferred interval:
 
    The **Refunds** tab of the _Transactions_ page is displayed.
 
-<Image align="center" border={false} src="https://files.readme.io/e971a50fb3dc37d9b6cebb19185806244b6baef7894f54034a21099e97a1d9c7-Screenshot_2025-10-28_at_3.47.38_PM.png" />
+<Image align="center" border={true} src="https://files.readme.io/e971a50fb3dc37d9b6cebb19185806244b6baef7894f54034a21099e97a1d9c7-Screenshot_2025-10-28_at_3.47.38_PM.png" className="border" />
 
 3. Below the Transactions Overview, click the drop-down for calendar view
 4. Select the option **Today** to view the summary of transactions triggered for the day.
