@@ -4,6 +4,7 @@
 - collect-payments-with-upi-seamless
 - collect-payments-with-wallets-seamless
 - collect-payments-with-bnpl
+- eftnet-integration
 - integrate-with-merchant-hosted-checkout-for-pluxee-card
 - paypal-integration
 - test-integration
@@ -13,4 +14,3 @@
 - merchant-hosted-integration-listing
 - test
 - merchant-hosted-checkout-link-to-individual-integrations
-- eftnet-integration
