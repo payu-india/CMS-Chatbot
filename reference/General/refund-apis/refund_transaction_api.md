@@ -48,15 +48,15 @@ In this API:
   ### Sample request with split information JSON
 
   ```bash
-curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
---header 'Cookie: PHPSESSID=7nv3d144qeh7g102p3uau1o6pm' \
---form 'key="smsplus"' \
---form 'command="cancel_refund_transaction"' \
---form 'var1="24523622342"' \
---form 'var2="test15"' \
---form 'var3="0.10"' \
---form 'hash=""' \
---form 'var8="{\"amount\": 100,\"aggregatorRefundAmount\": 40 }"
+  curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
+  --header 'Cookie: PHPSESSID=7nv3d144qeh7g102p3uau1o6pm' \
+  --form 'key="smsplus"' \
+  --form 'command="cancel_refund_transaction"' \
+  --form 'var1="24523622342"' \
+  --form 'var2="test15"' \
+  --form 'var3="0.10"' \
+  --form 'hash=""' \
+  --form 'var8="{\"amount\": 100,\"aggregatorRefundAmount\": 40 }"
   ```
 </Accordion>
 
@@ -176,35 +176,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
   )
   ```
 
-  > 📘 **Test Environment Responses**
-  >
-  > The response for Refund Transaction API in Test Environment has specific limitations:
-  >
-  > **1. For Regular Merchants:**
-  >
-  > ```json
-  > Array
-  > (
-  >     [status] => 1
-  >     [msg] => Refund Request Queued
-  >     [request_id] => 136409872
-  >     [bank_ref_num] => 
-  >     [mihpayid] => 403993715530925893
-  >     [error_code] => 102
-  > )
-  > ```
-  >
-  > **2. For Merchants with Split transaction enabled:**
-  >
-  > ```json
-  > {
-  >   "status": 236,
-  >   "msg": "Refund Split Info must be of JSON format",
-  >   "mihpayid": "403993715521937565"
-  > }
-  > ```
-  >
-  > **Important:** The error\_code value 102 should be treated as success; the rest are failures. For the list of error codes, refer to [Error Codes for Refund Initiation](ref:error-codes-for-refund-initiation).
+> **Important:** The error\_code value 102 should be treated as success; the rest are failures. For the list of error codes, refer to [Error Codes for Refund Initiation](ref:error-codes-for-refund-initiation).
 </Accordion>
 
 <Accordion title="Response parameters" icon="fa-list">
@@ -231,7 +203,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
   | :----------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | **var2**                       | This parameter must contain the Token ID (unique token from the merchant) for the refund request.• Token ID has to be generated at your end for each new refund request • It is an identifier for each new refund request which can be used for tracking it • It must be unique for every new refund request generated – otherwise the refund request would not be generated successfully • Token ID length should not be greater than 23 characters                                                                                                                          |
   | **var3**                       | **For captured transaction:** This parameter must contain the amount which needs to be refunded. Both partial and full refunds are allowed. • **For a full refund:** The var3 value would be equal to the amount with which the transaction was made • **For a partial refund:** This var3 value would be less than the amount with which the transaction was made **For pre-auth transaction:** If the transaction is in a pre-auth state currently, the full cancellation is allowed. The amount must be the same as the auth amount. A partial amount would not be allowed |
-  | **var5**                       | This parameter must contain the refund webhook/callback URL.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+  | **var5**                       | This parameter must contain the refund webhook/callback URL.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
   | **var8** *mandatory for split* | Refund split information provided by merchant in a JSON format. This is applicable only with the Split transactions. The JSON format is described in the table below                                                                                                                                                                                                                                                                                                                                                                                                          |
 
   ### Split Transaction Parameters (var8)
