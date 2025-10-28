@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-EFTNET (NEFT/RTGS) is an electronic payment system in India that facilitates secure fund transfers from one bank account to another on a one-to-one basis. A **Reusable Virtual Account Number (VAN)** is a unique virtual account assigned to customers or transactions that can be used multiple times for recurring payments, making it convenient for businesses to manage collections efficiently. For more information on NEFT/RTGS seamless integration, refer to [EFTNET (NEFT/RTGS) Integration](doc:collect-payments-with-eftnet-neftrtgs-seamless).
+ A **Reusable Virtual Account Number (VAN)** is a unique virtual account assigned to customers or transactions that can be used multiple times for recurring payments, making it convenient for businesses to manage collections efficiently. For more information on NEFT/RTGS seamless integration, refer to [EFTNET (NEFT/RTGS) Integration](doc:collect-payments-with-eftnet-neftrtgs-seamless).
 
 **EFTNET with Reusable Virtual Account Numbers** is an advanced payment solution that enables seamless fund transfers through the NEFT system while providing businesses with unique VANs for easy payment tracking and reconciliation.
 
