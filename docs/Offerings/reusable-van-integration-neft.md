@@ -62,7 +62,7 @@ EFTNET (NEFT/RTGS) is an electronic payment system in India that facilitates sec
   **Notes**:
 
   * The unique identifier (company prefix + mobile number) must be passed in any of the UDF parameters `udf1-udf5` parameter of the **Collect Payment** (**_payment**) API request as agreed with PayU initially.
-  * After you make the first collect payment request using the **Collect Payment** (**_payment**) API, it will take at least 30 minutes for the bank to register your VAN. Later, the VAN is communicated to the customer in the next batch of, which is approximately 30 minutes.
+  * After you make the first collect payment request using the **Collect Payment** (**_payment**) API, it will take at least 30 minutes for the bank to register customer's VAN. Later, the VAN is communicated to the customer in the next batch, which is approximately 30 minutes. Later, customer can initiate the payment.
 </Callout>
 
 ***
