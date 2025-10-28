@@ -53,14 +53,14 @@ The transaction details are displayed for the transaction.
 
 <Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_transaction_details-934x1024.png" />
 
-1. Click **Send Refund** at the top-right corner of the page.
+4. Click **Send Refund** at the top-right corner of the page.
 
 The _Refund Payment_ pop-up page is displayed.
 
-<Image align="center" border={false} width="350px" src="https://files.readme.io/ddd30371217dfadd3582d48286bc390db91a280857858dad75c1f083574fe860-dashboard_refund_payment.png" />
+<Image align="center" border={true} width="350px" src="https://files.readme.io/ddd30371217dfadd3582d48286bc390db91a280857858dad75c1f083574fe860-dashboard_refund_payment.png" className="border" />
 
-1. Enter the amount to be refunded in the **Refund Payment** field.
-2. Click **Send Full Refund**.
+5. Enter the amount to be refunded in the **Refund Payment** field.
+6. Click **Send Full Refund** if the full amount is refunded or Send **Partial Refund** or partial amount is refunded.
 
 <Callout icon="📘" theme="info">
   **Note**: Refund amount will be reflected in customer’s bank account in 5-6 working days.
