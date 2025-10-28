@@ -7,6 +7,7 @@
 - eftnet-integration
 - integrate-with-merchant-hosted-checkout-for-pluxee-card
 - paypal-integration
+- net-banking-tpv-integration
 - test-integration
 - integration-checklist-merchant-hosted-checkout
 - generate-hash-merchant-hosted
@@ -14,4 +15,3 @@
 - merchant-hosted-integration-listing
 - test
 - merchant-hosted-checkout-link-to-individual-integrations
-- net-banking-tpv-integration
