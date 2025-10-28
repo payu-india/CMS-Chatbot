@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This section describes the customer journey with EFTNET payment mode in PayU Hosted Checkout integration.
+This section describes the customer journey with the EFTNET (NEFT/RTGS) payment mode in PayU Hosted Checkout integration. This is part of PayU Hosted integration and you need to do any For the steps to integrate Collect Payment API (**_payment**), refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
 
 ## Customer Journey
 
