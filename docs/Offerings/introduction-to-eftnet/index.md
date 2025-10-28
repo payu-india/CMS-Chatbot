@@ -9,4 +9,10 @@ NEFT (National Electronic Fund Transfer) or RTGS (eal-Time Gross Settlement) fac
 
 * [PayU Hosted Checkout Integration - EFTNET](doc:payu-hosted-checkout-eftnet)
 * [Merchant Hosted Checkout Integration - EFTNET](doc:collect-payments-with-eftnet-neftrtgs-seamless)
-* [Reusable VANs Integration - EFTNET](doc:reusable-van-integration-neft)
+  * [Reusable VANs Integration - EFTNET](doc:reusable-van-integration-neft)
+
+<Callout icon="📘" theme="info">
+  **Note:** With PayU Hosted Checkout, VAN integration does not require any changes, but you need to enable it and pass the VAN identifier in any of the UDF fields (udf1-udf5) as agreed with PayU. For more information, contact<Anchor label=" PayU Support." target="_blank" href="https://help.payu.in"> PayU Support.</Anchor>
+</Callout>
+
+<br />
