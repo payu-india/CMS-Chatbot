@@ -68,7 +68,6 @@ To Initiate a refund, you require the following information:
 A refund can either be full or partial:
 
 * **Full refund**: 100% of the amount paid is returned to your customer.
-* **Instant refund**: If the instant refund is enabled for you, the refunds are completed within 5 minutes of the refund request.
 * **Partial refund** – The amount you received will be returned to the customer. Multiple partial refunds can be made until the full amount has been refunded.
 
 ## How to get a refund from various PayU India products?
