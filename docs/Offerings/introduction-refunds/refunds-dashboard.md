@@ -51,7 +51,7 @@ To initiate the refund using Dashboard:
 
 The transaction details are displayed for the transaction.
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_transaction_details-934x1024.png" />
+<Image align="center" border={false} width="550px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_transaction_details-934x1024.png" />
 
 4. Click **Send Refund** at the top-right corner of the page.
 
@@ -81,61 +81,55 @@ To initiate refunds using bulk upload:
 
 1. Log on to PayU Merchant Dashboard and select **Transactions**.
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image.png" />
+<Image align="center" border={true} src="https://files.readme.io/35b21b6978fc94e8ca9bbe3532fabbca3cccfaddcf88c503433cf9c479d27160-Screenshot_2025-10-28_at_3.23.33_PM.png" className="border" />
 
 2. Select the **Batch Refunds** tab.
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-1.png" />
+<Image align="center" border={true} src="https://files.readme.io/39c1803b52dd6308b958d37bcd7a512c75a5c4757314f89e450cbacb8f3d969c-Screenshot_2025-10-28_at_3.27.13_PM.png" className="border" />
 
 A list of batches uploaded in the past is displayed on this page. The batches can be filtered based on the date of upload and batch status.
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-2.png" />
-
-3. Click Upload to upload a batch of refunds.
+3. Click **Upload Batch Refund** to upload a batch of refunds.
 
    The _Batch Upload_ pop-up page is displayed with instructions to upload the file.
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-3.png" />
+<Image align="center" border={false} width="350px" src="https://files.readme.io/4466141eb8909a5b6940ee6da9f9e3481ec6e10101d0d234b561b95caeac28cf-Screenshot_2025-10-28_at_3.29.06_PM.png" />
 
 4. Use the **Download sample file** option to download the Excel file template that can be used for including the refund information:
    * Add the PayU ID/transaction ID against which the refund needs to be initiated in the first column of the Excel file.
    * Add the refund amount in the second column against each transaction ID.
    * Save the file.
 
-> 📘 Notes:
->
-> * Both these columns are mandatory and the column header should not be changed.
-> * A unique file name should be uploaded each time
+<Callout icon="📘" theme="info">
+  **Notes**:
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-4.png" />
+  * Both these columns are mandatory and the column header should not be changed.
+  * A unique file name should be uploaded each time
+</Callout>
+
+<Image align="center" border={false} width="350px" src="https://files.readme.io/527e560c9899eb40c2c588e60e5ef681982fe1c24f99c20de27eaf9bcafadfc8-Screenshot_2025-10-28_at_3.42.52_PM.png" />
 
 5. Browse for the desired file from your system and click **Upload**.
 
    A message is displayed after the file is successfully uploaded.
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-5.png" />
+<Image align="center" border={true} width="350px" src="https://files.readme.io/ee4e6313213add86baf86026190a8fea13aed2f4d129e034cbe5b945f0d2329e-Screenshot_2025-10-28_at_3.44.05_PM.png" className="border" />
 
 6. Click **Submit**.
 
 A ‘success’ message is displayed with the number of total records uploaded for processing.
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-6.png" />
+<Image align="center" border={false} src="https://files.readme.io/ce7f19640f0b99797d15ad9b678c1d0108d7a767c5c0ba09b613acf67153e674-Screenshot_2025-10-28_at_3.44.41_PM.png" />
 
-```
 After the batch is uploaded, the status is displayed as **Uploaded** under the **Batch Refunds** tab.
-```
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-7.png" />
+<Image align="center" border={true} src="https://files.readme.io/eebf18ddeb4b753facbbad10da0ce010e39e09aff120c97ff51b47af5d67ac0d-Screenshot_2025-10-28_at_3.45.18_PM.png" className="border" />
 
 7. Click the batch ID to open the batch details page.
 
    All refunds uploaded within that batch, their details along with present status are displayed on this page.
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-8.png" />
-
-```
 A refund can be in any of these states:
-```
 
 * **IN PROGRESS**: When the refund is initiated and is being processed.
 * **REQUESTED**: When the refund is sent to the bank for offline processing. In such cases, it takes 5-7 business days for the credit to reflect into the customer’s account.
@@ -154,7 +148,7 @@ To view the refunds for a preferred interval:
 
    The **Refunds** tab of the _Transactions_ page is displayed.
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_refunds_tab-1024x801.png" />
+<Image align="center" border={false} src="https://files.readme.io/e971a50fb3dc37d9b6cebb19185806244b6baef7894f54034a21099e97a1d9c7-Screenshot_2025-10-28_at_3.47.38_PM.png" />
 
 3. Below the Transactions Overview, click the drop-down for calendar view
 4. Select the option **Today** to view the summary of transactions triggered for the day.
