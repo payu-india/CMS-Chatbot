@@ -1,5 +1,5 @@
 ---
-title: EFTNET (NEFT/RTGS) Integration
+title: Merchant Hosted Checkout Integration - EFTNET
 excerpt: ''
 deprecated: false
 hidden: false
