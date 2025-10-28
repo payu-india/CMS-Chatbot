@@ -32,6 +32,8 @@ Whenever the **cancel_refund_transaction** API is executed successfully to cance
 
 In **check_action_status** API, you need to input this Request ID to get the current status of the request. The return parameters are MIHPayID, Amount, Discount, Mode, and Status of transaction. The following are different payment states:
 
+<br />
+
 <Accordion title="Refund states" icon="fa-hourglass">
   <RefundStates />
 </Accordion>
