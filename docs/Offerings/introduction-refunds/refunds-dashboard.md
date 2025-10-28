@@ -16,10 +16,10 @@ Order cancellations are an unfortunate reality for any business. Customers may c
 
 Refunds can be classified into two types:
 
-* **Partial refund**: Where the refund amount is less than the payment amount. This means the merchant is refunding only part of the payment done by the customer. This happens when only part of the order is canceled.\
+* **Partial refund**: Where the refund amount is less than the payment amount. This means the merchant is refunding only part of the payment done by the customer. This happens when only part of the order is canceled.  
   Ex. Customer purchases two products from merchant or value Rs. 500 and Rs. 7000. Customer pays a total of Rs. 7,500 to the merchant via online payment. Now the customer returns product 1 of value Rs. 500. Now, the merchant only must return Rs. 500 to the customer (instead of the transaction amount of Rs. 7,500).
 * **Instant refund**: If the instant refund is enabled for you, the refunds are completed within 5 minutes of the refund request.
-* **Full refund**: Where the refund amount is equal to the payment amount. This means that the merchant is refunding the entire payment done by the customer for a transaction. This happens when either merchant or customer cancels the entire order.\
+* **Full refund**: Where the refund amount is equal to the payment amount. This means that the merchant is refunding the entire payment done by the customer for a transaction. This happens when either merchant or customer cancels the entire order.  
   Ex. Customer purchases two products from merchant or value Rs. 500 and Rs. 7000. Customer pays a total of Rs. 7,500 to the merchant via online payment. Now the customer returns both the product. Now, the merchant must return Rs. 7,500 to the customer.
 
 ## Understanding Refunds
@@ -51,13 +51,13 @@ To initiate the refund using Dashboard:
 
 The transaction details are displayed for the transaction.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_transaction_details-934x1024.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_transaction_details-934x1024.png" />
 
 1. Click **Send Refund** at the top-right corner of the page.
 
-The *Refund Payment* pop-up page is displayed.
+The _Refund Payment_ pop-up page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_initiate_refunds_page-2.png)
+<Image align="center" border={false} width="350px" src="https://files.readme.io/ddd30371217dfadd3582d48286bc390db91a280857858dad75c1f083574fe860-dashboard_refund_payment.png" />
 
 1. Enter the amount to be refunded in the **Refund Payment** field.
 2. Click **Send Full Refund**.
@@ -79,23 +79,23 @@ To initiate refunds using bulk upload:
 
 1. Log on to PayU Merchant Dashboard and select **Transactions**.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image.png" />
 
 2. Select the **Batch Refunds** tab.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-1.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-1.png" />
 
 ```
 A list of batches uploaded in the past is displayed on this page. The batches can be filtered based on the date of upload and batch status.
 ```
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-2.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-2.png" />
 
 3. Click Upload to upload a batch of refunds.
 
-   The *Batch Upload* pop-up page is displayed with instructions to upload the file.
+   The _Batch Upload_ pop-up page is displayed with instructions to upload the file.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-3.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-3.png" />
 
 4. Use the **Download sample file** option to download the Excel file template that can be used for including the refund information:
    * Add the PayU ID/transaction ID against which the refund needs to be initiated in the first column of the Excel file.
@@ -107,31 +107,31 @@ A list of batches uploaded in the past is displayed on this page. The batches ca
 > * Both these columns are mandatory and the column header should not be changed.
 > * A unique file name should be uploaded each time
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-4.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-4.png" />
 
 5. Browse for the desired file from your system and click **Upload**.
 
    A message is displayed after the file is successfully uploaded.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-5.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-5.png" />
 
 6. Click **Submit**.
 
 A ‘success’ message is displayed with the number of total records uploaded for processing.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-6.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-6.png" />
 
 ```
 After the batch is uploaded, the status is displayed as **Uploaded** under the **Batch Refunds** tab.
 ```
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-7.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-7.png" />
 
 7. Click the batch ID to open the batch details page.
 
    All refunds uploaded within that batch, their details along with present status are displayed on this page.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-8.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-8.png" />
 
 ```
 A refund can be in any of these states:
@@ -145,16 +145,16 @@ A refund can be in any of these states:
 
 ## **Track Refunds on Dashboard**
 
-The **Refunds** tab of the \_Transactions\_page summarizes all the refunds for the selected date range. You can view the detailed transaction records and the option to export the transaction records for the selected period.
+The **Refunds** tab of the _Transactions_page summarizes all the refunds for the selected date range. You can view the detailed transaction records and the option to export the transaction records for the selected period.
 
 To view the refunds for a preferred interval:
 
 1. Login to the Merchant Dashboard. For more information, refer to [Log in to Dashboard](doc:log-in-to-dashboard).
 2. Navigate to **Track > Transactions** and then select the **Refunds** tab.
 
-   The **Refunds** tab of the *Transactions* page is displayed.
+   The **Refunds** tab of the _Transactions_ page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_refunds_tab-1024x801.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_refunds_tab-1024x801.png" />
 
 3. Below the Transactions Overview, click the drop-down for calendar view
 4. Select the option **Today** to view the summary of transactions triggered for the day.
