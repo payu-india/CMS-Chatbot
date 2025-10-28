@@ -73,7 +73,7 @@ Allows customers who browse online but lack access to or are reluctant to use di
 4. Bank processes NEFT/RTGS transfer
 5. PayU receives payment confirmation
 6. Merchant receives real-time transaction success update
-7. For transactions, customer can scan QR code for real-time status tracking
+7. For transactions, customer can scan QR code on the challan for real-time status tracking
 
 ## Next Steps
 
