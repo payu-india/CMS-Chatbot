@@ -87,9 +87,7 @@ To initiate refunds using bulk upload:
 
 <Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-1.png" />
 
-```
 A list of batches uploaded in the past is displayed on this page. The batches can be filtered based on the date of upload and batch status.
-```
 
 <Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/05/word-image-2.png" />
 
