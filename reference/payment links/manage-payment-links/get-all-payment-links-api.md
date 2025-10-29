@@ -21,9 +21,9 @@ HTTP Method: **GET**
 | **Test Environment**       | \<[https://uatoneapi.payu.in/payment-links](https://uatoneapi.payu.in/payment-links)> |
 | **Production Environment** | \<[https://oneapi.payu.in/payment-links](https://oneapi.payu.in/payment-links)>       |
 
-> 📘 Note:
->
-> The access token with the scope as **read_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
+<Callout icon="📘" theme="info">
+  **Note**: The access token with the scope as **read_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
+</Callout>
 
 ## Request headers
 
@@ -189,7 +189,7 @@ Response response = client.newCall(request).execute();
 
 ## Sample response
 
-```
+```json
 {
   "status": 0,
   "message": null,
