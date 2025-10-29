@@ -77,7 +77,9 @@ After the payment is complete, you must use the [Invoice Upload API](ref:invoice
 
 <TransactionStages />
 
-> 📘 Reference
->
-> * For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
-> * Card number formats of various card types: [Card Number Formats](doc:card-number-formats).
+<Callout icon="📘" theme="info">
+  **Reference**:
+
+  * For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+  * Card number formats of various card types: [Card Number Formats](doc:card-number-formats).
+</Callout>
