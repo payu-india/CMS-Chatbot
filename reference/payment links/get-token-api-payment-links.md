@@ -13,8 +13,6 @@ metadata:
     - Bearer Token for Payment Links
     - Payment Links Bearer Token
 ---
-<br />
-
 The **Get Token API** returns the authentication token generated using the client ID and client secret.
 
 ### Environment
@@ -111,6 +109,14 @@ The **Get Token API** returns the authentication token generated using the clien
   >   "created_at": 1595411399
   > }
   > ```
+</Accordion>
+
+<Accordion title="Sample request" icon="fa-info-circle">
+```bash
+curl -X POST https://uat-api.payu.in/merchant/credentials \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "client_id=YOUR_CLIENT_ID&username=YOUR_USERNAME&password=YOUR_PASSWORD"
+```
 </Accordion>
 
 ## Request parameters
