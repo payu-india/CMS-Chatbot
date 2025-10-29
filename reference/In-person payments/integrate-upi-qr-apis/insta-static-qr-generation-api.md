@@ -356,7 +356,7 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
 ## Sample request
 
-```Text cURL
+```curl cURL
 curl --location --request POST 'https://info.payu.in/merchant/postservice.php' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'key=J***'g \
@@ -364,7 +364,7 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php' \
 --data-urlencode 'hash=b7815c44e1852d76322730a483c0b51d39b0657ed90e01da6108bf60249e6da9f8c5a4b0ffbb7f6c7b6d772ed1c8b2984f9be6ef037b142a391221186b5ce3c2' \
 --data-urlencode 'var1={"name":"BFL Live test","merchantVpa":"bfltestqr.6879728.prod12@indus","qrType":"upi","city":"South West","pinCode":"122002","address":"sector 46","udf5":"BFL113","instaProduct":"qr","submerchantRegistration":"1","mebussname":"Suniltest1","outputType":"string","awlmcc":"7999","legalStrName":"Testaly","panNo":"BPEPK5431F","strCntMobile":"9833208174"}'
 ```
-```Text Python
+```python Python
 import http.client
 
 conn = http.client.HTTPSConnection("info.payu.in")
@@ -377,7 +377,7 @@ res = conn.getresponse()
 data = res.read()
 print(data.decode("utf-8"))
 ```
-```Text PHP
+```php PHP
 <?php
 
 $curl = curl_init();
@@ -402,7 +402,7 @@ $response = curl_exec($curl);
 curl_close($curl);
 echo $response;
 ```
-```Text Java
+```java Java
 OkHttpClient client = new OkHttpClient().newBuilder()
   .build();
 MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
@@ -475,7 +475,7 @@ The transaction_details parameter of the response is in JSON format and the para
 
 * UPI QR String response
 
-```Text JSON
+```json JSON
 {
   "qrString": "upi//pay?pa=testqr.6879.prod4@indus&pn=BFL%20Live%20test&mc=7999&tr=STQ9BJpCzJezI76879729&ver=01&mode=01&orgid=000000&qrMedium=04&cu=INR&pinCode=122002",
   "qrId": "STQ9BJpCzJezI76879729",
@@ -485,7 +485,7 @@ The transaction_details parameter of the response is in JSON format and the para
 
 * UPI QR base64 response
 
-```Text JSON
+```json JSON
 {
   "qrString": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAR0AAAEdAQMAAAALpCE4AAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADaklEQVRoge1ZQa7iUAwLYtFlj/BuAherRKVeDG7SI7DsApGxndJ2/lzA80UXUPrMwkqcOGnE9/pev/7qM/PNm0uf83LNMfLdjzyYcJKjLwhflxiiezzx65SvFqfnjfBprlNX0JTLhfckFjxaIs7zcsLdytMYFEMDu3MmPzqGAxTP/wPoXEnF4zkT50GK3iDlU0R3hxC6tyICinh2/pl0ZiAquEcWXf75+CFzM9CKnCFeVh0GIyFjkD2cO4J6JlCKzthQcFaycUX9UbxcQXHLvOOLQmg4GmJj1yAJX1AxOc8oOK/oyLO7B4o9Vb2cPklnCMIDsMMDEGuo86yeqD/4GKHqLSx+ICgYTG6sOkF2YwB+S7ZX1P5d5oYgsKOXOT3LHLSssEDBeBa+IDgY6JZuAOzePFeDepSWR1sQnqJckiLsWLmBO/4I8ULLj03mhqCQ/yKTV4NkZYUhaAXo2KXsQDJhN5qwaB2QUR4eLjiWjy9wBYFOKpVYhNibbonSU53LFiQF03+xZn7IBsRLdsce7Aeqmql+pbAsbFqLTPH1R2F1AiEEVDDj8GKABloC3CXT6+EMkoPBXAQmjRNSeV8IGvebjzQE0TjKubNmpiQBdiHvexiT/EDUAG2vSs9KLCSEw0TtCcqFPVbtVVOdvK82A3vsPEF1ccbgN2om57u1X4UvaAixy/IyvdRAE5ZaZBiD2FSDZhcDHXXLsq9GOx2cmCGIdDhtCK4hDz+HxlRqu/e1BK1d9MqmGpuhYVJ1e830A4EJ1xd0A5jvCE/VTEliTzo/EPcuV+23apuRTCp6GWbWvu4yBL041ck9RtPPXImxJm3znR+Ixb42o7WdA4iNlndt32E4guDEVDMfmk5pwphZGqu7fQj0A33ioFUAlxZtUXrJmO1jtx9om6PhfTlCI7P0HoA189jKHEHqp6FZjksBTRvyvqqjtiDmE23vvZ/WDUxWROgLjkIwA6lm1ozBFR2rDiulQMeJ2g5UyCm1bSnve6+Zb/x7a+QGWt+3ZGyvWmRo6qXL1Rk0UgMapmkh6clOTy1fjuwcQXqLq73utGXWpDVv7r7AFcT91vtDscunVkccQyK8QSXekeuuWhiJ7GGH4QhSPmXqLW5oKaDlLhlvg6klSAouL1Nx4NQ016u5zTwYgr7X9/rV1x9Shwri/uMTPgAAAABJRU5ErkJggg==",
   "qrId": "STQ9vDy3i7dEW6136226",
