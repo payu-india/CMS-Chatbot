@@ -3,7 +3,7 @@ title: CB - NB
 api:
   file: cb_merchant_hosted_net_banking.json
   operationId: MerchantHostedCheckout-UPI
-hidden: false
+hidden: true
 ---
 PayU allows you to collect cross-border payments using Net Banking.  The **buyer_type_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
 
@@ -23,7 +23,7 @@ After the payment is complete, you must use the [Invoice Upload API](ref:invoice
   curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=xdB9G7qYpfqszo&amount=10&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=UPI&bankcode=UPI&vpa=VPA-anything@payu&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
+  -d "key=JP***g&txnid=xdB9G7qYpfqszo&amount=10&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=TESTP&bankcode=TESTPG&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
   ```
 </details>
 
@@ -34,10 +34,10 @@ After the payment is complete, you must use the [Invoice Upload API](ref:invoice
   Array
   (
       [mihpayid] => 403993715523409521
-      [mode] => UPI
+      [mode] => NB
       [status] => success
       [unmappedstatus] => captured
-      [key] => JPM7Fg
+      [key] => JP***g
       [txnid] => 5jJ9xRceXX1ydT
       [amount] => 10.00
       [discount] => 0.00
@@ -75,9 +75,9 @@ After the payment is complete, you must use the [Invoice Upload API](ref:invoice
       [field8] => 
       [field9] => Transaction completed successfully
       [payment_source] => payu
-      [PG_TYPE] => UPI-PG
+      [PG_TYPE] => NB-PG
       [bank_ref_num] => 5jJ9xRceXX1ydT
-      [bankcode] => UPI
+      [bankcode] => NB
       [error] => E000
       [error_Message] => No Error
   )
@@ -106,7 +106,6 @@ After the payment is complete, you must use the [Invoice Upload API](ref:invoice
 <Callout icon="📘" theme="info">
   **Reference:** For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 </Callout>
-
 
 <Callout icon="❗️" theme="error">
   **Error handling:** If any error message is displayed with an error code, refer to the [Error Codes](ref:error-codes) section to understand the reason for these error codes.
