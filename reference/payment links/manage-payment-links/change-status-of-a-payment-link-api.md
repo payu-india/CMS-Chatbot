@@ -16,13 +16,13 @@ HTTP Method: **PUT**
 
 **Environment**
 
-|                            |                                           |
-| -------------------------- | ----------------------------------------- |
-| **Test Environment**       | &lt;https://uatoneapi.payu.in/payment-links&gt; |
-| **Production Environment** | &lt;https://oneapi.payu.in/payment-links&gt;    |
+|                            |                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://uatoneapi.payu.in/payment-links](https://uatoneapi.payu.in/payment-links)> |
+| **Production Environment** | \<[https://oneapi.payu.in/payment-links](https://oneapi.payu.in/payment-links)>       |
 
 > 📘 Note:
-> 
+>
 > The access token with the scope as **update_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
 
 ## Path parameters
@@ -51,10 +51,10 @@ HTTP Method: **PUT**
 
 ## Request headers
 
-| Parameter                 | Description                                                                                                                                        |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mid`  mandatory`          | `String` This contains the merchant identifier.                                                                                                    |
-| Authorization` mandatory` | Bearer `String` This contains the client\_token. For more information, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links) . |
+| Parameter                 | Description                                                                                                                                       |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mid`  mandatory`          | `String` This contains the merchant identifier.                                                                                                   |
+| Authorization` mandatory` | Bearer `String` This contains the client_token. For more information, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links) . |
 
 ## Request parameters
 
@@ -181,7 +181,7 @@ HTTP Method: **PUT**
 
 ## Sample request
 
-```
+```curl
 curl --location --request PUT 'https://uatoneapi.payu.in/payment-links/INV1406204187' \
 --header 'merchantId: 5018363' \
 --header 'Content-Type: application/json' \
@@ -197,7 +197,7 @@ curl --location --request PUT 'https://uatoneapi.payu.in/payment-links/INV140620
 
 ### Success scenario
 
-```
+```json
 {
   "status": 0,
   "message": "string",
@@ -209,7 +209,7 @@ curl --location --request PUT 'https://uatoneapi.payu.in/payment-links/INV140620
 
 ### Failure scenario
 
-```
+```json
 {
   "status": -1,
   "message": "expiry cannot be less than the current date",
