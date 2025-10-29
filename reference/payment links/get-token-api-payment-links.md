@@ -114,11 +114,44 @@ The **Get Token API** returns the authentication token generated using the clien
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-info-circle">
-```bash
-curl -X POST https://uat-api.payu.in/merchant/credentials \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "client_id=YOUR_CLIENT_ID&username=YOUR_USERNAME&password=YOUR_PASSWORD"
-```
+  ```curl
+  curl -X POST https://uat-api.payu.in/merchant/credentials \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "client_id=YOUR_CLIENT_ID&username=YOUR_USERNAME&password=YOUR_PASSWORD"
+  ```
 </Accordion>
+<Accordion title="Sample response" icon="fa-info-circle">
+### Success scenario
+```json
+{
+  "status": "success",
+  "message": "Credentials validated successfully",
+  "timestamp": "2024-10-29T12:04:28Z",
+  "merchant_id": "MERCHANT_12345"
+}
+```
+### Failure scenarios**
+* **Invalid Client ID**
+```json
+{
+  "status": "error",
+  "message": "Invalid client_id format",
+  "error_code": "CLIENT_001",
+  "timestamp": "2024-10-29T12:04:28Z"
+}
+
+```
+* **Missing Client ID**
+```
+{
+  "status": "error",
+  "message": "Missing required parameter: client_id",
+  "error_code": "PARAM_001",
+  "timestamp": "2024-10-29T12:04:28Z"
+}
+```
+
+</Accordion>
+<br />
 
 ## Request parameters
