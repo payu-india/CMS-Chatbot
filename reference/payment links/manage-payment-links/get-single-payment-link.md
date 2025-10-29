@@ -88,7 +88,7 @@ curl --location --request GET 'https://uatoneapi.payu.in/payment-links/INV006300
 
 ### Success scenario
 
-```
+```json
 {
   "status": 0,
   "message": null,
@@ -138,7 +138,7 @@ curl --location --request GET 'https://uatoneapi.payu.in/payment-links/INV006300
 
 ### Failure scenario
 
-```
+```json
 {
   "status": -1,
   "message": "paymentLink not found",
