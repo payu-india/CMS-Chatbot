@@ -42,12 +42,11 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
     <tr>
       <td>var1 <code>mandatory</code></td>
       <td>This parameter must contain the fields in a JSON format. For more information, refer to {user.Description of var1 Parameter Fields}.</td>
-      <td>Refer to var1 JSON fields description section.</td>
+      <td>Refer to <a href="https://docs.payu.in/reference/insta-static-qr-generation-api#var1-json-fields-description">var1 JSON fields description</a> section.</td>
     </tr>
   </tbody>
 </table>
 `}</HTMLBlock>
-
 
 > 🚧 Callouts
 >
@@ -243,8 +242,8 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
       <td>
         `string` This parameter contains the mebussname. It will be visible to the customers upon scanning this QR.
 
-        * *For non-aggregator** merchants, the mebussname will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
-        * *For aggregator-merchants**, the mebussname passed in this parameter should largely match with the name on the PAN card of the details passed in the panNo parameter.
+        * _For non-aggregator_* merchants, the mebussname will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
+        * _For aggregator-merchants_*, the mebussname passed in this parameter should largely match with the name on the PAN card of the details passed in the panNo parameter.
 
         This parameter is mandatory for the aggregator-merchant.
       </td>
@@ -263,8 +262,8 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
       <td>
         `string` This parameter must contain the phone number associated for the entity for whom VPA is being created.
 
-        * *For non-aggregator merchants**, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
-        * *For aggregator-merchants**, the strCntMobile is mandatory.
+        * _For non-aggregator merchants_*, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
+        * _For aggregator-merchants_*, the strCntMobile is mandatory.
       </td>
 
       <td>
@@ -300,8 +299,8 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
       <td>
         `string` This parameter must contain the legal name associated for the entity for whom VPA is being created.
 
-        * *For non-aggregator merchants**, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
-        * *For aggregator-merchants**, the legalStrName should largely match with the name on the PAN card of the details passed in the panNo key.
+        * _For non-aggregator merchants_*, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
+        * _For aggregator-merchants_*, the legalStrName should largely match with the name on the PAN card of the details passed in the panNo key.
 
         This parameter is mandatory for the aggregator-merchants.
       </td>
@@ -320,8 +319,8 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
       <td>
         `string` This parameter must contain the merchant category code as per NPCI guidelines and is typically a numeric value of length = 4.
 
-        * *For non-aggregator merchants**, the merchant category code will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
-        * *For aggregator-merchants**, the merchant category code of the actual beneficiary needs to be passed.
+        * _For non-aggregator merchants_*, the merchant category code will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
+        * _For aggregator-merchants_*, the merchant category code of the actual beneficiary needs to be passed.
 
         This parameter is mandatory for the aggregator-merchants
       </td>
