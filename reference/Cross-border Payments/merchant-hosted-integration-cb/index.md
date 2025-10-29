@@ -15,9 +15,9 @@ You can use Merchant Hosted Integration integration to collect Cross Border Paym
 * [Cards](https://docs.payu.in/reference/_payment_cross-border_merchant_hosted_cards)
 * [UPI](https://docs.payu.in/reference/_payment_cross-border_merchant_hosted_upi)
 
-### Relevant request parameters for CB
+### Important request parameters for CB
 
-The following are parameters relevant for cross-border payments:
+The following are the important parameters used for posting cross-border payments information in the **Collect Payment* ( **_payment** ) API:
 **buyer_type_business**: This parameter is used in _payment for Cross Border payment transactions to indicate the type of business of the buyer. After the payment is complete, you must use the [Invoice Upload API](ref:invoice_upload_api) to upload the invoices for banks processing.
 
 * **udf1**: This parameter must contain the buyer’s PAN (Permanent Account Number). If the transaction is of UPI mandate or UPI recurring then udf1 should contain the “Buyer's PAN and date of birth in the following format (separated by two pipe characters): Buyer's PAN||Buyer's DOB
