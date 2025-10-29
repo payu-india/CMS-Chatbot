@@ -21,9 +21,8 @@ The **Get Token API** returns the authentication token generated using the clien
 | :------------- | :----------------------------------------------------------- |
 | **Production** | [https://accounts.payu.in](https://accounts.payu.in)         |
 
-## Additional information for request parameters
-
-<Table>
+<Accordion title="Additional information for request parameters" icon="fa-info-circle">
+  <Table>
   <thead>
     <tr>
       <th>
@@ -39,7 +38,7 @@ The **Get Token API** returns the authentication token generated using the clien
   <tbody>
     <tr>
       <td>
-        client\_id
+        client_id
       </td>
 
       <td>
@@ -49,7 +48,7 @@ The **Get Token API** returns the authentication token generated using the clien
 
     <tr>
       <td>
-        client\_secret
+        client_secret
       </td>
 
       <td>
@@ -65,30 +64,31 @@ The **Get Token API** returns the authentication token generated using the clien
       <td>
         The scope that must be used for payment links are:<br />
 
-        * **Create Link**: create\_payment\_links<br />
-        * **Change status and expiry**: update\_payment\_links<br />
-        * **Get a single payment link**: read\_payment\_links<br />
-        * **Get all payment links**: read\_payment\_links<br />
-        * **Share payment links**: read\_payment\_links<br />
+        * **Create Link**: create_payment_links<br />
+        * **Change status and expiry**: update_payment_links<br />
+        * **Get a single payment link**: read_payment_links<br />
+        * **Get all payment links**: read_payment_links<br />
+        * **Share payment links**: read_payment_links<br />
           **Note**: Merchant can pass up to three scopes simultaneously for an access token value. This is done by passing scopes separated by a space between them. For example:<br />
-          create\_payment\_links update\_payment\_links read\_payment\_links
+          create_payment_links update_payment_links read_payment_links
       </td>
     </tr>
 
     <tr>
       <td>
-        grant\_type
+        grant_type
       </td>
 
       <td>
-        This parameter contains a constant value used to get the access token. The grant\_type used across the partner integration is **client\_credentials**.
+        This parameter contains a constant value used to get the access token. The grant_type used across the partner integration is **client_credentials**.
       </td>
     </tr>
   </tbody>
 </Table>
+</Accordion>
 
 <Accordion title="Response parameters" icon="fa-download">
-| Parameter     | Description                                              |
+  | Parameter     | Description                                              |
   | :------------ | :------------------------------------------------------- |
   | access\_token | The access token to be used in Partner Integration APIs. |
   | token\_type   | The token type of the access token.                      |
