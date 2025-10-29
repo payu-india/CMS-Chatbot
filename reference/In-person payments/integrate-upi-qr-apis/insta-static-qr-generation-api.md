@@ -41,7 +41,7 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
     </tr>
     <tr>
       <td>var1 <code>mandatory</code></td>
-      <td>This parameter must contain the fields in a JSON format. For more information, refer to {user.Description of var1 Parameter Fields}.</td>
+      <td>This parameter must contain the fields in a JSON format. For more information, refer to <a href="https://docs.payu.in/reference/insta-static-qr-generation-api#var1-json-fields-description">var1 JSON fields description</a> section.</td>
       <td>Refer to <a href="https://docs.payu.in/reference/insta-static-qr-generation-api#var1-json-fields-description">var1 JSON fields description</a> section.</td>
     </tr>
   </tbody>
