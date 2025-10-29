@@ -34,21 +34,21 @@ The **Create a Payment Link** API is used to create a regular payment link, recu
 
 > 📘 Notes:
 >
-> * The access token with the scope as **create\_payment\_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
+> * The access token with the scope as **create_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
 > * To create a seamless eNACH payment link, the **enforcePayMethod** parameter must be passed with "enach" as the only method.
 
 <Accordion title="Sample request" icon="fa-upload">
-```curl
-  curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
-  --header 'merchantId: {{merchantId}}' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --data-raw '{
-  "subAmount":2,
-  "isPartialPaymentAllowed":false,
-  "description":"paymentLink for testing",
-  "source":"API"
-  }'
+  ```curl
+    curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
+    --header 'merchantId: {{merchantId}}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --data-raw '{
+    "subAmount":2,
+    "isPartialPaymentAllowed":false,
+    "description":"paymentLink for testing",
+    "source":"API"
+    }'
   ```
   ```python
   import http.client
@@ -88,9 +88,9 @@ The **Create a Payment Link** API is used to create a regular payment link, recu
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-download">
-**Success scenario**
+  **Success scenario**
 
-  ```
+  ```json
   {
     "status": 0,
     "message": "paymentLink generated",
@@ -130,7 +130,7 @@ The **Create a Payment Link** API is used to create a regular payment link, recu
 
   **Failure scenario**
 
-  ```
+  ```json
   {
     "status": -1,
     "message": "Invoice Number already exists. Please enter new invoice number.",
