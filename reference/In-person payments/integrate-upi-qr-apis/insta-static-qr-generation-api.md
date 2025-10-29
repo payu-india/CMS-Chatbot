@@ -36,17 +36,18 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
     </tr>
     <tr>
       <td>hash <code>mandatory</code></td>
-      <td>This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:<br><code>sha512(key|command|var1|salt)</code></td>
-      <td>c24ee06c7cf40314ede424b1fcc2b97a12f97a7d3dd206876eef16660eb09fd374fd82861f66d8152e</td>
+      <td>This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:<br><code>sha512(key\|command\|var1\|salt)</code></td>
+      <td>c24ee06c7cf40314ede424b1f cc2b97a12f97a7d3dd20687 6eef16660eb09fd37 4fd82861f66d8152e</td>
     </tr>
     <tr>
       <td>var1 <code>mandatory</code></td>
       <td>This parameter must contain the fields in a JSON format. For more information, refer to {user.Description of var1 Parameter Fields}.</td>
-      <td>Refer to Sample var1 section.</td>
+      <td>Refer to var1 JSON fields description section.</td>
     </tr>
   </tbody>
 </table>
 `}</HTMLBlock>
+
 
 > 🚧 Callouts
 >
