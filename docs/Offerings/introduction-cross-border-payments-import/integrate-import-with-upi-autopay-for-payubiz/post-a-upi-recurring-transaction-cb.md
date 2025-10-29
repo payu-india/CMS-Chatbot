@@ -1,8 +1,11 @@
 ---
-title: Post an UPI Recurring transaction - CB
+title: Post an UPI Recurring transaction
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
+  title: Post an UPI Consent Transaction - Cross-Border Payments
   robots: index
 ---
 Posting a UPI recurring transaction for cross-border payments involves the following steps:
