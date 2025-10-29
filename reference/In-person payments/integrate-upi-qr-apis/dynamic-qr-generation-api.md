@@ -14,11 +14,12 @@ The dynamic QR generation API returns a UPI QR which can be used for offline pay
 
 ## Environment
 
-| Environment | URL                                                                 |
-| :---------- | :------------------------------------------------------------------ |
-| Production  | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+| Environment | URL                                                                |
+| :---------- | :----------------------------------------------------------------- |
+| Production  | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
 ## Request parameters
+
 # PayU Dynamic BQR API Parameters
 
 <HTMLBlock>{`
@@ -34,7 +35,7 @@ The dynamic QR generation API returns a UPI QR which can be used for offline pay
     <tr>
       <td>key <code>mandatory</code></td>
       <td>Data type: <code>string</code><br>Merchant key provided by PayU during onboarding. For more information, refer to <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Access Production Key and Salt</a>.</td>
-      <td><code>"gtKFFx"</code></td>
+      <td><code>"JP***g"</code></td>
     </tr>
     <tr>
       <td>txnid <code>mandatory</code></td>
@@ -159,7 +160,6 @@ The dynamic QR generation API returns a UPI QR which can be used for offline pay
   </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ### Hashing
 
