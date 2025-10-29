@@ -1,13 +1,16 @@
 ---
-title: Post an UPI Consent Transaction - CB
+title: Post an UPI Consent Transaction
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
+  title: Post an UPI Consent Transaction - Cross-Border Payments
   robots: index
 ---
 The following parameters must be posted using the **_payment** API for cross-border payment for UPI:
 
-  <PaymentAPIEnvironment />
+<PaymentAPIEnvironment />
 
 <Accordion title="Request parameters" icon="fa-code">
   The following are the additional request parameter required for cross-border payments with all of the above integrations.
