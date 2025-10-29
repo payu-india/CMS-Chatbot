@@ -4,6 +4,14 @@ api:
   file: updated_api_spec.json
   operationId: ValidateMerchantCredentials
 hidden: false
+metadata:
+  title: Get Token API - Payment Links
+  keywords:
+    - Get Token API for Payment Links
+    - Payment Links Get Token
+    - Get Token for Payment Links
+    - Bearer Token for Payment Links
+    - Payment Links Bearer Token
 ---
 <br />
 
