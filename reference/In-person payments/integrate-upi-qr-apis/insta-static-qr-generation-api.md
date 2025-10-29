@@ -14,90 +14,39 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
 ## Request parameters
 
-<Table align={["left","left","left"]}>
+<HTMLBlock>{`
+<table>
   <thead>
     <tr>
-      <th style={{ textAlign: "left" }}>
-        Parameter
-      </th>
-
-      <th style={{ textAlign: "left" }}>
-        Description
-      </th>
-
-      <th style={{ textAlign: "left" }}>
-        Value
-      </th>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Value</th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
-      <td style={{ textAlign: "left" }}>
-        key
-        `mandatory`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        This parameter must contain the merchant key provided by PayU.\
-        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
-
-        * \*Production\*\*: Generate Production Merchant Key and Sat.  
-        * \*Test\*\*: Generate Test Merchant Key and Salt.
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        Your Test Key
-      </td>
+      <td>key <code>mandatory</code></td>
+      <td>This parameter must contain the merchant key provided by PayU. For more information, refer to <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Access Production Key and Salt</a>.</td>
+      <td>Your Test Key</td>
     </tr>
-
     <tr>
-      <td style={{ textAlign: "left" }}>
-        command\
-        `mandatory`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        This parameter must have the API command name.
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        generate\_insta\_account
-      </td>
+      <td>command <code>mandatory</code></td>
+      <td>This parameter must have the API command name.</td>
+      <td>generate_insta_account</td>
     </tr>
-
     <tr>
-      <td style={{ textAlign: "left" }}>
-        hash\
-        mandatory
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:\
-        sha512(key|command|var1|salt)
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        c24ee06c7cf40314ede424 b1fcc2b97a12f97a7d3dd2 06876eef16660eb09fd374 fd82861f66d8152e
-      </td>
+      <td>hash <code>mandatory</code></td>
+      <td>This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:<br><code>sha512(key|command|var1|salt)</code></td>
+      <td>c24ee06c7cf40314ede424b1fcc2b97a12f97a7d3dd206876eef16660eb09fd374fd82861f66d8152e</td>
     </tr>
-
     <tr>
-      <td style={{ textAlign: "left" }}>
-        var1\
-        `mandatory`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        This parameter must contain the fields in a JSON format. For more information, refer to {user["Description of var1 Parameter Fields"]}.
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        Refer to Sample var1 section.
-      </td>
+      <td>var1 <code>mandatory</code></td>
+      <td>This parameter must contain the fields in a JSON format. For more information, refer to {user.Description of var1 Parameter Fields}.</td>
+      <td>Refer to Sample var1 section.</td>
     </tr>
   </tbody>
-</Table>
+</table>
+`}</HTMLBlock>
 
 > 🚧 Callouts
 >
@@ -143,12 +92,12 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        merchantVpa\
+        merchantVpa  
         `conditional`
       </td>
 
       <td>
-        `string` This parameter must contain the merchant's VPA in which payment will be collected.VPA to be embedded in QR. This value must be unique & alphanumeric special (less than or equal to 50 characters & Only "@", ".", "," are allowed). The variable part of the VPA series can only be numeric. For example, if the series configured is *.payu\@hdfc then the VPA can only be 123445.payu\@hdfc and not a13s.payu\@hdfc (* part of the series will always be numeric).
+        `string` This parameter must contain the merchant's VPA in which payment will be collected.VPA to be embedded in QR. This value must be unique & alphanumeric special (less than or equal to 50 characters & Only "@", ".", "," are allowed). The variable part of the VPA series can only be numeric. For example, if the series configured is _.payu@hdfc then the VPA can only be 123445.payu@hdfc and not a13s.payu@hdfc (_ part of the series will always be numeric).
       </td>
 
       <td>
@@ -158,7 +107,7 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        name\
+        name  
         `optional`
       </td>
 
@@ -173,7 +122,7 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        city\
+        city  
         `optional`
       </td>
 
@@ -188,7 +137,7 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        pinCode\
+        pinCode  
         `optional`
       </td>
 
@@ -203,7 +152,7 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        instaProduct\
+        instaProduct  
         `mandatory`
       </td>
 
@@ -218,7 +167,7 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        address\
+        address  
         `optional`
       </td>
 
@@ -233,7 +182,7 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        udf1 - udf5\
+        udf1 - udf5  
         `optional`
       </td>
 
@@ -242,22 +191,22 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
       </td>
 
       <td>
-        *
+        * <br />
       </td>
     </tr>
 
     <tr>
       <td>
-        outputType\
+        outputType  
         `optional`
       </td>
 
       <td>
-        `string` This parameter must contain the flag for outputType and can be any of the following  
+        `string` This parameter must contain the flag for outputType and can be any of the following
 
-        '' (blank)\
-        'string'\
-        'base64'  
+        '' (blank)  
+        'string'  
+        'base64'
 
         By default, base64 JSPN encoded qrSting in response is sent.
       </td>
@@ -269,13 +218,13 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        submerchantRegistration\
+        submerchantRegistration  
         `optional`
       </td>
 
       <td>
-        `string` This parameter can contain any of the following:\
-        `1`: This is passed then the request is passed to the acquiring bank.\
+        `string` This parameter can contain any of the following:  
+        `1`: This is passed then the request is passed to the acquiring bank.  
         `0`: This is passed the request is processed internally at PayU end.
       </td>
 
@@ -286,15 +235,15 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        mebussname\
+        mebussname  
         `conditional`
       </td>
 
       <td>
-        `string` This parameter contains the mebussname. It will be visible to the customers upon scanning this QR.  
+        `string` This parameter contains the mebussname. It will be visible to the customers upon scanning this QR.
 
-        * \*For non-aggregator\*\* merchants, the mebussname will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
-        * \*For aggregator-merchants\*\*, the mebussname passed in this parameter should largely match with the name on the PAN card of the details passed in the panNo parameter.  
+        * *For non-aggregator** merchants, the mebussname will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
+        * *For aggregator-merchants**, the mebussname passed in this parameter should largely match with the name on the PAN card of the details passed in the panNo parameter.
 
         This parameter is mandatory for the aggregator-merchant.
       </td>
@@ -306,15 +255,15 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        strCntMobile\
+        strCntMobile  
         `conditional`
       </td>
 
       <td>
-        `string` This parameter must contain the phone number associated for the entity for whom VPA is being created.  
+        `string` This parameter must contain the phone number associated for the entity for whom VPA is being created.
 
-        * \*For non-aggregator merchants\*\*, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
-        * \*For aggregator-merchants\*\*, the strCntMobile is mandatory.
+        * *For non-aggregator merchants**, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
+        * *For aggregator-merchants**, the strCntMobile is mandatory.
       </td>
 
       <td>
@@ -324,14 +273,14 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        panNo\
+        panNo  
         `conditional`
       </td>
 
       <td>
-        `string` This parameter must contain the PAN number associated for the entity for whom VPA is being created.  
+        `string` This parameter must contain the PAN number associated for the entity for whom VPA is being created.
 
-        `For non-aggregator merchants`, the panNo will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
+        `For non-aggregator merchants`, the panNo will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
 
         `For aggregator-merchants`, the panNo of the actual beneficiary needs to be passed. This key is mandatory for the aggregator-merchants.
       </td>
@@ -343,15 +292,15 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        legalStrName\
+        legalStrName  
         `conditional`
       </td>
 
       <td>
-        `string` This parameter must contain the legal name associated for the entity for whom VPA is being created.  
+        `string` This parameter must contain the legal name associated for the entity for whom VPA is being created.
 
-        * \*For non-aggregator merchants\*\*, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
-        * \*For aggregator-merchants\*\*, the legalStrName should largely match with the name on the PAN card of the details passed in the panNo key.  
+        * *For non-aggregator merchants**, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
+        * *For aggregator-merchants**, the legalStrName should largely match with the name on the PAN card of the details passed in the panNo key.
 
         This parameter is mandatory for the aggregator-merchants.
       </td>
@@ -363,15 +312,15 @@ This API is used to generate Static UPI or Bharat QR. The QR generated through t
 
     <tr>
       <td>
-        awlmcc\
+        awlmcc  
         `conditional`
       </td>
 
       <td>
-        `string` This parameter must contain the merchant category code as per NPCI guidelines and is typically a numeric value of length = 4.  
+        `string` This parameter must contain the merchant category code as per NPCI guidelines and is typically a numeric value of length = 4.
 
-        * \*For non-aggregator merchants\*\*, the merchant category code will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
-        * \*For aggregator-merchants\*\*, the merchant category code of the actual beneficiary needs to be passed.  
+        * *For non-aggregator merchants**, the merchant category code will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.
+        * *For aggregator-merchants**, the merchant category code of the actual beneficiary needs to be passed.
 
         This parameter is mandatory for the aggregator-merchants
       </td>
@@ -468,7 +417,7 @@ Response response = client.newCall(request).execute();
 
 ## Response parameters
 
-The transaction\_details parameter of the response is in JSON format and the parameters in this JSON are described in the following table:
+The transaction_details parameter of the response is in JSON format and the parameters in this JSON are described in the following table:
 
 <Table align={["left","left"]}>
   <thead>
@@ -490,9 +439,9 @@ The transaction\_details parameter of the response is in JSON format and the par
       </td>
 
       <td>
-        The value received in this parameter is based on the value passed in the outputType (var1) in the request. It will be in any of the following format containing information associated to the QR, the QR string can be converted into image and used for accepting transactions.  
+        The value received in this parameter is based on the value passed in the outputType (var1) in the request. It will be in any of the following format containing information associated to the QR, the QR string can be converted into image and used for accepting transactions.
 
-        Plain text format if the value in the outputType request parameter is string  
+        Plain text format if the value in the outputType request parameter is string
 
         base64 format if the value in the outputType request parameter is base64
       </td>
