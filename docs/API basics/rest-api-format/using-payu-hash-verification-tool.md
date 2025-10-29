@@ -1,7 +1,7 @@
 ---
 title: Using PayU Hash Verification Tool
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
