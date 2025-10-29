@@ -25,6 +25,5 @@ next:
 ---
 UPI Autopay integration for Cross-Border Import involves the following steps:
 
-1. [Post a Registration transaction](#post-a-registration-transaction) (one-time only)
-2. [Post a Recurring transaction](#post-a-recurring-transaction) (repeat transaction flow)
-
+1. [Post an UPI Consent Transaction](doc:post-an-upi-consent-transaction-cb) (one-time only)
+2. [Post an UPI Recurring transaction](doc:post-a-upi-recurring-transaction-cb) (repeat transaction flow)
