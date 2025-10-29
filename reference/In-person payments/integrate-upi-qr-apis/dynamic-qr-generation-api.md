@@ -35,7 +35,7 @@ The dynamic QR generation API returns a UPI QR which can be used for offline pay
     <tr>
       <td>key <code>mandatory</code></td>
       <td>Data type: <code>string</code><br>Merchant key provided by PayU during onboarding. For more information, refer to <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Access Production Key and Salt</a>.</td>
-      <td><code>"JP***g"</code></td>
+      <td><code>"gtKFFx"</code></td>
     </tr>
     <tr>
       <td>txnid <code>mandatory</code></td>
@@ -79,7 +79,7 @@ The dynamic QR generation API returns a UPI QR which can be used for offline pay
     </tr>
     <tr>
       <td>hash <code>mandatory</code></td>
-      <td>Data type: <code>string</code><br>It is the hash calculated by the merchant. The hash calculation logic is: <code>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code></td>
+      <td>Data type: <code>string</code><br>It is the hash calculated by the merchant. The hash calculation logic is: <code>sha512(key|txnid|amount|productinfo| firstname|email|udf1|udf2|udf3 |udf4|udf5||||||SALT)</code></td>
       <td><code>"c9c2d74b..."</code></td>
     </tr>
     <tr>
