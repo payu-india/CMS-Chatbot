@@ -1,5 +1,5 @@
 ---
-title: Post a UPI Recurring transaction - CB
+title: Post an UPI Recurring transaction - CB
 deprecated: false
 hidden: false
 metadata:
