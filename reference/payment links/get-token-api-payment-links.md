@@ -4,6 +4,8 @@ api:
   file: updated_api_spec.json
   operationId: ValidateMerchantCredentials
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Get Token API - Payment Links
   keywords:
