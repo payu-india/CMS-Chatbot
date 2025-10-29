@@ -1,0 +1,197 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Payout For Merchants",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://uat-api.payu.in",
+      "description": "UAT Environment",
+      "variables": {}
+    },
+    {
+      "url": "https://api.payu.in",
+      "description": "Production Environment",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/merchant/credentials": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Validate Merchant Credentials API",
+        "description": "Validate merchant credentials for API access",
+        "operationId": "ValidateMerchantCredentials",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/x-www-form-urlencoded",
+              "type": "string",
+              "examples": [
+                "application/x-www-form-urlencoded"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "client_id",
+                  "username",
+                  "password"
+                ],
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "description": "Client ID provided by PayU during onboarding",
+                    "examples": [
+                      "6f8bb4951e030d4d7349e64a144a534778673585f86039617c167166e9154f7e"
+                    ]
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Registered mobile number or Email ID"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Registered account password"
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful validation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "examples": [
+                        "success"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "examples": [
+                        "Credentials validated successfully"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "examples": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "examples": [
+                        "Invalid credentials"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "examples": [
+              "error"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "error_code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "message"
+        ]
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "examples": [
+              "success"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "message"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "SmartPay",
+      "description": "Smart payment operations"
+    },
+    {
+      "name": "PayoutCancel",
+      "description": "Payout cancellation operations"
+    },
+    {
+      "name": "webhook v2",
+      "description": "Webhook v2 operations"
+    },
+    {
+      "name": "Misc",
+      "description": "Miscellaneous operations"
+    }
+  ]
+}
