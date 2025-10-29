@@ -1,1 +1,172 @@
-{"openapi":"3.1.0","info":{"title":"Payout For Merchants","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://uat-accounts.payu.in/oauth","variables":{}},{"url":"https://accounts.payu.in/oauth","variables":{}}],"paths":{"/token":{"post":{"tags":["Misc"],"summary":"GenerateTokenusingMerchant'sCredentialsAPI","description":"","operationId":"GenerateTokenusingMerchant'sCredentialsAPI","parameters":[{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"allOf":[{"$ref":"#/components/schemas/Content-Type"},{"examples":["application/x-www-form-urlencoded"]}]}},{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"allOf":[{"$ref":"#/components/schemas/form"},{}]}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["client_id","client_secret","scope","grant_type"],"type":"object","properties":{"client_id":{"type":"string","description":"This field the Client ID that was provided by PayU while onboarding."},"client_secret":{"type":"string","description":"This field the Client secret that was provided by PayU while onboarding.","examples":["create_payment_links"]},"scope":{"allOf":[{"$ref":"#/components/schemas/scope"},{"description":"This parameter will vary based on the use case. Refer the additional information for request parameters table."}]},"grant_type":{"allOf":[{"$ref":"#/components/schemas/grant_type"},{"description":"This parameter contains a constant value used to get the access token. Refer the additional information for request parameters table."}]}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{},"content":{}}},"deprecated":false},"parameters":[]}},"components":{"schemas":{"Content-Type":{"title":"Content-Type","const":"application/x-www-form-urlencoded","type":"string","examples":["application/x-www-form-urlencoded"]},"form":{"title":"form","const":"2","type":"string"},"grant_type":{"title":"grant_type","const":"password","type":"string","description":"This parameter will contain the Constant value."},"scope":{"title":"scope","const":"create_payout_transactions","type":"string","description":"This parameter will contain the Constant value.","examples":["create_payout_transactions"]}},"securitySchemes":{"httpBearer":{"type":"http","scheme":"bearer"}}},"security":[{"httpBearer":[]}],"tags":[{"name":"SmartPay"},{"name":"PayoutCancel"},{"name":"webhook v2"},{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Payout For Merchants",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://uat-accounts.payu.in/oauth",
+      "variables": {}
+    },
+    {
+      "url": "https://accounts.payu.in/oauth",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/token": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "GenerateTokenusingMerchant'sCredentialsAPI",
+        "description": "",
+        "operationId": "GenerateTokenusingMerchant'sCredentialsAPI",
+        "parameters": [
+          {
+            "name": "form",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/form"
+                },
+                {}
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "client_id",
+                  "client_secret",
+                  "scope",
+                  "grant_type"
+                ],
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "description": "This field the Client ID that was provided by PayU while onboarding."
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "description": "This field the Client secret that was provided by PayU while onboarding.",
+                    "examples": [
+                      "create_payment_links"
+                    ]
+                  },
+                  "scope": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/scope"
+                      },
+                      {
+                        "description": "This parameter will vary based on the use case. Refer the additional information for request parameters table."
+                      }
+                    ]
+                  },
+                  "grant_type": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/grant_type"
+                      },
+                      {
+                        "description": "This parameter contains a constant value used to get the access token. Refer the additional information for request parameters table."
+                      }
+                    ]
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "Content-Type": {
+        "title": "Content-Type",
+        "const": "application/x-www-form-urlencoded",
+        "type": "string",
+        "examples": [
+          "application/x-www-form-urlencoded"
+        ]
+      },
+      "form": {
+        "title": "form",
+        "const": "2",
+        "type": "string"
+      },
+      "grant_type": {
+        "title": "grant_type",
+        "const": "password",
+        "type": "string",
+        "description": "This parameter will contain the Constant value."
+      },
+      "scope": {
+        "title": "scope",
+        "const": "create_payout_transactions",
+        "type": "string",
+        "description": "This parameter will contain the Constant value.",
+        "examples": [
+          "create_payout_transactions"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    },
+    {
+      "name": "PayoutCancel"
+    },
+    {
+      "name": "webhook v2"
+    },
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
