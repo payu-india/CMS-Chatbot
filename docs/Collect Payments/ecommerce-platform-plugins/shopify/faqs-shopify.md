@@ -9,7 +9,7 @@ metadata:
 
 #### Will PayU’s Shopify plug-in and APIs support global merchants who want to process payments from Indian customers?
 
-Yes. The plug-in and additional APIs support transaction processing for global merchants selling to customers in India. Merchants must provide invoice details as part of the integration. Settlement and reconciliation remain available through the PayU dashboard, reports, or APIs.
+Yes. The plug-in and additional APIs support transaction processing for global merchants selling to customers in India. Merchants must provide invoice details as part of the integration. Settlement and reconciliation remain available through the PayU Dashboard, reports, or APIs.
 
 #### How do multi-currency payments work? Do merchants need to send amounts in INR after converting from another currency?
 
