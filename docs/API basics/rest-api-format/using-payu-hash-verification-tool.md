@@ -9,9 +9,9 @@ metadata:
 
 Navigate to the following URL on your browser:
 
-<Anchor label="https://payu-hashverificationtool.onrender.com/" target="_blank" href="https://payu-hashverificationtool.onrender.com/">https://payu-hashverificationtool.onrender.com/</Anchor>
+<Anchor label="[https://payu-hashverificationtool.onrender.com/](https://payu-hashverificationtool.onrender.com/)" target="_blank" href="https://payu-hashverificationtool.onrender.com/">[https://payu-hashverificationtool.onrender.com/](https://payu-hashverificationtool.onrender.com/)</Anchor>
 
-<Image border={false} />
+<Image align="center" border={false} src="https://files.readme.io/0e04fd9f9bc081db879aa2532f4aa72ac3f51c09de513cd21e127fe8f033e10f-payu_response_validator_page1.png" />
 
 ## Step 2: Parse the required fields
 
@@ -19,15 +19,15 @@ From the sample response, extract the following key fields:
 
 1. Paste the sample response in the **Callback Response Data** field.
 2. Click **Parse & Fill Form** to populate the following fields based on the data in the response
-• txnid
-• amount
-• productinfo
-• firstname
-• email
-• udf1 to udf10
-• status
-• additionalCharges
-• hash (from PayU)
+   • txnid
+   • amount
+   • productinfo
+   • firstname
+   • email
+   • udf1 to udf10
+   • status
+   • additionalCharges
+   • hash (from PayU)
 
 ## Step 3: Enter your merchant Salt
 
