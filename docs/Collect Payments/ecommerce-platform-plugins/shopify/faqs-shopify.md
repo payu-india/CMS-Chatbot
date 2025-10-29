@@ -5,49 +5,41 @@ hidden: true
 metadata:
   robots: index
 ---
-<br />
+### Cross-Border payments integration
 
-## Cross-Border Payments integration
+#### Will PayU’s Shopify plug-in and APIs support global merchants who want to process payments from Indian customers?
 
-#### With the PayU India plug-in and additional APIs, will all requirements of global merchants be catered to for processing their transactions from Indian customers via PayU?
+Yes. The plug-in and additional APIs support transaction processing for global merchants selling to customers in India. Merchants must provide invoice details as part of the integration. Settlement and reconciliation remain available through the PayU dashboard, reports, or APIs.
 
-From a transaction processing standpoint, this solution will work with additional integration effort from the merchant to provide invoice details. Settlement flow will remain via PayU dashboard/reports/APIs - as in the case for currently live domestic merchants.
+#### How do multi-currency payments work? Do merchants need to send amounts in INR after converting from another currency?
 
-#### Have we thought of how the Multi Currency Payments will be handled, and whether we need the amount to be sent in INR after conversion by the merchant? In such cases, how can the merchant do this conversion?
+Send transaction amounts in INR. Shopify’s Markets feature lets you show product prices in local currencies, but PayU expects the final transaction request in INR. Use Shopify Markets to manage regional pricing and present local-currency prices to customers; the merchant should ensure the payment request that reaches PayU is in INR. For more information, refer to [Shopify Markets Documentation](https://shopify.dev/docs/apps/build/markets).
 
-The transaction request received is expected to be in INR. Shopify has a product construct called "Markets" - where the merchants can define different currency & pricing for geos. Based on the user's location, the catalog priced in local currency is shown. Once the INR catalog is defined, we expect the entire transaction to be processed in INR. For more information, refer to [Shopify Markets Documentation](https://shopify.dev/docs/apps/build/markets).
+#### Will refunds and discounts work correctly for the PACB scenario through this plug-in?
 
-#### Will refund, discounts, etc., work properly for our PACB use case through this plug-in?
+Yes. Full and partial refunds process natively through the current plug-in. Shopify discount codes work natively. Merchant-funded discounts on PayU can be supported but are not yet live with any merchant. Bank-funded or payment-method subvention offers are not supported because PayU does not have cross-border bank subvention arrangements for PACB.
 
-Refunds (partial + full) will work natively via the current plugin.
+#### Will Shopify show payment gateway details such as currency, MDR, settlement status, and UTR on its dashboard?
 
-On discounts:
-
-* Native Shopify discount codes will work.
-* Merchant subvention discounts on PayU can also be supported, if required; however, we are not live on this currently with any merchant so far.
-* Bank subvention offers, payment method-based offers will not be supported, as we do not have a cross-border arrangement for bank subvention. This is a PACB limitation, not specific to Shopify.
-
-#### Will the Shopify dashboard correctly show the reports with currency, MDR, settlement status/UTR, etc.?
-
-As described earlier, Shopify currently does not have any construct to show PG settlement details on their dashboard. They will have to be consumed from us directly through the dashboard, reports, or APIs - which will include full details: settlement status, currency, FX rate applied, UTR, etc.
-
-#### Will the merchant have to build routing logic to use PayU services only for Indian customers? Any simple way that can be suggested to merchants?
-
-There are third-party tools which allow merchants to control visibility of payment apps based on the user's geo - which can be leveraged here.
+No. Shopify does not display payment gateway settlement details. Merchants should get settlement status, currency, FX rate, UTR, and related fields from the PayU Dashboard, reports, or APIs. 
 
 For more information, check these apps on on the Shopify App Store:
 
 * [Localized Payments](https://apps.shopify.com/localized-payments)
 * [HidePay](https://apps.shopify.com/hidepay)
 
-#### Is there a PayU Integration Support which can guide these merchants for integration when required?
+#### Do merchants need to build routing logic to use PayU only for Indian customers? Is there an easier option?
 
-Yes, the International Integration team will be able to support. We can have a refresher KT session this week to ensure there are no disconnects.
+Merchants can use third-party Shopify apps that limit payment app visibility by customer geo. These apps let you show PayU only to customers in India, avoiding custom routing code.
 
-#### I presume these global merchants cannot follow the OAuth or redirection to PayU for onboarding & will have to be done as Assisted onboarding prior to starting transactions?
+#### Can merchants get PayU integration support for Shopify setups and Cross-Border questions?
 
-Yes, that understanding is correct. We will need to onboard them via KAM assisted flow - as our current sign-up process requires an Indian phone number. Once onboarding is complete, the merchant can complete the Shopify store linking via OAuth - or we can support that in an offline way.
+Yes. The International Integration team provides integration support. Contact your PayU key account manager for onboarding help or to schedule knowledge-transfer sessions.
 
-#### Since the PACB plugin will not be available on Shopify marketplace, we will have to separately provide the plug-ins & APIs to such merchants. Also, it cannot be self-discovery by merchants?
+#### Can global merchants complete onboarding using OAuth and self-sign-up?
 
-Yes, PayU can help you in this regard. Contact your PayU key account manager (KAM).
+No. Global merchants must complete KAM-assisted onboarding because the current sign-up flow requires an Indian phone number. After onboarding, merchants can link their Shopify store via OAuth or use an offline linking method supported by PayU.
+
+#### If the PACB plugin is not listed on the Shopify marketplace, where will the merchants get it?
+
+PayU will provide the plug-in and APIs directly to merchants who cannot find it on the Shopify marketplace. Contact your PayU key account manager to request the plug-in and receive implementation support.
