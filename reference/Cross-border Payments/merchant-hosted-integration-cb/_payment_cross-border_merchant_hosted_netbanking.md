@@ -4,6 +4,8 @@ api:
   file: cb_merchant_hosted_net_banking.json
   operationId: MerchantHostedCheckout-UPI
 hidden: true
+link:
+  new_tab: false
 ---
 PayU allows you to collect cross-border payments using Net Banking.  The **buyer_type_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
 
