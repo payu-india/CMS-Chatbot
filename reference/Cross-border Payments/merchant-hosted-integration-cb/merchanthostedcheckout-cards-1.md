@@ -1,9 +1,15 @@
 ---
-title: MerchantHostedCheckout-Cards
+title: Cards - CB
 api:
   file: cb_merchant_hosted_cards.json
   operationId: MerchantHostedCheckout-Cards
 hidden: false
+link:
+  new_tab: false
+metadata:
+  title: >-
+    Collect Payment API using Cards - Merchant Hosted with Cross-Border
+    Payments 
 ---
 You can collect payments from customers with leading cards using the Merchant Hosted integration for Cross Border Payments. The **buyer_type_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
 
