@@ -19,7 +19,7 @@ The **Insta Deactivate VPA** API is used to deactivate the VPA embedded in the i
 | Production  | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
 
 ## Request parameter
-
+<HTMLBlock>{`
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -44,11 +44,7 @@ The **Insta Deactivate VPA** API is used to deactivate the VPA embedded in the i
       </td>
 
       <td>
-        This parameter must contain the merchant key provided by PayU.\
-        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
-
-        * \*Production\*\*: Generate Production Merchant Key and Sat.  
-        * \*Test\*\*: Generate Test Merchant Key and Salt.
+        This parameter must contain the merchant key provided by PayU. For more information, refer to <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Access Production Key and Salt</a>.
       </td>
 
       <td>
@@ -66,7 +62,7 @@ The **Insta Deactivate VPA** API is used to deactivate the VPA embedded in the i
       </td>
 
       <td>
-        expire\_insta\_account
+        expire_insta_account
       </td>
     </tr>
 
@@ -76,7 +72,7 @@ The **Insta Deactivate VPA** API is used to deactivate the VPA embedded in the i
       </td>
 
       <td>
-        This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:  
+        This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:
 
         sha512(key|command|var1|salt)
       </td>
@@ -92,17 +88,17 @@ The **Insta Deactivate VPA** API is used to deactivate the VPA embedded in the i
       </td>
 
       <td>
-        This parameter must contain the fields in a JSON format. For more information, refer to {user["Description of var1 Parameter Fields"]}.
+        This parameter must contain the fields in a JSON format. For more information, refer to <a href="https://docs.payu.in/reference/insta-deactivate-vpa-api#var1-json-fields-description">var1 JSON fields description</a> section..
       </td>
 
       <td>
-        Refer to {user["Sample var1 "]}section.
+        Refer to <a href="https://docs.payu.in/reference/insta-deactivate-vpa-api#var1-json-fields-description">var1 JSON fields description</a> section..
       </td>
     </tr>
   </tbody>
 </Table>
-
-### Fields in var1 parameter description
+`}</HTMLBlock>
+### var1 JSON fields description
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -133,13 +129,13 @@ The **Insta Deactivate VPA** API is used to deactivate the VPA embedded in the i
       </td>
 
       <td>
-        smsplustestqr789\@indus
+        smsplustestqr789@indus
       </td>
     </tr>
 
     <tr>
       <td>
-        instaProduct\
+        instaProduct  
         `mandatory`
       </td>
 
@@ -154,7 +150,7 @@ The **Insta Deactivate VPA** API is used to deactivate the VPA embedded in the i
 
     <tr>
       <td>
-        remarks\
+        remarks  
         `optional`
       </td>
 
@@ -261,9 +257,9 @@ Response response = client.newCall(request).execute();
       </td>
 
       <td>
-        This parameter returns the status of web service call. The status can be any of the following:  
+        This parameter returns the status of web service call. The status can be any of the following:
 
-        0 - If web service call failed.\
+        0 - If web service call failed.  
         1 - If web service call succeeded
       </td>
     </tr>
@@ -274,7 +270,7 @@ Response response = client.newCall(request).execute();
       </td>
 
       <td>
-        The following message is displayed to indicate that the VPA is permanently blocked now, and the QR cannot be scanned to make any UPI transactions.\
+        The following message is displayed to indicate that the VPA is permanently blocked now, and the QR cannot be scanned to make any UPI transactions.  
         `merchantVpa deactivated`
       </td>
     </tr>
