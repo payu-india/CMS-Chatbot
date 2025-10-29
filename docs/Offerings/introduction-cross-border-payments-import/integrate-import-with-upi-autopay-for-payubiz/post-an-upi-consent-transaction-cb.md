@@ -5,12 +5,12 @@ hidden: false
 metadata:
   robots: index
 ---
-The following parameters (mandatory) must be posted using the **_payment** API for cross-border payment for UPI:
+The following parameters must be posted using the **_payment** API for cross-border payment for UPI:
+
+  <PaymentAPIEnvironment />
 
 <Accordion title="Request parameters" icon="fa-code">
   The following are the additional request parameter required for cross-border payments with all of the above integrations.
-
-  <PaymentAPIEnvironment />
 
   <Table align={["left","left","left"]}>
     <thead>
@@ -333,62 +333,59 @@ The following parameters (mandatory) must be posted using the **_payment** API f
   ```
 </Accordion>
 
-
 <Accordion title="Sample response" icon="fa-reply">
+  * The formatted response for UPI Consent Transaction is similar to the following:
 
-* The formatted response for UPI Consent Transaction is similar to the following:
-
-```plaintext
-Array
-(
-    [mihpayid] => 403993715525317379
-    [mode] => UPI
-    [status] => success
-    [unmappedstatus] => captured
-    [key] => JPM7Fg
-    [txnid] => 4eZz2lMbUYQ4c0
-    [amount] => 10.00
-    [discount] => 0.00
-    [net_amount_debit] => 10
-    [addedon] => 2022-02-02 16:00:53
-    [productinfo] => iPhone
-    [firstname] => PayU User
-    [lastname] => 
-    [address1] => 
-    [address2] => 
-    [city] => 
-    [state] => 
-    [country] => 
-    [zipcode] => 
-    [email] => test@gmail.com
-    [phone] => 9876543210
-    [udf1] => 
-    [udf2] => 
-    [udf3] => 
-    [udf4] => 
-    [udf5] => 
-    [udf6] => 
-    [udf7] => 
-    [udf8] => 
-    [udf9] => 
-    [udf10] => 
-    [hash] => 1b1df6deb730c4826341e35b9b010497f524c88e3cee05287f0148dd302f81ab45503a27f43d492d127134cf5983eab1042930f10a04f27a094e19c500644104
-    [field1] => anything@payu
-    [field2] => 4eZz2lMbUYQ4c0
-    [field3] => 
-    [field4] => PayU User
-    [field5] => AXIDI0zH6YxpU1eCukPM4fBdnxkf54cEKbt
-    [field6] => 
-    [field7] => Transaction completed successfully
-    [field8] => 
-    [field9] => Transaction completed successfully
-    [payment_source] => sist
-    [PG_TYPE] => UPI-PG
-    [bank_ref_num] => 4eZz2lMbUYQ4c0
-    [bankcode] => UPI
-    [error] => E000
-    [error_Message] => No Error
-)
-```
+  ```plaintext
+  Array
+  (
+      [mihpayid] => 403993715525317379
+      [mode] => UPI
+      [status] => success
+      [unmappedstatus] => captured
+      [key] => JPM7Fg
+      [txnid] => 4eZz2lMbUYQ4c0
+      [amount] => 10.00
+      [discount] => 0.00
+      [net_amount_debit] => 10
+      [addedon] => 2022-02-02 16:00:53
+      [productinfo] => iPhone
+      [firstname] => PayU User
+      [lastname] => 
+      [address1] => 
+      [address2] => 
+      [city] => 
+      [state] => 
+      [country] => 
+      [zipcode] => 
+      [email] => test@gmail.com
+      [phone] => 9876543210
+      [udf1] => 
+      [udf2] => 
+      [udf3] => 
+      [udf4] => 
+      [udf5] => 
+      [udf6] => 
+      [udf7] => 
+      [udf8] => 
+      [udf9] => 
+      [udf10] => 
+      [hash] => 1b1df6deb730c4826341e35b9b010497f524c88e3cee05287f0148dd302f81ab45503a27f43d492d127134cf5983eab1042930f10a04f27a094e19c500644104
+      [field1] => anything@payu
+      [field2] => 4eZz2lMbUYQ4c0
+      [field3] => 
+      [field4] => PayU User
+      [field5] => AXIDI0zH6YxpU1eCukPM4fBdnxkf54cEKbt
+      [field6] => 
+      [field7] => Transaction completed successfully
+      [field8] => 
+      [field9] => Transaction completed successfully
+      [payment_source] => sist
+      [PG_TYPE] => UPI-PG
+      [bank_ref_num] => 4eZz2lMbUYQ4c0
+      [bankcode] => UPI
+      [error] => E000
+      [error_Message] => No Error
+  )
+  ```
 </Accordion>
-
