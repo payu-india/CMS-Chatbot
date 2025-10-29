@@ -5,30 +5,29 @@ hidden: false
 metadata:
   robots: index
 ---
-### Step 1: Open the PayU Hash Verification Tool
+## Step 1: Open the PayU Hash Verification Tool
 
-Go to [https://payu-hashverificationtool.onrender.com/](https://payu-hashverificationtool.onrender.com/) in your browser.
+Navigate to the following URL on your browser:
 
-***
+<Anchor label="https://payu-hashverificationtool.onrender.com/" target="_blank" href="https://payu-hashverificationtool.onrender.com/">https://payu-hashverificationtool.onrender.com/</Anchor>
 
-### 🧾 **Step 2: Parse the Required Fields**
+<Image border={false} />
+
+## Step 2: Parse the required fields
 
 From the sample response, extract the following key fields:
 
-| Field Name        |
-| ----------------- |
-| key               |
-| txnid             |
-| amount            |
-| productinfo       |
-| firstname         |
-| email             |
-| udf1 to udf10     |
-| status            |
-| additionalCharges |
-| hash (from PayU)  |
-
-***
+1. Paste the sample response in the **Callback Response Data** field.
+2. Click **Parse & Fill Form** to populate the following fields based on the data in the response
+• txnid
+• amount
+• productinfo
+• firstname
+• email
+• udf1 to udf10
+• status
+• additionalCharges
+• hash (from PayU)
 
 ## Step 3: Enter your merchant Salt
 
@@ -40,12 +39,11 @@ You must enter your **merchant salt** (provided by PayU) in the tool. This is es
 
 ***
 
-## Step 4: Compute the Hash
+## Step 4: Compute the hash
 
-* Click the **"Verify Hash"** or equivalent button on the tool.
-* The tool will recompute the hash using the provided data and your salt.
+Click **"Verify Hash"** or equivalent button on the tool.
 
-***
+The tool will recompute the hash using the provided data and your salt.
 
 ## Step 5: Compare the Hashes
 
