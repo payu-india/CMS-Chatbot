@@ -54,9 +54,239 @@ All successful registration transactions are charged over the recurring interfac
 | Test Environment       | \<[https://test.payu.in/merchant/>](https://test.payu.in/merchant/>) |
 
 <Accordion title="Sample request" icon="fa-code">
-  ```
+  ```curl
     curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=si_transaction&var1={\"authpayuid\": \"6611192557\",\"invoiceDisplayNumber\":\"12345678910\",\"amount\": 3,\"txnid\": \"REC15113506209\",\"phone\": \"9999999999\",\"email\": \"chota.bheem@gmail.com\",\"udf2\": \"\",\"udf3\": \"\",\"udf4\": \"\",\"udf5\": \"\"}&hash=jbUS07Og8BToVZ"
   ```
+Perfect! I've analyzed your CURL request and converted it to equivalent code in all requested languages. This appears to be a **PayU payment gateway API call** for subscription/installment transactions.
+
+## **Python** 🐍
+```python
+import requests
+import urllib.parse
+
+# PayU API endpoint
+url = "https://test.payu.in/merchant/postservice?form=2"
+
+# Headers
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+# Form data
+form_data = {
+    "key": "JP***g",
+    "command": "si_transaction",
+    "var1": '{"authpayuid": "6611192557","invoiceDisplayNumber":"12345678910","amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "chota.bheem@gmail.com","udf2": "","udf3": "","udf4": "","udf5": ""}',
+    "hash": "jbUS07Og8BToVZ"
+}
+
+# Make the POST request
+try:
+    response = requests.post(url, headers=headers, data=form_data)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main(string[] args)
+    {
+        string url = "https://test.payu.in/merchant/postservice?form=2";
+        
+        // Set headers
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        // Prepare form data
+        var formData = new List<KeyValuePair<string, string>>
+        {
+            new KeyValuePair<string, string>("key", "JP***g"),
+            new KeyValuePair<string, string>("command", "si_transaction"),
+            new KeyValuePair<string, string>("var1", "{\"authpayuid\": \"6611192557\",\"invoiceDisplayNumber\":\"12345678910\",\"amount\": 3,\"txnid\": \"REC15113506209\",\"phone\": \"9999999999\",\"email\": \"chota.bheem@gmail.com\",\"udf2\": \"\",\"udf3\": \"\",\"udf4\": \"\",\"udf5\": \"\"}"),
+            new KeyValuePair<string, string>("hash", "jbUS07Og8BToVZ")
+        };
+        
+        var formContent = new FormUrlEncodedContent(formData);
+        
+        try
+        {
+            HttpResponseMessage response = await client.PostAsync(url, formContent);
+            string responseContent = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseContent}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
+        }
+    }
+}
+```
+```javascript
+// PayU API call using modern Async/Await Fetch
+async function makePayURequest() {
+    const url = "https://test.payu.in/merchant/postservice?form=2";
+    
+    // Headers
+    const headers = {
+        "accept": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded"
+    };
+    
+    // Form data
+    const formData = new URLSearchParams({
+        "key": "JP***g",
+        "command": "si_transaction",
+        "var1": '{"authpayuid": "6611192557","invoiceDisplayNumber":"12345678910","amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "chota.bheem@gmail.com","udf2": "","udf3": "","udf4": "","udf5": ""}',
+        "hash": "jbUS07Og8BToVZ"
+    });
+    
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: headers,
+            body: formData
+        });
+        
+        const responseText = await response.text();
+        
+        console.log(`Status: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+        
+        return {
+            status: response.status,
+            data: responseText
+        };
+        
+    } catch (error) {
+        console.error("Error:", error);
+        throw error;
+    }
+}
+
+// Call the function
+makePayURequest()
+    .then(result => console.log("Success:", result))
+    .catch(error => console.error("Failed:", error));
+```
+```java
+import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class PayUApiClient {
+    
+    private static final HttpClient client = HttpClient.newBuilder()
+            .connectTimeout(Duration.ofSeconds(30))
+            .build();
+    
+    public static void main(String[] args) {
+        try {
+            makePayURequest();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+    
+    public static void makePayURequest() throws IOException, InterruptedException {
+        String url = "https://test.payu.in/merchant/postservice?form=2";
+        
+        // Prepare form data
+        Map<String, String> formData = new HashMap<>();
+        formData.put("key", "JP***g");
+        formData.put("command", "si_transaction");
+        formData.put("var1", "{\"authpayuid\": \"6611192557\",\"invoiceDisplayNumber\":\"12345678910\",\"amount\": 3,\"txnid\": \"REC15113506209\",\"phone\": \"9999999999\",\"email\": \"chota.bheem@gmail.com\",\"udf2\": \"\",\"udf3\": \"\",\"udf4\": \"\",\"udf5\": \"\"}");
+        formData.put("hash", "jbUS07Og8BToVZ");
+        
+        // Convert to URL encoded string
+        String formBody = formData.entrySet().stream()
+                .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + 
+                             "=" + URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
+                .collect(Collectors.joining("&"));
+        
+        // Build request
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("accept", "application/json")
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .POST(HttpRequest.BodyPublishers.ofString(formBody))
+                .build();
+        
+        // Send request
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println("Status Code: " + response.statusCode());
+        System.out.println("Response: " + response.body());
+    }
+}
+```
+```php
+// PayU API endpoint
+$url = "https://test.payu.in/merchant/postservice?form=2";
+
+// Form data
+$postData = [
+    'key' => 'JP***g',
+    'command' => 'si_transaction',
+    'var1' => '{"authpayuid": "6611192557","invoiceDisplayNumber":"12345678910","amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "chota.bheem@gmail.com","udf2": "","udf3": "","udf4": "","udf5": ""}',
+    'hash' => 'jbUS07Og8BToVZ'
+];
+
+// Initialize cURL
+$ch = curl_init();
+
+// Set cURL options
+curl_setopt_array($ch, [
+    CURLOPT_URL => $url,
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => http_build_query($postData),
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => [
+        'accept: application/json',
+        'Content-Type: application/x-www-form-urlencoded'
+    ],
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_SSL_VERIFYPEER => false, // Only for testing
+]);
+
+// Execute request
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$error = curl_error($ch);
+
+// Close cURL
+curl_close($ch);
+
+// Handle response
+if ($error) {
+    echo "cURL Error: " . $error . PHP_EOL;
+} else {
+    echo "Status Code: " . $httpCode . PHP_EOL;
+    echo "Response: " . $response . PHP_EOL;
+}
+```
+
+
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
@@ -165,37 +395,37 @@ All successful registration transactions are charged over the recurring interfac
 
 <Accordion title="Reference information" icon="fa-flask">
   <HTMLBlock>{`
-            <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-            <tr>
-              <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-              <th style="border: 1px solid #ddd; padding: 8px;">Reference</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:key&gt;&gt;</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>For more information on how to generate the Key and Salt, refer to any of the following:  </p>
-            <ul>
-            <li><strong>Production</strong>: <a href="http://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
-            <li><strong>Test</strong>: <a href="http://docs.payu.in/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
-            </ul>
-            </td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:hash&gt;&gt;</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>Hash logic for this API is:<br>sha512(key|command|var1|salt)sha512</p>
-            </td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
-            </td>
-              <td style="border: 1px solid #ddd; padding: 8px;"><p>For JSON fields description, refer to <a href="http://docs.payu.in/reference/addl_info-payment-apis#/">Additional Info. Payment APIs</a></p>
-            </td>
-            </tr>
-            </tbody>
-            </table>
+              <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+              <tr>
+                <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Reference</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:key&gt;&gt;</p>
+              </td>
+                <td style="border: 1px solid #ddd; padding: 8px;"><p>For more information on how to generate the Key and Salt, refer to any of the following:  </p>
+              <ul>
+              <li><strong>Production</strong>: <a href="http://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
+              <li><strong>Test</strong>: <a href="http://docs.payu.in/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
+              </ul>
+              </td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:hash&gt;&gt;</p>
+              </td>
+                <td style="border: 1px solid #ddd; padding: 8px;"><p>Hash logic for this API is:<br>sha512(key|command|var1|salt)sha512</p>
+              </td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
+              </td>
+                <td style="border: 1px solid #ddd; padding: 8px;"><p>For JSON fields description, refer to <a href="http://docs.payu.in/reference/addl_info-payment-apis#/">Additional Info. Payment APIs</a></p>
+              </td>
+              </tr>
+              </tbody>
+              </table>
   `}</HTMLBlock>
 </Accordion>
