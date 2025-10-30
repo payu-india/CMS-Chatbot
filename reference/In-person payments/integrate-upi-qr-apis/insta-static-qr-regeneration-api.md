@@ -45,11 +45,11 @@ The **Insta Static QR Re-Generation** API is used to regenerate a previously gen
     <tr>
       <td>hash <code>mandatory</code></td>
       <td>This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash as follows:<br><code>sha512(key|command|var1|salt)</code></td>
-      <td>c24ee06c7cf40314e de424b1fcc2b97 a12f97a7d3dd20 6876eef16660 eb09fd374fd8286 1f66d8152e</td>
+      <td>c24ee06c7cf40314ede424b1 fcc2b97a12f97a7d3 dd206876eef16660eb09 fd374fd82861f66d8152e</td>
     </tr>
     <tr>
       <td>var1 <code>mandatory</code></td>
-      <td>This parameter must contain the fields in a JSON format. For more information, refer to [Description of var1 Parameter Fields](https://docs.payu.in/reference/insta-static-qr-regeneration-api#description-of-var1-parameter-fields).</td>
+      <td>This parameter must contain the fields in a JSON format. For more information, refer to <a href="https://docs.payu.in/reference/insta-static-qr-regeneration-api#description-of-var1-parameter-fields">Description of var1 parameter fields</a>.</td>
       <td>Refer to Sample var1 section.</td>
     </tr>
   </tbody>
