@@ -1,11 +1,12 @@
 ---
 title: Recurring Payment Transaction API
-excerpt: ''
 api:
   file: test_si_collection-6.json
   operationId: RecurringPaymentAPI
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Recurring Payment Transaction API
   description: >-
@@ -24,14 +25,13 @@ metadata:
     - ' Collect Recurring Payment using UPI'
   robots: index
 next:
-  description: ''
   pages:
-    - type: basic
-      slug: using-api-integration-recurring-payments
+    - slug: using-api-integration-recurring-payments
       title: Using API Integration
-    - type: basic
-      slug: customer-experience-and-workflow-recurring-payments
+      type: basic
+    - slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
+      type: basic
 ---
 All successful registration transactions are charged over the recurring interface with server-to-server API without any additional 2FA or the customers’ involvement. This section describes how to achieve the Recurring Transaction for Net Banking, Cards, and UPI through the common platform.
 
