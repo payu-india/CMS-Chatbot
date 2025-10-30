@@ -18,8 +18,6 @@ Post the pre-debit notification before 48 hours of the actual debit to notify th
 
 Initiate recurring using the **Recurring Payment Transaction** API including the below UDF params under var1 object required for PACB flow. For more information, refer to <Anchor label="Recurring Payment Transaction API" target="_blank" href="ref:recurring_payment_api">Recurring Payment Transaction API</Anchor>.
 
-<br />
-
 ### Environment
 
 |                        |                                                                      |
@@ -116,6 +114,10 @@ Initiate recurring using the **Recurring Payment Transaction** API including the
 </table>
 `}</HTMLBlock>
 
+> 📘 Notes: For the UDFs above:
+>
+> * If first value is absent, then UDF param will be sent as  NULL || \<VALUE>
+> * If second value is absent, then UDF param will be sent as \ \<VALUE>
 </Accordion>
 <Accordion title="Sample request" icon="fa-code">
   ```curl
@@ -455,13 +457,6 @@ Initiate recurring using the **Recurring Payment Transaction** API including the
   > For UPI, call the **verify\_settlement** API after 10 mins from time of initiation whereas for Net Banking it can be called up to T+2 once in a day.
 </Accordion>
 
-
-> 📘 Notes:
->
-> For the UDFs above:
->
-> * If first value is absent, then UDF param will be sent as  NULL || \<VALUE>
-> * If second value is absent, then UDF param will be sent as \ \<VALUE>
 
 ## Step 3: Update Invoice ID [Optional]
 
