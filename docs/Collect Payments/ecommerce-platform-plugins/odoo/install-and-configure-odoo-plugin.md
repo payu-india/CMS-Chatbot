@@ -1,5 +1,5 @@
 ---
-title: Install and Configure Odoo Plugin
+title: '          Install and Configure Odoo Plugin'
 deprecated: false
 hidden: false
 metadata:
