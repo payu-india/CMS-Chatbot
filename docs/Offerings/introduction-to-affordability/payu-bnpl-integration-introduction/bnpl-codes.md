@@ -25,5 +25,4 @@ The <Glossary>BNPL</Glossary> codes must be used as value with the bankcode para
 | Lazypay          | LAZYPAY      | **Note**: Tenure is not applicable for LazyPay and the customer has to make the payment as per the bill generated on a monthly basis. |
 | ICICI Bank       | ICICPL       | NA                                                                                                                                    |
 | Mobikwik ZIP     | MOBIZIP      | NA                                                                                                                                    |
-| Simpl            | SIMPL        | NA                                                                                                                                    |
 | Amazon Pay Later | APL          | NA                                                                                                                                    |
