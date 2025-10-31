@@ -115,8 +115,4 @@ For additional details about webhook alerts implementation and configurations, r
 
 ## Support & Resources
 
-For further assistance, contact: **[overwatch.support@payu.in](mailto:overwatch.support@payu.in)**
-
-***
-
-_This document provides a comprehensive overview of PayU Overwatch platform capabilities, monitoring features, and implementation guidelines._
+For further assistance, contact: **[overwatch.support@payu.in](mailto:overwatch.support@payu.in)**.
