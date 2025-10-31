@@ -17,9 +17,9 @@ The Collect Payment API (**_payment** API) can be used to collect payments for t
 
 After the payment is complete, you must use the [Invoice Upload API](ref:invoice_upload_api) to upload the invoices for banks processing.
 
-> 📘 **Reference:**
->
-> For an example of how to submit a payment request on your website, refer to [Submitting Payment Request on your Website](doc:submitting-payment-request-on-your-website). To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](doc:handling-the-redirect-urls).
+<Callout icon="📘" theme="info">
+  **Reference**: For an example of how to submit a payment request on your website, refer to [Submitting Payment Request on your Website](doc:submitting-payment-request-on-your-website). To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](doc:handling-the-redirect-urls).
+</Callout>
 
 ## Environment
 
