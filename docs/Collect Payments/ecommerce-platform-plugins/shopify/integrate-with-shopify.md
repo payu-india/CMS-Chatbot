@@ -63,7 +63,7 @@ After you set up your account in Shopify, you can integrate PayU India as the pa
 
     ## Integration Steps
 
-    **Step 1:** Navigate to the \[Shopify PayU India App] ([https://apps.shopify.com/payu-india](https://apps.shopify.com/payu-india)))
+    **Step 1:** Navigate to the <a href="https://apps.shopify.com/payu-india">Shopify PayU India App</a>.
 
     **Step 2:** Click **Add App** to install PayU
 
