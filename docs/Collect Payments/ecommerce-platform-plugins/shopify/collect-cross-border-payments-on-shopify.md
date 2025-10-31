@@ -8,9 +8,13 @@ hidden: true
 metadata:
   robots: index
 next:
+  description: cross
   pages:
     - slug: shopify
       title: Shopify
+      type: basic
+    - slug: introduction-cross-border-payments-import
+      title: Cross-Border Payments
       type: basic
 ---
 # &#x20; Introduction
