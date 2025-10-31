@@ -52,7 +52,7 @@ The response URL returned from PayU is in the form URL format (application/x-www
 
 **Parsed response**
 
-```
+```json
 Array
 (
     [mihpayid] => 25630643428
