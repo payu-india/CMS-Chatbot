@@ -2,7 +2,7 @@
 title: RBI Guidelines
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: RBI Guidelines for Cross-Border Payments
   description: ''
