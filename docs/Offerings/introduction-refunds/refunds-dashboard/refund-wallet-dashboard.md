@@ -5,10 +5,15 @@ hidden: true
 metadata:
   robots: index
 ---
-The Refund Wallet allows you to manage, recharge, and configure your refund funds for faster and more transparent refund processing. This guide walks you through activating, configuring, recharging, and monitoring your Refund Wallet. 
+The Refund Wallet allows you to manage, recharge, and configure your refund funds for faster and more transparent refund processing. This guide walks you through activating, configuring, recharging, and monitoring your Refund Wallet.
 
 <Callout icon="📘" theme="info">
-  **Note**: This feature is curravailable to available to all normal merchants (excluding split settlement merchants, MCC merchants, FK, Amazon, and Myntra).
+  **Notes**:  
+
+  * Refund Wallet is currently available to available to all normal merchants (excluding split settlement merchants, MCC merchants, FK, Amazon, and Myntra).
+  * You must only use your Settlement-linked account for adding funds.
+  * Funds in the Refund Wallet are non-withdrawable and strictly for refunds.
+  * PayU suggests you regularly monitor your wallet balance and set up notifications to avoid refund delays.
 </Callout>
 
 ## Activate Refund Wallet
