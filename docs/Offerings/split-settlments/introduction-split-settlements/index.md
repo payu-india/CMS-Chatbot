@@ -56,7 +56,59 @@ Before you onboard child merchants, you need to ensure the following (one-time p
 
 ## Step 1: Get client token
 
-Use the **Get Client Token** API with the scope as **refer_child_merchant** to create a client token from Hub. For more information, refer to [Get Client Token API](ref:get-client-token-api)
+Use the **Get Client Token** API with the scope as **refer_child_merchant** to create a client token from Hub. For more information, refer to [Get Client Token API](ref:get-client-token-api).
+
+**Environment**
+
+|                |                                                                  |
+| :------------- | :--------------------------------------------------------------- |
+| **Test**       | \<[https://uat-accounts.payu.in>](https://uat-accounts.payu.in>) |
+| **Production** | \<[https://accounts.payu.in>](https://accounts.payu.in>)         |
+
+## Sample request
+
+```curl
+curl --location -g --request POST '{{hub_base_url}}/oauth/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client_id={{client_id}}' \
+--data-urlencode 'client_secret={{client_secret}}' \
+--data-urlencode 'grant_type=client_credentials' \
+--data-urlencode 'scope=refer_child_merchant'
+```
+
+## Sample response
+
+The following sample response for each scenario is in JSON format:
+
+* Create Child Merchant is Successful
+
+```plaintext
+{
+    "access_token": "453226e88f0e6d18b24fe4eedb817b0ff096cb740f0354e4b133188555d2b151",
+    "token_type": "Bearer",
+    "expires_in": 2591999,
+    "scope": "refer_child_merchant",
+    "created_at": 1642509515
+}
+```
+
+* When the client_ID or secret code is unauthorised:
+
+```plaintext
+{
+    "error": "invalid_client",
+    "error_description": "Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method."
+}
+```
+
+* Incorrect scope or non-whitelisted scope
+
+```plaintext
+{
+    "error": "invalid_scope",
+    "error_description": "The requested scope is invalid, unknown, or malformed."
+}
+```
 
 ## Step 2: Create a child merchant
 
@@ -401,7 +453,7 @@ curl --location -g --request PUT '{{host}}/api/v3/product_accounts/{{product_acc
 
 After you onboard your child merchants, you can fetch the child merchant details as described in the following API Reference sections:
 
-* [Fetch Child Merchants Details](doc:fetch-child-merchants-details-1) 
+* [Fetch Child Merchants Details](doc:fetch-child-merchants-details-1)
 * [Sub Account Listing API](ref:sub-account-listing-v3-api)
 
 <br />
