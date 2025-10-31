@@ -166,10 +166,9 @@ TridentitySDK.getInstance().configSdk(context, configObject, object : ConfigStat
     }
 })
 ```
-```
-```
 
-```kotlin Sample Code
+Once populated with these parameters, the configuration object is passed to the configSdk method to properly initialize the SDK, with callback handlers managing the configuration success or failure responses.
+```kotlin 
 val configObject = JSONObject()  
 
 configObject.put("env", "UAT") // UAT or PROD 
@@ -235,8 +234,8 @@ TridentitySDK.getInstance().initiateRegistration(activity, regObject, object : R
     }
 })
 ```
-
-```kotlin Sample Code
+The registration object is then passed to the initiateRegistration method to begin the enrollment process, with callback handlers to manage success and error responses during the biometric setup workflow.
+```kotlin 
 val regObject = JSONObject()  
 
 regObject.put("uid", "<>")  
@@ -291,8 +290,8 @@ TridentitySDK.getInstance().checkRegistrationStatus(context, custObject, object 
     }
 })
 ```
-
-```kotlin Sample Code
+The customer object is then passed to the checkRegistrationStatus method to perform the verification, with success callbacks specifically looking for a "registration_comm_success" status to confirm successful registration.
+```kotlin 
 val custObject = JSONObject()  
 
 custObject.put("clientId", "<>")     
@@ -383,8 +382,8 @@ TridentitySDK.getInstance().processTransaction(context, jsonObject, object : Upd
     }
 })
 ```
-
-```kotlin Sample Code
+The populated transaction object is then passed to the processTransaction method to trigger the biometric authentication flow, allowing users to authorize transactions using their enrolled biometric credentials.
+```kotlin 
 val custObject = JSONObject()  
 
 custObject.put("clientId", "<>")  
