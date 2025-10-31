@@ -108,152 +108,151 @@ func application(_ application: UIApplication,
 Configure the SDK with your client-specific parameters and security settings before initiating any enrollment flows.
 
 <Accordion title="Configuration Parameters" icon="fa-cogs">
+  <br />
 
-<br />
+  <HTMLBlock>{`
+  <table border="1" style="border-collapse: collapse; width: 100%;">
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <p>clientId<br/>
+        <code>mandatory</code></p>
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <code>String</code> Unique client identifier (provided offline)
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        "CLIENT123"
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <p>bin<br/>
+        <code>mandatory</code></p>
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <code>String</code> Bank Identification Number for card validation
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        "123456"
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <p>bankId<br/>
+        <code>mandatory</code></p>
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <code>String</code> Unique bank identifier code
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        "BANK001"
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <p>customerId<br/>
+        <code>conditional</code></p>
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <code>String</code> Required for specific integration flows
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        "CUST789"
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <p>themeConfig<br/>
+        <code>optional</code></p>
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <code>ThemeModel</code> UI customization object (see ThemeModel section)
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        {"primaryColor": "#FF5733", "buttonStyle": "rounded"}
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <p>bindingType<br/>
+        <code>conditional</code></p>
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <code>String</code> Skip="01", Mandatory="02", Single="03"
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        "02"
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <p>registrationTimeout<br/>
+        <code>mandatory</code></p>
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <code>Int</code> Timeout duration for registration (seconds)
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        300
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <p>transactionTimeout<br/>
+        <code>mandatory</code></p>
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <code>Int</code> Timeout duration for transactions (seconds)
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        120
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <p>authType<br/>
+        <code>mandatory</code></p>
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <code>String</code> Authentication method (e.g., "Biometric")
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        "Biometric"
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <p>environment<br/>
+        <code>optional</code></p>
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <code>String</code> "UAT" or "PROD" (default: "UAT")
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        "UAT"
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <p>bankLogoUrl<br/>
+        <code>optional</code></p>
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <code>String</code> URL for custom bank logo display
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        "https://example.com/logo.png"
+      </td>
+    </tr>
+  </table>
+  `}</HTMLBlock>
 
-<HTMLBlock>{`
-<table border="1" style="border-collapse: collapse; width: 100%;">
-  <tr>
-    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <p>clientId<br/>
-      <code>mandatory</code></p>
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <code>String</code> Unique client identifier (provided offline)
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      "CLIENT123"
-    </td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <p>bin<br/>
-      <code>mandatory</code></p>
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <code>String</code> Bank Identification Number for card validation
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      "123456"
-    </td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <p>bankId<br/>
-      <code>mandatory</code></p>
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <code>String</code> Unique bank identifier code
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      "BANK001"
-    </td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <p>customerId<br/>
-      <code>conditional</code></p>
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <code>String</code> Required for specific integration flows
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      "CUST789"
-    </td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <p>themeConfig<br/>
-      <code>optional</code></p>
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <code>ThemeModel</code> UI customization object (see ThemeModel section)
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      {"primaryColor": "#FF5733", "buttonStyle": "rounded"}
-    </td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <p>bindingType<br/>
-      <code>conditional</code></p>
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <code>String</code> Skip="01", Mandatory="02", Single="03"
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      "02"
-    </td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <p>registrationTimeout<br/>
-      <code>mandatory</code></p>
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <code>Int</code> Timeout duration for registration (seconds)
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      300
-    </td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <p>transactionTimeout<br/>
-      <code>mandatory</code></p>
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <code>Int</code> Timeout duration for transactions (seconds)
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      120
-    </td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <p>authType<br/>
-      <code>mandatory</code></p>
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <code>String</code> Authentication method (e.g., "Biometric")
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      "Biometric"
-    </td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <p>environment<br/>
-      <code>optional</code></p>
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <code>String</code> "UAT" or "PROD" (default: "UAT")
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      "UAT"
-    </td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <p>bankLogoUrl<br/>
-      <code>optional</code></p>
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      <code>String</code> URL for custom bank logo display
-    </td>
-    <td style="border: 1px solid #ddd; padding: 8px;">
-      "https://example.com/logo.png"
-    </td>
-  </tr>
-</table>
-`}</HTMLBlock>
-
-            |
+  |
 </Accordion>
 
 ### Configuration Implementation
@@ -313,7 +312,7 @@ private func handleConfigurationResponse(_ response: [String: Any]) {
 
 ***
 
-## 👤 5. Customer Registration
+## Step 5. Customer Registration
 
 ### Registration Flow Overview
 
@@ -361,7 +360,7 @@ func initiateCustomerRegistration(customerUID: String, viewController: UIViewCon
 </Accordion>
 
 <Accordion title="Registration Response Examples" icon="fa-mobile">
-  **✅ Successful Registration:**
+  ** Successful Registration:**
 
   ```json
   {
@@ -376,7 +375,7 @@ func initiateCustomerRegistration(customerUID: String, viewController: UIViewCon
   }
   ```
 
-  **❌ Registration Failure:**
+  ** Registration Failure:**
 
   ```json
   {
@@ -390,7 +389,7 @@ func initiateCustomerRegistration(customerUID: String, viewController: UIViewCon
 
 ***
 
-## 🔍 6. Customer Status Verification
+## Step 6. Customer Status Verification
 
 ### Status Check Implementation
 
@@ -419,15 +418,15 @@ func checkCustomerRegistrationStatus(customerUID: String, biometricChanged: Bool
 <Accordion title="Registration Status Types" icon="fa-chart-bar">
   | Status Code       | Status Value                 | Description                         | Next Action                          |
   | ----------------- | ---------------------------- | ----------------------------------- | ------------------------------------ |
-  | ✅ **Success**     | `registration_comm_success`  | Registration completed successfully | Proceed with transactions            |
-  | 🟡 **Pending L1** | `registration_l1_fail` (206) | Level 1 enrollment pending          | Wait for activation (up to 24 hours) |
-  | 🟡 **Pending L2** | `registration_l2_fail` (207) | Level 2 enrollment pending          | Wait for activation (up to 24 hours) |
-  | ❌ **Failed**      | `registration_failed`        | Registration process failed         | Re-initiate registration             |
+  |  **Success**     | `registration_comm_success`  | Registration completed successfully | Proceed with transactions            |
+  |  **Pending L1** | `registration_l1_fail` (206) | Level 1 enrollment pending          | Wait for activation (up to 24 hours) |
+  |  **Pending L2** | `registration_l2_fail` (207) | Level 2 enrollment pending          | Wait for activation (up to 24 hours) |
+  |  **Failed**      | `registration_failed`        | Registration process failed         | Re-initiate registration             |
 </Accordion>
 
 ***
 
-## 🎛️ 7. SDK Interface Protocol
+## Step 7. SDK Interface Protocol
 
 ### Protocol Implementation
 
@@ -476,7 +475,7 @@ extension YourViewController: TridentityMFASDKProtocol {
 
 ***
 
-## 💳 8. Transaction Processing
+## Step 8. Transaction Processing
 
 ### Secure Transaction Flow
 
@@ -530,7 +529,7 @@ func processSecureTransaction(transactionID: String, customerUID: String) {
 
 ***
 
-## 🗑️ 9. Customer De-registration
+## Step 9. Customer De-registration
 
 ### User Removal Process
 
@@ -583,7 +582,7 @@ extension YourViewController: TridentityMFASDKProtocol {
 
 ***
 
-## ⚠️ 10. Error Codes Reference
+## Error Codes
 
 <Accordion title="Complete Error Codes Table" icon="fa-exclamation-triangle">
   | Error Code | Category      | Description                          | Recommended Action            |
@@ -605,7 +604,7 @@ extension YourViewController: TridentityMFASDKProtocol {
 
 ***
 
-## 🎨 11. UI Theme Customization
+## UI Theme Customization (Optional)
 
 ### ThemeModel Implementation
 
@@ -734,23 +733,3 @@ private func createCustomTheme() -> ThemeModel {
   * **Success Screens**: Completion confirmations
   * **Error Screens**: Failure states and recovery options
 </Accordion>
-
-***
-
-## 📚 Additional Resources
-
-### Best Practices
-
-1. **Security First**: Always validate security checks before proceeding with enrollment
-2. **Error Handling**: Implement comprehensive error handling for all SDK operations
-3. **User Experience**: Provide clear feedback during biometric setup and transaction processing
-4. **Testing**: Test thoroughly in both UAT and production environments
-5. **Monitoring**: Implement logging and monitoring for SDK operations
-
-### Support and Documentation
-
-For additional support and detailed API documentation, contact the integration team or refer to the official SDK documentation.
-
-***
-
-_This documentation is maintained by the TridentityMFA development team. Last updated: 2024_
