@@ -39,8 +39,8 @@ After you set up your account in Shopify, you can integrate PayU India as the pa
     • Enter the Merchant Key and Salt (retrieved from the PayU dashboard)
     • Reference guides:
 
-    * [Access Production Key and Salt] (https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard))
-    * [Access Test Merchant Key and Salt] (https://docs.payu.in/docs/generate-test-merchant-key-and-salt))
+    * [Access Production Key and Salt] ([https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard](https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard)))
+    * [Access Test Merchant Key and Salt] ([https://docs.payu.in/docs/generate-test-merchant-key-and-salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt)))
 
     **Step 7:** Activate PayU India
     • Test the integration by enabling **Test Mode**
@@ -71,7 +71,7 @@ After you set up your account in Shopify, you can integrate PayU India as the pa
 
     **Step 4:** Configure Merchant Key and Salt
     • Enter the Merchant Key and Salt (available on the PayU dashboard)
-    • Reference guide: \[Generate Production Key and Salt] (doc:generate-merchant-key-and-salt-on-payu-dashboard)
+    • Reference guide: [Generate Production Key and Salt] (doc:generate-merchant-key-and-salt-on-payu-dashboard)
 
     **Step 5:** Scroll through and select/unselect payment modes
 
