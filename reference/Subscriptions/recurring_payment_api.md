@@ -57,11 +57,6 @@ All successful registration transactions are charged over the recurring interfac
   ```curl
     curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=si_transaction&var1={\"authpayuid\": \"6611192557\",\"invoiceDisplayNumber\":\"12345678910\",\"amount\": 3,\"txnid\": \"REC15113506209\",\"phone\": \"9999999999\",\"email\": \"chota.bheem@gmail.com\",\"udf2\": \"\",\"udf3\": \"\",\"udf4\": \"\",\"udf5\": \"\"}&hash=jbUS07Og8BToVZ"
   ```
-
-  Perfect! I've analyzed your CURL request and converted it to equivalent code in all requested languages. This appears to be a **PayU payment gateway API call** for subscription/installment transactions.
-
-  ## **Python** 🐍
-
   ```python
   import requests
   import urllib.parse
