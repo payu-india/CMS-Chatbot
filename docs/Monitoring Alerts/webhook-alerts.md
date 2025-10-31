@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This documentation provides comprehensive guidance for integrating with webhook alert system to receive real-time notifications about transaction anomalies and system events. It covers the essential prerequisites for setting up your webhook endpoint, including network requirements and response specifications, followed by detailed examples of the POST request format and payload structure. By following this guide, developers can successfully configure their applications to receive and process alerts for monitoring PayU transaction engine performance and detecting critical issues.
+This documentation provides how to integrate with webhook alert system to receive real-time notifications about transaction anomalies and system events. It covers the essential prerequisites for setting up your webhook endpoint, including network requirements and response specifications, followed by detailed examples of the POST request format and payload structure. By following this section, developers can successfully configure their applications to receive and process alerts for monitoring PayU transaction engine performance and detecting critical issues.
 
 ## **Getting Started**
 
@@ -97,23 +97,23 @@ This documentation provides comprehensive guidance for integrating with webhook 
 
   ## Response Details
 
-  | Parameter                   | Description                                                                                    | Sample Value                           |
-  | --------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------- |
-  | `alert_id`                  | PayU Alert ID                                                                                  | `e58a1a37-496e-4d49-b9bd-88b3029c97ac` |
-  | `alert_group_id`            | PayU Alert Parent ID                                                                           | `7595875a-3557-4e90-a61a-b0406e987b3f` |
-  | `notification_id`           | PayU Notification ID                                                                           | `8cf84511-430d-4de5-aa1d-ffb2072b39ca` |
-  | `notification_triggered_at` | Alert Notification Time                                                                        | `2025-05-03T10:14:23+05:30`            |
-  | `notification_type`         | Alert Notification Type                                                                        | `detection`                            |
-  | `product`                   | Alerting Product                                                                               | `PayuBizTransactionEngine`             |
-  | `metric`                    | Alerting Metric                                                                                | `success_rate`                         |
-  | `entity_identifier`         | Impacted Area entity Name                                                                      | `flipkart`                             |
-  | `entity_type`               | Impacted Area                                                                                  | `merchant`                             |
-  | `entity_name`               | Impacted Area entity Name                                                                      | `flipkart`                             |
-  | `started_at`                | Issue Detected At                                                                              | `2025-05-03T05:17:00+05:30`            |
-  | `ended_at`                  | Issue Resolved At                                                                              |                                        |
-  | `current_state`             | Issue Status                                                                                   | `ongoing`                              |
-  | `criticality_score`         | Alert Severity <br /> • `[0-30]` is LOW <br />• `[31-60]` is MEDIUM <br />• `[61-100]` is HIGH | `45`                                   |
-  | `stats`                     | Basis stats of Alert (object containing detailed metrics). For more information, refer to [stats Object field descriptions](https://docs.payu.in/docs/webhook-alerts#stats-object-field-descriptions).                                      | `{object}`                             |
+  | Parameter                   | Description                                                                                                                                                                                            | Sample Value                           |
+  | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+  | `alert_id`                  | PayU Alert ID                                                                                                                                                                                          | `e58a1a37-496e-4d49-b9bd-88b3029c97ac` |
+  | `alert_group_id`            | PayU Alert Parent ID                                                                                                                                                                                   | `7595875a-3557-4e90-a61a-b0406e987b3f` |
+  | `notification_id`           | PayU Notification ID                                                                                                                                                                                   | `8cf84511-430d-4de5-aa1d-ffb2072b39ca` |
+  | `notification_triggered_at` | Alert Notification Time                                                                                                                                                                                | `2025-05-03T10:14:23+05:30`            |
+  | `notification_type`         | Alert Notification Type                                                                                                                                                                                | `detection`                            |
+  | `product`                   | Alerting Product                                                                                                                                                                                       | `PayuBizTransactionEngine`             |
+  | `metric`                    | Alerting Metric                                                                                                                                                                                        | `success_rate`                         |
+  | `entity_identifier`         | Impacted Area entity Name                                                                                                                                                                              | `flipkart`                             |
+  | `entity_type`               | Impacted Area                                                                                                                                                                                          | `merchant`                             |
+  | `entity_name`               | Impacted Area entity Name                                                                                                                                                                              | `flipkart`                             |
+  | `started_at`                | Issue Detected At                                                                                                                                                                                      | `2025-05-03T05:17:00+05:30`            |
+  | `ended_at`                  | Issue Resolved At                                                                                                                                                                                      |                                        |
+  | `current_state`             | Issue Status                                                                                                                                                                                           | `ongoing`                              |
+  | `criticality_score`         | Alert Severity <br /> • `[0-30]` is LOW <br />• `[31-60]` is MEDIUM <br />• `[61-100]` is HIGH                                                                                                         | `45`                                   |
+  | `stats`                     | Basis stats of Alert (object containing detailed metrics). For more information, refer to [stats Object field descriptions](https://docs.payu.in/docs/webhook-alerts#stats-object-field-descriptions). | `{object}`                             |
 
   ### stats Object field descriptions
 
