@@ -303,7 +303,7 @@ The following table describes the parameters for modifying the recurring payment
       <td>
         This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.
 
-        **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) )
+        **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) )
 
         This is a JSON object and it includes a set of parameters are described in the the si_details Parameter Description table.
       </td>
@@ -715,59 +715,59 @@ curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "C
 
 ## Sample response
 
-```
+```json
 Array
 (
-    [mihpayid] => 403993715525316543
+    [mihpayid] => 25603951365
     [mode] => CC
     [status] => success
     [unmappedstatus] => captured
-    [key] => JP***g
-    [txnid] => eF5yY4ArrynoIV
-    [amount] => 10.00
-    [cardCategory] => domestic
+    [key] => BmTY3G
+    [txnid] => 5527fc7d02f2bfc00eb4
+    [amount] => 1.00
+    [cardCategory] => signature_premium
     [discount] => 0.00
-    [net_amount_debit] => 10
-    [addedon] => 2022-02-02 15:15:07
-    [productinfo] => iPhone
-    [firstname] => Ashish
-    [lastname] => 
-    [address1] => 
-    [address2] => 
-    [city] => 
-    [state] => 
-    [country] => 
-    [zipcode] => 
-    [email] => test@gmail.com
-    [phone] => 9876543210
-    [udf1] => 
-    [udf2] => 
-    [udf3] => 
-    [udf4] => 
-    [udf5] => 
-    [udf6] => 
-    [udf7] => 
-    [udf8] => 
-    [udf9] => 
-    [udf10] => 
-    [hash] => 499fa5f6d9019cc7bda9750b18bf3ba52f161da42cb065cab094595cb9d1c90058a3f1c7f3fcb057c371baa077052522847826be269060140580a7c345206020
-    [field1] => 4296837871969451239257
-    [field2] => 601248
-    [field3] => 10.00
-    [field4] => 403993715525316543
-    [field5] => 100
-    [field6] => 02
+    [net_amount_debit] => 1
+    [addedon] => 2025-10-14 15:44:41
+    [productinfo] => Product Info
+    [firstname] => Payu-Admin
+    [lastname] =>
+    [address1] =>
+    [address2] =>
+    [city] =>
+    [state] =>
+    [country] =>
+    [zipcode] =>
+    [email] => test@example.com
+    [phone] => 1234567890
+    [udf1] =>
+    [udf2] =>
+    [udf3] =>
+    [udf4] =>
+    [udf5] =>
+    [udf6] =>
+    [udf7] =>
+    [udf8] =>
+    [udf9] =>
+    [udf10] =>
+    [hash] => 13f0cc034ec407db13a666f5ef4598798efab154791464537008c9e02e05a232b6fa3bd575b016e7631246dfb8d4911613150d677106c2fd14494da9b7a21122
+    [field1] => CBC10141015051509EGR573
+    [field2] => 185869
+    [field3] =>
+    [field4] =>
+    [field5] =>
+    [field6] => 05
     [field7] => AUTHPOSITIVE
-    [field8] => 
-    [field9] => Transaction is Successful
+    [field8] => 0 | Transaction Completed
+    [field9] => Transaction Completed
     [payment_source] => payu
+    [meCode] => {"wibmo_merchant_id":"16329672","hash_key":"b5b013c18d762b6ccbe8d2e8b1e9ec02fe642013524ed02b91846978f8eafa70","acquirer_merchant_id":"175645866049780","mcc":"5499"}
     [PG_TYPE] => CC-PG
-    [bank_ref_num] => 4296837871969451239257
+    [bank_ref_num] => 528710004895
     [bankcode] => CC
     [error] => E000
     [error_Message] => No Error
-    [name_on_card] => payu
-    [cardnum] => 512345XXXXXX2346
-    [cardhash] => This field is no longer supported in postback params.
+    [cardnum] => XXXXXXXXXXXX4879
 )
+
 ```
