@@ -154,7 +154,7 @@ This is a prerequisite step where you invoke the SDK's configuration method to i
 </table>
 `}</HTMLBlock>
 
-Create a configuration object with the required parameters and call the configSdk method. Check the message flag in the onSuccess callback for configuration status:
+The SDK must be configured with client-specific details before any other methods can be used. Create a configuration object with the required parameters and call the configSdk method to initialize the SDK properly. Check the message flag in the onSuccess callback for configuration status:
 
 ```kotlin
 TridentitySDK.getInstance().configSdk(context, configObject, object : ConfigStatusCallback {
@@ -223,7 +223,7 @@ This method facilitates user enrollment for Tridentity-based authentication.
 </table>
 `}</HTMLBlock>
 
-Call the initiateRegistration method with the activity instance and registration object. Check the message in the onSuccess response object for the registration status:
+To enable biometric authentication for users, they must first be enrolled in the Tridentity system. Call the initiateRegistration method with the activity instance and registration object to begin the enrollment process. Check the message in the onSuccess response object for the registration status:
 
 ```kotlin
 TridentitySDK.getInstance().initiateRegistration(activity, regObject, object : RegistrationStatusCallBack {
