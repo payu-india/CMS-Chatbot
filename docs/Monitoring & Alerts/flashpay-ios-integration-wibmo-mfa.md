@@ -62,10 +62,10 @@ The SDK requires specific permissions to function properly. **Push notification 
 <Accordion title="Permission Requirements Table" icon="fa-table">
   | Permission Type              | Requirement Level | Purpose                         | Implementation Notes                       |
   | ---------------------------- | ----------------- | ------------------------------- | ------------------------------------------ |
-  | **Biometric Authentication** | 🔴 Mandatory      | Transaction authentication      | Required for secure transaction processing |
-  | **Push Notifications**       | 🔴 Mandatory      | Registration flow communication | Essential for enrollment completion        |
-  | **Network Access**           | 🔴 Mandatory      | API communication               | Required for SDK-server communication      |
-  | **Device Security**          | 🔴 Mandatory      | Security validation             | Jailbreak and debugging detection          |
+  | **Biometric Authentication** |  Mandatory      | Transaction authentication      | Required for secure transaction processing |
+  | **Push Notifications**       |  Mandatory      | Registration flow communication | Essential for enrollment completion        |
+  | **Network Access**           |  Mandatory      | API communication               | Required for SDK-server communication      |
+  | **Device Security**          |  Mandatory      | Security validation             | Jailbreak and debugging detection          |
 </Accordion>
 
 ### Implementation Guide
@@ -113,145 +113,145 @@ Configure the SDK with your client-specific parameters and security settings bef
   <br />
 
   <HTMLBlock>{`
-    <table border="1" style="border-collapse: collapse; width: 100%;">
-      <tr>
-        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <p>clientId<br/>
-          <code>mandatory</code></p>
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <code>String</code> Unique client identifier (provided offline)
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          "CLIENT123"
-        </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <p>bin<br/>
-          <code>mandatory</code></p>
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <code>String</code> Bank Identification Number for card validation
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          "123456"
-        </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <p>bankId<br/>
-          <code>mandatory</code></p>
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <code>String</code> Unique bank identifier code
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          "BANK001"
-        </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <p>customerId<br/>
-          <code>conditional</code></p>
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <code>String</code> Required for specific integration flows
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          "CUST789"
-        </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <p>themeConfig<br/>
-          <code>optional</code></p>
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <code>ThemeModel</code> UI customization object (see ThemeModel section)
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          {"primaryColor": "#FF5733", "buttonStyle": "rounded"}
-        </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <p>bindingType<br/>
-          <code>conditional</code></p>
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <code>String</code> Skip="01", Mandatory="02", Single="03"
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          "02"
-        </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <p>registrationTimeout<br/>
-          <code>mandatory</code></p>
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <code>Int</code> Timeout duration for registration (seconds)
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          300
-        </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <p>transactionTimeout<br/>
-          <code>mandatory</code></p>
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <code>Int</code> Timeout duration for transactions (seconds)
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          120
-        </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <p>authType<br/>
-          <code>mandatory</code></p>
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <code>String</code> Authentication method (e.g., "Biometric")
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          "Biometric"
-        </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <p>environment<br/>
-          <code>optional</code></p>
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <code>String</code> "UAT" or "PROD" (default: "UAT")
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          "UAT"
-        </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <p>bankLogoUrl<br/>
-          <code>optional</code></p>
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          <code>String</code> URL for custom bank logo display
-        </td>
-        <td style="border: 1px solid #ddd; padding: 8px;">
-          "https://example.com/logo.png"
-        </td>
-      </tr>
-    </table>
+      <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+          <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+          <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <p>clientId<br/>
+            <code>mandatory</code></p>
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <code>String</code> Unique client identifier (provided offline)
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            "CLIENT123"
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <p>bin<br/>
+            <code>mandatory</code></p>
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <code>String</code> Bank Identification Number for card validation
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            "123456"
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <p>bankId<br/>
+            <code>mandatory</code></p>
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <code>String</code> Unique bank identifier code
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            "BANK001"
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <p>customerId<br/>
+            <code>conditional</code></p>
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <code>String</code> Required for specific integration flows
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            "CUST789"
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <p>themeConfig<br/>
+            <code>optional</code></p>
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <code>ThemeModel</code> UI customization object (see ThemeModel section)
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            {"primaryColor": "#FF5733", "buttonStyle": "rounded"}
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <p>bindingType<br/>
+            <code>conditional</code></p>
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <code>String</code> Skip="01", Mandatory="02", Single="03"
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            "02"
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <p>registrationTimeout<br/>
+            <code>mandatory</code></p>
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <code>Int</code> Timeout duration for registration (seconds)
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            300
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <p>transactionTimeout<br/>
+            <code>mandatory</code></p>
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <code>Int</code> Timeout duration for transactions (seconds)
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            120
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <p>authType<br/>
+            <code>mandatory</code></p>
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <code>String</code> Authentication method (e.g., "Biometric")
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            "Biometric"
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <p>environment<br/>
+            <code>optional</code></p>
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <code>String</code> "UAT" or "PROD" (default: "UAT")
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            "UAT"
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <p>bankLogoUrl<br/>
+            <code>optional</code></p>
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            <code>String</code> URL for custom bank logo display
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+            "https://example.com/logo.png"
+          </td>
+        </tr>
+      </table>
   `}</HTMLBlock>
 
   |
