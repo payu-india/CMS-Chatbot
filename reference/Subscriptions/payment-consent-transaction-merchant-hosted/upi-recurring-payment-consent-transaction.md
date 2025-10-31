@@ -205,7 +205,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to <a href="http://docs.payu.in/docs/hashing-request-and-response">Generate Hash</a>.<br>In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br><code>HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||si_details\|SALT)</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to <a href="http://docs.payu.in/docs/hashing-request-and-response">Generate Hash</a>.<br>In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br><code>HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\| udf3\|udf4\|udf5\||\||\|| si_details\|SALT)</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972</code></p>
 </td>
