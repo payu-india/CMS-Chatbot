@@ -7,96 +7,7 @@ metadata:
 ---
 A comprehensive guide for implementing Multi-Factor Authentication (MFA) functionality in iOS applications using the Tridentity MFA SDK.
 
-## Integration Steps
-
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8">
-  ### Step 1: SDK Integration
-
-  ```swift
-  // Add the framework to your project
-  import PayUTridentityMFAKit
-  ```
-
-  **Requirements:**
-
-  * Xcode project setup
-  * Framework linking
-  * Firebase integration
-  * Pod dependencies
-
-  ### Step 2: App Permissions
-
-  ```swift
-  // Request biometric permissions
-  // Configure push notifications
-  ```
-
-  **Required Permissions:**
-
-  * Biometric authentication
-  * Push notifications (mandatory)
-
-  ### ⚙️ Step 3: SDK Configuration
-
-  ```swift
-  // Configure client details
-  // Set security parameters
-  // Apply theme customization
-  ```
-
-  **Configuration Items:**
-
-  * Client credentials
-  * Timeout settings
-  * Security checks
-  * UI theming
-
-  ### 👤 Step 4: User Registration
-
-  ```swift
-  // Initiate customer enrollment
-  // Perform security validation
-  // Handle biometric setup
-  ```
-
-  **Registration Flow:**
-
-  * Device binding
-  * Biometric authentication
-  * Status verification
-
-  ### 💳 Step 5: Transaction Processing
-
-  ```swift
-  // Process secure transactions
-  // Handle authentication
-  // Manage callbacks
-  ```
-
-  **Transaction Features:**
-
-  * Biometric verification
-  * Real-time processing
-  * Error handling
-
-  ### 🔄 Step 6: Management
-
-  ```swift
-  // Check registration status
-  // Handle de-registration
-  // Monitor SDK health
-  ```
-
-  **Management Tasks:**
-
-  * Status monitoring
-  * User management
-  * Cleanup operations
-</div>
-
-***
-
-## 🏗️ 1. SDK Integration
+## Step 1. SDK Integration
 
 ### Prerequisites Setup
 
@@ -140,7 +51,7 @@ Before integrating the TridentityMFA SDK, ensure your development environment me
 
 ***
 
-## 🔐 2. App Permissions
+## Step 2. App Permissions
 
 ### Required Permissions Configuration
 
@@ -165,7 +76,7 @@ The SDK requires specific permissions to function properly. **Push notification 
 
 ***
 
-## ⚡ 3. SDK Initialization
+## Step 3. SDK Initialization
 
 ### AppDelegate Integration
 
@@ -190,26 +101,159 @@ func application(_ application: UIApplication,
 
 ***
 
-## ⚙️ 4. SDK Configuration
+## Step 4. SDK Configuration
 
 ### Client Details and Security Setup
 
 Configure the SDK with your client-specific parameters and security settings before initiating any enrollment flows.
 
 <Accordion title="Configuration Parameters" icon="fa-cogs">
-  | Field Name               | Data Type    | Key Name              | Requirement    | Description                                      |
-  | ------------------------ | ------------ | --------------------- | -------------- | ------------------------------------------------ |
-  | **Client ID**            | `String`     | `clientId`            | 🔴 Mandatory   | Unique client identifier (provided offline)      |
-  | **Card BIN Number**      | `String`     | `bin`                 | 🔴 Mandatory   | Bank Identification Number for card validation   |
-  | **Bank ID**              | `String`     | `bankId`              | 🔴 Mandatory   | Unique bank identifier code                      |
-  | **Customer ID**          | `String`     | `customerId`          | 🟡 Conditional | Required for specific integration flows          |
-  | **Theme Configuration**  | `ThemeModel` | `themeConfig`         | 🟢 Optional    | UI customization object (see ThemeModel section) |
-  | **Binding Type**         | `String`     | `bindingType`         | 🟡 Conditional | Skip="01", Mandatory="02", Single="03"           |
-  | **Registration Timeout** | `Int`        | `registrationTimeout` | 🔴 Mandatory   | Timeout duration for registration (seconds)      |
-  | **Transaction Timeout**  | `Int`        | `transactionTimeout`  | 🔴 Mandatory   | Timeout duration for transactions (seconds)      |
-  | **Authentication Type**  | `String`     | `authType`            | 🔴 Mandatory   | Authentication method (e.g., "Biometric")        |
-  | **Environment**          | `String`     | `environment`         | 🟢 Optional    | "UAT" or "PROD" (default: "UAT")                 |
-  | **Bank Logo URL**        | `String`     | `bankLogoUrl`         | 🟢 Optional    | URL for custom bank logo display                 |
+
+<br />
+
+<HTMLBlock>{`
+<table border="1" style="border-collapse: collapse; width: 100%;">
+  <tr>
+    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <p>clientId<br/>
+      <code>mandatory</code></p>
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <code>String</code> Unique client identifier (provided offline)
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      "CLIENT123"
+    </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <p>bin<br/>
+      <code>mandatory</code></p>
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <code>String</code> Bank Identification Number for card validation
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      "123456"
+    </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <p>bankId<br/>
+      <code>mandatory</code></p>
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <code>String</code> Unique bank identifier code
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      "BANK001"
+    </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <p>customerId<br/>
+      <code>conditional</code></p>
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <code>String</code> Required for specific integration flows
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      "CUST789"
+    </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <p>themeConfig<br/>
+      <code>optional</code></p>
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <code>ThemeModel</code> UI customization object (see ThemeModel section)
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      {"primaryColor": "#FF5733", "buttonStyle": "rounded"}
+    </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <p>bindingType<br/>
+      <code>conditional</code></p>
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <code>String</code> Skip="01", Mandatory="02", Single="03"
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      "02"
+    </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <p>registrationTimeout<br/>
+      <code>mandatory</code></p>
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <code>Int</code> Timeout duration for registration (seconds)
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      300
+    </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <p>transactionTimeout<br/>
+      <code>mandatory</code></p>
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <code>Int</code> Timeout duration for transactions (seconds)
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      120
+    </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <p>authType<br/>
+      <code>mandatory</code></p>
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <code>String</code> Authentication method (e.g., "Biometric")
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      "Biometric"
+    </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <p>environment<br/>
+      <code>optional</code></p>
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <code>String</code> "UAT" or "PROD" (default: "UAT")
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      "UAT"
+    </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <p>bankLogoUrl<br/>
+      <code>optional</code></p>
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      <code>String</code> URL for custom bank logo display
+    </td>
+    <td style="border: 1px solid #ddd; padding: 8px;">
+      "https://example.com/logo.png"
+    </td>
+  </tr>
+</table>
+`}</HTMLBlock>
+
+            |
 </Accordion>
 
 ### Configuration Implementation
