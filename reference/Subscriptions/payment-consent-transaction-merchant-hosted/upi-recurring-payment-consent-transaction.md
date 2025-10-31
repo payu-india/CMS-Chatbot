@@ -345,57 +345,54 @@ The response URL returned from PayU is in the form URL format (application/x-www
 ```json
 Array
 (
-    [mihpayid] => 25600438037
+    [mihpayid] => 403993715525317379
     [mode] => UPI
     [status] => success
     [unmappedstatus] => captured
-    [key] => smsplus
-    [txnid] => 1
-    [amount] => 1.00
+    [key] => JPM7Fg
+    [txnid] => 4eZz2lMbUYQ4c0
+    [amount] => 10.00
     [discount] => 0.00
-    [net_amount_debit] => 1
-    [addedon] => 2025-10-14 11:14:34
-    [productinfo] => Product Info
-    [firstname] => Payu-Admin
-    [lastname] =>
-    [address1] =>
-    [address2] =>
-    [city] =>
-    [state] =>
-    [country] =>
-    [zipcode] =>
-    [email] => test@example.com
-    [phone] => 1234567890
-    [udf1] =>
-    [udf2] =>
-    [udf3] =>
-    [udf4] => Executed Callback
-    [udf5] =>
-    [udf6] =>
-    [udf7] =>
-    [udf8] =>
-    [udf9] =>
-    [udf10] =>
-    [hash] => 175508d5e19f64280f34d81b90afc010f9ffcd62a12ea286e72135a93220727654f9d87c778c828adfede3aaf2d1b0b71696906d04a589460ecef0a1172e5804
-    [field1] => badshahgv-1@okaxis
-    [field2] => ICIe68d1f01f2d34fc99ba3077af44f1e4c
-    [field3] => badshahgv-1@okaxis
-    [field4] => GAURAV  VERMA
-    [field5] => 701874bccb514b108c3609e002478fbd@okaxis
-    [field6] =>
-    [field7] => 00|APPROVED OR COMPLETED SUCCESSFULLY
-    [field8] =>
-    [field9] => APPROVED OR COMPLETED SUCCESSFULLY|Completed Using Callback
+    [net_amount_debit] => 10
+    [addedon] => 2022-02-02 16:00:53
+    [productinfo] => iPhone
+    [firstname] => PayU User
+    [lastname] => 
+    [address1] => 
+    [address2] => 
+    [city] => 
+    [state] => 
+    [country] => 
+    [zipcode] => 
+    [email] => test@gmail.com
+    [phone] => 9876543210
+    [udf1] => 
+    [udf2] => 
+    [udf3] => 
+    [udf4] => 
+    [udf5] => 
+    [udf6] => 
+    [udf7] => 
+    [udf8] => 
+    [udf9] => 
+    [udf10] => 
+    [hash] => 1b1df6deb730c4826341e35b9b010497f524c88e3cee05287f0148dd302f81ab45503a27f43d492d127134cf5983eab1042930f10a04f27a094e19c500644104
+    [field1] => anything@payu
+    [field2] => 4eZz2lMbUYQ4c0
+    [field3] => 
+    [field4] => PayU User
+    [field5] => AXIDI0zH6YxpU1eCukPM4fBdnxkf54cEKbt
+    [field6] => 
+    [field7] => Transaction completed successfully
+    [field8] => 
+    [field9] => Transaction completed successfully
     [payment_source] => sist
-    [meCode] => {"pgMid":"9373547","merchantVpa":"bitspingtest.payu@icici"}
     [PG_TYPE] => UPI-PG
-    [bank_ref_num] => 528788687631
+    [bank_ref_num] => 4eZz2lMbUYQ4c0
     [bankcode] => UPI
     [error] => E000
     [error_Message] => No Error
-    [rrn] => 528788687631
 )
-    
 ```
 
 * The formatted response for UPI Intent:
