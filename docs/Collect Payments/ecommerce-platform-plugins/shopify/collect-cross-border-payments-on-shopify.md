@@ -4,7 +4,7 @@ excerpt: >-
   Merchants located outside India with Shopify web-stores can collect payments
   from Indian buyers
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 next:
