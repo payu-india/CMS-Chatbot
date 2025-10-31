@@ -10,26 +10,28 @@ metadata:
 next:
   description: ''
 ---
-The **Get Client Token** API is used to create the token from the Hub with the scope (refer\_child\_merchant).
+The **Get Client Token** API is used to create the token from the Hub with the scope (refer_child_merchant).
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                |                                |
-| :------------- | :----------------------------- |
-| **Test**       | \<https://uat-accounts.payu.in> |
-| **Production** | \<https://accounts.payu.in>     |
+|                |                                                                  |
+| :------------- | :--------------------------------------------------------------- |
+| **Test**       | \<[https://uat-accounts.payu.in>](https://uat-accounts.payu.in>) |
+| **Production** | \<[https://accounts.payu.in>](https://accounts.payu.in>)         |
 
 Base URL: `{{base_url}}/oauth/token`
 
 ## Request parameters
 
-> 📘 Notes:
-> 
-> - Caller client service should be registered on Hub (PayU’s oAuth2 Service )
-> - **refer_child_merchant** scope should be whitelisted on caller client on Hub
-> - Get Aggregator flag enabled on parent merchant
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * Caller client service should be registered on Hub (PayU’s oAuth2 Service )
+  * **refer_child_merchant** scope should be whitelisted on caller client on Hub
+  * Get Aggregator flag enabled on parent merchant
+</Callout>
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -144,7 +146,7 @@ curl --location -g --request POST '{{hub_base_url}}/oauth/token' \
 
 The following sample response for each scenario is in JSON format:
 
-- Create Child Merchant is Successful
+* Create Child Merchant is Successful
 
 ```plaintext
 {
@@ -156,7 +158,7 @@ The following sample response for each scenario is in JSON format:
 }
 ```
 
-- When the client\_ID or secret code is unauthorised:
+* When the client_ID or secret code is unauthorised:
 
 ```plaintext
 {
@@ -165,7 +167,7 @@ The following sample response for each scenario is in JSON format:
 }
 ```
 
-- Incorrect scope or non-whitelisted scope
+* Incorrect scope or non-whitelisted scope
 
 ```plaintext
 {
