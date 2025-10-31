@@ -181,7 +181,7 @@ HTTP Method: **POST**
 
 Cancelling Recurring Registration - Success Response
 
-```plaintext
+```json
 {
 	"status": 1,
 	"action": "MANDATE_REVOKE",
@@ -193,7 +193,7 @@ Cancelling Recurring Registration - Success Response
 
 Cancelling Recurring Registration - Failure Response
 
-```plaintext
+```json
 {
 	"status": 0,
 	"action": "MANDATE_REVOKE",
