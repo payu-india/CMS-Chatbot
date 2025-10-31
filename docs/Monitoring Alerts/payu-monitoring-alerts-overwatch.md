@@ -1,5 +1,5 @@
 ---
-title: 'Payu Monitoring Alerts (Overwatch) '
+title: Payu Overwatch
 deprecated: false
 hidden: true
 metadata:
