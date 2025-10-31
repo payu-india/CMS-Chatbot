@@ -25,12 +25,12 @@ metadata:
 next:
   description: ''
 ---
-Merchants outside India, who are willing to serve Indian consumers without establishment entities in India can collect payments from Indian customers. The settlement will be done to an offshore account directly by PayU through AD banks in the merchant’s native currency. The payment methods supported for cross-border payments are Cards (Debit & Credit), Net Banking and UPI.
+Merchants outside India, who are willing to serve Indian consumers without establishment entities in India can collect payments from Indian customers. The settlement will be done to an offshore account directly by PayU through AD banks in the merchant’s native currency. The payment methods supported for cross-border payments are Cards (Debit & Credit), Net Banking, UPI and NEFT/RTGS.
 
 PayU **Cross-Border Payments – Import** Integration facilitates overseas sellers to collect payments from buyers in India and transfer the funds to the overseas seller:
 
 * In their desired currency (100+ options)
-* With T+2 settlement time
+* With T+2/T+3 settlement time
 
 This is as per the [RBI guidelines for Payment Aggregators - Cross Border](https://rbi.org.in/Scripts/NotificationUser.aspx?Id=12896\&Mode=0) - RBI/DPSS/2025-26/141
 CO.DPSS.POLC.No.S-633/02-14-008/2025-26
@@ -55,10 +55,10 @@ The customers or end-users will be able to pay using their Indian debit cards an
 
 ## Benefits
 
-* The amount can be settled early to merchants, that is, within T+2 days.
+* The amount can be settled early to merchants, that is, within T+2 / T+3 days.
 * Reconciliation and settlement queries can be directly raised to PayU.
 * Overseas merchants can easily offer services to Indian consumers.
 
-To get started with integration, refer to [Integrate Import for PayUBiz](doc:integrate-cross-border-payments-for-payubiz).
+To get started with integration, refer to: [Integrate Import for PayUBiz](doc:integrate-cross-border-payments-for-payubiz).
 
 After the integration is complete, you can integrate UPI autopay for cross-border payment-import integration. For more information, refer to [UPI Autopay Integration.](doc:upi-autopay-integration-cross-border-payments-import)
