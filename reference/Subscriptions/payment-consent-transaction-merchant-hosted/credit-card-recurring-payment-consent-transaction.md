@@ -35,9 +35,9 @@ next:
 ---
 This section provides the request parameters, sample request and response for a Cards Recurring Payment.
 
-> 📘 Note:
->
-> During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
+<Callout icon="📘" theme="info">
+  **Note**: During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
+</Callout>
 
 HTTP Method: **POST**
 
@@ -319,7 +319,7 @@ HTTP Method: **POST**
 > * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
 > * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
 
-> 📘 Notes for Bankcode
+> 📘 Notes for bankcode
 >
 > Debit Card or Credit Card: There are different options like Visa Debit Card, Mastercard, Maestro, etc. For each option, a unique bank code exists and it would be returned in this bankcode parameter. For more information, refer to Card Type Codes. For example, VISA for VISA Debit Card.
 
@@ -357,10 +357,12 @@ In the case of Cards, you must ensure that the payment response from PayU has th
 | payment_source     | sist                             | Indicates that card details have been marked correctly for Standing Instruction |
 | mihpayid           | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction           |
 
-> 📘 Notes:
->
-> * If any of the above four checks are not satisfied, that means the transaction has not been correctly authorized for Standing Instruction. The merchant must not consider this transaction eligible for the Recurring platform.
-> * Registration transaction must be successful in making it eligible for the Recurring platform.
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * If any of the above four checks are not satisfied, that means the transaction has not been correctly authorized for Standing Instruction. The merchant must not consider this transaction eligible for the Recurring platform.
+  * Registration transaction must be successful in making it eligible for the Recurring platform.
+</Callout>
 
 At this step, if the status of the consent transaction is returned as success along with the other three conditions explained above, you can consider that the subscription setup is completed successfully.
 
@@ -371,115 +373,58 @@ The response URL returned from PayU is in the form URL format (application/x-www
 ```
 Array
 (
-    [mihpayid] => 403993715525316543
+    [mihpayid] => 25600342065
     [mode] => CC
     [status] => success
     [unmappedstatus] => captured
-    [key] => JP***g
-    [txnid] => eF5yY4ArrynoIV
-    [amount] => 10.00
-    [cardCategory] => domestic
+    [key] => BmTY3G
+    [txnid] => 1d1a28fe1281c04b1968
+    [amount] => 1.00
+    [cardCategory] => signature_premium
     [discount] => 0.00
-    [net_amount_debit] => 10
-    [addedon] => 2022-02-02 15:15:07
-    [productinfo] => iPhone
-    [firstname] => Ashish
-    [lastname] => 
-    [address1] => 
-    [address2] => 
-    [city] => 
-    [state] => 
-    [country] => 
-    [zipcode] => 
-    [email] => test@gmail.com
-    [phone] => 9876543210
-    [udf1] => 
-    [udf2] => 
-    [udf3] => 
-    [udf4] => 
-    [udf5] => 
-    [udf6] => 
-    [udf7] => 
-    [udf8] => 
-    [udf9] => 
-    [udf10] => 
-    [hash] => 499fa5f6d9019cc7bda9750b18bf3ba52f161da42cb065cab094595cb9d1c90058a3f1c7f3fcb057c371baa077052522847826be269060140580a7c345206020
-    [field1] => 4296837871969451239257
-    [field2] => 601248
-    [field3] => 10.00
-    [field4] => 403993715525316543
-    [field5] => 100
-    [field6] => 02
+    [net_amount_debit] => 1
+    [addedon] => 2025-10-14 11:06:59
+    [productinfo] => Product Info
+    [firstname] => Payu-Admin
+    [lastname] =>
+    [address1] =>
+    [address2] =>
+    [city] =>
+    [state] =>
+    [country] =>
+    [zipcode] =>
+    [email] => test@example.com
+    [phone] => 1234567890
+    [udf1] =>
+    [udf2] =>
+    [udf3] =>
+    [udf4] =>
+    [udf5] =>
+    [udf6] =>
+    [udf7] =>
+    [udf8] =>
+    [udf9] =>
+    [udf10] =>
+    [hash] => f67284c77d6fe59b092ef98a735ba78bd8c484b14b364cad42520fb8724d5d72b6f3c05439a56c7fe921a262027699de14edb92b03ca2e6284e66b6a81d98bcc
+    [field1] => 7604202397746612005910
+    [field2] => 175975
+    [field3] => 1.00
+    [field4] =>
+    [field5] => 00
+    [field6] => 05
     [field7] => AUTHPOSITIVE
-    [field8] => 
+    [field8] => AUTHORIZED
     [field9] => Transaction is Successful
-    [payment_source] => payu
+    [payment_source] => sist
+    [meCode] => {"MID":"hdfc_89051842","TKey":"0wMbyodmbgzwIOejqyUOpAkCJdBC01zQGwHS+Pm1rGGxBki5xPR60G948KUmnPR5l7xDpxYOWIOLfE1q0z5ezIA7dG/yVAkp4nZmbddhWyNpdLusIKmiJzXH6ASAMJKZJ0dH3NyQypy9w51PfUKAz80I4y4Udq8zCKB+yiDP3JqkOfz366Y5SjKI/BWNMXCMXOXIvzVNSinDVi4bVW+WtimdJ1BS9WACx8zkYjPjTkuGB6TMYeJGYt0JJ6oSQce4xk4yW3al+fFABVC26S+2wNuHYMMFvhd09AK4nUvFMh9SHjhWWw6T81miW2kqxi0o+rdvCCYEO3Aa3R5kH8kmIw=="}
     [PG_TYPE] => CC-PG
-    [bank_ref_num] => 4296837871969451239257
+    [bank_ref_num] => 7604202397746612005910
     [bankcode] => CC
     [error] => E000
     [error_Message] => No Error
-    [name_on_card] => payu
-    [cardnum] => 512345XXXXXX2346
-    [cardhash] => This field is no longer supported in postback params.
-)
-
-```
-
-```plaintext
-Array
-(
-    [mihpayid] => 403993715525316543
-    [mode] => CC
-    [status] => success
-    [unmappedstatus] => captured
-    [key] => JP***g
-    [txnid] => eF5yY4ArrynoIV
-    [amount] => 10.00
-    [cardCategory] => domestic
-    [discount] => 0.00
-    [net_amount_debit] => 10
-    [addedon] => 2022-02-02 15:15:07
-    [productinfo] => iPhone
-    [firstname] => Ashish
-    [lastname] => 
-    [address1] => 
-    [address2] => 
-    [city] => 
-    [state] => 
-    [country] => 
-    [zipcode] => 
-    [email] => test@gmail.com
-    [phone] => 9876543210
-    [udf1] => 
-    [udf2] => 
-    [udf3] => 
-    [udf4] => 
-    [udf5] => 
-    [udf6] => 
-    [udf7] => 
-    [udf8] => 
-    [udf9] => 
-    [udf10] => 
-    [hash] => 499fa5f6d9019cc7bda9750b18bf3ba52f161da42cb065cab094595cb9d1c90058a3f1c7f3fcb057c371baa077052522847826be269060140580a7c345206020
-    [field1] => 4296837871969451239257
-    [field2] => 601248
-    [field3] => 10.00
-    [field4] => 403993715525316543
-    [field5] => 100
-    [field6] => 02
-    [field7] => AUTHPOSITIVE
-    [field8] => 
-    [field9] => Transaction is Successful
-    [payment_source] => payu
-    [PG_TYPE] => CC-PG
-    [bank_ref_num] => 4296837871969451239257
-    [bankcode] => CC
-    [error] => E000
-    [error_Message] => No Error
-    [name_on_card] => payu
-    [cardnum] => 512345XXXXXX2346
-    [cardhash] => This field is no longer supported in postback params.
+    [cardToken] => 6a3b14bce0ae8634d70be
+    [card_token] => 6a3b14bce0ae8634d70be
+    [cardnum] => XXXXXXXXXXXX4879
 )
 ```
 
