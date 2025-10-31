@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-A comprehensive guide for implementing Multi-Factor Authentication (MFA) functionality in iOS applications using the TridentityMFA SDK.
+A comprehensive guide for implementing Multi-Factor Authentication (MFA) functionality in iOS applications using the Tridentity MFA SDK.
 
 ## Integration Steps
 
