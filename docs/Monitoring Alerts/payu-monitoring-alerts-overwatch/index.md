@@ -1,5 +1,5 @@
 ---
-title: Payu Overwatch
+title: PayU Overwatch
 deprecated: false
 hidden: false
 metadata:
