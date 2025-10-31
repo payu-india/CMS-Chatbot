@@ -1,7 +1,7 @@
 ---
 title: Webhook Alerts
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
