@@ -553,28 +553,3 @@ def enrich_alert(alert_data):
 
 </Accordion>
 
-## 📖 **Glossary**
-
-<Accordion title="Technical Terms Explained" icon="fa-book">
-
-**Webhook**: An automated HTTP POST request sent when an event occurs
-
-**Endpoint**: A specific URL that receives webhook requests
-
-**Payload**: The JSON data sent in the webhook request
-
-**Idempotent**: Safe to call multiple times with the same result
-
-**Retry Logic**: Automatic re-sending of failed webhook deliveries
-
-**Criticality Score**: Number (0-100) indicating alert severity
-
-**Entity**: The business object being monitored (merchant, product, etc.)
-
-**SRT**: Success Rate - percentage of successful transactions
-
-**Downtime**: Period when success rate is below normal levels
-
-**Anomaly**: Unusual pattern detected by Beacon's algorithms
-
-</Accordion>
