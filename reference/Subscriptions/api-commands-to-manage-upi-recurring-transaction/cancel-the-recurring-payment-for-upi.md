@@ -30,9 +30,9 @@ next:
 ---
 **Cancel Recurring Registration** API allows the merchants to cancel the UPI registration from their website. It is a mandate to implement the **Cancel Recurring Registration** API so that your customers can use Recurring Payments. After the registration is canceled for a customer, the merchant cannot restore it, and the customer must register a fresh mandate with the merchant (applicable for UPI).
 
-> 📘 Note:
->
-> Your customers cannot use Recurring Payments without the **Cancel Recurring Registration** API being implemented.
+<Callout icon="📘" theme="info">
+  **Note**: Your customers cannot use Recurring Payments without the **Cancel Recurring Registration** API being implemented.
+</Callout>
 
 HTTP Method: **POST**
 
@@ -78,11 +78,11 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `varchar` For initiating a recurring transaction, “upi\_mandate\_revoke” must be passed in this parameter.
+        `varchar` For initiating a recurring transaction, “upi_mandate_revoke” must be passed in this parameter.
       </td>
 
       <td>
-        upi\_mandate\_revoke
+        upi_mandate_revoke
       </td>
     </tr>
 
@@ -169,11 +169,11 @@ HTTP Method: **POST**
 
 ## Response Parameters
 
-| **Parameter Name** | **Description**                                                       |
-| ------------------ | --------------------------------------------------------------------- |
-| status             | Status defines acknowledgment from PayU. Possible values are:         |
-| action             | Always returned as “MANDATE\_REVOKE” to highlight the type of action. |
-| message            | Description of the Mandate cancellation process.                      |
+| **Parameter Name** | **Description**                                                      |
+| ------------------ | -------------------------------------------------------------------- |
+| status             | Status defines acknowledgment from PayU. Possible values are:        |
+| action             | Always returned as “MANDATE_REVOKE” to highlight the type of action. |
+| message            | Description of the Mandate cancellation process.                     |
 
 ## Sample response
 
@@ -185,7 +185,7 @@ Cancelling Recurring Registration - Success Response
 {
 	"status": 1,
 	"action": "MANDATE_REVOKE",
-	"message": "Request Initiated"
+	"message": "Mandate Revoke request processed successfully"
 }
 ```
 
