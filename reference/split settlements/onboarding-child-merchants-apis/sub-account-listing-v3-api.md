@@ -1,10 +1,10 @@
 ---
-title: Sub Account Listing API
+title: Sub Account Listing API - Hyundai
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
-  title: ''
+  title: Sub Account Listing API - Hyundai
   description: ''
   robots: index
 next:
@@ -59,7 +59,9 @@ HTTP Method: **GET**
 <li>identifier</li>
 <li>phone</li>
 <li>email</li>
-<li>name<br>brand_name</li>
+<li>name</li>
+<li>brand_name</li>
+<li>merchant_defined_identifier</li>
 </ul>
 </td>
 </tr>
