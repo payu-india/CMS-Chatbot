@@ -81,6 +81,14 @@ HTTP Method: **POST**
 </td>
 </tr>
 <tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchant_defined_identifier<br><strong>optional</strong></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>A custom identifier used to identify the submerchant or child merchant. This can be any merchant-specific identifier such as a dealer code, branch code, or internal reference ID.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>fhvbjs324</p>
+</td>
+</tr>
+<tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>aggregator_parent_mid<br><strong>mandatory</strong></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>The parent merchant MID is specified in this parameter.</p>
@@ -520,13 +528,13 @@ After adding the child merchant in[ Step 1: Add a child merchant](##step-1-add-c
 </table>
 `}</HTMLBlock>
 
-> 📘 Authorization:
->
-> This request is using Bearer Token from the collection. For more information, refer to [Postman Collection](https://documenter.getpostman.com/view/7484238/TVCcZAJC#auth-info-60abdedd-6640-49c8-9497-fe181220c2fd). Merchant access token or client token with scope ‘refer_child_merchant’ from Hub.
+<Callout icon="📘" theme="info">
+  **Authorization**: This request is using Bearer Token from the collection. For more information, refer to [Postman Collection](https://documenter.getpostman.com/view/7484238/TVCcZAJC#auth-info-60abdedd-6640-49c8-9497-fe181220c2fd). Merchant access token or client token with scope `refer_child_merchant `from Hub.
+</Callout>
 
 The **bank_detail** parameter is in a JSON parameter, and the fields in this parameter are described in the following table:
 
-| **Field**           | **Description**                                                                  | **Example**   |
+| Field               | Description                                                                      | Example       |
 | ------------------- | -------------------------------------------------------------------------------- | ------------- |
 | bank_account_number | The account number of the child merchant is specified in this field.             | 6633809947434 |
 | holder_name         | The name of the child merchant who holds the account is specified in this field. | Harsh Agarwal |
