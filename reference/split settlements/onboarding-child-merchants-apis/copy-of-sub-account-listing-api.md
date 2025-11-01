@@ -1,5 +1,5 @@
 ---
-title: Copy of Sub Account Listing API
+title: Sub Account Listing API
 deprecated: false
 hidden: false
 metadata:
