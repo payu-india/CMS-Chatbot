@@ -1,8 +1,9 @@
 ---
-title: Copy of Create Child Merchant API
+title: Create Child Merchant API - Hyundai
 deprecated: false
-hidden: false
+hidden: true
 metadata:
+  title: Create Child Merchant API - Hyundai
   robots: index
 ---
 This section describes how to create and onboard child merchants using the **Create Child Merchant** API as part of the Aggregator workflow. Creating a child merchant using this API involves the following steps:
@@ -11,10 +12,12 @@ This section describes how to create and onboard child merchants using the **Cre
 2. [Update bank details.](#step-2-update-bank-details)
 3. [Upload Schedule C document](#step-3-upload-schedule-c-document)
 
-> 📘 Notes:
->
-> * After adding the child merchant in[ Step 1: Add a child merchant](#step-1-add-child-merchant), update the bank details of the child merchant using this API again as in [Step 2: Update bank details.](#step-2-update-bank-details).
-> * After completing  [Step 2](#step-2-update-bank-details), you must upload the Schedule C document for the child merchant. For more information on how to upload the Schedule C document of the child merchant, refer to [Add a Sub-Account](doc:add-a-sub-account).
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * After adding the child merchant in[ Step 1: Add a child merchant](#step-1-add-child-merchant), update the bank details of the child merchant using this API again as in [Step 2: Update bank details.](#step-2-update-bank-details).
+  * After completing  [Step 2](#step-2-update-bank-details), you must upload the Schedule C document for the child merchant. For more information on how to upload the Schedule C document of the child merchant, refer to [Add a Sub-Account](doc:add-a-sub-account).
+</Callout>
 
 HTTP Method: **POST**
 
@@ -27,11 +30,11 @@ HTTP Method: **POST**
 
 ## Step 1: Add child merchant
 
-> 📘 Authorization:
->
-> Generate token using the [Get Client Token API](ref:get-client-token-api) and pass it in header along with the following request parameters.
->
-> For the Postman collection, refer to [Postman Collection](https://documenter.getpostman.com/view/7484238/TVCcZAJC#auth-info-60abdedd-6640-49c8-9497-fe181220c2fd). Merchant access token or client token with scope ‘refer_child_merchant’ from Hub.
+<Callout icon="📘" theme="info">
+  **Authorization**:  Generate token using the [Get Client Token API](ref:get-client-token-api) and pass it in header along with the following request parameters.
+
+  For the Postman collection, refer to [Postman Collection](https://documenter.getpostman.com/view/7484238/TVCcZAJC#auth-info-60abdedd-6640-49c8-9497-fe181220c2fd). Merchant access token or client token with scope ‘refer_child_merchant’ from Hub.
+</Callout>
 
 ### Request Parameters
 
@@ -181,23 +184,25 @@ The business entity ID (**business_entity_id**) and corresponding business entit
 
 * Success Scenario
 
-```
-curl --location 'https://uat-onepayuonboarding.payu.in/api/v3/product_accounts'
-\
+```curl
+curl --location 'https://uat-onepayuonboarding.payu.in/api/v3/product_accounts' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {{access_token}}' \
 --data-raw '{
     "product_account": {
-        "product":"PayUbiz",
-        "name":"Gauri Gupta",
-        "email":"bflsonartest11@payu.in",
-        "mobile":"7310000001",
-        "aggregator_parent_mid":"8238118",
-        "merchant_type":"aggregator",
-        "pancard_number":"C3718G",
-        "pancard_name":"GUPTA",
-        "business_entity_id":14
-    }
+        "product": "PayUbiz",        
+        "email": "chagg232509_4@yopmail.com",
+        "mobile": "8447644143",
+        "merchant_defined_identifier":"fhvbjs324",
+        "aggregator_parent_mid": "30939561", 
+        "merchant_type": "aggregator",
+        "pancard_number": "AUKPA1386M",    
+        "business_name": "Harsh Agarwal",     
+        "business_entity_id": 14,
+        "business_category_id": 37,
+        "business_sub_category_id": 313,
+        "monthly_expected_volume": 220955
+  }
 }'
 ```
 
@@ -241,7 +246,7 @@ curl --location -g --request POST 'https://uat-onepayuonboarding.payu.in/api/v3/
 
 Create Child Merchant Success Scenario
 
-```plaintext
+```json
 {
     "product_account": {
         "mid": 20000012,
@@ -465,7 +470,7 @@ www.youtube.com"
 
 **The token is invalid or expired**
 
-```plaintext
+```json
 {
     "status": "Unauthorized"
 }
@@ -488,9 +493,9 @@ www.youtube.com"
 
 After adding the child merchant in[ Step 1: Add a child merchant](##step-1-add-child-merchant), update the bank details of the child merchant using the following request parameters.
 
-> 📘 Reference:
->
-> Generate token using the [Get Client Token API](ref:get-client-token-api) and pass it in header along with the following request parameters.
+<Callout icon="📘" theme="info">
+  **Reference**: Generate token using the [Get Client Token API](ref:get-client-token-api) and pass it in header along with the following request parameters.
+</Callout>
 
 ### Request Parameters
 
@@ -529,7 +534,7 @@ The **bank_detail** parameter is in a JSON parameter, and the fields in this par
 
 ### Sample request
 
-```
+```curl
 curl --location -g --request PUT '{{host}}/api/v3/product_accounts/{{product_account_uuid}}' \
 --header 'Authorization: Bearer adf9092d141031a6ec1be0e297e91aff313f1c427c384cc18d747b9848a67cbf' \
 --header 'Content-Type: application/json' \
@@ -546,7 +551,7 @@ curl --location -g --request PUT '{{host}}/api/v3/product_accounts/{{product_acc
 
 ### Sample response
 
-```
+```json
 {
     "product_account": {
         "mid": 20000012,
