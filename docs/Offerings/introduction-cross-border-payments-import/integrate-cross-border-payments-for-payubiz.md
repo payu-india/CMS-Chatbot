@@ -24,7 +24,7 @@ metadata:
     - ''' PayUBiz integration for cross border payments'''
   robots: index
 ---
-The cross-border payment integration for PayU involves the following significant steps
+The cross-border payment integration for PayU involves the following steps:
 
 <Cards columns={3}>
   <Card title="1. Make Payment Using Web Checkout Integration" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-1-make-payment-using-web-checkout-integration">
