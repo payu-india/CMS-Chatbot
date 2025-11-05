@@ -1,5 +1,6 @@
 ---
 title: Introduction
+excerpt: Wallet/Card Offerings
 deprecated: false
 hidden: false
 metadata:
