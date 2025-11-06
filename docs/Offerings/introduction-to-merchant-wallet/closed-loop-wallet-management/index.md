@@ -56,6 +56,7 @@ Cash withdrawal is not permitted, ensuring funds remain within the merchant ecos
 * **Simplified Compliance**: Since closed-loop wallets are not regulated by RBI, businesses can implement wallet solutions without complex regulatory compliance requirements.
 * **Complete Control**: Merchants have full control over the wallet experience, including branding, features, and customer journey optimization.
 * **Increased Transaction Success**: With funds pre-loaded in the wallet, transaction success rates improve significantly compared to traditional payment methods.
+* **No Limit**: No restriction on limit of wallet balance or usage of wallet supporting high ticket size transactions
 
 ### Load & Pay Journey
 
