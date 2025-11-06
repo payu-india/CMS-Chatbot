@@ -21,7 +21,7 @@ next:
 The Subscriptions, Recurring Payments or Standing Instruction (SI) from PayU to set up and manage recurring payments. These recurring payments:
 
 * Can be charged as per a cycle defined
-* Do not require any Customer intervention
+* Do not require any customer intervention
 
 The customer can instruct banks for regular funds transfers through standing instructions to automatically make payments. Recurring Payments is an easy and automated method to reduce the administrative burden for periodical payments. Based on the specified pay modes, the customer gives a mandate to the bank to debit a fixed amount from the customer’s account and pay to the merchant.
 
