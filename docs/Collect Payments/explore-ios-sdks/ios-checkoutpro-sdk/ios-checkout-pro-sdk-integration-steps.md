@@ -609,23 +609,19 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     The following Swift function parses JSON-formatted text from a text view to create custom payment notes for the PayU payment gateway integration. It extracts note content and associated payment method categories, converting string-based payment types into strongly-typed PayUCustomNote objects that can be used throughout the payment processing workflow. The function provides robust error handling by returning nil when the input text cannot be parsed as valid JSON, making it suitable for user-generated content validation in payment forms.
 
     ```swift Swift
-    func getCustomNotes() -> [PayUCustomNote]? {
-           if let notesJSON = Utils.JSONFrom(string: customNotesDetailTextView.text) as? [[String: Any]] {
-               var customNotes = [PayUCustomNote]()
-               for json in notesJSON {
-                   for (key, value) in json {
-                       if let paymentModes = (value as? [String])?.compactMap({ Utils.paymentTypeFrom(paymentType: $0)}) {
-                           let customNote = PayUCustomNote()
-                           customNote.note = key
-                           customNote.noteCategories =  paymentModes
-                           customNotes.append(customNote)
-                       }
-                   }
-               }
-               return customNotes
-           }
-           return nil
-       }
+var customNotes = [PayUCustomNote]()
+let customNote1 = PayUCustomNote()
+                       customNote.note = “<your note message>”
+                       customNote.noteCategories =  [PaymentType.ccdc, PaymentType.NB, PaymentType.wallet, PaymentType.emi, PaymentType.savedCard, PaymentType.sodexo, PaymentType.upi, PaymentType.neftRtgs]
+                       customNotes.append(customNote)
+ 
+let customNote2 = PayUCustomNote()
+                       customNote.note = “<your note message>”
+                       customNote.noteCategories =  [PaymentType.ccdc, PaymentType.NB, PaymentType.wallet, PaymentType.emi, PaymentType.savedCard, PaymentType.sodexo, PaymentType.upi, PaymentType.neftRtgs]
+                       customNotes.append(customNote)
+ 
+ 
+config.customNotes = customNotes
     ```
   </Accordion>
 </Accordion>
