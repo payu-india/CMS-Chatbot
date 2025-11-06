@@ -14,7 +14,7 @@ The **Change Wallet Status** API allows you to change the operational status of 
 | Test        | `https://apitest.payu.in/loyalty-points/v1/wallet/onboarding/walletStatus` |
 | Production  | `https://api.payu.in/loyalty-points/v1/wallet/onboarding/walletStatus`     |
 
-**HTTP Method**: POST
+**HTTP Method**: PATCH
 
 ## Request Headers
 
