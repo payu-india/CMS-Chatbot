@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-The **PG Load** API allows you to is used for adding money through PG.
+The **PG Load** API allows you to create a credit transaction entry through a payment gateway. 
 
 ## Environment
 
