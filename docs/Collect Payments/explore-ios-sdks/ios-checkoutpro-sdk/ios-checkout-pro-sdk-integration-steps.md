@@ -601,31 +601,27 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 <Accordion title="Step 6: Custom Note Integration" icon="fa-info-circle">
   This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
-  <Accordion title="Step 1: Create a Custom Note List to be Passed" icon="fa-info-circle">
-    <Step1CreateACustomNoteList />
-  </Accordion>
-
-  <Accordion title="Step 2: Pass Custom Note List to SDK" icon="fa-info-circle">
-     To pass the custom note list created in the above section to the SDK. Create a PayUCheckoutProConfig object and set the CustomNoteDetails similar to the following code block:
+  <Accordion title="Create a Custom Note List and Pass to SDK" icon="fa-info-circle">
+    Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom_note and custom_note_category need to be passed.To pass the custom note list, Create a PayUCheckoutProConfig object and set the CustomNoteDetails similar to the following code block:
 
     ```swift Swift
-var customNotes = [PayUCustomNote]()
-let customNote1 = PayUCustomNote()
-                       customNote.note = “<your note message>”
-                       customNote.noteCategories =  [PaymentType.ccdc, PaymentType.NB, PaymentType.wallet, PaymentType.emi, PaymentType.savedCard, PaymentType.sodexo, PaymentType.upi, PaymentType.neftRtgs]
-                       customNotes.append(customNote)
- 
-let customNote2 = PayUCustomNote()
+    var customNotes = [PayUCustomNote]()
+    let customNote1 = PayUCustomNote()
                        customNote.note = “<your note message>”
                        customNote.noteCategories =  [PaymentType.ccdc, PaymentType.NB, PaymentType.wallet, PaymentType.emi, PaymentType.savedCard, PaymentType.sodexo, PaymentType.upi, PaymentType.neftRtgs]
                        customNotes.append(customNote)
 
- // Initialize the PayU CheckoutPro Configuration
-let config = PayUCheckoutProConfig()
+    let customNote2 = PayUCustomNote()
+                       customNote.note = “<your note message>”
+                       customNote.noteCategories =  [PaymentType.ccdc, PaymentType.NB, PaymentType.wallet, PaymentType.emi, PaymentType.savedCard, PaymentType.sodexo, PaymentType.upi, PaymentType.neftRtgs]
+                       customNotes.append(customNote)
 
-// Assign the custom notes to the config
-config.customNotes = customNotes
- 
+    // Initialize the PayU CheckoutPro Configuration
+    let config = PayUCheckoutProConfig()
+
+    // Assign the custom notes to the config
+    config.customNotes = customNotes
+
     ```
   </Accordion>
 </Accordion>
