@@ -1,5 +1,5 @@
 ---
-title: Semi-Closed or Open Loop Management
+title: Semi-Closed or Open Loop Management APIs
 excerpt: ''
 deprecated: false
 hidden: false
