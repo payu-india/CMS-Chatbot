@@ -1,5 +1,5 @@
 ---
-title: Closed-Loop Wallet Management
+title: Closed-Loop Wallet Integration
 deprecated: false
 hidden: false
 metadata:
@@ -10,6 +10,10 @@ metadata:
     - closed loop wallet management
   robots: index
 ---
+This part of the document includes the various Closed-Loop integration based on use cases:
+
+<br />
+
 Closed loop wallet management involves the following APIs:
 
 * [Register Customer API](https://docs.payu.in/reference/register-customer-api): This API will be required by the merchants to register the customer for wallet.
