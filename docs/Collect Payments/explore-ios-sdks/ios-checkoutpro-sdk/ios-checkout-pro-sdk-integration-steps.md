@@ -604,7 +604,9 @@ This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
 <Tep1CreateACustomNoteList />
 
-<br />
+<Accordion title="Step 1: Create a Custom Note List" icon="fa-info-circle">
+
+</Accordion>
 
 ## Test the integration and Go-Live
 
