@@ -12,7 +12,9 @@ metadata:
 ---
 This part of the document includes the various Closed-Loop integration based on use cases:
 
-<br />
+* [Seamless Debit Integration](https://docs.payu.in/docs/seamless-debit-integration-clw)
+* [PayU Hosted Check-out Integration](https://docs.payu.in/docs/pay-hosted-checkout-merchant-integration-merchant-wallet)
+* [Customer Redemption Journey](https://docs.payu.in/docs/redemption-using-payu-pg-integration)
 
 Closed loop wallet management involves the following APIs:
 
