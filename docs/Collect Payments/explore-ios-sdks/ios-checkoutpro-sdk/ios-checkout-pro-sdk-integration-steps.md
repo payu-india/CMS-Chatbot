@@ -62,7 +62,6 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     * Using Xcode: Navigate to File > Add Package menu and add the following package:
       [https://github.com/payu-intrepos/PayUCheckoutPro-iOS](https://github.com/payu-intrepos/PayUCheckoutPro-iOS)
     * Using Package.Swift: Add the following line in the Package.swift dependencies: `.package(name: "PayUCheckoutProKit", url: "https://github.com/payu-intrepos/PayUCheckoutPro-iOS", from: "7.4.0")`
-
   </Accordion>
 
   <Accordion title="CrashReporter" icon="fa-code">
@@ -599,11 +598,11 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   </Accordion>
 </Accordion>
 
-  
+### Custom Note Integration
 
-### Custom Note Integration     
+This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
-This section describes how to integrate custom notes in PayUCheckoutPro SDK.  
+<Tep1CreateACustomNoteList />
 
 <br />
 
