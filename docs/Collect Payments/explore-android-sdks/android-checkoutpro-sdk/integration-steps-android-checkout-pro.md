@@ -16,7 +16,11 @@ metadata:
 next:
   description: ''
 ---
-Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard > Settings > Payment methods**.  For more information, refer. to [Checkout Payment Modes](doc:checkout-payment-modes). By default, Cards, UPI, and other payment methods are enabled, and PayU recommends that you to enable other payment methods that are relevant to you.
+This section describes the step-by-steps to integrate Android Checkout Pro SDK and then test it.
+
+### Prerequisite
+
+Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard > Settings > Payment methods**.  For more information, refer to [Checkout Payment Modes](doc:checkout-payment-modes). By default, Cards, UPI, and other payment methods are enabled, and PayU recommends that you to enable other payment methods that are relevant to you.
 
 ## SDK Integration
 
