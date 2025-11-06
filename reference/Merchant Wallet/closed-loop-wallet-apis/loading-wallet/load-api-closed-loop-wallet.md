@@ -10,8 +10,15 @@ The Load API allows you to credit money directly into a customer's wallet withou
 
 ## API Details
 
-**HTTP Method:** PATCH\
-**Endpoint:** `https://apitest.payu.in/loyalty-points/v1/wallet/load-account`
+**HTTP Method:** PATCH  
+
+
+**Endpoint:** `
+
+| Environment | Endpoint                                                                                                                        |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| Test        | [https://apitest.payu.in/loyalty-points/v1/wallet/load-account](https://apitest.payu.in/loyalty-points/v1/wallet/load-account`) |
+| Production  | [https://api.payu.in/loyalty-points/v1/wallet/load-account](https://api.payu.in/loyalty-points/v1/wallet/load-account)          |
 
 ## Request Header
 
