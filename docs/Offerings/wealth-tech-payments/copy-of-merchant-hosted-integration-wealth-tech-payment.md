@@ -2,6 +2,8 @@
 title: UPI Autopay Integration - Wealth Tech Payment
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
