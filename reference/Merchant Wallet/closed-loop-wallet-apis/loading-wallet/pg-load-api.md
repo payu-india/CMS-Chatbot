@@ -5,13 +5,14 @@ hidden: false
 metadata:
   robots: index
 ---
-The **PG Load** API allows you to create a credit transaction entry through a payment gateway. 
+The **PG Load** API allows you to create a credit transaction entry through a payment gateway.
 
 ## Environment
 
 | Environment | URL                                                                                                                            |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Test        | [https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1](https://apitest.payu.in/loyalty-points/v1/wallet/load-account) |
+| Production  | `[https://api.payu.in/loyalty-points/ppi/payment/pg-load/v1](https://api.payu.in/loyalty-points/ppi/payment/pg-load/v1)        |
 
 **HTTP Method**: PATCH
 
