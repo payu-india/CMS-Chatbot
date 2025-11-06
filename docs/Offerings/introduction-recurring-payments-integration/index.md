@@ -18,8 +18,12 @@ metadata:
 next:
   description: ''
 ---
-The Subscriptions, Recurring Payments or Standing Instruction (SI) is the mode of payment agreed by the customer to pay against a package for each payment term during the subscription. The customer can instruct banks for regular funds transfers through standing instructions to automatically make payments.
-Recurring Payments is an easy and automated method to reduce the administrative burden for periodical payments. Based on the specified pay modes, the customer gives a mandate to the bank to debit a fixed amount from the customer’s account and pay to the merchant.
+The Subscriptions, Recurring Payments or Standing Instruction (SI) from PayU to set up and manage recurring payments. These recurring payments:
+
+* Can be charged as per a cycle defined
+* Do not require any Customer intervention
+
+The customer can instruct banks for regular funds transfers through standing instructions to automatically make payments. Recurring Payments is an easy and automated method to reduce the administrative burden for periodical payments. Based on the specified pay modes, the customer gives a mandate to the bank to debit a fixed amount from the customer’s account and pay to the merchant.
 
 PayU offers Recurring Payments integration using the APIs, Zion Subscription platforms, or PayU Dashboard.
 
