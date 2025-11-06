@@ -613,7 +613,8 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     let customNote2 = PayUCustomNote()
                        customNote.note = “<your note message>”
-                       customNote.noteCategories =  [PaymentType.ccdc, PaymentType.NB, PaymentType.wallet, PaymentType.emi, PaymentType.savedCard, PaymentType.sodexo, PaymentType.upi, PaymentType.neftRtgs] // pass Payment type to show notes on specific payment mode screen
+    customNote.noteCategories =  [PaymentType.ccdc, PaymentType.NB, PaymentType.wallet, PaymentType.emi, PaymentType.savedCard, PaymentType.sodexo, PaymentType.upi, PaymentType.neftRtgs] 
+// pass Payment type to show notes on specific payment mode screen
                        customNotes.append(customNote)
 
     // Initialize the PayU CheckoutPro Configuration
