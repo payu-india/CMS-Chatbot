@@ -6,6 +6,8 @@ api:
   operationId: predebit
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Pre Debit Notification API
   description: >-
@@ -22,14 +24,13 @@ metadata:
     - ' SI Notification'
   robots: index
 next:
-  description: ''
   pages:
-    - type: basic
-      slug: using-api-integration-recurring-payments
+    - slug: using-api-integration-recurring-payments
       title: Using API Integration
-    - type: basic
-      slug: customer-experience-and-workflow-recurring-payments
+      type: basic
+    - slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
+      type: basic
 ---
 The **Pre-Debit Notification** API allows the merchants to send a pre-debit notification to the customer regarding an upcoming payment which will be deducted from the customer’s account as part of the registration. There is a mandate to send this notification to the customer at least 48 hours before the actual debit, that is, 48 hours before calling the Recurring API.
 
