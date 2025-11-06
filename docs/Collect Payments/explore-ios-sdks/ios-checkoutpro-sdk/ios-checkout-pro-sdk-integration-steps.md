@@ -619,9 +619,13 @@ let customNote2 = PayUCustomNote()
                        customNote.note = “<your note message>”
                        customNote.noteCategories =  [PaymentType.ccdc, PaymentType.NB, PaymentType.wallet, PaymentType.emi, PaymentType.savedCard, PaymentType.sodexo, PaymentType.upi, PaymentType.neftRtgs]
                        customNotes.append(customNote)
- 
- 
+
+ // Initialize the PayU CheckoutPro Configuration
+let config = PayUCheckoutProConfig()
+
+// Assign the custom notes to the config
 config.customNotes = customNotes
+ 
     ```
   </Accordion>
 </Accordion>
