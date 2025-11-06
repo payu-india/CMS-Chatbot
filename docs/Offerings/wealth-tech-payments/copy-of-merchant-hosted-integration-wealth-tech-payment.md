@@ -1,11 +1,11 @@
 ---
-title: Copy of Merchant Hosted Integration - Wealth Tech Payment
+title: UPI Autopay Integration - Wealth Tech Payment
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-This section explains how to implement the **_payment** API for Wealth Tech merchants using Merchant Hosted Checkout integration. The _payment includes the *_more_info_ parameter contains various fields including the Wealth Tech object (**wtParams**).
+This section explains how to implement the **_payment** API for by Wealth Tech merchants to collect UPI recurring payments using Merchant Hosted Checkout integration. The **_payment** API includes the *_more_info_ parameter contains various fields including the Wealth Tech object (**wtParams**).
 
 <Callout icon="📘" theme="info">
   **Note**: Currently, PayU supports only UPI, Netbanking, UPI autopay and Enach modes for Wealth Tech payments. You must note that cards are not supported.
