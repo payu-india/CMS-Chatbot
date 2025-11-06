@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-The **PG Load **API allows you to create a credit transaction entry directly into the wallet without going through a payment gateway. This is useful for scenarios like cashback, rewards, or direct fund transfers.
+The **PG Load** API allows you to is used for adding money through PG.
 
 ## Environment
 
@@ -146,11 +146,7 @@ The **PG Load **API allows you to create a credit transaction entry directly int
       </td>
 
       <td>
-
-
         [ashsih@gmail.com](mailto:ashsih@gmail.com)
-
-
       </td>
     </tr>
 
@@ -165,11 +161,7 @@ The **PG Load **API allows you to create a credit transaction entry directly int
       </td>
 
       <td>
-
-
         [https://pp1admin.payu.in/test_response](https://pp1admin.payu.in/test_response)
-
-
       </td>
     </tr>
 
@@ -184,11 +176,7 @@ The **PG Load **API allows you to create a credit transaction entry directly int
       </td>
 
       <td>
-
-
         [https://pp1admin.payu.in/test_response](https://pp1admin.payu.in/test_response)
-
-
       </td>
     </tr>
 
