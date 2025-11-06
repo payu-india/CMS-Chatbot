@@ -54,650 +54,639 @@ compileOptions {
 > 2. **Compile SDK** — version 31 and above.
 
 <Accordion title="2.1 Import Runtime Issue" icon="fa-code">
-
-> 🚧 Import Runtime Issue
->
-> 1. Dependency '`androidx.activity:activity:1.8.0`' requires libraries and applications that
->    depend on it to compile against version 34 or later of the Android APIs.
->
->    ```
->      :app is currently compiled against android-33.
->
->      Recommended action: Update this project to use a newer compileSdk
->      of at least 34, for example 34.
->
->      Note that updating a library or application's compileSdk (which
->      allows newer APIs to be used) can be done separately from updating
->      targetSdk (which opts the app in to new runtime behavior) and
->      minSdk (which determines which devices the app can be installed
->      on).
->    ```
-> 2. Error: `Attribute application@theme value=(@style/Theme.TestApp) from AndroidManifest.xml:13:9-45  
->    is also present at [in.payu:payu-checkout-pro-ui:1.9.20] AndroidManifest.xml:29:9-44 value=(@style/OnePayuTheme).  
->    Suggestion: add 'tools:replace="android:theme"' to <application> element at AndroidManifest.xml:5:5-24:19 to override`.
->
-> **Solution**: After adding PayUCheckoutPro SDK gradle dependency, if below build error is received, add the below code in `application` tag of your App's `AndroidManifest.xm`l file
->
-> ```
-> tools:replace="android:theme"
-> ```
->
-> 3. Manifest merger failed: `Attribute application@allowBackup value=(true) from AndroidManifest.xml:6:9-35  
->    is also present at [com.minkasu:minkasu-2fa:3.0.0] AndroidManifest.xml:14:18-45 value=(false).  
->    Suggestion: add 'tools:replace="android:allowBackup"' to <application> element at AndroidManifest.xml:5:5-25:19 to override`.
->
-> **Solution**: After adding PayUCheckoutPro SDK gradle dependency, if below build error is received, add the below code in `application` tag of your App's AndroidManifest.xml file
->
-> ```
-> tools:replace="android:allowBackup"
-> ```
-
+  > 🚧 Import Runtime Issue
+  >
+  > 1. Dependency '`androidx.activity:activity:1.8.0`' requires libraries and applications that
+  >    depend on it to compile against version 34 or later of the Android APIs.
+  >
+  >    ```
+  >      :app is currently compiled against android-33.
+  >
+  >      Recommended action: Update this project to use a newer compileSdk
+  >      of at least 34, for example 34.
+  >
+  >      Note that updating a library or application's compileSdk (which
+  >      allows newer APIs to be used) can be done separately from updating
+  >      targetSdk (which opts the app in to new runtime behavior) and
+  >      minSdk (which determines which devices the app can be installed
+  >      on).
+  >    ```
+  > 2. Error: `Attribute application@theme value=(@style/Theme.TestApp) from AndroidManifest.xml:13:9-45  
+  >    is also present at [in.payu:payu-checkout-pro-ui:1.9.20] AndroidManifest.xml:29:9-44 value=(@style/OnePayuTheme).  
+  >    Suggestion: add 'tools:replace="android:theme"' to <application> element at AndroidManifest.xml:5:5-24:19 to override`.
+  >
+  > **Solution**: After adding PayUCheckoutPro SDK gradle dependency, if below build error is received, add the below code in `application` tag of your App's `AndroidManifest.xm`l file
+  >
+  > ```
+  > tools:replace="android:theme"
+  > ```
+  >
+  > 3. Manifest merger failed: `Attribute application@allowBackup value=(true) from AndroidManifest.xml:6:9-35  
+  >    is also present at [com.minkasu:minkasu-2fa:3.0.0] AndroidManifest.xml:14:18-45 value=(false).  
+  >    Suggestion: add 'tools:replace="android:allowBackup"' to <application> element at AndroidManifest.xml:5:5-25:19 to override`.
+  >
+  > **Solution**: After adding PayUCheckoutPro SDK gradle dependency, if below build error is received, add the below code in `application` tag of your App's AndroidManifest.xml file
+  >
+  > ```
+  > tools:replace="android:allowBackup"
+  > ```
 </Accordion>
+
 ### Step 3: Build the payment parameters (mandatory step)
 
 To initiate a payment, your app must send transactional information to the CheckoutPro SDK. To pass this information, create the`payUPaymentParams`object with the payment parameters.
 
 <Accordion title="Step 3.1: Basic Integration" icon="fa-code">
-
-```Text Java
-PayUPaymentParams.Builder builder = new PayUPaymentParams.Builder(); 
-builder.setAmount(<String>)  
-        .setIsProduction(<Boolean>)  //set is to true for Production and false for UAT
-        .setProductInfo(<String>)   
-        .setKey(<String>)      
-        .setPhone(<String>)      
-        .setTransactionId(<String>)  
-        .setFirstName(<String>) 
-        .setEmail(<String>) 
-        .setSurl(<String>) //Pass your own surl your
-        .setFurl(<String>) //Pass your own furl your
-        .setUserCredential(<String>
-        .setAdditionalParams(<HashMap<String,Object>>); //Optional, can contain any additional PG params  
-PayUPaymentParams payUPaymentParams = builder.build();
-```
-```Text Kotlin
-val payUPaymentParams = PayUPaymentParams.Builder() 
-    .setAmount(<String>)      
-    .setIsProduction(<Boolean>)  //set is to true for Production and false for UAT
-    .setKey(<String>)       
-    .setProductInfo(<String>)   
-    .setPhone(<String>)  
-    .setTransactionId(<String>) 
-    .setFirstName(<String>) 
-    .setEmail(<String>) 
-    .setSurl(<String>) //Pass your own surl your
-    .setFurl(<String>) //Pass your own furl your
-    .setUserCredential(<String>) 
-    .setAdditionalParams(<HashMap<String,Any?>>) //Optional, can contain any additional PG params 
-    .build()  
-```
-
-For parameter descriptions and sample values, refer to [Payment Params Definition](https://docs.payu.in/docs/android-checkoutpro-integration-steps#step-35-payment-param-definitions) .
-
-> 📘 Important:
->
-> * The URLs used in surl and furl are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed. For more information, refer to [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
->
-> * The **TransactionId** parameter must not include special characters and must not exceed 25 characters.
-
-</Accordion>
-<Accordion title="Step 3.2: For Recurring Payments(SI) (Optional)" icon="fa-code">
-
-If you are integrating SI, then generate the below payment params additionally
-
-```Text Java
-PayUSIParams siDetails  = new PayUSIParams.Builder()
-                .setIsFreeTrial(true) //set it to true for free trial. Default value is false 
-                .setBillingAmount("1.0")
-                .setBillingCycle(PayUBillingCycle.ONCE)     
-                .setBillingCurrency("INR")
-                .setBillingInterval(1)
-                .setPaymentStartDate("2021-12-24")
-                .setPaymentEndDate("2021-12-31")
-                .setBillingRule(PayuBillingRule.MAX)
-                .setBillingLimit(PayuBillingLimit.ON)
-                .setRemarks("SI Txn")
-                .build();
-```
-```Text Kotlin
-val siDetails  = PayUSIParams.Builder()
-                .setIsFreeTrial(true) //set it to true for free trial. Default value is false
-                .setBillingAmount("1.0")
-                .setBillingCycle(PayUBillingCycle.ONCE)     
-                .setBillingCurrency("INR")
-                .setBillingInterval(1)
-                .setPaymentStartDate("2021-12-24")
-                .setPaymentEndDate("2021-12-31")
-                .setBillingRule(PayuBillingRule.MAX)
-                .setBillingLimit(PayuBillingLimit.ON)
-                .setRemarks("SI Txn")
-                .build()
-```
-
-For more information on the PayUSIParams parameters, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters). After creating the above `PayUSIParams` object, configure it in the `PayUPaymentParams` object. For Standing Instruction, complete `PayUPaymentParams` similar to the following code block:
-
-</Accordion>
-<Accordion title="Step 3.3: For UPI One Time Mandate Payments (Optional)" icon="fa-code">
-
-If you are integrating UPI OTM, then generate the below payment params additionally
-
-```Text Java
-PayUSIParams siDetails  = new PayUSIParams.Builder()
-								.setPaymentStartDate("2025-04-14")
-                .setPaymentEndDate("2025-04-21")
-                .setPreAuthTxn(true)
-                .build();
-```
-```Text kotlin
-val siDetails = PayUSIParams.Builder()
-								.setPaymentStartDate("2025-04-14")
-                .setPaymentEndDate("2025-04-21")
-                .setPreAuthTxn(true)
-                .build();
-```
-
-Also need to enable `isPreAuthTxn`.
-
-```Text Java
-paymentParam.setPayUSIParams(siDetails);
-```
-```Text Kotlin
-paymentParam.setPayUSIParams(siDetails)
-```
-
-</Accordion>
-<Accordion title="Step 3.4: For Additional Charges" icon="fa-code">
-
-If you are integrating additional charges or percentage additional charges, then generate the below payment params additionally
-
-```Text Java
-paymentParam.setAdditionalCharges("CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55")
-paymentParam.setPercentageAdditionalCharges("CC:50,AMEX:100,DINR:75,DC:25")
-```
-```Text Kotlin
-paymentParam.setAdditionalCharges("CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55").setPercentageAdditionalCharges("CC:50,SBIB:100,DINR:100,DC:25,NB:50");
-```
-
-For more information on the Additional Charges, refer to [Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges).
-
-</Accordion>
-<Accordion title="Step 3:5: For split Payments details (Optional)" icon="fa-code">
-
-For a split payment transaction, create a JSON string with the split payment parameters as shown below:
-
-**JSON Request Structure of splitInfo Field**
-
-Here is a sample JSON structure for the `splitPaymentDetails` field:
-
-```Text Json
-{
-   "type":"absolute",
-   "splitInfo":{
-      "P****Y":{
-         "aggregatorSubTxnId":"9a70ea0155268101001ba",
-         "aggregatorSubAmt":"50",
-         "aggregatorCharges":"20"
-      },
-      "P***K":{
-         "aggregatorSubTxnId":"9a70ea0155268101001bb",
-         "aggregatorSubAmt":"30"
-      }
-   }
-}
-```
-
-Then create an object of the `PayUPaymentParam` class and set the `splitPaymentDetails` property of the object to the JSON string you created in the earlier step.
-
-```
-paymentParam.splitPaymentDetails = "";
-```
-
-> 🚧 Remember
->
-> * For the **absolute** type split, you must ensure that the sum of amount of all splits is equal to the parent transaction amount.
-> * For the **percentage** type split, you must ensure that the sum of percentage of all splits is equal to 100. You can use any number decimal places for each split, but ensure the sum of percentage of all splits is equal to 100.
-
-The following fields are included in the `splitPaymentDetails` parameter in a JSON format to specify the split details. The fields in the JSON format are described in the following table:
-
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        type
-        `mandatory`
-      </td>
-
-      <td>
-        `string` Any of the following types of split is specified in this field.
-
-        * _- absolute:_* The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment
-        * _- percentage_*: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment
-      </td>
-
-      <td>
-        absolute
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        splitInfo
-        `mandatory`
-      </td>
-
-      <td>
-        `JSON` This parameter must include the list of aggregator sub-transaction IDs and sub-amounts as follows:
-
-        * _- aggregatorSubTxnId_*: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only for child merchants.
-        * _- aggregatorSubAmt_*: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.
-        * _- aggregatorCharges_*: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.
-        * _Note_*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.
-          The sample request structure JSON Request Structure of splitInfo Field.
-      </td>
-
-      <td>
-        \{
-        "merchantKey1": \{
-        "aggregatorSubTxnId": "30nknyhkhib",
-        "aggregatorSubAmt": "8",
-        }
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-</Accordion>
-<Accordion title="Step 3:5 : SKU details (Optional)" icon="fa-code">
-
-```Text Kotlin
-SkuDetails: It contains below properties
-SkuDetails(val skus: List<SKU>)
-skus: "<ArrayList of SKU>"
-
-SKU(
-    val quantity: Int,
-    val skuAmount: String,
-    val skuId: String,
-    val skuName: String,
-    var offerKeys:ArrayList<String>?=null
-)
-
-skuId: "<Product Id which you use when creating offer on dashboard >"
-skuName: "<Name of product>"
-skuAmount: "<Amount of product>"
-quantity: "<total quantity of product>"
-offerKeys: "<Optional - Provide offer keys only if want to restrict offer for mention products, else set null>"
-```
-
-For more information on the SkuDetails parameters, refer to [Create SKU Based Offers details](https://docs.payu.in/docs/create-sku-based-offers-for-android-checkout-pro). After creating the above `SkuDetails` object, configure it in the `PayUPaymentParams` object. For SKU Details, complete `PayUPaymentParams` similar to the following code block:
-
-```Text Java
-paymentParam.setSkuDetails = "";
-```
-
-> 🚧 Keep in mind
->
-> if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities * skuAmount of each item.
-
-</Accordion>
-<Accordion title="Step 3.6: Additional parameters (Optional)" icon="fa-code">
-
-Additional parameters are optional parameters such as UDF (User Defined Fields), static hashes, etc. More details on static hash generation and passing are mentioned in the hash generation section. The following is a list of other parameters that can be passed in additional parameters.
-
-| Parameter                                              | Description                                                                                            | Example      |
-| :----------------------------------------------------- | :----------------------------------------------------------------------------------------------------- | :----------- |
-| PayUCheckoutProConstants.CP_UDF1        `optional`     | `String` User-defined field, Merchant can store their customer ID, etc.                                | udf1         |
-| PayUCheckoutProConstants.CP_UDF2            `optional` | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf2         |
-| PayUCheckoutProConstants.CP_UDF3        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc                                  | udf3         |
-| PayUCheckoutProConstants.CP_UDF4        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf4         |
-| PayUCheckoutProConstants.CP_UDF5        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf5         |
-| PayUCheckoutProConstants.SODEXO_SOURCE_ID `mandatory`  | `String`When we use SODEXO Card payment then it's a mandatory parameter otherwise not required.        | 456788765678 |
-| PayUCheckoutProConstants.WALLET_URN `mandatory`        | `String`When we use ClossedLoop Wallet payment then it's a mandatory parameter otherwise not required. | 67890987     |
-
-***
-
-```java JAVA
-HashMap additionalParams = new HashMap(); 
-additionalParams.put(PayUCheckoutProConstants.CP_UDF1, "udf1"); 
-additionalParams.put(PayUCheckoutProConstants.CP_UDF2, "udf2"); 
-additionalParams.put(PayUCheckoutProConstants.CP_UDF3, "udf3"); 
-additionalParams.put(PayUCheckoutProConstants.CP_UDF4, "udf4"); 
-additionalParams.put(PayUCheckoutProConstants.CP_UDF5, "udf5"); 
-// to show saved sodexo card
-additionalParams.put(PayUCheckoutProConstants.SODEXO_SOURCE_ID, "srcid123"); 
-// to show ClooseLoop Wallet 
- additionalParamsMap[PayUCheckoutProConstants.WALLET_URN] = "<Wallet URN>"
- 
-PayUPaymentParams.Builder builder = new PayUPaymentParams.Builder(); 
-builder.setAmount("1.0") 
-        .setIsProduction(true) 
-        .setProductInfo("Macbook Pro") 
-        .setKey(key) 
-        .setPhone(phone) 
-        .setTransactionId(String.valueOf(System.currentTimeMillis())) 
-        .setFirstName("John") 
-        .setEmail("john@yopmail.com") 
-        .setSurl("https://cbjs.payu.in/sdk/success") // This URL is used for Test Only. Don't go live
-        .setFurl("https://cbjs.payu.in/sdk/failure") // This URL is used for Test Only. Don't go live
-        .setUserCredential(key+":john@yopmail.com") 
-        .setUserToken("")  //Optional, Only use for Offers
-        .setSkuDetails(<SkuDetails>) //optional, create SKU Details as mention above
-        .setAdditionalParams(<HashMap>); //Optional, can contain any additional PG params  
-        .setPayUSIParams(siDetails) //Only for SI parameter
-        .setSplitPaymentDetails(splitPaymentDetails); //Only for Split parameter
-PayUPaymentParams payUPaymentParams = builder.build();  
-```
-```kotlin Kotlin
-val additionalParamsMap: HashMap = HashMap() 
-  additionalParamsMap[PayUCheckoutProConstants.CP_UDF1] = "udf1" 
-  additionalParamsMap[PayUCheckoutProConstants.CP_UDF2] = "udf2" 
-  additionalParamsMap[PayUCheckoutProConstants.CP_UDF3] = "udf3" 
-  additionalParamsMap[PayUCheckoutProConstants.CP_UDF4] = "udf4" 
-  additionalParamsMap[PayUCheckoutProConstants.CP_UDF5] = "udf5" 
-  //to show saved sodexo card
-  additionalParamsMap[PayUCheckoutProConstants.SODEXO_SOURCE_ID] = "srcid123" 
-  //to show ClossedLoop Wallet
-  additionalParamsMap[PayUCheckoutProConstants.WALLET_URN] = "<Wallet URN>"
-
+  ```Text Java
+  PayUPaymentParams.Builder builder = new PayUPaymentParams.Builder(); 
+  builder.setAmount(<String>)  
+          .setIsProduction(<Boolean>)  //set is to true for Production and false for UAT
+          .setProductInfo(<String>)   
+          .setKey(<String>)      
+          .setPhone(<String>)      
+          .setTransactionId(<String>)  
+          .setFirstName(<String>) 
+          .setEmail(<String>) 
+          .setSurl(<String>) //Pass your own surl your
+          .setFurl(<String>) //Pass your own furl your
+          .setUserCredential(<String>
+          .setAdditionalParams(<HashMap<String,Object>>); //Optional, can contain any additional PG params  
+  PayUPaymentParams payUPaymentParams = builder.build();
+  ```
+  ```Text Kotlin
   val payUPaymentParams = PayUPaymentParams.Builder() 
-                          .setAmount("1.0") 
-                          .setIsProduction(true) 
-                          .setKey(key) 
-                          .setProductInfo("Macbook Pro") 
-                          .setPhone(phone) 
-                          .setTransactionId(System.currentTimeMillis().toString()) 
-                          .setFirstName("John") 
-                          .setEmail("john@yopmail.com") 
-                          .setSurl(“https://cbjs.payu.in/sdk/success”) // This URL is used for Test Only
-                          .setFurl("https://cbjs.payu.in/sdk/failure ") // This URL is used for Test Only
-                          .setUserCredential("$key:john@yopmail.com”) 
-                          .setAdditionalParams(additionalParamsMap) 
-                          .build() 
-```
+      .setAmount(<String>)      
+      .setIsProduction(<Boolean>)  //set is to true for Production and false for UAT
+      .setKey(<String>)       
+      .setProductInfo(<String>)   
+      .setPhone(<String>)  
+      .setTransactionId(<String>) 
+      .setFirstName(<String>) 
+      .setEmail(<String>) 
+      .setSurl(<String>) //Pass your own surl your
+      .setFurl(<String>) //Pass your own furl your
+      .setUserCredential(<String>) 
+      .setAdditionalParams(<HashMap<String,Any?>>) //Optional, can contain any additional PG params 
+      .build()  
+  ```
 
+  For parameter descriptions and sample values, refer to [Payment Params Definition](https://docs.payu.in/docs/android-checkoutpro-integration-steps#step-35-payment-param-definitions) .
+
+  > 📘 Important:
+  >
+  > * The URLs used in surl and furl are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed. For more information, refer to [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
+  >
+  > * The **TransactionId** parameter must not include special characters and must not exceed 25 characters.
 </Accordion>
+
+<Accordion title="Step 3.2: For Recurring Payments(SI) (Optional)" icon="fa-code">
+  If you are integrating SI, then generate the below payment params additionally
+
+  ```Text Java
+  PayUSIParams siDetails  = new PayUSIParams.Builder()
+                  .setIsFreeTrial(true) //set it to true for free trial. Default value is false 
+                  .setBillingAmount("1.0")
+                  .setBillingCycle(PayUBillingCycle.ONCE)     
+                  .setBillingCurrency("INR")
+                  .setBillingInterval(1)
+                  .setPaymentStartDate("2021-12-24")
+                  .setPaymentEndDate("2021-12-31")
+                  .setBillingRule(PayuBillingRule.MAX)
+                  .setBillingLimit(PayuBillingLimit.ON)
+                  .setRemarks("SI Txn")
+                  .build();
+  ```
+  ```Text Kotlin
+  val siDetails  = PayUSIParams.Builder()
+                  .setIsFreeTrial(true) //set it to true for free trial. Default value is false
+                  .setBillingAmount("1.0")
+                  .setBillingCycle(PayUBillingCycle.ONCE)     
+                  .setBillingCurrency("INR")
+                  .setBillingInterval(1)
+                  .setPaymentStartDate("2021-12-24")
+                  .setPaymentEndDate("2021-12-31")
+                  .setBillingRule(PayuBillingRule.MAX)
+                  .setBillingLimit(PayuBillingLimit.ON)
+                  .setRemarks("SI Txn")
+                  .build()
+  ```
+
+  For more information on the PayUSIParams parameters, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters). After creating the above `PayUSIParams` object, configure it in the `PayUPaymentParams` object. For Standing Instruction, complete `PayUPaymentParams` similar to the following code block:
+</Accordion>
+
+<Accordion title="Step 3.3: For UPI One Time Mandate Payments (Optional)" icon="fa-code">
+  If you are integrating UPI OTM, then generate the below payment params additionally
+
+  ```Text Java
+  PayUSIParams siDetails  = new PayUSIParams.Builder()
+  								.setPaymentStartDate("2025-04-14")
+                  .setPaymentEndDate("2025-04-21")
+                  .setPreAuthTxn(true)
+                  .build();
+  ```
+  ```Text kotlin
+  val siDetails = PayUSIParams.Builder()
+  								.setPaymentStartDate("2025-04-14")
+                  .setPaymentEndDate("2025-04-21")
+                  .setPreAuthTxn(true)
+                  .build();
+  ```
+
+  Also need to enable `isPreAuthTxn`.
+
+  ```Text Java
+  paymentParam.setPayUSIParams(siDetails);
+  ```
+  ```Text Kotlin
+  paymentParam.setPayUSIParams(siDetails)
+  ```
+</Accordion>
+
+<Accordion title="Step 3.4: For Additional Charges" icon="fa-code">
+  If you are integrating additional charges or percentage additional charges, then generate the below payment params additionally
+
+  ```Text Java
+  paymentParam.setAdditionalCharges("CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55")
+  paymentParam.setPercentageAdditionalCharges("CC:50,AMEX:100,DINR:75,DC:25")
+  ```
+  ```Text Kotlin
+  paymentParam.setAdditionalCharges("CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55").setPercentageAdditionalCharges("CC:50,SBIB:100,DINR:100,DC:25,NB:50");
+  ```
+
+  For more information on the Additional Charges, refer to [Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges).
+</Accordion>
+
+<Accordion title="Step 3:5: For split Payments details (Optional)" icon="fa-code">
+  For a split payment transaction, create a JSON string with the split payment parameters as shown below:
+
+  **JSON Request Structure of splitInfo Field**
+
+  Here is a sample JSON structure for the `splitPaymentDetails` field:
+
+  ```Text Json
+  {
+     "type":"absolute",
+     "splitInfo":{
+        "P****Y":{
+           "aggregatorSubTxnId":"9a70ea0155268101001ba",
+           "aggregatorSubAmt":"50",
+           "aggregatorCharges":"20"
+        },
+        "P***K":{
+           "aggregatorSubTxnId":"9a70ea0155268101001bb",
+           "aggregatorSubAmt":"30"
+        }
+     }
+  }
+  ```
+
+  Then create an object of the `PayUPaymentParam` class and set the `splitPaymentDetails` property of the object to the JSON string you created in the earlier step.
+
+  ```
+  paymentParam.splitPaymentDetails = "";
+  ```
+
+  > 🚧 Remember
+  >
+  > * For the **absolute** type split, you must ensure that the sum of amount of all splits is equal to the parent transaction amount.
+  > * For the **percentage** type split, you must ensure that the sum of percentage of all splits is equal to 100. You can use any number decimal places for each split, but ensure the sum of percentage of all splits is equal to 100.
+
+  The following fields are included in the `splitPaymentDetails` parameter in a JSON format to specify the split details. The fields in the JSON format are described in the following table:
+
+  <Table align={["left","left","left"]}>
+    <thead>
+      <tr>
+        <th>
+          Field
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Example
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>
+          type
+          `mandatory`
+        </td>
+
+        <td>
+          `string` Any of the following types of split is specified in this field.
+
+          * *- absolute:*\* The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment
+          * *- percentage*\*: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment
+        </td>
+
+        <td>
+          absolute
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          splitInfo
+          `mandatory`
+        </td>
+
+        <td>
+          `JSON` This parameter must include the list of aggregator sub-transaction IDs and sub-amounts as follows:
+
+          * *- aggregatorSubTxnId*\*: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only for child merchants.
+          * *- aggregatorSubAmt*\*: The transaction amount split for the aggregator is posted in this parameter. This field is mandatory.
+          * *- aggregatorCharges*\*: The transaction amount split for aggregator charges is posted in this parameter. This field is optional.
+          * *Note*\*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.
+            The sample request structure JSON Request Structure of splitInfo Field.
+        </td>
+
+        <td>
+          \{
+          "merchantKey1": \{
+          "aggregatorSubTxnId": "30nknyhkhib",
+          "aggregatorSubAmt": "8",
+          }
+        </td>
+      </tr>
+    </tbody>
+  </Table>
+</Accordion>
+
+<Accordion title="Step 3:5 : SKU details (Optional)" icon="fa-code">
+  ```Text Kotlin
+  SkuDetails: It contains below properties
+  SkuDetails(val skus: List<SKU>)
+  skus: "<ArrayList of SKU>"
+
+  SKU(
+      val quantity: Int,
+      val skuAmount: String,
+      val skuId: String,
+      val skuName: String,
+      var offerKeys:ArrayList<String>?=null
+  )
+
+  skuId: "<Product Id which you use when creating offer on dashboard >"
+  skuName: "<Name of product>"
+  skuAmount: "<Amount of product>"
+  quantity: "<total quantity of product>"
+  offerKeys: "<Optional - Provide offer keys only if want to restrict offer for mention products, else set null>"
+  ```
+
+  For more information on the SkuDetails parameters, refer to [Create SKU Based Offers details](https://docs.payu.in/docs/create-sku-based-offers-for-android-checkout-pro). After creating the above `SkuDetails` object, configure it in the `PayUPaymentParams` object. For SKU Details, complete `PayUPaymentParams` similar to the following code block:
+
+  ```Text Java
+  paymentParam.setSkuDetails = "";
+  ```
+
+  > 🚧 Keep in mind
+  >
+  > if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities \* skuAmount of each item.
+</Accordion>
+
+<Accordion title="Step 3.6: Additional parameters (Optional)" icon="fa-code">
+  Additional parameters are optional parameters such as UDF (User Defined Fields), static hashes, etc. More details on static hash generation and passing are mentioned in the hash generation section. The following is a list of other parameters that can be passed in additional parameters.
+
+  | Parameter                                               | Description                                                                                            | Example      |
+  | :------------------------------------------------------ | :----------------------------------------------------------------------------------------------------- | :----------- |
+  | PayUCheckoutProConstants.CP\_UDF1        `optional`     | `String` User-defined field, Merchant can store their customer ID, etc.                                | udf1         |
+  | PayUCheckoutProConstants.CP\_UDF2            `optional` | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf2         |
+  | PayUCheckoutProConstants.CP\_UDF3        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc                                  | udf3         |
+  | PayUCheckoutProConstants.CP\_UDF4        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf4         |
+  | PayUCheckoutProConstants.CP\_UDF5        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf5         |
+  | PayUCheckoutProConstants.SODEXO\_SOURCE\_ID `mandatory` | `String`When we use SODEXO Card payment then it's a mandatory parameter otherwise not required.        | 456788765678 |
+  | PayUCheckoutProConstants.WALLET\_URN `mandatory`        | `String`When we use ClossedLoop Wallet payment then it's a mandatory parameter otherwise not required. | 67890987     |
+
+  ***
+
+  ```java JAVA
+  HashMap additionalParams = new HashMap(); 
+  additionalParams.put(PayUCheckoutProConstants.CP_UDF1, "udf1"); 
+  additionalParams.put(PayUCheckoutProConstants.CP_UDF2, "udf2"); 
+  additionalParams.put(PayUCheckoutProConstants.CP_UDF3, "udf3"); 
+  additionalParams.put(PayUCheckoutProConstants.CP_UDF4, "udf4"); 
+  additionalParams.put(PayUCheckoutProConstants.CP_UDF5, "udf5"); 
+  // to show saved sodexo card
+  additionalParams.put(PayUCheckoutProConstants.SODEXO_SOURCE_ID, "srcid123"); 
+  // to show ClooseLoop Wallet 
+   additionalParamsMap[PayUCheckoutProConstants.WALLET_URN] = "<Wallet URN>"
+   
+  PayUPaymentParams.Builder builder = new PayUPaymentParams.Builder(); 
+  builder.setAmount("1.0") 
+          .setIsProduction(true) 
+          .setProductInfo("Macbook Pro") 
+          .setKey(key) 
+          .setPhone(phone) 
+          .setTransactionId(String.valueOf(System.currentTimeMillis())) 
+          .setFirstName("John") 
+          .setEmail("john@yopmail.com") 
+          .setSurl("https://cbjs.payu.in/sdk/success") // This URL is used for Test Only. Don't go live
+          .setFurl("https://cbjs.payu.in/sdk/failure") // This URL is used for Test Only. Don't go live
+          .setUserCredential(key+":john@yopmail.com") 
+          .setUserToken("")  //Optional, Only use for Offers
+          .setSkuDetails(<SkuDetails>) //optional, create SKU Details as mention above
+          .setAdditionalParams(<HashMap>); //Optional, can contain any additional PG params  
+          .setPayUSIParams(siDetails) //Only for SI parameter
+          .setSplitPaymentDetails(splitPaymentDetails); //Only for Split parameter
+  PayUPaymentParams payUPaymentParams = builder.build();  
+  ```
+  ```kotlin Kotlin
+  val additionalParamsMap: HashMap = HashMap() 
+    additionalParamsMap[PayUCheckoutProConstants.CP_UDF1] = "udf1" 
+    additionalParamsMap[PayUCheckoutProConstants.CP_UDF2] = "udf2" 
+    additionalParamsMap[PayUCheckoutProConstants.CP_UDF3] = "udf3" 
+    additionalParamsMap[PayUCheckoutProConstants.CP_UDF4] = "udf4" 
+    additionalParamsMap[PayUCheckoutProConstants.CP_UDF5] = "udf5" 
+    //to show saved sodexo card
+    additionalParamsMap[PayUCheckoutProConstants.SODEXO_SOURCE_ID] = "srcid123" 
+    //to show ClossedLoop Wallet
+    additionalParamsMap[PayUCheckoutProConstants.WALLET_URN] = "<Wallet URN>"
+
+    val payUPaymentParams = PayUPaymentParams.Builder() 
+                            .setAmount("1.0") 
+                            .setIsProduction(true) 
+                            .setKey(key) 
+                            .setProductInfo("Macbook Pro") 
+                            .setPhone(phone) 
+                            .setTransactionId(System.currentTimeMillis().toString()) 
+                            .setFirstName("John") 
+                            .setEmail("john@yopmail.com") 
+                            .setSurl(“https://cbjs.payu.in/sdk/success”) // This URL is used for Test Only
+                            .setFurl("https://cbjs.payu.in/sdk/failure ") // This URL is used for Test Only
+                            .setUserCredential("$key:john@yopmail.com”) 
+                            .setAdditionalParams(additionalParamsMap) 
+                            .build() 
+  ```
+</Accordion>
+
 <Accordion title="Step 3.7: Payment Param Definitions" icon="fa-code">
+  <Table align={["left","left","left"]}>
+    <thead>
+      <tr>
+        <th style={{ textAlign: "left" }}>
+          Parameter
+        </th>
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+        <th style={{ textAlign: "left" }}>
+          Description
+        </th>
 
-      <th>
-        Description
-      </th>
+        <th style={{ textAlign: "left" }}>
+          Example
+        </th>
+      </tr>
+    </thead>
 
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
+    <tbody>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Key
+          `mandatory`
+        </td>
 
-  <tbody>
-    <tr>
-      <td>
-        Key
-        `mandatory`
-      </td>
+        <td style={{ textAlign: "left" }}>
+          `String` This parameter must contain your merchant key received from PayU.
+        </td>
 
-      <td>
-        `String` This parameter must contain your merchant key received from PayU.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          "sms\*\*\*"
+        </td>
+      </tr>
 
-      <td>
-        "sms***"
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          transactionId
+          `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        transactionId
-        `mandatory`
-      </td>
+        <td style={{ textAlign: "left" }}>
+          `String` It should be unique for each transaction.
+          Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "\_,$,%,&, etc"
+        </td>
 
-      <td>
-        `String` It should be unique for each transaction.
-        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "_,$,%,&, etc"
-      </td>
+        <td style={{ textAlign: "left" }}>
+          4567890
+        </td>
+      </tr>
 
-      <td>
-        4567890
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Amount
+          `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        Amount
-        `mandatory`
-      </td>
+        <td style={{ textAlign: "left" }}>
+          `String` Total transaction amount.
+        </td>
 
-      <td>
-        `String` Total transaction amount.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          100.0
+        </td>
+      </tr>
 
-      <td>
-        100.0
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          productInfo
+          `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        productInfo
-        `mandatory`
-      </td>
+        <td style={{ textAlign: "left" }}>
+          `String` Information about the product.
+        </td>
 
-      <td>
-        `String` Information about the product.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          "ProductInfo"
+        </td>
+      </tr>
 
-      <td>
-        "ProductInfo"
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          firstName
+          `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        firstName
-        `mandatory`
-      </td>
+        <td style={{ textAlign: "left" }}>
+          `String` Customer’s first name.
+        </td>
 
-      <td>
-        `String` Customer’s first name.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          "Firstname"
+        </td>
+      </tr>
 
-      <td>
-        "Firstname"
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Email
+          `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        Email
-        `mandatory`
-      </td>
+        <td style={{ textAlign: "left" }}>
+          `String` Customer’s email id.
+        </td>
 
-      <td>
-        `String` Customer’s email id.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          "
 
-      <td>
-        "
+          [test@payu.in](mailto:test@payu.in)
 
-        [test@payu.in](mailto:test@payu.in)
+          "
+        </td>
+      </tr>
 
-        "
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Phone
+          `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        Phone
-        `mandatory`
-      </td>
+        <td style={{ textAlign: "left" }}>
+          `String` Customer’s phone number.
+        </td>
 
-      <td>
-        `String` Customer’s phone number.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          "9999999999"
+        </td>
+      </tr>
 
-      <td>
-        "9999999999"
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Surl
+          `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        Surl
-        `mandatory`
-      </td>
+        <td style={{ textAlign: "left" }}>
+          `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
 
-      <td>
-        `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
+          * *Sample SURL for testing*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+          * *Note*\*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
+        </td>
 
-        * _Sample SURL for testing_*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
-        * _Note_*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          The Surl that you have configured
+        </td>
+      </tr>
 
-      <td>
-        The Surl that you have configured
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          Furl
+          `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        Furl
-        `mandatory`
-      </td>
+        <td style={{ textAlign: "left" }}>
+          `String` When the transaction fails, PayU will load this URL and pass the transaction response.
 
-      <td>
-        `String` When the transaction fails, PayU will load this URL and pass the transaction response.
+          * *Sample FURL for testing*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+          * *Note*\*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
+        </td>
 
-        * _Sample FURL for testing_*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
-        * _Note_*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          The Furl that you have configured
+        </td>
+      </tr>
 
-      <td>
-        The Furl that you have configured
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          User Credential
+          `mandatory `
+        </td>
 
-    <tr>
-      <td>
-        User Credential
-        `mandatory `
-      </td>
+        <td style={{ textAlign: "left" }}>
+          `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:
+          `<merchantKey>:<userId>  `
+          Here, the `UserId` is any ID/email/phone number to uniquely identify the user. \*\*
+        </td>
 
-      <td>
-        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:
-        `<merchantKey>:<userId>  `
-        Here, the `UserId` is any ID/email/phone number to uniquely identify the user. **
-      </td>
+        <td style={{ textAlign: "left" }}>
+          "merchantKey:userId"
+        </td>
+      </tr>
 
-      <td>
-        "merchantKey:userId"
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          isProduction `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        isProduction `mandatory`
-      </td>
+        <td style={{ textAlign: "left" }}>
+          `String` Set the value of this parameter as `true`When you deploy the integration in production. To test the integration set the value as `false`.
+        </td>
 
-      <td>
-        `String` Set the value of this parameter as `true`When you deploy the integration in production. To test the integration set the value as `false`.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          true
+        </td>
+      </tr>
 
-      <td>
-        true
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          user\_token
+          `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        user_token
-        `mandatory`
-      </td>
+        <td style={{ textAlign: "left" }}>
+          `String` The use for this param is to allow the offer engine to apply velocity rules at a user level.-**Card Based Offers (CC, DC, EMI):** For card payment mode offers, if this parameter is passed then the velocity rules would be applied on this token, if not passed the same would be applied to the card number.-**UPI, NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
+        </td>
 
-      <td>
-        `String` The use for this param is to allow the offer engine to apply velocity rules at a user level.-**Card Based Offers (CC, DC, EMI):** For card payment mode offers, if this parameter is passed then the velocity rules would be applied on this token, if not passed the same would be applied to the card number.-**UPI, NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
-      </td>
+        <td style={{ textAlign: "left" }}>
+          "ABC456789"
+        </td>
+      </tr>
 
-      <td>
-        "ABC456789"
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          SkuDetails
+          `'madatory'`
+        </td>
 
-    <tr>
-      <td>
-        SkuDetails
-        `'madatory'`
-      </td>
+        <td style={{ textAlign: "left" }}>
+          Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to PayUPaymentParams.
 
-      <td>
-        Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to PayUPaymentParams.
+          * \*Note:- \*\*When we use SKU features then it's a mandatory parameter otherwise it's not required.
+        </td>
 
-        * *Note:- **When we use SKU features then it's a mandatory parameter otherwise it's not required.
-      </td>
+        <td style={{ textAlign: "left" }} />
+      </tr>
 
-      <td>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          additionalCharges
+        </td>
 
-      </td>
-    </tr>
+        <td style={{ textAlign: "left" }}>
+          String
+          This parameter is required if merchant want to take additional charge from user
+        </td>
 
-    <tr>
-      <td>
-        additionalCharges
-      </td>
+        <td style={{ textAlign: "left" }}>
+          should be string with PG:Amount or IBIBOCode:Amount
+          Sample : CC:10,NB:20,SBIB:15
+        </td>
+      </tr>
 
-      <td>
-        String
-        This parameter is required if merchant want to take additional charge from user
-      </td>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          percentageAdditionalCharges
+        </td>
 
-      <td>
-        should be string with PG:Amount or IBIBOCode:Amount
-        Sample : CC:10,NB:20,SBIB:15
-      </td>
-    </tr>
+        <td style={{ textAlign: "left" }}>
+          String
+          This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable
+        </td>
 
-    <tr>
-      <td>
-        percentageAdditionalCharges
-      </td>
+        <td style={{ textAlign: "left" }}>
+          should be string with PG:Amount or IBIBOCode:Amount
+          Sample : CC:100,NB:50,SBIB:25
+        </td>
+      </tr>
+    </tbody>
+  </Table>
 
-      <td>
-        String
-        This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable
-      </td>
-
-      <td>
-        should be string with PG:Amount or IBIBOCode:Amount
-        Sample : CC:100,NB:50,SBIB:25
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-***
-
+  ***
 </Accordion>
+
 ### Step 4: Secure the payment request using Hash
 
 This step is to generate a hash that secures your payment request to PayU.
@@ -709,115 +698,111 @@ This step is to generate a hash that secures your payment request to PayU.
 The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification.  For more information, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) CheckoutPro SDK.
 
 <Accordion title="Step 4.1: Set Up Payment Hashes" icon="fa-code">
+  **Passing static hashes**
 
-**Passing static hashes**
+  For passing static hashes during integration, use the following code snippet:
 
-For passing static hashes during integration, use the following code snippet:
-
-```Text JAVA
-HashMap<String, Object> additionalParams = new HashMap<>();  
-additionalParams.put(PayUCheckoutProConstants.CP_VAS_FOR_MOBILE_SDK], <String>); 
-additionalParams.put(PayUCheckoutProConstants.CP_PAYMENT_RELATED_DETAILS_FOR_MOBILE_SD K], <String>); 
-```
-```Text Kotlin
-val additionalParamsMap: HashMap<String, Any?> = HashMap() 
-additionalParamsMap[PayUCheckoutProConstants.CP_VAS_FOR_MOBILE_SDK] = <String> 
-additionalParamsMap[PayUCheckoutProConstants.CP_PAYMENT_RELATED_DETAILS_FOR_MOBILE_SDK] = <String> 
-```
-
+  ```Text JAVA
+  HashMap<String, Object> additionalParams = new HashMap<>();  
+  additionalParams.put(PayUCheckoutProConstants.CP_VAS_FOR_MOBILE_SDK], <String>); 
+  additionalParams.put(PayUCheckoutProConstants.CP_PAYMENT_RELATED_DETAILS_FOR_MOBILE_SD K], <String>); 
+  ```
+  ```Text Kotlin
+  val additionalParamsMap: HashMap<String, Any?> = HashMap() 
+  additionalParamsMap[PayUCheckoutProConstants.CP_VAS_FOR_MOBILE_SDK] = <String> 
+  additionalParamsMap[PayUCheckoutProConstants.CP_PAYMENT_RELATED_DETAILS_FOR_MOBILE_SDK] = <String> 
+  ```
 </Accordion>
+
 <Accordion title="Step 4.2: Passing dynamic hashes" icon="fa-code">
+  For generating and passing dynamic hashes, the merchant will receive a call from the generateHash method of PayUCheckoutProListener.
 
-For generating and passing dynamic hashes, the merchant will receive a call from the generateHash method of PayUCheckoutProListener.
+  ```Text JAVA
+  public void generateHash(@NotNull HashMap map, @NotNull PayUHashGenerationListener hashGenerationListener) { 
+  }
+  ```
+  ```Text Kotlin
+   fun generateHash(map:HashMap<String,String>,hashGenerationListener: PayUHashGenerationListener) 
+  ```
 
-```Text JAVA
-public void generateHash(@NotNull HashMap map, @NotNull PayUHashGenerationListener hashGenerationListener) { 
-}
-```
-```Text Kotlin
- fun generateHash(map:HashMap<String,String>,hashGenerationListener: PayUHashGenerationListener) 
-```
+  Here:
 
-Here:
+  `map` -> a hash map that contains hash string and hash name
+  `hashGenerationListener` -> After the hash is generated on the merchant side. Pass the generated hash in the onHashGenerated() method of the hashGenerationListener.
 
-`map` -> a hash map that contains hash string and hash name
-`hashGenerationListener` -> After the hash is generated on the merchant side. Pass the generated hash in the onHashGenerated() method of the hashGenerationListener.
+  ```Text JAVA
+  interface PayUHashGenerationListener { 
+      void onHashGenerated(HashMap<String,String> map) 
+  } 
+  ```
+  ```Text Kotlin
+  interface PayUHashGenerationListener { 
+      fun onHashGenerated(map: HashMap<String,String?>) 
+  } 
+  ```
 
-```Text JAVA
-interface PayUHashGenerationListener { 
-    void onHashGenerated(HashMap<String,String> map) 
-} 
-```
-```Text Kotlin
-interface PayUHashGenerationListener { 
-    fun onHashGenerated(map: HashMap<String,String?>) 
-} 
-```
-
-The generateHash() method is called by the SDK each time it needs an individual hash. The CP_HASH_NAME will contain the name of the specific hash requested in that call, and the CP_HASH_STRING will contain the data/string that needs to be hashed.
-
+  The generateHash() method is called by the SDK each time it needs an individual hash. The CP\_HASH\_NAME will contain the name of the specific hash requested in that call, and the CP\_HASH\_STRING will contain the data/string that needs to be hashed.
 </Accordion>
+
 <Accordion title="Step 4.3: Getting Hash data to calculate hash" icon="fa-code">
+  Checkout Pro SDK will give a callback in the `generateHash()` method whenever any hash is needed by it. The merchant needs to calculate that hash and pass it back to the SDK.
 
-Checkout Pro SDK will give a callback in the `generateHash()` method whenever any hash is needed by it. The merchant needs to calculate that hash and pass it back to the SDK.
+  To extract the hash string and hash name from the map received in `generateHash()` method, use the following keys:
 
-To extract the hash string and hash name from the map received in `generateHash()` method, use the following keys:
-
-`CP_HASH_STRING` -> This will contain a complete hash string excluding salt. For eg, for vas for mobile SDK hash, the hash string will contain `“<key>\|<command>\|<var1>|”`. Merchant can append their salt at the end of the hash string to calculate the hash.
-`CP_HASH_NAME `-> This will contain the hash name.
-
+  `CP_HASH_STRING` -> This will contain a complete hash string excluding salt. For eg, for vas for mobile SDK hash, the hash string will contain `“<key>\|<command>\|<var1>|”`. Merchant can append their salt at the end of the hash string to calculate the hash.
+  `CP_HASH_NAME `-> This will contain the hash name.
 </Accordion>
+
 <Accordion title="Step 4.4: Pass generated hash to SDK" icon="fa-code">
+  Prepare a map, where the key should be the hash name in Step 2: Build the Payment Parameters and value should be generated hash value and pass this map in `onHashGenerated()` method described above.
 
-Prepare a map, where the key should be the hash name in Step 2: Build the Payment Parameters and value should be generated hash value and pass this map in `onHashGenerated()` method described above.
+  ```Text JAVA
+  @Override 
+  public void generateHash(@NotNull HashMap map, @NotNull PayUHashGenerationListener hashGenerationListener) { 
+      String hashName = map.get(CP_HASH_NAME); 
+      String hashString = map.get(CP_HASH_STRING); 
+      String postSalt = map.get(CP_POST_SALT); // compulsory for Additional Charges and Split Payment
+      if (!TextUtils.isEmpty(hashName) && !TextUtils.isEmpty(hashString)) { 
 
-```Text JAVA
-@Override 
-public void generateHash(@NotNull HashMap map, @NotNull PayUHashGenerationListener hashGenerationListener) { 
-    String hashName = map.get(CP_HASH_NAME); 
-    String hashString = map.get(CP_HASH_STRING); 
-    String postSalt = map.get(CP_POST_SALT); // compulsory for Additional Charges and Split Payment
-    if (!TextUtils.isEmpty(hashName) && !TextUtils.isEmpty(hashString)) { 
+  //Do not generate hash from local, it needs to be calculated from server side only. Here, hashString contains hash created from your server side.
+          String hash = "<create SHA -512 hash of 'hashString+salt+postSalt'>"  
+          if (!TextUtils.isEmpty(hash)) { 
+              HashMap hashMap = new HashMap(); 
+              hashMap.put(hashName, hash); 
+              hashGenerationListener.onHashGenerated(hashMap); 
+          } 
+      } 
+  }
+  ```
+  ```Text Kotlin
+  override fun generateHash( 
+      map: HashMap, 
+      hashGenerationListener: PayUHashGenerationListener 
+  ) { 
+      if (map.containsKey(CP_HASH_STRING) 
+          && map.containsKey(CP_HASH_STRING) != null 
+          && map.containsKey(CP_HASH_NAME) 
+          && map.containsKey(CP_HASH_NAME) != null 
+      ) { 
+   
+          val hashData = map[CP_HASH_STRING]  
+          val hashName = map[CP_HASH_NAME]  
+   
+   //Do not generate hash from local, it needs to be calculated from server side only. Here, hashString contains hash created from your server side.
+          val hash: String? = hashString;
 
-//Do not generate hash from local, it needs to be calculated from server side only. Here, hashString contains hash created from your server side.
-        String hash = "<create SHA -512 hash of 'hashString+salt+postSalt'>"  
-        if (!TextUtils.isEmpty(hash)) { 
-            HashMap hashMap = new HashMap(); 
-            hashMap.put(hashName, hash); 
-            hashGenerationListener.onHashGenerated(hashMap); 
-        } 
-    } 
-}
-```
-```Text Kotlin
-override fun generateHash( 
-    map: HashMap, 
-    hashGenerationListener: PayUHashGenerationListener 
-) { 
-    if (map.containsKey(CP_HASH_STRING) 
-        && map.containsKey(CP_HASH_STRING) != null 
-        && map.containsKey(CP_HASH_NAME) 
-        && map.containsKey(CP_HASH_NAME) != null 
-    ) { 
- 
-        val hashData = map[CP_HASH_STRING]  
-        val hashName = map[CP_HASH_NAME]  
- 
- //Do not generate hash from local, it needs to be calculated from server side only. Here, hashString contains hash created from your server side.
-        val hash: String? = hashString;
+          if (!TextUtils.isEmpty(hash)) { 
+              val hashMap: HashMap = HashMap() 
+              hashMap[hashName!!] = hash!! 
+              hashGenerationListener.onHashGenerated(hashMap) 
+          } 
+      } 
+  } 
+  ```
 
-        if (!TextUtils.isEmpty(hash)) { 
-            val hashMap: HashMap = HashMap() 
-            hashMap[hashName!!] = hash!! 
-            hashGenerationListener.onHashGenerated(hashMap) 
-        } 
-    } 
-} 
-```
-
-***
-
+  ***
 </Accordion>
+
 ### Step 5: Initiate the Payment
 
 Initialize the PayUCheckoutPro SDK by submitting the payment parameters prepared in the previous step and a reference to the transaction listener.
@@ -975,122 +960,21 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
 > * Consider the **mihpayid** in the PayU response as **PayU ID/ID**
 
 <Accordion title="Card/NB/Wallet and other transactions" icon="fa-code">
-
-```Text Success
-{
-  "id": 403993715526100438,
-  "mode": "CC",
-  "status": "success",
-  "unmappedstatus": "captured",
-  "key": "gt***",
-  "txnid": "1651831862726",
-  "transaction_fee": "1.00",
-  "amount": "1.00",
-  "cardCategory": "domestic",
-  "discount": "0.00",
-  "addedon": "2022-05-06 15:41:38",
-  "productinfo": "Macbook Pro",
-  "firstname": "John",
-  "email": "xyz@gmail.com",
-  "phone": "7879*******",
-  "udf1": "udf1",
-  "udf2": "udf2",
-  "udf3": "udf3",
-  "udf4": "udf4",
-  "udf5": "udf5",
-  "hash": "62928c2f7490480951d25ae01bd0e748bb0b777ae27ef72eb93b7c1cc29eb2d84c4836faabe5ab1e1205a6f4a3f0876c5aece2ae96464c0cc9f1628693b074b1",
-  "field1": "711633",
-  "field2": "393337",
-  "field3": "20220506",
-  "field4": "0",
-  "field5": "341867702575",
-  "field6": "00",
-  "field7": "AUTHPOSITIVE",
-  "field8": "Approved or completed successfully",
-  "field9": "No Error",
-  "payment_source": "payu",
-  "PG_TYPE": "CC-PG",
-  "bank_ref_no": "711633",
-  "ibibo_code": "MASTCC",
-  "error_code": "E000",
-  "Error_Message": "No Error",
-  "offer_key": "OfferKey@9227",
-  "offer_failure_reason": "Invalid Offer Key.",
-  "name_on_card": "PayuUser",
-  "card_no": "512345XXXXXX2346",
-  "issuing_bank": "HDFC",
-  "card_type": "MAST",
-  "is_seamless": 1,
-  "surl": "https://payu.herokuapp.com/success",
-  "furl": "https://payu.herokuapp.com/failure"
-}
-```
-```Text Failure
-{
-  "id": "15130876153",
-  "mode": "CC",
-  "status": "failure",
-  "unmappedstatus": "failed",
-  "key": "sm*****",
-  "txnid": "1651832033713",
-  "transaction_fee": "1.00",
-  "amount": "1.00",
-  "cardCategory": "domestic",
-  "offer_type": "instant",
-  "addedon": "2022-05-06 15:44:09",
-  "productinfo": "Macbook Pro",
-  "firstname": "John",
-  "email": "xyz@gmail.com",
-  "phone": "7879*******",
-  "udf1": "udf1",
-  "udf2": "udf2",
-  "udf3": "udf3",
-  "udf4": "udf4",
-  "udf5": "udf5",
-  "hash": "c9c2d09d3387e7da70bc4ad6241f4ad3f610b3fcb0f9e481f5954a0d89d57791a5d027c303b239c1e8d6e0cad9c2d0b7ad87ba4911a60318675b15826c265929",
-  "field5": "sl/mvXcXQLCWm49B/EAYjXMUh1o=",
-  "field7": "EVNEGATIVE",
-  "field9": "PROCEED",
-  "payment_source": "payu",
-  "PG_TYPE": "CC-PG",
-  "ibibo_code": "CC",
-  "error_code": "E1302",
-  "Error_Message": "Bank failed to authenticate the customer due to 3D Secure Enrollment decline",
-  "offer_key": "OfferKey@9227",
-  "offer_failure_reason": "Invalid Offer for merchant. ",
-  "name_on_card": "PayuUser",
-  "card_no": "512345XXXXXX2346",
-  "issuing_bank": "HDFC",
-  "card_type": "MAST",
-  "is_seamless": 1,
-  "surl": "https://payu.herokuapp.com/success",
-  "furl": "https://payu.herokuapp.com/failure"
-}
-```
-
-</Accordion>
-<Accordion title="UPI Intent /InApp payments" icon="fa-code">
-
-```Text Success
-{
-  "status": "success",
-  "result": {
-    "mihpayid": 15130530926,
-    "mode": "UPI",
+  ```Text Success
+  {
+    "id": 403993715526100438,
+    "mode": "CC",
     "status": "success",
-    "key": "sm*****",
-    "txnid": "1651828235258",
+    "unmappedstatus": "captured",
+    "key": "gt***",
+    "txnid": "1651831862726",
+    "transaction_fee": "1.00",
     "amount": "1.00",
-    "addedon": "2022-05-06 14:40:48",
+    "cardCategory": "domestic",
+    "discount": "0.00",
+    "addedon": "2022-05-06 15:41:38",
     "productinfo": "Macbook Pro",
     "firstname": "John",
-    "lastname": "",
-    "address1": "",
-    "address2": "",
-    "city": "",
-    "state": "",
-    "country": "",
-    "zipcode": "",
     "email": "xyz@gmail.com",
     "phone": "7879*******",
     "udf1": "udf1",
@@ -1098,157 +982,254 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
     "udf3": "udf3",
     "udf4": "udf4",
     "udf5": "udf5",
-    "udf6": "",
-    "udf7": "",
-    "udf8": "",
-    "udf9": "",
-    "udf10": "",
-    "card_token": "",
-    "card_no": "",
-    "field0": "",
-    "field1": "",
-    "field2": "",
-    "field3": "andy**********@okhdfcbank",
-    "field4": "",
-    "field5": "",
-    "field6": "ANAND*************|0000000000",
-    "field7": "APPROVED OR COMPLETED SUCCESSFULLY|00",
-    "field8": "",
-    "field9": "Success|Completed Using Callback",
-    "payment_source": "payuPureS2S",
-    "PG_TYPE": "UPI-PG",
-    "error": "E000",
-    "error_Message": "No Error",
-    "net_amount_debit": 1,
-    "unmappedstatus": "captured",
-    "hash": "8710a26e6f9da96e2de8648b7122b2ee243ba12e92059b69c66c831ec08cc69eaabff07bfea65de781a6a1c7605271164bf6075ab6e459687baa4888f4d97f2e",
-    "bank_ref_no": "212631548690",
-    "bank_ref_num": "212631548690",
-    "bankcode": "INTENT",
+    "hash": "62928c2f7490480951d25ae01bd0e748bb0b777ae27ef72eb93b7c1cc29eb2d84c4836faabe5ab1e1205a6f4a3f0876c5aece2ae96464c0cc9f1628693b074b1",
+    "field1": "711633",
+    "field2": "393337",
+    "field3": "20220506",
+    "field4": "0",
+    "field5": "341867702575",
+    "field6": "00",
+    "field7": "AUTHPOSITIVE",
+    "field8": "Approved or completed successfully",
+    "field9": "No Error",
+    "payment_source": "payu",
+    "PG_TYPE": "CC-PG",
+    "bank_ref_no": "711633",
+    "ibibo_code": "MASTCC",
+    "error_code": "E000",
+    "Error_Message": "No Error",
+    "offer_key": "OfferKey@9227",
+    "offer_failure_reason": "Invalid Offer Key.",
+    "name_on_card": "PayuUser",
+    "card_no": "512345XXXXXX2346",
+    "issuing_bank": "HDFC",
+    "card_type": "MAST",
+    "is_seamless": 1,
     "surl": "https://payu.herokuapp.com/success",
     "furl": "https://payu.herokuapp.com/failure"
   }
-}
-```
-```Text Failure
-{
-  "status": "success",
-  "result": {
-    "mihpayid": "15130540072",
-    "mode": "UPI",
+  ```
+  ```Text Failure
+  {
+    "id": "15130876153",
+    "mode": "CC",
     "status": "failure",
+    "unmappedstatus": "failed",
     "key": "sm*****",
-    "txnid": "1651828340011",
+    "txnid": "1651832033713",
+    "transaction_fee": "1.00",
     "amount": "1.00",
-    "addedon": "2022-05-06 14:42:25",
+    "cardCategory": "domestic",
+    "offer_type": "instant",
+    "addedon": "2022-05-06 15:44:09",
     "productinfo": "Macbook Pro",
     "firstname": "John",
-    "lastname": "",
-    "address1": "",
-    "address2": "",
-    "city": "",
-    "state": "",
-    "country": "",
-    "zipcode": "",
     "email": "xyz@gmail.com",
-    "phone": "7879******",
+    "phone": "7879*******",
     "udf1": "udf1",
     "udf2": "udf2",
     "udf3": "udf3",
     "udf4": "udf4",
     "udf5": "udf5",
-    "udf6": "",
-    "udf7": "",
-    "udf8": "",
-    "udf9": "",
-    "udf10": "",
-    "card_token": "",
-    "card_no": "",
-    "field0": "",
-    "field1": "",
-    "field2": "",
-    "field3": "",
-    "field4": "",
-    "field5": "",
-    "field6": "",
-    "field7": "",
-    "field8": "",
-    "field9": "response_from_psp",
-    "payment_source": "payuPureS2S",
-    "PG_TYPE": "UPI-PG",
-    "error": "E308",
-    "error_Message": "Transaction Failed at bank end.",
-    "net_amount_debit": "0",
-    "unmappedstatus": "failed",
-    "hash": "5c4d80992f88a3cdd1b5b2a1452d69fe27fece37bc33838e2fb31a70e5636e857fc66952a750b638876bceace31fb8435307a9e2b3bda0e4b29f3478e4bb595a",
-    "bank_ref_no": "",
-    "bank_ref_num": "",
-    "bankcode": "INTENT",
+    "hash": "c9c2d09d3387e7da70bc4ad6241f4ad3f610b3fcb0f9e481f5954a0d89d57791a5d027c303b239c1e8d6e0cad9c2d0b7ad87ba4911a60318675b15826c265929",
+    "field5": "sl/mvXcXQLCWm49B/EAYjXMUh1o=",
+    "field7": "EVNEGATIVE",
+    "field9": "PROCEED",
+    "payment_source": "payu",
+    "PG_TYPE": "CC-PG",
+    "ibibo_code": "CC",
+    "error_code": "E1302",
+    "Error_Message": "Bank failed to authenticate the customer due to 3D Secure Enrollment decline",
+    "offer_key": "OfferKey@9227",
+    "offer_failure_reason": "Invalid Offer for merchant. ",
+    "name_on_card": "PayuUser",
+    "card_no": "512345XXXXXX2346",
+    "issuing_bank": "HDFC",
+    "card_type": "MAST",
+    "is_seamless": 1,
     "surl": "https://payu.herokuapp.com/success",
     "furl": "https://payu.herokuapp.com/failure"
   }
-}
-```
-
-***
-
-<Recipe slug="android-checkoutpro-integration" title="Android CheckoutPro Integration" />
-
-***
-
+  ```
 </Accordion>
+
+<Accordion title="UPI Intent /InApp payments" icon="fa-code">
+  ```Text Success
+  {
+    "status": "success",
+    "result": {
+      "mihpayid": 15130530926,
+      "mode": "UPI",
+      "status": "success",
+      "key": "sm*****",
+      "txnid": "1651828235258",
+      "amount": "1.00",
+      "addedon": "2022-05-06 14:40:48",
+      "productinfo": "Macbook Pro",
+      "firstname": "John",
+      "lastname": "",
+      "address1": "",
+      "address2": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "zipcode": "",
+      "email": "xyz@gmail.com",
+      "phone": "7879*******",
+      "udf1": "udf1",
+      "udf2": "udf2",
+      "udf3": "udf3",
+      "udf4": "udf4",
+      "udf5": "udf5",
+      "udf6": "",
+      "udf7": "",
+      "udf8": "",
+      "udf9": "",
+      "udf10": "",
+      "card_token": "",
+      "card_no": "",
+      "field0": "",
+      "field1": "",
+      "field2": "",
+      "field3": "andy**********@okhdfcbank",
+      "field4": "",
+      "field5": "",
+      "field6": "ANAND*************|0000000000",
+      "field7": "APPROVED OR COMPLETED SUCCESSFULLY|00",
+      "field8": "",
+      "field9": "Success|Completed Using Callback",
+      "payment_source": "payuPureS2S",
+      "PG_TYPE": "UPI-PG",
+      "error": "E000",
+      "error_Message": "No Error",
+      "net_amount_debit": 1,
+      "unmappedstatus": "captured",
+      "hash": "8710a26e6f9da96e2de8648b7122b2ee243ba12e92059b69c66c831ec08cc69eaabff07bfea65de781a6a1c7605271164bf6075ab6e459687baa4888f4d97f2e",
+      "bank_ref_no": "212631548690",
+      "bank_ref_num": "212631548690",
+      "bankcode": "INTENT",
+      "surl": "https://payu.herokuapp.com/success",
+      "furl": "https://payu.herokuapp.com/failure"
+    }
+  }
+  ```
+  ```Text Failure
+  {
+    "status": "success",
+    "result": {
+      "mihpayid": "15130540072",
+      "mode": "UPI",
+      "status": "failure",
+      "key": "sm*****",
+      "txnid": "1651828340011",
+      "amount": "1.00",
+      "addedon": "2022-05-06 14:42:25",
+      "productinfo": "Macbook Pro",
+      "firstname": "John",
+      "lastname": "",
+      "address1": "",
+      "address2": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "zipcode": "",
+      "email": "xyz@gmail.com",
+      "phone": "7879******",
+      "udf1": "udf1",
+      "udf2": "udf2",
+      "udf3": "udf3",
+      "udf4": "udf4",
+      "udf5": "udf5",
+      "udf6": "",
+      "udf7": "",
+      "udf8": "",
+      "udf9": "",
+      "udf10": "",
+      "card_token": "",
+      "card_no": "",
+      "field0": "",
+      "field1": "",
+      "field2": "",
+      "field3": "",
+      "field4": "",
+      "field5": "",
+      "field6": "",
+      "field7": "",
+      "field8": "",
+      "field9": "response_from_psp",
+      "payment_source": "payuPureS2S",
+      "PG_TYPE": "UPI-PG",
+      "error": "E308",
+      "error_Message": "Transaction Failed at bank end.",
+      "net_amount_debit": "0",
+      "unmappedstatus": "failed",
+      "hash": "5c4d80992f88a3cdd1b5b2a1452d69fe27fece37bc33838e2fb31a70e5636e857fc66952a750b638876bceace31fb8435307a9e2b3bda0e4b29f3478e4bb595a",
+      "bank_ref_no": "",
+      "bank_ref_num": "",
+      "bankcode": "INTENT",
+      "surl": "https://payu.herokuapp.com/success",
+      "furl": "https://payu.herokuapp.com/failure"
+    }
+  }
+  ```
+
+  ***
+
+  <Recipe />
+
+  ***
+</Accordion>
+
 <Accordion title="Additional Integrations" icon="fa-code">
+  The following are the additional Android SDK offerings:
 
-The following are the additional Android SDK offerings:
-
-* Offer Integration
-* MCP Integration
-* Custom Note Integration
-* Add-on SDKs
-
+  * Offer Integration
+  * MCP Integration
+  * Custom Note Integration
+  * Add-on SDKs
 </Accordion>
+
 <Accordion title="Offers Integration" icon="fa-code">
+  Kindly add the `setUserToken` parameter in paymentParam.
 
-Kindly add the `setUserToken` parameter in paymentParam.
+  ```
+  paymentParam.setUserToken = "";
+  ```
 
-```
-paymentParam.setUserToken = "";
-```
+  <Table align={["left","left"]}>
+    <thead>
+      <tr>
+        <th>
+          parameter
+        </th>
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        parameter
-      </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
+    <tbody>
+      <tr>
+        <td>
+          user\_token
+          `mandatory`
+        </td>
 
-  <tbody>
-    <tr>
-      <td>
-        user_token
-        `mandatory`
-      </td>
+        <td>
+          The use for this param is to allow the offer engine to apply velocity rules at a user level.
 
-      <td>
-        The use for this param is to allow the offer engine to apply velocity rules at a user level.
+          -**Card Based Offers (CC, DC, EMI):** In the case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied to the card number.
 
-        -**Card Based Offers (CC, DC, EMI):** In the case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied to the card number.
+          -**UPI, NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.                                                                                                                                 \*\*Note:-\*\*When we use Offer features then it's a mandatory parameter otherwise it's not required.
+        </td>
+      </tr>
+    </tbody>
+  </Table>
 
-        -**UPI, NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.                                                                                                                                 **Note:-**When we use Offer features then it's a mandatory parameter otherwise it's not required.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-For more details on Offer Integration, refer to [Integration with PayU Hosted Checkout Integration](https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers)
-
+  For more details on Offer Integration, refer to [Integration with PayU Hosted Checkout Integration](https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers)
 </Accordion>
+
 ### MCP Integration
 
 <Callout icon="📘" theme="info">
@@ -1260,178 +1241,174 @@ For more details on Offer Integration, refer to [Integration with PayU Hosted Ch
 This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
 <Accordion title="Step 1: Create a Custom Note List" icon="fa-code">
+  Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and `custom_note_category` need to be passed.
 
-Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom_note and `custom_note_category` need to be passed.
-
-```Text Java
-// for specific custom_note_category
-
-      ArrayList<CustomNote> customNote = new ArrayList<>();
-      ArrayList<PaymentType> noteCategory1 = new ArrayList<>();
-      noteCategory1.add(PaymentType.CARD);
-      CustomNote customNote1 = new CustomNote("Please welcome note", noteCategory1);
-      customNote1.setCustom_note("Please welcome note");
-      customNote1.setCustom_note_category(noteCategory1);
-
-      ArrayList<PaymentType> noteCategory2 = new ArrayList<>();
-      noteCategory2.add(PaymentType.CARD);
-      CustomNote customNote2 = new CustomNote("Please welcome note", noteCategory1);
-      customNote2.setCustom_note("Please welcome note");
-      customNote2.setCustom_note_category(noteCategory2);
-      customNote.add( customNote1);
-      customNote.add( customNote2); 
-        
-// when want to pass same custom note for multiple custom_note_category
+  ```Text Java
+  // for specific custom_note_category
 
         ArrayList<CustomNote> customNote = new ArrayList<>();
         ArrayList<PaymentType> noteCategory1 = new ArrayList<>();
         noteCategory1.add(PaymentType.CARD);
-        noteCategory1.add(PaymentType.NB);
-        noteCategory1.add(PaymentType.UPI);
         CustomNote customNote1 = new CustomNote("Please welcome note", noteCategory1);
         customNote1.setCustom_note("Please welcome note");
         customNote1.setCustom_note_category(noteCategory1);
+
+        ArrayList<PaymentType> noteCategory2 = new ArrayList<>();
+        noteCategory2.add(PaymentType.CARD);
+        CustomNote customNote2 = new CustomNote("Please welcome note", noteCategory1);
+        customNote2.setCustom_note("Please welcome note");
+        customNote2.setCustom_note_category(noteCategory2);
         customNote.add( customNote1);
-        
-        // if do not want to pass any custom_note_category
-        ArrayList<CustomNote> customNote = new ArrayList<>();
-        CustomNote customNote1 = new CustomNote("Please welcome note", null);
-        customNote1.setCustom_note("Please welcome note");
-        customNote1.setCustom_note_category(null);
-        
-```
-```Text Kotlin
-     // for specific custom_note_category
-        val customNote = ArrayList<CustomNote>()
-        customNote.add(CustomNote().also{
-        it.custom_note = "Please welcome in Cards"
-        it.custom_note_category = ArrayList<PaymentType>().also {
-                it.add(PaymentType.CARD)
-            }
-        }
-        // when want to pass same custom note for multiple custom_note_category
-       
-        val customNote = ArrayList<CustomNote>()
-        customNote.add(CustomNote().also{
-        it.custom_note = "Please welcome in Cards"
-        it.custom_note_category = ArrayList<PaymentType>().also {
-                it.add(PaymentType.NB)
-                it.add(PaymentType.CARD)
-            }
-        } 
-        // if do not want to pass any custom_note_category
-        
-        val customNote = ArrayList<CustomNote>()
-        customNote.add(CustomNote().also{
-        it.custom_note = "Please welcome in Cards"
-        it.custom_note_category = null
-        } 
-```
+        customNote.add( customNote2); 
+          
+  // when want to pass same custom note for multiple custom_note_category
 
+          ArrayList<CustomNote> customNote = new ArrayList<>();
+          ArrayList<PaymentType> noteCategory1 = new ArrayList<>();
+          noteCategory1.add(PaymentType.CARD);
+          noteCategory1.add(PaymentType.NB);
+          noteCategory1.add(PaymentType.UPI);
+          CustomNote customNote1 = new CustomNote("Please welcome note", noteCategory1);
+          customNote1.setCustom_note("Please welcome note");
+          customNote1.setCustom_note_category(noteCategory1);
+          customNote.add( customNote1);
+          
+          // if do not want to pass any custom_note_category
+          ArrayList<CustomNote> customNote = new ArrayList<>();
+          CustomNote customNote1 = new CustomNote("Please welcome note", null);
+          customNote1.setCustom_note("Please welcome note");
+          customNote1.setCustom_note_category(null);
+          
+  ```
+  ```Text Kotlin
+       // for specific custom_note_category
+          val customNote = ArrayList<CustomNote>()
+          customNote.add(CustomNote().also{
+          it.custom_note = "Please welcome in Cards"
+          it.custom_note_category = ArrayList<PaymentType>().also {
+                  it.add(PaymentType.CARD)
+              }
+          }
+          // when want to pass same custom note for multiple custom_note_category
+         
+          val customNote = ArrayList<CustomNote>()
+          customNote.add(CustomNote().also{
+          it.custom_note = "Please welcome in Cards"
+          it.custom_note_category = ArrayList<PaymentType>().also {
+                  it.add(PaymentType.NB)
+                  it.add(PaymentType.CARD)
+              }
+          } 
+          // if do not want to pass any custom_note_category
+          
+          val customNote = ArrayList<CustomNote>()
+          customNote.add(CustomNote().also{
+          it.custom_note = "Please welcome in Cards"
+          it.custom_note_category = null
+          } 
+  ```
 </Accordion>
+
 <Accordion title="Step 2: Pass Custom Note List to SDK" icon="fa-code">
+  To pass the custom note list created in the above section to the SDK. Create a `PayUCheckoutProConfig` object and set the `CustomNoteDetails` similar to the following code block:
 
-To pass the custom note list created in the above section to the SDK. Create a `PayUCheckoutProConfig` object and set the `CustomNoteDetails` similar to the following code block:
+  ```Text Java
+  PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
+  payUCheckoutProConfig.setCustomNoteDetails(<customNote>);
+  ```
+  ````Text Kotlin
+  val checkoutProConfig = PayUCheckoutProConfig()  
+  checkoutProConfig.customNoteDetails = customNote
+  </Accordion>```
 
-```Text Java
-PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
-payUCheckoutProConfig.setCustomNoteDetails("");
-```
-```Text Kotlin
-val checkoutProConfig = PayUCheckoutProConfig()  
-checkoutProConfig.customNoteDetails = customNote
-</Accordion>```
+  ### Additional SDK Offerings
 
-### Additional SDK Offerings
+  If you want to add features like **Native OTP**, **Gpay InApp**, **PhonePe Inapp**, and **Ola Money** in our PayUCheckoutPro SDK, then please refer to the below [Add-on SDKs](doc:android-checkoutpro-addonsdks)
 
-If you want to add features like **Native OTP**, **Gpay InApp**, **PhonePe Inapp**, and **Ola Money** in our PayUCheckoutPro SDK, then please refer to the below [Add-on SDKs](doc:android-checkoutpro-addonsdks)
+  <br />
 
-<br />
+  After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
-After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
+  You can make test payments using one of the payment methods configured at the Checkout.
 
-You can make test payments using one of the payment methods configured at the Checkout.
+  > 🚧 Callout
+  >
+  > The UPI in-app and UPI intent flow is not available in the Test mode.
 
-> 🚧 Callout
->
-> The UPI in-app and UPI intent flow is not available in the Test mode.
+  ## Test the Integration
 
-## Test the Integration
+  <TestingChecklist />
 
-<TestingChecklist />
+  ***
 
-***
+  <TestCardsCallout />
 
-<TestCardsCallout />
+  You can make test payments using one of the payment methods configured at the Checkout.
 
-You can make test payments using one of the payment methods configured at the Checkout.
+  ### Test credentials for supported payment methods
 
-### Test credentials for supported payment methods
+  Following are the payment methods supported in PayU Test mode.
 
-Following are the payment methods supported in PayU Test mode.
+  <Accordion title="Test Credential for Card" icon="fa-code">
 
-<Accordion title="Test Credential for Card" icon="fa-code">
+  | Card Number      | Expiry | CVV | OTP    |
+  | :--------------- | :----- | :-- | :----- |
+  | 5123456789012346 | 05/25  | 123 | 123456 |
 
-| Card Number      | Expiry | CVV | OTP    |
-| :--------------- | :----- | :-- | :----- |
-| 5123456789012346 | 05/25  | 123 | 123456 |
+  </Accordion>
+  <Accordion title="Test credentials for Net Banking" icon="fa-code">
 
+  Use the following credentials to test the Net Banking integration:
+
+  * **user name:** payu
+  * **password**: payu
+  * **OTP**: 123456
+
+  </Accordion>
+  <Accordion title="Test VPA for UPI" icon="fa-code">
+
+  You can use either of the following VPAs to test your UPI-related integration:
+
+  * anything@upi
+  * 9999999999@upi
+
+  For Testing the UPI Collect flow, Please follow the below steps:- 
+
+  1. Once you enter the VPA click on the verify button and proceed to pay.
+  2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
+  3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
+
+  [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)`<Txn_id>`
+
+  **For Android**
+
+  You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
+
+  <Callout icon="🚧" theme="warn">
+    **Remove code from manifest**: Ensure to remove the code from the manifest file before going live.
+  </Callout>
+
+  ```Text xml
+  <application>
+  <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
+  <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
+  <meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
+  </application>
+  ````
 </Accordion>
-<Accordion title="Test credentials for Net Banking" icon="fa-code">
 
-Use the following credentials to test the Net Banking integration:
-
-* **user name:** payu
-* **password**: payu
-* **OTP**: 123456
-
-</Accordion>
-<Accordion title="Test VPA for UPI" icon="fa-code">
-
-You can use either of the following VPAs to test your UPI-related integration:
-
-* anything@upi
-* 9999999999@upi
-
-For Testing the UPI Collect flow, Please follow the below steps:- 
-
-1. Once you enter the VPA click on the verify button and proceed to pay.
-2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
-3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
-
-[https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)`<Txn_id>`
-
-**For Android**
-
-You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
-
-<Callout icon="🚧" theme="warn">
-  **Remove code from manifest**: Ensure to remove the code from the manifest file before going live.
-</Callout>
-
-```Text xml
-<application>
-<meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
-<meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
-<meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
-</application>
-```
-
-</Accordion>
 <Accordion title="Test cards for EMI" icon="fa-code">
+  You can use the following Debit and Credit cards to test EMI integration.\\
 
-You can use the following Debit and Credit cards to test EMI integration.\
-
-<EMITestCards />
-
+  <EMITestCards />
 </Accordion>
+
 <Accordion title="Test Wallets" icon="fa-code">
+  You can use the following wallets and their corresponding credentials to test wallet integration.
 
-You can use the following wallets and their corresponding credentials to test wallet integration.
-
-<EMITestWallets />
-
+  <EMITestWallets />
 </Accordion>
+
 ## Go-live Checklist
 
 Ensure these steps before you deploy the integration in a live environment.
@@ -1461,18 +1438,17 @@ Refer the link to [Handling SURL and FURL](https://docs.payu.in/docs/handling-re
 ### Checklist 4:- Remove/comment meta -data code from manifest file :-
 
 <Accordion title="For Android" icon="fa-code">
+  You must be comment/remove the below metadata code from the manifest file to use the UPI Collect flow on Production env:-
 
-You must be comment/remove the below metadata code from the manifest file to use the UPI Collect flow on Production env:-
-
-```Text XML
-<application>
-<meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
-<meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
-<meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
-</appliction>
-```
-
+  ```Text XML
+  <application>
+  <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
+  <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
+  <meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
+  </appliction>
+  ```
 </Accordion>
+
 ### Checklist 5: Configure verify payment method
 
 Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
