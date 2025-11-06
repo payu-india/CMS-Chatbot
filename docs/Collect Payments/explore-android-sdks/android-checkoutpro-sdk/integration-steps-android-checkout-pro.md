@@ -1230,103 +1230,106 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
   For more details on Offer Integration, refer to [Integration with PayU Hosted Checkout Integration](https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers)
 </Accordion>
 
-### MCP Integration
+#### MCP Integration
+
 <Callout icon="📘" theme="info">
   **Note**: MCP is inbulit in CheckoutPro SDK. Get in touch with your KAMs to enable this feature for your MID.
 </Callout>
 
-   <Accordion title="Custom Integration" icon="fa-code">
+<Accordion title="Custom Integration" icon="fa-code">
+  This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
-This section describes how to integrate custom notes in PayUCheckoutPro SDK.
+  <Accordion title="Step 1: Create a Custom Note List" icon="fa-code">
+    Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and `custom_note_category` need to be passed.
 
-<Accordion title="Step 1: Create a Custom Note List" icon="fa-code">
-  Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and `custom_note_category` need to be passed.
-
-  ```java Java
-  // for specific custom_note_category
-
-        ArrayList<CustomNote> customNote = new ArrayList<>();
-        ArrayList<PaymentType> noteCategory1 = new ArrayList<>();
-        noteCategory1.add(PaymentType.CARD);
-        CustomNote customNote1 = new CustomNote("Please welcome note", noteCategory1);
-        customNote1.setCustom_note("Please welcome note");
-        customNote1.setCustom_note_category(noteCategory1);
-
-        ArrayList<PaymentType> noteCategory2 = new ArrayList<>();
-        noteCategory2.add(PaymentType.CARD);
-        CustomNote customNote2 = new CustomNote("Please welcome note", noteCategory1);
-        customNote2.setCustom_note("Please welcome note");
-        customNote2.setCustom_note_category(noteCategory2);
-        customNote.add( customNote1);
-        customNote.add( customNote2); 
-          
-  // when want to pass same custom note for multiple custom_note_category
+    ```java Java
+    // for specific custom_note_category
 
           ArrayList<CustomNote> customNote = new ArrayList<>();
           ArrayList<PaymentType> noteCategory1 = new ArrayList<>();
           noteCategory1.add(PaymentType.CARD);
-          noteCategory1.add(PaymentType.NB);
-          noteCategory1.add(PaymentType.UPI);
           CustomNote customNote1 = new CustomNote("Please welcome note", noteCategory1);
           customNote1.setCustom_note("Please welcome note");
           customNote1.setCustom_note_category(noteCategory1);
+
+          ArrayList<PaymentType> noteCategory2 = new ArrayList<>();
+          noteCategory2.add(PaymentType.CARD);
+          CustomNote customNote2 = new CustomNote("Please welcome note", noteCategory1);
+          customNote2.setCustom_note("Please welcome note");
+          customNote2.setCustom_note_category(noteCategory2);
           customNote.add( customNote1);
-          
-          // if do not want to pass any custom_note_category
-          ArrayList<CustomNote> customNote = new ArrayList<>();
-          CustomNote customNote1 = new CustomNote("Please welcome note", null);
-          customNote1.setCustom_note("Please welcome note");
-          customNote1.setCustom_note_category(null);
-          
-  ```
-  ```kotlin Kotlin
-       // for specific custom_note_category
-          val customNote = ArrayList<CustomNote>()
-          customNote.add(CustomNote().also{
-          it.custom_note = "Please welcome in Cards"
-          it.custom_note_category = ArrayList<PaymentType>().also {
-                  it.add(PaymentType.CARD)
-              }
-          }
-          // when want to pass same custom note for multiple custom_note_category
-         
-          val customNote = ArrayList<CustomNote>()
-          customNote.add(CustomNote().also{
-          it.custom_note = "Please welcome in Cards"
-          it.custom_note_category = ArrayList<PaymentType>().also {
-                  it.add(PaymentType.NB)
-                  it.add(PaymentType.CARD)
-              }
-          } 
-          // if do not want to pass any custom_note_category
-          
-          val customNote = ArrayList<CustomNote>()
-          customNote.add(CustomNote().also{
-          it.custom_note = "Please welcome in Cards"
-          it.custom_note_category = null
-          } 
-  ```
-The following Swift function parses JSON-formatted text from a text view to create custom payment notes for the PayU payment gateway integration. It extracts note content and associated payment method categories, converting string-based payment types into strongly-typed PayUCustomNote objects that can be used throughout the payment processing workflow. The function provides robust error handling by returning nil when the input text cannot be parsed as valid JSON, making it suitable for user-generated content validation in payment forms.
- ```swift Swift
-func getCustomNotes() -> [PayUCustomNote]? {
-        if let notesJSON = Utils.JSONFrom(string: customNotesDetailTextView.text) as? [[String: Any]] {
-            var customNotes = [PayUCustomNote]()
-            for json in notesJSON {
-                for (key, value) in json {
-                    if let paymentModes = (value as? [String])?.compactMap({ Utils.paymentTypeFrom(paymentType: $0)}) {
-                        let customNote = PayUCustomNote()
-                        customNote.note = key
-                        customNote.noteCategories =  paymentModes
-                        customNotes.append(customNote)
-                    }
+          customNote.add( customNote2); 
+            
+    // when want to pass same custom note for multiple custom_note_category
+
+            ArrayList<CustomNote> customNote = new ArrayList<>();
+            ArrayList<PaymentType> noteCategory1 = new ArrayList<>();
+            noteCategory1.add(PaymentType.CARD);
+            noteCategory1.add(PaymentType.NB);
+            noteCategory1.add(PaymentType.UPI);
+            CustomNote customNote1 = new CustomNote("Please welcome note", noteCategory1);
+            customNote1.setCustom_note("Please welcome note");
+            customNote1.setCustom_note_category(noteCategory1);
+            customNote.add( customNote1);
+            
+            // if do not want to pass any custom_note_category
+            ArrayList<CustomNote> customNote = new ArrayList<>();
+            CustomNote customNote1 = new CustomNote("Please welcome note", null);
+            customNote1.setCustom_note("Please welcome note");
+            customNote1.setCustom_note_category(null);
+            
+    ```
+    ```kotlin Kotlin
+         // for specific custom_note_category
+            val customNote = ArrayList<CustomNote>()
+            customNote.add(CustomNote().also{
+            it.custom_note = "Please welcome in Cards"
+            it.custom_note_category = ArrayList<PaymentType>().also {
+                    it.add(PaymentType.CARD)
                 }
             }
-            return customNotes
-        }
-        return nil
-    }
-  ```
-   </Accordion>
+            // when want to pass same custom note for multiple custom_note_category
+           
+            val customNote = ArrayList<CustomNote>()
+            customNote.add(CustomNote().also{
+            it.custom_note = "Please welcome in Cards"
+            it.custom_note_category = ArrayList<PaymentType>().also {
+                    it.add(PaymentType.NB)
+                    it.add(PaymentType.CARD)
+                }
+            } 
+            // if do not want to pass any custom_note_category
+            
+            val customNote = ArrayList<CustomNote>()
+            customNote.add(CustomNote().also{
+            it.custom_note = "Please welcome in Cards"
+            it.custom_note_category = null
+            } 
+    ```
+  </Accordion>
+  <Accordion title="Step 2: Custom Notes JSON Parser " icon="fa-code">
+    The following Swift function parses JSON-formatted text from a text view to create custom payment notes for the PayU payment gateway integration. It extracts note content and associated payment method categories, converting string-based payment types into strongly-typed PayUCustomNote objects that can be used throughout the payment processing workflow. The function provides robust error handling by returning nil when the input text cannot be parsed as valid JSON, making it suitable for user-generated content validation in payment forms.
+
+    ```swift Swift
+    func getCustomNotes() -> [PayUCustomNote]? {
+           if let notesJSON = Utils.JSONFrom(string: customNotesDetailTextView.text) as? [[String: Any]] {
+               var customNotes = [PayUCustomNote]()
+               for json in notesJSON {
+                   for (key, value) in json {
+                       if let paymentModes = (value as? [String])?.compactMap({ Utils.paymentTypeFrom(paymentType: $0)}) {
+                           let customNote = PayUCustomNote()
+                           customNote.note = key
+                           customNote.noteCategories =  paymentModes
+                           customNotes.append(customNote)
+                       }
+                   }
+               }
+               return customNotes
+           }
+           return nil
+       }
+    ```
+  </Accordion>
 </Accordion>
 
 <Accordion title="Step 2: Pass Custom Note List to SDK" icon="fa-code">
