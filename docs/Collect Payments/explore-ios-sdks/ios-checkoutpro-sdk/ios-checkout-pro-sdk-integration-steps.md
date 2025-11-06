@@ -598,11 +598,13 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   </Accordion>
 </Accordion>
 
-<Accordion title="Custom Note Integration" icon="fa-info-circle">
+<Accordion title="Step 6: Custom Note Integration" icon="fa-info-circle">
   This section describes how to integrate custom notes in PayUCheckoutPro SDK.
+
   <Accordion title="Step 1: Create a Custom Note List to be Passed" icon="fa-info-circle">
-  <Step1CreateACustomNoteList />
+    <Step1CreateACustomNoteList />
   </Accordion>
+
   <Accordion title="Step 2: Custom Note JSON parser" icon="fa-info-circle">
     The following Swift function parses JSON-formatted text from a text view to create custom payment notes for the PayU payment gateway integration. It extracts note content and associated payment method categories, converting string-based payment types into strongly-typed PayUCustomNote objects that can be used throughout the payment processing workflow. The function provides robust error handling by returning nil when the input text cannot be parsed as valid JSON, making it suitable for user-generated content validation in payment forms.
 
