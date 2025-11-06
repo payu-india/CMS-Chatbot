@@ -1236,7 +1236,7 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
   **Note**: MCP is inbulit in CheckoutPro SDK. Get in touch with your KAMs to enable this feature for your MID.
 </Callout>
 
-<Accordion title="Custom Integration" icon="fa-code">
+<Accordion title="Custom Note Integration" icon="fa-code">
   This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
   <Accordion title="Step 1: Create a Custom Note List" icon="fa-code">
@@ -1307,6 +1307,7 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
             } 
     ```
   </Accordion>
+
   <Accordion title="Step 2: Custom Notes JSON Parser " icon="fa-code">
     The following Swift function parses JSON-formatted text from a text view to create custom payment notes for the PayU payment gateway integration. It extracts note content and associated payment method categories, converting string-based payment types into strongly-typed PayUCustomNote objects that can be used throughout the payment processing workflow. The function provides robust error handling by returning nil when the input text cannot be parsed as valid JSON, making it suitable for user-generated content validation in payment forms.
 
