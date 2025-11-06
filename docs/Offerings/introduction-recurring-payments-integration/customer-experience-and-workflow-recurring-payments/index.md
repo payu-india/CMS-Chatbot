@@ -60,6 +60,8 @@ From the integration approach perspective, the Consent transaction can be integr
 
 ## PayU Hosted Checkout (Non-Seamless Integration)
 
+For PayU Hosted Checkout integration, you need to pass the standard request parameters in the request as the responsibility of accepting payment details is handled at the PayU’s end.
+
 ## Merchant Hosted Checkout (Seamless Integration)
 
 For PayU Hosted Checkout integration, you need to pass the standard request parameters in the request as the responsibility of accepting payment details is handled at the PayU’s end.
