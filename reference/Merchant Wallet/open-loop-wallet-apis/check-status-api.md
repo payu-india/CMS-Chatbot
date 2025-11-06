@@ -16,19 +16,19 @@ This API will fetch the response dump for any API call based on the value of **c
   **Note**: The [Check Status API](ref:check-status-api) is common for Closed-Loop and Open-Loop wallets.
 </Callout>
 
-**Environment:** https://domain/mob1/api/onboarding/v1/checkStatus
+**Environment:** [https://domain/mob1/api/onboarding/v1/checkStatus](https://domain/mob1/api/onboarding/v1/checkStatus)
 
 **HTTP Method**: POST
 
 ## Request parameters
 
-`<WalletHeader />`
+<WalletHeader />
 
 ### Request body
 
-> 📘 Note:
->
-> Encryption or decryption methodology is AES-192-CBC bits encryption.
+<Callout icon="📘" theme="info">
+  **Note**: Encryption or decryption methodology is AES-192-CBC bits encryption.
+</Callout>
 
 <Table align={["left","left","left"]}>
   <thead>
