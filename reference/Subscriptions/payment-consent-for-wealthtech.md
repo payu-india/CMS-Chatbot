@@ -290,6 +290,7 @@ These parameters are included within the `more_info` field as a JSON array under
     </tr>
   </tbody>
 </Table>
+
 <Accordion title="Validation Rules" icon="fa-code">
   <Accordion title="Mandatory Field Validations" icon="fa-code">
     * **type**: Must always be `"mutual_fund"`
@@ -402,132 +403,8 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 * Compare the computed digest to hash from the POST payload (**case-sensitive**).
 * Trust the result only if t
 
-### Using Verify Payment API
+### Verify Payment
 
-After you collect payment using **_payment** API, you get the response from PayU. You must use the txnid (transaction) parameter in the response with _Verify Payment_ API to get the payment status. For more information, refer to [Verify Payment API](verify_payment_api). You will get the following sample response for success/failure scenarios.
+<Verify_Payment_Tabs />
 
-#### Success scenario
-
-```json
-{
-  "status": 1,
-  "message": "Transaction Processed successfully",
-  "details": {
-    "48101c0c-5265-4c2a-b6d0-e6e73d42809e": {
-      "authpayuid": "999990000005920",
-      "transactionid": "48101c0c-5265-4c2a-b6d0-e6e73d42809e",
-      "amount": "500.00",
-      "user_credentials": "o0dEBA:11b341595c...",
-      "card_token": "195748c0f4ec4b3093af",
-      "payuid": "999990000006473",
-      "status": "captured",
-      "udf1": "Y",
-      "field9": "Transaction is Successful"
-    }
-  }
-}
-```
-
-#### Failure scenario
-
-```json
-{
-  "status": 0,
-  "message": "Invalid Parameter: mf_partner must be less than or equal to 4 characters."
-}
-```
-
-## Response Parameters
-
-### Success scenario
-
-| Parameter                       | Description                                                                       | Example                                  |
-| ------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------- |
-| status **`mandatory`**          | `integer` - Response status (1 for success, 0 for failure)                        | `1`                                      |
-| message **`mandatory`**         | `string` - Response message describing the result                                 | `"Transaction Processed successfully"`   |
-| details **`mandatory`**         | `object` - Transaction details object containing specific transaction information | `{}`                                     |
-| authpayuid **`mandatory`**      | `string` - PayU authorization ID                                                  | `"999990000005920"`                      |
-| transactionid **`mandatory`**   | `string` - Unique transaction identifier                                          | `"48101c0c-5265-4c2a-b6d0-e6e73d42809e"` |
-| amount **`mandatory`**          | `string` - Transaction amount in decimal format                                   | `"500.00"`                               |
-| user_credentials **`optional`** | `string` - Encrypted user credentials for future transactions                     | `"o0dEBA:11b341595c..."`                 |
-| card_token **`optional`**       | `string` - Tokenized card information                                             | `"195748c0f4ec4b3093af"`                 |
-| payuid **`mandatory`**          | `string` - PayU transaction reference ID                                          | `"999990000006473"`                      |
-| field9 **`optional`**           | `string` - Additional transaction information                                     | `"Transaction is Successful"`            |
-
-### Failure scenario
-
-| Parameter               | Description                                   | Example                                                                       |
-| ----------------------- | --------------------------------------------- | ----------------------------------------------------------------------------- |
-| status **`mandatory`**  | `integer` - Response status (0 for error)     | `0`                                                                           |
-| message **`mandatory`** | `string` - Error message describing the issue | `"Invalid Parameter: mf_partner must be less than or equal to 4 characters."` |
-
-***
-
-## **Validation Rules**
-
-### **Mandatory Field Validations**
-
-* **type**: Must always be `"mutual_fund"`
-* **amount**: Must match the overall order amount and be in paise
-* **receipt**: Must be unique across transactions
-* **mf_member_id**: Must be numeric with length between 5-20 characters
-* **mf_user_id**: Maximum 10 characters allowed
-* **mf_partner**: Must be one of: `"cams"`, `"kfin"`, `"bse"`, `"nse"`
-* **mf_investment_type**: Only `"L"` (Lump Sum) or `"S"` (SIP) allowed
-
-### **Optional Field Validations**
-
-* **mf_amc_code**: Maximum 5 characters
-* **receipt**: Maximum 25 characters for SIP registration ID
-
-***
-
-## **Hash Calculation**
-
-The hash is calculated using SHA-512 algorithm with the following field sequence:
-
-```
-key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt
-```
-
-### **Hash Generation Steps**
-
-1. Concatenate fields in the specified order using pipe (|) separator
-2. Append the salt at the end
-3. Apply SHA-512 hashing to the concatenated string
-4. Use the resulting hash as the `hash` parameter
-
-## Sample response
-
-### Success scenario
-
-```json
-{
-  "status": 1,
-  "message": "Transaction Processed successfully",
-  "details": {
-    "48101c0c-5265-4c2a-b6d0-e6e73d42809e": {
-      "authpayuid": "999990000005920",
-      "transactionid": "48101c0c-5265-4c2a-b6d0-e6e73d42809e",
-      "amount": "500.00",
-      "user_credentials": "o0dEBA:11b341595c...",
-      "card_token": "195748c0f4ec4b3093af",
-      "payuid": "999990000006473",
-      "status": "captured",
-      "udf1": "Y",
-      "field9": "Transaction is Successful"
-    }
-  }
-}
-```
-
-### Failure scenario
-
-```json
-{
-  "status": 0,
-  "message": "Invalid Parameter: mf_partner must be less than or equal to 4 characters."
-}
-```
-
-***
+<br />
