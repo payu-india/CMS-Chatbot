@@ -462,13 +462,14 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
         <string>slice-upi</string>
     		<string>olamoney</string>
     		<string>sbiyono</string>
-    		<string>kmb</string>
+        <string>kmb</string>
+        <string>navipay</string>
     </array> 
     ```
 
     Each string in the array is the name of the PSP apps (in lowercase) for which you want to enable the UPI intent.
 
-Note:- If a new app is onboarded during checkout the corresponding PSP (Payment Service Provider) scheme must be added to the Info.plist file to support the new app intent.
+    Note:- If a new app is onboarded during checkout the corresponding PSP (Payment Service Provider) scheme must be added to the Info.plist file to support the new app intent.
   </Accordion>
 
   <Accordion title="Step 2: Handle DeepLinks" icon="fa-code">
