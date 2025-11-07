@@ -18,21 +18,25 @@ This part of the document outlines the integration process for Wealth Tech merch
 
 ## Use Case
 
-**Target Users:**
-• Stock brokers
-• Mutual fund distributors
+#### Target Users:
 
-**Payment Methods:**
-• Net Banking
-• UPI
+* Stock brokers
+* Mutual fund distributors
 
-**Transaction Type:**
-• Lump-sum investment payments from investors
+#### Payment Methods:
 
-**Compliance Assurance:**
-• Every transaction meets SEBI requirements
-• Mandatory capture of investor bank details
-• Fund information reporting (scheme code and folio)
+* Net Banking
+* UPI
+
+#### Transaction Type:
+
+Lump-sum investment payments from investors
+
+#### Compliance Assurance:
+
+* Every transaction meets SEBI requirements
+* Mandatory capture of investor bank details
+* Fund information reporting (scheme code and folio)
 
 ## Payment Flow Benefits
 
