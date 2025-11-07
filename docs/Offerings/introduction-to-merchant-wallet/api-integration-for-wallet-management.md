@@ -1,5 +1,5 @@
 ---
-title: Semi-Closed or Open Loop Management APIs
+title: Semi-Closed or Open Loop Wallets
 excerpt: ''
 deprecated: false
 hidden: false
@@ -10,6 +10,33 @@ metadata:
 next:
   description: ''
 ---
+This part of the document includes the overview and advantages of Sem-Closed or Open Loop Wallet Management APIs:
+
+### Wallet/Card management
+
+* Co-Branded cards with PayU PPI as issuer with Rupay and Master
+* Virtual/Physical card, personalized / non-personalized card availability
+* Single and multi-wallet support
+* API and SDK Availability for Integration
+* Under RBI purview and compliance handled by PayU as PPI Issuer
+
+### Wallet/Card Redemption
+
+* Click Payment, Pre- Integrated with PayU PG
+* Reloadable using other payment methods / Just In Time Funding
+* Transaction Limit and Beneficiary Management
+
+### Customer Incentive
+
+* Pre-Integrated with PayU’s offer engine
+* Cashback rule creation and redemption
+* Redeem Cashback with other wallet balance
+
+### Report & analytics
+
+* Reports availability through Portal / Email
+* Get customized reports as per the requirement
+
 Semi-Closed or Open Loop Wallet/Card can be used at websites/app where the issuing merchant’s wallets are allowed.  This involves the following APIs:
 
 * [Create Wallet/Card API](ref:create-walletcard-api):  This API will be required by the merchants to register the customer for wallet
