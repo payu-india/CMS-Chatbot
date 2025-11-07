@@ -83,13 +83,15 @@ You can check whether the Net Banking server is up and running using the **getNe
 | udf4<br />`optional`                            | `string` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 2                                                                              |
 | udf5<br />`optional`                            | `string` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 3                                                                              |
 
+Perfect! ✨ Now each parameter name is on its own line, followed by the mandatory/optional status on the next line, making the table much more readable and organized.
+
 > 🚧 Values to be used in Test environment
 >
 > You can test NetBanking only with pg=TESTPG and bankcode=TESTPGNB only.
 
 ## Sample request
 
-```
+```curl
 curl -X \
  POST "https://test.payu.in/_payment-H "accept: application/json" -H \
  "Content-Type: application/x-www-form-urlencoded" -d"key=JP***g&txnid=bvRCCBO4YiGGHE&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=TESTPG&bankcode=TESTPGNB&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=ad36b3253313753088c662053b043fbe6d7a10112b31fbf20c4b0945b6a70c3a12239c5330ec2d0a0956bcd28a689f08c94fbb9cc2c5e06bb08dc81968672f64"
