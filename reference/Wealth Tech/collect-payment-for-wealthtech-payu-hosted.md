@@ -1,7 +1,7 @@
 ---
 title: Collect Payment for WealthTech - PayU Hosted Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
