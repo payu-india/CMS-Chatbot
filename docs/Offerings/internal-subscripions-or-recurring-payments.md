@@ -58,7 +58,7 @@ Before implementing subscriptions, ensure you have:
 2. **Subscription Feature Enabled**: Contact your PayU Key Account Manager to activate subscriptions
 3. **Integration Method Selected**: Review the three available approaches. For more information, refer to (Implementation Methods)[#implementation-methods]
 4. **Technical Requirements**
-   * API credentials and webhook endpoints (for API integration)
+   * API key and Salt  and webhook endpoints (for API integration)
    * Dashboard access (for zero-code implementation)
 
 ## Considerations (Require Info)
@@ -68,7 +68,7 @@ Before implementing subscriptions, ensure you have:
 ## How to set up
 
 1. **Register and Activate**: Set up your PayU merchant account
-2. **Choose Integration Method**: Select API, Zion Platform, or Dashboard approach. Refer to (Implementation Methods)[#implementation-methods]
+2. **Choose Integration Method**: Select API, Zion Platform, or Dashboard approach. Refer to [Implementation Methods](#implementation-methods) 
 3. **Configure Payment Modes**: Set up Cards, Net Banking, and/or UPI
 4. **Test Integration**: Validate subscription flows in sandbox environment
 5. **Go Live**: Deploy with production credentials
@@ -79,12 +79,10 @@ Choose the integration approach that best fits your technical requirements and b
 
 ### Zero Code Dashboard Integration
 
-**Best for:** Businesses without technical resources
+This method suits your business if you have limitation with technical resources by using any of the following methods :
 
-**Available Options:**
-
-* **[Create Payment Links with SI ](doc:create-a-payment-link-with-si)**
-* **[Bulk Upload Payment Links with SI](doc:bulk-upload-of-payment-links-with-si-registration)**
+* **[Create a Payment Link](doc:create-a-payment-link-with-si)**
+* **[Bulk Upload Payment Links](doc:bulk-upload-of-payment-links-with-si-registration)**
 * **[Bulk Recurring Payments + Notifications](doc:bulk-upload-of-payment-links-for-recurring-payments-pre-debit-notication)**
 
 **Key Features:**
@@ -96,7 +94,7 @@ Choose the integration approach that best fits your technical requirements and b
 
 ### API Integration
 
-**Best for:** Developers who need complete control over subscription workflows
+This methods suits if you have developers who need complete control over subscription workflows:
 
 **Features:**
 
@@ -114,7 +112,7 @@ Choose the integration approach that best fits your technical requirements and b
 
 ### Zion Subscription Automation Platform
 
-**Best for:** Enterprises wanting minimal technical effort with maximum automation
+This method suits enterprises looking for minimal technical effort with maximum automation.
 
 **Features:**
 
