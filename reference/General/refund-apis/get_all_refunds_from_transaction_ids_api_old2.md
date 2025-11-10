@@ -19,98 +19,20 @@ The **Get All Refunds for a Transaction ID** API (getAllRefundsFromTxnIds) comma
 
 ## Reference information for request parameters
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-      <th>
-        Reference
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        key
-      </td>
-      <td>
-        For more information on how to generate the Key and Salt, refer to any of the following:
-
-        * **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)  
-        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
-      </td>
-    </tr>
-    <tr>
-      <td>
-        hash
-      </td>
-      <td>
-        Hash logic for this API is:
-        sha512(key|command|var1|salt)
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameter | Reference |
+|-----------|-----------|
+| key | For more information on how to generate the Key and Salt, refer to any of the following:<br/>• **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)<br/>• **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt) |
+| hash | Hash logic for this API is:<br/>sha512(key\|command\|var1\|salt) |
 
 ## Response parameters description and sample response
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-      <th>
-        **Description**
-      </th>
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        status
-      </td>
-      <td>
-        The status of the response can be any of the following:
+| **Parameter** | **Description** | **Example** |
+|---------------|-----------------|-------------|
+| status | The status of the response can be any of the following:<br/>• **1:** Success<br/>• **2:** Failure | 1 |
+| msg | The description of the response whether the card details were stored successfully or not. | Refunds fetched successfully. |
+| Refund Details | The details are sent by PayU in JSON format for the successful response. For more information, refer to [Additional Info for General APIs](ref:addl-info-general-apis#description-of-the-refund-details-json-fields). | |
 
-        * **1:** Success  
-        * **2:** Failure
-      </td>
-      <td>
-        1
-      </td>
-    </tr>
-    <tr>
-      <td>
-        msg
-      </td>
-      <td>
-        The description of the response whether the card details were stored successfully or not.
-      </td>
-      <td>
-        Refunds fetched successfully.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Refund Details
-      </td>
-      <td>
-        The details are sent by PayU in JSON format for the successful response. For more information, refer to [Additional Info for General APIs](ref:addl-info-general-apis#description-of-the-refund-details-json-fields).
-      </td>
-      <td>
-
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-> 📘 Reference:
+> 📘 **Reference:**
 >
 > For sample response, refer to [Additional Info for General APIs](addl-info-general-apis#description-of-the-refund-details-json-fields).
 
