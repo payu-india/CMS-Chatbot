@@ -1,1 +1,973 @@
-{"openapi":"3.1.0","info":{"title":"StoreCard","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://test.payu.in/merchant","variables":{}},{"url":"https://info.payu.in/merchant","variables":{}}],"paths":{"/postservice.php":{"post":{"tags":["Misc"],"summary":"get_payment_details","operationId":"get_payment_details","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"const":2,"type":"integer","contentEncoding":"int32"}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/x-www-form-urlencoded","type":"string"}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","var1","var2","var3","var4","var5","hash"],"type":"object","properties":{"key":{"const":"JPM7Fg","type":"string","description":"The merchant key is a unique identifier provided by PayU.","examples":["JPM7Fg"]},"command":{"const":"get_payment_details","type":"string","description":"The command name for this REST API call is get_payment_details.","examples":["get_payment_details"]},"var1":{"type":"string","description":"The user credentials are posted in this parameter in the following format: MerchantKey:UserId","examples":["kshitij:tomar"]},"var2":{"type":"integer","description":"The card token of the card (cardToken) is specified in this parameter.","contentEncoding":"int32"},"var3":{"type":"integer","description":"The amount of the transaction.","contentEncoding":"int64","examples":[10]},"var4":{"type":"string","description":"The currency used for the transaction.  If this parameter is left blank, the currency is considered as INR by default.","examples":["INR"]},"var5":{"type":"string","description":"The cardToken type is specified in this parameter and can be any of the following: If this parameter is left blank, the default value will be PAYU.","examples":["PAYU"]},"hash":{"type":"string","description":"The hash must be included in this parameter. The format is: sha512(key|command|var1|salt) sha512"}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"OK","headers":{"Access-Control-Allow-Origin":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"https://api-playground.payu.in"}}},"Content-Encoding":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"gzip"}}},"Content-Security-Policy":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"object-src 'none'; img-src https: data: *.payubiz.in *.payu.in  *.payumoney.com"}}},"Date":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"Wed, 24 Nov 2021 07:45:55 GMT"}}},"P3P":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""}}},"Server":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"PayuBiz"}}},"Strict-Transport-Security":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"max-age=31536000;includeSubDomains"}}},"Vary":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"Accept-Encoding"}}},"X-Content-Type-Options":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"nosniff"}}},"X-Frame-Options":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"SAMEORIGIN"}}},"X-XSS-Protection":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"1; mode=block"}}},"Content-Length":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"111"}}},"Connection":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"keep-alive"}}}},"content":{"text/html; charset=UTF-8":{"schema":{"type":"string","examples":["{\"status\":1,\"msg\":\" edited Successfully.\",\"cardToken\":\"0c186bdb8c0ebda30ab9d92816772cbfb946d027\",\"network_token\":\"8koNvAdC1bT0Hv5a\",\"issuer_token\":\"LQ3QkzgEOnEjY428\",\"card_number\":XXXXXXXXXXXXX2346\",\"card_label\":\"testAll\"}"],"contentMediaType":"text/html; charset=UTF-8"},"example":"{\"status\":1,\"msg\":\" edited Successfully.\",\"cardToken\":\"0c186bdb8c0ebda30ab9d92816772cbfb946d027\",\"network_token\":\"8koNvAdC1bT0Hv5a\",\"issuer_token\":\"LQ3QkzgEOnEjY428\",\"card_number\":XXXXXXXXXXXXX2346\",\"card_label\":\"testAll\"}"}}}},"deprecated":false,"servers":[{"url":"https://test.payu.in/merchant","variables":{}}]},"parameters":[]}},"components":{"schemas":{"save_payment_instrument":{"title":"save_payment_instrument","required":["status","msg","cardToken","card_number","card_label","network_token","issuer_token"],"type":"object","properties":{"status":{"type":"integer","contentEncoding":"int32"},"msg":{"type":"string"},"cardToken":{"type":"string"},"card_number":{"type":"string"},"card_label":{"type":"string"},"network_token":{"type":"string"},"issuer_token":{"type":"string"}},"examples":[{"status":1,"msg":"Card Stored Successfully.","cardToken":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","card_number":"XXXXXXXXXXXX8548","card_label":"nilesh_card_name","network_token":"8koNvAdC1bT0Hv5a","issuer_token":"LQ3QkzgEOnEjY428"}]},"get_payment_instrument":{"title":"get_payment_instrument","required":["status","msg","user_cards"],"type":"object","properties":{"status":{"type":"integer","contentEncoding":"int32"},"msg":{"type":"string"},"user_cards":{"allOf":[{"$ref":"#/components/schemas/UserCards"},{}]}},"examples":[{"status":1,"msg":"Cards fetched\nSuccesfully","user_cards":{"0c186bdb8c0ebda30ab9d92816772cbfb946d027":{"card_mode":"CC","card_PAR":"RCKGgxEEFX1un19I","card_token":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","card_name":"alltest","card_no":"XXXXXXXXXXXX8548","card_type":"CC","is_expired":0,"issuer_token":"8koNvAdC1bT0Hv5a","name_on_card":"testall","network_token":"8koNvAdC1bT0Hv5a","card_brand":"UNKNOWN","card_bin":"XXXXXX","isDomestic":"N","token_bin_nw":"123456","token_bin_is":"345678","PAR":"RCKGgxEEFX1un19I","card_metadata":{"issuing_bank":"AXIS","card_type":"MAST"},"expiry_year":"2021","expiry_month":"11","expiry_year_is":"2021","expiry_month_is":"11"}}}]},"UserCards":{"title":"UserCards","required":["0c186bdb8c0ebda30ab9d92816772cbfb946d027"],"type":"object","properties":{"0c186bdb8c0ebda30ab9d92816772cbfb946d027":{"allOf":[{"$ref":"#/components/schemas/0c186bdb8c0ebda30ab9d92816772cbfb946d027"},{}]}},"examples":[{"0c186bdb8c0ebda30ab9d92816772cbfb946d027":{"card_mode":"CC","card_PAR":"RCKGgxEEFX1un19I","card_token":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","card_name":"alltest","card_no":"XXXXXXXXXXXX8548","card_type":"CC","is_expired":0,"issuer_token":"8koNvAdC1bT0Hv5a","name_on_card":"testall","network_token":"8koNvAdC1bT0Hv5a","card_brand":"UNKNOWN","card_bin":"XXXXXX","isDomestic":"N","token_bin_nw":"123456","token_bin_is":"345678","PAR":"RCKGgxEEFX1un19I","card_metadata":{"issuing_bank":"AXIS","card_type":"MAST"},"expiry_year":"2021","expiry_month":"11","expiry_year_is":"2021","expiry_month_is":"11"}}]},"0c186bdb8c0ebda30ab9d92816772cbfb946d027":{"title":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","required":["card_mode","card_PAR","card_token","card_name","card_no","card_type","is_expired","issuer_token","name_on_card","network_token","card_brand","card_bin","isDomestic","token_bin_nw","token_bin_is","PAR","card_metadata","expiry_year","expiry_month","expiry_year_is","expiry_month_is"],"type":"object","properties":{"card_mode":{"type":"string"},"card_PAR":{"type":"string"},"card_token":{"type":"string"},"card_name":{"type":"string"},"card_no":{"type":"string"},"card_type":{"type":"string"},"is_expired":{"type":"integer","contentEncoding":"int32"},"issuer_token":{"type":"string"},"name_on_card":{"type":"string"},"network_token":{"type":"string"},"card_brand":{"type":"string"},"card_bin":{"type":"string"},"isDomestic":{"type":"string"},"token_bin_nw":{"type":"string"},"token_bin_is":{"type":"string"},"PAR":{"type":"string"},"card_metadata":{"allOf":[{"$ref":"#/components/schemas/CardMetadata"},{}]},"expiry_year":{"type":"string"},"expiry_month":{"type":"string"},"expiry_year_is":{"type":"string"},"expiry_month_is":{"type":"string"}},"examples":[{"card_mode":"CC","card_PAR":"RCKGgxEEFX1un19I","card_token":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","card_name":"alltest","card_no":"XXXXXXXXXXXX8548","card_type":"CC","is_expired":0,"issuer_token":"8koNvAdC1bT0Hv5a","name_on_card":"testall","network_token":"8koNvAdC1bT0Hv5a","card_brand":"UNKNOWN","card_bin":"XXXXXX","isDomestic":"N","token_bin_nw":"123456","token_bin_is":"345678","PAR":"RCKGgxEEFX1un19I","card_metadata":{"issuing_bank":"AXIS","card_type":"MAST"},"expiry_year":"2021","expiry_month":"11","expiry_year_is":"2021","expiry_month_is":"11"}]},"CardMetadata":{"title":"CardMetadata","required":["issuing_bank","card_type"],"type":"object","properties":{"issuing_bank":{"type":"string"},"card_type":{"type":"string"}},"examples":[{"issuing_bank":"AXIS","card_type":"MAST"}]},"get_payment_instrument_new":{"title":"get_payment_instrument_new","required":["status","msg","user_cards"],"type":"object","properties":{"status":{"type":"integer","contentEncoding":"int32"},"msg":{"type":"string"},"user_cards":{"allOf":[{"$ref":"#/components/schemas/UserCards1"},{}]}},"examples":[{"status":1,"msg":"Cards fetched\nSuccesfully","user_cards":{"0c186bdb8c0ebda30ab9d92816772cbfb946d027":{"card_mode":"CC","card_token":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","card_name":"alltest","card_no":"XXXXXXXXXXXX8548","card_type":"CC","is_expired":0,"issuer_token":{"token_bin":"345678","is_expired":0,"token_exp_yr":"2021","token_value":"8koNvAdC1bT0Hv5a","token_exp_mon":"11"},"name_on_card":"testall","network_token":{"token_bin":"123456","is_expired":0,"token_exp_yr":"2021","token_value":"8koNvAdC1bT0Hv5a","token_exp_mon":"11","token_metadata":{"issuing_bank":"AXIS","card_type":"MAST"}},"card_brand":"UNKNOWN","card_bin":"XXXXXX","isDomestic":"N","PAR":"RCKGgxEEFX1un19I"}}}]},"UserCards1":{"title":"UserCards1","required":["0c186bdb8c0ebda30ab9d92816772cbfb946d027"],"type":"object","properties":{"0c186bdb8c0ebda30ab9d92816772cbfb946d027":{"allOf":[{"$ref":"#/components/schemas/0c186bdb8c0ebda30ab9d92816772cbfb946d0271"},{}]}},"examples":[{"0c186bdb8c0ebda30ab9d92816772cbfb946d027":{"card_mode":"CC","card_token":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","card_name":"alltest","card_no":"XXXXXXXXXXXX8548","card_type":"CC","is_expired":0,"issuer_token":{"token_bin":"345678","is_expired":0,"token_exp_yr":"2021","token_value":"8koNvAdC1bT0Hv5a","token_exp_mon":"11"},"name_on_card":"testall","network_token":{"token_bin":"123456","is_expired":0,"token_exp_yr":"2021","token_value":"8koNvAdC1bT0Hv5a","token_exp_mon":"11","token_metadata":{"issuing_bank":"AXIS","card_type":"MAST"}},"card_brand":"UNKNOWN","card_bin":"XXXXXX","isDomestic":"N","PAR":"RCKGgxEEFX1un19I"}}]},"0c186bdb8c0ebda30ab9d92816772cbfb946d0271":{"title":"0c186bdb8c0ebda30ab9d92816772cbfb946d0271","required":["card_mode","card_token","card_name","card_no","card_type","is_expired","issuer_token","name_on_card","network_token","card_brand","card_bin","isDomestic","PAR"],"type":"object","properties":{"card_mode":{"type":"string"},"card_token":{"type":"string"},"card_name":{"type":"string"},"card_no":{"type":"string"},"card_type":{"type":"string"},"is_expired":{"type":"integer","contentEncoding":"int32"},"issuer_token":{"allOf":[{"$ref":"#/components/schemas/IssuerToken"},{}]},"name_on_card":{"type":"string"},"network_token":{"allOf":[{"$ref":"#/components/schemas/NetworkToken"},{}]},"card_brand":{"type":"string"},"card_bin":{"type":"string"},"isDomestic":{"type":"string"},"PAR":{"type":"string"}},"examples":[{"card_mode":"CC","card_token":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","card_name":"alltest","card_no":"XXXXXXXXXXXX8548","card_type":"CC","is_expired":0,"issuer_token":{"token_bin":"345678","is_expired":0,"token_exp_yr":"2021","token_value":"8koNvAdC1bT0Hv5a","token_exp_mon":"11"},"name_on_card":"testall","network_token":{"token_bin":"123456","is_expired":0,"token_exp_yr":"2021","token_value":"8koNvAdC1bT0Hv5a","token_exp_mon":"11","token_metadata":{"issuing_bank":"AXIS","card_type":"MAST"}},"card_brand":"UNKNOWN","card_bin":"XXXXXX","isDomestic":"N","PAR":"RCKGgxEEFX1un19I"}]},"IssuerToken":{"title":"IssuerToken","required":["token_bin","is_expired","token_exp_yr","token_value","token_exp_mon"],"type":"object","properties":{"token_bin":{"type":"string"},"is_expired":{"type":"integer","contentEncoding":"int32"},"token_exp_yr":{"type":"string"},"token_value":{"type":"string"},"token_exp_mon":{"type":"string"}},"examples":[{"token_bin":"345678","is_expired":0,"token_exp_yr":"2021","token_value":"8koNvAdC1bT0Hv5a","token_exp_mon":"11"}]},"NetworkToken":{"title":"NetworkToken","required":["token_bin","is_expired","token_exp_yr","token_value","token_exp_mon","token_metadata"],"type":"object","properties":{"token_bin":{"type":"string"},"is_expired":{"type":"integer","contentEncoding":"int32"},"token_exp_yr":{"type":"string"},"token_value":{"type":"string"},"token_exp_mon":{"type":"string"},"token_metadata":{"allOf":[{"$ref":"#/components/schemas/TokenMetadata"},{}]}},"examples":[{"token_bin":"123456","is_expired":0,"token_exp_yr":"2021","token_value":"8koNvAdC1bT0Hv5a","token_exp_mon":"11","token_metadata":{"issuing_bank":"AXIS","card_type":"MAST"}}]},"TokenMetadata":{"title":"TokenMetadata","required":["issuing_bank","card_type"],"type":"object","properties":{"issuing_bank":{"type":"string"},"card_type":{"type":"string"}},"examples":[{"issuing_bank":"AXIS","card_type":"MAST"}]},"delete_payment_instrument":{"title":"delete_payment_instrument","required":["status","msg"],"type":"object","properties":{"status":{"type":"integer","contentEncoding":"int32"},"msg":{"type":"string"}},"examples":[{"status":1,"msg":"name card deleted successfully"}]}}},"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "StoreCard",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/merchant",
+      "variables": {}
+    },
+    {
+      "url": "https://info.payu.in/merchant",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/postservice.php": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "get_payment_details",
+        "operationId": "get_payment_details",
+        "parameters": [
+          {
+            "name": "form",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "const": 2,
+              "type": "integer",
+              "contentEncoding": "int32"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/x-www-form-urlencoded",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "command",
+                  "var1",
+                  "var2",
+                  "var3",
+                  "var4",
+                  "var5",
+                  "hash",
+                  "key"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "default": "JPM7Fg",
+                    "description": "This parameter must contain the merchant key provided by PayU while onboarding."
+                  },
+                  "command": {
+                    "const": "get_payment_details",
+                    "type": "string",
+                    "description": "The command name for this REST API call is get_payment_details.",
+                    "examples": [
+                      "get_payment_details"
+                    ]
+                  },
+                  "var1": {
+                    "type": "string",
+                    "description": "The user credentials are posted in this parameter in the following format: MerchantKey:UserId",
+                    "examples": [
+                      "kshitij:tomar"
+                    ]
+                  },
+                  "var2": {
+                    "type": "integer",
+                    "description": "The card token of the card (cardToken) is specified in this parameter.",
+                    "contentEncoding": "int32"
+                  },
+                  "var3": {
+                    "type": "integer",
+                    "description": "The amount of the transaction.",
+                    "contentEncoding": "int64",
+                    "examples": [
+                      10
+                    ]
+                  },
+                  "var4": {
+                    "type": "string",
+                    "description": "The currency used for the transaction.  If this parameter is left blank, the currency is considered as INR by default.",
+                    "examples": [
+                      "INR"
+                    ]
+                  },
+                  "var5": {
+                    "type": "string",
+                    "description": "The cardToken type is specified in this parameter and can be any of the following: If this parameter is left blank, the default value will be PAYU.",
+                    "examples": [
+                      "PAYU"
+                    ]
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "The hash must be included in this parameter. The format is: sha512(key|command|var1|salt) sha512"
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "https://api-playground.payu.in"
+                  }
+                }
+              },
+              "Content-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "gzip"
+                  }
+                }
+              },
+              "Content-Security-Policy": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "object-src 'none'; img-src https: data: *.payubiz.in *.payu.in  *.payumoney.com"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "Wed, 24 Nov 2021 07:45:55 GMT"
+                  }
+                }
+              },
+              "P3P": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "PayuBiz"
+                  }
+                }
+              },
+              "Strict-Transport-Security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "max-age=31536000;includeSubDomains"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "Accept-Encoding"
+                  }
+                }
+              },
+              "X-Content-Type-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "X-Frame-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "SAMEORIGIN"
+                  }
+                }
+              },
+              "X-XSS-Protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "1; mode=block"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "111"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              }
+            },
+            "content": {
+              "text/html; charset=UTF-8": {
+                "schema": {
+                  "type": "string",
+                  "examples": [
+                    "{\"status\":1,\"msg\":\" edited Successfully.\",\"cardToken\":\"0c186bdb8c0ebda30ab9d92816772cbfb946d027\",\"network_token\":\"8koNvAdC1bT0Hv5a\",\"issuer_token\":\"LQ3QkzgEOnEjY428\",\"card_number\":XXXXXXXXXXXXX2346\",\"card_label\":\"testAll\"}"
+                  ],
+                  "contentMediaType": "text/html; charset=UTF-8"
+                },
+                "example": "{\"status\":1,\"msg\":\" edited Successfully.\",\"cardToken\":\"0c186bdb8c0ebda30ab9d92816772cbfb946d027\",\"network_token\":\"8koNvAdC1bT0Hv5a\",\"issuer_token\":\"LQ3QkzgEOnEjY428\",\"card_number\":XXXXXXXXXXXXX2346\",\"card_label\":\"testAll\"}"
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://test.payu.in/merchant",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "save_payment_instrument": {
+        "title": "save_payment_instrument",
+        "required": [
+          "status",
+          "msg",
+          "cardToken",
+          "card_number",
+          "card_label",
+          "network_token",
+          "issuer_token"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "cardToken": {
+            "type": "string"
+          },
+          "card_number": {
+            "type": "string"
+          },
+          "card_label": {
+            "type": "string"
+          },
+          "network_token": {
+            "type": "string"
+          },
+          "issuer_token": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "status": 1,
+            "msg": "Card Stored Successfully.",
+            "cardToken": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+            "card_number": "XXXXXXXXXXXX8548",
+            "card_label": "nilesh_card_name",
+            "network_token": "8koNvAdC1bT0Hv5a",
+            "issuer_token": "LQ3QkzgEOnEjY428"
+          }
+        ]
+      },
+      "get_payment_instrument": {
+        "title": "get_payment_instrument",
+        "required": [
+          "status",
+          "msg",
+          "user_cards"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "user_cards": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserCards"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "status": 1,
+            "msg": "Cards fetched\nSuccesfully",
+            "user_cards": {
+              "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
+                "card_mode": "CC",
+                "card_PAR": "RCKGgxEEFX1un19I",
+                "card_token": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+                "card_name": "alltest",
+                "card_no": "XXXXXXXXXXXX8548",
+                "card_type": "CC",
+                "is_expired": 0,
+                "issuer_token": "8koNvAdC1bT0Hv5a",
+                "name_on_card": "testall",
+                "network_token": "8koNvAdC1bT0Hv5a",
+                "card_brand": "UNKNOWN",
+                "card_bin": "XXXXXX",
+                "isDomestic": "N",
+                "token_bin_nw": "123456",
+                "token_bin_is": "345678",
+                "PAR": "RCKGgxEEFX1un19I",
+                "card_metadata": {
+                  "issuing_bank": "AXIS",
+                  "card_type": "MAST"
+                },
+                "expiry_year": "2021",
+                "expiry_month": "11",
+                "expiry_year_is": "2021",
+                "expiry_month_is": "11"
+              }
+            }
+          }
+        ]
+      },
+      "UserCards": {
+        "title": "UserCards",
+        "required": [
+          "0c186bdb8c0ebda30ab9d92816772cbfb946d027"
+        ],
+        "type": "object",
+        "properties": {
+          "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/0c186bdb8c0ebda30ab9d92816772cbfb946d027"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
+              "card_mode": "CC",
+              "card_PAR": "RCKGgxEEFX1un19I",
+              "card_token": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+              "card_name": "alltest",
+              "card_no": "XXXXXXXXXXXX8548",
+              "card_type": "CC",
+              "is_expired": 0,
+              "issuer_token": "8koNvAdC1bT0Hv5a",
+              "name_on_card": "testall",
+              "network_token": "8koNvAdC1bT0Hv5a",
+              "card_brand": "UNKNOWN",
+              "card_bin": "XXXXXX",
+              "isDomestic": "N",
+              "token_bin_nw": "123456",
+              "token_bin_is": "345678",
+              "PAR": "RCKGgxEEFX1un19I",
+              "card_metadata": {
+                "issuing_bank": "AXIS",
+                "card_type": "MAST"
+              },
+              "expiry_year": "2021",
+              "expiry_month": "11",
+              "expiry_year_is": "2021",
+              "expiry_month_is": "11"
+            }
+          }
+        ]
+      },
+      "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
+        "title": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+        "required": [
+          "card_mode",
+          "card_PAR",
+          "card_token",
+          "card_name",
+          "card_no",
+          "card_type",
+          "is_expired",
+          "issuer_token",
+          "name_on_card",
+          "network_token",
+          "card_brand",
+          "card_bin",
+          "isDomestic",
+          "token_bin_nw",
+          "token_bin_is",
+          "PAR",
+          "card_metadata",
+          "expiry_year",
+          "expiry_month",
+          "expiry_year_is",
+          "expiry_month_is"
+        ],
+        "type": "object",
+        "properties": {
+          "card_mode": {
+            "type": "string"
+          },
+          "card_PAR": {
+            "type": "string"
+          },
+          "card_token": {
+            "type": "string"
+          },
+          "card_name": {
+            "type": "string"
+          },
+          "card_no": {
+            "type": "string"
+          },
+          "card_type": {
+            "type": "string"
+          },
+          "is_expired": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "issuer_token": {
+            "type": "string"
+          },
+          "name_on_card": {
+            "type": "string"
+          },
+          "network_token": {
+            "type": "string"
+          },
+          "card_brand": {
+            "type": "string"
+          },
+          "card_bin": {
+            "type": "string"
+          },
+          "isDomestic": {
+            "type": "string"
+          },
+          "token_bin_nw": {
+            "type": "string"
+          },
+          "token_bin_is": {
+            "type": "string"
+          },
+          "PAR": {
+            "type": "string"
+          },
+          "card_metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CardMetadata"
+              },
+              {}
+            ]
+          },
+          "expiry_year": {
+            "type": "string"
+          },
+          "expiry_month": {
+            "type": "string"
+          },
+          "expiry_year_is": {
+            "type": "string"
+          },
+          "expiry_month_is": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "card_mode": "CC",
+            "card_PAR": "RCKGgxEEFX1un19I",
+            "card_token": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+            "card_name": "alltest",
+            "card_no": "XXXXXXXXXXXX8548",
+            "card_type": "CC",
+            "is_expired": 0,
+            "issuer_token": "8koNvAdC1bT0Hv5a",
+            "name_on_card": "testall",
+            "network_token": "8koNvAdC1bT0Hv5a",
+            "card_brand": "UNKNOWN",
+            "card_bin": "XXXXXX",
+            "isDomestic": "N",
+            "token_bin_nw": "123456",
+            "token_bin_is": "345678",
+            "PAR": "RCKGgxEEFX1un19I",
+            "card_metadata": {
+              "issuing_bank": "AXIS",
+              "card_type": "MAST"
+            },
+            "expiry_year": "2021",
+            "expiry_month": "11",
+            "expiry_year_is": "2021",
+            "expiry_month_is": "11"
+          }
+        ]
+      },
+      "CardMetadata": {
+        "title": "CardMetadata",
+        "required": [
+          "issuing_bank",
+          "card_type"
+        ],
+        "type": "object",
+        "properties": {
+          "issuing_bank": {
+            "type": "string"
+          },
+          "card_type": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "issuing_bank": "AXIS",
+            "card_type": "MAST"
+          }
+        ]
+      },
+      "get_payment_instrument_new": {
+        "title": "get_payment_instrument_new",
+        "required": [
+          "status",
+          "msg",
+          "user_cards"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "user_cards": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserCards1"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "status": 1,
+            "msg": "Cards fetched\nSuccesfully",
+            "user_cards": {
+              "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
+                "card_mode": "CC",
+                "card_token": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+                "card_name": "alltest",
+                "card_no": "XXXXXXXXXXXX8548",
+                "card_type": "CC",
+                "is_expired": 0,
+                "issuer_token": {
+                  "token_bin": "345678",
+                  "is_expired": 0,
+                  "token_exp_yr": "2021",
+                  "token_value": "8koNvAdC1bT0Hv5a",
+                  "token_exp_mon": "11"
+                },
+                "name_on_card": "testall",
+                "network_token": {
+                  "token_bin": "123456",
+                  "is_expired": 0,
+                  "token_exp_yr": "2021",
+                  "token_value": "8koNvAdC1bT0Hv5a",
+                  "token_exp_mon": "11",
+                  "token_metadata": {
+                    "issuing_bank": "AXIS",
+                    "card_type": "MAST"
+                  }
+                },
+                "card_brand": "UNKNOWN",
+                "card_bin": "XXXXXX",
+                "isDomestic": "N",
+                "PAR": "RCKGgxEEFX1un19I"
+              }
+            }
+          }
+        ]
+      },
+      "UserCards1": {
+        "title": "UserCards1",
+        "required": [
+          "0c186bdb8c0ebda30ab9d92816772cbfb946d027"
+        ],
+        "type": "object",
+        "properties": {
+          "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/0c186bdb8c0ebda30ab9d92816772cbfb946d0271"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
+              "card_mode": "CC",
+              "card_token": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+              "card_name": "alltest",
+              "card_no": "XXXXXXXXXXXX8548",
+              "card_type": "CC",
+              "is_expired": 0,
+              "issuer_token": {
+                "token_bin": "345678",
+                "is_expired": 0,
+                "token_exp_yr": "2021",
+                "token_value": "8koNvAdC1bT0Hv5a",
+                "token_exp_mon": "11"
+              },
+              "name_on_card": "testall",
+              "network_token": {
+                "token_bin": "123456",
+                "is_expired": 0,
+                "token_exp_yr": "2021",
+                "token_value": "8koNvAdC1bT0Hv5a",
+                "token_exp_mon": "11",
+                "token_metadata": {
+                  "issuing_bank": "AXIS",
+                  "card_type": "MAST"
+                }
+              },
+              "card_brand": "UNKNOWN",
+              "card_bin": "XXXXXX",
+              "isDomestic": "N",
+              "PAR": "RCKGgxEEFX1un19I"
+            }
+          }
+        ]
+      },
+      "0c186bdb8c0ebda30ab9d92816772cbfb946d0271": {
+        "title": "0c186bdb8c0ebda30ab9d92816772cbfb946d0271",
+        "required": [
+          "card_mode",
+          "card_token",
+          "card_name",
+          "card_no",
+          "card_type",
+          "is_expired",
+          "issuer_token",
+          "name_on_card",
+          "network_token",
+          "card_brand",
+          "card_bin",
+          "isDomestic",
+          "PAR"
+        ],
+        "type": "object",
+        "properties": {
+          "card_mode": {
+            "type": "string"
+          },
+          "card_token": {
+            "type": "string"
+          },
+          "card_name": {
+            "type": "string"
+          },
+          "card_no": {
+            "type": "string"
+          },
+          "card_type": {
+            "type": "string"
+          },
+          "is_expired": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "issuer_token": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IssuerToken"
+              },
+              {}
+            ]
+          },
+          "name_on_card": {
+            "type": "string"
+          },
+          "network_token": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NetworkToken"
+              },
+              {}
+            ]
+          },
+          "card_brand": {
+            "type": "string"
+          },
+          "card_bin": {
+            "type": "string"
+          },
+          "isDomestic": {
+            "type": "string"
+          },
+          "PAR": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "card_mode": "CC",
+            "card_token": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+            "card_name": "alltest",
+            "card_no": "XXXXXXXXXXXX8548",
+            "card_type": "CC",
+            "is_expired": 0,
+            "issuer_token": {
+              "token_bin": "345678",
+              "is_expired": 0,
+              "token_exp_yr": "2021",
+              "token_value": "8koNvAdC1bT0Hv5a",
+              "token_exp_mon": "11"
+            },
+            "name_on_card": "testall",
+            "network_token": {
+              "token_bin": "123456",
+              "is_expired": 0,
+              "token_exp_yr": "2021",
+              "token_value": "8koNvAdC1bT0Hv5a",
+              "token_exp_mon": "11",
+              "token_metadata": {
+                "issuing_bank": "AXIS",
+                "card_type": "MAST"
+              }
+            },
+            "card_brand": "UNKNOWN",
+            "card_bin": "XXXXXX",
+            "isDomestic": "N",
+            "PAR": "RCKGgxEEFX1un19I"
+          }
+        ]
+      },
+      "IssuerToken": {
+        "title": "IssuerToken",
+        "required": [
+          "token_bin",
+          "is_expired",
+          "token_exp_yr",
+          "token_value",
+          "token_exp_mon"
+        ],
+        "type": "object",
+        "properties": {
+          "token_bin": {
+            "type": "string"
+          },
+          "is_expired": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "token_exp_yr": {
+            "type": "string"
+          },
+          "token_value": {
+            "type": "string"
+          },
+          "token_exp_mon": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "token_bin": "345678",
+            "is_expired": 0,
+            "token_exp_yr": "2021",
+            "token_value": "8koNvAdC1bT0Hv5a",
+            "token_exp_mon": "11"
+          }
+        ]
+      },
+      "NetworkToken": {
+        "title": "NetworkToken",
+        "required": [
+          "token_bin",
+          "is_expired",
+          "token_exp_yr",
+          "token_value",
+          "token_exp_mon",
+          "token_metadata"
+        ],
+        "type": "object",
+        "properties": {
+          "token_bin": {
+            "type": "string"
+          },
+          "is_expired": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "token_exp_yr": {
+            "type": "string"
+          },
+          "token_value": {
+            "type": "string"
+          },
+          "token_exp_mon": {
+            "type": "string"
+          },
+          "token_metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenMetadata"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "token_bin": "123456",
+            "is_expired": 0,
+            "token_exp_yr": "2021",
+            "token_value": "8koNvAdC1bT0Hv5a",
+            "token_exp_mon": "11",
+            "token_metadata": {
+              "issuing_bank": "AXIS",
+              "card_type": "MAST"
+            }
+          }
+        ]
+      },
+      "TokenMetadata": {
+        "title": "TokenMetadata",
+        "required": [
+          "issuing_bank",
+          "card_type"
+        ],
+        "type": "object",
+        "properties": {
+          "issuing_bank": {
+            "type": "string"
+          },
+          "card_type": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "issuing_bank": "AXIS",
+            "card_type": "MAST"
+          }
+        ]
+      },
+      "delete_payment_instrument": {
+        "title": "delete_payment_instrument",
+        "required": [
+          "status",
+          "msg"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "msg": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "status": 1,
+            "msg": "name card deleted successfully"
+          }
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
