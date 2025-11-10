@@ -1,7 +1,7 @@
 ---
 title: Banking Connect - IBMB or NBBL
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
