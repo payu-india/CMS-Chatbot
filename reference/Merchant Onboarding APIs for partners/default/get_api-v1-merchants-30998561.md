@@ -1,5 +1,5 @@
 ---
-title: Get merchant details
+title: Get Merchant Details API
 excerpt: >-
   Generated from cURL: curl --location
   'https://partner.payu.in/api/v1/merchants/30998561' \
