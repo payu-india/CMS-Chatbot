@@ -1,1 +1,99 @@
-{"openapi":"3.1.0","info":{"title":"Get Transaction Info","description":"","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://apitest.payu.in/merchant/","variables":{}}],"paths":{"/postservice.php":{"post":{"summary":"Get Transaction Info","description":"","operationId":"GetTransactionInfo","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"const":"2","type":"string"}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","var1","var2","hash"],"type":"object","properties":{"key":{"const":"JPM7Fg","type":"string","description":"This parameter must contain the merchant key provided by PayU."},"command":{"const":"get_transaction_info","type":"string","description":"This parameter must have the get_transaction_info as command name.."},"var1":{"type":"string","description":"The starting Time (from when the transaction details are needed) in YYYY-MM-DD HH:MM:SS format.","examples":["2020-10-26 01:00:00"]},"var2":{"type":"string","description":"The end Time (till when the transaction details are needed) in YYYY-MM-DD HH:MM:SS format."},"hash":{"type":"string","description":"This parameter must contain the hash value to be calculated by merchant.. The logic to calculate hash is : The string used for calculating the hash is in the following format: sha512(key|command|var1|salt) sha512"}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{}}},"deprecated":false},"parameters":[]}},"tags":[],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Get Transaction Info",
+    "description": "",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://apitest.payu.in/merchant/",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/postservice.php": {
+      "post": {
+        "summary": "Get Transaction Info",
+        "description": "",
+        "operationId": "GetTransactionInfo",
+        "parameters": [
+          {
+            "name": "form",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "const": "2",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "key",
+                  "command",
+                  "var1",
+                  "var2",
+                  "hash"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "const": "JPM7Fg",
+                    "type": "string",
+                    "description": "This parameter must contain the merchant key provided by PayU.",
+                    "default": "JPM7Fg"
+                  },
+                  "command": {
+                    "const": "get_transaction_info",
+                    "type": "string",
+                    "description": "This parameter must have the get_transaction_info as command name.."
+                  },
+                  "var1": {
+                    "type": "string",
+                    "description": "The starting Time (from when the transaction details are needed) in YYYY-MM-DD HH:MM:SS format.",
+                    "examples": [
+                      "2020-10-26 01:00:00"
+                    ]
+                  },
+                  "var2": {
+                    "type": "string",
+                    "description": "The end Time (till when the transaction details are needed) in YYYY-MM-DD HH:MM:SS format."
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "This parameter must contain the hash value to be calculated by merchant.. The logic to calculate hash is : The string used for calculating the hash is in the following format: sha512(key|command|var1|salt) sha512"
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    }
+  },
+  "tags": [],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
