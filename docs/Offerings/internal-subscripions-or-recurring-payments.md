@@ -1,5 +1,5 @@
 ---
-title: Copy of Subscripions or Recurring Payments
+title: '[Review]Subscripions or Recurring Payments'
 deprecated: false
 hidden: true
 metadata:
