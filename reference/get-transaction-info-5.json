@@ -39,16 +39,15 @@
               "encoding": {},
               "schema": {
                 "required": [
-                  "key",
                   "command",
                   "var1",
                   "var2",
-                  "hash"
+                  "hash",
+                  "key"
                 ],
                 "type": "object",
                 "properties": {
                   "key": {
-                    "const": "JPM7Fg",
                     "type": "string",
                     "description": "This parameter must contain the merchant key provided by PayU.",
                     "default": "JPM7Fg"
