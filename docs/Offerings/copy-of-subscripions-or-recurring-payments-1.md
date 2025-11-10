@@ -1,7 +1,7 @@
 ---
 title: Copy of Subscripions or Recurring Payments
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Recurring Payments Introduction
   description: >-
