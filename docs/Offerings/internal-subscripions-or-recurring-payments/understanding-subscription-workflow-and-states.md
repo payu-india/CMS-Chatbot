@@ -19,14 +19,3 @@ metadata:
 
 <Image align="center" border={false} src="https://files.readme.io/781dccee46dda6ac6249ccdd0b2abc96432b8007ba0533c649636a87cbeeccbb-merchant_hosted_pay_and_subscribe_flow.png" />
 
-## Payment states
-
-| State                | Meaning                                                 |
-| -------------------- | ------------------------------------------------------- |
-| Active               | Mandate/subscription is live and operational            |
-| Revoked              | Mandate/subscription is cancelled, no further debits    |
-| Pending              | Awaiting confirmation, setup, or transaction processing |
-| Success              | Transaction or registration completed successfully      |
-| Failed               | Transaction or registration failed                      |
-| Paused               | (UPI) Temporarily suspended, no debits until resumed    |
-| Modification Pending | Change request in progress, awaiting confirmation       |
