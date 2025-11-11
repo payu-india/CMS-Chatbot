@@ -119,7 +119,7 @@ The Load API allows you to credit money directly into a customer's wallet withou
 
 ## Sample Request
 
-```json
+```curl
 curl --location --request PATCH 'https://apitest.payu.in/loyalty-points/v1/wallet/load-account' \
 --header 'walletIdentifier: CLW' \
 --header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="example_signature"' \
