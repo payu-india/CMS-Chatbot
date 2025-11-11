@@ -50,9 +50,10 @@ Standing Instructions allows your customers' banks to automatically debit predet
 * Loan EMIs
 * Membership fees
 
-### Some scenario Examples
+### Some Examples
 
-* If Ashish had subscribed for Magazine subscriptions
+* Ashish had subscribed for Magazine subscriptions for a specific magazine on the BeSpoke Online Magazine platform. Now, he wants to get a special edition, so he can ask the BeSpoke Online Magazine platform to debit the amount without a new payment consent, but a Pre-Debit Transaction. 
+* \<Example 2>
 
 ## Prerequisites
 
