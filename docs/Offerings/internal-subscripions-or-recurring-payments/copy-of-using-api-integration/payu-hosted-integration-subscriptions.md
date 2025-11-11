@@ -20,7 +20,7 @@ HTTP Method: **POST**
 | **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 | **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
 
-### Request parameters
+<Accordion title="Request parameters" icon="fa-table">
 
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
@@ -273,7 +273,9 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 </Table>
 `}</HTMLBlock>
 
-### Sample request
+</Accordion>
+
+<Accordion title="Sample request" icon="fa-code">
 
 ```curl
 curl -X \
@@ -292,11 +294,13 @@ For parameters address1, address2, city, state, country, product info, email, an
 * (Space)
 * . (Dot)
 
+</Accordion>
+
 ## Step 2: Check the response from PayU
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
 
-#### Parsed response
+<Accordion title="Parsed response" icon="fa-code">
 
 ```
 Array
@@ -350,6 +354,8 @@ Array
     [error_Message] => No Error
 )
 ```
+
+</Accordion>
 
 ## Step 3: Verify the Payment
 
