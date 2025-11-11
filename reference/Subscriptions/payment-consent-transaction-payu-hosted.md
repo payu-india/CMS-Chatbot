@@ -34,41 +34,54 @@ next:
       title: Introduction
       type: basic
 ---
+---
+title: Payment Consent Transaction using PayU Hosted Checkout
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Payment Consent Transaction using PayU Hosted Checkout
+  description: >-
+    Learn how to set up a Payment Consent or Registration transaction using PayU
+    Hosted Checkout. This API documentation provides detailed instructions for
+    integrating PayU's payment consent feature, enabling seamless recurring and
+    subscription payments.
+  keywords:
+    - PayU Payment Consent API
+    - ' PayU Hosted Checkout Subscription Registration Transaction'
+    - ' Payment Consent Transaction for PayU Hosted Checkout'
+    - ' PayU recurring payments registration transaction'
+    - ' PayU hosted checkout subscription payments registration'
+    - ' PayU hosted checkout subscription transaction consent'
+    - ' Prebuilt Autopay integration'
+    - ' Autopay for UPI non-PACB flow'
+    - ' Pre-built Autopay Consent Transaction'
+    - ' PayU Hosted Autopay'
+    - ' Autopay for PayU Hosted non-PACB flow'
+    - ' PayU Hosted Autopay Consent Transaction'
+  robots: index
+next:
+  description: ''
+  pages:
+    - slug: customer-experience-and-workflow-recurring-payments
+      title: Customer Experience and Workflow
+      type: basic
+    - slug: introduction-recurring-payments-integration
+      title: Introduction
+      type: basic
+---
 This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration.
-
-<Cards columns={3}>
-  <Card title="1. Post the Consent Transaction" href="https://docs.payu.in/docs/integrate-with-hosted-checkout-for-subscriptions#step-1-post-the-consent-transaction">
-    Send a POST request to PayU with required parameters including key, txnid, amount, productinfo, firstname, email, phone, surl, furl, hash, and subscription details (si_details) formatted as JSON
-
-    <br />
-  </Card>
-
-  <Card title="2. Check the Response from PayU" href="https://docs.payu.in/docs/integrate-with-hosted-checkout-for-subscriptions#step-2-check-the-response-from-payu">
-    Capture and validate the response from PayU containing mihpayid, transaction ID, status, amount, payment mode, email, and other transaction details
-
-    <br />
-  </Card>
-
-  <Card title="3. Verify the Payment" href="https://docs.payu.in/docs/integrate-with-hosted-checkout-for-subscriptions#step-3-verify-the-payment">
-    Verify the payment transaction from PayU to ensure the subscription payment has been successfully processed and confirmed
-  </Card>
-
-  <br />
-</Cards>
-
-
-## Step 1: Post the Consent Transaction
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                                    |
-| :------------------------- | :----------------------------------------------------------------- |
-| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
-| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 
-<Accordion title="Request parameters" icon="fa-table">
+## Request parameters
 
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
@@ -262,7 +275,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 
       <td style={{ textAlign: "left" }}>
         This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.
-        <br/><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections: <br/>- <a href="http://docs.payu.in/docs/manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a> <br/>- <a href="http://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a>
+        <br/><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections: <br/>- <a href="ref:manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a> <br/>- <a href="ref:api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a>
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -294,7 +307,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 
       <td style={{ textAlign: "left" }}>
         This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.
-        <br/><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0</a> ) This is a JSON object and it includes a set of fields. For more information, refer to <a href="https://docs.payu.in/reference/si-parameter-json-details/">SI Parameter JSON Details</a>
+        <br/><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0</a> ) This is a JSON object and it includes a set of fields. For more information, refer to <a href="ref:https://docs.payu.in/reference/si-parameter-json-details/">SI Parameter JSON Details</a>
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -321,9 +334,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 </Table>
 `}</HTMLBlock>
 
-</Accordion>
-
-<Accordion title="Sample request" icon="fa-code">
+## Sample request
 
 ```curl
 curl -X \
@@ -336,19 +347,17 @@ For parameters address1, address2, city, state, country, product info, email, an
 
 * Characters: A to Z, a to z, 0 to 9
 * – (Minus)
-* _ (Underscore)
+* \_ (Underscore)
 * @ ()
 * / (Slash)
 * (Space)
 * . (Dot)
 
-</Accordion>
-
-## Step 2: Check the response from PayU
+## Sample response
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
 
-<Accordion title="Parsed response" icon="fa-code">
+### Parsed response
 
 ```
 Array
@@ -402,11 +411,3 @@ Array
     [error_Message] => No Error
 )
 ```
-
-</Accordion>
-
-## Step 3: Verify the Payment
-
-<Verify_Payment_Tabs />
-
-<br />
