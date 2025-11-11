@@ -140,7 +140,7 @@ The request body contains both encrypted and decrypted parameters.
 
 ### Encrypted Packet
 
-```bash
+```curl
 curl --location --request POST 'http://apitest.payu.in/loyalty-points/v1/wallet/enroll' \
 --header 'walletIdentifier: CLW' \
 --header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \
