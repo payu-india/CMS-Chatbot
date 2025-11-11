@@ -1,7 +1,7 @@
 ---
 title: Pay and Subscribe Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
