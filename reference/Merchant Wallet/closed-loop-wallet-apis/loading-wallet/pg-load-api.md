@@ -238,7 +238,7 @@ The **PG Load** API allows you to create a credit transaction entry through a pa
 
 ## Sample Request
 
-```bash
+```curl
 curl --location --request POST 'https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1' \ 
 --header 'walletIdentifier: CLW' \ 
 --header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \ 
