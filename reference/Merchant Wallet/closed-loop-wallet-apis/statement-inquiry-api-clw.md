@@ -1,5 +1,5 @@
 ---
-title: Statement Inquiry API - CLW
+title: Statement Inquiry API
 deprecated: false
 hidden: false
 metadata:
