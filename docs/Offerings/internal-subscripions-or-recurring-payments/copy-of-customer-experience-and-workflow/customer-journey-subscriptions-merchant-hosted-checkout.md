@@ -19,7 +19,7 @@ There are two common terms in Net Banking recurring:
   **Note**: Effective from 1st April 2024, mandates can be issued for a maximum duration of 40 years from the date of issuance.
 </Callout>
 
-## Registration transaction workflow
+### Registration transaction workflow
 
 The steps involved in a registration transaction (e-Mandate) are:
 
@@ -47,7 +47,7 @@ The steps involved in a registration transaction (e-Mandate) are:
 7. The customer approves the subscription details from the bank page using standard 2FA flow and gets redirected back to PayU'
 8. On receiving either of the response from the bank, the same is communicated back to the merchant on a real-time basis.
 
-### eNACH Aadhaar Authentication
+#### eNACH Aadhaar Authentication
 
 In Step 5 above, the customer is redirected to NPCI page for the Aadhaar authentication, so the additional steps involved for Aadhaar authentication are:
 
@@ -67,7 +67,7 @@ The transaction status is displayed similar to the following screenshot:
 
 <Image align="center" border={true} src="https://files.readme.io/b3f78b9-enach-aadhaar-step4.png" className="border" />
 
-## Recurring transaction workflow
+### Recurring transaction workflow
 
 The steps to perform a recurring transaction for Net Banking are:
 
@@ -94,7 +94,7 @@ You can use Recurring Payment API or bulk upload on PayU Dashboard. For more inf
 
 For the list of banks supported for the Net Banking recurring platform and their bank codes, refer to [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments) .
 
-## Transaction limits
+### Transaction limits
 
 The transaction limit for recurring payments using Net Banking is as follows:
 
