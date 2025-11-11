@@ -1,21 +1,19 @@
 ---
-title: Understanding Subscription Workflow
+title: Understanding Subscriptions Workflow
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-## Workflows
-
-### Net Banking
+## Net Banking
 
 <Image align="center" border={false} src="https://files.readme.io/40f6f7cf45747cb2cfa7980e1c8273d458d7c62d0e4c650d0f4e92a665ef1fd0-merchant_hosted_netbanking_flow.png" />
 
-### Cards integration
+## Cards integration
 
 <Image align="center" border={true} src="https://files.readme.io/74d65746a9cfe5aaf3b5842c9e5052d549d181f51ac0bf82ef4262802aadb80d-merchant_hosted_cards_subscription_flow.png" className="border" />
 
-### UPI integration
+## UPI integration
 
 <Image align="center" border={true} src="https://files.readme.io/954a67ddfaa9acedf621850dac5b7fac2976e5fb01dc178c267319192227ad0a-merchant_hosted_upi_subscription_flow.png" className="border" />
 
