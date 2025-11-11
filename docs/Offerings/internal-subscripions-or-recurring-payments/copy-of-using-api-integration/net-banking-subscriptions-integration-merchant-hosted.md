@@ -5,8 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
-# NetBanking Subscription API Integration Guide
-
 ## Step 1: Consent Transaction
 
 HTTP Method: **POST**
@@ -18,10 +16,7 @@ HTTP Method: **POST**
 | Test Environment       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
 | Production Environment | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
-<details>
-<summary><strong>📋 Request Parameters</strong></summary>
-
-### Request parameters
+<Accordion title="Request Parameters" icon="fa-table">
 
 | **Parameter**            | **Description**                                                                                                                                                          | **Value**                                                                 |
 |--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
@@ -49,10 +44,9 @@ HTTP Method: **POST**
 | **udf1 - udf5** *(optional)*     | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.<br/>`Character Limit`-255 | `Payment Preference, Shipping Method, Shipping Address1, Shipping City, Shipping Zip Code, etc.` |
 | **free_trial** *(optional)*     | This is mandatory only if the merchant wants to support free trial use cases.<br/>In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.<br/>This parameter has no significance in the case of seamless flow. |                                                                      |
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>🏦 Beneficiary Detail Fields Description</strong></summary>
+<Accordion title="Beneficiary Detail Fields Description" icon="fa-university">
 
 ### Sample object
 
@@ -76,10 +70,9 @@ HTTP Method: **POST**
 | beneficiaryIfscCode | 11-digit IFSC code of the customer bank |
 | verificationMode | The verification mode can be any of the following: <ul><li>**DEBIT_CARD** – authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow.</li><li>**AADHAAR** – authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow. If no value is provided, then it will trigger Net Banking login password flow.</li></ul> |
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>📝 Sample Request Examples</strong></summary>
+<Accordion title="Sample Request Examples" icon="fa-code">
 
 ### Sample request
 
@@ -122,10 +115,9 @@ curl -X POST "https://test.payu.in/_payment" \
 "key=JP***g&txnid=oRWSUMU4XSQBZn&amount=0.0&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&si=1&pg=ENACH&bankcode=ICICENCC&surl=https://apiplayground-response.herokuapp.com/&furl=&api_version=7&beneficiarydetail={"beneficiaryName": "Ashish Kumar","beneficiaryAccountNumber": "1211450021","beneficiaryAccountType": "SAVINGS", "beneficiaryIfscCode":"ICIC0000046", "verificationMode":"AADHAAR"} Kumar&hash=dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21"
 ```
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>📄 Sample Response</strong></summary>
+<Accordion title="Sample Response" icon="fa-reply">
 
 ### Sample response
 
@@ -194,7 +186,7 @@ Array
 )
 ```
 
-</details>
+</Accordion>
 
 ---
 
@@ -221,8 +213,7 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
 | Production Environment | [https://info.payu.in/merchant/](https://info.payu.in/merchant/) |
 | Test Environment       | [https://test.payu.in/merchant/](https://test.payu.in/merchant/) |
 
-<details>
-<summary><strong>📤 Sample Request</strong></summary>
+<Accordion title="Sample Request" icon="fa-upload">
 
 ```curl
 curl --location --request POST 'https://test.info.payu.in/merchant/postservice.php?form=2' \
@@ -231,10 +222,9 @@ curl --location --request POST 'https://test.info.payu.in/merchant/postservice.p
 'key=JF****g&hash=9f5faabedb7f5d41f519db3a223cf5318ecc0b7e669f49e0a699d4c4879e1ccaed5b99f5cd8be4f2cbddefe5272ec983abd8f38480d9c2609a29447f750a3158&command=check_action_status_txnid&var1=7043873219'
 ```
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>📥 Sample Response</strong></summary>
+<Accordion title="Sample Response" icon="fa-download">
 
 **Successful scenario**
 
@@ -276,10 +266,9 @@ Where, the **message** parameter in the response will display error code accordi
 
 Where, the **message** parameter in the response will display according to the scenario.
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>📋 Response Parameters</strong></summary>
+<Accordion title="Response Parameters" icon="fa-list">
 
 | Parameter Name                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -304,7 +293,7 @@ The **var1** variable is in JSON format and comprises of the following parameter
 | amount<br/>**mandatory for cards and UPI** | The transaction amount which will be deducted from the customer's payment instrument.<br/>**For Cards:** <ul><li>In case of Fixed billing plan, this amount should be same as billingAmount sent during Registration transaction.</li><li>In case of Adhoc billing plan, this amount should be equal to or lesser than billingAmount sent during the Registration transaction.<br/>**Note**: The amount mentioned in the Pre-Debit notification API for UPI should be same as the next execution amount. Else, the next recurring execution request will fail.</li></ul> |
 | action<br/>**optional** | Any of the following actions can be performed:<br/>• **Retrieve**: Query the status of the pre-debit notification. Only authpayuid and invoice display numbers are mandatory for this action.<br/>• **Delete**: Delete the already generated pre debit. Only authpayuid and invoice display numbers are mandatory for this action. |
 
-</details>
+</Accordion>
 
 ---
 
@@ -326,8 +315,7 @@ All successful registration transactions are charged over the recurring interfac
 | Production Environment | [https://info.payu.in/merchant/](https://info.payu.in/merchant/) |
 | Test Environment       | [https://test.payu.in/merchant/](https://test.payu.in/merchant/) |
 
-<details>
-<summary><strong>💻 Sample Request - cURL</strong></summary>
+<Accordion title="Sample Request" icon="fa-terminal">
 
 ```curl
 curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
@@ -335,12 +323,6 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "key=JP***g&command=si_transaction&var1={"authpayuid": "6611192557","invoiceDisplayNumber":"12345678910","amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "chota.bheem@gmail.com","udf2": "","udf3": "","udf4": "","udf5": ""}&hash=jbUS07Og8BToVZ"
 ```
-
-</details>
-
-<details>
-<summary><strong>🐍 Sample Request - Python</strong></summary>
-
 ```python
 import requests
 import urllib.parse
@@ -370,12 +352,6 @@ try:
 except requests.exceptions.RequestException as e:
     print(f"Error: {e}")
 ```
-
-</details>
-
-<details>
-<summary><strong>☕ Sample Request - Java</strong></summary>
-
 ```java
 import java.io.IOException;
 import java.net.URI;
@@ -435,12 +411,6 @@ public class PayUApiClient {
     }
 }
 ```
-
-</details>
-
-<details>
-<summary><strong>🟨 Sample Request - JavaScript</strong></summary>
-
 ```javascript
 // PayU API call using modern Async/Await Fetch
 async function makePayURequest() {
@@ -488,12 +458,6 @@ makePayURequest()
     .then(result => console.log("Success:", result))
     .catch(error => console.error("Failed:", error));
 ```
-
-</details>
-
-<details>
-<summary><strong>🔷 Sample Request - C#</strong></summary>
-
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -538,12 +502,6 @@ class Program
     }
 }
 ```
-
-</details>
-
-<details>
-<summary><strong>🐘 Sample Request - PHP</strong></summary>
-
 ```php
 // PayU API endpoint
 $url = "https://test.payu.in/merchant/postservice?form=2";
@@ -591,10 +549,10 @@ if ($error) {
 }
 ```
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>✅ Sample Response - Success</strong></summary>
+<Accordion title="Sample Response" icon="fa-check-circle">
+###Success Scenario
 
 Here is a sample response object returned against recurring payment API when the transaction is successfully charged.
 
@@ -623,11 +581,7 @@ Here is a sample response object returned against recurring payment API when the
   }
 }
 ```
-
-</details>
-
-<details>
-<summary><strong>❌ Sample Response - Failure Scenarios</strong></summary>
+### Failure Scenarios
 
 * Invalid hash
 
@@ -661,10 +615,9 @@ Here is a sample response object returned against recurring payment API when the
 }
 ```
 
-</details>
+</Accordion>
 
-<details>
-<summary><strong>📋 Response Parameters</strong></summary>
+<Accordion title="Response Parameters" icon="fa-list">
 
 **JSON fields description of the Details parameter**
 
@@ -704,14 +657,13 @@ To capture the final status of "pending" transaction to either "captured" or "fa
 >
 > For UPI, call the **verify_settlement** API after 10 mins from time of initiation whereas for Net Banking it can be called up to T+2 once in a day.
 
-</details>
+</Accordion>
 
 ---
 
 ## Request Parameters Reference
 
-<details>
-<summary><strong>📚 Reference Information</strong></summary>
+<Accordion title="Reference Information" icon="fa-book">
 
 | Parameter | Reference |
 |-----------|-----------|
@@ -719,5 +671,4 @@ To capture the final status of "pending" transaction to either "captured" or "fa
 | **hash** | Hash logic for this API is:<br/>sha512(key\|command\|var1\|salt)sha512 |
 | **var1** | For JSON fields description, refer to [Additional Info. Payment APIs](http://docs.payu.in/reference/addl_info-payment-apis#/) |
 
-</details>
-
+</Accordion>
