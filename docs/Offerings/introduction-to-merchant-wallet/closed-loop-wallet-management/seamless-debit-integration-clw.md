@@ -1,5 +1,5 @@
 ---
-title: Seamless Debit Integration - CLW
+title: Seamless Wallet Debit Integration - CLW
 deprecated: false
 hidden: false
 metadata:
