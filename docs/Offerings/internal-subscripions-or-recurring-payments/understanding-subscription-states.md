@@ -1,5 +1,5 @@
 ---
-title: Understanding Subscription States
+title: Understanding Subscriptions States
 deprecated: false
 hidden: true
 metadata:
