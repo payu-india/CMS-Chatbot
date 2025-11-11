@@ -1,8 +1,8 @@
 - registering-customer
 - loading-wallet
-- change-wallet-status-api
 - update-profile-api-closed-loop
 - retrieve-customer-record-api-1
 - statement-inquiry-api-clw
 - debiting-wallet
+- change-wallet-status-api
 - status-codes-clw
