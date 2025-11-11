@@ -97,7 +97,7 @@ The **Retrieve Customer Record** API allows you to fetch customer details using 
 
 ## Sample Request
 
-```
+```curl
 curl --location --request POST 'https://apitest.payu.in/loyalty- points/v1/wallet/retrieveCustRecord' \
 --header 'walletIdentifier: CLW' \
 --header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="v15rnvh1InSEWRq6EW9BCfXlxO0QI/4Sxxmdxd2f4Q0="' \
