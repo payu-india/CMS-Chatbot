@@ -1,5 +1,5 @@
 ---
-title: Copy of Customer Experience and Workflow
+title: Customer Experience and Workflow
 deprecated: false
 hidden: false
 metadata:
