@@ -35,30 +35,6 @@ PayU's Recurring Payment Integration enables merchants to set up automated subsc
   <br />
 </Cards>
 
-**API Endpoints** 🔗
-
-• **Test Environment**: `https://test.payu.in/_payment`
-• **Production Environment**: `https://secure.payu.in/_payment`
-• **Pre-Debit Notification Test**: `https://test.info.payu.in/merchant/postservice.php?form=2`
-• **Pre-Debit Notification Production**: `https://info.payu.in/merchant/postservice.php?form=2`
-
-**Essential Resources** 📚
-
-• **[Manage Recurring Payment for Cards](https://docs.payu.in/reference/manage-recurring-payment-for-cards)** - Card-specific recurring payment management
-• **[Manage UPI Recurring Transaction](https://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction)** - UPI recurring payment controls
-• **[SI Parameter JSON Details](https://docs.payu.in/reference/si-parameter-json-details)** - Subscription parameter specifications
-• **[Bank Codes - Recurring Payments](https://docs.payu.in/docs/bank-codes-recurring-payments)** - Supported bank codes for recurring transactions
-• **[Generate Hash](https://docs.payu.in/docs/generate-hash-merchant-hosted)** - Security hash generation guide
-• **[RBI Guidelines](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)** - Regulatory compliance requirements
-
-**Key Requirements** ⚠️
-
-• **Mandatory Parameters**: key, txnid, amount, productinfo, customer details, hash, si=1, si_details JSON
-• **Beneficiary Details**: Required for Net Banking including account number, IFSC code, verification mode
-• **RBI Compliance**: si_details must follow RBI recurring payment guidelines
-• **Hash Security**: SHA512 encryption for all transaction security
-
-This integration covers the complete e-NACH and recurring payment workflow for various payment instruments including Net Banking, UPI, and Cards.
 
 ## Step 1: Consent Transaction
 
