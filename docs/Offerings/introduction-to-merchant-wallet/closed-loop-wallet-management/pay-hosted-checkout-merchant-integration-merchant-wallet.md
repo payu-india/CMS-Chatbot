@@ -213,6 +213,239 @@ curl --location --request POST 'https://test.payu.in/_payment' \
 --data-urlencode 'walleturn=70000000008' \
 --data-urlencode 'hash=6e640b...'
 ```
+=== "Python"
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+}
+
+data = {
+    'key': 'KOEfPI',
+    'txnid': 'RAM1234',
+    'amount': '41.00',
+    'productinfo': 'iPhone',
+    'firstname': 'Ravi',
+    'email': 'example@gmail.com',
+    'phone': '919988776655',
+    'ws_online_response': 'https://merchant.com/success',
+    'ws_failure_response': 'https://merchant.com/failure',
+    'pg': 'CLW',
+    'walleturn': '70000000008',
+    'hash': '6e640b...'
+}
+
+response = requests.post(url, headers=headers, data=data)
+
+print(f"Status Code: {response.status_code}")
+print(f"Response: {response.text}")
+```
+
+=== "C#"
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        string url = "https://test.payu.in/_payment";
+        
+        using (HttpClient client = new HttpClient())
+        {
+            var formParams = new List<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>("key", "KOEfPI"),
+                new KeyValuePair<string, string>("txnid", "RAM1234"),
+                new KeyValuePair<string, string>("amount", "41.00"),
+                new KeyValuePair<string, string>("productinfo", "iPhone"),
+                new KeyValuePair<string, string>("firstname", "Ravi"),
+                new KeyValuePair<string, string>("email", "example@gmail.com"),
+                new KeyValuePair<string, string>("phone", "919988776655"),
+                new KeyValuePair<string, string>("ws_online_response", "https://merchant.com/success"),
+                new KeyValuePair<string, string>("ws_failure_response", "https://merchant.com/failure"),
+                new KeyValuePair<string, string>("pg", "CLW"),
+                new KeyValuePair<string, string>("walleturn", "70000000008"),
+                new KeyValuePair<string, string>("hash", "6e640b...")
+            };
+
+            FormUrlEncodedContent content = new FormUrlEncodedContent(formParams);
+
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+    }
+}
+```
+
+=== "JavaScript"
+```javascript
+async function makePaymentRequest() {
+    const url = 'https://test.payu.in/_payment';
+    
+    const formData = new URLSearchParams();
+    formData.append('key', 'KOEfPI');
+    formData.append('txnid', 'RAM1234');
+    formData.append('amount', '41.00');
+    formData.append('productinfo', 'iPhone');
+    formData.append('firstname', 'Ravi');
+    formData.append('email', 'example@gmail.com');
+    formData.append('phone', '919988776655');
+    formData.append('ws_online_response', 'https://merchant.com/success');
+    formData.append('ws_failure_response', 'https://merchant.com/failure');
+    formData.append('pg', 'CLW');
+    formData.append('walleturn', '70000000008');
+    formData.append('hash', '6e640b...');
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData
+        });
+
+        const responseText = await response.text();
+        
+        console.log(`Status: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+        
+        return responseText;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+}
+
+// Call the function
+makePaymentRequest();
+```
+
+=== "Java"
+```java
+import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class PaymentRequest {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        String url = "https://test.payu.in/_payment";
+        
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("key", "KOEfPI");
+        parameters.put("txnid", "RAM1234");
+        parameters.put("amount", "41.00");
+        parameters.put("productinfo", "iPhone");
+        parameters.put("firstname", "Ravi");
+        parameters.put("email", "example@gmail.com");
+        parameters.put("phone", "919988776655");
+        parameters.put("ws_online_response", "https://merchant.com/success");
+        parameters.put("ws_failure_response", "https://merchant.com/failure");
+        parameters.put("pg", "CLW");
+        parameters.put("walleturn", "70000000008");
+        parameters.put("hash", "6e640b...");
+
+        String form = parameters.entrySet()
+            .stream()
+            .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" + 
+                         URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
+            .collect(Collectors.joining("&"));
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(form))
+            .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println("Status Code: " + response.statusCode());
+        System.out.println("Response: " + response.body());
+    }
+}
+```
+
+=== "PHP"
+```php
+<?php
+
+$url = 'https://test.payu.in/_payment';
+
+$data = array(
+    'key' => 'KOEfPI',
+    'txnid' => 'RAM1234',
+    'amount' => '41.00',
+    'productinfo' => 'iPhone',
+    'firstname' => 'Ravi',
+    'email' => 'example@gmail.com',
+    'phone' => '919988776655',
+    'ws_online_response' => 'https://merchant.com/success',
+    'ws_failure_response' => 'https://merchant.com/failure',
+    'pg' => 'CLW',
+    'walleturn' => '70000000008',
+    'hash' => '6e640b...'
+);
+
+$options = array(
+    'http' => array(
+        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method' => 'POST',
+        'content' => http_build_query($data)
+    )
+);
+
+$context = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+
+if ($result === FALSE) {
+    echo "Error occurred while making the request\n";
+} else {
+    echo "Response: " . $result . "\n";
+}
+
+// Alternative using cURL
+/*
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => $url,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => http_build_query($data),
+    CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/x-www-form-urlencoded'
+    ),
+));
+
+$response = curl_exec($curl);
+$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+curl_close($curl);
+
+echo "Status Code: " . $httpCode . "\n";
+echo "Response: " . $response . "\n";
+*/
+
+?>
+```
 
 ### Sample Response
 
