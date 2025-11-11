@@ -1,7 +1,7 @@
 ---
 title: API Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Recurring Payments Using API Integration
   description: >-
