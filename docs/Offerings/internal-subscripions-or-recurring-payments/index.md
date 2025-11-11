@@ -50,6 +50,10 @@ Standing Instructions allows your customers' banks to automatically debit predet
 * Loan EMIs
 * Membership fees
 
+### Some scenario Examples
+
+* If Ashish had subscribed for Magazine subscriptions
+
 ## Prerequisites
 
 Before implementing subscriptions, ensure you have:
