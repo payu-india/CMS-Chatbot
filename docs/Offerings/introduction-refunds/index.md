@@ -61,15 +61,6 @@ To Initiate a refund, you require the following information:
 * The customer must have made the payment within a specific time frame or using a PayU product.
 * You have the transaction ID, date, and transaction amount.
 
-## Understanding refunds
-
-### Types of refunds
-
-A refund can either be full or partial:
-
-* **Full refund**: 100% of the amount paid is returned to your customer.
-* **Partial refund** – The amount you received will be returned to the customer. Multiple partial refunds can be made until the full amount has been refunded.
-
 ## How to get a refund from various PayU India products?
 
 PayU offers refunds for payments made using PayU India products: PayU Offers, PayU Partners, Split Settlements, etc. Generally, you need to initiate a refund request using any of the following methods:
