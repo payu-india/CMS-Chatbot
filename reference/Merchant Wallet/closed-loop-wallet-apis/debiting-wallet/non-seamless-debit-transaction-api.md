@@ -128,29 +128,29 @@ key|txnId|amount|productinfo|firstName|email|||||||||||||{salt}
 
 ## Response Parameters
 
-| Parameter          | Description                                        | Example                                       |
-| ------------------ | -------------------------------------------------- | --------------------------------------------- |
-| mihpayid           | Unique PayU-generated transaction reference number | 1735903830180094                              |
-| mode               | Payment method used                                | CLW                                           |
-| status             | Transaction status (success, failure, pending)     | success                                       |
-| key                | Merchant's key (echoed back)                       | KOEfPI                                        |
-| txnid              | Transaction ID (echoed back)                       | RAM1234                                       |
-| amount             | Transaction amount                                 | 41.00                                         |
-| net\_amount\_debit | Net amount debited from the wallet                 | 41.00                                         |
-| productinfo        | Product information (echoed back)                  | iPhone                                        |
-| firstname          | Customer's first name                              | Ravi                                          |
-| lastname           | Customer's last name                               | Kumar                                         |
-| email              | Customer's email                                   | [example@gmail.com](mailto:example@gmail.com) |
-| phone              | Customer's phone number                            | 919988776655                                  |
-| addedon            | Transaction date and time                          | 2025-01-13 18:24:06                           |
-| hash               | Response hash for verification                     | abc123...                                     |
-| PG\_TYPE           | Payment gateway type                               | CLW                                           |
-| error              | Error message (if transaction failed)              | Insufficient balance                          |
-| error\_Message     | Detailed error description                         | Wallet balance is insufficient                |
+| Parameter        | Description                                        | Example                                       |
+| ---------------- | -------------------------------------------------- | --------------------------------------------- |
+| mihpayid         | Unique PayU-generated transaction reference number | 1735903830180094                              |
+| mode             | Payment method used                                | CLW                                           |
+| status           | Transaction status (success, failure, pending)     | success                                       |
+| key              | Merchant's key (echoed back)                       | KOEfPI                                        |
+| txnid            | Transaction ID (echoed back)                       | RAM1234                                       |
+| amount           | Transaction amount                                 | 41.00                                         |
+| net_amount_debit | Net amount debited from the wallet                 | 41.00                                         |
+| productinfo      | Product information (echoed back)                  | iPhone                                        |
+| firstname        | Customer's first name                              | Ravi                                          |
+| lastname         | Customer's last name                               | Kumar                                         |
+| email            | Customer's email                                   | [example@gmail.com](mailto:example@gmail.com) |
+| phone            | Customer's phone number                            | 919988776655                                  |
+| addedon          | Transaction date and time                          | 2025-01-13 18:24:06                           |
+| hash             | Response hash for verification                     | abc123...                                     |
+| PG_TYPE          | Payment gateway type                               | CLW                                           |
+| error            | Error message (if transaction failed)              | Insufficient balance                          |
+| error_Message    | Detailed error description                         | Wallet balance is insufficient                |
 
 ## Sample Request
 
-```bash
+```curl
 curl --location --request POST 'https://test.payu.in/_payment' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'key=KOEfPI' \
