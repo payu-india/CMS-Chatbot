@@ -1,7 +1,7 @@
 ---
 title: Customer Experience and Workflow
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Recurring Payments Customer Experience Workflow
   description: >-
