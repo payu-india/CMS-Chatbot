@@ -36,16 +36,39 @@ next:
 ---
 This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration.
 
+<Cards columns={3}>
+  <Card title="1. Post the Consent Transaction" href="https://docs.payu.in/docs/integrate-with-hosted-checkout-for-subscriptions#step-1-post-the-consent-transaction">
+    Send a POST request to PayU with required parameters including key, txnid, amount, productinfo, firstname, email, phone, surl, furl, hash, and subscription details (si_details) formatted as JSON
+
+    <br />
+  </Card>
+
+  <Card title="2. Check the Response from PayU" href="https://docs.payu.in/docs/integrate-with-hosted-checkout-for-subscriptions#step-2-check-the-response-from-payu">
+    Capture and validate the response from PayU containing mihpayid, transaction ID, status, amount, payment mode, email, and other transaction details
+
+    <br />
+  </Card>
+
+  <Card title="3. Verify the Payment" href="https://docs.payu.in/docs/integrate-with-hosted-checkout-for-subscriptions#step-3-verify-the-payment">
+    Verify the payment transaction from PayU to ensure the subscription payment has been successfully processed and confirmed
+  </Card>
+
+  <br />
+</Cards>
+
+
+## Step 1: Post the Consent Transaction
+
 HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                                     |
-| :------------------------- | :------------------------------------------------------------------ |
-| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
-| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+|                            |                                                                    |
+| :------------------------- | :----------------------------------------------------------------- |
+| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
 
-## Request parameters
+<Accordion title="Request parameters" icon="fa-table">
 
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
@@ -298,7 +321,9 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 </Table>
 `}</HTMLBlock>
 
-## Sample request
+</Accordion>
+
+<Accordion title="Sample request" icon="fa-code">
 
 ```curl
 curl -X \
@@ -317,11 +342,13 @@ For parameters address1, address2, city, state, country, product info, email, an
 * (Space)
 * . (Dot)
 
-## Sample response
+</Accordion>
+
+## Step 2: Check the response from PayU
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
 
-### Parsed response
+<Accordion title="Parsed response" icon="fa-code">
 
 ```
 Array
@@ -375,3 +402,11 @@ Array
     [error_Message] => No Error
 )
 ```
+
+</Accordion>
+
+## Step 3: Verify the Payment
+
+<Verify_Payment_Tabs />
+
+<br />
