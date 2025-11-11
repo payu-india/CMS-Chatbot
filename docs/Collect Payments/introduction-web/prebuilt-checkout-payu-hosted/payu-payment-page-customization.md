@@ -46,6 +46,7 @@ You can append the parameter names in your transaction request to opt for all or
   | Wallet      | Airtel Money, YPay, ITZ, Cash Card, etc.  |
   | UPI         | GooglePay, PhonePe, UPI, etc.             |
 
+<br/>
   To enforce complete categories, use the values as described in the following table:
 
   | Category    | Value of enforced\_payment |
