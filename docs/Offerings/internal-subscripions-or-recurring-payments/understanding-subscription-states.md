@@ -1,7 +1,7 @@
 ---
 title: Understanding Subscription States
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
