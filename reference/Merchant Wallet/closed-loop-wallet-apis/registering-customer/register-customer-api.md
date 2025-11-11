@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-The Register Customer API allows you to register a new customer and facilitates the creation of a digital wallet. This API performs onboarding checks when opted by the issuer.
+The **Register Customer** API allows you to register a new customer and facilitates the creation of a digital wallet. This API performs onboarding checks when opted by the issuer.
 
 ## Environment
 
