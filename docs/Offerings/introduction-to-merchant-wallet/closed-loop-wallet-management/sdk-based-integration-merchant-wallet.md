@@ -1,5 +1,5 @@
 ---
-title: SDK-Based Integration
+title: SDK-Based Checkout Integration
 excerpt: ''
 deprecated: false
 hidden: false
@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-PayU supports merchant wallet integrations with following SDKs:
+PayU supports merchant wallet integrations on the following SDK platforms:
 
 * [Android SDK](https://docs.payu.in/docs/sdk-based-integration-merchant-wallet?isFramePreview=true#android-sdk)
 * [iOS SDK](https://docs.payu.in/docs/sdk-based-integration-merchant-wallet?isFramePreview=true#ios-sdk)
