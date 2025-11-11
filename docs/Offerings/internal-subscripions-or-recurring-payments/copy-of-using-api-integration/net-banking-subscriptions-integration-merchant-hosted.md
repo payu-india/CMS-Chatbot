@@ -5,6 +5,61 @@ hidden: true
 metadata:
   robots: index
 ---
+PayU's Recurring Payment Integration enables merchants to set up automated subscription billing through various payment methods including Net Banking (e-NACH), UPI, and Cards. This comprehensive guide walks you through the complete workflow from capturing initial customer consent and mandate registration to executing seamless recurring transactions without additional customer intervention. The integration ensures full compliance with RBI guidelines while providing essential features like pre-debit notifications and robust payment verification processes.
+
+<Cards columns={2}>
+  <Card title="1. Consent Transaction" href="https://docs.payu.in/docs/subscription-for-netbanking#consent-transaction">
+    Initiate the recurring payment process by capturing user consent for the mandate with required parameters including key, txnid, amount, productinfo, customer details, and si\_details JSON object
+
+    <br />
+  </Card>
+
+  <Card title="2. Verify the Payment" href="https://docs.payu.in/docs/subscription-for-netbanking#verify-the-payment">
+    Ensure the initial consent transaction or registration is successfully processed before proceeding with recurring charges
+
+    <br />
+  </Card>
+
+  <Card title="3. Pre-Debit Notification" href="https://docs.payu.in/docs/subscription-for-netbanking#pre-debit-notification">
+    Send advance notifications to customers about upcoming recurring payments, essential for UPI and Cards per RBI guidelines with authpayuid and debitDate parameters
+
+    <br />
+  </Card>
+
+  <Card title="4. Recurring Payment Transaction" href="https://docs.payu.in/docs/subscription-for-netbanking#recurring-payment-transaction">
+    Execute recurring payments automatically without additional customer involvement using server-to-server integration with authpayuid and invoiceDisplayNumber
+
+    <br />
+  </Card>
+
+  <br />
+</Cards>
+
+**API Endpoints** 🔗
+
+• **Test Environment**: `https://test.payu.in/_payment`
+• **Production Environment**: `https://secure.payu.in/_payment`
+• **Pre-Debit Notification Test**: `https://test.info.payu.in/merchant/postservice.php?form=2`
+• **Pre-Debit Notification Production**: `https://info.payu.in/merchant/postservice.php?form=2`
+
+**Essential Resources** 📚
+
+• **[Manage Recurring Payment for Cards](https://docs.payu.in/reference/manage-recurring-payment-for-cards)** - Card-specific recurring payment management
+• **[Manage UPI Recurring Transaction](https://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction)** - UPI recurring payment controls
+• **[SI Parameter JSON Details](https://docs.payu.in/reference/si-parameter-json-details)** - Subscription parameter specifications
+• **[Bank Codes - Recurring Payments](https://docs.payu.in/docs/bank-codes-recurring-payments)** - Supported bank codes for recurring transactions
+• **[Generate Hash](https://docs.payu.in/docs/generate-hash-merchant-hosted)** - Security hash generation guide
+• **[RBI Guidelines](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)** - Regulatory compliance requirements
+
+**Key Requirements** ⚠️
+
+• **Mandatory Parameters**: key, txnid, amount, productinfo, customer details, hash, si=1, si_details JSON
+• **Beneficiary Details**: Required for Net Banking including account number, IFSC code, verification mode
+• **RBI Compliance**: si_details must follow RBI recurring payment guidelines
+• **Hash Security**: SHA512 encryption for all transaction security
+
+This integration covers the complete e-NACH and recurring payment workflow for various payment instruments including Net Banking, UPI, and Cards.
+
 ## Step 1: Consent Transaction
 
 HTTP Method: **POST**
