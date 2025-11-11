@@ -10,7 +10,7 @@ metadata:
 This section describes steps to integrate Subscriptions using the PayU Hosted Checkout integration.
 
 <Callout icon="📘" theme="info">
-  **Notes**: The PayU Hosted or non-seamless integration for Subscriptions involves only the **Collect Payment** API (**_payment**). 
+  **Note**: The PayU Hosted or non-seamless integration for Subscriptions involves only the **Collect Payment** API (**_payment**).
 </Callout>
 
 ## Step 1: Post the Consent Transaction
@@ -28,252 +28,252 @@ HTTP Method: **POST**
   In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
   <HTMLBlock>{`
-  <style>
-  /* Target only the second column in the table */
-  .markdown-body table td:nth-child(2) {
-    word-break: break-word !important;
-  }
+    <style>
+    /* Target only the second column in the table */
+    .markdown-body table td:nth-child(2) {
+      word-break: break-word !important;
+    }
 
-  /* Keep the first column from breaking unnecessarily */
-  .markdown-body table td:nth-child(1) {
-    word-break: normal;
-    white-space: nowrap;
-  }
-  </style>
-  <Table align={["left","left","left"]}>
-    <thead>
-      <tr>
-        <th style={{ textAlign: "left" }}>
-          Parameter
-        </th>
+    /* Keep the first column from breaking unnecessarily */
+    .markdown-body table td:nth-child(1) {
+      word-break: normal;
+      white-space: nowrap;
+    }
+    </style>
+    <Table align={["left","left","left"]}>
+      <thead>
+        <tr>
+          <th style={{ textAlign: "left" }}>
+            Parameter
+          </th>
 
-        <th style={{ textAlign: "left" }}>
-          Description
-        </th>
+          <th style={{ textAlign: "left" }}>
+            Description
+          </th>
 
-        <th style={{ textAlign: "left" }}>
-          Example
-        </th>
-      </tr>
-    </thead>
+          <th style={{ textAlign: "left" }}>
+            Example
+          </th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          key <br/>
-          <code>mandatory</code>
-        </td>
+      <tbody>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            key <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          <code>varchar</code> This parameter is the unique Merchant Key provided by PayU for your merchant account.
-        </td>
+          <td style={{ textAlign: "left" }}>
+            <code>varchar</code> This parameter is the unique Merchant Key provided by PayU for your merchant account.
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          Your Test Key
-        </td>
-      </tr>
+          <td style={{ textAlign: "left" }}>
+            Your Test Key
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          txnid <br/>
-          <code>mandatory</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            txnid <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          <code>varchar</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction. <code>Character limit</code>: 25 <br/><strong>Note</strong>: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
-        </td>
+          <td style={{ textAlign: "left" }}>
+            <code>varchar</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction. <code>Character limit</code>: 25 <br/><strong>Note</strong>: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          fd3e847h2
-        </td>
-      </tr>
+          <td style={{ textAlign: "left" }}>
+            fd3e847h2
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          amount <br/>
-          <code>mandatory</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            amount <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          <code>float</code> This parameter should contain the payment amount of the particular transaction.
-          <br/><strong>Note</strong>: Type-cast the amount to float type Depending upon the merchant use case, this value will vary. <br/>- It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case. <br/>- In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
-        </td>
+          <td style={{ textAlign: "left" }}>
+            <code>float</code> This parameter should contain the payment amount of the particular transaction.
+            <br/><strong>Note</strong>: Type-cast the amount to float type Depending upon the merchant use case, this value will vary. <br/>- It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case. <br/>- In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          1000
-        </td>
-      </tr>
+          <td style={{ textAlign: "left" }}>
+            1000
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          productinfo <br/>
-          <code>mandatory</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            productinfo <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          <code>varchar</code> This parameter should contain a brief product description. It should be a string describing the product. <code>Character limit</code>: 100
-        </td>
+          <td style={{ textAlign: "left" }}>
+            <code>varchar</code> This parameter should contain a brief product description. It should be a string describing the product. <code>Character limit</code>: 100
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          Time Magazine Subscription
-        </td>
-      </tr>
+          <td style={{ textAlign: "left" }}>
+            Time Magazine Subscription
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          firstname <br/>
-          <code>mandatory</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            firstname <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          <code>varchar</code> Must contain the first name of the customer. <code>Character limit</code>: 60
-        </td>
+          <td style={{ textAlign: "left" }}>
+            <code>varchar</code> Must contain the first name of the customer. <code>Character limit</code>: 60
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          Ashish
-        </td>
-      </tr>
+          <td style={{ textAlign: "left" }}>
+            Ashish
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          email <br/>
-          <code>mandatory</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            email <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          <code>varchar</code> Must contain the email of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. <code>Character limit</code>: 50
-        </td>
+          <td style={{ textAlign: "left" }}>
+            <code>varchar</code> Must contain the email of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. <code>Character limit</code>: 50
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          <a href="mailto:Ashish@test.com">Ashish@test.com</a>
-        </td>
-      </tr>
+          <td style={{ textAlign: "left" }}>
+            <a href="mailto:Ashish@test.com">Ashish@test.com</a>
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          phone <br/>
-          <code>mandatory</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            phone <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          <code>varchar</code> Must contain the phone number of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. <code>Character limit</code>: 50
-        </td>
+          <td style={{ textAlign: "left" }}>
+            <code>varchar</code> Must contain the phone number of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. <code>Character limit</code>: 50
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          9843176540
-        </td>
-      </tr>
+          <td style={{ textAlign: "left" }}>
+            9843176540
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          surl <br/>
-          <code>mandatory</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            surl <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          surL is the acronym for Success URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is successful.
-        </td>
+          <td style={{ textAlign: "left" }}>
+            surL is the acronym for Success URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is successful.
+          </td>
 
-        <td style={{ textAlign: "left" }}>
+          <td style={{ textAlign: "left" }}>
 
-        </td>
-      </tr>
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          furl <br/>
-          <code>mandatory</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            furl <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          furl is the acronym for for Failure URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is failed.
-        </td>
+          <td style={{ textAlign: "left" }}>
+            furl is the acronym for for Failure URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is failed.
+          </td>
 
-        <td style={{ textAlign: "left" }}>
+          <td style={{ textAlign: "left" }}>
 
-        </td>
-      </tr>
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          api_version <br/>
-          <code>mandatory</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            api_version <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          This parameter must always needs to be passed as 7.
-        </td>
+          <td style={{ textAlign: "left" }}>
+            This parameter must always needs to be passed as 7.
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          7
-        </td>
-      </tr>
+          <td style={{ textAlign: "left" }}>
+            7
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          si <br/>
-          <code>mandatory</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            si <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.
-          <br/><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections: <br/>- <a href="http://docs.payu.in/docs/manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a> <br/>- <a href="http://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a>
-        </td>
+          <td style={{ textAlign: "left" }}>
+            This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.
+            <br/><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections: <br/>- <a href="http://docs.payu.in/docs/manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a> <br/>- <a href="http://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          1
-        </td>
-      </tr>
+          <td style={{ textAlign: "left" }}>
+            1
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          free_trial <br/>
-          <code>optional</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            free_trial <br/>
+            <code>optional</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          This is mandatory only if the merchant wants to support free trial use cases.
-          In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.
-        </td>
+          <td style={{ textAlign: "left" }}>
+            This is mandatory only if the merchant wants to support free trial use cases.
+            In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.
+          </td>
 
-        <td style={{ textAlign: "left" }}>
+          <td style={{ textAlign: "left" }}>
 
-        </td>
-      </tr>
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          si_details <br/>
-          <code>mandatory</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            si_details <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.
-          <br/><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0</a> ) This is a JSON object and it includes a set of fields. For more information, refer to <a href="https://docs.payu.in/reference/si-parameter-json-details/">SI Parameter JSON Details</a>
-        </td>
+          <td style={{ textAlign: "left" }}>
+            This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.
+            <br/><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0</a> ) This is a JSON object and it includes a set of fields. For more information, refer to <a href="https://docs.payu.in/reference/si-parameter-json-details/">SI Parameter JSON Details</a>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          {"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"}
-        </td>
-      </tr>
+          <td style={{ textAlign: "left" }}>
+            {"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"}
+          </td>
+        </tr>
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          hash <br/>
-          <code>mandatory</code>
-        </td>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            hash <br/>
+            <code>mandatory</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions. It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt. In the case of registration transaction. The formula is used to calculate this hash is similar to the following:<br/>
-          <code>HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)</code>
-        </td>
+          <td style={{ textAlign: "left" }}>
+            Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions. It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt. In the case of registration transaction. The formula is used to calculate this hash is similar to the following:<br/>
+            <code>HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)</code>
+          </td>
 
-        <td style={{ textAlign: "left" }}>
-          txnid
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+          <td style={{ textAlign: "left" }}>
+            txnid
+          </td>
+        </tr>
+      </tbody>
+    </Table>
   `}</HTMLBlock>
 </Accordion>
 
