@@ -1,5 +1,5 @@
 ---
-title: Net Banking Subscriptions Integration - Merchant Hosted
+title: Net Banking Integration - Merchant Hosted
 deprecated: false
 hidden: true
 metadata:
