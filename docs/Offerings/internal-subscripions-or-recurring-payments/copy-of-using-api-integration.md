@@ -1,5 +1,5 @@
 ---
-title: Copy of Using API Integration
+title: API Integration
 deprecated: false
 hidden: false
 metadata:
