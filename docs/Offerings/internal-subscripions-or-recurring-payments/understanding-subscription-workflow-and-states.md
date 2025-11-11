@@ -17,6 +17,3 @@ metadata:
 
 <Image align="center" border={true} src="https://files.readme.io/954a67ddfaa9acedf621850dac5b7fac2976e5fb01dc178c267319192227ad0a-merchant_hosted_upi_subscription_flow.png" className="border" />
 
-### Pay and Subscribe
-
-<Image align="center" border={false} src="https://files.readme.io/781dccee46dda6ac6249ccdd0b2abc96432b8007ba0533c649636a87cbeeccbb-merchant_hosted_pay_and_subscribe_flow.png" />
