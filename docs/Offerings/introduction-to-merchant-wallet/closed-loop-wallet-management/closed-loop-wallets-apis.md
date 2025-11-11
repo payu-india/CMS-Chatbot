@@ -1,5 +1,5 @@
 ---
-title: Closed-Loop Wallets APIs
+title: APIs to Integrate
 deprecated: false
 hidden: false
 metadata:
