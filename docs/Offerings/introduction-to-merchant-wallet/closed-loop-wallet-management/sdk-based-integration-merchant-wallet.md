@@ -1,5 +1,5 @@
 ---
-title: SDK-Based Checkout Integration
+title: SDK-Based Wallet Checkout Integration
 excerpt: ''
 deprecated: false
 hidden: false
