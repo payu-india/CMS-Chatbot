@@ -1,5 +1,5 @@
 ---
-title: Customer Journey - Subscriptions > PayU Hosted Checkout
+title: Customer Journey for PayU Hosted Checkout
 deprecated: false
 hidden: false
 metadata:
