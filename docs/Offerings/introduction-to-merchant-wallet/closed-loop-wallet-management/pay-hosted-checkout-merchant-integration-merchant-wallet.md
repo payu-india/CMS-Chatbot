@@ -1,5 +1,5 @@
 ---
-title: Wallet Checkout Integration
+title: PayU Hosted Wallet Checkout Integration
 excerpt: ''
 deprecated: false
 hidden: false
