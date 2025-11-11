@@ -1,5 +1,5 @@
 ---
-title: 'Cards Subscription Integration - Merchant Hosted Checkout '
+title: 'Cards Subscriptions Integration - Merchant Hosted Checkout '
 deprecated: false
 hidden: true
 metadata:
@@ -7,4 +7,4 @@ metadata:
 ---
 Includes the following:
 
-Step 1: 
+Step 1:
