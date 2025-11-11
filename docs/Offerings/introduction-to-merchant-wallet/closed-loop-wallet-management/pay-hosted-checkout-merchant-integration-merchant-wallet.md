@@ -213,7 +213,6 @@ curl --location --request POST 'https://test.payu.in/_payment' \
 --data-urlencode 'walleturn=70000000008' \
 --data-urlencode 'hash=6e640b...'
 ```
-=== "Python"
 ```python
 import requests
 
@@ -243,8 +242,6 @@ response = requests.post(url, headers=headers, data=data)
 print(f"Status Code: {response.status_code}")
 print(f"Response: {response.text}")
 ```
-
-=== "C#"
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -286,8 +283,6 @@ class Program
     }
 }
 ```
-
-=== "JavaScript"
 ```javascript
 async function makePaymentRequest() {
     const url = 'https://test.payu.in/_payment';
@@ -330,8 +325,6 @@ async function makePaymentRequest() {
 // Call the function
 makePaymentRequest();
 ```
-
-=== "Java"
 ```java
 import java.io.IOException;
 import java.net.URI;
@@ -382,8 +375,6 @@ public class PaymentRequest {
     }
 }
 ```
-
-=== "PHP"
 ```php
 <?php
 
