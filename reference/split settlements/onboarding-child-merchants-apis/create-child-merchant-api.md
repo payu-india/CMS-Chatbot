@@ -103,7 +103,7 @@ HTTP Method: **POST**
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p> The business entity ID of the merchant. The business entity ID and corresponding business entity is listed in the <a href="#business-entity-mapping">Business Entity Mapping</a> table of this section.</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>P</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>2</p>
 </td>
 </tr>
 <tr>
@@ -170,17 +170,25 @@ HTTP Method: **POST**
 
 The business entity ID (**business_entity_id**) and corresponding business entity mapping are:
 
-| Entity Code | Business Entity Types                               |
-| :---------- | :-------------------------------------------------- |
-| A           | Society                                             |
-| P           | Individual, Sole Proprietorship                     |
-| F           | Partnership, LLP                                    |
-| C           | Private Limited, Public Limited, One Person Company |
-| T           | Trust                                               |
-| G           | Government                                          |
-| H           | Hindu Undivided Family                              |
-| L           | Local Authority                                     |
-| J           | Artificial Juridical Person                         |
+| ID | Entity Type                 |
+| -- | --------------------------- |
+| 1  | Association of Persons      |
+| 2  | Sole Proprietorship         |
+| 3  | Partnership                 |
+| 4  | Private Limited             |
+| 5  | Public Limited              |
+| 6  | LLP                         |
+| 7  | Trust                       |
+| 8  | Society                     |
+| 9  | Government                  |
+| 10 | Hindu Undivided Family      |
+| 11 | Local Authority             |
+| 12 | Non Individual              |
+| 13 | Education                   |
+| 14 | Individual                  |
+| 15 | NGO                         |
+| 16 | One Person Company          |
+| 17 | Artificial Juridical Person |
 
 ### Sample request
 
