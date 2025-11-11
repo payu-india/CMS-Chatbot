@@ -1,7 +1,9 @@
 ---
-title: Pay and Subscribe Integration
+title: Pay and Subscribe Integration - PayU Hosted Integration
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
