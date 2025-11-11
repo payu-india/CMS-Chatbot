@@ -17,6 +17,13 @@ metadata:
 ---
 This part of the document includes the sections for each payment mode that provides detailed explanation to integrate Subscriptions.
 
+* [Net Banking Integration](https://docs.payu.in/docs/net-banking-subscriptions-integration-merchant-hosted)
+* [Cards Integration](https://docs.payu.in/docs/cards-subscription-integration-merchant-hosted-checkout)
+* [UPI Integration](https://docs.payu.in/docs/upi-subscriptions-integration-merchant-hosted-checkout)
+* [Pay and Subscribe Integration](https://docs.payu.in/docs/pay-and-subscribe-integration)
+
+## Subscription APIs
+
 The following APIs are used to integrate subscription for Net Banking, Cards, and UPI. These APIs are mandatory for any merchant to go live and comply with all the standing instruction guidelines:
 
 * **_payment** API: The Payment Consent Transaction using _payment API  is used. For integrating using various integrations, refer to:
