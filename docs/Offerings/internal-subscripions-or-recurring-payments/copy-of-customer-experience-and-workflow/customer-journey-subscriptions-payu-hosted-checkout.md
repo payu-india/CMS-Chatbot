@@ -1,10 +1,12 @@
 ---
-title: Customer Journey - Subscriptions > PayU Hosted Checkout
+title: Customer Journey - Subscriptions > Merchant Hosted Checkout
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
+<br />
+
 ## Net Banking
 
 Net Banking recurring like cards are processed seamlessly without the customer’s intervention and any 2FA.
