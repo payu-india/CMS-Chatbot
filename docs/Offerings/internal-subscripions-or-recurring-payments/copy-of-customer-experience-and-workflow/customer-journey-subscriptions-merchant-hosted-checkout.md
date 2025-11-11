@@ -1,11 +1,11 @@
 ---
-title: Customer Journey - Subscriptions > Merchant Hosted Checkout
+title: Customer Journey for Merchant Hosted Checkout
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-<br />
+This section describes the customer journey for Subscriptions with Merchant Hosted Checkout (Seamless) integration.
 
 ## Net Banking
 
