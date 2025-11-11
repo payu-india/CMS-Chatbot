@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU's Card Subscription Integration using the Merchant-Hosted Checkout method enables businesses to set up automated recurring payments through credit and debit cards with enhanced control over the payment flow. This integration guide covers the complete process from capturing initial customer consent and mandate registration to executing seamless recurring transactions without requiring additional 2-factor authentication. The solution ensures full RBI compliance while providing essential features like pre-debit notifications, secure tokenization, and robust payment verification for reliable subscription billing. This integration enables seamless recurring payments through credit and debit cards with full RBI compliance and robust security measures.
+PayU's Card Subscription Integration using the Merchant-Hosted Checkout method enables businesses to set up automated recurring payments through credit and debit cards with enhanced control over the payment flow. This section covers the complete process from capturing initial customer consent and mandate registration to executing seamless recurring transactions without requiring additional 2-factor authentication. 
 
 
 <Cards columns={2}>
