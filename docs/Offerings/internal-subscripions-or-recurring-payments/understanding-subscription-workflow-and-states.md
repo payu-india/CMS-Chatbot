@@ -9,7 +9,7 @@ metadata:
 
 ### General 
 
-<br />
+\<Need to include flow diagram>
 
 ### Pay and Subscribe
 
