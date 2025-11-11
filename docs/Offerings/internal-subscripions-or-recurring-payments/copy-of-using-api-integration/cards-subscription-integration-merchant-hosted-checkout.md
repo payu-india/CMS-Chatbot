@@ -5,7 +5,37 @@ hidden: true
 metadata:
   robots: index
 ---
-<br />
+PayU's Card Subscription Integration using the Merchant-Hosted Checkout method enables businesses to set up automated recurring payments through credit and debit cards with enhanced control over the payment flow. This integration guide covers the complete process from capturing initial customer consent and mandate registration to executing seamless recurring transactions without requiring additional 2-factor authentication. The solution ensures full RBI compliance while providing essential features like pre-debit notifications, secure tokenization, and robust payment verification for reliable subscription billing. This integration enables seamless recurring payments through credit and debit cards with full RBI compliance and robust security measures.
+
+
+<Cards columns={2}>
+  <Card title="1. Consent Transaction" href="https://docs.payu.in/docs/subscription-for-cards#step-1-consent-transaction">
+    Initiate the recurring payment mandate by sending a POST request with mandatory parameters including key, txnid, amount, productinfo, customer details, pg='CC', bankcode, si=1, and si\_details
+
+    <br />
+  </Card>
+
+  <Card title="2. Verify the Payment" href="https://docs.payu.in/docs/subscription-for-cards#step-2-verify-the-payment">
+    Use PayU's Verify Payment API or webhook setup to confirm successful consent transaction and mandate registration, handling any rejections or failures
+
+    <br />
+  </Card>
+
+  <Card title="3. Pre-Debit Notification" href="https://docs.payu.in/docs/subscription-for-cards#step-3-pre-debit-notification">
+    Send advance notifications to customers 24-48 hours before recurring charges using authpayuid, invoiceDisplayNumber, and debit amount parameters
+
+    <br />
+  </Card>
+
+  <Card title="4. Recurring Payment Transaction" href="https://docs.payu.in/docs/subscription-for-cards#step-4-recurring-payment-transaction">
+    Execute automated recurring payments via server-to-server API without additional 2FA, using the registered mandate and billing schedule
+
+    <br />
+  </Card>
+
+  <br />
+</Cards>
+
 
 ## Step 1: Consent Transaction
 
@@ -395,14 +425,15 @@ Array
     [cardnum] => XXXXXXXXXXXX4879
 )
 ```
+
 ## Step 2: Verify the payment
+
 You can use the **Verify Payment** API and expose a webhook by requesting the PayU Integration team to configure the same against the **ws_online_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method.
 
 If the mandate is not confirmed by the customer or the mandate is confirmed by the customer, but the mandate registration is rejected from the banks, the status is communicated as a “failure” over webhook. For more information, refer to [Set up WebHook to Receive Cancellation or Modification Update from the Issuer Bank](ref:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank).
 The payment verification step ensures the transaction has been processed successfully before proceeding to subsequent recurring payments.
 
 <Verify_Payment_Tabs />
-
 
 ## Step 3: Pre-Debit Notification
 
