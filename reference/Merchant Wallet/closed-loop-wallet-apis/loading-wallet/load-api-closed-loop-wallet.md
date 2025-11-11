@@ -8,10 +8,7 @@ metadata:
 ---
 The Load API allows you to credit money directly into a customer's wallet without involving Payment Gateway (PG) transactions. This API enables merchants to load funds directly into wallets with specific parameters.
 
-## API Details
-
-**HTTP Method:** PATCH  
-
+**HTTP Method:** PATCH
 
 **Endpoint:** `
 
