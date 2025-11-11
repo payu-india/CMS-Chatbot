@@ -1,5 +1,5 @@
 ---
-title: PayU Hosted Check-out Integration - CLW
+title: Wallet Checkout Integration
 excerpt: ''
 deprecated: false
 hidden: false
