@@ -1,7 +1,7 @@
 ---
 title: Customer Journey for Merchant Hosted Checkout
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
