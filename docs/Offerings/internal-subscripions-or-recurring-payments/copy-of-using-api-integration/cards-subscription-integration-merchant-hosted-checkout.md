@@ -5,3 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
+Includes the following:
+
+Step 1: 
