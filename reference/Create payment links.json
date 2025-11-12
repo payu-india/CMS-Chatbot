@@ -1,730 +1,291 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Create payment links",
-    "version": "1.0.0"
+    "title": "Payment Links API",
+    "version": "1.0.0",
+    "description": "API for creating and managing payment links"
   },
   "servers": [
     {
-      "url": "https://accounts.payu.in"
-    },
-    {
-      "url": "https://partner.payu.in"
-    },
-    {
-      "url": "http://{{payu_base_url}}"
+      "url": "https://api.example.com",
+      "description": "Production server"
     }
   ],
   "paths": {
-    "/oauth/token": {
+    "/payment-links": {
       "post": {
-        "tags": [
-          "default"
-        ],
-        "summary": "Token for otp",
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "client_id": {
-                    "type": "string",
-                    "description": "uat",
-                    "example": "56b16b8f4d16f61929d6596d3c9cfb3e9bfc526c9c906b09c916cc9ea591b66d"
-                  },
-                  "client_secret": {
-                    "type": "string",
-                    "description": "uat",
-                    "example": "f5e0115d5b9f715ce0e8c4ef99d438aa4e7f0203f6e1d5e9be9e36f80a07716b"
-                  },
-                  "grant_type": {
-                    "type": "string",
-                    "example": "client_credentials"
-                  },
-                  "scope": {
-                    "type": "string",
-                    "example": "send_sign_in_otp verify_sign_in_otp"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "application/x-www-form-urlencoded"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
-      }
-    },
-    "/partners/api/v1/otps/send_otp": {
-      "post": {
-        "tags": [
-          "default"
-        ],
-        "summary": "Send otp",
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "otp[identity]": {
-                    "type": "integer",
-                    "example": "9916965982"
-                  },
-                  "otp[scope]": {
-                    "type": "string",
-                    "example": "create_payment_links"
-                  },
-                  "otp[channels][]": {
-                    "type": "string",
-                    "example": "sms"
-                  },
-                  "otp[type]": {
-                    "type": "string",
-                    "example": "SignIn"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "Bearer c89117a20b8a0d6af2304ef66ae56bc50e6da393d570c79af6baa0f56d88a67c"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
-      }
-    },
-    "/partners/api/v1/otps/verify_otp": {
-      "post": {
-        "tags": [
-          "default"
-        ],
-        "summary": "Verify Otp",
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "otp[identity]": {
-                    "type": "integer",
-                    "example": "9916965982"
-                  },
-                  "otp[email]": {
-                    "type": "string",
-                    "example": "spoorthi.naik@payu.in"
-                  },
-                  "otp[code]": {
-                    "type": "integer",
-                    "example": "4674"
-                  },
-                  "otp[type]": {
-                    "type": "string",
-                    "example": "SignIn"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "Bearer c89117a20b8a0d6af2304ef66ae56bc50e6da393d570c79af6baa0f56d88a67c"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
-      }
-    },
-    "/partners/payment-links": {
-      "post": {
-        "tags": [
-          "default"
-        ],
         "summary": "Create payment link",
+        "description": "Create a new payment link with specified parameters",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "example": {
-                  "isAmountFilledByCustomer": false,
-                  "subAmount": 100,
-                  "description": "test",
-                  "currency": "INR",
-                  "source": "API",
-                  "address": {
-                    "line1": "test",
-                    "line2": "sample",
-                    "city": "gurgaon",
-                    "state": "UP",
-                    "country": "India",
-                    "zipCode": "122220"
-                  },
-                  "customer": {
-                    "name": "test",
-                    "phone": "999999999",
-                    "email": "test@payu.in"
-                  },
-                  "udf": {
-                    "udf1": "sampleUdf1",
-                    "udf2": "sampleUdf2",
-                    "udf3": "sampleUdf3"
-                  }
-                }
+                "$ref": "#/components/schemas/CreatePaymentLinkRequest"
+              },
+              "example": {
+                "isPartialPaymentAllowed": true,
+                "maxPaymentsAllowed": 5,
+                "isAmountFilledByCustomer": false,
+                "minAmountForCustomer": 10,
+                "subAmount": 100,
+                "description": "Payment for services",
+                "invoiceNumber": "INV123456",
+                "expiryDate": "2024-12-31 23:59:59",
+                "tax": "10",
+                "source": "API",
+                "currency": "INR",
+                "customer": {
+                  "name": "John Doe",
+                  "phone": "9999999999",
+                  "email": "john.doe@example.com"
+                },
+                "address": {
+                  "line1": "123 Main Street",
+                  "line2": "Apt 4B",
+                  "city": "Mumbai",
+                  "state": "Maharashtra",
+                  "country": "India",
+                  "zipCode": "400001"
+                },
+                "udf1": "Custom field 1",
+                "udf2": "Custom field 2",
+                "udf3": "Custom field 3",
+                "udf4": "Custom field 4",
+                "udf5": "Custom field 5",
+                "viaEmail": 1,
+                "viaSms": 1,
+                "shippingCharge": "20"
               }
             }
           }
         },
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d",
-            "description": "The bearer token must be generated using the Get Token API. You must post with the prefix \"Bearer\\<space>\". For example, Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d",
-            "required": true
-          },
-          {
-            "name": "merchantId",
-            "in": "header",
-            "schema": {
-              "type": "integer"
-            },
-            "example": "12231777",
-            "required": true,
-            "description": "The merchant ID provided by PayU during onboarding."
-          }
-        ],
         "responses": {
           "200": {
-            "description": "OK",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string",
-                  "example": "Mon, 10 Jun 2024 14:40:23 GMT"
-                }
-              },
-              "Content-Type": {
-                "schema": {
-                  "type": "string",
-                  "example": "application/json; charset=utf-8"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer",
-                  "example": "948"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string",
-                  "example": "keep-alive"
-                }
-              },
-              "Server": {
-                "schema": {
-                  "type": "string",
-                  "example": "nginx"
-                }
-              },
-              "ETag": {
-                "schema": {
-                  "type": "string",
-                  "example": "W/\"4a93c92765c9568e5b045894bdb321d3\""
-                }
-              },
-              "Cache-Control": {
-                "schema": {
-                  "type": "string",
-                  "example": "max-age=0, private, must-revalidate"
-                }
-              },
-              "X-Request-Id": {
-                "schema": {
-                  "type": "string",
-                  "example": "73ad377a-7fa8-471f-a345-445a80dc86f1"
-                }
-              },
-              "X-Runtime": {
-                "schema": {
-                  "type": "number",
-                  "example": "0.347294"
-                }
-              },
-              "Vary": {
-                "schema": {
-                  "type": "string",
-                  "example": "Origin"
-                }
-              },
-              "Strict-Transport-Security": {
-                "schema": {
-                  "type": "string",
-                  "example": "max-age=63072000; includeSubdomains;"
-                }
-              }
-            },
+            "description": "Payment link created successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
-                },
-                "example": {
-                  "status": 0,
-                  "message": "PaymentLink generated",
-                  "result": {
-                    "subAmount": 100,
-                    "tax": 0,
-                    "shippingCharge": 0,
-                    "totalAmount": 100,
-                    "invoiceNumber": "INV2172772182406",
-                    "paymentLink": "https://pmny.in/6ra5TQq6SSUo",
-                    "description": "test",
-                    "active": true,
-                    "isPartialPaymentAllowed": false,
-                    "expiryDate": "2025-06-10 20:10:22",
-                    "udf": {
-                      "udf1": "sampleUdf1",
-                      "udf2": "sampleUdf2",
-                      "udf3": "sampleUdf3",
-                      "udf4": null,
-                      "udf5": null
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
                     },
-                    "address": {
-                      "line1": "test",
-                      "line2": "sample",
-                      "city": "gurgaon",
-                      "state": "UP",
-                      "country": "India",
-                      "zipCode": "122220"
+                    "paymentLink": {
+                      "type": "string"
                     },
-                    "emailStatus": "not opted",
-                    "smsStatus": "not opted",
-                    "currency": "INR",
-                    "addedOn": "2024-06-10 20:10:23",
-                    "status": "active",
-                    "maxPaymentsAllowed": 1,
-                    "customerName": "test",
-                    "customerPhone": "999999999",
-                    "customerEmail": "test@payu.in",
-                    "notes": null,
-                    "amountCollected": 0,
-                    "dueAmount": 100,
-                    "minAmountForCustomer": 1,
-                    "adjustment": 0,
-                    "discount": 0,
-                    "customParams": null,
-                    "transactionId": null
-                  },
-                  "errorCode": null,
-                  "guid": "05a5534a-91af-42b5-93d8-6f7c4f361f88"
+                    "linkId": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
-    },
-    "/partners/payment-links/INV2172772182406": {
-      "get": {
-        "tags": [
-          "default"
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreatePaymentLinkRequest": {
+        "type": "object",
+        "required": [
+          "isPartialPaymentAllowed",
+          "subAmount",
+          "description",
+          "invoiceNumber",
+          "expiryDate",
+          "tax",
+          "source",
+          "customer"
         ],
-        "summary": "Read payment link",
-        "parameters": [
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "application/json"
+        "properties": {
+          "isPartialPaymentAllowed": {
+            "type": "boolean",
+            "description": "This parameter contains any of the following: true-The part payment is enabled false-The part payment is not enabled",
+            "example": true
           },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d"
+          "maxPaymentsAllowed": {
+            "type": "integer",
+            "description": "This parameter is used to specify the number of payments that can be accepted on a link.",
+            "example": 5
           },
-          {
-            "name": "merchantId",
-            "in": "header",
-            "schema": {
-              "type": "integer"
-            },
-            "example": "12231777"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string",
-                  "example": "Mon, 10 Jun 2024 14:52:26 GMT"
-                }
-              },
-              "Content-Type": {
-                "schema": {
-                  "type": "string",
-                  "example": "application/json; charset=utf-8"
-                }
-              },
-              "Transfer-Encoding": {
-                "schema": {
-                  "type": "string",
-                  "example": "chunked"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string",
-                  "example": "keep-alive"
-                }
-              },
-              "Server": {
-                "schema": {
-                  "type": "string",
-                  "example": "nginx"
-                }
-              },
-              "ETag": {
-                "schema": {
-                  "type": "string",
-                  "example": "W/\"e5f90a10c56cfcfad4221360af17c8c6\""
-                }
-              },
-              "Cache-Control": {
-                "schema": {
-                  "type": "string",
-                  "example": "max-age=0, private, must-revalidate"
-                }
-              },
-              "X-Request-Id": {
-                "schema": {
-                  "type": "string",
-                  "example": "7cafdeb7-1bc4-4a01-b4ce-d5d96dd8d936"
-                }
-              },
-              "X-Runtime": {
-                "schema": {
-                  "type": "number",
-                  "example": "0.265267"
-                }
-              },
-              "Vary": {
-                "schema": {
-                  "type": "string",
-                  "example": "Origin"
-                }
-              },
-              "Strict-Transport-Security": {
-                "schema": {
-                  "type": "string",
-                  "example": "max-age=63072000; includeSubdomains;"
-                }
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string",
-                  "example": "gzip"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                },
-                "example": {
-                  "status": 0,
-                  "message": null,
-                  "result": {
-                    "summary": {
-                      "amountRequested": 110,
-                      "totalRevenue": 0,
-                      "totalViews": 3
-                    },
-                    "subAmount": 110,
-                    "tax": 0,
-                    "shippingCharge": 0,
-                    "totalAmount": 110,
-                    "dueAmount": 110,
-                    "totalAmountCollected": 0,
-                    "invoiceNumber": "INV2172772182406",
-                    "paymentLink": "https://pmny.in/6ra5TQq6SSUo",
-                    "description": "test",
-                    "active": true,
-                    "isPartialPaymentAllowed": false,
-                    "status": "active",
-                    "expiryDate": "2025-06-10T20:10:22.000+05:30",
-                    "udf": {
-                      "udf1": "sampleUdf1",
-                      "udf2": "sampleUdf2",
-                      "udf3": "sampleUdf3",
-                      "udf4": null,
-                      "udf5": null
-                    },
-                    "address": {
-                      "line1": "test",
-                      "line2": "sample",
-                      "city": "gurgaon",
-                      "state": "UP",
-                      "country": "India",
-                      "zipCode": "122220"
-                    },
-                    "addedOn": "2024-06-10T20:10:23.000+05:30",
-                    "isAmountFilledByCustomer": false,
-                    "reminder": null,
-                    "customAttributes": [],
-                    "aggregatorSplitInfo": null,
-                    "merchantId": 12231777,
-                    "currency": "INR",
-                    "maxPaymentsAllowed": 1,
-                    "customerName": "test",
-                    "customerPhone": "999999999",
-                    "customerEmail": "test@payu.in",
-                    "minAmountForCustomer": 1,
-                    "adjustment": 0,
-                    "discount": 0,
-                    "customParams": null,
-                    "emailStatus": "not opted",
-                    "smsStatus": "not opted",
-                    "successUrl": null,
-                    "failureUrl": null,
-                    "notes": null,
-                    "transactionId": null,
-                    "paymentDetails": null
-                  },
-                  "errorCode": null,
-                  "guid": "2837a0bf-bc02-4f8f-bafe-baebe110d5ec"
-                }
-              }
-            }
+          "isAmountFilledByCustomer": {
+            "type": "boolean",
+            "description": "This parameter is set to true if the amount has to be entered by your customer in the payment link page.",
+            "example": false
+          },
+          "minAmountForCustomer": {
+            "type": "integer",
+            "description": "This parameter contains the minimum amount a customer needs to pay in case of partial payment.",
+            "example": 10
+          },
+          "subAmount": {
+            "type": "integer",
+            "description": "This parameter must contain the payment amount.",
+            "example": 100
+          },
+          "description": {
+            "type": "string",
+            "description": "This parameter must contain the description or purpose of creating the payment link.",
+            "example": "Payment for services"
+          },
+          "invoiceNumber": {
+            "type": "string",
+            "description": "This parameter contains the unique string which is used for identifying a payment link. This must be alphanumeric.",
+            "example": "INV123456"
+          },
+          "expiryDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$",
+            "description": "This parameter contains the expiry date of the payment link. This must be in yyyy-MM-dd HH:mm:ss format (will be 365 days in all other cases).",
+            "example": "2024-12-31 23:59:59"
+          },
+          "tax": {
+            "type": "string",
+            "description": "This parameter contains the tax amount for the payment transaction. This value must be greater than zero.",
+            "example": "10"
+          },
+          "source": {
+            "type": "string",
+            "description": "This parameter contains the source of payment generation.",
+            "example": "API"
+          },
+          "currency": {
+            "type": "string",
+            "description": "This parameter contains the currency used for collecting the amount.",
+            "example": "INR"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "udf1": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.",
+            "example": "Custom field 1"
+          },
+          "udf2": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.",
+            "example": "Custom field 2"
+          },
+          "udf3": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.",
+            "example": "Custom field 3"
+          },
+          "udf4": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.",
+            "example": "Custom field 4"
+          },
+          "udf5": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.",
+            "example": "Custom field 5"
+          },
+          "viaEmail": {
+            "type": "integer",
+            "description": "This parameter is set to 1 to send the payment link via the email upon generation. Else, set to 0 (zero) so that email is not sent.",
+            "enum": [
+              0,
+              1
+            ],
+            "example": 1
+          },
+          "viaSms": {
+            "type": "integer",
+            "description": "This parameter is set to 1 to send the payment link via the SMS upon generation. Else, set to 0 (zero) so that SMS is not sent.",
+            "enum": [
+              0,
+              1
+            ],
+            "example": 1
+          },
+          "shippingCharge": {
+            "type": "string",
+            "description": "This parameter must contain the shipping charges",
+            "example": "20"
           }
         }
       },
-      "put": {
-        "tags": [
-          "default"
+      "Customer": {
+        "type": "object",
+        "required": [
+          "name",
+          "phone",
+          "email"
         ],
-        "summary": "Put payment links",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "example": {
-                  "active": true,
-                  "subAmount": 110
-                }
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "application/json"
+        "description": "Customer object containing customer information",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Customer name",
+            "example": "John Doe"
           },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d"
+          "phone": {
+            "type": "string",
+            "description": "Customer phone number",
+            "example": "9999999999"
           },
-          {
-            "name": "merchantId",
-            "in": "header",
-            "schema": {
-              "type": "integer"
-            },
-            "example": "12231777"
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Customer email address",
+            "example": "john.doe@example.com"
           }
+        }
+      },
+      "Address": {
+        "type": "object",
+        "required": [
+          "line1",
+          "city",
+          "state",
+          "country",
+          "zipCode"
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string",
-                  "example": "Mon, 10 Jun 2024 14:47:09 GMT"
-                }
-              },
-              "Content-Type": {
-                "schema": {
-                  "type": "string",
-                  "example": "application/json; charset=utf-8"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer",
-                  "example": "946"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string",
-                  "example": "keep-alive"
-                }
-              },
-              "Server": {
-                "schema": {
-                  "type": "string",
-                  "example": "nginx"
-                }
-              },
-              "ETag": {
-                "schema": {
-                  "type": "string",
-                  "example": "W/\"ac5eb35f4b8a7787a003fbf5cc9a7f93\""
-                }
-              },
-              "Cache-Control": {
-                "schema": {
-                  "type": "string",
-                  "example": "max-age=0, private, must-revalidate"
-                }
-              },
-              "X-Request-Id": {
-                "schema": {
-                  "type": "string",
-                  "example": "5c47a6b2-6df8-4470-9a11-8e75adf8945f"
-                }
-              },
-              "X-Runtime": {
-                "schema": {
-                  "type": "number",
-                  "example": "0.202567"
-                }
-              },
-              "Vary": {
-                "schema": {
-                  "type": "string",
-                  "example": "Origin"
-                }
-              },
-              "Strict-Transport-Security": {
-                "schema": {
-                  "type": "string",
-                  "example": "max-age=63072000; includeSubdomains;"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                },
-                "example": {
-                  "status": 0,
-                  "message": "PaymentLink updated",
-                  "result": {
-                    "subAmount": 110,
-                    "tax": 0,
-                    "shippingCharge": 0,
-                    "totalAmount": 110,
-                    "invoiceNumber": "INV2172772182406",
-                    "paymentLink": "https://pmny.in/6ra5TQq6SSUo",
-                    "description": "test",
-                    "active": true,
-                    "isPartialPaymentAllowed": false,
-                    "expiryDate": "2025-06-10 20:10:22",
-                    "udf": {
-                      "udf1": "sampleUdf1",
-                      "udf2": "sampleUdf2",
-                      "udf3": "sampleUdf3",
-                      "udf4": null,
-                      "udf5": null
-                    },
-                    "address": {
-                      "line1": "test",
-                      "line2": "sample",
-                      "city": "gurgaon",
-                      "state": "UP",
-                      "country": "India",
-                      "zipCode": "122220"
-                    },
-                    "emailStatus": "not opted",
-                    "smsStatus": "not opted",
-                    "currency": "INR",
-                    "addedOn": "2024-06-10 20:10:23",
-                    "status": "active",
-                    "maxPaymentsAllowed": 1,
-                    "customerName": "test",
-                    "customerPhone": "999999999",
-                    "customerEmail": "test@payu.in",
-                    "notes": null,
-                    "amountCollected": 0,
-                    "dueAmount": 110,
-                    "minAmountForCustomer": 1,
-                    "adjustment": 0,
-                    "discount": 0,
-                    "customParams": null,
-                    "transactionId": null
-                  },
-                  "errorCode": null,
-                  "guid": "23797ae1-8bbd-4966-b13a-50866fc31aab"
-                }
-              }
-            }
+        "description": "This parameter contains the customer address to which the goods are delivered.",
+        "properties": {
+          "line1": {
+            "type": "string",
+            "description": "Address line 1",
+            "example": "123 Main Street"
+          },
+          "line2": {
+            "type": "string",
+            "description": "Address line 2",
+            "example": "Apt 4B"
+          },
+          "city": {
+            "type": "string",
+            "description": "City",
+            "example": "Mumbai"
+          },
+          "state": {
+            "type": "string",
+            "description": "State",
+            "example": "Maharashtra"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country",
+            "example": "India"
+          },
+          "zipCode": {
+            "type": "string",
+            "description": "ZIP/Postal code",
+            "example": "400001"
           }
         }
       }
