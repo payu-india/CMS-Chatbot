@@ -430,7 +430,7 @@ curl --location -g --request GET '{{onboarding_base_url}}/api/v3/product_account
 
 ### Success Scenario
 
-* **Get Child Merchants - Success Scenario**: When they are searching using date range:
+* When they are searching using date range:
 
 ```plaintext
 {
@@ -645,7 +645,28 @@ curl --location -g --request GET '{{onboarding_base_url}}/api/v3/product_account
     "total_childs": 17
 }
 ```
-
+* When using the merchant defined identifier:
+```json
+{
+    "child_merchants": {
+        "product_accounts": [
+            {
+                "uuid": "11f0-badd-c184cc6c-8834-02975f21d323",
+                "created_at": "2025-11-06T06:56:45.000Z",
+                "name": null,
+                "mid": 30949833,
+                "email": "chagg232509_5@yopmail.com",
+                "onboarding_completed": false,
+                "merchant_defined_identifier": "kjvbjs324",
+                "product_account_detail": {
+                    "pg_key": "zuHLVs"
+                }
+            }
+        ]
+    },
+    "total_childs": 1
+}
+```
 ### Failure Scenarios
 
 Get Child merchants when token is invalid or expired
