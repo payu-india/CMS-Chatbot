@@ -24,7 +24,7 @@ PayU Checkout Plus is the most convenient way to collect payment on your website
 **Steps to integrate**
 
 <Cards columns={3}>
-  <Card title="1. Add the inline script in the HTML Header" href="https://docs.payu.in/docs/integrate-checkout-plus#step-1-add-meta-tags--scripts-in-the-html-header" target="_blank">
+  <Card title="1. Add the inline script in the HTML Header" href="#step-1-add-meta-tags--scripts-in-the-html-header" target="_blank">
     Add the required meta tags and inline scripts in your HTML header to initialize PayU
 
     <br />
