@@ -225,7 +225,7 @@
               "type": "string"
             },
             "example": "Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d",
-            "description": "The bearer token must be generated using the Get Token API. You must post with the prefix \"Bearer<space>\". For example, Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d",
+            "description": "The bearer token must be generated using the Get Token API. You must post with the prefix \"Bearer\\<space>\". For example, Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d",
             "required": true
           },
           {
