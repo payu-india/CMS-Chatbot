@@ -30,13 +30,13 @@ PayU Checkout Plus is the most convenient way to collect payment on your website
     <br />
   </Card>
 
-  <Card title="2. Pass the transaction request objects" href="https://docs.payu.in/?isFramePreview=true#step-2-pass-transaction-request-objects" target="_blank">
+  <Card title="2. Pass the transaction request objects" href="https://docs.payu.in/docs/integrate-checkout-plus#step-2-pass-transaction-request-objects" target="_blank">
     Configure and pass the transaction request objects with all necessary payment parameters
 
     <br />
   </Card>
 
-  <Card title="3. Fetch the response using the responseHandler function" href="https://docs.payu.in/?isFramePreview=true#step-3-fetch-the-response-using-responsehandler" target="_blank">
+  <Card title="3. Fetch the response using the responseHandler function" href="https://docs.payu.in/docs/integrate-checkout-plus#step-3-fetch-the-response-using-responsehandler" target="_blank">
     Implement the responseHandler function to capture and process payment responses
 
     <br />
