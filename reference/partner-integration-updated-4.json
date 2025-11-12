@@ -1,1 +1,254 @@
-{"openapi":"3.1.0","info":{"title":"Partner Integration - Updated","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://uat-partner.payu.in/","variables":{}},{"url":"https://uat-partner.payu.in/","variables":{}},{"url":"https://uatoneapi.payu.in","variables":{}}],"paths":{"/payment-links":{"post":{"tags":["Misc"],"summary":"Create Payment Link API","operationId":"CreatePaymentLinkAPI","parameters":[],"requestBody":{"description":"","content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/CreatePaymentLinkAPIRequest"},{"examples":[{"isAmountFilledByCustomer":false,"subAmount":100,"description":"test","currency":"INR","source":"API","address":{"line1":"test","line2":"sample","city":"gurgaon","state":"UP","country":"India","zipCode":"122220"},"customer":{"name":"test","phone":"999999999","email":"test@payu.in"},"udf":{"udf1":"sampleUdf1","udf2":"sampleUdf2","udf3":"sampleUdf3"}}]}],"contentMediaType":"application/json"},"example":{"isAmountFilledByCustomer":false,"subAmount":100,"description":"test","currency":"INR","source":"API","address":{"line1":"test","line2":"sample","city":"gurgaon","state":"UP","country":"India","zipCode":"122220"},"customer":{"name":"test","phone":"999999999","email":"test@payu.in"},"udf":{"udf1":"sampleUdf1","udf2":"sampleUdf2","udf3":"sampleUdf3"}}}},"required":true},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"servers":[{"url":"https://uatoneapi.payu.in","variables":{}}]},"parameters":[]}},"components":{"schemas":{"Customer":{"title":"Customer","required":["name","phone","email"],"type":"object","properties":{"name":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"}},"examples":[{"name":"test","phone":"999999999","email":"test@payu.in"}]},"CreatePaymentLinkAPIRequest":{"title":"CreatePaymentLinkAPIRequest","required":["description","source"],"type":"object","properties":{"isPartialPaymentallowed":{"type":"boolean","description":"This parameter must indicate if the partial payment is allowed for this payment link."},"maxPaymentsAllowed":{"type":"integer","description":"This parameter is used to specify the number of payments that can be accepted on a link.","contentEncoding":"int32"},"isAmountFilledByCustomer":{"type":"boolean","description":"This parameter is set to true to if the amount has to be entered by your customer in the payment link page."},"subAmount":{"type":"integer","description":"This parameter must contain the payment amount when the isAmountFilledByCustomer parameter is set to false. The value must be greater than or equal to 1.","contentEncoding":"int32"},"description":{"type":"string","description":"This parameter must contain the purpose or description of the payment link."},"currency":{"type":"string"},"minAmountForCustomer":{"type":"integer","description":"This parameter contains the minimum amount a customer needs to pay in case of partial payment.","contentEncoding":"int32"},"invoiceNumber":{"type":"string"},"source":{"type":"string"},"address":{"allOf":[{"$ref":"#/components/schemas/Address"},{}]},"customer":{"allOf":[{"$ref":"#/components/schemas/Customer"},{}]},"expiryDate":{"type":"string","description":"This parameter contains the expiry date of the payment link. This must be in yyyy-MM-dd HH:mm:ss format (will be 365 days in all other cases)."},"tax":{"type":"string","description":"This parameter contains the tax amount for the payment transaction. This value must be greater than zero."},"viaEmail":{"type":"integer","description":"This parameter is set to 1 to send the payment link via the email upon generation. Else, set to 0 (zero) so that email is not sent.","contentEncoding":"int32"},"viaSMS":{"type":"integer","description":"This parameter is set to 1 to send the payment link via the SMS upon generation. Else, set to 0 (zero) so that SMS is not sent.","contentEncoding":"int32"},"shippingCharge":{"type":"integer","description":"This parameter must contain the shipping charges if any,","contentEncoding":"int32"},"udf1":{"type":"string","description":"User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."},"udf2":{"type":"string","description":"User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."},"udf3":{"type":"string","description":"User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."},"udf4":{"type":"string","description":"User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."},"udf5":{"type":"string","description":"User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."}}},"Udf":{"title":"Udf","required":["udf1","udf2","udf3"],"type":"object","properties":{"udf1":{"type":"string"},"udf2":{"type":"string"},"udf3":{"type":"string"}},"examples":[{"udf1":"sampleUdf1","udf2":"sampleUdf2","udf3":"sampleUdf3"}]},"Address":{"title":"Address","required":["line1","line2","city","state","country","zipCode"],"type":"object","properties":{"line1":{"type":"string"},"line2":{"type":"string"},"city":{"type":"string"},"state":{"type":"string"},"country":{"type":"string"},"zipCode":{"type":"string"}},"examples":[{"line1":"test","line2":"sample","city":"gurgaon","state":"UP","country":"India","zipCode":"122220"}]}},"securitySchemes":{"httpBearer":{"type":"http","scheme":"bearer"}}},"security":[{"httpBearer":[]}],"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Partner Integration - Updated",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://uat-partner.payu.in/",
+      "variables": {}
+    },
+    {
+      "url": "https://uat-partner.payu.in/",
+      "variables": {}
+    },
+    {
+      "url": "https://uatoneapi.payu.in",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/payment-links": {
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "Customer": {
+        "title": "Customer",
+        "required": [
+          "name",
+          "phone",
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "name": "test",
+            "phone": "999999999",
+            "email": "test@payu.in"
+          }
+        ]
+      },
+      "CreatePaymentLinkAPIRequest": {
+        "title": "CreatePaymentLinkAPIRequest",
+        "required": [
+          "description",
+          "source"
+        ],
+        "type": "object",
+        "properties": {
+          "isPartialPaymentallowed": {
+            "type": "boolean",
+            "description": "This parameter must indicate if the partial payment is allowed for this payment link."
+          },
+          "maxPaymentsAllowed": {
+            "type": "integer",
+            "description": "This parameter is used to specify the number of payments that can be accepted on a link.",
+            "contentEncoding": "int32"
+          },
+          "isAmountFilledByCustomer": {
+            "type": "boolean",
+            "description": "This parameter is set to true to if the amount has to be entered by your customer in the payment link page."
+          },
+          "subAmount": {
+            "type": "integer",
+            "description": "This parameter must contain the payment amount when the isAmountFilledByCustomer parameter is set to false. The value must be greater than or equal to 1.",
+            "contentEncoding": "int32"
+          },
+          "description": {
+            "type": "string",
+            "description": "This parameter must contain the purpose or description of the payment link."
+          },
+          "currency": {
+            "type": "string"
+          },
+          "minAmountForCustomer": {
+            "type": "integer",
+            "description": "This parameter contains the minimum amount a customer needs to pay in case of partial payment.",
+            "contentEncoding": "int32"
+          },
+          "invoiceNumber": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Address"
+              },
+              {}
+            ]
+          },
+          "customer": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Customer"
+              },
+              {}
+            ]
+          },
+          "expiryDate": {
+            "type": "string",
+            "description": "This parameter contains the expiry date of the payment link. This must be in yyyy-MM-dd HH:mm:ss format (will be 365 days in all other cases)."
+          },
+          "tax": {
+            "type": "string",
+            "description": "This parameter contains the tax amount for the payment transaction. This value must be greater than zero."
+          },
+          "viaEmail": {
+            "type": "integer",
+            "description": "This parameter is set to 1 to send the payment link via the email upon generation. Else, set to 0 (zero) so that email is not sent.",
+            "contentEncoding": "int32"
+          },
+          "viaSMS": {
+            "type": "integer",
+            "description": "This parameter is set to 1 to send the payment link via the SMS upon generation. Else, set to 0 (zero) so that SMS is not sent.",
+            "contentEncoding": "int32"
+          },
+          "shippingCharge": {
+            "type": "integer",
+            "description": "This parameter must contain the shipping charges if any,",
+            "contentEncoding": "int32"
+          },
+          "udf1": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          },
+          "udf2": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          },
+          "udf3": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          },
+          "udf4": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          },
+          "udf5": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          }
+        }
+      },
+      "Udf": {
+        "title": "Udf",
+        "required": [
+          "udf1",
+          "udf2",
+          "udf3"
+        ],
+        "type": "object",
+        "properties": {
+          "udf1": {
+            "type": "string"
+          },
+          "udf2": {
+            "type": "string"
+          },
+          "udf3": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "udf1": "sampleUdf1",
+            "udf2": "sampleUdf2",
+            "udf3": "sampleUdf3"
+          }
+        ]
+      },
+      "Address": {
+        "title": "Address",
+        "required": [
+          "line1",
+          "line2",
+          "city",
+          "state",
+          "country",
+          "zipCode"
+        ],
+        "type": "object",
+        "properties": {
+          "line1": {
+            "type": "string"
+          },
+          "line2": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "line1": "test",
+            "line2": "sample",
+            "city": "gurgaon",
+            "state": "UP",
+            "country": "India",
+            "zipCode": "122220"
+          }
+        ]
+      }
+    },
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
