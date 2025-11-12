@@ -1,5 +1,5 @@
 ---
-title: Create payment link
+title: Create Payment Link - Partner Integration
 excerpt: Create a new payment link with specified parameters
 api:
   file: Create payment links.json
