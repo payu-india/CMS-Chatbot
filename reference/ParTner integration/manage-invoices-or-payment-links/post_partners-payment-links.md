@@ -4,6 +4,11 @@ api:
   file: Create payment links.json
   operationId: post_partners-payment-links
 hidden: false
+metadata:
+  description: >-
+    This document provides information on using an API to create a payment link
+    for customers with Partner Integration, requiring an access token with the
+    scope as **create_payment_links** on the header.
 ---
 This API is used to create a payment link for your customer with Partner Integration.
 
