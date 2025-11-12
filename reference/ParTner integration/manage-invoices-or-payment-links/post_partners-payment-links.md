@@ -1,5 +1,5 @@
 ---
-title: Create payment link
+title: Create Payment Link API - Partner Integration
 api:
   file: Create payment links.json
   operationId: post_partners-payment-links
