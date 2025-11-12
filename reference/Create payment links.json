@@ -1,0 +1,565 @@
+{
+  "info": {
+    "_postman_id": "e459728f-cb97-4771-b334-a470fbe2ec4a",
+    "name": "Create payment links",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "26476208",
+    "_collection_link": "https://solar-capsules.postman.co/workspace/Solar-Capsules~66e4a5a8-a429-422c-ab0e-8593686a98f0/collection/26476208-e459728f-cb97-4771-b334-a470fbe2ec4a?action=share&source=collection_link&creator=26476208"
+  },
+  "item": [
+    {
+      "name": "Token for otp",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "client_id",
+              "value": "cfc27e5b8f05aa4ef80c6d57becdcd8c71fd72f1bc9d55f2f760d394fcbd204a",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "client_secret",
+              "value": "e844a9f33cbb1f18b838178e201808b17373b7cfdaabd8f500c8fc8a7cb62f50",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "text"
+            },
+            {
+              "key": "scope",
+              "value": "send_sign_in_otp verify_sign_in_otp",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "56b16b8f4d16f61929d6596d3c9cfb3e9bfc526c9c906b09c916cc9ea591b66d",
+              "description": "uat",
+              "type": "text"
+            },
+            {
+              "key": "client_secret",
+              "value": "f5e0115d5b9f715ce0e8c4ef99d438aa4e7f0203f6e1d5e9be9e36f80a07716b",
+              "description": "uat",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://accounts.payu.in/oauth/token",
+          "protocol": "https",
+          "host": [
+            "accounts",
+            "payu",
+            "in"
+          ],
+          "path": [
+            "oauth",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Send otp",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer c89117a20b8a0d6af2304ef66ae56bc50e6da393d570c79af6baa0f56d88a67c"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "otp[identity]",
+              "value": "9916965982",
+              "type": "text"
+            },
+            {
+              "key": "otp[scope]",
+              "value": "create_payment_links",
+              "type": "text"
+            },
+            {
+              "key": "otp[channels][]",
+              "value": "sms",
+              "type": "text"
+            },
+            {
+              "key": "otp[type]",
+              "value": "SignIn",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://partner.payu.in/partners/api/v1/otps/send_otp",
+          "protocol": "https",
+          "host": [
+            "partner",
+            "payu",
+            "in"
+          ],
+          "path": [
+            "partners",
+            "api",
+            "v1",
+            "otps",
+            "send_otp"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Verify Otp",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer c89117a20b8a0d6af2304ef66ae56bc50e6da393d570c79af6baa0f56d88a67c"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "otp[identity]",
+              "value": "9916965982",
+              "type": "text"
+            },
+            {
+              "key": "otp[email]",
+              "value": "spoorthi.naik@payu.in",
+              "type": "text"
+            },
+            {
+              "key": "otp[code]",
+              "value": "4674",
+              "type": "text"
+            },
+            {
+              "key": "otp[type]",
+              "value": "SignIn",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://partner.payu.in/partners/api/v1/otps/verify_otp",
+          "protocol": "https",
+          "host": [
+            "partner",
+            "payu",
+            "in"
+          ],
+          "path": [
+            "partners",
+            "api",
+            "v1",
+            "otps",
+            "verify_otp"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create payment link",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d"
+          },
+          {
+            "key": "merchantId",
+            "value": "12231777"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"isAmountFilledByCustomer\": false,\n    \"subAmount\": 100,\n    \"description\": \"test\",\n    \"currency\": \"INR\",\n    \"source\": \"API\",\n    \"address\": {\n        \"line1\": \"test\",\n        \"line2\": \"sample\",\n        \"city\": \"gurgaon\",\n        \"state\": \"UP\",\n        \"country\": \"India\",\n        \"zipCode\": \"122220\"\n    },\n    \"customer\": {\n        \"name\": \"test\",\n        \"phone\": \"999999999\",\n        \"email\": \"test@payu.in\"\n    },\n    \"udf\": {\n        \"udf1\": \"sampleUdf1\",\n        \"udf2\": \"sampleUdf2\",\n        \"udf3\": \"sampleUdf3\"\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{payu_base_url}}/partners/payment-links",
+          "host": [
+            "{{payu_base_url}}"
+          ],
+          "path": [
+            "partners",
+            "payment-links"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d"
+              },
+              {
+                "key": "merchantId",
+                "value": "12231777"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"isAmountFilledByCustomer\": false,\n    \"subAmount\": 100,\n    \"description\": \"test\",\n    \"currency\": \"INR\",\n    \"source\": \"API\",\n    \"address\": {\n        \"line1\": \"test\",\n        \"line2\": \"sample\",\n        \"city\": \"gurgaon\",\n        \"state\": \"UP\",\n        \"country\": \"India\",\n        \"zipCode\": \"122220\"\n    },\n    \"customer\": {\n        \"name\": \"test\",\n        \"phone\": \"999999999\",\n        \"email\": \"test@payu.in\"\n    },\n    \"udf\": {\n        \"udf1\": \"sampleUdf1\",\n        \"udf2\": \"sampleUdf2\",\n        \"udf3\": \"sampleUdf3\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{payu_base_url}}/partners/payment-links",
+              "host": [
+                "{{payu_base_url}}"
+              ],
+              "path": [
+                "partners",
+                "payment-links"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Mon, 10 Jun 2024 14:40:23 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "948"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Server",
+              "value": "nginx"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"4a93c92765c9568e5b045894bdb321d3\""
+            },
+            {
+              "key": "Cache-Control",
+              "value": "max-age=0, private, must-revalidate"
+            },
+            {
+              "key": "X-Request-Id",
+              "value": "73ad377a-7fa8-471f-a345-445a80dc86f1"
+            },
+            {
+              "key": "X-Runtime",
+              "value": "0.347294"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=63072000; includeSubdomains;"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": 0,\n    \"message\": \"PaymentLink generated\",\n    \"result\": {\n        \"subAmount\": 100,\n        \"tax\": 0,\n        \"shippingCharge\": 0,\n        \"totalAmount\": 100,\n        \"invoiceNumber\": \"INV2172772182406\",\n        \"paymentLink\": \"https://pmny.in/6ra5TQq6SSUo\",\n        \"description\": \"test\",\n        \"active\": true,\n        \"isPartialPaymentAllowed\": false,\n        \"expiryDate\": \"2025-06-10 20:10:22\",\n        \"udf\": {\n            \"udf1\": \"sampleUdf1\",\n            \"udf2\": \"sampleUdf2\",\n            \"udf3\": \"sampleUdf3\",\n            \"udf4\": null,\n            \"udf5\": null\n        },\n        \"address\": {\n            \"line1\": \"test\",\n            \"line2\": \"sample\",\n            \"city\": \"gurgaon\",\n            \"state\": \"UP\",\n            \"country\": \"India\",\n            \"zipCode\": \"122220\"\n        },\n        \"emailStatus\": \"not opted\",\n        \"smsStatus\": \"not opted\",\n        \"currency\": \"INR\",\n        \"addedOn\": \"2024-06-10 20:10:23\",\n        \"status\": \"active\",\n        \"maxPaymentsAllowed\": 1,\n        \"customerName\": \"test\",\n        \"customerPhone\": \"999999999\",\n        \"customerEmail\": \"test@payu.in\",\n        \"notes\": null,\n        \"amountCollected\": 0,\n        \"dueAmount\": 100,\n        \"minAmountForCustomer\": 1,\n        \"adjustment\": 0,\n        \"discount\": 0,\n        \"customParams\": null,\n        \"transactionId\": null\n    },\n    \"errorCode\": null,\n    \"guid\": \"05a5534a-91af-42b5-93d8-6f7c4f361f88\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Read payment link",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d"
+          },
+          {
+            "key": "merchantId",
+            "value": "12231777"
+          }
+        ],
+        "url": {
+          "raw": "https://partner.payu.in/partners/payment-links/INV2172772182406",
+          "protocol": "https",
+          "host": [
+            "partner",
+            "payu",
+            "in"
+          ],
+          "path": [
+            "partners",
+            "payment-links",
+            "INV2172772182406"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d"
+              },
+              {
+                "key": "merchantId",
+                "value": "12231777"
+              }
+            ],
+            "url": {
+              "raw": "{{payu_base_url}}/partners/payment-links/INV2172772182406",
+              "host": [
+                "{{payu_base_url}}"
+              ],
+              "path": [
+                "partners",
+                "payment-links",
+                "INV2172772182406"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Mon, 10 Jun 2024 14:52:26 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Server",
+              "value": "nginx"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"e5f90a10c56cfcfad4221360af17c8c6\""
+            },
+            {
+              "key": "Cache-Control",
+              "value": "max-age=0, private, must-revalidate"
+            },
+            {
+              "key": "X-Request-Id",
+              "value": "7cafdeb7-1bc4-4a01-b4ce-d5d96dd8d936"
+            },
+            {
+              "key": "X-Runtime",
+              "value": "0.265267"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=63072000; includeSubdomains;"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "gzip"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": 0,\n    \"message\": null,\n    \"result\": {\n        \"summary\": {\n            \"amountRequested\": 110,\n            \"totalRevenue\": 0,\n            \"totalViews\": 3\n        },\n        \"subAmount\": 110,\n        \"tax\": 0,\n        \"shippingCharge\": 0,\n        \"totalAmount\": 110,\n        \"dueAmount\": 110,\n        \"totalAmountCollected\": 0,\n        \"invoiceNumber\": \"INV2172772182406\",\n        \"paymentLink\": \"https://pmny.in/6ra5TQq6SSUo\",\n        \"description\": \"test\",\n        \"active\": true,\n        \"isPartialPaymentAllowed\": false,\n        \"status\": \"active\",\n        \"expiryDate\": \"2025-06-10T20:10:22.000+05:30\",\n        \"udf\": {\n            \"udf1\": \"sampleUdf1\",\n            \"udf2\": \"sampleUdf2\",\n            \"udf3\": \"sampleUdf3\",\n            \"udf4\": null,\n            \"udf5\": null\n        },\n        \"address\": {\n            \"line1\": \"test\",\n            \"line2\": \"sample\",\n            \"city\": \"gurgaon\",\n            \"state\": \"UP\",\n            \"country\": \"India\",\n            \"zipCode\": \"122220\"\n        },\n        \"addedOn\": \"2024-06-10T20:10:23.000+05:30\",\n        \"isAmountFilledByCustomer\": false,\n        \"reminder\": null,\n        \"customAttributes\": [],\n        \"aggregatorSplitInfo\": null,\n        \"merchantId\": 12231777,\n        \"currency\": \"INR\",\n        \"maxPaymentsAllowed\": 1,\n        \"customerName\": \"test\",\n        \"customerPhone\": \"999999999\",\n        \"customerEmail\": \"test@payu.in\",\n        \"minAmountForCustomer\": 1,\n        \"adjustment\": 0,\n        \"discount\": 0,\n        \"customParams\": null,\n        \"emailStatus\": \"not opted\",\n        \"smsStatus\": \"not opted\",\n        \"successUrl\": null,\n        \"failureUrl\": null,\n        \"notes\": null,\n        \"transactionId\": null,\n        \"paymentDetails\": null\n    },\n    \"errorCode\": null,\n    \"guid\": \"2837a0bf-bc02-4f8f-bafe-baebe110d5ec\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Put payment links",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d"
+          },
+          {
+            "key": "merchantId",
+            "value": "12231777"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"active\": true,\n    \"subAmount\": 110\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://partner.payu.in/partners/payment-links/INV2172772182406",
+          "protocol": "https",
+          "host": [
+            "partner",
+            "payu",
+            "in"
+          ],
+          "path": [
+            "partners",
+            "payment-links",
+            "INV2172772182406"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer 323074a686571438f4db60fb70091f818f97aaae77c6e417d8d55eefcf1a555d"
+              },
+              {
+                "key": "merchantId",
+                "value": "12231777"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"active\": true,\n    \"subAmount\": 110\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{payu_base_url}}/partners/payment-links/INV2172772182406",
+              "host": [
+                "{{payu_base_url}}"
+              ],
+              "path": [
+                "partners",
+                "payment-links",
+                "INV2172772182406"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Mon, 10 Jun 2024 14:47:09 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "946"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Server",
+              "value": "nginx"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"ac5eb35f4b8a7787a003fbf5cc9a7f93\""
+            },
+            {
+              "key": "Cache-Control",
+              "value": "max-age=0, private, must-revalidate"
+            },
+            {
+              "key": "X-Request-Id",
+              "value": "5c47a6b2-6df8-4470-9a11-8e75adf8945f"
+            },
+            {
+              "key": "X-Runtime",
+              "value": "0.202567"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=63072000; includeSubdomains;"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": 0,\n    \"message\": \"PaymentLink updated\",\n    \"result\": {\n        \"subAmount\": 110,\n        \"tax\": 0,\n        \"shippingCharge\": 0,\n        \"totalAmount\": 110,\n        \"invoiceNumber\": \"INV2172772182406\",\n        \"paymentLink\": \"https://pmny.in/6ra5TQq6SSUo\",\n        \"description\": \"test\",\n        \"active\": true,\n        \"isPartialPaymentAllowed\": false,\n        \"expiryDate\": \"2025-06-10 20:10:22\",\n        \"udf\": {\n            \"udf1\": \"sampleUdf1\",\n            \"udf2\": \"sampleUdf2\",\n            \"udf3\": \"sampleUdf3\",\n            \"udf4\": null,\n            \"udf5\": null\n        },\n        \"address\": {\n            \"line1\": \"test\",\n            \"line2\": \"sample\",\n            \"city\": \"gurgaon\",\n            \"state\": \"UP\",\n            \"country\": \"India\",\n            \"zipCode\": \"122220\"\n        },\n        \"emailStatus\": \"not opted\",\n        \"smsStatus\": \"not opted\",\n        \"currency\": \"INR\",\n        \"addedOn\": \"2024-06-10 20:10:23\",\n        \"status\": \"active\",\n        \"maxPaymentsAllowed\": 1,\n        \"customerName\": \"test\",\n        \"customerPhone\": \"999999999\",\n        \"customerEmail\": \"test@payu.in\",\n        \"notes\": null,\n        \"amountCollected\": 0,\n        \"dueAmount\": 110,\n        \"minAmountForCustomer\": 1,\n        \"adjustment\": 0,\n        \"discount\": 0,\n        \"customParams\": null,\n        \"transactionId\": null\n    },\n    \"errorCode\": null,\n    \"guid\": \"23797ae1-8bbd-4966-b13a-50866fc31aab\"\n}"
+        }
+      ]
+    }
+  ]
+}
