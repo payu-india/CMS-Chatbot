@@ -1,5 +1,5 @@
 ---
-title: OAuth 2.0 Token Request
+title: Get Token API - Payment Links
 excerpt: >-
   OAuth 2.0 Client Credentials Grant Token Request
 
@@ -27,5 +27,5 @@ excerpt: >-
 api:
   file: PayU_OAuth2_Collection.json
   operationId: post_oauth-token
-hidden: false
+hidden: true
 ---
