@@ -54,7 +54,7 @@
                   },
                   "scope": {
                     "type": "string",
-                    "description": "This parameter contains the purpose of the access token. The scope varies based on the any of the use case:  -Create Link: create_payment_links  -Change status and expiry: update_payment_links  -Get or Share payment links: read_payment_links   Note: Merchant can pass upto three scopes simultaneously for an access token value. This done by passing scopes separated by a space between them. For example: create_payment_links update_payment_links read_payment_links",
+                    "description": "This parameter contains the purpose of the access token. For more information, refer to Additional information for request parameters table above. ",
                     "example": "read_payment_links"
                   }
                 },
