@@ -30,6 +30,10 @@ Once the payment is processed, the customer will be redirected back to the merch
 
 ## Customer journey
 
+The following diagram illustrates the overall customer journey:
+
+<Image align="center" border={false} src="https://files.readme.io/b7b3bc19c28693be346591ec8a2c29ee07fcf47cb088bc6c9a6c34950c2af0dc-payu_hosted_checkout-workflow.png" />
+
 The following sample customer journey is for cards payment mode:
 
 1. The customer clicks **Pay Now** on merchant website after checkout.
@@ -82,8 +86,7 @@ The following is a list of benefits of PayU Hosted Checkout:
 To integrate PayU Hosted Integration on your website or mobile, refer to:
 
 * [Web Integration - PayU Hosted](https://docs.payu.in/docs/prebuilt-checkout-page-integration) using the **Collect Payment **API (**_payment** API),
-* [Integrate WebView for Mobile Apps](https://docs.payu.in/docs/webview-for-mobile-apps) by embedding PayU's Hosted Checkout experience inside a WebView container within your mobile app.
 
-   
+* [Integrate WebView for Mobile Apps](https://docs.payu.in/docs/webview-for-mobile-apps) by embedding PayU's Hosted Checkout experience inside a WebView container within your mobile app.
 
 <br />
