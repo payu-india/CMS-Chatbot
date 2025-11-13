@@ -120,13 +120,13 @@ The **Get Token API** returns the authentication token generated using the clien
   ### Success scenario
 
   ```json
- {
+  {
   "access_token": "ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4",
   "token_type": "Bearer",
   "expires_in": 7011,
   "scope": "create_payment_links",
   "created_at": 1763036368
-}
+  }
   ```
 
   ### Failure scenarios
@@ -148,13 +148,29 @@ The **Get Token API** returns the authentication token generated using the clien
   "error_description": "The requested scope is invalid, unknown, or malformed."
   }
   ```
+
   * **Unauthorised client**
   ```json
-{
+  {
   "error": "unauthorized_client",
   "error_description": "The authenticated client is not authorized to use this authorization grant type."
+  }
+  ```
+  * **Rate limit exceeded** 
+  ```json
+{
+  "error": "rate_limit_exceeded",
+  "error_description": "Too many requests. Please retry after some time.",
+  "retry_after": 60
 }
 ```
+ *  **Server error**
+  ```json
+{
+  "error": "server_error",
+  "error_description": "The authorization server encountered an unexpected condition that prevented it from fulfilling the request."
+}
+  ```
 </Accordion>
 
 ## Request parameters
