@@ -1,9 +1,11 @@
 ---
-title: Get Access Token
+title: Get Token API - Payment Links
 api:
   file: PayU_OAuth2_Collection.json
   operationId: getAccessToken
 hidden: false
+link:
+  new_tab: false
 ---
 The **Get Token API** returns the authentication token generated using the client ID and client secret.
 
