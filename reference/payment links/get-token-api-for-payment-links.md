@@ -120,13 +120,13 @@ The **Get Token API** returns the authentication token generated using the clien
   ### Success scenario
 
   ```json
-  {
-  "access_token": "82c38b64e072f3d64da6e4e6efee9789ffe1250f0cd04c20753d6e6f25df9cc7",
+ {
+  "access_token": "ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4",
   "token_type": "Bearer",
-  "expires_in": 7200,
-  "scope": "read_payment_links",
-  "created_at": 1595411399
-  }
+  "expires_in": 7011,
+  "scope": "create_payment_links",
+  "created_at": 1763036368
+}
   ```
 
   ### Failure scenarios
@@ -134,20 +134,27 @@ The **Get Token API** returns the authentication token generated using the clien
   * **Client authentication failed**
 
   ```json
-{
+  {
   "error": "invalid_client",
   "error_description": "Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method."
-}
+  }
   ```
 
-  * **Invalide Scope**
+  * **Invalid Scope**
 
-  ```
- {
+  ```json
+  {
   "error": "invalid_scope",
   "error_description": "The requested scope is invalid, unknown, or malformed."
-}
+  }
   ```
+  * **Unauthorised client**
+  ```json
+{
+  "error": "unauthorized_client",
+  "error_description": "The authenticated client is not authorized to use this authorization grant type."
+}
+```
 </Accordion>
 
 ## Request parameters
