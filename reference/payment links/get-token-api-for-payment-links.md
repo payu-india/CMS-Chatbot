@@ -120,38 +120,33 @@ The **Get Token API** returns the authentication token generated using the clien
   ### Success scenario
 
   ```json
- {
+  {
   "access_token": "82c38b64e072f3d64da6e4e6efee9789ffe1250f0cd04c20753d6e6f25df9cc7",
   "token_type": "Bearer",
   "expires_in": 7200,
   "scope": "read_payment_links",
   "created_at": 1595411399
-}
+  }
   ```
 
   ### Failure scenarios
 
-  * **Invalid Client ID**
+  * **Client authentication failed**
 
   ```json
-  {
-    "status": "error",
-    "message": "Invalid client_id format",
-    "error_code": "CLIENT_001",
-    "timestamp": "2024-10-29T12:04:28Z"
-  }
-
+{
+  "error": "invalid_client",
+  "error_description": "Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method."
+}
   ```
 
-  * **Missing Client ID**
+  * **Invalide Scope**
 
   ```
-  {
-    "status": "error",
-    "message": "Missing required parameter: client_id",
-    "error_code": "PARAM_001",
-    "timestamp": "2024-10-29T12:04:28Z"
-  }
+ {
+  "error": "invalid_scope",
+  "error_description": "The requested scope is invalid, unknown, or malformed."
+}
   ```
 </Accordion>
 
