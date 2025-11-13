@@ -43,13 +43,13 @@
                   "client_id": {
                     "type": "string",
                     "description": "Your OAuth 2.0 client ID issued by PayU",
-                    "example": "b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91"
+                    "example": null
                   },
                   "client_secret": {
                     "type": "string",
                     "format": "password",
                     "description": "Your OAuth 2.0 client secret (keep this secure)",
-                    "example": "27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6"
+                    "example": null
                   },
                   "grant_type": {
                     "type": "string",
@@ -62,7 +62,7 @@
                   "scope": {
                     "type": "string",
                     "description": "Space-separated list of requested permissions",
-                    "example": "create_payment_links update_payment_links read_payment_links"
+                    "example": "create_payment_links"
                   }
                 }
               }
@@ -142,7 +142,7 @@
           "scope": {
             "type": "string",
             "description": "The scope of the access token",
-            "example": "create_payment_links update_payment_links read_payment_links"
+            "example": "create_payment_links"
           }
         },
         "required": [
@@ -187,10 +187,7 @@
             "scopes": {
               "create_payment_links": "Create payment links",
               "update_payment_links": "Update existing payment links",
-              "read_payment_links": "Read payment links",
-              "create_payments": "Create payments",
-              "refund_payments": "Process payment refunds",
-              "read_payments": "Read payment information"
+              "read_payment_links": "Read payment links"
             }
           }
         }
