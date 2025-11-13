@@ -120,12 +120,13 @@ The **Get Token API** returns the authentication token generated using the clien
   ### Success scenario
 
   ```json
-  {
-    "status": "success",
-    "message": "Credentials validated successfully",
-    "timestamp": "2024-10-29T12:04:28Z",
-    "merchant_id": "MERCHANT_12345"
-  }
+ {
+  "access_token": "82c38b64e072f3d64da6e4e6efee9789ffe1250f0cd04c20753d6e6f25df9cc7",
+  "token_type": "Bearer",
+  "expires_in": 7200,
+  "scope": "read_payment_links",
+  "created_at": 1595411399
+}
   ```
 
   ### Failure scenarios
