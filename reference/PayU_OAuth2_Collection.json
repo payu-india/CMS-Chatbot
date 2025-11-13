@@ -1,65 +1,10 @@
 {
   "info": {
     "name": "PayU OAuth 2.0 API Collection",
-    "description": "OAS 3.0 standard collection for PayU OAuth 2.0 authentication using client credentials grant",
+    "description": "OAS 3.0 standard collection for PayU OAuth 2.0 authentication",
     "version": "1.0.0",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
-  "auth": {
-    "type": "oauth2",
-    "oauth2": [
-      {
-        "key": "tokenUrl",
-        "value": "https://uat-accounts.payu.in/oauth/token",
-        "type": "string"
-      },
-      {
-        "key": "grant_type",
-        "value": "client_credentials",
-        "type": "string"
-      },
-      {
-        "key": "scope",
-        "value": "create_payment_links update_payment_links read_payment_links",
-        "type": "string"
-      },
-      {
-        "key": "clientId",
-        "value": "b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91",
-        "type": "string"
-      },
-      {
-        "key": "clientSecret",
-        "value": "27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6",
-        "type": "string"
-      },
-      {
-        "key": "addTokenTo",
-        "value": "header",
-        "type": "string"
-      }
-    ]
-  },
-  "variable": [
-    {
-      "key": "base_url",
-      "value": "https://uat-accounts.payu.in",
-      "type": "string",
-      "description": "Base URL for PayU UAT environment"
-    },
-    {
-      "key": "client_id",
-      "value": "b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91",
-      "type": "string",
-      "description": "OAuth 2.0 Client ID"
-    },
-    {
-      "key": "client_secret",
-      "value": "27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6",
-      "type": "string",
-      "description": "OAuth 2.0 Client Secret"
-    }
-  ],
   "item": [
     {
       "name": "OAuth 2.0 Token Request",
@@ -78,26 +23,22 @@
             {
               "key": "client_id",
               "value": "b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91",
-              "type": "text",
-              "description": "OAuth 2.0 Client ID"
+              "type": "text"
             },
             {
               "key": "client_secret",
               "value": "27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6",
-              "type": "text",
-              "description": "OAuth 2.0 Client Secret"
+              "type": "text"
             },
             {
               "key": "grant_type",
               "value": "client_credentials",
-              "type": "text",
-              "description": "OAuth 2.0 Grant Type"
+              "type": "text"
             },
             {
               "key": "scope",
               "value": "create_payment_links update_payment_links read_payment_links",
-              "type": "text",
-              "description": "OAuth 2.0 Scopes - space-separated"
+              "type": "text"
             }
           ]
         },
@@ -114,139 +55,22 @@
             "token"
           ]
         },
-        "description": "OAuth 2.0 Client Credentials Grant Token Request\n\nThis endpoint is used to obtain an access token using the client credentials grant type. The token can then be used to authenticate subsequent API requests.\n\n**Equivalent cURL:**\n```bash\ncurl --location 'https://uat-accounts.payu.in/oauth/token' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--data-urlencode 'client_id=b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91' \\\n--data-urlencode 'client_secret=27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6' \\\n--data-urlencode 'grant_type=client_credentials' \\\n--data-urlencode 'scope=create_payment_links update_payment_links read_payment_links'\n```\n\n**Parameters:**\n- client_id: b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91\n- client_secret: 27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6\n- grant_type: client_credentials\n- scope: create_payment_links update_payment_links read_payment_links\n\n**Response:**\nReturns an access token that should be used in the Authorization header for authenticated requests."
-      },
-      "response": [
-        {
-          "name": "Successful Token Response",
-          "originalRequest": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "client_id",
-                  "value": "b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91"
-                },
-                {
-                  "key": "client_secret",
-                  "value": "27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                },
-                {
-                  "key": "scope",
-                  "value": "create_payment_links update_payment_links read_payment_links"
-                }
-              ]
-            },
-            "url": {
-              "raw": "https://uat-accounts.payu.in/oauth/token",
-              "protocol": "https",
-              "host": [
-                "uat-accounts",
-                "payu",
-                "in"
-              ],
-              "path": [
-                "oauth",
-                "token"
-              ]
-            }
-          },
-          "status": "OK",
-          "code": 200,
-          "_postman_previewlanguage": "json",
-          "header": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
-          "cookie": [],
-          "body": "{\n  \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 3600,\n  \"scope\": \"create_payment_links update_payment_links read_payment_links\"\n}"
-        }
-      ]
+        "description": "OAuth 2.0 Token Request\n\nGenerates this exact cURL:\n```\ncurl --location 'https://uat-accounts.payu.in/oauth/token' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--data-urlencode 'client_id=b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91' \\\n--data-urlencode 'client_secret=27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6' \\\n--data-urlencode 'grant_type=client_credentials' \\\n--data-urlencode 'scope=create_payment_links update_payment_links read_payment_links'\n```"
+      }
     }
   ],
-  "event": [
+  "variable": [
     {
-      "listen": "prerequest",
-      "script": {
-        "type": "text/javascript",
-        "exec": [
-          "// Pre-request script for OAuth 2.0 setup",
-          "console.log('🔑 Preparing OAuth 2.0 token request...');",
-          "console.log('📍 Endpoint: https://uat-accounts.payu.in/oauth/token');",
-          "console.log('🆔 Client ID: b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91');",
-          "console.log('🎯 Scopes: create_payment_links update_payment_links read_payment_links');",
-          "console.log('⚡ Grant Type: client_credentials');"
-        ]
-      }
+      "key": "base_url",
+      "value": "https://uat-accounts.payu.in"
     },
     {
-      "listen": "test",
-      "script": {
-        "type": "text/javascript",
-        "exec": [
-          "// Test script for OAuth 2.0 token response",
-          "pm.test('✅ Status code is 200', function () {",
-          "    pm.response.to.have.status(200);",
-          "});",
-          "",
-          "pm.test('✅ Response has access_token', function () {",
-          "    const jsonData = pm.response.json();",
-          "    pm.expect(jsonData).to.have.property('access_token');",
-          "    pm.expect(jsonData.access_token).to.be.a('string');",
-          "    pm.expect(jsonData.access_token.length).to.be.greaterThan(0);",
-          "});",
-          "",
-          "pm.test('✅ Token type is Bearer', function () {",
-          "    const jsonData = pm.response.json();",
-          "    pm.expect(jsonData.token_type).to.eql('Bearer');",
-          "});",
-          "",
-          "pm.test('✅ Response has expires_in', function () {",
-          "    const jsonData = pm.response.json();",
-          "    pm.expect(jsonData).to.have.property('expires_in');",
-          "    pm.expect(jsonData.expires_in).to.be.a('number');",
-          "});",
-          "",
-          "pm.test('✅ Response includes correct scope', function () {",
-          "    const jsonData = pm.response.json();",
-          "    if (jsonData.scope) {",
-          "        pm.expect(jsonData.scope).to.include('payment_links');",
-          "    }",
-          "});",
-          "",
-          "// Store the access token for future requests",
-          "if (pm.response.code === 200) {",
-          "    const jsonData = pm.response.json();",
-          "    if (jsonData.access_token) {",
-          "        pm.collectionVariables.set('access_token', jsonData.access_token);",
-          "        pm.collectionVariables.set('token_type', jsonData.token_type || 'Bearer');",
-          "        pm.collectionVariables.set('token_expires_in', jsonData.expires_in || 3600);",
-          "        ",
-          "        console.log('🎉 Access token stored successfully!');",
-          "        console.log('⏰ Token expires in: ' + jsonData.expires_in + ' seconds');",
-          "        console.log('🔐 Token type: ' + jsonData.token_type);",
-          "        ",
-          "        // Calculate expiration time",
-          "        const expirationTime = new Date(Date.now() + (jsonData.expires_in * 1000));",
-          "        pm.collectionVariables.set('token_expires_at', expirationTime.toISOString());",
-          "        console.log('📅 Token expires at: ' + expirationTime.toLocaleString());",
-          "    }",
-          "}"
-        ]
-      }
+      "key": "client_id",
+      "value": "b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91"
+    },
+    {
+      "key": "client_secret",
+      "value": "27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6"
     }
   ]
 }
