@@ -42,7 +42,7 @@ PayU’s Merchant Hosted Checkout allows you to create a custom payment experien
 
 <Image align="center" border={false} src="https://files.readme.io/4aeeafdbefc392fa362522d8209dc7268178e104e699b067895a3408ff412c42-merchant_hosted_flow.png" />
 
-### Customer Experience
+### Customer Journey
 
 **Step 1:** The customer completes shopping at your website and initiates a transaction with saved card (for example, VISA) credentials.
 
