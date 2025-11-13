@@ -78,9 +78,11 @@
             "name": "Content-Type",
             "in": "header",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "application/x-www-form-urlencoded"
             },
-            "example": "application/x-www-form-urlencoded"
+            "example": "application/x-www-form-urlencoded",
+            "required": true
           }
         ],
         "responses": {
