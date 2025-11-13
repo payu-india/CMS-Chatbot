@@ -1,5 +1,5 @@
 ---
-title: Get Access Token
+title: Get Token API - Payment Links
 excerpt: >-
   Obtain an access token using OAuth 2.0 Client Credentials flow for API
   authentication
