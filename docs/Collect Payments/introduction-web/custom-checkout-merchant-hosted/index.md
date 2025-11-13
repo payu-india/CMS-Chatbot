@@ -44,6 +44,12 @@ PayU’s Merchant Hosted Checkout allows you to create a custom payment experien
 
 ### Customer Journey
 
+The overall customer journey involves:
+
+<Image align="center" border={false} src="https://files.readme.io/6ef06a1a0c4121b92612690e7697c0f25ccc94fe43a22b2dcf91dbad85007570-merchant_hosted_customer_journey.png" />
+
+The steps includes:
+
 **Step 1:** The customer completes shopping at your website and initiates a transaction with saved card (for example, VISA) credentials.
 
 **Step 2:** The customer enters the CVV and proceeds to complete the payment.
