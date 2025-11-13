@@ -159,6 +159,14 @@ next:
 <tr><td>Federal Bank</td><td>FEDED06</td><td>6 Months</td><td>15</td><td>5000</td><td>150000</td><td>N/A</td></tr>
 <tr><td>Federal Bank</td><td>FEDED09</td><td>9 Months</td><td>15</td><td>5000</td><td>150000</td><td>N/A</td></tr>
 <tr><td>Federal Bank</td><td>FEDED12</td><td>12 Months</td><td>15</td><td>5000</td><td>150000</td><td>N/A</td></tr>
+<tr><td>HDFC Bank</td><td>HDFCD03</td><td>3 Months</td><td>16</td><td>3000</td><td>500000</td><td>Rs. 299</td></tr>
+<tr><td>HDFC Bank</td><td>HDFCD06</td><td>6 Months</td><td>16</td><td>5000</td><td>500000</td><td>Rs. 299</td></tr>
+<tr><td>HDFC Bank</td><td>HDFCD09</td><td>9 Months</td><td>16</td><td>5000</td><td>500000</td><td>Rs. 299</td></tr>
+<tr><td>HDFC Bank</td><td>HDFCD12</td><td>12 Months</td><td>16</td><td>5000</td><td>500000</td><td>Rs. 299</td></tr>
+<tr><td>HDFC Bank</td><td>HDFCD18</td><td>18 Months</td><td>16</td><td>5000</td><td>500000</td><td>Rs. 299</td></tr>
+<tr><td>HDFC Bank</td><td>HDFCD24</td><td>24 Months</td><td>16</td><td>5000</td><td>500000</td><td>Rs. 299</td></tr>
+<tr><td>HDFC Bank</td><td>HDFCD36</td><td>36 Months</td><td>16</td><td>30000</td><td>500000</td><td>Rs. 299</td></tr>
+<tr><td>HDFC Bank</td><td>HDFCD48</td><td>48 Months</td><td>16</td><td>40000</td><td>500000</td><td>Rs. 299</td></tr>
 <tr><td>ICICI Bank</td><td>ICICID03</td><td>3 Months</td><td>16</td><td>5000</td><td>500000</td><td>Rs. 199</td></tr>
 <tr><td>ICICI Bank</td><td>ICICID06</td><td>6 Months</td><td>16</td><td>5000</td><td>500000</td><td>Rs. 199</td></tr>
 <tr><td>ICICI Bank</td><td>ICICID09</td><td>9 Months</td><td>16</td><td>5000</td><td>500000</td><td>Rs. 199</td></tr>
