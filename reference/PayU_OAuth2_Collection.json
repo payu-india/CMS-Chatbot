@@ -1,76 +1,206 @@
 {
+  "openapi": "3.0.0",
   "info": {
-    "name": "PayU OAuth 2.0 API Collection",
-    "description": "OAS 3.0 standard collection for PayU OAuth 2.0 authentication",
+    "title": "PayU OAuth 2.0 API",
+    "description": "PayU OAuth 2.0 token authentication endpoint for obtaining access tokens using Client Credentials grant type",
     "version": "1.0.0",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "contact": {
+      "name": "PayU Support",
+      "url": "https://payu.in"
+    }
   },
-  "item": [
+  "servers": [
     {
-      "name": "OAuth 2.0 Token Request",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/x-www-form-urlencoded",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "client_id",
-              "value": "b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91",
-              "type": "text"
-            },
-            {
-              "key": "client_secret",
-              "value": "27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6",
-              "type": "text"
-            },
-            {
-              "key": "grant_type",
-              "value": "client_credentials",
-              "type": "text"
-            },
-            {
-              "key": "scope",
-              "value": "create_payment_links update_payment_links read_payment_links",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "https://uat-accounts.payu.in/oauth/token",
-          "protocol": "https",
-          "host": [
-            "uat-accounts",
-            "payu",
-            "in"
-          ],
-          "path": [
-            "oauth",
-            "token"
-          ]
-        },
-        "description": "OAuth 2.0 Token Request\n\nGenerates this exact cURL:\n```\ncurl --location 'https://uat-accounts.payu.in/oauth/token' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--data-urlencode 'client_id=b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91' \\\n--data-urlencode 'client_secret=27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6' \\\n--data-urlencode 'grant_type=client_credentials' \\\n--data-urlencode 'scope=create_payment_links update_payment_links read_payment_links'\n```"
-      }
+      "url": "https://uat-accounts.payu.in",
+      "description": "PayU UAT Environment"
+    },
+    {
+      "url": "https://accounts.payu.in",
+      "description": "PayU Production Environment"
     }
   ],
-  "variable": [
-    {
-      "key": "base_url",
-      "value": "https://uat-accounts.payu.in"
+  "paths": {
+    "/oauth/token": {
+      "post": {
+        "summary": "Get Access Token",
+        "description": "Obtain an access token using OAuth 2.0 Client Credentials flow for API authentication",
+        "operationId": "getAccessToken",
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "client_id",
+                  "client_secret",
+                  "grant_type"
+                ],
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "description": "Your OAuth 2.0 client ID issued by PayU",
+                    "example": "b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "Your OAuth 2.0 client secret (keep this secure)",
+                    "example": "27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6"
+                  },
+                  "grant_type": {
+                    "type": "string",
+                    "enum": [
+                      "client_credentials"
+                    ],
+                    "description": "The OAuth 2.0 grant type for server-to-server authentication",
+                    "example": "client_credentials"
+                  },
+                  "scope": {
+                    "type": "string",
+                    "description": "Space-separated list of requested permissions",
+                    "example": "create_payment_links update_payment_links read_payment_links"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully obtained access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed - invalid client credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccessTokenResponse": {
+        "type": "object",
+        "description": "OAuth 2.0 access token response",
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "description": "The access token to use for API requests",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          },
+          "token_type": {
+            "type": "string",
+            "description": "The type of token issued",
+            "enum": [
+              "Bearer"
+            ],
+            "example": "Bearer"
+          },
+          "expires_in": {
+            "type": "integer",
+            "description": "The lifetime of the access token in seconds",
+            "example": 3600
+          },
+          "scope": {
+            "type": "string",
+            "description": "The scope of the access token",
+            "example": "create_payment_links update_payment_links read_payment_links"
+          }
+        },
+        "required": [
+          "access_token",
+          "token_type",
+          "expires_in"
+        ]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "description": "Error response object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error code",
+            "example": "invalid_client"
+          },
+          "error_description": {
+            "type": "string",
+            "description": "Detailed error message",
+            "example": "Client authentication failed"
+          },
+          "status": {
+            "type": "integer",
+            "description": "HTTP status code",
+            "example": 401
+          }
+        },
+        "required": [
+          "error",
+          "status"
+        ]
+      }
     },
+    "securitySchemes": {
+      "OAuth2ClientCredentials": {
+        "type": "oauth2",
+        "description": "OAuth 2.0 Client Credentials flow for server-to-server authentication",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "/oauth/token",
+            "scopes": {
+              "create_payment_links": "Create payment links",
+              "update_payment_links": "Update existing payment links",
+              "read_payment_links": "Read payment links",
+              "create_payments": "Create payments",
+              "refund_payments": "Process payment refunds",
+              "read_payments": "Read payment information"
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
     {
-      "key": "client_id",
-      "value": "b5ff863b120f59dbf386e5e066903c2b7791473e5a2d46d9a38712e629728c91"
-    },
-    {
-      "key": "client_secret",
-      "value": "27294d65c636f205ac5cf232f65c6b231a21ec89f249e0f5866a36feb25faab6"
+      "name": "Authentication",
+      "description": "OAuth 2.0 authentication endpoints for obtaining access tokens"
     }
   ]
 }
