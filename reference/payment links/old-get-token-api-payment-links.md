@@ -1,5 +1,5 @@
 ---
-title: Get Token API - Payment Links
+title: '[OLD]Get Token API - Payment Links'
 api:
   file: updated_api_spec.json
   operationId: ValidateMerchantCredentials
