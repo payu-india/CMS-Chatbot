@@ -115,9 +115,12 @@ The **Get Token API** returns the authentication token generated using the clien
 
 <Accordion title="Sample request" icon="fa-info-circle">
   ```curl
-  curl -X POST https://uat-api.payu.in/merchant/credentials \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    -d "client_id=YOUR_CLIENT_ID&username=YOUR_USERNAME&password=YOUR_PASSWORD"
+curl --location -g --request POST '{{hub_base_url}}/oauth/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client_id={{client_id}}' \
+--data-urlencode 'client_secret={{client_secret}}' \
+--data-urlencode 'grant_type=client_credentials' \
+--data-urlencode 'scope=read_payment_links'
   ```
 </Accordion>
 
