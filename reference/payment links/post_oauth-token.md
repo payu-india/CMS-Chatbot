@@ -2,7 +2,7 @@
 title: Get Token API - Payment Links
 api:
   file: PayU_OAuth2_Collection.json
-  operationId: post_oauth-token
+  operationId: post_merchant-credentials
 hidden: true
 ---
 The **Get Token API** returns the authentication token generated using the client ID and client secret.
