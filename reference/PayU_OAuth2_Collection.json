@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "PayU OAuth 2.0 API",
+    "title": "Get Token API - Payment Links",
     "description": "PayU OAuth 2.0 token authentication endpoint for obtaining access tokens using Client Credentials grant type",
     "version": "1.0.0",
     "contact": {
@@ -199,5 +199,6 @@
       "name": "Authentication",
       "description": "OAuth 2.0 authentication endpoints for obtaining access tokens"
     }
-  ]
+  ],
+  "x-readme": {}
 }
