@@ -1,0 +1,150 @@
+{
+  "info": {
+    "name": "PayU OAuth 2.0 API Collection",
+    "description": "OAS 3.0 standard collection for PayU OAuth 2.0 authentication using client credentials grant",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "tokenUrl",
+        "value": "https://uat-accounts.payu.in/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      },
+      {
+        "key": "scope",
+        "value": "read_payment_links",
+        "type": "string"
+      },
+      {
+        "key": "clientId",
+        "value": "{{client_id}}",
+        "type": "string"
+      },
+      {
+        "key": "clientSecret",
+        "value": "{{client_secret}}",
+        "type": "string"
+      },
+      {
+        "key": "addTokenTo",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://uat-accounts.payu.in",
+      "type": "string",
+      "description": "Base URL for PayU UAT environment"
+    },
+    {
+      "key": "client_id",
+      "value": "",
+      "type": "string",
+      "description": "OAuth 2.0 Client ID - Set this value in your environment"
+    },
+    {
+      "key": "client_secret",
+      "value": "",
+      "type": "string",
+      "description": "OAuth 2.0 Client Secret - Set this value in your environment"
+    }
+  ],
+  "item": [
+    {
+      "name": "OAuth 2.0 Token Request",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "client_id",
+              "value": "{{client_id}}",
+              "type": "text",
+              "description": "OAuth 2.0 Client ID"
+            },
+            {
+              "key": "client_secret",
+              "value": "{{client_secret}}",
+              "type": "text",
+              "description": "OAuth 2.0 Client Secret"
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "text",
+              "description": "OAuth 2.0 Grant Type"
+            },
+            {
+              "key": "scope",
+              "value": "read_payment_links",
+              "type": "text",
+              "description": "OAuth 2.0 Scope"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/oauth/token",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "oauth",
+            "token"
+          ]
+        },
+        "description": "OAuth 2.0 Client Credentials Grant Token Request\n\nThis endpoint is used to obtain an access token using the client credentials grant type. The token can then be used to authenticate subsequent API requests.\n\n**Parameters:**\n- client_id: Your OAuth 2.0 client identifier\n- client_secret: Your OAuth 2.0 client secret\n- grant_type: Must be 'client_credentials'\n- scope: The requested scope (read_payment_links)\n\n**Response:**\nReturns an access token that should be used in the Authorization header for authenticated requests."
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Pre-request script for OAuth 2.0 setup",
+          "// Ensure client_id and client_secret are set",
+          "if (!pm.collectionVariables.get('client_id') || !pm.collectionVariables.get('client_secret')) {",
+          "    console.warn('Please set client_id and client_secret in collection variables or environment');",
+          "}"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Test script for OAuth 2.0 token response",
+          "if (pm.response.code === 200) {",
+          "    const jsonData = pm.response.json();",
+          "    if (jsonData.access_token) {",
+          "        pm.collectionVariables.set('access_token', jsonData.access_token);",
+          "        console.log('Access token stored in collection variable');",
+          "    }",
+          "}"
+        ]
+      }
+    }
+  ]
+}
