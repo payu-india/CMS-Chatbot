@@ -39,22 +39,22 @@
                 "properties": {
                   "client_id": {
                     "type": "string",
-                    "description": "OAuth 2.0 Client ID",
+                    "description": "This parameter contains the public identifier of the client to access the platform.",
                     "example": "{{client_id}}"
                   },
                   "client_secret": {
                     "type": "string",
-                    "description": "OAuth 2.0 Client Secret",
+                    "description": "This parameter contains a unique secret of client for authorization.",
                     "example": "{{client_secret}}"
                   },
                   "grant_type": {
                     "type": "string",
-                    "description": "OAuth 2.0 Grant Type",
+                    "description": "This parameter contains a constant value used to get the access token.",
                     "example": "client_credentials"
                   },
                   "scope": {
                     "type": "string",
-                    "description": "OAuth 2.0 Scope",
+                    "description": "This parameter contains the purpose of the access token. The scope varies based on the any of the use case:  -Create Link: create_payment_links  -Change status and expiry: update_payment_links  -Get or Share payment links: read_payment_links   Note: Merchant can pass upto three scopes simultaneously for an access token value. This done by passing scopes separated by a space between them. For example: create_payment_links update_payment_links read_payment_links",
                     "example": "read_payment_links"
                   }
                 },
