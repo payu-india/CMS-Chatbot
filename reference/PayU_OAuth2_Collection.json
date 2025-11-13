@@ -55,7 +55,12 @@
                   "scope": {
                     "type": "string",
                     "description": "This parameter contains the purpose of the access token. For more information, refer to Additional information for request parameters table above. ",
-                    "example": "read_payment_links"
+                    "example": "read_payment_links",
+                    "enum": [
+                      "create_payment_links",
+                      "update_payment_links",
+                      "read_payment_links"
+                    ]
                   }
                 },
                 "required": [
